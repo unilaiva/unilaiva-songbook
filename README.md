@@ -72,7 +72,7 @@ See `songs` package documentation in [http://songs.sourceforge.net/songsdoc/song
 
 Stuff inside `songs` environment (the files in `songdata` directory) ought
 to contain only individual songs (and data related to them) between
-`\beginsong` and `\endsong` tags plus other data wrapped in `intersong`
+`\beginsong` and `\endsong` tags plus other data wrapped in an `intersong`
 environment. 
 
 Use `\sclearpage` to jump to the beginning of a new page and `\scleardpage` to
