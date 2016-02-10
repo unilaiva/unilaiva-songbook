@@ -1,0 +1,110 @@
+
+
+
+%%\pagestyle{empty} %% comment out to show page numbers
+%% Note: This book is designed in such a way that odd pages ought to be displayed/printed on the 
+%%       right side and the even pages on the left side, which seems to be the standard way. To 
+%%       achieve this for example in PDF viewer Okular, one must set 
+%%       ``View Mode: Facing Pages (Center first page)''.
+%%       LaTeX command \scleardpage will force the following content to start on a new empty left-
+%%       side page.
+
+% The following rewrite of the \SB@@@beginsong command adds songs to the basic TOC also.
+% Changes: lines between and including the first and last '\hypersetup' commands were added.
+\makeatletter
+\renewcommand\SB@@@beginsong{%
+  \global\SB@stanzafalse%
+  \setbox\SB@chorusbox\box\voidb@x%
+  \SB@gotchorusfalse%
+  \setbox\SB@songbox\vbox\bgroup\begingroup%
+    \ifnum\SB@numcols>\z@\hsize\SB@colwidth\fi%
+    \leftskip\z@skip\rightskip\z@skip%
+    \parfillskip\@flushglue\parskip\z@skip%
+    \SB@raggedright%
+    \global\SB@transposefactor\z@%
+    \global\SB@cr@{\\}%
+    \protected@edef\@currentlabel{\p@songnum\thesongnum}%
+    \setcounter{versenum}{1}%
+    \SB@prevversetrue%
+    \meter44%
+    \resettitles%
+    \SB@addtoindexes\songtitle\SB@rawrefs\songauthors%
+    \nexttitle%
+    \foreachtitle{\expandafter\SB@addtotitles\expandafter{\songtitle}}%
+    \resettitles%
+    \lyricfont\relax%
+    \SB@setbaselineskip%
+    \hypersetup{bookmarksdepth=0}%
+    \phantomsection%
+    \addcontentsline{toc}{subsection}{\numberline{\thesongnum}\songtitle}%
+    \hypersetup{bookmarksdepth=2}%    
+}
+
+% The following rewrite adds only \color{mbarcolor} command to change the color of the measure bar
+\renewcommand\SB@makembar[2]{%
+  \ifSB@inverse\else%
+    \ifSB@inchorus\else\SB@errmbar\fi%
+  \fi%
+  \ifhmode%
+    \SB@skip\lastskip\unskip%
+    \setbox\SB@box\lastbox%
+    \copy\SB@box%
+    \ifvbox\SB@box%
+      \begingroup%
+        \setbox\SB@boxii\copy\SB@box%
+        \vbadness\@M\vfuzz\maxdimen%
+        \setbox\SB@boxii%
+          \vsplit\SB@boxii to\maxdimen%
+      \endgroup%
+      \long\edef\SB@temp{\splitfirstmark}%
+      \ifx\SB@temp\SB@measuremark%
+        \penalty100\hskip1em%
+      \else%
+        \penalty100\hskip\SB@skip%
+      \fi%
+    \else%
+      \penalty100\hskip\SB@skip%
+    \fi%
+  \fi%
+  \ifvmode\leavevmode\fi%
+  \setbox\SB@box\hbox{{\meterfont\relax#1}}%
+  \setbox\SB@boxii\hbox{{\meterfont\relax#2}}%
+  \SB@dimen\wd\ifdim\wd\SB@box>\wd\SB@boxii\SB@box\else\SB@boxii\fi%
+  \SB@dimenii\baselineskip%
+  \advance\SB@dimenii-2\p@%
+  \advance\SB@dimenii-\ht\SB@box%
+  \advance\SB@dimenii-\dp\SB@box%
+  \advance\SB@dimenii-\ht\SB@boxii%
+  \advance\SB@dimenii-\dp\SB@boxii%
+  \let\SB@temp\relax%
+  \ifdim\SB@dimen>\z@%
+    \advance\SB@dimenii-.75\p@%
+    \def\SB@temp{\kern.75\p@}%
+  \fi%
+  \SB@maxmin\SB@dimen<{.5\p@}%
+  \SB@maxmin\SB@dimenii<\z@%
+  \vbox{%
+    \mark{\SB@measuremark}%
+    \hbox to\SB@dimen{%
+      \hfil%
+      \box\SB@box%
+      \hfil%
+    }%
+    \nointerlineskip%
+    \hbox to\SB@dimen{%
+      \hfil%
+      \box\SB@boxii%
+      \hfil%
+    }%
+    \SB@temp%
+    \nointerlineskip%
+    \hbox to\SB@dimen{%
+      \hfil%
+      \color{mbarcolor}\vrule\@width.5\p@\@height\SB@dimenii%
+      \hfil%
+    }%
+  }%
+  \meter{}{}%
+}
+\let\SB@mbar\SB@makembar
+\makeatother

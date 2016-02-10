@@ -1,2 +1,26 @@
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+
+## songs indexes
+*.sxd
+*.sbx
+*.sxc
+
+# binary directory
+ext_packages/bin/
+
+# result documents
+wisdom-songbook.pdf
+pdf_a6_on_a4.pdf
+
+# other
 old
 *~
+*.backup

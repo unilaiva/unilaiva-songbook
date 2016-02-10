@@ -1,0 +1,119 @@
+ %% wisdom-songbook
+ %% ===============
+ %%
+ %% Collection of songs etc
+ %%
+ 
+\documentclass[twoside,10pt,finnish]{book}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[]{times}
+\usepackage[finnish]{babel}\selectlanguage{finnish}
+\usepackage[bookmarks]{hyperref} % used by 'songs' package for index links in PDF
+\usepackage[a6paper,inner=20mm,outer=10mm,tmargin=12mm,bmargin=10mm]{geometry} % page size + margins
+\usepackage{color}
+% Disable all warnings issued by latex starting with "You have requested package..." to allow
+% warningless loading of packages from subdirectories without setting environment variables
+% (can be omitted, but warnings will appear):
+\usepackage{silence}\WarningFilter{latex}{You have requested package}
+
+% The most important 'songs' package, use the version in the project tree:
+\usepackage[chorded]{ext_packages/songs}
+
+\definecolor{chordcolor}{rgb}{0.3,0,0.4} % color: use this for chords
+\definecolor{mbarcolor}{rgb}{0.8,0.7,0.9} % color: use this for measure bars (lighter color)
+
+\songcolumns{1} % songs: number of columns per page in songs environment  
+\songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
+\noversenumbers % songs: do not display verse numbers
+\renewcommand{\lyricfont}{\sffamily\Large} % songs: modify lyrics font style
+% songs: modify chord font style (add color and make smaller):
+\renewcommand\printchord[1]{\sffamily\slshape\small\color{chordcolor}#1}
+% songs: modify meter class font style (add color):
+\renewcommand{\meterfont}{\color{chordcolor}\tiny\sffamily\upshape} 
+
+% \renewcommand{\chaptername}{Part} % would set chapter name to 'Part', does not work with babel
+\addto\captionsfinnish{\renewcommand\chaptername{Osa}} % sets chapter name to Osa when babel: finnish
+% \renewcommand{\thechapter}{\Alph{chapter}} %% use alphabets instead of numbers for chapters
+
+% more project settings: longer renewcommands for songs package etc:
+\input{wisdom-songbook-extra.tex}
+
+% environment for 'song feeler'
+\newenvironment{feeler}{
+  \vspace{1.2em}
+  \small
+  \par\noindent\ignorespaces
+  \begin{center}\begin{em}
+}{
+  \end{em}\end{center}
+  %\par\noindent\ignorespacesafterend
+}
+
+% environment for 'song explanation'
+\newenvironment{explanation}{
+  \vspace{1.2em}
+  \footnotesize
+  \par\noindent\ignorespaces
+}{
+  %\par\noindent\ignorespacesafterend
+}
+
+% environment for song translation
+\newenvironment{translation}{
+  \vspace{1.5em}
+  \small
+  \par\noindent\ignorespaces
+}{
+  \par\noindent\ignorespacesafterend
+}
+
+% songs: create indexes
+\newindex{titleidx}{idx_wisdom-sb_title}
+\newauthorindex{authidx}{idx_wisdom-sb_auth}
+
+
+% Title Page information
+\title{Lauluja}
+\author{Tekijät: \\
+        ihmiskunta \\
+        universumin innoittamana}
+
+        
+\begin{document}
+  \maketitle
+  \tableofcontents % TODO: make two-column TOC using perhaps multitoc package
+
+  \clearpage\scleardpage
+  \songchapter{Asia}
+  \section{Indian Bhajans \& Mantras}
+ 
+  \begin{songs}{titleidx,authidx}
+    \setcounter{songnum}{100}
+    \input{songdata/songs_mantra_hindu.tex}
+  \end{songs}
+ 
+  \scleardpage
+  \section{Tibetan Buddhist Mantras}
+  \begin{songs}{titleidx,authidx}
+    \setcounter{songnum}{170}
+    \input{songdata/songs_mantra_buddhist.tex}
+  \end{songs}  
+  
+  \clearpage\scleardpage
+  \songchapter{Americas}
+  \section{Language: Spanish, native etc}
+  \section{Language: Portuguese}
+  
+  \clearpage\scleardpage
+  \songchapter{Ting, rainbow, multicontinental}  
+  
+  \clearpage\scleardpage
+  \songchapter{Suomi}
+
+  \clearpage
+  \showindex[2]{Hakemisto}{titleidx}  
+  % \showindex{Hakemisto esittäjistä ja säveltäjistä}{authidx}
+
+\end{document}
