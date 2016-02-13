@@ -60,20 +60,21 @@ other files in the project and contains configuration.
 Long `\renewcommand`s ought to be put into `wisdom-songbook-extra.tex` to
 maintain readability of the main file.
 
-Song data and other *content* will be in various files inside `songdata`
-subdirectory and will be inputed into the main file.
+Song data and other *content* will be in various files inside `content`
+subdirectory and will be inputed into the main file. Images are put into
+`content/img`.
 
 External packages (`songs` for now) are in `ext_packages` subdirectory.
 
 Lines ought to be less than 100 characters long (is anyone using 80 column
-terminals still?).
+terminals still?), unless it is too much trouble.
 
 See `songs` package documentation in [http://songs.sourceforge.net/songsdoc/songs.html](http://songs.sourceforge.net/songsdoc/songs.html).
 
-Stuff inside `songs` environment (the files in `songdata` directory) ought
-to contain only individual songs (and data related to them) between
-`\beginsong` and `\endsong` tags plus other data wrapped in an `intersong`
-environment. 
+Stuff inside `songs` environment (the files in `content` directory named
+with a prefix `songs_`) ought to contain only individual songs (and data 
+related to them) between `\beginsong` and `\endsong` tags plus other 
+data wrapped in an `intersong` environment. 
 
 Use `\sclearpage` to jump to the beginning of a new page and `\scleardpage` to
 hop to the beginning of a new left-side page. Suggest a good page brake spot
