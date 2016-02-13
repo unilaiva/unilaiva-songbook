@@ -12,6 +12,8 @@
 \usepackage[finnish]{babel}\selectlanguage{finnish}
 \usepackage[bookmarks]{hyperref} % used by 'songs' package for index links in PDF
 \usepackage[a6paper,inner=20mm,outer=10mm,tmargin=12mm,bmargin=10mm]{geometry} % page size + margins
+\usepackage{graphicx}
+% \usepackage[font=footnotesize]{caption}
 \usepackage{color}
 % Disable all warnings issued by latex starting with "You have requested package..." to allow
 % warningless loading of packages from subdirectories without setting environment variables
@@ -20,6 +22,8 @@
 
 % The most important 'songs' package, use the version in the project tree:
 \usepackage[chorded]{ext_packages/songs}
+
+\graphicspath{ {./img/} } % graphicx: set path to find images from
 
 \definecolor{chordcolor}{rgb}{0.3,0,0.4} % color: use this for chords
 \definecolor{mbarcolor}{rgb}{0.8,0.7,0.9} % color: use this for measure bars (lighter color)
@@ -87,31 +91,46 @@
 
   \clearpage\scleardpage
   \songchapter{Asia}
-  \section{Indian Bhajans \& Mantras}
- 
-  \begin{songs}{titleidx,authidx}
-    \setcounter{songnum}{100}
-    \input{songdata/songs_mantra_hindu.tex}
-  \end{songs}
- 
-  \scleardpage
-  \section{Tibetan Buddhist Mantras}
-  \begin{songs}{titleidx,authidx}
-    \setcounter{songnum}{170}
-    \input{songdata/songs_mantra_buddhist.tex}
-  \end{songs}  
+    \section{Indian Bhajans \& Mantras} 
+      \begin{songs}{titleidx,authidx}
+        \setcounter{songnum}{100}
+        \input{songdata/songs_mantra_hindu.tex}
+      \end{songs}
+     \scleardpage
+    \section{Tibetan Buddhist Mantras}
+      \begin{songs}{titleidx,authidx}
+        \setcounter{songnum}{170}
+        \input{songdata/songs_mantra_buddhist.tex}
+      \end{songs}  
   
   \clearpage\scleardpage
   \songchapter{Americas}
-  \section{Language: Spanish, native etc}
-  \section{Language: Portuguese}
+    \section{Language: Spanish, native etc}
+    \section{Language: Portuguese}
   
   \clearpage\scleardpage
   \songchapter{Ting, rainbow, multicontinental}  
   
   \clearpage\scleardpage
   \songchapter{Suomi}
+    \section{Lauluja}
+      \begin{songs}{titleidx,authidx}
+        \input{songdata/songs_suomi.tex}
+      \end{songs}
 
+    \section{Muinaissuomalaista mytologiaa}
+      \input{songdata/suomi_mytologiaa.tex}
+    \section{Runoutta, loitsuja}
+      \begin{songs}{titleidx,authidx}
+        \setcounter{songnum}{470}
+        \chordsoff % do not show empty line for non-existing chords
+        \renewcommand{\lyricfont}{\sffamily\small} % songs: modify lyrics font style
+        \input{songdata/songs_suomi_runoja_loitsuja.tex}
+        \renewcommand{\lyricfont}{\sffamily\Large} % songs: modify lyrics font style
+        \chordson
+      \end{songs}
+
+  
   \clearpage
   \showindex[2]{Hakemisto}{titleidx}  
   % \showindex{Hakemisto esittäjistä ja säveltäjistä}{authidx}
