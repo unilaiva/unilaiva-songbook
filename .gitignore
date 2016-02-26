@@ -24,3 +24,4 @@ pdf_a6_on_a4.pdf
 old
 *~
 *.backup
+.~lock.*
