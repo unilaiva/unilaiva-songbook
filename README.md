@@ -26,7 +26,7 @@ be manually compiled from the source in `ext_packages/src` and placed
 into `ext_packages/bin/`. If the binaries are missing, the producing
 of the document works otherwise, but song indexes will be missing.
 
-# Compiling `songs` binaries on UNIX #
+### Compiling `songs` binaries on UNIX ###
 
 This requires only basic compiling tools: `make` and `gcc` which are
 most likely already installed on your system. 
