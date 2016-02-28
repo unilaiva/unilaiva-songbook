@@ -79,3 +79,21 @@ data wrapped in an `intersong` environment.
 Use `\sclearpage` to jump to the beginning of a new page and `\scleardpage` to
 hop to the beginning of a new left-side page. Suggest a good page brake spot
 with `\brk`.
+
+
+Tentative TODO
+--------------
+
+*  Add more songs
+*  Add chords and measure marks for existing songs
+*  Decide the way to mark beats on chord line and use where appropriate
+*  Add translations and explanations for existing songs
+*  Organize songs better and decide the categories (= chapters / parts)
+*  Possibly add poems, prayers etc in between songs or in their own category(?)
+*  Possibly integrate lilypond and use where needed to display melodies
+*  Use English as the main general language: translate some organisational 
+   strings
+*  Further develop visual style of the end document
+*  Make printing of double-sided A5/A6 easy using single/double-sided A4 
+   printer
+
