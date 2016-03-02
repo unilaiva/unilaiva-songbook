@@ -80,6 +80,10 @@ Use `\sclearpage` to jump to the beginning of a new page and `\scleardpage` to
 hop to the beginning of a new left-side page. Suggest a good page brake spot
 with `\brk`.
 
+If using measure bars and a measure bar ends at the end of a lyric line, add
+a measure bar line to *both* the end of the line and the beginning of the 
+next one (if one exists).
+
 
 Tentative TODO
 --------------
