@@ -84,6 +84,9 @@ If using measure bars and a measure bar ends at the end of a lyric line, add
 a measure bar line to *both* the end of the line and the beginning of the 
 next one (if one exists).
 
+Use upper case letters for chords. Use lower case letters to signify single
+notes (melodies). One could alternatively include `lilypond` in the project...
+
 
 Tentative TODO
 --------------
