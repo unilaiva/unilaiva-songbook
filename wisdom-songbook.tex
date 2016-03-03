@@ -68,13 +68,18 @@
   %\par\noindent\ignorespacesafterend
 }
 
-% environment for song translation
+% environment for song translation, to be used inside a song
 \newenvironment{translation}{
-  \vspace{1.5em}
-  \small
-  \par\noindent\ignorespaces
+  \newcommand{\nextverse}{\medskip} % some vertical space between verses
+  \beginverse*
+  \chordsoff
+  %\obeylines  
+  %\vspace{1.5em}
+  \small\textit
+  %\par\noindent\ignorespaces
 }{
-  \par\noindent\ignorespacesafterend
+  \endverse
+  %\par\noindent\ignorespacesafterend
 }
 
 % songs: create indexes
@@ -111,6 +116,10 @@
   \songchapter{Americas}
     \section{Language: Spanish, native etc}
     \section{Language: Portuguese}
+      \begin{songs}{titleidx,authidx}
+        \setcounter{songnum}{270}
+        \input{content/songs_portuguese.tex}
+      \end{songs}
   
   \clearpage\scleardpage
   \songchapter{Ting, rainbow, multicontinental}  
