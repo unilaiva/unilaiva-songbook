@@ -11,7 +11,7 @@
 \usepackage[]{times}
 \usepackage[finnish]{babel}\selectlanguage{finnish}
 \usepackage[bookmarks]{hyperref} % used by 'songs' package for index links in PDF
-\usepackage[a6paper,inner=20mm,outer=10mm,tmargin=12mm,bmargin=10mm]{geometry} % page size + margins
+\usepackage[a5paper,inner=20mm,outer=10mm,tmargin=12mm,bmargin=10mm]{geometry} % page size + margins
 \usepackage{graphicx}
 % \usepackage[font=footnotesize]{caption}
 \usepackage{color}
@@ -99,8 +99,8 @@
   \tableofcontents % TODO: make two-column TOC using perhaps multitoc package
 
   \clearpage\scleardpage
-  \songchapter{Asia}
-    \section{Indian Bhajans \& Mantras} 
+  \songchapter{Saṃskṛtam (Sanskrit)}
+    \section{Hindu Bhajans \& Mantras} 
       \begin{songs}{titleidx,authidx}
         \setcounter{songnum}{100}
         \input{content/songs_mantra_hindu.tex}
@@ -113,22 +113,38 @@
       \end{songs}  
   
   \clearpage\scleardpage
-  \songchapter{Americas}
-    \section{Language: Spanish, native etc}
-    \section{Language: Portuguese}
-      \begin{songs}{titleidx,authidx}
-        \setcounter{songnum}{270}
-        \input{content/songs_portuguese.tex}
-      \end{songs}
+  \songchapter{Español (Spanish)}
+    \begin{songs}{titleidx,authidx}
+      \setcounter{songnum}{200}
+      \input{content/songs_spanish.tex}
+    \end{songs}
+    
+  \clearpage\scleardpage    
+  \songchapter{Português (Portuguese)}
+    \begin{songs}{titleidx,authidx}
+      \setcounter{songnum}{300}
+      \input{content/songs_portuguese.tex}
+    \end{songs}
   
   \clearpage\scleardpage
-  \songchapter{Ting, rainbow, multicontinental}  
+  \songchapter{English}  
+    \begin{songs}{titleidx,authidx}
+      \setcounter{songnum}{400}
+      \input{content/songs_english.tex}
+    \end{songs}
+    
+  \clearpage\scleardpage
+  \songchapter{Other}  
+    \begin{songs}{titleidx,authidx}
+      \setcounter{songnum}{500}
+      \input{content/songs_other.tex}
+    \end{songs}      
   
   \clearpage\scleardpage
-  \songchapter{Suomi}
+  \songchapter{Suomi (Finnish)}
     \section{Lauluja}
       \begin{songs}{titleidx,authidx}
-        \setcounter{songnum}{400}
+        \setcounter{songnum}{800}
         \input{content/songs_suomi.tex}
       \end{songs}
 
@@ -138,7 +154,7 @@
     \clearpage\scleardpage
     \section{Runoutta, loitsuja}
       \begin{songs}{titleidx,authidx}
-        \setcounter{songnum}{470}
+        \setcounter{songnum}{900}
         \chordsoff % do not show empty line for non-existing chords
         \renewcommand{\lyricfont}{\sffamily\small} % songs: modify lyrics font style
         \input{content/songs_suomi_runoja_loitsuja.tex}
