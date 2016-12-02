@@ -13,6 +13,7 @@
 \usepackage[bookmarks]{hyperref} % used by 'songs' package for index links in PDF
 \usepackage[a5paper,inner=20mm,outer=10mm,tmargin=12mm,bmargin=10mm]{geometry} % page size + margins
 \usepackage{graphicx}
+\usepackage{pdfpages} % for cover page
 % \usepackage[font=footnotesize]{caption}
 \usepackage{color}
 % Disable all warnings issued by latex starting with "You have requested package..." to allow
@@ -65,7 +66,7 @@
   \footnotesize
   \par\noindent\ignorespaces
 }{
-  %\par\noindent\ignorespacesafterend
+  %\par\noindent\ignores\includepdf{cover}pacesafterend
 }
 
 % environment for song translation, to be used inside a song
@@ -92,10 +93,22 @@
 \author{Tekijät: \\
         ihmiskunta \\
         universumin innoittamana}
-
         
 \begin{document}
-  \maketitle
+  % \maketitle
+  \begin{titlepage}
+    \includepdf[fitpaper]{content/img/COVER_eternity-in-a-moment_rotated.pdf}
+    \thispagestyle{empty}
+    \topskip0pt
+    \vspace*{\fill}    
+    \centerline{\Huge Lauluja}
+    \vspace{3em}
+    \centerline{Tekijät:}
+    \centerline{ihmiskunta}
+    \centerline{universumin innoittamana}
+    \vspace*{\fill}
+  \end{titlepage}
+  
   \tableofcontents % TODO: make two-column TOC using perhaps multitoc package
 
   \clearpage\scleardpage
