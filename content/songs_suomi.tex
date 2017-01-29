@@ -1,12 +1,19 @@
 % Finnish songs
 
 \beginsong{Kalevala-sävelmä}[]
-  \meter{2}{4}
-  \beginverse
-    |\[a]Va\[a]ka-|\[b]van\[b]ha |\[c]Väi\[a/e]nä|\[b]möi|\[b]nen|
-    |\[c]Tie\[a]tä|\[d]jä \[c]i|\[b]än\[c]i|\[a]kui|\[a]nen|
-  \endverse
-  \musicnote{Haikea versio: d d d a d c b b ; d d d c b c a a}  
+  \begin{lilypond}[fragment] % present melody using lilypond
+    {\key a \minor \time 2/4
+      a'4 a' | b' b' | c'' e'' | b'2 | b'2 |
+      c''4 a'| d'' c'' | b' c'' | a'2 a'2 |
+    }\addlyrics {Va -- ka van -- ha Väi -- nä -- möi -- nen tie -- tä -- jä i -- än i -- kui -- nen}
+  \end{lilypond}
+  \musicnote{Haikea versio:}
+  \begin{lilypond}[fragment] % present melody using lilypond
+    {\key a \minor \time 2/4
+      d''4 d'' | d'' a' | d'' c'' | b'2 | b'2 |
+      d''4 d''| d'' c'' | b' c'' | a'2 a'2 |
+    }\addlyrics {Va -- ka van -- ha Väi -- nä -- möi -- nen tie -- tä -- jä i -- än i -- kui -- nen}
+  \end{lilypond}
 \endsong
 
 \beginsong{Terve löyly}[]
