@@ -1,34 +1,65 @@
 #!/bin/sh
 #
-# This UNIX shell script compiles wisdom-songbook.tex using pdflatex to produce
-# wisdom-songbook.pdf. Song indexes are created, if the binary songidx is found
-# in projects subdirectory ext_packages/bin/
+# This UNIX shell script compiles wisdom-songbook.tex using different
+# tools to produce wisdom-songbook.pdf
+#
+# Required binaries in PATH: lilypond-book, pdflatex
+# Required manually compiled binary: ext_packages/bin/songidx
 
-SONGIDXPROG="ext_packages/bin/songidx"
+
+SONG_IDX_PROG="ext_packages/bin/songidx"
+MAIN_TEX_FILE="wisdom-songbook.tex"
+TEMP_DIRNAME="compile_temp" # just the name of a subdirectory, not an absolute path
 
 die() {
   echo "$2" >&2
   exit $1
 }
 
-which "pdflatex" >"/dev/null" || die 1 "pdflatex program not found! Aborting."
+which "pdflatex" >"/dev/null" || die 1 "pdflatex binary not found in path! Aborted."
+which "lilypond-book" >"/dev/null" || die 1 "lilypond-book binary not found in path! Aborted."
+which "$SONG_IDX_PROG" >"/dev/null" || die 1 "$SONG_IDX_PROG binary not found! Aborted."
 
-pdflatex -interaction=nonstopmode wisdom-songbook.tex || die $? "Compilation error!" # first run 
+# Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
+# the modified .tex files and the images to subdirectory $TEMP_DIRNAME
+lilypond-book -f latex --output $TEMP_DIRNAME "$MAIN_TEX_FILE" || die $? "Error running lilypond-book! Aborted."
 
-if [ -x "$SONGIDXPROG" ]; then
-  "$SONGIDXPROG" idx_wisdom-sb_title.sxd idx_wisdom-sb_title.sbx
-  "$SONGIDXPROG" idx_wisdom-sb_auth.sxd idx_wisdom-sb_auth.sbx
-  # bin/songidx idx_wisdom-sb_scrip.sxd idx_wisdom-sb_scrip.sbx
-  pdflatex -interaction=nonstopmode wisdom-songbook.tex # second run
-  ecode=$?
-  # Copy compiled PDF to a specific directory if user is larva. Sorry for this. :)
-  if [ $ecode -eq 0 ] && [ "$USER" = "larva" ] && [ -d "/home/larva/Cloud/ownCloud/wisdom" ]; then
-    cp wisdom-songbook.pdf "/home/larva/Cloud/ownCloud/wisdom/"
-    if [ $? -eq 0 ]; then echo "Compiled PDF copied to 'the cloud'"; fi
-  fi
-  exit $ecode
+# go to the temp directory to do rest of the steps there
+cd $TEMP_DIRNAME
+ln -s "../ext_packages" "./" 2>"/dev/null"
+ln -s "../../content/img" "./content/" 2>"/dev/null"
+
+# first run of pdflatex
+pdflatex -interaction=nonstopmode $MAIN_TEX_FILE || die $? "Compilation error running pdflatex! Aborted."
+
+echo ""
+
+# create indeces    
+"$SONG_IDX_PROG" idx_wisdom-sb_title.sxd idx_wisdom-sb_title.sbx || die $? "Error creating song title indeces! Aborted."
+echo ""
+"$SONG_IDX_PROG" idx_wisdom-sb_auth.sxd idx_wisdom-sb_auth.sbx || die $? "Error creating author indeces! Aborted."
+# "$SONG_IDX_PROG" idx_wisdom-sb_scrip.sxd idx_wisdom-sb_scrip.sbx || die $? "Error creating scripture indeces! Aborted."
+
+echo ""
+
+# second run of pdflatex, creates the final PDF document
+pdflatex -interaction=nonstopmode $MAIN_TEX_FILE 
+ecode=$?
+
+cd .. # get out of $TEMP_DIRNAME
+cp $TEMP_DIRNAME/wisdom-songbook.pdf ./ 
+
+[ $ecode -eq 0 ] || die $ecode "Compilation error running pdflatex (2nd time)! Aborted."
+
+echo ""
+
+# Copy compiled PDF to a specific directory if user is larva. Sorry for this ugliness. :)
+if [ "$USER" = "larva" ] && [ -d "/home/larva/Cloud/ownCloud/wisdom" ]; then
+  cp "wisdom-songbook.pdf" "/home/larva/Cloud/ownCloud/wisdom/" && echo "Compiled PDF also deployed to 'the cloud'"
 else
-  echo "$SONGIDXPROG not found. Indexes not created!"
+  echo "PDF not deployed"
 fi
 
+echo "Compilation succesful. Enjoy your wisdom-songbook.pdf"
 
+exit 0

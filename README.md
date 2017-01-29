@@ -10,6 +10,7 @@ Environment
 
 wisdom-songbook is a project written in LaTeX. You must have LaTeX with
 `pdflatex` command and some standard packages installed on your system.
+Also `lilypond-book` binary must be found.
 
 Our project requires only some pretty standard LaTeX packages, which 
 are included in many LaTeX installations by default, to be installed on 
@@ -23,10 +24,9 @@ package is used heavily and some of its commands are redefined.
 
 The `songs` package uses two binaries to create song indexes. These must
 be manually compiled from the source in `ext_packages/src` and placed
-into `ext_packages/bin/`. If the binaries are missing, the producing
-of the document works otherwise, but song indexes will be missing.
+into `ext_packages/bin/`.
 
-### Compiling `songs` binaries on UNIX ###
+#### Compiling `songs` binaries on UNIX ####
 
 This requires only basic compiling tools: `make` and `gcc` which are
 most likely already installed on your system. 
@@ -45,10 +45,17 @@ Go to the base directory of our project and execute the following commands:
         cd ..
         rm -R songs-2.18
         
-Recommended way to build a PDF document out of our project is to use
-`pdflatex`. You may use the provided `compile_wisdom.sh` shell script
-to do the build: it calls `pdflatex` and also builds indexes with the
-`songs` package binaries (if they exist).
+
+Creating a PDF document
+-----------------------
+
+If you're on an UNIX system, you can simply use the provided 
+`compile_wisdom.sh` shell script to build a PDF document out of our 
+project.
+
+Otherwise, you should to run binaries in the following sequence: 
+`lilypond-book`, `pdflatex`, `songidx` (for song titles), `songidx`
+(for authors) and `pdflatex` again.
 
 
 Project structure and guidelines
@@ -64,7 +71,7 @@ Song data and other *content* will be in various files inside `content`
 subdirectory and will be inputed into the main file. Images are put into
 `content/img`.
 
-External packages (`songs` for now) are in `ext_packages` subdirectory.
+External packages (only `songs` for now) are in `ext_packages` subdirectory.
 
 Lines ought to be less than 100 characters long (is anyone using 80 column
 terminals still?), unless it is too much trouble.
@@ -78,14 +85,18 @@ data wrapped in an `intersong` environment.
 
 Use `\sclearpage` to jump to the beginning of a new page and `\scleardpage` to
 hop to the beginning of a new left-side page. Suggest a good page brake spot
-with `\brk`.
+with `\brk`. These are mostly not needed, as `songs` package does quite a good
+job in deciding these.
 
 If using measure bars and a measure bar ends at the end of a lyric line, add
 a measure bar line to *both* the end of the line and the beginning of the 
 next one (if one exists).
 
-Use upper case letters for chords. Use lower case letters to signify single
-notes (melodies). One could alternatively include `lilypond` in the project...
+If it is necessary to mark beats, use `.` as a chord name, like this: `\[.]`.
+
+Full melodies are written using `lilypond` syntax. See documentation in 
+[http://lilypond.org/](http://lilypond.org/). It seems best to put `lilypond`
+parts outside of verses (but inside of a song) to ensure correct line breaking.
 
 
 Tentative TODO
@@ -93,7 +104,6 @@ Tentative TODO
 
 *  Add more songs
 *  Add chords and measure marks for existing songs
-*  Decide the way to mark beats on chord line and use where appropriate
 *  Add translations and explanations for existing songs
 *  Organize songs better and decide the categories (= chapters / parts)
 *  Possibly add poems, prayers etc in between songs or in their own category(?)
