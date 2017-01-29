@@ -129,15 +129,22 @@
   \endverse 
 \endsong
 
+
 \beginsong{Juurilaulu \\ Kuulumme piiriin}[]
-  \beginverse
-    \[a]Kuu\[a]lum\[a]me \[g]pi\[a]i\[a]riin
-    \[a]Kuu\[a]lum\[b]me \[c]pi\[a]i\[a]riin
-    \[a]Ai\[a]ko\[b]jen \[c]ta\[c]kaa 
-    \[c]Ta\[b]kai\[g]sin \[a]kier\[a]toon
-  \endverse
-  \musicnote{Duuriversio: c c c b c c ; c c d e c c ; c c d e e e ; e d b b c}
+  \begin{lilypond}[fragment] % present melody using lilypond
+    {\key a \minor \time 2/4
+      a'4 a'8 a'8 | g'8( a'8) a'4 | r2 |
+      a'4 a'8 b'8 | c''8( a'8) a'4 | r2 |
+      a'4 a'8 b'8 | c''8 c''8~ c''4 | r2 |
+      c''8 b'4 g'8 | a'4 a'4 | r2 |
+    }\addlyrics {
+      Kuu -- lum -- me pii -- riin
+      Kuu -- lum -- me pii -- riin
+      Ai -- ko -- jen -- ta -- kaa
+      Ta -- kai -- sin kier -- toon}
+  \end{lilypond}
 \endsong
+
 
 \beginsong{Laulu oravasta}[by={Aleksis Kivi}]
   \chordsoff % do not show empty line for non-existing chords
