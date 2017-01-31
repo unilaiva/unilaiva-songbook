@@ -1,5 +1,15 @@
 
-
+% support for AH song numbers. To show these numbers in song preludes,
+% define \newcommand{\showsongnumberinah}{} in the main document.
+\newcommand{\songnumberinah}{}
+\newsongkey{ah}{\def\songnumberinah{}}
+                {\def\songnumberinah{AH: #1\par}}
+\renewcommand{\extendprelude}{
+  \showrefs\showauthors
+  \ifdefined\showsongnumberinah
+    {\bfseries\songnumberinah}
+  \fi
+}
 
 %%\pagestyle{empty} %% comment out to show page numbers
 %% Note: This book is designed in such a way that odd pages ought to be displayed/printed on the 
