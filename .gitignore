@@ -19,6 +19,10 @@ ext_packages/bin/
 # temporary directory used in compilation
 compile_temp/
 
+# deployment directory (also a symlink)
+deploy/
+deploy
+
 # result documents
 wisdom-songbook.pdf
 pdf_a6_on_a4.pdf
