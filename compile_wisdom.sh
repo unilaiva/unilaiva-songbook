@@ -53,9 +53,9 @@ cp $TEMP_DIRNAME/wisdom-songbook.pdf ./
 
 echo ""
 
-# Copy compiled PDF to a specific directory if user is larva. Sorry for this ugliness. :)
-if [ "$USER" = "larva" ] && [ -d "/home/larva/Cloud/ownCloud/wisdom" ]; then
-  cp "wisdom-songbook.pdf" "/home/larva/Cloud/ownCloud/wisdom/" && echo "Compiled PDF also deployed to 'the cloud'"
+# If subdirectory 'deploy' exists, copy the PDF there also.
+if [ -d "./deploy" ]; then
+  cp "wisdom-songbook.pdf" "./deploy/" && echo "Compiled PDF copied to ./deploy/"
 else
   echo "PDF not deployed"
 fi
