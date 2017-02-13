@@ -96,26 +96,27 @@
 \newindex{titleidx}{idx_wisdom-sb_title}
 \newauthorindex{authidx}{idx_wisdom-sb_auth}
 
-
-% Title Page information
-\title{Lauluja}
-\author{Tekijät: \\
-        ihmiskunta \\
-        universumin innoittamana}
         
 \begin{document}
-  % \maketitle
+
   \begin{titlepage}
     \includepdf[]{content/img/COVER_temporary.pdf}
     \thispagestyle{empty}
     \topskip0pt
     \vspace*{\fill}    
-    \centerline{\Huge Lauluja}
-    \vspace{3em}
-    \centerline{Tekijät:}
-    \centerline{ihmiskunta}
-    \centerline{universumin innoittamana}
+    \begin{center}
+      \Huge Songs of Wisdom\\
+      \normalsize \textit{Paths to higher knowledge}\\
+      \Large
+      \vspace{3em}
+      By:\\
+      \textbf{humankind},\\
+      inspired by the universe \\
+      \vspace{1em}
+      Version: \the\year-\the\month-\the\day \textit{ alpha}
+    \end{center}
     \vspace*{\fill}
+    \let\thefootnote\relax{\small Compiled by: antagomir \& larva}
   \end{titlepage}
   
   \tableofcontents % TODO: make two-column TOC using perhaps multitoc package
