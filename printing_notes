@@ -1,3 +1,11 @@
+###############################################################
+### Howto: print A5 double sided on single sided A4 printer ###
+###############################################################
+
+## Note that the printer probably has forced margins which will
+## be added to the ones defined in the PDF, resulting in wider
+## margins and smaller text.
+
 pdftk wisdom-songbook.pdf cat 1-endeven output wisdom_even.pdf
 pdftk wisdom-songbook.pdf cat 1-endodd output wisdom_odd.pdf
 
