@@ -108,8 +108,6 @@ Tentative TODO
 *  Organize songs better and decide the categories (= chapters / parts)
 *  Possibly add poems, prayers etc in between songs or in their own category(?)
 *  Possibly integrate lilypond and use where needed to display melodies
-*  Use English as the main general language: translate some organisational 
-   strings
 *  Further develop visual style of the end document
 *  Make printing of double-sided A5/A6 easy using single/double-sided A4 
    printer

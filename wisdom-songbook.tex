@@ -4,12 +4,13 @@
  %% Collection of songs etc
  %%
  
-\documentclass[twoside,10pt,finnish]{book}
+\documentclass[twoside,10pt]{book}
+\usepackage[finnish,english]{babel}\selectlanguage{english}
 
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[]{times}
-\usepackage[finnish]{babel}\selectlanguage{finnish}
+
 \usepackage[bookmarks,unicode]{hyperref} % used by 'songs' package for index links in PDF
 \usepackage[a5paper,inner=20mm,outer=10mm,tmargin=12mm,bmargin=10mm]{geometry} % page size + margins
 \usepackage{graphicx}
@@ -43,7 +44,8 @@
 % \setlength\baselineadj{-\baselineskip}
 
 % \renewcommand{\chaptername}{Part} % would set chapter name to 'Part', does not work with babel
-\addto\captionsfinnish{\renewcommand\chaptername{Osa}} % sets chapter name to Osa when babel: finnish
+%\addto\captionsfinnish{\renewcommand\chaptername{Part}} % sets chapter name to Part when babel: finnish
+\addto\captionsenglish{\renewcommand\chaptername{Part}} % sets chapter name to Part when babel: english
 % \renewcommand{\thechapter}{\Alph{chapter}} %% use alphabets instead of numbers for chapters
 
 % Comment the following line out if you don't want AH numbers shown in song preludes.
@@ -158,28 +160,28 @@
     
   \clearpage\scleardpage
   \songchapter{Suomi}
-    \section{Lauluja}
-      \begin{songs}{titleidx,authidx}
-        \setcounter{songnum}{700}
-        \input{content/songs_suomi.tex}
-        % larva's scribblings (remove later?):
-        \input{content/songs_larva.tex}
-      \end{songs}
-
-    \clearpage\scleardpage
-    \section{Muinaissuomalaista mytologiaa}
-      \input{content/suomi_mytologiaa.tex}
-    \clearpage\scleardpage
-    \section{Runoutta, loitsuja}
-      \begin{songs}{titleidx,authidx}
-        \setcounter{songnum}{800}
-        \chordsoff % do not show empty line for non-existing chords
-        \renewcommand{\lyricfont}{\sffamily\small} % songs: modify lyrics font style
-        \input{content/songs_suomi_runoja_loitsuja.tex}
-        \renewcommand{\lyricfont}{\sffamily\Large} % songs: modify lyrics font style
-        \chordson
-      \end{songs}
-
+    \begin{otherlanguage}{finnish} % set language to finnish for hyphenation etc
+      \section{Lauluja}
+        \begin{songs}{titleidx,authidx}
+          \setcounter{songnum}{700}
+          \input{content/songs_suomi.tex}
+          % larva's scribblings (remove later?):
+          \input{content/songs_larva.tex}
+        \end{songs}
+      \clearpage\scleardpage
+      \section{Muinaissuomalaista mytologiaa}
+        \input{content/suomi_mytologiaa.tex}
+      \clearpage\scleardpage
+      \section{Runoutta, loitsuja}
+        \begin{songs}{titleidx,authidx}
+          \setcounter{songnum}{800}
+          \chordsoff % do not show empty line for non-existing chords
+          \renewcommand{\lyricfont}{\sffamily\small} % songs: modify lyrics font style
+          \input{content/songs_suomi_runoja_loitsuja.tex}
+          \renewcommand{\lyricfont}{\sffamily\Large} % songs: modify lyrics font style
+          \chordson
+        \end{songs}
+    \end{otherlanguage}
   \clearpage\scleardpage
   \songchapter{Other}  
     \begin{songs}{titleidx,authidx}
@@ -189,13 +191,13 @@
 
   \clearpage\scleardpage
   \songchapter{Technical information}  
-    \section{Chords}
+    \section{Chords for Guitar}
       \gtab{F#\textsuperscript{Ø}/E}{XX2212:002314} \\
       \gtab{G6}{XX5430:003210}\gtab{Gadd9}{XX5435:003214}\gtab{G(5)}{XX5403:003201}
       
   
   \clearpage
-  \showindex[2]{Hakemisto}{titleidx}  
-  % \showindex{Hakemisto esittäjistä ja säveltäjistä}{authidx}
+  \showindex[2]{Song Index}{titleidx} % song title index  
+  % \showindex{Author Index}{authidx} % song author index
 
 \end{document}
