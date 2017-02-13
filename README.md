@@ -103,11 +103,10 @@ Tentative TODO
 --------------
 
 *  Add more songs
-*  Add chords and measure marks for existing songs
+*  Add chords for existing songs
 *  Add translations and explanations for existing songs
 *  Organize songs better and decide the categories (= chapters / parts)
 *  Possibly add poems, prayers etc in between songs or in their own category(?)
-*  Possibly integrate lilypond and use where needed to display melodies
 *  Further develop visual style of the end document
 *  Make printing of double-sided A5/A6 easy using single/double-sided A4 
    printer
