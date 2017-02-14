@@ -38,7 +38,7 @@
 
 \setuppapersize [A5] [A4]
 %\setuppaper[nx=1,ny=2] % not needed here
-\setuplayout[topspace=15pt,bottomspace=-15pt,backspace=15pt,frontspace=-15pt,width=middle,height=middle,location=middle,header=0pt,footer=0pt]
+\setuplayout[topspace=0pt,bottomspace=0pt,backspace=0pt,frontspace=0pt,width=middle,height=middle,location=middle,header=0pt,footer=0pt]
 \setuppagenumbering [location=]
 \setuparranging [2*2,rotated]
 %\showframe % uncomment for debugging
