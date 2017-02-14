@@ -8,6 +8,9 @@
 *.toc
 *.fmt
 
+## Context auxiliary files:
+*.tuc
+
 ## songs indexes
 *.sxd
 *.sbx
