@@ -28,7 +28,7 @@ deploy
 
 # result documents
 wisdom-songbook.pdf
-collated_wisdom-songbook*.pdf
+*.pdf
 
 # other
 old
