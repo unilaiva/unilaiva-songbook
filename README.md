@@ -44,7 +44,7 @@ Go to the base directory of our project and execute the following commands:
         cp tmpinstall/bin/* ../../bin/
         cd ..
         rm -R songs-2.18
-        
+
 
 Creating a PDF document
 -----------------------
@@ -56,6 +56,43 @@ project.
 Otherwise, you should to run binaries in the following sequence: 
 `lilypond-book`, `pdflatex`, `songidx` (for song titles), `songidx`
 (for authors) and `pdflatex` again.
+
+
+Printing
+--------
+
+You can simply print the main document, `wisdom-songbook.pdf`. It is of A5 
+size. 
+
+If printing double sided, ensure that the pages face each other in such a way 
+that odd pages are on the right side (recto) and even pages are on the left 
+side (verso) of a spread.
+
+Note that margins ought to be set to zero in the printing software and the
+printer drivers setup, if such options are available.
+
+There are also special printing options, like printing multiple A5 sized pages on
+an A4 sized paper. They are defined in files named `printout_wisdom*.context` and
+are to be inputted to ConTeXt program, which needs to be installed on the system.
+They operate on a previously compiled `wisdom-songbook.pdf` file. See comments in
+the beginning of each such a file.
+
+#### Printing double sided on a single sided printer ####
+
+To print double sided on a printer without a duplexer, one needs to print odd
+pages first, then flip each page around, feed them to the printer, and then print
+the even pages.
+
+To flip pages manually: put the printed stack of papers in front of you upside down
+(printed side unseen), make a new stack by moving each sheet from the top of the old stack
+to the top of the new stack (do not turn in any way, just "translate"), one by one.
+In the end, flip the new stack around to get the printed side up again, and feed 
+it to the printer. Be careful to put it in there the right way.
+
+If your printing software is limited, you can extract even and odd pages with `pdftk`
+like this:
+  * `pdftk wisdom-songbook.pdf cat 1-endeven output wisdom_even.pdf`
+  * `pdftk wisdom-songbook.pdf cat 1-endodd output wisdom_odd.pdf`
 
 
 Project structure and guidelines
@@ -108,6 +145,5 @@ Tentative TODO
 *  Organize songs better and decide the categories (= chapters / parts)
 *  Possibly add poems, prayers etc in between songs or in their own category(?)
 *  Further develop visual style of the end document
-*  Make printing of double-sided A5/A6 easy using single/double-sided A4 
-   printer
+
 

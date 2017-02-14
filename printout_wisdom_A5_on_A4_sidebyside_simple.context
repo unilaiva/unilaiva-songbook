@@ -1,0 +1,35 @@
+% This is a ConTeXt source file to create a PDF printout from existing
+% wisdom-songbook.pdf. So, first run 'compile_wisdom.sh' and then
+% use 'context' binary to compile a PDF from this source file.
+%
+% See ConTeXt help for example here: 
+%        http://wiki.contextgarden.net/Imposition
+%
+% This file is used to create a printout where two A5 size pages are
+% put side by side on a A4 landscape A4 page. A blank page is inserted
+% in the beginning to ensure that the pages meant to be facing each
+% other are printed side-by-side. 
+%
+% This is the simplest way to print the document in A5 size on A4 paper. 
+%
+% The document can be printed single sided or double sided (using printers 
+% duplexer or with manual process: print odd, flip pages, print even). 
+%
+% If printed double-sided, this format does NOT support cutting or
+% folding of the resulting pages.
+%
+% Remember to set margins to 0 in the printer setup!
+%
+
+\setuppapersize [A5] [A4]
+%\setuppaper[nx=1,ny=2] % not needed here
+\setuplayout[topspace=0pt,bottomspace=0pt,backspace=0pt,frontspace=0pt,width=middle,height=middle,location=middle,header=0pt,footer=0pt]
+\setuppagenumbering [location=]
+\setuparranging [2SIDE,rotated]
+%\showframe % uncomment for debugging
+
+\starttext
+   % Insert pages from the precompiled PDF. The second argument specifies that
+   % a blank page must be inserted before the first imported page.
+  \insertpages[wisdom-songbook.pdf][0][width=0pt]
+\stoptext

@@ -16,6 +16,8 @@
 % argument to setuparranging like this:
 % 'setuparranging [2*2,rotated,doublesided]
 %
+% Remember to set margins to 0 in the printer setup!
+%
 % If your printer does not not support duplex printing, you must first
 % print only odd pages, then flip each sheet in the following manner:
 %   1. Set the printed stack of sheets in front of you so that the text is
