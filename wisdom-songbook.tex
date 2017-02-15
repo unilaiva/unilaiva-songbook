@@ -9,7 +9,7 @@
 
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[]{times}
+\usepackage[scaled=1.05]{noto}
 
 \usepackage[bookmarks,unicode]{hyperref} % used by 'songs' package for index links in PDF
   \hypersetup{linkbordercolor=0.2 0.6 0.9,
@@ -36,11 +36,16 @@
 \songcolumns{1} % songs: number of columns per page in songs environment  
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
 \noversenumbers % songs: do not display verse numbers
-\renewcommand{\lyricfont}{\sffamily\Large} % songs: modify lyrics font style
+\renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
 % songs: modify chord font style (add color and make smaller):
-\renewcommand\printchord[1]{\sffamily\slshape\small\color{chordcolor}#1}
+\renewcommand\printchord[1]{\sffamily\bfseries\small\color{chordcolor}#1}
 % songs: modify meter class font style (add color):
 \renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
+\renewcommand{\clineparams}{ % distance of chords to lyrics (needed because of font scaling)
+  \baselineskip=10.6pt
+  \lineskiplimit=-2pt
+  \lineskip=-2pt
+}
 % songs: reduces line spacing in non-chorded lyrics by the amount the chords would take space
 %        without needing to set \chordsoff; also removes measure bar lines. Commented out for
 %        now:
@@ -65,7 +70,7 @@
 
 % environment for 'song feeler'
 \newenvironment{feeler}{
-  \vspace{1.2em}
+  \vspace{2em}
   \small
   \par\noindent\ignorespaces
   \begin{center}\begin{em}
@@ -76,7 +81,7 @@
 
 % environment for 'song explanation'
 \newenvironment{explanation}{
-  \vspace{1.2em}
+  \vspace{2em}
   \footnotesize
   \par\noindent\ignorespaces
 }{
@@ -89,7 +94,7 @@
   \beginverse*
   \chordsoff
   %\obeylines  
-  %\vspace{1.5em}
+  \vspace{1em}
   \small\textit
   %\par\noindent\ignorespaces
 }{
@@ -119,9 +124,10 @@
       inspired by the universe \\
       \vspace{1em}
       Version: \the\year-\the\month-\the\day \textit{ alpha}
-    \end{center}
-    \vspace*{\fill}
-    \let\thefootnote\relax{\small Compiled by: antagomir \& larva}
+      \\
+      \vspace*{\fill}
+      \let\thefootnote\relax{\scriptsize Compiled by: antagomir \& larva}
+    \end{center}    
   \end{titlepage}
   
   \tableofcontents % TODO: make two-column TOC using perhaps multitoc package

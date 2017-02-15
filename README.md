@@ -10,6 +10,7 @@ Environment
 
 wisdom-songbook is a project written in LaTeX. You must have LaTeX with
 `pdflatex` command and some standard packages installed on your system.
+The font Noto is used; on Debian, it is in package `tex-fonts-extra`.
 Also `lilypond-book` binary must be found.
 
 Our project requires only some pretty standard LaTeX packages, which 
