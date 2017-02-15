@@ -11,8 +11,11 @@ SONG_IDX_PROG="ext_packages/bin/songidx"
 MAIN_TEX_FILE="wisdom-songbook.tex"
 TEMP_DIRNAME="compile_temp" # just the name of a subdirectory, not an absolute path
 
+initial_dir="$PWD"
+
 die() {
   echo "$2" >&2
+  cd "$initial_dir"
   exit $1
 }
 
@@ -46,7 +49,7 @@ echo ""
 pdflatex -interaction=nonstopmode $MAIN_TEX_FILE 
 ecode=$?
 
-cd .. # get out of $TEMP_DIRNAME
+cd "$initial_dir" # get out of $TEMP_DIRNAME
 cp $TEMP_DIRNAME/wisdom-songbook.pdf ./ 
 
 [ $ecode -eq 0 ] || die $ecode "Compilation error running pdflatex (2nd time)! Aborted."
