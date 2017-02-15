@@ -5,6 +5,9 @@
 #
 # Required binaries in PATH: lilypond-book, pdflatex
 # Required manually compiled binary: ext_packages/bin/songidx
+#
+# Optional binary in PATH: context (will be used to create printouts)
+#
 
 
 SONG_IDX_PROG="ext_packages/bin/songidx"
@@ -56,9 +59,25 @@ cp $TEMP_DIRNAME/wisdom-songbook.pdf ./
 
 echo ""
 
+# Create printouts, if context binary is found:
+printouts_created=0
+which "context" >"/dev/null"
+if [ $? -eq 0 ]; then
+  context "printout_wisdom_A5_on_A4_doublesided_folded.context" && context "printout_wisdom_A5_on_A4_sidebyside_simple.context" && printouts_created="yes"
+else
+  echo "Extra printout PDFs not created, because 'context' program not found."
+fi
+
+echo ""
+
 # If subdirectory 'deploy' exists, copy the PDF there also.
 if [ -d "./deploy" ]; then
   cp "wisdom-songbook.pdf" "./deploy/" && echo "Compiled PDF copied to ./deploy/"
+  if [ "$printouts_created" = "yes" ]; then
+    cp "printout_wisdom_A5_on_A4_doublesided_folded.pdf" "./deploy/" \
+      && cp "printout_wisdom_A5_on_A4_sidebyside_simple.pdf" "./deploy/" \
+      && echo "Extra printouts copied to ./deploy/"
+  fi
 else
   echo "PDF not deployed"
 fi
