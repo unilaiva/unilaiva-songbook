@@ -87,8 +87,7 @@ the even pages.
 To flip pages manually: put the printed stack of papers in front of you upside down
 (printed side unseen), make a new stack by moving each sheet from the top of the old stack
 to the top of the new stack (do not turn in any way, just "translate"), one by one.
-In the end, flip the new stack around to get the printed side up again, and feed 
-it to the printer. Be careful to put it in there the right way.
+Feed the new stack to the printer. Be careful to put it in there the right way.
 
 If your printing software is limited, you can extract even and odd pages with `pdftk`
 like this:
