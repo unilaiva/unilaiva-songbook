@@ -36,3 +36,4 @@ old
 *.backup
 *.kate-swp
 .~lock.*
+.directory
