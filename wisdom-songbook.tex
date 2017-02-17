@@ -65,6 +65,12 @@
 % It can be used to for example indicate the origins or a language of a song.
 \newcommand{\showextrainfo}{} % comment this line out if you don't want extra info shown (ex=?)
 
+% This command will display some text followed by three dots, 
+% and aligned to the right of the page. The idea is to use it as a signal to go to
+% a different part of the song, for example the chorus. You can use it within the
+% last verse or between verses (in such a case it will be put on its own line).
+\newcommand{\gotochorus}[1]{\hfill \textit{#1}\ldots}
+
 % more project settings: longer renewcommands for songs package etc:
 \input{wisdom-songbook-extra.tex}
 
