@@ -64,7 +64,7 @@ else
 fi
 
 cd "$initial_dir" # get out of $TEMP_DIRNAME
-cp "$TEMP_DIRNAME/*.pdf" "./" # copy the PDFs to root dir
+cp "$TEMP_DIRNAME/"*.pdf "./" || die $? "Error copying result files from temporary directory! Aborted."
 
 echo ""
 
@@ -72,7 +72,7 @@ echo ""
 if [ -d "./deploy" ]; then
   cp "wisdom-songbook.pdf" "./deploy/" && echo "Compiled PDF copied to ./deploy/"
   if [ "$printouts_created" = "yes" ]; then
-    cp "printout*.pdf" "./deploy/" && echo "Extra printouts copied to ./deploy/"
+    cp printout*.pdf "./deploy/" && echo "Extra printouts copied to ./deploy/"
   fi
 else
   echo "PDF not deployed"
