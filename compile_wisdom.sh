@@ -64,7 +64,7 @@ else
 fi
 
 cd "$initial_dir" # get out of $TEMP_DIRNAME
-cp $TEMP_DIRNAME/*.pdf ./ # copy the PDFs to root dir
+cp "$TEMP_DIRNAME/*.pdf" "./" # copy the PDFs to root dir
 
 echo ""
 
@@ -72,9 +72,7 @@ echo ""
 if [ -d "./deploy" ]; then
   cp "wisdom-songbook.pdf" "./deploy/" && echo "Compiled PDF copied to ./deploy/"
   if [ "$printouts_created" = "yes" ]; then
-    cp "printout_wisdom_A5_on_A4_doublesided_folded.pdf" "./deploy/" \
-      && cp "printout_wisdom_A5_on_A4_sidebyside_simple.pdf" "./deploy/" \
-      && echo "Extra printouts copied to ./deploy/"
+    cp "printout*.pdf" "./deploy/" && echo "Extra printouts copied to ./deploy/"
   fi
 else
   echo "PDF not deployed"
