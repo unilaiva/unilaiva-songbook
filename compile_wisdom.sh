@@ -50,12 +50,7 @@ echo ""
 
 # second run of pdflatex, creates the final PDF document
 pdflatex -interaction=nonstopmode $MAIN_TEX_FILE 
-ecode=$?
-
-cd "$initial_dir" # get out of $TEMP_DIRNAME
-cp $TEMP_DIRNAME/wisdom-songbook.pdf ./ 
-
-[ $ecode -eq 0 ] || die $ecode "Compilation error running pdflatex (2nd time)! Aborted."
+[ $? -eq 0 ] || die $ecode "Compilation error running pdflatex (2nd time)! Aborted."
 
 echo ""
 
@@ -63,14 +58,17 @@ echo ""
 printouts_created=0
 which "context" >"/dev/null"
 if [ $? -eq 0 ]; then
-  context "printout_wisdom_A5_on_A4_doublesided_folded.context" && context "printout_wisdom_A5_on_A4_sidebyside_simple.context" && printouts_created="yes"
+  context "../printout_wisdom_A5_on_A4_doublesided_folded.context" && context "../printout_wisdom_A5_on_A4_sidebyside_simple.context" && printouts_created="yes"
 else
   echo "Extra printout PDFs not created, because 'context' program not found."
 fi
 
+cd "$initial_dir" # get out of $TEMP_DIRNAME
+cp $TEMP_DIRNAME/*.pdf ./ # copy the PDFs to root dir
+
 echo ""
 
-# If subdirectory 'deploy' exists, copy the PDF there also.
+# If subdirectory 'deploy' exists, copy the PDFs there also.
 if [ -d "./deploy" ]; then
   cp "wisdom-songbook.pdf" "./deploy/" && echo "Compiled PDF copied to ./deploy/"
   if [ "$printouts_created" = "yes" ]; then
