@@ -274,6 +274,30 @@
 \endsong
 
 
+\beginsong{Taivas on sininen ja valkoinen}[by={Kansanlaulu}]
+  \meter{2}{4}
+  % declare new (global) named chord-replay registers:
+  \newchords{chords_taivas_a}\newchords{chords_taivas_b}
+  \beginchorus\memorize[chords_taivas_a] % memorize chords into a named register
+    |\[Am]Taivas on sininen ja |\[E7]valkoi\[Am]nen ja|
+    |\[Am]tähtö\[Dm]si\[G7]ä|\[C]täyn\[Em]nä|
+  \endchorus
+  \beginchorus\memorize[chords_taivas_b] % memorize chords into a named register
+    |\[Am]Niin on \[F]nuori |\[G7]sydä\[C]me\[F]ni|
+    |\[Am]aja\[E7]tuksia |\[Am]täynnä|
+  \endchorus
+  \vspace{1em}
+  \beginchorus\replay[chords_taivas_a] % replay chords from a named register
+    |^Enkä mä muille |^ilmoi^ta mun|
+    |^sydän^su^ru|^ja^ni|
+  \endchorus
+  \beginchorus\replay[chords_taivas_b] % replay chords from a named register
+    |^Synkkä ^metsä ja |^kirkas ^tai^vas ne|
+    |^tuntee mun ^huoli|^ani|
+  \endchorus
+\endsong
+
+
 \beginsong{Haltin häät}[by={Hannu Seppänen, Arto Alaspää}]
   \beginverse\memorize
     Kun |\[C]ihmiskunnan aamu vasta |\[Em]alkoi sarastaa
@@ -324,30 +348,6 @@
     ja ettet taipunut sa sorron alle,
     on aamus alkanut, synnyinmaa! 
   \endverse 
-\endsong
-
-
-\beginsong{Taivas on sininen ja valkoinen}[by={Kansanlaulu}]
-  \meter{2}{4}
-  % declare new (global) named chord-replay registers:
-  \newchords{chords_taivas_a}\newchords{chords_taivas_b}
-  \beginchorus\memorize[chords_taivas_a] % memorize chords into a named register
-    |\[Am]Taivas on sininen ja |\[E7]valkoi\[Am]nen ja|
-    |\[Am]tähtö\[Dm]si\[G7]ä|\[C]täyn\[Em]nä|
-  \endchorus
-  \beginchorus\memorize[chords_taivas_b] % memorize chords into a named register
-    |\[Am]Niin on \[F]nuori |\[G7]sydä\[C]me\[F]ni|
-    |\[Am]aja\[E7]tuksia |\[Am]täynnä|
-  \endchorus
-  \vspace{1em}
-  \beginchorus\replay[chords_taivas_a] % replay chords from a named register
-    |^Enkä mä muille |^ilmoi^ta mun|
-    |^sydän^su^ru|^ja^ni|
-  \endchorus
-  \beginchorus\replay[chords_taivas_b] % replay chords from a named register
-    |^Synkkä ^metsä ja |^kirkas ^tai^vas ne|
-    |^tuntee mun ^huoli|^ani|
-  \endchorus
 \endsong
 
 
