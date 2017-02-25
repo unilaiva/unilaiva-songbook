@@ -125,9 +125,12 @@ hop to the beginning of a new left-side page. Suggest a good page brake spot
 with `\brk`. These are mostly not needed, as `songs` package does quite a good
 job in deciding these.
 
-If using measure bars and a measure bar ends at the end of a lyric line, add
-a measure bar line to *both* the end of the line and the beginning of the 
-next one (if one exists).
+If using measure bars and a measure ends at the end of a lyric line, put
+a bar line `|` to *both* the end of the lyric line and the beginning of the 
+next one (if one exists). If a measure in the end of a lyric line continues
+into the next line, but there are no lyrics after the last bar line on the
+first lyric line, add ` -` after the last bar line on the first line to signify
+that there indeed is a (partial) measure, like this: `| -`
 
 If it is necessary to mark beats, use `.` as a chord name, like this: `\[.]`.
 
