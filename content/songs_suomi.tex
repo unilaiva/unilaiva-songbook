@@ -148,12 +148,19 @@
     |^Nuku, puna|^paitu^lainen, |
     |^pikku leppä|^kerttu. |
   \endverse
-  \beginverse
-    |^d d a a |^a a e e |
-    |^g g ^f f |^e - ^d - |
-    |^f d e f |^g f ^e e |
-    |^a g f e |^d - d - |
-  \endverse
+  \vfill
+  \begin{lilypond}[fragment] % present melody using lilypond
+    {\key d \minor \time 2/4
+      d'4 d'4 a'4 a'4 | a'4 a'4 e'4 e'4 |
+      g'4 g'4 f'4 f'4 | e'2 d'2 |
+      f'4 d'4 e'4 f'4 | g'4 f'4 e'4 e'4 |
+      a'4 g'4 f'4 e'4 | d'2 d'2 |
+    }\addlyrics {
+      Len -- nä, len -- nä lep -- pä -- kert -- tu, |
+      i -- son ki -- ven juu -- reen. |
+      Len -- nä leik -- ki -- ke -- don kaut -- ta |
+      u -- ni -- puu -- hun suu -- reen. | }
+  \end{lilypond}
 \endsong
 
 
