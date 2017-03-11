@@ -13,6 +13,11 @@
 \newsongkey{ex}{\def\extrainfo{}}
                 {\def\extrainfo{#1\par}}
 
+% Support for adding a list of tags for a song
+\newcommand{\taglist}{}
+\newsongkey{tags}{\def\SB@rawrefs{}\gdef\songrefs{}\def\taglist{}}
+                 {\def\SB@rawrefs{#1}\SB@parsesrefs{#1}\def\taglist{AH: #1\par}}
+
 % adds the new data from above to song prelude
 \renewcommand{\extendprelude}{
   \showrefs\showauthors
