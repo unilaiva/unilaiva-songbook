@@ -14,22 +14,54 @@
                 {\def\extrainfo{#1\par}}
 
 % Support for adding a list of tags for a song
-\newcommand{\taglist}{}
-\newsongkey{tags}{\def\SB@rawrefs{}\gdef\songrefs{}\def\taglist{}}
-                 {\def\SB@rawrefs{#1}\SB@parsesrefs{#1}\def\taglist{AH: #1\par}}
+\newcommand{\taglist}{}%
+\makeatletter%
+\newsongkey{tags}{\def\taglist{}\def\SB@rawrefs{}\gdef\songrefs{}}%
+                 {\def\taglist{%
+                    % Removes the whitespace + 1 instances from the tag list;
+                    % uses 'xstring' package
+                   tags: \StrSubstitute{#1}{ 1}{}\par%
+                 }%
+                 \def\SB@rawrefs{#1}\SB@parsesrefs{#1}}%
 
-% adds the new data from above to song prelude
-\renewcommand{\extendprelude}{
-  \showrefs\showauthors
-  \ifdefined\showextrainfo
-    {\sffamily\extrainfo}
-  \fi
-  \ifdefined\showtaglist
-    {\sffamily\showtaglist}
-  \fi
-  \ifdefined\showahnumber
-    {\bfseries\ahsongnumber}
-  \fi
+\makeatletter
+\renewcommand\SB@makescripindex{%
+  \renewenvironment{SB@lgidx}[1]{%
+    \gdef\SB@idxcolhead{##1}%
+    % Do not show anything on book name line; there are no categories
+    %\hbox to\hsize{{\idxbook{##1}}\hfil}%
+    %\nobreak%
+    %\SB@idxheadsep\nointerlineskip%
+  }{%
+    \mark{\noexpand\relax}%
+    \penalty-20\vskip3\p@\@plus3\p@\relax%
+  }%
+  \renewenvironment{SB@smidx}[1]
+    {\begin{SB@lgidx}{##1}}{\end{SB@lgidx}}%
+  \renewcommand\idxentry[2]{%
+    \SB@ellipspread{\idxscripfont\relax\SB@idxcolhead}% ##1 -> SB@idxcolhead to display 'book name' instead of 'chapter number'
+                   {{\idxrefsfont\relax##2}}%
+    \SB@toks\expandafter{\SB@idxcolhead}%
+    \mark{\noexpand\SB@idxcont{\the\SB@toks}}%
+  }%
+  \renewcommand\idxaltentry[2]{\SB@erridx{a scripture}}%
+  \SB@displayindex%
+}
+
+\makeatother
+
+% adds the new data from above to song prelude and remove \showrefs
+\renewcommand{\extendprelude}{%
+  \showauthors%
+  \ifdefined\showtaglist%
+    {\sffamily\taglist}%
+  \fi%  
+  \ifdefined\showextrainfo%
+    {\sffamily\extrainfo}%
+  \fi%
+  \ifdefined\showahnumber%
+    {\bfseries\ahsongnumber}%
+  \fi%
 }
 
 %%\pagestyle{empty} %% comment out to show page numbers
