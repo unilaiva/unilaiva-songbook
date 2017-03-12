@@ -188,13 +188,20 @@
       \setcounter{songnum}{400}
       \input{content/songs_english.tex}
     \end{songs}
+
+  \clearpage\scleardpage
+  \songchapter{Other}  
+    \begin{songs}{titleidx,authidx,tagidx}
+      \setcounter{songnum}{700}
+      \input{content/songs_other.tex}
+    \end{songs} 
     
   \clearpage\scleardpage
   \songchapter{Suomi}
     \begin{otherlanguage}{finnish} % set language to finnish for hyphenation etc
       \section{Lauluja}
         \begin{songs}{titleidx,authidx,tagidx}
-          \setcounter{songnum}{700}
+          \setcounter{songnum}{800}
           \input{content/songs_suomi.tex}
           % larva's scribblings (remove later?):
           \input{content/songs_larva.tex}
@@ -205,7 +212,7 @@
       \clearpage\scleardpage
       \section{Runoutta, loitsuja}
         \begin{songs}{titleidx,authidx,tagidx}
-          \setcounter{songnum}{800}
+          \setcounter{songnum}{900}
           \chordsoff % do not show empty line for non-existing chords
           \renewcommand{\lyricfont}{\sffamily\small} % songs: modify lyrics font style
           \input{content/songs_suomi_runoja_loitsuja.tex}
@@ -213,12 +220,6 @@
           \chordson
         \end{songs}
     \end{otherlanguage}
-  \clearpage\scleardpage
-  \songchapter{Other}  
-    \begin{songs}{titleidx,authidx,tagidx}
-      \setcounter{songnum}{900}
-      \input{content/songs_other.tex}
-    \end{songs}      
 
   \clearpage\scleardpage
   \songchapter{Technical information}
