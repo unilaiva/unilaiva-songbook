@@ -34,6 +34,7 @@ lilypond-book -f latex --output $TEMP_DIRNAME "$MAIN_TEX_FILE" || die $? "Error 
 cd $TEMP_DIRNAME
 ln -s "../ext_packages" "./" 2>"/dev/null"
 ln -s "../../content/img" "./content/" 2>"/dev/null"
+ln -s "../tags.can" "./" 2>"/dev/null"
 
 # first run of pdflatex
 pdflatex -interaction=nonstopmode $MAIN_TEX_FILE || die $? "Compilation error running pdflatex! Aborted."
@@ -44,7 +45,7 @@ echo ""
 "$SONG_IDX_PROG" idx_wisdom-sb_title.sxd idx_wisdom-sb_title.sbx || die $? "Error creating song title indeces! Aborted."
 echo ""
 "$SONG_IDX_PROG" idx_wisdom-sb_auth.sxd idx_wisdom-sb_auth.sbx || die $? "Error creating author indeces! Aborted."
-# "$SONG_IDX_PROG" idx_wisdom-sb_scrip.sxd idx_wisdom-sb_scrip.sbx || die $? "Error creating scripture indeces! Aborted."
+"$SONG_IDX_PROG" -b tags.can idx_wisdom-sb_tag.sxd idx_wisdom-sb_tag.sbx || die $? "Error creating tag (scripture) indeces! Aborted."
 
 echo ""
 
