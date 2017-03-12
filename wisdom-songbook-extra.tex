@@ -60,16 +60,19 @@
 % song keyvals introduced above. \showrefs is removed, because we
 % use the scripture references as tags and they are displayed
 % with \taglist.
+\makeatletter%
 \renewcommand{\extendprelude}{%
+  \ifdefined\showtaglist%   following is similar to \showauthors
+    {\setbox\SB@box\hbox{\hfill\sffamily\taglist}%
+     \ifdim\wd\SB@box>\z@\unhbox\SB@box\par\vspace{-1em}\fi% Go up one line if tag list was non-empty
+    }%
+  \fi%
   \showauthors%
-  \ifdefined\showtaglist%
-    {\sffamily\taglist}%
-  \fi%  
   \ifdefined\showextrainfo%
     {\sffamily\extrainfo}%
   \fi%
   \ifdefined\showahnumber%
-    {\bfseries\ahsongnumber}%
+    {\sffamily\ahsongnumber}%
   \fi%
 }
 
