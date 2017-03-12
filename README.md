@@ -117,7 +117,7 @@ See `songs` package documentation in [http://songs.sourceforge.net/songsdoc/song
 
 Stuff inside `songs` environment (the files in `content` directory named
 with a prefix `songs_`) ought to contain only individual songs (and data 
-related to them) between `\beginsong` and `\endsong` tags plus other 
+related to them) between `\beginsong` and `\endsong` macros plus other 
 data wrapped in an `intersong` environment. 
 
 Use `\sclearpage` to jump to the beginning of a new page and `\scleardpage` to
@@ -137,6 +137,16 @@ If it is necessary to mark beats, use `.` as a chord name, like this: `\[.]`.
 Full melodies are written using `lilypond` syntax. See documentation in 
 [http://lilypond.org/](http://lilypond.org/). It seems best to put `lilypond`
 parts outside of verses (but inside of a song) to ensure correct line breaking.
+
+#### Tags ####
+
+Tags can be added to songs using a peculiar syntax (scripture reference system
+of songs package is used for this purpose). All tags must be listed in file
+`tags.can`. Define tags for a song by adding `tags=` keyval to `\beginsong` macro.
+Note that a ` 1` must be appended to the tag name, like this
+`\beginsong{Song name}[tags={love 1, smile 1}]`.
+
+Tag index is found in the end of the result document.
 
 
 Tentative TODO
