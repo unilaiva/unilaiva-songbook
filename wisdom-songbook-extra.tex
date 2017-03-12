@@ -13,22 +13,25 @@
 \newsongkey{ex}{\def\extrainfo{}}
                 {\def\extrainfo{#1\par}}
 
-% Support for adding a list of tags for a song
-\newcommand{\taglist}{}%
+
+% BEGIN TAGS. 
+% Support for tags for songs. To show them in song preludes,
+% define \newcommand{\showtaglist}{} in the main document.
+% Tags are defined as tags= keyval for \beginsong. An example:
+% \beginsong{Songname}[tags={fire 1, water 1}. Note the weird
+% syntax: the tagname must be followed by ' 1'. Valid tags are
+% defined in file 'tags.can'.
+
+\newcommand{\taglist}{}% defined below for each song
 \makeatletter%
 \newsongkey{tags}{\def\taglist{}\def\SB@rawrefs{}\gdef\songrefs{}}%
-                 {\def\taglist{%
-                    % Removes the whitespace + 1 instances from the tag list;
-                    % uses 'xstring' package
-                   tags: \StrSubstitute{#1}{ 1}{}\par%
-                 }%
-                 \def\SB@rawrefs{#1}\SB@parsesrefs{#1}}%
+                 {\def\taglist{\StrSubstitute{#1}{ 1}{}\par}% Show only tag name, remove ' 1'
+                  \def\SB@rawrefs{#1}\SB@parsesrefs{#1}}
 
-\makeatletter
 \renewcommand\SB@makescripindex{%
   \renewenvironment{SB@lgidx}[1]{%
     \gdef\SB@idxcolhead{##1}%
-    % Do not show anything on book name line; there are no categories
+    % Following three lines are commented out to skip the line used for book name
     %\hbox to\hsize{{\idxbook{##1}}\hfil}%
     %\nobreak%
     %\SB@idxheadsep\nointerlineskip%
@@ -48,9 +51,15 @@
   \SB@displayindex%
 }
 
-\makeatother
+\makeatother%
 
-% adds the new data from above to song prelude and remove \showrefs
+% END TAGS
+
+
+% Redefine displaying of song prelude. This version adds the new
+% song keyvals introduced above. \showrefs is removed, because we
+% use the scripture references as tags and they are displayed
+% with \taglist.
 \renewcommand{\extendprelude}{%
   \showauthors%
   \ifdefined\showtaglist%
