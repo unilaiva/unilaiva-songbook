@@ -25,6 +25,8 @@
 % (can be omitted, but warnings will appear):
 \usepackage{silence}\WarningFilter{latex}{You have requested package}
 
+\usepackage{xstring}
+
 % The most important 'songs' package, use the version in the project tree:
 \usepackage[chorded]{ext_packages/songs}
 
@@ -124,6 +126,7 @@
 % songs: create indexes
 \newindex{titleidx}{idx_wisdom-sb_title}
 \newauthorindex{authidx}{idx_wisdom-sb_auth}
+\newscripindex{tagidx}{idx_wisdom-sb_tag}
 
         
 \begin{document}
@@ -154,34 +157,34 @@
   \clearpage\scleardpage
   \songchapter{Saṃskṛtam}
     \section{Hindu Bhajans \& Mantras} 
-      \begin{songs}{titleidx,authidx}
+      \begin{songs}{titleidx,authidx,tagidx}
         \setcounter{songnum}{100}
         \input{content/songs_mantra_hindu.tex}
       \end{songs}
      \scleardpage
     \section{Tibetan Buddhist Mantras}
-      \begin{songs}{titleidx,authidx}
+      \begin{songs}{titleidx,authidx,tagidx}
         \setcounter{songnum}{170}
         \input{content/songs_mantra_buddhist.tex}
       \end{songs}  
   
   \clearpage\scleardpage
   \songchapter{Español}
-    \begin{songs}{titleidx,authidx}
+    \begin{songs}{titleidx,authidx,tagidx}
       \setcounter{songnum}{200}
       \input{content/songs_spanish.tex}
     \end{songs}
     
   \clearpage\scleardpage    
   \songchapter{Português}
-    \begin{songs}{titleidx,authidx}
+    \begin{songs}{titleidx,authidx,tagidx}
       \setcounter{songnum}{300}
       \input{content/songs_portuguese.tex}
     \end{songs}
   
   \clearpage\scleardpage
   \songchapter{English}  
-    \begin{songs}{titleidx,authidx}
+    \begin{songs}{titleidx,authidx,tagidx}
       \setcounter{songnum}{400}
       \input{content/songs_english.tex}
     \end{songs}
@@ -190,7 +193,7 @@
   \songchapter{Suomi}
     \begin{otherlanguage}{finnish} % set language to finnish for hyphenation etc
       \section{Lauluja}
-        \begin{songs}{titleidx,authidx}
+        \begin{songs}{titleidx,authidx,tagidx}
           \setcounter{songnum}{700}
           \input{content/songs_suomi.tex}
           % larva's scribblings (remove later?):
@@ -201,18 +204,18 @@
         \input{content/suomi_mytologiaa.tex}
       \clearpage\scleardpage
       \section{Runoutta, loitsuja}
-        \begin{songs}{titleidx,authidx}
+        \begin{songs}{titleidx,authidx,tagidx}
           \setcounter{songnum}{800}
           \chordsoff % do not show empty line for non-existing chords
           \renewcommand{\lyricfont}{\sffamily\small} % songs: modify lyrics font style
           \input{content/songs_suomi_runoja_loitsuja.tex}
-          \renewcommand{\lyricfont}{\sffamily\Large} % songs: modify lyrics font style
+          \renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
           \chordson
         \end{songs}
     \end{otherlanguage}
   \clearpage\scleardpage
   \songchapter{Other}  
-    \begin{songs}{titleidx,authidx}
+    \begin{songs}{titleidx,authidx,tagidx}
       \setcounter{songnum}{900}
       \input{content/songs_other.tex}
     \end{songs}      
@@ -228,5 +231,6 @@
   \clearpage
   \showindex[2]{Song Index}{titleidx} % song title index  
   % \showindex{Author Index}{authidx} % song author index
+  \showindex[2]{Tag Index}{tagidx} % tags index
 
 \end{document}
