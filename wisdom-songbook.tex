@@ -34,6 +34,11 @@
 
 \definecolor{chordcolor}{rgb}{0.3,0,0.4} % color: use this for chords
 \definecolor{mbarcolor}{rgb}{0.8,0.7,0.9} % color: use this for measure bars (lighter color)
+\definecolor{verylightgray}{rgb}{0.94,0.94,0.94} % color: use this for song number bg & textnote bg (lighter gray)
+
+\renewcommand{\snumbgcolor}{verylightgray} % songs: song number (in prelude) background color
+\renewcommand{\notebgcolor}{verylightgray} % songs: \musicnote and \textnote background color
+\renewcommand{\idxbgcolor}{verylightgray} % songs: index alphabet sectino background color
 
 \songcolumns{1} % songs: number of columns per page in songs environment  
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
@@ -43,6 +48,7 @@
 \renewcommand\printchord[1]{\sffamily\bfseries\small\color{chordcolor}#1}
 % songs: modify meter class font style (add color):
 \renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
+\renewcommand{\notefont}{\normalsize} % songs: modify \textnote and \musicnote font (make smaller)
 \renewcommand{\clineparams}{ % distance of chords to lyrics (needed because of font scaling)
   \baselineskip=10.6pt
   \lineskiplimit=-2pt
