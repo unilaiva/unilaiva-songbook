@@ -110,9 +110,6 @@ subdirectory and will be inputed into the main file. Images are put into
 
 External packages (only `songs` for now) are in `ext_packages` subdirectory.
 
-Lines ought to be less than 100 characters long (is anyone using 80 column
-terminals still?), unless it is too much trouble.
-
 See `songs` package documentation in [http://songs.sourceforge.net/songsdoc/songs.html](http://songs.sourceforge.net/songsdoc/songs.html).
 
 Stuff inside `songs` environment (the files in `content` directory named
@@ -125,6 +122,12 @@ hop to the beginning of a new left-side page. Suggest a good page brake spot
 with `\brk`. These are mostly not needed, as `songs` package does quite a good
 job in deciding these.
 
+Lines ought to be less than 100 characters long (is anyone using 80 column
+terminals still?), unless it is too much trouble.
+
+
+### Measure bars and beats ###
+
 If using measure bars and a measure ends at the end of a lyric line, put
 a bar line `|` to *both* the end of the lyric line and the beginning of the 
 next one (if one exists). If a measure in the end of a lyric line continues
@@ -133,10 +136,33 @@ first lyric line, add ` -` after the last bar line on the first line to signify
 that there indeed is a (partial) measure, like this: `| -`
 
 If it is necessary to mark beats, use `.` as a chord name, like this: `\[.]`.
+Also underlining for lyrics can be used as a last resort.
+
+### Melodies ###
 
 Full melodies are written using `lilypond` syntax. See documentation in 
 [http://lilypond.org/](http://lilypond.org/). It seems best to put `lilypond`
 parts outside of verses (but inside of a song) to ensure correct line breaking.
+
+### Repeats and choruses ###
+
+By putting a verse between `\beginchorus` and `\endchorus` instead of `\beginverse`
+and `\endverse`, a vertical line will be shown on the left side of the verse in
+question. In this songbook that visual que is used to mark an immediate repetition
+of that verse.
+
+When some other phrase (than a verse) is repeated, the repeated part is to be put between 
+`\lrep` and `\rrep` macros. If the repeat count is anything else than two, it will be
+indicated by putting `\rep{3}` after the `\rrep` macro (replacing `3` with the actual
+repeat count). If the span of the repeat is clear (for example exactly one line), `\rep{}`
+macro can be used by itself.
+
+Actual choruses i.e. verses that are jumped to more than once throughout the song can be
+marked with `\beginchorus` or `\beginverse` (depending on their repeat behaviour), but each
+lyrics line within them ought to be prefixed with `\chorusindent` macro, which indents the
+line a bit. Elsewhere in the song, you can mark the spots from where to jump to chorus with
+`\jumptochorus{Beginning words of the chorus}`.
+
 
 #### Tags ####
 
