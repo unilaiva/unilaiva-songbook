@@ -225,7 +225,14 @@
           \setcounter{songnum}{900}
           \chordsoff % do not show empty line for non-existing chords
           \renewcommand{\lyricfont}{\sffamily\small} % songs: modify lyrics font style
+          \songcolumns{2}% two columns per page!
+          % Make penalty for breaking column/page at any line of lyrics to be only slightly
+          % higher than penalty for breaking between verses. The default for \interlinepenalty
+          % is 1000, all other penalties are 200 by default.
+          \interlinepenalty=201%
           \input{content/songs_suomi_runoja_loitsuja.tex}
+          \interlinepenalty=1000 % back to default
+          \songcolumns{1} % back to one column per page
           \renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
           \chordson
         \end{songs}
