@@ -49,6 +49,8 @@
 % songs: modify meter class font style (add color):
 \renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
 \renewcommand{\notefont}{\normalsize} % songs: modify \textnote and \musicnote font (make smaller)
+% songs: use same text color for music notes as for chords:
+\renewcommand\musicnote[1]{\ifchorded\textnote{\color{chordcolor}#1}\fi}%
 \renewcommand{\clineparams}{ % distance of chords to lyrics (needed because of font scaling)
   \baselineskip=10.6pt
   \lineskiplimit=-2pt
