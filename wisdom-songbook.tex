@@ -56,7 +56,7 @@
 }
 % songs: make capo note smaller
 \renewcommand\capo[1]{%
-  \iftranscapos\transpose{#1}\else\musicnote{{\small capo #1}}\fi%
+  \iftranscapos\transpose{#1}\else\musicnote{{\scriptsize capo #1}}\fi%
 }
 % songs: reduces line spacing in non-chorded lyrics by the amount the chords would take space
 %        without needing to set \chordsoff; also removes measure bar lines. Commented out for
