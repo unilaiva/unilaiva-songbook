@@ -9,7 +9,8 @@
 % paper. The end result is such that each printed sheet needs to
 % be folded in half to create a stack of folded sheets with pages
 % in the correct order. Each sheet contains 4 pages. Then the stack
-% needs to be bound somehow.
+% needs to be bound somehow. Sheets can alternatively be cut in half
+% (and reordered).
 %
 % If your printer supports double-sided printing, you can just
 % print the end document. Note that you might need to add 'doublesided'
