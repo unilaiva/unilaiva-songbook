@@ -31,11 +31,9 @@
 \setuparranging [2*2,rotated]
 %\showframe % uncomment for debugging
 
-\setupexternalfigure[location=default]
-\defineexternalfigure[foo][width=0.5\textwidth]
 \starttext
   %Blank Page \blank\page % blank page not needed in this format
-  \insertpages[wisdom-songbook.pdf][category=foo] % was: width=0pt
+  \insertpages[wisdom-songbook.pdf][width=0pt]
 \stoptext
 
 
