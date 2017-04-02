@@ -41,17 +41,17 @@
 
 \setuppapersize [A5] [A4]
 %\setuppaper[nx=1,ny=2] % not needed here
-\setuplayout[topspace=0pt,bottomspace=0pt,backspace=0pt,frontspace=0pt,width=middle,height=middle,location=middle,header=0pt,footer=0pt]
+\setuplayout[topspace=0mm,bottomspace=0mm,backspace=0mm,frontspace=0mm,width=middle,height=middle,location=middle,header=0pt,footer=0pt]
 \setuppagenumbering [location=]
 \setuparranging [2*2,rotated]
 %\showframe % uncomment for debugging
 
+\setupexternalfigure[location=default]
+\defineexternalfigure[foo][width=0.5\textwidth]
 \starttext
   %Blank Page \blank\page % blank page not needed in this format
-  \insertpages[wisdom-songbook.pdf][width=0pt]
+  \insertpages[wisdom-songbook.pdf][category=foo] % was: width=0pt
 \stoptext
-
-
 
 
 
