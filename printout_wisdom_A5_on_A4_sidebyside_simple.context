@@ -1,6 +1,6 @@
 % This is a ConTeXt source file to create a PDF printout from existing
-% wisdom-songbook.pdf. So, first run 'compile_wisdom.sh' and then
-% use 'context' binary to compile a PDF from this source file.
+% wisdom-songbook.pdf. If you have 'context' binary on your system,
+%'compile_wisdom.sh' will compile a PDF from this source file.
 %
 % See ConTeXt help for example here: 
 %        http://wiki.contextgarden.net/Imposition
@@ -18,7 +18,9 @@
 % If printed double-sided, this format does NOT support cutting or
 % folding of the resulting pages.
 %
-% Remember to set margins to 0 in the printer setup!
+% Remember to set margins to 0 in the printing software!
+%
+% See README.md for more instructions on printing.
 %
 
 \setuppapersize [A5] [A4]

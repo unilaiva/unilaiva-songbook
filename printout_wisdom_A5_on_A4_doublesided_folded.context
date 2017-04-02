@@ -1,6 +1,6 @@
 % This is a ConTeXt source file to create a PDF printout from existing
-% wisdom-songbook.pdf. So, first run 'compile_wisdom.sh' and then
-% use 'context' binary to compile a PDF from this source file.
+% wisdom-songbook.pdf. If you have 'context' binary on your system,
+%'compile_wisdom.sh' will compile a PDF from this source file.
 %
 % See ConTeXt help for example here: 
 %        http://wiki.contextgarden.net/Imposition
@@ -17,27 +17,12 @@
 % argument to setuparranging like this:
 % 'setuparranging [2*2,rotated,doublesided]
 %
-% Remember to set margins to 0 in the printer setup!
+% Remember to set margins to 0 in the printing software!
 %
-% If your printer does not not support duplex printing, you must first
-% print only odd pages, then flip each sheet in the following manner:
-%   1. Set the printed stack of sheets in front of you so that the text is
-%      displayed like it should (not upside down).
-%   2. Turn the *whole* stack upside down as if turning a page of a book.
-%      Now you have a stack of sheets with their blank side up.
-%   3. Make a new stack with each page flipped by moving each page from
-%      the old turned stack one-by-one to the new stack without turning it in
-%      any way, from the
-%      top of the old turned stack to the top of the new stack. In the end
-%      you will have a stack which has the sheets in the original order but
-%      each flipped so that the blank space is up 
-%   4. Feed the new stack (without turning it) to the printer
-% Then print the even pages.
+% See README.md for more instructions on printing, including the procedure
+% to get double-sided A5 sized printout with a single-sided printer and A4
+% sized paper.
 %
-% If your printing software doesn't correctly print odd/even pages, you can
-% create PDFs containing only odd/even pages using 'pdftk':
-%   pdftk collated_wisdom-songbook_A5DS_on_A4_folded.pdf cat 1-endodd output odd.pdf
-%   pdftk collated_wisdom-songbook_A5DS_on_A4_folded.pdf cat 1-endeven output even.pdf
 
 \setuppapersize [A5] [A4]
 %\setuppaper[nx=1,ny=2] % not needed here

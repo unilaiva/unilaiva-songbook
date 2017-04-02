@@ -70,7 +70,10 @@ that odd pages are on the right side (recto) and even pages are on the left
 side (verso) of a spread.
 
 Note that margins ought to be set to zero in the printing software and the
-printer drivers setup, if such options are available.
+printer drivers setup, if such options are available. On Linux and MacOS,
+the `lp` program is recommended for printing without extra margins. Simply state
+e.g. `lp -o PageSize=A4 printout_wisdom_A5_on_A4_doublesided_folded.pdf` without
+the `fit-to-page` option that many GUI programs pass to it.
 
 There are also special printing options, like printing multiple A5 sized pages on
 an A4 sized paper. They are defined in files named `printout_wisdom*.context` and
@@ -89,10 +92,27 @@ To flip pages manually: put the printed stack of papers in front of you upside d
 to the top of the new stack (do not turn in any way, just "translate"), one by one.
 Feed the new stack to the printer. Be careful to put it in there the right way.
 
-If your printing software is limited, you can extract even and odd pages with `pdftk`
+If your printing software is limited, you can extract odd and even pages with `pdftk`
 like this:
-  * `pdftk wisdom-songbook.pdf cat 1-endeven output wisdom_even.pdf`
   * `pdftk wisdom-songbook.pdf cat 1-endodd output wisdom_odd.pdf`
+  * `pdftk wisdom-songbook.pdf cat 1-endeven output wisdom_even.pdf`
+
+#### larva's example procedure for printing ####
+
+This procedure prints the whole book on A4 sized papers with a printer capable of
+single-sided printing only. Flipping pages, cutting and binding are done by hand.
+The end result is a book consisting of two-sided A5 pages, which is the preferred
+format.
+
+  * `./compile_wisdom.sh`
+  * `pdftk printout_wisdom_A5_on_A4_doublesided_folded.pdf cat 1-endodd output wisdom_odd.pdf`
+  * `pdftk printout_wisdom_A5_on_A4_doublesided_folded.pdf cat 1-endeven output wisdom_even.pdf`
+  * `lp -o PageSize=A4 wisdom_odd.pdf`
+  * flip pages manually and feed them to the printer
+  * `lp -o PageSize=A4 wisdom_even.pdf`
+  * cut the A4 pages in half to get the A5 pages
+  * order the pages
+  * punch holes and bind
 
 
 Project structure and guidelines
