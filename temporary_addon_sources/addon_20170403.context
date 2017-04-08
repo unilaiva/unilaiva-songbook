@@ -23,6 +23,10 @@
 % to get double-sided A5 sized printout with a single-sided printer and A4
 % sized paper.
 %
+% This version chooses only certain pages from the main document. It is meant
+% to create a printout addon for an already printed older version of the main
+% song book.
+%
 
 \setuppapersize [A5] [A4]
 %\setuppaper[nx=1,ny=2] % not needed here
