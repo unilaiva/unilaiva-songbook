@@ -34,7 +34,7 @@
 \starttext
  % Remove the following line, if a blank page is not needed (ie the first song is only one page long)
  \blank This is an addon for Wisdom Songbook \page
-  \filterpages[wisdom-songbook.pdf][34,35,50,51,52,53,86,87,66,55,72,109][width=0pt]
+  \filterpages[../wisdom-songbook.pdf][34,35,50,51,52,53,86,87,66,55,72,109][width=0pt]
 \stoptext
 
 
