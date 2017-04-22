@@ -201,8 +201,8 @@ Tentative TODO
 *  Add more songs
 *  Add chords for existing songs
 *  Add translations and explanations for existing songs
+*  Improve existing translations
+*  Improve introduction for mantras (also other non-song texts)
 *  Organize songs better and decide the categories (= chapters / parts)
 *  Possibly add poems, prayers etc in between songs or in their own category(?)
 *  Further develop visual style of the end document
-
-
