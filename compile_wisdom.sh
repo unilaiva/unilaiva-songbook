@@ -24,7 +24,7 @@ die() {
 
 which "pdflatex" >"/dev/null" || die 1 "pdflatex binary not found in path! Aborted."
 which "lilypond-book" >"/dev/null" || die 1 "lilypond-book binary not found in path! Aborted."
-which "$SONG_IDX_PROG" >"/dev/null" || die 1 "$SONG_IDX_PROG binary not found! Aborted."
+which "$SONG_IDX_PROG" >"/dev/null" || die 1 "$SONG_IDX_PROG binary not found! See 'README.md'. Aborted."
 
 # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
 # the modified .tex files and the images to subdirectory $TEMP_DIRNAME
