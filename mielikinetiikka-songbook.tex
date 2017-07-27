@@ -1,5 +1,5 @@
- %% wisdom-songbook
- %% ===============
+ %% mielikinetiikka-songbook
+ %% ========================
  %%
  %% Collection of songs etc
  %%
@@ -13,7 +13,7 @@
 
 \usepackage[bookmarks,unicode]{hyperref} % used by 'songs' package for index links in PDF
   \hypersetup{linkbordercolor=0.2 0.6 0.9,
-              pdftitle=Wisdom Songbook,
+              pdftitle=Mielikinetiikka songbook,
               unicode=true}
 % TODO: consider if the tmargin should be smaller. It can be as small as 16mm,
 %       as it was in earlier versions
@@ -101,7 +101,7 @@
 \newcommand{\showmantra}[1]{{\vspace{1.5em}\begin{center}\Large #1\end{center}}\vspace{1.0em}}
 
 % more project settings: longer renewcommands for songs package etc:
-\input{wisdom-songbook-extra.tex}
+\input{mielikinetiikka-songbook-extra.tex}
 
 % environment for 'song feeler'
 \newenvironment{feeler}{
@@ -138,21 +138,21 @@
 }
 
 % songs: create indexes
-\newindex{titleidx}{idx_wisdom-sb_title}
-\newauthorindex{authidx}{idx_wisdom-sb_auth}
-\newscripindex{tagidx}{idx_wisdom-sb_tag}
+\newindex{titleidx}{idx_mielikinetiikka-sb_title}
+\newauthorindex{authidx}{idx_mielikinetiikka-sb_auth}
+\newscripindex{tagidx}{idx_mielikinetiikka-sb_tag}
 
-        
+
 \begin{document}
 
   \begin{titlepage}
     \includepdf[]{content/img/COVER_temporary.pdf}
     \thispagestyle{empty}
     \topskip0pt
-    \vspace*{\fill}    
+    \vspace*{\fill}
     \begin{center}
-      \Huge Songs of Wisdom\\
-      \normalsize \textit{Paths to higher knowledge}\\
+      \Huge Mieli\textit{k}in\textit{e}tiikka\\
+      \normalsize \textit{paths to higher knowledge}\\
       \Large
       \vspace{3em}
       By:\\
@@ -163,7 +163,7 @@
       \\
       \vspace*{\fill}
       \let\thefootnote\relax{\scriptsize Compiled by: antagomir \& larva}
-    \end{center}    
+    \end{center}
   \end{titlepage}
   
   \tableofcontents % TODO: make two-column TOC using perhaps multitoc package

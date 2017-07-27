@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-# This UNIX shell script compiles wisdom-songbook.tex using different
-# tools to produce wisdom-songbook.pdf
+# This UNIX shell script compiles mielikinetiikka-songbook.tex using different
+# tools to produce mielikinetiikka-songbook.pdf
 #
 # Required binaries in PATH: lilypond-book, pdflatex
 # Required manually compiled binary: ext_packages/bin/songidx
@@ -11,7 +11,7 @@
 
 
 SONG_IDX_PROG="ext_packages/bin/songidx"
-MAIN_TEX_FILE="wisdom-songbook.tex"
+MAIN_TEX_FILE="mielikinetiikka-songbook.tex"
 TEMP_DIRNAME="compile_temp" # just the name of a subdirectory, not an absolute path
 
 initial_dir="$PWD"
@@ -42,10 +42,10 @@ pdflatex -interaction=nonstopmode $MAIN_TEX_FILE || die $? "Compilation error ru
 echo ""
 
 # create indeces    
-"$SONG_IDX_PROG" idx_wisdom-sb_title.sxd idx_wisdom-sb_title.sbx || die $? "Error creating song title indeces! Aborted."
+"$SONG_IDX_PROG" idx_mielikinetiikka-sb_title.sxd idx_mielikinetiikka-sb_title.sbx || die $? "Error creating song title indeces! Aborted."
 echo ""
-"$SONG_IDX_PROG" idx_wisdom-sb_auth.sxd idx_wisdom-sb_auth.sbx || die $? "Error creating author indeces! Aborted."
-"$SONG_IDX_PROG" -b tags.can idx_wisdom-sb_tag.sxd idx_wisdom-sb_tag.sbx || die $? "Error creating tag (scripture) indeces! Aborted."
+"$SONG_IDX_PROG" idx_mielikinetiikka-sb_auth.sxd idx_mielikinetiikka-sb_auth.sbx || die $? "Error creating author indeces! Aborted."
+"$SONG_IDX_PROG" -b tags.can idx_mielikinetiikka-sb_tag.sxd idx_mielikinetiikka-sb_tag.sbx || die $? "Error creating tag (scripture) indeces! Aborted."
 
 echo ""
 
@@ -59,7 +59,7 @@ echo ""
 printouts_created=0
 which "context" >"/dev/null"
 if [ $? -eq 0 ]; then
-  context "../printout_wisdom_A5_on_A4_doublesided_folded.context" && context "../printout_wisdom_A5_on_A4_sidebyside_simple.context" && printouts_created="yes"
+  context "../printout_mielikinetiikka_A5_on_A4_doublesided_folded.context" && context "../printout_mielikinetiikka_A5_on_A4_sidebyside_simple.context" && printouts_created="yes"
 else
   echo "Extra printout PDFs not created, because 'context' program not found."
 fi
@@ -71,7 +71,7 @@ echo ""
 
 # If subdirectory 'deploy' exists, copy the PDFs there also.
 if [ -d "./deploy" ]; then
-  cp "wisdom-songbook.pdf" "./deploy/" && echo "Compiled PDF copied to ./deploy/"
+  cp "mielikinetiikka-songbook.pdf" "./deploy/" && echo "Compiled PDF copied to ./deploy/"
   if [ "$printouts_created" = "yes" ]; then
     cp printout*.pdf "./deploy/" && echo "Extra printouts copied to ./deploy/"
   fi
@@ -79,6 +79,6 @@ else
   echo "PDF not deployed"
 fi
 
-echo "Compilation succesful. Enjoy your wisdom-songbook.pdf"
+echo "Compilation succesful. Enjoy your mielikinetiikka-songbook.pdf"
 
 exit 0

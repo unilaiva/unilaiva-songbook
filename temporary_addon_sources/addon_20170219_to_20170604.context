@@ -1,6 +1,6 @@
 % This is a ConTeXt source file to create a PDF printout from existing
-% wisdom-songbook.pdf. If you have 'context' binary on your system,
-%'compile_wisdom.sh' will compile a PDF from this source file.
+% mielikinetiikka-songbook.pdf. If you have 'context' binary on your system,
+% 'compile_mielikinetiikka.sh' will compile a PDF from this source file.
 %
 % See ConTeXt help for example here: 
 %        http://wiki.contextgarden.net/Imposition
@@ -37,8 +37,8 @@
 
 \starttext
  % Remove the following line, if a blank page is not needed (ie the first song is only one page long)
- \blank This is an addon for Wisdom Songbook \page
-  \filterpages[../wisdom-songbook.pdf][34,35,76,39,40,41,42,43,44,45,80,47,58,59,60,61,62,63,108,77,92,93,96,97,136,121][width=0pt]
+ \blank This is an addon for Mielikinetiikka Songbook \page
+  \filterpages[../mielikinetiikka-songbook.pdf][34,35,76,39,40,41,42,43,44,45,80,47,58,59,60,61,62,63,108,77,92,93,96,97,136,121][width=0pt]
 \stoptext
 
 

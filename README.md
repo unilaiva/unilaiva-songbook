@@ -1,22 +1,22 @@
-wisdom-songbook
-===============
+mielikinetiikka-songbook
+========================
 
-wisdom-songbook is a collection of song lyrics etc for the contributors' 
+mielikinetiikka-songbook is a collection of song lyrics etc for the contributors' 
 private use. 
 
 
 Environment
 -----------
 
-wisdom-songbook is a project written in LaTeX. You must have LaTeX with
-`pdflatex` command and some standard packages installed on your system.
+mielikinetiikka-songbook is a project written in LaTeX. You must have LaTeX
+with `pdflatex` command and some standard packages installed on your system.
 The font Noto is used; on Debian, it is in package `tex-fonts-extra`.
 Also `lilypond-book` binary must be found.
 
 Our project requires only some pretty standard LaTeX packages, which 
 are included in many LaTeX installations by default, to be installed on 
 the system. They are all included with `\usepackage` commands in the 
-beginning of the project's main file: `wisdom-songbook.tex`.
+beginning of the project's main file: `mielikinetiikka-songbook.tex`.
 
 One of the package dependencies, `songs`, is included in the project
 tree and used instead of a one possibly installed on the system. This 
@@ -51,8 +51,8 @@ Creating a PDF document
 -----------------------
 
 If you're on an UNIX system, you can simply use the provided 
-`compile_wisdom.sh` shell script to build a PDF document out of our 
-project.
+`compile_mielikinetiikka.sh` shell script to build a PDF document 
+out of our project.
 
 Otherwise, you should to run binaries in the following sequence: 
 `lilypond-book`, `pdflatex`, `songidx` (for song titles), `songidx`
@@ -62,7 +62,7 @@ Otherwise, you should to run binaries in the following sequence:
 Printing
 --------
 
-You can simply print the main document, `wisdom-songbook.pdf`. It is of A5 
+You can simply print the main document, `mielikinetiikka-songbook.pdf`. It is of A5 
 size. 
 
 If printing double sided, ensure that the pages face each other in such a way 
@@ -72,14 +72,14 @@ side (verso) of a spread.
 Note that margins ought to be set to zero in the printing software and the
 printer drivers setup, if such options are available. On Linux and MacOS,
 the `lp` program is recommended for printing without extra margins. Simply state
-e.g. `lp -o PageSize=A4 printout_wisdom_A5_on_A4_doublesided_folded.pdf` without
-the `fit-to-page` option that many GUI programs pass to it.
+e.g. `lp -o PageSize=A4 printout_mielikinetiikka_A5_on_A4_doublesided_folded.pdf`
+without the `fit-to-page` option that many GUI programs pass to it.
 
 There are also special printing options, like printing multiple A5 sized pages on
-an A4 sized paper. They are defined in files named `printout_wisdom*.context` and
-are to be inputted to ConTeXt program, which needs to be installed on the system.
-They operate on a previously compiled `wisdom-songbook.pdf` file. See comments in
-the beginning of each such a file.
+an A4 sized paper. They are defined in files named `printout_mielikinetiikka*.context`
+and are to be inputted to ConTeXt program, which needs to be installed on the system.
+They operate on a previously compiled `mielikinetiikka-songbook.pdf` file. See 
+comments in the beginning of each such a file.
 
 #### Printing double sided on a single sided printer ####
 
@@ -94,8 +94,8 @@ Feed the new stack to the printer. Be careful to put it in there the right way.
 
 If your printing software is limited, you can extract odd and even pages with `pdftk`
 like this:
-  * `pdftk wisdom-songbook.pdf cat 1-endodd output wisdom_odd.pdf`
-  * `pdftk wisdom-songbook.pdf cat 1-endeven output wisdom_even.pdf`
+  * `pdftk mielikinetiikka-songbook.pdf cat 1-endodd output mielikinetiikka_odd.pdf`
+  * `pdftk mielikinetiikka-songbook.pdf cat 1-endeven output mielikinetiikka_even.pdf`
 
 #### larva's example procedure for printing ####
 
@@ -104,12 +104,12 @@ single-sided printing only. Flipping pages, cutting and binding are done by hand
 The end result is a book consisting of two-sided A5 pages, which is the preferred
 format.
 
-  * `./compile_wisdom.sh`
-  * `pdftk printout_wisdom_A5_on_A4_doublesided_folded.pdf cat 1-endodd output wisdom_odd.pdf`
-  * `pdftk printout_wisdom_A5_on_A4_doublesided_folded.pdf cat 1-endeven output wisdom_even.pdf`
-  * `lp -o PageSize=A4 wisdom_odd.pdf`
+  * `./compile_mielikinetiikka.sh`
+  * `pdftk printout_mielikinetiikka_A5_on_A4_doublesided_folded.pdf cat 1-endodd output mielikinetiikka_odd.pdf`
+  * `pdftk printout_mielikinetiikka_A5_on_A4_doublesided_folded.pdf cat 1-endeven output mielikinetiikka_even.pdf`
+  * `lp -o PageSize=A4 mielikinetiikka_odd.pdf`
   * flip pages manually and feed them to the printer
-  * `lp -o PageSize=A4 wisdom_even.pdf`
+  * `lp -o PageSize=A4 mielikinetiikka_even.pdf`
   * cut the A4 pages in half to get the A5 pages
   * order the pages
   * punch holes and bind
@@ -118,11 +118,11 @@ format.
 Project structure and guidelines
 --------------------------------
 
-Project's main file is `wisdom-songbook.tex`. It includes all the
+Project's main file is `mielikinetiikka-songbook.tex`. It includes all the
 other files in the project and contains configuration.
 
-Long `\renewcommand`s ought to be put into `wisdom-songbook-extra.tex` to
-maintain readability of the main file.
+Long `\renewcommand`s ought to be put into `mielikinetiikka-songbook-extra.tex`
+to maintain readability of the main file.
 
 Song data and other *content* will be in various files inside `content`
 subdirectory and will be inputed into the main file. Images are put into
