@@ -19,7 +19,9 @@
 # binary directory
 ext_packages/bin/
 
-# temporary directory used in compilation
+# temporary directory used when compiling
+temp/
+# the old temporary directory, not used anymore
 compile_temp/
 
 # deployment directory (also a symlink)

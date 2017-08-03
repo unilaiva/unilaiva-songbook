@@ -12,7 +12,7 @@
 
 SONG_IDX_PROG="ext_packages/bin/songidx"
 MAIN_TEX_FILE="mielikinetiikka-songbook.tex"
-TEMP_DIRNAME="compile_temp" # just the name of a subdirectory, not an absolute path
+TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
 
 initial_dir="$PWD"
 
