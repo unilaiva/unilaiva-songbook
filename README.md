@@ -8,10 +8,15 @@ private use.
 Environment
 -----------
 
-mielikinetiikka-songbook is a project written in LaTeX. You must have LaTeX
-with `pdflatex` command and some standard packages installed on your system.
-The font Noto is used; on Debian, it is in package `tex-fonts-extra`.
-Also `lilypond-book` binary must be found.
+mielikinetiikka-songbook is a project written in LaTeX.
+
+#### Requirements ####
+
+  * Standard LaTeX installation with some standard packages and the binaries
+    `pdflatex` and `texlua`
+  * Lilypond installation with the binary `lilypond-book`
+  * Font 'Noto'; on Debian, it is in package `tex-fonts-extra`
+
 
 Our project requires only some pretty standard LaTeX packages, which 
 are included in many LaTeX installations by default, to be installed on 
@@ -23,29 +28,6 @@ tree and used instead of a one possibly installed on the system. This
 is because of compatibility reasons to ensure a certain version: the 
 package is used heavily and some of its commands are redefined.
 
-The `songs` package uses two binaries to create song indexes. These must
-be manually compiled from the source in `ext_packages/src` and placed
-into `ext_packages/bin/`.
-
-#### Compiling `songs` binaries on UNIX ####
-
-This requires only basic compiling tools: `make` and `gcc` which are
-most likely already installed on your system. 
-
-Go to the base directory of our project and execute the following commands:
-
-        cd ext_packages/src
-        tar xvzf songs-2.18.tar.gz
-        cd songs-2.18
-        COMPILEBASEDIR=$(pwd)
-        ./configure
-        make   # don't worry if there are some errors
-        make install prefix="$COMPILEBASEDIR/tmpinstall"
-        mkdir ../../bin
-        cp tmpinstall/bin/* ../../bin/
-        cd ..
-        rm -R songs-2.18
-
 
 Creating a PDF document
 -----------------------
@@ -54,9 +36,10 @@ If you're on an UNIX system, you can simply use the provided
 `compile_mielikinetiikka.sh` shell script to build a PDF document 
 out of our project.
 
-Otherwise, you should to run binaries in the following sequence: 
-`lilypond-book`, `pdflatex`, `songidx` (for song titles), `songidx`
-(for authors) and `pdflatex` again.
+Otherwise, you should to run binaries in the following sequence:
+`lilypond-book`, `pdflatex`, `texlua songidx.lua` (for song titles),
+`texlua songidx.lua` (for authors), `texlua songidx.lua` (for tags),
+and `pdflatex` again.
 
 
 Printing

@@ -1,0 +1,12 @@
+ This folder contains the file 'songs-x.y.tar.gz', which is the complete
+ archived distribution of the songs package.
+ 
+ The other three files are extracted from the above mentioned archive file:
+ 
+   - songs.sty: the songs package, a required file for compiling the song
+                book
+   - songidx.lua: used in creating indices, a required file for compiling
+                the song book
+   - songs.pdf: the songs package documentation (not required)
+   
+There is other stuff inside the archive. See file 'README' inside.

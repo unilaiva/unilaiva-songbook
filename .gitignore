@@ -16,9 +16,6 @@
 *.sbx
 *.sxc
 
-# binary directory
-ext_packages/bin/
-
 # temporary directory used when compiling
 temp/
 # the old temporary directory, not used anymore

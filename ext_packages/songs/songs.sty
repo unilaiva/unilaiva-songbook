@@ -8,7 +8,7 @@
 %% 
 %% This is a generated file.
 %% 
-%% Copyright (C) 2015 by Kevin W. Hamlen
+%% Copyright (C) 2017 by Kevin W. Hamlen
 %% 
 %% This file may be distributed and/or modified under the conditions of
 %% the LaTeX Project Public License, either version 1.3a of this license
@@ -22,7 +22,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{songs}
-  [2015/08/18 v2.18 Songs package]
+  [2017/06/05 v3.0 Songs package]
 \newif\ifSB@etex
 \ifx\eTeXversion\undefined\else
   \ifx\eTeXversion\relax\else
@@ -347,7 +347,7 @@
       \setbox\SB@temp\vsplit#2to#4\relax%
       \ifvoid#2%
         \ifnum#1=\z@%
-          \global\setbox#2\vbox{\unvbox\SB@tempii\unskip}%
+          \global\setbox#2\box\SB@tempii%
         \else%
           \SB@updatepage%
           \global\advance#3\@ne%
@@ -361,6 +361,7 @@
         \fi\fi%
       \fi%
     \repeat%
+    \ifnum#1=\z@\global\setbox#2\vbox{\unvbox#2\unskip}\fi%
   \endgroup\fi%
 }
 \newcommand\SB@migrate[1]{%
@@ -2099,18 +2100,15 @@
 \newcommand\SB@setchord{}
 {
   \catcode`^\active
-  \catcode`!7
   \gdef\SB@setchord#1{%
     \SB@gettabindtrue\SB@nohattrue%
     \setbox\SB@chordbox\hbox{%
       \unhbox\SB@chordbox%
       \begingroup%
         \ifSB@trackch%
-          \def\SB@activehat{\ifmmode!\else\global\SB@nohatfalse\fi}%
+          \let\SB@activehat\SB@hat@tr%
         \else%
-          \def\SB@activehat{%
-            \ifmmode!\else\SB@lop\SB@ctail\SB@toks\the\SB@toks\fi%
-          }%
+          \let\SB@activehat\SB@hat@notr%
         \fi%
         \let^\SB@activehat%
         \printchord{%
@@ -2600,7 +2598,8 @@
         \advance\SB@dimen.5em%
         \hbox to\SB@dimen{\unhbox\SB@chordbox\hfil}%
         \hbox to\SB@dimen{%
-          \unhcopy\SB@lyricbox\hfil\char\hyphenchar\font\hfil%
+          \unhcopy\SB@lyricbox\hfil
+          \ifnum\hyphenchar\font>\m@ne\char\hyphenchar\font\hfil\fi%
         }%
         \global\SB@cnt\@m%
         \gdef\SB@temp{\expandafter\SB@clearlig\SB@ligpost}%
@@ -2675,6 +2674,15 @@
 \newcommand*\SB@@@mch[4]{#2\measurebar\[#1]#3}
 \newcommand\SB@activehat{%
   \ifmmode^\else\expandafter\SB@rechord\fi%
+}
+\newcommand\SB@hat@tr{%
+  \ifmmode^\else\global\SB@nohatfalse\fi%
+}
+\newcommand\SB@hat@notr{%
+  \ifmmode^\else%
+    \SB@lop\SB@ctail\SB@toks%
+    \expandafter\transposehere\expandafter{\the\SB@toks}%
+  \fi%
 }
 \newcommand\SB@loadactives{}
 {

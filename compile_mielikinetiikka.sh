@@ -10,7 +10,7 @@
 #
 
 
-SONG_IDX_PROG="ext_packages/bin/songidx"
+SONG_IDX_SCRIPT="ext_packages/songs/songidx.lua"
 MAIN_TEX_FILE="mielikinetiikka-songbook.tex"
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
 
@@ -23,8 +23,8 @@ die() {
 }
 
 which "pdflatex" >"/dev/null" || die 1 "pdflatex binary not found in path! Aborted."
+which "texlua" >"/dev/null" || die 1 "texlua binary not found in path! Aborted."
 which "lilypond-book" >"/dev/null" || die 1 "lilypond-book binary not found in path! Aborted."
-which "$SONG_IDX_PROG" >"/dev/null" || die 1 "$SONG_IDX_PROG binary not found! See 'README.md'. Aborted."
 
 # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
 # the modified .tex files and the images to subdirectory $TEMP_DIRNAME
@@ -41,11 +41,11 @@ pdflatex -interaction=nonstopmode $MAIN_TEX_FILE || die $? "Compilation error ru
 
 echo ""
 
-# create indeces    
-"$SONG_IDX_PROG" idx_mielikinetiikka-sb_title.sxd idx_mielikinetiikka-sb_title.sbx || die $? "Error creating song title indeces! Aborted."
+# create indices
+"texlua" "$SONG_IDX_SCRIPT" idx_mielikinetiikka-sb_title.sxd idx_mielikinetiikka-sb_title.sbx || die $? "Error creating song title indeces! Aborted."
 echo ""
-"$SONG_IDX_PROG" idx_mielikinetiikka-sb_auth.sxd idx_mielikinetiikka-sb_auth.sbx || die $? "Error creating author indeces! Aborted."
-"$SONG_IDX_PROG" -b tags.can idx_mielikinetiikka-sb_tag.sxd idx_mielikinetiikka-sb_tag.sbx || die $? "Error creating tag (scripture) indeces! Aborted."
+"texlua" "$SONG_IDX_SCRIPT" idx_mielikinetiikka-sb_auth.sxd idx_mielikinetiikka-sb_auth.sbx || die $? "Error creating author indeces! Aborted."
+"texlua" "$SONG_IDX_SCRIPT" -b tags.can idx_mielikinetiikka-sb_tag.sxd idx_mielikinetiikka-sb_tag.sbx || die $? "Error creating tag (scripture) indeces! Aborted."
 
 echo ""
 
