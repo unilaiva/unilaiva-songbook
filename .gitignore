@@ -18,8 +18,6 @@
 
 # temporary directory used when compiling
 temp/
-# the old temporary directory, not used anymore
-compile_temp/
 
 # deployment directory (also a symlink)
 deploy/
