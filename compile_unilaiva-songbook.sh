@@ -15,12 +15,16 @@ TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
 
 initial_dir="$PWD"
 
-die() {
+die() {  # Usage: die <errorcode> <message>
   echo "$2" >&2
   cd "$initial_dir"
   exit $1
 }
 
+# Test if we are currently in the correct directory:
+[ -f "./unilaiva-songbook.tex" ] || die 1 "Not currently in the repository root directory! Aborted."
+
+# Test executable availability
 which "pdflatex" >"/dev/null" || die 1 "pdflatex binary not found in path! Aborted."
 which "texlua" >"/dev/null" || die 1 "texlua binary not found in path! Aborted."
 which "lilypond-book" >"/dev/null" || die 1 "lilypond-book binary not found in path! Aborted."
