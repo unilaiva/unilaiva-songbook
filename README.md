@@ -4,7 +4,7 @@ unilaiva-songbook
 unilaiva-songbook is a collection of song lyrics etc for the contributors' 
 private use.
 
-The PDF compiled from these sources is available on
+The PDF compiled from these sources is available at
 [https://unilaiva.aavalla.net/](https://unilaiva.aavalla.net/)
 
 
@@ -116,7 +116,7 @@ subdirectory and will be inputed into the main file. Images are put into
 
 External packages (only `songs` for now) are in `ext_packages` subdirectory.
 
-See `songs` package documentation in [http://songs.sourceforge.net/songsdoc/songs.html](http://songs.sourceforge.net/songsdoc/songs.html).
+See `songs` package documentation at [http://songs.sourceforge.net/songsdoc/songs.html](http://songs.sourceforge.net/songsdoc/songs.html).
 
 Stuff inside `songs` environment (the files in `content` directory named
 with a prefix `songs_`) ought to contain only individual songs (and data 
