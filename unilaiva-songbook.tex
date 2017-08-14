@@ -1,5 +1,5 @@
- %% mielikinetiikka-songbook
- %% ========================
+ %% unilaiva-songbook
+ %% =================
  %%
  %% Collection of songs etc
  %%
@@ -13,7 +13,7 @@
 
 \usepackage[bookmarks,unicode]{hyperref} % used by 'songs' package for index links in PDF
   \hypersetup{linkbordercolor=0.2 0.6 0.9,
-              pdftitle=Mielikinetiikka songbook,
+              pdftitle=Unilaiva song book,
               unicode=true}
 % TODO: consider if the tmargin should be smaller. It can be as small as 16mm,
 %       as it was in earlier versions
@@ -101,7 +101,7 @@
 \newcommand{\showmantra}[1]{{\vspace{1.5em}\begin{center}\Large #1\end{center}}\vspace{1.0em}}
 
 % more project settings: longer renewcommands for songs package etc:
-\input{mielikinetiikka-songbook-extra.tex}
+\input{unilaiva-songbook-extra.tex}
 
 % environment for 'song feeler'
 \newenvironment{feeler}{
@@ -138,9 +138,9 @@
 }
 
 % songs: create indexes
-\newindex{titleidx}{idx_mielikinetiikka-sb_title}
-\newauthorindex{authidx}{idx_mielikinetiikka-sb_auth}
-\newscripindex{tagidx}{idx_mielikinetiikka-sb_tag}
+\newindex{titleidx}{idx_unilaiva-songbook_title}
+\newauthorindex{authidx}{idx_unilaiva-songbook_auth}
+\newscripindex{tagidx}{idx_unilaiva-songbook_tag}
 
 
 \begin{document}
@@ -151,7 +151,7 @@
     \topskip0pt
     \vspace*{\fill}
     \begin{center}
-      \Huge Mieli\textit{k}in\textit{e}tiikka\\
+      \Huge Unilaiva song book\\
       \normalsize \textit{paths to higher knowledge}\\
       \Large
       \vspace{3em}
@@ -162,10 +162,10 @@
       Version: \the\year-\the\month-\the\day \textit{ alpha}
       \\
       \vspace*{\fill}
-      % Created by: qrencode -s 16 -l M -o content/img/QR_https_mielikinetiikka_aavalla_net.png "https://mielikinetiikka.aavalla.net/"
-      \includegraphics[width=0.25\textwidth]{QR_https_mielikinetiikka_aavalla_net.png}
+      % Created by: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
+      \includegraphics[width=0.25\textwidth]{QR_https_unilaiva_aavalla_net.png}
       \\
-      {\small\url{https://mielikinetiikka.aavalla.net/}}
+      {\small\url{https://unilaiva.aavalla.net/}}
       \\
       \vspace*{\fill}
       \let\thefootnote\relax{\scriptsize Compiled by: antagomir \& larva}

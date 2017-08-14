@@ -1,6 +1,6 @@
 % This is a ConTeXt source file to create a PDF printout from existing
-% mielikinetiikka-songbook.pdf. If you have 'context' binary on your system,
-%'compile_mielikinetiikka.sh' will compile a PDF from this source file.
+% unilaiva-songbook.pdf. If you have 'context' binary on your system,
+%'compile_unilaiva-songbook.sh' will compile a PDF from this source file.
 %
 % See ConTeXt help for example here: 
 %        http://wiki.contextgarden.net/Imposition
@@ -33,5 +33,5 @@
 \starttext
    % Insert pages from the precompiled PDF. The second argument specifies that
    % a blank page must be inserted before the first imported page.
-  \insertpages[mielikinetiikka-songbook.pdf][0][width=0pt]
+  \insertpages[unilaiva-songbook.pdf][0][width=0pt]
 \stoptext

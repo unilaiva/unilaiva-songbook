@@ -26,7 +26,6 @@ deploy/
 deploy
 
 # result documents
-wisdom-songbook.pdf
 *.pdf
 
 # other

@@ -1,14 +1,17 @@
-mielikinetiikka-songbook
-========================
+unilaiva-songbook
+=================
 
-mielikinetiikka-songbook is a collection of song lyrics etc for the contributors' 
-private use. 
+unilaiva-songbook is a collection of song lyrics etc for the contributors' 
+private use.
+
+The PDF compiled from these sources is available on
+[https://unilaiva.aavalla.net/](https://unilaiva.aavalla.net/)
 
 
 Environment
 -----------
 
-mielikinetiikka-songbook is a project written in LaTeX.
+unilaiva-songbook is a project written in LaTeX.
 
 #### Requirements ####
 
@@ -21,7 +24,7 @@ mielikinetiikka-songbook is a project written in LaTeX.
 Our project requires only some pretty standard LaTeX packages, which 
 are included in many LaTeX installations by default, to be installed on 
 the system. They are all included with `\usepackage` commands in the 
-beginning of the project's main file: `mielikinetiikka-songbook.tex`.
+beginning of the project's main file: `unilaiva-songbook.tex`.
 
 One of the package dependencies, `songs`, is included in the project
 tree and used instead of a one possibly installed on the system. This 
@@ -33,7 +36,7 @@ Creating a PDF document
 -----------------------
 
 If you're on an UNIX system, you can simply use the provided 
-`compile_mielikinetiikka.sh` shell script to build a PDF document 
+`compile_unilaiva-songbook.sh` shell script to build a PDF document 
 out of our project.
 
 Otherwise, you should to run binaries in the following sequence:
@@ -45,7 +48,7 @@ and `pdflatex` again.
 Printing
 --------
 
-You can simply print the main document, `mielikinetiikka-songbook.pdf`. It is of A5 
+You can simply print the main document, `unilaiva-songbook.pdf`. It is of A5 
 size. 
 
 If printing double sided, ensure that the pages face each other in such a way 
@@ -55,13 +58,13 @@ side (verso) of a spread.
 Note that margins ought to be set to zero in the printing software and the
 printer drivers setup, if such options are available. On Linux and MacOS,
 the `lp` program is recommended for printing without extra margins. Simply state
-e.g. `lp -o PageSize=A4 printout_mielikinetiikka_A5_on_A4_doublesided_folded.pdf`
+e.g. `lp -o PageSize=A4 printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf`
 without the `fit-to-page` option that many GUI programs pass to it.
 
 There are also special printing options, like printing multiple A5 sized pages on
-an A4 sized paper. They are defined in files named `printout_mielikinetiikka*.context`
+an A4 sized paper. They are defined in files named `printout_unilaiva-songbook*.context`
 and are to be inputted to ConTeXt program, which needs to be installed on the system.
-They operate on a previously compiled `mielikinetiikka-songbook.pdf` file. See 
+They operate on a previously compiled `unilaiva-songbook.pdf` file. See 
 comments in the beginning of each such a file.
 
 #### Printing double sided on a single sided printer ####
@@ -77,8 +80,8 @@ Feed the new stack to the printer. Be careful to put it in there the right way.
 
 If your printing software is limited, you can extract odd and even pages with `pdftk`
 like this:
-  * `pdftk mielikinetiikka-songbook.pdf cat 1-endodd output mielikinetiikka_odd.pdf`
-  * `pdftk mielikinetiikka-songbook.pdf cat 1-endeven output mielikinetiikka_even.pdf`
+  * `pdftk unilaiva-songbook.pdf cat 1-endodd output unilaiva-songbook_odd.pdf`
+  * `pdftk unilaiva-songbook.pdf cat 1-endeven output unilaiva-songbook_even.pdf`
 
 #### larva's example procedure for printing ####
 
@@ -87,12 +90,12 @@ single-sided printing only. Flipping pages, cutting and binding are done by hand
 The end result is a book consisting of two-sided A5 pages, which is the preferred
 format.
 
-  * `./compile_mielikinetiikka.sh`
-  * `pdftk printout_mielikinetiikka_A5_on_A4_doublesided_folded.pdf cat 1-endodd output mielikinetiikka_odd.pdf`
-  * `pdftk printout_mielikinetiikka_A5_on_A4_doublesided_folded.pdf cat 1-endeven output mielikinetiikka_even.pdf`
-  * `lp -o PageSize=A4 mielikinetiikka_odd.pdf`
+  * `./compile_unilaiva-songbook.sh`
+  * `pdftk printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf cat 1-endodd output unilaiva-songbook_odd.pdf`
+  * `pdftk printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf cat 1-endeven output unilaiva-songbook_even.pdf`
+  * `lp -o PageSize=A4 unilaiva-songbook_odd.pdf`
   * flip pages manually and feed them to the printer
-  * `lp -o PageSize=A4 mielikinetiikka_even.pdf`
+  * `lp -o PageSize=A4 unilaiva-songbook_even.pdf`
   * cut the A4 pages in half to get the A5 pages
   * order the pages
   * punch holes and bind
@@ -101,10 +104,10 @@ format.
 Project structure and guidelines
 --------------------------------
 
-Project's main file is `mielikinetiikka-songbook.tex`. It includes all the
+Project's main file is `unilaiva-songbook.tex`. It includes all the
 other files in the project and contains configuration.
 
-Long `\renewcommand`s ought to be put into `mielikinetiikka-songbook-extra.tex`
+Long `\renewcommand`s ought to be put into `unilaiva-songbook-extra.tex`
 to maintain readability of the main file.
 
 Song data and other *content* will be in various files inside `content`
