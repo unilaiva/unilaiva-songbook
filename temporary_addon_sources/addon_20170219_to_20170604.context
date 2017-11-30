@@ -25,7 +25,7 @@
 %
 % This version chooses only certain pages from the main document. It is meant
 % to create a printout addon for an already printed older version of the main
-% song book.
+% songbook.
 %
 
 \setuppapersize [A5] [A4]
@@ -37,7 +37,7 @@
 
 \starttext
  % Remove the following line, if a blank page is not needed (ie the first song is only one page long)
- \blank This is an addon for Unilaiva song book \page
+ \blank This is an addon for Unilaiva songbook \page
   \filterpages[../unilaiva-songbook.pdf][34,35,76,39,40,41,42,43,44,45,80,47,58,59,60,61,62,63,108,77,92,93,96,97,136,121][width=0pt]
 \stoptext
 
