@@ -178,17 +178,20 @@ of songs package is used for this purpose). All tags must be listed in file
 Note that a ` 1` must be appended to the tag name, like this
 `\beginsong{Song name}[tags={love 1, smile 1}]`.
 
-Tag index is found in the end of the result document.
+The tag index is found at the end of the result document.
 
 
 Tentative TODO
 --------------
 
 *  Add more songs
-*  Add chords for existing songs
+*  Add chords for existing songs with tag `(chords missing)`
 *  Add translations and explanations for existing songs
-*  Improve existing translations
-*  Improve introduction for mantras (also other non-song texts)
+*  Add more tags for existing songs
+*  Possibly add numerical(?) tags to signify the parts of a singing session
+   each song is suitable for
+*  Improve existing translations and explanations
+*  Improve the introduction for mantras and the Finnish mythology section
 *  Organize songs better and decide the categories (= chapters / parts)
 *  Possibly add poems, prayers etc in between songs or in their own category(?)
 *  Further develop visual style of the end document
