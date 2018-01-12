@@ -23,6 +23,10 @@ temp/
 deploy/
 deploy
 
+# local directory to keep old print versions
+old_versions/
+old_versions
+
 # result documents
 *.pdf
 
