@@ -39,6 +39,7 @@
 \graphicspath{ {./content/img/} } % graphicx: set path to find images from
 
 \definecolor{chordcolor}{rgb}{0.3,0,0.4} % color: use this for chords
+\definecolor{notehintcolor}{rgb}{0.0,0.35,0.46} % color: use this for circled note names
 \definecolor{mbarcolor}{rgb}{0.8,0.7,0.9} % color: use this for measure bars (lighter color)
 \definecolor{verylightgray}{rgb}{0.92,0.92,0.92} % color: use this for song number bg & textnote bg (lighter gray)
 
@@ -89,6 +90,8 @@
 % Define a list of tags for a song by adding tags= parameter to \beginsong
 % It is supposed to be a short list of single word tags of which an index is created.
 \newcommand{\showtaglist}{} % comment this line out if you don't want tag list shown (tags=?)
+
+\newcommand{\shownotes}{} % comment this line out if you don't want note hints shown (circled note names)
 
 % This command will display some text followed by three dots, 
 % and aligned to the right of the page. The idea is to use it as a signal to go to

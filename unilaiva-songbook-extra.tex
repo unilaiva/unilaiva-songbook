@@ -1,3 +1,25 @@
+% BEGIN NOTE NAMES
+
+% Call this from within a verse to disable note name hints in that verse
+\newcommand{\notesoff}{\let\shownotes\undefined}
+
+% This command displays an encircled note name hint. Must be called from within
+% a chord definition like this \[\note{A}]. The parameter is the note name;
+% note that it must be upper case for the transposing to work. Nevertheless,
+% the note will be displayed in lower case in the result documnt. Call \notesoff
+% command within a verse to disable showing of these notes for that verse.
+% Define \newcommand{\showtaglist}{} in the main document to enable this feature.
+\newcommand{\note}[1]{%
+  % TODO: make accidentals font size smaller
+  \ifdefined\shownotes%
+    \notenamesout abcdefg%
+    \hspace{-0.10em}\raisebox{0.3em}{\textmd{\color{notehintcolor}\normalsize\textcircled{\scriptsize\transposehere{#1}}}}%
+  \fi%
+}
+
+% END NOTE NAMES
+
+% BEGIN PRELUDE
 
 % Support for AH song numbers. To show these numbers in song preludes,
 % define \newcommand{\showahnumber}{} in the main document.
@@ -13,8 +35,8 @@
 \newsongkey{ex}{\def\extrainfo{}}
                 {\def\extrainfo{#1\par}}
 
+% BEGIN PRELUDE/TAGS.
 
-% BEGIN TAGS. 
 % Support for tags for songs. To show them in song preludes,
 % define \newcommand{\showtaglist}{} in the main document.
 % Tags are defined as tags= keyval for \beginsong. An example:
@@ -23,7 +45,9 @@
 % defined in file 'tags.can'.
 
 \newcommand{\taglist}{}% defined below for each song
+
 \makeatletter%
+
 \newsongkey{tags}{\def\taglist{}\def\SB@rawrefs{}\gdef\songrefs{}}%
                  {\def\taglist{\StrSubstitute{#1}{ 1}{}\par}% Show only tag name, remove ' 1'
                   \def\SB@rawrefs{#1}\SB@parsesrefs{#1}}
@@ -53,7 +77,7 @@
 
 \makeatother%
 
-% END TAGS
+% END PRELUDE/TAGS
 
 
 % Redefine displaying of song prelude. This version adds the new
@@ -76,13 +100,7 @@
   \fi%
 }
 
-%%\pagestyle{empty} %% comment out to show page numbers
-%% Note: This book is designed in such a way that odd pages ought to be displayed/printed on the 
-%%       right side and the even pages on the left side, which seems to be the standard way. To 
-%%       achieve this for example in PDF viewer Okular, one must set 
-%%       ``View Mode: Facing Pages (Center first page)''.
-%%       LaTeX command \scleardpage will force the following content to start on a new empty left-
-%%       side page.
+% END PRELUDE
 
 % The following rewrite of the \SB@@@beginsong command adds songs to the basic TOC also.
 % Changes: lines between and including the first and last '\hypersetup' commands were added.
