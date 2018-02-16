@@ -69,13 +69,6 @@
 
 % BEGIN PRELUDE
 
-% Support for AH song numbers. To show these numbers in song preludes,
-% define \newcommand{\showahnumber}{} in the main document.
-% To define this for a song, use ah={} parameter for \beginsong
-\newcommand{\ahsongnumber}{}
-\newsongkey{ah}{\def\ahsongnumber{}}
-                {\def\ahsongnumber{AH: #1\par}}
-
 % Support for extra song information. To show these in song preludes,
 % define \newcommand{\showextrainfo}{} in the main document.
 % To define this for a song, use ex={} parameter for \beginsong
@@ -142,9 +135,6 @@
   \showauthors%
   \ifdefined\showextrainfo%
     {\sffamily\extrainfo}%
-  \fi%
-  \ifdefined\showahnumber%
-    {\sffamily\ahsongnumber}%
   \fi%
 }
 
