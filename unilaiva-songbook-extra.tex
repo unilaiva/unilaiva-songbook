@@ -1,3 +1,51 @@
+% This command will display some text followed by three dots,
+% and aligned to the right of the page. The idea is to use it as a signal to go to
+% a different part of the song, for example the chorus. You can use it within the
+% last verse or between verses (in such a case it will be put on its own line).
+\newcommand{\gotochorus}[1]{\hfill {\normalsize\textit{→ #1\ldots}}\par}
+
+% This command will make a small horizontal space. Use this for example in the
+% beginning of chorus lines, if you wish the chorus to stand out visually.
+\newcommand{\chorusindent}{\hspace{1em}}
+
+% Displays the parameter text centered in a large font. Use within songs, but outside
+% verses. Intended to be used for short mantras for recitation.
+\newcommand{\showmantra}[1]{{\vspace{1.5em}\begin{center}\Large #1\end{center}}\vspace{1.0em}}
+
+% environment for 'song feeler'
+\newenvironment{feeler}{
+  \vspace{2em}
+  \small
+  \par\noindent\ignorespaces
+  \begin{center}\begin{em}
+}{
+  \end{em}\end{center}
+  %\par\noindent\ignorespacesafterend
+}
+
+% environment for 'song explanation'
+\newenvironment{explanation}{
+  \vspace{2em}
+  \footnotesize
+  \par\noindent\ignorespaces
+}{
+  \par\noindent\ignorespacesafterend
+}
+
+% environment for song translation, to be used inside a song
+\newenvironment{translation}{
+  \newcommand{\nextverse}{\medskip} % some vertical space between verses
+  \beginverse*
+  \chordsoff
+  %\obeylines
+  \vspace{1em}
+  \small\textit
+  %\par\noindent\ignorespaces
+}{
+  \endverse
+  %\par\noindent\ignorespacesafterend
+}
+
 % BEGIN NOTE NAMES
 
 % Call this from within a verse to disable note name hints in that verse
