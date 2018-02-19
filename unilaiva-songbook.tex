@@ -58,7 +58,10 @@
 \renewcommand{\notefont}{\normalsize} % songs: modify \textnote and \musicnote font (make smaller)
 % songs: use same text color for music notes as for chords:
 \renewcommand\musicnote[1]{\ifchorded\textnote{\color{chordcolor}#1}\fi}%
-\renewcommand{\clineparams}{ % distance of chords to lyrics (needed because of font scaling)
+% songs: use real flat symbol instead of # for typesetting:
+\renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
+% songs: change distance of chords to lyrics (needed because of font scaling)
+\renewcommand{\clineparams}{
   \baselineskip=10.6pt
   \lineskiplimit=-2pt
   \lineskip=-2pt
