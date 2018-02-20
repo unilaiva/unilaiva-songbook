@@ -29,51 +29,58 @@ which "pdflatex" >"/dev/null" || die 1 "pdflatex binary not found in path! Abort
 which "texlua" >"/dev/null" || die 1 "texlua binary not found in path! Aborted."
 which "lilypond-book" >"/dev/null" || die 1 "lilypond-book binary not found in path! Aborted."
 
+echo "\nSTART lilypond (lilypond-book)\n"
+
 # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
-# the modified .tex files and the images to subdirectory $TEMP_DIRNAME
+# the modified .tex files and the images to subdirectory $TEMP_DIRNAME.
+# The directory is created if it doesn't exist.
 lilypond-book -f latex --output $TEMP_DIRNAME "$MAIN_TEX_FILE" || die $? "Error running lilypond-book! Aborted."
 
 # go to the temp directory to do rest of the steps there
-cd $TEMP_DIRNAME
+cd "$TEMP_DIRNAME" || die 1 "Cannot enter temporary directory! Aborted."
 ln -s "../ext_packages" "./" 2>"/dev/null"
 ln -s "../../content/img" "./content/" 2>"/dev/null"
 ln -s "../tags.can" "./" 2>"/dev/null"
 
+echo "\nSTART pdflatex 1st run\n"
+
 # first run of pdflatex
 pdflatex -interaction=nonstopmode $MAIN_TEX_FILE || die $? "Compilation error running pdflatex! Aborted."
 
-echo ""
+echo "\nSTART index creation (texlua)\n"
 
 # create indices
-"texlua" "$SONG_IDX_SCRIPT" idx_unilaiva-songbook_title.sxd idx_unilaiva-songbook_title.sbx || die $? "Error creating song title indeces! Aborted."
+"texlua" "$SONG_IDX_SCRIPT" idx_unilaiva-songbook_title.sxd idx_unilaiva-songbook_title.sbx || die $? "Error creating song title indices! Aborted."
 echo ""
-"texlua" "$SONG_IDX_SCRIPT" idx_unilaiva-songbook_auth.sxd idx_unilaiva-songbook_auth.sbx || die $? "Error creating author indeces! Aborted."
-"texlua" "$SONG_IDX_SCRIPT" -b tags.can idx_unilaiva-songbook_tag.sxd idx_unilaiva-songbook_tag.sbx || die $? "Error creating tag (scripture) indeces! Aborted."
+"texlua" "$SONG_IDX_SCRIPT" idx_unilaiva-songbook_auth.sxd idx_unilaiva-songbook_auth.sbx || die $? "Error creating author indices! Aborted."
+"texlua" "$SONG_IDX_SCRIPT" -b tags.can idx_unilaiva-songbook_tag.sxd idx_unilaiva-songbook_tag.sbx || die $? "Error creating tag (scripture) indices! Aborted."
 
-echo ""
+echo "\nSTART pdflatex 2nd run\n"
 
 # second run of pdflatex, creates the final PDF document
 pdflatex -interaction=nonstopmode $MAIN_TEX_FILE 
 [ $? -eq 0 ] || die $ecode "Compilation error running pdflatex (2nd time)! Aborted."
 
-echo ""
+cp "unilaiva-songbook.pdf" "../" || die $? "Error copying unilaiva-songbook.pdf from temporary directory! Aborted."
+
+echo "\nSTART printout creation (context)\n"
 
 # Create printouts, if context binary is found:
 printouts_created=0
 which "context" >"/dev/null"
 if [ $? -eq 0 ]; then
   context "../printout_unilaiva-songbook_A5_on_A4_doublesided_folded.context" && context "../printout_unilaiva-songbook_A5_on_A4_sidebyside_simple.context" && printouts_created="yes"
+  cp printout*.pdf "../" || die $? "Error copying printout PDFs from temporary directory! Aborted."
 else
-  echo "Extra printout PDFs not created, because 'context' program not found."
+  echo "Extra printout PDFs not created, because 'context' binary not found."
 fi
 
 cd "$initial_dir" # get out of $TEMP_DIRNAME
-cp "$TEMP_DIRNAME/"*.pdf "./" || die $? "Error copying result files from temporary directory! Aborted."
 
-echo ""
+echo "\n"
 
-# If subdirectory 'deploy' exists, copy the PDFs there also.
-if [ -d "./deploy" ]; then
+# If subdirectory 'deploy' exists and "--no-deploy" not given as argument, copy the PDFs there also.
+if [ "$1" != "--no-deploy" ] && [ -d "./deploy" ]; then
   cp "unilaiva-songbook.pdf" "./deploy/" && echo "Compiled PDF copied to ./deploy/"
   if [ "$printouts_created" = "yes" ]; then
     cp printout*.pdf "./deploy/" && echo "Extra printouts copied to ./deploy/"
