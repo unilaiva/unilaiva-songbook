@@ -48,12 +48,18 @@ and `pdflatex` again.
 Printing
 --------
 
-You can simply print the main document, `unilaiva-songbook.pdf`. It is of A5 
-size. 
+The book is designed to be in **paper size A5**, preferably double-sided. It
+looks good as black and white, but color printing gets better results (while
+using the non-black colors sparingly).
 
-If printing double sided, ensure that the pages face each other in such a way 
-that odd pages are on the right side (recto) and even pages are on the left 
-side (verso) of a spread.
+You can simply print the main document, `unilaiva-songbook.pdf`. A5 paper
+should be used (and selected in the printing software). Otherwise you will
+get big scaled up pages or pages with wide margins.
+
+If printing double sided, ensure that the pages face each other in such a way
+that odd pages are on the right side (recto) and even pages are on the left side
+(verso) of a spread. That way minimizes flipping pages within a song. Also, the
+margins, page number positions etc. are optimized for that order.
 
 Note that margins ought to be set to zero in the printing software and the
 printer drivers setup, if such options are available. On Linux and MacOS,
@@ -64,19 +70,23 @@ without the `fit-to-page` option that many GUI programs pass to it.
 There are also special printing options, like printing multiple A5 sized pages on
 an A4 sized paper. They are defined in files named `printout_unilaiva-songbook*.context`
 and are to be inputted to ConTeXt program, which needs to be installed on the system.
-They operate on a previously compiled `unilaiva-songbook.pdf` file. See 
-comments in the beginning of each such a file.
+They operate on a previously compiled `unilaiva-songbook.pdf` file. See comments
+in the beginning of each such a file. The compilation script will process these too,
+if it finds the `context` binary.
 
 #### Printing double sided on a single sided printer ####
 
 To print double sided on a printer without a duplexer, one needs to print odd
 pages first, then flip each page around, feed them to the printer, and then print
-the even pages.
+the even pages. With the main document, `unilaiva-songbook.pdf`, the pages need to
+be flipped on the long edge. The other files, named `printout_unilaiva-songbook*.pdf`,
+with multiple pages on an A4 sheet, should be flipped on the short edge.
 
-To flip pages manually: put the printed stack of papers in front of you upside down
-(printed side unseen), make a new stack by moving each sheet from the top of the old stack
-to the top of the new stack (do not turn in any way, just "translate"), one by one.
-Feed the new stack to the printer. Be careful to put it in there the right way.
+To flip pages *on the short edge* manually: put the printed stack of papers in front
+of you upside down (printed side unseen), make a new stack by moving each sheet from
+the top of the old stack to the top of the new stack (do not turn in any way, just
+"translate"), one by one. Feed the new stack to the printer. Be careful to put it in
+there in the correct way.
 
 If your printing software is limited, you can extract odd and even pages with `pdftk`
 like this:
@@ -94,10 +104,9 @@ format.
   * `pdftk printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf cat 1-endodd output unilaiva-songbook_odd.pdf`
   * `pdftk printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf cat 1-endeven output unilaiva-songbook_even.pdf`
   * `lp -o PageSize=A4 unilaiva-songbook_odd.pdf`
-  * flip pages manually and feed them to the printer
+  * flip pages manually on the short edge and feed them to the printer
   * `lp -o PageSize=A4 unilaiva-songbook_even.pdf`
-  * cut the A4 pages in half to get the A5 pages
-  * order the pages
+  * cut the A4 pages in half to get the A5 pages and put them in correct order
   * punch holes and bind
 
 

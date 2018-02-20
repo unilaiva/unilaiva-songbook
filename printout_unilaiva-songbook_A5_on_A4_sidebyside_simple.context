@@ -10,10 +10,11 @@
 % in the beginning to ensure that the pages meant to be facing each
 % other are printed side-by-side. 
 %
-% This is the simplest way to print the document in A5 size on A4 paper. 
+% This is the simplest way to print the document in A5 size on A4 paper.
 %
-% The document can be printed single sided or double sided (using printers 
-% duplexer or with manual process: print odd, flip pages, print even). 
+% The document can be printed single sided or double sided (using printers
+% duplexer or with a manual process: print odd, flip pages on short edge,
+% print even).
 %
 % If printed double-sided, this format does NOT support cutting or
 % folding of the resulting pages.
