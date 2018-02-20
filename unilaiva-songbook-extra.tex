@@ -46,27 +46,72 @@
   %\par\noindent\ignorespacesafterend
 }
 
-% BEGIN NOTE NAMES
+% BEGIN MELODY NOTES
 
-% Call this from within a verse to disable note name hints in that verse
-\newcommand{\notesoff}{\let\shownotes\undefined}
+% MELODY NOTES feature
+%
+% These \note<something> commands display an encircled note name hint. They
+% are meant to display (sung) melody notes above the lyrics. The commands
+% must be called from within a chord definition. For example: \[\note{A}]
+% The note must be written as upper case for transposing to work, even though
+% the result is actually presented in lower case.
+%
+% To enable displaying of the notes, define \newcommand{\showmelodynotes}{}
+% in the main document. To not display them, comment it out.
+% Also, \color{melodynotecolor} must be defined.
+%
+% Call \notesoff command between verses to disable showing of notes in the
+% following verses of the song.
+%
+% The recommended use for this feature is to display the first sung non-unison
+% melody interval of each song. So just specify the first two melody notes and
+% use \notesoff after the first verse.
+%
+% If in doubt of which of these macros to use, use the \note macro.
 
-% This command displays an encircled note name hint. Must be called from within
-% a chord definition like this \[\note{A}]. The parameter is the note name;
-% note that it must be upper case for the transposing to work. Nevertheless,
-% the note will be displayed in lower case in the result documnt. Call \notesoff
-% command within a verse to disable showing of these notes for that verse.
-% Define \newcommand{\showtaglist}{} in the main document to enable this feature.
-\newcommand{\note}[1]{%
-  \ifdefined\shownotes%
+% Displays encircled note name;
+%   Parameter 1: the note name
+%   Parameter 2: X coordinate offset (can be negative)
+%   Parameter 3: Y coordinate offset (can be negative)
+\newcommand{\noteDELTAXY}[3]{%
+  \ifdefined\showmelodynotes%
     % Use the real sharp symbol instead of #, because it fits better within a circle:
     \renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
     \notenamesout abcdefg%
-    \hspace{-0.07em}\raisebox{0.4em}{\textmd{\color{notehintcolor}\footnotesize\textcircled{\tiny\transposehere{#1}}}}%
+    \hspace{#2}\raisebox{#3}{\textmd{\color{melodynotecolor}\footnotesize\textcircled{\tiny\transposehere{#1}}}}%
   \fi%
 }
+% Displays encircled note name (parameter 1). This is the default and can be used
+% anywhere. USE THIS ONE if uncertain!
+\newcommand{\note}[1]{%
+  \noteDELTAXY{#1}{-0.07em}{0.4em}%
+}
+% Displays encircled note name (parameter 1). The circle is moved up.
+% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE.
+% Use this when there is no chord in the same chord block.
+\newcommand{\noteU}[1]{%
+  \noteDELTAXY{#1}{0em}{0.95em}%
+}
+% Displays encircled note name (parameter 1). The circle is moved up and left.
+% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE.
+% Use this when there is a one letter chord name on the same chord block,
+% a major triad.
+\newcommand{\noteUL}[1]{%
+  \noteDELTAXY{#1}{-0.72em}{0.97em}%
+}
+% Displays encircled note name (parameter 1). The circle is moved up and left.
+% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE.
+% Use this when there is a longer than one letter chord name on the same
+% chord block.
+\newcommand{\noteULL}[1]{%
+  \noteDELTAXY{#1}{-1.44em}{0.97em}%
+}
 
-% END NOTE NAMES
+% Use this between verses to disable displaying of the notes in the following
+% verses.
+\newcommand{\notesoff}{\let\showmelodynotes\undefined}
+
+% END MELODY NOTES
 
 % BEGIN PRELUDE
 
