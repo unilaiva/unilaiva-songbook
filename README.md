@@ -119,8 +119,8 @@ External packages (only `songs` for now) are in `ext_packages` subdirectory.
 See `songs` package documentation at [http://songs.sourceforge.net/songsdoc/songs.html](http://songs.sourceforge.net/songsdoc/songs.html).
 
 Stuff inside `songs` environment (the files in `content` directory named
-with a prefix `songs_`) ought to contain only individual songs (and data 
-related to them) between `\beginsong` and `\endsong` macros plus other 
+with a prefix `songs_`) ought to contain only individual songs (and data
+related to them) between `\beginsong` and `\endsong` macros plus other
 data wrapped in an `intersong` environment. 
 
 Use `\sclearpage` to jump to the beginning of a new page and `\scleardpage` to
@@ -128,27 +128,8 @@ hop to the beginning of a new left-side page. Suggest a good page brake spot
 with `\brk`. These are mostly not needed, as `songs` package does quite a good
 job in deciding these.
 
-Lines ought to be less than 100 characters long (is anyone using 80 column
-terminals still?), unless it is too much trouble.
-
-
-### Measure bars and beats ###
-
-If using measure bars and a measure ends at the end of a lyric line, put
-a bar line `|` to *both* the end of the lyric line and the beginning of the 
-next one (if one exists). If a measure in the end of a lyric line continues
-into the next line, but there are no lyrics after the last bar line on the
-first lyric line, add ` -` after the last bar line on the first line to signify
-that there indeed is a (partial) measure, like this: `| -`
-
-If it is necessary to mark beats, use `.` as a chord name, like this: `\[.]`.
-Also underlining for lyrics can be used as a last resort.
-
-### Melodies ###
-
-Full melodies are written using `lilypond` syntax. See documentation in 
-[http://lilypond.org/](http://lilypond.org/). It seems best to put `lilypond`
-parts outside of verses (but inside of a song) to ensure correct line breaking.
+Lines in the source ought to be less than 100 characters long (is anyone using
+80 column terminals still?), unless it is too much trouble.
 
 ### Repeats and choruses ###
 
@@ -157,7 +138,7 @@ and `\endverse`, a vertical line will be shown on the left side of the verse in
 question. In this songbook that visual que is used to mark an immediate repetition
 of that verse.
 
-When some other phrase (than a verse) is repeated, the repeated part is to be put between 
+When some other phrase (than a verse) is repeated, the repeated part is to be put between
 `\lrep` and `\rrep` macros. If the repeat count is anything else than two, it will be
 indicated by putting `\rep{3}` after the `\rrep` macro (replacing `3` with the actual
 repeat count). If the span of the repeat is clear (for example exactly one line), `\rep{}`
@@ -169,10 +150,35 @@ lyrics line within them ought to be prefixed with `\chorusindent` macro, which i
 line a bit. Elsewhere in the song, you can mark the spots from where to jump to chorus with
 `\jumptochorus{Beginning words of the chorus}`.
 
+### Measure bars and beats ###
 
-#### Tags ####
+If using measure bars and a measure ends at the end of a lyric line, put
+a bar line `|` to *both* the end of the lyric line and the beginning of the
+next one (if one exists). If a measure in the end of a lyric line continues
+into the next line, but there are no lyrics after the last bar line on the
+first lyric line, add ` -` after the last bar line on the first line to signify
+that there indeed is a (partial) measure, like this: `| -`
 
-Tags can be added to songs using a peculiar syntax (scripture reference system
+If it is necessary to mark beats, use `.` as a chord name, like this: `\[.]`.
+Also underlining for lyrics can be used as a last resort.
+
+### Melodies ###
+
+To show some individual note names on the chord line, use the `\note` command
+or its positioned siblings (see comments in `unilaiva-songbook-extra.tex` for
+help on which one to choose) within a chord block. An example: `\[Am\note[E]]Love`
+will display an *Am* chord with an encircled melody note name *e* above the word
+*Love* of the lyrics. Note that the note name must be specified in upper case
+for transposing to work, even though the result is actually displayed as a lower
+case letter.
+
+Full melodies are written using `lilypond` syntax. See documentation in
+[http://lilypond.org/](http://lilypond.org/). `lilypond` parts must be put
+outside of verses (but inside of a song).
+
+### Tags ###
+
+Tags can be attached  to songs using a peculiar syntax (scripture reference system
 of songs package is used for this purpose). All tags must be listed in file
 `tags.can`. Define tags for a song by adding `tags=` keyval to `\beginsong` macro.
 Note that a ` 1` must be appended to the tag name, like this
