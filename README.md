@@ -32,14 +32,14 @@ is because of compatibility reasons to ensure a certain version: the
 package is used heavily and some of its commands are redefined.
 
 
-Creating a PDF document
------------------------
+Compiling the songbook to PDF
+-----------------------------
 
 If you're on an UNIX system, you can simply use the provided 
 `compile_unilaiva-songbook.sh` shell script to build a PDF document 
 out of our project.
 
-Otherwise, you should to run binaries in the following sequence:
+Otherwise, you should run binaries in the following sequence:
 `lilypond-book`, `pdflatex`, `texlua songidx.lua` (for song titles),
 `texlua songidx.lua` (for authors), `texlua songidx.lua` (for tags),
 and `pdflatex` again.
