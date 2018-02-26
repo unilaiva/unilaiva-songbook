@@ -125,7 +125,8 @@ subdirectory and will be inputed into the main file. Images are put into
 
 External packages (only `songs` for now) are in `ext_packages` subdirectory.
 
-See `songs` package documentation at [http://songs.sourceforge.net/songsdoc/songs.html](http://songs.sourceforge.net/songsdoc/songs.html).
+See `songs` package documentation. It is included as a PDF file in `ext_packages/songs/songs.pdf`.
+It can also be viewed online at [http://songs.sourceforge.net/songsdoc/songs.html](http://songs.sourceforge.net/songsdoc/songs.html).
 
 Stuff inside `songs` environment (the files in `content` directory named
 with a prefix `songs_`) ought to contain only individual songs (and data
