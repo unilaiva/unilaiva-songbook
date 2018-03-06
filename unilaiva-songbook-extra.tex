@@ -90,7 +90,7 @@
 % This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE.
 % Use this when there is no chord in the same chord block.
 \newcommand{\noteU}[1]{%
-  \noteDELTAXY{#1}{0em}{0.95em}%
+  \noteDELTAXY{#1}{0em}{0.97em}%
 }
 % Displays encircled note name (parameter 1). The circle is moved up and left.
 % This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE.
@@ -105,6 +105,12 @@
 % chord block.
 \newcommand{\noteULL}[1]{%
   \noteDELTAXY{#1}{-1.44em}{0.97em}%
+}
+% Displays encircled note name (parameter 1). The circle is moved up.
+% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE,
+% with custom X coordinate offset (parameter 2).
+\newcommand{\noteUDELTAX}[2]{%
+  \noteDELTAXY{#1}{#2}{0.97em}%
 }
 
 % Use this between verses to disable displaying of the notes in the following
