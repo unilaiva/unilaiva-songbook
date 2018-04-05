@@ -36,7 +36,7 @@
 \beginsong{Lampaanpolska \\ Kekrilaulu \\ Yksi kaksi kolme neljä}[]
   \meter{3}{4}
   \beginverse
-    |\[Am]Yksi kaksi kolme |\[E]neljä, |\[Am]anna i\[E7]lon |\[Am]olla.
+    |\[Am\noteULL{A}]Yksi kaksi kolme |\[E\noteUL{B}]neljä, |\[Am]anna i\[E7]lon |\[Am]olla.
     Ja |\[Am]kun suru |\[E]tulee, |\[Am]anna hä\[E]nen |\[Am]mennä. |
   \endverse
   \beginverse
@@ -48,13 +48,18 @@
 
 \beginsong{Laulu oravasta}[by={Aleksis Kivi, Otto Kotilainen, (Kaj Chydenius)}]
   \newchords{chords_orava_a}\newchords{chords_orava_b} % initialize chord registers
+  \beginverse
+    \musicnote{intro:}
+    |\[C] |\[D7] \[G7] |\[C] | -
+  \endverse
   \beginverse\memorize[chords_orava_a] % memorize chords into a named register
-    Make|\[C]asti ora|\[Am]vainen
+    \[^\noteU{G}]Make|\[C\noteUL{E}]as\[^\noteU{F}]ti ora|\[Am]vainen
     Makaa |\[F]sammalhuonees|\[G]sansa;
     Sinne|\[Em]pä ei Hallin |\[Am]hammas
     Eikä |\[F]metsämiehen |\[G]ansa|\[G7] |
     |\[C]Ehtineet mil-|\[D7] \[G7]loin|\[C]kaan. |\[C7] -
   \endverse
+  \notesoff
   \beginverse\memorize[chords_orava_b] % memorize chords into a named register
     Kammi|\[F]ostaan korke|\[Em]asta
     Katse|\[Dm]lee hän |\[G7]mailman |\[C]piirii\[C7],
@@ -84,9 +89,10 @@
   % declare new (global) named chord-replay registers:
   \newchords{chords_taivas_a}\newchords{chords_taivas_b}
   \beginchorus\memorize[chords_taivas_a] % memorize chords into a named register
-    |\[Am]Taivas on sininen ja |\[E7]valkoi\[Am]nen ja |
+    |\[Am\noteULL{A}]Taivas on \[^\noteU{C}]sininen ja |\[E7]valkoi\[Am]nen ja |
     |\[Am]tähtö\[Dm]si\[G7]ä|\[C]täyn\[Em]nä |
   \endchorus
+  \notesoff
   \beginchorus\memorize[chords_taivas_b] % memorize chords into a named register
     |\[Am]Niin on \[F]nuori |\[G7]sydä\[C]me\[F]ni |
     |\[Am]aja\[E7]tuksia |\[Am]täynnä |
@@ -170,10 +176,11 @@
   % notes: |\[d]Sa\[a]de \[a]\[a]syök\[a]sy\[e]y|\[f]vi \[a]sy\[g]li-\[f]i\[e]hin |
   %        |\[a]Aa-\[b]a\|[g#]aa-\[e]a|\[a]aa\[g#]a\[a]a|\[b]a\[c]a\|[b]a\[a]a\[b]|a\|[g#]aa\[e]a|
   \beginverse
-    |\[Dm]Sade syöksyy|\[F]vi sy\[C]lihin |\[Dm]pisaraiset |\[F]paian \[C]päälle |
+    |\[Dm\noteULL{A}]Sa\[^\noteU{D}]de syöksyy|\[F]vi sy\[C]lihin |\[Dm]pisaraiset |\[F]paian \[C]päälle |
     |\[Dm]Vesi vihmo|\[F]en ve\[C]tävi |\[Dm]kaiken alleen |\[F]kaste\[C]levi |
     |\[Dm]Minä vain sa|\[F]teessa \[C]seison |\[Dm]satehessa |\[F]suloi\[C]sessa |
   \endverse
+  \notesoff
   \beginverse
     |^Oi kaalinna... |^ ^ |^ |^ ^ |
   \endverse
@@ -215,11 +222,12 @@
 
 \beginsong{Haltin häät}[by={Hannu Seppänen, Arto Alaspää}]
   \beginverse\memorize
-    Kun |\[C]ihmiskunnan aamu vasta |\[Em]alkoi sarastaa
+    Kun |\[C\noteUL{C}]ihmiskunnan aamu \[\noteU{D}]vas\[\noteU{E}]ta |\[Em]alkoi sarastaa
     Ja |\[F]Lappi oli jättiläisten |\[G]maana |
     |\[C]Kaunis Malla-neito alkoi |\[Em]häitään valmistaa |
     |\[F]Sulhasenaan nuori uljas |\[G]Saana |
   \endverse
+  \notesoff
   \beginverse
     |^Kaikkialta kansaa saapui |^Haltiin juhlimaan
     Ja |^kirkonkellot häitä alkoi |^soittaa |
@@ -268,7 +276,7 @@
 
 \beginsong{Päivänsäde ja menninkäinen}[by={Reino Helismaa}]
   \beginverse
-    |\[Am]Aurinko kun \[Dm]päätti retken, |\[Am]siskoistaan jäi \[Dm]jälkeen hetken |
+    |\[Am\noteULL{C}]Aurin\[^\noteU{B}]ko \[^\noteU{A}]kun \[Dm]päätti retken, |\[Am]siskoistaan jäi \[Dm]jälkeen hetken |
     |\[Am]päivänsäde \[E7]viimei|\[Am]nen. |
     |\[Dm]Hämärä jo \[Am]metsään hiipi, |\[Dm]päivänsäde \[Am]kultasiipi |
     |\[D]juuri aikoi \[D7]lentää eestä |\[G]sen,
@@ -277,6 +285,7 @@
     Kas |\[C]menninkäinen \[C7]ennen päivän |\[F]laskua ei \[F#\textdegree7]voi
     mil|\[C]loinkaan olla \[Dm7]pääl\[G7]lä  |\[C]maan. |
   \endverse
+  \notesoff
   \beginverse
     |^Katselivat ^toisiansa; |^menninkäinen ^rinnassansa |
     |^tunsi kummaa ^leiskun|^taa. |
@@ -304,9 +313,10 @@
   \meter{4}{4}
   %\chordsoff % do not show space in place of non-existing chords
   \beginverse
-    |\[Am]Laulan \[G]sinulle |\[Am]lapsoseni |\[Em]laulan sinulle |\[Am]laulun |
+    |\[Am\noteULL{A}]Laulan \[G\noteUL{B}]sinulle |\[Am]lapsoseni |\[Em]laulan sinulle |\[Am]laulun |
     \lrep |\[Am]Kuule \[G]minua |\[Am]lapsoseni, kun |\[Em]äitisi laulaa |\[Am]sulle | \rrep
   \endverse
+  \notesoff
   \beginverse
     |^Missä ^ikinä |^kuljetkin |^siellä olen |^aina |
     \lrep |^Olen ^jalkojes |^alla |^metsän puissa ja |^tuulessa | \rrep
@@ -337,9 +347,10 @@
 \beginsong{Leppäkerttu}[by={Kansanlaulu},tags={uni 1}]
   \meter{4}{4}
   \beginverse
-    |\[Dm]Lennä, lennä |\[A]leppäkerttu, |\[Gm]ison \[Dm]kiven |\[A7]juu\[Dm]reen. |
+    |\[Dm\noteULL{D}]Lennä, \[^\noteU{A}]lennä |\[A]leppäkerttu, |\[Gm]ison \[Dm]kiven |\[A7]juu\[Dm]reen. |
     |\[Dm]Lennä leikki|\[Gm7]kedon \[A]kautta |\[A7]unipuuhun |\[Dm]suureen. |
   \endverse
+  \notesoff
   \beginverse
     |^Kulta-kulta|^lehden alla |^äiti ^puuron |^keit^tää. |
     |^Unituutu |^leppä^kertun |^lämpimästi |^peittää. |
@@ -368,11 +379,12 @@
 \beginsong{Tupakkarulla}[by={Kansanlaulu},tags={uni 1}]
   \meter{2}{4}
   \beginverse
-    |\[Dm]Tuu |tuu |tupakka|\[A]rul|la |
+    |\[Dm\noteULL{D}]Tuu |\[^\noteU{A}]tuu |tupakka|\[A]rul|la |
     |\[Gm]mistäs |\[Dm]tiesit |\[A7]tänne |\[Dm]tul|la? |
     |\[Dm]Tulin |pitkin |\[Gm7]Turun |\[A]tie|tä, |
     |\[A7]hämä|\[Dm]läisten |\[A7]härkä|\[Dm]tie|tä. |
   \endverse
+  \notesoff
   \beginverse
     |^Mistäs |tunsit |meidän |^por|tin? |
     |^Siitä |^tunsin |^uuden |^por|tin: |
@@ -436,7 +448,7 @@
     Pimeytehen maailman tuo taivaan valoa!
     Sua halajan, sua odotan, sä Herra maan ja taivahan.
     Nyt köyhän niinkuin rikkaan luo suloinen joulus tuo!
-  \endverse 
+  \endverse
 \endsong
 
 
@@ -444,9 +456,10 @@
   \transpose{2} % transpose to C for easier chords
   \meter{3}{4}
   \beginverse
-    |\[B&]Kosketa |\[Dm]minua, |\[Gm]Hen|ki, |\[Cm7]kosketa |\[Dm]kirkka|\[E&]us!|\[G7/D] |
+    |\[B&\noteUL{B&}]Kosketa |\[Dm\noteULL{D}]minua, |\[Gm]Hen|ki, |\[Cm7]kosketa |\[Dm]kirkka|\[E&]us!|\[G7/D] |
     |\[Cm]Anna |\[F7]elä|\[B&maj7]mäl|\[G]le |\[Cm7]suunta ja |\[F7]tarkoi|\[B&]tus. | |
   \endverse
+  \notesoff
   \beginverse
     |^Kosketa, |^Jumalan |^Hen|ki, |^syvälle |^sydä|^meen. |^ |
     |^Sinne |^paina |^hil|^jaa |^luottamus |^rakkau|^teen. | |
@@ -469,12 +482,13 @@
 \beginsong{Suojelusenkeli}[by={P. J. Hannikainen},tags={suojelus 1}]
   \meter{3}{8}
   \beginverse
-    Maan |\[Em]korvessa |kulkevi |\[B]lapsosen |\[Em]tie.
+    \[^\noteU{B}]Maan |\[Em\noteULL{E}]korvessa |kulkevi |\[B]lapsosen |\[Em]tie.
     \[B]Hänt' |\[Em]ihana |\[G]enkeli |\[D]kotihin |\[G]vie.
     Niin |\[Em]pitkä \[C]on |\[D]matka, \[B]ei |\[Em]kotia |\[B]näy, | -
     vaan |\[Em]ihana |\[C]enke\[B]li |\[Em]vieres\[Am]sä |\[B]käy,
     vaan |\[Em]ihana |\[Am]enkeli |\[Em/B]vieres\[B7]sä |\[Em]käy.
   \endverse
+  \notesoff
   \beginverse
     On |^pimeä |korpi ja |^kivinen |^tie,
     ^ja |^usein se |^käytävä |^liukaskin |^lie.
