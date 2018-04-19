@@ -3,7 +3,7 @@
  %%
  %% Collection of songs etc
  %%
- 
+
 \documentclass[twoside,10pt]{book}
 \usepackage[finnish,english]{babel}\selectlanguage{english}
 
@@ -47,7 +47,7 @@
 \renewcommand{\notebgcolor}{verylightgray} % songs: \musicnote and \textnote background color
 \renewcommand{\idxbgcolor}{verylightgray} % songs: index alphabet sectino background color
 
-\songcolumns{1} % songs: number of columns per page in songs environment  
+\songcolumns{1} % songs: number of columns per page in songs environment
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
 \noversenumbers % songs: do not display verse numbers
 \renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
@@ -123,7 +123,7 @@
       \the\year-\the\month-\the\day \textit{ beta}
       \\
       \vspace*{\fill}
-      % Created by: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
+      % Created with: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
       \includegraphics[width=0.25\textwidth]{QR_https_unilaiva_aavalla_net.png}
       \\
       {\small\url{https://unilaiva.aavalla.net/}}
@@ -141,7 +141,7 @@
     \end{center}
   \end{titlepage}
 
-  \tableofcontents % TODO: make two-column TOC using perhaps multitoc package
+  \tableofcontents % TODO: consider making two-column TOC using multitoc (or some other) package
 
   \clearpage
   \songchapter{Saṃskṛtam}
@@ -187,7 +187,7 @@
       \setcounter{songnum}{500}
       \input{content/songs_other.tex}
     \end{songs}
-    
+
   \clearpage\scleardpage
   \songchapter{Suomi}
     \begin{otherlanguage}{finnish} % set language to finnish for hyphenation etc
@@ -205,18 +205,19 @@
       \section{Runoja, loitsuja}
         \begin{songs}{titleidx,authidx,tagidx}
           \setcounter{songnum}{700}
-          \chordsoff % do not show empty line for non-existing chords
-          \renewcommand{\lyricfont}{\sffamily\small} % songs: modify lyrics font style
-          \songcolumns{2}% two columns per page!
-          % Make penalty for breaking column/page at any line of lyrics to be only slightly
-          % higher than penalty for breaking between verses. The default for \interlinepenalty
-          % is 1000, all other penalties are 200 by default.
-          \interlinepenalty=201%
+          \chordsoff % songs: do not show (empty line for non-existing) chords
+          \renewcommand{\lyricfont}{\sffamily\small} % songs: use smaller font
+          \songcolumns{2} % songs: two columns per page
+          \songpos{1} % songs: avoid ONLY page-turns within songs
+          % songs: make penalty for breaking column/page at any line of lyrics to be the same:
+          % (The default for \interlinepenalty is 1000, and for all the others 200.)
+          \interlinepenalty=200 %
           \input{content/songs_suomi_runoja_loitsuja.tex}
-          \interlinepenalty=1000 % back to default
-          \songcolumns{1} % back to one column per page
-          \renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
-          \chordson
+          \interlinepenalty=1000 % songs: back to the default: avoid breaks within verses the most
+          \songpos{3} % songs: back to the default: avoid all breaks whenever possible
+          \songcolumns{1} % songs: back to the default: one column per page
+          \renewcommand{\lyricfont}{\sffamily\large} % songs: back to the default font size
+          \chordson % songs: back to the default: show chords
         \end{songs}
     \end{otherlanguage}
 
@@ -225,7 +226,7 @@
     \input{content/section_technical_information.tex}
 
   \clearpage
-  \showindex[2]{Song Index}{titleidx} % song title index  
+  \showindex[2]{Song Index}{titleidx} % song title index
   % \showindex{Author Index}{authidx} % song author index
   \showindex[2]{Tag Index}{tagidx} % tags index
 
