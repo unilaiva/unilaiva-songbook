@@ -25,9 +25,10 @@
 
 % environment for 'song explanation'
 \newenvironment{explanation}{
-  \vspace{2em}
-  \footnotesize
-  \par\noindent\ignorespaces
+  \justifying % ragged2e package: force justifying
+  \vspace{2em}%
+  \footnotesize%
+  \par\noindent\ignorespaces%
 }{
   \par\noindent\ignorespacesafterend
 }
