@@ -187,13 +187,13 @@
 \makeatletter%
 \renewcommand{\extendprelude}{%
   \ifdefined\showtaglist%   following is similar to \showauthors
-    {\setbox\SB@box\hbox{\hfill\sffamily\taglist}%
+    {\setbox\SB@box\hbox{\hfill\taglist}%
      \ifdim\wd\SB@box>\z@\unhbox\SB@box\par\vspace{-1em}\fi% Go up one line if tag list was non-empty
     }%
   \fi%
   \showauthors%
   \ifdefined\showextrainfo%
-    {\sffamily\extrainfo}%
+    {\extrainfo}%
   \fi%
 }
 \makeatother
@@ -234,7 +234,7 @@
       {\stitlefont\relax%
        % The following line is modified (everything between \songtitle and \par is added:
        \songtitle{%
-         \ifdefined\showphaselist{\normalfont\sffamily\tiny\hfill\raisebox{1em}{\phaselist}}\\\fi%
+         \ifdefined\showphaselist{\normalfont\tiny\hfill\raisebox{1em}{\phaselist}}\\\fi%
        }\par%
        \nexttitle%
        \foreachtitle{(\songtitle)\par}}%

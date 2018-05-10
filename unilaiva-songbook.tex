@@ -36,6 +36,8 @@
 % The most important 'songs' package, use the version in the project tree:
 \usepackage[chorded]{ext_packages/songs/songs}
 
+\renewcommand{\familydefault}{\sfdefault} % Sets sans-serif as the default font family everywhere
+
 \graphicspath{ {./content/img/} } % graphicx: set path to find images from
 
 \definecolor{chordcolor}{rgb}{0.3,0,0.4} % color: use this for chords
@@ -50,12 +52,16 @@
 \songcolumns{1} % songs: number of columns per page in songs environment
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
 \noversenumbers % songs: do not display verse numbers
-\renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
+\newcommand{\defaultlyricfont}{\sffamily\large} % set the lyrics font style (used below)
+\renewcommand{\lyricfont}{\defaultlyricfont} % songs: modify lyrics font style
 % songs: modify chord font style (add color and make smaller):
-\renewcommand\printchord[1]{\sffamily\bfseries\small\color{chordcolor}#1}
+\renewcommand{\printchord}[1]{\sffamily\bfseries\small\color{chordcolor}#1}
 % songs: modify meter class font style (add color):
 \renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
 \renewcommand{\notefont}{\normalsize} % songs: modify \textnote and \musicnote font (make smaller)
+\renewcommand{\idxtitlefont}{\sffamily} % songs: font used for titles in indices
+\renewcommand{\idxlyricfont}{\sffamily\slshape} % songs: font for alternate (lyric) titles in indices
+\renewcommand{\idxscripfont}{\sffamily\small\slshape} % songs: font used for tag (scripture) index
 % songs: use same text color for music notes as for chords:
 \renewcommand\musicnote[1]{\ifchorded\textnote{\color{chordcolor}#1}\fi}%
 % songs: use real flat symbol instead of # for typesetting:
@@ -213,7 +219,7 @@
         \begin{songs}{titleidx,authidx,tagidx}
           \setcounter{songnum}{700}
           \chordsoff % songs: do not show (empty line for non-existing) chords
-          \renewcommand{\lyricfont}{\sffamily\small} % songs: use smaller font
+          \renewcommand{\lyricfont}{\small} % songs: use smaller font
           \songcolumns{2} % songs: two columns per page
           \songpos{1} % songs: avoid ONLY page-turns within songs
           % songs: make penalty for breaking column/page at any line of lyrics to be the same:
@@ -223,7 +229,7 @@
           \interlinepenalty=1000 % songs: back to the default: avoid breaks within verses the most
           \songpos{3} % songs: back to the default: avoid all breaks whenever possible
           \songcolumns{1} % songs: back to the default: one column per page
-          \renewcommand{\lyricfont}{\sffamily\large} % songs: back to the default font size
+          \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
           \chordson % songs: back to the default: show chords
         \end{songs}
     \end{otherlanguage}
