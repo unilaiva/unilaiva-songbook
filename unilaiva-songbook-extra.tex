@@ -126,9 +126,16 @@
 % To define this for a song, use ex={} parameter for \beginsong
 \newcommand{\extrainfo}{}
 \newsongkey{ex}{\def\extrainfo{}}
-                {\def\extrainfo{#1\par}}
+               {\def\extrainfo{#1\par}}
 
-% BEGIN PRELUDE/TAGS.
+% Support for phase hints for songs. To show these in song preludes,
+% define \newcommand{\showphaselist}{} in the main document.
+% To define this for a song, use ph={} parameter for \beginsong
+\newcommand{\phaselist}{}%
+\newsongkey{ph}{\def\phaselist{}}
+               {\def\phaselist{#1}}
+
+% BEGIN PRELUDE/TAGS
 
 % Support for tags for songs. To show them in song preludes,
 % define \newcommand{\showtaglist}{} in the main document.
@@ -173,9 +180,9 @@
 % END PRELUDE/TAGS
 
 
-% Redefine displaying of song prelude. This version adds the new
-% song keyvals introduced above. \showrefs is removed, because we
-% use the scripture references as tags and they are displayed
+% Redefine displaying of song prelude extension. This version adds
+% some of the new song keyvals introduced above. \showrefs is removed,
+% because we use the scripture references as tags and they are displayed
 % with \taglist.
 \makeatletter%
 \renewcommand{\extendprelude}{%
@@ -189,6 +196,75 @@
     {\sffamily\extrainfo}%
   \fi%
 }
+\makeatother
+
+% Redefine the song prelude display. Only one line is modified (see comment)
+% to show the phase list on the same line with the main title.
+\makeatletter
+\renewcommand\makeprelude{
+  \resettitles%
+  \ifslides%
+    \hbox to\hsize{{\hfil\stitlefont\relax\songtitle\hfil}}%
+    \vskip5\p@%
+    \hbox to\hsize{%
+      \hfil%
+      \vbox{%
+        \divide\hsize\tw@\parskip\p@\relax%
+        \centering\small\extendprelude%
+      }%
+      \hfil%
+    }%
+  \else%
+    \ifdim\songnumwidth>\z@%
+      \setbox\SB@boxii\hbox{{\SB@colorbox\snumbgcolor{%
+        \hbox to\songnumwidth{%
+          \printsongnum{\thesongnum}\hfil%
+        }%
+      }}}%
+    \fi%
+    \setbox\SB@box\vbox{%
+      \ifdim\songnumwidth>\z@%
+        \SB@dimen\wd\SB@boxii%
+        \advance\SB@dimen3\p@%
+        \ifpagepreludes\multiply\SB@dimen\tw@\fi%
+        \advance\hsize-\SB@dimen%
+      \fi%
+      \ifpagepreludes\centering\else\SB@raggedright\fi%
+      \offinterlineskip\lineskip\p@%
+      {\stitlefont\relax%
+       % The following line is modified (everything between \songtitle and \par is added:
+       \songtitle{%
+         \ifdefined\showphaselist{\normalfont\sffamily\tiny\hfill\raisebox{1em}{\phaselist}}\\\fi%
+       }\par%
+       \nexttitle%
+       \foreachtitle{(\songtitle)\par}}%
+      \ifdim\prevdepth=\z@\kern\p@\fi%
+      \parskip\p@\relax\tiny%
+      \extendprelude%
+      \kern\z@%
+    }%
+    \ifdim\songnumwidth>\z@%
+      \hbox{%
+        \ifdim\ht\SB@boxii>\ht\SB@box%
+          \box\SB@boxii%
+          \kern3\p@%
+          \vtop{\box\SB@box}%
+        \else%
+          \SB@colorbox\snumbgcolor{\vbox to\ht\SB@box{{%
+            \hbox to\songnumwidth{%
+              \printsongnum{\thesongnum}\hfil%
+            }\vfil%
+          }}}%
+          \kern3\p@%
+          \box\SB@box%
+        \fi%
+      }%
+    \else%
+      \unvbox\SB@box%
+    \fi%
+  \fi%
+}
+\makeatother
 
 % END PRELUDE
 
@@ -217,10 +293,15 @@
     \resettitles%
     \lyricfont\relax%
     \SB@setbaselineskip%
-    \hypersetup{bookmarksdepth=0}%
+    \hypersetup{bookmarksdepth=0}% the first added line
     \phantomsection%
-    \addcontentsline{toc}{subsection}{\numberline{\thesongnum}\songtitle}%
-    \hypersetup{bookmarksdepth=2}%    
+    \addcontentsline{toc}{subsection}{%
+      \numberline{\thesongnum}%
+      \songtitle\relax%
+      \ifdefined\showphaselistintoc{%
+        \hspace{0.15em}\scriptsize\textsuperscript{\tiny\phaselist}}\fi%
+      }%
+    \hypersetup{bookmarksdepth=2}% the last added line
 }
 
 % The following rewrite adds only \color{mbarcolor} command to change the color of the measure bar
