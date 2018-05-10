@@ -15,7 +15,7 @@ unilaiva-songbook is a project written in LaTeX.
 
 #### Requirements ####
 
-  * Standard LaTeX installation with some standard packages and the binaries
+  * Standard LaTeX 2e installation with some standard packages and the binaries
     `pdflatex` and `texlua`
   * Lilypond installation with the binary `lilypond-book`
   * Font 'Noto'; on Debian, it is in package `tex-fonts-extra`
