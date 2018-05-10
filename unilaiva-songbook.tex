@@ -17,10 +17,10 @@
   \hypersetup{linkbordercolor=0.5 0.9 0.6,
               pdftitle=Unilaiva songbook,
               unicode=true}
-% NOTE: earlier (Mielikinetiikka times) we used tmargin=20mm to be in sync with inner margin. The minimum
-%       (for the "default" printer seems to be 16mm)
-%       as it was in earlier versions
-\usepackage[a5paper,inner=20mm,outer=10mm,tmargin=16mm,bmargin=10mm,headsep=6.5mm,headheight=3.5mm,nofoot]{geometry} % page size + margins
+% NOTE: * In versions before 2018-5-10 we used inner=20mm,outer=10mm,tmargin=16mm,bmargin=10mm,
+%         but now the Golden Ratio rules.
+%       * For the "default" printer, minimum top margin is 16mm (to print the chapter name fully)
+\usepackage[a5paper,inner=16.18mm,outer=10mm,tmargin=16.18mm,bmargin=10mm,headsep=6.18mm,headheight=3.5mm,nofoot]{geometry} % page size + margins
 \usepackage{graphicx}
 \usepackage{pdfpages} % for cover page
 % \usepackage[font=footnotesize]{caption}
