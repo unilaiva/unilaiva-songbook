@@ -154,7 +154,10 @@
 
   \tableofcontents
 
-  \addtocontents{toc}{~\hfill\textbf{Page}\par} % Add 'Page' on top
+  % Removes the overlapping page number in the bottom of the first TOC page:
+  \addtocontents{toc}{\protect\thispagestyle{empty}}
+  % Adds text "Page" on top of the TOC:
+  \addtocontents{toc}{~\hfill\textbf{Page}\par}
 
   \clearpage
   \songchapter{Saṃskṛtam}
