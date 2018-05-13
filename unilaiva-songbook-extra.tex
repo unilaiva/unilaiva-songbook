@@ -235,7 +235,7 @@
       {\stitlefont\relax%
        % The following line is modified (everything between \songtitle and \par is added:
        \songtitle{%
-         \ifdefined\showphaselist{\normalfont\tiny\hfill\raisebox{1em}{\phaselist}}\\\fi%
+         \ifdefined\showphaselist{\normalfont\rmfamily\tiny\hfill\raisebox{1em}{\phaselist}}\\\fi%
        }\par%
        \nexttitle%
        \foreachtitle{(\songtitle)\par}}%
@@ -300,7 +300,7 @@
       \numberline{\thesongnum}%
       \songtitle\relax%
       \ifdefined\showphaselistintoc{%
-        \hspace{0.15em}\scriptsize\textsuperscript{\tiny\phaselist}}\fi%
+        \hspace{0.15em}\scriptsize\textsuperscript{\rmfamily\tiny\phaselist}}\fi%
       }%
     \hypersetup{bookmarksdepth=2}% the last added line
 }
