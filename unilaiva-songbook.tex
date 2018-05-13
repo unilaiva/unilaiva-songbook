@@ -172,7 +172,11 @@
   % Adds text "Page" on top of the TOC:
   \addtocontents{toc}{~\hfill\textbf{Page}\par}
 
-  \clearpage
+  % TODO: add a pretty image or something here, (only) when the last page of
+  % the TOC is on an even page (verso). Note that this is quite a prominent
+  % page.
+
+  \clearpage\scleardpage
   \songchapter{Saṃskṛtam}
      \section{About mantras}
        \input{content/section_mantra_explanation.tex}
