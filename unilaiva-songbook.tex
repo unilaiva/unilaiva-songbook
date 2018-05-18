@@ -172,9 +172,20 @@
   % Adds text "Page" on top of the TOC:
   \addtocontents{toc}{~\hfill\textbf{Page}\par}
 
-  % TODO: add a pretty image or something here, (only) when the last page of
-  % the TOC is on an even page (verso). Note that this is quite a prominent
-  % page.
+  % The following image can be commented out (or made smaller), when the last
+  % page of the TOC reaches an odd (recto) page. The idea is to show an image
+  % rather than an empty page, because the next chapter starts on an even
+  % (verso) page. Note that this page is quite prominent, so choose the
+  % possible image carefully.
+  \clearpage % this is needed
+  \begin{center}%
+    \vspace*{\fill}%
+    % Original downloaded from: https://www.maxpixel.net/Musical-Instruments-Drum-Music-Jazz-Cat-1287910
+    % Edited by: larva
+    % License: Creative Commons CC0 (public domain)
+    \includegraphics[width=1\textwidth]{shamanic_mandala_bw_transparent_bg_CC0_1400px.jpg}
+    \vspace*{\fill}%
+  \end{center}
 
   \clearpage\scleardpage
   \songchapter{Saṃskṛtam}
