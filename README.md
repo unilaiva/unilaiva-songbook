@@ -176,7 +176,7 @@ Also underlining for lyrics can be used as a last resort.
 
 To show some individual note names on the chord line, use the `\note` command
 or its positioned siblings (see comments in `unilaiva-songbook-extra.tex` for
-help on which one to choose) within a chord block. An example: `\[Am\note[E]]Love`
+help on which one to choose) within a chord block. An example: `\[Am\note{E}]Love`
 will display an *Am* chord with an encircled melody note name *e* above the word
 *Love* of the lyrics. Note that the note name must be specified in upper case
 for transposing to work, even though the result is actually displayed as a lower
