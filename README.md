@@ -158,7 +158,7 @@ Actual choruses i.e. verses that are jumped to more than once throughout the son
 marked with `\beginchorus` or `\beginverse` (depending on their repeat behaviour), but each
 lyrics line within them ought to be prefixed with `\chorusindent` macro, which indents the
 line a bit. Elsewhere in the song, you can mark the spots from where to jump to chorus with
-`\jumptochorus{Beginning words of the chorus}`.
+`\gotochorus{Beginning words of the chorus}`.
 
 ### Measure bars and beats ###
 
