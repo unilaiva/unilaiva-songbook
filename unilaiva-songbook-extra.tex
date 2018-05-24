@@ -155,7 +155,7 @@
 \makeatletter%
 
 \newsongkey{tags}{\def\taglist{}\def\SB@rawrefs{}\gdef\songrefs{}}%
-                 {\def\taglist{\StrSubstitute{#1}{ 1}{}\par}% Show only tag name, remove ' 1'
+                 {\def\taglist{\StrSubstitute{#1}{ 1}{}\par}% xstring: Show only tag name, remove ' 1'
                   \def\SB@rawrefs{#1}\SB@parsesrefs{#1}}
 
 \renewcommand\SB@makescripindex{%
