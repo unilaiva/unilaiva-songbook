@@ -31,7 +31,8 @@
 % warningless loading of packages from subdirectories without setting environment variables
 % (can be omitted, but warnings will appear):
 \usepackage{silence}\WarningFilter{latex}{You have requested package}
-\usepackage{ragged2e} % used to force text justification in 'description' environment
+\usepackage{ragged2e} % used to force text justification in 'explanation' env
+\usepackage{enumitem} % used to modify 'description' env within 'explanation' env
 \usepackage{xstring}
 \usepackage{fancyhdr} % for customizing headers
 

@@ -25,9 +25,14 @@
 
 % environment for 'song explanation'
 \newenvironment{explanation}{
+  \setlist[description]{% modify description list (enumitem package)
+    %topsep=30pt,%      % space before start / after end of list
+    %itemsep=5pt,%      % space between items
+    font={\rmfamily}%   % set the label font
+  }
   \justifying % ragged2e package: force justifying
   \vspace{2em}%
-  \footnotesize%
+  \rmfamily\footnotesize%
   \par\noindent\ignorespaces%
 }{
   \par\noindent\ignorespacesafterend
