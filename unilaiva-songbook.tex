@@ -41,6 +41,10 @@
 
 \renewcommand{\familydefault}{\sfdefault} % Sets sans-serif as the default font family everywhere
 
+% Allow further emergency stretching to fix some "overfull hbox" situations.
+% See: https://www.tex.ac.uk/FAQ-overfull.html
+\setlength{\emergencystretch}{3em}
+
 \graphicspath{ {./content/img/} } % graphicx: set path to find images from
 
 \definecolor{chordcolor}{rgb}{0.3,0,0.4} % color: use this for chords
