@@ -973,25 +973,32 @@
 
 
 \beginsong{Camino Rojo}[tags={path 1},ph={IV}]
-  \beginverse
-    \lrep \[^\noteU{E}]Yo |\[Am\noteULL{A}]sigo un camino de l|uz
-    Yo |\[Dm]sigo un camino de a|\[Am]mor \rrep
-    \lrep Camino |\[Dm]rojo camino |\[Am]rojo
-    Camino |\[G]rojo de \[E]mi cora|\[Am]zón \rrep
-  \endverse
+  \newchords{chords_caminorojo_a}\newchords{chords_caminorojo_b}
+  \beginchorus\memorize[chords_caminorojo_a]
+    \[^\noteU{E}]Yo |\[Am\noteULL{A}]sigo un camino de l|uz
+    Yo |\[Dm]sigo un camino de a|\[Am]mor
+  \endchorus\vspace{-0.9em}
+  \beginchorus\memorize[chords_caminorojo_b]
+    Camino |\[Dm]rojo camino |\[Am]rojo
+    Camino |\[G]rojo de \[E]mi cora|\[Am]zón
+  \endchorus
   \notesoff
-  \beginverse
-    \lrep Temaz|^calli, peyote, tip|i
-    Temaz|^calli, peyote, tip|^i \rrep
-    \lrep Son los al|^tares, son los al|^tares
-    Son los al|^tares que ^yo cono|^cí \rrep
-  \endverse
-  \beginverse
-    \lrep Aya|^huasca, San Pedro, niñ|os
-    Taba|^quito, Maria, tam|^bor \rrep
-    \lrep Son sacra|^mentos, son sacra|^mentos
-    Son sacra|^mentos para ^el cora|^zón \rrep
-  \endverse
+  \beginchorus\replay[chords_caminorojo_a]
+    Temaz|^calli, peyote, tip|i
+    Temaz|^calli, peyote, tip|^i
+  \endchorus\vspace{-0.9em}
+  \beginchorus\replay[chords_caminorojo_b]
+    Son los al|^tares, son los al|^tares
+    Son los al|^tares que ^yo cono|^cí
+  \endchorus
+  \beginchorus\replay[chords_caminorojo_a]
+    Aya|^huasca, San Pedro, niñ|os
+    Taba|^quito, Maria, tam|^bor
+  \endchorus\vspace{-0.9em}
+  \beginchorus\replay[chords_caminorojo_b]
+    Son sacra|^mentos, son sacra|^mentos
+    Son sacra|^mentos para ^el cora|^zón
+  \endchorus
   \begin{translation}
     I follow a path of light
     I follow a path of love
