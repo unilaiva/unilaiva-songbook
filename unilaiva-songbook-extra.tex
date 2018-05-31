@@ -8,6 +8,11 @@
 % beginning of chorus lines, if you wish the chorus to stand out visually.
 \newcommand{\chorusindent}{\hspace{1em}}
 
+% "Glues" consecutive verses together: lessens the vertical space between them.
+% This is to be used between verses/choruses. Note that it doesn't actually glue
+% anything: page or column brake might be put between verses with this.
+\newcommand{\glueverses}{\vspace{-0.9em}}
+
 % Displays the parameter text centered in a large font. Use within songs, but outside
 % verses. Intended to be used for short mantras for recitation.
 \newcommand{\showmantra}[1]{{\vspace{1.5em}\begin{center}\Large #1\end{center}}\vspace{1.0em}}
