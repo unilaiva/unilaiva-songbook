@@ -33,9 +33,9 @@ redefined.
 For example, on Ubuntu 18.04 LTS, to install all required dependencies and to download the
 project's source, you need to run the following two commands:
 
-  1. `sudo apt install git lilypond texlive texlive-fonts-extra texlive-lang-english
-     texlive-lang-european texlive-latex-extra`
-  2. `git clone git://github.com/unilaiva/unilaiva-songbook.git` (read-only, doesn't require a
+  1. `sudo apt install git context lilypond texlive texlive-fonts-extra texlive-font-utils
+     texlive-lang-english texlive-lang-european texlive-latex-extra` # (context is optional)
+  2. `git clone git://github.com/unilaiva/unilaiva-songbook.git` # (read-only, doesn't require a
      Github account)
 
 
