@@ -29,6 +29,7 @@ old_versions
 
 # result documents
 *.pdf
+!ext_packages/songs/songs.pdf
 
 # other
 old

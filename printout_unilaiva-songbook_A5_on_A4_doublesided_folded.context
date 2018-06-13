@@ -12,8 +12,9 @@
 % needs to be bound somehow. Sheets can alternatively be cut in half
 % (and reordered).
 %
-% If your printer supports double-sided printing, you can just
-% print the end document. Note that you might need to add 'doublesided'
+% If your printer supports double-sided printing, you can just print
+% the end document. Note that in some cases, if the printer flips the
+% pages on the wrong edge, you might need to add 'doublesided'
 % argument to setuparranging like this:
 % 'setuparranging [2*2,rotated,doublesided]
 %

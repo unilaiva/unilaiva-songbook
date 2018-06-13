@@ -3,7 +3,7 @@
  %%
  %% Collection of songs etc
  %%
- 
+
 \documentclass[twoside,10pt]{book}
 \usepackage[finnish,english]{babel}\selectlanguage{english}
 
@@ -17,10 +17,11 @@
   \hypersetup{linkbordercolor=0.5 0.9 0.6,
               pdftitle=Unilaiva songbook,
               unicode=true}
-% NOTE: earlier (Mielikinetiikka times) we used tmargin=20mm to be in sync with inner margin. The minimum
-%       (for the "default" printer seems to be 16mm)
-%       as it was in earlier versions
-\usepackage[a5paper,inner=20mm,outer=10mm,tmargin=16mm,bmargin=10mm,headsep=6.5mm,headheight=3.5mm,nofoot]{geometry} % page size + margins
+% NOTE: * In versions before 2018-5-10 we used inner=20mm,outer=10mm,tmargin=16mm,bmargin=10mm,
+%         but now the Golden Ratio rules. Old versions (before fancyheader) also used
+%         headsep=5mm,headheight=3.5mm, but the result is about the same now.
+%       * For the "default" printer, minimum top margin is 16mm (to print the chapter name fully)
+\usepackage[a5paper,inner=16.18mm,outer=10mm,tmargin=16.18mm,bmargin=10mm,headsep=5mm,headheight=4.28mm,nofoot]{geometry} % page size + margins
 \usepackage{graphicx}
 \usepackage{pdfpages} % for cover page
 % \usepackage[font=footnotesize]{caption}
@@ -30,15 +31,24 @@
 % warningless loading of packages from subdirectories without setting environment variables
 % (can be omitted, but warnings will appear):
 \usepackage{silence}\WarningFilter{latex}{You have requested package}
-
-\usepackage{xstring}
+\usepackage{ragged2e} % used to force text justification in 'explanation' env
+\usepackage{enumitem} % used to modify 'description' env within 'explanation' env
+\usepackage{xstring} % used for string manipulation in \newsongkey{tags}
+\usepackage{fancyhdr} % for customizing headers
 
 % The most important 'songs' package, use the version in the project tree:
 \usepackage[chorded]{ext_packages/songs/songs}
 
+\renewcommand{\familydefault}{\sfdefault} % Sets sans-serif as the default font family everywhere
+
+% Allow further emergency stretching to fix some "overfull hbox" situations.
+% See: https://www.tex.ac.uk/FAQ-overfull.html
+\setlength{\emergencystretch}{3em}
+
 \graphicspath{ {./content/img/} } % graphicx: set path to find images from
 
 \definecolor{chordcolor}{rgb}{0.3,0,0.4} % color: use this for chords
+\definecolor{melodynotecolor}{rgb}{0.0,0.32,0.38} % color: use this for the encircled melody notes
 \definecolor{mbarcolor}{rgb}{0.8,0.7,0.9} % color: use this for measure bars (lighter color)
 \definecolor{verylightgray}{rgb}{0.92,0.92,0.92} % color: use this for song number bg & textnote bg (lighter gray)
 
@@ -46,18 +56,25 @@
 \renewcommand{\notebgcolor}{verylightgray} % songs: \musicnote and \textnote background color
 \renewcommand{\idxbgcolor}{verylightgray} % songs: index alphabet sectino background color
 
-\songcolumns{1} % songs: number of columns per page in songs environment  
+\songcolumns{1} % songs: number of columns per page in songs environment
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
 \noversenumbers % songs: do not display verse numbers
-\renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
+\newcommand{\defaultlyricfont}{\sffamily\large} % set the lyrics font style (used below)
+\renewcommand{\lyricfont}{\defaultlyricfont} % songs: modify lyrics font style
 % songs: modify chord font style (add color and make smaller):
-\renewcommand\printchord[1]{\sffamily\bfseries\small\color{chordcolor}#1}
+\renewcommand{\printchord}[1]{\sffamily\bfseries\small\color{chordcolor}#1}
 % songs: modify meter class font style (add color):
 \renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
 \renewcommand{\notefont}{\normalsize} % songs: modify \textnote and \musicnote font (make smaller)
+\renewcommand{\idxtitlefont}{\sffamily} % songs: font used for titles in indices
+\renewcommand{\idxlyricfont}{\sffamily\slshape} % songs: font for alternate (lyric) titles in indices
+\renewcommand{\idxscripfont}{\sffamily\small\slshape} % songs: font used for tag (scripture) index
 % songs: use same text color for music notes as for chords:
 \renewcommand\musicnote[1]{\ifchorded\textnote{\color{chordcolor}#1}\fi}%
-\renewcommand{\clineparams}{ % distance of chords to lyrics (needed because of font scaling)
+% songs: use real flat symbol instead of # for typesetting:
+\renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
+% songs: change distance of chords to lyrics (needed because of font scaling)
+\renewcommand{\clineparams}{
   \baselineskip=10.6pt
   \lineskiplimit=-2pt
   \lineskip=-2pt
@@ -76,70 +93,39 @@
 \addto\captionsenglish{\renewcommand\chaptername{Part}} % sets chapter name to Part when babel: english
 % \renewcommand{\thechapter}{\Alph{chapter}} %% use alphabets instead of numbers for chapters
 
-% Comment the following line out if you don't want AH numbers shown in song preludes.
-% Define it for a song by adding ah= parameter to \beginsong
-%%\newcommand{\showahnumber}{}
+% BEGIN setup headers using fancyhdr (similar to default "book" style)
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\rmfamily\small\thepage}
+\fancyhead[LO]{\rmfamily\small\itshape{\rightmark}}
+\fancyhead[RE]{\rmfamily\small\itshape{\leftmark}}
+\renewcommand{\headrulewidth}{0pt}
+% END setup headers using fancyhdr
 
 % Comment the following line out if you don't want extra info shown in song preludes.
 % Define it for a song by adding ex= parameter to \beginsong
 % It can be used to for example indicate the origins or a language of a song.
 \newcommand{\showextrainfo}{} % comment this line out if you don't want extra info shown (ex=?)
 
+% Comment the following line out if you don't want phase info shown in song preludes.
+% Define it for a song by adding ph= parameter to \beginsong
+\newcommand{\showphaselist}{} % comment this line out if you don't want phase info shown (ph=?)
+\newcommand{\showphaselistintoc}{} % comment this line out if you don't want phase info shown in TOC
+
 % Comment the following line out if you don't want tag lists shown in song preludes
 % Define a list of tags for a song by adding tags= parameter to \beginsong
 % It is supposed to be a short list of single word tags of which an index is created.
 \newcommand{\showtaglist}{} % comment this line out if you don't want tag list shown (tags=?)
 
-% This command will display some text followed by three dots, 
-% and aligned to the right of the page. The idea is to use it as a signal to go to
-% a different part of the song, for example the chorus. You can use it within the
-% last verse or between verses (in such a case it will be put on its own line).
-\newcommand{\gotochorus}[1]{\hfill {\normalsize\textit{→ #1\ldots}}}
+\newcommand{\showmelodynotes}{} % comment this line out if you don't want the encircled melody notes
 
-% This command will make a small horizontal space. Use this for example in the
-% beginning of chorus lines, if you wish the chorus to stand out visually.
-\newcommand{\chorusindent}{\hspace{1em}}
 
-% Displays the parameter text centered in a large font. Use within songs, but outside
-% verses. Intended to be used for short mantras for recitation.
-\newcommand{\showmantra}[1]{{\vspace{1.5em}\begin{center}\Large #1\end{center}}\vspace{1.0em}}
-
-% more project settings: longer renewcommands for songs package etc:
+% More commands and environments; contains rewrites of some commands in the songs package.
+% Depends on some of the settings (ie. colors) defined above.
 \input{unilaiva-songbook-extra.tex}
 
-% environment for 'song feeler'
-\newenvironment{feeler}{
-  \vspace{2em}
-  \small
-  \par\noindent\ignorespaces
-  \begin{center}\begin{em}
-}{
-  \end{em}\end{center}
-  %\par\noindent\ignorespacesafterend
-}
-
-% environment for 'song explanation'
-\newenvironment{explanation}{
-  \vspace{2em}
-  \footnotesize
-  \par\noindent\ignorespaces
-}{
-  \par\noindent\ignorespacesafterend
-}
-
-% environment for song translation, to be used inside a song
-\newenvironment{translation}{
-  \newcommand{\nextverse}{\medskip} % some vertical space between verses
-  \beginverse*
-  \chordsoff
-  %\obeylines  
-  \vspace{1em}
-  \small\textit
-  %\par\noindent\ignorespaces
-}{
-  \endverse
-  %\par\noindent\ignorespacesafterend
-}
 
 % songs: create indexes
 \newindex{titleidx}{idx_unilaiva-songbook_title}
@@ -150,11 +136,12 @@
 \begin{document}
 
   \begin{titlepage}
-    \includepdf[]{content/img/COVER.pdf}
+    \includepdf[]{content/img/COVER.pdf} % by: larva (photo + edit)
     \thispagestyle{empty}
     \topskip0pt
     \vspace*{\fill}
     \begin{center}
+      \vspace{-0.8em} % align whith "Contents" heading on the next page
       \Huge Unilaiva songbook\\
       \normalsize \textit{paths to higher knowledge}\\
       \Large
@@ -166,7 +153,7 @@
       \the\year-\the\month-\the\day \textit{ beta}
       \\
       \vspace*{\fill}
-      % Created by: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
+      % Created with: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
       \includegraphics[width=0.25\textwidth]{QR_https_unilaiva_aavalla_net.png}
       \\
       {\small\url{https://unilaiva.aavalla.net/}}
@@ -184,7 +171,27 @@
     \end{center}
   \end{titlepage}
 
-  \tableofcontents % TODO: make two-column TOC using perhaps multitoc package
+  \tableofcontents
+
+  % Removes the overlapping page number in the bottom of the first TOC page:
+  \addtocontents{toc}{\protect\thispagestyle{empty}}
+  % Adds text "Page" on top of the TOC:
+  \addtocontents{toc}{~\hfill\textbf{Page}\par}
+
+  % The following image can be commented out (or made smaller), when the last
+  % page of the TOC reaches an odd (recto) page. The idea is to show an image
+  % rather than an empty page, because the next chapter starts on an even
+  % (verso) page. Note that this page is quite prominent, so choose the
+  % possible image carefully.
+  \clearpage % this is needed
+  \begin{center}%
+    \vspace*{\fill}%
+    % Original downloaded from: https://www.maxpixel.net/Musical-Instruments-Drum-Music-Jazz-Cat-1287910
+    % Edited by: larva
+    % License: Creative Commons CC0 (public domain)
+    \includegraphics[width=1\textwidth]{shamanic_mandala_bw_ed_by_larva_CC0_1400px.jpg}
+    \vspace*{\fill}%
+  \end{center}
 
   \clearpage\scleardpage
   \songchapter{Saṃskṛtam}
@@ -230,7 +237,7 @@
       \setcounter{songnum}{500}
       \input{content/songs_other.tex}
     \end{songs}
-    
+
   \clearpage\scleardpage
   \songchapter{Suomi}
     \begin{otherlanguage}{finnish} % set language to finnish for hyphenation etc
@@ -239,6 +246,7 @@
           \setcounter{songnum}{600}
           \input{content/songs_suomi.tex}
           % larva's scribblings (remove later?):
+          \setcounter{songnum}{650}
           \input{content/songs_suomi_larva.tex}
         \end{songs}
       \clearpage\scleardpage
@@ -248,27 +256,28 @@
       \section{Runoja, loitsuja}
         \begin{songs}{titleidx,authidx,tagidx}
           \setcounter{songnum}{700}
-          \chordsoff % do not show empty line for non-existing chords
-          \renewcommand{\lyricfont}{\sffamily\small} % songs: modify lyrics font style
-          \songcolumns{2}% two columns per page!
-          % Make penalty for breaking column/page at any line of lyrics to be only slightly
-          % higher than penalty for breaking between verses. The default for \interlinepenalty
-          % is 1000, all other penalties are 200 by default.
-          \interlinepenalty=201%
+          \chordsoff % songs: do not show (empty line for non-existing) chords
+          \renewcommand{\lyricfont}{\small} % songs: use smaller font
+          \songcolumns{2} % songs: two columns per page
+          \songpos{1} % songs: avoid ONLY page-turns within songs
+          % songs: make penalty for breaking column/page at any line of lyrics to be the same:
+          % (The default for \interlinepenalty is 1000, and for all the others 200.)
+          \interlinepenalty=200 %
           \input{content/songs_suomi_runoja_loitsuja.tex}
-          \interlinepenalty=1000 % back to default
-          \songcolumns{1} % back to one column per page
-          \renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
-          \chordson
+          \interlinepenalty=1000 % songs: back to the default: avoid breaks within verses the most
+          \songpos{3} % songs: back to the default: avoid all breaks whenever possible
+          \songcolumns{1} % songs: back to the default: one column per page
+          \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
+          \chordson % songs: back to the default: show chords
         \end{songs}
     \end{otherlanguage}
 
-  \clearpage\scleardpage
+  \clearpage%\scleardpage
   \songchapter{Technical information}
     \input{content/section_technical_information.tex}
 
   \clearpage
-  \showindex[2]{Song Index}{titleidx} % song title index  
+  \showindex[2]{Song Index}{titleidx} % song title index
   % \showindex{Author Index}{authidx} % song author index
   \showindex[2]{Tag Index}{tagidx} % tags index
 
