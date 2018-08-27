@@ -73,11 +73,11 @@ pdflatex -interaction=nonstopmode "$MAIN_TEX_FILE" || die $? "Compilation error 
 echo "\nSTART index creation (texlua)\n"
 
 # Create indices:
-"texlua" "$SONG_IDX_SCRIPT" "idx_unilaiva-songbook_title.sxd" "idx_unilaiva-songbook_title.sbx" || die $? "Error creating song title indices! Aborted."
+texlua "$SONG_IDX_SCRIPT" "idx_unilaiva-songbook_title.sxd" "idx_unilaiva-songbook_title.sbx" || die $? "Error creating song title indices! Aborted."
 echo ""
 # Author index creation is commented out, as it is not used (now):
-# "texlua" "$SONG_IDX_SCRIPT" idx_unilaiva-songbook_auth.sxd idx_unilaiva-songbook_auth.sbx || die $? "Error creating author indices! Aborted."
-"texlua" "$SONG_IDX_SCRIPT" -b "tags.can" "idx_unilaiva-songbook_tag.sxd" "idx_unilaiva-songbook_tag.sbx" || die $? "Error creating tag (scripture) indices! Aborted."
+# texlua "$SONG_IDX_SCRIPT" idx_unilaiva-songbook_auth.sxd idx_unilaiva-songbook_auth.sbx || die $? "Error creating author indices! Aborted."
+texlua "$SONG_IDX_SCRIPT" -b "tags.can" "idx_unilaiva-songbook_tag.sxd" "idx_unilaiva-songbook_tag.sbx" || die $? "Error creating tag (scripture) indices! Aborted."
 
 echo "\nSTART pdflatex 2nd run\n"
 
