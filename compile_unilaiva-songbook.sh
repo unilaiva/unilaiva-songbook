@@ -43,7 +43,8 @@ if [ "$#" -gt "0" ]; then
 fi
 
 # Test if we are currently in the correct directory:
-[ -f "./unilaiva-songbook.tex" ] || die 1 "Not currently in the repository root directory! Aborted."
+[ -f "./unilaiva-songbook.tex" ] || die 1 "Not currently in the project's root directory! Aborted."
+[ "${initial_dir##*/}" = "$TEMP_DIRNAME" ] && die 1 "You seem to be in the temp directory instead of the project's root! Aborted."
 
 # Test executable availability:
 which "pdflatex" >"/dev/null" || die 1 "pdflatex binary not found in path! Aborted."
