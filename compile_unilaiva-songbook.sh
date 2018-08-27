@@ -56,7 +56,7 @@ echo "\nSTART lilypond (lilypond-book)\n"
 # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
 # the modified .tex files and the musical shaft images created by it to subdirectory $TEMP_DIRNAME.
 # The directory is created if it doesn't exist.
-lilypond-book -f latex --output $TEMP_DIRNAME "$MAIN_TEX_FILE" || die $? "Error running lilypond-book! Aborted."
+lilypond-book -f latex --output "$TEMP_DIRNAME" "$MAIN_TEX_FILE" || die $? "Error running lilypond-book! Aborted."
 
 # Enter the temp directory. (Do rest of the steps there.)
 cd "$TEMP_DIRNAME" || die 1 "Cannot enter temporary directory! Aborted."
@@ -68,21 +68,21 @@ ln -s "../tags.can" "./" 2>"/dev/null"
 echo "\nSTART pdflatex 1st run\n"
 
 # First run of pdflatex:
-pdflatex -interaction=nonstopmode $MAIN_TEX_FILE || die $? "Compilation error running pdflatex! Aborted."
+pdflatex -interaction=nonstopmode "$MAIN_TEX_FILE" || die $? "Compilation error running pdflatex! Aborted."
 
 echo "\nSTART index creation (texlua)\n"
 
 # Create indices:
-"texlua" "$SONG_IDX_SCRIPT" idx_unilaiva-songbook_title.sxd idx_unilaiva-songbook_title.sbx || die $? "Error creating song title indices! Aborted."
+"texlua" "$SONG_IDX_SCRIPT" "idx_unilaiva-songbook_title.sxd" "idx_unilaiva-songbook_title.sbx" || die $? "Error creating song title indices! Aborted."
 echo ""
 # Author index creation is commented out, as it is not used (now):
 # "texlua" "$SONG_IDX_SCRIPT" idx_unilaiva-songbook_auth.sxd idx_unilaiva-songbook_auth.sbx || die $? "Error creating author indices! Aborted."
-"texlua" "$SONG_IDX_SCRIPT" -b tags.can idx_unilaiva-songbook_tag.sxd idx_unilaiva-songbook_tag.sbx || die $? "Error creating tag (scripture) indices! Aborted."
+"texlua" "$SONG_IDX_SCRIPT" -b "tags.can" "idx_unilaiva-songbook_tag.sxd" "idx_unilaiva-songbook_tag.sbx" || die $? "Error creating tag (scripture) indices! Aborted."
 
 echo "\nSTART pdflatex 2nd run\n"
 
 # Second run of pdflatex, creates the final main PDF document:
-pdflatex -interaction=nonstopmode $MAIN_TEX_FILE
+pdflatex -interaction=nonstopmode "$MAIN_TEX_FILE"
 [ $? -eq 0 ] || die $ecode "Compilation error running pdflatex (2nd time)! Aborted."
 
 cp "unilaiva-songbook.pdf" "../" || die $? "Error copying unilaiva-songbook.pdf from temporary directory! Aborted."
