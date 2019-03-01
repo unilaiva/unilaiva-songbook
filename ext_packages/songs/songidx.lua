@@ -1,4 +1,4 @@
--- Copyright (C) 2017 Kevin W. Hamlen
+-- Copyright (C) 2018 Kevin W. Hamlen
 --
 -- This program is free software; you can redistribute it and/or
 -- modify it under the terms of the GNU General Public License
@@ -19,7 +19,7 @@
 -- http://songs.sourceforge.net.
 
 
-VERSION = "3.0"
+VERSION = "3.1"
 BIBLEDEFAULT = "bible.can"
 
 -- fileopen(<filename>)
@@ -203,23 +203,23 @@ function setstartchars(songs)
   end
 end
 
-prelist = { A=true, THE=true }
+wt_prefix = { A=true, THE=true }
 wt_and = { AND=true }
 wt_by = { BY=true }
 wt_unknown = { UNKNOWN=true }
 
 -- rotate(<title>)
---   If the first word of <title> is any word in prelist, then shift that word
+--   If the first word of <title> is any word in wt_prefix, then shift that word
 --   to the end of the string, preceded by a comma and a space.  So for example,
---   if prelist contains "The", then rotate("The title") returns "Title, The".
---   Words in prelist are matched case-insensitively, and the new first word
+--   if wt_prefix contains "The", then rotate("The title") returns "Title, The".
+--   Words in wt_prefix are matched case-insensitively, and the new first word
 --   becomes capitalized.  If <title> begins with the marker character '*',
 --   that character is ignored and left unchanged.
 function rotate(s)
   local t = unicode.utf8.upper(s)
   local n = 0
   if s:sub(1,1) == "*" then n = 1 end
-  for pre in pairs(prelist) do
+  for pre in pairs(wt_prefix) do
     if t:sub(1+n,n+#pre) == pre and
        unicode.utf8.find(t, "^%s+%S", n+#pre+1) then
       local len = unicode.utf8.len(pre)
@@ -402,7 +402,10 @@ function genindex(fs,outname,authorindex)
                 buf:match("^%%p()refix ") or
                 buf:match("^%%ig()nore ")
       if j then
-        if not seen[j] then wt[j], seen[j] = {}, true end
+        if not seen[j] then
+          for w in pairs(wt[j]) do wt[j][w] = nil end
+          seen[j] = true
+        end
         wt[j][unicode.utf8.upper(buf:sub(buf:find(" ")+1))] = true
       end
     else
@@ -938,7 +941,7 @@ function main()
   while arg[i] do
     if arg[i] == "-v" or arg[i] == "--version" then
       io.write("songidx ", VERSION, "\n",
-        "Copyright (C) 2017 Kevin W. Hamlen\n",
+        "Copyright (C) 2018 Kevin W. Hamlen\n",
         "License GPLv2: GNU GPL version 2 or later",
 	      " <http://gnu.org/licenses/gpl.html>\n",
 	      "This is free software: you are free to change and redistribute it.\n",
