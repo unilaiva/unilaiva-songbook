@@ -86,10 +86,13 @@
 %   Parameter 3: Y coordinate offset (can be negative)
 \newcommand{\noteDELTAXY}[3]{%
   \ifdefined\showmelodynotes%
-    % Use the real sharp symbol instead of #, because it fits better within a circle:
-    \renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
-    \notenamesout abcdefg%
-    \hspace{#2}\raisebox{#3}{\textmd{\color{melodynotecolor}\footnotesize\textcircled{\tiny\transposehere{#1}}}}%
+    \ifdefined\melodynotesdisabled%
+    \else%
+      % Use the real sharp symbol instead of #, because it fits better within a circle:
+      \renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
+      \notenamesout abcdefg%
+      \hspace{#2}\raisebox{#3}{\textmd{\color{melodynotecolor}\footnotesize\textcircled{\tiny\transposehere{#1}}}}%
+    \fi%
   \fi%
 }
 % Displays encircled note name (parameter 1). This is the default and can be used
@@ -124,9 +127,12 @@
   \noteDELTAXY{#1}{#2}{1.00em}%
 }
 
-% Use this between verses to disable displaying of the notes in the following
-% verses.
-\newcommand{\notesoff}{\let\showmelodynotes\undefined}
+% \noteson and \notesoff commands can be used between verses to turn displaying the
+% melody notes on or off for the remaining of the current song or until another call
+% to either of the macros. The notes are never displayed, if \showmelodynotes is not
+% defined (in the main document).
+\newcommand{\notesoff}{\def\melodynotesdisabled{}}
+\newcommand{\noteson}{\let\melodynotesdisabled\undefined}
 
 % END MELODY NOTES
 
