@@ -57,7 +57,7 @@ Otherwise, you should run the following commands or their equivalents in the fol
      idx_unilaiva-songbook_auth.sbx`
   6. `texlua ext_packages/songs/songidx.lua -b tags.can idx_unilaiva-songbook_tag.sxd
      idx_unilaiva-songbook_tag.sbx`
-  7. `pdflatex unilaiva-songbook.tex` (again)
+  7. `pdflatex unilaiva-songbook.tex` # (again)
 
 
 Printing
@@ -188,7 +188,7 @@ siblings (see comments in `unilaiva-songbook-extra.tex` for help on which one to
 a chord block. An example: `\[Am\note{E}]Love` will display an *Am* chord with an encircled
 melody note name *e* above the word *Love* of the lyrics. Note that the note name must be
 specified in upper case for transposing to work, even though the result is actually displayed
-as lower case.
+in lower case.
 
 Full melodies are written using `lilypond` syntax. See documentation in
 [http://lilypond.org/](http://lilypond.org/). `lilypond` parts must be put outside of verses
@@ -217,3 +217,4 @@ Tentative TODO
 *  Organize songs better and decide the categories (= chapters / parts)
 *  Possibly add poems, prayers etc in between songs or in their own category(?)
 *  Further develop visual style of the end document
+*  Think on dividing the book into two separate booklets for printing (due to binding restrictions)
