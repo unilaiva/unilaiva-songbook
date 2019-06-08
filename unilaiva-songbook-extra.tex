@@ -127,6 +127,16 @@
   \noteDELTAXY{#1}{#2}{1.00em}%
 }
 
+% Displays encircled note name (parameter 1). The circle is moved up.
+% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE,
+% with custom X coordinate offset (parameter 2, can be negative). Space
+% is added after the note to ensure that the next chord will be
+% displayed at the correct X coordinate. Note that this is not to be
+% used when two or more notes are displayed within the same chord.
+\newcommand{\noteUDELTAXspace}[2]{%
+  \noteUDELTAX{#1}{#2}\hspace{-#2}%
+}
+
 % \noteson and \notesoff commands can be used between verses to turn displaying the
 % melody notes on or off for the remaining of the current song or until another call
 % to either of the macros. The notes are never displayed, if \showmelodynotes is not
