@@ -27,6 +27,44 @@
 % to create a printout addon for an already printed older version of the main
 % songbook.
 %
+%
+% Here are the songs and their page numbers on 2019-06-14:
+%
+%   Holy - 65
+%   Astral Bliss - 66
+%   Starwalker - 68,69
+%   Machi - 121
+%   Oso Blanco - 130,131
+%   Luz del Bosque - 132
+%   Corazón es lo Único que Tengo - 133
+%   Sol de la Mañana - 134,135,136
+%   Plantas Sagradas - 137
+%   Que Florezca la Luz - 139
+%   Medicina que Trae los Cielos - 140
+%   Lunita - 144,145
+%   Buscando el Camino - 146,147
+%   Cuando la Luna - 152
+%   Oh Jurema - 166,167
+%   Companheiro na escuridão - 168
+%   Calma e Tranquilidade - 169
+%   Passarinho - 174,175
+%   Está em Você - 178,179
+%   Vôo do Beija-flor - 180,181
+%   Iemanjá - 184,185
+%   Caboclo na Mata - 190
+%   Mamãe Maria - 192,193
+%   He yama yo - 209
+%   Marirí - 210
+%   Ayahuasca Takimuyki - 211
+%   Paparuy - 212
+%   Eskawatã kayawey - 213
+%   Wacomaia - 214
+%   Emamaa - 219
+%   Laulu oravasta - 222,223
+%   Olkoon niin - 232
+%   Tuuin yössä muukalaista - 238 (on the wrong side of a spread)
+%   Sisältäni portin löysin - 240
+
 
 \setuppapersize [A5] [A4]
 %\setuppaper[nx=1,ny=2] % not needed here
@@ -36,9 +74,10 @@
 %\showframe % uncomment for debugging
 
 \starttext
- % Remove the following line, if a blank page is not needed (ie the first song is only one page long)
+ % To get nice spreads, start with even page number and make every other odd. If you wish to start
+ % with an odd page number, comment out the following line that creates a blank page.
  \blank This is an addon for Unilaiva songbook \page
-  \filterpages[../unilaiva-songbook.pdf][34,35,76,39,40,41,42,43,44,45,80,47,58,59,60,61,62,63,108,77,92,93,96,97,136,121][width=0pt]
+  \filterpages[../unilaiva-songbook.pdf][66,65,68,69,130,131,132,121,134,135,136,137,140,139,144,145,146,147,152,133,166,167,168,169,174,175,178,179,180,181,184,185,192,193,190,209,210,211,212,213,214,219,222,223,232,238,240][width=0pt]
 \stoptext
 
 
