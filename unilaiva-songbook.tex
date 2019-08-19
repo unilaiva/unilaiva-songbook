@@ -10,7 +10,10 @@
 \usepackage[utf8x]{inputenc}
 % Add option 'sfdefault' to use the sans serif version as default font,
 % which is used in non-song texts. It takes a bit more space.
-\usepackage[scaled=1.05]{noto}
+
+% Font weight defaults for Noto are regular and bold; here they are made heavier.
+% Do not use font scaling as it messes with line spacing in some cases.
+\usepackage[medium,extrabold]{noto}
 \usepackage[T1]{fontenc}
 
 \usepackage[bookmarks,unicode]{hyperref} % used by 'songs' package for index links in PDF
