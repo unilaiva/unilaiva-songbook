@@ -10,8 +10,14 @@
 
 % "Glues" consecutive verses together: lessens the vertical space between them.
 % This is to be used between verses/choruses. Note that it doesn't actually glue
-% anything: page or column brake might be put between verses with this.
-\newcommand{\glueverses}{\vspace{-1em}}
+% anything: page or column brake might be put between verses with this. Must be
+% in sync with \versesep below.
+\newcommand{\glueverses}{\vspace{-14pt}}
+
+% songs: Verse separation +/-; must be in sync with \glueverses (that's why it is
+% here). +/- 0 would be best, but in some cases a song can be fitted on a page with
+% smaller separation only. Hopefully \glueverses is not used in those places.
+\versesep=14pt plus 0pt minus 3pt%
 
 % Displays the parameter text centered in a large font. Use within songs, but outside
 % verses. Intended to be used for short mantras for recitation.
@@ -45,7 +51,7 @@
 
 % environment for song translation, to be used inside a song
 \newenvironment{translation}{
-  \newcommand{\nextverse}{\medskip} % some vertical space between verses
+  \newcommand{\nextverse}{\vspace{.5em}} % some vertical space between verses
   \beginverse*
   \chordsoff%
   \vspace{1em}%
@@ -423,5 +429,26 @@
     \fi%
   }
 \fi%
+
+% The following rewrite adds one line to make the vertical chorus bar a bit shorter, so
+% that choruses can be used as repeats with \glueverses.
+\renewcommand\SB@chorusbar[1]{%
+  \ifdim\cbarwidth>\z@%
+    \SB@dimen\ht#1%
+    \SB@dimenii\dp#1%
+    \advance\SB@dimen%
+      \ifSB@chorustop\ifchorded\else2\fi\fi\SB@dimenii%
+    \advance\SB@dimen-0.67\SB@dimenii% % this line added to shorten the chorus bar
+    \SB@skip\SB@dimen\relax%
+    \SB@computess\SB@skip1\@plus#1%
+    \SB@computess\SB@skip{-1}\@minus#1%
+    \nointerlineskip\null\nobreak%
+    \leaders\vrule\@width\cbarwidth\vskip\SB@skip%
+    \ifSB@chorustop\ifchorded\else%
+      \advance\SB@skip-\SB@dimenii%
+    \fi\fi%
+    \nobreak\vskip-\SB@skip%
+  \fi%
+}
 
 \makeatother
