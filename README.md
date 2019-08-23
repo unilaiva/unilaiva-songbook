@@ -172,14 +172,15 @@ Elsewhere in the song, you can mark the spots from where to jump to chorus with
 
 ### Measure bars and beats ###
 
-If using measure bars and a measure ends at the end of a lyric line, put a bar line `|` to *both*
-the end of the lyric line and the beginning of the next one (if one exists). If a measure in the
-end of a lyric line continues into the next line, but there are no lyrics after the last bar line
-on the first lyric line, add ` -` after the last bar line on the first line to signify that there
-indeed is a (partial) measure, like this: `| -`
+Use measure bar lines to mark only the beginning of a measure, never the end. If a line ends on
+a measure that has no lyrics on the same line, use ` \e` macro to highlight that there indeed is
+a measure there, which might or might not continue on the next line. `\e` will be replaced with
+a dash in the final document, if it also has measure bar lines in it, and will be ignored in case
+it hasn't (as is the case with 'lyric' songbooks without chords). So the policy is this: one bar
+line per bar!
 
 If it is necessary to mark beats, use `.` as a chord name, like this: `\[.]`. Also, underlining
-for lyrics can be used as a last resort.
+for lyrics can be used as the last resort.
 
 ### Melodies ###
 
@@ -189,6 +190,11 @@ a chord block. An example: `\[Am\note{E}]Love` will display an *Am* chord with a
 melody note name *e* above the word *Love* of the lyrics. Note that the note name must be
 specified in upper case for transposing to work, even though the result is actually displayed
 in lower case.
+
+Please provide at least the first sung interval of a song as two melody notes, as it helps to
+remember the song. We usually give a few more of the beginning notes, but rarely continue beyond
+the first line to avoid clutter. One ought to know the songs or find real sheet music for them.
+
 
 Full melodies are written using `lilypond` syntax. See documentation in
 [http://lilypond.org/](http://lilypond.org/). `lilypond` parts must be put outside of verses
