@@ -403,4 +403,25 @@
   \meter{}{}%
 }
 \let\SB@mbar\SB@makembar
+
+% Align choruses and verses if verse numbers are not shown. To show verse
+% numbers instead, define \newcommand{\showversenumbers}{} in the main
+% document.
+\ifdefined\showversenumbers%
+\else%
+  \noversenumbers%
+  \renewcommand\beginverse{%
+    \begingroup%
+      \SB@loadactives%
+      \@ifstar{\endgroup\vnumberedfalse\SB@beginverse}% % keep this to consume the star
+              {\endgroup\vnumberedfalse\SB@beginverse}% % this line was changed
+  }
+  \renewcommand\SB@cbarshift{%
+    \ifdim\cbarwidth>\z@% % removed '\ifSB@inchorus' to shift in verses too
+      \advance\leftskip\cbarwidth%
+      \advance\leftskip5\p@\relax%
+    \fi%
+  }
+\fi%
+
 \makeatother

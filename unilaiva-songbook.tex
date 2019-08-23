@@ -61,7 +61,6 @@
 
 \songcolumns{1} % songs: number of columns per page in songs environment
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
-\noversenumbers % songs: do not display verse numbers
 \newcommand{\defaultlyricfont}{\sffamily\large} % set the lyrics font style (used below)
 \renewcommand{\lyricfont}{\defaultlyricfont} % songs: modify lyrics font style
 % songs: modify chord font style (add color and make smaller):
@@ -126,6 +125,9 @@
 
 \newcommand{\showmelodynotes}{} % comment this line out if you don't want the encircled melody notes
 
+% Comment the following line out if you don't want verse numbers shown. Choruses and verses are
+% aligned only when verse numbers are not shown.
+%\newcommand{\showversenumbers}{} % Suggestion: keep this one commented out!
 
 % More commands and environments; contains rewrites of some commands in the songs package.
 % Depends on some of the settings (ie. colors) defined above.
