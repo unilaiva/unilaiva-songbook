@@ -58,8 +58,8 @@
 % Use this if a line would end at a new measure starting without any lyrics in that
 % bar on the same line. This signifies that there indeed is a measure here. them
 % measure might or might not continue on the next line. You can think of this as
-% an abbreviation for "New Line" or "No Lyrics", as you wish. :)
-\newcommand{\nl}{\ifmeasures -\fi}
+% an abbreviation for "Empty" or "End". :)
+\newcommand{\e}{\ifmeasures --\fi}
 
 
 % BEGIN MELODY NOTES
