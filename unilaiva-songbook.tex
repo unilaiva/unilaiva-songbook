@@ -25,11 +25,11 @@
 %         headsep=5mm,headheight=3.5mm, but the result is about the same now.
 %       * For the "default" printer, minimum top margin is 16mm (to print the chapter name fully)
 \usepackage[a5paper,inner=16.18mm,outer=10mm,tmargin=16.18mm,bmargin=10mm,headsep=5mm,headheight=4.28mm,nofoot]{geometry} % page size + margins
-\usepackage{graphicx}
+\usepackage{graphicx} % for importing images
 \usepackage{pdfpages} % for cover page
 % \usepackage[font=footnotesize]{caption}
-\usepackage{array} % used at leat in Technical Information chapter
-\usepackage{color}
+\usepackage{array} % used at least in Technical Information chapter
+\usepackage{color} % for using colors in various elements
 % Disable all warnings issued by latex starting with "You have requested package..." to allow
 % warningless loading of packages from subdirectories without setting environment variables
 % (can be omitted, but warnings will appear):
@@ -75,11 +75,11 @@
 \renewcommand\musicnote[1]{\ifchorded\textnote{\color{chordcolor}#1}\fi}%
 % songs: use real flat symbol instead of # for typesetting:
 \renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
-% songs: change distance of chords to lyrics (needed because of font scaling)
-\renewcommand{\clineparams}{
-  \baselineskip=10.6pt
-  \lineskiplimit=1pt
-  \lineskip=1pt
+% songs: change distance of chords to lyrics
+\renewcommand{\clineparams}{%
+  \baselineskip=10.6pt%
+  \lineskiplimit=1pt%
+  \lineskip=1pt%
 }
 % songs: set width of the vertical repetition line used in choruses etc (default: 1pt):
 \setlength{\cbarwidth}{1.2pt}
