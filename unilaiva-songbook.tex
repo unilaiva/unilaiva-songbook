@@ -268,6 +268,10 @@
         \begin{songs}{titleidx,authidx,tagidx}
           \setcounter{songnum}{700}
           \chordsoff % songs: do not show (empty line for non-existing) chords
+          % songs: increase line spacing for better readability (+.95pt is the
+          % maximum so that this section doesn't extend on the next page;
+          % adjust if material is added/removed):
+          \baselineadj=+.95pt plus 0pt minus 0pt %
           \renewcommand{\lyricfont}{\small} % songs: use smaller font
           \songcolumns{2} % songs: two columns per page
           \songpos{1} % songs: avoid ONLY page-turns within songs
@@ -279,6 +283,7 @@
           \songpos{3} % songs: back to the default: avoid all breaks whenever possible
           \songcolumns{1} % songs: back to the default: one column per page
           \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
+          \baselineadj=-.95pt plus 0pt minus 0pt % songs: back to the default line spacing
           \chordson % songs: back to the default: show chords
         \end{songs}
     \end{otherlanguage}
