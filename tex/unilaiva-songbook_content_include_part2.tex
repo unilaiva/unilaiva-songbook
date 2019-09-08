@@ -1,0 +1,66 @@
+%% unilaiva-songbook_content_include_part2.tex
+%% ===========================================
+%%
+%% This file is a partial .tex file to be included with \input macro
+%% to any Unilaiva songbook main .tex file within \begin{document}
+%% and \end{document} like this:
+%%
+%%   \input{tex/unilaiva-songbook_content_include_part2.tex}
+%%
+%% This file contains the latter content chapters of the book.
+%%
+
+  \setcounter{chapter}{3} % will be incremented by one at each \songchapter or \chapter
+
+  \clearpage\scleardpage
+  \songchapter{English}
+    \begin{songs}{titleidx,authidx,tagidx}
+      \setcounter{songnum}{400}
+      \input{content/songs_english.tex}
+    \end{songs}
+
+  \clearpage\scleardpage
+  \songchapter{Other}
+    \begin{songs}{titleidx,authidx,tagidx}
+      \setcounter{songnum}{500}
+      \input{content/songs_other.tex}
+    \end{songs}
+
+  \clearpage\scleardpage
+  \songchapter{Suomi}
+    \begin{otherlanguage}{finnish} % set language to finnish for hyphenation etc
+      \section{Lauluja}
+        \begin{songs}{titleidx,authidx,tagidx}
+          \setcounter{songnum}{600}
+          \input{content/songs_suomi.tex}
+          % larva's scribblings (remove later?):
+          \input{content/songs_suomi_larva.tex}
+        \end{songs}
+      \clearpage\scleardpage
+      \section{Muinaissuomalaista mytologiaa}
+        \input{content/section_suomi_mytologiaa.tex}
+      \clearpage\scleardpage
+      \section{Runoja, loitsuja}
+        \begin{songs}{titleidx,authidx,tagidx}
+          \setcounter{songnum}{700}
+          \chordsoff % songs: do not show (empty line for non-existing) chords
+          % songs: increase line spacing for better readability (+.95pt is the
+          % maximum so that this section doesn't extend on the next page;
+          % adjust if material is added/removed):
+          \baselineadj=+.95pt plus 0pt minus 0pt %
+          \renewcommand{\lyricfont}{\small} % songs: use smaller font
+          \songcolumns{2} % songs: two columns per page
+          \songpos{1} % songs: avoid ONLY page-turns within songs
+          % songs: make penalty for breaking column/page at any line of lyrics to be the same:
+          % (The default for \interlinepenalty is 1000, and for all the others 200.)
+          \interlinepenalty=200 %
+          \input{content/songs_suomi_runoja_loitsuja.tex}
+          \interlinepenalty=1000 % songs: back to the default: avoid breaks within verses the most
+          \songpos{3} % songs: back to the default: avoid all breaks whenever possible
+          \songcolumns{1} % songs: back to the default: one column per page
+          \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
+          \baselineadj=-.95pt plus 0pt minus 0pt % songs: back to the default line spacing
+          \chordson % songs: back to the default: show chords
+        \end{songs}
+    \end{otherlanguage}
+

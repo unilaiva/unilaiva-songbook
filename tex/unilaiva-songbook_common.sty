@@ -1,3 +1,214 @@
+%% unilaiva-songbook_common.sty
+%% ============================
+%%
+%% This file contains the imports, style settings and macro (re)definitions
+%% common to all the different versions of Unilaiva songbook. Please include
+%% this in the beginning of your main .tex file just after \documentclass like
+%% this:
+%%
+%% \usepackage{tex/unilaiva-songbook_common}
+%%
+
+\ProvidesPackage{unilaiva-songbook_common}
+
+
+% BEGIN PACKAGE IMPORTS
+% =====================
+
+\usepackage[finnish,english]{babel}\selectlanguage{english}
+
+\usepackage[utf8x]{inputenc}
+% Add option 'sfdefault' to use the sans serif version as default font,
+% which is used in non-song texts. It takes a bit more space.
+
+% Font weight defaults for Noto are regular and bold; here they are made heavier.
+% Do not use font scaling as it messes with line spacing in some cases.
+\usepackage[medium,extrabold]{noto}
+\usepackage[T1]{fontenc}
+\usepackage[bookmarks,unicode]{hyperref} % used by 'songs' package for index links in PDF
+% NOTE: * In versions before 2018-5-10 we used inner=20mm,outer=10mm,tmargin=16mm,bmargin=10mm,
+%         but now the Golden Ratio rules. Old versions (before fancyheader) also used
+%         headsep=5mm,headheight=3.5mm, but the result is about the same now.
+%       * For the "default" printer, minimum top margin is 16mm (to print the chapter name fully)
+\usepackage[a5paper,inner=16.18mm,outer=10mm,tmargin=16.18mm,bmargin=10mm,headsep=5mm,headheight=4.28mm,nofoot]{geometry} % page size + margins
+\usepackage{graphicx} % for importing images
+\usepackage{pdfpages} % for cover page
+\usepackage{changepage} % for detecting even/odd page with \checkoddpage\ifoddpage...\else\fi
+\usepackage{array} % used at least in Technical Information chapter
+\usepackage{color} % for using colors in various elements
+% Disable all warnings issued by latex starting with "You have requested package..." to allow
+% warningless loading of packages from subdirectories without setting environment variables
+% (can be omitted, but warnings will appear):
+\usepackage{silence}\WarningFilter{latex}{You have requested package}
+\usepackage{ragged2e} % used to force text justification in 'explanation' env
+\usepackage{enumitem} % used to modify 'description' env within 'explanation' env
+\usepackage{xstring} % used for string manipulation in \newsongkey{tags}
+\usepackage{fancyhdr} % for customizing headers
+
+% The most important 'songs' package, use the version in the project tree:
+\usepackage[chorded]{ext_packages/songs/songs}
+
+% END PACKAGE IMPORTS
+
+
+% *****************************************************************************
+
+
+% BEGIN STYLE & OTHER SETTINGS
+% ============================
+
+% Set book titles if they're not yet defined (one should define them in the main doc):
+\providecommand\mainbooktitle{Unilaiva songbook} % the main title
+% Full title, containing possible part information:
+\providecommand\fullbooktitle{\mainbooktitle} %
+
+% hyperref: setup
+\hypersetup{linkbordercolor=0.5 0.9 0.6,unicode=true,pdftitle=\fullbooktitle}
+
+\renewcommand{\familydefault}{\sfdefault} % Sets sans-serif as the default font family everywhere
+
+% Allow further emergency stretching to fix some "overfull hbox" situations.
+% See: https://www.tex.ac.uk/FAQ-overfull.html
+\setlength{\emergencystretch}{3em}
+
+\graphicspath{ {./content/img/} } % graphicx: set path to find images from
+
+\definecolor{chordcolor}{rgb}{0.3,0,0.4} % color: use this for chords
+\definecolor{mbarcolor}{rgb}{0.6,0.45,0.8} % color: use this for measure bar, was lighter: {0.8,0.7,0.9}
+\definecolor{melodynotecolor}{rgb}{0.0,0.32,0.38} % color: use this for the encircled melody notes
+\definecolor{verylightgray}{rgb}{0.92,0.92,0.92} % color: use this for song number bg & textnote bg (lighter gray)
+
+\renewcommand{\snumbgcolor}{verylightgray} % songs: song number (in prelude) background color
+\renewcommand{\notebgcolor}{verylightgray} % songs: \musicnote and \textnote background color
+\renewcommand{\idxbgcolor}{verylightgray} % songs: index alphabet sectino background color
+
+\songcolumns{1} % songs: number of columns per page in songs environment
+\songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
+\newcommand{\defaultlyricfont}{\sffamily\large} % set the lyrics font style (used below)
+\renewcommand{\lyricfont}{\defaultlyricfont} % songs: modify lyrics font style
+% songs: modify chord font style (add color and make smaller):
+\renewcommand{\printchord}[1]{\sffamily\bfseries\small\color{chordcolor}#1}
+% songs: modify meter class font style (add color):
+\renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
+\renewcommand{\notefont}{\normalsize} % songs: modify \textnote and \musicnote font (make smaller)
+\renewcommand{\idxtitlefont}{\sffamily} % songs: font used for titles in indices
+\renewcommand{\idxlyricfont}{\sffamily\slshape} % songs: font for alternate (lyric) titles in indices
+\renewcommand{\idxscripfont}{\sffamily\small\slshape} % songs: font used for tag (scripture) index
+% songs: use same text color for music notes as for chords:
+\renewcommand\musicnote[1]{\ifchorded\textnote{\color{chordcolor}#1}\fi}%
+% songs: use real flat symbol instead of # for typesetting:
+\renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
+% songs: change distance of chords to lyrics
+\renewcommand{\clineparams}{%
+  \baselineskip=10.6pt%
+  \lineskiplimit=1pt%
+  \lineskip=1pt%
+}
+% songs: set width of the vertical repetition line used in choruses etc (default: 1pt):
+\setlength{\cbarwidth}{1.2pt}
+% songs: make capo note smaller
+\renewcommand\capo[1]{%
+  \iftranscapos\transpose{#1}\else\musicnote{{\scriptsize capo #1}}\fi%
+}
+% songs: reduces line spacing in non-chorded lyrics by the amount the chords would take space
+%        without needing to set \chordsoff; also removes measure bar lines. Commented out for
+%        now:
+% \setlength\baselineadj{-\baselineskip}
+
+%\addto\captionsfinnish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: finnish
+\addto\captionsenglish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: english
+\addto\captionsenglish{\renewcommand\appendixname{}} % sets appendix name prefix to nothing when babel: english
+
+% BEGIN Setup headers using fancyhdr (similar to default "book" style)
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\rmfamily\small\thepage} % page nr
+\fancyhead[LO]{\rmfamily\small\itshape{\rightmark}} % odd left: section name
+\fancyhead[RE]{\rmfamily\small\itshape{\leftmark}} % even right: chapter name
+\fancyhead[CE]{\rmfamily\small\itshape{\fullbooktitle}} % even center: book name
+\renewcommand{\headrulewidth}{0pt}
+% END setup headers using fancyhdr
+
+% Comment the following line out if you don't want extra info shown in song preludes.
+% Define it for a song by adding ex= parameter to \beginsong
+% It can be used to for example indicate the origins or a language of a song.
+\newcommand{\showextrainfo}{} % comment this line out if you don't want extra info shown (ex=?)
+
+% Comment the following line out if you don't want phase info shown in song preludes.
+% Define it for a song by adding ph= parameter to \beginsong
+\newcommand{\showphaselist}{} % comment this line out if you don't want phase info shown (ph=?)
+\newcommand{\showphaselistintoc}{} % comment this line out if you don't want phase info shown in TOC
+
+% Comment the following line out if you don't want tag lists shown in song preludes
+% Define a list of tags for a song by adding tags= parameter to \beginsong
+% It is supposed to be a short list of single word tags of which an index is created.
+\newcommand{\showtaglist}{} % comment this line out if you don't want tag list shown (tags=?)
+
+\newcommand{\showmelodynotes}{} % comment this line out if you don't want the encircled melody notes
+
+% Comment the following line out if you don't want verse numbers shown. Choruses and verses are
+% aligned only when verse numbers are not shown.
+%\newcommand{\showversenumbers}{} % Suggestion: keep this one commented out!
+
+% END STYLE & OTHER SETTINGS
+
+
+% *****************************************************************************
+
+
+% BEGIN DEFINITIONS AND REWRITES
+% ==============================
+
+% This command creates the second page at where it is called. This is supposed
+% to be the odd verso page right after the cover.
+% Parameters: 1) subtitle, 2) subsubtitle. Parameters can be left empty.
+\newcommand{\secondpage}[2]{
+  { % must be contained within a block for the settings to not bleed
+    \thispagestyle{empty}
+    \topskip0pt
+    \vspace*{5.05em} % align with "Contents" heading on the next page; BAD for any changes
+    \begin{center}
+      \Huge \mainbooktitle\\
+      \normalsize\textit{paths to higher knowledge}\\
+      \ifx&#1&% #1 is empty
+      \else % #1 not empty
+        \vspace{1em}
+        \Large \textbf{#1}\\
+        \ifx&#2&% #2 is empty
+        \else % #2 not empty
+          \vspace{0.3em}%
+          \normalsize #2\\
+        \fi
+      \fi
+      \vspace*{\fill}
+      \large By:\\
+      \Large \textbf{humankind}\\
+      \vspace{1em}
+      \large Version:\\
+      \Large \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day\hspace{0.34em}$\beta$
+      \\
+      \vspace*{\fill}
+      % Created with: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
+      \includegraphics[width=0.25\textwidth]{QR_https_unilaiva_aavalla_net.png}
+      \\
+      {\small\url{https://unilaiva.aavalla.net/}}
+      \\
+      \vspace*{\fill}
+      {\footnotesize Compiled by: antagomir \& larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})}
+      \\
+      \vspace{1.5em}
+      {\scriptsize
+        The material in this book is collected from various sources over time.\\
+        \vspace{-1em} % workaround for too large line spacing
+        This is a work in progress, and made for the contributors' private use.
+        \vspace{-1em} % workaround for too large line spacing
+      }
+    \end{center}
+  }
+}
+
 % This command will display some text followed by three dots,
 % and aligned to the right of the page. The idea is to use it as a signal to go to
 % a different part of the song, for example the chorus. You can use it within the
@@ -83,7 +294,7 @@
 % Also, \color{melodynotecolor} must be defined.
 %
 % Call \notesoff command between verses to disable showing of notes in the
-% following verses of the song.
+% following verses of the song.Unilaiva songbook
 %
 % The recommended use for this feature is to display the first sung non-unison
 % melody interval of each song. So just specify the first two melody notes and
@@ -452,3 +663,8 @@
 }
 
 \makeatother
+
+% END DEFINITIONS AND REWRITES
+
+% *****************************************************************************
+

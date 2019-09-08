@@ -1,0 +1,21 @@
+%% unilaiva-songbook_content_include_part3_appendices.tex
+%% ======================================================
+%%
+%% This file is a partial .tex file to be included with \input macro
+%% to any Unilaiva songbook main .tex file within \begin{document}
+%% and \end{document} like this:
+%%
+%%   \input{tex/unilaiva-songbook_content_include_part3_appendices.tex}
+%%
+%% This file contains the appendices.
+%%
+
+  \appendix % Here start appendices: chapter numbering is reset and switches to alphabetic
+  \chapter{Technical}
+    \input{content/section_technical_information.tex}
+
+  \clearpage
+  \showindex[2]{Song Index}{titleidx} % song title index
+  % \showindex{Author Index}{authidx} % song author index
+  \scleardpage%
+  \showindex[2]{Tag Index}{tagidx} % tags index
