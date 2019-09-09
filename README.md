@@ -39,25 +39,40 @@ project's source, you need to run the following two commands:
      Github account)
 
 
-Compiling the songbook to PDF
------------------------------
+Compiling the songbook to create a PDF document
+-----------------------------------------------
 
-If you're on an UNIX system, you can simply use the provided `compile_unilaiva-songbook.sh` shell
-script to build a PDF document out of our project.
+If you're on a UNIX-compatible system (e.g. Linux), you can simply use the provided
+`compile_unilaiva-songbook.sh` shell script to build a PDF document out of our project. The use
+of the script is recommended, as it builds all the book versions, including two-booklet version,
+each with all printout styles, and does so correctly.
 
-Otherwise, you should run the following commands or their equivalents in the following sequence:
+Otherwise, to build (only) the main document manually, you ought to run the following commands
+or their equivalents in the following sequence:
 
   1. `lilypond-book -f latex --output temp unilaiva-songbook.tex`
   2. `cd temp ; ln -s ../ext_packages ./ ; ln -s ../../content/img ./content/ ;
-     ln -s ../tags.can ./`
-  3. `pdflatex unilaiva-songbook.tex`
+     ln -s ../../tex/unilaiva-songbook_common.sty ./tex/ ; ln -s ../tags.can ./`
+  3. `pdflatex unilaiva-songbook.tex` # (1st time)
   4. `texlua ext_packages/songs/songidx.lua idx_unilaiva-songbook_title.sxd
      idx_unilaiva-songbook_title.sbx`
   5. `texlua ext_packages/songs/songidx.lua idx_unilaiva-songbook_auth.sxd
      idx_unilaiva-songbook_auth.sbx`
   6. `texlua ext_packages/songs/songidx.lua -b tags.can idx_unilaiva-songbook_tag.sxd
      idx_unilaiva-songbook_tag.sbx`
-  7. `pdflatex unilaiva-songbook.tex` # (again)
+  7. `pdflatex unilaiva-songbook.tex` # (2nd time)
+  8. `pdflatex unilaiva-songbook.tex` # (3rd time)
+
+**Explanation:** Lilypond will create a subdirectory called `temp`, create the music notation
+images there, and copy `.tex` files there also (with necessary modifications for displaying the
+notation). Rest of the compilation process happens within that directory. Lilypond does not copy
+all needed files, so we need to link them within the `temp` directory, to create directory
+structure equivalent to the one in the project's root. Instead of linking with `ln -s`, you can
+copy the files, but need to remember to do it every time modification to the source is made, and
+new compilation is required. Then `pdflatex` is run, the indexes created, and finally `pdflatex`
+is executed two more times. You actually **do** need all three cycles of `pdflatex` to get
+everything right. In the end, you will have the result document, `unilaiva-songbook.pdf` in the
+`temp` directory. Use similar procedure for other `.tex` documents in the project's root.
 
 
 Printing
