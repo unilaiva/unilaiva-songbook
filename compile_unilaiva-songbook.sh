@@ -3,8 +3,9 @@
 # This UNIX shell script compiles unilaiva-songbook.tex using different
 # tools to produce unilaiva-songbook.pdf
 #
-# Usage: run without argument for default operation. See function print_usage_and_exit
-# below for further information.
+# Usage: run without argument for default operation. Run with --help argument
+# for further information about options, or see function print_usage_and_exit
+# below.
 #
 # Required binaries in PATH: lilypond-book, pdflatex, texlua
 # Optional binary in PATH: context (will be used to create printout versions)
