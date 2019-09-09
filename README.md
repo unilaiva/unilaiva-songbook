@@ -43,9 +43,9 @@ Compiling the songbook to create a PDF document
 -----------------------------------------------
 
 If you're on a UNIX-compatible system (e.g. Linux), you can simply use the provided
-`compile_unilaiva-songbook.sh` shell script to build a PDF document out of our project. The use
-of the script is recommended, as it builds all the book versions, including two-booklet version,
-each with all printout styles, and does so correctly.
+`compile_unilaiva-songbook.sh` shell script to build a PDF document out of our project. It builds
+all the book versions, including two-booklet version, each with all printout styles, and does so
+correctly. *The use of the compile script is highly recommended.*
 
 Otherwise, to build (only) the main document manually, you ought to run the following commands
 or their equivalents in the following sequence:
@@ -142,11 +142,16 @@ consisting of two-sided A5 pages, which is the preferred format.
 Project structure and guidelines
 --------------------------------
 
-Project's main file is `unilaiva-songbook.tex`. It includes all the other files in the project and
-contains configuration.
+Project's main file is `unilaiva-songbook.tex`. It is used to create the full songbook. There are
+also `unilaiva-songbook_part1.tex` and `unilaiva-songbook_part2.tex`, which together provide a
+version of the songbook, where the content is divided into two parts, booklets, for binding
+reasons.
 
-Long `\renewcommand`s ought to be put into `unilaiva-songbook-extra.tex` to maintain readability
-of the main file.
+`tex` subdirectory contains partial LaTeX files, which are included in the main document(s) with
+`\input` macros. There resides also the most important `unilaiva-songbook_common.sty` package,
+which contains all the needed imports, definitions, settings and style used in the songbook. It
+is imported to the main document(s) with `\import` macro. `context` files used to create special
+printout versions reside there as well.
 
 Song data and other *content* will be in various files inside `content` subdirectory and will be
 inputed into the main file. Images are put into `content/img`.
@@ -238,4 +243,3 @@ Tentative TODO
 *  Organize songs better and decide the categories (= chapters / parts)
 *  Possibly add poems, prayers etc in between songs or in their own category(?)
 *  Further develop visual style of the end document
-*  Think on dividing the book into two separate booklets for printing (due to binding restrictions)
