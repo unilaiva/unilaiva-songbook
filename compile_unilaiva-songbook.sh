@@ -111,10 +111,15 @@ compile_document() {
   # Second run of pdflatex, creates the final main PDF document:
   pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (2nd time)! Aborted." "out-6_pdflatex.log"
 
+  echo "  EXEC: pdflatex (3rd run)"
+
+  # Third run of pdflatex, creates the final main PDF document:
+  pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (2nd time)! Aborted." "out-7_pdflatex.log"
+
   cp "${document_basename}.pdf" "../../" || die $? "Error copying ${document_basename}.pdf from temporary directory! Aborted."
 
-  overfull_count=$(grep -i overfull out-6_pdflatex.log | wc -l)
-  underfull_count=$(grep -i underfull out-6_pdflatex.log | wc -l)
+  overfull_count=$(grep -i overfull "out-7_pdflatex.log" | wc -l)
+  underfull_count=$(grep -i underfull "out-7_pdflatex.log" | wc -l)
   [ "${overfull_count}" -gt "0" ] && echo "  DEBUG: Overfull warnings: ${overfull_count}"
   [ "${underfull_count}" -gt "0" ] && echo "  DEBUG: Underfull warnings: ${underfull_count}"
 
@@ -124,8 +129,8 @@ compile_document() {
     which "context" >"/dev/null"
     if [ $? -eq 0 ]; then
       echo "  EXEC: context (create printouts)"
-      context "../../tex/printout_${document_basename}_A5_on_A4_doublesided_folded.context" 1>"out-7_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-7_printout-dsf.log"
-      context "../../tex/printout_${document_basename}_A5_on_A4_sidebyside_simple.context" 1>"out-8_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-8_printout-sss.log"
+      context "../../tex/printout_${document_basename}_A5_on_A4_doublesided_folded.context" 1>"out-7_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
+      context "../../tex/printout_${document_basename}_A5_on_A4_sidebyside_simple.context" 1>"out-8_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
       printouts_created="true"
       cp printout*.pdf "../../" || die $? "Error copying printout PDFs from temporary directory! Aborted."
     else
