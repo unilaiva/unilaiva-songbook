@@ -1,9 +1,11 @@
 % Songs in other languages
 
 \beginsong{Ancient Aramaic Prayer}[ph={I}]
+  % NOTE: try to align the translation with the prayer with \vskips. Check this
+  % after style changes etc.
   \chordsoff % there are no chords
-  \vskip 1em
-  \begin{center} % center the lines
+  \beginverse\justifycenter
+    \vskip 3em
     Abwûn d'bwaschmâja
     \vskip 1em
     Nethkâdasch schmach
@@ -24,53 +26,60 @@
     Metol dilachie malkutha wahaila wateschbuchta l'ahlâm almîn.
     \vskip 1em
     Amên.
-    \vskip 2em
-    % Ancient aramaic symbol:
-    %   - upper dot: God (mind)
-    %   - left dot:  Son (wisdom)
-    %   - right dot: Spirit (life)
-    %   - below(?): One Universal God
-    % The symbol has been used by ancient Near Eastern scribes
-    % to indicate that the writing was of a sacred nature
-    % 0.618^4 ~ 0.146
+    \vfill
+    % 0.618^4 ~ 0.146 (Golden Ratio)
     \includegraphics[width=0.146\textwidth]{ancient_aramaic_symbol_bw_transparent_bg_184x225px.png}
-  \end{center}
+    \vfill
+  \endverse
   \brk % to suggest putting a page break here
-  \begin{translation}
-    \vskip 8em % try to align with the original prayer
+  \begin{translation}\justifycenter
+    \- % needed here, otherwise the first vskip has no effect
+    \vskip 10.5em % try to align with the original prayer
     %\normalsize % scale up from ordinary translation, to align (there is space on the page)
-    \begin{center}
-      Oh Thou, from whom the breath of life comes,
-      who fills all realms of sound, light and vibration.
-      \nextverse
-      May Your light be experienced in my utmost holiest.
-      \vskip 0.5em % to align
-      \nextverse
-      Your Heavenly Domain approaches.
-      \vskip 0.5em % to align
-      \nextverse
-      Let Your will come true --- in the universe \emph{(all that vibrates)}
-      just as on earth \emph{(that is material and dense)}.
-      \nextverse
-      Give us wisdom \emph{(understanding, assistance)}
-      for our daily need.
-      \nextverse
-      Detach the fetters of faults that bind us \emph{(karma)},
-      like we let go the guilt of others.
-      \nextverse
-      Let us not be lost in superficial things
-      \emph{(materialism, common temptations)},
-      \nextverse
-      but let us be freed from that what keeps us off from
-      our true purpose.
-      \nextverse
-      From You comes the all-working will, the lively strength to act,
-      the song that beautifies all and renews itself from age to age.
-      \nextverse
-      Sealed in trust, faith and truth.
-      \emph{(I confirm with my entire being.)}
-    \end{center}
+    Oh Thou, from whom the breath of life comes,
+    who fills all realms of sound, light and vibration.
+    \vskip 0.5em % to align
+    \nextverse
+    May Your light be experienced in my utmost holiest.
+    \vskip 1em % to align
+    \nextverse
+    Your Heavenly Domain approaches.
+    %\vskip 0.5em % to align
+    \nextverse
+    Let Your will come true --- in the universe \emph{(all that vibrates)}
+    just as on Earth \emph{(that is material and dense)}.
+    \nextverse
+    Give us wisdom \emph{(understanding, assistance)}
+    for our daily need.
+    \nextverse
+    Detach the fetters of faults that bind us \emph{(karma)},
+    like we let go the guilt of others.
+    \vskip 0.5em % to align
+    \nextverse
+    Let us not be lost in superficial things
+    \emph{(materialism, common temptations)},
+    \nextverse
+    but let us be freed from that what keeps us off from
+    our true purpose.
+    \nextverse
+    From You comes the all-working will, the lively strength to act,
+    the song that beautifies all and renews itself from age to age.
+    \vskip 0.5em % to align
+    \nextverse
+    Sealed in trust, faith and truth.
+    \emph{(I confirm with my entire being.)}
   \end{translation}
+  \vfill%
+  \begin{explanation}
+    The symbol has been used by ancient Near Eastern scribes to indicate that
+    the writing is of a sacred nature.
+    \begin{description}
+      \item[upper dot:] God (mind)
+      \item[left dot:] Son (wisdom)
+      \item[right dot:] Spirit (life)
+      \item[bottom dot:] One Universal God
+    \end{description}
+  \end{explanation}
 \endsong
 
 
