@@ -115,7 +115,7 @@ compile_document() {
   echo "  EXEC: pdflatex (3rd run)"
 
   # Third run of pdflatex, creates the final main PDF document:
-  pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (2nd time)! Aborted." "out-7_pdflatex.log"
+  pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (3rd time)! Aborted." "out-7_pdflatex.log"
 
   cp "${document_basename}.pdf" "../../" || die $? "Error copying ${document_basename}.pdf from temporary directory! Aborted."
 
