@@ -45,7 +45,8 @@ Compiling the songbook to create a PDF document
 If you're on a UNIX-compatible system (e.g. Linux), you can simply use the provided
 `compile_unilaiva-songbook.sh` shell script to build a PDF document out of our project. It builds
 all the book versions, including two-booklet version, each with all printout styles, and does so
-correctly. *The use of the compile script is highly recommended.*
+correctly. Execute it without arguments for default operation. For help, run:
+`compile_unilaiva-songbook.sh --help`. **The use of the compile script is highly recommended.**
 
 Otherwise, to build (only) the main document manually, you ought to run the following commands
 or their equivalents in the following sequence:
