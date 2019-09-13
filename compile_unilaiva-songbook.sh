@@ -30,7 +30,10 @@ print_usage_and_exit() {
   echo "  --no-partial   : do not compile partial books, only the main document"
   echo "  --no-printouts : do not create extra printout PDFs"
   echo "  --no-deploy    : do not copy PDF files to ./deploy/"
-  echo "  -d             : all of the above options"
+  echo "  --parallel     : compile documents simultaneously"
+  echo "  -d             : use for quick development build of the main document;"
+  echo "                 : equals to --no-partial --no-printouts --no-deploy"
+  echo "  --help         : print this usage information"
   echo ""
   echo "In addition to the full songbook, also two-booklet version is created,"
   echo "with parts 1 and 2 in separate PDFs. This is not done, if --no-partial"
@@ -51,6 +54,10 @@ print_usage_and_exit() {
 die() {
   echo "\nERROR: $2" >&2
   cd "${initial_dir}"
+  # Kill sub-processes:
+  [ ${pid_main} != 0 ] && kill -9 ${pid_main} >/dev/null 2>&1
+  [ ${pid_main} != 0 ] && kill -9 ${pid_part1} >/dev/null 2>&1
+  [ ${pid_main} != 0 ] && kill -9 ${pid_part2} >/dev/null 2>&1
   exit $1
 }
 
@@ -60,10 +67,10 @@ compile_document() {
 
   # Usage: die_log <errorcode> <message> <logfile>
   die_log() {
-    echo "  ERROR: $2"
+    echo "ERROR: [${document_basename}] $2"
     echo "\nDisplaying log file for ${document_basename}.tex: $3\n"
     cat "$3"
-    die $1 "$2"
+    die $1 "[${document_basename}] $2"
   }
 
   document_basename="$1"
@@ -77,9 +84,7 @@ compile_document() {
   rm -R "${temp_dirname_twolevels}" 2>"/dev/null" # Clean old build
   mkdir -p "${temp_dirname_twolevels}" 2>"/dev/null" || die $? "Could not create the build directory ${temp_dirname_twolevels}. Aborted."
 
-  echo "\nCompiling ${document_basename}.tex ..."
-
-  echo "  EXEC: lilypond (lilypond-book)"
+  echo "EXEC: [${document_basename}] lilypond (lilypond-book)"
 
   # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
   # the modified .tex files and the musical shaft images created by it to subdirectory ${temp_dirname_twolevels}.
@@ -94,12 +99,12 @@ compile_document() {
   ln -s "../../../content/img" "./content/" 2>"/dev/null"  # because lilypond doesn't copy the included images
   ln -s "../../tags.can" "./" 2>"/dev/null"
 
-  echo "  EXEC: pdflatex (1st run)"
+  echo "EXEC: [${document_basename}] pdflatex (1st run)"
 
   # First run of pdflatex:
   pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex! Aborted." "out-2_pdflatex.log"
 
-  echo "  EXEC: texlua (create indices)"
+  echo "EXEC: [${document_basename}] texlua (create indices)"
 
   # Create indices:
   texlua "${SONG_IDX_SCRIPT}" "idx_${document_basename}_title.sxd" "idx_${document_basename}_title.sbx" 1>"out-3_titleidx.log" 2>&1 || die_log $? "Error creating song title indices! Aborted." "out-3_titleidx.log"
@@ -107,12 +112,12 @@ compile_document() {
   # texlua "${SONG_IDX_SCRIPT}" idx_${document_basename}_auth.sxd idx_${document_basename}_auth.sbx 1>"out-4_authidx.log" 2>&1 || die_log $? "Error creating author indices! Aborted." "out-4_authidx.log"
   texlua "${SONG_IDX_SCRIPT}" -b "tags.can" "idx_${document_basename}_tag.sxd" "idx_${document_basename}_tag.sbx" 1>"out-5_tagidx.log" 2>&1 || die_log $? "Error creating tag (scripture) indices! Aborted." "out-5_tagidx.log"
 
-  echo "  EXEC: pdflatex (2nd run)"
+  echo "EXEC: [${document_basename}] pdflatex (2nd run)"
 
-  # Second run of pdflatex, creates the final main PDF document:
+  # Second run of pdflatex:
   pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (2nd time)! Aborted." "out-6_pdflatex.log"
 
-  echo "  EXEC: pdflatex (3rd run)"
+  echo "EXEC: [${document_basename}] pdflatex (3rd run)"
 
   # Third run of pdflatex, creates the final main PDF document:
   pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (3rd time)! Aborted." "out-7_pdflatex.log"
@@ -121,24 +126,24 @@ compile_document() {
 
   overfull_count=$(grep -i overfull "out-7_pdflatex.log" | wc -l)
   underfull_count=$(grep -i underfull "out-7_pdflatex.log" | wc -l)
-  [ "${overfull_count}" -gt "0" ] && echo "  DEBUG: Overfull warnings: ${overfull_count}"
-  [ "${underfull_count}" -gt "0" ] && echo "  DEBUG: Underfull warnings: ${underfull_count}"
+  [ "${overfull_count}" -gt "0" ] && echo "DEBUG: [${document_basename}] Overfull warnings: ${overfull_count}"
+  [ "${underfull_count}" -gt "0" ] && echo "DEBUG: [${document_basename}] Underfull warnings: ${underfull_count}"
 
   # Create printouts, if context binary is found:
   printouts_created="false"
   if [ ${createprintouts} = "true" ]; then
     which "context" >"/dev/null"
     if [ $? -eq 0 ]; then
-      echo "  EXEC: context (create printouts)"
+      echo "EXEC [${document_basename}]: context (create printouts)"
       context "../../tex/printout_${document_basename}_A5_on_A4_doublesided_folded.context" 1>"out-7_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
       context "../../tex/printout_${document_basename}_A5_on_A4_sidebyside_simple.context" 1>"out-8_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
       printouts_created="true"
       cp printout*.pdf "../../" || die $? "Error copying printout PDFs from temporary directory! Aborted."
     else
-      echo "  NOEXEC: Extra printout PDFs not created, because 'context' binary not found."
+      echo "NOEXEC: [${document_basename}] Extra printout PDFs not created; no 'context'"
     fi
   else
-    echo "  NOEXEC: Extra printout PDFs not created."
+    echo "NOEXEC: [${document_basename}] Extra printout PDFs not created."
   fi
 
   # Clean up the temporary directory: remove some temporary files.
@@ -151,26 +156,31 @@ compile_document() {
   # final PDFs there also. (The directory is meant to be automatically synced to the server by
   # other means.)
   if [ "${deployfinal}" = "true" ] && [ -d "./deploy" ]; then
-    cp "${document_basename}.pdf" "./deploy/" && echo "  DEPLOY: ${document_basename}.pdf copied to ./deploy/"
+    cp "${document_basename}.pdf" "./deploy/" && echo "DEPLOY: ${document_basename}.pdf copied to ./deploy/"
     if [ "$printouts_created" = "true" ]; then
-      cp "printout_${document_basename}_A5_on_A4_doublesided_folded.pdf" "./deploy" && echo "  DEPLOY: printout_${document_basename}_A5_on_A4_doublesided_folded.pdf copied to ./deploy/"
-      cp "printout_${document_basename}_A5_on_A4_sidebyside_simple.pdf" "./deploy" && echo "  DEPLOY: printout_${document_basename}_A5_on_A4_sidebyside_simple.pdf copied to ./deploy/"
+      cp "printout_${document_basename}_A5_on_A4_doublesided_folded.pdf" "./deploy" && echo "DEPLOY: printout_${document_basename}_A5_on_A4_doublesided_folded.pdf copied to ./deploy/"
+      cp "printout_${document_basename}_A5_on_A4_sidebyside_simple.pdf" "./deploy" && echo "DEPLOY: printout_${document_basename}_A5_on_A4_sidebyside_simple.pdf copied to ./deploy/"
     fi
   else
-    echo "  NODEPLOY: resulting files NOT copied to the deploy directory."
+    echo "NODEPLOY: [${document_basename}] resulting files NOT copied to ./deploy/"
   fi
 
-  echo "  SUCCESS: Compilation succesful! Enjoy your ${document_basename}.pdf"
+  echo "SUCCESS: [${document_basename}.pdf] Compilation succesful!"
 
 } # END compile_document()
 
+# will hold PIDs for sub-processes, when compiling in parallel:
+pid_main=0
+pid_part1=0
+pid_part2=0
 
-# Test program arguments
-
+# Set defaults:
 deployfinal="true"
 createprintouts="true"
 partialbooks="true"
+parallel="false"
 
+# Test program arguments:
 while [ $# -gt 0 ]; do
   case "$1" in
     "--no-deploy")
@@ -182,17 +192,19 @@ while [ $# -gt 0 ]; do
     "--no-partial")
       partialbooks="false"
       shift;;
+    "--parallel")
+      parallel="true"
+      shift;;
     "-d")
       deployfinal="false"
       createprintouts="false"
       partialbooks="false"
       shift;;
-    *)
+    *) # for everything else
       print_usage_and_exit
       ;;
   esac
 done
-
 
 # Test executable availability:
 which "pdflatex" >"/dev/null" || die 1 "pdflatex binary not found in path! Aborted."
@@ -203,14 +215,29 @@ which "lilypond-book" >"/dev/null" || die 1 "lilypond-book binary not found in p
 mkdir "$TEMP_DIRNAME" 2>"/dev/null"
 [ -d "./$TEMP_DIRNAME" ] || die 1 "Could not create temporary directory $TEMP_DIRNAME. Aborted."
 
-
-# Compile the documents (defined at the top of this file):
-compile_document "${MAIN_FILENAME_BASE}"
-[ ${partialbooks} = "true" ] && compile_document "${PART1_FILENAME_BASE}"
-[ ${partialbooks} = "true" ] && compile_document "${PART2_FILENAME_BASE}"
-
+echo ""
+echo "Compiling Unilaiva songbook..."
 echo ""
 
-# TODO: compile documents simultaneously, but make outputs appear in order
+# Compile the documents (defined at the top of this file):
+if [ ${parallel} = "true" ]; then # compile documents in parallel mode
+  compile_document "${MAIN_FILENAME_BASE}" &
+  pid_main=$!
+  [ ${partialbooks} = "true" ] && compile_document "${PART1_FILENAME_BASE}" &
+  pid_part1=$!
+  [ ${partialbooks} = "true" ] && compile_document "${PART2_FILENAME_BASE}" &
+  pid_part2=$!
+  wait # wait for sub processes to end
+else
+  compile_document "${MAIN_FILENAME_BASE}" # compile documents in sequential mode
+  echo ""
+  [ ${partialbooks} = "true" ] && compile_document "${PART1_FILENAME_BASE}"
+  echo ""
+  [ ${partialbooks} = "true" ] && compile_document "${PART2_FILENAME_BASE}"
+fi
+
+echo ""
+echo "SUCCESS: Complete!"
+echo ""
 
 exit 0
