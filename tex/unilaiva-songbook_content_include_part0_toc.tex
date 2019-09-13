@@ -16,33 +16,3 @@
   \addtocontents{toc}{\protect\thispagestyle{empty}}
   % Adds text "Page" on top of the TOC:
   \addtocontents{toc}{~\hfill\textbf{Page}\par}
-
-  % If the TOC ends on an even (verso) page, the following image is displayed
-  % in full size on the following odd (recto) page (else path) rather than
-  % having an empty page there. If the TOC ends on an odd (recto) page, a smaller
-  % version is displayed. NOTE: this needs manual checking on all the different
-  % book versions! It might not fit on the recto page and then it needs to be
-  % made smaller or even to comment it out completely (in that case comment out
-  % everything between \ifoddpage and \else).
-  \checkoddpage% % changepage: test whether page is odd or even
-  \ifoddpage% % changepage: if on odd page...
-    \begin{center}%
-      \vspace*{\fill}%
-      % Original downloaded from: ?
-      % Edited by: larva
-      % License: Creative Commons CC0 (public domain)
-      \includegraphics[width=0.382\textwidth]{shamanic_mandala_bw_ed_by_larva_CC0_1400px.jpg}
-      \vspace*{\fill}%
-    \end{center}
-  \else% % if on even (verso) page, display the image full size on the following recto page:
-    \clearpage%
-    \begin{center}%
-      \vspace*{\fill}%
-      % Original downloaded from: ?
-      % Edited by: larva
-      % License: Creative Commons CC0 (public domain)
-      \includegraphics[width=1\textwidth]{shamanic_mandala_bw_ed_by_larva_CC0_1400px.jpg}
-      \vspace*{\fill}%
-    \end{center}
-  \fi%
-

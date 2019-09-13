@@ -18,8 +18,6 @@
 \usepackage[finnish,english]{babel}\selectlanguage{english}
 
 \usepackage[utf8x]{inputenc}
-% Add option 'sfdefault' to use the sans serif version as default font,
-% which is used in non-song texts. It takes a bit more space.
 
 % Font weight defaults for Noto are regular and bold; here they are made heavier.
 % Do not use font scaling as it messes with line spacing in some cases.
@@ -33,7 +31,6 @@
 \usepackage[a5paper,inner=16.18mm,outer=10mm,tmargin=16.18mm,bmargin=10mm,headsep=5mm,headheight=4.28mm,nofoot]{geometry} % page size + margins
 \usepackage{graphicx} % for importing images
 \usepackage{pdfpages} % for cover page
-\usepackage{changepage} % for detecting even/odd page with \checkoddpage\ifoddpage...\else\fi
 \usepackage{array} % used at least in Technical Information chapter
 \usepackage{color} % for using colors in various elements
 % Disable all warnings issued by latex starting with "You have requested package..." to allow
@@ -60,10 +57,10 @@
 % Set book titles if they're not yet defined (one should define them in the main doc):
 \providecommand\mainbooktitle{Unilaiva songbook} % the main title
 % Full title, containing possible part information:
-\providecommand\fullbooktitle{\mainbooktitle} %
+\providecommand{\thisbooktitle}{\mainbooktitle} %
 
 % hyperref: setup
-\hypersetup{linkbordercolor=0.5 0.9 0.6,unicode=true,pdftitle=\fullbooktitle}
+\hypersetup{linkbordercolor=0.5 0.9 0.6,unicode=true,pdftitle=\thisbooktitle}
 
 \renewcommand{\familydefault}{\sfdefault} % Sets sans-serif as the default font family everywhere
 
@@ -127,7 +124,7 @@
 \fancyhead[LE,RO]{\rmfamily\small\thepage} % page nr
 \fancyhead[LO]{\rmfamily\small\itshape{\rightmark}} % odd left: section name
 \fancyhead[RE]{\rmfamily\small\itshape{\leftmark}} % even right: chapter name
-\fancyhead[CE]{\rmfamily\small\itshape{\fullbooktitle}} % even center: book name
+\fancyhead[CE]{\rmfamily\small\itshape{\thisbooktitle}} % even center: book name
 \renewcommand{\headrulewidth}{0pt}
 % END setup headers using fancyhdr
 
@@ -152,7 +149,24 @@
 % aligned only when verse numbers are not shown.
 %\newcommand{\showversenumbers}{} % Suggestion: keep this one commented out!
 
+
 % END STYLE & OTHER SETTINGS
+
+
+% *****************************************************************************
+
+
+% BEGIN WORKAROUNDS
+% =================
+
+% This is to work around a problem that only appears in the Samskrtam chapter's page headers
+% strangely in the main non-two-booklet version only:
+% "[PLEASEINSERT\PRERENDERUNICODE{}INTOPREAMBLE]"
+\PrerenderUnicode{ṃ}%\PrerenderUnicode{Ṃ}
+\PrerenderUnicode{ṛ}%\PrerenderUnicode{Ṛ}
+
+
+% END WORKAROUNDS
 
 
 % *****************************************************************************
@@ -207,6 +221,24 @@
       }
     \end{center}
   }
+}
+
+% This is used for the main chapters of the book. Indices, instead, use \songchapter (internally).
+% Required parameter is the chapter name, and optional is a filename for an image. So use it like:
+% \mainchapter{Chapter Name} or \mainchapter[image.png]{Chapter Name}
+\newcommand{\mainchapter}[2][]{%
+  \chapter{#2}
+  \thispagestyle{empty} % to omit the page number in the bottom
+  \ifx&#1&% parameter #1 is empty (the optional one, given inside [])
+  \else % parameter #1 is not empty, display image
+    \begin{center}%
+      \vspace*{\fill}%
+      % 0.618 (Golden Ratio)
+      \includegraphics[width=0.618\textwidth]{#1}%
+      \vspace*{\fill}%
+    \end{center}%
+  \fi
+  \clearpage
 }
 
 % This command will display some text followed by three dots,
