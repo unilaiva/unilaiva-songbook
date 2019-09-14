@@ -169,6 +169,7 @@ compile_document() {
 
 } # END compile_document()
 
+
 # will hold PIDs for sub-processes, when compiling in parallel:
 pid_main=0
 pid_part1=0
@@ -214,6 +215,8 @@ which "lilypond-book" >"/dev/null" || die 1 "lilypond-book binary not found in p
 # Create the 1st level temporary directory in case it doesn't exist.
 mkdir "$TEMP_DIRNAME" 2>"/dev/null"
 [ -d "./$TEMP_DIRNAME" ] || die 1 "Could not create temporary directory $TEMP_DIRNAME. Aborted."
+
+trap 'die 2 Interrupted.' INT TERM # trap interruptions
 
 echo ""
 echo "Compiling Unilaiva songbook..."
