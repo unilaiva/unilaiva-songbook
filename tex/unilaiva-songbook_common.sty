@@ -16,9 +16,17 @@
 % =====================
 
 \usepackage[finnish,english]{babel}\selectlanguage{english}
-
 \usepackage[utf8x]{inputenc}
-
+% Use 'microtype' package for better appearance (especially for non-song chapters):
+%   activate={true,nocompatibility} - activate protrusion and expansion
+%   final - enable microtype; use "draft" to disable
+%   tracking=true, kerning=true - activate these techniques
+%   spacing=false - no interword spacing for compatibility with ragged2e,
+%                   \nonfrenchspacing etc.
+%   factor=1100 - add 10% to the protrusion amount (default is 1000)
+%   stretch=10, shrink=10 - reduce stretchability/shrinkability (default is 20/20)
+%   Affected fonts are defined later with \DefineMicrotypeSetDefault
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=false,factor=1100,stretch=10,shrink=10]{microtype}
 % Font weight defaults for Noto are regular and bold; here they are made heavier.
 % Do not use font scaling as it messes with line spacing in some cases.
 \usepackage[medium,extrabold]{noto}
@@ -58,6 +66,12 @@
 \providecommand\mainbooktitle{Unilaiva songbook} % the main title
 % Full title, containing possible part information:
 \providecommand{\thisbooktitle}{\mainbooktitle} %
+
+% microtype: enable all microtype features (except tracking) for more fonts than in
+% the defaults:
+\DeclareMicrotypeSet{mosttext}{encoding={OT1,T1,T2A,LY1,OT4,QX,T5,TS1,EU1,EU2,TU},
+                               size={scriptsize-Large}}
+\DeclareMicrotypeSetDefault[protrusion,kerning,spacing,expansion]{mosttext}
 
 % hyperref: setup
 \hypersetup{linkbordercolor=0.5 0.9 0.6,unicode=true,pdftitle=\thisbooktitle}
