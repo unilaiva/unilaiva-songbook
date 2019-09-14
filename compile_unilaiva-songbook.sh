@@ -135,8 +135,8 @@ compile_document() {
     which "context" >"/dev/null"
     if [ $? -eq 0 ]; then
       echo "EXEC [${document_basename}]: context (create printouts)"
-      context "../../tex/printout_${document_basename}_A5_on_A4_doublesided_folded.context" 1>"out-7_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
-      context "../../tex/printout_${document_basename}_A5_on_A4_sidebyside_simple.context" 1>"out-8_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
+      context "../../tex/printout_${document_basename}_A5_on_A4_doublesided_folded.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
+      context "../../tex/printout_${document_basename}_A5_on_A4_sidebyside_simple.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
       printouts_created="true"
       cp printout*.pdf "../../" || die $? "Error copying printout PDFs from temporary directory! Aborted."
     else
