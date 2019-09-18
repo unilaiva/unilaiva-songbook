@@ -11,6 +11,9 @@
 
 \ProvidesPackage{unilaiva-songbook_common}
 
+% Ensure output PDF to be of version 1.5; this is required for some features
+\pdfminorversion=5
+
 
 % BEGIN PACKAGE IMPORTS
 % =====================
@@ -31,7 +34,12 @@
 % Do not use font scaling as it messes with line spacing in some cases.
 \usepackage[medium,extrabold]{noto}
 \usepackage[T1]{fontenc}
-\usepackage[bookmarks,unicode]{hyperref} % used by 'songs' package for index links in PDF
+% hyperref is used for URL links and by 'songs' package for index links in PDF.
+% Option ocgcolorlinks colors the links instead of setting a box around them. These colours
+% are displayed only in digital PDF, not in printed document. To enable these colors in
+% print too, change the option to 'colorlinks'. The actual colors are defined further below.
+% ocgcolorlinks requires PDF version 1.5, which is automatically set for pdftex
+\usepackage[bookmarks,unicode,ocgcolorlinks]{hyperref} % used by 'songs' package for index links in PDF
 % NOTE: * In versions before 2018-5-10 we used inner=20mm,outer=10mm,tmargin=16mm,bmargin=10mm,
 %         but now the Golden Ratio rules. Old versions (before fancyheader) also used
 %         headsep=5mm,headheight=3.5mm, but the result is about the same now.
@@ -73,9 +81,6 @@
                                size={scriptsize-Large}}
 \DeclareMicrotypeSetDefault[protrusion,kerning,spacing,expansion]{mosttext}
 
-% hyperref: setup
-\hypersetup{linkbordercolor=0.5 0.9 0.6,unicode=true,pdftitle=\thisbooktitle}
-
 \renewcommand{\familydefault}{\sfdefault} % Sets sans-serif as the default font family everywhere
 
 % Allow further emergency stretching to fix some "overfull hbox" situations.
@@ -88,6 +93,12 @@
 \definecolor{mbarcolor}{rgb}{0.6,0.45,0.8} % color: use this for measure bar, was lighter: {0.8,0.7,0.9}
 \definecolor{melodynotecolor}{rgb}{0.0,0.32,0.38} % color: use this for the encircled melody notes
 \definecolor{verylightgray}{rgb}{0.92,0.92,0.92} % color: use this for song number bg & textnote bg (lighter gray)
+\definecolor{internallinkcolor}{rgb}{0 0 0.4} % color: color used for internal links (non-print PDF only)
+\definecolor{urllinkcolor}{rgb}{0.4 0 0.4} % color: color used for external links (non-print PDF only)
+\definecolor{linkboxcolor}{rgb}{0.5,0.9,0.6} % color: color used for boxed links (non-print PDF only)
+
+% hyperref: setup
+\hypersetup{linkbordercolor=linkboxcolor,linkcolor=internallinkcolor,urlcolor=urllinkcolor,unicode=true,pdftitle=\thisbooktitle}
 
 \renewcommand{\snumbgcolor}{verylightgray} % songs: song number (in prelude) background color
 \renewcommand{\notebgcolor}{verylightgray} % songs: \musicnote and \textnote background color
