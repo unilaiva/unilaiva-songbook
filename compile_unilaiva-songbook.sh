@@ -231,12 +231,10 @@ if [ ${parallel} = "true" ]; then # compile documents in parallel mode
   [ ${partialbooks} = "true" ] && compile_document "${PART2_FILENAME_BASE}" &
   pid_part2=$!
   wait # wait for sub processes to end
-else
-  compile_document "${MAIN_FILENAME_BASE}" # compile documents in sequential mode
-  echo ""
-  [ ${partialbooks} = "true" ] && compile_document "${PART1_FILENAME_BASE}"
-  echo ""
-  [ ${partialbooks} = "true" ] && compile_document "${PART2_FILENAME_BASE}"
+else # compile documents in sequential mode
+  compile_document "${MAIN_FILENAME_BASE}"
+  [ ${partialbooks} = "true" ] && echo "" && compile_document "${PART1_FILENAME_BASE}"
+  [ ${partialbooks} = "true" ] && echo "" && compile_document "${PART2_FILENAME_BASE}"
 fi
 
 echo ""
