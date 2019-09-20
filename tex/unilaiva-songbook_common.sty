@@ -698,23 +698,38 @@
   }
 \fi%
 
-% The following rewrite adds one line to make the vertical chorus bar a bit shorter, so
-% that choruses can be used as repeats with \glueverses.
+% The following rewrite shortens the vertical line displayed on the left side of choruses.
+% This is done to accomodate using choruses as repeats with \glueverses. The \ifSB@chorustop
+% blocks commented with 'added by larva' are added.
+\newlength{\cbstartadj}% larva: will hold chorus line's top y coordinate adjustment value
+\newlength{\cbendadj}% larva: will hold chorus line's bottom y coordinate adjustment value
 \renewcommand\SB@chorusbar[1]{%
   \ifdim\cbarwidth>\z@%
     \SB@dimen\ht#1%
     \SB@dimenii\dp#1%
     \advance\SB@dimen%
       \ifSB@chorustop\ifchorded\else2\fi\fi\SB@dimenii%
-    \advance\SB@dimen-.8\SB@dimenii% % this line added to shorten the chorus bar
+    \ifSB@chorustop% added by larva
+      \setlength{\cbstartadj}{.15em}%  top y, set value to push it down
+      \setlength{\cbendadj}{-.8\SB@dimenii}% bottom y, set value to rise it by a factor of depth
+      \addtolength{\SB@skip}{-\cbstartadj}% top y
+      \addtolength{\SB@dimen}{-\cbstartadj}% fix bottom y to reflect top y adjustment
+      \addtolength{\SB@dimen}{\cbendadj}% bottom y, adjust
+    \fi%
     \SB@skip\SB@dimen\relax%
     \SB@computess\SB@skip1\@plus#1%
     \SB@computess\SB@skip{-1}\@minus#1%
     \nointerlineskip\null\nobreak%
+    \ifSB@chorustop% added by larva
+      \vskip\cbstartadj% top y, push line start down
+    \fi%
     \leaders\vrule\@width\cbarwidth\vskip\SB@skip%
     \ifSB@chorustop\ifchorded\else%
       \advance\SB@skip-\SB@dimenii%
     \fi\fi%
+    \ifSB@chorustop% added by larva
+      \addtolength{\SB@skip}{\cbstartadj}% top y, reset \SB@skip to it's earliel value
+    \fi%
     \nobreak\vskip-\SB@skip%
   \fi%
 }
