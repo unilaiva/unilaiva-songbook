@@ -727,6 +727,23 @@
   \fi%
 }
 
+% This rewrite ensures that empty pages created with \cleardoublepage, like the
+% empty pages at the end of chapters, do not have headers.
+\renewcommand*{\cleardoublepage}{
+  \clearpage%
+  \if@twoside%
+    \ifodd\c@page%
+    \else%
+      \hbox{}%
+      \thispagestyle{empty}%
+      \newpage%
+      \if@twocolumn%
+        \hbox{}\newpage%
+      \fi
+    \fi
+  \fi
+}
+
 \makeatother% let @ become something ...tooootally else!
 
 % END DEFINITIONS AND REWRITES
