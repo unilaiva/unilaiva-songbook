@@ -729,7 +729,7 @@
 
 % This rewrite ensures that empty pages created with \cleardoublepage, like the
 % empty pages at the end of chapters, do not have headers.
-\renewcommand*{\cleardoublepage}{
+\renewcommand*{\cleardoublepage}{%
   \clearpage%
   \if@twoside%
     \ifodd\c@page%
@@ -739,9 +739,9 @@
       \newpage%
       \if@twocolumn%
         \hbox{}\newpage%
-      \fi
-    \fi
-  \fi
+      \fi%
+    \fi%
+  \fi%
 }
 
 \makeatother% let @ become something ...tooootally else!
