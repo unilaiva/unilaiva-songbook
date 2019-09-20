@@ -153,6 +153,14 @@
 \renewcommand{\headrulewidth}{0pt}
 % END setup headers using fancyhdr
 
+% songs: set penalties for column (page) breaks:
+\vvpenalty=200  % between verse and verse
+\vcpenalty=200  % between verse and chorus
+\ccpenalty=200  % between chorus and chorus
+\cvpenalty=200  % between chorus and verse
+\brkpenalty=100 % \brk
+\interlinepenalty=1000 % between lines within a chorus/verse
+
 % Comment the following line out if you don't want extra info shown in song preludes.
 % Define it for a song by adding ex= parameter to \beginsong
 % It can be used to for example indicate the origins or a language of a song.
