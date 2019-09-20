@@ -200,6 +200,8 @@
 % BEGIN DEFINITIONS AND REWRITES
 % ==============================
 
+\makeatletter% To allow rewrites of @-containing macros
+
 % This command creates the second page at where it is called. This is supposed
 % to be the odd verso page right after the cover.
 % Parameters: 1) subtitle, 2) subsubtitle. Parameters can be left empty.
@@ -452,8 +454,6 @@
 
 \newcommand{\taglist}{}% defined below for each song
 
-\makeatletter%
-
 \newsongkey{tags}{\def\taglist{}\def\SB@rawrefs{}\gdef\songrefs{}}%
                  {\def\taglist{\StrSubstitute{#1}{ 1}{}\par}% xstring: Show only tag name, remove ' 1'
                   \def\SB@rawrefs{#1}\SB@parsesrefs{#1}}
@@ -481,8 +481,6 @@
   \SB@displayindex%
 }
 
-\makeatother%
-
 % END PRELUDE/TAGS
 
 
@@ -490,7 +488,6 @@
 % some of the new song keyvals introduced above. \showrefs is removed,
 % because we use the scripture references as tags and they are displayed
 % with \taglist.
-\makeatletter%
 \renewcommand{\extendprelude}{%
   \ifdefined\showtaglist%   following is similar to \showauthors
     {\setbox\SB@box\hbox{\hfill\textit{\taglist}}%
@@ -502,11 +499,9 @@
     {\extrainfo}%
   \fi%
 }
-\makeatother
 
 % Redefine the song prelude display. Only one line is modified (see comment)
 % to show the phase list on the same line with the main title.
-\makeatletter
 \renewcommand\makeprelude{
   \resettitles%
   \ifslides%
@@ -570,13 +565,11 @@
     \fi%
   \fi%
 }
-\makeatother
 
 % END PRELUDE
 
 % The following rewrite of the \SB@@@beginsong command adds songs to the basic TOC also.
 % Changes: lines between and including the first and last '\hypersetup' commands were added.
-\makeatletter
 \renewcommand\SB@@@beginsong{%
   \global\SB@stanzafalse%
   \setbox\SB@chorusbox\box\voidb@x%
@@ -734,7 +727,7 @@
   \fi%
 }
 
-\makeatother
+\makeatother% let @ become something ...tooootally else!
 
 % END DEFINITIONS AND REWRITES
 
