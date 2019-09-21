@@ -275,12 +275,7 @@
   \thispagestyle{empty} % to omit the page number in the bottom
   \ifx&#1&% parameter #1 is empty (the optional one, given inside [])
   \else % parameter #1 is not empty, display image
-    \begin{center}%
-      \vspace*{\fill}%
-      % 0.618 (Golden Ratio)
-      \includegraphics[width=0.618\textwidth]{#1}%
-      \vspace*{\fill}%
-    \end{center}%
+    \imagecc[1]{#1}%
   \fi
   \clearpage
 }
@@ -345,6 +340,7 @@
   \endverse
 }
 
+
 % Just prints a dash if measure bar lines are enabled and does nothing otherwise.
 % Use this if a line would end at a new measure starting without any lyrics in that
 % bar on the same line. This signifies that there indeed is a measure here. them
@@ -352,6 +348,71 @@
 % an abbreviation for "Empty" or "End". :)
 \newcommand{\e}{\ifmeasures--\fi}
 
+% BEGIN IMAGES
+
+% \image?? macros include an image here. It is scaled so that it's width is
+% a power of golden ratio conjugate of \linewidth. The optional parameter is
+% the power [0..7] and if not given, defaults to 1. Value 0 will scale the
+% image to maximum size, so it's width is \linewidth. The mandatory parameter
+% is the image file name without path. Put the image in content/img (or other
+% path specified by \graphicspath above).
+%
+%   - \imagel puts the image exactly at the current position
+%   - \imager pushes the image to the right
+%   - \ịmagec centers the image horizontally
+%   - \imagecc centers the image horizontally and vertically
+%   - \imagerc pushes the image to the right and centers it vertically
+%
+% Example: \imagecc[2]{nicepic.png}
+%   This scales the image width to 0.618034^2 * \linewidth and centers it both
+%   horizontally and vertically in the space available.
+
+\newcommand{\imagel}[2][1]{
+  \@setgrcwidth[#1]%
+  \includegraphics[width=\@grcwidth]{#2}%
+}
+
+\newcommand{\imager}[2][1]{
+  \hfill\imagel[#1]{#2}%
+}
+
+\newcommand{\imagec}[2][1]{
+  \begin{center}
+    \imagel[#1]{#2}
+  \end{center}
+}
+
+\newcommand{\imagecc}[2][1]{
+  \vspace*{\fill}%
+  \imagec[#1]{#2}
+  \vspace*{\fill}%
+}
+
+\newcommand{\imagerc}[2][1]{
+  \vspace*{\fill}%
+  \imager[#1]{#2}
+  \vspace*{\fill}%
+}
+
+\newdimen\@grcwidth % This is set by \setgrcwidth and used in \imagel
+
+% Sets \@grcwidth to hold a power of golden ratio conjugate (0.618034^n)
+% Optional parameter (given within []) is the exponent as integer in
+% [0..7] and if omitted, defaults to 1.
+% Used in \imagel.
+% (I know this is an idiotic way to produce these, but oh well -- LaTeX...)
+\newcommand{\@setgrcwidth}[1][1]{
+  \IfEq{#1}{0}{\setlength\@grcwidth{1\linewidth}}{}% 1
+  \IfEq{#1}{1}{\setlength\@grcwidth{.618034\linewidth}}{}% 0.618034
+  \IfEq{#1}{2}{\setlength\@grcwidth{.381966\linewidth}}{}% 0.618034^2
+  \IfEq{#1}{3}{\setlength\@grcwidth{.236067\linewidth}}{}% 0.618034^3
+  \IfEq{#1}{4}{\setlength\@grcwidth{.145898\linewidth}}{}% 0.618034^4
+  \IfEq{#1}{5}{\setlength\@grcwidth{.090169\linewidth}}{}% 0.618034^5
+  \IfEq{#1}{6}{\setlength\@grcwidth{.055728\linewidth}}{}% 0.618034^6
+  \IfEq{#1}{6}{\setlength\@grcwidth{.034441\linewidth}}{}% 0.618034^7
+}
+
+% END IMAGES
 
 % BEGIN MELODY NOTES
 
