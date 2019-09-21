@@ -81,14 +81,16 @@ compile_document() {
   [ -f "./compile_unilaiva-songbook.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
 
   # Clean old build:
-  rm -R "${temp_dirname_twolevels}" 2>"/dev/null" # Clean old build
-  mkdir -p "${temp_dirname_twolevels}" 2>"/dev/null" || die $? "Could not create the build directory ${temp_dirname_twolevels}. Aborted."
+  [ -d "${temp_dirname_twolevels}" ] && rm -R "${temp_dirname_twolevels}"/* 2>"/dev/null"
+  # Ensure the build directory exists:
+  mkdir -p "${temp_dirname_twolevels}" 2>"/dev/null"
+  [ -d "${temp_dirname_twolevels}" ] || die $? "Could not create the build directory ${temp_dirname_twolevels}. Aborted."
 
   echo "EXEC: [${document_basename}] lilypond (lilypond-book)"
 
   # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
   # the modified .tex files and the musical shaft images created by it to subdirectory ${temp_dirname_twolevels}.
-  # The directory is created if it doesn't exist.
+  # The directory (last level only) is created if it doesn't exist.
   lilypond-book -f latex --output "${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/out-1_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book! Aborted." "${temp_dirname_twolevels}/out-1_lilypond.log"
 
   # Enter the temp directory. (Do rest of the steps there.)
