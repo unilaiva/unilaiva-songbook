@@ -378,20 +378,24 @@
 
 \newcommand{\imagec}[2][1]{
   \begin{center}
-    \imagel[#1]{#2}
+    \imagel[#1]{#2}%
   \end{center}
 }
 
 \newcommand{\imagecc}[2][1]{
-  \vspace*{\fill}%
-  \imagec[#1]{#2}
-  \vspace*{\fill}%
+  \begin{center}
+    \vfill%
+    \imagel[#1]{#2}%
+    \vfill%
+  \end{center}
 }
 
 \newcommand{\imagerc}[2][1]{
-  \vspace*{\fill}%
-  \imager[#1]{#2}
-  \vspace*{\fill}%
+  \begin{center}
+    \vfill%
+    \imager[#1]{#2}%
+    \vfill%
+  \end{center}
 }
 
 \newdimen\@grcwidth % This is set by \setgrcwidth and used in \imagel
