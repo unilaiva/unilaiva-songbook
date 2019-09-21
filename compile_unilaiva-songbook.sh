@@ -70,6 +70,7 @@ compile_document() {
     echo "ERROR: [${document_basename}] $2"
     echo "\nDisplaying log file for ${document_basename}.tex: $3\n"
     cat "$3"
+    echo "\nAll build logs are in: ${temp_dirname_twolevels}/"
     die $1 "[${document_basename}] $2"
   }
 
@@ -168,6 +169,7 @@ compile_document() {
   fi
 
   echo "SUCCESS: [${document_basename}.pdf] Compilation succesful!"
+  echo "         Build logs are in: ${temp_dirname_twolevels}/"
 
 } # END compile_document()
 
