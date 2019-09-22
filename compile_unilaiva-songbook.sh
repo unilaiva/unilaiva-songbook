@@ -54,10 +54,16 @@ print_usage_and_exit() {
 die() {
   echo "\nERROR: $2" >&2
   cd "${initial_dir}"
-  # Kill sub-processes:
+  which "pkill" >"/dev/null"
+  if [ $? -eq 0 ]; then # If pkill is available, kill children of main sub-processes
+    [ ${pid_main} != 0 ] && pkill --signal 9 -P ${pid_main} >/dev/null 2>&1
+    [ ${pid_part1} != 0 ] && pkill --signal 9 -P ${pid_part1} >/dev/null 2>&1
+    [ ${pid_part2} != 0 ] && pkill --signal 9 -P ${pid_part2} >/dev/null 2>&1
+  fi
+  # Kill main sub-processes:
   [ ${pid_main} != 0 ] && kill -9 ${pid_main} >/dev/null 2>&1
-  [ ${pid_main} != 0 ] && kill -9 ${pid_part1} >/dev/null 2>&1
-  [ ${pid_main} != 0 ] && kill -9 ${pid_part2} >/dev/null 2>&1
+  [ ${pid_part1} != 0 ] && kill -9 ${pid_part1} >/dev/null 2>&1
+  [ ${pid_part2} != 0 ] && kill -9 ${pid_part2} >/dev/null 2>&1
   exit $1
 }
 
@@ -227,19 +233,15 @@ echo "Compiling Unilaiva songbook..."
 echo ""
 
 # Compile the documents (defined at the top of this file):
-if [ ${parallel} = "true" ]; then # compile documents in parallel mode
-  compile_document "${MAIN_FILENAME_BASE}" &
-  pid_main=$!
-  [ ${partialbooks} = "true" ] && compile_document "${PART1_FILENAME_BASE}" &
-  pid_part1=$!
-  [ ${partialbooks} = "true" ] && compile_document "${PART2_FILENAME_BASE}" &
-  pid_part2=$!
-  wait # wait for sub processes to end
-else # compile documents in sequential mode
-  compile_document "${MAIN_FILENAME_BASE}"
-  [ ${partialbooks} = "true" ] && echo "" && compile_document "${PART1_FILENAME_BASE}"
-  [ ${partialbooks} = "true" ] && echo "" && compile_document "${PART2_FILENAME_BASE}"
-fi
+compile_document "${MAIN_FILENAME_BASE}" &
+pid_main=$!
+[ ${parallel} = "false" ] && wait && pid_main=0 && echo ""
+[ ${partialbooks} = "true" ] && compile_document "${PART1_FILENAME_BASE}" &
+pid_part1=$!
+[ ${parallel} = "false" ] && wait && pid_part1=0 && echo ""
+[ ${partialbooks} = "true" ] && compile_document "${PART2_FILENAME_BASE}" &
+pid_part2=$!
+wait # wait for sub processes to end
 
 echo ""
 echo "SUCCESS: Complete!"
