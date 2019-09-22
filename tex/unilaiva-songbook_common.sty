@@ -253,7 +253,8 @@
       \Large \textbf{humankind}\\
       \vspace{1em}
       \large Version:\\
-      \Large \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day\hspace{0.34em}$\beta$
+      \Large \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day\hspace{0.34em}$\beta$%
+      \ifchorded\else{\\\emph{(without chords)}}\fi% if non-chorded version, mention it here
       \\
       \vspace*{\fill}
       % Created with: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
