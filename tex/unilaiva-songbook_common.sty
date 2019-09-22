@@ -206,26 +206,16 @@
 % *****************************************************************************
 
 
-% BEGIN WORKAROUNDS
-% =================
+% BEGIN DEFINITIONS AND REWRITES
+% ==============================
+
+\makeatletter% To allow rewrites of @-containing macros
 
 % This is to work around a problem that only appears in the Samskrtam chapter's page headers
 % strangely in the main non-two-booklet version only:
 % "[PLEASEINSERT\PRERENDERUNICODE{}INTOPREAMBLE]"
 \PrerenderUnicode{ṃ}%\PrerenderUnicode{Ṃ}
 \PrerenderUnicode{ṛ}%\PrerenderUnicode{Ṛ}
-
-
-% END WORKAROUNDS
-
-
-% *****************************************************************************
-
-
-% BEGIN DEFINITIONS AND REWRITES
-% ==============================
-
-\makeatletter% To allow rewrites of @-containing macros
 
 % This command creates the second page at where it is called. This is supposed
 % to be the odd verso page right after the cover.
