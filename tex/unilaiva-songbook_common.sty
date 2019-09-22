@@ -315,6 +315,30 @@
 % an abbreviation for "Empty" or "End". :)
 \newcommand{\e}{\ifmeasures--\fi}
 
+% Simply a shortened form for \textsuperscript
+\newcommand{\up}[1]{
+  \textsuperscript{#1}%
+}
+
+% Display alternate lyrics, but without any vertical or horizontal space. Is called
+% from \altlyr
+\newcommand{\altlyrnospace}[2][*]{
+  {\small\up{#1}\emph{#2}}%
+}
+
+% Display alternate lyrics. If inside a verse or chorus, show them on the same line
+% (pushed to the right), otherwise include a small vertical space before.
+% Usage \altlyr[<superscript>]{<lyrics>}
+% If the optional argument is omitted, it will be replaced with an asterisk.
+% Example: \altlyr[2]{with love}
+\newcommand{\altlyr}[2][*]{
+  % Add vertical space if not inside a verse or chorus
+  \ifSB@inverse{}\else{\vspace{.5em}}\fi%
+  \ifSB@inchorus{}\else{\vspace{.5em}}\fi%
+  \hfill%
+  \altlyrnospace[#1]{#2}%
+}
+
 % BEGIN ENDSONG VFILL
 
 \newcounter{@endsongvfillneeded}% counter to hold info about needing vfill at end
