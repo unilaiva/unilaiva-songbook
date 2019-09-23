@@ -57,6 +57,7 @@
 \usepackage{ragged2e} % used to force text justification in 'explanation' env
 \usepackage{enumitem} % used to modify 'description' env within 'explanation' env
 \usepackage{xstring} % used for string manipulation in \newsongkey{tags}
+\usepackage{etextools} %
 \usepackage{fancyhdr} % for customizing headers
 
 % The most important 'songs' package, use the version in the project tree:
@@ -319,13 +320,13 @@
 \newcommand{\e}{\ifmeasures--\fi}
 
 % Simply a shortened form for \textsuperscript
-\newcommand{\up}[1]{
+\newcommand{\up}[1]{%
   \textsuperscript{#1}%
 }
 
 % Display alternate lyrics, but without any vertical or horizontal space. Is called
 % from \altlyr
-\newcommand{\altlyrnospace}[2][*]{
+\newcommand{\altlyrnospace}[2][*]{%
   {\small\up{#1}\emph{#2}}%
 }
 
@@ -334,7 +335,7 @@
 % Usage \altlyr[<superscript>]{<lyrics>}
 % If the optional argument is omitted, it will be replaced with an asterisk.
 % Example: \altlyr[2]{with love}
-\newcommand{\altlyr}[2][*]{
+\newcommand{\altlyr}[2][*]{%
   % Add vertical space if not inside a verse or chorus
   \ifSB@inverse{}\else{\vspace{.5em}}\fi%
   \ifSB@inchorus{}\else{\vspace{.5em}}\fi%
@@ -359,7 +360,7 @@
 \newcommand{\yesendsongvfill}{%
   \ifSB@insong%
     \setcounter{@endsongvfillneeded}{1}%
-  \fi
+  \fi%
 }
 
 \yesendsongvfill% Start with this default
@@ -441,13 +442,13 @@
 
 % This is called in the beginning of each insong-block: translation, showmantra,
 % feeler and explanation.
-\newcommand{\@blockstart}{
+\newcommand{\@blockstart}{%
   \vspace{1em}\vfill%
 }
 
 % Displays the parameter text centered in a large font. Use within songs, but outside
 % verses. Intended to be used for short mantras for recitation.
-\newcommand{\showmantra}[1]{
+\newcommand{\showmantra}[1]{%
   \yesendsongvfill%
   \@blockstart%
   \begin{center}%
@@ -456,7 +457,7 @@
 }
 
 % environment for 'song feeler'
-\newenvironment{feeler}{
+\newenvironment{feeler}{%
   \yesendsongvfill%
   \@blockstart%
   \small%
@@ -468,10 +469,10 @@
 }
 
 % environment for song translation, to be used only inside a song
-\newenvironment{translation}{
+\newenvironment{translation}{%
   \yesendsongvfill%
   \newcommand{\nextverse}{\vspace{.5em}} % some vertical space between verses
-  \beginverse*
+  \beginverse*%
     \@blockstart%
     \chordsoff%
     \small%
@@ -480,7 +481,7 @@
 }
 
 % environment for 'song explanation'
-\newenvironment{explanation}{
+\newenvironment{explanation}{%
   \noendsongvfill% so far explanation is last: no vfill needed at song end
   \@blockstart%
   \setlist[description]{% modify description list (enumitem package)
@@ -488,11 +489,11 @@
     %itemsep=5pt,%      % space between items
     font={\rmfamily}%   % set the label font
   }
-  \justifying % ragged2e package: force justifying
+  \justifying% ragged2e package: force justifying
   \rmfamily\footnotesize%
   \par\noindent\ignorespaces%
-}{
-  \par\noindent\ignorespacesafterend
+}{%
+  \par\noindent\ignorespacesafterend%
 }
 
 % END IN-SONG BLOCKS
@@ -519,46 +520,46 @@
 %   This scales the image width to 0.618034^2 * \linewidth and centers it both
 %   horizontally and vertically in the space available.
 
-\newcommand{\imagel}[2][1]{
+\newcommand{\imagel}[2][1]{%
   \@setgrcwidth[#1]%
   \includegraphics[width=\@grcwidth]{#2}%
 }
 
-\newcommand{\imager}[2][1]{
+\newcommand{\imager}[2][1]{%
   \hfill\imagel[#1]{#2}%
 }
 
-\newcommand{\imagec}[2][1]{
-  \begin{center}
+\newcommand{\imagec}[2][1]{%
+  \begin{center}%
     \imagel[#1]{#2}%
-  \end{center}
+  \end{center}%
 }
 
-\newcommand{\imagecc}[2][1]{
-  \begin{center}
+\newcommand{\imagecc}[2][1]{%
+  \begin{center}%
     \ifSB@insong\@blockstart\else\vfill\fi%
     \imagel[#1]{#2}%
     \ifSB@insong\yesendsongvfill\else\vfill\fi%
-  \end{center}
+  \end{center}%
 }
 
-\newcommand{\imagecb}[2][1]{
-  \begin{center}
+\newcommand{\imagecb}[2][1]{%
+  \begin{center}%
     \ifSB@insong\@blockstart\else\vfill\fi%
     \imagel[#1]{#2}%
     \noendsongvfill%
-  \end{center}
+  \end{center}%
 }
 
-\newcommand{\imagerc}[2][1]{
-  \begin{center}
+\newcommand{\imagerc}[2][1]{%
+  \begin{center}%
     \ifSB@insong\@blockstart\else\vfill\fi%
     \imager[#1]{#2}%
     \ifSB@insong\yesendsongvfill\else\vfill\fi%
-  \end{center}
+  \end{center}%
 }
 
-\newcommand{\imagerb}[2][1]{
+\newcommand{\imagerb}[2][1]{%
   \ifSB@insong\@blockstart\else\vfill\fi%
   \imager[#1]{#2}%
   \noendsongvfill%
@@ -571,7 +572,7 @@
 % [0..7] and if omitted, defaults to 1.
 % Used in \imagel.
 % (I know this is an idiotic way to produce these, but oh well -- LaTeX...)
-\newcommand{\@setgrcwidth}[1][1]{
+\newcommand{\@setgrcwidth}[1][1]{%
   \IfEq{#1}{0}{\setlength\@grcwidth{1\linewidth}}{}% 1
   \IfEq{#1}{1}{\setlength\@grcwidth{.618034\linewidth}}{}% 0.618034
   \IfEq{#1}{2}{\setlength\@grcwidth{.381966\linewidth}}{}% 0.618034^2
@@ -588,79 +589,134 @@
 
 % MELODY NOTES feature
 %
-% These \note<something> commands display an encircled note name hint. They
-% are meant to display (sung) melody notes above the lyrics. The commands
-% must be called from within a chord definition. For example: \[\note{A}]
-% The note must be written as upper case for transposing to work, even though
-% the result is actually presented in lower case.
+% The \mmn??? commands display an encircled note name hint above the chord
+% line. They are meant to display (sung) melody notes above the lyrics. The
+% commands must be called from within a chord definition. The note name must
+% be written as upper case for transposing to work, even though the result
+% is actually presented in lower case.
 %
 % To disable showing of the notes for the whole document, set \showmelodyfalse
 % in the main document preamble (after including this package).
 %
 % Call \notesoff command between verses to disable showing of notes in the
-% following verses of the songbook
+% following verses of the song.
 %
 % The recommended use for this feature is to display the first sung non-unison
 % melody interval of each song. So just specify the first two melody notes and
 % use \notesoff after the first verse.
 %
-% If in doubt of which of these macros to use, use the \note macro.
+% Choose the correct command:
+%
+%   \mn{<note>}                     : on verse's first line
+%   \mnc{<note>}                    : on verse's first line, above a chord
+%   \mncii{<note>}{<note>}          : on first line, 2 notes, above a chord
+%   \mnciii{<note>}{<note>}{<note>} : on first line, 3 notes, above a chord
+%   \mnlow{<notename>}              : on other lines of a verse
+%
+% Use \mn, \mnc, \mncii or \mnciii to display notes on the first line of lyrics
+% (elsewhere they would push the lyric lines apart). Use \mn if the note is not
+% to be displayed at the exact same horizontal spot as a chord, and use \mnc to
+% display a note and a chord on top of each other: in that case you must put
+% the chord immediately after the \mnc command within the same chord definition
+% brackets.
+%
+% \mncii and \mnciii are really two and three note extensions of \mnc: with
+% them one can put two or three notes on top of one chord. They are also meant
+% to be used only on the first line of lyrics in a verse.
+%
+% \mnlow doesn't put the note so high above the chord line, so use it on other
+% than the first line of lyrics with the caveat, that chords and notes are put
+% beside each other.
+%
+% Example usage:
+%
+%   \[\mnc{A}Am]Love is \[\mn{E}]great
+%   and \[\mnlow{D#}]food tastes \[\mnlow{A}]good
+%
+%   \[\mncii{C}{A}{F}Fmaj7]Tralalaa
 
-% Displays encircled note name;
-%   Parameter 1: the note name
-%   Parameter 2: X coordinate offset (can be negative)
-%   Parameter 3: Y coordinate offset (can be negative)
-\newcommand{\noteDELTAXY}[3]{%
+% Will hold the width of the melody note circle:
+\newdimen{\@mncirclewidth}
+
+% Calculates the width encircled melody note. Note that if style in
+% \@note changes, so must it here.
+\newcommand{\@calcmncirclewidth}{%
+  \settowidth{\@mncirclewidth}{\textmd{\footnotesize\textcircled{}}}%
+}
+
+% If true, negative space will be applied after displaying the note:
+\newif\if@mnnegspace\@mnnegspacefalse
+
+% Outputs an encircled melody note, internal
+%   - optional parameter: rise the note above text (chord line) by this amount,
+%                         defaults to 1em
+%   - mandatory parameter: the note, must be in upper case
+%   * Example usage: \@note[0.5em]{C#}
+%   * Note that if the style here changes, so must it in @calcmncirclewidth
+\newcommand{\@note}[2][1em]{%
   \ifshowmelody%
     \ifdefined\@melodynotesdisabled%
     \else%
-      % Use the real sharp symbol instead of #, because it fits better within a circle:
+      % Use the real sharp symbol, because it fits better within a circle:
       \renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
       \notenamesout abcdefg%
-      \hspace{#2}\raisebox{#3}{\textmd{\color{melodynotecolor}\footnotesize\textcircled{\tiny\transposehere{#1}}}}%
+      \raisebox{#1}{\textmd{%
+        \color{melodynotecolor}%
+        \footnotesize%
+        \textcircled{\tiny\transposehere{#2}}% % Show the note transposed and encircled
+        \if@mnnegspace%
+          \@calcmncirclewidth% % Calculate the width...
+          \hspace{-\@mncirclewidth}% % ...to go left
+        \fi%
+      }}%
     \fi%
   \fi%
 }
-% Displays encircled note name (parameter 1). This is the default and can be used
-% anywhere. USE THIS ONE if uncertain!
-\newcommand{\note}[1]{%
-  \noteDELTAXY{#1}{0em}{0.4em}%
-}
-% Displays encircled note name (parameter 1). The circle is moved up.
-% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE.
-% Use this when there is no chord in the same chord block.
-\newcommand{\noteU}[1]{%
-  \noteDELTAXY{#1}{0em}{1.00em}%
-}
-% Displays encircled note name (parameter 1). The circle is moved up and left.
-% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE.
-% Use this when there is a one letter chord name on the same chord block,
-% a major triad.
-\newcommand{\noteUL}[1]{%
-  \noteDELTAXY{#1}{-0.6em}{1.00em}%
-}
-% Displays encircled note name (parameter 1). The circle is moved up and left.
-% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE.
-% Use this when there is a longer than one letter chord name on the same
-% chord block.
-\newcommand{\noteULL}[1]{%
-  \noteDELTAXY{#1}{-1.56em}{1.00em}%
-}
-% Displays encircled note name (parameter 1). The circle is moved up.
-% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE,
-% with custom X coordinate offset (parameter 2, can be negative).
-\newcommand{\noteUDELTAX}[2]{%
-  \noteDELTAXY{#1}{#2}{1.00em}%
+
+% Displays a melody note, to be used on the first line of lyrics.
+% See above for usage information.
+\newcommand{\mn}[1]{%
+  \@mnnegspacefalse\@note{#1}%
 }
 
-% Displays encircled note name (parameter 1). The circle is moved up.
-% This version is meant to be used ONLY ON THE FIRST LINE OF A VERSE,
-% with custom X coordinate offset (parameter 2, can be negative). Space
-% is added after the note to ensure that the next chord will be
-% displayed at the correct X coordinate. Note that this is not to be
-% used when two or more notes are displayed within the same chord.
-\newcommand{\noteUDELTAXspace}[2]{%
-  \noteUDELTAX{#1}{#2}\hspace{-#2}%
+% Displays a melody note above a chord, to be used on the first line of lyrics.
+% See above for usage information.
+\newcommand{\mnc}[1]{%
+  \@mnnegspacetrue\@note{#1}%
+}
+
+% Displays three melody notes above a chord, to be used on the first line of
+% lyrics. See above for usage information.
+\newcommand{\mncii}[2]{%
+  \ifshowmelody%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \@mnnegspacefalse%
+      \@note{#1}\@note{#2}%
+      \@calcmncirclewidth%
+      \hspace{-2\@mncirclewidth}%
+    \fi%
+  \fi%
+}
+
+% Displays two melody notes above a chord, to be used on the first line of
+% lyrics. See above for usage information.
+\newcommand{\mnciii}[3]{%
+  \ifshowmelody%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \@mnnegspacefalse%
+      \@note{#1}\@note{#2}\@note{#3}%
+      \@calcmncirclewidth%
+      \hspace{-3\@mncirclewidth}%
+    \fi%
+  \fi%
+}
+
+% Displays a melody note, to be used on other than the first line of lyrics.
+% See above for usage information.
+\newcommand{\mnlow}[1]{%
+  \@mnnegspacefalse\@note[0.4em]{#1}%
 }
 
 % \noteson and \notesoff commands can be used between verses to turn displaying
