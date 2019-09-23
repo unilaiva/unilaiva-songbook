@@ -292,11 +292,17 @@
   \clearpage%
 }
 
+\newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{→ #1\ldots}}}}
+
 % This command will display some text followed by three dots,
 % and aligned to the right of the page. The idea is to use it as a signal to go to
 % a different part of the song, for example the chorus. You can use it within the
 % last verse or between verses (in such a case it will be put on its own line).
-\newcommand{\gotochorus}[1]{\hfill {\normalsize\textit{\bfseries{→ #1\ldots}}}\par}
+\newcommand{\gotochorus}[1]{\hfill\@gtctext{#1}\par}
+
+\newcommand{\gotochorusii}[2]{\hfill\@gtctext{#1} \@gtctext{#2}\par}
+\newcommand{\gotochorusiii}[3]{\hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3}\par}
+
 
 % This command will make a small horizontal space. Use this for example in the
 % beginning of chorus lines, if you wish the chorus to stand out visually.
