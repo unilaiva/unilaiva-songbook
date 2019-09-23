@@ -314,21 +314,21 @@
 \newcommand{\gotochorusiv}[4]{%
   \vspace{1em}\hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3} \@gtctext{#4}\par%
 }
-% Used by \gotochorus?? commands
+% Used by \gotochorus?? commands:
 \newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{→ #1\ldots}}}}
 
 % This command will make a small horizontal space. Use this for example in the
 % beginning of chorus lines, if you wish the chorus to stand out visually.
 \newcommand{\chorusindent}{\hspace{1em}}
 
-% Make \versesepnostretch a dimension, to hold verse separation without
-% stretch components, for use with \glueverses.
-\newdimen\versesepnostretch\setlength\versesepnostretch{\versesep}
+% Make \versesepnostretch a dimension (instead of a length) to hold verse
+% separation without stretch components, for use with \glueverses.
+\newdimen\@versesepnostretch\setlength\@versesepnostretch{\versesep}
 
 % "Glues" consecutive verses together: removes the vertical space between them.
 % This is to be used between verses/choruses. Note that it doesn't actually glue
 % anything: page or column brake might be put between verses with this.
-\newcommand{\glueverses}{\vspace{-\versesepnostretch}}
+\newcommand{\glueverses}{\vspace{-\@versesepnostretch}}
 
 % Just prints a dash if measure bar lines are enabled and does nothing otherwise.
 % Use this if a line would end at a new measure starting without any lyrics in that
