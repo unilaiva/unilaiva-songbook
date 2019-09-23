@@ -292,17 +292,30 @@
   \clearpage%
 }
 
-\newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{→ #1\ldots}}}}
-
-% This command will display some text followed by three dots,
-% and aligned to the right of the page. The idea is to use it as a signal to go to
-% a different part of the song, for example the chorus. You can use it within the
-% last verse or between verses (in such a case it will be put on its own line).
+% These commands will display some text followed by three dots, and aligned to
+% the right of the page. The idea is to use it as a signal for the reader to
+% go to a different part of the song, for example the chorus. You can use it
+% on the last line of a verse or between verses (in such a case it will be put
+% on its own line). The only parameter is to be the first words of the lyrics
+% to go to.
+%
+% There are four versions of the command, each taking different number of
+% parameters. It is recommended to use the one-parameter version \gotochorus
+% and if needed, use it on consecutive lines to signal consecutive jumps.
+% But, if for space reasons it is deemed necessary, one can use the other
+% versions to squeeze more than one successive jump on one line.
 \newcommand{\gotochorus}[1]{\hfill\@gtctext{#1}\par}
-
-\newcommand{\gotochorusii}[2]{\hfill\@gtctext{#1} \@gtctext{#2}\par}
-\newcommand{\gotochorusiii}[3]{\hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3}\par}
-
+\newcommand{\gotochorusii}[2]{%
+  \vspace{1em}\hfill\@gtctext{#1} \@gtctext{#2}\par%
+}%
+\newcommand{\gotochorusiii}[3]{%
+  \vspace{1em}\hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3}\par%
+}
+\newcommand{\gotochorusiv}[4]{%
+  \vspace{1em}\hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3} \@gtctext{#4}\par%
+}
+% Used by \gotochorus?? commands
+\newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{→ #1\ldots}}}}
 
 % This command will make a small horizontal space. Use this for example in the
 % beginning of chorus lines, if you wish the chorus to stand out visually.
