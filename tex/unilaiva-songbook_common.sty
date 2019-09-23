@@ -179,26 +179,37 @@
 \brkpenalty=100 % \brk
 \interlinepenalty=1000 % between lines within a chorus/verse
 
-% Comment the following line out if you don't want extra info shown in song preludes.
-% Define it for a song by adding ex= parameter to \beginsong
-% It can be used to for example indicate the origins or a language of a song.
-\newcommand{\showextrainfo}{} % comment this line out if you don't want extra info shown (ex=?)
+% Introduce toggles for some global features and set their defaults. If you
+% want a specific feature enabled or disabled, you must set it's toggle to
+% true or false in the main document preamble (after including this package).
+% Example: \showtagsfalse would disable showing tags in song preludes, and
+%          \showtagstrue would enable showing them.
 
-% Comment the following line out if you don't want phase info shown in song preludes.
-% Define it for a song by adding ph= parameter to \beginsong
-\newcommand{\showphaselist}{} % comment this line out if you don't want phase info shown (ph=?)
-\newcommand{\showphaselistintoc}{} % comment this line out if you don't want phase info shown in TOC
+% Toggle for showing extra info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[ex={this song is good}]"
+\newif\ifshowex\showextrue
 
-% Comment the following line out if you don't want tag lists shown in song preludes
-% Define a list of tags for a song by adding tags= parameter to \beginsong
-% It is supposed to be a short list of single word tags of which an index is created.
-\newcommand{\showtaglist}{} % comment this line out if you don't want tag list shown (tags=?)
+% Toggle for showing phase info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[ph={I, II}]"
+\newif\ifshowph\showphtrue
 
-\newcommand{\showmelodynotes}{} % comment this line out if you don't want the encircled melody notes
+% Toggle for showing phase info in the TOC:
+\newif\ifshowphintoc\showphintoctrue
 
-% Comment the following line out if you don't want verse numbers shown. Choruses and verses are
-% aligned only when verse numbers are not shown.
-%\newcommand{\showversenumbers}{} % Suggestion: keep this one commented out!
+% Toggle for showing tags in song preludes. To set them for a song,
+% define them as \beginsong parameter: "\beginsong[tags={love 1, light 1}]"
+% Note the mandatory '1' (that will not be shown) and that the tags must be
+% defined in file 'tags.can' to use them.
+\newif\ifshowtags\showtagstrue
+
+% Toggle for showing melody notes in songs. To set them for a song, use the
+% \note??? macros inside chord definitions. To set them temporarily on or
+% off within a (part of a) song, use macros \notesoff and \noteson.
+\newif\ifshowmelody\showmelodytrue
+
+% Toggle for showing verse numbers. Suggestion: keep this as false!
+\newif\ifshowversenumbers\showversenumbersfalse
+
 
 
 % END STYLE & OTHER SETTINGS
@@ -429,7 +440,7 @@
 % BEGIN IN-SONG BLOCKS
 
 % This is called in the beginning of each insong-block: translation, showmantra,
-% feeler, image and explanation.
+% feeler and explanation.
 \newcommand{\@blockstart}{
   \vspace{1em}\vfill%
 }
@@ -583,12 +594,11 @@
 % The note must be written as upper case for transposing to work, even though
 % the result is actually presented in lower case.
 %
-% To enable displaying of the notes, define \newcommand{\showmelodynotes}{}
-% in the main document. To not display them, comment it out.
-% Also, \color{melodynotecolor} must be defined.
+% To disable showing of the notes for the whole document, set \showmelodyfalse
+% in the main document preamble (after including this package).
 %
 % Call \notesoff command between verses to disable showing of notes in the
-% following verses of the song.Unilaiva songbook
+% following verses of the songbook
 %
 % The recommended use for this feature is to display the first sung non-unison
 % melody interval of each song. So just specify the first two melody notes and
@@ -601,8 +611,8 @@
 %   Parameter 2: X coordinate offset (can be negative)
 %   Parameter 3: Y coordinate offset (can be negative)
 \newcommand{\noteDELTAXY}[3]{%
-  \ifdefined\showmelodynotes%
-    \ifdefined\melodynotesdisabled%
+  \ifshowmelody%
+    \ifdefined\@melodynotesdisabled%
     \else%
       % Use the real sharp symbol instead of #, because it fits better within a circle:
       \renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
@@ -653,39 +663,46 @@
   \noteUDELTAX{#1}{#2}\hspace{-#2}%
 }
 
-% \noteson and \notesoff commands can be used between verses to turn displaying the
-% melody notes on or off for the remaining of the current song or until another call
-% to either of the macros. The notes are never displayed, if \showmelodynotes is not
-% defined (in the main document).
-\newcommand{\notesoff}{\def\melodynotesdisabled{}}
-\newcommand{\noteson}{\let\melodynotesdisabled\undefined}
+% \noteson and \notesoff commands can be used between verses to turn displaying
+% the melody notes on or off for the remaining of the current song or until
+% another call to either of the macros. The notes are never displayed, if
+% \showmelodyfalse is set (in the main document).
+\newcommand{\notesoff}{\def\@melodynotesdisabled{}}
+\newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
 
 % END MELODY NOTES
 
 % BEGIN PRELUDE
 
-% Support for extra song information. To show these in song preludes,
-% define \newcommand{\showextrainfo}{} in the main document.
-% To define this for a song, use ex={} parameter for \beginsong
+% Support for extra song information. The extra information can be used for
+% example to contain information about song origins or language.
+% To disable displaying this extra info in the song preludes for the whole
+% document, set \showexfalse in the main document preamble (after including
+% this package).
+% To set this for a song, use the optional ex={} parameter for \beginsong.
 \newcommand{\extrainfo}{}
 \newsongkey{ex}{\def\extrainfo{}}
                {\def\extrainfo{#1\par}}
 
-% Support for phase hints for songs. To show these in song preludes,
-% define \newcommand{\showphaselist}{} in the main document.
-% To define this for a song, use ph={} parameter for \beginsong
+% Support for phase hints for songs.
+% To disable displaying these phases in the song preludes for the whole
+% document, set \showphfalse in the main document preamble (after including
+% this package).
+% To set this for a song, use the optional ph={} parameter for \beginsong.
 \newcommand{\phaselist}{}%
 \newsongkey{ph}{\def\phaselist{}}
                {\def\phaselist{#1}}
 
 % BEGIN PRELUDE/TAGS
 
-% Support for tags for songs. To show them in song preludes,
-% define \newcommand{\showtaglist}{} in the main document.
-% Tags are defined as tags= keyval for \beginsong. An example:
-% \beginsong{Songname}[tags={fire 1, water 1}. Note the weird
-% syntax: the tagname must be followed by ' 1'. Valid tags are
-% defined in file 'tags.can'.
+% Support for tags for songs.
+% To disable displaying the tags in the song preludes for the whole
+% document, set \showtagsfalse in the main document preamble (after including
+% this package).
+% To set these for a song, use the optional tags={} parameter for \beginsong.
+% An example: \beginsong{Songname}[tags={fire 1, water 1}]. Note the weird
+% syntax: the tagname must be followed by ' 1'. Valid tags are defined in file
+% 'tags.can'.
 
 \newcommand{\taglist}{}% defined below for each song
 
@@ -724,15 +741,13 @@
 % because we use the scripture references as tags and they are displayed
 % with \taglist.
 \renewcommand{\extendprelude}{%
-  \ifdefined\showtaglist%   following is similar to \showauthors
+  \ifshowtags%   following is similar to \showauthors
     {\setbox\SB@box\hbox{\hfill\textit{\taglist}}%
      \ifdim\wd\SB@box>\z@\unhbox\SB@box\par\vspace{-1em}\fi% Go up one line if tag list was non-empty
     }%
   \fi%
   \showauthors%
-  \ifdefined\showextrainfo%
-    {\extrainfo}%
-  \fi%
+  \ifshowex{\extrainfo}\fi%
 }
 
 % Redefine the song prelude display. Only one line is modified (see comment)
@@ -770,7 +785,7 @@
       {\stitlefont\relax%
        % The following line is modified (everything between \songtitle and \par is added:
        \songtitle{%
-         \ifdefined\showphaselist{\normalfont\rmfamily\tiny\hfill\raisebox{1em}{\phaselist}}\\\fi%
+         \ifshowph{\normalfont\rmfamily\tiny\hfill\raisebox{1em}{\phaselist}}\\\fi%
        }\par%
        \nexttitle%
        \foreachtitle{(\songtitle)\par}}%
@@ -832,7 +847,7 @@
     \addcontentsline{toc}{subsection}{%
       \numberline{\thesongnum}%
       \songtitle\relax%
-      \ifdefined\showphaselistintoc{%
+      \ifshowphintoc{%
         \hspace{0.15em}\scriptsize\textsuperscript{\rmfamily\tiny\phaselist}}\fi%
       }%
     \hypersetup{bookmarksdepth=2}% the last added line
@@ -907,9 +922,9 @@
 \let\SB@mbar\SB@makembar
 
 % Align choruses and verses if verse numbers are not shown. To show verse
-% numbers instead, define \newcommand{\showversenumbers}{} in the main
-% document.
-\ifdefined\showversenumbers%
+% numbers instead, set \showversenumberstrue in the main document preamble
+% (after including this package).
+\ifshowversenumbers%
 \else%
   \noversenumbers%
   \renewcommand\beginverse{%
