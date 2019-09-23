@@ -426,6 +426,8 @@
 
 % END ENDSONG VFILL
 
+% BEGIN IN-SONG BLOCKS
+
 % This is called in the beginning of each insong-block: translation, showmantra,
 % feeler, image and explanation.
 \newcommand{\@blockstart}{
@@ -482,7 +484,9 @@
   \par\noindent\ignorespacesafterend
 }
 
-% BEGIN IMAGES
+% END IN-SONG BLOCKS
+
+% BEGIN IMAGES (IN-SONG AND OUT)
 
 % \image?? macros include an image here. It is scaled so that it's width is
 % a power of golden ratio conjugate of \linewidth. The optional parameter is
@@ -567,7 +571,7 @@
   \IfEq{#1}{6}{\setlength\@grcwidth{.034441\linewidth}}{}% 0.618034^7
 }
 
-% END IMAGES
+% END IMAGES (IN-SONG AND OUT)
 
 % BEGIN MELODY NOTES
 
