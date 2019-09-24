@@ -73,7 +73,6 @@
 
 % Gets a roman uppercase number from the number given as parameter
 \newcommand{\romanupnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
-%\newcommand{\romanupnum}[1]{\uppercase\expandafter{\romannumeral#1\relax}}
 
 % Set book titles if they're not yet defined (one should define them in the main doc):
 \providecommand\mainbooktitle{Unilaiva songbook} % the main title
@@ -209,7 +208,12 @@
 % Toggle for showing melody notes in songs. To set them for a song, use the
 % \note??? macros inside chord definitions. To set them temporarily on or
 % off within a (part of a) song, use macros \notesoff and \noteson.
-\newif\ifshowmelody\showmelodytrue
+\newif\ifshownotes\shownotestrue
+
+% Toggle for showing beat marks in songs. To set them for a song, use the
+% \bm??? macros inside chord definitions. To set them temporarily on or
+% off within a (part of a) song, use macros \beatsoff and \beatson.
+\newif\ifshowbeats\showbeatstrue
 
 % Toggle for showing verse numbers. Suggestion: keep this as false!
 \newif\ifshowversenumbers\showversenumbersfalse
@@ -602,7 +606,7 @@
   \IfEq{#1}{4}{\setlength\@grcwidth{.145898\linewidth}}{}% 0.618034^4
   \IfEq{#1}{5}{\setlength\@grcwidth{.090169\linewidth}}{}% 0.618034^5
   \IfEq{#1}{6}{\setlength\@grcwidth{.055728\linewidth}}{}% 0.618034^6
-  \IfEq{#1}{6}{\setlength\@grcwidth{.034441\linewidth}}{}% 0.618034^7
+  \IfEq{#1}{7}{\setlength\@grcwidth{.034441\linewidth}}{}% 0.618034^7
 }
 
 % END IMAGES (IN-SONG AND OUT)
@@ -617,7 +621,7 @@
 % be written as upper case for transposing to work, even though the result
 % is actually presented in lower case.
 %
-% To disable showing of the notes for the whole document, set \showmelodyfalse
+% To disable showing of the notes for the whole document, set \shownotesfalse
 % in the main document preamble (after including this package).
 %
 % Call \notesoff command between verses to disable showing of notes in the
@@ -636,11 +640,11 @@
 %   \mnlow{<notename>}              : on other lines of a verse
 %
 % Use \mn, \mnc, \mncii or \mnciii to display notes on the first line of lyrics
-% (elsewhere they would push the lyric lines apart). Use \mn if the note is not
-% to be displayed at the exact same horizontal spot as a chord, and use \mnc to
-% display a note and a chord on top of each other: in that case you must put
-% the chord immediately after the \mnc command within the same chord definition
-% brackets.
+% (elsewhere they would overlap the lyrics on the line above)). Use \mn if the
+% note is not to be displayed at the exact same horizontal spot as a chord, and
+% use \mnc to display a note and a chord on top of each other: in that case you
+% must put the chord immediately after the \mnc command within the same chord
+% definition brackets.
 %
 % \mncii and \mnciii are really two and three note extensions of \mnc: with
 % them one can put two or three notes on top of one chord. They are also meant
@@ -676,7 +680,7 @@
 %   * Example usage: \@note[0.5em]{C#}
 %   * Note that if the style here changes, so must it in @calcmncirclewidth
 \newcommand{\@note}[2][1em]{%
-  \ifshowmelody%
+  \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
       % Use the real sharp symbol, because it fits better within a circle:
@@ -710,7 +714,7 @@
 % Displays three melody notes above a chord, to be used on the first line of
 % lyrics. See above for usage information.
 \newcommand{\mncii}[2]{%
-  \ifshowmelody%
+  \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
       \@mnnegspacefalse%
@@ -724,7 +728,7 @@
 % Displays two melody notes above a chord, to be used on the first line of
 % lyrics. See above for usage information.
 \newcommand{\mnciii}[3]{%
-  \ifshowmelody%
+  \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
       \@mnnegspacefalse%
@@ -744,11 +748,111 @@
 % \noteson and \notesoff commands can be used between verses to turn displaying
 % the melody notes on or off for the remaining of the current song or until
 % another call to either of the macros. The notes are never displayed, if
-% \showmelodyfalse is set (in the main document).
+% \shownotesfalse is set (in the main document).
 \newcommand{\notesoff}{\def\@melodynotesdisabled{}}
 \newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
 
 % END MELODY NOTES
+
+% BEGIN BEAT MARKS
+
+% BEAT MARKS feature
+%
+% The \bm??? commands are used within chord definitions \[] to mark spots where
+% beats appear. They appear as small dots in chord color just below the
+% baseline of the chords.
+%
+% Use \bm, when the beat mark is by itself (without chord or melody note).
+%
+% Use \bmc when you want to put the mark at the same horizontal space, on top of
+% each other, with a melody note and/or a chord. In such a case \bmc should
+% always be before the chord. and the recommended order is: beat mark, melody
+% note, chord. If \bm or \bmc is followed immediately by a chord, there must be
+% a space in between of them.
+%
+% \bmadj and \bmcadj{} are variations which take one mandatory parameter in
+% curly braces: a horizontal adjustment of the mark position as a dimension.
+% \bmadj{-.5ex} moves the mark about half a character width left from where it
+% would appear without adjustment, and \bmadj{.5ex} moves it to the right.
+%
+% To disable showing of the beats for the whole document, set \showbeatsfalse
+% in the main document preamble (after including this package).
+%
+% Call \beatsoff command between verses to disable showing of notes in the
+% following verses of the song. \beatson puts them back for the next verses
+% (unless \showbeatsfalse is set in the main doc).
+%
+% Example usage:
+%
+%   |\[\bmc Am]Love \[\bm]is |\[\bm]great \[\bm]
+%   and |\[bm]food \[bm]tastes |\[\bm]good \[\bm]
+%
+%   \[\bmc\mnc{C}C]Trallallaaa
+%
+
+\newcommand{\@bmmark}{{\scriptsize\textsubscript{,}}}% the mark used
+% Leading space before beat mark (ex comes from chord font):
+\newcommand{\@bmleadspace}{.5ex}
+% Will hold the width of the beat mark without leading space:
+\newdimen{\@bmwidth}%
+
+% Displays a beat mark. See above for usage information.
+\newcommand{\bm}{%
+  \ifshowbeats%
+    \ifdefined\@beatsdisabled%
+    \else%
+      \hspace{\@bmleadspace}%
+      \@bmmark%
+      \settowidth{\@bmwidth}{\@bmmark}%
+    \fi%
+  \fi%
+}
+
+% Displays a beat mark. See above for usage information.
+\newcommand{\bmc}{%
+  \ifshowbeats%
+    \ifdefined\@beatsdisabled%
+    \else%
+      \bm%
+      \hspace{-\@bmleadspace}%
+      \hspace{-\@bmwidth}%
+    \fi%
+  \fi%
+}
+
+% Displays a beat mark with horizontal adjustment. See above for usage
+% information.
+\newcommand{\bmadj}[1]{%
+  \ifshowbeats%
+    \ifdefined\@beatsdisabled%
+    \else%
+      \hspace{#1}%
+      \bm%
+    \fi%
+  \fi%
+}
+
+% Displays a beat mark with horizontal adjustment. See above for usage
+% information.
+\newcommand{\bmcadj}[1]{%
+  \ifshowbeats%
+    \ifdefined\@beatsdisabled%
+    \else%
+      \hspace{#1}%
+      \bmc{#1}%
+      \hspace{-#1}%
+    \fi%
+  \fi%
+}
+
+% \beatson and \beatsoff commands can be used between verses to turn displaying
+% the beat marks on or off for the remaining of the current song or until
+% another call to either of the macros. The notes are never displayed, if
+% \showbeatsfalse is set (in the main document).
+\newcommand{\beatsoff}{\def\@beatsdisabled{}}
+\newcommand{\beatson}{\let\@beatsdisabled\undefined}
+
+% END BEAT MARKS
 
 % BEGIN PRELUDE
 
