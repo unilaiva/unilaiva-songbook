@@ -39,7 +39,6 @@ download the project's source, you need to run the following two commands:
      texlive-font-utils texlive-lang-english texlive-lang-european
      texlive-latex-extra` # (context is optional)
   2. `git clone git://github.com/unilaiva/unilaiva-songbook.git`
-     # (doesn't require a Github account to clone)
 
 
 Compiling the songbook to create a PDF document
