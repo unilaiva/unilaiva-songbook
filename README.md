@@ -349,11 +349,12 @@ beside each other.
 
 Example usage:
 
- * `\[\mnc{A}Am]Love is \[\mn{E}]great
-   and \[\mnlow{D#}]food tastes \[\mnlow{A}]good`
+```
+  \[\mnc{A}Am]Love is \[\mn{E}]great
+  and \[\mnlow{D#}]food tastes \[\mnlow{A}]good
 
- * `\[\mncii{C}{A}{F}Fmaj7]Tralalaa`
-
+  \[\mnciii{C}{A}{F}Fmaj7]Tralalaa
+```
 
 ### Beat marks ###
 
@@ -383,11 +384,12 @@ following verses of the song. `\beatson` puts them back for the next verses
 
 Example usage:
 
-  * `|\[\bmc Am]Love \[\bm]is |\[\bm]great \[\bm]
-   and |\[bm]food \[bm]tastes |\[\bm]good \[\bm]`
+```
+  |\[\bmc Am]Love \[\bm]is |\[\bmc E]great \[\bm]
+  and |\[bm]food \[bm]tastes |\[\bmc Am]good \[\bm]
 
-  * `\[\bmc\mnc{C}C]Trallallaaa` (a beat mark, a melody note and a chord)
-
+  \[\bmc\mnc{C}C]Trallallaaa
+```
 
 ### Tags ###
 
