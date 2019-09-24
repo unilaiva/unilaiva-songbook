@@ -71,6 +71,10 @@
 % BEGIN STYLE & OTHER SETTINGS
 % ============================
 
+% Gets a roman uppercase number from the number given as parameter
+\newcommand{\romanupnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+%\newcommand{\romanupnum}[1]{\uppercase\expandafter{\romannumeral#1\relax}}
+
 % Set book titles if they're not yet defined (one should define them in the main doc):
 \providecommand\mainbooktitle{Unilaiva songbook} % the main title
 % Full title, containing possible part information:

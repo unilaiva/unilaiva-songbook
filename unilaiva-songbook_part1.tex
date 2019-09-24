@@ -9,7 +9,7 @@
 
 % Set the title of this document:
 \newcommand{\mainbooktitle}{Unilaiva songbook}
-\newcommand{\thisbooktitle}{Unilaiva songbook: part 1}
+\newcommand{\thisbooktitle}{Unilaiva songbook: part \romanupnum{1}}
 
 % The following package contains all the imports, style settings etc:
 \usepackage{tex/unilaiva-songbook_common}
@@ -21,10 +21,10 @@
 
 \begin{document}
 
-  % Cover page (recto):
-  \includepdf[]{content/img/COVER_part1.pdf} % cover, by: larva (photo + edit)
+  % Cover page (recto), by larva (photo + edit):
+  \includepdf[]{content/img/Unilaiva-songbook_part1_COVER.pdf}
   % The second page (verso):
-  \secondpage{part 1:}{Saṃskṛtam, Español, Português} % the second (title) page here (verso)
+  \secondpage{part \romanupnum{1}:}{Saṃskṛtam, Español, Português}
 
   % TOC:
   \input{tex/unilaiva-songbook_content_include_part0_toc.tex}
@@ -36,7 +36,7 @@
   % Add a note about the chapters in the other part of the book to TOC.
   % Comment out the line(s) not relevant to this book (part).
   %\addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}Saṃskṛtam{\normalfont ,} Español {\normalfont and} Português {\normalfont are in} \emph{part 1} {\normalfont of this book}}{}{}}
-  \addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}English{\normalfont ,} Other {\normalfont and} Suomi {\normalfont are in} \emph{part 2} {\normalfont of this book}}{}{}}
+  \addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}English{\normalfont ,} Other {\normalfont and} Suomi {\normalfont are in} \emph{part \romanupnum{2}} {\normalfont of this book}}{}{}}
 
   % Appendices:
   \input{tex/unilaiva-songbook_content_include_part3_appendices.tex}
