@@ -247,7 +247,7 @@ fi
 wait # wait for sub processes to end
 
 echo ""
-echo "SUCCESS: Complete!"
+echo "Done."
 echo ""
 
 exit 0
