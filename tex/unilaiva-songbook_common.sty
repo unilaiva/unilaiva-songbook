@@ -919,22 +919,24 @@
 % END PRELUDE/TAGS
 
 
-% Redefine displaying of song prelude extension. This version adds
-% some of the new song keyvals introduced above. \showrefs is removed,
-% because we use the scripture references as tags and they are displayed
-% with \taglist.
+% Redefine displaying of song prelude extension. This version adds some of the
+% new song keyvals introduced above. \showrefs is removed, because we use the
+% scripture references as tags (whichh are shown inand they are displayed in
+% the modified \makeprelude below.
 \renewcommand{\extendprelude}{%
-  \ifshowtags%   following is similar to \showauthors
-    {\setbox\SB@box\hbox{\hfill\textit{\taglist}}%
-     \ifdim\wd\SB@box>\z@\unhbox\SB@box\par\vspace{-1.2em}\fi% Go up one line if tag list was non-empty
-    }%
-  \fi%
   \showauthors%
   \ifshowex{\extrainfo}\fi%
 }
 
+% Set the amount to rise or lower the position of the items in the RT
+% box in the song prelude, relative to the baseline of the main title
+% (the ex comes from the title font, too).
+\newdimen{\@preludeRTfirstraise}\setlength{\@preludeRTfirstraise}{1.618034ex} % 1ex
+\newdimen{\@preludeRTsecondraise}\setlength{\@preludeRTsecondraise}{-.618034ex} % -1.618034ex
+\newdimen{\@preludeRTtagraise} % set later
+
 % Redefine the song prelude display. Only one line is modified (see comment)
-% to show the phase list on the same line with the main title.
+% to show the phase and tag lists.
 \renewcommand\makeprelude{
   \resettitles%
   \ifslides%
@@ -966,10 +968,24 @@
       \ifpagepreludes\centering\else\SB@raggedright\fi%
       \offinterlineskip\lineskip\p@%
       {\stitlefont\relax%
-       % The following line is modified (everything between \songtitle and \par is added:
-       \songtitle{%
-         \ifshowph{\normalfont\rmfamily\tiny\hfill\raisebox{1em}{\phaselist}}\\\fi%
-       }\par%
+       \songtitle%
+       {% larva: begin modifications for RT area: ph and tags display
+         \hfill%
+         \ifshowph%
+           \makebox[0pt][r]{\raisebox{\@preludeRTfirstraise}[0pt][0pt]{%
+             \tiny\normalfont\rmfamily\phaselist%
+           }}%
+           \setlength{\@preludeRTtagraise}{\@preludeRTsecondraise}%
+         \else
+           \setlength{\@preludeRTtagraise}{\@preludeRTfirstraise}%
+         \fi%
+         \ifshowtags%
+           \makebox[0pt][r]{\raisebox{\@preludeRTtagraise}[0pt][0pt]{%
+             \tiny\textit{\taglist}%
+           }}%
+         \fi%
+       }% larva: end modifications for RT area: ph and tags display
+       \par%
        \nexttitle%
        \foreachtitle{(\songtitle)\par}}%
       \ifdim\prevdepth=\z@\kern\p@\fi%
