@@ -216,6 +216,11 @@
 % off within a (part of a) song, use macros \beatsoff and \beatson.
 \newif\ifshowbeats\showbeatstrue
 
+% Toggle for showing authors in the song preludes. Personal opinion: the
+% authors should definitely be shown in all cases. This option is here for
+% the sake of completeness. :)
+\newif\ifshowauth\showauthtrue
+
 % Toggle for showing verse numbers. Suggestion: keep this as false!
 \newif\ifshowversenumbers\showversenumbersfalse
 
@@ -924,8 +929,8 @@
 % scripture references as tags (whichh are shown inand they are displayed in
 % the modified \makeprelude below.
 \renewcommand{\extendprelude}{%
-  \showauthors%
-  \ifshowex{\extrainfo}\fi%
+  \ifshowauth\showauthors\fi%
+  \ifshowex\extrainfo\fi%
 }
 
 % Set the amount to rise or lower the position of the items in the RT
