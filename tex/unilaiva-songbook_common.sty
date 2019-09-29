@@ -375,6 +375,25 @@
   \altlyrnospace[#1]{#2}%
 }
 
+% Put tiny sublyrics, given as the parameter, below the main lyrics (could be
+% used for a second voice). This is not very robust; a good idea might be to
+% put each bar's sublyrics as it's own \sublyr command. The sublyrics are
+% left-aligned with whatever comes immediately after the command, which might
+% cause overlapping of \sublyr text with the previous one.
+\newcommand{\sublyr}[1]{%
+  \makebox[0pt][l]{\raisebox{-1ex}[0pt][1ex]{%
+    \tiny #1%
+  }}%
+}
+
+% Same as \sublyr, but this pushes the main lyrics to the right to make room
+% for the sublyrics, instead of aligning. Use carefully.
+\newcommand{\sublyrpush}[1]{%
+  \makebox{\raisebox{-1ex}[0pt][1ex]{%
+    \tiny #1%
+  }}%
+}
+
 % BEGIN ENDSONG VFILL
 
 \newcounter{@endsongvfillneeded}% counter to hold info about needing vfill at end
