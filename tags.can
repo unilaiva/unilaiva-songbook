@@ -1,22 +1,22 @@
 # This file contains tags for unilaiva-songbook.
 #
 # Syntax: each tag is presented by two lines. The first contains the tag
-# name(s) and the second contains only the number 1. First line can have
+# name(s) and the second contains only the number 1. (The weird syntax with
+# 1's is due to the fact that the tag system utilizes, in essence *is*, the
+% scripture reference system from 'songs' package.) First line can have
 # more than one name for the same tag, separated by | characters.
 #
 # Only the first tag name will appear in the tag index, but the other
 # ones are treated as aliases for the first one, when they appear song
 # definitions.
 #
-# Tags for songs are defined as "tags=" keyvals in the \beginsong macro,
-# like this: \beginsong{Test song}[tags={fire 1, water 1}]. So the number
-# 1 must be included there, too.
+# Tags for songs are defined as "tags=" keyvals for the \beginsong macro,
+# like this: \beginsong{Test song}[tags={fire, water}].
 #
 # The tags will appear in the tag index in the order specified in this
-# file.
+# file, so keep this in alphabetical order.
 #
-# (The weird syntax is due to the fact that the tag system utilizes, in
-# essence *is*, the scripture reference system from 'songs' package.)
+
 #
 air|ilma|wind|tuuli
 1

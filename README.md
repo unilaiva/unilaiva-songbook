@@ -393,11 +393,10 @@ Example usage:
 
 ### Tags ###
 
-Tags can be attached  to songs using a peculiar syntax (scripture reference
-system of `songs` package is used for this purpose). All tags must be listed in
-file `tags.can`. Define tags for a song by adding `tags=` keyval to
-`\beginsong` macro. Note that a ` 1` must be appended to the tag name, like
-this: `\beginsong{Song name}[tags={love 1, smile 1}]`.
+Tags can be attached to songs by defining `tags=` keyval argument for
+`\beginsong` macro. An example: `\beginsong{Song name}[tags={love, smile}]`.
+
+All tags must be listed in file `tags.can` before they can be used.
 
 To disable tags totally, put `\showtagsfalse` in the main document preamble
 after package imports.

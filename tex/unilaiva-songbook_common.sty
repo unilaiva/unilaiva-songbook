@@ -56,7 +56,7 @@
 \usepackage{silence}\WarningFilter{latex}{You have requested package}
 \usepackage{ragged2e} % used to force text justification in 'explanation' env
 \usepackage{enumitem} % used to modify 'description' env within 'explanation' env
-\usepackage{xstring} % used for string manipulation in \newsongkey{tags}
+\usepackage{xstring} % used for string manipulation (at least in GR macros)
 \usepackage{amssymb} % for some math symbols
 \usepackage{fancyhdr} % for customizing headers
 
@@ -201,7 +201,7 @@
 \newif\ifshowphintoc\showphintoctrue
 
 % Toggle for showing tags in song preludes. To set them for a song,
-% define them as \beginsong parameter: "\beginsong[tags={love 1, light 1}]"
+% define them as \beginsong parameter: "\beginsong[tags={love, light}]"
 % Note the mandatory '1' (that will not be shown) and that the tags must be
 % defined in file 'tags.can' to use them.
 \newif\ifshowtags\showtagstrue
@@ -907,20 +907,23 @@
 % document, set \showtagsfalse in the main document preamble (after including
 % this package).
 % To set these for a song, use the optional tags={} parameter for \beginsong.
-% An example: \beginsong{Songname}[tags={fire 1, water 1}]. Note the weird
-% syntax: the tagname must be followed by ' 1'. Valid tags are defined in file
-% 'tags.can'.
+% An example: \beginsong{Songname}[tags={fire, water}]. Valid tags are defined
+% in file 'tags.can'.
 
 \newcommand{\taglist}{}% defined below for each song
 
 \newsongkey{tags}{\def\taglist{}\def\SB@rawrefs{}\gdef\songrefs{}}%
-                 {\def\taglist{\StrSubstitute{#1}{ 1}{}\par}% xstring: Show only tag name, remove ' 1'
-                  \def\SB@rawrefs{#1}\SB@parsesrefs{#1}}
+                 {\def\taglist{#1\par}%
+                  % add ' 1' to work around the songs' scripture reference
+                  % system's (which we are using here) expectation of bible
+                  % chapter number:
+                  \def\SB@rawrefs{#1 1}\SB@parsesrefs{#1 1}}
 
 \renewcommand\SB@makescripindex{%
   \renewenvironment{SB@lgidx}[1]{%
     \gdef\SB@idxcolhead{##1}%
-    % Following three lines are commented out to skip the line used for book name
+    % % larva: Following three lines are commented out to skip the line used
+    % % for book name:
     %\hbox to\hsize{{\idxbook{##1}}\hfil}%
     %\nobreak%
     %\SB@idxheadsep\nointerlineskip%
@@ -931,7 +934,8 @@
   \renewenvironment{SB@smidx}[1]
     {\begin{SB@lgidx}{##1}}{\end{SB@lgidx}}%
   \renewcommand\idxentry[2]{%
-    \SB@ellipspread{\idxscripfont\relax\SB@idxcolhead}% ##1 -> SB@idxcolhead to display 'book name' instead of 'chapter number'
+    \SB@ellipspread{\idxscripfont\relax\SB@idxcolhead}%
+    % ##1 -> SB@idxcolhead to display 'book name' instead of 'chapter number'
                    {{\idxrefsfont\relax##2}}%
     \SB@toks\expandafter{\SB@idxcolhead}%
     \mark{\noexpand\SB@idxcont{\the\SB@toks}}%
