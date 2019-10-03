@@ -397,6 +397,7 @@
 % BEGIN ENDSONG VFILL
 
 \newcounter{@endsongvfillneeded}% counter to hold info about needing vfill at end
+\newcounter{@aftersongblocks}\setcounter{@aftersongblocks}{0}
 
 % Call this to request no vfill at song end. The last call within a song to
 % \noendsongvfill or \yesendsongvfill will be the one acted on.
@@ -416,16 +417,22 @@
 
 \yesendsongvfill% Start with this default
 
+% Zero this, because we don't use postlude and there is other vspace in
+% the end of the song:
+\beforepostludeskip=0pt plus 0pt minus 0pt
+
 % songs: rewrite this macro to support adding a \vfill to song's end
 % conditionally. The modified part is in the beginning.
 \renewcommand\SB@endsong{%
-  \ifnum\value{@endsongvfillneeded}>0% BEGIN modification by larva
+  % BEGIN modification by larva
+  \ifnum\value{@endsongvfillneeded}>0%
     \ifnum\SB@numcols=1% only do a vfill in 1-column situation
-      \vspace{\fill}%
+      \vspace{0pt plus 1fill minus 0pt}%
     \fi%
-  \else%
-    \yesendsongvfill% default to being needed in the next song
-  \fi% END modification by larva
+  \fi%
+  \yesendsongvfill% default to being needed in the next song
+  \setcounter{@aftersongblocks}{0}% reset counter for next song
+  % END modification by larva
   \ifSB@insong%
       \ifSB@inverse\SB@erreov\endverse\fi%
       \ifSB@inchorus\SB@erreoc\endchorus\fi%
@@ -494,17 +501,32 @@
 % This is called in the beginning of each insong-block: translation, showmantra,
 % feeler and explanation.
 \newcommand{\@blockstart}{%
-  \vspace{1em}\vfill%
+  % Make first block's minimum distance higher
+  \ifSB@insong%
+    \ifnum\value{@aftersongblocks}=0%
+      % The first block after verses needs a bit more vertical space before it:
+      \vspace{2em plus 1fill minus 0pt}%
+    \else%
+      \vspace{1em plus 1fill minus 0pt}%
+    \fi%
+    \addtocounter{@aftersongblocks}{1}%
+  \else%
+    \ifSB@intersong%
+      \vspace{1em plus 1fill minus 0pt}%
+    \fi%
+  \fi%
 }
 
 % Displays the parameter text centered in a large font. Use within songs, but outside
 % verses. Intended to be used for short mantras for recitation.
 \newcommand{\showmantra}[1]{%
   \yesendsongvfill%
+  \setcounter{@aftersongblocks}{99}%
   \@blockstart%
   \begin{center}%
-    \Large #1
+    {\Large #1}%
   \end{center}%
+  \setcounter{@aftersongblocks}{0}%
 }
 
 % environment for 'song feeler'
@@ -513,22 +535,23 @@
   \@blockstart%
   \small%
   \par\noindent\ignorespaces%
-  \begin{center}\begin{em}
-}{
+  \begin{center}\begin{em}%
+}{%
   \end{em}\end{center}
-  %\par\noindent\ignorespacesafterend
+  %\par\noindent\ignorespacesafterend%
 }
 
 % environment for song translation, to be used only inside a song
 \newenvironment{translation}{%
   \yesendsongvfill%
-  \newcommand{\nextverse}{\vspace{.5em}} % some vertical space between verses
+  \newcommand{\nextverse}{\vspace{.5em}}% some vertical space between verses
   \beginverse*%
     \@blockstart%
+    \vspace{-1em}% to compensate for some vskip created by \beginverse
     \chordsoff%
     \small%
-}{
-  \endverse
+}{%
+  \endverse%
 }
 
 % environment for 'song explanation'
