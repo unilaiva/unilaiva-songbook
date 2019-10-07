@@ -306,6 +306,19 @@
   \clearpage%
 }
 
+% Adds vertical space, if not currently in a verse nor a chorus. The amount
+% of space is given as a length parameter.  Must be called only in vertical
+% mode, as this uses \addvspace command.
+\newcommand{\vspaceifnotinverse}[1]{%
+  \ifSB@inverse{}\else{% not in verse
+    \ifSB@inchorus{}\else{% nor in chorus
+      \addvspace{#1}%
+    }\fi%
+  }\fi%
+}
+
+\newcommand{\@gotochorusvspace}{.618034\baselineskip}
+
 % These commands will display some text followed by three dots, and aligned to
 % the right of the page. The idea is to use it as a signal for the reader to
 % go to a different part of the song, for example the chorus. You can use it
@@ -318,15 +331,21 @@
 % and if needed, use it on consecutive lines to signal consecutive jumps.
 % But, if for space reasons it is deemed necessary, one can use the other
 % versions to squeeze more than one successive jump on one line.
-\newcommand{\gotochorus}[1]{\hfill\@gtctext{#1}\par}
-\newcommand{\gotochorusii}[2]{%
-  \vspace{1em}\hfill\@gtctext{#1} \@gtctext{#2}\par%
+\newcommand{\gotochorus}[1]{%
+  %\vspaceifnotinverse{\@gotochorusvspace}%
+  \hfill\@gtctext{#1}\par%
 }%
+\newcommand{\gotochorusii}[2]{%
+  \vspaceifnotinverse{\@gotochorusvspace}%
+  \hfill\@gtctext{#1} \@gtctext{#2}\par%
+}
 \newcommand{\gotochorusiii}[3]{%
-  \vspace{1em}\hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3}\par%
+  \vspaceifnotinverse{\@gotochorusvspace}%
+  \hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3}\par%
 }
 \newcommand{\gotochorusiv}[4]{%
-  \vspace{1em}\hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3} \@gtctext{#4}\par%
+  \vspaceifnotinverse{\@gotochorusvspace}%
+  \hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3} \@gtctext{#4}\par%
 }
 % Used by \gotochorus?? commands:
 \newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{→ #1\ldots}}}}
@@ -368,9 +387,7 @@
 % If the optional argument is omitted, it will be replaced with an asterisk.
 % Example: \altlyr[2]{with love}
 \newcommand{\altlyr}[2][*]{%
-  % Add vertical space if not inside a verse or chorus
-  \ifSB@inverse{}\else{\vspace{.5em}}\fi%
-  \ifSB@inchorus{}\else{\vspace{.5em}}\fi%
+  \vspaceifnotinverse{.618034\baselineskip}%
   \hfill%
   \altlyrnospace[#1]{#2}%
 }
