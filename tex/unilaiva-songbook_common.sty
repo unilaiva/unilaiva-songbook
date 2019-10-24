@@ -518,11 +518,16 @@
 % This is called in the beginning of each insong-block: translation, showmantra,
 % feeler and explanation.
 \newcommand{\@blockstart}{%
-  % Make first block's minimum distance higher
   \ifSB@insong%
+    % The first block after verses needs a bit more vertical space before it:
     \ifnum\value{@aftersongblocks}=0%
-      % The first block after verses needs a bit more vertical space before it:
-      \vspace{2em plus 1fill minus 0pt}%
+      \vspace{1.5em}%
+      % The following zero-height box causes fills to be added before the first
+      % block, even if the block is the first thing on a page. This ensures
+      % the vertical centering of the blocks when the song verses are on a
+      % previous page and the blocks are all on this one.
+      \vbox to0pt{}%
+      \vspace{0pt plus 1fill minus 0pt}%
     \else%
       \vspace{1em plus 1fill minus 0pt}%
     \fi%
@@ -563,8 +568,8 @@
   \yesendsongvfill%
   \newcommand{\nextverse}{\vspace{.5em}}% some vertical space between verses
   \beginverse*%
+    \vspace{-\versesep}% remove the vertical space created by \beginverse
     \@blockstart%
-    \vspace{-1em}% to compensate for some vskip created by \beginverse
     \chordsoff%
     \small%
 }{%
