@@ -350,9 +350,18 @@
 % Used by \gotochorus?? commands:
 \newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{→ #1\ldots}}}}
 
+\newcounter{@indentrepeat}% used by \chorusindent
+
 % This command will make a small horizontal space. Use this for example in the
 % beginning of chorus lines, if you wish the chorus to stand out visually.
-\newcommand{\chorusindent}{\hspace{1em}}
+% The optional parameter specifies the indent depth, default being 1.
+\newcommand\chorusindent[1][1]{%
+  \setcounter{@indentrepeat}{0}
+  \loop \ifnum\value{@indentrepeat} < #1%
+    \hspace{1em}%
+    \stepcounter{@indentrepeat}%
+  \repeat%
+}
 
 % Make \versesepnostretch a dimension (instead of a length) to hold verse
 % separation without stretch components, for use with \glueverses.
