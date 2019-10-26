@@ -36,11 +36,14 @@
 \usepackage[medium,extrabold]{noto}
 \usepackage[T1]{fontenc}
 % hyperref is used for URL links and by 'songs' package for index links in PDF.
-% Option ocgcolorlinks colors the links instead of setting a box around them. These colours
-% are displayed only in digital PDF, not in printed document. To enable these colors in
-% print too, change the option to 'colorlinks'. The actual colors are defined further below.
-% ocgcolorlinks requires PDF version 1.5, which is automatically set for pdftex
-\usepackage[bookmarks,unicode,ocgcolorlinks]{hyperref} % used by 'songs' package for index links in PDF
+% Use option 'colorlinks' to colorize the links always, for both print and
+% digital viewing. It is possible to use colors only for digital viewing and
+% black for printing, by using 'ocgcolorlinks' option, which requires PDF
+% version 1.5, instead. That creates different layers for view and print,
+% which creates nicer result for black-and-white prints, but some printing
+% software might ignore both layers thus printing nothing for links -- so we
+% are not using it for now. The actual colors are defined further below.
+\usepackage[bookmarks,unicode,colorlinks]{hyperref} % used by 'songs' package for index links in PDF
 % NOTE: * In versions before 2018-5-10 we used inner=20mm,outer=10mm,tmargin=16mm,bmargin=10mm,
 %         but now the Golden Ratio rules. Old versions (before fancyheader) also used
 %         headsep=5mm,headheight=3.5mm, but the result is about the same now.
