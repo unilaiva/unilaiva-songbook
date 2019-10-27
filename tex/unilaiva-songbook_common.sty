@@ -97,13 +97,16 @@
 
 \graphicspath{ {./content/img/} } % graphicx: set path to find images from
 
-\definecolor{chordcolor}{rgb}{0.3,0,0.4} % color: use this for chords
-\definecolor{mbarcolor}{rgb}{0.45,0.1,0.6} % color: use this for measure bar
-\definecolor{melodynotecolor}{rgb}{0.0,0.256,0.304} % color: use this for the encircled melody notes
-\definecolor{verylightgray}{rgb}{0.92,0.92,0.92} % color: use this for song number bg & textnote bg
-\definecolor{internallinkcolor}{rgb}{0,0,0.4} % color: color used for internal links (non-print PDF only)
-\definecolor{urllinkcolor}{rgb}{0.4,0,0.4} % color: color used for external links (non-print PDF only)
-\definecolor{linkboxcolor}{rgb}{0.5,0.9,0.6} % color: color used for boxed links (non-print PDF only)
+% color: Color definitions:
+\definecolor{chordcolor}{rgb}{0.3,0,0.4} % chords
+\definecolor{mbarcolor}{rgb}{0.45,0.1,0.6} % measure bar
+\definecolor{melodynotecolor}{rgb}{0.0,0.256,0.304} % encircled melody notes
+\definecolor{songnumbgcolor}{rgb}{0.94,0.94,0.94} % song number background
+\definecolor{notebgcolor}{rgb}{0.94,0.94,0.94} % textnote background
+\definecolor{idxbgcolor}{rgb}{0.94,0.94,0.94} % index alphabet background
+\definecolor{internallinkcolor}{rgb}{0,0,0.3} % internal links
+\definecolor{urllinkcolor}{rgb}{0.3,0,0.3} % external links
+\definecolor{linkboxcolor}{rgb}{0.5,0.9,0.6} % boxed links (view), not used now
 
 % hyperref: setup
 \hypersetup{linkbordercolor=linkboxcolor,%
@@ -116,9 +119,9 @@
             pdfsubject={Songbook},%
             pdfkeywords={songs spiritual entheogens ceremony}}
 
-\renewcommand{\snumbgcolor}{verylightgray} % songs: song number (in prelude) background color
-\renewcommand{\notebgcolor}{verylightgray} % songs: \musicnote and \textnote background color
-\renewcommand{\idxbgcolor}{verylightgray} % songs: index alphabet sectino background color
+\renewcommand{\snumbgcolor}{songnumbgcolor} % songs: set song number background color in prelude
+\renewcommand{\notebgcolor}{notebgcolor} % songs: set \musicnote and \textnote background color
+\renewcommand{\idxbgcolor}{idxbgcolor} % songs: set index alphabet section background color
 
 \songcolumns{1} % songs: number of columns per page in songs environment
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
