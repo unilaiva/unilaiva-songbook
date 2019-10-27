@@ -560,12 +560,11 @@
 % verses. Intended to be used for short mantras for recitation.
 \newcommand{\showmantra}[1]{%
   \yesendsongvfill%
-  \setcounter{@aftersongblocks}{99}%
-  \@blockstart%
+  % Do not call \@blockstart here, as this is not really an after-song block...
+  \vspace{1.618034em}%
   \begin{center}%
     {\Large #1}%
   \end{center}%
-  \setcounter{@aftersongblocks}{0}%
 }
 
 % environment for 'song feeler'
