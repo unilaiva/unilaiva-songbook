@@ -19,6 +19,7 @@ The project is written in [LaTeX](https://www.latex-project.org/).
     and the binaries `pdflatex` and `texlua`
   * Lilypond installation with the binary `lilypond-book`
   * Font 'Noto' for LaTeX
+  * Locale 'fi_FI.utf8'
 
 Our project requires only some pretty standard LaTeX packages, which are
 included in many LaTeX installations by default, to be installed on the system.
@@ -38,7 +39,8 @@ download the project's source, you need to run the following two commands:
   1. `sudo apt install git context lilypond texlive texlive-fonts-extra
      texlive-font-utils texlive-lang-english texlive-lang-european
      texlive-latex-extra` # (context is optional)
-  2. `git clone git://github.com/unilaiva/unilaiva-songbook.git`
+  2. `sudo locale-gen fi_FI.utf8`
+  3. `git clone git://github.com/unilaiva/unilaiva-songbook.git`
 
 
 Compiling the songbook to create a PDF document
@@ -60,11 +62,11 @@ following commands or their equivalents in this exact sequence:
      ln -s ../../tex/unilaiva-songbook_common.sty ./tex/ ;
      ln -s ../tags.can ./`
   3. `pdflatex unilaiva-songbook.tex` # (1st time)
-  4. `texlua ext_packages/songs/songidx.lua idx_unilaiva-songbook_title.sxd
-     idx_unilaiva-songbook_title.sbx`
-  5. `texlua ext_packages/songs/songidx.lua idx_unilaiva-songbook_auth.sxd
-     idx_unilaiva-songbook_auth.sbx`
-  6. `texlua ext_packages/songs/songidx.lua -b tags.can
+  4. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
+     idx_unilaiva-songbook_title.sxd idx_unilaiva-songbook_title.sbx`
+  5. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
+     idx_unilaiva-songbook_auth.sxd idx_unilaiva-songbook_auth.sbx`
+  6. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8 -b tags.can
      idx_unilaiva-songbook_tag.sxd idx_unilaiva-songbook_tag.sbx`
   7. `pdflatex unilaiva-songbook.tex` # (2nd time)
   8. `pdflatex unilaiva-songbook.tex` # (3rd time)

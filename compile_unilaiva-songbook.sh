@@ -17,6 +17,11 @@ PART1_FILENAME_BASE="unilaiva-songbook_part1" # filename base for the 2-part doc
 PART2_FILENAME_BASE="unilaiva-songbook_part2" # filename base for the 2-part document's part 2 (without .tex suffix)
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
 SONG_IDX_SCRIPT="ext_packages/songs/songidx.lua"
+# The following is the locale used in creating the indexes, thus affecting the
+# sort order. Finnish (UTF8) is the default. Note that the locale used must be
+# installed on the system. To list installed locales on an UNIX, execute
+# "locale -a".
+SORT_LOCALE="fi_FI.utf8" # Recommended default: fi_FI.utf8
 
 initial_dir="$PWD"
 
@@ -77,6 +82,15 @@ compile_document() {
     echo "\nDisplaying log file for ${document_basename}.tex: $3\n"
     cat "$3"
     echo "\nBuild logs are in: ${temp_dirname_twolevels}/"
+    # Parse output logs for giving better advice:
+    if [ "$3" = "out-3_titleidx.log" ]; then # test for locale problem
+      grep "invalid locale" "$3" 
+      if [ $? -eq 0 ]; then
+        echo ""
+        echo "Locale ${SORT_LOCALE} must be installed on the system or the compile script"
+        echo "must be modified (line starting with SORT_LOCALE) to use a different locale."
+      fi
+    fi
     die $1 "[${document_basename}] $2"
   }
 
@@ -116,10 +130,10 @@ compile_document() {
   echo "EXEC     [${document_basename}]: texlua (create indices)"
 
   # Create indices:
-  texlua "${SONG_IDX_SCRIPT}" "idx_${document_basename}_title.sxd" "idx_${document_basename}_title.sbx" 1>"out-3_titleidx.log" 2>&1 || die_log $? "Error creating song title indices! Aborted." "out-3_titleidx.log"
+  texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} "idx_${document_basename}_title.sxd" "idx_${document_basename}_title.sbx" 1>"out-3_titleidx.log" 2>&1 || die_log $? "Error creating song title indices! Aborted." "out-3_titleidx.log"
   # Author index creation is commented out, as it is not used (now):
-  # texlua "${SONG_IDX_SCRIPT}" idx_${document_basename}_auth.sxd idx_${document_basename}_auth.sbx 1>"out-4_authidx.log" 2>&1 || die_log $? "Error creating author indices! Aborted." "out-4_authidx.log"
-  texlua "${SONG_IDX_SCRIPT}" -b "tags.can" "idx_${document_basename}_tag.sxd" "idx_${document_basename}_tag.sbx" 1>"out-5_tagidx.log" 2>&1 || die_log $? "Error creating tag (scripture) indices! Aborted." "out-5_tagidx.log"
+  # texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} idx_${document_basename}_auth.sxd idx_${document_basename}_auth.sbx 1>"out-4_authidx.log" 2>&1 || die_log $? "Error creating author indices! Aborted." "out-4_authidx.log"
+  texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} -b "tags.can" "idx_${document_basename}_tag.sxd" "idx_${document_basename}_tag.sbx" 1>"out-5_tagidx.log" 2>&1 || die_log $? "Error creating tag (scripture) indices! Aborted." "out-5_tagidx.log"
 
   echo "EXEC     [${document_basename}]: pdflatex (2nd run)"
 
