@@ -34,7 +34,7 @@ version: the package is used heavily and some of its macros are redefined.
 ##### Example: Ubuntu 18.04 #####
 
 For example, on Ubuntu 18.04 LTS, to install all required dependencies and to
-download the project's source, you need to run the following two commands:
+download the project's source, you need to run the following commands:
 
   1. `sudo apt install git context lilypond texlive texlive-fonts-extra
      texlive-font-utils texlive-lang-english texlive-lang-european
