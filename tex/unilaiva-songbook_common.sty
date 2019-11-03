@@ -333,27 +333,27 @@
 % to go to.
 %
 % There are four versions of the command, each taking different number of
-% parameters. It is recommended to use the one-parameter version \gotochorus
+% parameters. It is recommended to use the one-parameter version \goto
 % and if needed, use it on consecutive lines to signal consecutive jumps.
 % But, if for space reasons it is deemed necessary, one can use the other
 % versions to squeeze more than one successive jump on one line.
-\newcommand{\gotochorus}[1]{%
+\newcommand{\goto}[1]{%
   %\vspaceifnotinverse{\@gotochorusvspace}%
   \hfill\@gtctext{#1}\par%
 }%
-\newcommand{\gotochorusii}[2]{%
+\newcommand{\gotoii}[2]{%
   \vspaceifnotinverse{\@gotochorusvspace}%
   \hfill\@gtctext{#1} \@gtctext{#2}\par%
 }
-\newcommand{\gotochorusiii}[3]{%
+\newcommand{\gotoiii}[3]{%
   \vspaceifnotinverse{\@gotochorusvspace}%
   \hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3}\par%
 }
-\newcommand{\gotochorusiv}[4]{%
+\newcommand{\gotoiv}[4]{%
   \vspaceifnotinverse{\@gotochorusvspace}%
   \hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3} \@gtctext{#4}\par%
 }
-% Used by \gotochorus?? commands:
+% Used by \goto?? commands:
 \newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{→ #1\ldots}}}}
 
 \newcounter{@indentrepeat}% used by \ind

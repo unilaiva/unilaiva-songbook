@@ -270,8 +270,8 @@ song can be marked with `\beginchorus` or `\beginverse` (depending on their
 repeat behaviour). For clarity each lyrics line within them can to be prefixed
 with `\ind` macro, which indents the line a bit.
 
-Elsewhere in the song, you can mark the spots from where to jump to chorus with
-`\gotochorus{Beginning words of the chorus}`.
+Elsewhere in the song, you can mark the spots from where to jump to chorus
+(or any other verse) with `\goto{Beginning words of the verse}`.
 
 
 ### Measure bars ###
