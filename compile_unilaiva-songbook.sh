@@ -91,7 +91,7 @@ compile_document() {
         echo "must be modified (line starting with SORT_LOCALE) to use a different locale."
       fi
     fi
-    die $1 "[${document_basename}] $2"
+    die $1 "[${document_basename}]: $2"
   }
 
   document_basename="$1"
@@ -158,8 +158,19 @@ compile_document() {
     which "context" >"/dev/null"
     if [ $? -eq 0 ]; then
       echo "EXEC     [${document_basename}]: context (create printouts)"
-      context "../../tex/printout_${document_basename}_A5_on_A4_doublesided_folded.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
-      context "../../tex/printout_${document_basename}_A5_on_A4_sidebyside_simple.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
+
+      # A5 on A4, double sided, folded: Use 'awk' to create a copy of the
+      # printout template file with changed input PDF file name and then
+      # execute 'context' on the new file.
+      awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"./printout_${document_basename}_A5_on_A4_doublesided_folded.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout! Aborted."
+      context "./printout_${document_basename}_A5_on_A4_doublesided_folded.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
+
+      # A5 on A4, a A5-A5 spread on single A4 surface: Use 'awk' to create a
+      # copy of the printout template file with changed input PDF file name
+      # and then execute 'context' on the new file.
+      awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"./printout_${document_basename}_A5_on_A4_sidebyside_simple.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout! Aborted."
+      context "./printout_${document_basename}_A5_on_A4_sidebyside_simple.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
+
       printouts_created="true"
       cp printout*.pdf "../../" || die $? "Error copying printout PDFs from temporary directory! Aborted."
     else
@@ -232,9 +243,10 @@ while [ $# -gt 0 ]; do
 done
 
 # Test executable availability:
-which "pdflatex" >"/dev/null" || die 1 "pdflatex binary not found in path! Aborted."
-which "texlua" >"/dev/null" || die 1 "texlua binary not found in path! Aborted."
-which "lilypond-book" >"/dev/null" || die 1 "lilypond-book binary not found in path! Aborted."
+which "pdflatex" >"/dev/null" || die 1 "'pdflatex' binary not found in path! Aborted."
+which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path! Aborted."
+which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path! Aborted."
+which "awk" >"/dev/null" || die 1 "'awk' binary not found in path! Aborted."
 
 # Create the 1st level temporary directory in case it doesn't exist.
 mkdir "$TEMP_DIRNAME" 2>"/dev/null"

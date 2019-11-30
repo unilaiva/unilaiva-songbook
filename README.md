@@ -111,11 +111,12 @@ without the `fit-to-page` option that some GUI programs like to pass to it.
 
 There are also special printing options, like printing multiple A5 sized pages
 on an A4 sized paper. They are defined in files named
-`printout_unilaiva-songbook*.context` and are to be inputted to *ConTeXt*
+`printout_template_*.context` and are to be inputted to *ConTeXt*
 program, which needs to be installed on the system. They operate on a previously
 compiled `unilaiva-songbook.pdf` file. See comments in the beginning of each such
-file. The compilation script will process these too, if it finds the `context`
-binary.
+file. If the compilation script finds the `context` binary, it will by default
+process these too, and use them as templates to create similar printouts of the
+two-booklet version of the songbook as well.
 
 #### Printing double sided on a single sided printer ####
 
@@ -170,12 +171,8 @@ Project structure and guidelines
 ├── **ext_packages**
 │   └── **songs**
 ├── **tex**
-│   ├── printout_unilaiva-songbook_A5_on_A4_doublesided_folded.context
-│   ├── printout_unilaiva-songbook_A5_on_A4_sidebyside_simple.context
-│   ├── printout_unilaiva-songbook_part1_A5_on_A4_doublesided_folded.context
-│   ├── printout_unilaiva-songbook_part1_A5_on_A4_sidebyside_simple.context
-│   ├── printout_unilaiva-songbook_part2_A5_on_A4_doublesided_folded.context
-│   ├── printout_unilaiva-songbook_part2_A5_on_A4_sidebyside_simple.context
+│   ├── printout_template_A5_on_A4_doublesided_folded.context
+│   ├── printout_template_A5_on_A4_sidebyside_simple.context
 │   ├── unilaiva-songbook_common.sty
 │   ├── unilaiva-songbook_content_include_part0_toc.tex
 │   ├── unilaiva-songbook_content_include_part1.tex

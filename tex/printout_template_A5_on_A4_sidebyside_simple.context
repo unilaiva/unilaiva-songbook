@@ -1,14 +1,19 @@
-% This is a ConTeXt source file to create a PDF printout from existing
-% unilaiva-songbook_part1.pdf. If you have 'context' binary on your system,
+% This is a ConTeXt source file to create a PDF printout from an existing
+% PDF file. If you have 'context' binary on your system,
 %'compile_unilaiva-songbook.sh' will compile a PDF from this source file.
 %
-% See ConTeXt help for example here: 
+% The compile script will also use this file as a template for creating
+% similar printouts from other source PDF files. It will only replace the
+% name of the input file given as a parameter to \insertpages below, so
+% please do not modify that file name in this file.
+%
+% See ConTeXt help for example here:
 %        http://wiki.contextgarden.net/Imposition
 %
 % This file is used to create a printout where two A5 size pages are
 % put side by side on a A4 landscape A4 page. A blank page is inserted
 % in the beginning to ensure that the pages meant to be facing each
-% other are printed side-by-side. 
+% other are printed side-by-side.
 %
 % This is the simplest way to print the document in A5 size on A4 paper.
 %
@@ -32,7 +37,8 @@
 %\showframe % uncomment for debugging
 
 \starttext
-   % Insert pages from the precompiled PDF. The second argument specifies that
-   % a blank page must be inserted before the first imported page.
-  \insertpages[unilaiva-songbook_part1.pdf][0][width=0pt]
+  % Insert pages from the precompiled PDF. The second argument specifies that
+  % a blank page must be inserted before the first imported page.
+  % Do not change the file name below, it is expected by the compile script.
+  \insertpages[unilaiva-songbook.pdf][0][width=0pt]
 \stoptext
