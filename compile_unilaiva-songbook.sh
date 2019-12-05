@@ -1,7 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 #
-# This UNIX shell script compiles unilaiva-songbook.tex using different
-# tools to produce unilaiva-songbook.pdf
+# This bash shell script for UNIX compiles unilaiva-songbook.tex using
+# different tools to produce the main output file unilaiva-songbook.pdf
+# and others.
+#
+# Note that this script probably works only with bash, as it uses some of it's
+# features, especially arrays.
 #
 # Usage: run without argument for default operation. Run with --help argument
 # for further information about options, or see function print_usage_and_exit
@@ -24,6 +28,7 @@ SONG_IDX_SCRIPT="ext_packages/songs/songidx.lua"
 SORT_LOCALE="fi_FI.utf8" # Recommended default: fi_FI.utf8
 
 initial_dir="$PWD"
+error_occurred_filename="${initial_dir}/${TEMP_DIRNAME}/compilation_error_occurred"
 
 # Function: print the program usage informationand exit.
 print_usage_and_exit() {
@@ -57,18 +62,27 @@ print_usage_and_exit() {
 # Function: exit the program with error code and message.
 # Usage: die <errorcode> <message>
 die() {
-  echo "\nERROR:   $2" >&2
-  cd "${initial_dir}"
-  which "pkill" >"/dev/null"
-  if [ $? -eq 0 ]; then # If pkill is available, kill children of main sub-processes
-    [ ${pid_main} != 0 ] && pkill --signal 9 -P ${pid_main} >/dev/null 2>&1
-    [ ${pid_part1} != 0 ] && pkill --signal 9 -P ${pid_part1} >/dev/null 2>&1
-    [ ${pid_part2} != 0 ] && pkill --signal 9 -P ${pid_part2} >/dev/null 2>&1
+  # Only print errors, if file ${error_occurred_filename} does NOT exist.
+  # If it exists, it means that error processing is already underway,
+  # and this is only a child process that has been killed.
+  if [ ! -f "${error_occurred_filename}" ]; then
+    # Create the file signifying (for child processes) that we are already
+    # dying:
+    echo "Error occurred while compiling: $2 (code: $1)" >"${error_occurred_filename}"
+    echo ""
+    echo "ERROR:   $2" >&2
+    cd "${initial_dir}"
+    pkill_available="false"
+    which "pkill" >"/dev/null" && pkill_available="true"
+    for pid in "${pids[@]}"
+    do
+      if [ "${pkill_available}" = "true" ]; then
+        [ ${pid} != 0 ] && pkill --parent ${pid} -9 >/dev/null 2>&1
+      fi
+      # Kill compilation processes:
+      [ ${pid} != 0 ] && kill -9 ${pid} >/dev/null 2>&1
+    done
   fi
-  # Kill main sub-processes:
-  [ ${pid_main} != 0 ] && kill -9 ${pid_main} >/dev/null 2>&1
-  [ ${pid_part1} != 0 ] && kill -9 ${pid_part1} >/dev/null 2>&1
-  [ ${pid_part2} != 0 ] && kill -9 ${pid_part2} >/dev/null 2>&1
   exit $1
 }
 
@@ -78,17 +92,25 @@ compile_document() {
 
   # Usage: die_log <errorcode> <message> <logfile>
   die_log() {
-    echo "ERROR    [${document_basename}]: $2"
-    echo "\nDisplaying log file for ${document_basename}.tex: $3\n"
-    cat "$3"
-    echo "\nBuild logs are in: ${temp_dirname_twolevels}/"
-    # Parse output logs for giving better advice:
-    if [ "$3" = "out-3_titleidx.log" ]; then # test for locale problem
-      grep "invalid locale" "$3" 
-      if [ $? -eq 0 ]; then
-        echo ""
-        echo "Locale ${SORT_LOCALE} must be installed on the system or the compile script"
-        echo "must be modified (line starting with SORT_LOCALE) to use a different locale."
+    # Only print errors, if file ${error_occurred_filename} does NOT exist.
+    # If it exists, it means that error processing is already underway,
+    # and this is only a child process that has been killed.
+    if [ ! -f "${error_occurred_filename}" ]; then
+      echo "ERROR    [${document_basename}]: $2"
+      echo ""
+      echo "Displaying log file for ${document_basename}.tex: $3"
+      echo ""
+      cat "$3"
+      echo ""
+      echo "Build logs are in: ${temp_dirname_twolevels}/"
+      # Parse output logs for giving better advice:
+      if [ "$3" = "out-3_titleidx.log" ]; then # test for locale problem
+        grep "invalid locale" "$3" 
+        if [ $? -eq 0 ]; then
+          echo ""
+          echo "Locale ${SORT_LOCALE} must be installed on the system or the compile script"
+          echo "must be modified (line starting with SORT_LOCALE) to use a different locale."
+        fi
       fi
     fi
     die $1 "[${document_basename}]: $2"
@@ -205,11 +227,6 @@ compile_document() {
 } # END compile_document()
 
 
-# will hold PIDs for sub-processes, when compiling in parallel:
-pid_main=0
-pid_part1=0
-pid_part2=0
-
 # Set defaults:
 deployfinal="true"
 createprintouts="true"
@@ -251,24 +268,29 @@ which "awk" >"/dev/null" || die 1 "'awk' binary not found in path! Aborted."
 # Create the 1st level temporary directory in case it doesn't exist.
 mkdir "$TEMP_DIRNAME" 2>"/dev/null"
 [ -d "./$TEMP_DIRNAME" ] || die 1 "Could not create temporary directory $TEMP_DIRNAME. Aborted."
+rm "${error_occurred_filename}" >/dev/null 2>&1
 
-trap 'die 2 Interrupted.' INT TERM # trap interruptions
+
+trap 'die 130 Interrupted.' INT TERM # trap interruptions
 
 echo ""
 echo "Compiling Unilaiva songbook..."
 echo ""
 
 # Compile the documents (defined at the top of this file):
+pidcounter=0
 compile_document "${MAIN_FILENAME_BASE}" &
-pid_main=$!
-[ ${parallel} = "false" ] && wait && pid_main=0
+pids[pidcounter]=$!
+[ ${parallel} = "false" ] && wait && pids[pidcounter]=0 && echo ""
 if [ ${partialbooks} = "true" ]; then
-  [ ${parallel} = "false" ] && echo ""
+  ((pidcounter++))
   compile_document "${PART1_FILENAME_BASE}" &
-  pid_part1=$!
-  [ ${parallel} = "false" ] && wait && pid_part1=0 && echo ""
+  pids[pidcounter]=$!
+  [ ${parallel} = "false" ] && wait && pids[pidcounter]=0 && echo ""
+  ((pidcounter++))
   compile_document "${PART2_FILENAME_BASE}" &
-  pid_part2=$!
+  pids[pidcounter]=$!
+  [ ${parallel} = "false" ] && wait && pids[pidcounter]=0 && echo ""
 fi
 wait # wait for sub processes to end
 

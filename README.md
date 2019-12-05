@@ -20,6 +20,7 @@ The project is written in [LaTeX](https://www.latex-project.org/).
   * Lilypond installation with the binary `lilypond-book`
   * Font 'Noto' for LaTeX
   * Locale 'fi_FI.utf8'
+  * Compile script requires `bash`
 
 Our project requires only some pretty standard LaTeX packages, which are
 included in many LaTeX installations by default, to be installed on the system.
@@ -36,7 +37,7 @@ version: the package is used heavily and some of its macros are redefined.
 For example, on Ubuntu 18.04 LTS, to install all required dependencies and to
 download the project's source, you need to run the following commands:
 
-  1. `sudo apt install git context lilypond texlive texlive-fonts-extra
+  1. `sudo apt install bash context git lilypond texlive texlive-fonts-extra
      texlive-font-utils texlive-lang-english texlive-lang-european
      texlive-latex-extra` # (context is optional)
   2. `sudo locale-gen fi_FI.utf8`
