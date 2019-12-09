@@ -1,0 +1,44 @@
+ %% Selection of songs from unilaiva-songbook: an example
+ %% =====================================================
+ %%
+ %% To create your own selection, just make a copy of this file named
+ %% ul-selection_SOMETHING.tex in the project root, and edit the new
+ %% file to have correct \mainbooktitle and \includeonlysongs, then
+ %% run the compile script.
+ %%
+ %% To use a custom image as a cover, create a single page PDF of it,
+ %% put it in content/img, and uncomment \coverpdf command below (in
+ %% your new file) and set the correct file name (without path).
+ %%
+ %% The compile script will automatically compile every selection booklet,
+ %% which is named ul-selection_*.tex and put in the root directory of the
+ %% project.
+
+\documentclass[twoside,10pt]{book}
+
+%% Set the title of this document:
+\newcommand{\mainbooktitle}{Example selection}
+
+%% Uncomment this and set the filename without path (the file must be found
+%% in content/img), to use a single-page PDF as a cover. Otherwise a cover
+%% will be generated.
+% \newcommand{\coverpdf}{my_selection_cover.pdf}
+
+%% The following required package contains all the imports, style settings etc:
+\usepackage{tex/unilaiva-songbook_common}
+
+%% Settings (comment out as per your wishes):
+\showtagsfalse    % Comment out to show tags in preludes
+\showphfalse      % Comment out to show phase info in preludes
+\showphintocfalse % Comment out to show phase info in TOC
+%\shownotesfalse   % Comment out to show melody notes
+%\showbeatsfalse   % Comment out to show beat marks
+%\chordsoff        % Comment out to show chords
+
+%% Here we set the song numbers included in this selection:
+\includeonlysongs{107,232,333,334,502,703,105,324}
+
+%% Required:
+\input{tex/ul-selection_include.tex}
+
+%% That's it! Nothing more is needed.

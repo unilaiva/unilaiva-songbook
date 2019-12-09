@@ -174,6 +174,7 @@ Project structure and guidelines
 ├── **tex**
 │   ├── printout_template_A5_on_A4_doublesided_folded.context
 │   ├── printout_template_A5_on_A4_sidebyside_simple.context
+│   ├── ul-selection_include.tex
 │   ├── unilaiva-songbook_common.sty
 │   ├── unilaiva-songbook_content_include_part0_toc.tex
 │   ├── unilaiva-songbook_content_include_part1.tex
@@ -184,6 +185,7 @@ Project structure and guidelines
 ├── tags.can
 ├── **temp**
 ├── **temporary_addon_sources**
+├── ul-selection_*.tex
 ├── unilaiva-songbook_part1.tex
 ├── unilaiva-songbook_part2.tex
 └── unilaiva-songbook.tex
@@ -201,7 +203,8 @@ document(s) with `\input` macros. There resides also the most important
 `unilaiva-songbook_common.sty` package, which contains all the needed imports,
 definitions, settings and style used in the songbook. It is imported to the
 main document(s) with `\import` macro. `context` files used to create special
-printout versions reside there as well.
+printout versions reside there as well. `ul-selection_include.tex` is a file to
+be included in song selection booklets.
 
 Song data and other *content* will be in various files inside `content`
 subdirectory and will be inputed into the main file. Images are put into
@@ -209,6 +212,9 @@ subdirectory and will be inputed into the main file. Images are put into
 
 `temporary_addon_sources` directory holds templates for creating small booklets
 with only select songs.
+
+`ul-selection*.tex` define song selection booklets. They contain only some of
+the songs of the full songbook.
 
 External packages (only `songs` for now) are in `ext_packages` subdirectory.
 
@@ -408,6 +414,15 @@ The tag index is found at the end of the result document.
 
 ...can be found in `tex/unilaiva-songbook_common.sty` file. There are special
 hidden undocumented features! ;)
+
+
+Creating song selections
+------------------------
+
+It is very easy to create booklets with only specific selected songs. See file
+`ul-selection_example.tex` for an example and documentation. The compile script
+will assume any file with a name `ul-selection_*.tex` in the project's root to
+be a song selection booklet and will compile it.
 
 
 Tentative TODO

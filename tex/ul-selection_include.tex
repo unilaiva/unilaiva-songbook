@@ -1,0 +1,127 @@
+%% unilaiva-songbook_selections_include.tex
+%% ========================================
+%%
+%% This file is a partial .tex file to be included with \input macro
+%% to a Unilaiva songbook selection booklet main .tex file.
+%%
+%% See ul_selection_example.tex in the project's root directory for
+%% an example and documentation on how to create these.
+%%
+
+
+\providecommand{\mainbooktitle}{Selection}
+
+% Do not show chapter nor section in the page headers
+\fancyhead[LO]{}
+\fancyhead[RE]{}
+
+% This will create the cover page for a selection booklet. If macro \coverpdf
+% is defined, it's content will be assumed to be a file name of a PDF file in
+% content/img, and will be used as a cover page. Otherwise a cover will be
+% generated.
+\newcommand{\coverpageforselection}{
+  \ifdefined\coverpdf{
+    \includepdf[]{content/img/\coverpdf}
+  }\else{ % must be contained within a block for the settings to not bleed
+    \thispagestyle{empty}
+    \topskip0pt
+    \vspace*{5.05em} % align with "Contents" heading on the next page; BAD for any changes
+    \begin{center}
+      \Huge \mainbooktitle\\
+      \vspace*{\fill}
+      \imagec[4]{Unilaiva-songbook_COVER.pdf}
+      %\vspace*{\fill}
+    \end{center}
+  }
+  \fi
+}
+
+% This will create the second page for a selection booklet
+\newcommand{\secondpageforselection}[2]{
+  { % must be contained within a block for the settings to not bleed
+    \thispagestyle{empty}
+    \topskip0pt
+    \vspace*{5.05em} % align with "Contents" heading on the next page; BAD for any changes
+    \begin{center}
+      \Huge \mainbooktitle\\
+      \normalsize\textit{a selection of songs from Unilaiva songbook}\\
+      \vspace*{\fill}
+      \imagec[4]{Unilaiva-songbook_COVER.pdf}
+      \ifx&#1&% #1 is empty
+      \else % #1 not empty
+        \vspace{1em}
+        \Large \textbf{#1}\\
+        \ifx&#2&% #2 is empty
+        \else % #2 not empty
+          \vspace{0.3em}%
+          \normalsize #2\\
+        \fi
+      \fi
+      \vspace*{\fill}
+      \large By:\\
+      \Large \textbf{humankind}\\
+      \vspace{1em}
+      \large Version:\\
+      % vvvv-mm-dd % Use hardcoded date for tagged printout releases
+      \Large \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day% current date, the default
+      \ifchorded\else{\\\emph{(without chords)}}\fi% if non-chorded version, mention it here
+      \\
+      \vspace*{\fill}
+      {\normalsize Find the full songbook at:}
+      \\
+      % Created with: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
+      \imagel[3]{QR_https_unilaiva_aavalla_net.png} % Already centered, so l-version ok
+      \\
+      {\small\url{https://unilaiva.aavalla.net/}}
+      \\
+      \vspace*{\fill}
+      {\footnotesize Compiled by: antagomir \& larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})}
+      \\
+      \vspace{1.5em}
+      {\scriptsize
+        The material in this book is collected from various sources over time.\\
+        \vspace{-1em} % workaround for too large line spacing
+        This is a work in progress, and made for the contributors' private use.
+        \vspace{-1em} % workaround for too large line spacing
+      }
+    \end{center}
+  }
+} % END \secondpageforselection
+
+
+\begin{document}
+
+  \coverpageforselection % cover page here
+  \clearpage
+  \secondpageforselection{}{} % the second (title) page here (verso)
+
+  % TOC:
+  \input{tex/unilaiva-songbook_content_include_part0_toc.tex}
+
+  \clearpage
+  \begin{songs}{}
+    \input{content/songs_sanskrit_vedic.tex}
+    \input{content/songs_sanskrit_buddhist.tex}
+    \input{content/songs_spanish.tex}
+    \input{content/songs_portuguese.tex}
+    \input{content/songs_english.tex}
+    \input{content/songs_other.tex}
+    \input{content/songs_suomi.tex}
+    \input{content/songs_suomi_larva.tex}
+
+    \chordsoff % songs: do not show (empty line for non-existing) chords
+    \renewcommand{\lyricfont}{\small} % songs: use smaller font
+    \songcolumns{2} % songs: two columns per page
+    \songpos{1} % songs: avoid ONLY page-turns within songs
+    % songs: make penalty for breaking column/page at any line of lyrics to be the same:
+    % (The default for \interlinepenalty is 1000, and for all the others 200.)
+    \interlinepenalty=200 %
+    \input{content/songs_suomi_runoja_loitsuja.tex}
+    \interlinepenalty=1000 % songs: back to the default: avoid breaks within verses the most
+    \songpos{3} % songs: back to the default: avoid all breaks whenever possible
+    \songcolumns{1} % songs: back to the default: one column per page
+    \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
+    \chordson % songs: back to the default: show chords
+  \end{songs}
+
+\end{document}
