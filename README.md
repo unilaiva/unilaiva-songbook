@@ -184,7 +184,6 @@ Project structure and guidelines
 ├── README.md
 ├── tags.can
 ├── **temp**
-├── **temporary_addon_sources**
 ├── ul-selection_*.tex
 ├── unilaiva-songbook_part1.tex
 ├── unilaiva-songbook_part2.tex
@@ -209,9 +208,6 @@ be included in song selection booklets.
 Song data and other *content* will be in various files inside `content`
 subdirectory and will be inputed into the main file. Images are put into
 `content/img`.
-
-`temporary_addon_sources` directory holds templates for creating small booklets
-with only select songs.
 
 `ul-selection*.tex` define song selection booklets. They contain only some of
 the songs of the full songbook.
