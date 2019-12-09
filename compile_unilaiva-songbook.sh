@@ -35,7 +35,17 @@ ERROR_OCCURRED_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/compilation_error_occurred"
 # Function: print the program usage informationand exit.
 print_usage_and_exit() {
   echo ""
-  echo "Usage: compile_unilaiva-songbook.sh [options]"
+  echo "Usage: compile_unilaiva-songbook.sh [OPTION]... [FILE]..."
+  echo ""
+  echo "TLDR; just run without arguments for default operation."
+  echo ""
+  echo "If run without any arguments, all main .tex documents of Unilaiva songbook"
+  echo "(main book, partial booklets and selections) will be compiled with printouts"
+  echo "for all of them, and the resulting files will be copied to the 'deploy'"
+  echo "directory (if it exists)."
+  echo ""
+  echo "If file names are given as arguments, only they will be compiled. The files"
+  echo "must reside in the project's root directory and have .tex extension."
   echo ""
   echo "Options:"
   echo ""
@@ -43,22 +53,24 @@ print_usage_and_exit() {
   echo "  --no-printouts  : do not create extra printout PDFs"
   echo "  --no-selections : do not create selection booklets"
   echo "  --no-deploy     : do not copy PDF files to ./deploy/"
-  echo "  --parallel      : compile documents simultaneously"
+  echo "  --sequential    : compile documents sequentially (the default is to"
+  echo "                    compile them in parallel)"
   echo "  -d              : use for quick development build of the main document;"
-  echo "                  : equals to --no-partial --no-printouts --no-selections"
+  echo "                  : equals to --no-partial --no-selections --no-printouts"
   echo "                    --no-deploy"
   echo "  --help          : print this usage information"
   echo ""
   echo "In addition to the full songbook, also two-booklet version is created,"
   echo "with parts 1 and 2 in separate PDFs. This is not done, if --no-partial"
-  echo "option is present."
+  echo "option is present or files are given as arguments."
   echo ""
   echo "Also selection booklets, with specific songs only, specified in files"
   echo "named ul-selection_*.pdf are compiled, unless --no-selections option"
-  echo "is present."
+  echo "is present or files are given as arguments."
   echo ""
-  echo "Special versions for printing (printout_*.pdf) are created, if 'context'"
-  echo "binary is available and --no-printouts option is not given."
+  echo "Special versions for printing (printout_*.pdf) are created for all compiled"
+  echo "documents, if 'context' binary is available and --no-printouts option is not"
+  echo "given."
   echo ""
   echo "If --no-deploy argument is not present, the resulting PDF files will"
   echo "also be copied to ./deploy/ directory (if it exists)."
@@ -128,7 +140,6 @@ compile_document() {
 
   # Test if we are currently in the correct directory:
   [ -f "./${document_basename}.tex" ] || die 1 "Not currently in the project's root directory! Aborted."
-  [ -f "./compile_unilaiva-songbook.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
 
   # Clean old build:
   [ -d "${temp_dirname_twolevels}" ] && rm -R "${temp_dirname_twolevels}"/* 2>"/dev/null"
@@ -236,13 +247,19 @@ compile_document() {
 
 } # END compile_document()
 
+# Remove the file signifying the last compilation resulted in error,
+# if it exists:
+rm "${ERROR_OCCURRED_FILE}" >/dev/null 2>&1
 
 # Set defaults:
 deployfinal="true"
 createprintouts="true"
+mainbook="true"
 partialbooks="true"
 selections="true"
-parallel="false"
+parallel="true"
+
+doc_count=0 # will be increased when documents are added to 'docs' array
 
 # Test program arguments:
 while [ $# -gt 0 ]; do
@@ -259,8 +276,8 @@ while [ $# -gt 0 ]; do
     "--no-selections")
       selections="false"
       shift;;
-    "--parallel")
-      parallel="true"
+    "--sequential")
+      parallel="false"
       shift;;
     "-d")
       deployfinal="false"
@@ -268,9 +285,30 @@ while [ $# -gt 0 ]; do
       partialbooks="false"
       selections="false"
       shift;;
-    *) # for everything else
+    "--help")
       print_usage_and_exit
       ;;
+    *) # for everything else (possibly a file name)
+      if [ -f "$1" ]; then
+        tmp=$1
+        tmp=${tmp##*/} # remove everything before and including the last /
+        case "${tmp}" in
+          *.tex) ;; # is a .tex file, good
+          *) die 1 "Given file does not have a .tex extension! Aborted."
+        esac
+        [ -f "${tmp}" ] || die 1 "Given file is not in the current directory! Aborted."
+        tmp=${tmp%.tex} # remove the suffix
+        docs[doc_count]=${tmp} ; ((doc_count++))
+        # Compile only the given file, when files are explicitly given:
+        mainbook="false"
+        partialbooks="false"
+        selections="false"
+      else
+        echo ""
+        echo "ERROR:   Incorrect argument or nonexisting file name."
+        print_usage_and_exit
+      fi
+      shift;;
   esac
 done
 
@@ -280,18 +318,19 @@ which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path! Aborted
 which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path! Aborted."
 which "awk" >"/dev/null" || die 1 "'awk' binary not found in path! Aborted."
 
+[ -f "./compile_unilaiva-songbook.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
+
 # Create the 1st level temporary directory in case it doesn't exist.
-mkdir "$TEMP_DIRNAME" 2>"/dev/null"
-[ -d "./$TEMP_DIRNAME" ] || die 1 "Could not create temporary directory $TEMP_DIRNAME. Aborted."
-# Remove the file signifying the last compilation resulted in error,
-# if it exists:
-rm "${ERROR_OCCURRED_FILE}" >/dev/null 2>&1
+mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
+[ -d "./${TEMP_DIRNAME}" ] || die 1 "Could not create temporary directory ${TEMP_DIRNAME}. Aborted."
 
 trap 'die 130 Interrupted.' INT TERM # trap interruptions
 
-# Insert main documents to be compiled to 'docs' array:
-doc_count=0
-docs[doc_count]="${MAIN_FILENAME_BASE}" ; ((doc_count++))
+# Insert the documents to be compiled to 'docs' array
+
+if [ ${mainbook} = "true" ]; then
+  docs[doc_count]="${MAIN_FILENAME_BASE}" ; ((doc_count++))
+fi
 if [ ${partialbooks} = "true" ]; then  # add partial books
   docs[doc_count]="${PART1_FILENAME_BASE}" ; ((doc_count++))
   docs[doc_count]="${PART2_FILENAME_BASE}" ; ((doc_count++))
@@ -306,11 +345,14 @@ if [ ${selections} = "true" ]; then  # add selecion booklets
   done
 fi
 
-parallel_text="sequentially"
-[ ${parallel} = "true" ] && parallel_text="in parallel"
-
 echo ""
-echo "Compiling Unilaiva songbook (${doc_count} documents ${parallel_text})..."
+if [ ${doc_count} = 1 ]; then
+  echo "Compiling Unilaiva songbook (1 document)..."
+else
+  parallel_text="sequentially"
+  [ ${parallel} = "true" ] && parallel_text="in parallel"
+  echo "Compiling Unilaiva songbook (${doc_count} documents ${parallel_text})..."
+fi
 echo ""
 
 # Compile the documents in the 'docs' array:
