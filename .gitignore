@@ -23,6 +23,10 @@ temp/
 deploy/
 deploy
 
+# unilaiva VM's shared deploy directory
+deploy_from_vm/
+deploy_from_vm
+
 # local directory to keep old print versions
 old_versions/
 old_versions
