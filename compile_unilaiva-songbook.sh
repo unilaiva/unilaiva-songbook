@@ -53,6 +53,7 @@ print_usage_and_exit() {
   echo "  --no-printouts  : do not create extra printout PDFs"
   echo "  --no-selections : do not create selection booklets"
   echo "  --no-deploy     : do not copy PDF files to ./deploy/"
+  echo "  --pull          : Execute git pull before compiling"
   echo "  --sequential    : compile documents sequentially (the default is to"
   echo "                    compile them in parallel)"
   echo "  -d              : use for quick development build of the main document;"
@@ -257,6 +258,7 @@ createprintouts="true"
 mainbook="true"
 partialbooks="true"
 selections="true"
+gitpull="false"
 parallel="true"
 
 doc_count=0 # will be increased when documents are added to 'docs' array
@@ -275,6 +277,9 @@ while [ $# -gt 0 ]; do
       shift;;
     "--no-selections")
       selections="false"
+      shift;;
+    "--pull")
+      gitpull="true"
       shift;;
     "--sequential")
       parallel="false"
@@ -325,6 +330,11 @@ mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
 [ -d "./${TEMP_DIRNAME}" ] || die 1 "Could not create temporary directory ${TEMP_DIRNAME}. Aborted."
 
 trap 'die 130 Interrupted.' INT TERM # trap interruptions
+
+if [ ${gitpull} = "true" ]; then
+  git pull --rebase
+  [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested. Aborted."
+fi
 
 # Insert the documents to be compiled to 'docs' array
 
