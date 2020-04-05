@@ -193,8 +193,14 @@ compile_document() {
 
   overfull_count=$(grep -i overfull "out-7_pdflatex.log" | wc -l)
   underfull_count=$(grep -i underfull "out-7_pdflatex.log" | wc -l)
+  fontwarning_count=$(grep -i "Font Warning" "out-7_pdflatex.log" | wc -l)
   [ "${overfull_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Overfull warnings: ${overfull_count}"
   [ "${underfull_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Underfull warnings: ${underfull_count}"
+  if [ "${fontwarning_count}" -gt "20" ]; then
+    echo "DEBUG    [${document_basename}]: Font warnings: ${fontwarning_count}; CHECK THE LOG!!"
+  else
+    [ "${fontwarning_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Font warnings: ${fontwarning_count}"
+  fi
 
   # Create printouts, if context binary is found:
   printouts_created="false"
