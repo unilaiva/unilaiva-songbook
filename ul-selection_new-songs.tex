@@ -1,0 +1,37 @@
+ %% Selection of songs from unilaiva-songbook: new songs
+ %% ====================================================
+ %%
+ %% This selection is intended to hold the new songs added since the last
+ %% physical full book print. TODO: remember to update the song list.
+ %%
+ %% See ul-selection_example.tex and README.md for documentation.
+ %%
+
+\documentclass[twoside,10pt]{book}
+
+%% Set the title of this document:
+\newcommand{\mainbooktitle}{New songs since last physical book until \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}
+
+%% Uncomment this and set the filename without path (the file must be found
+%% in content/img), to use a single-page PDF as a cover. Otherwise a cover
+%% will be generated.
+% \newcommand{\coverpdf}{my_selection_cover.pdf}
+
+%% The following required package contains all the imports, style settings etc:
+\usepackage{tex/unilaiva-songbook_common}
+
+%% Settings (comment out as per your wishes):
+%\showtagsfalse    % Comment out to show tags in preludes
+%\showphfalse      % Comment out to show phase info in preludes
+%\showphintocfalse % Comment out to show phase info in TOC
+%\shownotesfalse   % Comment out to show melody notes
+%\showbeatsfalse   % Comment out to show beat marks
+%\chordsoff        % Comment out to show chords
+
+%% Here we set the song numbers included in this selection:
+\includeonlysongs{336,337,338,339,340,521}
+
+%% Required:
+\input{tex/ul-selection_include.tex}
+
+%% That's it! Nothing more is needed.
