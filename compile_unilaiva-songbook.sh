@@ -28,9 +28,10 @@ SONG_IDX_SCRIPT="ext_packages/songs/songidx.lua"
 # "locale -a".
 SORT_LOCALE="fi_FI.utf8" # Recommended default: fi_FI.utf8
 
-INITIAL_DIR="$PWD" # Store the initial directory
+INITIAL_DIR="${PWD}" # Store the initial directory
 
 ERROR_OCCURRED_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/compilation_error_occurred"
+TOO_MANY_WARNINGS_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/too_many_warnings"
 
 # Function: print the program usage informationand exit.
 print_usage_and_exit() {
@@ -49,17 +50,18 @@ print_usage_and_exit() {
   echo ""
   echo "Options:"
   echo ""
+  echo "  --docker        : compile within the Docker container"
+  echo "  --help          : print this usage information"
+  echo "  --no-deploy     : do not copy PDF files to ./deploy/"
   echo "  --no-partial    : do not compile partial books, only the main document"
   echo "  --no-printouts  : do not create extra printout PDFs"
   echo "  --no-selections : do not create selection booklets"
-  echo "  --no-deploy     : do not copy PDF files to ./deploy/"
   echo "  --pull          : Execute git pull before compiling"
   echo "  --sequential    : compile documents sequentially (the default is to"
   echo "                    compile them in parallel)"
-  echo "  -d              : use for quick development build of the main document;"
+  echo "  -q              : use for quick development build of the main document;"
   echo "                  : equals to --no-partial --no-selections --no-printouts"
   echo "                    --no-deploy"
-  echo "  --help          : print this usage information"
   echo ""
   echo "In addition to the full songbook, also two-booklet version is created,"
   echo "with parts 1 and 2 in separate PDFs. This is not done, if --no-partial"
@@ -104,6 +106,28 @@ die() {
     done
   fi
   exit $1
+}
+
+# Function: start docker container and compile there
+start_docker() {
+
+  which "docker" >"/dev/null" || die 1 "Docker executable not found. Aborted."
+
+  echo "DOCKER:  Build compiler image..."
+  echo "$@"
+
+  # Build the compiler image
+  docker build -t unilaiva-compiler ./docker/unilaiva-compiler || die 1 "Docker build error"
+
+  echo -e "\nDOCKER:  Start compiler container..."
+
+  # Run the container with current user's ID and bind mount current directory
+  docker run -it \
+    --user $(id -u):$(id -g) \
+    --mount type=bind,src="$(realpath .)",dst="/unilaiva-songbook" \
+    unilaiva-compiler \
+    $@
+  return $?
 }
 
 # Function: compile the document given as parameter
@@ -198,6 +222,7 @@ compile_document() {
   [ "${underfull_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Underfull warnings: ${underfull_count}"
   if [ "${fontwarning_count}" -gt "20" ]; then
     echo "DEBUG    [${document_basename}]: Font warnings: ${fontwarning_count}; CHECK THE LOG!!"
+    echo "Too many Font warnings! There is a problem!" >>"${TOO_MANY_WARNINGS_FILE}"
   else
     [ "${fontwarning_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Font warnings: ${fontwarning_count}"
   fi
@@ -254,11 +279,8 @@ compile_document() {
 
 } # END compile_document()
 
-# Remove the file signifying the last compilation resulted in error,
-# if it exists:
-rm "${ERROR_OCCURRED_FILE}" >/dev/null 2>&1
-
 # Set defaults:
+usedocker="false"
 deployfinal="true"
 createprintouts="true"
 mainbook="true"
@@ -269,17 +291,22 @@ parallel="true"
 
 doc_count=0 # will be increased when documents are added to 'docs' array
 
+all_args="$@"
+
 # Test program arguments:
 while [ $# -gt 0 ]; do
   case "$1" in
+    "--docker")
+      usedocker="true"
+      shift;;
     "--no-deploy")
       deployfinal="false"
       shift;;
-    "--no-printouts")
-      createprintouts="false"
-      shift;;
     "--no-partial")
       partialbooks="false"
+      shift;;
+    "--no-printouts")
+      createprintouts="false"
       shift;;
     "--no-selections")
       selections="false"
@@ -290,7 +317,7 @@ while [ $# -gt 0 ]; do
     "--sequential")
       parallel="false"
       shift;;
-    "-d")
+    "-q")
       deployfinal="false"
       createprintouts="false"
       partialbooks="false"
@@ -323,24 +350,35 @@ while [ $# -gt 0 ]; do
   esac
 done
 
+[ -f "./compile_unilaiva-songbook.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
+
+if [ ${gitpull} = "true" ]; then
+  git pull --rebase
+  [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested. Aborted."
+fi
+
+if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then
+  if [ ${usedocker} = "true" ]; then
+    start_docker ${all_args}
+    exit $?
+  fi
+fi
+
 # Test executable availability:
 which "pdflatex" >"/dev/null" || die 1 "'pdflatex' binary not found in path! Aborted."
 which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path! Aborted."
 which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path! Aborted."
 which "awk" >"/dev/null" || die 1 "'awk' binary not found in path! Aborted."
 
-[ -f "./compile_unilaiva-songbook.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
-
 # Create the 1st level temporary directory in case it doesn't exist.
 mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
 [ -d "./${TEMP_DIRNAME}" ] || die 1 "Could not create temporary directory ${TEMP_DIRNAME}. Aborted."
 
-trap 'die 130 Interrupted.' INT TERM # trap interruptions
+# Remove the files signifying the last compilation had problems,
+# if they exist:
+rm "${ERROR_OCCURRED_FILE}" "${TOO_MANY_WARNINGS_FILE}" >/dev/null 2>&1
 
-if [ ${gitpull} = "true" ]; then
-  git pull --rebase
-  [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested. Aborted."
-fi
+trap 'die 130 Interrupted.' INT TERM # trap interruptions
 
 # Insert the documents to be compiled to 'docs' array
 
@@ -386,6 +424,17 @@ for doc in "${docs[@]}"; do
 done
 
 wait # wait for all sub processes to end
+
+if [ -e "${TOO_MANY_WARNINGS_FILE}" ]; then
+  echo ""
+  echo "!!! WARNING !!!"
+  echo ""
+  echo "There were too many font warnings. Probably the fonts in the result"
+  echo "document(s) are not as they should be. Please run the compile script"
+  echo "with --docker argument to compile the songbook in a fully working"
+  echo "environment to ensure perfect results."
+  echo "(For that, Docker installation is required. See README.md.)"
+fi
 
 echo ""
 echo "Done."

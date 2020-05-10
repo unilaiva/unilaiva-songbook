@@ -2,18 +2,50 @@ unilaiva-songbook
 =================
 
 Unilaiva songbook is a collection of song lyrics etc for the contributors'
-private use.
+private use written in [LaTeX](https://www.latex-project.org/).
 
 The PDF compiled from these sources is available at
 [https://unilaiva.aavalla.net/](https://unilaiva.aavalla.net/)
 
 
-Environment
------------
 
-The project is written in [LaTeX](https://www.latex-project.org/).
+Compiling the songbook to create a PDF document
+-----------------------------------------------
 
-#### Requirements ####
+If you are on a UNIX-compatible system (e.g. Linux), you can use the provided
+`compile_unilaiva-songbook.sh` shell script to build the document. It builds
+all the book versions, including two-booklet version, each with all printout
+styles. For help about options, run: `compile_unilaiva-songbook.sh --help`
+
+
+### Option ONE: use the script with Docker (preferred) ###
+
+This guarantees the best results, as the container has all the correct packages
+installed and configured correctly. Execute the compilation script with
+`--docker` argument.
+
+##### Requirements #####
+
+This method requires only Docker and bash to be installed on your system.
+
+##### Example: on Debian or Ubuntu, using Docker #####
+
+To install the dependencies, download the project's source and compile
+the songbook using a Docker container, you need to run the following
+commands:
+
+  1. `sudo apt install docker.io`
+  2. `git clone git://github.com/unilaiva/unilaiva-songbook.git`
+  3. `cd unilaiva-songbook`
+  4. `./compile_unilaiva-songbook.sh --docker`
+
+
+### Option TWO: use the script without Docker ###
+
+If you don't want to use Docker, you can install the required packages and
+execute the compilation script **without** `--docker` option.
+
+##### Requirements #####
 
   * LaTeX 2e distribution (TeX Live is recommended) with some standard packages
     and the binaries `pdflatex` and `texlua`
@@ -32,31 +64,27 @@ included in the project tree and used instead of a one possibly installed on
 the system. This is because of compatibility reasons to ensure a specific
 version: the package is used heavily and some of its macros are redefined.
 
-##### Example: Ubuntu 18.04 #####
+##### Example: on Ubuntu 18.04, without Docker #####
 
-For example, on Ubuntu 18.04 LTS, to install all required dependencies and to
-download the project's source, you need to run the following commands:
+On Ubuntu 18.04 LTS, to install the dependencies, download the project's
+source and compile the songbook without Docker, you need to run the following
+commands:
 
-  1. `sudo apt install bash context git lilypond texlive texlive-fonts-extra
-     texlive-font-utils texlive-lang-english texlive-lang-european
-     texlive-latex-extra` # (context is optional)
+  1. `sudo apt install bash context context-modules git lilypond texlive
+     texlive-fonts-extra texlive-font-utils texlive-lang-english
+     texlive-lang-european texlive-latex-extra`
   2. `sudo locale-gen fi_FI.utf8`
   3. `git clone git://github.com/unilaiva/unilaiva-songbook.git`
+  4. `cd unilaiva-songbook`
+  5. `./compile_unilaiva-songbook.sh`
 
 
-Compiling the songbook to create a PDF document
------------------------------------------------
+### Option THREE, compile manually ###
 
-If you're on a UNIX-compatible system (e.g. Linux), you can simply use the
-provided `compile_unilaiva-songbook.sh` shell script to build a PDF document
-out of our project. It builds all the book versions, including two-booklet
-version, each with all printout styles, and does so correctly. Execute it
-without arguments for default operation. For help, run:
-`compile_unilaiva-songbook.sh --help`. **The use of the compile script is
-highly recommended.**
-
-Otherwise, to build (only) the main document manually, you ought to run the
-following commands or their equivalents in this exact sequence:
+Otherwise, to build (only) the main document manually, ensure you have all the
+dependencies installed (see **option TWO**) and the project's source downloaded,
+and then run the following commands or their equivalents in this exact sequence
+in the project's root directory:
 
   1. `lilypond-book -f latex --output temp unilaiva-songbook.tex`
   2. `cd temp ; ln -s ../ext_packages ./ ; ln -s ../../content/img ./content/ ;
@@ -85,6 +113,20 @@ actually **do** need all three cycles of `pdflatex` to get everything right.
 In the end, you will have the result document, `unilaiva-songbook.pdf` in the
 `temp` directory. Use similar procedure for other `.tex` documents in the
 project's root.
+
+
+#### Font problems ####
+
+Note that on some (newer?) distributions, for example Ubuntu 20.04, there
+is a problem with the medium weight Noto Sans font. The songbook will compile,
+but with incorrect fonts. The compile script will display a warning about this.
+To mitigate, one could change the `\usepackage[medium,extrabold]{noto}` to
+`\usepackage[regular,extrabold]{noto}` in `tex/unilaiva-songbook_common.sty`,
+but it would result in lighter and less readable fonts.
+
+A better solution to this problem is to compile using **Option ONE**, the Docker
+container.
+
 
 
 Printing
@@ -169,6 +211,7 @@ Project structure and guidelines
 ├── **content**
 │   └── **img**
 ├── **deploy**
+├── **docker**
 ├── **ext_packages**
 │   └── **songs**
 ├── **tex**
