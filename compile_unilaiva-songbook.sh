@@ -50,7 +50,7 @@ print_usage_and_exit() {
   echo ""
   echo "Options:"
   echo ""
-  echo "  --docker        : compile within the Docker container"
+  echo "  --no-docker     : do not use the Docker container for compiling"
   echo "  --help          : print this usage information"
   echo "  --no-deploy     : do not copy PDF files to ./deploy/"
   echo "  --no-partial    : do not compile partial books, only the main document"
@@ -92,6 +92,7 @@ die() {
     # dying:
     echo "Error occurred while compiling: $2 (code: $1)" >"${ERROR_OCCURRED_FILE}"
     echo ""
+    # Echo the actual error:
     echo "ERROR:   $2" >&2
     cd "${INITIAL_DIR}"
     pkill_available="false"
@@ -108,13 +109,20 @@ die() {
   exit $1
 }
 
-# Function: start docker container and compile there
-start_docker() {
+# Build, create and stat docker container and start the compile script therein.
+# Usage: compile_in_docker <arguments for compile script>
+compile_in_docker() {
 
-  which "docker" >"/dev/null" || die 1 "Docker executable not found. Aborted."
+  which "docker" >"/dev/null"
+  if [ $? -ne 0 ]; then
+    echo "Docker executable not found. Please install Docker to compile the"
+    echo "songbook in the 'official' environment. To compile without Docker,"
+    echo "use the --no-docker option, but be aware that the resulting book"
+    echo "might not be exactly as intended."
+    die 1 "Docker executable not found. Aborted."
+  fi
 
   echo "DOCKER:  Build compiler image..."
-  echo "$@"
 
   # Build the compiler image
   docker build -t unilaiva-compiler ./docker/unilaiva-compiler || die 1 "Docker build error"
@@ -122,7 +130,7 @@ start_docker() {
   echo -e "\nDOCKER:  Start compiler container..."
 
   # Run the container with current user's ID and bind mount current directory
-  docker run -it \
+  docker run -it --rm \
     --user $(id -u):$(id -g) \
     --mount type=bind,src="$(realpath .)",dst="/unilaiva-songbook" \
     unilaiva-compiler \
@@ -280,7 +288,7 @@ compile_document() {
 } # END compile_document()
 
 # Set defaults:
-usedocker="false"
+usedocker="true"
 deployfinal="true"
 createprintouts="true"
 mainbook="true"
@@ -293,11 +301,17 @@ doc_count=0 # will be increased when documents are added to 'docs' array
 
 all_args="$@"
 
+# Remove the file signifying the last compilation had errors. Do it already
+# here to ensure correct working of die() function.
+if [ -f ${ERROR_OCCURRED_FILE} ]; then
+  rm "${ERROR_OCCURRED_FILE}" >/dev/null 2>&1
+fi
+
 # Test program arguments:
 while [ $# -gt 0 ]; do
   case "$1" in
-    "--docker")
-      usedocker="true"
+    "--no-docker")
+      usedocker="false"
       shift;;
     "--no-deploy")
       deployfinal="false"
@@ -352,14 +366,9 @@ done
 
 [ -f "./compile_unilaiva-songbook.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
 
-if [ ${gitpull} = "true" ]; then
-  git pull --rebase
-  [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested. Aborted."
-fi
-
-if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then
+if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
   if [ ${usedocker} = "true" ]; then
-    start_docker ${all_args}
+    compile_in_docker ${all_args}
     exit $?
   fi
 fi
@@ -370,13 +379,19 @@ which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path! Aborted
 which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path! Aborted."
 which "awk" >"/dev/null" || die 1 "'awk' binary not found in path! Aborted."
 
+if [ ${gitpull} = "true" ]; then
+  which "git" >"/dev/null" || die 1 "'git' binary not found in path! Aborted."
+  git pull --rebase
+  [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested. Aborted."
+fi
+
 # Create the 1st level temporary directory in case it doesn't exist.
 mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
 [ -d "./${TEMP_DIRNAME}" ] || die 1 "Could not create temporary directory ${TEMP_DIRNAME}. Aborted."
 
 # Remove the files signifying the last compilation had problems,
-# if they exist:
-rm "${ERROR_OCCURRED_FILE}" "${TOO_MANY_WARNINGS_FILE}" >/dev/null 2>&1
+# if they exist (${ERROR_OCCURRED_FILE} has been removed earlier):
+rm "${TOO_MANY_WARNINGS_FILE}" >/dev/null 2>&1
 
 trap 'die 130 Interrupted.' INT TERM # trap interruptions
 
@@ -430,10 +445,13 @@ if [ -e "${TOO_MANY_WARNINGS_FILE}" ]; then
   echo "!!! WARNING !!!"
   echo ""
   echo "There were too many font warnings. Probably the fonts in the result"
-  echo "document(s) are not as they should be. Please run the compile script"
-  echo "with --docker argument to compile the songbook in a fully working"
-  echo "environment to ensure perfect results."
-  echo "(For that, Docker installation is required. See README.md.)"
+  echo "document(s) are not as they should be."
+  if [ "${usedocker}" = "false" ]; then
+    echo ""
+    echo "Please run the script without --no-docker option to compile the"
+    echo "songbook within a fully working environment to ensure perfect"
+    echo "results. For that, Docker installation is required. See README.md"
+  fi
 fi
 
 echo ""

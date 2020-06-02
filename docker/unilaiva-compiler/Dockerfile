@@ -13,6 +13,7 @@ FROM ubuntu:eoan-20200410
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     locales \
+    git \
     context \
     context-modules \
     lilypond \

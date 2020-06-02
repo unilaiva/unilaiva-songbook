@@ -20,13 +20,21 @@ styles. For help about options, run: `compile_unilaiva-songbook.sh --help`
 
 ### Option ONE: use the script with Docker (preferred) ###
 
-This guarantees the best results, as the container has all the correct packages
-installed and configured correctly. Execute the compilation script with
-`--docker` argument.
+Execute the compilation script **without** `--no-docker` argument.
+
+This guarantees the best results, as the actual compiling is done in a Docker
+container that has all the correct packages installed and configured correctly.
+
+Note that the first run will take a long time, as the Docker container is built
+and all the required software installed into it. Subsequent runs will use the
+already built container.
 
 ##### Requirements #####
 
-This method requires only Docker and bash to be installed on your system.
+This method requires the following software installed on your system:
+  * `docker`
+  * `bash` (installed by default on most systems)
+  * `git` (recommended for initially retrieving the songbook source)
 
 ##### Example: on Debian or Ubuntu, using Docker #####
 
@@ -34,16 +42,16 @@ To install the dependencies, download the project's source and compile
 the songbook using a Docker container, you need to run the following
 commands:
 
-  1. `sudo apt install docker.io`
-  2. `git clone git://github.com/unilaiva/unilaiva-songbook.git`
+  1. `sudo apt install docker.io git`
+  2. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
   3. `cd unilaiva-songbook`
-  4. `./compile_unilaiva-songbook.sh --docker`
+  4. `./compile_unilaiva-songbook.sh`
 
 
 ### Option TWO: use the script without Docker ###
 
 If you don't want to use Docker, you can install the required packages and
-execute the compilation script **without** `--docker` option.
+execute the compilation script with `--no-docker` option.
 
 ##### Requirements #####
 
@@ -52,7 +60,8 @@ execute the compilation script **without** `--docker` option.
   * Lilypond installation with the binary `lilypond-book`
   * Font 'Noto' for LaTeX
   * Locale 'fi_FI.utf8'
-  * Compile script requires `bash`
+  * `bash` (installed by default on most systems)
+  * `git` (recommended for retrieving and updating the songbook source)
 
 Our project requires only some pretty standard LaTeX packages, which are
 included in many LaTeX installations by default, to be installed on the system.
@@ -74,9 +83,9 @@ commands:
      texlive-fonts-extra texlive-font-utils texlive-lang-english
      texlive-lang-european texlive-latex-extra`
   2. `sudo locale-gen fi_FI.utf8`
-  3. `git clone git://github.com/unilaiva/unilaiva-songbook.git`
+  3. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
   4. `cd unilaiva-songbook`
-  5. `./compile_unilaiva-songbook.sh`
+  5. `./compile_unilaiva-songbook.sh --no-docker`
 
 
 ### Option THREE, compile manually ###
@@ -257,7 +266,7 @@ the songs of the full songbook.
 
 External packages (only `songs` for now) are in `ext_packages` subdirectory.
 
-Code lines in the source ought to be maximum of 80 characters long, but
+Code lines in the source ought to be maximum of 100 characters long, but
 exceptions are allowed, especially for song data.
 
 
