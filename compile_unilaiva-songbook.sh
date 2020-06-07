@@ -122,10 +122,24 @@ compile_in_docker() {
     die 1 "Docker executable not found. Aborted."
   fi
 
-  echo "DOCKER:  Build compiler image..."
+  # Build the compiler Docker image only if it doesn't yet exist, or if the
+  # Dockerfile (modification date) is newer than the image
 
-  # Build the compiler image
-  docker build -t unilaiva-compiler ./docker/unilaiva-compiler || die 1 "Docker build error"
+  docker_build_needed=""
+  if [ ! -z $(docker image ls -q unilaiva-compiler) ]; then
+    # image exists, compare dates...
+    dockerimage_ts="$(date -d $(docker inspect -f '{{ .Created }}' unilaiva-compiler) +%s)"
+    dockerfile_ts="$(date -r docker/unilaiva-compiler/Dockerfile +%s)"
+    [ ${dockerfile_ts} -gt ${dockerimage_ts} ] && docker_build_needed="true"
+  else
+    docker_build_needed="true"
+  fi
+
+  if [ "${docker_build_needed}" = "true" ]; then
+    echo "DOCKER:  Build compiler image..."
+    # Build the compiler image
+    docker build -t unilaiva-compiler ./docker/unilaiva-compiler || die 1 "Docker build error"
+  fi
 
   echo -e "\nDOCKER:  Start compiler container..."
 
