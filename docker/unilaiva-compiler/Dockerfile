@@ -1,8 +1,8 @@
 # Dockerfile for compiling Unilaiva songbook
 # ==========================================
 #
-# Run this image with "compile_unilaiva-songbook.sh --docker", as that script
-# will setup the *required* bind mount and use correct user id.
+# Run this image with "compile_unilaiva-songbook.sh", as that script will
+# setup the *required* bind mount and use correct user id.
 #
 
 # 19.10 Eoan seems to be the newest image that works with Noto Medium;
@@ -23,17 +23,20 @@ RUN apt-get update \
     texlive-lang-english \
     texlive-lang-european \
     texlive-latex-extra \
-  && rm -rf /var/lib/apt/lists/*
-
-# Generate the required locale
-RUN locale-gen fi_FI.utf8
+    texlive-music \
+    texlive-plain-generic \
+  && rm -rf /var/lib/apt/lists/* \
+  && locale-gen fi_FI.utf8
 
 # Setup a non-root user for everything. Make it's home world-writable so that
 # we can use host machine's user id and still have access to container's
 # ~/.texlive2019 when compiling.
 RUN useradd --create-home --shell /bin/bash unilaiva && chmod 777 /home/unilaiva
+
 USER unilaiva
-ENV HOME=/home/unilaiva
+
+ENV HOME="/home/unilaiva" \
+    IN_UNILAIVA_DOCKER_CONTAINER="true"
 
 # Make this a volume to make texmf cache within it persistent for a slight
 # performance boost. Otherwise it is just generated each time on demand.
@@ -43,10 +46,6 @@ VOLUME /home/unilaiva
 VOLUME /unilaiva-songbook
 
 WORKDIR /unilaiva-songbook
-
-# This is required for the compile script to not create
-# infinite nested containers :)
-ENV IN_UNILAIVA_DOCKER_CONTAINER=true
 
 # Located on the bind mount
 ENTRYPOINT ["./compile_unilaiva-songbook.sh"]

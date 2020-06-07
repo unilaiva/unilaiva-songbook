@@ -25,9 +25,10 @@ Execute the compilation script **without** `--no-docker` argument.
 This guarantees the best results, as the actual compiling is done in a Docker
 container that has all the correct packages installed and configured correctly.
 
-Note that the first run will take a long time, as the Docker container is built
-and all the required software installed into it. Subsequent runs will use the
-already built container.
+Note that the first run will take a long time, as the Docker image is built
+and all the required software downloaded (about 1 GiB) and installed into it.
+When built, the image requires about 2 GiB of disk space. Subsequent runs
+will be fast as they use the already built image.
 
 ##### Requirements #####
 
@@ -35,6 +36,7 @@ This method requires the following software installed on your system:
   * `docker`
   * `bash` (installed by default on most systems)
   * `git` (recommended for initially retrieving the songbook source)
+  * 2 GiB of disk space (for Docker image)
 
 ##### Example: on Debian or Ubuntu, using Docker #####
 
@@ -43,9 +45,11 @@ the songbook using a Docker container, you need to run the following
 commands:
 
   1. `sudo apt install docker.io git`
-  2. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
-  3. `cd unilaiva-songbook`
-  4. `./compile_unilaiva-songbook.sh`
+  2. `sudo adduser <USERNAME> docker` # replace <USERNAME> with your username
+  3. `su <USERNAME>` # relogin for the group setting to become active
+  4. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
+  5. `cd unilaiva-songbook`
+  6. `./compile_unilaiva-songbook.sh`
 
 
 ### Option TWO: use the script without Docker ###
@@ -55,8 +59,8 @@ execute the compilation script with `--no-docker` option.
 
 ##### Requirements #####
 
-  * LaTeX 2e distribution (TeX Live is recommended) with some standard packages
-    and the binaries `pdflatex` and `texlua`
+  * LaTeX 2e distribution (TeX Live is recommended) with some fairly standard
+    packages and the binaries `pdflatex` and `texlua`
   * Lilypond installation with the binary `lilypond-book`
   * Font 'Noto' for LaTeX
   * Locale 'fi_FI.utf8'
@@ -79,9 +83,10 @@ On Ubuntu 18.04 LTS, to install the dependencies, download the project's
 source and compile the songbook without Docker, you need to run the following
 commands:
 
-  1. `sudo apt install bash context context-modules git lilypond texlive
-     texlive-fonts-extra texlive-font-utils texlive-lang-english
-     texlive-lang-european texlive-latex-extra`
+  1. `sudo apt update && sudo apt install bash context context-modules git
+     lilypond texlive texlive-fonts-extra texlive-font-utils
+     texlive-lang-english texlive-lang-european texlive-latex-extra
+     texlive-music texlive-plain-generic`
   2. `sudo locale-gen fi_FI.utf8`
   3. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
   4. `cd unilaiva-songbook`
@@ -126,7 +131,7 @@ project's root.
 
 #### Font problems ####
 
-Note that on some (newer?) distributions, for example Ubuntu 20.04, there
+Note that on some (newer?) distributions, for example on Ubuntu 20.04, there
 is a problem with the medium weight Noto Sans font. The songbook will compile,
 but with incorrect fonts. The compile script will display a warning about this.
 To mitigate, one could change the `\usepackage[medium,extrabold]{noto}` to
@@ -226,6 +231,7 @@ Project structure and guidelines
 ├── **tex**
 │   ├── printout_template_A5_on_A4_doublesided_folded.context
 │   ├── printout_template_A5_on_A4_sidebyside_simple.context
+│   ├── ul-selection_example.tex
 │   ├── ul-selection_include.tex
 │   ├── unilaiva-songbook_common.sty
 │   ├── unilaiva-songbook_content_include_part0_toc.tex
@@ -262,12 +268,15 @@ subdirectory and will be inputed into the main file. Images are put into
 `content/img`.
 
 `ul-selection*.tex` define song selection booklets. They contain only some of
-the songs of the full songbook.
+the songs of the full songbook. All files in the project's root matching this
+filename pattern will be automatically compiled by the compile script. See
+`tex/ul-selection_example.tex` for an example.
 
-External packages (only `songs` for now) are in `ext_packages` subdirectory.
+External packages are in `ext_packages` subdirectory. This currently includes
+only the `songs` package and it's documentation.
 
 Code lines in the source ought to be maximum of 100 characters long, but
-exceptions are allowed, especially for song data.
+exceptions are allowed when needed, especially for song data.
 
 
 Adding and editing songs
