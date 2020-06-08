@@ -32,6 +32,7 @@ INITIAL_DIR="${PWD}" # Store the initial directory
 
 ERROR_OCCURRED_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/compilation_error_occurred"
 TOO_MANY_WARNINGS_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/too_many_warnings"
+RESULT_PDF_LIST_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/result_pdf_list"
 
 # Function: print the program usage informationand exit.
 print_usage_and_exit() {
@@ -113,6 +114,8 @@ die() {
 # Usage: compile_in_docker <arguments for compile script>
 compile_in_docker() {
 
+  echo ""
+
   which "docker" >"/dev/null"
   if [ $? -ne 0 ]; then
     echo "Docker executable not found. Please install Docker to compile the"
@@ -125,6 +128,7 @@ compile_in_docker() {
   # Build the compiler Docker image only if it doesn't yet exist, or if the
   # Dockerfile (modification date) is newer than the image
 
+  echo "DOCKER   Query compiler image status..."
   docker_build_needed=""
   if [ ! -z $(docker image ls -q unilaiva-compiler) ]; then
     # image exists, compare dates...
@@ -136,12 +140,12 @@ compile_in_docker() {
   fi
 
   if [ "${docker_build_needed}" = "true" ]; then
-    echo "DOCKER:  Build compiler image..."
+    echo "DOCKER   Build compiler image..."
     # Build the compiler image
     docker build -t unilaiva-compiler ./docker/unilaiva-compiler || die 1 "Docker build error"
   fi
 
-  echo -e "\nDOCKER:  Start compiler container..."
+  echo "DOCKER   Start compiler container..."
 
   # Run the container with current user's ID and bind mount current directory
   docker run -it --rm \
@@ -236,6 +240,7 @@ compile_document() {
   pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (3rd time)! Aborted." "out-7_pdflatex.log"
 
   cp "${document_basename}.pdf" "../../" || die $? "Error copying ${document_basename}.pdf from temporary directory! Aborted."
+  echo "${document_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
 
   overfull_count=$(grep -i overfull "out-7_pdflatex.log" | wc -l)
   underfull_count=$(grep -i underfull "out-7_pdflatex.log" | wc -l)
@@ -250,7 +255,6 @@ compile_document() {
   fi
 
   # Create printouts, if context binary is found:
-  printouts_created="false"
   if [ ${createprintouts} = "true" ]; then
     which "context" >"/dev/null"
     if [ $? -eq 0 ]; then
@@ -259,17 +263,20 @@ compile_document() {
       # A5 on A4, double sided, folded: Use 'awk' to create a copy of the
       # printout template file with changed input PDF file name and then
       # execute 'context' on the new file.
-      awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"./printout_${document_basename}_A5_on_A4_doublesided_folded.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout! Aborted."
-      context "./printout_${document_basename}_A5_on_A4_doublesided_folded.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
+      printout_dsf_basename="printout_${document_basename}_A5_on_A4_doublesided_folded"
+      awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout! Aborted."
+      context "${printout_dsf_basename}.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
+      cp "${printout_dsf_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
+      echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
 
       # A5 on A4, a A5-A5 spread on single A4 surface: Use 'awk' to create a
       # copy of the printout template file with changed input PDF file name
       # and then execute 'context' on the new file.
-      awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"./printout_${document_basename}_A5_on_A4_sidebyside_simple.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout! Aborted."
-      context "./printout_${document_basename}_A5_on_A4_sidebyside_simple.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
-
-      printouts_created="true"
-      cp printout*.pdf "../../" || die $? "Error copying printout PDFs from temporary directory! Aborted."
+      printout_sss_basename="printout_${document_basename}_A5_on_A4_sidebyside_simple"
+      awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout! Aborted."
+      context "${printout_sss_basename}.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
+      cp "${printout_sss_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
+      echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
     else
       echo "NOEXEC   [${document_basename}]: Extra printout PDFs not created; no 'context'"
     fi
@@ -283,23 +290,29 @@ compile_document() {
   # Get out of ${temp_dirname_twolevels}:
   cd "${INITIAL_DIR}" || die $? "Cannot return to the main directory."
 
-  # If "--no-deploy" is not given as an argument and the subdirectory 'deploy' exists, copy the
-  # final PDFs there also. (The directory is meant to be automatically synced to the server by
-  # other means.)
-  if [ "${deployfinal}" = "true" ] && [ -d "./deploy" ]; then
-    cp "${document_basename}.pdf" "./deploy/" && echo "DEPLOY:  ${document_basename}.pdf copied to ./deploy/"
-    if [ "$printouts_created" = "true" ]; then
-      cp "printout_${document_basename}_A5_on_A4_doublesided_folded.pdf" "./deploy" && echo "DEPLOY:  printout_${document_basename}_A5_on_A4_doublesided_folded.pdf copied to ./deploy/"
-      cp "printout_${document_basename}_A5_on_A4_sidebyside_simple.pdf" "./deploy" && echo "DEPLOY:  printout_${document_basename}_A5_on_A4_sidebyside_simple.pdf copied to ./deploy/"
-    fi
-  else
-    echo "NODEPLOY [${document_basename}]: resulting files NOT copied to ./deploy/"
-  fi
-
   echo "DEBUG    [${document_basename}]: Build logs in ${temp_dirname_twolevels}/"
   echo "SUCCESS  [${document_basename}.pdf]: Compilation succesful!"
 
 } # END compile_document()
+
+# Copies the result .pdf's to the deploy directory, if:
+#   - not inside Docker container
+#   - deploy is not forbidden by command line argument
+#   - deploy directory exists
+deploy_results() {
+  [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
+  [ "${deployfinal}" = "true" ] || return
+  if [ ! -d "./deploy" ]; then
+    echo "NODEPLOY Resulting PDF files NOT copied to ./deploy/ (directory not found)"
+    return
+  fi
+  while IFS= read -r pdf_file; do
+    [ -f "${pdf_file}" ] || die 21 "Could not access ${pdf_file} for deployment"
+    cp "${pdf_file}" "./deploy/"
+    [ $? -eq 0 ] || die 22 "Could not deploy ${pdf_file}"
+    echo "DEPLOY   ${pdf_file} copied to ./deploy/"
+  done < "${RESULT_PDF_LIST_FILE}"
+} # END deploy_results()
 
 # Set defaults:
 usedocker="true"
@@ -318,7 +331,7 @@ all_args="$@"
 # Remove the file signifying the last compilation had errors. Do it already
 # here to ensure correct working of die() function.
 if [ -f ${ERROR_OCCURRED_FILE} ]; then
-  rm "${ERROR_OCCURRED_FILE}" >/dev/null 2>&1
+  rm "${ERROR_OCCURRED_FILE}" >"/dev/null" 2>&1
 fi
 
 # Test program arguments:
@@ -383,7 +396,13 @@ done
 if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
   if [ ${usedocker} = "true" ]; then
     compile_in_docker ${all_args}
-    exit $?
+    retcode=$?
+    [ ${retcode} -eq 0 ] || exit ${retcode}
+    deploy_results
+    echo ""
+    echo "Done."
+    echo ""
+    exit 0
   fi
 fi
 
@@ -405,7 +424,8 @@ mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
 
 # Remove the files signifying the last compilation had problems,
 # if they exist (${ERROR_OCCURRED_FILE} has been removed earlier):
-rm "${TOO_MANY_WARNINGS_FILE}" >/dev/null 2>&1
+rm "${TOO_MANY_WARNINGS_FILE}" >"/dev/null" 2>&1
+rm "${RESULT_PDF_LIST_FILE}" >"/dev/null" 2>&1
 
 trap 'die 130 Interrupted.' INT TERM # trap interruptions
 
@@ -428,13 +448,15 @@ if [ ${selections} = "true" ]; then  # add selecion booklets
   done
 fi
 
+dockerized_text=""
+[ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ] || dockerized_text=" within docker container"
 echo ""
 if [ ${doc_count} = 1 ]; then
-  echo "Compiling Unilaiva songbook (1 document)..."
+  echo "Compiling Unilaiva songbook (1 document${dockerized_text})..."
 else
   parallel_text="sequentially"
   [ ${parallel} = "true" ] && parallel_text="in parallel"
-  echo "Compiling Unilaiva songbook (${doc_count} documents ${parallel_text})..."
+  echo "Compiling Unilaiva songbook (${doc_count} documents ${parallel_text}${dockerized_text})..."
 fi
 echo ""
 
@@ -454,6 +476,8 @@ done
 
 wait # wait for all sub processes to end
 
+deploy_results
+
 if [ -e "${TOO_MANY_WARNINGS_FILE}" ]; then
   echo ""
   echo "!!! WARNING !!!"
@@ -468,8 +492,12 @@ if [ -e "${TOO_MANY_WARNINGS_FILE}" ]; then
   fi
 fi
 
-echo ""
-echo "Done."
-echo ""
+if [ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ]; then
+  echo ""
+  echo "Done."
+  echo ""
+else
+  echo "DOCKER   Stop compiler container..."
+fi
 
 exit 0
