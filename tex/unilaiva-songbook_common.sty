@@ -558,6 +558,13 @@
   \fi%
 }
 
+% Define \blockstart to be able to use in-song block feature manually also
+% elsewhere than in the environments defined below. This is meant to be used
+% immediately before \begin{lilypond} to allow lilypond parts within a song to
+% be vertically spaced like other blocks. (Lilypond environment can't be wrapped
+% inside another environment, because then lilypond-book wouldn't recognize it.)
+\newcommand{\blockstart}{\@blockstart}
+
 % Displays the parameter text centered in a large font. Use within songs, but outside
 % verses. Intended to be used for short mantras for recitation.
 \newcommand{\showmantra}[1]{%
@@ -715,9 +722,13 @@
 % Call \notesoff command between verses to disable showing of notes in the
 % following verses of the song.
 %
-% The recommended use for this feature is to display the first sung non-unison
-% melody interval of each song. So just specify the first two melody notes and
-% use \notesoff after the first verse.
+% The recommended use for this feature is to display at least the first sung
+% non-unison melody interval of each song, preferably for the whole first line
+% of lyrics. So just specify the first melody notes and use \notesoff after
+% the first verse. If chord replaying feature is used, it is possible to define
+% notes not paired with a chord with ^ to not include them in the chord
+% memorization, thus negating the need to put ^ for that note in later verses
+% where chords are replayed. Example: \[^\mn{C}]
 %
 % Choose the correct command:
 %
@@ -728,19 +739,23 @@
 %   \mnlow{<notename>}              : on other lines of a verse
 %
 % Use \mn, \mnc, \mncii or \mnciii to display notes on the first line of lyrics
-% (elsewhere they would overlap the lyrics on the line above)). Use \mn if the
-% note is not to be displayed at the exact same horizontal spot as a chord, and
-% use \mnc to display a note and a chord on top of each other: in that case you
-% must put the chord immediately after the \mnc command within the same chord
-% definition brackets.
+% or in verses or choruses defined with \mn<begin|end><verse|chorus> pair rather
+% than the ordinary \<begin|end><verse|chorus>. Elsewhere they would overlap
+% the lyrics on the line above. Use \mn if the note is not to be displayed at
+% the exact same horizontal spot as a chord, and use \mnc to display a note and
+% a chord on top of each other: in that case you must put the chord immediately
+% after the \mnc command within the same chord definition brackets.
 %
 % \mncii and \mnciii are really two and three note extensions of \mnc: with
 % them one can put two or three notes on top of one chord. They are also meant
-% to be used only on the first line of lyrics in a verse.
+% to be used only on the first line of lyrics in a verse or verses defined with
+% \mn* macros.
 %
 % \mnlow doesn't put the note so high above the chord line, so use it on other
 % than the first line of lyrics with the caveat, that chords and notes are put
 % beside each other.
+%
+% If one whishes to use 
 %
 % Example usage:
 %
@@ -839,6 +854,15 @@
 % \shownotesfalse is set (in the main document).
 \newcommand{\notesoff}{\def\@melodynotesdisabled{}}
 \newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
+
+% \mn<begin|end><verse|chorus> macros are replacements for the ordinary
+% \<begin|end><verse|chorus>, with increased line spacing to accomodate notes
+% also in other than the first line of lyrics without resorting to \mnlow macro
+% and it's caveats.
+\newcommand{\mnbeginverse}{\baselineadj=+.5em\beginverse}
+\newcommand{\mnendverse}{\endverse\baselineadj=0pt}
+\newcommand{\mnbeginchorus}{\baselineadj=+.5em\beginchorus}
+\newcommand{\mnendchorus}{\endchorus\baselineadj=0pt}
 
 % END MELODY NOTES
 
