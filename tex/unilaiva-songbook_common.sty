@@ -244,11 +244,14 @@
 
 \makeatletter% To allow rewrites of @-containing macros
 
-% This is to work around a problem that only appears in the Samskrtam chapter's page headers
-% strangely in the main non-two-booklet version only:
+% This is to work around a problem that only appears in the Samskrtam chapter's
+% page headers strangely in the main non-two-booklet version only:
 % "[PLEASEINSERT\PRERENDERUNICODE{}INTOPREAMBLE]"
 \PrerenderUnicode{ṃ}%\PrerenderUnicode{Ṃ}
 \PrerenderUnicode{ṛ}%\PrerenderUnicode{Ṛ}
+% ...this is for the same problem in unilaiva-daimebook's chapter Oração:
+\PrerenderUnicode{ç}%\PrerenderUnicode{Ç}
+\PrerenderUnicode{ã}%\PrerenderUnicode{Ã}
 
 % This command creates the second page at where it is called. This is supposed
 % to be the odd verso page right after the cover.
@@ -855,14 +858,24 @@
 \newcommand{\notesoff}{\def\@melodynotesdisabled{}}
 \newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
 
+% Increases the spacing between lyric rows, if melody notes are on
+\newcommand{\@mnincreasebaseline}{%
+  \ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \baselineadj=+.5em\relax%
+    \fi%
+  \fi
+}
+
 % \mn<begin|end><verse|chorus> macros are replacements for the ordinary
 % \<begin|end><verse|chorus>, with increased line spacing to accomodate notes
 % also in other than the first line of lyrics without resorting to \mnlow macro
 % and it's caveats.
-\newcommand{\mnbeginverse}{\baselineadj=+.5em\beginverse}
-\newcommand{\mnendverse}{\endverse\baselineadj=0pt}
-\newcommand{\mnbeginchorus}{\baselineadj=+.5em\beginchorus}
-\newcommand{\mnendchorus}{\endchorus\baselineadj=0pt}
+\newcommand{\mnbeginverse}{\@mnincreasebaseline\beginverse}
+\newcommand{\mnendverse}{\endverse\baselineadj=0pt\relax}
+\newcommand{\mnbeginchorus}{\@mnincreasebaseline\beginchorus}
+\newcommand{\mnendchorus}{\endchorus\baselineadj=0pt\relax}
 
 % END MELODY NOTES
 

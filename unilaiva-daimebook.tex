@@ -1,0 +1,52 @@
+ %% unilaiva-daimebook
+ %% ==================
+ %%
+ %% Collection of Santo Daime hymns
+ %%
+
+\documentclass[twoside,10pt]{book}
+
+% Set the title of this document:
+\newcommand{\mainbooktitle}{Unilaiva Daimebook}
+
+% The following package contains all the imports, style settings etc:
+\usepackage{tex/unilaiva-songbook_common}
+
+\showphfalse
+\showphintocfalse
+
+% songs: create indexes
+\newindex{titleidx}{idx_unilaiva-daimebook_title}
+\newauthorindex{authidx}{idx_unilaiva-daimebook_auth}
+\newscripindex{tagidx}{idx_unilaiva-daimebook_tag}
+
+\begin{document}
+
+  % Cover page (recto), by larva (photo + edit):
+  \includepdf[]{content/img/Unilaiva-daimebook_COVER.pdf}
+  % The second page (verso):
+  \secondpage{}{} % the second (title) page here (verso)
+
+  % TOC:
+  \input{tex/unilaiva-songbook_content_include_part0_toc.tex}
+
+  % Sets chapter number; will be incremented by one at each \mainchapter,
+  % \songchapter or \chapter:
+  \setcounter{chapter}{0}
+
+  \mainchapter[]{Oração}
+    \begin{songs}{}
+      \input{content/songs_daimebook_oracao.tex}
+    \end{songs}
+
+  \mainchapter[]{Hinos da Santa Maria}
+    \begin{songs}{}
+      \input{content/songs_daimebook_santamaria.tex}
+    \end{songs}
+
+  % Here start appendices: chapter numbering resets and switches to alphabetic
+  \appendix
+  \chapter{Technical}
+    \input{content/section_technical_information.tex}
+
+\end{document}

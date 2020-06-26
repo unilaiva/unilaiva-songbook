@@ -19,6 +19,7 @@
 MAIN_FILENAME_BASE="unilaiva-songbook" # filename base for the main document (without .tex suffix)
 PART1_FILENAME_BASE="unilaiva-songbook_part1" # filename base for the 2-part document's part 1 (without .tex suffix)
 PART2_FILENAME_BASE="unilaiva-songbook_part2" # filename base for the 2-part document's part 2 (without .tex suffix)
+DAIMEBOOK_FILENAME_BASE="unilaiva-daimebook" # filename base for unilaiva-daimebook (without .tex suffix)
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
 SELECTION_FNAME_PREFIX="ul-selection"
 SONG_IDX_SCRIPT="ext_packages/songs/songidx.lua"
@@ -53,20 +54,25 @@ print_usage_and_exit() {
   echo ""
   echo "  --no-docker     : do not use the Docker container for compiling"
   echo "  --help          : print this usage information"
+  echo "  --no-daimebook  : do not compile Unilaiva Daimebook"
   echo "  --no-deploy     : do not copy PDF files to ./deploy/"
-  echo "  --no-partial    : do not compile partial books, only the main document"
+  echo "  --no-partial    : do not compile partial books"
   echo "  --no-printouts  : do not create extra printout PDFs"
   echo "  --no-selections : do not create selection booklets"
   echo "  --pull          : Execute git pull before compiling"
   echo "  --sequential    : compile documents sequentially (the default is to"
   echo "                    compile them in parallel)"
   echo "  -q              : use for quick development build of the main document;"
-  echo "                  : equals to --no-partial --no-selections --no-printouts"
-  echo "                    --no-deploy"
+  echo "                    equals to --no-partial --no-selections --no-printouts"
+  echo "                    --no-daimebook --no-deploy"
   echo ""
   echo "In addition to the full songbook, also two-booklet version is created,"
   echo "with parts 1 and 2 in separate PDFs. This is not done, if --no-partial"
   echo "option is present or files are given as arguments."
+  echo ""
+  echo "Unilaiva Daimebook is also compiled by default in addition to Unilaiva"
+  echo "Songbook, unless --no-daimebook option is present or files are given"
+  echo "as arguments."
   echo ""
   echo "Also selection booklets, with specific songs only, specified in files"
   echo "named ul-selection_*.pdf are compiled, unless --no-selections option"
@@ -242,9 +248,13 @@ compile_document() {
   cp "${document_basename}.pdf" "../../" || die $? "Error copying ${document_basename}.pdf from temporary directory! Aborted."
   echo "${document_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
 
+  # Check warnings in the logs
+
+  lp_barwarning_count=$(grep -i "warning: barcheck" "out-1_lilypond.log" | wc -l)
   overfull_count=$(grep -i overfull "out-7_pdflatex.log" | wc -l)
   underfull_count=$(grep -i underfull "out-7_pdflatex.log" | wc -l)
   fontwarning_count=$(grep -i "Font Warning" "out-7_pdflatex.log" | wc -l)
+  [ "${lp_barwarning_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Lilypond bar check warnings: ${lp_barwarning_count}"
   [ "${overfull_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Overfull warnings: ${overfull_count}"
   [ "${underfull_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Underfull warnings: ${underfull_count}"
   if [ "${fontwarning_count}" -gt "20" ]; then
@@ -319,6 +329,7 @@ usedocker="true"
 deployfinal="true"
 createprintouts="true"
 mainbook="true"
+daimebook="true"
 partialbooks="true"
 selections="true"
 gitpull="false"
@@ -352,6 +363,9 @@ while [ $# -gt 0 ]; do
     "--no-selections")
       selections="false"
       shift;;
+    "--no-daimebook")
+      daimebook="false"
+      shift;;
     "--pull")
       gitpull="true"
       shift;;
@@ -361,6 +375,7 @@ while [ $# -gt 0 ]; do
     "-q")
       deployfinal="false"
       createprintouts="false"
+      daimebook="false"
       partialbooks="false"
       selections="false"
       shift;;
@@ -380,6 +395,7 @@ while [ $# -gt 0 ]; do
         docs[doc_count]=${tmp} ; ((doc_count++))
         # Compile only the given file, when files are explicitly given:
         mainbook="false"
+        daimebook="false"
         partialbooks="false"
         selections="false"
       else
@@ -437,6 +453,9 @@ fi
 if [ ${partialbooks} = "true" ]; then  # add partial books
   docs[doc_count]="${PART1_FILENAME_BASE}" ; ((doc_count++))
   docs[doc_count]="${PART2_FILENAME_BASE}" ; ((doc_count++))
+fi
+if [ ${daimebook} = "true" ]; then
+  docs[doc_count]="${DAIMEBOOK_FILENAME_BASE}" ; ((doc_count++))
 fi
 if [ ${selections} = "true" ]; then  # add selecion booklets
   i=0
