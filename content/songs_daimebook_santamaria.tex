@@ -511,10 +511,11 @@
 
 
 \beginsong{E ê Santa Maria}[by={Maria Alice}]
-  \beginchorus\memorize
-    \[^\mn{A}]E |\[\mnc{A}D]ê \[^\mn{F#}]San\[^\mn{E}]ta \[^\mn{F#}]Ma|\[^\mn{E}]ri\[^\mn{D}]a, e |ê Santa Ma|ria
-    Nos confor|\[A]tai nesta ago|\[D]nia
-  \endchorus
+  % Audio: https://www.youtube.com/watch?v=kSjNgg_-iD0&t=1131s
+  \mnbeginchorus\memorize
+    \[^\mn{A}]E |\[\mnc{A}D]ê \[^\mn{F#}]San\[^\mn{E}]ta \[^\mn{F#}]Ma|\[^\mn{E}]ri\[^\mn{D}]a, \[^\mn{A}]e |\[^\mn{A}]ê \[^\mn{F#}]San\[^\mn{E}]ta \[^\mn{F#}]Ma|\[^\mn{E}]ri\[^\mn{D}]a
+    \[^\mn{A}]Nos \[^\mn{D}]con\[^\mn{F#}]for|\[\mncii{E}{A}A]tai nes\[^\mn{C#}]ta a\[^\mn{E}]go|\[\mnc{D}D]nia
+  \mnendchorus
   \notesoff
   \beginchorus
     E |^ê Mamãe Ju|rema, e |ê Mamãe Ju|rema
@@ -532,6 +533,19 @@
     E |^ê meu Rei O|gum, den|tro da vira|ção
     Guarda Ma|^mãe no cora|^ção
   \endchorus
+  \blockstart
+  \begin{lilypond}[fragment, staffsize=18]
+    \relative a'
+    {\key d \major \time 4/4 \partial 4
+      a4 | a'2( a8) fis8 e8 fis8 | e4 d2 a4
+         | a'2( a8) fis8 e8 fis8 | e4 d4. a8 d8 fis8
+         | e4 a,4. a8 cis8 e8 | d2 d4
+    }
+    \addlyrics{
+      E ê San -- ta Ma -- ri -- a, e ê San -- ta Ma -- ri -- a;
+      Nos con -- for -- ta -- i nes -- ta_a -- go -- ni -- a
+   }
+  \end{lilypond}
   \begin{translation}
     It's Santa Maria, it's Santa Maria
     Comfort me in this agony
