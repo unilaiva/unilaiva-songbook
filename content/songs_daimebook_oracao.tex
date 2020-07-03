@@ -95,6 +95,8 @@
 
 
 \beginsong{A meu Pai Peço Firmeza}[by={Padrinho Sebastião},tags={a cappella, de pé}]
+  % Audio: https://www.nossairmandade.com/hymn/2/AMeuPaiPe%C3%A7oFirmeza
+  % Audio: https://www.youtube.com/watch?v=wKMY4YGdYeY&t=180s
   \beginchorus
     \[\mnlow{G}]A meu |\[\mnlow{C}]Pai peço \[\mnlow{E}]fir|\[\mnlow{G}]me\[\mnlow{C}]za
     E não |\[\mnlow{E}]saia \[\mnlow{C}]da \[\mnlow{A}\mnlow{G}]min\[\mnlow{C}]ha |mente
@@ -183,6 +185,68 @@
     Oh! Virgin Protectress
     You are Queen of the sea
     You are my Professor
+  \end{translation}
+\endsong
+
+
+\beginsong{Eu Vivo com meu Mestre}[by={Padrinho Sebastião},tags={2x}]
+  % Audio: https://www.nossairmandade.com/hymn/3/EuVivoComMeuMestre
+  % Audio: https://www.youtube.com/watch?v=wKMY4YGdYeY&t=454s
+  \newchords{chords_euvivocom_a}\newchords{chords_euvivocom_b}
+  \mnbeginchorus\memorize[chords_euvivocom_a]
+    \[^\mn{G}]Eu |\[\mnc{C}C]vivo \[\mnc{A}Am]com \[^\mn{C}]meu |\[\mnc{G}G]Mestre
+    \[^\mn{C}]Eu |\[\mnc{E}Am]vi\[^\mn{C}]vo com \[\mnc{A}G]meus \[^\mn{C}]ir|\[C]mãos
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_euvivocom_b]
+    \[^\mn{C}]Eu |\[\mnc{F}F]vivo \[^\mn{E}]na \[\mnc{D}G]san\[^\mn{E}]ta |\[\mnc{C}C]luz
+    Estou \[^\mn{B}]no \[^\mn{A}]pé \[^\mn{B}]da |\[\mnc{G}G]cruz com Ju\[^\mn{C}]ra\[^\mn{E}]mi|\[\mnc{C}C]dam
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_euvivocom_a]
+    |^Eu pe^ço a meu |^Pai
+    O que eu pe|^dir E^le me |^dá
+  \endchorus\glueverses\beginchorus\replay[chords_euvivocom_b]
+    Os ini|^migos que vi^erem |^contra
+    Eu peço |^força para derri|^bar
+  \endchorus
+  \beginchorus\replay[chords_euvivocom_a]
+    Oh! |^Minha ^Virgem |^Mãe
+    Oh! |^Virgem da ^Concei|^ção
+  \endchorus\glueverses\beginchorus\replay[chords_euvivocom_b]
+    Eu |^peço a ^Jesus |^Cristo
+    Para dar |^força aqui na ses|^são
+  \endchorus
+  \blockstart
+  \begin{lilypond}[fragment, staffsize=18]
+    \relative g'
+    {\key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g4 | c4 c4 a4 c4 | g2 g4 c4 | e4 c8 c8 a4 c4 | c2.
+      }
+      \repeat volta 2 {
+        c4 | f4 f8 e8 d4 e4 | c8 c8 c8 b8 a4 b4 | g4 g8 g8 c4 e4 | c2.
+      }
+    }\addlyrics{
+      Eu vi -- vo com meu Mes -- tre;
+      Eu vi -- vo com meus ir -- mãos;
+      Eu vi -- vo na san -- ta luz;
+      Es -- tou no pé da cruz com Ju -- ra -- mi -- dam
+    }
+  \end{lilypond}
+  \begin{translation}
+    I live with my Master
+    I live with my brothers and sisters
+    I live in the holy light
+    I‘m at the foot of the cross with Juramidam
+    \nextverse
+    I ask my Father
+    What I ask, He gives to me
+    The enemies who come against me
+    I ask for strength to defeat them
+    \nextverse
+    Oh! My Virgin Mother
+    Oh! Virgin of Conception
+    I ask Jesus Christ
+    To give strength here in the session
   \end{translation}
 \endsong
 
