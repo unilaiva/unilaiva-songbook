@@ -326,3 +326,91 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Dem Dum}[by={Padrinho Sebastião}]
+  % Audio: https://www.nossairmandade.com/hymn/5/DemDum
+  % Audio: https://www.youtube.com/watch?v=wKMY4YGdYeY&t=785s
+  \newchords{chords_demdum_a}\newchords{chords_demdum_b}
+  \mnbeginchorus\rep{3}
+    \[\mnc{G}(G)]Dem |\[\mnc{C}C]dum, \[\mnc{G}(G)]dem |\[\mnc{C}C]dum
+    \[\mnc{G}(G)]Dem |\[\mnc{E}Am]dum, \[\mnc{G}G]dem |\[\mnc{C}C]dum
+  \mnendchorus
+  \mnbeginchorus\memorize[chords_demdum_a]
+    \[^\mn{G}]Deus sa|\[\mnc{C}C]be o que está \[^\mn{D}]fa|\[\mnc{C}Am]zendo
+    Sen\[^\mn{D}]ta|\[\mnc{E}C]do \[^\mn{G}]no \[\mnc{D}G]seu \[^\mn{E}]lu|\[\mnc{C}C]gar
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_demdum_b]
+    \[^\mn{C}]As |\[\mnc{D}Dm]doze \[^\mn{C}]ho\[\mnc{A}F]ras \[^\mn{C}]do |\[\mnc{G}G]dia
+    \[^\mn{C}]Nós \[^\mn{D}]pre|\[\mnc{E}Am]ci\[^\mn{G}]sa\[\mnc{D}G]mos \[^\mn{E}]re|\[\mnc{C}C]zar
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_demdum_a]
+    Pai |^nosso que estais no |^céu
+    Rece|^bemos com ^ale|^gria
+  \endchorus\glueverses\beginchorus\replay[chords_demdum_b]
+    Nosso |^Pai e ^nossa |^Mãe
+    A sem|^pre Vir^gem Ma|^ria
+  \endchorus
+  \beginchorus\replay[chords_demdum_a]
+    O po|^der de Deus é |^grande
+    Seja |^feita a vos^sa von|^tade
+  \endchorus\glueverses\beginchorus\replay[chords_demdum_b]
+    É quem |^nos dá ^o per|^dão
+    E é a |^nossa ^majes|^tade
+  \endchorus
+  \beginchorus\replay[chords_demdum_a]
+    Todo |^mundo pede a |^Deus
+    Mas não |^sabem se ^expli|^car
+  \endchorus\glueverses\beginchorus\replay[chords_demdum_b]
+    Guar|^dai-me, ^defen|^dei-me
+    Livrai-|^me de ^todo |^mal
+  \endchorus
+  \blockstart
+  \begin{lilypond}[fragment, staffsize=18]
+    \relative g'
+    {\key c \major \time 4/4 \partial 4
+      \mark \markup {"3x"} \bar ".|:" \repeat volta 3 {
+        g4 | c2. g4 | c2. g4
+        | e'2. g,4 | c2.
+      }
+      \repeat volta 2 {
+        g8 g8 | c4 c4 c4 d4 | c2( c8) c8 c8 d8
+        | e4 g4 d4 e4 | c2.
+      }
+      \repeat volta 2 {
+        c4 | d4. c8 a4. c8 | g2 g4 c8 d8
+        | e4 g4 d4 e4 | c2.
+      }
+    }\addlyrics{
+      Dem dum, dem dum; Dem dum, dem dum;
+      Deus sa -- be_o que_es -- tá fa -- zen -- do;
+      Sen -- ta -- do no seu lu -- gar;
+      As doze ho -- ras do di -- a;
+      Nós pre -- ci -- sa -- mos re -- zar
+    }
+  \end{lilypond}
+  \begin{translation}
+    Dem dum, dem dum
+    Dem dum, dem dum
+    \nextverse
+    God knows what He's doing
+    Seated in his place
+    Throughout the day's twelve hours
+    We need to pray
+    \nextverse
+    Our Father who art in heaven
+    We receive with jot
+    Our Father and our Mother
+    The Ever Virgin Mary
+    \nextverse
+    The powqer of God is great
+    Thy will be done
+    It's He who grants forgiveness
+    And is our majesty
+    \nextverse
+    All ask God
+    But don't know how to explain themselves
+    Guard me, defend me
+    Deliver me from all evil
+  \end{translation}
+\endsong
+
