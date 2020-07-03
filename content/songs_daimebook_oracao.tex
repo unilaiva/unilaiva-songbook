@@ -250,3 +250,79 @@
   \end{translation}
 \endsong
 
+
+\beginsong{É Pedindo e é Rogando}[by={Padrinho Sebastião}]
+  % Audio: https://www.nossairmandade.com/hymn/4/%C3%89PedindoE%C3%89Rogando
+  % Audio: https://www.youtube.com/watch?v=wKMY4YGdYeY&t=620s
+  \newchords{chords_epedindo_a}\newchords{chords_epedindo_b}
+  \mnbeginchorus\memorize[chords_epedindo_a]
+    \[^\mn{G}]É pe|\[\mnc{C}C]dindo \[Am]{e é} \[^\mn{E}]ro|\[\mnc{G}G]gan\[^\mn{F}]do
+    \[^\mn{E}]Que \[^\mn{D}]po|\[\mnc{C}Am]demos \[\mnc{G}G]al\[^\mn{D}]can|\[\mnc{C}C]çar
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_epedindo_b]
+    \[^\mn{C}]Não é |\[\mnc{G}C]fa\[^\mn{C}]lar um do |\[\mnc{E}Am]ou\[^\mn{C}]tro
+    Queren|\[\mnc{G}G]do ca\[\mnc{C}Am]lu\[^\mn{E}]ni|\[\mnc{C}C]ar
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_epedindo_a]
+    Me apre|^sento ^a meu |^Pai
+    E minha |^história eu ^sei con|^tar
+  \endchorus\glueverses\beginchorus\replay[chords_epedindo_b]
+    Peço |^que todos se |^unam
+    E a|^prendam a ^respei|^tar
+  \endchorus
+  \beginchorus\replay[chords_epedindo_a]
+    É |^no céu ^e na |^terra
+    E é bei|^rando a ^beira |^mar
+  \endchorus\glueverses\beginchorus\replay[chords_epedindo_b]
+    O meu en|^contro com Je|^sus
+    Só |^eu sei ^destrin|^char
+  \endchorus
+  \beginchorus\replay[chords_epedindo_a]
+    Foi |^aí ^neste |^dia
+    E foi nas |^águas ^de Jor|^dão
+  \endchorus\glueverses\beginchorus\replay[chords_epedindo_b]
+    Que ambos |^foram bati|^zados
+    E come|^çou ^sua mis|^são
+  \endchorus
+  \blockstart
+  \begin{lilypond}[fragment, staffsize=18]
+    \relative g'
+    {\key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g8 g8 | c4 c4 c4 e4 | g2( g8) f8 e8 d8
+        | c4 c4 g4 d'4 | c2.
+      }
+      \repeat volta 2 {
+        c8 c8 | g4 c4 c4 c4 | e2( e8) c8 c8 c8 |
+        | g4 g4 c4 e4 | c2.
+      }
+    }\addlyrics{
+      É pe -- din -- do e_é ro -- gan -- do;
+      Que po -- de -- mos al -- can -- çar;
+      Não é fa -- lar um do out -- ro;
+      Que -- ren -- do ca -- lu -- ni -- ar
+    }
+  \end{lilypond}
+  \begin{translation}
+    It's by asking and praying
+    That we're able to attain
+    It's not by talking about each other
+    Wanting to slander
+    \nextverse
+    I present myself to my Father
+    And know how to tell my story
+    I ask that all unite
+    And learn to be respectful
+    \nextverse
+    It's in heaven and on the earth
+    And long the sea
+    My meeting with Jesus
+    Only I know how to unravel it
+    \nextverse
+    It was there on this day
+    And in the waters of the Jordan
+    That both were baptized
+    And began their mission
+  \end{translation}
+\endsong
+
