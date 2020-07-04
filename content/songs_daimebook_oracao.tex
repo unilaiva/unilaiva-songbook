@@ -580,3 +580,78 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Para Estar Junto A Este Cruzeiro}[by={Padrinho Sebastião}]
+  % Audio: https://www.nossairmandade.com/hymn/8/ParaEstarJuntoAEsteCruzeiro
+  % Audio: https://www.youtube.com/watch?v=wKMY4YGdYeY&t=1257s
+  \newchords{chords_paraestarjunto_a}\newchords{chords_paraestarjunto_b}
+  \mnbeginchorus\memorize[chords_paraestarjunto_a]
+    \[^\mn{G}]Para es|\[\mnc{C}C]tar junto a \[Am]este \[^\mn{E}]cru|\[\mnc{G}G]zei\[^\mn{E}]ro
+    É \[^\mn{G}]mu|\[\mnc{E}Am]dar \[^\mn{C}]de \[^\mn{A}]o\[\mnc{D}G]pi\[^\mn{E}]ni|\[\mnc{C}C]ão
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_paraestarjunto_b]
+    \[^\mn{A}]Quem |\[\mnc{C}Am]a\[^\mn{A}]ma a \[\mnc{D}Dm]Je\[^\mn{C}]sus |\[\mnc{G}G]Cristo
+    \[^\mn{C}]Não |\[\mnc{E}Am]fa\[^\mn{C}]la \[^\mn{A}]do \[\mnc{D}G]seu \[^\mn{E}]ir|\[\mnc{C}C]mão
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_paraestarjunto_a]
+    O |^Mestre es^tá a|^qui
+    E|^le fala ^bem bai|^xinho
+  \endchorus\glueverses\beginchorus\replay[chords_paraestarjunto_b]
+    En|^sina a ^quem pro|^cura
+    Dei|^xando quem não ^quer se|^guir
+  \endchorus
+  \beginchorus\replay[chords_paraestarjunto_a]
+    A|^qui es^tou di|^zendo
+    Para os |^meus ir^mãos ou|^vir
+  \endchorus\glueverses\beginchorus\replay[chords_paraestarjunto_b]
+    Quem for |^filho ^vem che|^gando
+    E quem não |^for vai es^capu|^lir
+  \endchorus
+  \beginchorus\replay[chords_paraestarjunto_a]
+    Não a|^dian^ta ser |^grande
+    Sem |^possu^ir no|^breza
+  \endchorus\glueverses\beginchorus\replay[chords_paraestarjunto_b]
+    Meu |^Pai e ^minha |^Mãe
+    Nos mos|^tra a su^a be|^leza
+  \endchorus
+  \blockstart
+  \begin{lilypond}[fragment, staffsize=18]
+    \relative g'
+    {\key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g8 g8 | c4 \tuplet 3/2 {c8 c8 c8} c4 c8 e8 | g2 e4 e8 g8
+        | e4 c8 a8 d4 e4 | c2.
+      }
+      \repeat volta 2 {
+        a4 | c4. a8 d4. c8 | g2 g4 c4
+        | e8 c4 a8 d4 e4 | c2.
+      }
+    }\addlyrics{
+      Para es -- tar jun -- to a es -- te cru -- zei -- ro;
+      É mu -- dar de o -- pi -- ni -- ão;
+      Quem a -- ma_a Je -- sus Cris -- to;
+      Não fa -- la do seu ir -- mão.
+    }
+  \end{lilypond}
+  \begin{translation}
+    To be next to this Cruzeiro
+    One must change one's mind
+    Those who love Jesus Christ
+    Don't talk about their brothers and sisters
+    \nextverse
+    The Master is here
+    He speaks very softly
+    He teaches those who seek Him
+    Leaving alone those who don't want to follow
+    \nextverse
+    Here I am saying
+    For my brothers and sisters to hear me
+    Those who are children are arriving
+    And those who aren't are going to flee
+    \nextverse
+    It's no use to be great
+    Without having nobility
+    My Father and my Mother
+    Show us your beauty
+  \end{translation}
+\endsong
