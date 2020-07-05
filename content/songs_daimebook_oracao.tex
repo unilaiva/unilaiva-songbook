@@ -732,3 +732,67 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Peço Que Vós Me Ouça}[by={Padrinho Sebastião},tags={valsa}]
+  % Audio: https://www.nossairmandade.com/hymn/10/Pe%C3%A7oQueV%C3%B3sMeOu%C3%A7a
+  % Audio: https://www.youtube.com/watch?v=wKMY4YGdYeY&t=1564s
+  \newchords{chords_pecoquevosmeouca_a}\newchords{chords_pecoquevosmeouca_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_pecoquevosmeouca_a]
+    \[^\mn{G}]Meu |\[\mnc{C}C]Pai \[^\mn{F}]pe\[^\mn{E}]ço |\[\mnc{D}G]que \[^\mn{F}]Vós \[^\mn{E}]me |\[\mnc{C}C]ou|\[C7]ça
+    |\[\mnc{A}F]Para eu pe|\[\mnc{G}C]dir \[^\mn{C}]o \[^\mn{E}]per|\[\mnc{G}G]dão | \e
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_pecoquevosmeouca_b]
+    \[^\mn{C}]Eu |\[\mnc{A}F]peço não |\[\mnc{G}G]só \[^\mn{F}]pa\[^\mn{E}]ra |\[\mnc{C}C]mi|\[Am]m
+    \[^\mn{A}]Pa\[^\mn{C}]ra |\[\mnc{E}C]mim \[^\mn{G}]e |\[\mnc{D}G7]os \[^\mn{F}]meus \[^\mn{E}]ir|\[\mnc{C}C]mãos | \e
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_pecoquevosmeouca_a]
+    Meu |^Pai quando |^for perdo|^ar |^ \e
+    Per|^doa co|^mo lhe con|^vém | \e
+  \endchorus\glueverses\beginchorus\replay[chords_pecoquevosmeouca_b]
+    Eu |^peço que |^vós nos per|^do|^e
+    Como |^perdo|^ou em Be|^lém | \e
+  \endchorus
+  \beginchorus\replay[chords_pecoquevosmeouca_a]
+    A |^barca que |^corre no |^mar |^ \e
+    |^Corre no |^meu cora|^ção | \e
+  \endchorus\glueverses\beginchorus\replay[chords_pecoquevosmeouca_b]
+    A|^quele que |^aqui ba|^ti|^za
+    Bati|^zou no ri|^o de Jor|^dão | \e
+  \endchorus
+  \blockstart\brk
+  \begin{lilypond}[fragment, staffsize=18]
+    \relative g'
+    {\key c \major \time 3/4 \partial 4
+      \repeat volta 2 {
+        g4 | c4 f4 e4 | d4 f4 e4 | c2. | c2.
+        | a'4 a4 a4 | g4 c,4 e4 | g2.( | g2)
+      }
+      \repeat volta 2 {
+        c,4 | a'4 a4 a4 | g4 f4 e4 | c2.( | c4) a4 c4 | e2 g4 | d4 f4 e4 | c2.( | c2)
+      }
+    }\addlyrics{
+      Meu Pai pe -- ço que Vós me ou -- ça;
+      Pa -- ra_eu pe -- dir o per -- dão;
+      Eu pe -- ço não só pa -- ra mim;
+      Pa -- ra mim e os meus ir -- mãos.
+    }
+  \end{lilypond}
+  \begin{translation}
+    My Father I ask that You hear me
+    For me to ask for forgiveness
+    I ask not only for me
+    But for me and my brothers and sisters
+    \nextverse
+    My Father when He forgives
+    He forgives as it befits Him
+    I ask that You forgive us
+    As You forgave in Bethlehem
+    \nextverse
+    The boat which sails on the sea
+    Sails within my heart
+    The one who baptizes here
+    Baptized in the Jordan River
+  \end{translation}
+\endsong
+
