@@ -796,3 +796,66 @@
   \end{translation}
 \endsong
 
+
+\beginsong{O Amor}[by={Padrinho Sebastião}]
+  % Audio: https://www.nossairmandade.com/hymn/11/OAmor
+  % Audio: https://www.youtube.com/watch?v=wKMY4YGdYeY&t=1736s
+  \newchords{chords_oamor_a}\newchords{chords_oamor_b}
+  \mnbeginchorus\memorize[chords_oamor_a]
+    \[^\mn{C}]O \[^\mn{E}]a|\[\mnc{G}C]mor é para \[^\mn{A}]ser \[^\mn{G}]distri\[^\mn{E}]bu|\[^\mn{G}]ído
+    \[^\mn{C}]E \[^\mn{E}]não \[^\mn{C}]amor \[^\mn{A}]fin|\[\mnc{G}G]gido por\[^\mn{B}]que \[\mncii{D}{C}F]ele \[^\mn{A}]cau\[^\mn{C}]sa |\[C]dor
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_oamor_b]
+    \[^\mn{E}]O \[^\mn{G}]a|\[G]mor é o \[^\mn{B}]cam\[^\mn{D}]po \[^\mn{C}]da \[^\mn{A}]for\[^\mn{C}]mo|\[\mnc{E}C]su\[^\mn{C}]ra
+    Onde es\[^\mn{A}]tá \[^\mn{G}]minha i\[^\mn{E}]ma\[^\mn{G}]gem |\[G]pu\[^\mn{C}]ra, \[\mnc{D}F]Deus \[^\mn{C}]foi \[^\mn{A}]quem \[^\mn{C}]cri|\[C]ou
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_oamor_a]
+    O a|^mor é o trono da ver|dade
+    Onde está a majes|^tade Cris^to Nosso Sen|^hor
+  \endchorus\glueverses\beginchorus\replay[chords_oamor_b]
+    O a|^mor deve ser bem pro|^fundo
+    Mas não é em todo |^mundo, é para ^quem acredi|^tou
+  \endchorus
+  \beginchorus\replay[chords_oamor_a]
+    O a|^mor é o trono de harmo|nia
+    Aonde eu des|^canso e ^rezo todo |^dia
+  \endchorus\glueverses\beginchorus\replay[chords_oamor_b]
+    O a|^mor é da Sempre Virgem Ma|^ria
+    Jesus Cristo Salva|^dor, ^Ele é quem nos |^guia
+  \endchorus
+  \blockstart\brk
+  \begin{lilypond}[fragment, staffsize=18]
+    \relative c''
+    {\key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        c8 e8 | g8. g16 g8 g8 a8 g8 g8 e8 | g4 g8 c,8 e8 c8 c8 a8
+        | g8. g16 g8 b8 | d8 c8 a8 c8 | c2.
+      }
+      \repeat volta 2 {
+        e,8 g8 | g8. g16 g8 b8 d8 c8 a8 c8 | e8 c8 c8 c8 a8 g8 e8 g8
+        | g4. c8 d8 c8 a8 c8 | c2.
+      }
+    }\addlyrics{
+      O a -- mor é pa -- ra ser di -- stri -- bu -- í -- do;
+      E não a -- mor fin -- gi -- do por -- que e -- le cau -- sa dor;
+      O a -- mor é o cam -- po da for -- mo -- su -- ra;
+      On -- de_es -- tá minha_i -- ma -- gem pu -- ra Deus foi quem cri -- ou.
+    }
+  \end{lilypond}
+  \begin{translation}
+    Love is to be shared
+    Not to be feigned because it causes pain
+    Love is the field of beauty
+    Where my pure image is, it was God who created it
+    \nextverse
+    Love is the throne of truth
+    Where the majesty is Christ Our Lord
+    Love must be very deep
+    But it is not in everyone, it's for those who believed
+    \nextverse
+    Love is the throne of harmony
+    Where I rest and pray every day
+    Love is of the Ever Virgin Mary
+    Jesus Christ the Savior, it's He who guides me
+  \end{translation}
+\endsong
