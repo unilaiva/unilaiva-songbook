@@ -8,7 +8,7 @@
 # 19.10 Eoan seems to be the newest image that works with Noto Medium;
 # one could use 18.04 LTS Bionic here as well, but we chose Eoan, because it
 # has newer TeX packages, and we don't really need the latest security updates.
-FROM ubuntu:eoan-20200410
+FROM ubuntu:eoan-20200608
 
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
