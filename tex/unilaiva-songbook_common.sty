@@ -63,6 +63,7 @@
 \usepackage{amssymb} % for some math symbols
 \usepackage{fancyhdr} % for customizing headers
 \usepackage[bigger]{musicography} % musical symbols (at least \musSegno is used)
+\usepackage{environ} % for hiding environments in in-song blocks
 
 % The most important 'songs' package, use the version in the project tree:
 \usepackage[chorded]{ext_packages/songs/songs}
@@ -230,6 +231,15 @@
 
 % Toggle for showing verse numbers. Suggestion: keep this as false!
 \newif\ifshowversenumbers\showversenumbersfalse
+
+% Toggle for showing Lilypond music scores
+\newif\ifshowlilypond\showlilypondtrue
+
+% Toggle for showing explanations
+\newif\ifshowexplanation\showexplanationtrue
+
+% Toggle for showing feelers
+\newif\ifshowfeeler\showfeelertrue
 
 
 
@@ -538,25 +548,26 @@
 % BEGIN IN-SONG BLOCKS
 
 % This is called in the beginning of each insong-block: translation, showmantra,
-% feeler and explanation.
+% feeler, explanation and lilywrap.
 \newcommand{\@blockstart}{%
   \ifSB@insong%
     % The first block after verses needs a bit more vertical space before it:
     \ifnum\value{@aftersongblocks}=0%
-      \vspace{1.5em}%
+      \vspace{1.618034em}%
+      \brk%
       % The following zero-height box causes fills to be added before the first
       % block, even if the block is the first thing on a page. This ensures
       % the vertical centering of the blocks when the song verses are on a
       % previous page and the blocks are all on this one.
       \vbox to0pt{}%
-      \vspace{0pt plus 1fill minus 0pt}%
+      \vfill%
     \else%
-      \vspace{1em plus 1fill minus 0pt}%
+      \vspace{1em}\vfill%
     \fi%
     \addtocounter{@aftersongblocks}{1}%
   \else%
     \ifSB@intersong%
-      \vspace{1em plus 1fill minus 0pt}%
+      \vspace{1em}\vfill%
     \fi%
   \fi%
 }
@@ -580,15 +591,16 @@
 }
 
 % environment for 'song feeler'
-\newenvironment{feeler}{%
-  \yesendsongvfill%
-  \@blockstart%
-  \small%
-  \par\noindent\ignorespaces%
-  \begin{center}\begin{em}%
-}{%
-  \end{em}\end{center}
-  %\par\noindent\ignorespacesafterend%
+\NewEnviron{feeler}{%
+  \ifshowfeeler
+    \yesendsongvfill%
+    \@blockstart%
+    \small%
+    \par\noindent\ignorespaces%
+    \begin{center}\begin{em}%
+      \BODY
+    \end{em}\end{center}
+  \fi
 }
 
 % environment for song translation, to be used only inside a song
@@ -605,19 +617,30 @@
 }
 
 % environment for 'song explanation'
-\newenvironment{explanation}{%
-  \noendsongvfill% so far explanation is last: no vfill needed at song end
-  \@blockstart%
-  \setlist[description]{% modify description list (enumitem package)
-    %topsep=30pt,%      % space before start / after end of list
-    %itemsep=5pt,%      % space between items
-    font={\rmfamily}%   % set the label font
-  }
-  \justifying% ragged2e package: force justifying
-  \rmfamily\footnotesize%
-  \par\noindent\ignorespaces%
-}{%
-  \par\noindent\ignorespacesafterend%
+\NewEnviron{explanation}{%
+  \ifshowexplanation
+    \noendsongvfill% so far explanation is last: no vfill needed at song end
+    \@blockstart%
+    \setlist[description]{% modify description list (enumitem package)
+      %topsep=30pt,%      % space before start / after end of list
+      %itemsep=5pt,%      % space between items
+      font={\rmfamily}%   % set the label font
+    }
+    \justifying% ragged2e package: force justifying
+    \rmfamily\footnotesize%
+    \par\noindent\ignorespaces%
+    \BODY
+    \par\noindent\ignorespacesafterend%
+  \fi
+}
+
+% environment for wrapping lilypond
+\NewEnviron{lilywrap}{%
+  \ifshowlilypond
+    \noendsongvfill% if lilypond is last, do not add vfill at song end
+    \@blockstart%
+    \BODY
+  \fi
 }
 
 % END IN-SONG BLOCKS
