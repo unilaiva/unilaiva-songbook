@@ -20,12 +20,65 @@
 \newauthorindex{authidx}{idx_unilaiva-daimebook_auth}
 \newscripindex{tagidx}{idx_unilaiva-daimebook_tag}
 
+% This command creates the second page at where it is called. This is supposed
+% to be the odd verso page right after the cover.
+% Parameters: 1) subtitle, 2) subsubtitle. Parameters can be left empty.
+\newcommand{\secondpagedaime}[2]{
+  { % must be contained within a block for the settings to not bleed
+    \thispagestyle{empty}
+    \topskip0pt
+    \vspace*{5.05em} % align with "Contents" heading on the next page; BAD for any changes
+    \begin{center}
+      \Huge \mainbooktitle\\
+      %\normalsize\textit{paths to higher knowledge}\\
+      \ifx&#1&% #1 is empty
+      \else % #1 not empty
+        \vspace{1em}
+        \Large \textbf{#1}\\
+        \ifx&#2&% #2 is empty
+        \else % #2 not empty
+          \vspace{0.3em}%
+          \normalsize #2\\
+        \fi
+      \fi
+      \vspace*{\fill}
+      \large Received by:\\
+      \Large \textbf{humankind}\\
+      \vspace{1em}
+      \large Version:\\
+      % vvvv-mm-dd % Use hardcoded date for tagged printout releases
+      \Large \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day% current date, the default
+      \ifchorded\else{\\\emph{(without chords)}}\fi% if non-chorded version, mention it here
+      \\
+      \vspace*{\fill}
+      % Created with: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
+      {\small Find the latest versions\\
+              of all Unilaiva books here:}\\
+      \vspace{1em}
+      \imagel[3]{QR_https_unilaiva_aavalla_net.png} % is already centered, so 'l' version ok
+      \\
+      {\small\url{https://unilaiva.aavalla.net/}}
+      \\
+      \vspace*{\fill}
+      {\footnotesize Compiled by: larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})}
+      \\
+      \vspace{1.5em}
+      {\scriptsize
+        The material in this book is collected from various sources over time.\\
+        \vspace{-1em} % workaround for too large line spacing
+        This is a work in progress, and made for the contributors' private use.
+        \vspace{-1em} % workaround for too large line spacing
+      }
+    \end{center}
+  }
+}
+
 \begin{document}
 
   % Cover page (recto), by larva (photo + edit):
   \includepdf[]{content/img/Unilaiva-daimebook_COVER.pdf}
   % The second page (verso):
-  \secondpage{}{} % the second (title) page here (verso)
+  \secondpagedaime{}{} % the second (title) page here (verso)
 
   % TOC:
   \input{tex/unilaiva-songbook_content_include_part0_toc.tex}
