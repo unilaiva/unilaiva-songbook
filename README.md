@@ -363,7 +363,8 @@ are also defined within `\[x]` commands, as explained further down.
 Full melodies are written using `lilypond` syntax. It produces actual sheet
 music. See documentation in
 [http://lilypond.org/](http://lilypond.org/). `lilypond` parts must be put
-outside of verses (but inside of a song).
+outside of verses (but inside of a song), and wrapped within `lilywrap`
+environment. See examples in `content_songs_*.tex`.
 
 #### Melody hints on the chord line ####
 
