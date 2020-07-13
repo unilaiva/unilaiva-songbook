@@ -184,13 +184,19 @@
 % repeat verses)!
 \versesep=14pt plus 0pt minus 2.9pt%
 
-% songs: set penalties for column (page) breaks:
-\vvpenalty=200  % between verse and verse
-\vcpenalty=200  % between verse and chorus
-\ccpenalty=200  % between chorus and chorus
-\cvpenalty=200  % between chorus and verse
-\brkpenalty=100 % \brk
-\interlinepenalty=1000 % between lines within a chorus/verse
+% songs: Set penalties for column (page) breaks (<=-10000: break is forced)
+% NOTE: Be careful changing these. At least check that the page count of the
+%       final PDF is the same as before the change.
+\vvpenalty=200  % between verse and verse (songs default: 200, here 200)
+\vcpenalty=200  % between verse and chorus (songs default: 200, here 200)
+\ccpenalty=200  % between chorus and chorus (songs default: 200, here 200)
+\cvpenalty=200  % between chorus and verse (songs default: 200, here 200)
+\brkpenalty=-100  % for \brk (songs default: 200, here -100)
+\interlinepenalty=1000 % between in-verse lines (songs default: 1000, here 1000)
+\newcount\gluepenalty%
+\gluepenalty=800 % between verses glued together with \glueverses (default here: 800)
+\newcount\blockpenalty%
+\blockpenalty=0 % between (and before the song's first) in-song blocks (default here: 0)
 
 % Introduce toggles for some global features and set their defaults. If you
 % want a specific feature enabled or disabled, you must set it's toggle to
@@ -387,14 +393,45 @@
   \repeat%
 }
 
+% BEGIN GLUEVERSES
+
 % Make \versesepnostretch a dimension (instead of a length) to hold verse
 % separation without stretch components, for use with \glueverses.
 \newdimen\@versesepnostretch\setlength\@versesepnostretch{\versesep}
 
+% Toggled by \glueverses and \SB@stanzabreak
+\newif\if@versesglued\@versesgluedfalse
+
+% This rewrite adds support for setting column break penalty for verses glued
+% with \glueverses. Only lines marked with 'line added by larva' are inserted.
+\renewcommand\SB@stanzabreak{%
+  \ifhmode\par\fi%
+  \ifSB@stanza%
+    \SB@breakpoint{%
+      \if@versesglued% line added by larva
+        \gluepenalty% line added by larva
+      \else% line added by larva
+        \ifSB@inverse%
+          \ifSB@prevverse\vvpenalty\else\cvpenalty\fi%
+        \else%
+          \ifSB@prevverse\vcpenalty\else\ccpenalty\fi%
+        \fi%
+      \fi% line added by larva
+    }%
+    \@versesgluedfalse% line added by larva
+    \vskip\versesep%
+  \fi%
+}
+
 % "Glues" consecutive verses together: removes the vertical space between them.
 % This is to be used between verses/choruses. Note that it doesn't actually glue
 % anything: page or column brake might be put between verses with this.
-\newcommand{\glueverses}{\vspace{-\@versesepnostretch}}
+\newcommand{\glueverses}{%
+  \vspace{-\@versesepnostretch}%
+  \@versesgluedtrue%
+}
+
+% END GLUEVERSES
 
 % Just prints a dash if measure bar lines are enabled and does nothing otherwise.
 % Use this if a line would end at a new measure starting without any lyrics in that
@@ -551,26 +588,34 @@
 % This is called in the beginning of each insong-block: translation, showmantra,
 % feeler, explanation and lilywrap.
 \newcommand{\@blockstart}{%
+  \newcount\brkpenorg%
+  \brkpenorg\brkpenalty%
   \ifSB@insong%
     % The first block after verses needs a bit more vertical space before it:
     \ifnum\value{@aftersongblocks}=0%
       \vspace{1.618034em}%
+      \brkpenalty\blockpenalty%
       \brk%
       % The following zero-height box causes fills to be added before the first
       % block, even if the block is the first thing on a page. This ensures
       % the vertical centering of the blocks when the song verses are on a
       % previous page and the blocks are all on this one.
       \vbox to0pt{}%
-      \vfill%
+      \vspace*{\fill}%
     \else%
-      \vspace{1em}\vfill%
+      \vspace{1em}%
+      \brkpenalty\blockpenalty%
+      \brk%
+      \vbox to0pt{}%
+      \vspace*{\fill}%
     \fi%
     \addtocounter{@aftersongblocks}{1}%
   \else%
     \ifSB@intersong%
-      \vspace{1em}\vfill%
+      \vspace{1em}\vspace*{\fill}%
     \fi%
   \fi%
+  \brkpenalty\brkpenorg%
 }
 
 % Define \blockstart to be able to use in-song block feature manually also
@@ -1350,4 +1395,3 @@
 % END DEFINITIONS AND REWRITES
 
 % *****************************************************************************
-
