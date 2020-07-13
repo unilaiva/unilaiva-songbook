@@ -301,13 +301,16 @@ them) between `\beginsong` and `\endsong` macros plus other data wrapped in
 The `songs` package does a very good job in organising the songs for a nice
 output, but sometimes it needs a little bit of help.
 
-Use `\brk` in a lyric line to suggest a good breaking point (if the whole lyric
-line doesn't fit on one line in the output).
+Use `\brk` in a lyric line to suggest a good breaking point, if the whole line
+doesn't fit on one line in the output.
 
 `\brk` can be used between verses and songs, too, to suggest a good spot for
-a page (or column, if using more than one) brake. To force a page break, use
-`\sclearpage` or `\scleardpage` between songs; the first hops to the next page
-and the latter jumps to the next spread (even page). These are seldom needed.
+a page (or column, if using more than one) brake.
+
+To **force** a page break, use `\sclearpage` or `\scleardpage` between songs;
+the first hops to the next page and the latter jumps to the next spread
+(even page). These (or `\brk`) are sometimes needed right before a song longer
+than a spread, to correctly end the previous song with a horizontal line.
 
 
 ### Repeats and choruses ###
