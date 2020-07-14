@@ -64,6 +64,7 @@
 \usepackage{fancyhdr} % for customizing headers
 \usepackage[bigger]{musicography} % musical symbols (at least \musSegno is used)
 \usepackage{environ} % for hiding environments in in-song blocks
+\usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
 %\usepackage{showframe} % uncomment only for debugging margins etc.
 
 % The most important 'songs' package, use the version in the project tree:
@@ -1213,6 +1214,33 @@
 }
 
 % END PRELUDE
+
+
+% BEGIN AUDIO
+
+% Audio system is used to set URL's for audio for songs and chapters. These
+% will be utilized in the future.
+
+% keyval: Setup keys to be used as \audio macro's argument:
+\define@key{audio}{key}{\def\audio@key{#1}}%
+\define@key{audio}{title}{\def\audio@title{#1}}%
+\setkeys{audio}{title={},key={}}%
+
+% Use this command to set a URL link to audio for the current song or chapter.
+% Must be called within a song or a chapter. Multiple \audio definitions can be
+% set for each song/chapter; the first is the primary one. Mandatory argument
+% is the URL, and the preceding optional argument contains keyval pairs,
+% currently supported keys are 'audio' and 'title'. Note that the following
+% characters must be escaped (with \): & % _
+%
+% Example: \audio[title={Good version},key={Am}]{https://link-to-audio.com}
+\newcommand{\audio}[2][]{%
+  \setkeys{audio}{#1}% Set new keys
+  % Access title with: \audio@title, key with \audio@key, and address with #2
+}
+
+% END AUDIO
+
 
 % The following rewrite of the \SB@@@beginsong command adds songs to the basic TOC also.
 % Changes: lines between and including the first and last '\hypersetup' commands were added.
