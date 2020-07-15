@@ -12,6 +12,7 @@
 % The following package contains all the imports, style settings etc:
 \usepackage{tex/unilaiva-songbook_common}
 
+% unilaiva-songbook_common: setup
 \showphfalse
 \showphintocfalse
 
@@ -36,7 +37,7 @@
     \vspace*{5.05em} % align with "Contents" heading on the next page; BAD for any changes
     \begin{center}
       \Huge \mainbooktitle\\
-      %\normalsize\textit{paths to higher knowledge}\\
+      \normalsize\textit{with musical information for novices}\\
       \ifx&#1&% #1 is empty
       \else % #1 not empty
         \vspace{1em}
@@ -58,9 +59,6 @@
       \\
       \vspace*{\fill}
       % Created with: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
-      {\small Find the latest versions\\
-              of all Unilaiva books here:}\\
-      \vspace{1em}
       \imagel[3]{QR_https_unilaiva_aavalla_net.png} % is already centered, so 'l' version ok
       \\
       {\small\url{https://unilaiva.aavalla.net/}}
