@@ -2,7 +2,11 @@
  %% ====================================================
  %%
  %% This selection is intended to hold the new songs added since the last
- %% physical full book print. TODO: remember to update the song list.
+ %% physical full book print.
+ %%
+ %% TODO: When new physical version of the book is printed, update the title
+ %%       of this booklet and clear the song list.
+ %% TODO: Update the song list always, when adding new songs.
  %%
  %% See ul-selection_example.tex and README.md for documentation.
  %%
@@ -10,7 +14,7 @@
 \documentclass[twoside,10pt]{book}
 
 %% Set the title of this document:
-\newcommand{\mainbooktitle}{New songs since the last physical book until \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}
+\newcommand{\mainbooktitle}{Songs added after 2019-11-09 until \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}
 
 %% Uncomment this and set the filename without path (the file must be found
 %% in content/img), to use a single-page PDF as a cover. Otherwise a cover
