@@ -149,6 +149,17 @@ compile_in_docker() {
     echo "DOCKER   Build compiler image..."
     # Build the compiler image
     docker build -t unilaiva-compiler ./docker/unilaiva-compiler || die 1 "Docker build error"
+    echo "DOCKER   Building image complete."
+    echo ""
+    echo "         To remove old dangling images and unused volumes, it is safe"
+    echo "         to run the following command:"
+    echo ""
+    echo "           'docker image prune ; docker volume prune'"
+    echo ""
+    echo "         To remove old images, which are not needed anymore, you have"
+    echo "         to find them with 'docker image ls -a' and then remove them"
+    echo "         manually with 'docker image rm <image_id>'."
+    echo ""
   fi
 
   echo "DOCKER   Start compiler container..."

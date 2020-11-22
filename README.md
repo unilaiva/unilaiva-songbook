@@ -131,9 +131,9 @@ project's root.
 
 #### Font problems ####
 
-Note that on some (newer?) distributions, for example on Ubuntu 20.04, there
-is a problem with the medium weight Noto Sans font. The songbook will compile,
-but with incorrect fonts. The compile script will display a warning about this.
+Note that on some distributions, for example on Ubuntu 20.04, there is a problem
+with the medium weight Noto Sans font. The songbook will compile, but with
+incorrect fonts. The compile script will display a warning about this.
 To mitigate, one could change the `\usepackage[medium,extrabold]{noto}` to
 `\usepackage[regular,extrabold]{noto}` in `tex/unilaiva-songbook_common.sty`,
 but it would result in lighter and less readable fonts.
