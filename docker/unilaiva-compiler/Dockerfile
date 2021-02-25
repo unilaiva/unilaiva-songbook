@@ -7,7 +7,7 @@
 
 # Note that Ubuntu 20.04 Focal has a problem with Noto Medium; that's why we
 # use non-LTS 20.10 Groovy.
-FROM ubuntu:groovy-20201125.2
+FROM ubuntu:groovy-20210115
 
 # Installs everything needed for compiling the songbook, plus qrencode and
 # pdftk utilities. Also generates the required locale fi_FI.utf8.
