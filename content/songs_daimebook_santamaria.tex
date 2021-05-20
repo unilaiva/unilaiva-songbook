@@ -626,7 +626,7 @@
 \endsong
 
 
-\beginsong{Santa Maria foi quem me Chamou}[by={Ronaldo},tags={mazurca}]
+\beginsong{Santa Maria foi quem me Chamou}[by={Ronaldo Rocha},tags={mazurca}]
   \audio{https://www.youtube.com/watch?v=kSjNgg_-iD0&t=1269s}
   \capo{2}
   \meter{6}{8}
@@ -869,10 +869,51 @@
 \endsong
 
 
-% \beginsong{Santa Maria}[by={Sonia Maria Palhares}]
-% \endsong
+\beginsong{Santa Maria \\ Declaração}[by={Sonia Maria Palhares},tags={2x}]
+  \audio{https://www.youtube.com/watch?v=kSjNgg_-iD0&t=1630s}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Eu |\[\mnc{D}D]venho \[^\mn{A}]tra\[^\mn{D}]zer
+    U\[^\mn{A}]ma |\[^\mn{D}]decla\[^\mn{E}]ra\[\mnc{C#}A]ção
+    \[^\mn{E}]Que vem |da Virgem Maria
+    E do meu |\[\mnc{F}A7]Sen\[^\mn{E}]hor São \[^\mn{F#}]Jo\[\mnc{D}D]ão
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Que é |^pra se estudar
+    Que é |pra se ca^lar
+    Junto |com a Santa Maria
+    Que é pra |^Ela escu^tar
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[fragment, staffsize=18]
+    \relative d''
+    {\key d \major \time 4/4 \partial 8
+      \repeat volta 2 {
+        a8 | d4 d8 a d4 d8 a | d4 d8 e cis4 e8 e
+        | e e e e e e e e | f e e fis d4.
+      }
+    }\addlyrics{
+      \repeat volta 2 {
+        Eu ven -- ho tra -- zer;
+        U -- ma de -- cla -- ra -- ção;
+        Que vem da Vir -- gem Ma -- ri -- a;_E
+        do meu Sen -- hor São Jo -- ão;
+      }
+    }
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I come to bring
+    A declaration
+    That comes from the Virgin Mary
+    And of my Lord Saint John
+    \nextverse
+    That is from studying oneself,
+    That is from quieting oneself,
+    Together with the Santa Maria,
+    In order to listen to Her.
+  \end{translation}
+\endsong
 
-\setcounter{songnum}{12}
+
 \beginsong{Luz de Jesus \\ O Virgem Mãe}[by={Isabela Coutinho}]
   \audio{https://www.youtube.com/watch?v=kSjNgg_-iD0&t=1709s}
   \transpose{7}
