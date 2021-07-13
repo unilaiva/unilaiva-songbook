@@ -103,6 +103,7 @@
 
 % color: Color definitions:
 \definecolor{chordcolor}{rgb}{0.3,0,0.4} % chords
+\definecolor{altchordcolor}{rgb}{0.15,0,0.4} % alternate chords
 \definecolor{mbarcolor}{rgb}{0.45,0.1,0.6} % measure bar
 \definecolor{melodynotecolor}{rgb}{0.0,0.256,0.304} % encircled melody notes
 \definecolor{songnumbgcolor}{rgb}{0.94,0.94,0.94} % song number background
@@ -469,15 +470,21 @@
 % with the chord repeats etc. Instead use plain text for chord names. Also note
 % that these plaintext chord names will not be transposed among 'real' chords,
 % if \transpose is used. Not displayed on books without chords.
-% Only place bar lines, plain text and \e within the parameter, for example:
+% Only place bar lines, plain text, \capo and \e within the parameter, for
+% example:
 %
 %  \altchords{|C | |G |C}
 %
 \newcommand{\altchords}[1]{%
   \ifchorded%
+    \renewcommand\capo[1]{% % redefines \capo command inside this command
+      \makebox[0pt][r]{\raisebox{4ex}{%
+       \tiny\colorbox{notebgcolor}{\normalfont capo ##1}%
+      }}%
+    }%
     \vspaceifnotinverse{.618034\baselineskip}%
     \hfill%
-    {\printchord{\footnotesize\emph{#1}}}%
+    {\printchord{\color{altchordcolor}\footnotesize\emph{#1}}}%
   \fi%
 }
 
