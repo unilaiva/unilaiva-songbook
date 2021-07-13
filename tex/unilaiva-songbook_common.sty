@@ -463,6 +463,24 @@
   \altlyrnospace[#1]{#2}%
 }
 
+% Meant to be used at the end of a lyric line to specify an alternate set
+% of chords for that line to be displayed floated to the right of the line
+% in question. Do NOT set chords with \[] macro inside this, as it would mess
+% with the chord repeats etc. Instead use plain text for chord names. Also note
+% that these plaintext chord names will not be transposed among 'real' chords,
+% if \transpose is used. Not displayed on books without chords.
+% Only place bar lines, plain text and \e within the parameter, for example:
+%
+%  \altchords{|C | |G |C}
+%
+\newcommand{\altchords}[1]{%
+  \ifchorded%
+    \vspaceifnotinverse{.618034\baselineskip}%
+    \hfill%
+    {\printchord{\footnotesize\emph{#1}}}%
+  \fi%
+}
+
 % Put tiny sublyrics, given as the parameter, below the main lyrics (could be
 % used for a second voice). This is not very robust; a good idea might be to
 % put each bar's sublyrics as it's own \sublyr command. The sublyrics are
