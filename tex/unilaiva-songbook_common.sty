@@ -210,6 +210,17 @@
 % define it as \beginsong parameter: "\beginsong[ex={this song is good}]"
 \newif\ifshowex\showextrue
 
+% Toggle for showing key info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[key={Am}]". Make sure that
+% it is correct, that the key set here corresponds to the actual key displayed
+% in the final document (after possible transpose).
+\newif\ifshowkey\showkeyfalse
+
+% Toggle for showing suggested keys in song preludes. To set it/them for a song,
+% define it as \beginsong parameter: "\beginsong[sks={Am, Dm}]". The first
+% is the preferred one.
+\newif\ifshowsks\showskstrue
+
 % Toggle for showing phase info in song preludes. To set it for a song,
 % define it as \beginsong parameter: "\beginsong[ph={I, II}]"
 \newif\ifshowph\showphtrue
@@ -1084,7 +1095,29 @@
 % To set this for a song, use the optional ex={} parameter for \beginsong.
 \newcommand{\extrainfo}{}
 \newsongkey{ex}{\def\extrainfo{}}
-               {\def\extrainfo{#1\par}}
+               {\def\extrainfo{#1}}
+
+% Support for key information. This key is supposed to hold the musical key
+% (for example "C" or "Am" without quotes) of the song, after transposing.
+% So remember to change this if you transpose.
+% To enable displaying these keys in the song preludes for the whole
+% document, set \showkeytrue in the main document preamble (after including
+% this package).
+% To set this for a song, use the optional key={} parameter for \beginsong.
+\newcommand{\key}{}
+\newsongkey{key}{\def\key{}}
+                {\def\key{#1}}
+
+% Support for suggested keys for a song. This key is supposed to hold the
+% suggested good keys this song to be played in. The first is the preferred
+% one. The suggested keys are displayed in the song preamble.
+% To disable displaying these keys in the song preludes for the whole
+% document, set \showsksfalse in the main document preamble (after including
+% this package).
+% To set this for a song, use the optional sks={} parameter for \beginsong.
+\newcommand{\suggestedkeys}{}
+\newsongkey{sks}{\def\suggestedkeys{}}
+               {\def\suggestedkeys{#1}}
 
 % Support for phase hints for songs.
 % To disable displaying these phases in the song preludes for the whole
@@ -1148,15 +1181,40 @@
 % the modified \makeprelude below.
 \renewcommand{\extendprelude}{%
   \ifshowauth\showauthors\fi%
-  \ifshowex\extrainfo\fi%
+  \ifshowex\extrainfo\par\fi%
+  \ifchorded%
+    \ifshowkey%
+      \ifx\key\empty%
+        % \key is empty, do nothing
+      \else%
+        Key: \bf{\key}\par%
+      \fi%
+    \fi%
+  \fi%
 }
 
 % Set the amount to rise or lower the position of the items in the RT
 % box in the song prelude, relative to the baseline of the main title
 % (the ex comes from the title font, too).
-\newdimen{\@preludeRTfirstraise}\setlength{\@preludeRTfirstraise}{1.618034ex}
-\newdimen{\@preludeRTsecondraise}\setlength{\@preludeRTsecondraise}{-.618034ex}
-\newdimen{\@preludeRTtagraise} % set later
+\newdimen{\@preludeRTfirstraise}\setlength{\@preludeRTfirstraise}{1.618034ex}%
+\newdimen{\@preludeRTsecondraise}\setlength{\@preludeRTsecondraise}{0pt}%
+\newdimen{\@preludeRTthirdraise}\setlength{\@preludeRTthirdraise}{-1.618034ex}%
+\newdimen{\@preludeRTraise} % set later
+
+\newcounter{@preludeRTrowcount}
+% sets the \@preludeRTraise dimension on basis of @preludeRTrowcount, ie how
+% many lines have already been added to the prelude's RT component.
+\newcommand\@setpreludeRTraise{%
+  \ifnum\value{@preludeRTrowcount}=0%
+    \setlength{\@preludeRTraise}{\@preludeRTfirstraise}%
+  \fi%
+  \ifnum\value{@preludeRTrowcount}=1%
+    \setlength{\@preludeRTraise}{\@preludeRTsecondraise}%
+  \fi%
+  \ifnum\value{@preludeRTrowcount}=2%
+    \setlength{\@preludeRTraise}{\@preludeRTthirdraise}%
+  \fi%
+}
 
 % Redefine the song prelude display. Only one line is modified (see comment)
 % to show the phase and tag lists.
@@ -1193,20 +1251,30 @@
       {\stitlefont\relax%
        \songtitle%
        {% larva: begin modifications for RT area: ph and tags display
+         \setcounter{@preludeRTrowcount}{0}%
+         \@setpreludeRTraise%
          \hfill%
-         \ifshowph%
-           \makebox[0pt][r]{\raisebox{\@preludeRTfirstraise}[0pt][0pt]{%
+         \ifshowph% % Show phase
+           \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
              \tiny\normalfont\rmfamily\phaselist%
            }}%
-           \setlength{\@preludeRTtagraise}{\@preludeRTsecondraise}%
-         \else
-           \setlength{\@preludeRTtagraise}{\@preludeRTfirstraise}%
+           \stepcounter{@preludeRTrowcount}%
+           \@setpreludeRTraise%
          \fi%
-         \ifshowtags%
-           \makebox[0pt][r]{\raisebox{\@preludeRTtagraise}[0pt][0pt]{%
+         \ifshowtags% % Show tags
+           \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
              \tiny\textit{\taglist}%
            }}%
+           \stepcounter{@preludeRTrowcount}%
+           \@setpreludeRTraise%
          \fi%
+         \ifchorded\ifshowsks\ifx\suggestedkeys\empty\else% % Show suggested keys
+           \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+             \tiny\textit Suggested keys: {\bf{\suggestedkeys}}%
+           }}%
+           \stepcounter{@preludeRTrowcount}%
+           \@setpreludeRTraise%
+         \fi\fi\fi%
        }% larva: end modifications for RT area: ph and tags display
        \par%
        \nexttitle%
