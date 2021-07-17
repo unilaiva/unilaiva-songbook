@@ -103,7 +103,9 @@
 
 % color: Color definitions:
 \definecolor{chordcolor}{rgb}{0.3,0,0.4} % chords
-\definecolor{altchordcolor}{rgb}{0.15,0,0.4} % alternate chords
+\definecolor{altchordcolor_a}{rgb}{0.15,0,0.4} % alternate chord set 1 (default)
+\definecolor{altchordcolor_b}{rgb}{0.4,0.3,0.10} % alternate chord set 2
+\definecolor{altchordcolor_c}{rgb}{0.10,0.4,0.10} % alternate chord set 3
 \definecolor{mbarcolor}{rgb}{0.45,0.1,0.6} % measure bar
 \definecolor{melodynotecolor}{rgb}{0.0,0.256,0.304} % encircled melody notes
 \definecolor{songnumbgcolor}{rgb}{0.94,0.94,0.94} % song number background
@@ -261,6 +263,8 @@
 % Toggle for showing feelers
 \newif\ifshowfeeler\showfeelertrue
 
+% Toggle showing of alternate chord sets
+\newif\ifshowaltchords\showaltchordstrue
 
 
 % END STYLE & OTHER SETTINGS
@@ -446,6 +450,74 @@
 
 % END GLUEVERSES
 
+% BEGIN ALTCHORDS
+
+% Initialize the color variable.
+\definecolor{currentaltchordcolor}{rgb}{0,0,0}%
+% Set default color to altchordcolor_a, will also be reset to this at each
+% song's end.
+\colorlet{currentaltchordcolor}{altchordcolor_a}%
+
+% Set the color for displaying alternate chords, given as a number 1..3.
+% The color will be reset to 1 at the beginning of the document, and at the
+% end of each song. Called from \@altchordsid and \SB@endsong
+\newcommand{\@setaltchordscolor}[1]{%
+  \ifnum#1=1%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_a}%
+  \fi%
+  \ifnum#1=2%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_b}%
+  \fi%
+  \ifnum#1=3%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_c}%
+  \fi%
+}
+
+% Shows an id text and optionally changes alternate chords color 1..3, until
+% the song ends or color is changed again.,
+\newcommand{\@altchordsid}[2][1]{%
+  \ifchorded\ifshowaltchords%
+    \@setaltchordscolor{#1}%
+    \color{currentaltchordcolor}
+    \ifx#2\empty\else
+      \renewcommand\capo[1]{% % redefines \capo command inside this command
+        {\normalfont (capo ##1)}%
+      }%
+      \makebox[0pt][r]{\raisebox{4ex}{%
+        \tiny\colorbox{notebgcolor}{\normalfont \bf #2:}%
+      }}%
+    \fi%
+  \fi\fi%
+}%
+
+% Meant to be used at the end of a lyric line to specify an alternate set
+% of chords for that line to be displayed floated to the right of the line
+% in question. Do NOT set chords with \[] macro inside this, as it would mess
+% with the chord repeats etc. Instead use plain text for chord names. Also note
+% that these plaintext chord names will not be transposed among 'real' chords,
+% if \transpose is used. Not displayed on books without chords.
+% Only place bar lines, plain text, \id and \e within the parameter.
+%
+% To show an ID text, use \id macro within \altchords, preferably as the first
+% thing on the first line of this chord set. The optional parameter of \id sets
+% the color 1..3 for this chord set, which will be held until the end of the
+% song. See \@altchordsid.
+%
+% Example:
+%
+%  \altchords{\id[1]{Peter}|C | |G |C}
+%
+\newcommand{\altchords}[1]{%
+  \providecommand{\id}[2][1]{\@altchordsid[##1]{##2}}%
+  \ifchorded\ifshowaltchords%
+    \vspaceifnotinverse{.618034\baselineskip}%
+    \hfill%
+    {\printchord{\footnotesize\emph{\color{currentaltchordcolor}#1}}}%
+  \fi\fi%
+}
+
+% END ALTCHORDS
+
 % Just prints a dash if measure bar lines are enabled and does nothing otherwise.
 % Use this if a line would end at a new measure starting without any lyrics in that
 % bar on the same line. This signifies that there indeed is a measure here. them
@@ -473,30 +545,6 @@
   \vspaceifnotinverse{.618034\baselineskip}%
   \hfill%
   \altlyrnospace[#1]{#2}%
-}
-
-% Meant to be used at the end of a lyric line to specify an alternate set
-% of chords for that line to be displayed floated to the right of the line
-% in question. Do NOT set chords with \[] macro inside this, as it would mess
-% with the chord repeats etc. Instead use plain text for chord names. Also note
-% that these plaintext chord names will not be transposed among 'real' chords,
-% if \transpose is used. Not displayed on books without chords.
-% Only place bar lines, plain text, \capo and \e within the parameter, for
-% example:
-%
-%  \altchords{|C | |G |C}
-%
-\newcommand{\altchords}[1]{%
-  \ifchorded%
-    \renewcommand\capo[1]{% % redefines \capo command inside this command
-      \makebox[0pt][r]{\raisebox{4ex}{%
-       \tiny\colorbox{notebgcolor}{\normalfont capo ##1}%
-      }}%
-    }%
-    \vspaceifnotinverse{.618034\baselineskip}%
-    \hfill%
-    {\printchord{\color{altchordcolor}\footnotesize\emph{#1}}}%
-  \fi%
 }
 
 % Put tiny sublyrics, given as the parameter, below the main lyrics (could be
@@ -546,7 +594,8 @@
 \beforepostludeskip=0pt plus 0pt minus 0pt
 
 % songs: rewrite this macro to support adding a \vfill to song's end
-% conditionally. The modified part is in the beginning.
+% conditionally. Also reset alternate chord colors. The modified part is in
+% the beginning.
 \renewcommand\SB@endsong{%
   % BEGIN modification by larva
   \ifnum\value{@endsongvfillneeded}>0%
@@ -556,6 +605,7 @@
   \fi%
   \yesendsongvfill% default to being needed in the next song
   \setcounter{@aftersongblocks}{0}% reset counter for next song
+  \@setaltchordscolor{1}%
   % END modification by larva
   \ifSB@insong%
       \ifSB@inverse\SB@erreov\endverse\fi%
