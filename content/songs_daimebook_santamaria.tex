@@ -559,24 +559,24 @@
 \endsong
 
 
-\beginsong{Minha Santa Maria é Livre}[by={Nonato Texeira}]
+\beginsong{Minha Santa Maria é Livre}[by={Nonato Texeira},key={A},sks={A}]
   \audio{https://www.youtube.com/watch?v=kSjNgg_-iD0&t=836s}
+  \transpose{2}
   \newchords{chords_minhasantamariaelivre_a}\newchords{chords_minhasantamariaelivre_b}
-  \capo{2}
   \mnbeginchorus\memorize[chords_minhasantamariaelivre_a]
-    \[^\mn{B}]Min\[^\mn{C}]ha |\[\mnc{D}G]Santa Ma\[^\mn{B}]ri\[^\mn{G}]{a é} |\[\mnc{G}Em]livre
-    \[^\mn{F#}]No \[^\mn{G}]lu|\[\mnc{A}Am]gar on\[^\mn{C}]de E\[^\mn{E}]{la es}|\[\mnc{D}D]tá
+    \[^\mn{B}]Min\[^\mn{C}]ha |\[\mnc{D}G]Santa Ma\[^\mn{B}]ri\[^\mn{G}]{a é} |\[\mnc{G}Em7]livre
+    \[^\mn{F#}]No \[^\mn{G}]lu|\[\mnc{A}Am7]gar on\[^\mn{C}]de E\[^\mn{E}]{la es}|\[\mnc{D}D]tá
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_minhasantamariaelivre_b]
-    \[^\mn{F#}]Mas \[^\mn{G}]a |\[\mnc{A}Am]gente \[^\mn{C}]é \[C]que l\[^\mn{E}]{he a}|\[\mnc{D}G]cusa
-    Quan\[^\mn{B}]{do a} \[\mnc{G}Em]gen\[^\mn{E}]te |\[\mnc{C}Am]usa sem \[^\mn{A}]sa\[\mnc{F#}D]ber \[^\mn{D}]u|\[\mnc{G}G]sar
+    \[^\mn{F#}]Mas \[^\mn{G}]a |\[\mnc{A}Am]gente \[^\mn{C}]é \[\bm]que l\[^\mn{E}]{he a}|\[\mnc{D}G]cusa
+    Quan\[^\mn{B}]{do a} \[\mnc{G}Em]gen\[^\mn{E}]te |\[\mnc{C}Am7]usa sem \[^\mn{A}]sa\[\mnc{F#}D7]ber \[^\mn{D}]u|\[\mnc{G}G]sar
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_minhasantamariaelivre_a]
-    Santa Ma|^ria é nossa |^Mãe
-    É nossas |^filhas e nossas mul|^heres
+    Santa Ma|^ria é nossa |^Mãe \altchords{\id[3]{O (A)}|A | \e}
+    É nossas |^filhas e nossas mul|^heres \altchords{|Bm |E}
     \mnendchorus\glueverses\mnbeginchorus\replay[chords_minhasantamariaelivre_b]
-    Mas é pre|^ciso ^muito A|^mor
-    E ^todas |^elas se ^consag|^rar
+    Mas é pre|^ciso ^muito A|^mor \altchords{|Bm |E}
+    E ^todas |^elas se ^consag|^rar \altchords{|D E |A}
   \endchorus
   \beginchorus\replay[chords_minhasantamariaelivre_a]
     Aqui |^dentro desta irman|^dade
@@ -585,7 +585,6 @@
     Que para u|^sar a San^ta Ma|^ria
     É com ^leal|^dade pra lhe ^defen|^der
   \endchorus
-  \brk
   \beginchorus\replay[chords_minhasantamariaelivre_a]
     Mas é com |^fé e paci|^ência
     Que para |^todos vai se liber|^tar
@@ -594,6 +593,7 @@
     Quem não ^esti|^ver pode a^té cho|^rar
   \endchorus
   \begin{lilywrap}\begin{lilypond}[fragment, staffsize=18]
+    \transpose g a
     \relative g'
     {\key g \major \time 4/4 \partial 4
       \repeat volta 2 {
