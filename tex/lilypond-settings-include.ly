@@ -11,6 +11,7 @@
     %%   \end{lilypond}
 
     % Sets the global staff size, it scales everything. Recommended size is 18.
+    % With Noto fonts, 17 might be better.
     #(set-global-staff-size 18)
 
     \paper {
@@ -19,13 +20,13 @@
       %% 'lilypond -dshow-available-fonts x', though it doesn't show which
       %% are installed in the document.
       %% See: https://lilypond.org/doc/v2.20/Documentation/notation/fonts#entire-document-fonts
-      %% Commented out for now, using defaults.
-      % #(define fonts
-      %   (set-global-fonts
-      %     #:roman "NotoSerif-ExtraCondensedMedium"
-      %     #:sans "NotoSans-ExtraCondensedMedium"
-      %     #:factor (/ staff-height pt 20)
-      %              ))
+      %% Commented out for now as it multiplies compile time, using defaults.
+%       #(define fonts
+%         (set-global-fonts
+%           #:roman "NotoSans-ExtraCondensedMedium"
+%           #:sans "NotoSans-ExtraCondensedMedium"
+%           #:factor (/ staff-height pt 20)
+%                    ))
 
       indent = #0
       ragged-right = ##f
