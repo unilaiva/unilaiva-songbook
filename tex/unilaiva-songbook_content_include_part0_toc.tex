@@ -10,7 +10,10 @@
 %% This file contains the TOC.
 %%
 
+  % to have totally flat right edge of TOC (microtype package):
+  \microtypesetup{protrusion=false} % To have a flat right side in TOC
   \tableofcontents
+  \microtypesetup{protrusion=true} % back to default (microtype package)
 
   % Removes the overlapping page number in the bottom of the first TOC page:
   \addtocontents{toc}{\protect\thispagestyle{empty}}
