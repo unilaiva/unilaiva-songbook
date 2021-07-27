@@ -484,7 +484,7 @@
         {\normalfont (capo ##1)}%
       }%
       \makebox[0pt][r]{\raisebox{4ex}{%
-        \tiny\colorbox{notebgcolor}{\normalfont \bf #2:}%
+        \tiny\colorbox{notebgcolor}{\normalfont \textbf{#2:}}%
       }}%
     \fi%
   \fi\fi%
@@ -1232,15 +1232,17 @@
 \renewcommand{\extendprelude}{%
   \ifshowauth\showauthors\fi%
   \ifshowex\extrainfo\par\fi%
-  \ifchorded%
-    \ifshowkey%
-      \ifx\key\empty%
-        % \key is empty, do nothing
-      \else%
-        Key: \bf{\key}\par%
-      \fi%
-    \fi%
-  \fi%
+  % % The following would show the song's key below author, but it is now
+  % % commented out, because we now show it in the RT area
+  % \ifchorded%
+  %   \ifshowkey%
+  %     \ifx\key\empty%
+  %       % \key is empty, do nothing
+  %     \else%
+  %       Key: \textbf{\color{chordcolor}\key}\par%
+  %     \fi%
+  %   \fi%
+  % \fi%
 }
 
 % Set the amount to rise or lower the position of the items in the RT
@@ -1300,7 +1302,7 @@
       \offinterlineskip\lineskip\p@%
       {\stitlefont\relax%
        \songtitle%
-       {% larva: begin modifications for RT area: ph and tags display
+       {% larva: begin modifications for RT area: ph, tags and keys display
          \setcounter{@preludeRTrowcount}{0}%
          \@setpreludeRTraise%
          \hfill%
@@ -1318,14 +1320,27 @@
            \stepcounter{@preludeRTrowcount}%
            \@setpreludeRTraise%
          \fi%
-         \ifchorded\ifshowsks\ifx\suggestedkeys\empty\else% % Show suggested keys
-           \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
-             \tiny\textit Suggested keys: {\bf{\suggestedkeys}}%
-           }}%
-           \stepcounter{@preludeRTrowcount}%
-           \@setpreludeRTraise%
-         \fi\fi\fi%
-       }% larva: end modifications for RT area: ph and tags display
+         \ifchorded% % Show key + suggested keys (if in chorded mode)
+           \def\keylinetext{}%
+           \ifshowkey\ifx\key\empty\else%
+             \g@addto@macro\keylinetext{\textit{Key:} \textbf{\color{chordcolor}\key}}%
+           \fi\fi%
+           \ifshowsks\ifx\suggestedkeys\empty\else%
+             \ifx\keylinetext\empty%
+               \g@addto@macro\keylinetext{\textit{Good keys:} \textbf{\suggestedkeys}}%
+             \else%
+               \g@addto@macro\keylinetext{\textit{, good:} \textbf{\suggestedkeys}}%
+             \fi%
+           \fi\fi%
+           \ifx\keylinetext\empty\else%
+             \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+               \tiny\normalfont\keylinetext%
+             }}%
+             \stepcounter{@preludeRTrowcount}%
+             \@setpreludeRTraise%
+           \fi
+         \fi
+       }% larva: end modifications for RT area: ph, tags and keys display
        \par%
        \nexttitle%
        \foreachtitle{(\songtitle)\par}}%
