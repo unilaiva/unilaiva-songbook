@@ -69,14 +69,7 @@
       | c | g
       | a2:m g | c2.
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Examine your conscience; Examine it thoroughly
@@ -246,14 +239,7 @@
       s4 | f2 g | c f
       | g a:m | c2.
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     I live with my Master
@@ -332,14 +318,7 @@
       s4 | c1 | a:m
       | g2 a:m | c2.
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     It's by asking and praying
@@ -437,14 +416,7 @@
       % to fit whole song on one spread:
       #(layout-set-staff-size 17)
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\footnotesize % to fit whole song on one spread
     Dem dum, dem dum; Dem dum, dem dum
@@ -519,14 +491,7 @@
       | f | g
       | d2:m f | c
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Here I'm going to reveal; I came to recall
@@ -613,14 +578,7 @@
       | f2 g | c a:m
       | g1 | c2
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     I'm going to pray for everyone to see
@@ -709,14 +667,7 @@
       | a2:m d:m | g1
       | a2:m g | c2.
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     To be next to this Cruzeiro
@@ -800,14 +751,7 @@
       | c2 g | a1:m
       | f2 g | c1
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Don't believe in the masters who appear to you; Nor walk on the path with them
@@ -877,14 +821,7 @@
      | f | g | c | a:m
      | c | g:7 | c | \mark \markup{\hspace #1 \super{"1"}}c:7
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     My Father I ask that You hear me
@@ -961,14 +898,7 @@
       % to fit the whole song on one spread:
       #(layout-set-staff-size 17)
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\footnotesize % to fit the whole song on one spread:
     Love is to be shared; Not to be feigned because it causes pain
@@ -1040,14 +970,7 @@
       | f
       | c
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     I am not God; But I have a hope
@@ -1149,14 +1072,7 @@
       % to fit the whole song on one spread:
       #(layout-set-staff-size 16)
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     I asked and received the touch
@@ -1270,14 +1186,7 @@
       | g1 | e:m
       | a2:m g:7 | c2
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     My Saint John, My Saint John
@@ -1364,14 +1273,7 @@
         | d:m | g:7 | c | c4
       }
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Receiving in my heart
