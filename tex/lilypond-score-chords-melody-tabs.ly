@@ -14,7 +14,7 @@
     %%
     %% \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
     %%   theMelody = \relative c'' { | c4 e4 d4 f4 | c1 }
-    %%   theLyricsOne \lyricmode = { | I am full of | joy}
+    %%   theLyricsOne = \lyricmode { | I am full of | joy}
     %%   theChords = \chordmode { c2 d2:m | c1 }
     %%   \include "tex/lilypond-score-chords-melody-tabs.ly"
     %% \end{lilypond}\end{lilywrap}
