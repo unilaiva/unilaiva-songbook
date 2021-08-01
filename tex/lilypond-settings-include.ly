@@ -10,6 +10,9 @@
     %%     % all the lilypond code
     %%   \end{lilypond}
 
+    % Lilypond version:
+    \version "2.22.0"
+
     % Sets the global staff size, it scales everything. Recommended size is 18.
     % With Noto fonts, 17 might be better.
     #(set-global-staff-size 18)
