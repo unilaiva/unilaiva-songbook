@@ -49,6 +49,7 @@
       }
     }
     theLyricsOne = \lyricmode {
+      \set stanza = "1. "
       Quem pro -- cu -- rar es -- ta ca -- sa;
       Que a -- qui ne -- la che -- gar;
       En -- con -- tra com_a Vir -- gem Ma -- ri -- a;
@@ -148,6 +149,7 @@
       }
     }
     theLyricsOne = \lyricmode {
+      \set stanza = "1. "
       \repeat volta 2 {
         A -- ve Ma -- ri -- a pa -- ra me lem -- brar;
         Que é min -- ha Mãe mãe
@@ -387,8 +389,8 @@
       Nes -- te mun -- do de_i -- lu -- são.
     }
     theChords = \chordmode {
-      s4 | c2 | f:maj7 | f:maj7 c
-      | a:m g | f c
+      s4 | c2 f:maj7 | f:maj7 c
+      | a:m g | f c4
     }
     \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
@@ -468,32 +470,32 @@
         | e8 e8 e8 c8 d8 d8 d8 c8 | e2~ e8
       }
       \repeat volta 2 {
-        d8 d8 d8 | d4 d8 d8 d8 d8 d8 e8 | c8. c16 c8 c8 c8 c8 c8 e8 |
+        d8 d8 d8 | d4 d8 d8 d8 d8 d8 e8 | c8. c16 c8 c8 c8 c8 c8 e8
       } \alternative {
-        { b8. b16 b8 b8 c8 b8 b8 b8 | e2~ e8 }
-        { b8. b16 b8 b8 c8 b8 b8 a8 | a2~ a8 \bar "|." }
+        { | b8. b16 b8 b8 c8 b8 b8 b8 | e2~ e8 }
+        { | b8. b16 b8 b8 c8 b8 b8 a8 | a2~ a8 \bar "|." }
       }
     }
     theLyricsOne = \lyricmode {
+      \set stanza = "1. "
       \repeat volta 2 {
         Lou -- va -- da | se -- ja nos -- sa Mãe San -- ta Ma -- | ri -- a;
         Que nos dá a a -- le -- | gri -- a
-        de com E -- la fes -- te -- jar.
+        de com E -- la fes -- te -- jar. __
       }
       \repeat volta 2 {
-        A u -- ni -- | ão Do Sag -- ra -- do Vos -- so | Fil -- ho;
+        A u -- ni -- | ão do Sag -- ra -- do Vos -- so | Fil -- ho;
         Com_o Di -- vi -- no Pai E --
       } \alternative {
-        { | ter -- no pa -- ra sem -- pre_eu de -- vo_a -- | mar; }
-        { | ter -- no pa -- ra sem -- pre_eu de -- vo_a -- | mar. }
+        { | ter -- no pa -- ra sem -- pre_eu de -- vo_a -- | mar; __ }
+        { | ter -- no pa -- ra sem -- pre_eu de -- vo_a -- | mar. __ }
       }
     }
     theChords = \chordmode {
-      s4. | a1:m | a2:m g | c b:m7.5- | e1
-      | d1:m | a:m
-      % alt. endings:
-      | b:m7.5- | e2 e8
-      | e1:7 | a2:m a8:m
+      s4. a1:m a2:m g c b:m7.5- e1
+      d1:m a:m
+      { b:m7.5- e2 e8 }
+      { e1:7 a2:m a8:m }
     }
     \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
@@ -557,7 +559,8 @@
          | e4 a,4. a8 cis8 e8 | d2 d4 \bar "|."
     }
     theLyricsOne = \lyricmode {
-      E ê San -- ta Ma -- ri -- a, e ê San -- ta Ma -- ri -- a;
+      \set stanza = "1. "
+      E ê __ San -- ta Ma -- ri -- a, e ê __ San -- ta Ma -- ri -- a;
       Nos con -- for -- ta -- i nes -- ta_a -- go -- ni -- a
     }
     theChords = \chordmode {
@@ -715,6 +718,7 @@
       }
     }
     theLyricsOne = \lyricmode {
+      \set stanza = "1. "
       San -- ta Ma -- ri -- a foi quem me cha -- mou;
       E con -- vi -- dou -- me a o -- be -- de -- cer;
       Pa -- ra_eu ver a tu -- a Luz;
@@ -796,6 +800,7 @@
       }
     }
     theLyricsOne = \lyricmode {
+      \set stanza = "1. "
       Eu vou con -- tar u -- ma be -- la_his -- tó -- ria;
       Da plan -- tin -- ha que mais tem a -- mor;
       E -- la e -- ra bem pe -- que -- ni -- na;
@@ -886,6 +891,7 @@
       }
     }
     theLyricsOne = \lyricmode {
+      \set stanza = "1. "
       San -- ta Ma -- ri -- a que vei -- o do Céu;
       Pra me_a -- gra -- ci -- ar, pra me_a -- gra -- ci -- ar;
       Pra me_a -- gra -- ci -- ar, pra me_a -- gra -- ci -- ar;
@@ -949,10 +955,11 @@
       }
     }
     theLyricsOne = \lyricmode {
+      \set stanza = "1. "
       Eu ven -- ho tra -- zer;
       U -- ma de -- cla -- ra -- ção;
       Que vem da Vir -- gem Ma -- ri -- a;_E
-      do meu Sen -- hor São Jo -- ão;
+      do meu Sen -- hor São Jo -- ão.
     }
     theChords = \chordmode {
       s8 | d1
@@ -968,37 +975,69 @@
     That comes from the Virgin Mary
     And of my Lord Saint John
     \nextverse
-    That is from studying oneself,
-    That is from quieting oneself,
-    Together with the Santa Maria,
-    In order to listen to Her.
+    That is from studying oneself
+    That is from quieting oneself
+    Together with the Santa Maria
+    In order to listen to Her
   \end{translation}
 \endsong
 
 
-\beginsong{Luz de Jesus \\ O Virgem Mãe}[by={Isabela Coutinho}]
+\beginsong{Luz de Jesus \\ O Virgem Mãe}[by={Isabela Coutinho},key={Dm},sks={Dm, Cm, Bm}]
   \audio{https://www.youtube.com/watch?v=kSjNgg_-iD0&t=1709s}
-  \transpose{7}
-  \musicnote{2nd verse is slightly different}
+  \musicnote{2nd verse has different chords and slightly different melody}
   \mnbeginchorus\memorize
-    \[^\mn{A}]Oh! \[^\mn{D}]Vir\[^\mn{E}]gem \[^\mn{F}]Mãe, \[^\mn{E}]eu \[^\mn{D}]pe\[^\mn{E}]{ço à} |\[\mnc{F}Dm]Vós \[^\mn{A}]um \[^\mn{B&}\mn{A}]dia
-    \[^\mn{G}]A \[^\mn{F}]San|\[\mnc{E}Em7&5]ta \[^\mn{A}]Ma\[^\mn{B&}]ri\[^\mn{A}]a \[^\mn{G}]eu \[^\mn{F}]sa|\[\mnc{E}A]ber \[^\mn{B&}]am\[^\mn{A}]ar|'
-    E \[^\mn{B&}]fir\[^\mn{A}]mar \[\mnc{G}Em7&5]sem\[^\mn{F}]pre \[^\mn{E}]o \[^\mn{D}]meu |\[\mnc{C#}A]pen\[^\mn{A}]sam\[^\mn{B&}]en\[^\mn{A}]to
-    \[^\mn{G}]Nest\[^\mn{F}]{e en}|\[\mnc{E}Dm]ten\[^\mn{A}]dim\[^\mn{B&}]en\[^\mn{A}]to \[^\mn{G}]par\[^\mn{F}]{a eu} |\[\mnc{E}A7]pod\[^\mn{D}]er \[^\mn{C#}]me \[^\mn{E}]sal\[\mnc{D}Dm]var|'
+    \[^\mn{A}]Oh! \[^\mn{D}]Vir\[^\mn{E}]gem |\[\mnc{F}Dm]Mãe, \[^\mn{E}]eu \[^\mn{D}]pe\[^\mn{E}]{ço à} \[\bmc\mn{F}]Vós \[^\mn{A}]um \[^\mn{B&}]d|i\[^\mn{A}]a \altchords{\id[1]{(Am)}|Am | \e}
+    \[^\mn{G}]A \[^\mn{F}]San\[\mnc{E}Em7&5]ta \[^\mn{A}]Ma\[^\mn{B&}]r|i\[^\mn{A}]a \[^\mn{G}]eu \[^\mn{F}]sa\[\mnc{E}A]ber \[^\mn{B&}]a\[^\mn{A}]m|ar\[\bm] \altchords{Bm7b5 |- E | \e}
+    E \[^\mn{B&}]fir\[^\mn{A}]mar |\[\mnc{G}Gm]sem\[^\mn{F}]pre \[^\mn{E}]o \[^\mn{D}]meu \[\mnc{C#}A]pen\[^\mn{A}]sa\[^\mn{B&}]m|en\[^\mn{A}]to \altchords{|Dm E | \e}
+    \[^\mn{D}]Nest\[^\mn{E}]{e en}\[\mnc{F}Dm]ten\[^\mn{A}]di\[^\mn{B&}]m|en\[^\mn{A}]to \[^\mn{G}]par\[^\mn{F}]{a eu} \[\mnc{E}A7]pod\[^\mn{D}]er \[^\mn{C#}]me \[^\mn{E}]sal|\[\mnc{D}Dm]var\[\bm] \altchords{Am |- E7 |Am}
   \mnendchorus
+  \beginchorus
+    Ó! Meu que|\[Dm]rido e San\[\bm]to Padr|inho \altchords{|Am | \e}
+    No di\[A]{a de} \[\mnlow{A}]sua \[\mnlow{A}]pas|sagem consa\[Em7&5]grou a \[\mnlow{B&}]u\[\mnlow{B&}]ni|\[A]ão\[\bm] \altchords{E |- Bm7b5 |E \e}
+    E foi lim|\[Gm]{par bem} o \[A]seu terre|iro \altchords{|Dm E | \e}
+    Nos dei\[Dm]xando o \[\mnlow{A}]seu \[\mnlow{A}]a|\[Gm]mor dentro de \[A7]cada cora|\[Dm]ção\[\bm]
+     \altchords{Am |Dm E7 |Am}
+  \endchorus
   \notesoff
   \beginchorus
-    Ó! Meu querido e San|^to Padrinho
-    No di|^{a de sua} passagem consa|^grou a \[(Gm)]uni\[A]ão|'
-    E foi lim^{par bem} o |^seu terreiro
-    Nos dei|^xando o seu amor dentro de |^cada cora^ção|'
+    Esta mis|^são agora é ^do seu f|ilho \altchords{|Am | \e}
+    Que tem ^nosso am|or e nossa ^gratid|ão^ \altchords{Bm7b5 |- E | \e}
+    E nele es|^{tá a luz} de ^Jesus Cr|isto \altchords{|Dm E | \e}
+    Que se ^traduz|indo o nome ^{é Ju}rami|^dam^ \altchords{Am |- E7 |Am}
   \endchorus
-  \beginchorus
-    Esta missão agora é |^do seu filho
-    Que tem |^nosso amor e nossa |^gratidão|'
-    E nele es^{tá a luz} de |^Jesus Cristo
-    Que se |^traduzindo o nome |^é Jurami^dam|'
-  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    theMelody = \relative a' {
+      \key d \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        a8 d e | f e d e f4 a8 bes~ | bes a g f e4 a8 bes~
+        | bes a g f e4 bes'8 a~ | a2~ a8 a bes a
+        \set melismaBusyProperties = #'()
+        \slurUp
+        \slurDashed
+        | g( f)
+        \unset melismaBusyProperties
+        e d cis4 a'8 bes~ | bes a d, e f4 a8 bes~
+        bes a g f e d cis e | d2~ d8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1. "
+      Oh! Vir -- gem Mãe
+      Eu pe -- ço_à Vós um di -- a;
+      A San -- ta Ma -- ri -- a eu sa -- ber a -- mar; __
+      E fir -- mar sem -- pre o meu pen -- sa -- men -- to;
+      Nes -- te_en -- ten -- di -- men -- to
+      pa -- ra_eu  -- po -- der me sal -- var. __
+    }
+    theChords = \chordmode {
+      s4. | d1:m | d2:m e:m7.5-
+      | e:m7.5- a | a1
+      | g2:m a | a d:m
+      | d:m a:7 | d2:m d8:m
+    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
     O Virgin Mother, I ask of you that some day
     I may know how to love Santa Maria
@@ -1019,23 +1058,22 @@
 
 
 \scleardpage % to put the music on one spread (with translation takes three pages)
-\beginsong{São Paulo}[by={Glauco Villas Boas}]
+\beginsong{São Paulo}[by={Glauco Villas Boas},key={Am},sks={Am}]
+  \audio{https://www.nossairmandade.com/hymn/1626/S\%C3\%A3oPaulo}
   \newchords{chords_saopaulo_a}
   \newchords{chords_saopaulo_b}
-  \beginchorus\memorize[chords_saopaulo_a]
-    \[\mn{C}]Vi\[\mn{B}]va |\[\mnc{A}Am]Casa de Ma|\[Dm]ria
-    Viva |\[E7]Ela como es|\[Am]tá
-  \endchorus
+  \mnbeginchorus\memorize[chords_saopaulo_a]
+    \[^\mn{C}]Vi\[^\mn{B}]va |\[\mnc{A}Am]Ca\[^\mn{G}]sa \[^\mn{F}]de \[^\mn{E}]Ma|\[\mnc{D}Dm]ri\[^\mn{E}]a, \[^\mn{F}]vi\[^\mn{E}]va |\[\mnc{D}E7]E\[^\mn{E}]la \[^\mn{F}]co\[^\mn{E}]mo es|\[\mnc{A}Am]tá
+  \mnendchorus
+  \mnbeginchorus\memorize[chords_saopaulo_b]
+    \ind \[^\mn{A}]Va\[^\mn{B}]mos |\[\mnc{C}Am]todos \[\mnc{B}E7]fi\[^\mn{A}]car |\[\mnc{C}Am]fir\[^\mn{B}]mes
+    \ind \[^\mn{A}]Ca\[^\mn{B}]da |\[^\mn{C}]um em \[\mnc{B}E7]seu \[^\mn{A}]lu|\[\mnc{C}Am]gar
+    \ind \[^\mn{B}]Que \[^\mn{A}]vai \[^\mn{B}]che|\[\mnc{C}C]gar \[^\mn{E}]mais apa|\[\mnc{D}Bm7&5]rel\[^\mn{C}]ho
+    \ind \[^\mn{B}]Para \[^\mn{C}]mais |\[\mnc{E}E7]for\[^\mn{D}]ça a\[^\mn{C}]pa\[^\mn{B}]rel|\[\mnc{A}Am]har
+  \mnendchorus
   \notesoff
-  \beginchorus\memorize[chords_saopaulo_b]
-    \ind Vamos |\[Am]todos \[E7]ficar |\[Am]firmes
-    \ind Cada |um em \[E7]seu lu|\[Am]gar
-    \ind Que vai che|\[C]gar mais apa|\[Bm7&5]relho
-    \ind Para mais |\[E7]força aparel|\[Am]har
-  \endchorus
   \beginchorus\replay[chords_saopaulo_a]
-    ^Es^ta |^casa é de Ma|^ria
-    E de Jesus |^Cristo Reden|^tor
+    Esta |^casa é de Ma|^ria e de Jesus |^Cristo Reden|^tor
   \endchorus
   \beginchorus\replay[chords_saopaulo_b]
     \ind Eu vou |^rece^ber esta |^força
@@ -1044,8 +1082,7 @@
     \ind Uma |^Casa de A|^mor
   \endchorus
   \beginchorus\replay[chords_saopaulo_a]
-    ^Vi^va |^Casa de Ma|^ria
-    E viva |^Mamãe Ieman|^já
+    Viva |^Casa de Ma|^ria e viva |^Mamãe Ieman|^já
   \endchorus
   \beginchorus\replay[chords_saopaulo_b]
     \ind Vamos |^todos ^balan|^çando
@@ -1053,9 +1090,9 @@
     \ind É meu |^Pai que está apu|^rando
     \ind O que |^tem para apu|^rar
   \endchorus
+  \brk
   \beginchorus\replay[chords_saopaulo_a]
-    ^Ó! ^Min|^ha Santa Ma|^ria
-    Vem a|^qui nos perfu|^mar
+    Ó! Min|^ha Santa Ma|^ria vem a|^qui nos perfu|^mar
   \endchorus
   \beginchorus\replay[chords_saopaulo_b]
     \ind Vem a|^qui ti^rar o |^medo
@@ -1063,58 +1100,326 @@
     \ind Que o co|^mando é de São |^Pedro
     \ind Ninguém |^queira duvi|^dar
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    theMelody = \relative c''' {
+      \key a \minor \time 4/4 \partial 2
+      \repeat volta 2 {
+        c4 b | a g f e | d4. e8 f4 e | d e f e | a,2
+      } \break
+      \repeat volta 2 {
+        a4 b | c c b a | c4. b8 a4 b | c c b a | c4. b8 a4 b
+        c e e e | d4. c8 b4 c | e d c b | a2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1. "
+      Vi -- va Ca -- sa de Ma -- ri -- a,
+      vi -- va e -- la co -- mo_es -- tá;
+      Va -- mos to -- dos fi -- car fir -- mes;
+      Ca -- da um em seu lu -- gar;
+      Que vai che -- gar mais a -- pa -- rel -- ho;
+      Para mais for -- ça_a pa -- rel -- har.
+    }
+    theChords = \chordmode {
+      s2 | a1:m | d:m | e:7 | a:m
+      | a2:m e:7 | a1:m | a2:m e:7 | a1:m
+      | c | b:m7.5- | e:7 | a:m
+    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
-    Viva, House of Maria,
-    Viva, it as it is,
+    Viva House of Mary, Viva as it is
     \nextverse
-    Let‘s all become firm,
-    Each one in his place,
-    For the mediumship will develop,
-    With more force to work.
+    Let‘s all become firm
+    Each one in his place
+    For the mediumship will develop
+    With more force to work
     \nextverse
-    This house is of Maria
-    And of Jesus Christ Redeemer,
+    This house is of Mary and of Jesus Christ Redeemer
     \nextverse
-    I go to receive this force,
+    I go to receive this force
     The force of my Lord
     To establish with my St. Paul
-    A House of Love.
+    A House of Love
     \nextverse
-    Viva, House of Maria
-    And Viva Mother Yemanja,
+    Viva House of Mary and Viva Mother Yemanja
     \nextverse
     We will all be shaking
-    As in the waves of the sea,
-    It is my Father who is selecting,
-    What He has to select.
+    As in the waves of the sea
+    It is my Father who is selecting
+    What He has to select
     \nextverse
-    Oh! My Santa Maria
-    It comes here perfuming us,
+    Oh! My Saint Mary comes here perfuming us
     \nextverse
-    It comes here to take off the fear,
-    It comes here clear us,
-    That the command is of St. Peter,
-    Nobody wants to doubt.
+    Comes here to take off the fear
+    Comes here clear us
+    That the command is of St. Peter
+    Nobody wants to doubt
   \end{translation}
 \endsong
 
 
-% \beginsong{São Damião}[by={Keila}]
-% \endsong
-% 
-% 
-% \beginsong{Estrelas Divinas}[by={Madrinho Tetê}]
-% \endsong
+\scleardpage
+\beginsong{São Damião}[by={Madr. Cristina Raulino},key={Dm},sks={Dm, Am}]
+  \newchords{chords_saodamiao_a}\newchords{chords_saodamiao_b}
+  \mnbeginchorus\memorize[chords_saodamiao_a]
+    \[\mn{D}]Santa \[\mn{F}]Ma|\[\mnc{A}Dm]ria \[\mnc{G}A7]me \[\mn{A}]mos|\[\mnc{D}Dm]trou \altchords{\id[3]{O (Am)}|Am | \e}
+    \[\mn{A}]O ca|\[\mnc{G}C]min\[\mn{F}]ho \[\mnc{E}A7]do \[\mn{A}]Sen|\[\mnc{D}Dm]hor \altchords{|Dm |Am}
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_saodamiao_a]
+    \[\mn{D}]Dai-\[\mn{E}]me, |\[\mnc{F}Dm]dai-\[\mn{G}]me, \[\mn{A}]dai-\[\mn{B&}]me |\[\mnc{G}Gm]Luz \altchords{|Am |Dm}
+    Dai-\[\mn{F}]me, |\[\mnc{E}A7]dai-\[\mn{F}]me o \[\mn{G}]Seu \[\mn{A}]a|\[\mnc{D}Dm]mor \altchords{|E7 |Am}
+  \mnendchorus
+  \mnbeginchorus\replay[chords_saodamiao_a]
+    \[\mn{A}]O |\[Dm]San\[\mn{D}]to \[\mn{E}]que \[\mn{F}]me |\[\mnc{G}Gm]guia  \altchords{|Am |Dm}
+    Meu \[\mn{F}]Sen|\[\mnc{E}A7]hor \[\mn{F}]São \[\mn{G}]Da\[\mn{A}]mi|\[\mnc{D}Dm]ão \altchords{|E7 |Am}
+  \mnendchorus\glueverses\mnbeginchorus\replay[chords_saodamiao_b]
+    \[\mn{A}]Vós |\[\mnc{D}Dm]sois \[\mn{E}]a \[\mn{F}]min\[\mn{G}]ha |\[\mnc{E}A]força \altchords{|Am |E7}
+    \[\mn{D}]Vós |\[\mnc{C#}A7]sois \[\mn{D}]o \[\mn{E}]meu \[\mn{F}]per|\[\mnc{D}Dm]dão \altchords{|E7 |Am}
+  \mnendchorus
+  \mnbeginchorus\replay[chords_saodamiao_a]
+    \[\mn{A}]A |\[Dm]Vós \[\mn{F}]me \[\mn{E}]o\[\mn{D}]fe|\[\mnc{C#}A]reço \altchords{|Am |E7}
+    \[\mn{D}]Em |\[\mnc{E}A7]San\[\mn{D}]ta \[\mn{E}]co\[\mn{F}]mun|\[\mnc{D}Dm]hão \altchords{|E7 |Am}
+  \mnendchorus\glueverses\mnbeginchorus\replay[chords_saodamiao_b]
+    \[\mn{D}]Dai-\[\mn{E}]me |\[\mnc{F}Dm]for\[\mn{G}]ça, \[\mn{A}]dai-\[\mn{B&}]me a|\[\mnc{G}Gm]mor \altchords{|Am |Dm}
+    Dai-\[\mn{F}]me, |\[\mnc{E}A7]dai-\[\mn{F}]me \[\mn{G}]u\[\mn{A}]ni|\[\mnc{D}Dm]ão \altchords{|E7 |Am}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    \layout {
+      % to fit the whole song on one spread:
+      #(layout-set-staff-size 16)
+    }
+    theMelody = \relative d'' {
+      \key d \minor \time 4/4 \partial 2
+      \repeat volta 2 {
+        d4 d8 f | a4 a g a | d,2 a'4 a | g f e a | d,2
+      } \break
+      \repeat volta 2 {
+        d4 e | f g a bes | g2 g4 f | e f g a | d,2
+      } \break
+      \repeat volta 2 {
+        r4 a' | a d, e f | g4. g8 g4 f | e f g a | d,2
+      } \break
+      \repeat volta 2 {
+        r4 a' | d, e f g | e2 e4 d | cis d e f | d2
+      } \break
+      \repeat volta 2 {
+        r4 a'4 | a f e d | cis2 cis4 d | e d e f | d2
+      } \break
+      \repeat volta 2 {
+        d4 e | f g a bes | g2 g4 f | e f g a | d,2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1. "
+      San -- ta Ma -- | ri -- a me mos -- | trou;
+      O ca -- | min -- ho do Sen -- | hor;
+      Dai- -- me,  | dai- -- me, dai- -- me | Luz;
+      Dai- -- me,  | dai- -- me_o Seu a  -- | mor.
+      \set stanza = "2. "
+      O | San -- to que me | gui -- a;
+      Meu Sen -- | hor São Da -- mi -- | ão;
+      Vós | sois a min -- ha | for -- ça;
+      Vós | sois o meu per -- | dão.
+      \set stanza = "3. "
+      A | Vós me o -- fe | re -- ço;
+      Em | San -- ta co -- mun -- | hão;
+      Dai- -- me  | for -- ça, dai- -- me_a -- | mor;
+      Dai- -- me,  | dai- -- me u -- ni -- | ão.
+    }
+    theChords = \chordmode {
+        s2 | d:m a:7 | d:m d:m | c a:7 | d:m s
+        | d:m d:m | g:m g:m | a:7 a:7 | d:m s
+        | d:m d:m | g:m g:m | a:7 a:7 | d:m s
+        | d:m d:m | a a | a:7 a:7 | d:m s
+        | d:m d:m | a a | a:7 a:7 | d:m s
+        | d:m d:m | g:m g:m | a:7 a:7 | d:m
+    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Santa Maria showed Me
+    The way of the Lord
+    Give me, give me, give me Light
+    Give me, give me, Your love
+    \nextverse
+    The saint that guides me
+    My Lord Saint Damian
+    You are my strength
+    You are my forgiveness
+    \nextverse
+    To You I offer myself
+    In holy communion
+    Give me strength
+    Give me, give me union
+  \end{translation}
+\endsong
 
-\setcounter{songnum}{17}
-\beginsong{Forças da Rainha da floresta}[ititle={Santa Maria vem chegando},by={Irineu Barsé}]
-  \meter{3}{4}
-  \beginchorus\memorize
-    \[^\mn{A}]Santa Ma|\[\mnc{E}Am]ria vem che|\[\mnc{D}E]gando nes\[^\mn{E}]se \[^\mn{F}]ba\[^\mn{E}]ta|\[\mnc{C}Am]lhã\[^\mn{A}]o |\[A7] \e
-    Trazendo as |\[Dm]forcas da Ra|\[A7]inha da flo|\[Dm]resta | \e
-    São essas |\[Dm]forcas vinda |\[G]de nossa Se|\[C]nhora |\[F] \e
-    Que centra|\[Dm7]lizam essa |\[E]luz aqui na |\[Am]terra | \e
+
+\scleardpage
+\beginsong{Estrelas Divinas}[by={Madrinho Tetê},key={C},sks={C}]
+  \audio{https://www.nossairmandade.com/hymn/1921/EstrelasDivinas}
+  \mnbeginchorus
+    \[\mn{C}]Louva\[\mn{E}]do |\[\mnc{G}C]seja \[\mn{E}]meu \[\mn{C}]Di\[\mnc{A}Am]vi\[\mn{G}]no |\[\mnc{E}C]Pai
+    \[\mn{C}]Meu Di\[\mnc{A}Am]vi\[\mn{G}]no |\[\mnc{E}C]Pai, \[\mn{C}]lou\[\mnc{D}G7]va\[\mn{E}]do |\[\mnc{C}C]seja
+  \mnendchorus\glueverses\mnbeginchorus
+    \[\mn{C}]San\[\mn{B}]ta \[\mn{C}]Ma|\[\mnc{D}G]ria \[\mn{C}]a\[\mnc{A}Am]qui \[\mn{E}]na |\[\mnc{C}C]terra
+    Nos en\[\mn{B}]tre\[\mnc{A}Am]gan\[\mn{E}]do a |\[\mnc{D}G7]paz para \[\mn{C}]ven\[\mn{A}]cer \[\mn{E}]a |\[\mnc{C}C]guerra
+  \mnendchorus
+  \mnbeginchorus
+    \[\mn{C}]Va\[\mn{E}]mos, |\[\mnc{G}C]va\[\mn{E}]mos \[\mnc{C}Am]meus \[\mn{A}]ir|\[\mnc{G}C]mãos
+    \[\mn{E}]Va\[\mn{G}]mos |\[\mnc{E}Am]todos, va\[\mn{D}]mos \[\mnc{C}F]ca\[\mn{F}]min|\[\mnc{E}C]har
+  \mnendchorus\glueverses\mnbeginchorus
+    \[\mn{B}]Que \[\mn{C}]a |\[\mnc{D}G]or\[\mn{C}]dem \[\mnc{A}Am]vem \[\mn{E}]se|\[\mnc{C}C]vera
+    É \[\mn{B}]da \[\mnc{A}Am]Vir\[\mn{E}]gem |\[\mnc{D}G7]Mãe e \[\mn{C}]de \[\mn{A}]São \[\mn{E}]Jo|\[\mnc{C}C]ão
+  \mnendchorus
+  \mnbeginchorus
+    \[\mn{C}]Meu São \[\mn{E}]Jo|\[\mnc{G}C]ão é \[\mn{E}]quem \[\mn{C}]es\[\mnc{A}Am]tá \[\mn{G}]man|\[\mnc{E}C]dan\[\mn{C}]do
+    É quem es\[\mnc{A}Am]tá \[\mn{G}]vi|\[\mnc{E}C]bran\[\mn{C}]do e é quem \[\mnc{D}G7]vai \[\mn{E}]bril|\[\mnc{C}C]har
+  \mnendchorus\glueverses\mnbeginchorus
+    \[\mn{B}]Com \[\mn{C}]as |\[\mnc{D}G]Es\[\mn{C}]tre\[\mnc{A}Am]las \[\mn{E}]Di|\[\mnc{C}C]vinas
+    \[\mn{B}]De \[\mnc{A}Am]Je\[\mn{E}]sus |\[\mnc{D}G7]Cristo e de \[\mn{C}]San\[\mn{A}]ta \[\mn{E}]Ma|\[\mnc{C}C]ria
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    \layout { #(layout-set-staff-size 14) } % to fit all on one spread
+    theMelody = \relative c'' {
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        c8 c e | g g e c a'4 g | e4 c8 c a'4 g | e4. c8 d4 e | c2 c8
+      }
+      \repeat volta 2 {
+        c8 b c | d4 d8 c a4 e'4 | c8 c c b a4 e' | d8 d d c a4 e'4 | c2 c8 
+      } \break
+      \repeat volta 2 {
+        r8 c e | g4. e8 c4 a'4 | g2 e4 g | e8 e e d c4 f | e2~ e8
+      }
+      \repeat volta 2 {
+        r8 b c | d4. c8 a4 e' | c8 c c b a4 e'4 | d d8 c a4 e'4 | c2~ c8
+      } \break
+      \repeat volta 2 {
+        c8 c e | g g e c a'4 g | e8 c c c a'4 g | e8 c c c d4 e | c2~ c8
+      }
+      \repeat volta 2 {
+        r8 b c | d4. c8 a4 e' | c c8 b8 a4 e' | d8 d d c a4 e'4 | c2 c8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1. "
+      Lou -- va -- do | se -- ja meu Di -- vi -- no | Pai;
+      Meu Di -- vi -- no | Pai, lou -- va -- do | se -- ja.
+      San -- ta Ma -- | ri -- a a -- qui na | terra;
+      Nos en -- tre -- gan -- do_a | paz pa -- ra ven -- cer a | guer -- ra.
+      \set stanza = "2. "
+      Va -- mos, | va -- mos meus ir -- | mãos;
+      Va -- mos | to -- dos, va -- mos ca -- min -- | har. __
+      Que a | or -- dem vem se -- | ve -- ra;
+      É da Vir -- gem | Mãe e de São Jo -- | ão. __
+      \set stanza = "3. "
+      Meu São -- Jo -- | ão é quem es -- tá man -- | dan -- do;_É
+      quem es -- tá vi -- | bran -- do_e é quem vai bril -- | har. __
+      Com as | Es -- tre -- las Di -- | vi -- nas;
+      De Je -- sus | Cris -- to_e de San -- ta Ma -- | ri -- a.
+    }
+    theChords = \chordmode {
+      s4. | c2 a:m | c a:m | c g:7 | c c8
+      s4. | g2 a:m | c a:m | g:7 g:7 | c c8
+      s4. | c2 a:m | c c | a:m f | c c8
+      s4. | g2 a:m | c a:m | g:7 g:7 | c c8
+      s4. | c2 a:m | c a:m | c g:7 | c c8
+      s4. | g2 a:m | c a:m | g:7 g:7 | c c8
+    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Praised be my Divine Father
+    My Divine Father, praised be.
+    Holy Mary here on earth
+    We are bringing peace
+    So that we will win the war.
+    \nextverse
+    Let's go, my brothers and sisters
+    Let's all go, let's follow the path
+    For the order comes severely
+    From the Virgin Mother and St. John.
+    \nextverse
+    My St. John is who is ordering
+    And he is who is vibrating
+    And he will shine
+    Along with the divine stars
+    Of Jesus Christ
+    And of the Holy Mary.
+  \end{translation}
+\endsong
+
+
+\beginsong{São Irineu}[by={Solon Brito},tags={2x},key={C},sks={C, A}]
+  \audio[key={C}]{https://soundcloud.com/zenashe_use/sao-irine-solo-brito-3-pad-maurilio}
+  \musicnote{Play 2 times}
+  \mnbeginchorus
+    \[\mn{G}]Oh! meu |\[G]São \[\mn{E}]I\[\mn{D}]ri\[\mnc{C}C]neu|' \e \altchords{\id[1]{(A)}|E A | \e}
+    \[\mn{G}]Aju|\[G]dai os \[\mn{E}]fi\[\mn{D}]lhos \[\mnc{C}C]seus|' \e \altchords{|E A | \e}
+  \mnendchorus\mnbeginchorus
+    \[\mn{G}]Minha |\[G]Santa Ma\[\mnc{C}C]ri|a \altchords{|E A | \e}
+    \[\mn{G}]Sen|ho\[\mn{E}]ra \[\mn{C}]da \[\mnc{G}G]Paz|' \e \altchords{|- E | \e}
+    Aju|dai os \[\mn{E}]fi\[\mn{D}]lhos \[\mnc{C}C]seus|' \e \altchords{|- A | \e}
+    \[\mn{G}]Assim |\[G7]como \[\mn{E}]meu \[\mn{D}]Pai \[\mnc{C}C]faz|' \e \altchords{|E7 A | \e}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    % transcribed by larva on 2021-08
+    theMelody = \relative c''' {
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g8 g | g4 e8 d c2~ | c2.
+        g'8 g | g g e d c2~ | c2.
+      } \break
+      \repeat volta 2 {
+        g'8 g | g4 g8 g8 c2 | c2.~ c8
+        g8 | g4 e8 c g'2~ | g2.
+        g8 g | g g e d c2~ | c2.
+        g'8 g | g g e d c2~ | c2.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        Oh! meu São I -- ri -- neu; __
+        A -- ju -- dai os fi -- lhos seus. __
+      } \repeat volta 2 {
+        Mi -- nha San -- ta Ma -- ri -- a; __
+        Se -- nho -- ra da Paz; __
+        A -- ju -- dai os fi -- lhos seus; __
+        As -- sim co -- mo meu Pai faz. __
+      }
+    }
+    theChords = \chordmode {
+      s4 | g2 c2 | c2
+      c2 | g2 c2 | c2
+      c2 | g2 c2 | c2
+      c2 | c2 g2 | g2
+      g2 | g2 c2 | c2
+      c2 | g2:7 c2 | c2.
+    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Oh! My Saint Irineu
+    Help your children
+    \nextverse
+    My Holy Mary
+    Lady of Peace
+    Help your children
+    Just like my father does
+  \end{translation}
+\endsong
+
+
+\scleardpage
+\beginsong{Forças da Rainha da Floresta}[ititle={Santa Maria vem chegando},by={Irineu Barsé},tags={valsa},key={Am},sks={Am}]
+  \meter{3}{4}
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Santa Ma|\[\mnc{E}Am]ria vem che|\[\mnc{D}E]gando nes\[^\mn{E}]se \[^\mn{F}]ba\[^\mn{E}]ta|\[\mnc{C}Am]lhã\[^\mn{A}]o |\[A7] \e
+    \[^\mn{E}]Trazendo as |\[\mnc{A}Dm]for\[^\mn{G}]ças da Ra|\[A7]in\[^\mn{F}]ha \[^\mn{E}]da \[^\mn{F}]flo|\[\mnc{E}Dm]res\[^\mn{D}]ta | \e
+    São es\[^\mn{E}]sas |\[\mnc{F}Dm]forças vinda |\[G]de nos\[^\mn{A}]sa Se|\[C]nho\[^\mn{E}]ra |\[F] \e
+    \[^\mn{D}]Que cen\[^\mn{C}]tra|\[\mnc{B}Dm7]lizam essa |\[E]luz a\[^\mn{C}]qui \[^\mn{B}]na |\[Am]ter\[^\mn{A}]ra | \e
+  \mnendchorus
   \notesoff
   \beginchorus
     Eu vou pe|^dindo sempre |^a minha co|^ragem |^ \e
@@ -1122,11 +1427,69 @@
     Com o com|^forto |^da minha mãe|^zinha |^ \e
     Com sua |^luz |^com seu resplen|^dor | \e
   \endchorus
-  \beginchorus
-    \ind Eu vou se|\[Dm]guindo sempre no ca|\[G]minho
-    \ind Sempre gui|\[C]ado pela luz di|\[F]vina
-    \ind Sempre bus|\[Dm7]cando apren|\[E]der nesta dou|\[Am]trina | \e
-  \endchorus
+  \noteson
+  \mnbeginchorus
+    \ind \[\mn{E}]Eu \[\mn{A}]vou \[\mn{G}]se|\[\mnc{F}Dm]guindo sem\[\mn{E}]pre \[\mn{D}]no \[\mn{C}]ca|\[\mnc{B}G]minho
+    \ind \[\mn{D}]Sem\[\mn{G}]pre \[\mn{F}]gui|\[\mnc{E}C]ado pe\[\mn{D}]la \[\mn{C}]luz \[\mn{B}]di|\[\mnc{A}F]vina
+    \ind \[\mn{E}]Sem\[\mn{F}]pre \[\mn{E}]bus|\[\mnc{D}Dm7]can\[\mn{B}]do apren|\[E]der nes\[\mn{C}]ta \[\mn{B}]dou|\[Am]tri\[\mn{A}]na | \e
+  \mnendchorus
+  \notesoff
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    \layout {
+      % to fit the whole song on one spread:
+      #(layout-set-staff-size 16)
+    }
+    theMelody = \relative e' {
+      \key a \minor \time 3/4 \partial 4.
+      \mark \markup {"4x"} \bar ".|:" \repeat volta 4 {
+        e8 e8 e8 | e'4. e8 e8 e8 | d8. d16 d8 e8 f8 e8  | c4 a2~ | a4. e'8 e8 e8 | a4. g8 g8 g8 | g4. f8 e8 f8 | e4 d2~ | d4. d8 d8 e8
+        | f4. f8 f8 f8 | f4. f8 a8 a8 | a4 e2~ | e4. d8 d8 c8
+        | b4. b8 b8 b8 | b4. b8 c8 b8 | b4 a2~ | a4.
+      } \break
+      \repeat volta 2 {
+        e'8 a8 g8 | f8 f8 f8 e8 d8 c8 | b4 b8 d8 g8 f8 | e8 e8 e8 d8 c8 b8 | a4 a8 e'8 f8 e8
+        | d4. b8 b8 b8 | b4. b8 c8 b8 | b4 a2~ | a4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 4 {
+        \set stanza = "1. "
+        San -- ta Ma -- | ri -- a vem che -- |gan -- do nes -- se ba -- ta -- | lhã -- o; __
+        Tra -- zen -- do_as | for -- cas da Ra -- | in -- ha da flo -- | res -- ta; __
+        São es -- sas | for -- ças vin -- da | de nos -- sa Se -- | nho -- ra; __
+        Que cen -- tra -- | li -- zam es -- sa | luz a -- qui na | ter -- ra. __
+      }
+      \repeat volta 2 {
+        \set stanza = "3. "
+        Eu vou se -- | guin -- do sem -- pre no ca -- | min -- ho;
+        Sem -- pre gui -- | a -- do pe -- la luz di -- | vi -- na;
+        Sem -- pre bus -- | can -- do a -- pren -- | der nes -- ta dou -- | tri -- na. __ |
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2. "
+      Eu vou pe -- | din -- do sem -- pre | a __ _ _ min -- ha co  -- | ra -- gem; __
+      Pa -- ra se | guir nes -- ta ba  -- |tal -- ha do a -- | mor; __ _
+      Com o com -- | for __ _ -- to __ _ | da min -- ha mãe -- | zin -- ha; __
+      Com su -- a | luz __ _ _ _ | com seu res -- plen -- | dor. __ _
+    }
+    theChords = \chordmode {
+      s4. | a2.:m | e | a:m | a:7
+      | d:m | a:7 | d:m | d:m
+      | d:m | g | c | f
+      | d:m7 | e | a:m | a:m
+      d:m | g | c | f | d:m7 | e | a:m | a4.:m
+    }
+    \score {
+      <<
+        \new ChordNames { \theChords }
+        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
+        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
+        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
+      >>
+    }
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
     Santa Maria has been arriving in this company
     Bringing the forces of the Queen of the Forest
