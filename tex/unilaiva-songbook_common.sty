@@ -63,7 +63,12 @@
 \usepackage{amssymb} % for some math symbols
 \usepackage{fancyhdr} % for customizing headers
 \usepackage[bigger]{musicography} % musical symbols (at least \musSegno is used)
-\usepackage{environ} % for hiding environments in in-song blocks
+% environ's \NewEnviron is used instead of \newenvironment in in-song blocks,
+% to enable hiding of them
+\usepackage{environ}%
+% verbatim's \comment is used in hiding translation environment, as it can't use
+% environ package's \NewEnviron
+\usepackage{verbatim}%
 \usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
 %\usepackage{showframe} % uncomment only for debugging margins etc.
 
@@ -259,6 +264,9 @@
 
 % Toggle for showing explanations
 \newif\ifshowexplanation\showexplanationtrue
+
+% Toggle for showing translations
+\newif\ifshowtranslation\showtranslationtrue
 
 % Toggle for showing feelers
 \newif\ifshowfeeler\showfeelertrue
@@ -706,10 +714,7 @@
 }
 
 % Define \blockstart to be able to use in-song block feature manually also
-% elsewhere than in the environments defined below. This is meant to be used
-% immediately before \begin{lilypond} to allow lilypond parts within a song to
-% be vertically spaced like other blocks. (Lilypond environment can't be wrapped
-% inside another environment, because then lilypond-book wouldn't recognize it.)
+% elsewhere than in the environments defined below.
 \newcommand{\blockstart}{\@blockstart}
 
 % Displays the parameter text centered in a large font. Use within songs, but outside
@@ -725,55 +730,78 @@
 
 % environment for 'song feeler'
 \NewEnviron{feeler}{%
-  \ifshowfeeler
+  \ifshowfeeler%
     \yesendsongvfill%
     \@blockstart%
     \small%
     \par\noindent\ignorespaces%
     \begin{center}\begin{em}%
-      \BODY
-    \end{em}\end{center}
-  \fi
+      \BODY%
+    \end{em}\end{center}%
+  \fi%
 }
 
-% environment for song translation, to be used only inside a song
+% \translationoff command can be used inside a song (before the translation
+% environment) to turn off displaying of the translation for that song unless
+% \translationon is called. The translations are never displayed, if
+% \showtranslationfalse is set (in the main document).
+\newcommand{\translationoff}{\def\@translationdisabled{}}
+\newcommand{\translationon}{\let\@translationdisabled\undefined}
+
+% Environment for song translation, to be used only inside a song
 \newenvironment{translation}{%
+  % Check if this environment needs hiding
+  \newif\ifhide\hidefalse%
+  \ifshowtranslation\else\hidetrue\fi%
+  \ifdefined\@translationdisabled\hidetrue\fi%
+  % If hiding is needed, hide the rest using verbatim's \comment
+  \ifhide\expandafter\comment\fi%
+  % The following, including the environment body, is only expanded and
+  % processed, if no hiding is needed:
   \yesendsongvfill%
   \newcommand{\nextverse}{\vspace{.5em}}% some vertical space between verses
   \beginverse*%
-    \vspace{-\versesep}% remove the vertical space created by \beginverse
-    \@blockstart%
-    \chordsoff%
-    \small%
+  \vspace{-\versesep}% remove the vertical space created by \beginverse
+  \@blockstart%
+  \chordsoff%
+  \small%
 }{%
-  \endverse%
+  % Check if this environment needs hiding, which means it IS hidden
+  \newif\ifhide\hidefalse%
+  \ifshowtranslation\else\hidetrue\fi%
+  \ifdefined\@translationdisabled\hidetrue\fi%
+  \ifhide% End hidden section (\endcomment from verbatim package):
+    \expandafter\endcomment%
+  \else% Run the post command(s):
+    \endverse%
+  \fi%
 }
 
 % environment for 'song explanation'
 \NewEnviron{explanation}{%
-  \ifshowexplanation
+  \ifshowexplanation%
     \noendsongvfill% so far explanation is last: no vfill needed at song end
     \@blockstart%
     \setlist[description]{% modify description list (enumitem package)
       %topsep=30pt,%      % space before start / after end of list
       %itemsep=5pt,%      % space between items
       font={\rmfamily}%   % set the label font
-    }
+    }%
     \justifying% ragged2e package: force justifying
     \rmfamily\footnotesize%
     \par\noindent\ignorespaces%
-    \BODY
+    \BODY%
     \par\noindent\ignorespacesafterend%
-  \fi
+  \fi%
 }
 
-% environment for wrapping lilypond
+% Environment for wrapping lilypond.
 \NewEnviron{lilywrap}{%
-  \ifshowlilypond
+  \ifshowlilypond%
     \noendsongvfill% if lilypond is last, do not add vfill at song end
     \@blockstart%
-    \BODY
-  \fi
+    \BODY%
+  \fi%
 }
 
 % END IN-SONG BLOCKS
@@ -1007,8 +1035,8 @@
   \@mnnegspacefalse\@note[0.4em]{#1}%
 }
 
-% \noteson and \notesoff commands can be used between verses to turn displaying
-% the melody notes on or off for the remaining of the current song or until
+% \noteson and \notesoff commands can be used inside a block to turn displaying
+% the melody notes on or off for the remaining of the block or until another
 % another call to either of the macros. The notes are never displayed, if
 % \shownotesfalse is set (in the main document).
 \newcommand{\notesoff}{\def\@melodynotesdisabled{}}
