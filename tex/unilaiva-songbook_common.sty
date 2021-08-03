@@ -49,10 +49,12 @@
 %         headsep=5mm,headheight=3.5mm, but the result is about the same now.
 %       * For the "default" printer, minimum top margin is 16mm (to print the chapter name fully)
 \usepackage[a5paper,inner=16.18mm,outer=10mm,tmargin=16.18mm,bmargin=10mm,headsep=5mm,headheight=4.28mm,nofoot]{geometry} % page size + margins
+% xcolor package for using colors in various elements; dvipsnames option imports
+% some CMYK color names
+\usepackage[dvipsnames]{xcolor}%
 \usepackage{graphicx} % for importing images
 \usepackage{pdfpages} % for cover page
 \usepackage{array} % used at least in Technical Information chapter
-\usepackage{color} % for using colors in various elements
 % Disable all warnings issued by latex starting with "You have requested package..." to allow
 % warningless loading of packages from subdirectories without setting environment variables
 % (can be omitted, but warnings will appear):
@@ -70,6 +72,7 @@
 % environ package's \NewEnviron
 \usepackage{verbatim}%
 \usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
+\usepackage{wasysym}% for filled circle symbol: \newmoon
 %\usepackage{showframe} % uncomment only for debugging margins etc.
 
 % The most important 'songs' package, use the version in the project tree:
@@ -294,6 +297,14 @@
 % ...this is for the same problem in unilaiva-daimebook's chapter Oração:
 \PrerenderUnicode{ç}%\PrerenderUnicode{Ç}
 \PrerenderUnicode{ã}%\PrerenderUnicode{Ã}
+
+% Outputs a colored filled circle as a text symbol; the mandatory parameter
+% is the color name. Can be used in chapter names, does not mess up PDF
+% hyperrefs.
+\newcommand\chapsymbol[1]{%
+  % \newmoon, a filled circle, is from the wasysym package.
+  \texorpdfstring{\hspace{1em}\textcolor{#1}{\newmoon}}{}%
+}
 
 % This command creates the second page at where it is called. This is supposed
 % to be the odd verso page right after the cover.
