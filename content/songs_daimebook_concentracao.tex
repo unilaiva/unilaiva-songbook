@@ -11,26 +11,26 @@
 \setcounter{songnum}{1}
 
 
-\beginsong{Firmeza}[by={Padr. Sebastião},tags={à capela}]
+\beginsong{Firmeza}[by={Padr. Sebastião},tags={à capela},key={A},sks={A, B}]
   \audio{https://www.nossairmandade.com/hymn/15/Firmeza}
   \mnbeginchorus
-    \[\mn{C#}]Fir|\[\mnc{E}A]me\[\mn{C#}]za, \[\mn{A}]fir|\[\mn{E}]me\[\mn{A}]za \[\mn{B}]no \[\mn{C#}]a|\[\mnc{D}D]mor
-    \[\mn{E}]Fir|\[\mnc{G#}E]me\[\mn{E}]za, \[\mn{F#}]fir|\[\mn{G#}]me\[\mn{E}]za a\[\mn{F#}]on\[\mn{G#}]de es\up{1}(|\[\mnc{C#}A]tou) \up{2}(\meter{6}{4}|\[\mnc{C#}A]tou)
+    \[\mn{C#}]Fir|\[\mnc{E}A]me\[\mn{C#}]za, \[\mn{A}]fir|\[\mn{E}]me\[\mn{A}]za \[\mn{B}]no \[\mn{C#}]a|\[\mnc{D}D]mor \altchords{\id[2]{MK (A)}|A |A7 |D}
+    \[\mn{E}]Fir|\[\mnc{G#}E]me\[\mn{E}]za, \[\mn{F#}]fir|\[\mn{G#}]me\[\mn{E}]za a\[\mn{F#}]on\[\mn{G#}]de es\up{1}(|\[\mnc{C#}A]tou) \up{2}(\meter{6}{4}|\[\mnc{C#}A]tou) \altchords{|E |E7 |A}
   \mnendchorus\glueverses\mnbeginchorus
     \meter{4}{4}
-    \[\mn{A}]Eu \[\mn{B}]es\[\mn{C#}]tou |\[\mnc{D}D]firme com meu Je|sus
-    \[\mn{F#}]Eu estou |\[\mnc{A}A]fir\[\mn{A}]me \[E]nes\[\mn{B}]ta |\[\mnc{C#}A]luz
-    \[\mn{E}]A\[\mnc{D}E7]on\[\mn{B}]de es|\[\mnc{A}A]tou
+    \ind \[\mn{A}]Eu \[\mn{B}]es\[\mn{C#}]tou |\[\mnc{D}D]firme com meu Je|sus \altchords{|D |Bm}
+    \ind \[\mn{F#}]Eu estou |\[\mnc{A}A]fir\[\mn{A}]me \[E]nes\[\mn{B}]ta |\[\mnc{C#}A]luz \altchords{|A |F\#m \e}
+    \ind \[\mn{E}]A\[\mnc{D}E7]on\[\mn{B}]de es|\[\mnc{A}A]tou \altchords{E7 |A}
   \mnendchorus
-  \beginchorus
-    Fir|\[A]meza, fir|meza no a|\[D]mor
-    Fir|\[E]meza, fir|meza aonde es\up{1}(|\[A]tou) \up{2}(\meter{6}{4}|\[A]tou)
-  \endchorus\glueverses\beginchorus
+  \mnbeginchorus
+    \[\mn{C#}]Fir|\[\mnc{E}A]me\[\mn{C#}]za, \[\mn{A}]fir|\[\mn{E}]me\[\mn{A}]za \[\mn{B}]no \[\mn{C#}]a|\[\mnc{D}D]mor \altchords{|A |A7 |D}
+    \[\mn{E}]Fir|\[\mnc{G#}E]me\[\mn{E}]za, \[\mn{F#}]fir|\[\mn{G#}]me\[\mn{E}]za a\[\mn{F#}]on\[\mn{G#}]de es\up{1}(|\[\mnc{C#}A]tou) \up{2}(\meter{6}{4}|\[\mnc{C#}A]tou) \altchords{|E |E7 |A}
+  \mnendchorus\glueverses\mnbeginchorus
     \meter{4}{4}
-    O Mestre |\[D]manda eu trabal|har
-    O Mestre |\[A]manda eu \[E]me fir|\[A]mar
-    No lu|gar on\[E7]de Ele es|\[A]tá
-  \endchorus
+    \ind \[\mn{A}]O \[\mn{B}]Mes\[\mn{C#}]tre |\[\mnc{D}D]manda eu traba|lhar \altchords{|D |Bm}
+    \ind \[\mn{F#}]O Mestre |\[\mnc{A}A]man\[\mn{A}]da eu \[E]me \[\mn{B}]fir|\[\mnc{C#}A]mar \altchords{A |F\#m}
+    \ind No \[\mn{D}]lu|\[\mnc{E}E7]gar \[\mn{D}]on\[\mn{B}]de E\[\mn{C#}]le es|\[\mnc{A}A]tá \altchords{|E7 A}
+  \mnendchorus
   \begin{translation}
     Firmness, firmness in love
     Firmness, firmness where I am
@@ -44,137 +44,301 @@
     The Master orders me to firm myself
     In the place where he is
   \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    \layout { #(layout-set-staff-size 14) } % to fit all on one spread
+    theMelody = \relative c'' {
+      \key a \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        cis4 | e2 cis4 a | e' a, b cis | d2.
+        d4 | gis2 e4 fis4 | gis e fis gis
+      } \alternative { { | cis,2. } { \time 6/4 | cis2. a4 b cis } }
+      \time 4/4
+      \repeat volta 2 {
+        | d4 d8 d d4 d | d4. fis8 fis4 fis
+        | a a, a b | cis e d b
+      } \alternative { { | a4. a8 b4 cis } { | a2. cis4 } }
+      \repeat volta 2 {
+        | e2 cis4 a | e' a, b cis | d2. e4
+        | gis2 e4 fis | gis e fis gis
+      } \alternative { { | cis,2. e4 } { \time 6/4 | cis2. a4 b cis } }
+      \time 4/4
+      \repeat volta 2 {
+        | d4 d8 d d4 d | d4. fis8 fis4 fis
+        | a4 a,8 a a4 b | cis2 cis4 d | e d b cis
+      } \alternative { { | a4. a8 b4 cis } { | a2.} }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        \set stanza = "1. "
+        Fir -- me -- za fir -- me -- za no a -- mor;
+        Fir -- me -- za fir -- me -- za_a -- on -- de_es-
+      } \alternative { { tou; } { tou. Eu es -- tou } }
+      \repeat volta 2 {
+        fir -- me com meu Je -- sus;
+        Eu es -- tou fir -- me nes -- ta luz;
+        Aon -- de es-
+      } \alternative { { tou; Eu es -- tou } { tou. \set stanza = "2." Fir- } }
+      \repeat volta 2 {
+        me -- za fir -- me -- za no a -- mor;
+        Fir -- me -- za fir -- me -- za_a -- on -- de_es-
+      } \alternative { { tou; Fir- } { tou. O Mes -- tre } }
+      \repeat volta 2 {
+        man -- da eu tra -- ba -- lhar;
+        O Mes -- tre man -- da eu me fir -- mar;
+        No lu -- gar on -- de_E le_es-
+      } \alternative { { tá; O Mes -- tre } { tá. } }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a1 | a | d
+        | e | e
+      } \alternative { { | a2. } { | a1. } }
+      \repeat volta 2 {
+        | d1 | d | a2 e2 | a2 e2:7
+      } \alternative { { | a1 } { | a1 } }
+      \repeat volta 2 {
+        | a1 | a | d
+        | e | e
+      } \alternative { { | a1 } { | a1. } }
+      \repeat volta 2 {
+        | d1 | d | a2 e2 | a1 | e2:7 e2:7
+      } \alternative { { | a1 } { | a2. \bar "|." } }
+    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
-\beginsong{Eu Estou Firme com meu Jesus}[by={Padr. Sebastião},tags={2x}]
+\beginsong{Eu Estou Firme com meu Jesus}[by={Padr. Sebastião},tags={2x},key={D},sks={D, E}]
   \audio{https://www.nossairmandade.com/hymn/16/EuEstouFirmeComMeuJesus}
-  \transpose{-2}
-  \mnbeginchorus
-    \[\mn{A}]Eu estou |\[\mnc{D}D]firme
-    \[\mn{C#}]Com \[\mnc{B}G]meu \[\mn{A}]Je|\[\mnc{D}D]sus
-    \[\mn{A}]Foi Ele \[\mn{D}]quem \[\mn{E}]me |\[\mn{F#}]deu
-    Esta \[\mnc{E}A]San\[\mn{F#}]ta |\[\mnc{D}D]Luz
+  \newchords{chords_euestoufirme_a}\newchords{chords_euestoufirme_b}
+  \musicnote{Play 2 times}
+  \mnbeginchorus\memorize[chords_euestoufirme_a]
+    \[^\mn{A}]Eu estou |\[\mnc{D}D]firme \[^\mn{C#}]com \[\mnc{B}Bm]meu \[^\mn{A}]Je|\[\mnc{D}D]sus
+    \[^\mn{A}]Foi \[^\bm]Ele \[^\mn{D}]quem \[^\mn{E}]me |\[\mnc{F#}Bm]deu esta \[\mnc{E}A7]San\[^\mn{F#}]ta |\[\mnc{D}D]Luz
   \mnendchorus
-  \mnbeginchorus
-    \[\mn{A}]Esta |\[\mnc{D}D]luz
-    É da \[\mn{C#}]Vir\[\mnc{B}A7sus4]gem \[\mn{A}]da \[\mn{F#}]Con\[\mn{A}]cei|\[\mnc{D}D]ção
-    \[\mn{A}]Foi Ela \[\mn{D}]quem \[\mn{E}]man|\[\mn{F#}]dou
-    Eu me u\[\mnc{E}A]nir \[\mn{D}]com os \[\mn{F#}]meus \[\mn{E}]ir|\[\mnc{D}D]mãos
+  \mnbeginchorus\memorize[chords_euestoufirme_b]
+    \ind \[^\mn{A}]Esta |\[\mnc{D}D]luz é da \[^\mn{C#}]Vir\[\mnc{B}Bm]gem \[^\mn{A}]da \[^\mn{F#}]Con\[^\mn{A}]cei|\[\mnc{D}D]ção
+    \ind \[^\mn{A}]Foi \[^\bm]Ela \[^\mn{D}]quem \[^\mn{E}]man|\[\mnc{F#}Bm]dou eu me u\[\mnc{E}A7]nir \[^\mn{D}]com \[^\mn{F#}]meus \[^\mn{E}]ir|\[\mnc{D}D]mãos
   \mnendchorus
-  \beginchorus
-    Foi Ela quem man|\[D]dou
-    Eu me u\[A7sus4]{nir com} os meus ir|\[D]mãos
-    Para a reuni|ão
-    da se\[A]para|\[D]ção
+  \notesoff
+  \beginchorus\replay[chords_euestoufirme_a]
+    Foi \[\bm]Ela quem man|^dou eu me u^nir \noteson\[\mnlow{A}]com \[\mnlow{F#}]meus \[\mnlow{A}]ir \notesoff |^mãos
+    Pa\[\bm]ra a reuni|^ão da se^para|^ção
   \endchorus
-  \beginchorus
-    Neste |\[D]dia
-    Muita \[A7sus4]gente vai cho|\[D]rar
-    Porque tem muitos |deles
-    Que não \[A]sabem a|\[D]mar
+  \beginchorus\replay[chords_euestoufirme_b]
+    \ind Neste |^dia Muita ^gente vai cho|^rar
+    \ind Por\[\bm]que tem muitos |^deles que não ^sa\noteson\[\mnlow{E}]bem \[\mnlow{F#}]a\notesoff|^mar
   \endchorus
   \begin{translation}
-    I am firm
-    With my Jesus
-    It was he who gave me
-    This holy light
+    I am firm with my Jesus
+    It was he who gave me this holy light
     \nextverse
-    This light
-    is of the Virgin of Conception
-    It was She who sent me
-    To unite with my brothers and sisters
+    This light is of the Virgin of Conception
+    It was She who sent me to unite with my brothers and sisters
     \nextverse
-    It was She who sent me
-    To unite with my brothers and sisters
-    For the reunion
-    From the separation
+    It was She who sent me to unite with my brothers and sisters
+    For the reunion from the separation
     \nextverse
-    On this day
-    Many people will cry
-    Because there are many
-    Who don't know how to love
+    On this day many people will cry
+    Because there are many who don't know how to love
   \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    \layout { #(layout-set-staff-size 15) } % to fit all on one spread
+    theMelody = \relative d'' {
+      \key d \major \time 4/4 \partial 1*5/8
+      \repeat volta 2 {
+         r4  a8 a a | d4 d8 cis b4 a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
+      }
+      \repeat volta 2 {
+        r4. a8 a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e d fis e | d4.
+      }
+      \repeat volta 2 {
+        a8 a a a a | d d d cis b a fis a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
+      }
+      \repeat volta 2 {
+        r4. a8 a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e4 fis | d4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+      \set stanza = "1. "
+        Eu es -- tou fir -- me com meu Je -- sus;
+        Foi E -- le quem me deu es -- ta san -- ta luz.
+        Es -- ta luz é da Vir -- gem da Con -- cei -- ção;
+        Foi E -- la quem man -- dou eu me u -- nir com meus ir -- mãos.
+      }
+      \repeat volta 2 {
+      \set stanza = "2. "
+        Foi E -- la quem man -- dou eu me u -- nir com meus ir -- mãos;
+        Pa -- ra a reu -- ni -- ão da se -- pa -- ra -- ção;
+        Nes -- te di -- a mui -- ta gen -- te vai cho -- rar;
+        Por -- que tem mui -- tos de -- les que não sa -- bem_a -- mar.
+      }
+    }
+    theChords = \chordmode {
+      s2 s8 | d2 b:m | d d | b:m a:7 | d d
+      | d b:m | d d | b:m a:7 | d d
+      | d b:m | d d | b:m a:7 | d d
+      | d b:m | d d | b:m a:7 | d4.
+    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
-\beginsong{Eu Vivo Neste Mundo}[by={Padr. Sebastião}]
+\scleardpage
+\beginsong{Eu Vivo Neste Mundo}[by={Padr. Sebastião},key={C},sks={D, C}]
   \audio{https://www.nossairmandade.com/hymn/17/EuVivoNesteMundo}
-  \newchords{chords_euvivonestemundo_a}
   \mnbeginchorus\memorize
     \[^\mn{G}]Eu |\[\mnc{C}C]vivo nes\[^\mn{E}]te |\[\mnc{G}(G)]mundo
-    En\[^\mn{A}]quan|\[\mnc{F}Dm]to \[^\mn{E}]che\[\mnc{D}(G)]ga \[^\mn{E}]meu |\[\mnc{C}C]diz
+    En\[^\mn{A}]quan|\[\mnc{F}Dm]to \[^\mn{E}]che\[\mnc{D}G7]ga \[^\mn{E}]meu |\[\mnc{C}C]diz
   \mnendchorus\glueverses\mnbeginchorus
     \[\mn{G}]Encos|\[\mnc{C}C]ta\[\mn{G}]do \[\mn{C}]a \[\mn{E}]meu |\[\mnc{G}(G)]Mestre
-    E a \[\mn{A}]Sem|\[\mnc{F}Dm]pre \[\mn{E}]Vir\[\mnc{D}(G)]gem \[\mn{E}]Ma|\[\mnc{C}C]ria
+    E a \[\mn{A}]Sem|\[\mnc{F}Dm]pre \[\mn{E}]Vir\[\mnc{D}G7]gem \[\mn{E}]Ma|\[\mnc{C}C]ria
   \mnendchorus
   \notesoff
   \beginchorus
-    Meu |^Mestre é quem me |^guia
+    Meu |^Mes\noteson\[\mnlow{G}]tre \notesoff é quem me |^guia
     Meu |^Mestre é ^quem me en|^sina
   \endchorus\glueverses\beginchorus
-    Foi |^Ele quem me |^deu
+    Foi |^E\noteson\[\mnlow{G}]le \notesoff quem me |^deu
     Es|^ta San^ta Dou|^trina
   \endchorus
   \beginchorus
-    Foi |^Ele quem me |^deu
+    Foi |^E\noteson\[\mnlow{G}]le \notesoff quem me |^deu
     Foi |^Ele quem ^me man|^dou
   \endchorus\glueverses\beginchorus
-    Can|^tar com os meus ir|^mãos
+    Can|^tar \noteson\[\mnlow{G}]com os \notesoff meus ir|^mãos
     Ensi|^nar e ^ter a|^mor
   \endchorus
   \beginchorus
-    |^Para ter o a|^mor
+    |^Pa\noteson\[\mnlow{G}]ra \notesoff ter o a|^mor
     E sen|^tir no ^cora|^ção
   \endchorus\glueverses\beginchorus
-    Ro|^gar ao Pai E|^terno
+    Ro|^gar \noteson\[\mnlow{G}]ao \notesoff Pai E|^terno
     Para rece|^ber o ^meu per|^dão
   \endchorus
+  \brk
   \beginchorus
-    |^Para ter o per|^dão
+    |^Pa\noteson\[\mnlow{G}]ra \notesoff ter o per|^dão
     E tra|^balhar ^com a|^mor
   \endchorus\glueverses\beginchorus
-    Pres|^tar bem aten|^ção
+    Pres|^tar \noteson\[\mnlow{G}]bem \notesoff aten|^ção
     Os en|^sinos do ^profes|^sor
   \endchorus
-  \begin{translation}
-    I live in this world
-    Until my day comes
-    Next to my Master
-    And the Ever Virgin Mary
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    \layout { #(layout-set-staff-size 15) } % to fit all on one spread
+    theMelody = \relative g' {
+      \key c \major \time 4/4 \partial 4
+      #(define afterGraceFraction (cons 1 4))
+      \repeat volta 2 {
+         g4 | c << g4 \parenthesize c >> c e |
+         \set melismaBusyProperties = #'() \slurDown \slurDashed 
+         g4.( g8 g4 )
+         \unset melismaBusyProperties
+         a | f \grace{\parenthesize f8} \afterGrace e4 {\parenthesize e8} d4 e
+         \set melismaBusyProperties = #'() \slurDown \slurDashed
+         | c2( c4)
+         \unset melismaBusyProperties
+      } \break
+      \repeat volta 2 {
+         g4 | c << \parenthesize g4 c >> c e |
+         \set melismaBusyProperties = #'() \slurDown \slurDashed
+         g4.( g8 g4 )
+         \unset melismaBusyProperties
+         a | f \grace{\parenthesize f8} \afterGrace e4 {\parenthesize e8} d4 e
+         \set melismaBusyProperties = #'() \slurDown \slurDashed
+         | c2( c4)
+         \unset melismaBusyProperties
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Eu vi -- \parenthesize vo nes -- te mun -- do;
+      en -- quan -- to che -- ga meu diz. __ _
+      \set stanza = "1.b"
+      Encos -- ta -- do a meu Mes -- tre;
+      e_a Sem -- pre Vir -- gem Ma -- ri -- a.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Meu Mes -- tre_é quem me gui -- a;
+      meu Mes -- tre (é_quem) me en -- si -- na.
+      \set stanza = "2.b"
+      Foi E -- le quem me deu; __ _ _
+      es -- ta San -- ta Dou -- tri -- na.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Foi E -- le quem me deu; __ _ _
+      foi E -- (le_quem) me man -- dou. __ _
+      \set stanza = "3.b"
+      Can -- tar com_os meus ir -- mãos; __ _
+      en -- si -- nar e ter a -- mor. __
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \skip 1 Pa -- ra ter o_a -- mor; __ _
+      e sen -- tir no co -- ra -- ção. __ _
+      \set stanza = "4.b"
+      Ro -- gar ao Pai E -- terno;_pa --
+      ra re -- ce -- ber o meu per -- dão. __
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \skip 1 Pa -- ra ter o_per -- dão; __ _
+      e tra -- ba -- lhar com a -- mor. __ _
+      \set stanza = "5.b"
+      Pres -- tar bem a -- ten -- ção; __ _
+      os en -- si -- (nos_do) pro -- fes -- sor. __
+    }
+    theChords = \chordmode {
+      s4 | c1 | \parenthesize g | d2:m g:7 | c2.
+      s4 | c1 | \parenthesize g | d2:m g:7 | c2.
+    }
+    \score {
+      <<
+        \new ChordNames { \theChords }
+        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
+        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
+        \new Lyrics = "lyricsThree" \lyricsto "theVoice" \theLyricsThree
+        \new Lyrics = "lyricsFour" \lyricsto "theVoice" \theLyricsFour
+        \new Lyrics = "lyricsFive" \lyricsto "theVoice" \theLyricsFive
+        \new TabStaff { \clef "moderntab" \transpose d'' d \theMelody }
+      >>
+    }
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}\scriptsize % to fit on one spread
+    I live in this world until my day comes
+    Next to my Master and the Ever Virgin Mary
     \nextverse
-    It is my Master who guides me
-    It is my Master who teaches me
-    It was he who gave me
-    This Holy Doctrine
+    It is my Master who guides me, it is my Master who teaches me
+    It was he who gave me this Holy Doctrine
     \nextverse
-    It was he who gave me
-    It was he who sent me
-    To sing with my brothers and sisters
-    To teach and to have love
+    It was he who gave me, it was he who sent me
+    To sing with my brothers and sisters, to teach and to have love
     \nextverse
-    To have love
-    And to feel in the heart
-    Pray to the Eternal Father
-    To receive my forgiveness
+    To have love and to feel in the heart
+    Pray to the Eternal Father to receive my forgiveness
     \nextverse
-    To receive forgiveness
-    And to work with love
-    Pay attention closely
-    To the teachings of the professor
+    To receive forgiveness and to work with love
+    Pay attention closely to the teachings of the professor
   \end{translation}
 \endsong
 
 
-\beginsong{Todos Devem}[by={Germano Guilherme},tags={2x}]
+\beginsong{Todos Devem}[by={Germano Guilherme},tags={2x},key={Em},sks={F\#m, Em}]
   \audio[key=F\#m]{https://www.nossairmandade.com/hymn/18/TodosDevem}
   \newchords{chords_todosdevem_a}\newchords{chords_todosdevem_b}
+  \musicnote{Play 2 times}
   \mnbeginchorus\memorize[chords_todosdevem_a]
-    \[^\mn{B}]Todos |\[Em]devem pro\[\mnc{A}(Am)]cu|\[\mncii{C}{B}Em]rar
-    Ter fir|\[Em]meza e ter \[\mnc{A}(Am)]a|\[\mncii{C}{B}Em]mor
+    \[^\mn{B}]Todos |\[Em]devem pro\[\mnc{A}(Am)]cu|\[\mncii{C}{B}Em]rar \altchords{\id[1]{(F\#m)} |F\#m (Bm) |F\#m}
+    Ter fir|\[Em]meza e ter \[\mnc{A}(Am)]a|\[\mncii{C}{B}Em]mor \altchords{|F\#m (Bm) |F\#m}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_todosdevem_b]
-    O que o |\[\mncii{C}{B}B7]Mestre \[^\mn{A#}]nos \[^\mn{B}]en|\[\mncii{G}{F#}Em]sina
-    \[^\mn{E}]A minha |\[\mnc{D#}B7]Mãe foi \[^\mn{B}]quem \[^\mn{F#}]man|\[\mnc{E}Em]dou
+    O que o |\[\mncii{C}{B}B7]Mestre \[^\mn{B&}]nos \[^\mn{B}]en|\[\mncii{G}{F#}Em]sina \altchords{|C\#7 |F\#m}
+    \[^\mn{E}]A minha |\[\mnc{D#}B7]Mãe foi \[^\mn{B}]quem \[^\mn{F#}]man|\[\mnc{E}Em]dou \altchords{|C\#7 |F\#m}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_todosdevem_a]
@@ -185,27 +349,87 @@
     Dent|^ro do cora|^ção
   \endchorus
   \beginchorus\replay[chords_todosdevem_a]
-    O |^Mestre, Ele ^en|^sina
-    Para |^bem se ter ^a|^mor
+    O |^Mestre, Ele ^en|^sina \altchords{\id[2]{MK (Em)}|Em B7 |Em}
+    Para |^bem se ter ^a|^mor \altchords{|- B7 |Em}
   \endchorus\glueverses\beginchorus\replay[chords_todosdevem_b]
-    Bem gra|^var e ter fir|^meza
-    Em nos|^so Pai Cria|^dor
+    Bem gra|^var e ter fir|^meza \altchords{|Am B7 |Em}
+    Em nos|^so Pai Cria|^dor \altchords{|B7 |Em}
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    theMelody = \relative b' {
+      \key e \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8 b8 b8 | b4 b b a | c4( b2)
+        b8 b8 | b4 b b a | c4( b4.)
+      }
+      \repeat volta 2 {
+        \parenthesize b8 b8 b8 | c4 b bes b | g' fis4.
+        \parenthesize e8 e e | dis4 dis b fis' | e2~ e8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        To -- dos de -- vem pro -- cu -- rar; __
+        Ter fir -- me -- za_e ter a -- mor. __
+      }
+      \repeat volta 2 {
+        O que o Mes -- tre nos en -- si -- na;
+        A mi -- nha Mãe foi quem man -- dou. __
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        O __ _ Mes -- tre_E -- le en -- sina; __
+        Pa -- ra to -- dos seus ir -- mãos.
+      }
+      \repeat volta 2 {
+        \skip 1 Bem gra -- var e ter fir -- me -- za;
+        \skip 1 Den __ -- \skip 1 tro do co -- ra -- ção. __
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        O __ _ Mes -- tre_E -- le en -- sina; __
+        Pa -- ra bem se ter a -- mor.
+      }
+      \repeat volta 2 {
+        \skip 1 Bem gra -- var e ter fir -- me -- za;
+        \skip 1 Em nos -- so Pai Cri -- a -- dor. __
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | e2.:m \parenthesize a4:m | e1:m
+        | e2.:m \parenthesize a4:m | e2:m e8:m
+      }
+      \repeat volta 2 {
+        s4.| b1:7 | e:m
+        | b:7 | e2:m e8:m
+      }
+    }
+    \score {
+      <<
+        \new ChordNames { \theChords }
+        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
+        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
+        \new Lyrics = "lyricsThree" \lyricsto "theVoice" \theLyricsThree
+        \new TabStaff { \clef "moderntab" \transpose d'' d \theMelody }
+      >>
+    }
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
-    All must seek
-    To have firmness and to have love
-    What the Master teaches us
-    My Mother was who sent this
+    All must seek to have firmness and to have love
+    What the Master teaches us, my Mother was who sent this
     \nextverse
-    The Master He teaches
-    All his brothers
-    To engrave well and have firmness
-    Within the heart
+    The Master He teaches all his brothers
+    To engrave well and have firmness within the heart
     \nextverse
-    The Master He teaches us
-    To really have love
-    Engrave well and have firmness
-    In our Father Creator
+    The Master He teaches us to really have love
+    Engrave well and have firmness in our Father Creator
   \end{translation}
 \endsong
 
