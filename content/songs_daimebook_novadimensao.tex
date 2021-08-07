@@ -1,0 +1,128 @@
+% Santo Daime: Nova Dimensão (Padr. Alfredo)
+% ==========================================
+%
+\audio[title={Nossa Irmandade}]{https://www.nossairmandade.com/hinario/1/Ora\%C3\%A7\%C3\%A3o}
+\audio[title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY}
+
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+
+\setcounter{songnum}{15}
+\beginsong{Vida}[by={Pard. Alfredo},key={Am},sks={Am}]
+  \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Vida \[^\mn{C}]São |\[\mnc{E}Am]João, vida \[\mnc{D}(Dm)]meu \[^\mn{E}]Je|\[\mnc{A}Am]su\[^\bm]s
+    A \[^\mn{C}]lu\[^\mn{E}]a |\[\mnc{A}A7]cheia, seu bri\[^\bm\mn{G}]lho \[^\mn{A}]re|\[\mnc{D}Dm]lu\[^\bm]z
+    \lrep \[^\mn{A}]É tão bo|\[\mnc{B}Bm7b5]ni\[^\mn{A}]to, o poder \[\mnc{F}(Dm/F)]da \[^\mn{D}]fo\[^\mn{F}]gue|\[Am]i\[^\mn{E}]ra
+    Queima a \[\mnc{C}C]noit\[^\mn{A}]e in\[^\mn{E}]te|\[E7]i\[^\mn{D}]ra, mis\[^\mn{C}]té\[^\bm\mn{B}]rio \[^\mn{C}]da |\[\mnc{A}Am]Cruz \rrep
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Esta lem|^brança é da e^terni|^da\[\bm]de
+    Esta ver|^dade nos e\[\bm]leva as|^si\[\bm]m
+    \lrep Lembrando |^sempre a Luz ^deste di|^{'a}
+    Oh Vir^gem Mari|^{'a}, vós lem\[\bm]brai de |^mim \rrep
+  \endchorus
+  \beginchorus
+    Aqui na |^Terra a vida é ^como |^é
+    Domina|^dor da vida é \[\bm]São Jo|^sé\[\bm]
+    \lrep Oh Patri|^arca, nos as^cenda Lu|^z
+    Vida ^meu Jesu|^s, Espe\[\bm]rança e |^Fé \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    % transcribed by larva on 2021-08
+    theMelody = \relative a' {
+      \key a \minor \time 4/4 \partial 4.
+      a8 a c | e8 e8 e8 e8 d4 e |
+      \set melismaBusyProperties = #'()
+      \slurDown
+        a,2~ a8
+      \unset melismaBusyProperties
+      a8 c e | a8 a8 a8 a8 g4 a4 | d,2~ d8
+      \repeat volta 2 {
+        a'8 a a | b a a a f4 d8 f8~ | f8 e8 e8 e8 c4 a8 e'8~
+        | e8 d d c8 b4 c4 | a2~ a8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+        Vi -- da São | Jo -- ão
+        Vi -- da meu Je -- | sus; __ _
+        A lu -- a | chei -- a
+        Seu bri -- lho re -- | luz. __
+      \repeat volta 2 {
+        É tão bo -- | ni -- to_o po -- der da fo -- guei -- ra;
+        Quei -- ma_a noi -- te_in -- tei -- ra
+        Mis -- té -- rio da | Cruz. __
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Es -- ta lem -- | bran -- ça_É
+      da e -- ter -- ni -- | da -- de;
+      Es -- ta ver -- | da -- de
+      Nos e -- le -- va_as -- | sim. __
+      \repeat volta 2 {
+        Lem -- bran -- do | sem -- pre
+        A Luz des -- te di -- a;
+        Oh Vir -- gem Ma -- ri -- a
+        Vós lem -- brai de | mim. __
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      A -- qui na | Ter -- ra_a
+      vi -- da_é co -- mo | é; __ _
+      Do -- mi -- na -- | dor da vi -- da_é
+      São Jo -- | sé. __
+      \repeat volta 2 {
+        Oh Pat -- ri -- | ar -- ca
+        Nos a -- scen -- da Luz; __
+        \skip 1 Vi -- da meu Je -- sus __
+        Es __ -- \skip 1 pe -- ran -- ça_e | Fé. __
+      }
+    }
+    theChords = \chordmode {
+      s4. | a2:m \parenthesize d2:m| a1:m | a:7 | d2:m~ d8:m
+      \repeat volta 2 {
+         d4.:m | b2:m7.5- \parenthesize d2:m/f | a2:m c | e1:7 | a2:m~ a8:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % to fit all on one spread
+    \score {
+      <<
+        \new ChordNames { \theChords }
+        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
+        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
+        \new Lyrics = "lyricsThree" \lyricsto "theVoice" \theLyricsThree
+        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
+      >>
+      \layout { }
+      \midi { }
+    }
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}\scriptsize % to fit on one spread
+    Life Saint John, life my Jesus
+    The full moon, its glow shines
+    It's so beautiful, the power of the fire
+    Burn all night, mystery of the Cross
+    \nextverse
+    This memory is from eternity
+    This truth lifts us like this
+    Always remembering the Light of this day
+    Oh Virgin Mary, you remember me
+    \nextverse
+    Here on Earth, life is what it is
+    Dominant of life is St. John
+    Oh Patriarch, ascend us to Light
+    Life my Jesus, Hope and Faith
+  \end{translation}
+\endsong
