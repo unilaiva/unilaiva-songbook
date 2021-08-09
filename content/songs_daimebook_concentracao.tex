@@ -434,71 +434,126 @@
 \endsong
 
 
-\beginsong{Tábuas de Moisés}[by={Padr. Sebastião}]
+\beginsong{Tábuas de Moisés}[by={Padr. Sebastião},key={A},sks={A, B, G}]
   \audio{https://www.nossairmandade.com/hymn/19/T\%C3\%A1buasDeMois\%C3\%A9s}
   \newchords{chords_tabuasdemoises_a}\newchords{chords_tabuasdemoises_b}
   \transpose{2}
   \mnbeginchorus\memorize[chords_tabuasdemoises_a]
     \[^\mn{B}]Meus \[^\mn{D}]ir|\[\mnc{G}G]mãos \[^\mn{F#}]eu \[\mnc{E}D]vou \[^\mn{D}]lem|\[\mnc{G}G]brar
-    \[\mnc{B}Em]O \[^\mn{E}]que |\[\mnc{D}D]nin\[^\mn{C}]guém \[^\mn{A}]se \[^\mn{B}]lem|\[\mnc{G}G]brou
+    \[\mnc{B}(Em)]O \[^\mn{E}]que |\[\mnc{D}D]nin\[^\mn{C}]guém \[^\mn{A}]se \[^\mn{B}]lem|\[\mnc{G}G]brou
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_tabuasdemoises_b]
     \[^\mn{D}]Meu |\[\mnc{A}Am]Pai \[^\mn{C}]e \[\mncii{B}{A}D]minha |\[\mnc{G}G]Mãe
     \[^\mn{B}]Tan\[^\mn{D}]to |\[\mnc{A}Am]que \[^\mn{C}]re\[\mnc{B}D]co\[^\mn{A}]men|\[\mnc{G}G]dou
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_tabuasdemoises_a]
-    As |^Tábuas ^de Moi|^sés
-    ^Que o |^meu Pai entre|^gou
+    \noteson\[\mnlow{D}]As \notesoff |^Tábuas ^de Moi|^sés \altchords{\id[2]{MK (A)} |A D |A}
+    ^Que o |^meu Pai entre|^gou \altchords{|E E7 |A}
   \endchorus\glueverses\beginchorus\replay[chords_tabuasdemoises_b]
-    Não |^ligar^am impor|^tância
-    Não con|^sagra^ram o a|^mor
+    Não |^li\noteson\[\mnlow{C}]ga\notesoff ^ram impor|^tância \altchords{|E7 |A}
+    Não con|^sagra^ram o a|^mor \altchords{|E7 |A}
   \endchorus
   \beginchorus\replay[chords_tabuasdemoises_a]
-    Me ve|^jo cont^rari|^ado
-    ^Com o |^povo brasi|^leiro
+    Me ve|^jo cont^rari|^a\noteson\[\mnlow{B}]do \notesoff \altchords{\id[1]{MK (C)} |C F |C}
+    ^Com o |^povo brasi|^leiro \altchords{|G G7 |C}
   \endchorus\glueverses\beginchorus\replay[chords_tabuasdemoises_b]
-    Querem |^que o ^meu Pai |^faça
-    Como |^faz lá ^no estran|^geiro
+    \noteson\[\mnlow{B}]Que\[\mnlow{D}]rem \notesoff |^que o ^meu Pai |^faça \altchords{|G7 |C}
+    Como |^faz lá ^no estran|^geiro \altchords{|G7 |C}
   \endchorus
   \beginchorus\replay[chords_tabuasdemoises_a]
-    Não sei o |^que o ^povo |^pensa
+    \noteson\[\mnlow{G}]Não \[\mnlow{B}]sei \[\mnlow{D}]o \notesoff |^que o ^povo |^pensa
     ^Que de |^tudo se esque|^ceu
   \endchorus\glueverses\beginchorus\replay[chords_tabuasdemoises_b]
-    Amam |^mais a ^ilu|^são
+    \noteson\[\mnlow{B}]A\[\mnlow{D}]mam \notesoff |^mais a ^ilu|^são
     Do que |^meu Pai ^verda|^deiro
   \endchorus
-  \begin{translation}
-    My brothers and sisters I'm going to remember
-    That which nobody remembered
-    My Father and my Mother
-    Much recommended it
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    theMelody = \relative a' {
+      \key a \major \time 4/4 \partial 4.
+      \set melismaBusyProperties = #'()
+      \repeat volta 2 {
+        \parenthesize a8 << cis8 \parenthesize e8 >> e | a4 gis fis e | a4.~ << a8 \parenthesize cis,8 >> cis4 fis
+        | e d b cis | a2~ \afterGrace a8 ~a8
+      }
+      \repeat volta 2 {
+         r8 << \parenthesize cis8 e8 >> e | b4~ << b8 \parenthesize d8 >> d8 cis4 b | a4.~ a8 cis4 e4
+         | b d cis b | a2~ a8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \skip 1 Meus ir -- mãos eu vou lem -- brar; __ _
+      O que nin -- guém se lem -- brou. __ _
+      \set stanza = "1.b"
+      Meu __ _ Pai __ _ e mi -- nha Mãe; __ _
+      Tan -- to que re -- co -- men -- dou. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \skip 1 \parenthesize As __ _ Tá -- buas de Moi -- sés; __ _
+      Que o meu Pai en -- tre -- gou. __ _
+      \set stanza = "2.b"
+      Não __ _ li  -- \parenthesize ga -- \skip 1 ram_im -- por -- tân -- cia;
+      Não con -- sa -- gra -- ram o_a -- mor. __ _
+
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \skip 1 Me ve -- jo con -- tra -- ri -- a -- (do);
+      Com o po -- vo bra -- si -- lei -- ro. 
+      \set stanza = "3.b"
+      \parenthesize Que -- rem que o __ _ meu Pai fa -- ça
+      Co -- mo faz lá no_es -- tran -- gei -- ro.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \parenthesize Não sei o que o po -- vo pen -- sa
+      Que de tu -- do_se es -- que -- ceu; __ _
+      \set stanza = "4.b"
+      \parenthesize A -- mam mais __ _ a i -- lu -- são; __ _
+      Do que meu Pai ver -- da -- dei -- ro.
+    }
+    theChords = \chordmode {
+        s4. | a2 e2 | a2 \parenthesize fis2:m | e1 | a1
+        b2:m e | a1 | b2:m e | a2~ a8
+    }
+    \score {
+      <<
+        \new ChordNames { \theChords }
+        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
+        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
+        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
+        \new Lyrics = "lyricsThree" \lyricsto "theVoice" \theLyricsThree
+        \new Lyrics = "lyricsFour" \lyricsto "theVoice" \theLyricsFour
+      >>
+    }
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}\scriptsize % to fit all on one spread
+    My brothers and sisters I'm going to remember that which nobody remembered
+    My Father and my Mother much recommended it
     \nextverse
-    The tablets of Moses
-    That my Father entrusted to them
-    They didn't care
-    They didn't consecrate love
+    The tablets of Moses that my Father entrusted to them
+    They didn't care, they didn't consecrate love
     \nextverse
-    I am disappointed
-    With the Brazilian people
-    They want my Father to do
-    As is done abroad
+    I am disappointed with the Brazilian people
+    They want my Father to do as is done abroad
     \nextverse
-    I don't know what the people think
-    For they have forgotten everything
-    They love illusion more
-    Than my true Father
+    I don't know what the people think for they have forgotten everything
+    They love illusion more than my true Father
   \end{translation}
 \endsong
 
 
-\beginsong{O Valor que o Mestre Tem}[by={Padr. Sebastião}]
+\beginsong{O Valor que o Mestre Tem}[by={Padr. Sebastião},key={C},sks={D, C}]
+  \audio{https://www.nossairmandade.com/hymn/20/OValorQueOMestreTem}
   \newchords{chords_ovalorqueomestre_a}\newchords{chords_ovalorqueomestre_b}
   \mnbeginchorus\memorize[chords_ovalorqueomestre_a]
-    \[^\mn{G}]O va|\[\mnc{C}C]lor \[^\mn{E}]que o \[^\mn{D}]Mest\[^\mn{E}]re |\[^\mn{C}]tem
-    \[^\mn{E}]Eu |\[^\mn{G}]vou \[^\mn{E}]es\[\mncii{A}{C}F]clare|\[\mnc{E}C]cer
+    \[^\mn{G}]O va|\[\mnc{C}C]lor \[^\mn{E}]que o \[^\mn{D}]Mest\[^\mn{E}]re |\[^\mn{C}]tem \altchords{\id[1]{(D)} |D |-}
+    \[^\mn{E}]Eu |\[^\mn{G}]vou \[^\mn{E}]es\[\mncii{A}{C}F]clare|\[\mnc{E}C]cer \altchords{|- G |D}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_ovalorqueomestre_b]
-    \[^\mn{D}]Se ti\[^\mn{E}]ver |\[\mnc{F}Fmaj7]alguém \[^\mn{D}]que \[^\mn{E}]du|\[\mnc{C}C]vide
-    \[^\mn{B}]To\[^\mn{A}]me |\[\mnc{G}G]Daime \[^\mn{E}]pa\[^\mn{D}]ra |\[\mnc{C}C]ver
+    \[^\mn{D}]Se ti\[^\mn{E}]ver |\[\mnc{F}Fmaj7]alguém \[^\mn{D}]que \[^\mn{E}]du|\[\mnc{C}C]vide \altchords{|Gmaj7 |D}
+    \[^\mn{B}]To\[^\mn{A}]me |\[\mnc{G}G7]Daime \[^\mn{E}]pa\[^\mn{D}]ra |\[\mnc{C}C]ver \altchords{|A7 |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_ovalorqueomestre_a]
@@ -509,11 +564,11 @@
     Não se |^compra com din|^heiro
   \endchorus
   \beginchorus\replay[chords_ovalorqueomestre_a]
-    Meu |^Mestre é for|moso
-    É pre|ciso a^credi|^tar
+    Meu |^Mestre é for|moso \altchords{\id[2]{MK (C)} |C G |Am}
+    É pre|ciso a^credi|^tar \altchords{|C F |C}
     \endchorus\glueverses\beginchorus\replay[chords_ovalorqueomestre_b]
-    Eu con|^{vido os} meus ir|^mãos
-    Vamos |^todos acompan|^har
+    Eu con|^{vido os} meus ir|^mãos \altchords{|Dm G |Am}
+    Vamos |^todos acompan|^har \altchords{|G7 |C}
   \endchorus
   \beginchorus\replay[chords_ovalorqueomestre_a]
     Meu |^Mestre a ti eu |peço
@@ -522,6 +577,7 @@
     Para |^{vós me} conso|^lar
     E con|^solar meus ir|^mãos
   \endchorus
+  \brk
   \beginchorus\replay[chords_ovalorqueomestre_a]
     Meu |^Mestre a ti eu |peço
     Faça de |mim o ^que qui|^ser
@@ -529,6 +585,81 @@
     Meu |^Mestre estou a|^qui
     E te pro|^meto ser fi|^el
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'()
+      \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8 g8( g) | c4 e8( e8) d4 e | c2( c8 c8) << \parenthesize c8 e8( >> e8)
+        | g4( g8) e8 a4. c,8 | e2~ e8
+      } \break
+      \repeat volta 2 {
+        \parenthesize d8 d e | f4 f8( f8) d4 e4 | c4.( c8) b4 a4
+        | g4( g8) g8 e'4. d8 | c2~ c8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      O va -- lor que o Mes -- tre tem; __ _ _
+      Eu __ _ vou __ _ es -- cla -- re -- cer. __ _
+      \set stanza = "1.b"
+      \parenthesize Se ti -- ver al -- guém __ _ que du -- vi -- de;
+      To -- me Dai -- __ _ me pa -- ra ver. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Meu __ _ Mes -- tre __ _ veio ao mun -- do; __ _
+      Nas -- __ _ ceu __ _ lá no_es -- tran -- gei -- ro.
+      \set stanza = "2.b"
+      \skip 1 O va -- lor que o Mes -- tre tem; __ _
+      Não se com -- __ _ pra com di -- nhei -- ro.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Meu __ _ Mes -- tre __ _ é for -- mo -- so; __ _
+      \parenthesize É pre -- ci -- so a -- cre -- di -- tar. __ _
+      \set stanza = "3.b"
+      \skip 1 Eu con -- vi -- do os meus ir -- mãos; __ _
+      Va -- mos to -- dos a -- com -- pa -- nhar. __ _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      Meu __ _ Mes -- tre a ti eu pe -- ço; __ _
+      Na __ _ mi -- nha con -- cen -- tra -- ção. __ _
+      \set stanza = "4.b"
+      \skip 1 Pa -- ra vós me __ _ con -- so -- lar; __ _
+      E con -- so -- __ _ lar meus ir -- mãos. __ _
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      Meu __ _ Mes -- tre a ti eu pe -- ço;
+      Fa -- \parenthesize ça de mim __ _ o que qui -- ser; __ _
+      \set stanza = "5.b"
+      \skip 1 Me -- u Mes -- tre es -- tou a -- qui; E
+      te pro -- me -- __ _ to ser fi -- el. __ _
+    }
+    theChords = \chordmode {
+      s4. | c1 | c1
+      | c2 f2 | c1
+      | f1:maj7 | c1
+      | g1:7 | c2~ c8
+    }
+    \layout { #(layout-set-staff-size 16) } % to fit all on one spread
+    \score {
+      <<
+        \new ChordNames { \theChords }
+        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
+        \new Lyrics \lyricsto "theVoice" \theLyricsOne
+        \new Lyrics \lyricsto "theVoice" \theLyricsTwo
+        \new Lyrics \lyricsto "theVoice" \theLyricsThree
+        \new Lyrics \lyricsto "theVoice" \theLyricsFour
+        \new Lyrics \lyricsto "theVoice" \theLyricsFive
+      >>
+    }
+    \end{lilypond}\end{lilywrap}
+  \translationoff
   \begin{translation}
     The worth that the Master has
     I am going to clarify
