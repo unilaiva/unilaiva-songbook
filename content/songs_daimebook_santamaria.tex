@@ -293,7 +293,6 @@
       | a2 g | d1 | a2 g | d2 d8
     }
     % to fit whole song on one spread:
-    \layout { #(layout-set-staff-size 17) }
     \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
@@ -733,10 +732,6 @@
       | g1.
       | g2.:7 c4.
     }
-    \layout {
-      % to fit the whole song on one spread:
-      #(layout-set-staff-size 17)
-    }
     \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\scriptsize % smaller to fit whole song on a spread
@@ -814,10 +809,6 @@
      | a2.:m g
      | g1.
      | g2.:7 c4.
-    }
-    \layout {
-      % to fit the whole song on one spread:
-      #(layout-set-staff-size 17)
     }
     \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
@@ -1189,10 +1180,8 @@
     Dai-\[\mn{F}]me, |\[\mnc{E}A7]dai-\[\mn{F}]me \[\mn{G}]u\[\mn{A}]ni|\[\mnc{D}Dm]ão \altchords{|E7 |Am}
   \mnendchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
-    \layout {
-      % to fit the whole song on one spread:
-      #(layout-set-staff-size 16)
-    }
+    % to fit whole song on one spread:
+    \layout { #(layout-set-staff-size 16) }
     theMelody = \relative d'' {
       \key d \minor \time 4/4 \partial 2
       \repeat volta 2 {
@@ -1443,10 +1432,8 @@
   \mnendchorus
   \notesoff
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
-    \layout {
-      % to fit the whole song on one spread:
-      #(layout-set-staff-size 16)
-    }
+    % to fit whole song on one spread:
+    \layout { #(layout-set-staff-size 16) }
     theMelody = \relative e' {
       \key a \minor \time 3/4 \partial 4.
       \mark \markup {"4x"} \bar ".|:" \repeat volta 4 {

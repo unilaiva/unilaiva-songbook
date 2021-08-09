@@ -412,10 +412,6 @@
       | d2:m f | g1
       | a2:m g | c2.
     }
-    \layout {
-      % to fit whole song on one spread:
-      #(layout-set-staff-size 17)
-    }
     \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\footnotesize % to fit whole song on one spread
@@ -895,10 +891,6 @@
       | g1 | c1
       | g2 f2 | c1
     }
-    \layout {
-      % to fit the whole song on one spread:
-      #(layout-set-staff-size 17)
-    }
     \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\footnotesize % to fit the whole song on one spread:
@@ -1069,10 +1061,8 @@
       | c2 d2:m7 | g1
       | g2 g:7 | c2.
     }
-    \layout {
-      % to fit the whole song on one spread:
-      #(layout-set-staff-size 16)
-    }
+    % to fit whole song on one spread:
+    \layout { #(layout-set-staff-size 16) }
     \include "tex/lilypond-score-chords-melody-tabs.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
