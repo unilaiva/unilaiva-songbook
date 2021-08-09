@@ -23,7 +23,25 @@
       <<
         \new ChordNames { \theChords }
         \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
+        \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
+        %\new Lyrics \lyricsto "theVoice" { \theLyricsTwo } % 2nd verse example
         \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
       >>
+      \layout { }
+    }
+    \score { % for MIDI
+      <<
+        \unfoldRepeats \new Staff { % melody
+          \set Staff.midiInstrument = #"acoustic guitar (nylon)"
+          \transpose c'' c \theMelody
+        }
+        % Chords, commented out for possible problems with repeats
+        %\unfoldRepeats \new Staff {
+        %  \set Staff.midiInstrument = #"acoustic grand"
+        %  \theChords
+        %}
+      >>
+      \midi {
+        \tempo 4 = 100
+      }
     }
