@@ -13,9 +13,9 @@
     % Lilypond version:
     \version "2.22.0"
 
-    % Sets the global staff size, it scales everything. Recommended size is 18.
-    % With Noto fonts, 17 might be better.
-    #(set-global-staff-size 18)
+    % Sets the global staff size, it scales everything. Recommended size is 18,
+    % but we use 17 for space reasons. With Noto fonts, 16 might be needed.
+    #(set-global-staff-size 17)
 
     \paper {
       %% This sets up custom fonts. They must be loaded in the LaTeX document
