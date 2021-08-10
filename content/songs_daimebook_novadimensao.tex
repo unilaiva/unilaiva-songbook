@@ -36,7 +36,7 @@
     \lrep Oh Patri|^arca, nos as^cenda Lu|^z
     Vida ^meu Jesu|^s, Espe\[\bm]rança e |^Fé \rrep
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva on 2021-08
     theMelody = \relative a' {
       \key a \minor \time 4/4 \partial 4.
@@ -96,18 +96,7 @@
       }
     }
     \layout { #(layout-set-staff-size 15) } % to fit all on one spread
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
-        \new Lyrics = "lyricsThree" \lyricsto "theVoice" \theLyricsThree
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-      \layout { }
-      \midi { }
-    }
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\scriptsize % to fit on one spread
     Life Saint John, life my Jesus

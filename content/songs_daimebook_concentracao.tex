@@ -44,7 +44,7 @@
     The Master orders me to firm myself
     In the place where he is
   \end{translation}
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     \layout { #(layout-set-staff-size 14) } % to fit all on one spread
     theMelody = \relative c'' {
       \key a \major \time 4/4 \partial 4
@@ -104,7 +104,7 @@
         | d1 | d | a2 e2 | a1 | e2:7 e2:7
       } \alternative { { | a1 } { | a2. \bar "|." } }
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
 
@@ -143,7 +143,7 @@
     On this day many people will cry
     Because there are many who don't know how to love
   \end{translation}
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     \layout { #(layout-set-staff-size 15) } % to fit all on one spread
     theMelody = \relative d'' {
       \key d \major \time 4/4 \partial 1*5/8
@@ -182,7 +182,7 @@
       | d b:m | d d | b:m a:7 | d d
       | d b:m | d d | b:m a:7 | d4.
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
 
@@ -227,7 +227,7 @@
     Pres|^tar \noteson\[\mnlow{G}]bem \notesoff aten|^ção
     Os en|^sinos do ^profes|^sor
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     \layout { #(layout-set-staff-size 15) } % to fit all on one spread
     theMelody = \relative g' {
       \key c \major \time 4/4 \partial 4
@@ -297,18 +297,7 @@
       s4 | c1 | \parenthesize g | d2:m g:7 | c2.
       s4 | c1 | \parenthesize g | d2:m g:7 | c2.
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
-        \new Lyrics = "lyricsThree" \lyricsto "theVoice" \theLyricsThree
-        \new Lyrics = "lyricsFour" \lyricsto "theVoice" \theLyricsFour
-        \new Lyrics = "lyricsFive" \lyricsto "theVoice" \theLyricsFive
-        \new TabStaff { \clef "moderntab" \transpose d'' d \theMelody }
-      >>
-    }
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\scriptsize % to fit on one spread
     I live in this world until my day comes
@@ -355,7 +344,7 @@
     Bem gra|^var e ter fir|^meza \altchords{|Am B7 |Em}
     Em nos|^so Pai Cria|^dor \altchords{|B7 |Em}
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative b' {
       \key e \minor \time 4/4 \partial 4.
       \repeat volta 2 {
@@ -410,16 +399,7 @@
         | b:7 | e2:m e8:m
       }
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
-        \new Lyrics = "lyricsThree" \lyricsto "theVoice" \theLyricsThree
-        \new TabStaff { \clef "moderntab" \transpose d'' d \theMelody }
-      >>
-    }
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     All must seek to have firmness and to have love
@@ -467,7 +447,7 @@
     \noteson\[\mnlow{B}]A\[\mnlow{D}]mam \notesoff |^mais a ^ilu|^são
     Do que |^meu Pai ^verda|^deiro
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \key a \major \time 4/4 \partial 4.
       \set melismaBusyProperties = #'()
@@ -517,17 +497,7 @@
         s4. | a2 e2 | a2 \parenthesize fis2:m | e1 | a1
         b2:m e | a1 | b2:m e | a2~ a8
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
-        \new Lyrics = "lyricsThree" \lyricsto "theVoice" \theLyricsThree
-        \new Lyrics = "lyricsFour" \lyricsto "theVoice" \theLyricsFour
-      >>
-    }
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\scriptsize % to fit all on one spread
     My brothers and sisters I'm going to remember that which nobody remembered
@@ -585,7 +555,7 @@
     Meu |^Mestre estou a|^qui
     E te pro|^meto ser fi|^el
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'()
       \slurDashed
@@ -646,18 +616,7 @@
       | g1:7 | c2~ c8
     }
     \layout { #(layout-set-staff-size 16) } % to fit all on one spread
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-        \new Lyrics \lyricsto "theVoice" \theLyricsOne
-        \new Lyrics \lyricsto "theVoice" \theLyricsTwo
-        \new Lyrics \lyricsto "theVoice" \theLyricsThree
-        \new Lyrics \lyricsto "theVoice" \theLyricsFour
-        \new Lyrics \lyricsto "theVoice" \theLyricsFive
-      >>
-    }
+    \include "tex/lp-include-tail-vocalsbelow.ly"
     \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}

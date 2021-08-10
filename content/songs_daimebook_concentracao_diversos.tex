@@ -51,7 +51,7 @@
     \lrep Para |^todos |se reu|^nir
     Pro|vando a|^qui sua |capaci|^da|^de \rrep
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c''' {
       \key a \minor \time 3/4
         | c4 a e | c a c | e2.~ | e2.
@@ -77,7 +77,7 @@
       | d:m | a:m | a:m
       | e:7 | e:7 | a:m | \mark \markup{\hspace #.5 \super{"1"}} \parenthesize a2:7
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
@@ -133,7 +133,7 @@
     Sa|^bendo perdo^ar, se|^guindo nesta ^Luz
     Pa|^ra po^der di^zer, ^que es|^tou com meu Jesus
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
       theMelody = \relative c'' {
       \key f \major \time 4/4 \partial 8
       \repeat volta 2 {
@@ -155,7 +155,7 @@
         | f4 c f c | f2.~ f8
       }
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Firmness, great firmness, I ask in concentration

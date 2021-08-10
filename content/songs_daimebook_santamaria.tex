@@ -38,7 +38,7 @@
     \lrep |^Seguindo ^o bom ca|^mi^nho
     |^Fazer bem, ^não fazer |^mal \rrep
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative a'' {
       \key a \minor \time 4/4
       a4 a8 b8 c4 b8 a8 | f2 d2
@@ -61,7 +61,7 @@
       | a:m c | d:m f
       | a:m e:7 | a:m
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Whoever arrives at this house
@@ -131,7 +131,7 @@
     Se|^gurem o ba|^lanço não vão |^esmore|^cer \altchords{|G |C |Am |D}
     Que |^{esta vi}|^{tória vai} |^aconte|^cer \altchords{|D |Am |\up{1}Am \up{2}D |\up{1}D \up{2}G}
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \transpose a g \relative a'' {
       \key a \major \time 3/4
       \repeat volta 2 {
@@ -181,7 +181,7 @@
     }
     % to fit whole song on one spread:
     \layout { #(layout-set-staff-size 16) }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
@@ -269,7 +269,7 @@
     \endchorus\glueverses\beginchorus\replay[chords_conhece_santa_maria_b]
     Vamos |^todos ^afirmar |^paz, deixa |^quem quiser ^afirmar |^guerra
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \transpose d c \relative d'' {
       \key d \major \time 4/4 \partial 4.
       \repeat volta 2 {
@@ -293,7 +293,7 @@
       | a2 g | d1 | a2 g | d2 d8
     }
     % to fit whole song on one spread:
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
@@ -372,7 +372,7 @@
     \endchorus\glueverses\beginchorus\replay[chords_amorverdade_b]
     Rece|^ba com ale^gria o que lhe |^é ofere^cido
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c''' {
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
@@ -393,7 +393,7 @@
       s4 | c2 f:maj7 | f:maj7 c
       | a:m g | f c4
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     I'm going to receive my Mother within my heart
@@ -463,7 +463,7 @@
     A Vós eu |^peço na espe^rança de che|^gar
     Sempre a ^Vossa prote|^{ção, para eu} poder atraves|^sar
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative e'' {
       \key a \minor \time 4/4 \partial 4.
       \repeat volta 2 {
@@ -498,7 +498,7 @@
       { b:m7.5- e2 e8 }
       { e1:7 a2:m a8:m }
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
@@ -553,7 +553,7 @@
     E |^ê meu Rei O|gum, den|tro da vira|ção
     Guarda Ma|^mãe no cora|^ção
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \key d \major \time 4/4 \partial 4
       a4 | a'2~ a8 fis8 e8 fis8 | e4 d2 a4
@@ -569,7 +569,7 @@
       s4 | d1 | d | d | d
       | a:7 | d
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     It's Santa Maria, it's Santa Maria
@@ -623,7 +623,7 @@
     Quem estiver |^firme ^vai sor|^rir
     Quem não ^esti|^ver pode a^té cho|^rar
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \transpose g a \relative g' {
       \key g \major \time 4/4 \partial 4
       \repeat volta 2 {
@@ -648,7 +648,7 @@
       | a:m | g2 e:m
       | a:m d:7 | g2.
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     My Santa Maria is free
@@ -709,7 +709,7 @@
     Eu agra|deço a meu São Jo\[\bm]ão
     E eu agra|^deço aos meus ir^mãos \hfill$\Longrightarrow$
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
       \key c \major \time 6/4 \partial 4.
       \repeat volta 2 {
@@ -732,7 +732,7 @@
       | g1.
       | g2.:7 c4.
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\scriptsize % smaller to fit whole song on a spread
     Santa Maria was who called me; And invited me to obey
@@ -787,7 +787,7 @@
     Agora |vamos ter uni\[\bm]ão
     E mais res|^peito à Santa Ma^ria
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
       \key c \major \time 6/4 \partial 4.
       \repeat volta 2 {
@@ -810,7 +810,7 @@
      | g1.
      | g2.:7 c4.
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\scriptsize % smaller to fit whole song on a spread
     I'll tell a nice story, the plant that has more love
@@ -876,7 +876,7 @@
     Eu a|^penas |^zelo, vós que |^deter|^mina
     Eu a|^penas |^zelo, vós que |^deter|^mina
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c'' { \key c \major \time 3/4
       \repeat volta 2 {
         | c4 c e | g g g | a g g | e2 e8 c8
@@ -895,7 +895,7 @@
       | a:m | g | f | c
       | a:m | c | a:m | g
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
@@ -941,7 +941,7 @@
     Junto |com a Santa Ma^ria \altchords{|- A7}
     Que é pra |^Ela escu^tar \altchords{|- D}
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative d'' {
       \key d \major \time 4/4 \partial 8
       \repeat volta 2 {
@@ -962,7 +962,7 @@
       | s2 a2:7
       | a2:7 d4.
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     I come to bring
@@ -1001,7 +1001,7 @@
     E nele es|^{tá a luz} de ^Jesus Cr|isto \altchords{|Dm E | \e}
     Que se ^traduz|indo o nome ^{é Ju}rami|^dam^ \altchords{Am |- E7 |Am}
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \key d \minor \time 4/4 \partial 4.
       \repeat volta 2 {
@@ -1031,7 +1031,7 @@
       | g2:m a | a d:m
       | d:m a:7 | d2:m d8:m
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     O Virgin Mother, I ask of you that some day
@@ -1095,7 +1095,7 @@
     \ind Que o co|^mando é de São |^Pedro
     \ind Ninguém |^queira duvi|^dar
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c''' {
       \key a \minor \time 4/4 \partial 2
       \repeat volta 2 {
@@ -1120,7 +1120,7 @@
       | a2:m e:7 | a1:m | a2:m e:7 | a1:m
       | c | b:m7.5- | e:7 | a:m
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
@@ -1179,7 +1179,7 @@
     \[\mn{D}]Dai-\[\mn{E}]me |\[\mnc{F}Dm]for\[\mn{G}]ça, \[\mn{A}]dai-\[\mn{B&}]me a|\[\mnc{G}Gm]mor \altchords{|Am |Dm}
     Dai-\[\mn{F}]me, |\[\mnc{E}A7]dai-\[\mn{F}]me \[\mn{G}]u\[\mn{A}]ni|\[\mnc{D}Dm]ão \altchords{|E7 |Am}
   \mnendchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % to fit whole song on one spread:
     \layout { #(layout-set-staff-size 16) }
     theMelody = \relative d'' {
@@ -1228,7 +1228,7 @@
         | d:m d:m | a a | a:7 a:7 | d:m s
         | d:m d:m | g:m g:m | a:7 a:7 | d:m
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
@@ -1274,7 +1274,7 @@
     \[\mn{B}]Com \[\mn{C}]as |\[\mnc{D}G]Es\[\mn{C}]tre\[\mnc{A}Am]las \[\mn{E}]Di|\[\mnc{C}C]vinas
     \[\mn{B}]De \[\mnc{A}Am]Je\[\mn{E}]sus |\[\mnc{D}G7]Cristo e de \[\mn{C}]San\[\mn{A}]ta \[\mn{E}]Ma|\[\mnc{C}C]ria
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     \layout { #(layout-set-staff-size 14) } % to fit all on one spread
     theMelody = \relative c'' {
       \key c \major \time 4/4 \partial 4.
@@ -1322,7 +1322,7 @@
       s4. | c2 a:m | c a:m | c g:7 | c c8
       s4. | g2 a:m | c a:m | g:7 g:7 | c c8
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
@@ -1360,7 +1360,7 @@
     Aju|dai os \[\mn{E}]fi\[\mn{D}]lhos \[\mnc{C}C]seus|' \e \altchords{|- A | \e}
     \[\mn{G}]Assim |\[G7]como \[\mn{E}]meu \[\mn{D}]Pai \[\mnc{C}C]faz|' \e \altchords{|E7 A | \e}
   \mnendchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva on 2021-08
     theMelody = \relative c''' {
       \key c \major \time 4/4 \partial 4
@@ -1394,7 +1394,7 @@
       g2 | g2 c2 | c2
       c2 | g2:7 c2 | c2.
     }
-    \include "tex/lilypond-score-chords-melody-tabs.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Oh! My Saint Irineu
@@ -1431,7 +1431,7 @@
     \ind \[\mn{E}]Sem\[\mn{F}]pre \[\mn{E}]bus|\[\mnc{D}Dm7]can\[\mn{B}]do apren|\[E]der nes\[\mn{C}]ta \[\mn{B}]dou|\[Am]tri\[\mn{A}]na | \e
   \mnendchorus
   \notesoff
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % to fit whole song on one spread:
     \layout { #(layout-set-staff-size 16) }
     theMelody = \relative e' {
@@ -1475,15 +1475,7 @@
       | d:m7 | e | a:m | a:m
       d:m | g | c | f | d:m7 | e | a:m | a4.:m
     }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new Lyrics = "lyricsOne" \lyricsto "theVoice" \theLyricsOne
-        \new Lyrics = "lyricsTwo" \lyricsto "theVoice" \theLyricsTwo
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
-      >>
-    }
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
