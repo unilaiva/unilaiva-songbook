@@ -182,46 +182,95 @@
 \endsong
 
 
-\beginsong{Eu te dei uma Casa}[by={Padr. Sebastião}]
+\beginsong{Eu te Dei uma Casa}[by={Padr. Sebastião},key={C},sks={C}]
   \audio{https://www.nossairmandade.com/hymn/63/EuTeDeiUmaCasa}
   \mnbeginchorus\memorize
-    \[^\mn{C}]Eu |\[\mnc{F}F]peço \[^\mn{A}]a \[^\mn{C}]meu |\[^\mn{A}]Pai
-    \[^\mn{C}]Sei que |\[\mnc{E}C]ós \[^\mn{C}]tem \[^\mn{E}]o \[^\mn{G}]po|\[\mnc{E}(Em)]der
-    \[^\mn{C}]Per\[^\mn{B}]do|\[\mnc{A}Am]ai \[^\mn{C}]as \[\mnc{E}(A7)]min\[^\mn{G}]has |\[\mnc{D}Dm]culpas
-    \[^\mn{C}]Se \[^\mn{B}]de |\[\mnc{A}Am]Vós \[^\mn{C}]eu me\[^\mn{E}]re|\[\mnc{C}C]cer
+    \[^\mn{C}]Eu |\[\mnc{F}F]peço \[^\mn{A}]a \[^\mn{C}]meu |\[^\mn{A}]Pai, \[^\mn{C}]sei que |\[\mnc{E}C]ós \[^\mn{C}]tem \[^\mn{E}]o \[^\mn{G}]po|\[\mnc{E}(Em)]der
+    \[^\mn{C}]Per\[^\mn{B}]do|\[\mnc{A}Am]ai \[^\mn{C}]as \[\mnc{E}(A7)]min\[^\mn{G}]has |\[\mnc{D}Dm]culpas, \[^\mn{C}]se \[^\mn{B}]de |\[\mnc{A}Am]Vós \[^\mn{C}]eu me\[^\mn{E}]re|\[\mnc{C}C]cer
   \mnendchorus
   \notesoff
   \beginchorus
-    Eu |^te dei uma |casa
-    Que |^não falta nin|^guém
-    Pa|^{ra tu} ^escol|^her
-    Aque|^les que te con|^vém
+    Eu |^te dei uma |casa que |^não falta nin|^guém
+    Pa|^{ra tu} ^escol|^her aque|^les que te con|^vém
   \endchorus
   \beginchorus
-    A es|^trada eu dou a |todos
-    Para |^todos via|^jar
-    |^Ver e ^compreen|^der
-    E fi|^car em seu lu|^gar
+    A es|^trada eu dou a |todos, para |^todos via|^jar
+    |^Ver e ^compreen|^der, e fi|^car em seu lu|^gar
   \endchorus
   \beginchorus
-    |^Eu estou com |Deus
-    |^Deus está em |^mim
-    Eu |^estan^{do com} |^Deus
-    |^Deus é o meu ca|^minho
+    |^Eu estou com |Deus, |^Deus está em |^mim
+    Eu |^estan^{do com} |^Deus, |^Deus é o meu ca|^minho
   \endchorus
   \beginchorus
-    |^Deus é a |glória
-    |^Deus a glória |^é
-    Quem |^{é meu} ^Salva|^dor
-    É Je|^sus de Naza|^ré
+    |^Deus é a |glória, |^Deus a glória |^é
+    Quem |^{é meu} ^Salva|^dor é Je|^sus de Naza|^ré
   \endchorus
-  \beginchorus
-    Eu |^vivo neste |mundo
-    Na |^minha dire|^ção
-    \noteson\[\mnlow{E}]Ol\[\mnlow{C}]han\notesoff|^do as coi^sas de |^Deus
-    E prestan|^do bem aten|^ção
+  \beginchorus\large
+    Eu |^vivo neste |mundo na |^minha dire|^ção
+    \noteson\[\mnlow{E}]Ol\[\mnlow{C}]han\notesoff|^do as coi^sas de |^Deus e prestan|^do bem aten|^ção
   \endchorus
-  \begin{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+         c4 |f f a c |a2( a4) c,8( c8) |e4 c e g |e2( e4) c8( b8)
+         |a4 c e g |d2 d4 c8( b8) |a4 c c e |c2( c4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Eu |pe -- ço a meu |Pai; __ _
+      Sei que |Vós tem o po -- |der; __ _
+      Per -- do -- |ai as mi -- nhas |cul -- pas;
+      Se de |Vós eu me -- re -- |cer. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Eu |te dei u -- ma |ca -- sa;
+      Que __ _ |não fal -- ta nin -- |guém; __ _
+      Pa -- _ |ra tu es -- co -- |lher;
+      A -- que -- _ |les que te con -- |vém. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      A_es -- |tra -- da_eu dou a |to -- dos;
+      Pa -- ra |to -- dos vi -- a -- jar; _ \skip 1 \skip 1
+      Ver e com -- preen -- der;
+      E fi -- _ car em seu lu -- gar. __ _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \skip 1 Eu es -- tou com Deus; _
+      \skip 1 \skip 1 Deus es -- tá em mim; __ _
+      Eu __ _ es -- tan -- do com Deus;
+      \skip 1 \skip 1 \skip 1 Deus é~o meu ca -- mi -- nho.
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \skip 1 |Deus __ _ é a |gló -- ria;
+      \skip 1 \skip 1 |Deus a gló -- ria |é __ _
+      Quem __ _ |é meu Sal -- va -- |dor
+      É Je -- _ |sus de Na -- za -- |ré. __ _
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      Eu |vi -- vo nes -- te |mun -- do;
+      Na __ _ |mi -- nha di -- re -- |ção;
+      O -- lhan -- _ |do~as coi -- sas de |Deus;_E
+      pres -- tan -- _ |do bem a -- ten -- |ção. __ _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 |f1 |f1 |c1 |\parenthesize e:m
+        |a2:m \parenthesize a:7 |d1:m |a:m |c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  %\translationoff
+  \begin{translation}\footnotesize
     I ask my Father, I know that You have the power
     Forgive my guilt, if I am deserving
     \nextverse
@@ -243,92 +292,193 @@
 \endsong
 
 
-\beginsong{São João na Terra}[by={Padr. Sebastião},tags={2x}]
+\beginsong{São João na Terra}[by={Padr. Sebastião},tags={2x},key={C},sks={C, D}]
   \audio[key=D]{https://www.nossairmandade.com/hymn/64/S\%C3\%A3oJo\%C3\%A3oNaTerra}
   \newchords{chords_saojoaonaterra_a}\newchords{chords_saojoaonaterra_b}
+  \musicnote{Tocar 2 vezes}
   \mnbeginchorus\memorize[chords_saojoaonaterra_a]
-    \[^\mn{G}]Quando ou\[^\mn{C}]vir \[^\mn{E}]fa|\[\mnc{G}C]lar
-    De São \[^\mn{E}]Jo\[^\mn{A}]ão \[^\mn{G}]na |\[\mncii{E}{C}Am]terra
-    É \[^\mn{A}]si\[\mnc{C}C]nal \[^\mn{E}]de |\[\mnc{D}Dm]guerra
-    Em \[^\mn{C}]to\[\mnc{A}F]do \[^\mn{C}]lu|\[C]gar
-  \mnendchorus
-  \mnbeginchorus\memorize[chords_saojoaonaterra_b]
-    \ind \[^\mn{C}]É |\[\mnc{D}Dm]fora
-    \ind \[^\mn{C}]De \[^\mn{A}]con\[^\mn{C}]fu|\[\mnc{E}C]são
-    \ind \[^\mn{A}]Che\[^\mn{C}]gou \[^\mn{E}]São |\[\mnc{D}Dm]Pedro
-    \ind Com \[^\mn{C}]seus \[\mnc{A}F]dois \[^\mn{C}]ir|\[C]mãos
+    \[^\mn{G}]Quando ou\[^\bm\mn{C}]vir \[^\mn{E}]fa|\[\mnc{G}C]lar de São \[^\mn{E}]Jo\[^\bm\mn{A}]ão \[^\mn{G}]na |\[\mncii{E}{C}Am]terra \altchords{\id[1]{(D)}|D |Bm}
+    É \[^\mn{A}]si\[\mnc{C}C]nal \[^\mn{E}]de |\[\mnc{D}Dm]guerra em \[^\mn{C}]to\[\mnc{A}F]do \[^\mn{C}]lu|\[C]gar \altchords{D |Em G |D}
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_saojoaonaterra_b]
+    \ind \[^\mn{C}]É |\[\mnc{D}Dm]fora \[^\mn{C}]de \[^\bm\mn{A}]con\[^\mn{C}]fu|\[\mnc{E}C]são \altchords{|Em |D}
+    \ind \[^\mn{A}]Che\[^\bm\mn{C}]gou \[^\mn{E}]São |\[\mnc{D}Dm]Pedro com \[^\mn{C}]seus \[\mnc{A}F]dois \[^\mn{C}]ir|\[C]mãos \altchords{|Em G |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_saojoaonaterra_a]
-    Os anjinhos do |^céu
-    É quem vem col|^her
-    Para ^ajun|^tar
-    Em um ^{só lu}|^gar
+    Os an\[\bm]jinhos do |^céu é quem \[\bm]vem col|^her \altchords{\id[2]{MK (C)}|C |Am}
+    Para ^ajun|^tar em um ^{só lu}|^gar \altchords{|G F |C}
+  \endchorus\glueverses\beginchorus\replay[chords_saojoaonaterra_b]
+    \ind Lou|^var a meu \[\bm]Pai E|^terno \altchords{|G F |Am}
+    \ind Fel\[\bm]iz da|^quele que bem ^traba|^lhar \altchords{|G F |C}
   \endchorus
-  \beginchorus\replay[chords_saojoaonaterra_b]
-    \ind Lou|^var
-    \ind A meu Pai E|^terno
-    \ind Feliz da|^quele
-    \ind Que bem ^trabal|^har
-  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 2.
+      \repeat volta 2 {
+         g8 g c4 e |g8( g) g e a4 g
+         |e8( c) c a c4 e |d8( d) d c a4 c
+      } \alternative {
+        { | c4 }
+        { | c2. }
+      }
+      \repeat volta 2 {
+         c4 |d d8 c a4 c |e4( e8) a,8 c4 e4
+         |d8 d d c a4 c4
+      } \alternative {
+        { | c2. }
+        { | c4 }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Quan -- do~ou -- vir fa -- lar de São Jo -- ão na ter -- ra;
+        É si -- nal de guer -- ra em to -- do lu --
+      } \alternative {
+        { gar. }
+        { gar. }
+      }
+      \repeat volta 2 {
+        É fo -- ra de con -- fu -- são; _
+        Che -- gou São Pe -- dro com seus dois ir --
+      } \alternative {
+        { mãos. }
+        { mãos. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Os an -- jinhos do céu _ é quem vem co -- lher; _
+        Pa -- ra a -- jun -- tar _ em um só lu --
+      } \alternative {
+        { gar. }
+        { gar. }
+      }
+      \repeat volta 2 {
+        Lou -- var a meu Pai E -- ter -- no;
+        Fe -- liz da -- que -- le que bem tra -- ba --
+      } \alternative {
+        { lhar. }
+        { lhar. }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2. |c1 |a2:m c |d:m f
+      } \alternative {
+        { c4 }
+        { c2. }
+      }
+      \repeat volta 2 {
+        s4 | d1:m | c | d2:m f
+      } \alternative {
+        { c2. }
+        { c4 }
+      }
+    }
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
-    When you hear it said
-    That St. John is on the earth
-    It‘s a sign of war
-    Everywhere
+    When you hear it said that St. John is on the earth
+    It‘s a sign of war everywhere
     \nextverse
-    Apart
-    from the confusion
-    St. Peter arrived
-    With his two brothers
+    Apart from the confusion
+    St. Peter arrived with his two brothers
     \nextverse
-    The little angels of heaven
-    Are the ones who come to gather
-    To bring together
-    In one single place
+    The little angels of heaven are the ones who come to gather
+    To bring together in one single place
     \nextverse
-    Praise
-    To my Eternal Father
-    Happy is he
-    Who works well
+    Praise to my Eternal Father
+    Happy is he who works well
   \end{translation}
 \endsong
 
 
-\beginsong{Conforto}[by={Padr. Alfredo}]
+\beginsong{Conforto}[by={Padr. Alfredo},key={Dm},sks={Dm, Cm}]
   \audio[key=Dm]{https://www.nossairmandade.com/hymn/478/Conforto}
   \beginchorus\memorize
     \[^\mn{A}]Eu |\[\mnc{F}Dm]pe\[^\mn{D}]ço \[^\mn{F}]con\[\mnc{E}A7]for\[^\mn{C#}]to \[^\mn{E}]aos |\[\mnc{D}Dm]Reis
     \[^\mn{D}]Do |\[^\mn{A}]Céu, \[^\mn{F}]da \[^\mn{D}]Flo\[\mnc{A}D7]rest\[^\mn{F}]{a e} \[^\mn{D}]do |\[\mnc{G}Gm]Mar
-    |\[^\mn{B&}]Pe\[^\mn{G}]ço \[^\mn{E}]con\[^\mn{C#}]fort\[^\mn{A}]{o as} \[^\mn{E}]Ra|\[\mnc{D}Dm]inhas
+    |\[^\mn{B&}]Pe\[^\mn{G}]ço \[^\mn{E}]con\[\mnc{C#}A7]fort\[^\mn{A}]{o as} \[^\mn{E}]Ra|\[\mnc{D}Dm]inhas
     Para |\[\mnc{A}A]nos \[\mnciii{E}{F}{E}A7]ilumi|\[\mnc{D}Dm]nar
   \endchorus
   \notesoff
   \beginchorus
     Eu |^peço con^forto aos |^Príncipes
     Do |Céu, da Flo^resta e do |^Mar
-    |Peço conforto as Prin|^cesas
+    |Peço con^forto as Prin|^cesas
     Para |^nos ^ilumi|^nar
   \endchorus
   \beginchorus
     Eu |^peço con^forto aos |^Anjos
     Do |Céu, da Flo^resta e do |^Mar
-    |Peço conforto aos |^Santos
+    |Peço con^forto aos |^Santos
     Para |^nos ^ilumi|^nar
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, 2021-08
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        a4 | f'4 d8 f8 e4 cis8 e8 | d4.( d8 d4)
+        d'4 | a4 f8 d' a4 f8 d |g1 \break
+        |bes4 g8 e cis8. cis16 a8 e' | d2 d4
+        d8 d8 | a'2 e4 f8 e | d2.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Eu pe -- ço con -- for -- to aos Reis; __ _ _
+        Do Céu, da Flo -- res -- ta~e do Mar;
+        Pe -- ço con -- for -- to as Ra -- i -- nhas;
+        Pa -- ra nos i -- lu -- mi -- nar.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Eu pe -- ço con -- for -- to aos Prín -- ci -- pes;
+        Do Céu, da Flo -- res -- ta~e do Mar;
+        Pe -- ço con -- for -- to as Prin -- ce -- sas;
+        Pa -- ra nos i -- lu -- mi -- nar.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Eu pe -- ço con -- for -- to aos An -- _ jos;
+        Do Céu, da Flo -- res -- ta~e do Mar;
+        Pe -- ço con -- for -- to a -- os San -- tos;
+        Pa -- ra nos i -- lu -- mi -- nar.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 |d2:m a:7 |d1:m
+        |d2:m d:7 |g1:m
+        |g2:m a:7 |d1:m
+        |a2 a:7 |d2.:m
+      }
+    }
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
     I ask comfort from the Kings
-    Of heaven, of the forest and of the sea
+    Of Heaven, of the Forest and of the Sea
     I ask comfort from the Queens
     To illuminate us
     \nextverse
     I ask comfort from the Princes
-    Of heaven, the forest and the sea
+    Of Heaven, the Forest and the Sea
     I ask comfort from the Princesses
     To illuminate us
     \nextverse
     I ask comfort from the Angels
-    Of heaven, the forest and the sea
+    Of Heaven, the Forest and the Sea
     I ask comfort from the Saints
     To illuminate us
   \end{translation}
@@ -444,6 +594,7 @@
 \beginsong{Eu Peco a Deus\\Vi Deus no Sol, na Lua e nas Estrelas}[by={Francisco Corrente},tags={2x}]
   \audio[key=C]{https://www.nossairmandade.com/hymn/26/EuPe\%C3\%A7oADeus}
   \newchords{chords_eupecoadeus_a}\newchords{chords_eupecoadeus_b}
+  \musicnote{Tocar 2 vezes}
   \mnbeginchorus\memorize[chords_eupecoadeus_a]
     \[^\mn{C}]Eu pe\[^\mn{E}]{co a} |\[\mnc{G}C]Deus que per\[\mnc{A}Am]doe os meus \[^\mn{E}]pe|\[\mncii{G}{F}F]cados
     Perdoe \[^\mn{G}]a |\[\mnc{A}Dm]mim e perdoe \[^\mn{F}]{a meus} \[^\mn{A}]ir|\[\mnc{G}G]maos\[C]
