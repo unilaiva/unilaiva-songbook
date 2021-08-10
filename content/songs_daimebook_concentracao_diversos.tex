@@ -11,27 +11,27 @@
 \setcounter{songnum}{1}
 
 
-\beginsong{Firmado em Concentração}[by={Padr. Alfredo},tags={valsa}]
+\beginsong{Firmado em Concentração}[by={Padr. Alfredo},tags={valsa},key={Am},sks={Am}]
   \audio{https://www.nossairmandade.com/hymn/538/FirmadoEmConcentra\%C3\%A7\%C3\%A3o}
   \meter{3}{4}
   \mnbeginchorus\memorize
     |\[\mncii{C}{A}Am]Firmad\[^\mn{E}]{o em} |\[^\mn{C}]con\[^\mn{A}]cen\[^\mn{C}]tra|\[^\mn{E}]ção | \e
     |\[^\mn{C}]Na \[^\mn{A}]Vir\[^\mn{E}]gem |\[\mnc{C#}A7]Mãe ver\[^\mn{E}]da|\[\mnc{D}Dm]dei|ra
     \lrep \[^\mn{A}]Eu |\[\mnc{D}Dm]vou ol|\[^\mn{F}]hand\[^\mn{E}]{o e} dou |\[\mnc{C}Am]chan\[^\mn{A}]ce
-    A |\[^\mn{E}]quem ol|\[\mnc{B}E]har pa\[^\mn{D}]ra |\[^\mn{G#}]esta \[^\mn{B}]ban|\[\mnc{A}Am]dei|\[\up{1}A7]ra \rrep
+    A |\[^\mn{E}]quem ol|\[\mnc{B}E7]har pa\[^\mn{D}]ra |\[^\mn{G#}]esta \[^\mn{B}]ban|\[\mnc{A}Am]dei|\[\up{1}A7]ra \rrep
   \mnendchorus
   \notesoff
   \beginchorus\replay
-    |^Vou publi|car umas pa|lav|ras
-    |Que nos traz |^pura lem|^bran|ça
-    \lrep Das |^cores |desta ban|^deira
-    Do |Pai verda|^deiro, ver|de azul e |^bran|^ca \rrep
+    |^Vou publi|car umas pa|lav|ras \altchords{\id[2]{MK (Am)} |Am | | |E}
+    |Que nos traz |^pura lem|^bran|ça \altchords{|Am |A7 |Dm |-}
+    \lrep Das |^cores |desta ban|^deira \altchords{|Dm | |Am}
+    Do |Pai verda|^deiro, ver|de azul e |^bran|^ca \rrep \altchords{|Am |Bm7b5 |E7 |Am |\up{1}(A)}
   \endchorus
   \beginchorus\replay
     |^Firmado |no verde |lin|do
     |Sou eu, re|^presento a |^Ter|ra
     \lrep Por |^isto a|qui eu es|^tou
-    Com a |paz do Sen|^hor, acal|mando a |^guer|^ra \rrep
+    Com a |paz do Se|^nhor, acal|mando a |^guer|^ra \rrep
   \endchorus
   \beginchorus\replay
     |^Firmado |neste a|zul | \e
@@ -51,6 +51,35 @@
     \lrep Para |^todos |se reu|^nir
     Pro|vando a|^qui sua |capaci|^da|^de \rrep
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+    theMelody = \relative c''' {
+      \key a \minor \time 3/4
+        | c4 a e | c a c | e2.~ | e2.
+        | c'4 a e | cis cis e | d2. | d2
+      \break
+      \repeat volta 2 {
+        a4 | d2 d4 | f e e | c a a | e'2 e4
+        | b b d | gis, gis b | a2. | a2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      Fir -- ma -- do_em con -- cen -- tra -- ção; __
+      Na Vir -- gem Mãe ver -- da -- dei -- ra.
+      Eu vou o -- lhan -- do_e dou chan -- ce;
+      A quem o -- lhar pa -- ra es -- ta ban -- dei -- ra.
+    }
+    theChords = \chordmode {
+      | a2.:m | a:m | a:m | a:m
+      | a:m | a:7 | d:m | d:m
+      \set chordChanges = ##f
+      | d:m
+      \set chordChanges = ##t
+      | d:m | a:m | a:m
+      | e:7 | e:7 | a:m | \mark \markup{\hspace #.5 \super{"1"}} \parenthesize a2:7
+    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
   \begin{translation}
     Firmed in concentration, in the true Virgin Mother
     I keep looking and I give opportunity to those who look for this banner
@@ -73,7 +102,8 @@
 \endsong
 
 
-\beginsong{Firmeza}[by={Padr. Valdete}]
+\beginsong{Firmeza}[by={Padr. Valdete},key={F},sks={F, E, G}]
+  \audio{https://www.nossairmandade.com/hymn/148/Firmeza}
   \mnbeginchorus\memorize
     \[^\mn{C}]Fir|\[\mnc{F}F]meza, bem fir\[\mnc{C}C]meza peço |\[\mnc{F}F]em concentra\[\mnc{C}C]ção
     \[^\mn{F}]Fir|\[F]me\[^\mn{C}]za, \[C]bem \[^\mn{F}]fir\[F]me\[^\mn{C}]za \[C]na cor|\[\mnc{F}F]rente da sessão
@@ -103,6 +133,30 @@
     Sa|^bendo perdo^ar, se|^guindo nesta ^Luz
     Pa|^ra po^der di^zer, ^que es|^tou com meu Jesus
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lilypond-settings-include.ly"
+      theMelody = \relative c'' {
+      \key f \major \time 4/4 \partial 8
+      \repeat volta 2 {
+        c8 | f8. f16 f8. f16 c8. c16 c8. c16 | f8. f16 f8. f16 c4. f8
+        | f8. c16 c8. f16 f8. c16 c8. c16 | f8. f16 f8. f16 f4.
+      }
+
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Fir -- me -- za bem fir -- me -- za pe -- ço em con -- cen -- tra -- ção;
+        Fir -- me -- za bem fir -- me -- za na cor -- ren -- te da ses -- são.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s8 | f2 c | f c
+        | f4 c f c | f2.~ f8
+      }
+    }
+    \include "tex/lilypond-score-chords-melody-tabs.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
     Firmness, great firmness, I ask in concentration
     Firmness, great firmness, in the current of the session
