@@ -11,33 +11,42 @@
 \setcounter{songnum}{600}
 
 
-\beginsong{Kalevala-sävelmä}[tags={(chords missing)}]
+\beginsong{Kalevala-sävelmä}[]
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = {
       \key a \minor \time 2/4
-      a'4 a' | b' b' | c'' e'' | b'2 | b'2
-      c''4 a'| d'' c'' | b' c'' | a'2 a'2 \bar "|."
+      |a'4 a' |b' b' |c'' e'' |b'2 |b'2
+      |c''4 a' |d'' c'' |b' c'' |a'2 a'2 \bar "|."
     }
     theLyricsOne = \lyricmode {
-      Va -- ka van -- ha Väi -- nä -- möi -- nen
+      Va -- ka van -- ha Väi -- nä -- möi -- nen,
       tie -- tä -- jä i -- än i -- kui -- nen
     }
-    \include "tex/lp-include-tail-notab.ly" % Don't create guitar tabs
-  \end{lilypond}
-  \textnote{Haikea versio:}
-  \begin{lilypond}[] \include "tex/lp-include-head.ly"
-    theMelody = {
-      \key a \minor \time 2/4
-      d''4 d'' | d'' a' | d'' c'' | b'2 | b'2
-      d''4 d''| d'' c'' | b' c'' | a'2 a'2 \bar "|."
+    theChords = \chordmode {
+     |a2:m |e:m/b |c |e:m/b |e:m
+     |a:m |d:m7 |e:m |a:m |a:m
     }
-    theLyricsOne = \lyricmode {
-      Va -- ka van -- ha Väi -- nä -- möi -- nen
-      tie -- tä -- jä i -- än i -- kui -- nen
-    }
-    \include "tex/lp-include-tail-notab.ly"
+    \include "tex/lp-include-tail.ly" % Don't create guitar tabs
   \end{lilypond}\end{lilywrap}
+  %% Commented out for space and boringness reasons
+  % \begin{lilywrap}\textnote{Haikea versio:}\begin{lilypond}[]
+  %   \include "tex/lp-include-head.ly"
+  %   theMelody = {
+  %     \key a \minor \time 2/4
+  %     |d''4 d'' |d'' a' |d'' c'' |b'2 |b'2
+  %     |d''4 d''|d'' c'' |b' c'' |a'2 a'2 \bar "|."
+  %   }
+  %   theLyricsOne = \lyricmode {
+  %     Va -- ka van -- ha Väi -- nä -- möi -- nen,
+  %     tie -- tä -- jä i -- än i -- kui -- nen
+  %   }
+  %   theChords = \chordmode {
+  %     |d2:m |d:m |d:m7 |e:m/b |e:m
+  %     |d:m | d:m7 |e:m |a:m |a:m
+  %   }
+  %   \include "tex/lp-include-tail-notab.ly"
+  % \end{lilypond}\end{lilywrap}
   \yesendsongvfill% to balance vspace before and after lilypond, as there is no other content
 \endsong
 
@@ -63,7 +72,7 @@
     theChords = \chordmode {
       s2 | a1:m | a:m | a:m | a:m | c | c | a:m | a:m
     }
-    \layout { #(layout-set-staff-size 16) } % to fit better
+    %\layout { #(layout-set-staff-size 16) } % to fit better
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \yesendsongvfill% to balance vspace before and after lilypond, as there is no other content
