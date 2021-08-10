@@ -22,7 +22,7 @@
     %% Note that if 'theChords' or 'theLyricsOne' is omitted, chords and lyrics
     %% will be ignored. If file 'tex/lp-include-tail.ly' is replaced with
     %% 'tex/lp-include-tail-notab.ly', no guitar tabulature is created. Or if
-    %% it is replaced with 'tex/lp-include-tail-vocalsbelow', the vocals will
+    %% it is replaced with 'tex/lp-include-tail-lyricsbelow.ly', the lyrics will
     %% be laid below the tabulature staff instead of between normal and tab
     %% staffs.
     %%
