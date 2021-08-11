@@ -257,7 +257,7 @@
       \set stanza = "6."
       Eu |vi -- vo nes -- te |mun -- do;
       Na __ _ |mi -- nha di -- re -- |ção;
-      O -- lhan -- _ |do~as coi -- sas de |Deus;_E
+      O -- lhan -- _ |do~as coi -- sas de |Deus;~E
       pres -- tan -- _ |do bem a -- ten -- |ção. __ _
     }
     theChords = \chordmode {
@@ -485,14 +485,14 @@
 \endsong
 
 
-\beginsong{Chamo o Tempo}[by={Mestre Irineu Serra}]
+\beginsong{Chamo o Tempo}[by={Mestre Irineu Serra},key={A},sks={A, G}]
   \audio[key=A]{https://www.nossairmandade.com/hymn/23/ChamoOTempo}
   \transpose{2}
   \mnbeginchorus\memorize
-    \[^\mn{B}]Cha\[^\mn{A}]mo o |\[\mnc{G}G]Tempo, eu \[\mnc{A}D]cha\[^\mn{G}]{mo o} |\[\mnc{D}G]Temp\[(D)]o
-    \[^\mn{B}]Para e\[^\mn{A}]le |\[\mnc{G}G]vir me \[\mncii{A}{G}D]ensi|\[\mnc{D}G]na\[G7]r
-    \lrep Apren|\[\mnc{E}C]der com \[\mnc{F#}D]per\[^\mn{A}]fei|\[\mnc{G}G]çã\[Em]o
-    \[^\mn{G}]Pa\[^\mn{A}]ra |\[\mnc{B}Am]po\[^\mn{A}]der \[\mncii{D}{B}D7]ensi|\[\mnc{G}G]na\[\up{1}G7]r \rrep
+    \[^\mn{B}]Cha\[^\mn{A}]mo o |\[\mnc{G}G]Tempo, eu \[\mnc{A}D]cha\[^\mn{G}]{mo o} |\[\mnc{D}G]Temp\[(D)]o \altchords{\id[1]{(G)}|G D |G (D)}
+    \[^\mn{B}]Para e\[^\mn{A}]le |\[\mnc{G}G]vir me \[\mncii{A}{G}D]ensi|\[\mnc{D}G]na\[G7]r \altchords{|G D |G G7}
+    \lrep Apren|\[\mnc{E}C]der com \[\mnc{F#}D]per\[^\mn{A}]fei|\[\mnc{G}G]çã\[(Em)]o \altchords{|C D |G (Em)}
+    \[^\mn{G}]Pa\[^\mn{A}]ra |\[\mnc{B}Am]po\[^\mn{A}]der \[\mncii{D}{B}D]ensi|\[\mnc{G}G]na\[\up{1}G7]r \rrep \altchords{|Am D |G \up{1}(G7)}
   \mnendchorus
   \notesoff
   \beginchorus
@@ -513,38 +513,88 @@
     \lrep Embora |^que não a^prenda |^muit^o
     Aprenda |^sempre um ^boca|^dinh^o \rrep
   \endchorus
-  \begin{translation}
-    I call the time, I call the time
-    For it to come to teach me
-    To learn with perfection
-    So that I can teach
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \transpose g a \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 4
+      b8( a) |g4 g8 g8 a4 g4 |d'4 d4. \parenthesize b8 b8( a8)
+      |g4 g a g |d'4( d4.)
+      \repeat volta 2 {
+        \parenthesize d8 d8( d8) |e4 e fis a |g2( g8) \parenthesize g,8 g8 a8
+        |b4. a8 d4. b8 |g2( g8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Cha -- mo~o Tem -- po, eu cha -- mo~o Tem -- po;
+      Pa -- ra~e -- le vir me en -- si -- nar. __ _
+      \repeat volta 2 {
+        \skip 1 A -- pren -- der com per -- fei -- ção; __ _
+        \skip 1 Pa -- ra po -- der en -- si -- nar. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Os que fo -- rem o -- be -- di -- en -- tes; _
+      Tra -- _ tar de a -- pren -- der. __ _
+      \repeat volta 2 {
+        \skip 1 Pa -- ra ser e -- ter -- na -- men -- te; __
+        \skip 1 Pa -- ra Deus lhe a -- ten -- der. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      De -- _ pois que o Tem -- po che -- ga;
+      \skip 1 Nin -- _ guém quis a -- pren -- der. __ _
+      \repeat volta 2 {
+        \skip 1 De -- _ pois que re -- fle -- tir; __ _
+        \skip 1 É que vai se~ar -- re -- pen -- der. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      Fir -- _ me -- za no pen -- sa -- men -- to;
+      \skip 1 Pa -- ra se -- guir no ca -- mi -- nho.
+      \repeat volta 2 {
+        Em -- bo -- ra que não~a -- pren -- da mui -- to;
+        A -- pren -- da sem -- pre~um bo -- ca -- di -- nho.
+      }
+    }
+    theChords = \transpose g a \chordmode {
+      s4 |g2 d |g \parenthesize d
+      |g d |g g8:7
+      \repeat volta 2 {
+        s4. |c2 d |g \parenthesize e:m
+        |a:m d |g2 \mark \markup{\hspace #-1.7 \super{"1"}} \parenthesize g8:7
+      }
+    }
+    \layout { #(layout-set-staff-size 16) } % to fit on one spread
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}\footnotesize
+    I call the time, I call the time, for it to come to teach me
+    To learn with perfection, so that I can teach
     \nextverse
-    Those who are obedient
-    Try to learn
-    To be eternally
-    For God to help you
+    Those who are obedient try to learn
+    To be eternally, for God to help you
     \nextverse
-    After the time arrives
-    Nobody wanted to learn
-    After reflecting
-    Is when one will repent
+    After the time arrives, nobody wanted to learn
+    After reflecting is when one will repent
     \nextverse
-    Firmness in the mind
-    To continue on the path
-    Even if you don‘t learn much
-    Always learn a little bit
+    Firmness in the mind to continue on the path
+    Even if you don‘t learn much, always learn a little bit
   \end{translation}
 \endsong
 
 
-\beginsong{Chamo a Força}[by={Mestre Irineu Serra}]
+\beginsong{Chamo a Força}[by={Mestre Irineu Serra},key={Am},sks={Am, Bm}]
   \audio{https://www.nossairmandade.com/hymn/270/ChamoAFor\%C3\%A7a}
   \mnbeginchorus\memorize
-    \[^\mn{C}]Cha\[^\mn{B}]{mo a} |\[\mnc{A}Am]força, eu \[\mnc{C}C]cha\[^\mn{E}]{mo a} |\[\mnc{A}Am]força\[G]
-    \[^\mn{G}]A força |\[Am]vem \[^\mn{E}]nos \[\mncii{C}{A}C]amos|\[\mnciii{C}{B}{A}Am]trar
+    \[^\mn{C}]Cha\[^\mn{B}]{mo a} |\[\mnc{A}Am]força, eu \[\mnc{C}(C)]cha\[^\mn{E}]{mo a} |\[\mnc{A}Am]força\[(G)] \altchords{\id[1]{(Bm)}|Bm (D) |Bm (A)}
+    \[^\mn{G}]A força |\[Am]vem \[^\mn{E}]nos \[\mncii{C}{A}C]amos|\[\mnciii{C}{B}{A}Am]trar \altchords{|Bm D |Bm}
   \mnendchorus\glueverses\notesoff\mnbeginchorus
-    Treme a |^terra e ^balan|^ceia^
-    E vós não |^sai do ^seu lu|^gar
+    Treme a |^terra e ^balan|^ceia^ \altchords{|Bm (D) |Bm (A)}
+    E vós não |^sai do ^seu lu|^gar \altchords{|Bm D |Bm}
   \mnendchorus
   \beginchorus
     Treme a |^terra, ^treme a |^terra^
@@ -557,9 +607,10 @@
     Aqui |^dentro ^da ver|^dade^
     Tem uns |^certos ^menti|^rosos
   \endchorus\glueverses\beginchorus
-    Que calu|^niam os ^seus ir|^mãos^
-    Para se tor|^nar mui^to vi|^çosos
+    Que calu|^niam os ^seus ir|^mãos
+    ^Para se tor|^nar mui^to vi|^çosos
   \endchorus
+  \brk
   \beginchorus
     Mas |^ninguém ^não se |^lembra^
     Chamou o |^Mestre ^menti|^roso
@@ -567,59 +618,183 @@
     Devaga|^rinho ^vai che|^gando^
     E quem cha|^mou é que ^vai fi|^cando
   \endchorus
-  \begin{translation}
-    I call the Force, I call the Force
-    The Force comes to show us
-    The earth shakes and quakes
-    But Thou don‘t move
+  \brk
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8 c8( b) |a4 a c e |a a4. \parenthesize g8 g g
+        |g4 e c a |c4. b8 a8
+      }
+      \repeat volta 2 {
+        \parenthesize c8 c b |a4 a c e |a a4 \parenthesize g8 \parenthesize g8 g g
+        |g4 e c a |c4. b8 a8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Cha -- mo~a for -- ça~eu cha -- mo~a for -- ça;
+        A for -- ça vem nos a -- mos -- trar. __ _ _
+      }
+      \repeat volta 2 {
+        \skip 1 Tre -- me~a ter -- ra~e ba -- lan -- cei -- a;
+        \skip 1 E vós não sai do seu lu -- gar. __ _ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Tre -- me~a ter -- ra tre -- me~a ter -- ra;
+        Tre -- me a ter -- ra~e ge -- me~o mar. __ _ _
+      }
+      \repeat volta 2 {
+        Ain -- da tem gen -- te que du -- vi -- da;
+        \skip 1 \skip 1 Do po -- der que vós me dá. __ _ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        A -- qui den -- tro da ver -- da -- de;
+        \skip 1 Tem uns cer -- tos men -- ti -- ro -- _ sos.
+      }
+      \repeat volta 2 {
+        Que ca -- lu -- ni -- am os seus~ir -- mã -- os;
+        Pa -- ra se tor -- nar mui -- to vi -- ço -- _ sos.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Mas __ _ nin -- guém não se lem -- bra;
+        Cha -- mou o Mes -- tre men -- ti -- ro -- _ so.
+      }
+      \repeat volta 2 {
+        De -- va -- ga -- ri -- nho vai che -- gan -- do;
+        \skip 1 E quem cha -- mou~é que vai fi -- can -- _ do.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+         s4. | a2:m \parenthesize c | a:m \parenthesize g | a:m c | a:m~ a8:m
+      }
+      \repeat volta 2 {
+        s4. | a2:m \parenthesize c | a:m \parenthesize g | a:m c | a:m~ a8:m
+      }
+    }
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}\scriptsize % to fit on one spread
+    I call the Force, I call the Force; the Force comes to show us
+    The earth shakes and quakes, but Thou don't move
     \nextverse
-    The earth shakes, the earth shakes
-    The earth shakes and the sea moans
-    Yet, there are people who still doubt
-    The power that Thou give me
+    The earth shakes, the earth shakes, the earth shakes and the sea moans
+    Yet, there are people who still doubt the power that Thou give me
     \nextverse
-    Here in the Truth
-    There are some liars
-    Who slander their brothers and sisters
-    So that they can look good
+    Here in the Truth there are some liars
+    Who slander their brothers and sisters so that they can look good
     \nextverse
-    But no one remembers
-    That he called the Master a liar
-    Slowly he‘s going to arrive
-    And who called is who stays behind
+    But no one remembers that he called the Master a liar
+    Slowly he's going to arrive and who called is who stays behind
   \end{translation}
 \endsong
 
 
-\beginsong{Eu Peco a Deus\\Vi Deus no Sol, na Lua e nas Estrelas}[by={Francisco Corrente},tags={2x}]
+\beginsong{Eu Peço a Deus\\Vi Deus no Sol, na Lua e nas Estrelas}[by={Francisco Corrente},tags={2x},key={C},sks={C, D}]
   \audio[key=C]{https://www.nossairmandade.com/hymn/26/EuPe\%C3\%A7oADeus}
   \newchords{chords_eupecoadeus_a}\newchords{chords_eupecoadeus_b}
   \musicnote{Tocar 2 vezes}
   \mnbeginchorus\memorize[chords_eupecoadeus_a]
-    \[^\mn{C}]Eu pe\[^\mn{E}]{co a} |\[\mnc{G}C]Deus que per\[\mnc{A}Am]doe os meus \[^\mn{E}]pe|\[\mncii{G}{F}F]cados
-    Perdoe \[^\mn{G}]a |\[\mnc{A}Dm]mim e perdoe \[^\mn{F}]{a meus} \[^\mn{A}]ir|\[\mnc{G}G]maos\[C]
+    \[^\mn{C}]Eu pe\[^\mn{E}]{ço a} |\[\mnc{G}C]Deus que per\[\mnc{A}Am]doe os meus \[^\mn{E}]pe|\[\mnc{G}F]ca\[^\mn{F}]dos\[^\bm]
+    Perdoe \[^\mn{G}]a |\[\mnc{A}Dm]mim e per\[^\bm]doe \[^\mn{F}]{a meus} \[^\mn{A}]ir|\[\mnc{G}G]mã\[^\bm]os
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_eupecoadeus_b]
-    \[^\mn{/}]Eu peco a |Deus que me \[\up{1}Am\up{2}(F)]{dê a Santa} |\[G]Luz
-    \[^\mn{D}]Para eu a|mar Vós no \[\mnc{E}G7]meu co\[^\mn{C}]ra|\[C]ção\[\up{1}Am]
+    \[^\mn{/}]Eu peço a |\[Am]Deus que me \[^\bm]{dê a Santa} |\[G]Luz\[^\bm]
+    \[^\mn{D}]Para eu a|\[G7]mar Vós no \[^\bmc\mn{E}]meu co\[^\mn{C}]ra|\[C]ção\[^\bm]
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_eupecoadeus_a]
-    Vi Deus no |^sol Deus na ^lua e nas es|^trelas
-    Vi Deus no |^vento Deus na terra Deus no |^mar^
+    Vi Deus no |^sol Deus na ^lua e nas es|^trelas\[\bm]
+    Vi Deus no |^vento Deus na \[\bm]terra Deus no |^mar\[\bm]
   \endchorus\glueverses\beginchorus\replay[chords_eupecoadeus_b]
-    Todos |sabem que ^Deus esta em |^todo
-    Todos se |firmam, se com^ponham em seu lu|^gar^
+    Todos |^sabem que \[\bm]Deus esta em |^todo\[\bm]
+    Todos se |^firmam, se com\[\bm]ponham em seu lu|^gar\[\bm]
   \endchorus
   \beginchorus\replay[chords_eupecoadeus_a]
-    Eu digo a |^todos com a^mor no cora|^ção
-    |^Deus é quem nos da a Santa |^Luz^
+    Eu digo a |^todos com a^mor no cora|^ção\[\bm]
+    |^Deus é quem nos \[\bm]da a Santa |^Luz\[\bm]
   \endchorus\glueverses\beginchorus\replay[chords_eupecoadeus_b]
-    |Deus é quem da ^{o nosso} des|^tino
-    Pra nos sa|ir deste ^mundo de ilu|^são^
+    |^Deus é quem da \[\bm]o nosso des|^tino\[\bm]
+    Pra nos sa|^ir deste \[\bm]mundo de ilu|^são\[\bm]
   \endchorus
   \vfill
   \textnote{This hino can be sung when someone is going through a passage
             in a concentration work.}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        c8 c e |g8( g8) g8 g8 a8 a8 a8 e8 |g4 f4.( \parenthesize f8 \parenthesize f8) \parenthesize g8
+        |a8( a8) a8 a8 a8 f8 f8 a8 |g2~ g8
+      } \break
+      \parenthesize c,8\genmark "B:I" \parenthesize c8 \parenthesize c8 |c8( c8) c8 c8 c8 a8 a8 c8 |b4( b4.) d8 d8 d8
+      |d8( d8) d8 d8 e8( e8) e8 c8 | c2~ c8 \parenthesize a8\genmark "B:II" \parenthesize a8 \parenthesize a8
+      |a8( a8) a8 a8 a8 a8 a8 a8 |a4( g4.) d'8 d8 d8
+      |d8( d8) d8 d8 e8( e8) e8 c8 |c2~ c8 \bar "|."
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Eu pe -- ço~a |Deus __ _ que per -- doe Os meus pe -- |ca -- dos;
+        Per -- do e~a |mim __ _ e per -- doe a meus ir -- |mã -- os.
+      }
+      \set stanza = "1.B"
+      Eu pe -- ço~a |Deus __ _ que me dê a San -- ta |Luz; __ _
+      Pa -- ra eu_a -- |mar __ _ Vós no meu __ _ co -- ra -- |ção. __ _
+      Eu pe -- ço~a |Deus __ _ que me dê a San -- ta |Luz; __ _
+      Pa -- ra eu_a -- |mar __ _ Vós no meu __ _ co -- ra -- |ção. __ _
+
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Vi Deus no |sol __ _ Deus na lu -- a~e nas es -- |tre -- las;
+        Vi Deus no |ven -- to Deus na ter -- ra Deus no |mar. __ _
+      }
+      \set stanza = "2.B"
+      \skip 1 To -- dos |sa -- _ bem que Deus es -- ta em |to -- do;
+      To -- dos se |fir -- mam se com -- po -- nham~em seu lu -- |gar. __ _
+      \skip 1 To -- dos |sa -- _ bem que Deus es -- ta em |to -- do;
+      To -- dos se |fir -- mam se com -- po -- nham~em seu lu -- |gar. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Eu di -- go~a |to -- dos com a -- mor no co -- ra -- |çã -- o;
+        \skip 1 \skip 1 \skip 1 |Deus é quem nos da a San -- ta |Luz. __ _
+      }
+      \set stanza = "3.B"
+      \skip 1 \skip 1 \skip 1 |Deus é quem da o nos -- so des -- |ti -- no;
+      Pra nos sa -- |ir __ _ des -- te mun -- do de~i -- lu -- |são. __ _
+      \skip 1 \skip 1 \skip 1 |Deus é quem da o nos -- so des -- |ti -- no;
+      Pra nos sa -- |ir __ _ des -- te mun -- do de~i -- lu -- |são. __ _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. |c2 a:m |f f
+        |d:m d:m |g~ g8
+      }
+      s4. |a2:m a:m |g g
+      |g:7 g:7 | c c
+      |a2:m a:m |g g
+      |g:7 g:7 | c~ c8
+    }
+    \layout { #(layout-set-staff-size 13) } % to fit on one spread
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
   \begin{translation}
     I ask God to forgive my sins
     Forgive me and forgive my brothers and sisters
