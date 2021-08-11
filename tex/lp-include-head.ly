@@ -68,6 +68,34 @@
       }
     }
 
+    % Mark a spot with text above the staff. Text is given as the only
+    % parameter. Example: \genmark "my text"
+    genmark =
+    #(define-music-function
+      (parser location marktext)
+      (markup?)
+      #{
+        ^\markup{
+          \with-color #darkblue
+          \rounded-box{ #marktext }
+        }
+      #})
+
+    % Mark a spot where the playout ought to start at. A symbol will be
+    % shown above the staff. No parameters.
+    pomark =
+    #(define-music-function
+      (parser location)
+      ()
+      #{
+        ^\markup{
+          \fontsize #8 {
+            \with-color #darkgreen
+            \arrow-head #Y #DOWN ##t
+          }
+        }
+      #})
+
     % Defines some variables as empty, so that if the user doesn't define them,
     % nothing breaks and they will just be ignored.
     theChords = \chordmode {}
