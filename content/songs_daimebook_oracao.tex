@@ -51,23 +51,29 @@
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
       \key c \major \time 4/4 \partial 4
-      g8 c | e4 e8 e8 d4 c4 | g4. g8 g4 c
-      | e4 e d c | g'2 g4 c,
-      | e4. e8 d4 c | g4. g8 g4 c
-      | e4 e d e | c2. \bar "|."
+      \repeat volta 2 {
+        g8 c | e4 e8 e8 d4 c4 | g4. g8 g4 c
+        | e4 e d c | g'2 g4 c,
+        | e4. e8 d4 c | g4. g8 g4 c
+        | e4 e d e | c2.
+      }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      E -- xa -- | mi -- ne a con -- ci -- | ên -- cia;
-      E -- xa | mi -- ne di -- rei -- | tin -- ho;
-      Sou | Pai e não sou | fil -- ho;
-      Mas eu | não fa -- ço as -- | sim.
+      \repeat volta 2 {
+        E -- xa -- | mi -- ne a con -- ci -- | ên -- cia;
+        E -- xa -- | mi -- ne di -- rei -- | tin -- ho;
+        Sou | Pai e não sou | fil -- ho;
+        Mas eu | não fa -- ço as -- | sim.
+      }
     }
     theChords = \chordmode {
-      s4 | c1 | g
-      | a:m | g
-      | c | g
-      | a2:m g | c2.
+      \repeat volta 2 {
+        s4 | c1 | g
+        | a:m | g
+        | c | g
+        | a2:m g | c2.
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -145,7 +151,7 @@
     Todos |têm que se cur|var
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    \relative g' {
+    theMelody = \relative g' {
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
         g8 g | c4. c8 c4. e8 | g2~ g8 c,8 c8 c8
@@ -156,13 +162,18 @@
         | d4. c8 a4. c8 | c2 c4
       }
     }
-    \addlyrics {
+    theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      A meu Pai pe -- ço fir -- me -- za;
-      E não sai -- a da min -- ha men -- te;
-      Dou en -- si -- no a quem não sa -- be;
-      E~a -- con -- selho os i -- no -- cen -- tes.
+      \repeat volta 2 {
+        A meu | Pai pe -- ço fir -- | me -- za;
+        E não | sai -- a da min -- ha | men -- te;
+      }
+      \repeat volta 2 {
+        Dou en -- | si -- no a quem não | sa -- be;
+        E~a -- con -- | selho os i -- no -- | cen -- tes.
+      }
     }
+    \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     From my Father I ask for firmness
@@ -228,16 +239,24 @@
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      Eu vi -- vo com meu Mes -- tre;
-      Eu vi -- vo com meus ir -- mãos;
-      Eu vi -- vo na san -- ta luz;
-      Es -- tou no pé da cruz com Ju -- ra -- mi -- dam.
+      \repeat volta 2 {
+        Eu | vi -- vo com meu | Mes -- tre;
+        Eu | vi -- vo com meus ir -- | mãos;
+      }
+      \repeat volta 2 {
+        Eu | vi -- vo na san -- ta | luz;
+        Es -- tou no pé da | cruz com Ju -- ra -- mi -- | dam.
+      }
     }
     theChords = \chordmode {
-      s4 | c2 a:m | g1
-      | a2:m f | c2.
-      s4 | f2 g | c f
-      | g a:m | c2.
+      \repeat volta 2 {
+        s4 | c2 a:m | g1
+        | a2:m f | c2.
+      }
+      \repeat volta 2 {
+        s4 | f2 g | c f
+        | g a:m | c2.
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -307,16 +326,24 @@
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      É pe -- din -- do e~é ro -- gan -- do;
-      Que po -- de -- mos al -- can -- çar;
-      Não é fa -- lar um do out -- ro;
-      Que -- ren -- do ca -- lu -- ni -- ar.
+      \repeat volta 2 {
+        É pe -- | din -- do e~é ro -- | gan -- do;
+        Que po -- | de -- mos al -- can -- | çar;
+      }
+      \repeat volta 2 {
+        Não é | fa -- lar um do | out -- ro;
+        Que -- ren -- | do ca -- lu -- ni -- | ar.
+      }
     }
     theChords = \chordmode {
+      \repeat volta 2 {
       s4 | c2 a:m | g1
       | a2:m g | c2.
+      }
+      \repeat volta 2 {
       s4 | c1 | a:m
       | g2 a:m | c2.
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -398,19 +425,31 @@
       }
     }
     theLyricsOne = \lyricmode {
-      Dem dum, dem dum; Dem dum, dem dum;
-      Deus sa -- be~o que~es -- tá fa -- zen -- do;
-      Sen -- ta -- do no seu lu -- gar;
-      As doze ho -- ras do di -- a;
-      Nós pre -- ci -- sa -- mos re -- zar.
+      \repeat volta 3 {
+        Dem | dum, dem | dum; Dem | dum, dem | dum.
+      }
+      \repeat volta 2 {
+        Deus sa -- | be~o que~es -- tá fa -- | zen -- do;
+        Sen -- ta -- | do no seu lu -- | gar;
+      }
+      \repeat volta 2 {
+        As | doze ho -- ras do | di -- a;
+        Nós pre -- | ci -- sa -- mos re -- | zar.
+      }
     }
     theChords = \chordmode {
-      s4 | c1 | c1
-      | a:m | c
-      | c1 | a:m
-      | c2 g | c1
-      | d2:m f | g1
-      | a2:m g | c2.
+      \repeat volta 3 {
+        s4 | c1 | c1
+        | a:m | c2.
+      }
+      \repeat volta 2 {
+        s4 | c1 | a:m
+        | c2 g | c2.
+      }
+      \repeat volta 2 {
+        s4 | d2:m f | g1
+        | a2:m g | c2.
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -469,23 +508,29 @@
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative g' {
       \key c \major \time 4/4 \partial 4
-      g4 | c4 c4 c4 e4 | g2( e4) g4
-      | f4 e4 d4 c4 | f2. a,8 a8
-      | a8. a16 a8 a8 f4 a4 | g2 c4 d4
-      | e4 d4 a4 b4 | c2. \bar "|."
+      \repeat volta 2 {
+        g4 | c4 c4 c4 e4 | g2( e4) g4
+        | f4 e4 d4 c4 | f2. a,8 a8
+        | a8. a16 a8 a8 f4 a4 | g2 c4 d4
+        | e4 d4 a4 b4 | c2.
+      }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      A -- qui eu vou ex -- por; __
-      Eu vim pa -- ra lem -- brar;
-      O mis -- té -- ri -- o da o -- ra -- ção;
-      Não é so -- men -- te re -- zar.
+      \repeat volta 2 {
+        A -- | qui eu vou ex -- | por; __
+        Eu | vim pa -- ra lem -- | brar;
+        O mis -- | té -- ri -- o da o -- ra -- | ção;
+        Não é | so -- men -- te re -- | zar.
+      }
     }
     theChords = \chordmode {
-      s4 | c2 a:m | g c
-      | f:maj7 c | f1
-      | f | g
-      | d2:m f | c
+      \repeat volta 2 {
+        s4 | c2 a:m | g c
+        | f:maj7 c | f1
+        | f | g
+        | d2:m f | c2.
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -553,26 +598,52 @@
     theMelody = \relative g' {
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        g8 g8 g8 | c8 c16 c16 c8 b8 a8 b8 c8 a8 | g4 g8 b8 d8 d16 d16 d8 b8
-        | g4 g8 b8 d8 c8 a8 b8 | c2~ c8
-      } \break
+        g8 g8 g8 | c8 c8 c8 b8 a8 b8 c8 a8 | g4 g8 b8 d8 d8 d8 b8
+        | g4 g8 b8 d8 c8 a8 b8
+      } \alternative {
+        { | c2~ c8 }
+        { | c2. c4\genmark "B" }
+      }
       \repeat volta 2 {
-        r8 c4 | f4.( e8) d8 e8 f8 d8 | c8 c8 c8 a8 c8 c8 c8 a8
-        | g4. b8 d8 c8 a8 b8 | c2 c8
+         | f4.( e8) d8 e8 f8 d8 | c8 c8 c8 a8 c8 c8 c8 a8
+        | g4. b8 d8 c8 a8 b8
+      } \alternative {
+        { | c2 c4 c4 }
+        { | c4 c4 \bar "|."}
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      Eu vou re -- zar que é pa -- ra to -- do mun -- do ver;
-      Pai nos -- so que es -- tais no céu vós quei -- ra me de -- fen -- der; __
-      Pão nos -- so de ca -- da di -- a;
-      Je -- sus no al -- to da cruz so -- freu to -- da~a -- go -- ni -- a.
+      \repeat volta 2 {
+        Eu vou re -- | zar que~é pa -- ra to -- do mun -- do | ver;
+        Pai nos -- so que~es -- tais no | céu vós quei -- ra me de -- fen --
+      } \alternative {
+        { | der; __ }
+        { | der; Pão }
+      }
+      \repeat volta 2 {
+        |nos -- so de ca -- da | di -- a;
+        Je -- sus no al -- to da | cruz so -- freu to -- da~a -- go --
+      } \alternative {
+        { | ni -- a. Pão }
+        { | ni -- a. }
+      }
     }
     theChords = \chordmode {
-      s4. | c2 a:m | g1
-      | g | c
-      | f2 g | c a:m
-      | g1 | c2
+      \repeat volta 2 {
+        s4. | c2 \parenthesize a:m | g1
+        | g
+      } \alternative {
+        { | c2~ c8 }
+        { | c2 c2:7 }
+      }
+      \repeat volta 2 {
+        | f2 g | c a:m
+        | g1
+      } \alternative {
+        { | c2 c2:7 }
+        { | c2 }
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -653,16 +724,24 @@
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      Para es -- tar jun -- to~a es -- te cru -- zei -- ro;
-      É mu -- dar de o -- pi -- ni -- ão;
-      Quem a -- ma~a Je -- sus Cris -- to;
-      Não fa -- la do seu ir -- mão.
+      \repeat volta 2 {
+        Para es -- | tar jun -- to~a es -- te cru -- | zei -- ro;
+        É mu -- | dar de o -- pi -- ni -- | ão;
+      }
+      \repeat volta 2 {
+        Quem | a -- ma~a Je -- sus Cris -- to;
+        Não | fa -- la do seu ir -- | mão.
+      }
     }
     theChords = \chordmode {
-      s4 | c2 a:m | g1
-      | a2:m g | c1
-      | a2:m d:m | g1
-      | a2:m g | c2.
+      \repeat volta 2 {
+        s4 | c2 a:m | g1
+        | a2:m g | c2.
+      }
+      \repeat volta 2 {
+        s4 | a2:m d:m | g1
+        | a2:m g | c2.
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -731,22 +810,30 @@
         | g8 g8 g8 g8 g8 e8 c8 f8 | e2.
       } %\break
       \repeat volta 2 {
-        r4 | g4 g8 e8 a8 g8 f8 e8 | c2( a4) e'4
+        \parenthesize e4 | g4 g8 e8 a8 g8 f8 e8 | c2( a4) e'4
         | c4 a8 d8 d8 c8 a8 c8 | c2.
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      Não crei -- a nos mes -- tres que te~a -- pa -- re -- cem;
-      E nem com e -- les no ca -- min -- ho quei -- ra~an -- dar;
-      Crei -- a so -- men -- te~em seu Je -- sus; __
-      Que E -- le~é quem tem pa -- ra te dar.
+      \repeat volta 2 {
+          Não | crei -- a nos mes -- tres que te~a -- pa -- | re -- cem;
+          E nem com | e -- les no ca -- min -- ho quei -- ra~an -- | dar;
+      }
+      \repeat volta 2 {
+        \skip 1 | Crei -- a so -- men -- te~em seu Je -- | sus; __
+        Que E -- le~é quem tem pa -- ra te | dar.
+      }
     }
     theChords = \chordmode {
-      s4 | c2 g | c1
-      | g2 f | e1
-      | c2 g | a1:m
-      | f2 g | c1
+      \repeat volta 2 {
+        s4 | c2 g | c1
+        | g2 f | e2.
+      }
+      \repeat volta 2 {
+        s4 | c2 g | a1:m
+        | f2 g | c2.
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -796,45 +883,73 @@
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 3/4 \partial 4
       \repeat volta 2 {
-        g4 | c4 f4 e4 | d4 f4 e4 | c2. | c2.
+        g4 | c4 f4 e4 | d4 f4 e4 | c2.( | c2)( c4)
         | a'4 a4 a4 | g4 c,4 e4 | g2.~ | g2
-      } \break
+      }
       \repeat volta 2 {
-        c,4 | a'4 a4 a4 | g4 f4 e4 | c2.~
-        | c4 a4 c4 | e2 \grace{g4} \afterGrace g4 {f4} | d4 f4 e4 | c2.~ | c2
+        c,4 | a'4 a4 a4 | g4 f4 e4 | c2.(
+        | c4) a4 c4 
+        \set melismaBusyProperties = #'() \slurDown
+        | e4( << e4) \parenthesize g4\genmark "! (3.)" >> << g4 \parenthesize f4 >> | d4 f4 e4 | c2.~ | c2
       }
     }
     theLyricsOne = \lyricmode {
-      Meu Pai pe -- ço que Vós me ou -- ça;
-      Pa -- ra~eu pe -- dir o per -- dão; __
-      Eu pe -- ço não só pa -- ra mim;
-      Pa -- ra mim e os meus ir -- mãos. __
+      \set stanza = "1."
+      \repeat volta 2 {
+        Meu | Pai pe -- ço | que Vós me | ou -- | ça; __ _
+        | Pa -- ra~eu pe -- | dir o per -- | dão. __ _
+      }
+      \repeat volta 2 {
+        Eu | pe -- ço não | só pa -- ra | mim; __ _
+        Pa -- ra | mim __ _ e | os meus ir -- | mãos. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Meu | Pai quan -- do | for per -- do -- | ar; __ _
+        Per -- | do -- a co -- | mo lhe con -- | vém. __ _
+      }
+      \repeat volta 2 {
+        Eu | pe -- ço que | vós nos per -- |do -- | e;
+        Co -- mo | per __ _ -- do -- | ou em Be -- | lém. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        A | bar -- ca que | cor -- re no | mar; __ _ _
+        | Cor -- re no | meu co -- ra -- | ção. __ _
+      }
+      \repeat volta 2 {
+        A -- | que -- le que | a -- qui ba -- | ti -- |za;
+        Ba -- ti -- | zou \parenthesize no \parenthesize ri -- | o de Jor -- | dão. __ _
+      }
     }
     theChords = \chordmode {
-     s4 | c2. | g | c | c:7
-     | f:maj7 | c | g | g
-     | f | g | c | a:m
-     | c | g:7 | c | \mark \markup{\hspace #1 \super{"1"}}c:7
+     \repeat volta 2 {
+       s4 | c2. | g | c | c:7
+       | f:maj7 | c | g | g2
+     }
+     \repeat volta 2 {
+       s4 | f2. | g | c | a:m
+       | c | g:7 | c | \mark \markup{\hspace #1 \super{"1"}} \parenthesize c2:7
+     }
     }
-    \include "tex/lp-include-tail.ly"
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}
-    My Father I ask that You hear me
-    For me to ask for forgiveness
-    I ask not only for me
-    But for me and my brothers and sisters
+  \begin{translation}\footnotesize % to fit whole song on one spread
+    My Father I ask that You hear me, for me to ask for forgiveness
+    I ask not only for me, but for me and my brothers and sisters
     \nextverse
-    My Father when He forgives
-    He forgives as it befits Him
-    I ask that You forgive us
-    As You forgave in Bethlehem
+    My Father when He forgives, he forgives as it befits Him
+    I ask that You forgive us, as You forgave in Bethlehem
     \nextverse
-    The boat which sails on the sea
-    Sails within my heart
-    The one who baptizes here
-    Baptized in the Jordan River
+    The boat which sails on the sea sails within my heart
+    The one who baptizes here, is baptized in the Jordan River
   \end{translation}
 \endsong
 
@@ -880,16 +995,24 @@
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      O a -- mor é pa -- ra ser di -- stri -- bu -- í -- do;
-      E não a -- mor fin -- gi -- do por -- que e -- le cau -- sa dor.
-      O a -- mor é o cam -- po da for -- mo -- su -- ra;
-      On -- de~es -- tá minha~i -- ma -- gem pu -- ra Deus foi quem cri -- ou.
+      \repeat volta 2 {
+        O a -- | mor é pa -- ra ser di -- stri -- bu -- | í -- do;
+        E não a -- mor fin -- | gi -- do por -- que e -- le cau -- sa | dor.
+      }
+      \repeat volta 2 {
+        O a -- | mor é o cam -- po da for -- mo -- | su -- ra;
+        On -- de~es -- tá minha~i -- ma -- gem | pu -- ra Deus foi quem cri -- | ou.
+      }
     }
     theChords = \transpose c d \chordmode {
-      s4 | c1 | c1
-      | g2 f2 | c1
-      | g1 | c1
-      | g2 f2 | c1
+      \repeat volta 2 {
+        s4 | c1 | c1
+        | g2 f2 | c2.
+      }
+      \repeat volta 2 {
+        s4 | g1 | c1
+        | g2 f2 | c2.
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -905,7 +1028,7 @@
   \end{translation}
 \endsong
 
-
+\scleardpage
 \beginsong{Eu Não sou Deus}[by={Padr. Sebastião},tags={2x, de pé},key={D},sks={D, C}]
   \audio[]{https://www.nossairmandade.com/hymn/12/EuN\%C3\%A3oSouDeus}
   \audio[key={F},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=1857s}
@@ -917,11 +1040,11 @@
     \[^\mn{C}]Mas \[\mnc{A}Am]tenho uma \[^\mn{E}]es\[^\mn{G}]pe|\[G]rança \altchords{Am |G}
     Eu \[^\mn{B}]não \[^\mn{D}]sou |\[\mnc{F}F]Deus \altchords{|F}
     \[^\mn{E}]Mas \[\bm\mn{A}]sou \[^\mn{C}]sua semel|\[C]hança \altchords{G |C}
-  \mnendchorus\mnbeginchorus\memorize[chords_eunaosoudeus_b]
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_eunaosoudeus_b]
     \ind \[^\mn{A}]Deus \[^\mn{C}]é |\[\mnc{E}C]fo\[^\mn{C}]go, \altchords{|C}
     \ind Deus é \[^\mn{A}]á\[^\mn{G}]gua, \[^\mn{E}]Deus \[^\mn{G}]é |\[\mnc{G}G]tudo \altchords{|G}
     \ind Eu convido os \[^\mn{B}]meus \[^\mn{D}]ir|\[\mnc{F}F]mãos \altchords{|F}
-    \ind pra co\[^\mn{E}]me\[\bm\mn{A}]çar \[^\mn{C}]nossos es|\[C]tudos \altchords{|C}
+    \ind Para co\[^\mn{E}]me\[\bm\mn{A}]çar \[^\mn{C}]nossos es|\[C]tudos \altchords{|C}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_eunaosoudeus_a]
@@ -929,7 +1052,7 @@
     Mas ^tenho uma espe|^rança \altchords{|A}
     Eu não sou |^Deus \altchords{|G}
     Mas ^sou sua seme|^lhança \altchords{|D}
-  \endchorus\beginchorus\replay[chords_eunaosoudeus_b]
+  \endchorus\glueverses\beginchorus\replay[chords_eunaosoudeus_b]
     \ind Deus no |^céu, \altchords{|Bm}
     \ind Deus na terra, Deus no |^mar \altchords{|A}
     \ind Eu convido os meus ir|^mãos \altchords{|G}
@@ -940,32 +1063,63 @@
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
         c8 a8 c8 | e4. c8 a8 a8 e8 g8 | g4 g4. g8 b8 d8
-        | f4. e8 a,8 c8 c8 c8 | c4 c4.
-      } % \break % no break here, takes too much space
+        | f4. e8 a,8 c8 c8 c8
+      } \alternative {
+        { | c4 c4. }
+        { | c4 c2 }
+      }
       \repeat volta 2 {
-        r8 a8 c8 | e8. c16 c8 c8 a8 g8 e8 g8 | g8. g16 g8 g8 g8 g8 b8 d8
-        | f8 f16 f16 f8 e8 a,8 c8 c8 c8 | c4 c4.
+        a8\genmark "B" c8 | e8. \parenthesize c16 c8 c8 a8 g8 e8 g8 | g8. \parenthesize g16 g8 g8 g8 g8 b8 d8
+        | f8 f16 f16 f8 e8 a,8 c8 c8 c8 | c4 c2
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1. "
-      Eu não sou Deus; Mas tenho uma es -- pe -- ran -- ça;
-      Eu não sou Deus; Mas sou sua se -- mel -- han -- ça.
-      Deus é fo -- go, Deus é á -- gua, Deus é tu -- do;
-      Eu con -- vi -- do~os meus ir -- mã -- os; pra co -- me -- çar nos -- sos es -- tu -- dos.
+      \repeat volta 2 {
+        Eu não sou | Deus; Mas tenho uma es -- pe -- | ran -- ça;
+        Eu não sou | Deus; Mas sou sua se -- me --
+      } \alternative {
+        { | lhan -- ça. }
+        { | lhan -- ça. }
+      }
+      \repeat volta 2 {
+        Deus é | fo -- \parenthesize go Deus é á -- gua Deus é | tu -- \parenthesize do;
+        Eu con -- vi -- do~os meus ir -- | mãos; pa -- ra co -- me -- çar nos -- sos es -- | tu -- dos.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2. "
+      \repeat volta 2 {
+        Eu não sou | Deus; Mas tenho uma es -- pe -- | ran -- ça;
+        Eu não sou | Deus; Mas sou sua se -- me --
+      } \alternative {
+        { | lhan -- ça. }
+        { | lhan -- ça. }
+      }
+      \repeat volta 2 {
+        Deus no | céu; __ _ Deus na ter -- ra Deus no | mar; __ _
+        Eu con -- vi -- do~os meus ir -- | mã -- os; pa -- ra fi -- car em seu lu -- | gar. __ _
+      }
     }
     theChords = \transpose c d \chordmode {
-      s4. | c2 a:m
-      | g1
-      | f
-      | c
-      | c1
-      | g
-      | f
-      | c
+      \repeat volta 2 {
+        s4. | c2 a:m
+        | g1
+        | f
+      } \alternative {
+         { | c2~ c8 }
+         { | c2~ c4 }
+      }
+      \repeat volta 2 {
+        s4 | c1
+        | g
+        | f
+        | c2.
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
+  \translationoff
   \begin{translation}
     I am not God; But I have a hope
     I am not God; But I am His likeness
@@ -1042,7 +1196,7 @@
     theMelody = \transpose c g, \relative e'' {
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        e8 f8 | g4 g4 c4 a4 | a2 a4 d,8 e8
+        e8 f8 | g4 g4 c4 a8 a8 | a2 a4 d,8 e8
         | f4 d8 d8 g4 g4 | g2.
       } \break
       \repeat volta 2 {
@@ -1051,19 +1205,27 @@
       }
     }
     theLyricsOne = \lyricmode {
-      Eu pe -- di e ti -- ve~o to -- que;
-      Da Flo -- res -- ta e do As -- tral.
-      A -- qui es -- tou a -- vi -- san -- do;
-      Que de -- ve -- mos ser i -- gual.
+      \set stanza = "1."
+      \repeat volta 2 {
+        Eu pe -- di e ti -- ve o to -- que;
+        Da Flo -- res -- ta e do As -- tral.
+      }
+      \repeat volta 2 {
+        A -- qui es -- tou a -- vi -- san -- do;
+        Que de -- ve -- mos ser i -- gual.
+      }
     }
     theChords = \transpose c g, \chordmode {
-      s4 | c1 | f:maj7
-      | d2:m c | g1
-      | c2 d2:m7 | g1
-      | g2 g:7 | c2.
+      \repeat volta 2 {
+        s4 | c1 | f:maj7
+        | d2:m c | g2.
+      }
+      \repeat volta 2 {
+        s4 | c2 d2:m7 | g1
+        | g2 g:7 | c2.
+      }
     }
-    % to fit whole song on one spread:
-    \layout { #(layout-set-staff-size 16) }
+    \layout { #(layout-set-staff-size 16) } % to fit whole song on one spread
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
@@ -1128,7 +1290,7 @@
   \endchorus
   \beginchorus\replay[songs_amagiadaoracao_a]
     A meu |^Pai peço fir|meza
-    E não |^saio do ^meu lu|^gar
+    E não sai|^o do ^meu lu|^gar
   \endchorus\glueverses\beginchorus\replay[songs_amagiadaoracao_b]
     Eu |^vivo com meu |^Mestre
     Na barca |^que cor^re no |^mar
@@ -1156,28 +1318,38 @@
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        c8 c8 e8 | g2~ g8 e8 c8 e8 | g2~ g8 c,8 c8 c8
+        \parenthesize c8 c8 \parenthesize e8 | g2~ g8 e8 c8 e8 | g2~ g8 c,8 c8 c8
         | e4 c4 g4 d'4 | c2~ c8
       } \break
       \repeat volta 2 {
-        r8 c8 c8 | g2~ g8 c8 c8 c8 | e2. g,8 c8
+        \parenthesize c8
+        c8( c8) | g2~ g8 c8 c8 c8 | e2. g,8 c8
         | e4 c8 c8 g4 d'4 | c2~ c8
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1. "
-      Meu São Jo -- ão __ Meu São Jo -- ão; __
-      Foi quem can -- tou es -- ta can -- ção; __
-      Pa -- ra mim __ e pa -- ra ti;
-      Na ma -- gi -- a da O -- ra -- ção. __
+      \set stanza = "1."
+      \repeat volta 2 {
+        Meu São Jo -- | ão __ _ Meu São Jo -- | ão; __ _
+        Foi quem can -- | tou es -- ta can -- | ção; __ _
+      }
+      \repeat volta 2 {
+        \skip 1 Pa -- ra | mim __ _ e pa -- ra | ti;
+        Na ma -- | gi -- a da O -- ra -- | ção. __ _
+      }
     }
     theChords = \chordmode {
-      s4. | c1 | c1
-      | a2:m g | c1
-      | g1 | e:m
-      | a2:m g:7 | c2
+      \repeat volta 2 {
+        s4. | c1 | c1
+        | a2:m g | c2~ c8
+      }
+      \repeat volta 2 {
+        s4. | g1 | e:m
+        | a2:m g:7 | c2~ c8
+      }
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
@@ -1222,20 +1394,20 @@
   \meter{3}{4}
   \mnbeginchorus\memorize
     \lrep \[^\mn{G}]Rece|\[C]ben\[^\mn{E}]do \[^\mn{D}]no |\[^\mn{C}]meu \[^\mn{B}]co\[^\mn{C}]ra|\[\mncii{D}{A}Dm]ção | \e
-    \[^\mn{F}]U\[^\mn{D}]ma |\[\mncii{B}{G}G7]flor |\[^\mn{F}]que \[^\mn{E}]me \[^\mn{D}]con|\[\mnc{C}C]for|te \rrep
+    \[^\mn{F}]U\[^\mn{D}]ma |\[\mncii{B}{G}G]flor |\[\mnc{F}G7]que \[^\mn{E}]me \[^\mn{D}]con|\[\mnc{C}C]for|te \rrep
     \lrep Agra|\[\mnc{A}F]deço por |tudo \[^\mn{B}]de |\[\mncii{C}{G}C]bom |\[A7] \e
     \[^\mn{E}]Deus \[^\mn{D}]nos |\[\mnc{G}Dm]liv\[^\mn{F}]re \[^\mn{D}]do |\[\mnc{G}G7]que \[^\mn{B}]é \[^\mn{D}]a |\[\mnc{C}C]mor|te \rrep
   \mnendchorus
   \notesoff
   \beginchorus
     \lrep Esta |^é uma |mensagem |^boa | \e
-    Para |^nós vi|ver consci|^en|te \rrep
+    Para |^nós vi|^ver consci|^en|te \rrep
     \lrep Aumen|^tai a nos|sa ale|^gria |^ \e
     E na tris|^teza um fi|^nal para |^sem|pre \rrep
   \endchorus
   \beginchorus
     \lrep É mais |^isto que eu |tenho a di|^zer | \e
-    No meu |^ponto e|spiritu|^al | \e \rrep
+    No meu |^ponto e|^spiritu|^al | \e \rrep
     \lrep Deus nos |^cubra com |a vossa |^glória |^ \e
     E nas mal|^dades um |^ponto fi|^nal | \e \rrep
   \endchorus
@@ -1243,46 +1415,70 @@
     % transcribed by larva, 2021-08
     theMelody = \relative g'' {
       \key c \major \time 3/4 \partial 2
+      \set melismaBusyProperties = #'() \slurDashed
       \repeat volta 2 {
-        g4 g4 | g4 e4 d4 | c4 b4 c4 | d4 a2~ | a4
-        f'4 d4 | b2( g4) | f'4 e4 d4 | c2. | c4
+        g4 g4 | g4 e4 d4 | c4 b4 c4 | d4( a2~) | a4
+        f'4 d4 | b2( g4) | f'4 e4 d4 | c2.( | c4)
       }
       \repeat volta 2 {
-        c4 c4 | a4 a4 a4 | a4 a4 b4 | c4( g2~ | g4)
-        e'4 d4 | g4 f4 d4 | g,4 b4 d4 | c2. | c4
+        c4\genmark "B" c4 | a4 a4 a4 | a4 a4 b4 | c4( g2~ | g4)
+        \grace{\parenthesize e'8} e4 d4 | g4 f4 d4 | g,4 b4 d4 | c2.( | c4)
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1. "
-      Re -- ce -- ben -- do no meu co -- ra -- çã -- o; __
-      U -- ma flor __ que me con -- for -- te.
-      A -- gra -- de -- ço por tu -- do de bom; __
-      Deus nos liv -- re do que é a mor -- te.
+      \set stanza = "1."
+      \repeat volta 2 {
+        Re -- ce -- | ben -- do no | meu co -- ra -- | çã -- o; __ _
+        U -- ma | flor __ _ | que me con -- | for -- | te.
+      }
+      \repeat volta 2 {
+        A -- gra -- | de -- ço por | tu -- do de | bom; __ _ _
+        Deus nos | liv -- re do | que é a | mor -- | te.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Es -- ta | é u -- ma | men -- sa -- gem | bo -- a; __ _
+        Pa -- ra | nós vi -- | ver con -- sci -- | en -- | te.
+
+      }
+      \repeat volta 2 {
+        Au -- men -- | tai a nos -- | sa a -- le | gri -- a; __ _
+        (E)~na tris -- | te -- za~um fi -- | nal pa -- ra | sem -- | pre.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        É mais | is -- to que~eu | te -- nho~a di -- | zer; __ _ _
+        No meu | pon -- to~e -- | spi -- ri -- tu | al. __ _
+      }
+      \repeat volta 2 {
+        Deus nos | cub -- ra com | a vos -- sa | gló -- ria; __ _
+        (E)~nas mal -- | da -- des um | pon -- to fi -- | nal. __ _
+      }
     }
     theChords = \chordmode {
       \repeat volta 2 {
         s2 | c2. | c2. | d:m | d:m
-        | g:7 | g:7 | c | c
-        | f | f | c | a:7
+        | g | g:7 | c | c4
+      }
+      \repeat volta 2 {
+        s2 | f2. | f | c | a:7
         | d:m | g:7 | c | c4
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
-    Receiving in my heart
-    A flower that comforts me
-    I give thanks to all that is good
-    God free us from that which is death
+    Receiving in my heart a flower that comforts me
+    I give thanks to all that is good; God free us from that which is death
     \nextverse
-    This is a good message
-    For us to live consciously
-    Increase our joy
-    And for sadness an end forever
+    This is a good message for us to live consciously
+    Increase our joy, and for sadness an end forever
     \nextverse
-    This is more of what I have to say
-    At my spiritual point
-    God cover us with your glory
-    And for wickedness a final ending
+    This is more of what I have to say at my spiritual point
+    God cover us with your glory, and for wickedness a final ending
   \end{translation}
 \endsong
