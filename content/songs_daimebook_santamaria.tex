@@ -45,7 +45,7 @@
       \parenthesize e4 | a4 a8 b8 c4 b8 a8 | f2 d4( d4)
       | a'4 a8 b8 c4 b8 a8 | e2.
       \repeat volta 2 {
-        \parenthesize e4\genmark "B" | a,4 a8 b8 c4 b8 a8 | \slurSolid d4.( f8) a2
+        \parenthesize e4\sectionmark "B" | a,4 a8 b8 c4 b8 a8 | \slurSolid d4.( f8) a2
         \slurDashed
         | e8( e8) f8 e8 d8( d8) c8 b8 | a2.
       }
@@ -305,7 +305,7 @@
         { | fis2( fis4) }
       }
       \repeat volta 2 {
-        \parenthesize d8(\genmark "B" \parenthesize d8) | e4. e8 b4 d8 d8 | fis2 fis4 d8 d8
+        \parenthesize d8(\sectionmark "B" \parenthesize d8) | e4. e8 b4 d8 d8 | fis2 fis4 d8 d8
         | e4 e8 e8 b8 d8 d8 d8 | d2( d4)
       }
     }
@@ -420,7 +420,7 @@
         g8 e | c c c c a'4 a8 a | a g g c g4
       } \break
       \repeat volta 2 {
-        g8\genmark "B" e | c c b a d4 g8 e | c a c c c4
+        g8\sectionmark "B" e | c c b a d4 g8 e | c a c c c4
       }
     }
     theLyricsOne = \lyricmode {
@@ -520,7 +520,7 @@
         | e8 e8 e8 c8 d8 d8 d8 c8 | e2~ e8
       }
       \repeat volta 2 {
-        \parenthesize d8\genmark "B" d8 d8 | d4 d8 d8 d8 d8 d8 e8 | c8. c16 c8 c8 c8 c8 c8 e8
+        \parenthesize d8\sectionmark "B" d8 d8 | d4 d8 d8 d8 d8 d8 e8 | c8. c16 c8 c8 c8 c8 c8 e8
       } \alternative {
         { | b8. b16 b8 b8 c8 b8 b8 b8 | e2~ e8 }
         { | b8. b16 b8 b8 c8 b8 b8 a8 | a2~ a8 \bar "|." }
@@ -693,7 +693,7 @@
         | a4 a8 c, c4 e4 | d2.
       }
       \partial 4 \repeat volta 2 {
-        fis8\genmark "B" g | a4 a8 c,8 c4 e | d8 d d b g4 e
+        fis8\sectionmark "B" g | a4 a8 c,8 c4 e | d8 d d b g4 e
         | c'8 c c a fis4 d | g2.
       }
     }
@@ -1299,19 +1299,19 @@
     theMelody = \relative d'' {
       \key d \minor \time 4/4 \partial 2
       \repeat volta 2 {
-        d4\genmark "1." d8 f | a4 a g a | d,2 a'4 a | g f e a | d,2
+        d4\sectionmark "1." d8 f | a4 a g a | d,2 a'4 a | g f e a | d,2
       } \break
       \repeat volta 2 {
         d4 e | f g a bes | g2 g4 f | e f g a | d,2
       } \break
       \repeat volta 2 {
-        r4\genmark "2." a' | a d, e f | g4. g8 g4 f | e f g a | d,2
+        r4\sectionmark "2." a' | a d, e f | g4. g8 g4 f | e f g a | d,2
       } \break
       \repeat volta 2 {
         r4 a' | d, e f g | e2 e4 d | cis d e f | d2
       } \break
       \repeat volta 2 {
-        r4\genmark "3." a'4\pomark | a f e d | cis2 cis4 d | e d e f | d2
+        r4\posectionmark "3." a'4 | a f e d | cis2 cis4 d | e d e f | d2
       } \break
       \repeat volta 2 {
         d4 e | f g a bes | g2 g4 f | e f g a | d,2
@@ -1411,19 +1411,19 @@
     theMelody = \relative c'' {
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        c8\genmark "1." c e | g g e c a'4 g | e4 c8 c a'4 g | e4. c8 d4 e | c2 c8
+        c8\sectionmark "1." c e | g g e c a'4 g | e4 c8 c a'4 g | e4. c8 d4 e | c2 c8
       }
       \repeat volta 2 {
         c8 b c | d4 d8 c a4 e'4 | c8 c c b a4 e' | d8 d d c a4 e'4 | c2 c8 
       } \break
       \repeat volta 2 {
-        r8\genmark "2." c e | g4. e8 c4 a'4 | g2 e4 g | e8 e e d c4 f | e2~ e8
+        r8\sectionmark "2." c e | g4. e8 c4 a'4 | g2 e4 g | e8 e e d c4 f | e2~ e8
       }
       \repeat volta 2 {
         r8 b c | d4. c8 a4 e' | c8 c c b a4 e'4 | d d8 c a4 e'4 | c2~ c8
       } \break
       \repeat volta 2 {
-        c8\genmark "3." c\pomark e | g g e c a'4 g | e8 c c c a'4 g | e8 c c c d4 e | c2~ c8
+        c8\posectionmark "3." c e | g g e c a'4 g | e8 c c c a'4 g | e8 c c c d4 e | c2~ c8
       }
       \repeat volta 2 {
         r8 b c | d4. c8 a4 e' | c c8 b8 a4 e' | d8 d d c a4 e'4 | c2 c8
@@ -1515,7 +1515,7 @@
         g'8 g | g g e d c2~ | c2.
       } \break
       \repeat volta 2 {
-        g'8\genmark "B" g | g4 g8 g8 c2 | c2.~ c8
+        g'8\sectionmark "B" g | g4 g8 g8 c2 | c2.~ c8
         g8 | g4 e8 c g'2~ | g2.
         g8 g | g g e d c2~ | c2.
         g'8 g | g g e d c2~ | c2.
@@ -1586,12 +1586,12 @@
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 3/4 \partial 4.
       \mark \markup {"4x"} \bar ".|:" \repeat volta 4 {
-        e8\genmark "1. & 2." e8 e8 | e'4. e8 e8 e8 | d8.( d16 d8) e8 f8 e8  | c4 a2~ | a4. e'8 e8 e8 | a4. g8 g8 g8 | g4. f8 e8 f8 | e4( d2)~ | d4. d8 d8 e8
+        e8\sectionmark "1. & 2." e8 e8 | e'4. e8 e8 e8 | d8.( d16 d8) e8 f8 e8  | c4 a2~ | a4. e'8 e8 e8 | a4. g8 g8 g8 | g4. f8 e8 f8 | e4( d2)~ | d4. d8 d8 e8
         | f4.( f8) f8( f8) | f4. f8 a8 a8 | a4 e2~ | e4. d8 d8 c8
         | b4.( b8 b8 b8) | b4. b8 c8 b8 | b4( a2)~ | a4.
       } \break
       \repeat volta 2 {
-        e'8\genmark "3." a8 g8 | f8 f8 f8 e8 d8 c8 | b4 b8 d8 g8 f8 | e8 e8 e8 d8 c8 b8 | a4 a8 e'8 f8 e8
+        e'8\sectionmark "3." a8 g8 | f8 f8 f8 e8 d8 c8 | b4 b8 d8 g8 f8 | e8 e8 e8 d8 c8 b8 | a4 a8 e'8 f8 e8
         | d4. b8 b8 b8 | b4. b8 c8 b8 | b4 a2~ | a4.
       }
     }
