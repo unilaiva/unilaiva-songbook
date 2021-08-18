@@ -19,7 +19,7 @@
   \mnendchorus\glueverses\mnbeginchorus
     \meter{4}{4}
     \ind \[\mn{A}]Eu \[\mn{B}]es\[\mn{C#}]tou |\[\mnc{D}D]firme com meu Je|sus \altchords{|D |Bm}
-    \ind \[\mn{F#}]Eu estou |\[\mnc{A}A]fir\[\mn{A}]me \[E]nes\[\mn{B}]ta |\[\mnc{C#}A]luz \altchords{|A |F\#m \e}
+    \ind \[\mn{F#}]Eu estou |\[\mnc{A}A]fir\[\mn{A}]me \[E]nes\[\mn{B}]ta |\[\mnc{C#}A]luz \altchords{|A |F\#m}
     \ind \[\mn{E}]A\[\mnc{D}E7]on\[\mn{B}]de es|\[\mnc{A}A]tou \altchords{E7 |A}
   \mnendchorus
   \mnbeginchorus
@@ -45,22 +45,21 @@
     In the place where he is
   \end{translation}
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    \layout { #(layout-set-staff-size 14) } % to fit all on one spread
-    theMelody = \relative c'' {
+    theMelody = \relative cis'' {
       \key a \major \time 4/4 \partial 4
       \repeat volta 2 {
-        cis4 | e2 cis4 a | e' a, b cis | d2.
+        cis4\sectionmark "1.A" | e2 cis4 a | e' a, b cis | d2.
         d4 | gis2 e4 fis4 | gis e fis gis
-      } \alternative { { | cis,2. } { \time 6/4 | cis2. a4 b cis } }
+      } \alternative { { | cis,2. } { \time 6/4 | cis2. a4\sectionmark "1.B" b cis } }
       \time 4/4
       \repeat volta 2 {
         | d4 d8 d d4 d | d4. fis8 fis4 fis
         | a a, a b | cis e d b
-      } \alternative { { | a4. a8 b4 cis } { | a2. cis4 } }
+      } \alternative { { | a4. a8 b4 cis } { | a2. cis4\posectionmark "2.A" } }
       \repeat volta 2 {
         | e2 cis4 a | e' a, b cis | d2. e4
         | gis2 e4 fis | gis e fis gis
-      } \alternative { { | cis,2. e4 } { \time 6/4 | cis2. a4 b cis } }
+      } \alternative { { | cis,2. e4 } { \time 6/4 | cis2. a4\sectionmark "2.B" b cis } }
       \time 4/4
       \repeat volta 2 {
         | d4 d8 d d4 d | d4. fis8 fis4 fis
@@ -70,23 +69,25 @@
     theLyricsOne = \lyricmode {
       \repeat volta 2 {
         \set stanza = "1. "
-        Fir -- me -- za fir -- me -- za no a -- mor;
-        Fir -- me -- za fir -- me -- za~a -- on -- de~es-
-      } \alternative { { tou; } { tou. Eu es -- tou } }
+        Fir -- | me -- za fir -- | me -- za no a -- | mor;
+        Fir -- | me -- za fir -- | me -- za~a -- on -- de~es-
+      } \alternative { { | tou; } { \time 6/4 | tou. Eu es -- tou } }
+      \time 4/4
       \repeat volta 2 {
-        fir -- me com meu Je -- sus;
-        Eu es -- tou fir -- me nes -- ta luz;
+        | fir -- me com meu Je -- | sus;
+        Eu es -- tou | fir -- me nes -- ta | luz;
         Aon -- de es-
-      } \alternative { { tou; Eu es -- tou } { tou. \set stanza = "2." Fir- } }
+      } \alternative { { | tou; Eu es -- tou } { | tou. \set stanza = "2." Fir- } }
       \repeat volta 2 {
-        me -- za fir -- me -- za no a -- mor;
-        Fir -- me -- za fir -- me -- za~a -- on -- de~es-
-      } \alternative { { tou; Fir- } { tou. O Mes -- tre } }
+        | me -- za fir -- | me -- za no a -- | mor;
+        Fir -- | me -- za fir -- | me -- za~a -- on -- de~es-
+      } \alternative { { | tou; Fir- } { \time 6/4 | tou. O Mes -- tre } }
+      \time 4/4
       \repeat volta 2 {
-        man -- da eu tra -- ba -- lhar;
-        O Mes -- tre man -- da eu me fir -- mar;
-        No lu -- gar on -- de~E le~es-
-      } \alternative { { tá; O Mes -- tre } { tá. } }
+        | man -- da eu tra -- ba -- | lhar;
+        O Mes -- tre | man -- da eu me fir -- | mar;
+        No lu -- | gar on -- de~E le~es-
+      } \alternative { { | tá; O Mes -- tre } { | tá. } }
     }
     theChords = \chordmode {
       \repeat volta 2 {
@@ -104,6 +105,7 @@
         | d1 | d | a2 e2 | a1 | e2:7 e2:7
       } \alternative { { | a1 } { | a2. \bar "|." } }
     }
+    \layout { #(layout-set-staff-size 14) } % to fit all on one spread
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
@@ -144,44 +146,48 @@
     Because there are many who don't know how to love
   \end{translation}
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    \layout { #(layout-set-staff-size 15) } % to fit all on one spread
     theMelody = \relative d'' {
       \key d \major \time 4/4 \partial 1*5/8
       \repeat volta 2 {
-         r4  a8 a a | d4 d8 cis b4 a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
+         r4 a8\sectionmark "1.A" a a | d4 d8 cis b4 a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
       }
       \repeat volta 2 {
-        r4. a8 a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e d fis e | d4.
+        r4. a8\sectionmark "1.B" a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e d fis e | d4.
       }
       \repeat volta 2 {
-        a8 a a a a | d d d cis b a fis a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
+        a8\posectionmark "2.A" a a a a | d d d cis b a fis a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
       }
       \repeat volta 2 {
-        r4. a8 a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e4 fis | d4.
+        r4. a8\sectionmark "2.B" a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e4 fis | d4.
       }
     }
     theLyricsOne = \lyricmode {
-      \repeat volta 2 {
-      \set stanza = "1. "
-        Eu es -- tou fir -- me com meu Je -- sus;
-        Foi E -- le quem me deu es -- ta san -- ta luz.
-        Es -- ta luz é da Vir -- gem da Con -- cei -- ção;
-        Foi E -- la quem man -- dou eu me u -- nir com meus ir -- mãos.
-      }
-      \repeat volta 2 {
-      \set stanza = "2. "
-        Foi E -- la quem man -- dou eu me u -- nir com meus ir -- mãos;
-        Pa -- ra a reu -- ni -- ão da se -- pa -- ra -- ção;
-        Nes -- te di -- a mui -- ta gen -- te vai cho -- rar;
-        Por -- que tem mui -- tos de -- les que não sa -- bem~a -- mar.
-      }
+      \set stanza = "1."
+        Eu es -- tou | fir -- me com meu Je -- | sus;
+        Foi E -- le quem me | deu es -- ta san -- ta | luz.
+        Es -- ta | luz é da Vir -- gem da Con -- cei -- | ção;
+        Foi E -- la quem man -- | dou eu me u -- nir com meus ir -- | mãos.
+      \set stanza = "2."
+        Foi E -- la quem man -- | dou eu me u -- nir com meus ir -- | mãos;
+        Pa -- ra a reu -- ni -- | ão da se -- pa -- ra -- | ção;
+        Nes -- te | di -- a mui -- ta gen -- te vai cho -- | rar;
+        Por -- que tem mui -- tos | de -- les que não sa -- bem~a -- | mar.
     }
     theChords = \chordmode {
-      s2 s8 | d2 b:m | d d | b:m a:7 | d d
-      | d b:m | d d | b:m a:7 | d d
-      | d b:m | d d | b:m a:7 | d d
-      | d b:m | d d | b:m a:7 | d4.
+      \repeat volta 2 {
+        s2 s8 | d2 b:m | d d | b:m a:7 | d4.
+      }
+      \repeat volta 2 {
+        s2 s8 | d2 b:m | d d | b:m a:7 | d4.
+      }
+      \repeat volta 2 {
+        s2 s8 | d2 b:m | d d | b:m a:7 | d4.
+      }
+      \repeat volta 2 {
+        s2 s8 | d2 b:m | d d | b:m a:7 | d4.
+      }
     }
+    \layout { #(layout-set-staff-size 15) } % to fit all on one spread
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
@@ -227,79 +233,92 @@
     Pres|^tar \noteson\[\mnlow{G}]bem \notesoff aten|^ção
     Os en|^sinos do ^profes|^sor
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    \layout { #(layout-set-staff-size 15) } % to fit all on one spread
-    theMelody = \relative g' {
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       #(define afterGraceFraction (cons 1 4))
       \repeat volta 2 {
-         g4 | c << g4 \parenthesize c >> c e |
-         \set melismaBusyProperties = #'() \slurDown \slurDashed 
-         g4.( g8 g4 )
-         \unset melismaBusyProperties
-         a | f \grace{\parenthesize f8} \afterGrace e4 {\parenthesize e8} d4 e
-         \set melismaBusyProperties = #'() \slurDown \slurDashed
-         | c2( c4)
-         \unset melismaBusyProperties
+         g4\posectionmark "A" | c << g4 \parenthesize c >> c e | g4.( g8 g4 )
+         a | f \grace{\parenthesize f8} \afterGrace e4 {\parenthesize e8} d4 e | c2( c4)
       } \break
       \repeat volta 2 {
-         g4 | c << \parenthesize g4 c >> c e |
-         \set melismaBusyProperties = #'() \slurDown \slurDashed
-         g4.( g8 g4 )
-         \unset melismaBusyProperties
-         a | f \grace{\parenthesize f8} \afterGrace e4 {\parenthesize e8} d4 e
-         \set melismaBusyProperties = #'() \slurDown \slurDashed
-         | c2( c4)
-         \unset melismaBusyProperties
+         g4\sectionmark "B" | c << \parenthesize g4 c >> c e | g4.( g8 g4 )
+         a | f \grace{\parenthesize f8} \afterGrace e4 {\parenthesize e8} d4 e | c2( c4)
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
-      Eu vi -- \parenthesize vo nes -- te mun -- do;
-      en -- quan -- to che -- ga meu diz. __ _
-      \set stanza = "1.B"
-      Encos -- ta -- do a meu Mes -- tre;
-      e~a Sem -- pre Vir -- gem Ma -- ri -- a.
+      \repeat volta 2 {
+        \set stanza = "1."
+        Eu | vi -- \parenthesize vo nes -- te | mun -- do;
+        en -- quan -- | to che -- ga meu | diz. __ _
+      }
+      \repeat volta 2 {
+        \set stanza = "1.B"
+        Encos -- | ta -- do a meu | Mes -- tre;
+        e~a Sem -- | pre Vir -- gem Ma -- | ri -- a.
+      }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
-      Meu Mes -- tre~é quem me gui -- a;
-      meu Mes -- tre (é~quem) me en -- si -- na.
-      \set stanza = "2.B"
-      Foi E -- le quem me deu; __ _ _
-      es -- ta San -- ta Dou -- tri -- na.
+      \repeat volta 2 {
+        \set stanza = "2."
+        Meu | Mes -- tre~é quem me | gui -- a; __ _
+        meu | Mes -- (tre_é) quem me~en -- | si -- na.
+      }
+      \repeat volta 2 {
+        \set stanza = "2.B"
+        Foi | E -- le quem me | deu; __ _ _
+        es -- | ta San -- ta Dou -- | tri -- na.
+      }
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
-      Foi E -- le quem me deu; __ _ _
-      foi E -- (le~quem) me man -- dou. __ _
-      \set stanza = "3.B"
-      Can -- tar com~os meus ir -- mãos; __ _
-      en -- si -- nar e ter a -- mor. __
+      \repeat volta 2 {
+        \set stanza = "3."
+        Foi | E -- le quem me | deu; __ _ _
+        foi | E -- (le_quem) me man -- | dou. __ _
+      }
+      \repeat volta 2 {
+        \set stanza = "3.B"
+        Can -- | tar com~os meus ir -- | mãos; __ _
+        en -- si -- | nar e ter a -- | mor. __ _
+      }
     }
     theLyricsFour = \lyricmode {
-      \set stanza = "4."
-      \skip 1 Pa -- ra ter o~a -- mor; __ _
-      e sen -- tir no co -- ra -- ção. __ _
-      \set stanza = "4.B"
-      Ro -- gar ao Pai E -- terno;~pa --
-      ra re -- ce -- ber o meu per -- dão. __
+      \repeat volta 2 {
+        \set stanza = "4."
+        \skip 1 | Pa -- ra ter o~a -- | mor; __ _
+        e sen -- | tir no co -- ra -- | ção. __ _
+      }
+      \repeat volta 2 {
+        \set stanza = "4.B"
+        Ro -- | gar ao Pai E -- | terno;~pa --
+        ra re -- ce -- | ber o meu per -- | dão. __ _
+      }
     }
     theLyricsFive = \lyricmode {
-      \set stanza = "5."
-      \skip 1 Pa -- ra ter o~per -- dão; __ _
-      e tra -- ba -- lhar com a -- mor. __ _
-      \set stanza = "5.B"
-      Pres -- tar bem a -- ten -- ção; __ _
-      os en -- si -- (nos~do) pro -- fes -- sor. __
+      \repeat volta 2 {
+        \set stanza = "5."
+        \skip 1 | Pa -- ra ter o~per -- | dão; __ _
+        e tra -- | ba -- lhar com a -- | mor. __ _
+      }
+      \repeat volta 2 {
+        \set stanza = "5.B"
+        Pres -- | tar bem a -- ten -- | ção; __ _
+        os en -- | si -- (nos_do) pro -- fes -- | sor. __ _
+      }
     }
     theChords = \chordmode {
-      s4 | c1 | \parenthesize g | d2:m g:7 | c2.
-      s4 | c1 | \parenthesize g | d2:m g:7 | c2.
+      \repeat volta 2 {
+        s4 | c1 | \parenthesize g | d2:m g:7 | c2.
+      }
+      \repeat volta 2 {
+        s4 | c1 | \parenthesize g | d2:m g:7 | c2.
+      }
     }
-    \include "tex/lp-include-tail.ly"
+    \layout { #(layout-set-staff-size 15) } % to fit all on one spread
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\scriptsize % to fit on one spread
+  \translationoff
+  \begin{translation}
     I live in this world until my day comes
     Next to my Master and the Ever Virgin Mary
     \nextverse
@@ -348,58 +367,42 @@
     theMelody = \relative b' {
       \key e \minor \time 4/4 \partial 4.
       \repeat volta 2 {
-        r8 b8 b8 | b4 b b a | c4( b2)
+        r8\posectionmark "A" b8 b8 | b4 b b a | c4( b2)
         b8 b8 | b4 b b a | c4( b4.)
       }
       \repeat volta 2 {
-        \parenthesize b8 b8 b8 | c4 b bes b | g' fis4.
+        \parenthesize b8\sectionmark "B" b8 b8 | c4 b bes b | g' fis4.
         \parenthesize e8 e e | dis4 dis b fis' | e2~ e8
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      \repeat volta 2 {
-        To -- dos de -- vem pro -- cu -- rar; __
-        Ter fir -- me -- za~e ter a -- mor. __
-      }
-      \repeat volta 2 {
-        O que o Mes -- tre nos en -- si -- na;
-        A mi -- nha Mãe foi quem man -- dou. __
-      }
+      To -- dos | de -- vem pro -- cu -- | rar; __
+      Ter fir -- | me -- za~e ter a -- | mor. __
+      O que o | Mes -- tre nos en -- | si -- na;
+      A mi -- nha | Mãe foi quem man -- | dou. __
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
-      \repeat volta 2 {
-        O __ _ Mes -- tre~E -- le en -- sina; __
-        Pa -- ra to -- dos seus ir -- mãos.
-      }
-      \repeat volta 2 {
-        \skip 1 Bem gra -- var e ter fir -- me -- za;
-        \skip 1 Den __ -- \skip 1 tro do co -- ra -- ção. __
-      }
+      O __ _ | Mes -- tre~E -- le en -- | sina; __
+      Pa -- ra | to -- dos seus ir -- | mãos.
+      \skip 1 Bem gra -- | var e ter fir -- | me -- za;
+      \skip 1 Den -- _ | tro do co -- ra -- | ção. __
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
-      \repeat volta 2 {
-        O __ _ Mes -- tre~E -- le en -- sina; __
-        Pa -- ra bem se ter a -- mor.
-      }
-      \repeat volta 2 {
-        \skip 1 Bem gra -- var e ter fir -- me -- za;
-        \skip 1 Em nos -- so Pai Cri -- a -- dor. __
-      }
+      O __ _ | Mes -- tre~E -- le en -- | sina; __
+      Pa -- ra | bem se ter a -- | mor.
+      \skip 1 Bem gra -- | var e ter fir -- | me -- za;
+      \skip 1 Em nos -- | so Pai Cri -- a -- | dor. __
     }
     theChords = \chordmode {
-      \repeat volta 2 {
-        s4. | e2.:m \parenthesize a4:m | e1:m
-        | e2.:m \parenthesize a4:m | e2:m e8:m
-      }
-      \repeat volta 2 {
-        s4.| b1:7 | e:m
-        | b:7 | e2:m e8:m
-      }
+      s4. | e2.:m \parenthesize a4:m | e1:m
+      | e2.:m \parenthesize a4:m | e2:m~ e8:m
+      s4.| b1:7 | e:m
+      | b:7 | e2:m~ e8:m
     }
-    \include "tex/lp-include-tail.ly"
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     All must seek to have firmness and to have love
@@ -452,53 +455,60 @@
       \key a \major \time 4/4 \partial 4.
       \set melismaBusyProperties = #'()
       \repeat volta 2 {
-        \parenthesize a8 << cis8 \parenthesize e8 >> e | a4 gis fis e | a4.~ << a8 \parenthesize cis,8 >> cis4 fis
+        \parenthesize a8\posectionmark "A" << cis8 \parenthesize e8 >> e | a4 gis fis e | a4.~ << a8 \parenthesize cis,8 >> cis4 fis
         | e d b cis | a2~ \afterGrace a8 ~a8
       }
       \repeat volta 2 {
-         r8 << \parenthesize cis8 e8 >> e | b4~ << b8 \parenthesize d8 >> d8 cis4 b | a4.~ a8 cis4 e4
+         r8\sectionmark "B" << \parenthesize cis8 e8 >> e | b4~ << b8 \parenthesize d8 >> d8 cis4 b | a4.~ a8 cis4 e4
          | b d cis b | a2~ a8
       }
     }
+    % Lyric repeats are omitted, because they create problems with the
+    % starting rest.
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      \skip 1 Meus ir -- mãos eu vou lem -- brar; __ _
-      O que nin -- guém se lem -- brou. __ _
+      \skip 1 Meus ir -- | mãos eu vou lem -- | brar; __ _
+      O que | nin -- guém se lem -- | brou. __ _
       \set stanza = "1.B"
-      Meu __ _ Pai __ _ e mi -- nha Mãe; __ _
-      Tan -- to que re -- co -- men -- dou. __ _
+      Meu __ _ | Pai __ _ e mi -- nha | Mãe; __ _
+      Tan -- to | que re -- co -- men -- | dou. __ _
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
-      \skip 1 \parenthesize As __ _ Tá -- buas de Moi -- sés; __ _
-      Que o meu Pai en -- tre -- gou. __ _
+      \skip 1 \parenthesize As __ _ | Tá -- buas de Moi -- | sés; __ _
+      Que o | meu Pai en -- tre -- | gou. __ _
       \set stanza = "2.B"
-      Não __ _ li  -- \parenthesize ga -- \skip 1 ram~im -- por -- tân -- cia;
-      Não con -- sa -- gra -- ram o~a -- mor. __ _
+      Não __ _ | li  -- \parenthesize ga -- \skip 1 ram~im -- por -- | tân -- cia;
+      Não con -- | sa -- gra -- ram o~a -- | mor. __ _
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
-      \skip 1 Me ve -- jo con -- tra -- ri -- a -- (do);
-      Com o po -- vo bra -- si -- lei -- ro. 
+      \skip 1 Me ve -- | jo con -- tra -- ri -- | a -- (do);
+      Com o | po -- vo bra -- si -- | lei -- ro. 
       \set stanza = "3.B"
-      \parenthesize Que -- rem que o __ _ meu Pai fa -- ça
-      Co -- mo faz lá no~es -- tran -- gei -- ro.
+      \parenthesize Que -- rem | que o __ _ meu Pai | fa -- ça
+      Co -- mo | faz lá no~es -- tran -- | gei -- ro.
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
-      \parenthesize Não sei o que o po -- vo pen -- sa
-      Que de tu -- do~se es -- que -- ceu; __ _
+      \parenthesize Não sei o | que o po -- vo | pen -- sa
+      Que de | tu -- do~se es -- que -- | ceu; __ _
       \set stanza = "4.B"
-      \parenthesize A -- mam mais __ _ a i -- lu -- são; __ _
-      Do que meu Pai ver -- da -- dei -- ro.
+      \parenthesize A -- mam | mais __ _ a i -- lu -- | são; __ _
+      Do que | meu Pai ver -- da -- | dei -- ro.
     }
     theChords = \chordmode {
-        s4. | a2 e2 | a2 \parenthesize fis2:m | e1 | a1
-        b2:m e | a1 | b2:m e | a2~ a8
+      \repeat volta 2 {
+        s4. | a2 e2 | a2 \parenthesize fis2:m | e1 | a2~ a8
+      }
+      \repeat volta 2 {
+        s4. | b2:m e | a1 | b2:m e | a2~ a8
+      }
     }
-    \include "tex/lp-include-tail.ly"
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\scriptsize % to fit all on one spread
+  \translationoff
+  \begin{translation}
     My brothers and sisters I'm going to remember that which nobody remembered
     My Father and my Mother much recommended it
     \nextverse
@@ -560,60 +570,65 @@
       \slurDashed
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        r8 g8( g) | c4 e8( e8) d4 e | c2( c8 c8) << \parenthesize c8 e8( >> e8)
+        r8 \posectionmark "A" g8( g) | c4 e8( e8) d4 e | c2( c8 c8) << \parenthesize c8 e8( >> e8)
         | g4( g8) e8 a4. c,8 | e2~ e8
       } \break
       \repeat volta 2 {
-        \parenthesize d8 d e | f4 f8( f8) d4 e4 | c4.( c8) b4 a4
+        \parenthesize d8\sectionmark "B" d e | f4 f8( f8) d4 e4 | c4.( c8) b4 a4
         | g4( g8) g8 e'4. d8 | c2~ c8
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      O va -- lor que o Mes -- tre tem; __ _ _
-      Eu __ _ vou __ _ es -- cla -- re -- cer. __ _
+      O va -- | lor que o Mes -- tre | tem; __ _ _
+      Eu __ _ | vou __ _ es -- cla -- re -- | cer. __ _
       \set stanza = "1.B"
-      \parenthesize Se ti -- ver al -- guém __ _ que du -- vi -- de;
-      To -- me Dai -- _ me pa -- ra ver. __ _
+      \parenthesize Se ti -- ver | al -- guém __ _ que du -- | vi -- de;
+      To -- me | Dai -- _ me pa -- ra | ver. __ _
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
-      Meu __ _ Mes -- tre __ _ veio ao mun -- do; __ _
-      Nas -- _ ceu __ _ lá no~es -- tran -- gei -- ro.
+      Meu __ _ | Mes -- tre __ _ veio ao | mun -- do; __ _
+      Nas -- _ | ceu __ _ lá no~es -- tran -- | gei -- ro.
       \set stanza = "2.B"
-      \skip 1 O va -- lor que o Mes -- tre tem; __ _
-      Não se com -- _ pra com di -- nhei -- ro.
+      \skip 1 O va -- | lor que o Mes -- tre | tem; __ _
+      Não se | com -- _ pra com di -- | nhei -- ro.
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
-      Meu __ _ Mes -- tre __ _ é for -- mo -- so; __ _
-      \parenthesize É pre -- ci -- so a -- cre -- di -- tar. __ _
+      Meu __ _ | Mes -- tre __ _ é for -- | mo -- so; __ _
+      \parenthesize É pre -- | ci -- so a -- cre -- di -- | tar. __ _
       \set stanza = "3.B"
-      \skip 1 Eu con -- vi -- do os meus ir -- mãos; __ _
-      Va -- mos to -- dos a -- com -- pa -- nhar. __ _
+      \skip 1 Eu con -- | vi -- do os meus ir -- | mãos; __ _
+      Va -- mos | to -- dos a -- com -- pa -- | nhar. __ _
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
-      Meu __ _ Mes -- tre a ti eu pe -- ço; __ _
-      Na __ _ mi -- nha con -- cen -- tra -- ção. __ _
+      Meu __ _ | Mes -- tre a ti eu | pe -- ço; __ _
+      Na __ _ | mi -- nha con -- cen -- tra -- | ção. __ _
       \set stanza = "4.B"
-      \skip 1 Pa -- ra vós me __ _ con -- so -- lar; __ _
-      E con -- so -- _ lar meus ir -- mãos. __ _
+      \skip 1 Pa -- ra | vós me __ _ con -- so -- | lar; __ _
+      E con -- | so -- _ lar meus ir -- | mãos. __ _
     }
     theLyricsFive = \lyricmode {
       \set stanza = "5."
-      Meu __ _ Mes -- tre a ti eu pe -- ço;
-      Fa -- \parenthesize ça de mim __ _ o que qui -- ser; __ _
+      Meu __ _ | Mes -- tre a ti eu | pe -- ço;
+      Fa -- \parenthesize ça de | mim __ _ o que qui -- | ser; __ _
       \set stanza = "5.B"
-      \skip 1 Me -- u Mes -- tre es -- tou a -- qui; E
-      te pro -- me -- _ to ser fi -- el. __ _
+      \skip 1 Me -- u | Mes -- tre es -- tou a -- | qui; E
+      te pro -- | me -- _ to ser fi -- | el. __ _
     }
     theChords = \chordmode {
-      s4. | c1 | c1
-      | c2 f2 | c1
-      | f1:maj7 | c1
-      | g1:7 | c2~ c8
+      \repeat volta 2 {
+        s4. | c1 | c1
+        | c2 f2 | c2~c8
+      }
+      \repeat volta 2 {
+        s4. | f1:maj7 | c1
+        | g1:7 | c2~ c8
+      }
     }
+
     \layout { #(layout-set-staff-size 16) } % to fit all on one spread
     \include "tex/lp-include-tail-lyricsbelow.ly"
     \end{lilypond}\end{lilywrap}
