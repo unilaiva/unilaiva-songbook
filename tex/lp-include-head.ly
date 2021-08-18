@@ -32,6 +32,9 @@
     % Lilypond version:
     \version "2.22.0"
 
+    % Note names language; nederlands has: c sharp = cis, b flat = bes, b = b
+    \language "nederlands"
+
     % Sets the global staff size, it scales everything. Recommended size is 18,
     % but we use 17 for space reasons. With Noto fonts, 16 might be needed.
     #(set-global-staff-size 17)
@@ -68,33 +71,73 @@
       }
     }
 
-    % Mark a spot with text above the staff. Text is given as the only
-    % parameter. Example: \genmark "my text"
-    genmark =
-    #(define-music-function
+    % Draw a box around text and color it blue. Used by other functions.
+    #(define-markup-command
+      (blueboxed layout props text)
+      (markup?)
+      "Draw a box around text and color it blue."
+      (interpret-markup layout props
+        #{
+          \markup {
+            \with-color #darkblue
+            \rounded-box{ #text }
+          }
+        #}
+      )
+    )
+
+    % Draw the playout symbol. Used by other functions.
+    #(define-markup-command
+      (playoutsymbol layout props)
+      ()
+      "Draw the playout symbol"
+      (interpret-markup layout props
+        #{
+          \markup {
+            \with-color #darkgreen
+            \fontsize #6 { \arrow-head #Y #DOWN ##t }
+          }
+        #}
+      )
+    )
+
+    % Mark a spot in the music with a boxed blue text above the staff.
+    % Use this to mark beginnings of musical sections. The text is given
+    % as the only input parameter. Example: \sectionmark "2.A"
+    sectionmark =
+    #(define-event-function
       (parser location marktext)
       (markup?)
+      "Mark the beginning of a musical section"
       #{
-        ^\markup{
-          \with-color #darkblue
-          \rounded-box{ #marktext }
-        }
-      #})
+        ^\markup { \blueboxed{ #marktext } }
+      #}
+    )
 
-    % Mark a spot where the playout ought to start at. A symbol will be
-    % shown above the staff. No parameters.
+    % Mark the playout start spot in the music. A symbol will be shown above
+    % the staff. No parameters.
     pomark =
-    #(define-music-function
+    #(define-event-function
       (parser location)
       ()
+      "Mark the beginning of the playout"
       #{
-        ^\markup{
-          \fontsize #6 {
-            \with-color #darkgreen
-            \arrow-head #Y #DOWN ##t
-          }
-        }
-      #})
+        ^\markup { \playoutsymbol } 
+      #}
+    )
+
+    % Mark the playout start spot with a symbol followed by a boxed text used
+    % to mark the beginning of a section. The text is given as the only input
+    % parameter. Example: \posectionmark "2.B"
+    posectionmark =
+    #(define-event-function
+      (parser location sectiontext)
+      (markup?)
+      "Mark the beginning of the playout and a musical section"
+      #{
+        ^\markup { \playoutsymbol \blueboxed{ #sectiontext } }
+      #}
+    )
 
     % Defines some variables as empty, so that if the user doesn't define them,
     % nothing breaks and they will just be ignored.
