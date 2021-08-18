@@ -89,7 +89,7 @@
       ()
       #{
         ^\markup{
-          \fontsize #8 {
+          \fontsize #6 {
             \with-color #darkgreen
             \arrow-head #Y #DOWN ##t
           }
