@@ -18,37 +18,34 @@
 \beginsong{Vida}[by={Pard. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
   \mnbeginchorus\memorize
-    \[^\mn{A}]Vida \[^\mn{C}]São |\[\mnc{E}Am]João, vida \[\mnc{D}(Dm)]meu \[^\mn{E}]Je|\[\mnc{A}Am]su\[^\bm]s
-    A \[^\mn{C}]lu\[^\mn{E}]a |\[\mnc{A}A7]cheia, seu bri\[^\bm\mn{G}]lho \[^\mn{A}]re|\[\mnc{D}Dm]lu\[^\bm]z
+    \[^\mn{A}]Vida \[^\mn{C}]São |\[\mnc{E}Am]João, vida \[\mnc{D}(E7/D)]meu \[^\mn{E}]Je|\[\mnc{A}Am]sus \[^\bm]
+    A \[^\mn{C}]lu\[^\mn{E}]a |\[^\mn{A}]cheia, seu bri\[\mnc{G}{A7}]lho \[^\mn{A}]re|\[\mnc{D}Dm]luz \[^\bm]
     \lrep \[^\mn{A}]É tão bo|\[\mnc{B}Bm7b5]ni\[^\mn{A}]to, o poder \[\mnc{F}(Dm/F)]da \[^\mn{D}]fo\[^\mn{F}]gue|\[Am]i\[^\mn{E}]ra
-    Queima a \[\mnc{C}C]noit\[^\mn{A}]e in\[^\mn{E}]te|\[E7]i\[^\mn{D}]ra, mis\[^\mn{C}]té\[^\bm\mn{B}]rio \[^\mn{C}]da |\[\mnc{A}Am]Cruz \rrep
+    Queima a \[\mnc{C}(C)]noit\[^\mn{A}]e in\[^\mn{E}]te|\[E7]i\[^\mn{D}]ra, mis\[^\mn{C}]té\[^\bm\mn{B}]rio \[^\mn{C}]da |\[\mnc{A}Am]Cruz \[^\bm] \rrep
   \mnendchorus
   \notesoff
   \beginchorus
     Esta lem|^brança é da e^terni|^da\[\bm]de
-    Esta ver|^dade nos e\[\bm]leva as|^si\[\bm]m
+    Esta ver|dade nos e^leva as|^sim \[\bm]
     \lrep Lembrando |^sempre a Luz ^deste di|^{'a}
-    Oh Vir^gem Mari|^{'a}, vós lem\[\bm]brai de |^mim \rrep
+    Oh Vir^gem Mari|^{'a}, vós lem\[\bm]brai de |^mim \[\bm] \rrep
   \endchorus
   \beginchorus
     Aqui na |^Terra a vida é ^como |^é
-    Domina|^dor da vida é \[\bm]São Jo|^sé\[\bm]
+    Domina|dor da vida é ^São Jo|^sé \[\bm]
     \lrep Oh Patri|^arca, nos as^cenda Lu|^z
-    Vida ^meu Jesu|^s, Espe\[\bm]rança e |^Fé \rrep
+    Vida ^meu Jesu|^s, Espe\[\bm]rança e |^Fé \[\bm] \rrep
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva, 2021-08
     theMelody = \relative a' {
+            \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4.
-      a8 a c | e8 e8 e8 e8 d4 e |
-      \set melismaBusyProperties = #'()
-      \slurDown
-        a,2~ a8
-      \unset melismaBusyProperties
-      a8 c e | a8 a8 a8 a8 g4 a4 | d,2~ d8
+      a8\posectionmark "A" a c | e8 e8 e8 e8 d4 e | a,2( a8) a8 c e
+      | a8 a8 a8 a8 g4 a4 | d,2~ d8
       \repeat volta 2 {
-        a'8 a a | b a a a f4 d8 f8~ | f8 e8 e8 e8 c4 a8 e'8~
-        | e8 d d c8 b4 c4 | a2~ a8
+        a'8\sectionmark "B" a a | b a a a f4 d8 f8~ | f8 e8 e8 e8 c4 a8 e'8~
+        | e8 d( d) c8 b4 c4 | a2~ a8
       }
     }
     theLyricsOne = \lyricmode {
@@ -56,11 +53,11 @@
         Vi -- da São | Jo -- ão
         Vi -- da meu Je -- | sus; __ _
         A lu -- a | chei -- a
-        seu bri -- lho re -- | luz. __
+        seu bri -- lho re -- | luz. __ _
       \repeat volta 2 {
-        É tão bo -- | ni -- to~o po -- der da fo -- guei -- ra;
-        Quei -- ma~a noi -- te~in -- tei -- ra
-        mis -- té -- rio da | Cruz. __
+        É tão bo -- | ni -- to~o po -- der da fo -- guei -- _ ra;
+        Quei -- ma~a noi -- te~in -- tei -- _ ra
+        mis -- té -- rio da | Cruz. __ _
       }
     }
     theLyricsTwo = \lyricmode {
@@ -68,12 +65,12 @@
       Es -- ta lem -- | bran -- ça~é
       da e -- ter -- ni -- | da -- de;
       Es -- ta ver -- | da -- de
-      nos e -- le -- va~as -- | sim. __
+      nos e -- le -- va~as -- | sim. __ _
       \repeat volta 2 {
         Lem -- bran -- do | sem -- pre
-        a Luz des -- te di -- a;
-        Oh Vir -- gem Ma -- ri -- a
-        Vós lem -- brai de | mim. __
+        a Luz des -- te di -- _ a;
+        Oh Vir -- gem Ma -- ri -- _ a
+        Vós lem -- brai de | mim. __ _
       }
     }
     theLyricsThree = \lyricmode {
@@ -81,18 +78,18 @@
       A -- qui na | Ter -- ra~a
       vi -- da~é co -- mo | é; __ _
       Do -- mi -- na -- | dor da vi -- da~é
-      São Jo -- | sé. __
+      São Jo -- | sé. __ _
       \repeat volta 2 {
         Oh Pat -- ri -- | ar -- ca
-        nos a -- scen -- da Luz; __
-        \skip 1 Vi -- da meu Je -- sus __
-        Es __ -- \skip 1 pe -- ran -- ça~e | Fé. __
+        nos a -- scen -- da Luz; __ _
+        \skip 1 Vi -- da meu Je -- sus __ _
+        Es  -- _ pe -- ran -- ça~e | Fé. __ _
       }
     }
     theChords = \chordmode {
-      s4. | a2:m \parenthesize d2:m| a1:m | a:7 | d2:m~ d8:m
+      s4. | a2:m \parenthesize e:7/d | a1:m | a2:m a:7 | d2:m~ d8:m
       \repeat volta 2 {
-         d4.:m | b2:m7.5- \parenthesize d2:m/f | a2:m c | e1:7 | a2:m~ a8:m
+         s4. | b2:m7.5- \parenthesize d:m/f | a2:m \parenthesize c | e1:7 | a2:m~ a8:m
       }
     }
     \layout { #(layout-set-staff-size 15) } % to fit all on one spread
