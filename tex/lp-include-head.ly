@@ -57,8 +57,11 @@
       ragged-right = ##f
       ragged-last = ##f
       ragged-bottom = ##f
+      system-system-spacing.padding = #1.3 % default: #1
+      %annotate-spacing = ##t % for debugging spacing
     }
 
+    % About vertical spacing: https://lilypond.org/doc/v2.22/Documentation/notation/flexible-vertical-spacing-within-systems#spacing-of-non_002dstaff-lines
     \layout {
       \context {
         \ChordNames {
@@ -67,6 +70,26 @@
           \override ChordName.color = #(rgb-color 0.3 0 0.4)
           % Display chord names only on changes and on new lines:
           \set chordChanges = ##t
+          % Setup vertical spacing:
+          \override VerticalAxisGroup
+            .staff-affinity = #DOWN
+          \override VerticalAxisGroup
+            .nonstaff-relatedstaff-spacing.padding = #0.3 % default: #0.5
+        }
+      }
+      \context {
+        \Lyrics {
+          % Setup vertical spacing:
+          \override VerticalAxisGroup
+            .staff-affinity = #UP
+          \override VerticalAxisGroup
+            .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
+          \override VerticalAxisGroup
+            .nonstaff-nonstaff-spacing.padding = #0.3 % default: #0.5
+          \override VerticalAxisGroup
+            .nonstaff-nonstaff-spacing.minimum-distance = #0.3 % default: #0.5
+          \override VerticalAxisGroup
+            .nonstaff-unrelatedstaff-spacing.padding = #0.5 % default: #1.5
         }
       }
     }
@@ -95,7 +118,7 @@
         #{
           \markup {
             \with-color #darkgreen
-            \fontsize #6 { \arrow-head #Y #DOWN ##t }
+            \fontsize #4 { \arrow-head #Y #DOWN ##t }
           }
         #}
       )
@@ -122,7 +145,7 @@
       ()
       "Mark the beginning of the playout"
       #{
-        ^\markup { \playoutsymbol } 
+        ^\markup { \playoutsymbol }
       #}
     )
 
@@ -136,6 +159,21 @@
       "Mark the beginning of the playout and a musical section"
       #{
         ^\markup { \playoutsymbol \blueboxed{ #sectiontext } }
+      #}
+    )
+
+    % Mark a spot in the music with a cyan text above the staff.
+    % The text is given as the only input parameter. Example: \genmark "(3.)"
+    genmark =
+    #(define-event-function
+      (parser location marktext)
+      (markup?)
+      "Mark the beginning of a musical section"
+      #{
+        ^\markup {
+          \with-color #darkcyan
+          #marktext
+        }
       #}
     )
 
