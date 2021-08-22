@@ -809,7 +809,7 @@
 % Environment for wrapping lilypond.
 \NewEnviron{lilywrap}{%
   \ifshowlilypond%
-    \noendsongvfill% if lilypond is last, do not add vfill at song end
+    \yesendsongvfill% if lilypond is last, add vfill at song end
     \@blockstart%
     \BODY%
   \fi%
