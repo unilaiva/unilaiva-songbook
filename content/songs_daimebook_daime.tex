@@ -10,161 +10,311 @@
 % end of each songs_ file.)
 \setcounter{songnum}{1}
 
-\beginsong{Aqui eu Recebi}[by={Padr. Sebastião}]
+\beginsong{Aqui eu Recebi}[by={Padr. Sebastião},key={A},sks={A, B, C}]
   \audio[key=C]{https://www.nossairmandade.com/hymn/35/AquiEuRecebi}
   \transpose{-3}
-  \musicnote{The 4th verse has a differing melody.}
+  \musicnote{4º verso tem uma melodia diferente.}
   \mnbeginchorus\memorize
-    \[^\mn{G}]A|\[\mnc{E}C]qui eu \[\mncii{D}{C}(G7)]rece|\[\mnc{G}C]bi
-    \[^\mn{E}]Pa\[^\mn{G}]ra |\[^\mn{E}]mim dis\[^\mn{D}]tri\[^\mn{C}]bu|\[\mnc{A}F]ir
-    |\[^\mn{A}]É \[^\mn{B}]o \[^\mn{C}]San\[^\mn{A}]to |\[\mnc{G}C]Daime
-    \[\mncii{E}{C}(Am)]Para |\[\mnc{E}C]com meu \[\mnc{D}G]Pai se|\[\mnc{C}C]guir
+    \[^\mn{G}]A|\[\mnc{E}C]qui eu \[\mncii{D}{C}(G7)]rece|\[\mnc{G}C]bi, \[^\mn{E}]pa\[^\mn{G}]ra |\[^\mn{E}]mim dis\[\mnc{D}C7]tri\[^\mn{C}]bu|\[\mnc{A}F]ir
+    |\[^\mn{A}]É \[^\mn{B}]o \[^\mn{C}]San\[^\mn{A}]to |\[\mnc{G}C]Daime, \[^\mn{E}]pa\[^\mn{C}]ra |\[^\mn{E}]com meu \[\mnc{D}G7]Pai se|\[\mnc{C}C]guir
   \mnendchorus
   \notesoff
   \beginchorus
-    Se |^meus ir^mãos sou|^bessem
-    O que |é que vem fa|^zer
-    Sa|íam bem lim|^pinhos
-    ^Pois o |^meu Pai ^tem po|^der
+    Se |^meus ir^mãos sou|^bessem, o que |é que ^vem fa|^zer
+    Sa|íam bem lim|^pinhos, pois o |meu Pai ^tem po|^der
   \endchorus
   \beginchorus
-    Es|^te é ^{o po}|^der
-    Es|ta é a ver|^dade
-    Quem não |ama com fir|^meza
-    ^Sempre |^carre^{ga a} mal|^dade
+    Es|^te é ^{o po}|^der, es|ta é ^{a ver}|^dade
+    Quem não |ama com fir|^meza, sempre |carre^{ga a} mal|^dade
   \endchorus
-  \noteson
-  \mnbeginchorus
-    \[\mn{G}]Eu |\[\mnc{E}C]gosto \[\mnc{D}(G7)]de \[\mn{C}]di|\[\mnc{G}C]zer
-    \[\mn{E}]Tam\[\mn{G}]bém |\[\mn{E}]gosto \[\mn{D}]de \[\mn{C}]most|\[\mnc{A}F]rar
-    |\[\mn{A}]Tá.\[\mn{F}].. |\[\mnc{E}C]tum
-    |\[\mnc{E}C]Veja aon\[\mnc{D}G]de es|\[\mnc{C}C]tá
-  \mnendchorus
+  \beginchorus
+    Eu |^gosto ^{de di}|^zer, também |gosto ^de mos|^trar
+    \noteson |\[\mnlow{A}]Tá.\[\mnlow{F}].. |\[C\mnlow{E}]tum, |\[C]veja aon\[G7]de es|\[C]tá \notesoff
+  \endchorus
   \notesoff
   \beginchorus
-    Quem não |^souber ^{o que} |^é
-    Puxe |pela consci|^ência
-    Quem |ama com leal|^dade
-    ^Sempre |^rende o^bedi|^ência
+    Quem não |^souber ^{o que} |^é, puxe |pela ^consci|^ência
+    Quem |ama com leal|^dade, sempre |rende o^bedi|^ência
   \endchorus
-  \begin{translation}
-    Here I received
-    For me to distribute
-    It's the Holy Daime
-    For me to follow with my Father
+  \begin{translation}\footnotesize % to fit
+    Here I received, for me to distribute
+    It's the Holy Daime, for me to follow with my Father
     \nextverse
-    If my brothers and sisters knew
-    What they are coming to do
-    They would leave well cleansed
-    Because my Father has power
+    If my brothers and sisters knew what they are coming to do
+    They would leave well cleansed, because my Father has power
     \nextverse
-    This is the power
-    This is the truth
-    Who doesn't love with firmness
-    Always carries wickedness
+    This is the power, this is the truth
+    Who doesn't love with firmness always carries wickedness
     \nextverse
-    I like to say
-    And also like to show
-    Tá... Tum
-    Behold it where it is
+    I like to say and also like to show
+    Tá\ldots tum, Behold it where it is
     \nextverse
-    Whoever doesn't know what it is
-    Pull on your conscience
-    Whoever loves with loyalty
-    Always renders obedience
+    Whoever doesn't know what it is, pull on your conscience
+    Whoever loves with loyalty always renders obedience
   \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \transpose c' a \relative c''' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \mark \markup {"6x"} \bar ".|:" \repeat volta 6 {
+        g4\sectionmark "1.-3." | e4 e d c | g'2( g4) e8 g8 | e4 e d c | a'2( a4 a8 a8)
+        | a4 b c a | g4. g8 e4 c4 | e e d d | c2( c4)
+      }
+      \slurSolid
+      \repeat volta 2 {
+        g'4\sectionmark "4." | e4 e d c | g'2. e8 g8 | e4 e d c | a'1
+        | a2.( f4) | e1  | e4 e d d | c2.
+      }
+      \repeat volta 2 {
+        g'8\posectionmark "5." g8 | e4 e d c | g'2. e8 g8 | e4 e d c | a'2 a4 a4
+        | a4 b8 b8 c4 a | g4. g8 e4 c4 | e e d d | c2 c4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      A -- | qui eu re -- ce -- | bi __ _
+      pa -- ra | mim dis -- tri -- bu -- | ir; __ _ _ _
+      É o San -- to | Dai -- me
+      pa -- ra | com meu Pai se -- | guir. __ _
+      \set stanza = "4."
+      Eu | gos -- to de di -- | zer
+      tam -- bém | gos -- to de mos -- | trar;
+      | Tá _ | tum
+      | ve -- ja~a -- on -- de~es -- | tá.
+      \set stanza = "5."
+      Quem não | sou -- ber o que | é
+      pu -- xe | pe -- la cons -- ci -- | ên -- cia; Quem
+      | a -- ma com -- le -- al -- | da -- de
+      Sem -- pre | ren -- de~o -- be -- di -- | ên -- cia.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Se | meus ir -- mãos sou -- | bes -- sem
+      O que | é que vem fa -- | zer _ Sa -- _
+      | í -- am bem lim -- | pi -- nhos
+      Pois o | meu Pai tem po -- | der. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Es -- | te é o po -- | der __ _
+      Es -- _ | ta é a ver -- | da -- de Quem não
+      | a -- ma com fir -- | me -- za
+      Sem -- pre | car -- re -- ga~a mal -- | da -- de.
+    }
+    theChords = \transpose c' a \chordmode {
+      \repeat volta 6 {
+        s4 | c2 \parenthesize g:7 | c1
+        | c2 \parenthesize c:7 | f1
+        | f | c
+        | c2 g:7 | c2.
+      }
+      \repeat volta 2 {
+        s4 | c2 \parenthesize g:7 | c1
+        | c2 \parenthesize c:7 | f1
+        | f | c
+        | c2 g:7 | c2.
+      }
+      \repeat volta 2 {
+        s4 | c2 \parenthesize g:7 | c1
+        | c2 \parenthesize c:7 | f1
+        | f | c
+        | c2 g:7 | c2.
+      }
+    }
+    \layout { #(layout-set-staff-size 16) } % to fit on one spread
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
-\beginsong{O Daime, é o Daime}[by={Padr. Alfredo},tags={mazurka}]
+\scleardpage
+\beginsong{O Daime, é o Daime}[by={Padr. Alfredo},tags={mazurka},key={C},sks={C}]
   \audio{https://www.nossairmandade.com/hymn/536/ODaime\%C3\%89ODaime}
-  \meter{6}{8}
-  \mnbeginchorus
-    \[\mn{E}]O |\[\mnc{G}C]Daime \[\mn{E}]é \[\mn{F}]o \[\mn{G}]Daime
-    Eu |\[\mn{C}]es\[\mn{G}]tou \[\mn{E}\mn{G}]afirmando
-  \mnendchorus\glueverses\mnbeginchorus\memorize
+  \newchords{chords_odaime_a}\newchords{chords_odaime_b}
+  \meter{6}{4}
+  \mnbeginchorus\memorize[chords_odaime_a]
+    \[^\mn{E}]O |\[\mnc{G}C]Daime \[^\mn{E}]é \[^\mn{F}]o \[\bm\mn{G}]Daime
+    Eu |\[^\mn{C}]es\[^\mn{G}]tou \[^\mn{E}\mn{G}]afir\[(G)]mando
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_odaime_b]
     \[^\mn{C}]É o Di|\[C]vi\[^\mn{G}]no \[^\mn{C}]Pai \[^\mn{E}]E\[(Am/E)]terno
     \[^\mn{C}]E a Ra|\[G]in\[^\mn{G}]ha \[^\mn{B}]So\[^\mn{D}]be\[\mnc{C}C]rana
   \mnendchorus
   \notesoff
-  \beginchorus
-    O |\[C]Daime é o Daime
-    O profes|sor dos professores
-  \endchorus\glueverses\beginchorus
+  \beginchorus\replay[chords_odaime_a]
+    O |^Daime é o ^Daime
+    O profes|sor dos profes^sores
+  \endchorus\glueverses\beginchorus\replay[chords_odaime_b]
     É o Di|^vino Pai E^terno
     E seu |^Filho Reden^tor
   \endchorus
-  \beginchorus
-    O |\[C]Daime é o Daime
-    O Mestre |de todos ensinos
-  \endchorus\glueverses\beginchorus
+  \beginchorus\replay[chords_odaime_a]
+    O |^Daime é o ^Daime
+    O Mestre |de todos en^sinos
+  \endchorus\glueverses\beginchorus\replay[chords_odaime_b]
     É o Di|^vino Pai E^terno
     E to|^dos seres di^vinos
   \endchorus
-  \beginchorus
-    O |\[C]Daime é o Daime
-    Eu agra|deço com amor
-  \endchorus\glueverses\beginchorus
+  \beginchorus\replay[chords_odaime_a]
+    O |^Daime é o ^Daime
+    Eu agra|deço com a^mor
+  \endchorus\glueverses\beginchorus\replay[chords_odaime_b]
     É quem me |^dá a minha sa^úde
     E revi|^gora o meu a^mor
-  \endchorus
-  \beginchorus
-    Agra|\[C]deço ao Santo Daime
-    Agrade|cendo a todos seres
-  \endchorus\glueverses\beginchorus
+  \endchorus\brk
+  \beginchorus\replay[chords_odaime_a]
+    Agra|^deço ao Santo ^Daime
+    Agrade|cendo a todos ^seres
+  \endchorus\glueverses\beginchorus\replay[chords_odaime_b]
     E quem me |^manda agrade^cer
     É o |^meu Pai verda^deiro
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 6/4 \partial 4.
+      \repeat volta 2 {
+        r8\posectionmark "A" e4 | g g e8 f8 g4 g8( g) g( g) | c4 g e8 g8 g4 g8
+      }
+      \repeat volta 2 {
+        c,8\sectionmark "B" c c | c4 g c8 e8 e4 e8 c c c | c4 g4 b8 d8 c4( c8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      O | Dai -- me é o Dai -- me; __ _
+      Eu __ _ | es -- tou a -- fir -- man -- do;
+      \set stanza = "1.B"
+      É o Di -- | vi -- no Pai E -- ter -- no;
+      E a Ra -- | i -- nha So -- be -- ra -- na.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+        O | Dai -- me é o Dai -- me;
+        O pro -- fes -- | sor dos pro -- fes -- so -- res;
+        \set stanza = "2.B"
+        É o Di -- | vi -- no Pai E -- ter -- no; __ _
+        E seu | Fi -- lho Re -- den -- tor. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      O | Dai -- me é o Dai -- me;
+      O Mes -- tre | de to -- dos en -- si -- nos;
+      \set stanza = "3.B"
+      É o Di -- | vi -- no Pai E -- ter -- no; __ _
+      E to -- | dos se -- res di -- vi -- nos.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      O | Dai -- me é o Dai -- me;
+      Eu a -- gra -- | de -- ço com a -- mor; __ _
+      \set stanza = "4.B"
+      É quem me | dá a~mi -- nha sa -- ú -- de;
+      E re -- vi -- | go -- ra~o meu a -- mor. __ _
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      Agra | de -- ço~ao San -- to Dai -- me;
+      A -- gra -- de -- | cen -- do~a to -- dos se -- res;
+      \set stanza = "5.B"
+      E quem me | man -- da~a -- gra -- de -- cer; __ _
+      \skip 1 É o | meu Pai ver -- da -- dei -- ro.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c2. c | c \parenthesize g4~ g8
+      }
+      \repeat volta 2 {
+        s4. | c2. \parenthesize a:m/e | g c4~ c8
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
   \begin{translation}
-    The Daime is the Daime
-    I am affirming
-    It is the divine Eternal Father
-    And the Sovereign Queen
+    The Daime is the Daime, I am affirming
+    It is the divine Eternal Father, and the Sovereign Queen
     \nextverse
-    The Daime is the Daime
-    The Teacher of all teachers
-    It is the Divine Eternal Father
-    And his son the redeemer
+    The Daime is the Daime, the Teacher of all teachers
+    It is the Divine Eternal Father, and his son the redeemer
     \nextverse
-    The Daime is the Daime
-    Thee master of all teachings
-    It is the Divine Eternal Father
-    And all Divine Beings
+    The Daime is the Daime, the master of all teachings
+    It is the Divine Eternal Father, and all Divine Beings
     \nextverse
-    The Daime is the Daime
-    I thank with love
-    It is he who gives my health
-    And renews my faith
+    The Daime is the Daime, I thank with love
+    It is he who gives my health, and renews my faith
     \nextverse
-    I thank the holy Daime
-    Thanking all beings
-    And who orders me to give thanks
-    Is my truthful Father
+    I thank the holy Daime, thanking all beings
+    And who orders me to give thanks, is my truthful Father
   \end{translation}
 \endsong
 
+
 \setcounter{songnum}{9}
-\beginsong{O Lindo Daime}[by={Luis Mendes}]
+\beginsong{O Lindo Daime}[by={Luis Mendes},key={Am},sks={Cm, Bm, Am}]
   \audio{https://www.nossairmandade.com/hymn/34/OLindoDaime}
   \mnbeginchorus\memorize
-    |\[\mnc{A}Am]O \[^\mn{C}]lin\[^\mn{A}]do |\[\mnc{E}E]Daime
-    |\[\mncii{A}{B}Am]Veja \[^\mn{C}]co\[^\mn{A}]mo |\[\mnc{E}E]é
-    \lrep |\[\mnc{A}Am]É \[^\mn{C}]ma\[^\mn{A}]ra|\[\mnc{E}E7]vilha
-    Pa\[^\mn{D}]ra |\[^\mn{C}]to\[^\mn{B}]dos \[^\mn{E}]ten\[^\mn{C}]do |\[\mnc{A}Am]fé \rrep
+    |\[\mnc{A}Am]O \[^\mn{C}]lin\[^\mn{A}]do |\[\mnc{E}(E)]Daime
+    |\[\mncii{A}{B}Am]Veja \[^\mn{C}]co\[^\mn{A}]mo |\[\mnc{E}(E)]é
+    \lrep |\[\mnc{A}Am]É \[^\mn{C}]ma\[^\mn{A}]ra|\[\mnc{E}E]vilha
+    Pa\[^\mn{D}]ra |\[\mnc{C}(C)]to\[^\mn{B}]dos \[\mnc{E}E7]ten\[^\mn{C}]do |\[\mnc{A}Am]fé \rrep
   \mnendchorus
   \notesoff
   \beginchorus
     |^Eu peço a meu |^Mestre
     |^No meu cora|^ção
     \lrep |^A santa |^luz
-    Da vir|gem da Concei|^ção \rrep
+    Da vir|^gem da ^Concei|^ção \rrep
   \endchorus
   \beginchorus
     |^Te afirma em |^Deus
     |^Em concentra|^ção
     \lrep |^Que tu te|^rás
-    A |santa ben|^ção \rrep
+    A |^san^ta ben|^ção \rrep
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4
+      | a4._\posectionmark "A" \parenthesize b8 c4 a4 | e'2( e4 e4) | a,4. b8 c4 a4 | e'1
+      \repeat volta 2 {
+        | a,2_\sectionmark "B" c4 a4 | e'4.( e8 e4) d4 | c4( b4) e4 c4 | a1
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | O __ _ lin -- do | Dai -- _ me;
+      | Ve -- ja co -- mo | é.
+      \repeat volta 2 {
+        | É ma -- ra -- | vi -- lha;
+        Pa -- ra | to -- dos ten -- do | fé.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Eu pe -- ço~a meu | Mes -- tre; __ _
+      | No meu co -- ra -- | ção.
+      \repeat volta 2 {
+        | A san -- ta | luz; __ _
+        Da vir -- | gem da Con -- cei -- | ção.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      | Te a -- fir -- ma~em | Deus; __ _ _
+      | Em con -- cen -- tra -- | ção.
+      \repeat volta 2 {
+        | Que tu te -- | rás; __ _ _
+        A | san -- _ ta ben -- | ção.
+      }
+    }
+    theChords = \chordmode {
+      | a1:m | \parenthesize e | a:m | \parenthesize e
+      \repeat volta 2 {
+        | a1:m | e | \parenthesize c2 e2:7 | a1:m
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
     The beautiful Daime
     See how it is
