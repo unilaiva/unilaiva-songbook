@@ -11,59 +11,109 @@
 \setcounter{songnum}{1}
 
 
-\beginsong{Hospede}[by={Glauco Villas Boas}]
+\beginsong{Hospede}[by={Glauco Villas Boas}, key={Am},sks={Am, Bm}]
   % Offered to Padr. Eduardo
   \audio[key=Am]{https://www.nossairmandade.com/hymn/2249/Hospede}
   \newchords{chords_hospede_a}\newchords{chords_hospede_b}
   \mnbeginchorus\memorize[chords_hospede_a]
-    |\[\mnc{A}Am]Eu convidei \[^\mn{B}]no \[^\mn{C}]meu |\[\mnc{D}Dm]sonho
+    |\[\mnc{A}Am]Eu convi\[\bm]dei \[^\mn{B}]no \[^\mn{C}]meu |\[\mnc{D}Dm]so\[\bm]nho
     Meu |Mestre va\[\mnc{F}(F)]mos passe|\[\mnc{E}E]ar
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_hospede_b]
-    \[^\mn{E}]Meu |\[\mnc{D}Dm]mestre \[^\mn{F}]veio co|\[\mncii{E}{C}Am]migo
-    \[^\mn{E}]Na minha |\[\mncii{D}{B}E7]casa \[^\mn{D}]me \[^\mn{G#}]visi|\[\mnc{A}Am]tar
+    \[^\mn{E}]Meu |\[\mnc{D}Dm]mestre \[\bmc\mn{F}]veio co|\[\mncii{E}{C}Am]migo
+    \[\bmc\mn{E}]Na minha |\[\mncii{D}{B}E7]casa \[\bmc\mn{D}]me \[^\mn{G#}]visi|\[\mnc{A}Am]tar
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_hospede_a]
-    |^Eu abraçando o meu |^Mestre
+    |^Eu abra^çando o meu |^Mes^tre
     |Ai, meu ^Deus como é |^bom
   \endchorus\glueverses\beginchorus\replay[chords_hospede_b]
-    |^Eu abraçando meu |^Mestre
-    Lembrei do meu |^Pai, lembrei de Salo|^mão
+    |^Eu abra^çando meu |^Mestre
+    Lem^brei do meu |^Pai, lembrei ^de Salo|^mão
   \endchorus
   \beginchorus\replay[chords_hospede_a]
-    |^{O meu} Mestre me |^disse
+    |^{O meu} ^Mestre me |^dis^se
     |Filho eu não ^vim passe|^ar
   \endchorus\glueverses\beginchorus\replay[chords_hospede_b]
-    |^Vou estar sempre con|^tigo
-    Bem ao teu |^lado, eu não vou te dei|^xar
+    |^Vou estar ^sempre con|^tigo
+    ^Bem ao teu |^lado, eu não ^vou te dei|^xar
   \endchorus
   \beginchorus\replay[chords_hospede_a]
-    |^Nesta passagem do |^Mestre
+    |^Nesta pas^sagem do |^Mes^tre
     |Vejam o que ^Ele me |^deu
   \endchorus\glueverses\beginchorus\replay[chords_hospede_b]
-    |^Um galhinho de a|^rruda
-    Com a |^benção do Mestre Iri|^neu
+    |^Um ga^lhinho de ar|^ruda
+    ^Com a |^benção do ^Mestre Iri|^neu
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, 2021-08
+    theMelody = \relative a'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        r4\posectionmark "A" | a4 a8 a8 a4 b,8 c8 | d2 d4( d4)
+        | d4 d8 d8 f4 f8 f8 | e2.(
+      }
+      \repeat volta 2 {
+        \parenthesize e4)\sectionmark "B" | d4. d8 f4 f8 f8 | e4. c8 e8( e8)( e8) e8
+        | d4( d8) b8 d4 gis,8 gis8 | a2.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Eu con -- vi -- dei no meu | so -- nho;
+      Meu | Mes -- tre va -- mos pas -- se -- | ar.
+      \set stanza = "1.B"
+      Meu | Mes -- tre vei -- o co -- | mi -- go;
+      Na mi -- _ nha | ca -- _ sa me vi -- si -- | tar.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Eu a -- bra -- çan -- do~o meu | Mes -- tre; __ _
+      | Ai __ _ meu Deus como é | bom.
+      \set stanza = "2.B"
+      \skip 1 | Eu~a -- bra -- çan -- do meu | Mestre
+      Lem -- brei __ _ do meu | Pai lem -- brei de Sa -- lo -- | mão.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      | O __ _ meu Mes -- tre me | dis -- se; __ _
+      | Fi -- lho~eu não vim pas -- se -- | ar.
+      \set stanza = "3.B"
+      \skip 1 | Vou~es -- tar sem -- pre con -- | ti -- go;
+      Bem __ _ ao teu | la -- do~eu não vou te dei -- | xar.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      | Nes -- ta pas -- sa -- gem do | Mes -- tre; __ _
+      | Ve -- jam~o que E -- le me | deu.
+      \set stanza = "4.B"
+      \skip 1 | Um ga -- lhinho de ar -- | ru -- da;
+      Com __ _ _ a | ben -- ção do Mes -- tre~I -- ri -- | neu.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a1:m | d:m
+        | d2:m \parenthesize f | e2.
+      }
+      \repeat volta 2 {
+        s4 | d1:m | a:m
+        | e:7 | a2.:m
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
-    In my dream I invited
-    My Master, let's walk
-    My Master came near
-    To visit me in my house
+    In my dream I invited my Master, let's walk
+    My Master came near to visit me in my house
     \nextverse
-    Embracing my Master
-    Oh, how good my God is
-    Embracing my Master
-    I remembered my Father, I remembered Solomon
+    Embracing my Master, oh, how good my God is
+    Embracing my Master I remembered my Father, I remembered Solomon
     \nextverse
-    My Master said to me
-    Child I did not come walk
-    I will always be with you
-    Right by your side, I will not leave you
+    My Master said to me, child I did not come walk
+    I will always be with you, right by your side, I will not leave you
     \nextverse
-    In this passage of the Master
-    Look what he gave me
-    A sprig of rue
-    With the blessing of Mestre Irineu
+    In this passage of the Master, look what he gave me
+    A sprig of rue with the blessing of Mestre Irineu
   \end{translation}
 \endsong
 
