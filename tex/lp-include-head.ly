@@ -36,8 +36,8 @@
     \language "nederlands"
 
     % Sets the global staff size, it scales everything. Recommended size is 18,
-    % but we use 17 for space reasons. With Noto fonts, 16 might be needed.
-    #(set-global-staff-size 17)
+    % but we use 16 for space reasons. With Noto fonts, 15 might be needed.
+    #(set-global-staff-size 16)
 
     \paper {
       %% This sets up custom fonts. They must be loaded in the LaTeX document
