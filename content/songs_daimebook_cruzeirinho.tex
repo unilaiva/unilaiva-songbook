@@ -1,0 +1,243 @@
+% Santo Daime: Cruzeirinho (Mestre Irineu)
+% ========================================
+%
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{117}
+
+\beginsong{Dou Viva a Deus nas Alturas}[by={Mestre Irineu Serra},tags={valsa},key={C},sks={C, D}]
+  \audio{https://www.nossairmandade.com/hymn/85/DouVivaADeusNasAlturas}
+  \newchords{chords_douvivaadeus_a}\newchords{chords_douvivaadeus_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_douvivaadeus_a]
+    \[^\mn{G}]Dou |\[\mnc{C}C]viva a |Deus nas \[^\mn{E}]al|\[\mnc{G}G]turas \altchords{\id[1]{(D)}|D | |A}
+    \[^\mn{E}]E a |\[\mnc{A}Am]Vir\[^\mn{G}]gem |\[\mnc{F}F]Mãe \[^\mn{A}]nos\[^\mn{B}]so a|\[\mnc{C}C]mor \altchords{|Bm |G |D}
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_douvivaadeus_b]
+    |\[\mnc{C}C]Vi\[^\mn{B}]va \[^\mn{A}]to|\[\mnc{C}Am]do \[^\mn{B}]Ser \[^\mn{A}]Di|\[\mnc{D}Dm]vino \altchords{|D |Bm |Em}
+    E Je|\[\mnc{G}G]sus Cris|\[\mnc{E}Em]to \[^\mn{C}]Reden|\[C]tor \altchords{|A |F\#m |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_douvivaadeus_a]
+    Eu |^peço a |Deus nas al|^turas
+    Pa|^ra Vós |^me ilumi|^nar
+    \endchorus\glueverses\beginchorus\replay[chords_douvivaadeus_b]
+    Bo|^tai-me |^no bom ca|^minho
+    E li|^vrai-me |^de todo |^mal
+  \endchorus
+  \beginchorus\replay[chords_douvivaadeus_a]
+    Eu |^vivo a|qui neste |^mundo \altchords{\id[2]{ED (C)}|C |Am |Em}
+    Encos|^tado a |^este Cru|^zeiro \altchords{|F |G |C}
+    \endchorus\glueverses\beginchorus\replay[chords_douvivaadeus_b]
+    Ve|^jo tan|^ta ilumi|^nária \altchords{|C |Am |Dm}
+    Do |^nosso |^Deus Verda|^deiro \altchords{|G |G7 |C}
+  \endchorus
+  \beginchorus\replay[chords_douvivaadeus_a]
+    Es|^ta ilumi|nária que eu |^vejo \altchords{\id[3]{MK (C)}|C |Am |C}
+    A|^legra o |^meu cora|^ção \altchords{|Dm7 |G7 |C}
+    \endchorus\glueverses\beginchorus\replay[chords_douvivaadeus_b]
+    Es|^tas flores |^que rece|^bemos \altchords{|Am |Am7 |Dm}
+    Pa|^ra nos|^sa Salva|^ção \altchords{|G |Fmaj7 |C}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 4
+      \repeat volta 2 {
+        g4\posectionmark "A" | c4. c8 c4 | c4 c4 e4 
+        | g4 g4 e4 | a2 g4 | f4 a,4 b4 | c4( c4)
+      } \break
+      \repeat volta 2 {
+        \parenthesize g4\sectionmark "B" | c4 b4 a4 | c4 b4 a4
+        | d4 d8 d8 d4 | g2 g4 | e4 c4 c4 | c4( c4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Dou | vi -- va a | Deus nas al -- | tu -- ras;
+        E~a | Vir -- gem | Mãe nos -- so~a -- | mor. __ _
+      }
+      \repeat volta 2 {
+        \skip 1 | Vi -- va to -- | do Ser Di -- | vi -- no;
+        E Je -- | sus Cris -- | to Re -- den -- | tor. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Eu | pe -- ço a | Deus nas al -- | tu -- ras;
+        Pa -- | ra Vós | me~i -- lu -- mi -- | nar. __ _
+      }
+      \repeat volta 2 {
+        Bo -- | tai -- _ me no bom ca -- | mi -- nho;
+        E li -- | vrai -- me | de to -- do | mal. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Eu | vi -- vo a -- | qui nes -- te | mun -- do;~En
+        cos -- | ta -- do~a | es -- te Cru -- | zei -- ro.
+      }
+      \repeat volta 2 {
+        Ve -- | jo __ _ tan -- | ta~i -- lu -- mi -- | ná -- ri -- a;
+        Do | nos -- so | Deus Ver -- da -- | dei -- ro.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Es -- | ta~i -- lu -- mi -- | ná -- ria que~eu | ve -- jo;
+        A -- | le -- gra~o | meu co -- ra -- | ção. __ _
+      }
+      \repeat volta 2 {
+        Es -- | tas flo -- res | que re -- ce -- | be -- mos; __ _
+        Pa -- | ra nos -- | sa Sal -- va -- | ção. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2. | c | g
+        | a:m | f | c2
+      }
+      \repeat volta 2 {
+        \set chordChanges = ##f
+        s4 | c2. | a:m | d:m
+        | g | e:m | c2
+        \set chordChanges = ##t
+      }
+    }
+    \layout { #(layout-set-staff-size 15) }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I give viva to God in the Heights, and to the Virgin Mary, our love
+    I give viva to every Divine Being, and Jesus Christ the Redeemer
+    \nextverse
+    I ask the God in the Heights, for Thou to illuminate me
+    Put me on the right path and deliver me from all evil
+    \nextverse
+    I live here in this world, next to this Cross
+    I see so much Light from our true God
+    \nextverse
+    This brightness that I see gladdens my heart
+    These flowers that we receive for our salvation
+  \end{translation}
+\endsong
+
+\beginsong{Todos Querem Ser Irmão}[by={Mestre Irineu Serra},key={Am},sks={Am}]
+  \audio{https://www.nossairmandade.com/hymn/86/TodosQueremSerIrm\%C3\%A3o}
+  \newchords{chords_todosquerem_a}\newchords{chords_todosquerem_b}
+  \mnbeginchorus\memorize[chords_todosquerem_a]
+    \[^\mn{E}]Todos |\[\mnc{A}Am]que\[^\mn{E}]rem \[\bmc\mn{C}]ser \[^\mn{A}]ir|\[\mnc{B}E/B]mã\[^\mn{A}]os
+    \[\mnc{E}E]Mas \[^\mn{G}]não |\[G]têm a \[\mnc{D}Dm]leal|\[\mnc{C}C]da\[^\mn{A}]de\[Am]
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_todosquerem_b]
+    \[^\mn{E}]Para \[^\mn{G}]se|\[\mnc{G}G]guir \[^\mn{D}]na \[Dm]Vida \[^\mn{G}]E|\[\mnc{A}Am]spírita
+    Que \[\bmc\mn{A}]é \[^\mn{C}]o |\[\mnc{E}E]Rei\[^\mn{D}]no \[\mnc{B}E7/B]da \[^\mn{C}]Ver|\[\mnc{A}Am]dade
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_todosquerem_a]
+    É o |^Reino ^da Ver|^dade \altchords{\id[2]{ED}|Am |F}
+    É ^a Es|^trada ^do A|^mor^ \altchords{|G |Am}
+    \endchorus\glueverses\beginchorus\replay[chords_todosquerem_b]
+    É todos |^prestar ^aten|^ção \altchords{|G |F}
+    ^Os en|^sinos do ^profes|^sor \altchords{|E E7 |Am}
+  \endchorus
+  \beginchorus\replay[chords_todosquerem_a]
+    Os en|^sinos do ^profes|^sor \altchords{\id[3]{MK}|Am |\e}
+    É ^quem nos |^traz be^las li|^ções^ \altchords{|G Dm |Am}
+    \endchorus\glueverses\beginchorus\replay[chords_todosquerem_b]
+    Para |^todos ^se u|^nir \altchords{|G Dm |Am}
+    E ^respei|^tar os ^seus ir|^mãos \altchords{|C G |Am}
+  \endchorus
+  \beginchorus\replay[chords_todosquerem_a]
+    Respei|^tar os ^seus ir|^mãos
+    Com ^ale|^gria e ^com a|^mor^
+    \endchorus\glueverses\beginchorus\replay[chords_todosquerem_b]
+    Para |^todos ^conhe|^cer
+    E ^saber |^dar o ^seu va|^lor
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8\posectionmark "A" e8 e8 | a4. e8 c'4. a8 | b4 a4 e4. g8
+        | g4. g8 d4. d8 | c4( a4.)
+      }
+      \repeat volta 2 {
+        \parenthesize e'8\sectionmark "B" e8 g8 | g4. d8 d4 d8( \parenthesize g8) | a8( a a a) a,4. c8
+        | e4( e8) d8 b4. c8 | a2( a8)
+      }
+    }
+    theLyricsOne = \lyricmode { % no repeats 'coz begin with a rest
+      \set stanza = "1."
+      To -- dos | que -- rem ser ir -- | mã -- os;
+      Mas não | têm a le -- al -- | da -- de.
+      \set stanza = "1.B"
+      Pa -- ra se -- | guir na Vi -- da E -- | spí -- ri -- ta;
+      Que é o | Rei -- _ no da Ver -- | da -- de.
+  }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      É o | Rei -- no da Ver -- | da -- de;~É
+      a Es -- | tra -- da do A -- | mor. __ _
+      \set stanza = "2.B"
+      É to -- dos | pres -- tar a -- ten -- _ | ção; __ _ _ _
+      Os en -- | si -- nos  do pro -- fes -- | sor. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Os en -- | sinos do pro -- fes -- | sor;
+      é quem nos | traz be -- las li -- | çõ -- es.
+      \set stanza = "3.B"
+      \skip 1 Pa -- ra | to -- dos se u -- _ | nir; __ _ _
+      E res -- pei -- | tar __ _ os seus ir -- | mã -- os.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      Res -- pei -- | tar os seus ir -- | mãos;
+      Com a -- le -- | gria e com a -- | mor. __ _
+      \set stanza = "4.B"
+      \skip 1 Pa -- ra | to -- dos co -- nhe -- _ | cer; __ _ _
+      E sa -- ber | dar __ _ o seu va -- | lor. __ _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a1:m | e2/b e
+        | g2 d:m | c a8:m
+      }
+      \repeat volta 2 {
+        s4. | g2 d:m | a:m a:m
+        | e e:7/b | a2:m~ a8:m
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    All want to be brothers
+    But don't have loyalty
+    To follow the Spiritual Life
+    Which is the Kingdom of Truth
+    \nextverse
+    It's the Kingdom of Truth
+    It's the path of Love
+    And everybody must pay attention
+    To the teachings of the professor
+    \nextverse
+    The teachings of the professor
+    Bring us beautiful lessons
+    For everybody to come together
+    And respect one's brothers and sisters
+    \nextverse
+    To respect one's brothers and sisters
+    With happiness and with love
+    For everybody to know
+    And learn to appreciate one another
+  \end{translation}
+\endsong
