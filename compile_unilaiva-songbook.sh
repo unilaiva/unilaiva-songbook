@@ -233,7 +233,7 @@ compile_document() {
   echo "EXEC     [${document_basename}]: pdflatex (1st run)"
 
   # First run of pdflatex:
-  pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex! Aborted." "out-2_pdflatex.log"
+  pdflatex -draftmore -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex! Aborted." "out-2_pdflatex.log"
 
   # Only create indices, if not compiling a selection booklet (bashism):
   if [[ ${document_basename} != ${SELECTION_FNAME_PREFIX}* ]]; then
@@ -249,7 +249,7 @@ compile_document() {
   echo "EXEC     [${document_basename}]: pdflatex (2nd run)"
 
   # Second run of pdflatex:
-  pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (2nd time)! Aborted." "out-6_pdflatex.log"
+  pdflatex -draftmode -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (2nd time)! Aborted." "out-6_pdflatex.log"
 
   echo "EXEC     [${document_basename}]: pdflatex (3rd run)"
 
