@@ -64,6 +64,17 @@
     % About vertical spacing: https://lilypond.org/doc/v2.22/Documentation/notation/flexible-vertical-spacing-within-systems#spacing-of-non_002dstaff-lines
     \layout {
       \context {
+        \Score {
+          % Setup vertical spacing:
+          \override VerticalAxisGroup
+          .default-staff-staff-spacing.padding = #1 % default: #2?
+          \override VerticalAxisGroup
+          .default-staff-staff-spacing.basic-distance = #5 % default: #10?
+          \override VerticalAxisGroup
+          .default-staff-staff-spacing.minimum-distance = #5 % default: #10?
+        }
+      }
+      \context {
         \ChordNames {
           % Chord name color. This ought to be manually synced with 'chordcolor'
           % defined in file unilaiva-songbook_common.sty:
