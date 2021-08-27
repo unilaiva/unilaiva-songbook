@@ -224,7 +224,7 @@
 % define it as \beginsong parameter: "\beginsong[key={Am}]". Make sure that
 % it is correct, that the key set here corresponds to the actual key displayed
 % in the final document (after possible transpose).
-\newif\ifshowkey\showkeyfalse
+\newif\ifshowkey\showkeytrue
 
 % Toggle for showing suggested keys in song preludes. To set it/them for a song,
 % define it as \beginsong parameter: "\beginsong[sks={Am, Dm}]". The first
@@ -1072,10 +1072,10 @@
 % \<begin|end><verse|chorus>, with increased line spacing to accomodate notes
 % also in other than the first line of lyrics without resorting to \mnlow macro
 % and it's caveats.
-\newcommand{\mnbeginverse}{\@mnincreasebaseline\beginverse}
-\newcommand{\mnendverse}{\endverse\baselineadj=0pt\relax}
-\newcommand{\mnbeginchorus}{\@mnincreasebaseline\beginchorus}
-\newcommand{\mnendchorus}{\endchorus\baselineadj=0pt\relax}
+\newcommand{\mnbeginverse}{\ifchorded\ifshownotes\@mnincreasebaseline\fi\fi\beginverse}
+\newcommand{\mnendverse}{\endverse\ifchorded\ifshownotes\baselineadj=0pt\relax\fi\fi}
+\newcommand{\mnbeginchorus}{\ifchorded\ifshownotes\@mnincreasebaseline\fi\fi\beginchorus}
+\newcommand{\mnendchorus}{\endchorus\ifchorded\ifshownotes\baselineadj=0pt\relax\fi\fi}
 
 % END MELODY NOTES
 
