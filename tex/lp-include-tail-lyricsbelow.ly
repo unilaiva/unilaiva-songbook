@@ -24,4 +24,3 @@
       \layout { }
     }
     \include "tex/lp-internal-midi-score.ly"
-  }

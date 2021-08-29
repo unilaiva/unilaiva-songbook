@@ -67,11 +67,11 @@
         \Score {
           % Setup vertical spacing:
           \override VerticalAxisGroup
-          .default-staff-staff-spacing.padding = #1 % default: #2?
+            .default-staff-staff-spacing.padding = #1 % default: #2?
           \override VerticalAxisGroup
-          .default-staff-staff-spacing.basic-distance = #5 % default: #10?
+            .default-staff-staff-spacing.basic-distance = #5 % default: #10?
           \override VerticalAxisGroup
-          .default-staff-staff-spacing.minimum-distance = #5 % default: #10?
+            .default-staff-staff-spacing.minimum-distance = #5 % default: #10?
         }
       }
       \context {
