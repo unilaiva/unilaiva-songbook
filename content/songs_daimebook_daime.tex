@@ -29,7 +29,7 @@
   \endchorus
   \beginchorus
     Eu |^gosto ^{de di}|^zer, também |gosto ^de mos|^trar
-    \noteson |\[\mnlow{A}]Tá.\[\mnlow{F}].. |\[C\mnlow{E}]tum, |\[C]veja aon\[G7]de es|\[C]tá \notesoff
+    \noteson |\[\mnlow{A}]Tá.\[\mnlow{F}].. |\[C\mnlow{E}]tum, |veja aon\[G7]de es|\[C]tá \notesoff
   \endchorus
   \notesoff
   \beginchorus
@@ -245,6 +245,139 @@
     I thank the holy Daime, thanking all beings
     And who orders me to give thanks, is my truthful Father
   \end{translation}
+\endsong
+
+
+\beginsong{Graças a Deus}[by={Madr. Maria Brilhante},key={G},sks={A, G}]
+  \audio{https://www.nossairmandade.com/hymn/28/Gra\%C3\%A7asADeus}
+  \newchords{chords_gracasadeus_a}\newchords{chords_gracasadeus_b}
+  \mnbeginchorus\memorize[chords_gracasadeus_a]
+    \[^\mn{D}]Graças \[^\mn{E}]a |\[\mnc{D}D]Deus aon\[^\mn{E}]de \[\mnc{D}(D7)]eu \[^\mn{C}]es\[^\mn{B}]tou \[^\mn{A}]tem |\[\mnc{G}G]Dai\[\bm]me
+    Gra\[^\mn{B}]ças \[^\mn{D}]a |\[\mnc{G}Em]Deus Dai\[^\mn{F#}]me \[\mnc{A}(Am7)]nun\[^\mn{G}]ca \[^\mn{F#}]me \[^\mn{E}]fal|\[\mnc{D}D]tou\[\bm]
+  \mnendchorus
+  \mnbeginchorus\memorize[chords_gracasadeus_b]
+    \ind \[^\mn{/}]Sou \[^\mn{B}]u\[^\mn{D}]ma |\[\mnc{G}G]árvore ro\[^\mn{F#}]si\[\mnc{A}Am7]an\[^\mn{G}]te em \[^\mn{F#}]u\[^\mn{E}]ma |\[\mnc{D}D]flor\[bm]
+    \ind Graças \[^\mn{E}]a |\[^\mn{D}]Deus aon\[^\mn{E}]de o \[\mnc{D}D7]Dai\[^\mn{C}]me es\[^\mn{B}]tá \[^\mn{A}]es|\[\mnc{G}G]tou\[bm]
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_gracasadeus_a]
+    \[\mnlow{/}]Louvar \[\mnlow{/}]a |^Deus e \[\mnlow{/}]a^\[\mnlow{/}]mar \[\mnlow{/}]com \[\mnlow{/}]to\[\mnlow{D}]do a|^mor^
+    São João Ba|^tista é o ^nosso Prote|^tor^
+  \endchorus
+  \beginchorus\replay[chords_gracasadeus_b]
+    \ind São João Ba|^tista e a sem^pre Virgem Ma|^ri^a
+    \ind É quem nos |guia neste ^caminho com a|^mor^
+  \endchorus
+  \begin{translation}
+    Thanks to God, where I am I have Daime
+    Thanks to God, the Daime has never failed me
+    \nextverse
+    I am a tree shining in a Flower
+    Thanks to God I am where the Daime is
+    \nextverse
+    To praise God and love with all love
+    Saint John the Baptist is our protector
+    \nextverse
+    Saint John the Baptist and the Ever Virgin Mary
+    Are who Guide us in this path with love
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \key g \major \time 4/4 \partial 4.
+      d8\sectionmark "1." d e
+      \repeat volta 2 {
+        | d d d e d c b a | g2 g8 g b d | g4 g8 fis a g fis e
+      } \alternative {
+        { | d2~ d8 d d e }
+        { | d2~ d8 b\sectionmark "2." b d }
+      }
+      \repeat volta 2 {
+        g8 g16 g16 g8 fis a g fis e | d2~ d8 d d e | d d d e d c b a
+      } \alternative {
+        { | g2~ g8 g b d }
+        { | g,2~ g8\posectionmark "3." g g b | d4 d8 d b b a a }
+      }
+      \repeat volta 2 {
+        | g2~ g8 g b d | g g g fis a g fis e
+      } \alternative {
+        { | d2~ d8 d d e | d4 d8 e d c b a }
+        { | d2~ d8 b\sectionmark "4." b d }
+      }
+      \repeat volta 2 {
+        | g8 g g fis a g fis e | d2 d8 d d e | d d d e d c16 c16 b8 a
+      } \alternative {
+        { | g2~ g8 g b d }
+        { | g,2~ g8 \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Gra -- ças a
+      \repeat volta 2 {
+        | Deus a -- on -- de eu es -- tou tem | Dai -- me
+        Gra -- ças a | Deus
+        Dai -- me nun -- ca me fal --
+      } \alternative {
+        { | tou. Gra -- ças a }
+        { | tou. \set stanza = "2." Sou u -- ma }
+      }
+      \repeat volta 2 {
+        | ár -- vo -- re
+        Ro -- si -- an -- te~em u -- ma | flor
+        Gra -- ças a | Deus
+        A -- on -- de~o Dai -- me~es -- tá es -- 
+      } \alternative {
+        { | tou. Sou u -- ma }
+        { | tou. \set stanza = "3." Lou -- var a | Deus e a -- mar com to -- do~a -- }
+      }
+      \repeat volta 2 {
+         | mor
+        São João Ba -- | tis -- ta
+        É o nos -- so Pro -- te -- 
+      } \alternative {
+        { | tor. Lou -- var a | Deus e a -- mar com to -- do~a -- }
+        { | tor. \set stanza = "4." São João Ba -- }
+      }
+      \repeat volta 2 {
+        | tis -- ta
+        E~a sem -- pre Vir -- gem Ma -- | ri -- a
+        É quem nos | gui -- a
+        Nes -- te ca -- mi -- nho com a --
+      } \alternative {
+        { | mor. São João Ba -- }
+        { | mor. }
+      }
+    }
+    theChords = \chordmode {
+      s4.
+      \repeat volta 2 {
+        | d2 \parenthesize d:7 | g1 | e2:m \parenthesize a:m7 
+      } \alternative {
+        { | d1  }
+        { | d1 }
+      }
+      \repeat volta 2 {
+        | g2 a:m7 | d1 | d2 d:7
+      } \alternative {
+        { | g1 }
+        { | g1 | d2 d:7 }
+      }
+      \repeat volta 2 {
+        | g1 | e2:m \parenthesize a:m7
+      } \alternative {
+        { | d1 | d2 d:7 }
+        { | d1 }
+      }
+      \repeat volta 2 {
+        | g2 a:m7 | d1 | d2 d:7
+      } \alternative {
+        { | g1 }
+        { | g2~ g8 }
+      }
+    }
+    \layout { #(layout-set-staff-size 13) } % to fit on one spread
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
