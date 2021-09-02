@@ -233,7 +233,7 @@ compile_document() {
   echo "EXEC     [${document_basename}]: pdflatex (1st run)"
 
   # First run of pdflatex:
-  pdflatex -draftmore -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex! Aborted." "out-2_pdflatex.log"
+  pdflatex -draftmore -file-line-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex! Aborted." "out-2_pdflatex.log"
 
   # Only create indices, if not compiling a selection booklet (bashism):
   if [[ ${document_basename} != ${SELECTION_FNAME_PREFIX}* ]]; then
@@ -249,12 +249,12 @@ compile_document() {
   echo "EXEC     [${document_basename}]: pdflatex (2nd run)"
 
   # Second run of pdflatex:
-  pdflatex -draftmode -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (2nd time)! Aborted." "out-6_pdflatex.log"
+  pdflatex -draftmode -file-line-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (2nd time)! Aborted." "out-6_pdflatex.log"
 
   echo "EXEC     [${document_basename}]: pdflatex (3rd run)"
 
   # Third run of pdflatex, creates the final main PDF document:
-  pdflatex -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (3rd time)! Aborted." "out-7_pdflatex.log"
+  pdflatex -file-line-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (3rd time)! Aborted." "out-7_pdflatex.log"
 
   cp "${document_basename}.pdf" "../../" || die $? "Error copying ${document_basename}.pdf from temporary directory! Aborted."
   echo "${document_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
