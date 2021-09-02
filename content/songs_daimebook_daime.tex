@@ -410,7 +410,7 @@
     |^Por a^qui tenho |^que se^guir
   \endchorus\glueverses\beginchorus\replay[chords_tomodaime_b]
     Es|^tou con^vidan|^do sor^rindo
-    E |^comi^go nin|^guém quer ^ir
+    E |^comi^go nin|^guém quer ^ir \tonextsongmark
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
@@ -538,6 +538,127 @@
     \nextverse
     Through this way I go traveling, through here I must follow
     I am inviting smiling, and with me no one wants to go
+  \end{translation}
+\endsong
+
+
+\beginsong{O Daime me Balanção}[by={Tetéo},key={C},sks={C, D}]
+  \audio{https://www.nossairmandade.com/hymn/1066/ODaimeMeBalan\%C3\%A7ou}
+  \newchords{chords_odaimemebalancao_a}\newchords{chords_odaimemebalancao_b}
+  \mnbeginchorus\memorize[chords_odaimemebalancao_a]
+    |\[\mnc{G}C]O Dai\[\bmc\mn{C}]me \[^\mn{G}]me |ba\[^\mn{E}]lan\[\bmc\mn{G}]çou
+    |\[^\mn{C}]O Dai\[\bmc\mn{E}]me \[^\mn{C}]me |\[\mnc{A}F]se\[^\mn{G}]gu\[G]rou
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_odaimemebalancao_b]
+    |\[\mnc{C}C]O po\[\bmc\mn{E}]der \[^\mn{C}]que o |\[\mnc{A}F]Mes\[^\mn{G}]tre \[G]tem
+    \[^\mn{C}]O |\[C]mesmo \[\bmc\mn{E}]Dai\[^\mn{C}]me |\[\mnc{D}G7]me \[^\mn{B}]mos\[\mnc{C}C]trou
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_odaimemebalancao_a]
+    Me |^concen^trei no |Presi^den|te
+    E lo^go E|^le che^gou
+  \endchorus\glueverses\beginchorus\replay[chords_odaimemebalancao_b]
+    Fi|^quei a^legre e |^satis^feito
+    Em |^conhe^cer o |^seu va^lor
+  \endchorus
+  \beginchorus\replay[chords_odaimemebalancao_a]
+    Fi|^quei a^legre e |satis^feito
+    Em |conhe^cer o |^seu va^lor
+  \endchorus\glueverses\beginchorus\replay[chords_odaimemebalancao_b]
+    |^Os que es^tive|^rem com ^Ele
+    Es|^tão com o ^Mestre En|^sina^dor
+  \endchorus
+  \beginchorus\replay[chords_odaimemebalancao_a]
+    |^Pedi ^confor|to a meu ^Mestre \altchords{\id[2]{MK (C)}|C | \e}
+    E |a Vir^gem que |^me le^vou \altchords{|Am | - G}
+  \endchorus\glueverses\beginchorus\replay[chords_odaimemebalancao_b]
+    |^Para ^mim po|^der che^gar \altchords{|C |Am G}
+    |^No lu^gar a|^onde es^tou \altchords{|C |G7 C}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 8
+      \repeat volta 2 {
+        \parenthesize g8\sectionmark "A"
+        | g4_\pomark g c g | g e g4. \parenthesize c,8
+        | c4 c e c | a g g4.
+      } \break
+      \repeat volta 2 {
+        \parenthesize c8 \sectionmark "B"
+        | c4 c4 e4 c4 | a4 g g4. \parenthesize c8
+        | c4 c4 e4 c4 | d4 b c4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        \skip 1 | O Dai -- me me | ba -- lan -- çou;
+        \skip 1 | O Dai -- me me | se -- gu -- rou.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        \skip 1 | O po -- der que~o | Mes -- tre tem;
+        O | mes -- mo Dai -- me | me mos -- trou.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Me | con -- cen -- trei no | Pre -- si -- den -- \skip 1 | te;~E
+        lo -- go E -- | le che -- gou.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Fi -- | quei a -- le -- gre~e | sa -- tis -- fei -- to;~Em
+        | co -- nhe -- cer o | seu va -- lor.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Fi -- | quei a -- le -- gre~e | sa -- tis -- fei -- to;~Em
+        | co -- nhe -- cer o | seu va -- lor.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \skip 1 | Os que~es -- ti -- ve -- | rem com E -- le;~Es
+        | tão com~o Mes -- tre~En -- | si -- na -- dor.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        \skip 1 | Pe -- di con -- for -- | to~a meu Mes -- tre;~E
+        | a Vir -- gem que | me le -- vou.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        \skip 1 | Pa -- ra mim po -- | der che -- gar;
+        \skip 1 | No lu -- gar a -- | on -- de~es -- tou.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s8 | c1 | c | c | f2 g4.
+      }
+      \repeat volta 2 {
+        s8 | c1 | f2 g | c1 | g2:7 c4.
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    The Daime shook me, the Daime held me
+    The power that the Master has, the same Daime showed me
+    \nextverse
+    I Concentrated myself in the President, and soon he arrived
+    I became joyful and satisfied in knowing his value
+    \nextverse
+    I became joyful and satisfied in knowing his value
+    Those who are with Him, are with the Teaching Master
+    \nextverse
+    I asked for comfort to my Master, and to the Virgin who took me
+    So that I could arrive in the place where i am
   \end{translation}
 \endsong
 
