@@ -429,6 +429,17 @@
   \repeat%
 }
 
+% This command puts an arrow with a text "next song" above it to the end of
+% the current line. It is meant to be used on the last line of the last
+% verse, to suggest that one can continue playing the next song straight.
+\newcommand{\tonextsongmark}[0]{
+  \hfill%
+  \makebox[0pt][l]{\raisebox{1ex}{%
+    \tiny\textit{next song}%
+  }}%
+  $\Longrightarrow$
+}
+
 % BEGIN GLUEVERSES
 
 % Make \versesepnostretch a dimension (instead of a length) to hold verse
@@ -706,7 +717,7 @@
       % block, even if the block is the first thing on a page. This ensures
       % the vertical centering of the blocks when the song verses are on a
       % previous page and the blocks are all on this one.
-      \vbox to0pt{}%
+      %\vbox to0pt{}%
       \vspace*{\fill}%
     \else%
       \vspace{1em}%
