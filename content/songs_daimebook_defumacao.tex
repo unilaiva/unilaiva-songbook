@@ -10,39 +10,123 @@
 % end of each songs_ file.)
 \setcounter{songnum}{1}
 
-\beginsong{Defumação 1}[ph={I},tags={2x}]
+\scleardpage
+\beginsong{Defumação 1}[ph={I},tags={2x},key={Am},sks={Am, Bm}]
+  \audio{https://www.nossairmandade.com/hymn/1480/Defuma,Defumador}
   \musicnote{Tocar 2 vezes}
-  \beginchorus
-    |\[Am] \[\mn{E}]Defu\[\mn{A}]ma \[\mn{B}]de|\[\mnc{C}E]fu\[\mn{D}]ma\[\mnc{E}Am]dor
-    E|\[C]sta \[Dm]casa de Nos|\[E]so Sen\[Am]hor
-  \endchorus\glueverses\beginchorus
-    |\[Am]Leva pra's on|\[A7]das do \[Dm]mar
-    O |\[Dm]mal que a\[E]qui |\[E7]posso es\[Am]tar \tonextsongmark
-  \endchorus
+  \mnbeginchorus
+    \[\bm] \[\mn{E}]De|\[\mnc{A}Am]fuma \[\mn{B}]de\[\bmc\mn{C}]fu\[\mn{D}]ma|\[\mnc{E}E]dor;
+    \[\bm]Esta |\[\mnc{A}Am]casa de \[\mn{B}]Nos\[\bmc\mn{C}]so \[\mn{B}]Se|\[\mn{A}]nhor
+  \mnendchorus\glueverses\mnbeginchorus
+    \[\bmc\mn{E}]Leva pra's |\[\mnc{A}Am]on\[\mnc{E}A7]das \[\mn{F}]do |\[\mnc{D}Dm]mar;
+    O \[\bmc\mn{E}]mal \[\mn{F}]que a|\[\mnc{E}E]qui \[\bmc\mn{B}]pos\[\mn{C}]so es|\[\mnc{A}Am]tar \tonextsongmark
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, 2021-08
+    theMelody = \relative e'' {
+      \key a \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        e4\posectionmark "A" | a,8 a4 b8 c4 d4 | e2
+        e4 e4 | a,8 a8 a8 b8 c4 b4
+      } \alternative {
+        { | a2. }
+        { | a2 }
+      }
+      \repeat volta 2 {
+        e'8\sectionmark "B" e4 e8 | a2 e4 f | d4. d8
+        e4 f8 f8 | e2 b4 c8 c8
+      } \alternative {
+        { | a2 }
+        { | a2. _\markup\italic "D.C." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        De -- | fu -- ma de -- fu -- ma -- | dor;
+        Es -- ta | ca -- sa de Nos -- so Se --
+      } \alternative {
+        { | nhor. }
+        { | nhor. }
+      }
+      \repeat volta 2 {
+        Le -- va pra's | on -- das do | mar;
+        O mal que a -- | qui pos -- so es --
+      } \alternative {
+        { | tar. }
+        { | tar. }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a1:m | e | a:m
+      } \alternative {
+        { | a2.:m }
+        { | a2:m }
+      }
+      \repeat volta 2 {
+        s2 | a2:m a:7 | d1:m | e
+      } \alternative {
+        { | a2:m }
+        { | a2.:m }
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
-    Cense, incenser
-    This house of our Lord
-    Take to the  waves of the sea
-    the evil that might be here
+    Cense, incenser, this house of our Lord
+    Take to the  waves of the sea the evil that might be here
   \end{translation}
 \endsong
 
 
-\beginsong{Defumação 2}[tags={valsa, 2x},ph={I}]
+\beginsong{Defumação 2}[tags={valsa, 2x},ph={I},key={Am},sks={Am}]
+  \audio{https://www.nossairmandade.com/hymn/1481/DefumaEstaCasa}
   \musicnote{Tocar 2 vezes}
   \meter{3}{4}
-  \beginchorus
-    \[\mn{E}]De|\[\mnc{A}Am]fuma esta |casa |\[A7]bem defu|\[Dm]mada
-    Com |\[Dm]a Cruz de |Deus ela |\[E7]vai ser re|\[Am]zada
-  \endchorus\glueverses\beginchorus
-    Eu |\[C]sou reza|dor sou fil|ho de Um|\[Dm]banda
-    Com |\[Dm]a Cruz de |\[E7]Deus todo |mal se ab|\[Am]randa
-  \endchorus
+  \mnbeginchorus
+    \[\mn{E}]De|\[\mnc{A}Am]fuma es\[\mn{E}]ta |\[\mn{A}]ca\[\mn{E}]sa |\[A7]bem \[\mn{F}]de\[\mn{E}]fu|\[\mnc{D}Dm]ma\[\mn{B}]da
+    \[\mn{D}]Com |\[\mnc{B}E/B]a \[\mnc{G#}]Cruz \[\mn{E}]de |\[\mnc{B}E]Deus \[\mn{G#}]e\[\mn{E}]la |\[\mnc{D}E7/D]vai \[\mn{C}]ser \[\mn{B}]re|\[Am]za\[\mn{A}]da
+  \mnendchorus\glueverses\mnbeginchorus
+    \[\mn{C}]Eu |\[C]sou reza|dor sou |fi\[\mn{D}]lho \[\mn{E}]de Um|\[\mnc{D}Dm]ban\[\mn{B}]da
+    \[\mn{D}]Com |a \[\mn{E}]Cruz \[\mn{F}]de |\[\mnc{E}E]Deus \[\mn{F}]to\[\mn{E}]do |\[\mnc{D}E7/D]mal \[\mn{C}]se \[\mn{B}]a|\[Am]bran\[\mn{A}]da
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, 2021-08
+    theMelody = \relative e'' {
+      \key a \minor \time 3/4 \partial 4
+      \repeat volta 2 {
+        e4\posectionmark "A" | a8 a8 a4 e4 | a2 e4 | e4 f e | d4 b4 d4
+        | b'4 gis e | b' gis e | d c b | b a
+      }
+      \repeat volta 2 {
+        c4\sectionmark "B" | c c c | c2 c4 | c4 d4 e8 e8 | d4 b4
+        d4 | d4 e4 f4 | e4 f4 e4 | d c b | b a _\markup\italic "D.C."
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        De -- | fu -- ma es -- ta | ca -- sa | bem de -- fu -- | ma -- da;
+        Com | a Cruz de | Deus e -- la | vai ser re -- | za -- da.
+      }
+      \repeat volta 2 {
+        Eu | sou re -- za -- | dor sou | fi -- lho de Um -- | ban -- da;
+        Com | a Cruz de | Deus to -- do | mal se a -- | bran -- da.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a2.:m | a:m | a:7 | d:m
+        | e/b | e | e:7/d | a2:m
+      }
+      \repeat volta 2 {
+        s4 | c2. | c | c | d:m
+        | d:m | e | e:7/d | a2:m
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
-    Cense this incensed house
-    With the Cross of God will be prayed
-    I am the prayer, the son of Umbanda
-    With the Cross of God all evil relents
+    Cense this incensed house, with the Cross of God will be prayed
+    I am the prayer, the son of Umbanda, with the Cross of God all evil relents
   \end{translation}
-
 \endsong
