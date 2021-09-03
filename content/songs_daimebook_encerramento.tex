@@ -11,8 +11,9 @@
 \setcounter{songnum}{1}
 
 \setcounter{songnum}{3}
-\beginsong{Sou Brilho do Sol}[by={Padr. Sebastião},key={D},sks={D, E}]
+\beginsong{Sou Brilho do Sol}[by={Padr. Sebastião},key={D},sks={D, E, C}]
   \audio{https://www.nossairmandade.com/hymn/99/BrilhoDoSol}
+  \transpose{-2}
   \mnbeginchorus\memorize
     \lrep \[^\mn{A}]Eu |\[\mnc{D}D]sou \[^\mn{F#}]bri\[^\mn{E}]lho \[^\mn{D}]do \[\bm]sol, |sou \[^\mn{F#}]bri\[^\mn{E}]lho \[^\mn{D}]da \[\mnc{F#}Bm/F#]lua \rrep
     \lrep \[^\mn{F#}]Dou |\[\mnc{G}G]bri\[^\mn{F#}]lho \[^\mn{E}]as \[^\mn{D}]es\[\mnc{F#}D]trelas, \[^\mn{D}]por\[^\mn{F#}]que |\[\mnc{E}A7]todas \[^\mn{B}]me a\[^\mn{C#}]com\[\mnc{D}D]panham \rrep
@@ -24,8 +25,8 @@
   \endchorus
   \textnote{suomeksi:}
   \beginchorus
-    \lrep Olen |^paiste aurin^gon, |sekä loiste ^kuun \rrep
-    \lrep Va|^laisen tähdis^tön, koska se |^on mun seura^nain \rrep
+    \lrep Olen |^paiste aurin^gon, |sekä loiste ^kuun \rrep \altchords{\id[1]{(D)}|D | - Bm/F\#}
+    \lrep Va|^laisen tähdis^tön, koska se |^on mun seura^nain \rrep \altchords{|G D |A7 D}
   \endchorus
   \beginchorus
     \lrep Olen |^välke meren^pinnan, hen|gitän tuules^sa \rrep
@@ -41,14 +42,14 @@
     \lrep I |^shine in the ^forest, because |^she belongs to ^me \rrep
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    theMelody = \relative a' {
+    theMelody = \transpose d c \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \major \time 4/4 \partial 8
       \repeat volta 2 {
-        a8 | d8 fis e d d2 | d8 fis8 e d fis4 fis8
+        a8\posectionmark "A" | d8 fis e d d2 | d8 fis8 e d fis4 fis8
       } \break
       \repeat volta 2 {
-        fis8 g fis e d fis fis d fis | e e8 b8 cis d4 d8 ^\markup\italic "D.C."
+        fis8\sectionmark "B" | g fis e d fis fis d fis | e e8 b8 cis d4 d8 ^\markup\italic "D.C."
       }
     }
     theLyricsOne = \lyricmode {
@@ -75,7 +76,7 @@
         Por -- que e -- la me per -- ten -- ce.
       }
     }
-    theChords = \chordmode {
+    theChords = \transpose d c \chordmode {
       \repeat volta 2 {
         s8 | d1 | d2 b4.:m
       }
