@@ -834,7 +834,7 @@
         \set stanza = "3.B-I"
         En -- con -- | trei com~o Pai E -- | ter -- no;
         E Je -- sus | Cris -- to Re -- den -- | tor. __ _
-        \set stanza = "4.B-II"
+        \set stanza = "3.B-II"
         En -- con -- | trei com~o Pai E -- | ter -- no;
         E Je -- sus | Cris -- to Re -- den -- | tor. __ _
       }
@@ -863,7 +863,20 @@
         | b:7 | e2.:m
       }
     }
-    \include "tex/lp-include-tail-lyricsbelow.ly"
+    % Custom score block to force guitar tabs to fret 3 and above
+    \score {
+      <<
+        \new ChordNames { \theChords }
+        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new TabStaff { \clef "moderntab" \set minimumFret = #3 \set restrainOpenStrings = ##t \transpose c'' c \theMelody }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsThree }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsFour }
+      >>
+      \layout { }
+    }
+    \include "tex/lp-internal-midi-score.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
