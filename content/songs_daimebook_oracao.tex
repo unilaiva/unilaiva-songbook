@@ -254,8 +254,8 @@
         | a2:m f | c2.
       }
       \repeat volta 2 {
-        s4 | f2 g | c f
-        | g a:m | c2.
+        s4 | f2 g | c \parenthesize f
+        | g \parenthesize a:m | c2.
       }
     }
     \include "tex/lp-include-tail.ly"
@@ -526,7 +526,7 @@
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4 | c2 a:m | g c
+        s4 | c2 \parenthesize a:m | \parenthesize g c
         | f:maj7 c | f1
         | f | g
         | d2:m f | c2.
