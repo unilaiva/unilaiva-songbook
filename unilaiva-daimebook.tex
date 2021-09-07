@@ -30,6 +30,8 @@
 \showaltchordstrue
 \renewcommand\preludetagstyle{\bfseries} % make tag list in the prelude bold
 \renewcommand\translationstyle{\footnotesize} % make translated text smaller
+% larger chord font:
+\renewcommand{\printchord}[1]{\sffamily\bfseries\normalsize\color{chordcolor}#1}
 
 % fancyhdr: setup header
 \fancyhead[LO]{}
