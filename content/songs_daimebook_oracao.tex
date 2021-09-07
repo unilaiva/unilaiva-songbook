@@ -1137,32 +1137,32 @@
 
 
 \scleardpage
-\beginsong{Eu Pedi e Tive o Toque}[by={Padr. Alfredo},key={G},sks={A, G}]
+\beginsong{Eu Pedi e Tive o Toque}[by={Padr. Alfredo},key={A},sks={A, B, C}]
   \audio[]{https://www.nossairmandade.com/hymn/534/EuPediETiveOToque}
   \audio[key={C},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=2009s}
   \newchords{chords_eupedietive_a}\newchords{chords_eupedietive_b}
-  \transpose{-5}
+  \transpose{-3}
   \mnbeginchorus\memorize[chords_eupedietive_a]
-    \[^\mn{E}]Eu \[^\mn{F}]pe|\[\mnc{G}C]di e \[^\mn{C}]ti\[^\mn{A}]ve o |\[Fmaj7]toque \altchords{\id[1]{(A)}|A |Dmaj7}
-   \[^\mn{D}]Da \[^\mn{E}]Flo|\[\mnc{F}Dm]res\[^\mn{D}]ta e \[\mnc{G}C]do Ast|\[G]ral \altchords{|Bm A |E}
+    \[^\mn{E}]Eu \[^\mn{F}]pe|\[\mnc{G}C]di e \[^\mn{C}]ti\[^\mn{A}]ve o |\[Fmaj7]toque \altchords{\id[1]{(G)}|G |Cmaj7}
+   \[^\mn{D}]Da \[^\mn{E}]Flo|\[\mnc{F}Dm]res\[^\mn{D}]ta e \[\mnc{G}C]do Ast|\[G]ral \altchords{|Am G |D}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_eupedietive_b]
-    \[^\mn{C}]A\[^\mn{D}]qui |\[\mnc{E}C]estou \[\mnc{D}Dm7]a\[^\mn{C}]vi|\[\mnc{G}G]sando \altchords{|A Bm7 |E}
-    \[^\mn{D}]Que \[^\mn{B}]de|\[^\mn{G}]vemos \[\mnc{D}G7]ser \[^\mn{E}]i|\[\mnc{C}C]gual \altchords{|- E7 |A}
+    \[^\mn{C}]A\[^\mn{D}]qui |\[\mnc{E}C]estou \[\mnc{D}Dm7]a\[^\mn{C}]vi|\[\mnc{G}G]sando \altchords{|G Am7 |D}
+    \[^\mn{D}]Que \[^\mn{B}]de|\[^\mn{G}]vemos \[\mnc{D}G7]ser \[^\mn{E}]i|\[\mnc{C}C]gual \altchords{|- D7 |G}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_eupedietive_a]
-    Exami|^nando o firma|^mento \altchords{\id[2]{MK (G)}|G |Cmaj7}
-    O te|^souro u^niver|^sal \altchords{|Am7 |D}
+    Exami|^nando o firma|^mento \altchords{\id[2]{MK (A)}|A |Dmaj7}
+    O te|^souro u^niver|^sal \altchords{|Bm7 |E}
   \endchorus\glueverses\beginchorus\replay[chords_eupedietive_b]
-    Sinto |^profundo ^este |^toque \altchords{|G Am7 |D}
-    Deste |Rei Im^peri|^al \altchords{|- D7 |G}
+    Sinto |^profundo ^este |^toque \altchords{|A Bm7 |E}
+    Deste |Rei Im^peri|^al \altchords{|- E7 |A}
   \endchorus
   \beginchorus\replay[chords_eupedietive_a]
-    Digo as|^sim esclare|^cendo \altchords{\id[3]{O (G)}|G |C}
-    E most|^rando a ^todos |^que \altchords{|Am |D}
+    Digo as|^sim esclare|^cendo \altchords{\id[3]{O (A)}|A |D}
+    E most|^rando a ^todos |^que \altchords{|Bm |E}
   \endchorus\glueverses\beginchorus\replay[chords_eupedietive_b]
-    Es|^tá nes^{te ca}|^minho \altchords{|G Am |D}
-    Que pro|cure ^compreen|^der \altchords{|- D7 |G}
+    Es|^tá nes^{te ca}|^minho \altchords{|A Bm |E}
+    Que pro|cure ^compreen|^der \altchords{|- E7 |A}
   \endchorus
   \beginchorus\replay[chords_eupedietive_a]
     Vou di|^zendo e quero |^ver
@@ -1193,7 +1193,7 @@
     Para |si e ^seus ir|^mãos
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    theMelody = \transpose c g, \relative e'' {
+    theMelody = \transpose c a, \relative e'' {
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
         e8\posectionmark "A" f8 | g4 g4 c4 a8 a8 | a2 a4 d,8 e8
@@ -1215,7 +1215,7 @@
         Que de -- ve -- mos ser i -- gual.
       }
     }
-    theChords = \transpose c g, \chordmode {
+    theChords = \transpose c a, \chordmode {
       \repeat volta 2 {
         s4 | c1 | f:maj7
         | d2:m c | g2.
@@ -1265,6 +1265,7 @@
     Everyone seek the Holy Peace
     For themselves and their brothers and sisters
   \end{translation}
+  \noendsongvfill % otherwise the horiz. line signifying song end wouldn't fit
 \endsong
 
 
