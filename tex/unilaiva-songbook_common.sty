@@ -110,15 +110,15 @@
 \graphicspath{ {./content/img/} } % graphicx: set path to find images from
 
 % color: Color definitions:
-\definecolor{chordcolor}{rgb}{0.3,0,0.4} % chords
+\definecolor{chordcolor}{rgb}{0.18,0,0.24} % chords
 \definecolor{altchordcolor_a}{rgb}{0.15,0,0.4} % alternate chord set 1 (default)
 \definecolor{altchordcolor_b}{rgb}{0.4,0.3,0.10} % alternate chord set 2
 \definecolor{altchordcolor_c}{rgb}{0.10,0.4,0.10} % alternate chord set 3
-\definecolor{mbarcolor}{rgb}{0.45,0.1,0.6} % measure bar
-\definecolor{melodynotecolor}{rgb}{0.0,0.256,0.304} % encircled melody notes
-\definecolor{songnumbgcolor}{rgb}{0.94,0.94,0.94} % song number background
-\definecolor{notebgcolor}{rgb}{0.94,0.94,0.94} % textnote background
-\definecolor{idxbgcolor}{rgb}{0.94,0.94,0.94} % index alphabet background
+\definecolor{mbarcolor}{rgb}{0.36,0,0.48} % measure bar
+\definecolor{melodynotecolor}{rgb}{0.0,0.1536,0.1824} % encircled melody notes
+\definecolor{songnumbgcolor}{rgb}{1,1,1} % song number background
+\definecolor{notebgcolor}{rgb}{0.9,0.9,0.9} % textnote background
+\definecolor{idxbgcolor}{rgb}{1,1,1} % index alphabet background
 \definecolor{internallinkcolor}{rgb}{0,0,0.3} % internal links
 \definecolor{urllinkcolor}{rgb}{0.3,0,0.3} % external links
 \definecolor{linkboxcolor}{rgb}{0.5,0.9,0.6} % boxed links (view), not used now
@@ -146,7 +146,7 @@
 \renewcommand{\printchord}[1]{\sffamily\bfseries\small\color{chordcolor}#1}
 % songs: modify meter class font style (add color):
 \renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
-\renewcommand{\notefont}{\normalsize} % songs: modify \textnote and \musicnote font (make smaller)
+\renewcommand{\notefont}{\small} % songs: modify \textnote and \musicnote font (make smaller)
 \renewcommand{\idxtitlefont}{\sffamily} % songs: font used for titles in indices
 \renewcommand{\idxlyricfont}{\sffamily\slshape} % songs: font for alternate (lyric) titles in indices
 \renewcommand{\idxscripfont}{\sffamily\small\slshape} % songs: font used for tag (scripture) index

@@ -78,7 +78,7 @@
         \ChordNames {
           % Chord name color. This ought to be manually synced with 'chordcolor'
           % defined in file unilaiva-songbook_common.sty:
-          \override ChordName.color = #(rgb-color 0.3 0 0.4)
+          \override ChordName.color = #(rgb-color 0.18 0 0.24)
           % Display chord names only on changes and on new lines:
           \set chordChanges = ##t
           % Setup vertical spacing:
