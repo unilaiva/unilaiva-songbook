@@ -1,0 +1,120 @@
+% Santo Daime: Hinos Diversos de Cura
+% ===================================
+%
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+\beginsong{Com Fé em Deus}[by={Madr. Júlia},key={C},sks={D, C}]
+  \audio{https://www.nossairmandade.com/hymn/690/ComF\%C3\%A9EmDeus}
+  \newchords{chords_comfeemdeus_a}\newchords{chords_comfeemdeus_b}
+  \mnbeginchorus\memorize[chords_comfeemdeus_a]
+    \[^\mn{G}]Com fé \[^\mn{C}]em |\[\mncii{E}{C}C]Deus, eu \[\mnc{E}G7]vou me \[^\mn{D}]levan|\[\mnc{C}C]tar\[\bm] \altchords{\id[1]{(D)}|D A7 |D}
+    Com fé \[^\mn{E}]em |\[^\mn{G}\mn{E}]Deus, E\[\mnc{G}G7]le vai me a\[^\mn{F}]ju|\[\mnc{E}C]dar\[\bm] \altchords{| - A7 |D}
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_comfeemdeus_b]
+    \[^\mn{C}]Com fé \[^\mn{E}]em |\[\mnc{G}C]Deus \[^\mn{C}]e na Vir\[\mnc{F}F]gem da Concei|\[\mnc{C}C]ção\[\bm] \altchords{|D G |D}
+    \[^\mn{G}]Esta \[^\mn{C}]ba|\[\mnc{E}Am]ta\[^\mn{C}]lha nós te\[\mnc{E}G7]mos que a\[^\mn{D}]traves|\[\mnc{C}C]sar\[\bm] \altchords{|Bm A7 |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_comfeemdeus_a]
+    Vamos se|^guir, meus ir^mãos, vamos se|^guir^
+    No ca|minho da Sem^pre Virgem Ma|^ri^a
+  \endchorus\glueverses\beginchorus\replay[chords_comfeemdeus_b]
+    Que |^Ela é a ^nossa prote|^to^ra
+    E nos |^guia no ca^minho da salva|^ção^
+  \endchorus
+  \beginchorus\replay[chords_comfeemdeus_a]
+    Eu devo a|^mar minha ^Mãe lá nas al|^tu^ras
+    Que me en|sina eu sa^ir das amar|^gu^ras
+  \endchorus\glueverses\beginchorus\replay[chords_comfeemdeus_b]
+    Estou a|^qui, vim cum^prir minha mis|^são^
+    Com fé em |^Deus e na Vir^gem da Concei|^ção^
+  \endchorus
+  \translationoff
+  \begin{translation}
+    With faith in God, I'm going to stand up
+    With faith in God, He's going to help me
+    With faith in God and in the Virgin of Conception
+    This battle we've to go through
+    \nextverse
+    Let's follow, my brothers, let's follow
+    In the path of the Ever Virgin Mary
+    For She is our Protector
+    And who guides us in the path of salvation
+    \nextverse
+    I have to love my Mother up in the heights
+    Who teaches me how to leave the sorrows
+    I am here, I came to fulfill my mission
+    With faith in God and in the Virgin of Conception
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \key c \major \time 4/4 \partial 4.
+        \repeat volta 2 {
+          g8\sectionmark "1.A" g c | e4( c8) c e e d d | c2~ c8 c c e | g4( e8) e g g g f | e2~ e8
+        } \break
+        \repeat volta 2 {
+          c8\sectionmark "1.B" c e | g8. c,16 c8 c f f f f | c2~ c8 g g c | e8. c16 c8 c e e d d | c2~ c8
+        } \break
+        \repeat volta 2 {
+          g8\sectionmark "2.A" g c | e4 c8 c e e d d | c2. c8 e | g8. e16 e8 e g g g f | e2 e8
+        } \break
+        \repeat volta 2 {
+          r8\sectionmark "2.B" e4 | g8. c,16 c8 c f f f f | c2 c4 g8 c | e8. c16 c8 c e e d d | c2~ c8
+        } \break
+        \repeat volta 2 {
+          g8\posectionmark "3.A" g c | e4 c8 c e e d d | c2 c8 c c e | g8. e16 e8 e g g g f | e2 e8
+        } \break
+        \repeat volta 2 {
+          c8\sectionmark "3.B" c e | g4 c,8 c f f f f | c2~ c8 g g c | e8. c16 c8 c e e d d | c2~ c8
+        }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Com fé em | Deus __ eu vou me le -- van -- | tar;
+      Com fé em | Deus __ E -- le vai me~a -- ju -- | dar. __
+      \set stanza = "1.B"
+      Com fé em | Deus e na Vir -- gem da Con -- cei -- | ção; __
+      Es -- ta ba -- | ta -- lha nós te -- mos que~a -- tra -- ves -- | sar. __
+      \set stanza = "2."
+      Va -- mos se -- | guir meus ir -- mãos va -- mos se -- | guir;
+      No ca -- | mi -- nho da Sem -- pre Vir -- gem Ma -- | ri -- a.
+      \set stanza = "2.B"
+      Que | E -- la é a nos -- sa pro -- te -- | to -- ra;
+      E nos | gui -- a no ca -- mi -- nho~da sal -- va -- | ção. __
+      \set stanza = "3."
+      Eu de -- vo~a -- | mar mi -- nha Mãe lá nas al -- | tu -- ras;
+      Que me en -- | si -- na eu sa -- ir das a -- mar -- | gu -- ras.
+      \set stanza = "3.B"
+      Es -- tou a -- | qui vim cum -- prir mi -- nha mis -- | são; __
+      Com fé em | Deus e na Vir -- gem da Con -- cei -- | ção. __
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c2 g:7 | c1 | c2 g:7 | c2~ c8
+      }
+      \repeat volta 2 {
+        s4. | c2 f2 | c1 | a2:m g:7 | c2~ c8
+      }
+      \repeat volta 2 {
+        s4. | c2 g:7 | c1 | c2 g:7 | c2~ c8
+      }
+      \repeat volta 2 {
+        s4. | c2 f2 | c1 | a2:m g:7 | c2~ c8
+      }
+      \repeat volta 2 {
+        s4. | c2 g:7 | c1 | c2 g:7 | c2~ c8
+      }
+      \repeat volta 2 {
+        s4. | c2 f2 | c1 | a2:m g:7 | c2~ c8
+      }
+    }
+    \layout { #(layout-set-staff-size 12) } % to fit on one spread
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
