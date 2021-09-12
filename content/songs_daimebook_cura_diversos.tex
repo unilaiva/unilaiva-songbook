@@ -123,15 +123,15 @@
 \beginsong{A Cura \\ Eu Venho Acrescentar}[by={Padr. Alfredo},key={A},sks={A, B, C}]
   \audio{https://www.nossairmandade.com/hymn/105/EuVenhoAcrescentar}
   \mnbeginchorus\memorize
-    \[^\mn{E}]Eu |\[\mnciii{C#}{B}{C#}A]venho \[\mnc{D}E7]a\[^\mn{G#}]cres\[^\mn{B}]cen|\[\mnc{A}A]tar\[\bm]
-    \[^\mn{C#}]A\[^\mn{E}]qui |\[\mnc{A}(F#m)]dentro \[\mnc{B}(Bm)]des\[^\mn{F#}]te po|\[D]der\[\bm]
-    A |\[\mnc{D}(Bm)]cu\[^\mn{F#}]ra \[\mnc{A}D]Deus é quem |\[\mncii{E}{C#}A]dá\[\bm]
-    \[^\mn{E}]E |\[\mncii{C#}{B}(F#m)]é \[^\mn{C#}]se \[\mnc{D}E7]bem \[^\mn{G#}]me\[^\mn{B}]re|\[\mnc{A}A]cer\[\bm]
+    \[^\mn{E}]Eu |\[\mnciii{C#}{B}{C#}A]venho \[\mnc{D}E7]a\[^\mn{G#}]cres\[^\mn{B}]cen|\[\mnc{A}A]tar\[\bm] \altchords{\id[1]{(C)}|C G7 |C}
+    \[^\mn{C#}]A\[^\mn{E}]qui |\[\mnc{A}(F#m)]dentro \[\mnc{B}(Bm)]des\[^\mn{F#}]te po|\[D]der\[\bm] \altchords{|(Am) (Dm) |F}
+    A |\[\mnc{D}(Bm)]cu\[^\mn{F#}]ra \[\mnc{A}D]Deus é quem |\[\mncii{E}{C#}A]dá\[\bm] \altchords{|(Dm) F |C}
+    \[^\mn{E}]E |\[\mncii{C#}{B}(F#m)]é \[^\mn{C#}]se \[\mnc{D}E7]bem \[^\mn{G#}]me\[^\mn{B}]re|\[\mnc{A}A]cer\[\bm] \altchords{|(Am) G7 |C}
   \mnendchorus
   \notesoff
   \beginchorus
     E |^é se ^bem mere|^cer^
-    Da ver|^dade ^e do a|^mor^
+    Da ver|^dade ^{e do a}|^mor^
     |^Deus e ^a Virgem |^Mãe^
     E |^Je^sus Reden|^tor^
   \endchorus
@@ -146,7 +146,7 @@
       \set melismaBusyProperties = #'() \slurDashed
       \key a \major \time 4/4 \partial 4
       \repeat volta 2 {
-        e8( e8) | \once \slurSolid cis'4( b8) cis8 d4 gis,8 b8 | a2. cis8 e8
+        e8(\pomark e8) | \once\slurSolid cis'4( b8)( cis8) d4 gis,8 b8 | a2. cis8 e8
         | a4. a8 b4 fis8 fis8 | fis2( fis4)( fis4)
         | d4. fis8 a4 a8 a8 | e2( cis4) e4
         | cis4( b8)( cis8) d4 gis,8 b8 | a2( a4)
@@ -185,7 +185,6 @@
         | \parenthesize b2:m d2 | a1 | \parenthesize fis2:m e:7 | a2.
       }
     }
-
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
@@ -199,3 +198,98 @@
     Give us the grace of life, Saint John is our path
   \end{translation}
 \endsong
+
+
+\beginsong{Peço a Vós Minha Firmeza \\ Meu Deus}[by={Padr. Valdete},key={Am},sks={Bm, Am},tags={2x}]
+  \audio{https://www.nossairmandade.com/hymn/154/MeuDeus}
+  \newchords{chords_pecoavos_a}\newchords{chords_pecoavos_b}
+  \mnbeginchorus\memorize[chords_pecoavos_a]
+    \[^\mn{E}]Meu |\[\mnc{A}Am]Deus,\[\bm] \[^\mn{B}]meu |\[\mncii{G#}{E}E]Pai,\[\bm] minha |\[\mncii{D}{B}E7/D]Mãe \[\bm] \altchords{\id[1]{(Bm)}|Bm |F\# |F\#7/E}
+    Eu pe|\[\mnc{E}E7]ço \[^\mn{D}]que \[\mnc{C}(C)]Vós \[^\mn{B}]me |\[Am]cu\[\bmc\mn{A}]re \altchords{|F\#7 (D) |Bm}
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_pecoavos_b]
+    \[^\mn{A}]A \[^\mn{C}]ma|\[\mncii{E}{D}Am/E]téria \[\mnc{B}(Bm7&5)]das \[^\mn{A}]do|\[\mnc{G#}E]en\[^\mn{E}]ças\[\bm] \altchords{|Bm/F\# (C\#m7b5) |F\#}
+    E \[^\mn{G#}]o \[^\mn{B}]es|\[\mnc{E}E7]píri\[^\mn{D}]to \[\bmc\mn{B}]do \[^\mn{G#}]es|\[\mnc{A}Am]cu\[\bm]ro \altchords{|F\#7 |Bm}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_pecoavos_a]
+    Meu |^Deus,^ meu |^Pai,^ minha |^Mãe ^
+    Eu peço |^para Vós ^me cu|^rar^
+  \endchorus\glueverses\beginchorus\replay[chords_pecoavos_b]
+    A ma|^téria ^{das do}|^enças^
+    O es|^pírito um ^bom lu|^gar^
+  \endchorus
+  \beginchorus\replay[chords_pecoavos_a]
+    Meu |^Deus,^ meu |^Pai,^ minha |^Mãe ^
+    Eu sei que |^Vós já ^me cu|^rou^
+  \endchorus\glueverses\beginchorus\replay[chords_pecoavos_b]
+    Peço a |^Vós mi^{nha fir}|^meza^
+    Para |^sempre eu ^dar va|^lor ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        e4\pomark | a2. b4 | \once\slurSolid gis4( e2) e8 e8
+        | \once\slurSolid d4( b4.)( b8) b8 b8 | e4( e8) d8 c4. b8 | b4( a2)
+      }
+      \repeat volta 2 {
+        a8 c8 | e4. d8 b4. a8 | gis4 e4.( e8) gis8 b8
+        | e4 e8 d8 b4. gis8 | a2( a4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Meu | Deus, meu | Pai, __ _ mi -- nha | Mãe; __ _ _
+        Eu pe -- | ço __ _ que Vós me | cu -- re.
+      }
+      \repeat volta 2 {
+        A ma -- | té -- ria das do -- | en -- ças;
+        E o es -- | pí -- ri -- to do es -- | cu -- ro.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Meu | Deus, meu | Pai, __ _ mi -- nha | Mãe; __ _
+        Eu pe -- ço | pa -- ra Vós me cu -- | rar. __ _
+      }
+      \repeat volta 2 {
+        A ma -- | té -- ria das do -- | en -- ças; __ _
+        O es -- | pí -- ri -- to~um bom lu -- | gar. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Meu | Deus, meu | Pai, __ _ mi -- nha | Mãe; __ _
+        Eu sei que | Vós __ _ já me cu -- | rou. __ _
+      }
+      \repeat volta 2 {
+        Pe -- ço~a | Vós mi -- nha fir -- | me -- za; __ _
+        Pa -- ra | sem -- pre eu dar va -- | lor. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a1:m | e | e:7/d | e2:7 \parenthesize c2 | a2.:m
+      }
+      \repeat volta 2 {
+        s4 | a2:m/e \parenthesize b2:m7.5- | e1 | e:7 | a2.:m
+      }
+    }
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    My God, My Father, My Mother, I ask that you cure me
+    The body of illness, and the spirit of darkness
+    \nextverse
+    My God, My Father, My Mother, I ask for you to heal me
+    The body of sickness, (and to give my) spirit a good place
+    \nextverse
+    My God, My Father, My Mother, I know that you've already healed me
+    I ask you for my firmness, so that I always give worth
+  \end{translation}
+\endsong
+
