@@ -293,3 +293,82 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Espada de São Miguel \\ Da Terra Ao Astral}[by={Baixinha},key={Dm},sks={Dm, Em, Cm}]
+  \audio{https://www.nossairmandade.com/hymn/2399/DaTerraAoAstral}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Da \[\bmc\mn{D}]Terra \[^\mn{F}]ao as|\[\mnc{A}Dm]tral \[\bm] | \e
+    Os i\[^\mn{F}]ni\[\bm]mi\[^\mn{D}]gos a\[^\mn{B&}]ta|\[\mnc{A}A]car \[\bm] | \e
+    Na es\[\bmc\mn{C#}]pada de \[^\mn{E}]São Mi|\[\mnc{G}Gm]guel \[\bm] |\[A7] \e
+    \[^\mn{E}]Todos \[\bmc\mn{F}]vão se \[^\mn{E}]transfor|\[\mnc{D}Dm]mar \[\bm] | \e
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    As ^estrelas do |^Céu ^ | \e
+    Brilham ^pra quem tem a|^mor ^ | \e
+    Nas ^matas do meu |^Pai ^ |^ \e
+    Corre ^água e nasce |^flor ^ | \e
+  \endchorus
+  \beginchorus
+    As ^curas estão a|^ber^-|'tas
+    Aos ^bons de cora|^ção ^ | \e
+    Quem ^recebe me|^re^|^ce
+    Agra^dece, nunca es|^que^-|ce
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, 2021-09
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 4/4 \partial 1*5/8
+      \repeat volta 4 {
+        a8 d16( d16) d8 f f | a1~ | a8( a8) a8 f f d d bes | a1~
+        a4( a8) a cis cis e e | g1( | g4) e8 e f f e e | d1( | d4.)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Da Ter -- _ ra ao as -- | tral; __ | _
+        Os i -- ni -- mi -- gos a -- ta -- | car; __ | _
+        Na es -- pa -- da~de São Mi -- | guel; __ | _
+        To -- dos vão se trans -- for -- | mar. __ | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        As es -- _ tre -- las do | Céu; __ | _
+        \skip 1 Bri -- lham pra quem tem a -- | mor; __ | _
+        \skip 1 Nas ma -- tas do meu | Pai; __ | _
+        Cor -- re á -- gua~e nas -- ce | flor. __ | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        As cu -- ras es -- tão a -- | ber -- | _ _ tas;
+        Aos bons de co -- ra -- | ção; __ | _ _
+        Quem re -- ce -- be me -- | re -- | ce;
+        A -- gra -- de -- ce, nun -- ca~es -- | que -- | ce.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2~ s8 | d1:m | d:m | a
+        | a | g:m | a:7 | d:m | d4.:m
+      }
+    }
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    On Earth and in the Astral, the enemies attack
+    On the sword of Sain Michael all will be transformed
+    \nextverse
+    The stars of heacen shine for who has love
+    In the forests of my Father runs water and flower births
+    \nextverse
+    The healings are open for those who are goodhearted
+    Who receives, deserves, gives thanks, never forgets
+  \end{translation}
+\endsong
+
