@@ -372,3 +372,238 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Jesus}[by={Lúcio Mortimer},key={C},sks={D, C},tags={valsa}]
+  \audio{https://www.nossairmandade.com/hymn/1423/Jesus}
+  \meter{3}{4}
+  \mnbeginchorus
+    \[\mn{E}]Je|\[\mnc{C}C]sus, |\[\mnc{E}Am]ten\[\mn{D}]de \[\mn{C}]pie|\[\mnc{B}G7]da\[\mn{A}]de \[\mn{G}]de |\[\mnc{E}C]mim | \e \altchords{\id[1]{(D)}|D |Bm |A7 |D | \e}
+    |\[Am]Eu \[\mn{D}]vou \[\mn{C}]pe|\[\mnc{B}G7]din\[\mn{A}]do \[\mn{G}]as|\[\mnc{G}C]sim \altchords{|Bm |A7 |D}
+    \lrep \[\mn{G}]E |\[C]Vós, Se|nhor \altchords{|D | \e}
+    Per|\[G]do\[\mn{F}]a \[\mn{E}]a |\[\mnc{D}G7]nós \[\mn{E}]pe\[\mn{D}]ca|\[\mnc{C}C]dor \rrep \altchords{|A |A7 |D}
+  \mnendchorus
+  \mnbeginchorus
+    \[\mn{E}]Meu |\[\mnc{C}C]Pai \[\mn{E}]que |\[\mnc{E}Am]tan\[\mn{D}]to \[\mn{C}]já |\[\mncii{B}{G}G7]ofen|\[\mnc{E}C]di | \e \altchords{|D |Bm |A7 |D | \e}
+    E |\[Am]Vós \[\mn{D}]me \[\mn{C}]trou|\[\mnc{B}G7]xes\[\mn{G}]{te a}|\[\mnc{G}C]qui \altchords{|Bm |A7 |D}
+    \lrep \[\mn{G}]No |\[C]cora|ção \altchords{|D | \e}
+    Eu |\[G]re\[\mn{F}]ce\[\mn{E}]ber |\[\mnc{D}G7]meu \[\mn{E}]per|\[\mnc{C}C]dão \rrep \altchords{|A |A7 |D}
+  \mnendchorus
+  \mnbeginchorus
+    \[\mn{E}]Que |\[\mnc{C}C]bom \[\mn{E}]estar |\[\mn{E}]sem\[\mn{D}]pre \[\mn{C}]com |\[\mn{E}]Deus \altchords{|D | | \e}
+    Tri|\[Am]lhar \[\mn{D}]os \[\mn{C}]ca|\[\mncii{E}{D}G7]mi\[\mn{G}]nhos |\[\mnc{G}C]seus \altchords{|Bm |A7 |D}
+    \lrep \[\mn{G}]Com a|\[C]mor \altchords{|D}
+    Na |\[G]mis\[\mn{F}]são \[\mn{E}]do |\[\mnc{D}G7]Re\[\mn{E}]den|\[\mnc{C}C]tor \rrep \altchords{|A |A7 |D}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \key c \major \time 3/4 \partial 4
+      \repeat volta 2 {
+        e4\sectionmark "1." | c2. | e4 d c | b a g | e'2.~ | e2.
+        | e4 d c | b a g | g'2
+          g4\sectionmark "1.B:I" | g2 g4 | g2 g4 | g f e | d e d | c2
+          g'4\sectionmark "1.B:II" | g2 g4 | g2 g4 | g f e | d e d | c2
+      } \break
+      \repeat volta 2 {
+        e4\sectionmark "2." | c2 e4 | e4 d c | b2 g4 | e'2.~ | e2 e4
+        | e4 d c | b2 g4 | g'2
+          g4\sectionmark "2.B:I" | g2 g4 | g2 g4 | g4 f e | d2 e4 | c2
+          g'4\sectionmark "2.B:II" | g2 g4 | g2 g4 | g4 f e | d2 e4 | c2
+      } \break
+      \repeat volta 2 {
+        e4\posectionmark "3." | c e e | e d c | e2.~ | e2 e4 | e d c | b( a) g | g'2.~ | g4
+          g4\sectionmark "3.B:I" g4 | g2 g4 | g f e | d2 e4 | c4
+          g'4\sectionmark "3.B:II" g4 | g2 g4 | g f e | d2 e4 | c2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        \set stanza = "1."
+        Je -- | sus, | ten -- de pie -- | da -- de de | mim; __ |
+        | Eu vou pe -- | din -- do as -- | sim.
+          E | Vós, Se -- | nhor;
+          Per -- | do -- a a | nós pe -- ca -- | dor.
+          E | Vós, Se -- | nhor;
+          Per -- | do -- a a | nós pe -- ca -- | dor.
+      }
+      \repeat volta 2 {
+        \set stanza = "2."
+        Meu | Pai que | tan -- to já | o -- fen -- | di;
+        E | Vós me trou -- | xes -- te~a -- | qui.
+          No | co -- ra -- | ção;
+          Eu | re -- ce -- ber | meu per -- | dão.
+          No | co -- ra -- | ção;
+          Eu | re -- ce -- ber | meu per -- | dão.
+      }
+      \repeat volta 2 {
+        \set stanza = "3."
+        Que | bom es -- tar | sem -- pre com | Deus; __
+        Tri -- | lhar os ca -- | mi -- nhos | seus.
+          Com a -- | mor;
+          Na | mis -- são do | Re -- den -- | tor.
+          Com a -- | mor;
+          Na | mis -- são do | Re -- den -- | tor.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2. | a:m | g:7 | c | c
+        | a:m | g:7 | c
+        | c | c | g | g:7 | c
+        | c | c | g | g:7 | c2
+      }
+      \repeat volta 2 {
+        s4 \once \set chordChanges = ##f | c2.| a:m | g:7 | c | c
+        | a:m | g:7 | c
+        | c | c | g | g:7 | c
+        | c | c | g | g:7 | c2
+      }
+      \repeat volta 2 {
+        s4 \once \set chordChanges = ##f | c2. | c | c | c
+        | a:m | g:7 | c | c
+        | c | g | g:7 | c
+        | c | g | g:7 | c2
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % to fit on one spread
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
+\beginsong{Se Afrouxar}[by={Lúcio Mortimer},key={C},sks={C, D}]
+  \audio{https://www.nossairmandade.com/hymn/39/SeAfrouxar}
+  \newchords{chords_seafrouxar_a}\newchords{chords_seafrouxar_b}
+  \mnbeginverse\memorize[chords_seafrouxar_a]
+    \[^\mn{A}]Se a\[^\mn{C}]frou|\[\mnc{E}C]xa\[\bm]r \[^\mn{C}]o \[^\mn{D}]Dai\[^\mn{C}]me |\[\mnc{A}Am]cura\[\bm], se a\[^\mn{C}]frou|\[\mnc{E}C]xa\[\bm]r \[^\mn{C}]o \[^\mn{D}]Dai\[^\mn{C}]me a|\[\mnc{A}Am]juda\[\bm]
+  \mnendverse\glueverses\mnbeginchorus\memorize[chords_seafrouxar_b]
+    \[^\mn{E}]Se \[^\mn{A}]af\[^\mn{E}]rou|\[\mnc{G}G]xa\[\bm]r \[^\mn{E}]o \[^\mn{A}]Dai\[^\mn{E}]me |\[^\mn{G}]salva\[\bm], \[^\mn{C}]se afrou|\[\mnc{E}Am]xa\[\mncii{ }{D}G7]{r o Dai}\[^\mn{C}]me |\[C]toma\[\bm]
+  \mnendchorus
+  \notesoff
+  \beginverse\replay[chords_seafrouxar_a]
+    Quem qui|^se^r saúde es|^cute^; tem que lim|^pa^r seu cora|^ção^
+  \endverse\glueverses\beginchorus\replay[chords_seafrouxar_b]
+    Não adi|^anta^ querer sa|ra^r e em se|^guida ^{ir pra} ilu|^são^
+  \endchorus
+  \beginverse\replay[chords_seafrouxar_a]
+    Se afrou|^xa^r o Daime |^cura^, se afrou|^xa^r o Daime a|^juda^
+  \endverse\glueverses\beginchorus\replay[chords_seafrouxar_b]
+    Se afrou|^xa^r o Daime |salva^, se afrou|^xa^{r o} Daime |^toma^
+  \endchorus
+  \beginverse\replay[chords_seafrouxar_a]
+    O sofri|^mento^ está na |^Terra^; é um re|^curso^ para apu|^rar ^
+  \endverse\glueverses\beginchorus\replay[chords_seafrouxar_b]
+    Aos que pre|^cisam^ chegar mais |perto^ do Pai E|^terno ^{e da} perfei|^ção^
+  \endchorus
+  \beginverse\replay[chords_seafrouxar_a]
+    Se afrou|^xa^r o Daime |^cura^, se afrou|^xa^r o Daime a|^juda^
+  \endverse\glueverses\beginchorus\replay[chords_seafrouxar_b]
+    Se afrou|^xa^r o Daime |salva^, se afrou|^xa^{r o} Daime |^toma^
+  \endchorus
+  \beginverse\replay[chords_seafrouxar_a]
+    Vão enten|^der^, vamos cu|^rar;^ todos têm |^do^m de se sal|^var ^
+  \endverse\glueverses\beginchorus\replay[chords_seafrouxar_b]
+    Saúde |^boa é^ a do es|pírito ^que se humi|^lho^{u a} nosso |^Deus
+  \endchorus
+  \brk
+  \beginverse\replay[chords_seafrouxar_a]
+    Se afrou|^xa^r o Daime |^cura^, se afrou|^xa^r o Daime a|^juda^
+  \endverse\glueverses\beginchorus\replay[chords_seafrouxar_b]
+    Se afrou|^xa^r o Daime |salva^, se afrou|^xa^{r o} Daime |^toma^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \parenthesize a8\posectionmark "A" a c | e4( \parenthesize e4 \parenthesize e8) c d c | a4( \parenthesize a4.) a8 a c
+      | e4( \parenthesize e4 \parenthesize e8) c d c | a4( \parenthesize a4.)
+      \repeat volta 2 {
+        e'8\sectionmark "B" a e | g4( \parenthesize g4 \parenthesize g8) e a e | g8( \parenthesize g8 \parenthesize g4 \parenthesize g8) c,8 c c
+        | e4( \parenthesize e4 \parenthesize e8) d d c | c4( \parenthesize c4.)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1. & 3. & 5. & 7."
+      Se a -- frou -- | xar __ _ _ o Dai -- me | cu -- ra;
+      Se a -- frou -- | xar __ _ _ o Dai -- me~a -- | ju -- da.
+      \repeat volta 2 {
+        Se a -- frou -- | xar __ _ _ o Dai -- me | sal -- _ va; __ _
+        Se a -- frou -- | xar __ _ _ o Dai -- me | to -- ma.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \skip 1 Quem qui -- | ser __ _ _ saú -- de es -- | cu -- te;
+      Tem que lim -- | par __ _ _ seu co -- ra -- | ção. __ _
+      \repeat volta 2 {
+        \set stanza = "2.B"
+        Não a -- di -- | an -- ta __ _ que -- rer sa -- | rar; __ _ _ _
+        E em se -- | gui -- da ir pra i -- lu -- | são. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      O so -- fri -- | men -- to __ _ es -- tá na | Ter -- ra;
+      É um re -- | cur -- so __ _ pa -- ra~a -- pu -- | rar. __ _
+      \repeat volta 2 {
+        \set stanza = "4.B"
+        Aos que pre -- | ci -- sam __ _ che -- gar mais | per -- _ to; __ _
+        Do Pai E -- | ter -- no e da per -- fei -- | ção. __ _
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      Vão en -- ten -- | der, __ _ _ va -- mos cu -- | rar; __ _
+      To -- dos têm | dom __ _ _ de se sal -- | var. __ _
+      \repeat volta 2 {
+        \set stanza = "6.B"
+        Sa -- ú -- de | bo -- a~é __ _ a do es -- | pí -- ri -- to;
+        Que se hu -- mi -- | lhou __ _ _ a nos -- so | Deus. __ _
+      }
+    }
+    theChords = \chordmode {
+      s4. | c1 | a:m | c | a2:m~ a8:m
+      \repeat volta 2 {
+        s4. | g1 | g | a2:m g2:7 | c2~ c8
+      }
+    }
+    \layout { #(layout-set-staff-size 13) } % to fit on one spread
+    % Custom score block to put the first verse in between staffs, and the
+    % rest below.
+    \score {
+      <<
+        \new ChordNames { \theChords }
+        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
+        \new TabStaff { \clef "moderntab" \transpose c' c, \theMelody }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsFour }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsSix }
+      >>
+      \layout { }
+    }
+    \include "tex/lp-internal-midi-score.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    If you relax the Daime cures, if you relax the Daime helps
+    If you relax the Daime saves, if your relax the Daime takes
+    \nextverse
+    Whoever wants health, listen; one must clean one's heart
+    It's not worthwhile to want to heal and later go back to the illusion
+    \nextverse
+    If you relax the Daime cures, if you relax the Daime helps
+    If you relax the Daime saves, if your relax the Daime takes
+    \nextverse
+    Suffering is on Earth; it's a resource to purify
+    Those who need to be closer to the eternal father and the perfection
+    \nextverse
+    If you relax the Daime cures, if you relax the Daime helps
+    If you relax the Daime saves, if your relax the Daime takes
+    \nextverse
+    Go understand, let's heal; everyone has the gift of saving oneself
+    Good health is of the spirit who is humbled before our God
+    \nextverse
+    If you relax the Daime cures, if you relax the Daime helps
+    If you relax the Daime saves, if your relax the Daime takes
+  \end{translation}
+\endsong
+
