@@ -7,9 +7,15 @@
 
 \documentclass[twoside,10pt]{book}
 
-% Set the title of this document:
+% Set the titles of this document:
 \newcommand{\mainbooktitle}{Unilaiva songbook}
-\newcommand{\thisbooktitle}{Unilaiva songbook: part \romanupnum{1}}
+\newcommand{\subbooktitle}{part \romanupnum{1}}
+\newcommand{\subsubbooktitle}{Saṃskṛtam, Español, Português}
+% Set things shown on the second page:
+\newcommand{\bookmotto}{paths to higher knowledge}
+\newcommand{\bookcompiledbytext}{%
+ Compiled by: antagomir \& larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})%
+}%
 
 % The following package contains all the imports, style settings etc:
 \usepackage{tex/unilaiva-songbook_common}
@@ -24,7 +30,7 @@
   % Cover page (recto), by larva (photo + edit):
   \includepdf[]{content/img/Unilaiva-songbook_part1_COVER.pdf}
   % The second page (verso):
-  \secondpage{part \romanupnum{1}:}{Saṃskṛtam, Español, Português}
+  \secondpage
 
   % TOC:
   \input{tex/unilaiva-songbook_content_include_part0_toc.tex}

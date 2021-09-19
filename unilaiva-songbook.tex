@@ -9,6 +9,12 @@
 
 % Set the title of this document:
 \newcommand{\mainbooktitle}{Unilaiva songbook}
+% Set things shown on the second page:
+\newcommand{\bookmotto}{paths to higher knowledge}
+\newcommand{\bookcompiledbytext}{%
+ Compiled by: antagomir \& larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})%
+}%
+
 
 % The following package contains all the imports, style settings etc:
 \usepackage{tex/unilaiva-songbook_common}
@@ -24,7 +30,7 @@
   % Cover page (recto), by larva (photo + edit):
   \includepdf[]{content/img/Unilaiva-songbook_COVER.pdf}
   % The second page (verso):
-  \secondpage{}{} % the second (title) page here (verso)
+  \secondpage
 
   % TOC:
   \input{tex/unilaiva-songbook_content_include_part0_toc.tex}

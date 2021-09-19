@@ -19,9 +19,9 @@
 MAIN_FILENAME_BASE="unilaiva-songbook" # filename base for the main document (without .tex suffix)
 PART1_FILENAME_BASE="unilaiva-songbook_part1" # filename base for the 2-part document's part 1 (without .tex suffix)
 PART2_FILENAME_BASE="unilaiva-songbook_part2" # filename base for the 2-part document's part 2 (without .tex suffix)
-DAIMEBOOK_FILENAME_BASE="unilaiva-daimebook" # filename base for unilaiva-daimebook (without .tex suffix)
+ASTRAL_FNAME_PREFIX="unilaiva-astral-" # filename prefix for unilaiva astral books
+SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
-SELECTION_FNAME_PREFIX="ul-selection"
 SONG_IDX_SCRIPT="ext_packages/songs/songidx.lua"
 # The following is the locale used in creating the indexes, thus affecting the
 # sort order. Finnish (UTF8) is the default. Note that the locale used must be
@@ -40,7 +40,7 @@ print_usage_and_exit() {
   echo ""
   echo "Usage: compile_unilaiva-songbook.sh [OPTION]... [FILE]..."
   echo ""
-  echo "TLDR; just run without arguments for default operation."
+  echo "TL;DR: just run without arguments for default operation."
   echo ""
   echo "If run without any arguments, all main .tex documents of Unilaiva songbook"
   echo "(main book, partial booklets and selections) will be compiled with printouts"
@@ -54,7 +54,7 @@ print_usage_and_exit() {
   echo ""
   echo "  --no-docker     : do not use the Docker container for compiling"
   echo "  --help          : print this usage information"
-  echo "  --no-daimebook  : do not compile Unilaiva Daimebook"
+  echo "  --no-astral     : do not compile unilaiva-astral* books"
   echo "  --no-deploy     : do not copy PDF files to ./deploy/"
   echo "  --no-partial    : do not compile partial books"
   echo "  --no-printouts  : do not create extra printout PDFs"
@@ -63,16 +63,17 @@ print_usage_and_exit() {
   echo "  --sequential    : compile documents sequentially (the default is to"
   echo "                    compile them in parallel)"
   echo "  -q              : use for quick development build of the main document;"
-  echo "                    equals to --no-partial --no-selections --no-printouts"
-  echo "                    --no-daimebook --no-deploy"
+  echo "                    equals to --no-partial --no-selections --no-astral"
+  echo "                    --no-printouts --no-deploy"
   echo ""
   echo "In addition to the full songbook, also two-booklet version is created,"
   echo "with parts 1 and 2 in separate PDFs. This is not done, if --no-partial"
   echo "option is present or files are given as arguments."
   echo ""
-  echo "Unilaiva Daimebook is also compiled by default in addition to Unilaiva"
-  echo "Songbook, unless --no-daimebook option is present or files are given"
-  echo "as arguments."
+  echo "'Unilaiva no Astral' books are also compiled by default in addition to"
+  echo "Unilaiva Songbook, unless --no-astral option is present or files are"
+  echo "given as arguments. 'Unilaiva no Astral' books' main files are named"
+  echo "unilaiva-astral-*.tex"
   echo ""
   echo "Also selection booklets, with specific songs only, specified in files"
   echo "named ul-selection_*.pdf are compiled, unless --no-selections option"
@@ -233,7 +234,7 @@ compile_document() {
   echo "EXEC     [${document_basename}]: pdflatex (1st run)"
 
   # First run of pdflatex:
-  pdflatex -draftmore -file-line-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex! Aborted." "out-2_pdflatex.log"
+  pdflatex -draftmode -file-line-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex! Aborted." "out-2_pdflatex.log"
 
   # Only create indices, if not compiling a selection booklet (bashism):
   if [[ ${document_basename} != ${SELECTION_FNAME_PREFIX}* ]]; then
@@ -312,7 +313,7 @@ compile_document() {
   cd "${INITIAL_DIR}" || die $? "Cannot return to the main directory."
 
   echo "DEBUG    [${document_basename}]: Build logs in ${temp_dirname_twolevels}/"
-  echo "SUCCESS  [${document_basename}.pdf]: Compilation succesful!"
+  echo "SUCCESS  [${document_basename}.pdf]: Compilation successful!"
 
 } # END compile_document()
 
@@ -340,7 +341,7 @@ usedocker="true"
 deployfinal="true"
 createprintouts="true"
 mainbook="true"
-daimebook="true"
+astralbooks="true"
 partialbooks="true"
 selections="true"
 gitpull="false"
@@ -350,8 +351,8 @@ doc_count=0 # will be increased when documents are added to 'docs' array
 
 all_args="$@"
 
-# Remove the file signifying the last compilation had errors. Do it already
-# here to ensure correct working of die() function.
+# Remove the file that's existence signifies that the last compilation had
+# errors. Do it already here to ensure correct working of die() function.
 if [ -f ${ERROR_OCCURRED_FILE} ]; then
   rm "${ERROR_OCCURRED_FILE}" >"/dev/null" 2>&1
 fi
@@ -374,8 +375,8 @@ while [ $# -gt 0 ]; do
     "--no-selections")
       selections="false"
       shift;;
-    "--no-daimebook")
-      daimebook="false"
+    "--no-astral")
+      astralbooks="false"
       shift;;
     "--pull")
       gitpull="true"
@@ -386,7 +387,7 @@ while [ $# -gt 0 ]; do
     "-q")
       deployfinal="false"
       createprintouts="false"
-      daimebook="false"
+      astralbooks="false"
       partialbooks="false"
       selections="false"
       shift;;
@@ -406,7 +407,7 @@ while [ $# -gt 0 ]; do
         docs[doc_count]=${tmp} ; ((doc_count++))
         # Compile only the given file, when files are explicitly given:
         mainbook="false"
-        daimebook="false"
+        astralbooks="false"
         partialbooks="false"
         selections="false"
       else
@@ -465,8 +466,14 @@ if [ ${partialbooks} = "true" ]; then  # add partial books
   docs[doc_count]="${PART1_FILENAME_BASE}" ; ((doc_count++))
   docs[doc_count]="${PART2_FILENAME_BASE}" ; ((doc_count++))
 fi
-if [ ${daimebook} = "true" ]; then
-  docs[doc_count]="${DAIMEBOOK_FILENAME_BASE}" ; ((doc_count++))
+if [ ${astralbooks} = "true" ]; then
+  i=0
+  for f in ${ASTRAL_FNAME_PREFIX}*.tex
+  do
+    if [ -f "${f}" ]; then  # if normal file
+      docs[doc_count]="${f%.tex}" ; ((doc_count++))
+    fi
+  done
 fi
 if [ ${selections} = "true" ]; then  # add selecion booklets
   i=0

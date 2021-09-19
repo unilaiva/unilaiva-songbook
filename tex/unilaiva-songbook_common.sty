@@ -90,10 +90,28 @@
 % Gets a roman uppercase number from the number given as parameter
 \newcommand{\romanupnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
 
-% Set book titles if they're not yet defined (one should define them in the main doc):
-\providecommand\mainbooktitle{Unilaiva songbook} % the main title
-% Full title, containing possible part information:
-\providecommand{\thisbooktitle}{\mainbooktitle} %
+% Set book titles if they're not yet defined. One should define them in the main
+% file before including this package. The supported macros are:
+%   \mainbooktitle
+%   \subbooktitle
+%   \subsubbooktitle
+%   \thisbooktitle
+%   \bookmotto
+%   \bookbytext
+%   \bookcompiledbytext
+%   \secondpagefootnote
+% All of them are optional, and for some there are defaults defined below.
+\providecommand\mainbooktitle{Not named songbook} % the main title
+% The book title to display on top of each verso page (if doesn't exist, it is
+% constructed here from \mainbooktitle and optional \subbooktitle):
+\providecommand{\thisbooktitle}{% main title (+ subtitle, if defined)
+  \mainbooktitle\ifdefined\subbooktitle{: \subbooktitle}\fi%
+}
+\providecommand{\bookbytext}{By:\par\vspace{0.618034ex}\textbf{\Large humankind}}%
+\providecommand{\secondpagefootnote}{%
+  The material in this book is collected from various sources over time.\\
+  This is a work in progress, and made for the contributors' private use.
+}
 
 % microtype: enable all microtype features (except tracking) for more fonts than in
 % the defaults:
@@ -294,7 +312,7 @@
 % "[PLEASEINSERT\PRERENDERUNICODE{}INTOPREAMBLE]"
 \PrerenderUnicode{ṃ}%\PrerenderUnicode{Ṃ}
 \PrerenderUnicode{ṛ}%\PrerenderUnicode{Ṛ}
-% ...this is for the same problem in unilaiva-daimebook's chapter Oração:
+% ...this is for the same problem in unilaiva-astral-verde's chapter Oração:
 \PrerenderUnicode{ç}%\PrerenderUnicode{Ç}
 \PrerenderUnicode{ã}%\PrerenderUnicode{Ã}
 
@@ -306,53 +324,62 @@
   \texorpdfstring{\hspace{1em}\textcolor{#1}{\newmoon}}{}%
 }
 
-% This command creates the second page at where it is called. This is supposed
-% to be the odd verso page right after the cover.
-% Parameters: 1) subtitle, 2) subsubtitle. Parameters can be left empty.
-\newcommand{\secondpage}[2]{
+% This command creates "the second page" at where it is called. This is supposed
+% to be the odd verso page right after the cover. The following macros, if
+% defined, provide data to fill this page (only \mainbooktitle is mandatory):
+%   \mainbooktitle
+%   \subbooktitle
+%   \subsubbooktitle
+%   \bookmotto
+%   \bookbytext
+%   \bookcompiledbytext
+%   \secondpagefootnote
+\newcommand{\secondpage}{
   { % must be contained within a block for the settings to not bleed
     \thispagestyle{empty}
     \topskip0pt
-    \vspace*{5.05em} % align with "Contents" heading on the next page; BAD for any changes
+    \normalsize
+    \vspace*{11.3ex} % align with "Contents" heading on the next page; BAD for any changes
     \begin{center}
-      \Huge \mainbooktitle\\
-      \normalsize\textit{paths to higher knowledge}\\
-      \ifx&#1&% #1 is empty
-      \else % #1 not empty
-        \vspace{1em}
-        \Large \textbf{#1}\\
-        \ifx&#2&% #2 is empty
-        \else % #2 not empty
-          \vspace{0.3em}%
-          \normalsize #2\\
+      {\Huge \mainbooktitle}
+      \ifdefined\bookmotto% \bookmotto exists
+        \par\textit{\normalsize\bookmotto}
+      \fi
+      \ifdefined\subbooktitle% \subbooktitle exists
+        \par\vspace{2ex}
+        {\Large \textbf{\subbooktitle}}
+        \ifdefined\subsubbooktitle% \subsubbooktitle exists
+          \par\vspace{0.618034ex}%
+          {\normalsize \subsubbooktitle}
         \fi
       \fi
-      \vspace*{\fill}
-      \large By:\\
-      \Large \textbf{humankind}\\
-      \vspace{1em}
-      \large Version:\\
-      % vvvv-mm-dd % Use hardcoded date for tagged printout releases
-      \Large \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day% current date, the default
-      \ifchorded\else{\\\emph{(without chords)}}\fi% if non-chorded version, mention it here
-      \\
-      \vspace*{\fill}
+      \par\vspace*{\fill}
+      \ifdefined\bookbytext% \bookbytext exists
+        {\large \bookbytext}
+        \par\vspace{2ex}
+      \fi
+      {\large Version:}
+      \par\vspace{0.618034ex}
+      {\Large%
+        % vvvv-mm-dd % Use hardcoded date date for tagged printout releases
+        \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day% current date, the default
+        \ifchorded\else{\par\emph{(lyrics only)}}\fi% if non-chorded version, mention it here
+      }
+      \par\vspace*{\fill}
       % Created with: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
       \imagel[3]{QR_https_unilaiva_aavalla_net.png} % is already centered, so 'l' version ok
-      \\
+      \par
       {\small\url{https://unilaiva.aavalla.net/}}
-      \\
-      \vspace*{\fill}
-      {\footnotesize Compiled by: antagomir \& larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})}
-      \\
-      \vspace{1.5em}
-      {\scriptsize
-        The material in this book is collected from various sources over time.\\
-        \vspace{-1em} % workaround for too large line spacing
-        This is a work in progress, and made for the contributors' private use.
-        \vspace{-1em} % workaround for too large line spacing
-      }
+      \par\vspace*{\fill}
+      \ifdefined\bookcompiledbytext% \bookcompiledbytext exists
+        {\footnotesize\bookcompiledbytext}
+        \par\vspace{4ex}
+      \fi
+      \ifdefined\secondpagefootnote%
+        {\scriptsize\secondpagefootnote}%
+      \fi
     \end{center}
+    \vspace{-1.85ex}% workaround to align page bottom with other pages
   }
 }
 
