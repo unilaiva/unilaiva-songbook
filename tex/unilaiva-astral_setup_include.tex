@@ -49,7 +49,8 @@
 \renewcommand{\printchord}[1]{\sffamily\bfseries\normalsize\color{chordcolor}#1}
 
 % fancyhdr: setup header
+% [LE,RO]: page nr as setup in the unilaiva-songbook_common_package
+\fancyhead[CE]{\rmfamily\small\itshape{\thisbooktitle}} % even center: book name
+\fancyhead[RE]{}
 \fancyhead[LO]{}
 \fancyhead[CO]{\rmfamily\small\itshape{\leftmark}} % odd center: chapter name
-\fancyhead[RE]{}
-\fancyhead[CE]{\rmfamily\small\itshape{\thisbooktitle}} % even center: book name
