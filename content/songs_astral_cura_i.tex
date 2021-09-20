@@ -1,0 +1,112 @@
+% Santo Daime: Cura I
+% ===================
+%
+\audio[title={Nossa Irmandade}]{https://www.nossairmandade.com/hinario/2/CuraI}
+
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+
+\beginsong{Pai Nosso}[by={Padr. Sebastião},key={Am},sks={Bm, Cm, Dm}]
+  \audio{https://www.nossairmandade.com/hymn/53/PaiNosso}
+  \newchords{chords_painosso_a}\newchords{chords_painosso_b}
+  \mnbeginchorus\memorize[chords_painosso_a]
+    \[^\mn{A}]Pai |\[\mnc{C}C]Nosso que es\[\bmc\mn{D}]tá \[^\mn{C}]no |\[\mnc{A}Am]céu \altchords{\id[1]{(Bm)}|D |Bm}
+    San\[\bmc\mn{C}]ti\[^\mn{E}]fi|\[\mnc{C}C]cado é \[^\mn{B}]nos\[\mnc{A}Am]so \[^\mn{C}]Se|\[\mnc{E}Em]nhor\[\bm] \altchords{|D Bm |F\#m}
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_painosso_b]
+    \[^\mn{D}]Aprovei|\[Dm]tando a o\[\bm]ca\[^\mn{C}]si|\[\mnc{A}Am]ão \altchords{|Em |Bm}
+    Meu \[\bmc\mn{C}]Mes\[^\mn{E}]tre é |\[\mnc{C}C]Rei s\[^\mn{B}]u\[\mnc{A}Am]pe\[^\mn{C}]ri|\[C]or \[\bm] \altchords{|D Bm |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_painosso_a]
+    Oh |^minha ^Virgem |^Mãe
+    As ^suas |^lágrimas ^derra|^mou ^
+  \mnendchorus\glueverses\mnbeginchorus\replay[chords_painosso_b]
+    A|^queles ^que não |^amam
+    ^Vão sen|^tir a ^mesma |^dor ^
+  \endchorus
+  \beginchorus\replay[chords_painosso_a]
+    Meu |^Mestre es^tá co|^migo
+    E^le é |^Mestre en^sina|^dor ^
+  \mnendchorus\glueverses\mnbeginchorus\replay[chords_painosso_b]
+    Jun|^{to com} a ^Virgem |^Mãe
+    O ^nosso |^Pai foi ^quem man|^dou ^
+  \endchorus
+  \beginchorus\replay[chords_painosso_a]
+    Nin|^guém sa^be o que |^diz
+    E ^nem sa|^bem o que es^tão di|^zen^do
+  \mnendchorus\glueverses\mnbeginchorus\replay[chords_painosso_b]
+    Com o po|^der do ^nosso |^Pai
+    O ^relho a|^gora es^{tá co}|^men^do
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8\posectionmark "A" a4 | c4 c8( c8) d4 c | a4. a8 c4 e | c c8 b a4 c | e2~ e8
+      }
+      \repeat volta 2 {
+        \parenthesize d8\sectionmark "B" d( d) | d4 d8( d8) d4 c4 | a4. a8 c4 e | c4 c8( b8) a4 c4 | c2~ c8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Pai | Nos -- so que~es -- tá no | céu;
+      San -- ti -- fi -- | ca -- do~é nos -- so Se -- | nhor. __ _
+      A -- pro -- vei -- | tan -- do~a o -- ca -- si -- | ão;
+      Meu Mes -- tre~é | Rei su -- _ pe -- ri -- | or. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Oh | mi -- nha __ _ Vir -- gem | Mãe;
+      As su -- as | lá -- gri -- mas der -- ra -- | mou. __ _
+      \skip 1 A -- _ | que -- les __ _ que não | a -- mam;
+      Vão sen -- | tir a __ _ mes -- ma | dor. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Meu | Mes -- tre es -- tá co -- | mi -- go;
+      Ele é | Mes -- tre en -- si -- na -- | dor. __ _
+      \skip 1 Jun -- _ | to com a Vir -- gem | Mãe;
+      O nos -- so | Pai foi __ _ quem man -- | dou. __ _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      Nin -- | guém sa -- _ be~o que | diz;
+      E nem sa -- | bem o que~es -- tão di -- | zen -- do.
+      Com o po -- | der do __ _ nos -- so | Pai;
+      O re -- lho~a -- | go -- ra es -- tá co -- | men -- do.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c1 | a:m | c2 a2:m | e2:m~ e8:m
+      }
+      \repeat volta 2 {
+        s4. | d1:m | a:m | c2 a:m | c2~ c8
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better division
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Our father who art in heaven, hallowed is our Lord
+    Using the occasion, my Master is superior King
+    \nextverse
+    Oh! My Virgin Mother, your tears were shed
+    Those who do not love are going to feel the same pain
+    \nextverse
+    My Master is with me, he is the Master teacher
+    Together with the Virgin Mother, it was ordered by our father
+    \nextverse
+    No one knows what they say, nor do they know what they're saying
+    With the power of our Father, now the whip is in full swing
+  \end{translation}
+\endsong
+

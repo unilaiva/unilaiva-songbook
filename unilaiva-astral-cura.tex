@@ -1,0 +1,43 @@
+ %% unilaiva-astral-cura
+ %% ====================
+ %%
+ %% Collection of Santo Daime hymns, "Unilaiva no Astral: Cura",
+ %% "the green book"
+ %%
+
+% Setup the book name (the subtitle), and include common settings
+\newcommand{\subbooktitle}{Cura}
+\input{tex/unilaiva-astral_setup_include.tex}
+
+% songs: create indexes (these must be named exactly like this!)
+\newindex{titleidx}{idx_unilaiva-astral-cura_title}
+\newauthorindex{authidx}{idx_unilaiva-astral-cura_auth}
+\newscripindex{tagidx}{idx_unilaiva-astral-cura_tag}
+
+
+\begin{document}
+
+  % Cover page (recto), by larva (photo + edit):
+  \includepdf[]{content/img/Unilaiva-astral-cura_COVER.pdf}
+  % The second page (verso):
+  \secondpage
+
+  % TOC:
+  \input{tex/unilaiva-songbook_content_include_part0_toc.tex}
+
+  % Sets chapter number; will be incremented by one at each \mainchapter,
+  % \songchapter or \chapter:
+  \setcounter{chapter}{0}
+
+  \mainchapter[]{Primeira Parte}
+    \begin{songs}{}
+      \input{content/songs_astral_cura_i.tex}
+    \end{songs}
+
+
+  % Here start appendices: chapter numbering resets and switches to alphabetic
+  \appendix
+  \chapter{Technical}
+    \input{content/section_technical_information.tex}
+
+\end{document}
