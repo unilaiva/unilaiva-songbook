@@ -54,7 +54,7 @@
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c''' {
       \key a \minor \time 3/4
-        | c4_\posectionmark "A" a e | c a c | e2.~ | e2.
+        | c4\posectionmark "A" a e | c a c | e2.~ | e2.
         | c'4 a e | cis cis e | d2. | d2
       \break
       \repeat volta 2 {
@@ -92,10 +92,7 @@
       }
     }
     \layout { #(layout-set-staff-size 15) } % to fit on one spread
-    % Put vocals below to fit on page, as we are putting the playout mark in
-    % the lyrics space for this song (so that it wouldn't collide with the
-    % chord marking).
-    \include "tex/lp-include-tail-lyricsbelow.ly"
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
