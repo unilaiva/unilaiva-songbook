@@ -5,49 +5,11 @@
  %% "the green book"
  %%
 
-\documentclass[twoside,10pt]{book}
-
-% Set the title of this document:
-\newcommand{\mainbooktitle}{Unilaiva no Astral}
+% Setup the book name (the subtitle), and include common settings
 \newcommand{\subbooktitle}{o Livro Verde}
-% Set things shown on the second page:
-\newcommand{\bookmotto}{com informação musical}
-\newcommand{\bookbytext}{Received by:\par\vspace{0.618034ex}\textbf{\Large humankind}}%
-\newcommand{\bookcompiledbytext}{%
-  Compiled by: larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})%
-}%
+\input{tex/unilaiva-astral_setup_include.tex}
 
-% The following package contains all the imports, style settings etc:
-\usepackage{tex/unilaiva-songbook_common}
-
-% unilaiva-songbook_common: setup
-\showphfalse
-\showphintocfalse
-\showkeytrue
-\showskstrue
-\showtranslationtrue
-\showextrue
-\showtagstrue
-\shownotestrue
-\showbeatstrue
-\showauthtrue
-\showlilypondtrue
-\showexplanationtrue
-\showtranslationtrue
-\showfeelertrue
-\showaltchordstrue
-\renewcommand\preludetagstyle{\bfseries} % make tag list in the prelude bold
-\renewcommand\translationstyle{\footnotesize} % make translated text smaller
-% larger chord font:
-\renewcommand{\printchord}[1]{\sffamily\bfseries\normalsize\color{chordcolor}#1}
-
-% fancyhdr: setup header
-\fancyhead[LO]{}
-\fancyhead[CO]{\rmfamily\small\itshape{\leftmark}} % odd center: chapter name
-\fancyhead[RE]{}
-\fancyhead[CE]{\rmfamily\small\itshape{\thisbooktitle}} % even center: book name
-
-% songs: create indexes
+% songs: create indexes (these must be named exactly like this!)
 \newindex{titleidx}{idx_unilaiva-astral-verde_title}
 \newauthorindex{authidx}{idx_unilaiva-astral-verde_auth}
 \newscripindex{tagidx}{idx_unilaiva-astral-verde_tag}
