@@ -100,7 +100,7 @@ dependencies installed (see **option TWO**) and the project's source downloaded,
 and then run the following commands or their equivalents in this exact sequence
 in the project's root directory:
 
-  1. `lilypond-book -f latex --output temp unilaiva-songbook.tex`
+  1. `lilypond-book -f latex --output=temp unilaiva-songbook.tex`
   2. `cd temp ; ln -s ../ext_packages ./ ; ln -s ../../content/img ./content/ ;
      ln -s ../../tex/unilaiva-songbook_common.sty ./tex/ ;
      ln -s ../tags.can ./`
