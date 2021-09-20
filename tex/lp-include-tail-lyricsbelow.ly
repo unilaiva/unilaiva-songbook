@@ -20,6 +20,7 @@
         \new Lyrics \lyricsto "theVoice" { \theLyricsFour }
         \new Lyrics \lyricsto "theVoice" { \theLyricsFive }
         \new Lyrics \lyricsto "theVoice" { \theLyricsSix }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsSeven }
       >>
       \layout { }
     }
