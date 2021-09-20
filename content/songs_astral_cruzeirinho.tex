@@ -1222,18 +1222,21 @@
       Nes -- te | mun -- do de ilu -- | são.
     }
     theChords = \chordmode {
+      % chords are the same for all verses
       \repeat volta 2 { % verse 1
         s4 | g1 | g | g | c
         | a2:m \parenthesize d | g \parenthesize e:m | d2:7 \parenthesize a:m | g2.
       }
       \repeat volta 2 { % verse 2
         \once \set chordChanges = ##f
-        s4 | g1 | g c | g | c
-        | a2:m \parenthesize d | g \parenthesize e:m | d2:7 \parenthesize a:m | g2.      }
+        s4 | g1 | g | g | c
+        | a2:m \parenthesize d | g \parenthesize e:m | d2:7 \parenthesize a:m | g2.
+      }
       \repeat volta 2 { % verse 3
         \once \set chordChanges = ##f
-        s4 | g1 | g c | g | c
-        | a2:m \parenthesize d | g \parenthesize e:m | d2:7 \parenthesize a:m | g2.      }
+        s4 | g1 | g | g | c
+        | a2:m \parenthesize d | g \parenthesize e:m | d2:7 \parenthesize a:m | g2.
+      }
     }
     \layout { #(layout-set-staff-size 15) } % to fit on one spread
     \include "tex/lp-include-tail.ly"
