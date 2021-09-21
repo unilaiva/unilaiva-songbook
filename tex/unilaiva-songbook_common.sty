@@ -953,7 +953,7 @@
 %
 % The \mn??? commands display an encircled note name hint above the chord
 % line. They are meant to display (sung) melody notes above the lyrics. The
-% commands must be called from within a chord definition. The note name must
+% commands must be called from within a chord definition \[]. The note name must
 % be written as upper case for transposing to work, even though the result
 % is actually presented in lower case.
 %
@@ -977,6 +977,8 @@
 %   \mnc{<note>}                    : on verse's first line, above a chord
 %   \mncii{<note>}{<note>}          : on first line, 2 notes, above a chord
 %   \mnciii{<note>}{<note>}{<note>} : on first line, 3 notes, above a chord
+%   \mncadj{<hadj>}{<note>}         : on first line, above a chord, with
+%                                     adjusted horizontal position
 %   \mnlow{<notename>}              : on other lines of a verse
 %
 % Use \mn, \mnc, \mncii or \mnciii to display notes on the first line of lyrics
@@ -1053,6 +1055,14 @@
 % See above for usage information.
 \newcommand{\mnc}[1]{%
   \@mnnegspacetrue\@note{#1}%
+}
+
+% Displays a melody note above a chord, with its position adjusted horizontally,
+% to be used on the first line of lyrics. See above for usage information.
+\newcommand{\mncadj}[2]{%
+  \hspace{#1}%
+  \@mnnegspacetrue\@note{#2}%
+  \hspace{-#1}%
 }
 
 % Displays two melody notes above a chord, to be used on the first line of
