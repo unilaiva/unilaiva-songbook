@@ -173,20 +173,53 @@
       #}
     )
 
-    % Mark a spot in the music with a cyan text above the staff.
-    % The text is given as the only input parameter. Example: \genmark "(3.)"
+    % Mark this spot above the staff with a text in generic style. The text
+    % is given as the only input parameter. Example: \genmark "Yei!"
     genmark =
     #(define-event-function
       (parser location marktext)
       (markup?)
-      "Mark the beginning of a musical section"
+      "Make a generic text mark above the staff"
       #{
         ^\markup {
-          \with-color #darkcyan
+          \with-color #grey
           #marktext
         }
       #}
-    )
+      )
+
+    % The color used to signify alternative playing
+    color-alt = #darkcyan
+
+    % Mark the spot of the preceding note with textual alternative playing
+    % instruction above the staff (for example verse number). Can be paired
+    % with \altnote *before* the note in question.
+    altmark =
+    #(define-event-function
+      (parser location marktext)
+      (markup?)
+      "Make textual mark to signify alternative play instructions"
+      #{
+        ^\markup {
+          \with-color #color-alt
+          #marktext
+        }
+      #}
+      )
+
+    % Setup the following note's color to #color-alt. Use this to mark a note
+    % to be of different color to signify alternative playing. To explain this,
+    % use \altmark function *after* the note.
+    altnote = {
+      \once\override NoteHead.color = #color-alt
+      \once\override Stem.color = #color-alt
+      \once\override Accidental.color = #color-alt
+      \once\override Beam.color = #color-alt
+      \once\override Flag.color = #color-alt
+      \once\override Dots.color = #color-alt 
+      \once\override TabNoteHead.color = #color-alt
+      \once\override Slur.color = #color-alt
+    }
 
     % Defines some variables as empty, so that if the user doesn't define them,
     % nothing breaks and they will just be ignored.
