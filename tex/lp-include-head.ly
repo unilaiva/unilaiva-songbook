@@ -207,10 +207,10 @@
       #}
       )
 
-    % Setup the following note's color to #color-alt. Use this to mark a note
-    % to be of different color to signify alternative playing. To explain this,
-    % use \altmark function *after* the note.
-    altnote = {
+    % Setup the following note or lyric token's color to #color-alt. Use this
+    % to mark a note to be of different color to signify alternative playing.
+    % To explain this, use \altmark function *after* the note.
+    altcol = {
       \once\override NoteHead.color = #color-alt
       \once\override Stem.color = #color-alt
       \once\override Accidental.color = #color-alt
@@ -219,6 +219,7 @@
       \once\override Dots.color = #color-alt 
       \once\override TabNoteHead.color = #color-alt
       \once\override Slur.color = #color-alt
+      \once\override LyricText.color = #color-alt
     }
 
     % Defines some variables as empty, so that if the user doesn't define them,
