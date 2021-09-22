@@ -475,3 +475,121 @@
     Pay attention to what I've already said; he who overcomes is going to shine
   \end{translation}
 \endsong
+
+
+\beginsong{As Estrelas}[by={Mestre Irineu Serra},key={A},sks={A, B, G}]
+  \audio{https://www.nossairmandade.com/hymn/265/AsEstrelas}
+  \mnbeginchorus\memorize
+    \[^\mn{C#}]As \[^\mn{E}]es|\[\mnc{A}A]trelas \[\bmc\mn{C#}]já \[^\mn{E}]che|\[^\mn{A}]garam \altchords{\id[1]{(G)}|G | \e}
+    \[\bmc\mn{A}]Para \[^\mn{G#}]di|\[\mnc{F#}F#m]zer \[^\mn{E}]o \[(A)]no\[^\mn{C#}]me |\[\mnc{E}E]seu \[\bm] \altchords{|Em (G) |D}
+    \[^\mn{E}]Sou |\[\mnc{A}A]eu, sou \[\bmc\mn{C#}]eu, \[^\mn{E}]sou |\[(E)]eu \altchords{|G |(D)}
+    \[\mnc{A}A]Sou \[^\mn{G#}]eu |\[\mnc{F#}F#m]um \[^\mn{E}]fi\[E]lho \[^\mn{C#}]de |\[\mnc{D}D]Deus \[\bm] \altchords{G |Em D |C}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    As es|^trelas ^me le|varam
+    ^Para cor|^rer o ^mundo in|^tei^ro
+    \noteson\[\mnlow{C#}]Pra co\[\mnlow{E}]nhe\notesoff|^cer es^ta ver|^dade
+    ^Para po|^der ser ^verda|^dei^ro
+  \endchorus
+  \beginchorus
+    Eu su|^bi ser^ra de es|pinhos \altchords{\id[2]{(B)}|B | \e}
+    ^Pisan|^do em pon^tas a|^gu^das \altchords{|G\#m (B) |F\#}
+    \noteson\[\mnlow{C#}]As \[\mnlow{E}]es\notesoff|^trelas ^me dis|^seram \altchords{|B |(F\#)}
+    ^No mun|^do se ^cura |^tu^do \altchords{B |G\#m F\# |E}
+  \endchorus
+  \beginchorus
+    As es|^trelas ^me dis|seram
+    ^Ouve |^muito e ^fala |^pou^co
+    \noteson\[\mnlow{C#}]Pa\[\mnlow{E}]ra \notesoff|^poder ^compreen|^der
+    E ^conver|^sar com ^meus ca|^bo^clos
+  \endchorus
+  \beginchorus
+    Os ca|^boclos ^já che|garam
+    De ^braços |^nus e ^pés no |^chão ^
+    \noteson\[\mnlow{C#}]E\[\mnlow{E}]les \notesoff|^trazem re^médios |^bons
+    ^Para |^curar ^os cris|^tã^os
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        cis8\pomark e | a,4 a cis e | a, a a'4( a8) gis8
+        | fis4. e8 e4. cis8 | e2( e8) \parenthesize cis8 \parenthesize cis8 \altcol\grace e4\altmark "1." e8
+        | a,4 a8( a8) cis4 e | e4.( e8) a4( a8) gis8
+        | fis4. e8 e4. cis8 | d2( d4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        \set includeGraceNotes = ##t
+        As es -- | tre -- las já che -- | ga -- ram;
+        Pa -- ra di -- | zer o no -- me | seu; __ _ \skip 1 \skip 1
+        \altcol Sou __ _  | eu, sou __ _ eu, sou | eu; __ _
+        Sou __ _ eu | um fi -- lho de | Deus. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        As es -- | tre -- las me le -- | va -- ram;
+        Pa -- ra cor -- | rer o mun -- do~in -- | tei -- ro;
+        Pra co -- nhe -- | cer es -- _ ta ver -- | da -- de;
+        Pa -- ra po -- | der ser ver -- da -- | dei -- ro.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Eu su -- | bi ser -- ra de~es -- | pi -- nhos;
+        Pi -- _ san -- | do~em pon -- tas a -- | gu -- das; \skip 1
+        As es -- | tre -- las __ _ me dis -- | se -- ram;
+        No __ _ mun -- | do se cu -- ra | tu -- do.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        As es -- | tre -- las me dis -- | se -- ram;
+        Ou -- _ ve | mui -- to~e fa -- la | pou -- co; \skip 1
+        Pa -- ra | po -- der __ _ com -- preen -- | der;
+        E con -- _ ver -- | sar com meus ca -- | bo -- clos.
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        Os ca -- | bo -- clos já che -- | ga -- ram;~De
+        bra -- _ ços | nus e pés no | chão; __ \skip 1 \skip 1
+        E -- les | tra -- zem re -- mé -- dios | bons; __ _
+        Pa -- _ ra | cu -- rar os cris -- | tã -- os.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a1 | a1 | fis2:m \parenthesize a2 | e1
+        | a | \parenthesize e2 a2 | fis2:m e2 | d2.
+      }
+    }
+    \layout { #(layout-set-staff-size 13) } % to fit translation, too
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    The Stars already arrived to say their name
+    I am, I am, I am, I am a son of God
+    \nextverse
+    The Stars took me to go through the entire world
+    For me to know this Truth, to be able to be true
+    \nextverse
+    I climbed a hill of thorns, stepping on sharp points
+    The Stars told me: in the world everything can be healed
+    \nextverse
+    The Stars told me: listen much and speak little
+    So that I can understand and speak with my caboclos
+    \nextverse
+    Thge caboclos already arrived with naked arms and feet on the ground
+    They bring good remedies to heal the Christians
+  \end{translation}
+\endsong
