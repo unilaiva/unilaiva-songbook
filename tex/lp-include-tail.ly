@@ -20,6 +20,7 @@
         \new Lyrics \lyricsto "theVoice" { \theLyricsFive }
         \new Lyrics \lyricsto "theVoice" { \theLyricsSix }
         \new Lyrics \lyricsto "theVoice" { \theLyricsSeven }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsEight }
         \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
       >>
       \layout { }
