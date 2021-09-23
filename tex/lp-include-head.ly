@@ -103,6 +103,9 @@
             .nonstaff-unrelatedstaff-spacing.padding = #0.5 % default: #1.5
         }
       }
+      \context {
+        \Voice \consists "Ambitus_engraver" % Shows vocal range
+      }
     }
 
     % Draw a box around text and color it blue. Used by other functions.
