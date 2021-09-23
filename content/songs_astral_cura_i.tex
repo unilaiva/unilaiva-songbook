@@ -162,10 +162,11 @@
         \parenthesize e8( \posectionmark "A" \parenthesize e8) | c8( c c) a8 d4. c8 | c2( c4) g'8( g) | e8( c4) e8 d4. c8 | e2( e4)
       }
       \repeat volta 2 {
-        g8( \sectionmark "B" \grace{\parenthesize g8} g) | e8( e e) c d4. c8 | g2( g4) e'8( e) | c4( c8) a8 d4. c8 | c2( c4)
+        \grace{\altcol\parenthesize g8\altmark "5." } g8( \sectionmark "B" g) | e8( e e) c d4. c8 | g2( g4) e'8( e) | c4( c8) a8 d4. c8 | c2( c4)
       }
     }
     theLyricsOne = \lyricmode {
+      \set includeGraceNotes = ##t
       \set stanza = "1."
       \repeat volta 2 {
         \skip 1 \skip 1 | Eu __ _ _ cha -- mei meu | Mes -- tre
@@ -173,11 +174,12 @@
       }
       \set stanza = "1.B"
       \repeat volta 2 {
-        Que __ _ | a __ _ _ ver -- da -- de~é | Deus, __ _
+        \skip 1 Que __ _ | a __ _ _ ver -- da -- de~é | Deus, __ _
         o __ _ | rei __ _ da ca -- ri -- | da -- de.
       }
     }
     theLyricsTwo = \lyricmode {
+      \set includeGraceNotes = ##t
       \set stanza = "2."
       \repeat volta 2 {
         \skip 1 \skip 1 | Eu __ _ _ pe -- ço~a meu | Mes -- tre
@@ -185,11 +187,12 @@
       }
       \set stanza = "2.B"
       \repeat volta 2 {
-        Meu __ _ | Mes -- tre te -- nha pi -- e -- | da -- de, \skip 1 \skip 1
+        \skip 1 Meu __ _ | Mes -- tre te -- nha pi -- e -- | da -- de, \skip 1 \skip 1
         | a -- bra nos -- sa ses -- | são. __ _
       }
     }
     theLyricsThree = \lyricmode {
+      \set includeGraceNotes = ##t
       \set stanza = "3."
       \repeat volta 2 {
         As -- _ | sim es -- tá a -- con -- te -- | cen -- do,
@@ -197,11 +200,12 @@
       }
       \set stanza = "3.B"
       \repeat volta 2 {
-        Que é | pa -- _ _ ra co -- nhe -- | ce -- rem,
+        \skip 1 Que é | pa -- _ _ ra co -- nhe -- | ce -- rem,
         sa -- _ | be -- rem me res -- pei -- | tar. __ _
       }
     }
     theLyricsFour = \lyricmode {
+      \set includeGraceNotes = ##t
       \set stanza = "4."
       \repeat volta 2 {
         Já __ _ | dis -- se e tor -- no~a di -- | zer, __ _
@@ -209,25 +213,25 @@
       }
       \set stanza = "4.B"
       \repeat volta 2 {
-        Le -- _ | van -- _ to~a mi -- nha ses -- | são __ _
+        \skip 1 Le -- _ | van -- _ to~a mi -- nha ses -- | são __ _
         pa -- ra~o | rei -- no ce -- les -- ti -- | al. __ _
       }
     }
     theLyricsFive = \lyricmode {
-      \set stanza = "5."
       \set includeGraceNotes = ##t
+      \set stanza = "5."
       \repeat volta 2 {
         Meus ir -- | mã -- _ os va -- mos o -- | rar, __ _
         ro -- _ | gar e va -- mos pe -- | dir. __ _
       }
       \set stanza = "5.B"
       \repeat volta 2 {
-        Pa -- ra le -- | var -- _ mos es -- ta ver -- | da -- de
+        \altcol Pa -- ra le -- | var -- _ mos es -- ta ver -- | da -- de
         que o | Mes -- tre dei -- xou a -- | qui. __ _
       }
-      \set includeGraceNotes = ##f
     }
     theLyricsSix = \lyricmode {
+      \set includeGraceNotes = ##t
       \set stanza = "6."
       \repeat volta 2 {
         To -- dos | que -- _ _ rem ser fe -- | liz, __ _
@@ -235,11 +239,12 @@
       }
       \set stanza = "6.B"
       \repeat volta 2 {
-        Di -- _ | zen -- do que es -- tão co -- | mi -- go,
+        \skip 1 Di -- _ | zen -- do que es -- tão co -- | mi -- go,
         es -- _ | tão __ _ lon -- ge de | mim. __ _
       }
     }
     theLyricsSeven = \lyricmode {
+      \set includeGraceNotes = ##t
       \set stanza = "7."
       \repeat volta 2 {
         Eu __ _ | não __ _ _ dei -- xei as -- | sim, __ _
@@ -247,7 +252,7 @@
       }
       \set stanza = "7.B"
       \repeat volta 2 {
-        Não fi -- | ze -- _ _ ram co -- mo~eu | dis -- se,
+        \skip 1 Não fi -- | ze -- _ _ ram co -- mo~eu | dis -- se,
         fi -- _ | ze -- ram foi es -- pa -- | lhar. __ _
       }
     }
@@ -257,7 +262,7 @@
         | a2:m d:m | e2.:m
       }
       \repeat volta 2 {
-        s4 | a2:m d:m | g1
+        \grace s8 s4 | a2:m d:m | g1
         | c2 g | c2.
       }
     }
