@@ -205,7 +205,7 @@
       #{
         ^\markup {
           \with-color #color-alt
-          #marktext
+          \italic #marktext
         }
       #}
       )
