@@ -895,3 +895,123 @@
     He is always present and holds your hand.
   \end{translation}
 \endsong
+
+
+\beginsong{Linha do Tucum}[by={Mestre Irineu Serra},tags={marcha/valsa, 2x},key={Dm},sks={Dm, Cm -- Gm}]
+  \audio{https://www.nossairmandade.com/hymn/59/LinhaDoTucum}
+  \newchords{chords_linhadotucum_a}\newchords{chords_linhadotucum_b}
+  \mnbeginchorus\memorize[chords_linhadotucum_a]
+    \[^\mn{A}]Eu |\[\mnc{D}Dm]canto \[^\mn{C#}]a\[\bmc\mn{D}]qui \[^\mn{E}]na |\[^\mn{F}]ter\[^\mn{D}]ra \[\bm] \altchords{\id[1]{(Em)}|Em | \e}
+    O \[^\mn{F}]a|\[\mnc{E}A7]mor \[^\mn{D}]que \[\bmc\mn{C#}]Deus \[^\mn{E}]me |\[\mnc{D}Dm]dá \[\bm] \altchords{|B7 |Em}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_linhadotucum_b]
+    \[^\mn{A}]Pa\[^\mn{C}]ra |\[C]sempre\[\bm] \[^\mn{B&}]pa\[^\mn{A}]ra |\[\mnc{B&}F]sem\[^\mn{A}]pre \[\bm]\altchords{|D |G}
+    Para |\[A7]sempre\[\bm] para |\[\mnc{D}Dm]sempre \[\bm]\altchords{|B7 |Em}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_linhadotucum_a]
+    A minha |^Mãe que ^vem co|migo ^
+    Que me |^deu es^ta li|^ção ^
+    \endchorus\glueverses\beginchorus\replay[chords_linhadotucum_b]
+    Para |^sempre^ para |^sempre^
+    Para |^sempre eu ^ser ir|^mão ^
+  \mnendchorus
+  \beginchorus\replay[chords_linhadotucum_a]
+    Enxo|^tando os ^malfa|zejos ^
+    Que não |^querem ^me ou|^vir ^
+    \endchorus\glueverses\beginchorus\replay[chords_linhadotucum_b]
+    Que escu|^recem ^o pensa|^mento^
+    E nunca |^podem ^ser fe|^liz
+  \mnendchorus
+  \beginchorus\replay[chords_linhadotucum_a]
+    Esta é a |^Linha ^do Tu|cum ^
+    Que traz |^toda ^leal|^da^de
+    \endchorus\glueverses\beginchorus\replay[chords_linhadotucum_b]
+    Casti|^gando^ os menti|^rosos^
+    Aqui den|^tro des^ta ver|^da^de
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8\sectionmark "1.A" a4 | d4 d8 cis8 d4 e | f d2 d8 f8
+        | e4 d4 cis4 e4 | d2~ d8
+      } \break
+      \repeat volta 2 {
+        r8\sectionmark "1.B" a8 c8 | c4 c2 bes8 a8 | bes4 a2 a8 a8 | a4 a2 a8 a8 | d4 d4.
+      } \break
+      \repeat volta 2 {
+        a8\posectionmark "2-4.A"\segno a8 a8 | d4 cis4 d4 e | f( d2) d8 f8
+        | e4 d4 cis4 e4 | d2( d8)
+      } \break
+      \repeat volta 2 {
+        a8\sectionmark "2-4.B" a8 c8 | c4 c4.( bes8) bes8 a8 | bes4 a4.( a8) a8 a8 | a4 a8 a8 cis4 e4 | d2( d8)
+        \dalsegno
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+        Eu | can -- to a -- qui na | ter -- ra;
+        O a -- | mor que Deus me | dá. __ _
+      \set stanza = "1.B"
+        Pa -- ra | sem -- pre pa -- ra | sem -- pre;
+        Pa -- ra | sem -- pre pa -- ra | sem -- pre.
+      <<
+        \new Lyrics {
+          \set associatedVoice = "theMelody"
+          \set stanza = "2.A"
+            A mi -- nha | Mãe que vem co -- | mi -- go;
+            Que me | deu es -- ta li -- | ção. _
+          \set stanza = "2.B"
+            _ Pa -- ra | sem -- pre __ _ pa -- ra | sem -- pre; __ _
+            Pa -- ra | sem -- pre eu ser ir -- | mão. _
+        }
+        \new Lyrics {
+          \set stanza = "3.A"
+            _ En -- xo -- | tan -- do~os mal -- fa -- | ze -- jos;
+            Que não | que -- rem me ou -- | vir. __ _
+          \set stanza = "3.B"
+            Que es -- cu -- | re -- cem o pen -- sa -- | men -- to;
+            E nun -- ca | po -- dem __ _ ser fe -- | liz. _
+        }
+        \new Lyrics {
+          \set stanza = "4.A"
+            Es -- ta é~a | Li -- nha do Tu -- | cum __ _
+            Que traz | to -- da le -- al -- | da -- de
+          \set stanza = "4.B"
+            _ Cas -- ti -- | gan -- do os men -- ti -- | ro -- sos;
+            A -- qui den -- | tro des -- _ ta ver -- | da -- de.
+        }
+      >>
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | d1:m | d:m | a:7 | d2:m~ d8:m
+      }
+      \repeat volta 2 {
+        s4. | c1 | f1 | a:7 | d2:m~ d8:m
+      }
+      \repeat volta 2 {
+        s4. | d1:m | d:m | a:7 | d2:m~ d8:m
+      }
+      \repeat volta 2 {
+        s4. | c1 | f1 | a:7 | d2:m~ d8:m
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I sing here on earth, the love that God gives me
+    Forever, forever, forever, forever
+    \nextverse
+    My Mother that comes with me, who gave me this lesson
+    Forever, forever, forever to be a brother
+    \nextverse
+    Driving away those who do evil, who don't want to listen to me
+    Who darken their minds and can never be happy
+    \nextverse
+    This is the line of Tucum that brings all loyalty
+    Punishing the liars here in this truth
+  \end{translation}
+\endsong
