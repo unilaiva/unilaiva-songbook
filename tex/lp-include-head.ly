@@ -191,6 +191,13 @@
       #}
       )
 
+    % Prints a dal segno note. Should be paired with ^\segno somewhere.
+    dalsegno = -\markup {
+      \italic "D.S. "
+      \tiny \raise #1
+      \musicglyph #"scripts.segno"
+    }
+
     % The color used to signify alternative playing
     color-alt = #darkcyan
 
