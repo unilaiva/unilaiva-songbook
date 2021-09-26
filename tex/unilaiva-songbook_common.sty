@@ -295,6 +295,11 @@
 % Toggle showing of alternate chord sets
 \newif\ifshowaltchords\showaltchordstrue
 
+% Toggle appending the (optional) header image appended to the chapter name
+% wherever it shows up, e.g. in TOC and page headers. The image is never
+% shown in PDF contents though, as only characters are supported there.
+\newif\ifincludeimageinchaptername\includeimageinchapternametrue
+
 
 % END STYLE & OTHER SETTINGS
 
@@ -387,7 +392,13 @@
 % Required parameter is the chapter name, and optional is a filename for an image. So use it like:
 % \mainchapter{Chapter Name} or \mainchapter[image.png]{Chapter Name}
 \newcommand{\mainchapter}[2][]{%
-  \chapter{#2}%
+  \chapter{%
+    % Include the image in the chapter name string, if the image is given and
+    % the feature is turned on.
+    #2\ifx&#1&\else\ifincludeimageinchaptername%
+      \texorpdfstring{\hspace{1em}\includegraphics[width=1em,height=1em,keepaspectratio=true]{#1}}%
+                     {}% % except for the index in the PDF version
+    \fi\fi}%
   \thispagestyle{empty}% to omit the page number in the bottom
   \ifx&#1&% parameter #1 is empty (the optional one, given inside [])
   \else % parameter #1 is not empty, display image
