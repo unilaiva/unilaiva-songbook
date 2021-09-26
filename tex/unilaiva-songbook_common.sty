@@ -194,17 +194,28 @@
 \addto\captionsenglish{\renewcommand\appendixname{}} % sets appendix name prefix to nothing when babel: english
 
 % BEGIN Setup headers using fancyhdr (similar to default "book" style)
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{#1}}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[LE,RO]{\rmfamily\small\thepage} % page nr
-\fancyhead[CE]{\rmfamily\small\itshape{\thisbooktitle}} % even center: book name
-\fancyhead[RE]{\rmfamily\small\itshape{\leftmark}} % even right: chapter name
-\fancyhead[LO]{\rmfamily\small\itshape{\rightmark}} % odd left: section name
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\setlength{\footskip}{3.7pt} % to work around a warning
+%
+% Note that some pages (the first pages of TOC and chapters etc) automatically
+% use the style 'plain'. If needed, this style can also be modified with
+% \fancypagestyle(plain}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % can't be inside style block
+\renewcommand{\sectionmark}[1]{\markright{#1}} % can't be inside style block
+\fancypagestyle{unilaiva}[fancy]{%
+  \setlength{\footskip}{3.7pt} % to work around a warning
+  \setlength{\headheight}{12.3pt} % to work around a warning
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyhf{}
+  \fancyhead[LE,RO]{\rmfamily\small\thepage} % page nr
+  \fancyhead[CE]{\rmfamily\small\itshape{\thisbooktitle}} % even center: book name
+  \fancyhead[LO]{\rmfamily\small\itshape{\leftmark}} % odd left: chapter name
+  \fancyhead[CO]{\rmfamily\small\itshape{\rightmark}} % odd center: section name
+}
+\fancypagestyle{unilaivatoc}[unilaiva]{% Used in the TOC
+  \fancyhead[LO]{} % odd left: nothing
+  \fancyhead[CO]{\rmfamily\small\itshape{\leftmark}} % odd center: chapter name
+}
+\pagestyle{unilaiva} % set the default page style
 % END setup headers using fancyhdr
 
 % songs: Verse separation +/-; +/- 0 would be best, but in some cases a song can be
@@ -386,6 +397,20 @@
     \end{center}
     \vspace{-1.85ex}% workaround to align page bottom with other pages
   }
+}
+
+% Creates the Table Of Contents here. Use this instead of \tableofcontents macro
+\newcommand{\toc}{
+  \pagestyle{unilaivatoc}% use alternate header style for TOC
+  % to have totally flat right edge of the dots in TOC (microtype package):
+  \microtypesetup{protrusion=false} % To have a flat right side in TOC
+  \tableofcontents % The TOC
+  \microtypesetup{protrusion=true}% back to default (microtype package)
+  % Remove the overlapping page number in the bottom of the first TOC page:
+  \addtocontents{toc}{\protect\thispagestyle{empty}}
+  % Adds text "Page" on top of the TOC:
+  \addtocontents{toc}{~\hfill\textbf{Page}\par}
+  \newpage\pagestyle{unilaiva}% return to the default header style
 }
 
 % This is used for the main chapters of the book. Indices, instead, use \songchapter (internally).

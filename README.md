@@ -234,7 +234,6 @@ Project structure and guidelines
 │   ├── ul-selection_example.tex
 │   ├── ul-selection_include.tex
 │   ├── unilaiva-songbook_common.sty
-│   ├── unilaiva-songbook_content_include_part0_toc.tex
 │   ├── unilaiva-songbook_content_include_part1.tex
 │   ├── unilaiva-songbook_content_include_part2.tex
 │   └── unilaiva-songbook_content_include_part3_appendices.tex
