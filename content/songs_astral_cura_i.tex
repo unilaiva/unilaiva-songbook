@@ -1015,3 +1015,167 @@
     Punishing the liars here in this truth
   \end{translation}
 \endsong
+
+
+\beginsong{Olho Para o Firmamento}[by={Padr. Alfredo},key={Am},sks={Am, Gm, Bm}]
+  \audio[key=Am]{https://www.nossairmandade.com/hymn/475/OlhoParaOFirmamento}
+  \newchords{chords_olhopara_a}\newchords{chords_olhopara_b}
+  \mnbeginchorus\memorize[chords_olhopara_a]
+    \[^\mn{E}]Olho |\[\mnc{A}Am]para o \[\bm]fir\[^\mn{B}]ma|\[^\mn{C}]men\[^\mn{A}]to \altchords{\id[1]{(Gm)}|Gm | \e}
+    E \[\bmc\mn{E}]ve\[^\mn{G}]jo |\[G]to\[^\mn{D}]do \[(E7/D)]U\[^\mn{A}]ni|\[Am]ver\[\bm]so \altchords{|F (D7/C) |Gm}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_olhopara_b]
+    \[^\mn{A}]Es\[^\mn{B}]ta |\[\mnc{C}C]força \[\mnc{B}E]que re|\[\mnc{A}Am]cebo \altchords{|Bb D |Gm}
+    \[\bmc\mn{C}]Sem\[^\mn{A}]pre |\[\mnc{E}E]canto e \[\bmc\mn{B}]sem\[^\mn{C}]pre |\[\mnc{A}Am]pe\[\bm]ço \altchords{|D |Gm}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_olhopara_a]
+    Peço |^ao O^nipo|tente
+    ^E a |^Ele ^{me hu}|^mi^lho
+    \endchorus\glueverses\beginchorus\replay[chords_olhopara_b]
+    Para |^nunca ^me fal|^tar
+    ^Vossa |^luz com o ^santo |^bri^lho
+  \endchorus
+  \beginchorus\replay[chords_olhopara_a]
+    Me se|^guro ^no As|tral \altchords{\id[2]{(Em)}|Em | \e}
+    E ^quando |^me a^{cho do}|^en^te \altchords{|D (B7/A) |Em}
+    \endchorus\glueverses\beginchorus\replay[chords_olhopara_b]
+    Me lem|^bro de ^minha |^Mãe \altchords{|G B |Em}
+    E ^de meu |^Pai O^nipo|^ten^te \altchords{|B |Em}
+  \endchorus
+  \beginchorus\replay[chords_olhopara_a]
+    Estas |^forças ^verda|deiras
+    ^Provam |^que são ^exis|^ten^tes
+    \endchorus\glueverses\beginchorus\replay[chords_olhopara_b]
+    Mas quem |^vive ^neste |^mundo
+    ^Pouco |^vê e ^pouco |^sen^te
+  \endchorus
+  \brk
+  \beginchorus\replay[chords_olhopara_a]
+    Digo |^tudo ^humi|lhado \altchords{\id[3]{MK (Am)}|Am |C}
+    E ^conti|^nuo ^{a jor}|^na^da \altchords{|G Dm |Am}
+    \endchorus\glueverses\beginchorus\replay[chords_olhopara_b]
+    Com meu |^Pai em ^minha |^frente \altchords{|Am E7 |Am}
+    ^E mi|^nha Mãe ^a meu |^la^do \altchords{|- E7 |Am}
+  \endchorus
+  \beginchorus\replay[chords_olhopara_a]
+    Vou se|^guindo e ^vou pe|dindo
+    ^Para |^todos ^ino|^cen^tes
+    \endchorus\glueverses\beginchorus\replay[chords_olhopara_b]
+    Peço |^força ^nos tra|^balhos
+    ^Aos três |^Reis do ^Ori|^en^te
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        e8\posectionmark "A" e | a4 a a b | c a e g | g d d a' | a2 a4
+      }
+      \repeat volta 2 {
+        a,8\sectionmark "B" b | c4 c b b | a4. \parenthesize a8 c4 a | e'4 e8( e8) b4 c | a2 a4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        O -- lho | pa -- ra~o fir -- ma -- | men -- to;~E
+        ve -- jo | to -- do U -- ni -- | ver -- so.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Es -- ta | for -- ça que re -- | ce -- bo;
+        Sem -- pre | can -- to e sem -- pre | pe -- ço.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Pe -- ço | ao O -- ni -- po -- | ten -- te;
+        E a | E -- le me hu -- | mi -- lho.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Pa -- ra | nun -- ca me fal -- | tar; __ _
+        Vos -- sa | luz com o san -- to | bri -- lho.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Me se -- | gu -- ro no As -- | tral;
+        E quan -- do | me a -- cho do -- | en -- te.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Me lem -- | bro de mi -- nha | Mãe;
+        E de meu | Pai O -- _ ni -- po -- | ten -- te.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Es -- tas | for -- ças ver -- da -- | dei -- ras;
+        Pro -- vam | que são e -- xis -- | ten -- tes.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Mas quem | vi -- ve nes -- te | mun -- do;
+        Pou -- co | vê e __ _ pou -- co | sen -- te.
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        Di -- go | tu -- do hu -- mi -- | lha -- do;~E
+        con -- ti -- | nu -- o a jor -- | na -- da.
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        Com meu | Pai em mi -- nha | fren -- te;
+        E mi -- | nha Mãe __ _ a meu | la -- do.
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6.A"
+      \repeat volta 2 {
+        Vou se -- | guin -- do~e vou pe -- | din -- do;
+        Pa -- ra | to -- dos i -- no -- | cen -- tes.
+      }
+      \set stanza = "6.B"
+      \repeat volta 2 {
+        Pe -- ço | for -- ça nos tra -- | ba -- lhos;
+        Aos três | Reis do __ _ O -- ri -- | en -- te.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a1:m | a1:m | g2 \parenthesize e2:7/d | a2.:m
+      }
+      \repeat volta 2 {
+        s4 | c2 e2 | a1:m | e | a2.:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    I look at the firmament, I see the whole Universe
+    This force that I receive, I always sing and always ask
+    \nextverse
+    I ask the Omnipotent, and to Him I humble myself
+    That I never lack your light with yoour holy brilliance
+    \nextverse
+    I secure myself in the Astral, and when I find myself sick
+    I remember my Mother and my Omnipotent Father
+    \nextverse
+    These true forces prove that they exist
+    But who lives in this world sees little and feels little
+    \nextverse
+    I say everything with humility and continue the joourney
+    With my Father in front and my Mother at my side
+    \nextverse
+    I keep following and asking for all the innocents
+    I ask for strength in the works of the three Kings of the Orient
+  \end{translation}
+\endsong
