@@ -5,9 +5,9 @@
 # setup the *required* bind mount and use correct user id.
 #
 
-# Note that Ubuntu 20.04 Focal has a problem with Noto Medium; that's why we
-# use non-LTS 21.04 Hirsute.
-FROM ubuntu:hirsute-20210522
+# Note that Ubuntu 20.04 LTS Focal has a problem with Noto Medium; that's why we
+# use non-LTS 21.10 Impish.
+FROM ubuntu:impish-20211102
 
 # Installs everything needed for compiling the songbook, plus qrencode and
 # pdftk utilities. Also generates the required locale fi_FI.utf8.
