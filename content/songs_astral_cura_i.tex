@@ -1301,3 +1301,130 @@
     I ask strength of all beings, I am firm in Marachimbé
   \end{translation}
 \endsong
+
+
+\beginsong{Eu Agora Paro Peço}[by={Padr. Alfredo},key={D},sks={D, E, F}]
+  \audio{https://www.nossairmandade.com/hymn/541/EuAgoraParoEPe\%C3\%A7o}
+  \newchords{chords_euagoreparopeco_a}\newchords{chords_euagoreparopeco_b}
+  \mnbeginchorus\memorize[chords_euagoreparopeco_a]
+    \[^\mn{A}]Eu a|\[\mnc{D}D]gora \[\bm]pa\[^\mn{F#}]{ra o} |\[^\mn{A}]pe\[^\mn{F#}]ço
+    \[\bm]Pe\[^\mn{D}]{ço e} |rogo ao \[\mnc{B}Bm]Se\[^\mn{D}]nhor |\[\mnc{A}A]Deus \[\bm]
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_euagoreparopeco_b]
+    \[^\mn{A}]Que \[^\mn{F#}]me \[^\mn{G}]dê |\[\mnc{A}A]a \[^\mn{B}]san\[\mnc{F#}(F#m)]ta \[^\mn{A}]sa|\[A]úde
+    \[\bm]Pa\[^\mn{C#}]ra |\[\mnc{E}(Em)]todos \[\mnc{B}A7]fi\[^\mn{D}]lhos |\[D]Seus \[\bm]
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_euagoreparopeco_a]
+    Aqui |^esta^mos pe|dindo
+    E ^quem res|ponde é ^nosso |^Pai ^
+    \endchorus\glueverses\beginchorus\replay[chords_euagoreparopeco_b]
+    Vossa |^vonta^{de é} |^feita
+    ^Sempre |^{em to}^do lu|^gar ^
+  \endchorus
+  \beginchorus\replay[chords_euagoreparopeco_a]
+    Sempre |^estou ^reu|nindo
+    ^Para |mais fá^{cil di}|^zer ^
+    \endchorus\glueverses\beginchorus\replay[chords_euagoreparopeco_b]
+    No tra|^balho ^{com fir}|^meza
+    ^É mais |^fácil ^de ven|^cer ^
+  \endchorus
+  \beginchorus\replay[chords_euagoreparopeco_a]
+    Vou cha|^mando ^um a |um
+    ^Aqui |dentro ^{da ses}|^são ^
+    \endchorus\glueverses\beginchorus\replay[chords_euagoreparopeco_b]
+    O que |^tiver ^consci|^ência
+    ^E de|^seja ^ser ir|^mão ^
+  \endchorus
+  \brk
+  \beginchorus\replay[chords_euagoreparopeco_a]
+    Esta |^prova é ^para |todos
+    ^Nos e|xige es^{te tra}|^ba^lho
+    \endchorus\glueverses\beginchorus\replay[chords_euagoreparopeco_b]
+    Viver |^sempre com ^ale|^gria
+    E ^no sa|^{lão can}^tar hi|^ná^rio
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8 a8 \posectionmark "A" a8 | d4 d4 d4 fis4 | a4. fis8 fis4 d4
+        | d4 d8( d8) b4 d4 | a2( a8)
+      }
+      \repeat volta 2 {
+        \parenthesize a8 \sectionmark "B" fis8 g8 | a4 b8( b8) fis4 a4 | a4. a8 a4 cis4
+        | e4 e4 b4 d4 | d2( d8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Eu a -- | go -- ra pa -- ra~o | pe -- ço;
+      Pe -- ço~e | ro -- go ao Se -- nhor | Deus. __ _
+      \set stanza = "1.B"
+      Que me dê | a san -- _ ta sa -- | ú -- de;
+      Pa -- ra | to -- dos fi -- lhos | Seus. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      A -- qui | es -- ta -- mos pe -- | din -- do;~E
+      quem res -- | pon -- de é nos -- so | Pai. __ _
+      \set stanza = "2.B"
+      \skip 1 Vos -- sa | von -- ta -- _ de é | fei -- ta;
+      Sem -- pre | em to -- do lu -- | gar. __ _
+
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      Sem -- pre | es -- tou re -- u -- | nin -- do;
+      Pa -- ra | mais fá -- _ cil di -- | zer. __ _
+      \set stanza = "3.B"
+      \skip 1 No tra -- | ba -- lho __ _ com fir -- | me -- za;
+      É mais | fá -- cil de ven -- | cer. __ _
+
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      Vou cha -- | man -- do um a | um; __ _
+      A -- qui | den -- tro __ _ da ses -- | são. __ _
+      \set stanza = "4.B"
+      \skip 1 O que | ti -- ver __ _ cons -- ci -- | ên -- cia;
+      E de -- | se -- ja ser ir -- | mão. __ _
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      Es -- ta | pro -- va~é pa -- ra | to -- dos;
+      Nos e -- | xi -- ge es -- te tra -- | ba -- lho.
+      \set stanza = "5.B"
+      \skip 1 Vi -- ver | sem -- pre com a -- le -- | gria;
+      E no sa -- | lão can -- tar hi -- | ná -- rio.
+    }
+
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | d1 | d1 | d2 b2:m | a2:~ a8:
+      }
+      \repeat volta 2 {
+        s4. | a2 \parenthesize fis2:m | a1 | \parenthesize e2:m a2:7 | d2~ d8
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Now I stop and ask, I ask and pray to the Lord God
+    To give me the holy health, for all His sons and daughters
+    \nextverse
+    Here we are asking, and who answers is our Father
+    Your will is done always everywhere
+    \nextverse
+    I am always reuniting, because it is easier to say
+    In work with firmness it is easier to succeed
+    \nextverse
+    I keep calling one by one here within the session
+    Whoever has consciousness and desires to be brother
+    \nextverse
+    This trial for everyone demands from us this work
+    Always to live with joy and to sing the Hinario in the temple
+  \end{translation}
+\endsong
+
