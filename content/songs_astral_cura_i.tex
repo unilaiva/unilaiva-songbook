@@ -1538,3 +1538,106 @@
   \end{translation}
 \endsong
 
+
+\beginsong{São João na Terra}[by={Padr. Sebastião},tags={2x},key={C},sks={C, D}]
+  % Also in songs_astral_concentracao_diversos.tex
+  \audio[key=D]{https://www.nossairmandade.com/hymn/64/S\%C3\%A3oJo\%C3\%A3oNaTerra}
+  \newchords{chords_saojoaonaterra_a}\newchords{chords_saojoaonaterra_b}
+  \mnbeginchorus\memorize[chords_saojoaonaterra_a]
+    \[^\mn{G}]Quando ou\[^\bm\mn{C}]vir \[^\mn{E}]fa|\[\mnc{G}C]lar de São \[^\mn{E}]Jo\[^\bm\mn{A}]ão \[^\mn{G}]na |\[\mncii{E}{C}Am]terra \altchords{\id[1]{(D)}|D |Bm}
+    É \[^\mn{A}]si\[\mnc{C}C]nal \[^\mn{E}]de |\[\mnc{D}Dm]guerra em \[^\mn{C}]to\[\mnc{A}F]do \[^\mn{C}]lu|\[C]gar \altchords{D |Em G |D}
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_saojoaonaterra_b]
+    \ind \[^\mn{C}]É |\[\mnc{D}Dm]fora \[^\mn{C}]de \[^\bm\mn{A}]con\[^\mn{C}]fu|\[\mnc{E}C]são \altchords{|Em |D}
+    \ind \[^\mn{A}]Che\[^\bm\mn{C}]gou \[^\mn{E}]São |\[\mnc{D}Dm]Pedro com \[^\mn{C}]seus \[\mnc{A}F]dois \[^\mn{C}]ir|\[C]mãos \altchords{|Em G |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_saojoaonaterra_a]
+    Os an\[\bm]jinhos do |^céu é quem \[\bm]vem col|^her \altchords{\id[2]{MK (C)}|C |Am}
+    Para ^ajun|^tar em um ^{só lu}|^gar \altchords{|G F |C}
+  \endchorus\glueverses\beginchorus\replay[chords_saojoaonaterra_b]
+    \ind Lou|^var a meu \[\bm]Pai E|^terno \altchords{|G F |Am}
+    \ind Fel\[\bm]iz da|^quele que bem ^traba|^lhar \altchords{|G F |C}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 2.
+      \repeat volta 2 {
+         g8\posectionmark "A" g c4 e | g8( g) g e a4 g
+         | e8( c) c a c4 e | d8( d) d c a4 c
+      } \alternative {
+        { | c4 }
+        { | c2. }
+      }
+      \repeat volta 2 {
+         c4\sectionmark "B" | d d8 c a4 c | e4( e8) a,8 c4 e4
+         | d8 d d c a4 c4
+      } \alternative {
+        { | c2. }
+        { | c4 }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Quan -- do~ou -- vir fa -- | lar de São Jo -- ão na | ter -- ra;
+        É si -- nal de | guer -- ra em to -- do lu --
+      } \alternative {
+        { | gar; }
+        { | gar. }
+      }
+      \repeat volta 2 {
+        É | fo -- ra de con -- fu -- | são; _
+        Che -- gou São | Pe -- dro com seus dois ir --
+      } \alternative {
+        { | mãos; }
+        { | mãos. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Os an -- jinhos do | céu _ é quem vem co -- | lher; _
+        Pa -- ra a -- jun -- | tar _ em um só lu --
+      } \alternative {
+        { | gar; }
+        { | gar. }
+      }
+      \repeat volta 2 {
+        Lou -- | var a meu Pai E -- | ter -- no;
+        Fe -- liz da -- | que -- le que bem tra -- ba --
+      } \alternative {
+        { | lhar; }
+        { | lhar. }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2. | c1 | a2:m c | d:m f
+      } \alternative {
+        { | c4 }
+        { | c2. }
+      }
+      \repeat volta 2 {
+        s4 | d1:m | c | d2:m f
+      } \alternative {
+        { | c2. }
+        { | c4 \bar "|." }
+      }
+    }
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    When you hear it said that St. John is on the earth
+    It‘s a sign of war everywhere
+    \nextverse
+    Apart from the confusion
+    St. Peter arrived with his two brothers
+    \nextverse
+    The little angels of heaven are the ones who come to gather
+    To bring together in one single place
+    \nextverse
+    Praise to my Eternal Father
+    Happy is he who works well
+  \end{translation}
+\endsong
