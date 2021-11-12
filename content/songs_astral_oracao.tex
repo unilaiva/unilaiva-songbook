@@ -854,6 +854,7 @@
 
 
 \beginsong{Peço que Vós me Ouça}[by={Padr. Sebastião},tags={valsa},key={C},sks={C}]
+  % Also in songs_astral_cura_i.tex
   \audio[]{https://www.nossairmandade.com/hymn/10/Pe\%C3\%A7oQueV\%C3\%B3sMeOu\%C3\%A7a}
   \audio[key={C},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=1564s}
   % Note: This hino is sometimes sung two times, but not in Oração
@@ -897,33 +898,36 @@
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       \repeat volta 2 {
         Meu | Pai pe -- ço | que Vós me | ou -- | ça; __ _
         | Pa -- ra~eu pe -- | dir o per -- | dão. __ _
       }
+      \set stanza = "1.B"
       \repeat volta 2 {
         Eu | pe -- ço não | só pa -- ra | mim; __ _
         Pa -- ra | mim __ _ e | os meus ir -- | mãos. __ _
       }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
+      \set stanza = "2.A"
       \repeat volta 2 {
         Meu | Pai quan -- do | for per -- do -- | ar; __ _
         Per -- | do -- a co -- | mo lhe con -- | vém. __ _
       }
+      \set stanza = "2.B"
       \repeat volta 2 {
         Eu | pe -- ço que | vós nos per -- |do -- | e;
         Co -- mo | per __ _ -- do -- | ou em Be -- | lém. __ _
       }
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
+      \set stanza = "3.A"
       \repeat volta 2 {
         A | bar -- ca que | cor -- re no | mar; __ _ _
         | Cor -- re no | meu co -- ra -- | ção. __ _
       }
+      \set stanza = "3.B"
       \repeat volta 2 {
         A -- | que -- le que | a -- qui ba -- | ti -- |za;
         Ba -- ti -- | zou \parenthesize no \parenthesize ri -- | o de Jor -- | dão. __ _
@@ -939,6 +943,7 @@
        | c | g:7 | c | \mark \markup{\hspace #1 \super{"1"}} \parenthesize c2:7
      }
     }
+    \layout { #(layout-set-staff-size 13) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}

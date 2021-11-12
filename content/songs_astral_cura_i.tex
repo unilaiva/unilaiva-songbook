@@ -1641,3 +1641,110 @@
     Happy is he who works well
   \end{translation}
 \endsong
+
+
+\beginsong{Peço que Vós me Ouça}[by={Padr. Sebastião},tags={valsa},key={C},sks={C}]
+  % Also in songs_astral_oracao.tex
+  \audio[]{https://www.nossairmandade.com/hymn/10/Pe\%C3\%A7oQueV\%C3\%B3sMeOu\%C3\%A7a}
+  \audio[key={C},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=1564s}
+  % Note: This hino is sometimes sung two times, but not in Oração
+  \newchords{chords_pecoquevosmeouca_a}\newchords{chords_pecoquevosmeouca_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_pecoquevosmeouca_a]
+    \[^\mn{G}]Meu |\[\mnc{C}C]Pai \[^\mn{F}]pe\[^\mn{E}]ço |\[\mnc{D}G]que \[^\mn{F}]Vós \[^\mn{E}]me |\[\mnc{C}C]ou|\[C7]ça
+    |\[\mnc{A}Fmaj7]Para eu pe|\[\mnc{G}C]dir \[^\mn{C}]o \[^\mn{E}]per|\[\mnc{G}G]dão | \e
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_pecoquevosmeouca_b]
+    \[^\mn{C}]Eu |\[\mnc{A}F]peço não |\[\mnc{G}G]só \[^\mn{F}]pa\[^\mn{E}]ra |\[\mnc{C}C]mi|\[Am]m
+    \[^\mn{A}]Pa\[^\mn{C}]ra |\[\mnc{E}C]mim \[^\mn{G}]e |\[\mnc{D}G7]os \[^\mn{F}]meus \[^\mn{E}]ir|\[\mnc{C}C]mãos |\[\up{1}C7] \e
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_pecoquevosmeouca_a]
+    Meu |^Pai quando |^for perdo|^ar |^ \e \altchords{\id[2]{MK (C)}|C |G7 |C |C7}
+    Per|^{doa co}|^mo lhe con|^vém | \e \altchords{|Fmaj7 |C |G |\up{1}G7 \up{2}(C)}
+  \endchorus\glueverses\beginchorus\replay[chords_pecoquevosmeouca_b]
+    Eu |^peço que |^vós nos per|^do|^e \altchords{|F |G |Am |F}
+    Como |^perdo|^ou em Be|^lém |^ \e \altchords{|C |G7 |C |\up{1}C7}
+  \endchorus
+  \beginchorus\replay[chords_pecoquevosmeouca_a]
+    A |^barca que |^corre no |^mar |^ \e
+    |^Corre no |^meu cora|^ção | \e
+  \endchorus\glueverses\beginchorus\replay[chords_pecoquevosmeouca_b]
+    A|^quele que |^aqui ba|^ti|^za
+    Bati|^zou {\noteson\[\mnlow{G}]no \[\mnlow{F}]ri}|^{o de} Jor|^dão |^ \e
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 4
+      \repeat volta 2 {
+        g4\posectionmark "A" | c4 f4 e4 | d4 f4 e4 | c2.( | c2)( c4)
+        | a'4 a4 a4 | g4 c,4 e4 | g2.~ | g2
+      }
+      \repeat volta 2 {
+        c,4\sectionmark "B" | a'4 a4 a4 | g4 f4 e4 | c2.(
+        | c4) a4 c4
+        \set melismaBusyProperties = #'() \slurDown
+        | e4( << e4) \parenthesize g4\genmark "(3.)" >> << g4 \parenthesize f4 >> | d4 f4 e4 | c2.~ | c2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Meu | Pai pe -- ço | que Vós me | ou -- | ça; __ _
+        | Pa -- ra~eu pe -- | dir o per -- | dão. __ _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Eu | pe -- ço não | só pa -- ra | mim; __ _
+        Pa -- ra | mim __ _ e | os meus ir -- | mãos. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Meu | Pai quan -- do | for per -- do -- | ar; __ _
+        Per -- | do -- a co -- | mo lhe con -- | vém. __ _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Eu | pe -- ço que | vós nos per -- |do -- | e;
+        Co -- mo | per __ _ -- do -- | ou em Be -- | lém. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        A | bar -- ca que | cor -- re no | mar; __ _ _
+        | Cor -- re no | meu co -- ra -- | ção. __ _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        A -- | que -- le que | a -- qui ba -- | ti -- |za;
+        Ba -- ti -- | zou \parenthesize no \parenthesize ri -- | o de Jor -- | dão. __ _
+      }
+    }
+    theChords = \chordmode {
+     \repeat volta 2 {
+       s4 | c2. | g | c | c:7
+       | f:maj7 | c | g | g2
+     }
+     \repeat volta 2 {
+       s4 | f2. | g | c | a:m
+       | c | g:7 | c | \mark \markup{\hspace #1 \super{"1"}} \parenthesize c2:7
+     }
+    }
+    \layout { #(layout-set-staff-size 13) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    My Father I ask that You hear me, for me to ask for forgiveness
+    I ask not only for me, but for me and my brothers and sisters
+    \nextverse
+    My Father when He forgives, he forgives as it befits Him
+    I ask that You forgive us, as You forgave in Bethlehem
+    \nextverse
+    The boat which sails on the sea sails within my heart
+    The one who baptizes here, is baptized in the Jordan River
+  \end{translation}
+\endsong
+
