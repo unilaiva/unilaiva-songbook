@@ -1428,3 +1428,113 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Eu te Dei uma Casa}[by={Padr. Sebastião},key={C},sks={C}]
+  % Also in songs_astral_concentracao_diversos.tex
+  \audio{https://www.nossairmandade.com/hymn/63/EuTeDeiUmaCasa}
+  \mnbeginchorus\memorize
+    \[^\mn{C}]Eu |\[\mnc{F}F]peço \[^\mn{A}]a \[^\mn{C}]meu |\[^\mn{A}]Pai, \[^\mn{C}]sei que |\[\mnc{E}C]Vós \[^\mn{C}]tem \[^\mn{E}]o \[^\mn{G}]po|\[\mnc{E}(Em)]der
+    \[^\mn{C}]Per\[^\mn{B}]do|\[\mnc{A}Am]ai \[^\mn{C}]as \[\mnc{E}(A7)]min\[^\mn{G}]has |\[\mnc{D}Dm]culpas, \[^\mn{C}]se \[^\mn{B}]de |\[\mnc{A}Am]Vós \[^\mn{C}]eu me\[^\mn{E}]re|\[\mnc{C}C]cer
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Eu |^te dei uma |casa que |^não falta nin|^guém
+    Pa|^{ra tu} ^escol|^her aque|^les que te con|^vém
+  \endchorus
+  \beginchorus
+    A es|^trada eu dou a |todos, para |^todos via|^jar
+    |^Ver e ^compreen|^der, e fi|^car em seu lu|^gar
+  \endchorus
+  \beginchorus
+    |^Eu estou com |Deus, |^Deus está em |^mim
+    Eu |^estan^{do com} |^Deus, |^Deus é o meu ca|^minho
+  \endchorus
+  \beginchorus
+    |^Deus é a |glória, |^Deus a glória |^é
+    Quem |^{é meu} ^Salva|^dor é Je|^sus de Naza|^ré
+  \endchorus
+  \beginchorus
+    Eu |^vivo neste |mundo na |^minha dire|^ção
+    \noteson\[\mnlow{E}]Ol\[\mnlow{C}]han\notesoff|^do as coi^sas de |^Deus e prestan|^do bem aten|^ção
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+         c4\pomark |f f a c |a2( a4) c,8( c8) |e4 c e g |e2( e4) c8( b8)
+         |a4 c e g |d2 d4 c8( b8) |a4 c c e |c2( c4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Eu  |pe -- ço a meu | Pai; __ _
+      Sei que | Vós tem o po -- | der; __ _
+      Per -- do -- | ai as mi -- nhas | cul -- pas;
+      Se de | Vós eu me -- re -- | cer. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Eu | te dei u -- ma | ca -- sa;
+      Que __ _ | não fal -- ta nin -- | guém; __ _
+      Pa -- _ | ra tu es -- co -- | lher;
+      A -- que -- _ | les que te con -- | vém. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      A~es -- | tra -- da~eu dou a | to -- dos;
+      Pa -- ra | to -- dos vi -- a -- jar; _ \skip 1 \skip 1
+      Ver e com -- preen -- der;
+      E fi -- _ car em seu lu -- gar. __ _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \skip 1 Eu es -- tou com Deus; _
+      \skip 1 \skip 1 Deus es -- tá em mim; __ _
+      Eu __ _ es -- tan -- do com Deus;
+      \skip 1 \skip 1 \skip 1 Deus é~o meu ca -- mi -- nho.
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \skip 1 | Deus __ _ é a | gló -- ria;
+      \skip 1 \skip 1 | Deus a gló -- ria | é __ _
+      Quem __ _ | é meu Sal -- va -- | dor
+      É Je -- _ | sus de Na -- za -- | ré. __ _
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      Eu | vi -- vo nes -- te | mun -- do;
+      Na __ _ | mi -- nha di -- re -- | ção;
+      O -- lhan -- _ | do~as coi -- sas de | Deus;~E
+      pres -- tan -- _ | do bem a -- ten -- | ção. __ _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 |f1 |f1 |c1 |\parenthesize e:m
+        |a2:m \parenthesize a:7 |d1:m |a:m |c2.
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  %\translationoff
+  \begin{translation}
+    I ask my Father, I know that You have the power
+    Forgive my guilt, if I am deserving
+    \nextverse
+    I gave you a house in which no one is missing
+    For you to choose those whom you find worthy
+    \nextverse
+    I give the path to all, for everyone to travel
+    To see and understand, and to stay in your place
+    \nextverse
+    I am with God, God is within me
+    Being with God, God is my path
+    \nextverse
+    God is the glory, God the glory is
+    He who is my Savior is Jesus of Nazareth
+    \nextverse
+    I live in this world following my direction
+    Looking at the things of God and paying close attention
+  \end{translation}
+\endsong
+
