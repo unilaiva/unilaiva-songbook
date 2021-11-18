@@ -803,6 +803,134 @@
   \end{translation}
 \endsong
 
+
+\beginsong{O Daime é o Nosso Pai}[by={Tetéo},key={G},sks={A, G}]
+  \audio{https://www.nossairmandade.com/hymn/1120/Daime\%C3\%89ONossoPai}
+  \newchords{chords_odaimeeonossopai_a}\newchords{chords_odaimeeonossopai_b}
+  \mnbeginchorus\memorize[chords_odaimeeonossopai_a]
+    \[^\mn{G}]O |\[\mnc{B}G]Daime é o \[\mnc{A}D]nosso |\[\mnc{G}G]Pai \altchords{\id[1]{(A)}|A E |A}
+    É \[\bmc\mn{B}]nos\[^\mn{D}]so ir|\[\mnc{G}C]mão \[^\mn{E}]e \[\bmc\mn{G}]com\[^\mn{E}]pa|\[\mnc{G}G]nhei\[\bm]ro \altchords{|D |A}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_odaimeeonossopai_b]
+    \[^\mn{D}]É |\[\mnc{G}C]E\[^\mn{E}]le é \[\bmc\mn{G}]quem \[^\mn{E}]nos |\[\mnc{G}G]cura \altchords{|D |A}
+    E \[\mnc{F#}(D)]nos \[^\mn{E}]li|\[\mnc{B}G]vra \[^\mn{D}]de \[\mnc{A}D7]to\[^\mn{B}]do |\[\mnc{G}G]mal\[\bm] \altchords{(E) |A E7 |A}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_odaimeeonossopai_a]
+    O |^Daime é o ^nosso ir|^mão
+    Não ^se escu|^sando ^de to|^mar^
+    \endchorus\glueverses\beginchorus\replay[chords_odaimeeonossopai_b]
+    Den|^tro De^le tem |^tudo
+    ^Que o a|^migo ^procu|^rar^
+  \endchorus
+  \beginchorus\replay[chords_odaimeeonossopai_a]
+    Vamos |^todos ^meus ir|^mãos
+    ^Traba|^lhar e ^se fir|^mar
+    \endchorus\glueverses\beginchorus\replay[chords_odaimeeonossopai_b]
+    \[\bmc\mnlow{B}]Va\[\mnlow{D}]mos |^crer em ^Jesus |^Cristo
+    O ^Nosso |^Mestre En^sina|^dor
+  \endchorus
+  \begin{translation}
+    The Daime is our Father, our brother and companion
+    It's him who heals and saves us from all evil
+    \nextverse
+    The Daime is our brother, no apologizing for taking
+    Inside of it there is everything that the friend is searching for
+    \nextverse
+    Let's all go, my brothers, and work and firm ourselves
+    Let us believe in Jesus Christ, our Master Teacher
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g4_\sectionmark "1-2.A" | b4 b8 b8 a4 a4 | g4. g8 b4 d4 | g4 e4 g4 e4 | g2( g4)
+      }
+      \repeat volta 2 {
+        d4_\sectionmark "1-2.B" | g4 e8( e8) g4 e4 | g4. g8 fis4 e4 | b4 d4 a4 b4
+      } \alternative {
+        { | g2. }
+        { | g2. _\markup\italic "D.C." }
+      }
+      \repeat volta 2 {
+        g8_\posectionmark "3.A" g8 | b4 b4 a4 a4 | g2 b4 d4 | g4 e4 g4 e4
+      } \alternative {
+        { | g2. }
+        { | g2 }
+      }
+      \repeat volta 2 {
+        b,4_\sectionmark "3.B" d4 | g4 e4 g4 e4 | g4. g8 fis4 e4 | b4 d4 a4 b4 | g2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        O | Dai -- me~é o nos -- so | Pai;
+        É nos -- so~ir -- | mão e com -- pa -- | nhei -- ro.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        É | E -- le é quem nos | cu -- ra;~E
+        nos li -- | vra de to -- do
+      } \alternative {
+        { | mal. }
+        { | mal. }
+      }
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Va -- mos | to -- dos meus ir -- | mãos;
+        Tra -- ba -- | lhar e se fir --
+      } \alternative {
+        { | mar. }
+        { | mar. }
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Va -- mos | crer em Je -- sus | Cris -- to;~O
+        Nos -- so | Mes -- tre~En -- si -- na -- | dor.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        O | Dai -- me~é o nos -- so~ir -- | mão;
+        Não se~es -- cu -- | san -- do de to -- | mar. __ _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Den -- | tro De -- _ le tem | tu -- do;
+        Que~o a -- | mi -- go pro -- cu --
+      } \alternative {
+        { | rar. }
+        { | rar. }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | g2 d2 | g1 | c | g2.
+      }
+      \repeat volta 2 {
+        s4 | c1 | g2 \parenthesize d | g2 d2:7
+      } \alternative {
+        { | g2. }
+        { | g2. }
+      }
+      % verse 3, same chords as above but with alt. ending after part A
+      \repeat volta 2 {
+        s4 | g2 d2 | g1 | c
+      } \alternative {
+        { | g2. }
+        { | g2 }
+      }
+      \repeat volta 2 {
+        s2 | c1 | g2 \parenthesize d | g2 d2:7 | g2
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 \setcounter{songnum}{9}
 \beginsong{O Lindo Daime}[by={Luis Mendes},key={Am},sks={Cm, Bm, Am}]
   \audio{https://www.nossairmandade.com/hymn/34/OLindoDaime}
