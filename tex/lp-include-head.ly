@@ -224,12 +224,12 @@
       \once\override NoteHead.color = #color-alt
       \once\override Stem.color = #color-alt
       \once\override Accidental.color = #color-alt
-      \once\override Beam.color = #color-alt
       \once\override Flag.color = #color-alt
       \once\override Dots.color = #color-alt 
       \once\override TabNoteHead.color = #color-alt
       \once\override Slur.color = #color-alt
       \once\override LyricText.color = #color-alt
+      % %% KEEP THIS COMMENTED %% \once\override Beam.color = #color-alt
     }
 
     % Defines some variables as empty, so that if the user doesn't define them,
