@@ -931,6 +931,90 @@
 \endsong
 
 
+\beginsong{Um, Dois e Três}[by={Tetéo},key={C},sks={D, C, E}]
+  \audio{https://www.nossairmandade.com/hymn/1130/Um,DoisETr\%C3\%AAs}
+  \newchords{chords_umdoisetres_a}\newchords{chords_umdoisetres_b}
+  \mnbeginchorus\memorize[chords_umdoisetres_a]
+    \[^\mn{G}]É |\[\mnc{C}C]um, \[^\mn{G}]é \[\bmc\mn{C}]dois, \[^\mn{G}]é |\[^\mn{C}]trê\[\bm]s
+    É |\[\mnc{F}F]qua\[^\mn{D}]tro, é \[\bmc\mn{E}]cin\[^\mn{C}]co, é |\[C]seis\[\bm]
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_umdoisetres_b]
+    \[^\mn{C}]Quem não esti|\[\mnc{F}F]ver \[^\mn{D}]com\[\bmc\mn{E}]pre\[^\mn{D}]en|\[\mnc{C}C]den\[\bm]do
+    \[^\mn{B}]To\[^\mn{A}]me |\[\mnc{G}G]Daime \[\mnc{C}F]ou\[^\mn{G}]tra |\[\mnc{C}C]vez\[\bm]
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_umdoisetres_a]
+    Eu es|^tando ^com meu |Mes^tre
+    Estou com |^o meu ^Presi|^den^te
+    \endchorus\glueverses\beginchorus\replay[chords_umdoisetres_b]
+    Estou com |^todos se^res di|^vi^nos
+    Aqui es|^tá o ^meu pre|^sen^te
+  \endchorus
+  \beginchorus\replay[chords_umdoisetres_a]
+    Vou mos|^trar pra ^meus ir|mã^os
+    O va|^lor des^te pre|^sen^te
+    \endchorus\glueverses\beginchorus\replay[chords_umdoisetres_b]
+    Quem não esti|^ver a^credi|^tan^do
+    Tome |^Daime e ^vamos em |^fren^te
+  \endchorus
+  \begin{translation}
+    It's one, it's two, it's three, it's four, it's five, it's six.
+    Who is not understanding, dring Daime one more time
+    \nextverse
+    Being with my Master, I am with my President
+    I am with all the Divine Beings here in my present
+    \nextverse
+    I will show to my brothers and sisters the value of this present
+    Who is not believing, drink Daime and let's go ahead
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8 g8(\posectionmark "A" g8) | c4. g8 c4. g8 | c2( c8 c8) c8( c8) | f4. d8 e4. c8 | c2( c8)
+      }
+      \repeat volta 2 {
+        c8\sectionmark "B" c8 c8 | f4( f8) d8 e4. d8 | c2 c8( c8) b8 a8 | g4. g8 c4( c8) g8 | c2( c8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      É __ _ | um é dois é | três; __ _ _
+      É __ _ | qua -- tro~é cin -- co~é | seis. __ _
+      \set stanza = "1.B"
+      Quem não~es -- ti -- | ver __ _ com -- pre -- en -- | den -- do; __ _
+      To -- me | Dai -- me ou -- _ tra | vez. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Eu es -- | tan -- do com meu | Mes -- tre;
+      Es -- tou com | o meu Pre -- si -- | den -- te.
+      \set stanza = "2.B"
+      Es -- tou com | to -- dos se -- res di -- | vi -- nos;
+      A -- qui es -- | tá o meu __ _ pre -- | sen -- te.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      Vou mos -- | trar pra meus ir -- | mãos; __ _ _
+      O va -- | lor des -- te pre -- | sen -- te.
+      \set stanza = "3.B"
+      Quem não~es -- ti -- | ver __ _ a -- cre -- di -- | tan -- do; __ _
+      To -- me | Dai -- me~e va -- mos em | fren -- te.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c1 | c1 | f1 | c2~ c8
+      }
+      \repeat volta 2 {
+        s4. | f1 | c1 | g2 f2 | c2~ c8
+      }
+
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 \setcounter{songnum}{9}
 \beginsong{O Lindo Daime}[by={Luis Mendes},key={Am},sks={Cm, Bm, Am}]
   \audio{https://www.nossairmandade.com/hymn/34/OLindoDaime}
