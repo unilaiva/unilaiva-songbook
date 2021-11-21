@@ -1201,3 +1201,99 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Eu Tomo Daime}[by={Vera Gall},key={Bm},sks={Cm, Bm, Am, Dm}]
+  \audio{https://www.youtube.com/watch?v=yZR3eKULn_M}
+  \audio{https://www.youtube.com/watch?v=bUR-OVaVTto}
+  \mnbeginchorus\memorize
+    \lrep \[^\mn{B}]Eu \[^\mn{D}]to\[^\mn{B}]mo |\[\mnc{D}Bm]Daime \altchords{\id[1]{(Am)}|Am}
+    \[^\mn{B}]Que é \[\bmc\mn{D}]pa\[^\mn{B}]ra \[^\mn{D}]co\[^\mn{B}]nhe|\[\mnc{C#}F#m]cer\[\bm] \rrep \altchords{|Em}
+    \lrep \[^\mn{A}]Conhe|\[\mnc{B&}Gm]cer a be\[\bmc\mnc{D}]leza de \[^\mn{E}]vi|\[\mncii{F}{D}Dm]ver \altchords{|Fm |Cm}
+    \[\bmc\mn{A}]Dentro \[^\mn{B&}]desta |\[\mnc{A}A7]luz \altchords{|G7}
+    Do meu \[\bmc\mn{F}]eu su\[^\mn{E}]pe\[^\mn{F}]ri|\[\mncii{E}{D}Dm]or\[\bm] \rrep \altchords{|Cm}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    \lrep Eu tomo |^Daime
+    Que é ^para apren|^der^ \rrep
+    \lrep Apren|^der a ter a^mor no cora|^ção
+    Andar pe^la estrada da |^vida
+    Com ^toda a liber|^dade^ \rrep
+  \endchorus
+  \beginchorus
+    \lrep Eu tomo |^Daime
+    É ^para renas|^cer^ \rrep
+    \lrep Renas|^cer no ca^minho da ver|^dade
+    Para ^encontrar a |^paz
+    Vos me ^livre dos en|^ganos^ \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \transpose a b \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        a8 \posectionmark "A" c8 a8 | c4 c8 a8 c8 a8 c8 a8 | b2~ b8
+      } \break
+      \repeat volta 2 {
+        \key c \minor
+        r8 \sectionmark "B" g8 g8 | aes8( aes8) aes8 aes8 c8 c8 c8 d8 | \once\slurSolid es8( c8)( c8) \altcol \parenthesize g8 \altmark "2., 3." g8 g8 aes8 aes8
+        | g4 g8 g8 es'8 es8 d8 es8
+      } \alternative {
+        { | \once\slurSolid d8( c8)~ c4.}
+        { | \once\slurSolid d8( c8)~ c4. ^\markup\italic "D.C." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Eu to -- mo | Dai -- me;
+      Que~é pa -- ra co -- nhe -- | cer. __ _
+      \set stanza = "1.B"
+      Co -- nhe -- | cer __ _ a be -- le -- za de vi -- | ver; __ _ _
+      \skip 1 Den -- tro des -- ta | luz;
+      Do meu eu su -- pe -- ri -- | or. __ _ _ | or. __ _ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Eu to -- mo | Dai -- me;
+      Que~é pa -- ra a -- pren -- | der. __ _
+      \set stanza = "2.B"
+      A -- pren -- | der a ter a -- mor no co -- ra -- | ção;
+      An -- dar \altcol pe -- la~es -- tra -- da da | vi -- da;
+      Com to -- da~a li -- ber -- | da -- _ de. | da -- _ de.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      Eu to -- mo | Dai -- me;
+      É pa -- ra re -- nas -- | cer. __ _
+      \set stanza = "3.B"
+      Re -- nas -- | cer __ _ no ca -- mi -- nho da ver -- | da -- de; 
+      Pa -- \altcol ra en -- con -- trar a | paz;
+      Vos me li -- vre dos en -- | ga -- _ nos. | ga -- _ nos.
+    }
+    theChords = \transpose a b \chordmode {
+      \repeat volta 2 {
+        s4. | a1:m | e2:m~ e8:m
+      }
+      \repeat volta 2 {
+        s4. | f1:m | c:m | g:7 
+      } \alternative {
+        { | c2:m~ c8:m }
+        { | c2:m~ c8:m }
+      }
+    }
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I drink Daime to get to know
+    To know the beauty of living
+    Inside this light of my superior I
+    \nextverse
+    I drink Daime to get to learn
+    To learn to have love in the heart
+    To walk on the road of life with total freedom
+    \nextverse
+    I drink Daime to get to be reborn
+    To be reborn on the way of truth
+    To find the peace; You deliver me from deceit
+  \end{translation}
+\endsong
