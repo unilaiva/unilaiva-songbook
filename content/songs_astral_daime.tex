@@ -1099,89 +1099,89 @@
 \endsong
 
 
-\beginsong{Convite}[by={Luiz Mendes},key={Am},sks={Am, Gm, Bm},tags={valsa}]
+\beginsong{Convite}[by={Luiz Mendes},key={Am},sks={Am, Gm, Bm},tags={mazurca}]
   \audio{https://www.youtube.com/watch?v=4kLsE-ujOYQ}
   \newchords{chords_convite_a}\newchords{chords_convite_b}
-  \meter{3}{4}
+  \meter{6}{4}
   \mnbeginchorus\memorize[chords_convite_a]
-    \[^\mn{E}]O \[^\mn{C}]meu |\[\mnc{A}Am]Mestre \[^\mn{E}]con\[^\mn{C}]vi|\[^\mn{A}]dou-me \altchords{\id[1]{(Gm)}|Gm | \e}
-    \[^\mn{E}\mn{C}]E |\[^\mn{A}]eu \[^\mn{C}]o\[\mncii{G}{F}(Am7)]bede|\[\mnc{E}E]ci \altchords{| - (Gm7) |D}
+    \[^\mn{E}]O \[^\mn{C}]meu |\[\mnc{A}Am]Mestre \[^\mn{E}]con\[^\mn{C}]vi\[\bmc\mn{A}]dou-me \altchords{\id[1]{(Gm)}|Gm}
+    \[^\mn{E}\mn{C}]E |\[^\mn{A}]eu \[^\mn{C}]o\[\mncii{G}{F}(Am7)]bede\[\bmc\mnc{E}E]ci \altchords{| - (Gm7) D}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_convite_b]
-    \[^\mn{E}]To |\[\mnc{A}Fmaj7]{mei o} San\[^\mn{B}]to |\[\mnc{C}Am]Dai\[^\mn{B}]me \altchords{|Ebmaj7 |Gm}
-    \[^\mn{A}]E |\[\mnc{E}E]eu me corri|\[\mnc{A}Am]gi \altchords{|D |Gm}
+    \[^\mn{E}]To |\[\mnc{A}Fmaj7]{mei o} San\[^\mn{B}]to \[\bmc\mnc{C}Am]Dai\[^\mn{B}]me \altchords{|Ebmaj7 Gm}
+    \[^\mn{A}]E |\[\mnc{E}E]eu me corri\[\bmc\mnc{A}Am]gi \altchords{|D Gm}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_convite_a]
-    Eu corri|^gi meu pensa|mento
-    Entrei |na mi^{nha pes}|^soa
+    Eu corri|^gi meu pensa^mento
+    Entrei |na mi^{nha pes}^soa
     \endchorus\glueverses\beginchorus\replay[chords_convite_b]
-    Fiz |^{um bonito} es|^tudo
-    Eu já |^vi que é coisa |^boa
+    Fiz |^{um bonito} es^tudo
+    Eu já |^vi que é coisa ^boa
   \endchorus
   \beginchorus\replay[chords_convite_a]
-    As |^veias são os |rios
-    E o co|ração ^{é o} |^mar
+    As |^veias são os ^rios
+    E o co|ração ^{é o} ^mar
     \endchorus\glueverses\beginchorus\replay[chords_convite_b]
-    A |^carne é a |^Terra
-    Como é |^bom se estu|^dar
+    A |^carne é a ^Terra
+    Como é |^bom se estu^dar
   \endchorus
   \beginchorus\replay[chords_convite_a]
-    Aqui |^dentro temos |tudo
-    Nesta |fonte ^{de va}|^lor
+    Aqui |^dentro temos ^tudo
+    Nesta |fonte ^{de va}^lor
     \endchorus\glueverses\beginchorus\replay[chords_convite_b]
-    O meu |^Mestre me aju|^dando
-    Se |^Deus quiser eu |^vou
+    O meu |^Mestre me aju^dando
+    Se |^Deus quiser eu ^vou
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva, 2021-11
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
-      \key a \minor \time 3/4 \partial 4.
+      \key a \minor \time 6/4 \partial 4.
       \repeat volta 2 {
-        \altcol \parenthesize e8 \altmark "2." e8 \posectionmark "A" c8 | a4 a4 e'8 c8 | a4 a4 e'8( c8) | a4 c4 g'8 f8 | e4( e8)
+        \altcol \parenthesize e8 \altmark "2." e8 \posectionmark "A" c8 | a4 a4 e'8 c8  a4 a4 e'8( c8) | a4 c4 g'8 f8  e4( e8)
       }
       \repeat volta 2 {
-        r8 \sectionmark "B" e8( e8) | a4 a4 a8 b8 | c4 b4 a8( a8) | e4 e4 e8 e8 | a,4( a8)
+        r8 \sectionmark "B" e8( e8) | a4 a4 a8 b8  c4 b4 a8( a8) | e4 e4 e8 e8  a,4( a8)
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1.A"
-      \skip 1 O meu | Mes -- tre con -- vi -- | dou -- -me;
-      E __ _ | eu o -- be -- de -- | ci. __ _
+      \set stanza = "1."
+      \skip 1 O meu | Mes -- tre con -- vi --  dou -- -me;
+      E __ _ | eu o -- be -- de --  ci. __ _
       \set stanza = "1.B"
-      To -- _ | mei o San -- to | Dai -- me;
-      E __ _ | eu me cor -- ri -- | gi. __ _
+      To -- _ | mei o San -- to  Dai -- me;
+      E __ _ | eu me cor -- ri --  gi. __ _
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2.A"
-      \altcol Eu cor -- ri -- | gi meu pen -- sa -- | men -- to;
-      En -- trei | na mi -- nha pes -- | so -- a.
+      \set stanza = "2."
+      \altcol Eu cor -- ri -- | gi meu pen -- sa --  men -- to;
+      En -- trei | na mi -- nha pes --  so -- a.
       \set stanza = "2.B"
-      Fiz __ _ | um bo -- ni -- to~es -- | tu -- do;
-      Eu já | vi que~é coi -- sa | bo -- a.
+      Fiz __ _ | um bo -- ni -- to~es --  tu -- do;
+      Eu já | vi que~é coi -- sa  bo -- a.
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3.A"
-      \skip 1 As __ _ | vei -- as são os | ri -- os;
-      E~o co -- | ra -- ção é o | mar. __ _
+      \set stanza = "3."
+      \skip 1 As __ _ | vei -- as são os  ri -- os;
+      E~o co -- | ra -- ção é o  mar. __ _
       \set stanza = "3.B"
-      A __ _ | car -- ne é a | Ter -- ra;
-      Co -- mo~é | bom se es -- tu -- | dar. __ _
+      A __ _ | car -- ne é a  Ter -- ra;
+      Co -- mo~é | bom se es -- tu --  dar. __ _
     }
     theLyricsFour = \lyricmode {
-      \set stanza = "4.A"
-      \skip 1 A -- qui | den -- tro te -- mos | tu -- do;
-      Nes -- ta | fon -- te de va -- | lor. __ _
+      \set stanza = "4."
+      \skip 1 A -- qui | den -- tro te -- mos  tu -- do;
+      Nes -- ta | fon -- te de va --  lor. __ _
       \set stanza = "4.B"
-      O meu | Mes -- tre me~a -- ju -- | dan -- do;
-      Se __ _ | Deus qui -- ser eu | vou. __ _
+      O meu | Mes -- tre me~a -- ju --  dan -- do;
+      Se __ _ | Deus qui -- ser eu  vou. __ _
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4. | a2.:m | a:m | a2:m \parenthesize a4:m7 | e4.
+        s4. | a2.:m  a:m | a2:m \parenthesize a4:m7  e4.
       }
       \repeat volta 2 {
-        s4. | f2.:maj7 | a:m | e | a4.:m
+        s4. | f2.:maj7  a:m | e  a4.:m
       }
     }
     \include "tex/lp-include-tail-lyricsbelow.ly"
