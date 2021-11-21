@@ -1297,3 +1297,61 @@
     To find the peace; You deliver me from deceit
   \end{translation}
 \endsong
+
+
+\beginsong{É com Deus}[by={Baixinha},key={C},sks={C, A-D}]
+  \audio{https://www.nossairmandade.com/hymn/2516/\%C3\%89ComDeusQueEuTomoDaime}
+  \mnbeginchorus
+     \lrep \[\mn{E}]É com |\[C]Deus \[\mn{D}]que eu \[G]to\[\mn{C}]mo |\[C]Dai\[\bm]me \altchords{\id[1]{(A)}|A E |A}
+     \[\mn{A}]E com |\[Am]Deus \[\mn{G}]eu \[G]che\[\mn{F}]go |\[\mnc{F}F]lá \[\bm] \rrep \altchords{|F\#m E |D}
+     \lrep \[\mn{A}]Porque |\[F]Deus \[\mn{G}]é \[\bm]quem m\[\mn{F}]e en|\[\mnc{E}C]si\[\mn{C}]na\[\bm] \altchords{|D |A}
+     \[\mn{E}]Tudo |\[Am]que eu \[\mn{D}]te(nho) \[G7]que \[\mn{C}]sa|\[C]ber \[\bm] \rrep \altchords{|F\#m E7 |A}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+         e8 \posectionmark "A" e8 | e4. d8 d4. c8 | c2 c4 a'8 a8 | a4. g8 g4. f8 | f2.
+      }
+      \repeat volta 2 {
+        a8 \sectionmark "B" a8 | a4. g8 g4. f8 | e4 c2 e8 e8 | e4. d8 d4. c8
+      } \alternative {
+        { | c2. }
+        { | c2. ^\markup\italic "D.C." \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        É com | Deus que~eu to -- mo | Dai -- me;
+        E com | Deus eu che -- go | lá.
+      }
+      \repeat volta 2 {
+        Por -- que | Deus é quem me~en -- | si -- na;
+        Tu -- do | que~eu te(nho) que sa --
+      } \alternative {
+        { | ber. }
+        { | ber. }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2 g2 | c1 | a2:m g2 | f2.
+      }
+      \repeat volta 2 {
+        s4 | \once\set chordChanges = ##f f1 | c1 | a2:m g2:7
+      } \alternative {
+        { | c2. }
+        { | c2. }
+      }
+    }
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    It is with God that I take Daime
+    And with God I get there
+    \nextverse
+    Because God is who teaches me
+    All that I have to know
+  \end{translation}
+\endsong
