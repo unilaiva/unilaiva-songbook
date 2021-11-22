@@ -191,11 +191,16 @@
       #}
       )
 
-    % Prints a dal segno note. Should be paired with ^\segno somewhere.
+    % Prints a Dal Segno (al fine) note. Should be paired with ^\segno somewhere.
     dalsegno = -\markup {
-      \italic "D.S. "
+      \italic "D.S."
       \tiny \raise #1
       \musicglyph #"scripts.segno"
+    }
+
+    % Prints a Da Capo (al fine) note.
+    dacapo = -\markup {
+      \italic "D.C."
     }
 
     % The color used to signify alternative playing
