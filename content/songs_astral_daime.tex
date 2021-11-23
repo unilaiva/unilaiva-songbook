@@ -1788,3 +1788,84 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Daime Ele é a Vida}[by={Maria Brilhante},key={C},sks={D, C}]
+  \audio{https://www.nossairmandade.com/hymn/37/DaimeEle\%C3\%89AVida}
+  \mnbeginchorus
+    |\[\mnc{G}C]Daime ele é a \[\bm]vi\[\mn{G}]da \altchords{\id[1]{(D)}|D}
+    |\[\mnc{E}Am]Daime ele é \[\mn{D}]o a\[\bmc\mn{E}]mor \altchords{|Bm}
+    |\[\mnc{G}C]Daime ele é Je\[\bm]sus \altchords{|D}
+    \[\mn{C}]O nos|\[\mnc{E}G7]so Pai \[\mn{D}]cria\[\bmc\mn{C}C]dor \altchords{|A7 D}
+  \mnendchorus
+  \mnbeginchorus\memorize
+    \ind \[^\mn{G}]Da|\[\mnc{C}C]qui estou te \[\bm]ven\[^\mn{G}]do \altchords{|D}
+    \ind \[^\mn{E}]Daqui |\[Am]es\[^\mn{D}]tou \[^\mn{F}]te \[^\mn{E}]o\[\bmc\mnc{D}G]lhando \altchords{|Bm A}
+    \ind \[^\mn{G}]Esta|mos \[^\mn{F}]nu\[^\mn{E}]ma \[^\mn{D}]ba\[\bmc\mnc{C}C]talha \altchords{| - D}
+    \ind \[^\mn{G}]Da Vir|\[\mnc{F}F]gem \[^\mn{E}]Mãe \[^\mn{D}]So\[^\mn{E}]be\[\bmc\mnc{C}C]rana \altchords{|G D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    \ind Eu |^peço a Jesus ^Cristo \altchords{|D}
+    \ind E ao meu |^Senhor São Jo^ão \altchords{|Bm A}
+    \ind A mi|nha Senhora ^Mãe \altchords{| - D}
+    \ind Segu|^rai a minha ^mão \altchords{|G D}
+  \endchorus
+  \begin{translation}
+    Daime He’s the life, Daime He’s the love
+    Daime He is Jesus, our Father Creator
+    \nextverse
+    From here I see you, from here I look at you
+    We are in a battle of the Virgin Sovereign Mother
+    \nextverse
+    I ask of Jesus Christ and my Lord Saint John
+    My Lady Mother, hold my hand
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \key c \major \time 4/4 \partial 8
+      \repeat volta 2 {
+        r8\sectionmark "1." | c8 c c c c4 g4 | e'8 e e d e2
+        | g8 g g g g4 c,8 c | e8 e d d c4.
+      } \break
+      \repeat volta 2 {
+        g8\sectionmark "2." | c8 c c c c g e' e | e d f e d d g g
+        | g f e d c c g g | c b a b c4 c8
+      } \break
+      \repeat volta 2 {
+        g8\posectionmark "3." | c8 c c c c g e' e | e d f e d4 g8 g
+        | g f e d c4 g8 g | c b a b c4 c8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Dai -- me~e -- le~é a vi -- da;
+      | Dai -- me~e -- le~é o~a -- mor;
+      | Dai -- me~e -- le~é Je -- sus;
+      O nos -- | so Pai cri -- a -- dor.
+      \set stanza = "2."
+      Da -- | qui es -- tou te ven -- do;
+      Da -- qui | es -- tou te o -- lhan -- do;
+      Es -- ta -- | mos nu -- ma ba -- ta -- lha;
+      Da Vir -- | gem Mãe So -- be -- ra -- na.
+      \set stanza = "3."
+      Eu | pe -- ço~a Je -- sus Cris -- to;
+      E~ao meu | Se -- nhor São Jo -- ão;
+      A mi -- | nha Se -- nho -- ra Mãe;
+      Se -- gu -- | rai a mi -- nha mã -- o.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s8 | c1 | a:m | c | g2:7 c4.
+      }
+      \repeat volta 2 {
+        s8 | c1 | a2:m g2 | g2 c | f c4.
+      }
+      \repeat volta 2 {
+        s8 | c1 | a2:m g2 | g2 c | f c4.
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
