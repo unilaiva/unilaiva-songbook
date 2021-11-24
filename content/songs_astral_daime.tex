@@ -1869,3 +1869,124 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
+\beginsong{O Santo Daime Está Aí}[by={Francisco Grangeiro},key={Am},sks={Gm, Am}]
+  \audio{https://www.youtube.com/watch?v=tVT77jI-jzw}
+  \newchords{chords_osantodaimeestaai_a}\newchords{chords_osantodaimeestaai_b}
+  \mnbeginchorus\memorize[chords_osantodaimeestaai_a]
+    \[^\mn{E}]O Santo |\[Am]Daime es\[\bm]tá a|\[\mnc{C}F]í \altchords{\id[1]{(Gm)}|Gm |Eb}
+    É \[\bm]pa\[^\mn{A}]ra |\[\mnc{E}E]todos \[\bmc\mn{C}]nós \[^\mn{B}]to|\[\mnc{A}Am]mar \[\bm] \altchords{|D |Gm}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_osantodaimeestaai_b]
+    \[^\mn{A}]O San\[^\mn{C}]to |\[\mnc{E}Am]Daime é \[\bmc\mn{D}]um \[^\mn{C}]pri|\[\mnc{B}E]mor \altchords{|Gm |D}
+    Pa\[\bm]ra \[^\mn{F}]quem |\[\mnc{E}E7]sa\[^\mn{D}]be a\[\bmc\mn{C}]pre\[^\mn{B}]ci|\[\mnc{A}Am]ar \[\bm] \altchords{|D7 |Gm}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_osantodaimeestaai_a]
+    Não sa|^bendo a^preci|^ar
+    Qua^se não a|^dian^ta to|^mar ^
+    \endchorus\glueverses\beginchorus\replay[chords_osantodaimeestaai_b]
+    Passa |^por ci^ma de |^tudo
+    ^E na|^da po^de alcan|^çar ^
+  \endchorus
+  \beginchorus\replay[chords_osantodaimeestaai_a]
+    Antigui|^dade não ^é ri|^queza \altchords{\id[2]{(Em)}|Em |C}
+    An^tigui|^dade não ^é sa|^ber ^ \altchords{|B |Em}
+    \endchorus\glueverses\beginchorus\replay[chords_osantodaimeestaai_b]
+    De que |^serve a an^tigui|^da^de \altchords{|Em |B}
+    Não |^saber ^compreen|^der ^ \altchords{|B7 |Em}
+  \endchorus
+  \beginchorus\replay[chords_osantodaimeestaai_a]
+    A fir|^meza é ^muito |^boa
+    ^Sem fir|^meza ^não se |^vai ^
+    \endchorus\glueverses\beginchorus\replay[chords_osantodaimeestaai_b]
+    Se |^não ti^ver fir|^meza
+    ^Daqui |^da ter^ra não |^sai ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, 2021-08
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        \parenthesize e8\posectionmark "A" e e | e4 e8 e8 e4 e | c'4. 8 c4 a
+        | e4 e c b | a2~ 8
+      }
+      \repeat volta 2 {
+        \parenthesize a8\posectionmark "B" a( c) | e4 e8( e) d4 c | b4.( b8) b4 f'4
+        | e d c b | a2~ 8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        O San -- to | Dai -- me es -- tá a -- | í;
+        É pa -- ra | to -- dos nós to -- | mar. __ _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        O San -- to | Dai -- me é um pri -- | mor;
+        Pa -- ra quem | sa -- be~a -- pre -- ci -- | ar. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        \skip 1 Não sa -- | ben -- do a -- pre -- ci -- | ar;
+        Qua -- se não~a -- | di -- an -- ta to -- | mar. __ _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        \skip 1 Pas -- sa | por ci -- _ ma de | tu -- do;
+        E na -- | da po -- de~al -- can -- | çar. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        An -- ti -- gui -- | da -- de não é ri -- | que -- za~An --
+        ti -- gui -- | da -- de~não é sa -- | ber. __ _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \skip 1 De que | ser -- ve a~an -- ti -- gui -- | da -- _ de;
+        Não | sa -- ber com -- preen -- | der. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        \skip 1 A fir -- | me -- za é mui -- to | bo -- a;
+        Sem fir -- | me -- za não se | vai. __ _
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        \skip 1 Se __ _ | não ti -- _ ver fir -- | me -- za;
+        Da -- qui | da ter -- ra não | sai. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a1:m | f1 | e1 | a2:m~ 8
+      }
+      \repeat volta 2 {
+        s4. | a1:m | e1 | e1:7 | a2:m~ 8
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Santo Daime is there, it is for all to take
+    Santo Daime is a perfection for those who know how to appreciate
+    \nextverse
+    Not knowing how to appreciate, it hardly advantages one to take it
+    One passes over everything and obtains nothing
+    \nextverse
+    Antique is not wealth, antique is not knowledge
+    What good for is antiquity and not to know how to understand
+    \nextverse
+    Firmness is verygood, without firmness one doesn't go
+    If you don't have firmness, you can't get out from this earth
+  \end{translation}
+\endsong
+
