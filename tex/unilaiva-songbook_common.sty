@@ -1043,13 +1043,25 @@
 %
 %   \[\mnciii{C}{A}{F}Fmaj7]Tralalaa
 
+% Setup the style for the circle around a melody note. Renew this macro in the
+% beginning of your document to set custom style. This will be called each
+% time the melody note circle is drawn. This can be set for individual notes,
+% too.
+
+\newcommand{\mncirclestyle}{}
+% Setup the style for the melody note "text". Renew this macro in the
+% beginning of your document to set custom style. This will be called each
+% time the melody note circle is drawn. This can be set for individual notes,
+% too.
+\newcommand{\mnstyle}{}
+
 % Will hold the width of the melody note circle:
 \newdimen{\@mncirclewidth}
 
-% Calculates the width encircled melody note. Note that if style in
+% Calculates the width encircled melody note. Note that if the style in
 % \@note changes, so must it here.
 \newcommand{\@calcmncirclewidth}{%
-  \settowidth{\@mncirclewidth}{\textmd{\footnotesize\textcircled{}}}%
+  \settowidth{\@mncirclewidth}{\footnotesize\mncirclestyle\textcircled{}}%
 }
 
 % If true, negative space will be applied after displaying the note:
@@ -1068,15 +1080,15 @@
       % Use the real sharp symbol, because it fits better within a circle:
       \renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
       \notenamesout abcdefg%
-      \raisebox{#1}{\textmd{%
+      \raisebox{#1}{%
         \color{melodynotecolor}%
-        \footnotesize%
-        \textcircled{\tiny\transposehere{#2}}% % Show the note transposed and encircled
+        \footnotesize\mncirclestyle%
+        \textcircled{\tiny\mnstyle\textmd{\transposehere{#2}}}% % Show the note transposed and encircled
         \if@mnnegspace%
           \@calcmncirclewidth% % Calculate the width...
           \hspace{-\@mncirclewidth}% % ...to go left
         \fi%
-      }}%
+      }%
     \fi%
   \fi%
 }
