@@ -836,7 +836,7 @@
 % Setup the style for the translation. Renew this macro in the beginning of
 % your document to set custom style for translations. (This will be called
 % each time in the beginning of the translation block, within it.)
-\newcommand{\translationstyle}{\small}
+\newcommand{\translationstyle}{}
 
 % Environment for song translation, to be used only inside a song
 \newenvironment{translation}{%
@@ -854,7 +854,7 @@
   \vspace{-\versesep}% remove the vertical space created by \beginverse
   \@blockstart%
   \chordsoff%
-  \translationstyle%
+  \small\translationstyle%
 }{%
   % Check if this environment needs hiding, which means it IS hidden
   \newif\ifhide\hidefalse%
