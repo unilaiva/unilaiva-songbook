@@ -607,3 +607,102 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Força de Cura}[by={Lúcio Mortimer},key={C},sks={C, D},tags={marcha/valsa}]
+  \audio{https://www.nossairmandade.com/hymn/1437/For\%C3\%A7aDeCura}
+  \audio{https://www.youtube.com/watch?v=-b4u-O4VUJI}
+  \mnbeginchorus\memorize
+    \lrep \[\bm] \[^\mn{C}]Chamei \[^\mn{E}]a |\[\mnc{G}C]for\[^\mn{E}]ça \[\bm]
+    \[^\mn{G}]E\[^\mn{A}]la é \[^\mn{G}]de |\[\mnc{F}G7]cu\[^\mn{D}]ra \rrep
+    \lrep \[\bmc\mnc{C}C]Sempre pedindo \[^\mn{E}]ao |\[^\mn{G}]Mes\[^\mn{C}]tre
+    No plano \[^\mn{E}]ter\[\bmc\mnc{G}G7]res\[^\mn{C}]tre
+    Ele é \[^\mn{D}]quem \[^\mn{B}]nos se|\[\mnc{C}C]gura \rrep
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    \lrep ^ Nesta ses|^são ^
+    Só tem bon|^dade \rrep
+    \lrep ^Vamos rezar pro do|ente
+    Que é dever da ^gente
+    Ter a cari|^dade \rrep
+  \endchorus
+  \beginchorus
+    \lrep ^ Jesus a|^tende ^
+    Quem Lhe pro|^cura \rrep
+    \lrep ^Peço firmeza na |mente
+    Fechar a cor^rente
+    Que a força é de |^cura \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \key c \major \time 4/4 \partial 2
+      \repeat volta 2 {
+        r8 c8\posectionmark "A" c e | g4 e4. g8 a g | f4 d4
+      }
+      \repeat volta 2 {
+        \tuplet 3/2 4 { c8\sectionmark "B" c c c c e | g c, c c c e g c, c d b b }
+      } \alternative {
+        { | c4 c4 }
+        { | c4 c4^\dacapo \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Cha -- mei a | for -- ça;
+      E -- la~é de | cu -- ra.
+      \set stanza = "1.B"
+      Sem -- pre pe -- din -- do ao | Mes -- tre;
+      No pla -- no ter -- res -- tre;~E
+      le~é quem nos se -- | gu -- ra.
+         | gu -- ra.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Nes -- ta ses -- | sã -- o;
+      Só tem bon -- | da -- de.
+      \set stanza = "2.B"
+      Va -- mos re -- zar pro do -- | en -- te;
+      Que~é de -- ver da gen -- te;
+      Ter a ca -- ri -- | da -- de.
+         | da -- de.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      Je -- sus a -- | ten -- de;
+      Quem Lhe pro -- | cu -- ra.
+      \set stanza = "3.B"
+      Pe -- ço fir -- me -- za na | men -- te;
+      Fe -- char a cor -- ren -- te;
+      Que~a for -- ça~é de | cu -- ra.
+         | cu -- ra.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2 | c1 | g2:7
+      }
+      \repeat volta 2 {
+        c2 | c2 g2:7
+      } \alternative {
+        { | c2 }
+        { | c2 }
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I called the force, it's a healing force
+    Always asking the Master
+    In the terrestrial plane
+    It's Him who secures us
+    \nextverse
+    In this session there's only goodness
+    Let's pray for the sick
+    for it's our duty
+    to do charity
+    \nextverse
+    Jesus answers those who search for Him
+    I ask firmness in the mind
+    Close the current
+    For the force is a healing force
+  \end{translation}
+\endsong
