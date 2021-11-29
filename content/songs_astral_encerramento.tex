@@ -59,7 +59,7 @@
       \repeat volta 2 {
         \altcol\parenthesize c4\altmark "4." \posectionmark "A" e4 | d2( a4) | c c e | c2.( | c2) \parenthesize e4
         | g4( g) g | g fis a | e2.~ | e4(
-      }
+      } \break
       \repeat volta 2 {
         \altcol\parenthesize e4)\altmark "3." \sectionmark "B" e4 | g( g) g | g fis g | a( e) c
         | d( d) a | c c e | c2.~ | c4
@@ -156,7 +156,84 @@
 \endsong
 
 
-\setcounter{songnum}{3}
+\beginsong{Meu Rei Salomão}[by={Madr. Cristina},key={G},sks={G},tags={2x}]
+  \audio{https://www.nossairmandade.com/hymn/1204/MeuReiSalom\%C3\%A3o}
+  \mnbeginchorus\memorize
+    |\[\mnc{D}G]Eu como \[\bmc\mnc{E}Cmaj7]fi\[^\mn{D}]lha \[^\mn{B}]de |\[\mnc{G}G]Vós \[\bm]
+    |\[^\mn{G}]Dentro \[\bmc\mn{B}]des\[^\mn{G}]te \[^\mn{F#}]sa|\[\mnc{E}C]lão \[\bm]
+    Eu |\[\mnc{A}Am]quero \[\bmc\mn{C}]se\[^\mn{A}]guir \[^\mn{F#}]com |\[\mncii{G}{D}G]Vós \[\bm]
+    De |\[\mnc{E}C]todo \[\bmc\mnc{F#}D7]meu \[^\mn{E}]co\[^\mn{D}]ra|\[\mnc{G}G]ção \[\bm]
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    |^Eu peço ^{a minha} |^Mãe ^
+    |Dentro do ^meu cora|^ção ^
+    Para |^sempre ^eu ser fe|^liz ^
+    |^Com meu Se^nhor São Jo|^ão ^
+  \endchorus
+  \beginchorus
+    \noteson\[\mnlow{B}]Cu\notesoff|^rando ^{e ensi}|^nan^do
+    |Com to^da perfei|^ção ^
+    Se|^guindo ^neste ca|^mi^nho
+    |^Com o meu ^Rei Salo|^mão ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        \altcol\parenthesize b4\altmark "3." \pomark | d4( d8) d8 e4 d8 b | g2( g2) g'4( g8) g8 b4 g8 fis8 | e2. e8( e8)
+        | a4. a8 c4 a8 fis8 | g2( d4)( d4) | e4( e8) e8 fis4 e8 d8 | g2.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        \skip 1 | Eu co -- mo fi -- lha de | Vós; __ _
+        | Den -- _ tro des -- te sa -- | lão;
+        Eu __ _ | que -- ro se -- guir com | Vós; __ _
+        De  | to -- _ do meu co -- ra -- | ção.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        \skip 1 | Eu pe -- ço a mi -- nha | Mãe; __ _
+        | Den -- tro do meu co -- ra -- | ção;
+        Pa -- ra | sem -- pre eu ser fe -- | liz; __ _ _
+        | Com meu Se -- nhor São Jo -- | ão.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Cu -- | ran -- _ do e en -- si -- | nan -- do;
+        | Com __ _ to -- da per -- fei -- | ção;
+        Se -- _ | guin -- do nes -- te ca -- | mi -- nho; __ _
+        | Com o meu Rei Sa -- lo -- | mão.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | g2 c2:maj7 | g1 | g1 | c
+        | a:m | g | c2 d:7 | g2.
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I, as a daughter of Yours, inside of this \emph{salão}
+    I want to follow with You, with all my heart
+    \nextverse
+    I beg my Mother inside of my heart
+    That I may always be happy with my Lord Saint John
+    \nextverse
+    Healing and teaching with all perfection
+    Following in this path with my King Solomon
+  \end{translation}
+\endsong
+
+
 \beginsong{Sou Brilho do Sol}[by={Padr. Sebastião},key={C},sks={D, E, C}]
   \audio{https://www.nossairmandade.com/hymn/99/BrilhoDoSol}
   \transpose{-2}
