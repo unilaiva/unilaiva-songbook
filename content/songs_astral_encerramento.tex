@@ -10,6 +10,152 @@
 % end of each songs_ file.)
 \setcounter{songnum}{1}
 
+
+\beginsong{Meu Deus, Meu São João}[by={Padr. Alfredo},key={C},sks={C, D},tags={valsa}]
+  \audio{https://www.nossairmandade.com/hymn/612/MeuDeus,MeuS\%C3\%A3oJo\%C3\%A3o}
+  \newchords{chords_meudeusmeusaojoao_a}\newchords{chords_meudeusmeusaojoao_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_meudeusmeusaojoao_a]
+    \[^\mn{E}]Meu |\[\mncii{D}{A}Dm]Deus |\[\mnc{C}Fmaj7]{meu São} \[^\mn{E}]Jo|\[\mnc{C}C]ão | \e \altchords{\id[1]{(D)}|Em |Gmaj7 |D | \e}
+    \[^\mn{E}]Den|\[^\mn{G}]tro desta |Vos\[^\mn{F#}]sa \[^\mn{A}]mis|\[\mnc{E}Am]são | \e \altchords{| | |Bm | \e}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_meudeusmeusaojoao_b]
+    \[^\mn{E}]Se |\[\mnc{G}C]passa |mui\[^\mn{F#}]ta a\[^\mn{G}]mar|\[\mnc{A}Am]gu\[^\mn{E}]ra \altchords{|D | |Bm }
+    \[^\mn{C}]E |\[\mnc{D}Dm]mui\[^\mn{A}]ta |\[\mnc{C}Fmaj7]ingra\[^\mn{E}]ti|\[\mnc{C}C]dão | \e \altchords{|Em |Gmaj7 |D | \e}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_meudeusmeusaojoao_a]
+    Só |^se se|^{gue nesta} |^li|nha
+    Dei|xando |a ilu|^são | \e
+    \endchorus\glueverses\beginchorus\replay[chords_meudeusmeusaojoao_b]
+    Sa|^indo da |i-g-no|^rância
+    E |^tendo |^educa|^ção | \e
+  \endchorus
+  \beginchorus\replay[chords_meudeusmeusaojoao_a]
+    Pe|^di fir|^meza a meu |^Mes|tre
+    E |a Vos|sa reden|^ção | \e
+    \endchorus\glueverses\beginchorus\replay[chords_meudeusmeusaojoao_b]
+    Perdo|^ai es|tes sofre|^dores
+    Que |^zombam |^neste sa|^lão | \e
+  \endchorus
+  \beginchorus\replay[chords_meudeusmeusaojoao_a]
+    Escla|^reço |^estes en|^si|nos
+    Da |Virgem |da Concei|^ção | \e
+    \endchorus\glueverses\beginchorus\replay[chords_meudeusmeusaojoao_b]
+    Pe|^dindo o |Vosso con|^forto
+    E a |^Vossa san|^{ta prote}|^ção | \e
+  \endchorus
+  \brk
+  \beginchorus\replay[chords_meudeusmeusaojoao_a]
+    Que |^brilho |^{tem este} |^di|a
+    |Dentro da |nossa ses|^são | \e
+    \endchorus\glueverses\beginchorus\replay[chords_meudeusmeusaojoao_b]
+    Fes|^tejos |do nosso |^Pai
+    Lou|^vores |^{à São Jo}|^ão | \e
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 2
+      \repeat volta 2 {
+        \altcol\parenthesize c4\altmark "4." \posectionmark "A" e4 | d2( a4) | c c e | c2.( | c2) \parenthesize e4
+        | g4( g) g | g fis a | e2.~ | e4(
+      }
+      \repeat volta 2 {
+        \altcol\parenthesize e4)\altmark "3." \sectionmark "B" e4 | g( g) g | g fis g | a( e) c
+        | d( d) a | c c e | c2.~ | c4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        \skip 1 Meu | Deus __ _ | meu São Jo -- | ão; __ | _
+        Den -- | tro des -- ta | Vos -- sa mis -- | são. __ | _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        \skip 1 Se | pas -- _ sa | mui -- ta~a -- mar -- | gu -- ra;
+        E | mui -- _ ta | in -- gra -- ti -- | dão. __ | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        \skip 1 Só | se se -- | gue nes -- ta | li -- | nha;
+        Dei -- | xan -- _ do | a i -- lu -- | são. __ | _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        \skip 1 Sa -- | in -- do da | i -- g -- no -- | rân -- cia;
+        E | ten -- _ do | e -- du -- ca -- | ção. __ | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        \skip 1 Pe -- | di fir -- | me -- za~a meu | Mes -- | tre;
+        E | a __ _ Vos -- | sa re -- den -- | ção. __ | _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \altcol Per -- do -- | ai __ _ es -- | tes so -- fre -- | do -- res;
+        Que | zom -- _ bam | nes -- te sa -- | lão. __ | _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        \altcol Es -- cla -- | re -- ço | es -- tes en -- | si -- | nos;
+        Da | Vir -- _ gem | da Con -- cei -- | ção. __ | _
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        \skip 1 Pe -- | din -- do o | Vos -- so con -- | for -- to;~E
+        a | Vos -- sa san -- | ta pro -- te -- | ção. __ | _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        \skip 1 Que | bri -- lho | tem es -- te | di -- | a;
+        \skip 1 | Den -- tro da | nos -- sa ses -- | são. __ | _
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        \skip 1 Fes -- | te -- _ jos | do nos -- so | Pai; __ _
+        Lou -- | vo -- _ res | à São Jo -- | ão. __ | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2 | d2.:m | f:maj7 | c | c
+        | c | c | a:m | a4:m
+      }
+      \repeat volta 2 {
+        s2 | c2. | c | a:m | d:m | f:maj7 | c | c4
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    My God, my Saint John, within this your mission
+    One experiences much bitterness and much ingratitude
+    \nextverse
+    One can only follow in this line by dropping the illusion
+    By dropping the ignorance and becoming respectful
+    \nextverse
+    I asked firmness of my Master and Your redemption
+    Forgive these suffering beings who mock this \emph{salão}
+    \nextverse
+    I clarify these teachings of the Virgin of Conception
+    Asking Your comfort and your holy protection
+    \nextverse
+    What brilliance this day has within our session
+    Celebrations of our Father, praises to Saint John
+  \end{translation}
+\endsong
+
+
 \setcounter{songnum}{3}
 \beginsong{Sou Brilho do Sol}[by={Padr. Sebastião},key={C},sks={D, E, C}]
   \audio{https://www.nossairmandade.com/hymn/99/BrilhoDoSol}
