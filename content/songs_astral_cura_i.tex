@@ -346,7 +346,7 @@
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        \parenthesize g8\pomark g g | c2 \parenthesize g8 c c c | e2( e4) \grace \parenthesize c8 c8 e | g4. c,8 e4. g,8 | c2~ c8
+        \parenthesize g8\pomark g g | c2 \parenthesize g8 c c c | e2( e4) \altcol\grace \parenthesize c8\altmark "8." c8 e | g4. c,8 e4. g,8 | c2~ c8
       }
     }
     theLyricsOne = \lyricmode {
@@ -366,7 +366,7 @@
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       \repeat volta 2 {
-        \skip 1 Dai -- me | for -- ça, dai -- me a -- | mor; __ _
+        \skip 1 Dai -- me | for -- ça, \skip 1 dai -- me~a -- | mor; __ _
         Pa -- ra~eu | po -- der do -- mi -- | nar. __ _
       }
     }
@@ -403,7 +403,7 @@
       \set includeGraceNotes = ##t
       \repeat volta 2 {
         \skip 1 A -- qui | eu \skip 1 vou de -- cla -- | rar; __ _
-        \parenthesize A quem o | Mes -- tre en -- tre -- | gou. __ _
+        \altcol\parenthesize A quem o | Mes -- tre en -- tre -- | gou. __ _
       }
       \set includeGraceNotes = ##f
     }
