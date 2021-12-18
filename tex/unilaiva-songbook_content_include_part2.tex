@@ -12,7 +12,21 @@
 
   % Sets chapter number; will be incremented by one at each \mainchapter,
   % \songchapter or \chapter:
-  \setcounter{chapter}{3}
+  \setcounter{chapter}{2}
+
+  \mainchapter[lotus_om_bw_transparent_bg_2000px.png]{Saṃskṛtam}
+    \section{About mantras}
+      \input{content/section_mantra_explanation.tex}
+    \clearpage\scleardpage
+    \section{Bhajans \& Mantras (Vedic et al.)}
+      \begin{songs}{titleidx,authidx,tagidx}
+        \input{content/songs_sanskrit_vedic.tex}
+      \end{songs}
+    \scleardpage
+    \section{Buddhist Mantras}
+      \begin{songs}{titleidx,authidx,tagidx}
+        \input{content/songs_sanskrit_buddhist.tex}
+      \end{songs}
 
   \mainchapter[shamanic_mandala_bw_ed_by_larva_CC0_1400px.jpg]{English}
     \begin{songs}{titleidx,authidx,tagidx}
