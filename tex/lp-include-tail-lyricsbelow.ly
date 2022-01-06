@@ -22,6 +22,8 @@
         \new Lyrics \lyricsto "theVoice" { \theLyricsSix }
         \new Lyrics \lyricsto "theVoice" { \theLyricsSeven }
         \new Lyrics \lyricsto "theVoice" { \theLyricsEight }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsNine }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsTen }
       >>
       \layout { }
     }

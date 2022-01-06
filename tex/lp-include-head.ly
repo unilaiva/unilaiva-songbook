@@ -248,3 +248,5 @@
     theLyricsSix = \lyricmode {}
     theLyricsSeven = \lyricmode {}
     theLyricsEight = \lyricmode {}
+    theLyricsNine = \lyricmode {}
+    theLyricsTen = \lyricmode {}
