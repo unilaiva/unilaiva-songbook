@@ -205,7 +205,7 @@
   \newchords{chords_pecoavos_a}\newchords{chords_pecoavos_b}
   \mnbeginchorus\memorize[chords_pecoavos_a]
     \[^\mn{E}]Meu |\[\mnc{A}Am]Deus,\[\bm] \[^\mn{B}]meu |\[\mncii{G#}{E}E]Pai,\[\bm] minha |\[\mncii{D}{B}E7/D]Mãe \[\bm] \altchords{\id[1]{(Bm)}|Bm |F\# |F\#7/E}
-    Eu pe|\[\mnc{E}E7]ço \[^\mn{D}]que \[\mnc{C}(C)]Vós \[^\mn{B}]me |\[Am]cu\[\bmc\mn{A}]re \altchords{|F\#7 (D) |Bm}
+    Eu pe|\[\mnc{E}E7]ço \[^\mn{D}]que \[\mnc{C}(C)]Vós \[^\mn{B}]me |\[Am]cu\[^\mn{A}]re \[\bm] \altchords{|F\#7 (D) |Bm}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_pecoavos_b]
     \[^\mn{A}]A \[^\mn{C}]ma|\[\mncii{E}{D}Am/E]téria \[\mnc{B}(Bm7&5)]das \[^\mn{A}]do|\[\mnc{G#}E]en\[^\mn{E}]ças\[\bm] \altchords{|Bm/F\# (C\#m7b5) |F\#}
     E \[^\mn{G#}]o \[^\mn{B}]es|\[\mnc{E}E7]píri\[^\mn{D}]to \[\bmc\mn{B}]do \[^\mn{G#}]es|\[\mnc{A}Am]cu\[\bm]ro \altchords{|F\#7 |Bm}
@@ -230,42 +230,45 @@
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4
       \repeat volta 2 {
-        e4\pomark | a2. b4 | \once\slurSolid gis4( e2) e8 e8
+        e4\posectionmark "A" | a2. b4 | \once\slurSolid gis4( e2) e8 e8
         | \once\slurSolid d4( b4.)( b8) b8 b8 | e4( e8) d8 c4. b8 | b4( a2)
       }
       \repeat volta 2 {
-        a8 c8 | e4. d8 b4. a8 | gis4 e4.( e8) gis8 b8
+        a8\sectionmark "B" c8 | e4. d8 b4. a8 | gis4 e4.( e8) gis8 b8
         | e4 e8 d8 b4. gis8 | a2( a4)
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       \repeat volta 2 {
         Meu | Deus, meu | Pai, __ _ mi -- nha | Mãe; __ _ _
         Eu pe -- | ço __ _ que Vós me | cu -- re.
       }
+      \set stanza = "1.B"
       \repeat volta 2 {
         A ma -- | té -- ria das do -- | en -- ças;
         E o es -- | pí -- ri -- to do es -- | cu -- ro.
       }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
+      \set stanza = "2.A"
       \repeat volta 2 {
         Meu | Deus, meu | Pai, __ _ mi -- nha | Mãe; __ _
         Eu pe -- ço | pa -- ra Vós me cu -- | rar. __ _
       }
+      \set stanza = "2.B"
       \repeat volta 2 {
         A ma -- | té -- ria das do -- | en -- ças; __ _
         O es -- | pí -- ri -- to~um bom lu -- | gar. __ _
       }
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
+      \set stanza = "3.A"
       \repeat volta 2 {
         Meu | Deus, meu | Pai, __ _ mi -- nha | Mãe; __ _
         Eu sei que | Vós __ _ já me cu -- | rou. __ _
       }
+      \set stanza = "3.B"
       \repeat volta 2 {
         Pe -- ço~a | Vós mi -- nha fir -- | me -- za; __ _
         Pa -- ra | sem -- pre eu dar va -- | lor. __ _
