@@ -1,0 +1,205 @@
+% Santo Daime: Cura II
+% ====================
+%
+\audio[title={Nossa Irmandade}]{https://www.nossairmandade.com/hinario/3/CuraII}
+
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+\beginsong{Eu Vivo na Floresta}[by={Padr. Sebastião},key={C},sks={C, A, B, D}]
+  \audio{https://www.nossairmandade.com/hymn/66/EuVivoNaFloresta}
+  \newchords{chords_euvivonafloresta_a}\newchords{chords_euvivonafloresta_b}
+  \mnbeginchorus\memorize[chords_euvivonafloresta_a]
+    \[^\mn{C}]Eu |\[C]vivo \[\bm]na flo|\[\mnc{A}F]res\[\bmc\mn{F}]ta, \[^\mn{A}]eu |te\[^\mn{G}]nho os \[\bmc\mn{C}]meus \[^\mn{E}]en|\[\mnc{G}G]si\[\bm]nos
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_euvivonafloresta_b]
+    \[^\mn{G}]Eu |\[\mnc{E}C]não \[^\mn{C}]me \[\bmc\mn{D}]cha\[^\mn{C}]mo |\[\mnc{A}Am]Dai\[\bmc\mn{C}]me, \[^\mn{E}]eu |\[\mnc{G}G]sou \[^\mn{E}]é um \[\bmc\mnc{F}G7]ser \[^\mn{D}]di|\[\mnc{C}C]vi\[\bm]no
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_euvivonafloresta_a]
+    Eu |^sou um ^ser di|^vino, eu ^venho a|qui para ^te ensi|^nar ^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \noteson\[\mnlow{E}]Quan\[\mnlow{G}]to \notesoff|^mais pu^xar por |^mim, ^mais eu |^tenho ^que te |^dar ^
+  \endchorus
+  \beginchorus\replay[chords_euvivonafloresta_a]
+    Muito eu |^tenho ^que te |^dar, e ^também |tenho para ^te di|^zer ^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    Quem |^tem dois ^olhos en|^xerga, ^mas os |^cegos ^também |^vêem ^
+  \endchorus
+  \beginchorus\replay[chords_euvivonafloresta_a]
+    Os en|^sinos ^da Ra|^inha, ^todos e|les são ^divi|^nal ^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    E|^les são ^das cor|^tinas, ^lá do |^alto ^do as|^tral ^
+  \endchorus
+  \beginchorus\replay[chords_euvivonafloresta_a]
+    Eu te en|^trego es^tes en|^sinos, ^como |que seja ^uma |^flor ^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    Gra|^vai bem ^no teu |^pei^to, es|^te tão ^grande a|^mor ^
+  \endchorus
+  \beginchorus\replay[chords_euvivonafloresta_a]
+    Es|^te tão ^grande a|^mor, é ^para |todos os ^meus ir|^mãos ^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \noteson\[\mnlow{E}]Os \[\mnlow{G}]en\notesoff|^sinos ^da Ra|^inha, e ^do Mes|^tre Ju^rami|^dam ^
+  \endchorus
+  \beginchorus\replay[chords_euvivonafloresta_a]
+    Meus a|^migos e ^meus ir|^mãos, ^todos |vão gos^tar de |^ver ^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \noteson\[\mnlow{E}]Que \[\mnlow{G}]a\notesoff|^qui nes^te sa|^lão, ^tem mui|^to que se ^apren|^der ^
+  \endchorus
+  \brk
+  \beginchorus\replay[chords_euvivonafloresta_a]
+    Aquele |^que não ^apren|^der, é ^porque |não pres^ta aten|^ção ^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \noteson\[\mnlow{E}]Mui\[\mnlow{G}]to \notesoff|^terá ^que so|^frer, ^aqui |^na re^uni|^ão ^
+  \endchorus
+  \beginchorus\replay[chords_euvivonafloresta_a]
+    O |^Mestre ^e a Ra|^inha, ^eles |têm um ^grande a|^mor ^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \noteson\[\mnlow{E}]Eles \[\mnlow{G}]es\notesoff|^tão fa^zendo |^paz, ^como |^Cristo ^Reden|^tor ^
+  \endchorus
+  \beginchorus\replay[chords_euvivonafloresta_a]
+    Jesus |^Cristo ^veio ao |^mundo, ^e so|freu a^té mor|^rer ^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \noteson\[\mnlow{E}]Mas \[\mnlow{G}]dei\notesoff|^xou os ^seus en|^sinos, pa^ra quem |^quiser ^apren|^der ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        \altcol c8 \altmark "8." c8\posectionmark "A" ( c8) | c4 c c c | a'4( a8) \parenthesize f8 f4 a | a g8( g8) c4 e, | g2( g8)
+      } \break
+      \repeat volta 2 {
+        \altcol e8 \altmark "9." << e8 \parenthesize g8( \sectionmark "B" >> g8)
+        | e4 c d c | a( a8)( a8) c4 e | g e8( e8) f4 d | c2( c8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+        \skip 1 Eu __ _ | vi -- vo na flo -- | res -- _ _ ta,
+        eu | te -- nho os meus en -- | si -- nos.
+      \set stanza = "1.B"
+        \skip 1 \parenthesize Eu __ _ | não me cha -- mo | Dai -- _ _ me,
+        eu | sou é um ser di -- | vi -- no.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+        \skip 1 Eu __ _ | sou um ser di -- | vi -- no,
+        eu ve -- nho~a -- | qui pa -- ra te~en -- si -- | nar. __ _
+      \set stanza = "2.B"
+        \skip 1 Quan -- to | mais pu -- xar por | mim, __ _ _
+        mais eu | te -- nho __ _ que te | dar. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \skip 1 Mui -- to~eu | te -- nho que te | dar, __ _
+      e tam -- bém | tenho pa -- ra te di -- | zer. __ _
+      \set stanza = "3.B"
+      \skip 1 \parenthesize Quem __ _ | tem dois olhos en -- | xer -- _ ga,
+      mas os | ce -- gos __ _ tam -- bém | vêem. __ _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \skip 1 Os en -- | si -- nos da Ra -- | i -- _ nha,
+      to -- dos~e -- | les são __ _ di -- vi -- | nal. __ _
+      \set stanza = "4.B"
+      \skip 1 \parenthesize E -- __ _ | les são das cor -- | ti -- _ nas,
+      lá do | al -- to __ _ do as -- | tral. __ _
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \skip 1 Eu te~en -- | tre -- go~es -- tes en -- | si -- _ nos,
+      co -- mo | que se -- ja u -- ma | flor. __ _
+      \set stanza = "5.B"
+      \skip 1 \parenthesize Gra -- __ _ | vai bem no teu | pei -- _ _ to,
+      es -- | te tão __ _ gran -- de~a -- | mor. __ _
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6.A"
+      \skip 1 Es -- _ | te tão gran -- de~a -- | mor, __ _
+      é pa -- ra | to -- dos os meus ir -- | mãos. __ _
+      \set stanza = "6.B"
+      \skip 1 Os en -- | si -- nos da Ra -- | i -- nha,
+      e do Mes -- | tre Ju -- _ ra -- mi -- | dam. __ _
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7.A"
+      \skip 1 Meus a -- | mi -- gos~e meus ir -- | mã -- _ os,
+      to -- dos | vão gos -- _ tar de | ver. __ _
+      \set stanza = "7.B"
+      \skip 1 Que a -- | qui nes -- te sa -- | lão, __ _ _
+      tem mui -- | to que se a -- pren -- | der. __ _
+    }
+    theLyricsEight = \lyricmode {
+      \set stanza = "8.A"
+      \altcol A -- que -- le | que não a -- pren -- | der, __ _
+      é por -- que | não pres -- _ ta~a -- ten -- | ção. __ _
+      \set stanza = "8.B"
+      \skip 1 Mui -- to | te -- rá que so -- | frer, __ _ _
+      a -- qui | na re -- _ u -- ni -- | ão. __ _
+    }
+    theLyricsNine = \lyricmode {
+      \set stanza = "9.A"
+      \skip 1 O __ _ | Mes -- tre e~a Ra -- | i -- _ nha,
+      e -- les | têm um __ _ gran -- de~a -- | mor. __ _
+      \set stanza = "9.B"
+      \altcol E -- les es -- | tão fa -- zen -- do | paz, __ _ _
+      co -- mo | Cris -- to __ _ Re -- den -- | tor. __ _
+    }
+    theLyricsTen = \lyricmode {
+      \set stanza = "10.A"
+      \skip 1 Je -- sus | Cris -- to veio ao | mun -- _ do,
+      e so -- | freu a -- _ té mor -- | rer. __ _
+      \set stanza = "10.B"
+      \skip 1 Mas dei -- | xou os seus en -- | si -- nos,
+      pa -- ra quem | qui -- ser __ _ a -- pren -- | der. __ _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c1 | f | f | g2~ g8
+      }
+      \repeat volta 2 {
+        s4. | c1 | a:m | g2 \parenthesize g2:7 | c2~ c8
+      }
+    }
+    \layout { #(layout-set-staff-size 13) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    I live in the forest, I have my teachings
+    I don't call myself Daime, I am a Divine Being
+    \nextverse
+    I am a Divine Being, I come here to teach you
+    The more you ask of me, the more I have to give you
+    \nextverse
+    Much I have to give you, and also to say to you
+    Who has two eyes sees, but the blind also see
+    \nextverse
+    The teachings of the Queen, all of them are divine
+    They are from the curtains of the height of the astral
+    \nextverse
+    I give you these teachings as if they were a flower
+    Engrave well in your heart this great love
+    \nextverse
+    This great love is for all of my brothers and sisters
+    The teachings of the Queen and of the Master Juramidam
+    \nextverse
+    My friends and my brothers and sisters will all be glad to see
+    That here inside this room there is much to be learned
+    \nextverse
+    He who doesn't learn, it's because he doesn't pay attention
+    He will suffer a great deal here in the reunion
+    \nextverse
+    The Master and the Queen, they have a great love
+    They are bringing peace as did Christ the Redeemer
+    \nextverse
+    Jesus Christ came to the world, and he suffered until he died
+    But He left His teachings for those who want to learn
+  \end{translation}
+\endsong
