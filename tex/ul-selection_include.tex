@@ -67,7 +67,7 @@
       \ifchorded\else{\\\emph{(without chords)}}\fi% if non-chorded version, mention it here
       \\
       \vspace*{\fill}
-      {\normalsize Find the full songbook at:}
+      {\normalsize Find the complete songbook at:}
       \\
       % Created with: qrencode -s 16 -l M -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
       \imagel[3]{QR_https_unilaiva_aavalla_net.png} % Already centered, so l-version ok
@@ -75,7 +75,7 @@
       {\small\url{https://unilaiva.aavalla.net/}}
       \\
       \vspace*{\fill}
-      {\footnotesize Compiled by: antagomir \& larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})}
+      {\footnotesize Compiled by: larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})}
       \\
       \vspace{1.5em}
       {\scriptsize
@@ -91,6 +91,20 @@
 
 \begin{document}
 
+  % Remove chapter & section name from page headers, as they do not exist
+  % in the selection format.
+  \fancypagestyle{unilaiva}[fancy]{%
+    \setlength{\footskip}{3.7pt} % to work around a warning
+    \setlength{\headheight}{12.3pt} % to work around a warning
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+    \fancyhf{}
+    \fancyhead[LE,RO]{\rmfamily\small\thepage} % page nr
+    \fancyhead[CE]{\rmfamily\small\itshape{\thisbooktitle}} % even center: book name
+    \fancyhead[LO]{\rmfamily\small\itshape{}} % odd left: empty
+    \fancyhead[CO]{\rmfamily\small\itshape{}} % odd center: empty
+  }
+
   \coverpageforselection % cover page here
   \clearpage
   \secondpageforselection{}{} % the second (title) page here (verso)
@@ -100,10 +114,10 @@
 
   \clearpage
   \begin{songs}{}
-    \input{content/songs_sanskrit_vedic.tex}
-    \input{content/songs_sanskrit_buddhist.tex}
     \input{content/songs_spanish.tex}
     \input{content/songs_portuguese.tex}
+    \input{content/songs_sanskrit_vedic.tex}
+    \input{content/songs_sanskrit_buddhist.tex}
     \input{content/songs_english.tex}
     \input{content/songs_other.tex}
     \input{content/songs_suomi.tex}
