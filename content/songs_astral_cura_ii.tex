@@ -203,3 +203,142 @@
     But He left His teachings for those who want to learn
   \end{translation}
 \endsong
+
+
+\beginsong{Princesa Janaína}[by={Padr. Sebastião},key={G},sks={A, G, B}]
+  \audio{https://www.nossairmandade.com/hymn/67/PrincesaJana\%C3\%ADna}
+  \newchords{chords_princesajanaina_a}\newchords{chords_princesajanaina_b}
+  \mnbeginchorus\memorize[chords_princesajanaina_a]
+    \[^\mn{B}]Je\[^\mn{C}]sus |\[\mnc{D}G]Cristo \[^\mn{B}]es\[\bmc\mn{G}]tá \[^\mn{B}]no |\[^\mn{D}]céu \altchords{\id[1]{(A)}|A | \e}
+    \[^\mn{B}]Es\[\bmc\mn{G}]tá \[^\mn{B}]na |\[^\mn{D}]terra \[^\mn{B}]es\[\bmc\mn{G}]tá \[^\mn{B}]no |\[^\mn{D}]mar \[\bm] \altchords{| - | \e}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_princesajanaina_b]
+    \[^\mn{G}]A Prin|\[\mnc{C}C]ce\[^\mn{B}]sa \[\mnc{A}Am]Ja\[^\mn{C}]na|\[\mnc{B}G]í\[^\mn{G}]na \altchords{|D Bm |A }
+    \[(Em)]E\[^\mn{B}]la |\[\mnc{D}D]veio pa\[^\mn{C}]ra \[\bmc\mn{A}]me en\[^\mn{B}]si|\[\mnc{G}G]nar \[\bm] \altchords{(F\#m) |E |A}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_princesajanaina_a]
+    Os en|^sinos ^da prin|cesa
+    ^Todos |eles ^têm va|lor ^
+    \endchorus\glueverses\beginchorus\replay[chords_princesajanaina_b]
+    Vamos lou|^var ao ^Pai E|^terno
+    E a ^Jesus |^Cristo ^Reden|^tor ^
+  \endchorus
+  \beginchorus\replay[chords_princesajanaina_a]
+    Jesus |^Cristo foi o ^maior |Rei
+    Que ^neste |mundo ^habi|tou ^
+    \endchorus\glueverses\beginchorus\replay[chords_princesajanaina_b]
+    Jesus |^Cristo es^tá em |^mim
+    ^Ele |^é meu ^prote|^tor ^
+  \endchorus
+  \beginchorus\replay[chords_princesajanaina_a]
+    Jesus |^Cristo Fi^lho de |Deus \altchords{\id[3]{O (G)}|G |D}
+    ^Ele |é bom ^cura|dor ^ \altchords{G |D G | \e}
+    \endchorus\glueverses\beginchorus\replay[chords_princesajanaina_b]
+    Ele |^cura ^todo |^mundo \altchords{|C Am |G}
+    ^Que sou|^ber dar o ^seu va|^lor ^ \altchords{Em |Am7 D |G }
+  \endchorus
+  \beginchorus\replay[chords_princesajanaina_a]
+    Estou a|^qui nes^te sa|lão
+    Eu ^vim a|qui para ^me cu|rar ^
+    \endchorus\glueverses\beginchorus\replay[chords_princesajanaina_b]
+    Peço |^força ao ^Pai E|^terno
+    E^le é quem |^tem pa^ra nos |^dar ^
+  \endchorus
+  \beginchorus\replay[chords_princesajanaina_a]
+    A Prin|^cesa ^Jana|ína
+    ^Ela |tem to^do pri|mor ^
+    \endchorus\glueverses\beginchorus\replay[chords_princesajanaina_b]
+    Ela |^ama ao ^Pai E|^terno
+    E a ^Jesus |^Cristo ^Salva|^dor ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        \parenthesize \altcol b8 \altmark "5." b8 \posectionmark "A" c8 | d8( d8)( d8) b8 g'4. b,8 | d4. b8 g'4. b,8 | d4( d8) b8 g'4. b,8 | d2~ d8
+      }
+      \repeat volta 2 {
+        \parenthesize \altcol g,8 \altmark "2." g8 \sectionmark "B" g8 | c4( c8) b8 a4. c8 | b4. g8 g4. b8 | d8( d8 d8) c8 a4( a8) b8 | g2~ g8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \skip 1 Je -- sus | Cris -- _ to es -- tá no | céu;
+      Es -- tá na | ter -- ra es -- tá no | mar. _
+      \set stanza = "1.B"
+      \skip 1 A Prin -- | ce -- _ sa Ja -- na -- | í -- na;
+      E -- la | vei -- o pa -- ra me en -- si -- | nar.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \skip 1 Os en -- | si -- _ _ nos da prin -- | ce -- sa;
+      To -- dos | e -- _ les têm va -- | lor. _
+      \set stanza = "2.B"
+      Va -- mos lou -- | var __ _ ao Pai E -- | ter -- no;~E~a
+      Je -- sus | Cris -- _ _ to Re -- _ den -- | tor. _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \skip 1 Je -- sus Cris -- to foi o mai -- or Rei;
+      Que nes -- te mun -- _ do ha -- bi -- tou. _
+      \set stanza = "3.B"
+      \skip 1 Je -- sus | Cris -- to es -- tá em | mim;
+      \skip 1 E -- le | é __ _ _ meu pro -- _ te -- | tor. _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \skip 1 Je -- sus | Cris -- _ to Fi -- lho de | Deus;
+      \skip 1 E -- le | é __ _ bom cu -- ra -- | dor. _
+      \set stanza = "4.B"
+      \skip 1 E -- le | cu -- _ ra to -- do | mun -- do;
+      Que sou -- | ber __ _ dar o seu __ _ va -- | lor. _
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      Es -- tou a -- | qui __ _ _ nes -- te sa -- | lão;
+      Eu vim a -- | qui pa -- ra me cu -- | rar. _
+      \set stanza = "5.B"
+      \skip 1 Pe -- ço | for -- ça ao Pai E -- | ter -- no;~E --
+      le~é quem | tem __ _ _ pa -- ra __ _ nos | dar. _
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6.A"
+      \skip 1 A Prin -- | ce -- _ _ sa Ja -- na -- | í -- na;
+      E -- la | tem __ _ to -- do pri -- | mor. _
+      \set stanza = "6.B"
+      \skip 1 E -- la | a -- ma ao Pai E -- | ter -- no;~E~a
+      Je -- sus | Cris -- _ _ to Sal -- _ va -- | dor. _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | g1 | g1 | g1 | g2~ g8
+      }
+      \repeat volta 2 {
+        s4. | c2 a2:m | | g2 \parenthesize e2:m | d1 | g2~ g8
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    Jesus Christ is in Heaven, is on the earth, is in the sea
+    The Princess Janaina, she comes to teach me
+    \nextverse
+    The teachings of the princess, all of them have value
+    Let's praise the Eternal Father and Jesus Christ the Redeemer
+    \nextverse
+    Jesus Christ was the greatest king that ever lived in this world
+    Jesus Christ is within me, he is my protector
+    \nextverse
+    Jesus Christ, Son of God, he's a good healer
+    He cures everyone who know how to value him
+    \nextverse
+    I am inside this room, I came here to heal myself
+    I ask the Eternal Father for strength, it is He who can give it to us
+    \nextverse
+    The Princess Janaina, it is she who has all perfection
+    She loves the Eternal Father and Jesus Christ the Savior
+  \end{translation}
+\endsong
