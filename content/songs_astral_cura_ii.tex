@@ -342,3 +342,104 @@
     She loves the Eternal Father and Jesus Christ the Savior
   \end{translation}
 \endsong
+
+
+\beginsong{Quando Tu Estiver Doente}[by={Padr. Sebastião},key={D},sks={D, C, E}]
+  \audio{https://www.nossairmandade.com/hymn/68/QuandoTuEstiverDoente}
+  \newchords{chords_quandotuestiver_a}\newchords{chords_quandotuestiver_b}
+  \mnbeginchorus\memorize[chords_quandotuestiver_a]
+    \[^\mn{A}]Quando |\[\mnc{D}D]tu es\[^\mn{B}]ti\[\mnc{E}A7]ver \[^\mn{D}]do|\[D]e\[\bm]nte \altchords{\id[1]{(C)}|C G7 |C}
+    Que \[^\mn{E}]o |\[^\mn{F#}]Dai\[^\mn{D}]me \[\mnc{G}A7]for \[^\mn{E}]to|\[\mnc{F#}D]mar \[\bm] \altchords{| - G7 |C}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_quandotuestiver_b]
+    \[^\mn{F#}]Te |\[\mnc{G}G]lembran\[^\mn{B}]do \[\bmc\mn{E}]ser \[^\mn{G}]di|\[\mnc{F#}D]vino \altchords{|A |C}
+    \[^\mn{A}]Que \[\bmc\mn{D}]tu \[^\mn{F#}]to|\[\mnc{E}A7]mou pa\[^\mn{D}]ra \[\bmc\mn{F#}]te \[^\mn{E}]cu|\[\mnc{D}D]rar \[\bm] \altchords{|G7 |C}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_quandotuestiver_a]
+    Te lem|^brando do ^ser di|^v^ino
+    O uni|verso es^treme|^ceu ^
+    \endchorus\glueverses\beginchorus\replay[chords_quandotuestiver_b]
+    A flo|^resta se ^emba|^lou
+    ^Porque |^tudo a^qui é |^meu ^
+  \endchorus
+  \beginchorus\replay[chords_quandotuestiver_a]
+    Eu |^já te ^entre|gue^i \altchords{\id[2]{MK (D)}|Bm A7 |D}
+    Agora |vou re^ali|^zar ^ \altchords{|Bm A7 |D}
+    \endchorus\glueverses\beginchorus\replay[chords_quandotuestiver_b]
+    Se fi|^zeres co^mo eu te |^mando \altchords{|Em |Bm}
+    ^Nunca |^hás de ^fracas|^sar ^ \altchords{|A7 |D}
+  \endchorus
+  \beginchorus\replay[chords_quandotuestiver_a]
+    Tu |^já vis^te o meu |^br^ilho
+    E já |sabes ^quem eu |^sou ^
+    \endchorus\glueverses\beginchorus\replay[chords_quandotuestiver_b]
+    A|^gora eu ^te con|^vido
+    ^Para |^ires a^onde es|^tou ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        a8( \posectionmark "A" a8) | d4( d8) b8 e4. d8 | d2~ d8 d8 d8 e8 | fis4. d8 g4. e8 | fis2.
+      }
+      \repeat volta 2 {
+        fis8( \sectionmark "B" fis8) | g4 g8 b,8 e4. g8 | fis4( fis8) a,8 d4. fis8 | e4( e8) a,8 cis4. e8 | d2.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Quan -- do | tu es -- ti -- ver do -- | en -- _ te;
+      Que o | Dai -- me for to -- | mar.
+      \set stanza = "1.B"
+      Te __ _ | lem -- bran -- do ser di -- | vi -- no;
+      Que tu to -- | mou pa -- ra te cu -- | rar.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Te lem -- | bran -- do do ser di -- | vi -- _ no;~O
+      u -- ni -- | ver -- so~es -- tre -- me -- | ceu.
+      \set stanza = "2.B"
+      A flo -- | res -- ta se em -- ba -- | lou;  _
+      \skip 1 Por -- que | tu -- do a -- qui é | meu.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      Eu __ _ | já __ _ te en -- tre -- | guei; __ _
+      A -- go -- ra | vou re -- a -- li -- | zar.
+      \set stanza = "3.B"
+      Se fi -- | ze -- res co -- mo~eu te | man -- _ do;
+      Nun -- ca | hás __ _ de fra -- cas -- | sar.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      Tu __ _ | já __ _ vis -- te~o meu | bri -- _ lho;
+      E já | sa -- bes quem eu | sou.
+      \set stanza = "4.B"
+      A -- _ | go -- ra eu te con -- | vi -- _ do;
+      Pa -- ra | i -- res a -- on -- de~es -- | tou.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d2 a2:7 | d1 | d2 a2:7 | d2.
+      }
+      \repeat volta 2 {
+        s4 | g1 | d1 | a1:7 | d2.
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Whenever you are sing and you're going to take the Daime
+    Remember the Divine Being that you took to heal yourself
+    \nextverse
+    Remembering the Divine Being, the universe did shake
+    The forest did sway, because everything here is mine
+    \nextverse
+    I already gave to you, now I'm going to manifest it
+    If you do as I tell you, then you will never fail
+    \nextverse
+    You have seen my brilliance and you know who I am
+    Now I invite you to go where I am
+  \end{translation}
+\endsong
