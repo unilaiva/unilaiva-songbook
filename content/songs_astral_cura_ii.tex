@@ -443,3 +443,93 @@
     Now I invite you to go where I am
   \end{translation}
 \endsong
+
+
+\beginsong{Peço Força}[by={Padr. Sebastião},key={D},sks={D, C, E}]
+  \audio{https://www.nossairmandade.com/hymn/69/Pe\%C3\%A7oFor\%C3\%A7a}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Peço |\[\mnc{D}D]for\[^\mn{A}]ça\[\bm], \[^\mn{D}]lá vem |\[\mnc{F#}(Bm)]for\[^\mn{D}]ça\[\bm] \altchords{\id[1]{(C)}|C |(Am)}
+    Deus \[^\mn{E}]do |\[\mnc{F#}D]céu \[^\mn{A}]foi \[\mnc{E}A]quem \[^\mn{F#}]man|\[\mncii{E}{D}D]dou \[\bm] \altchords{|C G |C}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Jesus |^Cristo^ está co|^migo^
+    Ele |^é meu ^prote|^tor ^
+  \endchorus
+  \beginchorus
+    Jesus |^Cristo^ está na |^terra^
+    Ele |^é bom ^cura|^dor ^
+  \endchorus
+  \beginchorus
+    Ele |^cura^ quem lhe pro|^cura^
+    Pois Ele |^é o tri^unfa|^dor ^
+  \endchorus
+  \beginchorus
+    Ele |^cura^ quem lhe pro|^cura^ \altchords{\id[2]{(E)}|E |(C\#m)}
+    Conforme |^o seu ^mere|^cer ^ \altchords{|E B |E}
+  \endchorus
+  \beginchorus
+    Que nem |^todos^ estão nas |^graças^
+    Para as |^curas ^rece|^ber ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        a8 \pomark a8 | d4 a4. \altcol\parenthesize d8 \altmark "2. – 6." d8 d8 | fis4 d4.( \altcol\parenthesize d8) \altmark "4. & 5." d8 e8
+        | fis4 a4 e4 fis4 | \once\slurSolid e4( d2)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Pe -- ço | for -- ça, \skip 1 lá vem | for -- ça; __ _
+      Deus do | céu foi quem man -- | dou. _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2"
+      Je -- sus | Cris -- to \altcol es -- tá co -- | mi -- go; __ _
+      E -- le | é meu pro -- te -- | tor. _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Je -- sus | Cris -- to \altcol es -- tá na | ter -- ra; __ _
+      E -- le | é bom cu -- ra -- | dor. _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      E -- le | cu -- ra \altcol quem lhe pro -- | cu -- ra;
+      \altcol Pois E -- le | é~o tri -- un -- fa -- | dor. _
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      E -- le | cu -- ra \altcol quem lhe pro -- | cu -- ra;
+      \altcol Con -- for -- me | o seu me -- re -- | cer. _
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      Que nem | to -- dos \altcol es -- tão nas | gra -- ças; __ _
+      Pa -- ra~as | cu -- ras re -- ce -- | ber. _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d1 | \parenthesize b1:m | d2 a2 | d2.
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I ask for strength, strength comes; God in heaven sent it
+    \nextverse
+    Jesus Christ is with me, he is my protector
+    \nextverse
+    Jesus Christ is on the earth, he is a good healer
+    \nextverse
+    He cures who seeks Him, for He is the triumphant
+    \nextverse
+    He cures who seeks Him according to their merit
+    \nextverse
+    For not everyone is in the grace to receive the healings
+  \end{translation}
+\endsong
