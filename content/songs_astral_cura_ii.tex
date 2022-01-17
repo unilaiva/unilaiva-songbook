@@ -533,3 +533,149 @@
     For not everyone is in the grace to receive the healings
   \end{translation}
 \endsong
+
+
+\beginsong{Beija-Flor}[by={Padr. Sebastião},key={A},sks={A, G, B}]
+  \audio{https://www.nossairmandade.com/hymn/70/Beija-Flor}
+  \newchords{chords_beijaflor_a}\newchords{chords_beijaflor_b}
+  \mnbeginchorus\memorize[chords_beijaflor_a]
+    \[^\mn{C#}]É |\[\mnc{E}A]Bei\[^\mn{C#}]ja é \[\mnc{F#}F#m]Beija-|\[\mncii{D}{B}Bm]Flor \altchords{\id[1]{(G)}|G Em |Am}
+    \[\bmc\mn{B}]Que mi|\[\mnc{G#}E]nha \[^\mn{E}]Mãe \[\bmc\mn{F#}]me en\[^\mn{E}]tre|\[\mncii{C#}{A}A]gou\[\bm] \altchords{|D |G}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_beijaflor_b]
+    \[^\mn{C#}]Pa\[^\mn{D}]ra a|\[\mnc{E}A]fas\[^\mn{C#}]tar \[\mnc{F#}F#]as do|\[\mnc{D}Bm]en\[^\mn{B}]ças \altchords{|G Em |Am}
+    \[\bmc\mn{D}]De \[^\mn{F#}]quem |\[\mnc{E}E]for \[^\mn{D}]me\[\bmc\mnc{C#}E7]re\[^\mn{B}]ce|\[\mnc{A}A]dor\[\bm] \altchords{|D D7 |G}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_beijaflor_a]
+    Meu |^Mestre es^{tá co}|^migo
+    ^Pois e|^le é ^meu a|^mor^
+    \endchorus\glueverses\beginchorus\replay[chords_beijaflor_b]
+    É |^no céu ^e na |^terra
+    ^Jesus |^Cristo ^Salva|^dor^
+  \endchorus
+  \beginchorus\replay[chords_beijaflor_a]
+    Oh |^meu Ju^rami|^dam \altchords{\id[2]{(B)}|B G\#m |C\#m}
+    ^Foi E|^le quem ^me man|^dou^ \altchords{|F\# |B}
+    \endchorus\glueverses\beginchorus\replay[chords_beijaflor_b]
+    Para |^relem^brar lem|^branças \altchords{|B G\#m |C\#m}
+    ^Da sal|^vação ^do a|^mor^ \altchords{|F\# F\#7 |B}
+  \endchorus
+  \beginchorus\replay[chords_beijaflor_a]
+    Meu |^Mestre es^tá co|^migo
+    ^Mesmo a|^qui a^onde es|^tou^
+    \endchorus\glueverses\beginchorus\replay[chords_beijaflor_b]
+    É a |^glória ^do meu |^Pai
+    ^Jesus |^Cristo ^Reden|^tor^
+  \endchorus
+  \brk
+  \beginchorus\replay[chords_beijaflor_a]
+    Eu digo |^tá, eu ^digo |^tá
+    Eu ^digo |^tá e a^qui es|^tou^
+    \endchorus\glueverses\beginchorus\replay[chords_beijaflor_b]
+    Eu não me es|^queço eu ^só me |^lembro
+    ^Do meu |^Mestre En^sina|^dor^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative cis'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        \altcol \parenthesize cis8 \altmark "5." \posectionmark "A" cis8( cis8)  | e4. cis8 fis4 fis4 | d4( b4) b'4 b4
+        | gis4 e4 fis4 e4 | \once\slurSolid cis4( a4.)
+      }
+      \repeat volta 2 {
+        \altcol \parenthesize cis8 \altmark "5."  \once\slurDown cis8( \sectionmark "B" << \parenthesize cis8) d8 >> | e4. cis8 fis4 fis4 | d4.( b8) d4 fis4
+        | e4. d8 cis4 b4 | a2~ a8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        \skip 1 É __ _ | Bei -- ja~é Bei -- ja -- | Flor; __ _
+        Que mi -- | nha Mãe me~en -- tre -- | gou. _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        \skip 1 Pa -- ra~a -- | fas -- tar as do -- | en -- ças;
+        De quem | for me -- re -- ce -- | dor. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        \skip 1 Meu __ _ | Mes -- tre~es -- tá co -- | mi -- go;
+        Pois e -- | le é meu a -- | mor. _
+      }
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        \skip 1 É __ _ | no céu e na | ter -- ra;
+        Je -- sus | Cris -- to Sal -- va -- | dor. _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        \skip 1 Oh __ _ | meu Ju -- ra -- mi -- | dam; __ _
+        Foi E -- | le quem me man -- | dou. _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \skip 1 Pa -- ra | re -- lem -- brar lem -- | bran -- ças;
+        Da sal -- | va -- ção do a -- | mor. _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        \skip 1 Meu __ _ | Mes -- tre~es -- tá co -- | mi -- go;
+        Mes -- mo~a -- | qui a -- on -- de~es -- | tou. _
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        \skip 1 É a | gló -- ria do meu | Pai; __ _
+        Je -- sus | Cris -- to Re -- den -- | tor. _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        Eu di -- go | tá, eu di -- go | tá;
+        Eu di -- go | tá e~a -- qui es -- | tou. _
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        Eu não me~es -- | que -- ço~eu só me | lem -- bro;
+        Do meu | Mes -- tre~En -- si -- na -- | dor. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a2 fis:m | b1:m | e | a2~a8
+      }
+      \repeat volta 2 {
+        s4. | a2 fis:m | b1:m | e2 e2:7 | a2~a8
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  %\translationoff
+  \begin{translation}
+    It's the humming-, hummingbird that my Mother gave me
+    To remove all the sickness of the ones who are deserving
+    \nextverse
+    My Master is with me, for He is my love
+    It's in heaven and on earth, Jesus Christ the Savior
+    \nextverse
+    Oh! My Juramidam; it was he who sent me here
+    To remember memories of the salvation of love
+    \nextverse
+    My Master is with me right here where I am
+    He's the glory of my Father, Jesus Christ the Redeemer
+    \nextverse
+    I say yes, I say yes, I say yes and here I am
+    I don't forget and only remebr my Master who is the teacher
+  \end{translation}
+\endsong
+
+
