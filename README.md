@@ -368,6 +368,22 @@ music. See documentation in
 outside of verses (but inside of a song), and wrapped within `lilywrap`
 environment. See examples in `content_songs_*.tex`.
 
+##### Note on converting lyrics from Lilypond to songbook format #####
+
+To convert lyrics from Lilypond to the format used by this songbook, (at least)
+the following string replacements ought to be done in the following order:
+
+ 1. " -- | " -> "|"
+ 2. " -- _ " -> ""
+ 3. " -- " -> ""
+ 4. " | " -> " |"
+ 5. " __" -> ""
+ 6. " _" -> ""
+ 7. "\skip 1 " -> ""
+ 8. "~" -> " "
+
+Be careful with the whitespaces!
+
 #### Melody hints on the chord line ####
 
 The `\mn???` commands display an encircled note name hint above the chord
