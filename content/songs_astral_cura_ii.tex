@@ -679,3 +679,79 @@
 \endsong
 
 
+\beginsong{Deus É Para Todos}[by={Padr. Sebastião},key={C},sks={D, C, E}]
+  \audio{https://www.nossairmandade.com/hymn/71/Deus\%C3\%89ParaTodos}
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Eu |\[\mnc{G}C]vim pa\[\mnc{A}(F)]ra \[^\mn{G}]lem|\[\mnc{E}C]brar \[\bm] \altchords{\id[1]{(D)}|D (G) |D}
+    \[^\mn{C}]Eu |\[\mnc{B}G]te\[^\mn{D}]nho \[\mnc{A}(Am)]que \[^\mn{B}]di|\[\mnc{G}G]zer \[\bm] \altchords{|A (Bm) |A}
+    |\[\mnc{C}C]Deus é \[\bm]para |\[\mnc{E}(Am/E)]to\[\bm]dos \altchords{|D |(Bm/F\#)}
+    \[^\mn{C}]Não |\[\mnc{B}G]se \[^\mn{D}]po\[\mnc{A}(F)]de es\[^\mn{B}]co|\[\mnc{C}C]lher \[\bm] \altchords{|A (G) |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Do |^que vi^ve o E|^terno
+    ^É do |^Vosso ^grande a|^mor
+    ^E da |^onde ^vem a |^luz
+    ^É do |^nosso ^Salva|^dor ^
+  \endchorus
+  \beginchorus
+    Meu |^Pai e ^minha |^Mãe ^ \altchords{\id[2]{(E)}|E (A) |E}
+    |^Todo ^mundo |^vê ^ \altchords{|B (C\#m) |B}
+    |^Vêem ^mas não |^sa-^ {bem} \altchords{|E |(C\#m/G\#)}
+    |^Ficam ^por sa|^ber ^ \altchords{|B (A) |E}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        e4 \pomark | g g a g | e4.( e8 e4)( c4) | b d a b | g2( g4 g4)
+        | c4 c c c | e2( e4) c | b d a b | c2.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Eu | vim pa -- ra lem -- | brar; __ _ _
+        Eu | te -- nho que di -- | zer; __ _ _
+        | Deus é pa -- ra | to -- dos;
+        Não | se po -- de~es -- co -- | lher.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Do | que vi -- ve~o E -- | ter -- no;
+        É do | Vos -- so gran -- de~a -- | mor;
+        E da | on -- de vem a | luz;
+        É do | nos -- so Sal -- va -- | dor.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Meu | Pai e mi -- nha | Mãe; __ _ _ _
+        | To -- do mun -- do | vê; __ _ _
+        | Vê -- em mas não | sa -- _ bem;
+        | Fi -- cam por sa -- | ber.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2 \parenthesize f | c1 | g2 \parenthesize a:m | g1
+        | c | \parenthesize a:m/e | g2 \parenthesize f | c2.
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I came to remember; I have to say:
+    God is for everyone, this cannot be hidden
+    \nextverse
+    What sustains the eternal is Your great love
+    And from where comes the light, it's from our Savior
+    \nextverse
+    My Father and my Mother, everyone sees them
+    They see but don't know, will remain without knowing
+  \end{translation}
+\endsong
