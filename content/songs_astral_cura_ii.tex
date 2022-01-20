@@ -755,3 +755,100 @@
     They see but don't know, will remain without knowing
   \end{translation}
 \endsong
+
+
+\beginsong{Eu Invoco Meu Mestre}[by={Padr. Sebastião},key={D},sks={D, E, F}]
+  \audio{https://www.nossairmandade.com/hymn/72/EuInvocoMeuMestre}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Eu |\[\mnc{D}D]in\[^\mn{F#}]vo\[\mnc{E}A]co o \[^\mn{D}]meu |\[D]Mestre \altchords{\id[1]{(F)}|F C |F}
+    \[\bmc\mn{F#}]Quan\[^\mn{A}]do |\[\bmc\mn{D}]me \[^\mn{F#}]a\[\mnc{E}(Bm)]cho \[^\mn{D}]do|\[\mnc{A}A]en\[\bm]te\altchords{| - (Dm) |C}
+    \[^\mn{A}]Re|\[\mnc{D}D]cebo a \[^\mn{F#}]mi\[\mnc{E}A]nha \[^\mn{D}]sa|\[D]ú\[^\mn{A}]de\altchords{|F C |F}
+    \[\bmc\mn{F#}]É \[^\mn{A}]de |\[\mnc{D}(Bm)]Deus \[^\mn{F#}]O\[\mnc{E}A7]ni\[^\mn{A}]po|\[\mnc{D}D]tente\[\bm]\altchords{|(Dm) C7 |F}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Le|^van\noteson\[\mn{D}]{to a} \[\mn{F#}]mi\notesoff^nha ban|^dei^ra
+    Mos|^trando o ^meu va|^lor ^
+    An|^dando por ^minha es|^tra^da
+    Por |^onde o ^Mestre an|^dou ^
+  \endchorus
+  \beginchorus
+    Quem qui|^ser po^de cor|^rer
+    ^Mas eu |^vim tes^temu|^nhar ^
+    Me |^chamam de ^menti|^roso
+    ^Mas meu |^{Pai e} minha ^Mãe lá es|^tá ^
+  \endchorus
+  \beginchorus
+    Sou |^filho ^da ver|^dade
+    ^Mas não |^querem me ^escu|^tar ^
+    O |^mun\noteson\[\mnlow{F#}]do \notesoff^de ilu|^são
+    ^Como |^{é que} ^vai fi|^car ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        a8( \pomark a8) | d4 << \parenthesize d8 \once\slurUp fis8( >> fis8) e4 d | d4.( d8) fis,4 a | d fis e d | a'2( a4) a,
+        | d4 << d8 \once\slurUp \parenthesize fis8( >> fis8) e4 d | d4. \parenthesize a8 fis4 a | d fis e d | d2( d4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Eu __ _ | in -- vo -- _ co~o meu | Mes -- tre;
+        Quan -- do | me a -- cho do -- | en -- te;
+        Re -- | ce -- bo~a mi -- nha sa -- | ú -- de;
+        É de | Deus O -- ni -- po -- | ten -- te.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Le -- _ | van -- \parenthesize to~a mi -- nha ban -- | dei -- _ ra;
+        Mos -- | tran -- do~o meu va -- | lor; __ _
+        An -- | dan -- do por mi -- nha~es -- | tra -- \skip 1 da;
+        Por | on -- de~o Mes -- tre~an -- | dou. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Quem qui -- | ser po -- _ de cor -- | rer; __ _
+        Mas eu | vim tes -- te -- mu -- | nhar; __ _
+        Me | cha -- mam de men -- ti -- | ro -- so;
+        Mas meu | Pai~e minha Mãe lá~es -- | tá. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Sou __ _ | fi -- lho __ _ da ver -- | da -- de;
+        Mas não | que -- rem~me es -- cu -- | tar; __ _
+        O | mun -- \parenthesize do __ _ de~i -- lu -- | são; \skip 1
+        Co -- mo | é que vai fi -- | car; __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d2 a2 | d1 | d2 \parenthesize b2:m | a1
+        | d2 a2 | d1 | \parenthesize b2:m a2:7 | d2.
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I invoke my Master when I feel sick
+    I receive my health from God omnipotent
+    \nextverse
+    I lift my flag, showing my worth
+    Walking along my path where the Master walked
+    \nextverse
+    Whoever wants can run, but I came to testify
+    They call me a liar, but my Father and Mother are there
+    \nextverse
+    I am a son of truth, but they don't want to listen to me
+    The wolrd of illusion, what's going to happen to it?
+  \end{translation}
+\endsong
+
