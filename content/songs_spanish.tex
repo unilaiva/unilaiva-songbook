@@ -1092,44 +1092,53 @@
 \endsong
 
 
-\beginsong{La Semilla}[by={Shimshai},tags={love, heart},ph={III}]
+\beginsong{La Semilla\\Be in the Now}[by={Shimshai},tags={love, heart}, ph={III}, key={Dm}, sks={Dm, Cm--Em}]
+  \audio[key=Dm]{https://soundcloud.com/soltruthblog/shimshai-la-semilla}
+  \audio[key=Dm]{https://www.youtube.com/watch?v=lX1pp89xVxg}
   \meter{6}{8}
   \newchords{chords_lasemilla_a}\newchords{chords_lasemilla_b}
-  \beginverse\memorize[chords_lasemilla_a] % memorize chords into a named register
-    \lrep \[^\mn{A}]En |\[\mnc{D}Dm]el pre\[A7]sente en|\[Dm]contrarás,
-    en |\[Fmaj7]el cora\[C]zón tu ve|\[Dm]rás \rrep
-    \lrep Este a|\[Fmaj7]mor que \[C]fluye bi|\[Dm]en adentro,
-    a|\[Fmaj7]quí hay \[C]una se|\[Dm]milla \rrep
-    \vspace{1em}
-    \lrep \up{2}(La se|\[(Dm)]milla) ha \[A7]sido sem|\[Dm]brada en ti
-    y el a|\[Fmaj7]mor es el \[C]agua que |\[Dm]la alimenta \rrep
-  \endverse
-  \notesoff
-  \beginverse\memorize[chords_lasemilla_b] % memorize chords into a named register
-    \ind \lrep Con a|\[F]mor e\[C]ternamen|\[Dm]te crecerá,
-    \ind mi |\[F]madre lo \[C]hace a|\[Dm]sí \rrep
-    \ind Con a|\[F]mor e\[C]ternamen|\[Dm]te crecerá,
-    \ind mi |\[F]padre lo \[C]hace a|\[Dm]sí
-    \ind Con a|\[F]mor e\[C]ternamen|\[Dm]te crecerá,
+  \newchords{chords_lasemilla_c}\newchords{chords_lasemilla_d}
+  \beginchorus\memorize[chords_lasemilla_a] % memorize chords into a named register
+    \[^\mn{A}]Es|\[\mnc{D}Dm]{tar en el pre}\[\mncii{C#}{B}A7]sen\[^\mn{C#}]te y en|\[\mnc{D}Dm]contrarás,
+    es|\[Fmaj7]{tar en el cora}\[C]zón y ve|\[Dm]rás
+  \endchorus\glueverses\beginchorus\memorize[chords_lasemilla_b]
+    \ind Este a|\[Fmaj7]{mor que} \[C]fluye bi|\[Dm]{en aden}tro,
+    \ind a|\[Fmaj7]{quí hay} \[C]una se|\[Dm]milla
+  \endchorus\glueverses\beginchorus\memorize[chords_lasemilla_c]
+    \up{2}(La se|\[(Dm)]milla) ha \[A7]sido sem|\[Dm]brada en ti
+    y el a|\[Fmaj7]{mor es el} \[C]agua que |\[Dm]{la alimen}ta
+  \endchorus
+  \beginverse\memorize[chords_lasemilla_d] % memorize chords into a named register
+    \ind \[^\mn{D}]Con a|\[\mnc{A}F]mor e\[\mnc{G}C]ter\[^\mn{F}]na\[^\mn{G}]men|\[\mnc{A}Dm]te \[^\mn{D}]crecerá,
+    \ind mi |\[F]madre lo \[C]hace a|\[Dm]sí \replay
+    \ind Con a|\[F]mor e\[C]ternamen|\[Dm]{te crecerá,}
+    \ind mi |\[F]madre lo \[C]hace a|\[Dm]sí \replay
+    \ind Con a|\[F]mor e\[C]ternamen|\[Dm]{te crecerá,}
+    \ind mi |\[F]padre lo \[C]hace a|\[Dm]sí \replay
+    \ind Con a|\[F]mor e\[C]ternamen|\[Dm]{te crecerá,}
     \ind la |\[F]fuerza me \[C]hace a|\[Dm]sí \[A7]
   \endverse
+  \notesoff
   \brk
   \textnote{in English:}
-  \beginverse\replay[chords_lasemilla_a] % replay chords from a named register
-    \lrep |^Be in the ^now you will |^find,
-    and |^be in the ^heart you will |^see \rrep
-    \lrep This |^love that ^flows so |^deep inside,
-    with|^in there ^lies a |^seed \rrep
-    \vspace{1em}
-    \lrep \up{2}(A |^seed) has been ^planted in|^side of your heart
-    and |^love is the ^water that |^feeds \rrep
-  \endverse
-  \beginverse\replay[chords_lasemilla_b] % replay chords from a named register
-    \ind \lrep With |^love e^ternal|^ly it will grow,
-    \ind my |^mother she ^makes it |^so \rrep
-    \ind With |^love e^ternal|^ly it will grow,
-    \ind my |^father he ^makes it |^so
-    \ind With |^love e^ternal|^ly it will grow,
+  \beginchorus\replay[chords_lasemilla_a] % replay chords from a named register
+    |^Be in the ^now you will |^find,
+    and |^{be in the} ^heart you will |^see
+  \endchorus\glueverses\beginchorus\replay[chords_lasemilla_b]
+    \ind This |^{love that} ^flows so |^deep inside,
+    \ind with|^{in there} ^lies a |^seed
+  \endchorus\glueverses\beginchorus\replay[chords_lasemilla_c]
+    \up{2}(A |^seed) has been ^planted in|^side of your heart
+    and |^{love is the} ^water that |^feeds
+  \endchorus
+  \beginverse\replay[chords_lasemilla_d] % replay chords from a named register
+    \ind With |^love e^ternal|^{ly it will} grow,
+    \ind my |^mother she ^makes it |^so \replay
+    \ind With |^love e^ternal|^{ly it will} grow,
+    \ind my |^mother she ^makes it |^so \replay
+    \ind With |^love e^ternal|^{ly it will} grow,
+    \ind my |^father he ^makes it |^so \replay
+    \ind With |^love e^ternal|^{ly it will} grow,
     \ind the |^force she ^makes me |^so \[(A7)]
   \endverse
 \endsong
