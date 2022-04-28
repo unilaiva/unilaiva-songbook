@@ -5,9 +5,8 @@
 # setup the *required* bind mount and use correct user id.
 #
 
-# Note that Ubuntu 20.04 LTS Focal has a problem with Noto Medium; that's why we
-# use non-LTS 21.10 Impish.
-FROM ubuntu:impish-20211102
+# Use Ubuntu 22.04 LTS:
+FROM ubuntu:jammy-20220421
 
 # Installs everything needed for compiling the songbook, plus qrencode and
 # pdftk utilities. Also generates the required locale fi_FI.utf8.
