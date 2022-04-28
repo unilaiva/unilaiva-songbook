@@ -17,8 +17,12 @@ If you are on a UNIX-compatible system (e.g. Linux), you can use the provided
 all the book versions, including two-booklet version, each with all printout
 styles. For help about options, run: `compile_unilaiva-songbook.sh --help`
 
+Otherwise you must do the compilation steps manually, see **Option THREE**.
+
 
 ### Option ONE: use the script with Docker (preferred) ###
+
+This works only on a Linux system.
 
 Execute the compilation script **without** `--no-docker` argument.
 
@@ -27,7 +31,7 @@ container that has all the correct packages installed and configured correctly.
 
 Note that the first run will take a long time, as the Docker image is built
 and all the required software downloaded (about 1 GiB) and installed into it.
-When built, the image requires about 2 GiB of disk space. Subsequent runs
+When built, the image requires about 2,7 GiB of disk space. Subsequent runs
 will be fast as they use the already built image.
 
 ##### Requirements #####
@@ -36,7 +40,7 @@ This method requires the following software installed on your system:
   * `docker`
   * `bash` (installed by default on most systems)
   * `git` (recommended for initially retrieving the songbook source)
-  * 2 GiB of disk space (for Docker image)
+  * 2,7 GiB of disk space (for Docker image)
 
 ##### Example: on Debian or Ubuntu, using Docker #####
 
@@ -77,9 +81,9 @@ included in the project tree and used instead of a one possibly installed on
 the system. This is because of compatibility reasons to ensure a specific
 version: the package is used heavily and some of its macros are redefined.
 
-##### Example: on Ubuntu 18.04, without Docker #####
+##### Example: on Ubuntu 22.04, without Docker #####
 
-On Ubuntu 18.04 LTS, to install the dependencies, download the project's
+On Ubuntu 22.04 LTS, to install the dependencies, download the project's
 source and compile the songbook without Docker, you need to run the following
 commands:
 
@@ -95,10 +99,13 @@ commands:
 
 ### Option THREE, compile manually ###
 
-Otherwise, to build (only) the main document manually, ensure you have all the
-dependencies installed (see **option TWO**) and the project's source downloaded,
-and then run the following commands or their equivalents in this exact sequence
-in the project's root directory:
+This is the only option for non-UNIX systems (in addition to using a Linux
+virtual machine).
+
+To build (only) the main document manually, ensure you have all the dependencies
+installed (see **option TWO**) and the project's source downloaded, and then run
+the following commands or their equivalents in this exact sequence in the
+project's root directory:
 
   1. `lilypond-book -f latex --output=temp unilaiva-songbook.tex`
   2. `cd temp ; ln -s ../ext_packages ./ ; ln -s ../../content/img ./content/ ;
@@ -138,8 +145,8 @@ To mitigate, one could change the `\usepackage[medium,extrabold]{noto}` to
 `\usepackage[regular,extrabold]{noto}` in `tex/unilaiva-songbook_common.sty`,
 but it would result in lighter and less readable fonts.
 
-A better solution to this problem is to compile using **Option ONE**, the Docker
-container.
+A better solution to this and other distribution specific problems is to
+compile using **Option ONE**, the Docker container.
 
 
 
