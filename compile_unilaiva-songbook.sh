@@ -222,17 +222,20 @@ compile_document() {
   # the modified .tex files and the musical staff images created by it to subdirectory ${temp_dirname_twolevels}.
   # The directory (last level only) is created if it doesn't exist.
   lilypond-book -f latex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/out-1_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book! Aborted." "${temp_dirname_twolevels}/out-1_lilypond.log"
+
   # Clean up temporary files from the project root
   # (for some reason they're not written to output dir):
   rm tmp????????.sxc tmp????????.out idx_*.sxd missfont.log 2>"/dev/null"
 
   # Enter the temp directory. (Do rest of the steps there.)
   cd "${temp_dirname_twolevels}" || die 1 "Cannot enter temporary directory! Aborted."
-  # Link the required files that lilypond hasn't copied to the temp directory:
-  ln -s "../../../tex/unilaiva-songbook_common.sty" "./tex/" 2>"/dev/null"
-  ln -s "../../ext_packages" "./" 2>"/dev/null"
-  ln -s "../../../content/img" "./content/" 2>"/dev/null"  # because lilypond doesn't copy the included images
-  ln -s "../../tags.can" "./" 2>"/dev/null"
+
+  # Copy the required files not copied by lilypond to the temp directory:
+  mkdir -p "ext_packages/songs" 2>"/dev/null"
+  cp "../../tex/unilaiva-songbook_common.sty" "./tex/"
+  cp "../../ext_packages/songs/"{songs.sty,songidx.lua} "./ext_packages/songs/"
+  cp "../../tags.can" "./"
+  ln -s "../../../content/img" "./content/" 2>"/dev/null"  # images are big, so link instead of copy
 
   echo "EXEC     [${document_basename}]: pdflatex (1st run)"
 
