@@ -36,25 +36,81 @@
 \beginsong{Na terra como no Céu}[by={Simja Johannes Lempinen}, key={D}, sks={}]
   \audio[key={D}]{https://soundcloud.com/johannesbatista/01-2n}
   \beginchorus\memorize
-    Eu |\[D]brilho, sou uma e|\[A]strela
-    Assim na |Terra como no |\[D]Céu
+    Eu |\[Bm]brilho\[\bm], sou uma e|\[A]strela \[\bm]
+    Assim na |Terra \[A7] como no |\[D]Céu \[\bm]
   \endchorus
   \beginchorus
-    A es|^trela que brilha lá em |^cima
-    É a |Luz do meu cora|^ção
+    A es|^trela que ^brilha lá em |^cima ^
+    É a |Luz ^do meu cora|^ção ^
   \endchorus
   \beginchorus
-    Raio do |^mundo eu quero ir ao |^Eu
-    Raiou no |mundo meu São Iri|^neu
+    Raio do |^mundo eu ^quero ir ao |^Eu ^
+    Raiou no |mundo ^meu São Iri|^neu ^
   \endchorus
   \beginchorus
-    O meu |^guia é o Padrinho Sebasti|^ão
-    Eterna |vida encontrei no cora|^ção
+    O meu |^guia é o Pa^drinho Sebasti|^ão ^
+    Eterna |vida encon^trei no cora|^ção ^
   \endchorus
   \beginchorus
-    Con|^fia confia na ale|^gria
-    Assim na |Terra como no |^Céu
+    Con|^fia con^fia na ale|^gria ^
+    Assim na |Terra ^ como no |^Céu ^
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \key d \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8 d4 | fis4 fis4. fis8 e d | fis4 e4.
+        a,8 a cis | e4 e4. e8 d cis | d2~d8
+      } \break
+      \repeat volta 2 {
+        r8 a8 d8 | fis4 fis8 fis8 fis8 fis8 e d | fis4 e2
+        a,8 cis | e2 e8 e8 d cis | d2~d8
+      } \break
+      \repeat volta 2 {
+        a8 a8 d8 | fis4 fis8 fis8 fis8 fis8 e d | fis2~fis8
+        a,8 a8 cis | e4 e4 e8 e8 d cis | d2~d8
+      } \break
+      \repeat volta 2 {
+        r8 a8 d8 | fis4 fis8 fis8 fis8 fis16 fis16 e8 d | fis4( e4.)
+        a,8 a8 cis | e8. e16 e8 e8 e8 e8 d cis | d2~d8
+      } \break
+      \repeat volta 2 {
+        r8 d4 | fis4 fis8 fis8 fis8 fis8 e8 d | fis4 e4.
+        a,8 a cis | e4 e4. e8 d cis | d2~d8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Eu | bri -- lho, sou~u -- ma es -- | tre -- la,
+      as -- sim na | Ter -- ra co -- mo no | Céu.
+      \set stanza = "2."
+      A es -- tre -- la que bri -- lha lá em ci -- ma,
+      é a luz do meu co -- ra -- ção.
+      \set stanza = "3."
+      Rai -- o do | mun -- do eu que -- ro ir ao | Eu,
+      rai -- ou no | mun -- do meu São I -- ri -- | neu.
+      \set stanza = "4."
+      O meu | gui -- a~é~o Pa -- dri -- nho Se -- bas -- ti -- | ão,
+      e -- ter -- na | vi -- da en -- con -- trei no co -- ra -- | ção.
+      \set stanza = "5."
+      Con -- | fi -- a con -- fi -- a na~a -- le -- | gri -- a,
+      as -- sim na | Ter -- ra co -- mo no | Céu.
+    }
+    verseChords = \chordmode {
+      \repeat volta 2 {
+        s4. | b1:m | a | a2 a2:7 | d2~d8
+      }
+    }
+    theChords = {
+      \verseChords
+      \verseChords
+      \verseChords
+      \verseChords
+      \verseChords
+    }
+    \layout { #(layout-set-staff-size 13) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
