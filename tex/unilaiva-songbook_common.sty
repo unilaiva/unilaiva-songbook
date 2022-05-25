@@ -128,10 +128,12 @@
 \graphicspath{ {./content/img/} } % graphicx: set path to find images from
 
 % color: Color definitions:
-\definecolor{chordcolor}{rgb}{0.18,0,0.24} % chords
-\definecolor{altchordcolor_a}{rgb}{0.15,0,0.4} % alternate chord set 1 (default)
+\definecolor{chordcolor}{rgb}{0.20,0,0.22} % chords
+\definecolor{altchordcolor_a}{rgb}{0.13,0,0.42} % alternate chord set 1 (default)
 \definecolor{altchordcolor_b}{rgb}{0.4,0.3,0.10} % alternate chord set 2
 \definecolor{altchordcolor_c}{rgb}{0.10,0.4,0.10} % alternate chord set 3
+\definecolor{altchordcolor_d}{rgb}{0.09,0.33,0.34} % alternate chord set 3
+\definecolor{altchordcolor_e}{rgb}{0.36,0.15,0.23} % alternate chord set 3
 \definecolor{mbarcolor}{rgb}{0.36,0,0.48} % measure bar
 \definecolor{melodynotecolor}{rgb}{0.0,0.1536,0.1824} % encircled melody notes
 \definecolor{songnumbgcolor}{rgb}{1,1,1} % song number background
@@ -567,6 +569,12 @@
   \fi%
   \ifnum#1=3%
     \xglobal\colorlet{currentaltchordcolor}{altchordcolor_c}%
+  \fi%
+  \ifnum#1=4%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_d}%
+  \fi%
+  \ifnum#1=5%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_e}%
   \fi%
 }
 
