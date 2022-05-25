@@ -236,40 +236,115 @@
 \endsong
 
 
-\beginsong{Na presença do Senhor}[by={Simja Johannes Lempinen}, off={Kassem}, key={Bm}, sks={}]
+\beginsong{Na presença do Senhor}[by={Simja Johannes Lempinen}, off={Kassem}, key={Dm}, sks={}]
   \audio[key={Bm}]{https://soundcloud.com/johannesbatista/03-2n}
+  \transpose{3}
   \beginchorus\memorize
-    Estou a|\[Bm]qui na presença do Se|\[F#m]nhor
-    Meu Di|\[A]vino Rei Cria|\[Bm]dor
+    Estou a|\[Bm]qui na pre\[\bm]sença do Se|\[F#7]nhor \[\bm] \altchords{\id[1]{alt. (Dm)}|F |A7 Gm6}
+    Meu Di|\[A]vino \[\bm]Rei Cria|\[Bm]dor \[\bm] \altchords{|C |Dm}
   \endchorus
   \beginchorus
-    É a |^Vós quem eu peço meu per|^dão
-    Dai-me con|^forto e limpai meu cora|^ção
+    É a |^Vós quem eu ^peço meu per|^dão ^ \altchords{\id[2]{alt. (Dm)}|Bbmaj7 |A7}
+    Dai-me con|^forto e lim^pai meu cora|^ção ^ \altchords{|C |Dm}
   \endchorus
   \beginchorus
-    Eu vim a|^qui foi para me cu|^rar
-    Estou a|^qui, meu Pai vai apu|^rar
+    Eu vim a|^qui foi ^para me cu|^rar ^
+    Estou a|^qui, meu ^Pai vai apu|^rar ^
   \endchorus
   \beginchorus
-    Dai-me |^força e Dai-me a|^mor
-    Para se|^guir sempre com vi|^gor
+    Dai-me |^força ^e Dai-me a|^mor ^
+    Para se|^guir ^sempre com vi|^gor ^
   \endchorus
   \beginchorus
-    Para |^sempre, sempre estou a|^qui
-    Com minha |^Mãe juntinho a |^mim
+    Para |^sempre, ^sempre estou a|^qui ^ \altchords{\id[4]{(Bm)}|Bm |F\#7}
+    Com minha |^Mãe^ juntinho a |^mim ^ \altchords{|A |Bm}
   \endchorus
   \beginchorus
-    Minha |^Mãe é quem dá estes en|^sinos
-    Para |^todos bem apren|^der
+    Minha |^Mãe é quem ^dá estes en|^si^nos
+    Para |^to^dos bem apren|^der ^
   \endchorus
   \beginchorus
-    Ôh Virgem |^Mãe sois tão bela e tão |^pura
-    O vosso |^brilho é que traz a santa |^cura
+    Ôh Virgem |^Mãe sois tão ^bela e tão |^pu^ra
+    O vosso |^brilho é que ^traz a santa |^cu^ra
   \endchorus
   \beginchorus
-    Eu peço a |^Vós no meu cora|^ção
-    Aju|^dai a todos meus ir|^mãos
+    Eu peço a |^Vós ^no meu cora|^ção ^
+    Aju|^dai a ^todos meus ir|^mã^os
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \transpose b d' \relative b' {
+      \key b \minor \time 4/4 \partial 4.
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat volta 2 {
+        \parenthesize b8 b d | fis4( fis8) \parenthesize fis fis fis e d | cis2( cis8)
+        \parenthesize cis cis d | e4( e8) \parenthesize e \parenthesize e( e) d cis | b2( b8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Es -- tou a -- | qui na pre -- sen -- ça do Se -- | nhor __ _
+        \skip 1 Meu Di -- | vi -- _ no Rei __ _ Cri -- a -- | dor. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        \skip 1 É a | Vós quem eu pe -- ço meu per -- | dão __ _
+        Dai -- me con -- | for -- to~e lim -- pai meu co -- ra -- | ção. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Eu vim a -- | qui __ _ foi pa -- ra me cu -- | rar __ _
+        Es -- tou a -- | qui, __ _ meu Pai vai a -- pu -- | rar. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        \skip 1 Dai -- me | for -- _ ça e Dai -- me a -- | mor __ _
+        Pa -- ra se -- | guir __ _ \skip 1 sem -- pre com vi -- | gor. __ _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        \skip 1 Pa -- ra | sem -- _ pre, sem -- pre~es -- tou a -- | qui __ _ 
+        Com mi -- nha | Mãe __ _ \skip 1 \skip 1 jun -- ti -- nho~a | mim. __ _
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      \repeat volta 2 {
+        \skip 1 Mi -- nha | Mãe é quem dá es -- tes en -- | si -- nos
+        \skip 1 Pa -- ra | to -- _ _ dos bem a -- pren -- | der. __ _
+      }
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7."
+      \repeat volta 2 {
+        Ôh Vir -- gem | Mãe sois tão be -- la e tão | pu -- ra
+        O vos -- so | bri -- lho~é que traz a san -- ta | cu -- ra.
+      }
+    }
+    theLyricsEight = \lyricmode {
+      \set stanza = "8."
+      \repeat volta 2 {
+        Eu pe -- ço~a | Vós __ _ _ no meu co -- ra -- | ção __ _
+        \skip 1 A -- ju -- | dai __ _ a to -- dos meus ir -- | mã -- os.
+      }
+    }
+    theChords = \transpose b d' \chordmode {
+      \repeat volta 2 {
+        s4. | b1:m | fis:7
+        | a | b2:m~8
+      }
+    }
+    % \layout { #(layout-set-staff-size 16) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
