@@ -351,25 +351,78 @@
 \beginsong{Meu Divino Pai Eterno}[by={Simja Johannes Lempinen}, off={Silvio}, key={Dm}, sks={}]
   \audio[key={Dm}]{https://soundcloud.com/johannesbatista/04-2m}
   \beginchorus\memorize
-    Meu Di|\[Dm]vino Pai E|\[A]terno
-    Quem me |deu este po|\[Dm]der
+    Meu Di|\[Dm]vino \[\bm]Pai E|\[Gm]ter\[\bm]no \altchords{\id[1]{alt. (Dm)}|Bbmaj7 |E\textdegree}
+    Quem me |\[A7]deu es\[\bm]te po|\[Dm]der \[\bm] \altchords{|A7 |Dm}
   \endchorus
   \beginchorus
-    Para |^mim compreen|^der
-    Para eu |poder rece|^ber
+    Para |^mim com^preen|^der ^ \altchords{\id[2]{alt. (Dm)}|Dm |Gm6}
+    Para eu |^poder ^rece|^ber \altchords{|F A7 |Dm}
   \endchorus
   \beginchorus
-    A |^Gloria do meu |^Pai
-    Para |sempre resplande|^cer
+    A |^Gloria ^do meu |^Pai ^
+    Para |^sempre res^plande|^cer ^
   \endchorus
   \beginchorus
-    Quem |^é meu Salva|^dor
-    É seu |Filho Reden|^tor
+    Quem |^é meu ^Salva|^dor ^
+    É seu |^Filho ^Reden|^tor ^
   \endchorus
   \beginchorus
-    Eu |^peço a meu Je|^sus
-    A |Luz que nos con|^duz
+    Eu |^peço a ^meu Je|^sus ^
+    A |^Luz que ^nos con|^duz ^
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \key d \minor \time 4/4 \partial 4
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat volta 2 {
+        f8( e) | d4. \altcol \grace e8( \altmark "2." e8) f4 g | e2( e4)
+        e8( e) | a4 g8( g8) f4 e | d2.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Meu Di -- | vi -- no Pai E -- | ter -- no
+        Quem me | deu es -- _ te po -- | der.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Pa -- ra | mim \altcol com -- pre -- en -- | der __ _
+        Pa -- ra~eu | po -- der __ _ re -- ce -- | ber.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        A __ _ | Glo -- ria do meu | Pai __ _
+        Pa -- ra | sem -- pre res -- plan -- de -- | cer.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Quem __ _ | é meu Sal -- va -- | dor __ _
+        É seu | Fi -- lho __ _ Re -- den -- | tor.
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        Eu __ _ | pe -- ço~a meu Je -- | sus __ _
+        A __ _ | Luz que __ _ nos con -- | duz.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d1:m | g:m
+        | a:7 | d2.:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
