@@ -1,11 +1,11 @@
-    %% lp-include-head.ly
-    %% ==================
+    %% lp-include-head-spacious.ly
+    %% ===========================
     %%
     %% This file contains generic Lilypond settings and should be included
     %% as the first thing within the 'lilypond' environment.
     %%
-    %% This is the version used for compact A5 booklets. For A4 booklets,
-    %% include lp-include-head-spacious.ly instead.
+    %% This is the version meant to be used for spacious engravings on A4 paper.
+    %% For compact A5 booklets, include lp-include-head-spacious.ly instead.
     %%
     %% To make notation as easy as possible, one should after this include
     %% define the variable 'theMelody' that contains the melody notes (and
@@ -35,9 +35,8 @@
     % Includes the common settings
     \include "tex/lp-internal-common-head.ly"
 
-    % Sets the global staff size, it scales everything. Recommended size is 18,
-    % but we use 16 for space reasons. With Noto fonts, 15 might be needed.
-    #(set-global-staff-size 16)
+    % Sets the global staff size, it scales everything. Recommended size is 18.
+    #(set-global-staff-size 18)
 
     \paper {
       %% This sets up custom fonts. They must be loaded in the LaTeX document
@@ -46,18 +45,18 @@
       %% are installed in the document.
       %% See: https://lilypond.org/doc/v2.20/Documentation/notation/fonts#entire-document-fonts
       %% Commented out for now as it multiplies compile time, using defaults.
-%       #(define fonts
-%         (set-global-fonts
-%           #:roman "NotoSans-ExtraCondensedMedium"
-%           #:sans "NotoSans-ExtraCondensedMedium"
-%           #:factor (/ staff-height pt 20)
-%                    ))
+      %       #(define fonts
+      %         (set-global-fonts
+      %           #:roman "NotoSans-ExtraCondensedMedium"
+      %           #:sans "NotoSans-ExtraCondensedMedium"
+      %           #:factor (/ staff-height pt 20)
+      %                    ))
 
       indent = #0
       ragged-right = ##f
       ragged-last = ##f
       ragged-bottom = ##f
-      system-system-spacing.padding = #1.3 % default: #1
+      system-system-spacing.padding = #1 % default: #1
       %annotate-spacing = ##t % for debugging spacing
     }
 
@@ -67,35 +66,35 @@
         \Score {
           % Setup vertical spacing:
           \override VerticalAxisGroup
-            .default-staff-staff-spacing.padding = #1 % default: #2?
+          .default-staff-staff-spacing.padding = #2 % default: #2?
           \override VerticalAxisGroup
-            .default-staff-staff-spacing.basic-distance = #5 % default: #10?
+          .default-staff-staff-spacing.basic-distance = #10 % default: #10?
           \override VerticalAxisGroup
-            .default-staff-staff-spacing.minimum-distance = #5 % default: #10?
+          .default-staff-staff-spacing.minimum-distance = #10 % default: #10?
         }
       }
       \context {
         \ChordNames {
           % Setup vertical spacing:
           \override VerticalAxisGroup
-            .staff-affinity = #DOWN
+          .staff-affinity = #DOWN
           \override VerticalAxisGroup
-            .nonstaff-relatedstaff-spacing.padding = #0.3 % default: #0.5
+          .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
         }
       }
       \context {
         \Lyrics {
           % Setup vertical spacing:
           \override VerticalAxisGroup
-            .staff-affinity = #UP
+          .staff-affinity = #UP
           \override VerticalAxisGroup
-            .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
+          .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
           \override VerticalAxisGroup
-            .nonstaff-nonstaff-spacing.padding = #0.3 % default: #0.5
+          .nonstaff-nonstaff-spacing.padding = #0.5 % default: #0.5
           \override VerticalAxisGroup
-            .nonstaff-nonstaff-spacing.minimum-distance = #0.3 % default: #0.5
+          .nonstaff-nonstaff-spacing.minimum-distance = #0.5 % default: #0.5
           \override VerticalAxisGroup
-            .nonstaff-unrelatedstaff-spacing.padding = #0.5 % default: #1.5
+          .nonstaff-unrelatedstaff-spacing.padding = #1.5 % default: #1.5
         }
       }
     }
