@@ -426,31 +426,106 @@
 \endsong
 
 
-\beginsong{Peço força do Céu}[by={Simja Johannes Lempinen}, off={Risele}, key={Am}, sks={}, tags={valsa}]
+\beginsong{Peço força do Céu}[by={Simja Johannes Lempinen}, off={Risele}, key={Bm}, sks={}, tags={valsa}]
   \audio[key={Am}]{https://soundcloud.com/johannesbatista/05-2p}
   \newchords{chords_pecoforca_a}\newchords{chords_pecoforca_b}
+  \transpose{2}
   \meter{3}{4}
   \beginchorus\memorize[chords_pecoforca_a]
-    Peço |\[Am]força do |\[F]Céu, da |\[Dm]Terra e do |Mar
-    Peço |força do |\[C]Vento pa|\[E]ra me cu|\[Am]rar
+    Peço |\[Am]força do |\[F]Céu, da |\[A7]Terra e do |\[Dm]Mar \altchords{\id[1]{alt. (Bm)}|Bm |G |B7 |Em}
+    Peço |força do |\[F]Vento pa|\[E7]ra me cu|\[Am]rar \altchords{| - |G |F\#7 |Bm}
     \endchorus\glueverses\beginchorus\memorize[chords_pecoforca_b]
-    Eu |\[Am]peço a meu |\[C]Pai, ve|nha clare|\[Dm]ar
-    Pe|ço a minha |\[Am]Mãe pra nos |\[E7]ilumi|\[Am]nar
+    Eu |\[Am]peço a meu |\[F]Pai, ve|\[A7]nha clare|\[Dm]ar \altchords{|Bm | - |B7 |Em}
+    Pe|ço a minha |\[F]Mãe pra nos |\[E7]ilumi|\[Am]nar \altchords{| - |Cmaj7 |F\#7 |Bm}
   \endchorus
   \beginchorus\replay[chords_pecoforca_a]
-    O |^Sol, a |^Lua, as Es|^trelas a gui|ar
-    Para |sempre esta |^Luz eterna|^mente a bri|^lhar
+    O |^Sol, a |^Lua, as Es|^trelas a gui|^ar \altchords{\id[2]{(Am)}|Am |F |A7 |Dm}
+    Para |sempre esta |^Luz eterna|^mente a bri|^lhar \altchords{| - |F |E7 |Am}
     \endchorus\glueverses\beginchorus\replay[chords_pecoforca_b]
-    E|^terna|^mente a |nós gui|^ar
-    Tenho |a minha |^Mãe tambem |^tenho meu |^Pai
+    E|^terna|^mente a |^nós gui|^ar \altchords{|Am |F |A7 |Dm}
+    Tenho |a minha |^Mãe tambem |^tenho meu |^Pai \altchords{| - |F |E7 |Am}
   \endchorus
   \beginchorus\replay[chords_pecoforca_a]
-    Vou pe|^dindo e ro|^gando a to|^dos meus ir|mãos
-    Va|mos com a|^mor rece|^ber nosso |^Pai
+    Vou pe|^dindo e ro|^gando a to|^dos meus ir|^mãos \altchords{\id[5]{L (Bm)}|Bm |G |Em | \e}
+    Va|mos com a|^mor rece|^ber nosso |^Pai \altchords{| - |D |F\# |Bm}
     \endchorus\glueverses\beginchorus\replay[chords_pecoforca_b]
-    Va|^mos se fir|^mar nes|ta luz Di|^vina
-    Do nos|so Salva|^dor, de |^quem nos en|^sina
+    Va|^mos se fir|^mar nes|^ta luz Di|^vina \altchords{|Bm |D | - |Em}
+    Do nos|so Salva|^dor, de |^quem nos en|^sina \altchords{| - |Bm |F\#7 |Bm}
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \transpose a b \relative e'' {
+      \key a \minor \time 3/4 \partial 4
+      \repeat volta 2 {
+        e8 \sectionmark "1." e8 | a4 a g | f2 e4 | d d c \altmark "?" | d2
+        d8 d8 | d4 d e | c c c | b a gis | a2
+      }
+      \repeat volta 2 {
+        e'4 | a, a b | c2 c4 | c c e | d2
+        d4 | d d f | a2 e8 e | c4 b gis | a2
+      } \break
+      \repeat volta 2 {
+        e'4 \sectionmark "2." | a2 g4 | f4 f e4 | d d c8 c  \altmark "?" | d2
+        d8 d8 | d4 d e | c4. c8 c8 c8 | b4 a gis | a2
+      }
+      \repeat volta 2 {
+        e'4 | a,2 b4 | c2 c4 | c2 e4 | d2
+        d8 d8 | d4 d f | a2 e8 e | c4 b gis | a2
+      } \break
+      \repeat volta 2 {
+        e'8 \sectionmark "3." e8 | a4 a g | f4 f4 e4 | d d c \altmark "?" | d2
+        d4 | d4 d e | c2 c8 c | b4 a gis | a2
+      }
+      \repeat volta 2 {
+        e'4 | a, a b | c2 c4 | c c e | d4 d4
+        d8 d8 | d4 d f | a2 e4 | c4 b gis | a4 a4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Pe -- ço | for -- ça do | Céu, da | Ter -- ra~e do | Mar;
+        Pe -- ço | for -- ça do | Ven -- to pa -- | ra me cu -- | rar.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Eu | pe -- ço~a meu | Pai, ve -- | nha cla -- re -- | ar;
+        Pe -- | ço~a mi -- nha | Mãe pra nos | i -- lu -- mi -- | nar.
+      }
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        O | Sol, a | Lu -- a,~as Es -- | tre -- las a gui -- | ar;
+        Pa -- ra | sem -- pre~es -- ta | Luz e -- ter -- na -- | men -- te~a bri -- | lhar.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        E -- | ter -- na -- | men -- te~a | nós gui -- | ar;
+        Te -- nho | a mi -- nha | Mãe tam -- bem | te -- nho meu | Pai.
+      }
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Vou pe -- | din -- do~e ro -- | gan -- do~a to -- | dos meus ir -- | mãos;
+        Va -- | mos com a -- | mor re -- ce -- | ber nos -- so | Pai.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Va -- | mos se fir -- | mar nes -- | ta luz Di -- | vi -- na;
+        Do nos -- | so Sal -- va -- | dor, de | quem nos en -- | si -- na.
+      }
+    }
+    verseChords = \transpose a b \chordmode {
+      \repeat volta 2 {
+        s4 | a2.:m | f | a:7 | d:m
+        | d:m | f | e:7 | a2:m
+      }
+      \repeat volta 2 {
+        s4 | a2.:m | f | a:7 | d:m
+        | d:m | f | e:7 | a2:m
+      }
+    }
+    theChords = { \verseChords \verseChords \verseChords }
+    %\layout { #(layout-set-staff-size 16) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
