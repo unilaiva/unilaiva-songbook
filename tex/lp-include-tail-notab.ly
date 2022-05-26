@@ -1,9 +1,9 @@
-    %% lp-include-tai-notab.ly
-    %% =======================
+    %% lp-include-tail-notab.ly
+    %% ========================
     %%
     %% This file should be included as the last thing within 'lilypond'
     %% environment, and creates a score with chord names, notes and
-    %% vocals, in that order, if they have been defined.
+    %% lyrics, in that order, if they have been defined.
     %%
     %% Requires that 'lp-include-head.ly' has been included before.
     %%
