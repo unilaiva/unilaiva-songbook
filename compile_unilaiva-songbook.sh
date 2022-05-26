@@ -79,12 +79,13 @@ print_usage_and_exit() {
   echo "named ul-selection_*.pdf are compiled, unless --no-selections option"
   echo "is present or files are given as arguments."
   echo ""
-  echo "Special versions for printing (printout_*.pdf) are created for all compiled"
-  echo "documents, if 'context' binary is available and --no-printouts option is not"
-  echo "given."
+  echo "For documents containing _A5 in their filename, special versions for"
+  echo "printing on A4 sized paper are created, if 'context' binary is available"
+  echo "and --no-printouts option is not given."
   echo ""
   echo "If --no-deploy argument is not present, the resulting PDF files will"
-  echo "also be copied to ./deploy/ directory (if it exists)."
+  echo "also be copied to ./deploy/ directory (if it exists), unless they have"
+  echo "_NODEPLOY in their filename."
   echo ""
   exit 1
 }
