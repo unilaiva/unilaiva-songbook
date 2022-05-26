@@ -8,6 +8,10 @@
 \newcommand{\subbooktitle}{Revelação}
 \newcommand{\papersize}{a4paper}
 \newcommand{\basicfontsize}{12pt}
+% The following creates space between Lilypond systems. Use star version
+% of \vspace to avoid page breaks between systems. The default is \linebreak
+% without extra \vspace.
+\newcommand{\betweenLilyPondSystem}[1]{\vspace*{.5ex}\linebreak}
 
 % Include common settings for astral books
 \input{tex/unilaiva-astral_setup_include.tex}
