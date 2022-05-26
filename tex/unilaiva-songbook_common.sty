@@ -120,6 +120,7 @@
   The material in this book is collected from various sources over time.\\
   This is a work in progress, and made for the contributors' private use.
 }
+\providecommand{\songbookversion}{\the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}%
 
 % microtype: enable all microtype features (except tracking) for more fonts than in
 % the defaults:
@@ -160,7 +161,9 @@
             pdftitle={\thisbooktitle},%
             pdfauthor={larva},%
             pdfsubject={Songbook},%
-            pdfkeywords={songs spiritual entheogens ceremony}}
+            pdfkeywords={songs spiritual entheogens ceremony},%
+            pdfinfo={DocumentVersion={\songbookversion}}% this is a custom attr
+           }
 
 \renewcommand{\snumbgcolor}{songnumbgcolor} % songs: set song number background color in prelude
 \renewcommand{\notebgcolor}{notebgcolor} % songs: set \musicnote and \textnote background color
@@ -392,7 +395,7 @@
       \par\vspace{0.618034ex}
       {\Large%
         %vvvv-mm-dd % Use hardcoded date date for tagged printout releases
-        \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day% current date, the default
+        \songbookversion% current date, the default
         \ifchorded\else{\par\emph{(lyrics only)}}\fi% if non-chorded version, mention it here
       }
       \par\vspace*{\fill}
