@@ -43,7 +43,7 @@
       %% as packages(?). See fonts available to lilypond with command
       %% 'lilypond -dshow-available-fonts x', though it doesn't show which
       %% are installed in the document.
-      %% See: https://lilypond.org/doc/v2.20/Documentation/notation/fonts#entire-document-fonts
+      %% See: https://lilypond.org/doc/v2.22/Documentation/notation/fonts#entire-document-fonts
       %% Commented out for now as it multiplies compile time, using defaults.
       %       #(define fonts
       %         (set-global-fonts
@@ -56,8 +56,13 @@
       ragged-right = ##f
       ragged-last = ##f
       ragged-bottom = ##f
-      system-system-spacing.padding = #1 % default: #1
       %annotate-spacing = ##t % for debugging spacing
+
+      % system-system-spacing does not work in TeX documents; instead use
+      % \newcommand{\betweenLilyPondSystem}[1]{\vspace*{.5ex}\linebreak}
+      % in document preamble. Use star version of \vspace, if you want to
+      % avoid page breaks.
+      %system-system-spacing.padding = #1 % default: #1
     }
 
     % About vertical spacing: https://lilypond.org/doc/v2.22/Documentation/notation/flexible-vertical-spacing-within-systems#spacing-of-non_002dstaff-lines
@@ -80,13 +85,15 @@
           .staff-affinity = #DOWN
           \override VerticalAxisGroup
           .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
+          \override VerticalAxisGroup
+          .nonstaff-unrelatedstaff-spacing.padding = #10 % default: #0.5
         }
       }
       \context {
         \Lyrics {
           % Setup vertical spacing:
           \override VerticalAxisGroup
-          .staff-affinity = #UP
+          .staff-affinity = #CENTER
           \override VerticalAxisGroup
           .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
           \override VerticalAxisGroup

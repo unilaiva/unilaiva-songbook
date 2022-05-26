@@ -57,8 +57,13 @@
       ragged-right = ##f
       ragged-last = ##f
       ragged-bottom = ##f
-      system-system-spacing.padding = #1.3 % default: #1
       %annotate-spacing = ##t % for debugging spacing
+
+      % system-system-spacing does not work in TeX documents; instead use
+      % \newcommand{\betweenLilyPondSystem}[1]{\vspace*{.1ex}\linebreak}
+      % in document preamble. Use star version of \vspace, if you want to
+      % avoid page breaks.
+      %system-system-spacing.padding = #1 % default: #1
     }
 
     % About vertical spacing: https://lilypond.org/doc/v2.22/Documentation/notation/flexible-vertical-spacing-within-systems#spacing-of-non_002dstaff-lines
