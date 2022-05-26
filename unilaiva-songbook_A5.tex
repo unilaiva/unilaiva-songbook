@@ -3,32 +3,32 @@
  %%
  %% Collection of songs etc
  %%
- %% This is part 1 of the two-booklet version.
+ %% This is the full version.
 
 \documentclass[twoside,10pt]{book}
 
-% Set the titles of this document:
+% Set the title of this document:
 \newcommand{\mainbooktitle}{Unilaiva songbook}
-\newcommand{\subbooktitle}{part \romanupnum{1}}
-\newcommand{\subsubbooktitle}{Español, Português}
 % Set things shown on the second page:
 \newcommand{\bookmotto}{paths to higher knowledge}
 \newcommand{\bookcompiledbytext}{%
  Compiled by: antagomir \& larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})%
 }%
 
+
 % The following package contains all the imports, style settings etc:
 \usepackage{tex/unilaiva-songbook_common}
 
 % songs: create indexes
-\newindex{titleidx}{idx_unilaiva-songbook_part1_title}
-\newauthorindex{authidx}{idx_unilaiva-songbook_part1_auth}
-\newscripindex{tagidx}{idx_unilaiva-songbook_part1_tag}
+\newindex{titleidx}{idx_unilaiva-songbook_A5_title}
+\newauthorindex{authidx}{idx_unilaiva-songbook_A5_auth}
+\newscripindex{tagidx}{idx_unilaiva-songbook_A5_tag}
+
 
 \begin{document}
 
   % Cover page (recto), by larva (photo + edit):
-  \includepdf[]{content/img/unilaiva-songbook_part1_COVER.pdf}
+  \includepdf[]{content/img/unilaiva-songbook_COVER.pdf}
   % The second page (verso):
   \secondpage
 
@@ -37,12 +37,12 @@
 
   % Content chapters (comment one out in two-booklet version):
   \input{tex/unilaiva-songbook_content_include_part1.tex}
-  %\input{tex/unilaiva-songbook_content_include_part2.tex}
+  \input{tex/unilaiva-songbook_content_include_part2.tex}
 
   % Add a note about the chapters in the other part of the book to TOC.
   % Comment out the line(s) not relevant to this book (part).
-  %\addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}{\normalfont Chapters} Español {\normalfont and} Português {\normalfont are found in} \emph{part \romanupnum{1}} {\normalfont of this book.}}{}{}}
-  \addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}{\normalfont Chapters} Saṃskṛtam{\normalfont ,} English{\normalfont ,} Other {\normalfont and} Suomi {\normalfont are found in} \\\emph{part \romanupnum{2}} {\normalfont of this book.}}{}{}}
+  %\addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}Saṃskṛtam{\normalfont ,} Español {\normalfont and} Português {\normalfont are in} \emph{part 1} {\normalfont of this book}}{}{}}
+  %\addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}English{\normalfont ,} Other {\normalfont and} Suomi {\normalfont are in} \emph{part 2} {\normalfont of this book}}{}{}}
 
   % Appendices:
   \input{tex/unilaiva-songbook_content_include_part3_appendices.tex}

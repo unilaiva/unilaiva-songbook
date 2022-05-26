@@ -16,9 +16,9 @@
 #
 
 
-MAIN_FILENAME_BASE="unilaiva-songbook" # filename base for the main document (without .tex suffix)
-PART1_FILENAME_BASE="unilaiva-songbook_part1" # filename base for the 2-part document's part 1 (without .tex suffix)
-PART2_FILENAME_BASE="unilaiva-songbook_part2" # filename base for the 2-part document's part 2 (without .tex suffix)
+MAIN_FILENAME_BASE="unilaiva-songbook_A5" # filename base for the main document (without .tex suffix)
+PART1_FILENAME_BASE="unilaiva-songbook_part1_A5" # filename base for the 2-part document's part 1 (without .tex suffix)
+PART2_FILENAME_BASE="unilaiva-songbook_part2_A5" # filename base for the 2-part document's part 2 (without .tex suffix)
 ASTRAL_FNAME_PREFIX="unilaiva-astral-" # filename prefix for unilaiva astral books
 SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
@@ -344,8 +344,8 @@ deploy_results() {
   fi
   while IFS= read -r pdf_file; do
     if [[ ${pdf_file} == *"_NODEPLOY"* ]]; then
-      echo "NODEPLOY [${document_basename}.pdf]: not deployed due to filename"
-      break
+      echo "NODEPLOY [${pdf_file}]: not deployed due to filename"
+      continue
     fi
     [ -f "${pdf_file}" ] || die 21 "Could not access ${pdf_file} for deployment"
     cp "${pdf_file}" "./deploy/"

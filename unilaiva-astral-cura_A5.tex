@@ -1,24 +1,24 @@
- %% unilaiva-astral-variados
- %% ========================
+ %% unilaiva-astral-cura
+ %% ====================
  %%
- %% Collection of Santo Daime hymns, "Unilaiva no Astral: Hinos Variados";
- %% contains hinos not (yet?) put to any other Unilaiva no Astral book.
+ %% Collection of Santo Daime hymns, "Unilaiva no Astral: Cura",
+ %% "the green book"
  %%
 
 % Setup the book name (the subtitle), and include common settings
-\newcommand{\subbooktitle}{Hinos Variados}
+\newcommand{\subbooktitle}{Cura}
 \input{tex/unilaiva-astral_setup_include.tex}
 
 % songs: create indexes (these must be named exactly like this!)
-\newindex{titleidx}{idx_unilaiva-astral-variados_title}
-\newauthorindex{authidx}{idx_unilaiva-astral-variados_auth}
-\newscripindex{tagidx}{idx_unilaiva-astral-variados_tag}
+\newindex{titleidx}{idx_unilaiva-astral-cura_A5_title}
+\newauthorindex{authidx}{idx_unilaiva-astral-cura_A5_auth}
+\newscripindex{tagidx}{idx_unilaiva-astral-cura_A5_tag}
 
 
 \begin{document}
 
   % Cover page (recto), by larva (photo + edit):
-  \includepdf[]{content/img/unilaiva-astral-variados_COVER.pdf}
+  \includepdf[]{content/img/unilaiva-astral-cura_COVER.pdf}
   % The second page (verso):
   \secondpage
 
@@ -29,15 +29,16 @@
   % \songchapter or \chapter:
   \setcounter{chapter}{0}
 
-  \mainchapter[]{Padr. Alfredo: Nova Dimensão}
+  \mainchapter[]{Primeira Parte}
     \begin{songs}{}
-      \input{content/songs_astral_novadimensao.tex}
+      \input{content/songs_astral_cura_i.tex}
     \end{songs}
 
-  \mainchapter[]{Glauco Villas Boas: O Chaveirão}
+  \mainchapter[]{Segunda Parte}
     \begin{songs}{}
-      \input{content/songs_astral_ochaveirao.tex}
+      \input{content/songs_astral_cura_ii.tex}
     \end{songs}
+
 
   % Here start appendices: chapter numbering resets and switches to alphabetic
   \appendix
