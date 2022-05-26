@@ -333,6 +333,7 @@ compile_document() {
 #   - not inside Docker container
 #   - deploy is not forbidden by command line argument
 #   - deploy directory exists
+#   - pdf's filename does not contain _NODEPLOY
 deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
@@ -341,6 +342,10 @@ deploy_results() {
     return
   fi
   while IFS= read -r pdf_file; do
+    if [[ ${pdf_file} == *"_NODEPLOY"* ]]; then
+      echo "NODEPLOY [${document_basename}.pdf]: not deployed due to filename"
+      break
+    fi
     [ -f "${pdf_file}" ] || die 21 "Could not access ${pdf_file} for deployment"
     cp "${pdf_file}" "./deploy/"
     [ $? -eq 0 ] || die 22 "Could not deploy ${pdf_file}"
