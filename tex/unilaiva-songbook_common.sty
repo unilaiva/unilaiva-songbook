@@ -19,6 +19,14 @@
 % BEGIN PACKAGE IMPORTS
 % =====================
 
+% Settings for package imports. These can be set with \newcommand before
+% including this package.
+
+% Paper size for geometry package: a4paper, a5paper, ...
+\providecommand{\papersize}{a5paper}
+
+% Actual imports
+
 \usepackage[finnish,english]{babel}\selectlanguage{english}
 \usepackage[utf8x]{inputenc}
 % Use 'microtype' package for better appearance (especially for non-song chapters):
@@ -48,7 +56,7 @@
 %         but now the Golden Ratio rules. Old versions (before fancyheader) also used
 %         headsep=5mm,headheight=3.5mm, but the result is about the same now.
 %       * For the "default" printer, minimum top margin is 16mm (to print the chapter name fully)
-\usepackage[a5paper,inner=16.18mm,outer=10mm,tmargin=16.18mm,bmargin=10mm,headsep=5mm,headheight=4.28mm,nofoot]{geometry} % page size + margins
+\usepackage[paper=\papersize,inner=16.18mm,outer=10mm,tmargin=16.18mm,bmargin=10mm,headsep=5mm,headheight=4.28mm,nofoot]{geometry} % page size + margins
 % xcolor package for using colors in various elements; dvipsnames option imports
 % some CMYK color names
 \usepackage[dvipsnames]{xcolor}%
