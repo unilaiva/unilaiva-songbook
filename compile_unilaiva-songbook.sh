@@ -282,34 +282,40 @@ compile_document() {
     [ "${fontwarning_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Font warnings: ${fontwarning_count}"
   fi
 
-  # Create printouts, if context binary is found:
-  if [ ${createprintouts} = "true" ]; then
-    which "context" >"/dev/null"
-    if [ $? -eq 0 ]; then
-      echo "EXEC     [${document_basename}]: context (create printouts)"
+  # Create printouts, if filename contains _A5 and printouts are not disabled
+  # by a command line argument:
 
-      # A5 on A4, double sided, folded: Use 'awk' to create a copy of the
-      # printout template file with changed input PDF file name and then
-      # execute 'context' on the new file.
-      printout_dsf_basename="printout_${document_basename}_A5_on_A4_doublesided_folded"
-      awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout! Aborted."
-      context "${printout_dsf_basename}.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
-      cp "${printout_dsf_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
-      echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
-
-      # A5 on A4, a A5-A5 spread on single A4 surface: Use 'awk' to create a
-      # copy of the printout template file with changed input PDF file name
-      # and then execute 'context' on the new file.
-      printout_sss_basename="printout_${document_basename}_A5_on_A4_sidebyside_simple"
-      awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout! Aborted."
-      context "${printout_sss_basename}.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
-      cp "${printout_sss_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
-      echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
-    else
-      echo "NOEXEC   [${document_basename}]: Extra printout PDFs not created; no 'context'"
-    fi
+  if [[ "${document_basename}" != *"_A5"* ]]; then
+    echo "NOEXEC   [${document_basename}]: Extra printout PDFs not created, no _A5 in filename"
   else
-    echo "NOEXEC   [${document_basename}]: Extra printout PDFs not created."
+    if [ ${createprintouts} != "true" ]; then
+      echo "NOEXEC   [${document_basename}]: Extra printout PDFs not created as per request"
+    else
+      which "context" >"/dev/null"
+      if [ $? -ne 0 ]; then
+        echo "NOEXEC   [${document_basename}]: Extra printout PDFs not created; no 'context'"
+      else
+        echo "EXEC     [${document_basename}]: context (create printouts)"
+
+        # A5 on A4, double sided, folded: Use 'awk' to create a copy of the
+        # printout template file with changed input PDF file name and then
+        # execute 'context' on the new file.
+        printout_dsf_basename="printout_${document_basename}_on_A4_doublesided_folded"
+        awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout! Aborted."
+        context "${printout_dsf_basename}.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
+        cp "${printout_dsf_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
+        echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
+
+        # A5 on A4, a A5-A5 spread on single A4 surface: Use 'awk' to create a
+        # copy of the printout template file with changed input PDF file name
+        # and then execute 'context' on the new file.
+        printout_sss_basename="printout_${document_basename}_on_A4_sidebyside_simple"
+        awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout! Aborted."
+        context "${printout_sss_basename}.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
+        cp "${printout_sss_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
+        echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
+      fi
+    fi
   fi
 
   # Clean up the compile directory: remove some temporary files.
