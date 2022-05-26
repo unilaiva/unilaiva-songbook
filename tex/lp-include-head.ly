@@ -30,7 +30,7 @@
     %%
 
     % Lilypond version:
-    \version "2.22.0"
+    \version "2.22.1"
 
     % Note names language; nederlands has: c sharp = cis, b flat = bes, b = b
     \language "nederlands"
