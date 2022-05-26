@@ -93,42 +93,42 @@
     theMelody = \relative d'' {
       \key d \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        r8 d4 | fis4 fis4. fis8 e d | fis4 e4.
+        r8 d4 \sectionmark "1." | fis4 fis4. fis8 e d | fis4 e4.
         a,8 a cis | e4 e4. e8 d cis | d2~d8
       } \break
       \repeat volta 2 {
-        r8 a8 d8 | fis4 fis8 fis8 fis8 fis8 e d | fis4 e2
+        r8 a8 \sectionmark "2." d8 | fis4 fis8 fis8 fis8 fis8 e d | fis4 e2
         a,8 cis | e2 e8 e8 d cis | d2~d8
       } \break
       \repeat volta 2 {
-        a8 a8 d8 | fis4 fis8 fis8 fis8 fis8 e d | e2~e8
+        a8 \sectionmark "3." a8 d8 | fis4 fis8 fis8 fis8 fis8 e d | e2~e8
         a,8 a8 cis | e4 e4 e8 e8 d cis | d2~d8
       } \break
       \repeat volta 2 {
-        r8 a8 d8 | fis4 fis8 fis8 fis8 fis16 fis16 e8 d | fis4( e4.)
+        r8 a8 \sectionmark "4." d8 | fis4 fis8 fis8 fis8 fis16 fis16 e8 d | fis4( e4.)
         a,8 a8 cis | e8. e16 e8 e8 e8 e8 d cis | d2~d8
       } \break
       \repeat volta 2 {
-        r8 d4 | fis4 fis8 fis8 fis8 fis8 e8 d | fis4 e4.
+        r8 d4 \posectionmark "5." | fis4 fis8 fis8 fis8 fis8 e8 d | fis4 e4.
         a,8 a cis | e4 e4. e8 d cis | d2~d8
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      Eu | bri -- lho, sou~u -- ma es -- | tre -- la,
-      as -- sim na | Ter -- ra co -- mo no | Céu.
+        Eu | bri -- lho, sou~u -- ma es -- | tre -- la;
+        As -- sim na | Ter -- ra co -- mo no | Céu.
       \set stanza = "2."
-      A es -- tre -- la que bri -- lha lá em ci -- ma,
-      é a luz do meu co -- ra -- ção.
+        A es -- tre -- la que bri -- lha lá em ci -- ma;
+        É a luz do meu co -- ra -- ção.
       \set stanza = "3."
-      Rai -- o do | mun -- do eu que -- ro ir ao | Eu,
-      rai -- ou no | mun -- do meu São I -- ri -- | neu.
+        Rai -- o do | mun -- do eu que -- ro ir ao | Eu;
+        Rai -- ou no | mun -- do meu São I -- ri -- | neu.
       \set stanza = "4."
-      O meu | gui -- a~é~o Pa -- dri -- nho Se -- bas -- ti -- | ão,
-      e -- ter -- na | vi -- da en -- con -- trei no co -- ra -- | ção.
+        O meu | gui -- a~é~o Pa -- dri -- nho Se -- bas -- ti -- | ão;
+        E -- ter -- na | vi -- da en -- con -- trei no co -- ra -- | ção.
       \set stanza = "5."
-      Con -- | fi -- a con -- fi -- a na~a -- le -- | gri -- a,
-      as -- sim na | Ter -- ra co -- mo no | Céu.
+        Con -- | fi -- a con -- fi -- a na~a -- le -- | gri -- a;
+        As -- sim na | Ter -- ra co -- mo no | Céu.
     }
     verseChords = \chordmode {
       \repeat volta 2 {
@@ -136,14 +136,10 @@
       }
     }
     theChords = {
-      \verseChords
-      \verseChords
-      \verseChords
-      \verseChords
-      \verseChords
+      \verseChords \verseChords \verseChords \verseChords \verseChords
     }
-%     \layout { #(layout-set-staff-size 13) } % for better fit
-    \include "tex/lp-include-tail-lyricsbelow.ly"
+%     \layout { #(layout-set-staff-size 16) } % for better fit
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
 
