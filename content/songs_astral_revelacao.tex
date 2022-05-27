@@ -177,60 +177,133 @@
       \key e \minor \time 4/4 \partial 4
       \set melismaBusyProperties = #'() \slurDashed
       \repeat volta 2 {
-        b8( b) | e4( e8) d8 e4 fis4 | g4 g4. \altcol \parenthesize g8 \altmark "2." g8( g8)
-        | a4 g8( g8) fis4 fis | e4( e2)
+        b8 \sectionmark "1." b | e4. d8 e4 fis4 | g4 g2
+        g4 | a4 g4 fis4 fis | e2.
+      } \break
+      \repeat volta 2 {
+        b8 \sectionmark "2." b | e4. d8 e4 fis4 | g4 g4. 
+        \altcol g8 g8 g8 | a4 g4 fis4 fis | e2.
+      } \break
+      \repeat volta 2 {
+        b4 \sectionmark "3." | e4 e8 d8 e4 fis4 | g4 g2 
+        g8 g8 | a4 g8 g8 fis4 fis | e4 e2
+      } \break
+      \repeat volta 2 {
+        b8 \sectionmark "4." b | e4. d8 e4 fis4 | g4 g2
+        g8 g8 | a4 g4 fis4 fis | e2.
+      } \break
+      \repeat volta 2 {
+        b8 \sectionmark "5." b | e4. d8 e4 fis4 | g4 g2
+        g4 | a4 g4 fis4 fis | e2.
+      } \break
+      \repeat volta 2 {
+        b8 \posectionmark "6." b | e4. d8 e4 fis4 | g4 g2
+        g8 g8 | a4 g8 g8 fis4 fis | e2.
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       \repeat volta 2 {
-        É meu | Deus __ _ e é meu | Mes -- tre
-        \skip 1 I -- _ | ê ga -- _ lo can -- | tou. __ _
+        É meu | Deus e é meu | Mes -- tre;
+        I -- | ê ga -- lo can -- | tou.
       }
-    }
-    theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \repeat volta 2 {
-        No Jar -- | dim __ _ de be -- las | flo -- res
-        \altcol A mi -- nha | Mãe foi __ _ quem man -- | dou. __ _
+        No Jar -- | dim de be -- las | flo -- res;
+        A mi -- nha | Mãe foi quem man -- | dou.
       }
-    }
-    theLyricsThree = \lyricmode {
       \set stanza = "3."
       \repeat volta 2 {
-        O __ _ | Mes -- tre que me en -- | si -- na
-        \skip 1 E~a Ra -- | i -- nha que me~i -- lu -- | mi -- na.
+        O | Mes -- tre que me en -- | si -- na;
+        E~a Ra -- | i -- nha que me~i -- lu -- | mi -- na.
       }
-    }
-    theLyricsFour = \lyricmode {
       \set stanza = "4."
       \repeat volta 2 {
-        Cu -- ra | cu -- _ ra cu -- ra | tu -- do
-        \skip 1 Pa -- ra | eu po -- _ der bri -- | lhar. __ _
+        Cu -- ra | cu -- ra cu -- ra | tu -- do;
+        Pa -- ra | eu po -- der bri -- | lhar.
       }
-    }
-    theLyricsFive = \lyricmode {
       \set stanza = "5."
       \repeat volta 2 {
-        Mi -- nha | Mãe __ _ que vem co -- | mi -- go
-        \skip 1 Do __ _ | al -- to __ _ do As -- | tral. __ _
+        Mi -- nha | Mãe que vem co -- | mi -- go;
+        Do | al -- to do As -- | tral.
       }
-    }
-    theLyricsSix = \lyricmode {
       \set stanza = "6."
       \repeat volta 2 {
-        O Di -- | vi -- _ no Pai E -- | ter -- no
-        \skip 1 Pa -- ra | sem -- pre a nós gui -- | ar. __ _
+        O Di -- | vi -- no Pai E -- | ter -- no;
+        Pa -- ra | sem -- pre a nós gui -- | ar.
       }
     }
-    theChords = \chordmode {
+    verseChords = \chordmode {
       \repeat volta 2 {
         s4 | e1:m | c | b:7 | e2.:m
       }
     }
-%     \layout { #(layout-set-staff-size 14) } % for better fit
-    \include "tex/lp-include-tail-lyricsbelow.ly"
+    theChords = {
+      \verseChords \verseChords \verseChords \verseChords \verseChords \verseChords
+    }
+    %\layout { #(layout-set-staff-size 17) } % for better fit
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
+%  %% Compact version, 2022-05-27
+%   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+%     theMelody = \relative b' {
+%       \key e \minor \time 4/4 \partial 4
+%       \set melismaBusyProperties = #'() \slurDashed
+%       \repeat volta 2 {
+%         b8( b) | e4( e8) d8 e4 fis4 | g4 g4. \altcol \parenthesize g8 \altmark "2." g8( g8)
+%         | a4 g8( g8) fis4 fis | e4( e2)
+%       }
+%     }
+%     theLyricsOne = \lyricmode {
+%       \set stanza = "1."
+%       \repeat volta 2 {
+%         É meu | Deus __ _ e é meu | Mes -- tre
+%         \skip 1 I -- _ | ê ga -- _ lo can -- | tou. __ _
+%       }
+%     }
+%     theLyricsTwo = \lyricmode {
+%       \set stanza = "2."
+%       \repeat volta 2 {
+%         No Jar -- | dim __ _ de be -- las | flo -- res
+%         \altcol A mi -- nha | Mãe foi __ _ quem man -- | dou. __ _
+%       }
+%     }
+%     theLyricsThree = \lyricmode {
+%       \set stanza = "3."
+%       \repeat volta 2 {
+%         O __ _ | Mes -- tre que me en -- | si -- na
+%         \skip 1 E~a Ra -- | i -- nha que me~i -- lu -- | mi -- na.
+%       }
+%     }
+%     theLyricsFour = \lyricmode {
+%       \set stanza = "4."
+%       \repeat volta 2 {
+%         Cu -- ra | cu -- _ ra cu -- ra | tu -- do
+%         \skip 1 Pa -- ra | eu po -- _ der bri -- | lhar. __ _
+%       }
+%     }
+%     theLyricsFive = \lyricmode {
+%       \set stanza = "5."
+%       \repeat volta 2 {
+%         Mi -- nha | Mãe __ _ que vem co -- | mi -- go
+%         \skip 1 Do __ _ | al -- to __ _ do As -- | tral. __ _
+%       }
+%     }
+%     theLyricsSix = \lyricmode {
+%       \set stanza = "6."
+%       \repeat volta 2 {
+%         O Di -- | vi -- _ no Pai E -- | ter -- no
+%         \skip 1 Pa -- ra | sem -- pre a nós gui -- | ar. __ _
+%       }
+%     }
+%     theChords = \chordmode {
+%       \repeat volta 2 {
+%         s4 | e1:m | c | b:7 | e2.:m
+%       }
+%     }
+% %     \layout { #(layout-set-staff-size 14) } % for better fit
+%     \include "tex/lp-include-tail-lyricsbelow.ly"
+%   \end{lilypond}\end{lilywrap}
 \endsong
 
 
