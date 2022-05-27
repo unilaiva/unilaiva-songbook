@@ -745,33 +745,105 @@
   \audio[key={Dm}]{https://soundcloud.com/johannesbatista/06-2p}
   \newchords{chords_opoderdo_a}\newchords{chords_opoderdo_b}
   \beginchorus\memorize[chords_opoderdo_a]
-    Na|\[Dm]vego nestas |\[A]ondas
-    Que me |\[Gm]leva \[F]conhe|\[Dm]cer
+    Na|\[Dm]vego \[\bm]nestas |\[A]on\[\bm]-das \altchords{\id[1]{alt. (Dm)}|Bbmaj7 |E\textdegree (Gm6)}
+    Que me |\[C]leva \[\bm]conhe|\[Dm]cer \[\bm] \altchords{|C |Dm}
     \endchorus\glueverses\beginchorus\memorize[chords_opoderdo_b]
-    O po|\[Dm]der do nosso \[A]Pai
-    que faz |\[Gm]tudo \[A]rena|\[Dm]scer
+    O po|\[Dm]der do \[\bm]nosso \[A]Pai \[\bm] \altchords{|F |A7}
+    que faz |\[C]tudo \[\bm]renas|\[Dm]cer \[\bm] \altchords{|C |Dm}
   \endchorus
   \beginchorus\replay[chords_opoderdo_a]
-    Tenho |^força eu tenho |^tudo
-    Tenho |^tudo que Ma^mãe me |^dá
+    Tenho |^força eu ^tenho |^tu^-do
+    Tenho |^tudo que Ma^mãe me |^dá ^
     \endchorus\glueverses\beginchorus\replay[chords_opoderdo_b]
-    Para |^mim viver na |^terra
-    Com to|^da sa^tisfa|^ção
+    Para |^mim vi^ver na |^ter^-ra
+    Com to|^da sa^tisfa|^ção ^
   \endchorus
   \beginchorus\replay[chords_opoderdo_a]
-    É ter fir|^meza e ter a|^mor
-    Em nos|^so Pai ^Cria|^dor
+    É ter fir|^meza e ^ter a|^mor ^
+    Em nos|^so Pai ^Cria|^dor ^
     \endchorus\glueverses\beginchorus\replay[chords_opoderdo_b]
-    E em |^nossa Mãe Di|^vina
-    Sobe|^rana que ^nos en|^sina
+    E em |^nossa ^Mãe Di|^vi^-na
+    Sobe|^rana que ^nos en|^si^na
   \endchorus
   \beginchorus\replay[chords_opoderdo_a]
-    Tendo |^fé em si |^mesmo
-    Em seu |^Eu Su^peri|^or
+    Tendo |^fé ^em si |^mes^-mo
+    Em seu |^Eu Su^peri|^or ^
     \endchorus\glueverses\beginchorus\replay[chords_opoderdo_b]
-    Que po|^demos compreen|^der
-    Que tudo |^temos ^que ven|^cer
+    Que po|^demos ^compreen|^der ^
+    Que tudo |^temos ^que ven|^cer ^
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head-spacious.ly"
+    theMelody = \relative d'' {
+      \key d \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8\sectionmark "1." f4 | d4. d8 a4 f'4 | e2~e8 e8
+        e8 f8 | g4. g8 f4 e4 | d2~d8
+      } \break
+      \repeat volta 2 {
+        r8 d8 f8 | a4. a8 g4 f4 | e2.
+        e8 f8 | g4. g8 f4 e4 | d2~d8
+      } \break
+      \repeat volta 2 {
+        r8\sectionmark "2." f8 e8 | d4 d8 d8 a4 f'4 | e2~e8 e8
+        e8 f8 | g8 g8 g8 g8 f4. e8 | d2~d8
+      } \break
+      \repeat volta 2 {
+        r8 d8 f8 | a4 a4 g4 f4 | e2~e8 e8
+        e8 f8 | g4. g8 f4 e4 | d2~d8
+      } \break
+      \repeat volta 2 {
+        f8\sectionmark "3." f8 e8 | d4 d8 d8 a4 f'4 | e2.
+        e8 f8 | g4. g8 f4 e4 | d2~d8
+      } \break
+      \repeat volta 2 {
+        r8 d8 f8 | a4 a4 g4 f4 | e2~e8 e8
+        e8 f8 | g4 g8 g8 f4 e4 | d2 d8
+      } \break
+      \repeat volta 2 {
+        r8\posectionmark "4." f8 e8 | d2 a4 f'4 | e2~e8 e8
+        e8 f8 | g4. g8 f4 e4 | d2~d8
+      } \break
+      \repeat volta 2 {
+        r8 d8 f8 | a4. a8 g4 f8 f8 | e2~e8 e8
+        e8 f8 | g4. g8 f4 e4 | d2~d8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+        Na -- | ve -- go nes -- tas | on -- das;
+        Que me | le -- va co -- nhe -- | cer.
+        O po -- | der do nos -- so | Pai;
+        que faz | tu -- do re -- nas -- | cer.
+      \set stanza = "2."
+        Te -- nho | for -- ça eu te -- nho | tu -- do;
+        Te -- nho | tu -- do que Ma -- mãe me | dá.
+        Pa -- ra | mim vi -- ver na | ter -- ra;
+        Com to -- | da sa -- tis -- fa -- | ção.
+      \set stanza = "3."
+        É ter fir -- | me -- za e ter a -- | mor;
+        Em nos -- | so Pai Cri -- a -- | dor.
+        E em | nos -- sa Mãe Di -- | vi -- na;
+        So -- be -- | ra -- na que nos en -- | si -- na.
+      \set stanza = "4."
+        Ten -- do | fé em si | mes -- mo;
+        Em seu | Eu Su -- pe -- ri -- | or.
+        Que po -- | de -- mos com -- pre -- en -- | der;
+        Que tu -- do | te -- mos que ven -- | cer.
+    }
+    verseChords = \chordmode {
+      \repeat volta 2 {
+         s4. | d1:m | a
+         | c | d2:m~8
+      }
+      \repeat volta 2 {
+        s4. | d1:m | a
+        | c | d2:m~8
+      }
+    }
+    theChords = { \verseChords \verseChords \verseChords \verseChords }
+    \layout { #(layout-set-staff-size 17) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
