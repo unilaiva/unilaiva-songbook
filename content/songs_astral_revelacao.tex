@@ -16,14 +16,14 @@
 \beginsong{Sete Montanhas}[by={Emilio Dias}, off={Diego Arregui e Céu da Neve}, key={C}, sks={}]
   \audio[key={C}]{https://soundcloud.com/johannesbatista/00setemontanhas}
   \beginchorus\memorize
-    Lai |\[C]vem \[\bm] Sete Mon|\[C]tanhas
+    Lai |\[C]vem \[\bm] Sete Mon|tanhas
     Com \[F]seu cajado |\[C]forte
     Tra\[F]zendo o vento |\[C]norte
     Le\[F]vando todo |\[G]mal
     E pen\[\bm]samento de |\[C]morte
   \endchorus
   \beginchorus
-    Eu |^ve^-nho de Aru|^anda
+    Eu |^ve^-nho de Aru|anda
     Tra^zendo medi|^cina
     ^Paz e harmo|^nia
     A^mor e uni|^ão
@@ -34,34 +34,36 @@
     theMelody = \relative g'' {
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        g4 | c2~c8 g8 g g | e e4 e8 f f f f | e e4 \altcol \parenthesize e8  \altmark "1." f f f f
+        g4 \sectionmark "1." | c2~c8 g8 g g | e e4 e8 f f f f | e e4 \altcol e8 f8 f f f
         | e e4 e8 f f f f | g4 g8 g e e d d | c2 c4
-      } \break
+        \break
+        g'4 \posectionmark "2." | c2~c8 g8 g g | e e4 e8 f f f f | e e4. f8 f f f
+        | e e4 e8 f f f f | g4 g8 g e e d d | c2 c4
+      }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      Lai | vem Se -- te Mon -- | ta -- nhas
-      Com seu ca -- ja -- do | for -- te
-      Tra -- zen -- do~o ven -- to | nor -- te,
-      Le -- van -- do to -- do | mal
+      Lai | vem Se -- te Mon -- | ta -- nhas;
+      Com seu ca -- ja -- do | for -- te;
+      Tra -- zen -- do~o ven -- to | nor -- te;
+      Le -- van -- do to -- do | mal;
       E pen -- sa -- men -- to de | mor -- te.
-    }
-    theLyricsTwo = \lyricmode {
       \set stanza = "2."
-      Eu | ve -- nho de~A -- ru -- | an -- da
-      Tra -- zen -- do me -- di -- | ci -- na
-      \skip 1 Paz e har -- mo -- | ni -- a,
-      A -- mor e u -- ni -- | ão
+      Eu | ve -- nho de~A -- ru -- | an -- da;
+      Tra -- zen -- do me -- di -- | ci -- na;
+      Paz e har -- mo -- | ni -- a;
+      A -- mor e u -- ni -- | ão;
       Pa -- ra to -- da~es -- ta fa -- | mí -- lia.
     }
-    theChords = \chordmode {
+    verseChords = \chordmode {
       \repeat volta 2 {
         s4 | c1 | c2 f | c f
         | c f | g1 | c2.
       }
     }
-%     \layout { #(layout-set-staff-size 15) } % for better fit
-    \include "tex/lp-include-tail-lyricsbelow.ly"
+    theChords = { \verseChords \verseChords }
+    %\layout { #(layout-set-staff-size 17) } % for better fit
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
 

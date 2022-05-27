@@ -71,37 +71,37 @@
         \Score {
           % Setup vertical spacing:
           \override VerticalAxisGroup
-          .default-staff-staff-spacing.padding = #2 % default: #2?
+            .default-staff-staff-spacing.padding = #2 % default: #2?
           \override VerticalAxisGroup
-          .default-staff-staff-spacing.basic-distance = #10 % default: #10?
+            .default-staff-staff-spacing.basic-distance = #10 % default: #10?
           \override VerticalAxisGroup
-          .default-staff-staff-spacing.minimum-distance = #10 % default: #10?
+            .default-staff-staff-spacing.minimum-distance = #10 % default: #10?
         }
       }
       \context {
         \ChordNames {
           % Setup vertical spacing:
           \override VerticalAxisGroup
-          .staff-affinity = #DOWN
+            .staff-affinity = #DOWN
           \override VerticalAxisGroup
-          .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
+            .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
           \override VerticalAxisGroup
-          .nonstaff-unrelatedstaff-spacing.padding = #10 % default: #0.5
+            .nonstaff-unrelatedstaff-spacing.padding = #0.5 % default: #0.5
         }
       }
       \context {
         \Lyrics {
           % Setup vertical spacing:
           \override VerticalAxisGroup
-          .staff-affinity = #CENTER
+            .staff-affinity = #CENTER
           \override VerticalAxisGroup
-          .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
+            .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
           \override VerticalAxisGroup
-          .nonstaff-nonstaff-spacing.padding = #0.5 % default: #0.5
+            .nonstaff-nonstaff-spacing.padding = #0.5 % default: #0.5
           \override VerticalAxisGroup
-          .nonstaff-nonstaff-spacing.minimum-distance = #0.5 % default: #0.5
+            .nonstaff-nonstaff-spacing.minimum-distance = #0.5 % default: #0.5
           \override VerticalAxisGroup
-          .nonstaff-unrelatedstaff-spacing.padding = #1.5 % default: #1.5
+            .nonstaff-unrelatedstaff-spacing.padding = #1.5 % default: #1.5
         }
       }
     }

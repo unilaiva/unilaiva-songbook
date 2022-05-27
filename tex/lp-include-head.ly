@@ -86,6 +86,8 @@
             .staff-affinity = #DOWN
           \override VerticalAxisGroup
             .nonstaff-relatedstaff-spacing.padding = #0.3 % default: #0.5
+          \override VerticalAxisGroup
+            .nonstaff-unrelatedstaff-spacing.padding = #0.5 % default: #0.5
         }
       }
       \context {
