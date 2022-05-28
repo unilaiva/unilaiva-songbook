@@ -13,7 +13,7 @@
       <<
         \new ChordNames { \theChords }
         \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
+        \include "tex/lp-internal-tabstaff.ly"
         \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
         \new Lyrics \lyricsto "theVoice" { \theLyricsThree }

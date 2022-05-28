@@ -23,7 +23,7 @@
         \new Lyrics \lyricsto "theVoice" { \theLyricsEight }
         \new Lyrics \lyricsto "theVoice" { \theLyricsNine }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTen }
-        \new TabStaff { \clef "moderntab" \transpose c'' c \theMelody }
+        \include "tex/lp-internal-tabstaff.ly"
       >>
       \layout { }
     }

@@ -4,6 +4,27 @@
     % Note names language; nederlands has: c sharp = cis, b flat = bes, b = b
     \language "nederlands"
 
+    %%% Tunings for tablature, transposed to seem to have a compatible range
+    %%% with guitar
+    % Guitar in default tuning:
+    ul-guitar-tuning = \stringTuning <e, a, d g b e'>
+    % Soprano ukulele in high G tuning:
+    ul-ukulele-tuning = \stringTuning \transpose c' c <g' c' e' a'>
+    % Charango:
+    ul-charango-tuning = \stringTuning \transpose c'' c <g' c'' e' a' e''>
+    % Charango, but skip the middle E string pair, as it is ambiguous
+    ul-charango-skipmiddle-tuning = \stringTuning \transpose c'' c <g' c'' e'''' a' e''>
+    % This is the tuning used:
+    ul-chosen-tuning = #ul-guitar-tuning
+
+    \layout {
+      \context {
+        \TabStaff {
+          \set TabStaff.stringTunings = #ul-chosen-tuning
+        }
+      }
+    }
+
     % Chord name color. This ought to be manually synced with 'chordcolor'
     % defined in file unilaiva-songbook_common.sty:
     color-chordnames = #(rgb-color 0.20 0 0.22)
