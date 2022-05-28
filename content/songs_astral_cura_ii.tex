@@ -826,7 +826,7 @@
         Sou __ _ | fi -- lho __ _ da ver -- | da -- de;
         Mas não | que -- rem~me es -- cu -- | tar; __ _
         O | mun -- \parenthesize do __ _ de~i -- lu -- | são; \skip 1
-        Co -- mo | é que vai fi -- | car; __ _
+        Co -- mo | é que vai fi -- | car. __ _
       }
     }
     theChords = \chordmode {
@@ -849,6 +849,126 @@
     \nextverse
     I am a son of truth, but they don't want to listen to me
     The wolrd of illusion, what's going to happen to it?
+  \end{translation}
+\endsong
+
+
+\beginsong{Cuidado no Julgamento}[by={Padr. Sebastião},key={C},sks={D, C--F\#}]
+  \audio{https://www.nossairmandade.com/hymn/73/CuidadoNoJulgamento}
+  \newchords{chords_cuidadonoj_a}\newchords{chords_cuidadonoj_b}
+  \mnbeginchorus\memorize[chords_cuidadonoj_a]
+    \[^\mn{G}]Eu |\[\mnc{C}C]chamo os \[\mnc{A}Am7]meus \[^\mn{C}]ir|\[\mnc{G}G7]mã\[\bm]os \altchords{\id[1]{(D)}|D Bm7 |A7}
+    |\[^\mn{B}]Para \[^\mn{D}]jus\[\mnc{A}F]ti\[^\mn{C}]fi|\[C]car \[\bm] \altchords{| - G |D}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_cuidadonoj_b]
+    \[^\mn{C}]Cui|\[\mnc{F}F]dado \[^\mn{E}]no \[\mnc{D}G7]jul\[^\mn{E}]ga|\[\mnc{C}C]mento \altchords{|G A7 |D}
+    Pa\[^\mn{B}]ra \[\mnc{A}Am]ser \[^\mn{C}]jul|\[\mnc{G}G7]gado e \[^\mn{B}]fi\[^\mn{D}]car (em) \[\bmc\mn{A}]seu \[^\mn{C}]lu|\[C]gar \[\bm] \altchords{Bm |A7 |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_cuidadonoj_a]
+    Não |^fale de ^coisas |^sé^rias \altchords{\id[2]{(E)}|E C\#m7 |B7}
+    Não |sejas blas^fema|^dor ^ \altchords{| - A |E}
+    \endchorus\glueverses\beginchorus\replay[chords_cuidadonoj_b]
+    Di|^zendo que es^tão com |^Cristo \altchords{|A B7 |E}
+    ^Estão |^longe do ^Salva|^dor ^ \altchords{C\#m |B7 |E}
+  \endchorus
+  \beginchorus\replay[chords_cuidadonoj_a]
+    |^Eu a^mo a meu |^Pai
+    A|qui eu ^vou cha|^mar ^
+    \endchorus\glueverses\beginchorus\replay[chords_cuidadonoj_b]
+    Quem  |^ama ^coisa à-|^toa
+    Peran^te a ver|^dade vem se en^vergo|^nhar ^
+  \endchorus
+  \beginchorus\replay[chords_cuidadonoj_a]
+    Não |^quero mal ^a nin|^guém^
+    A |todos eu ^tenho a|^mor ^
+    \endchorus\glueverses\beginchorus\replay[chords_cuidadonoj_b]
+    Eu |^amo a ^Jesus |^Cristo
+    O ^nosso |^Mestre Im^pera|^dor ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g4\posectionmark "A" | c c8( c8) a4 c | g2( g4) \altcol\parenthesize c4 \altmark "2., 3., 4."
+        | b4 \once\slurDown b8( << \parenthesize b8) \altmark "(3.)" d8 >> a4 c4 | c2.
+      } \break
+      \repeat volta 2 {
+        c4\sectionmark "B" | f8( f8) \parenthesize f8 e8 d4 e4 | c8( c c) b a4 c4
+        | g8( g) b d a4 c4 | c2.
+      } \break
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Eu | cha -- mo os meus ir -- | mã -- os;
+        \skip 1 | Pa -- ra jus -- ti -- fi -- | car.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Cui -- | da -- _ do no jul -- ga -- | men -- to;
+        Pa -- ra ser jul -- | ga -- do~e fi -- car~em seu lu -- | gar.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Não | fa -- le de coi -- sas | sé -- rias;
+        Não | se -- jas blas -- fe -- ma -- | dor.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Di -- | zen -- do que es -- tão com | Cris -- _ _ to;
+        Es -- tão | lon -- _ ge do Sal -- va -- | dor.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        \skip 1 | Eu a -- _ mo~a meu | Pai; __ _
+        A -- | qui eu __ _ vou cha -- | mar.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Quem  | a -- _ _ ma coi -- sa~à -- | to -- a;
+        Pe -- ran -- te~a ver -- | da -- de vem se~en -- ver -- go -- | nhar.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Não | que -- ro mal a nin -- | guém; __ _
+        A | to -- dos eu te -- nho~a -- | mor.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Eu | a -- _ mo a Je -- sus | Cris -- _ _ to;~O
+        nos -- so | Mes -- _ tre Im -- pe -- ra -- | dor.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2 a2:m7 | g1:7 | g2:7 f2: | c2.
+      }
+      \repeat volta 2 {
+        s4 | f2 g2:7 | c2 a2:m | g1:7 | c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I call my brothers and sisters to justify
+    Be careful in the judgement, to be judged and remain in your place
+    \nextverse
+    Don't talk about serious things, don't be a blasphemer
+    Saying that you're with Christ, you're far from the Savior
+    \nextverse
+    I love my Father, here I'm going to call
+    He who loves worthless things before the truth is going to feel ashamed
+    \nextverse
+    I don't wish harm to anyone, for everyone I have love
+    I love Jesus Christ, our Master the Emperor
   \end{translation}
 \endsong
 
