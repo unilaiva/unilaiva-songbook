@@ -851,10 +851,10 @@
   \audio[key={Dm}]{https://soundcloud.com/johannesbatista/07-2e}
   \meter{6}{4}
   \beginchorus\memorize
-    Estou a|\[Dm]qui estou a\[\bm]qui
-    Eu vim a|qui para di\[A]zer
-    É pre|\[A7]ciso ter fir\[A]meza
-    No ca|minho para ven\[Dm]cer
+    Estou a|\[Dm]qui estou a\[\bm]qui \altchords{\id[1]{alt. (Dm)}|Bbmaj7}
+    Eu vim a|qui para di\[Gm6]zer \altchords{| - Gm6}
+    É pre|\[A]ciso ter fir\[C]meza \altchords{|A C}
+    No ca|\[A7]minho para ven\[Dm]cer \altchords{|A7 Dm}
   \endchorus
   \beginchorus
     Estou |^firme eu estou ^firme
@@ -875,11 +875,82 @@
     Es|tá a nos aju^dar
   \endchorus
   \beginchorus
-    Nos dá |^força nos dá co^ragem
-    No ca|minho para ven^cer
-    Com a |^força do meu ^Pai
-    Jesus |Cristo pra nos defen^der
+    Nos dá |^força nos dá co^ragem \altchords{\id[5]{L (Dm)}|Dm}
+    No ca|minho para ven^cer \altchords{| - A}
+    Com a |^força do meu ^Pai \altchords{|A7 A}
+    Jesus |Cristo pra nos defen^der \altchords{|A7 Dm}
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head-spacious.ly"
+    theMelody = \relative d'' {
+      \key d \minor \time 6/4 \partial 4.
+      \repeat volta 2 {
+        a8\sectionmark "1." a8 a8 | d4 d4 f8 e8 d4.
+        d8 a8 a8 | d4. d8 f8 d8 e2
+        e8 cis8 | a4 g'4 g8 f8 e4 e4
+        e8 cis8 | a4 e'8 e8 e8 cis8 d4.
+      }
+      \repeat volta 2 {
+        r8\sectionmark "2." a8 a8 | d4 d8 d8 f8 e8 d4 d4
+        a4 | d4 d8 d8 f8 d8 e2
+        e8 cis8 | a4 g'4 g8 f8 e4. e8
+        e8 cis8 | a4 e'8 e8 e8 cis8 d4.
+      }
+      \repeat volta 2 {
+        a8\sectionmark "3." a8 a8 | d4 d4 f8 e8 d4 d4
+        a8 a8 | d4 d8 d8 f8 d8 e2
+        e4 | a,4 g'8 g8 g8 f8 e2
+        e8 cis8 | a4 e'8 e8 e8 cis8 d4.
+      }
+      \repeat volta 2 {
+        r8\sectionmark "4." a8 a8 | d4 d4 f8 e8 d4 d4
+        a8 a8 | d4 d4 f8 d8 e2
+        e8 cis8 | a4 g'4 g8 f8 e4 e4
+        e4 | a,4 e'8 e8 e8 cis8 d4.
+      }
+      \repeat volta 2 {
+        r8\posectionmark "5." a8 a8 | d4 d8 d8 f8 e8 d4 d4
+        a8 a8 | d4 d8 d8 f8 d8 e2
+        e8 cis8 | a4 g'4 g8 f8 e2
+        e8 e8 | a,8 a8 e'8 e8 e8 cis8 d4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+        Es -- tou a -- | qui es -- tou a -- qui;
+        Eu vim a -- | qui pa -- ra di -- zer;
+        É pre -- | ci -- so ter fir -- me -- za;
+        No ca -- | mi -- nho pa -- ra ven -- cer.
+      \set stanza = "2."
+        Es -- tou | fir -- me eu es -- tou fir -- me;
+        Fir -- | ma -- do no meu lu -- gar;
+        Com a | for -- ça do meu Pai;
+        Eu es -- tou | pron -- to pra tra -- ba -- lhar.
+      \set stanza = "3."
+        Es -- ta -- mos | den -- tro da ba -- ta -- lha;
+        Nao de -- | ve -- mos es -- mo -- re -- cer;
+        Dei -- | xan -- do de pa -- re -- cer;
+        Que to -- | dos nos po -- de -- mos ser.
+      \set stanza = "4."
+        A ba -- | ta -- lha é pe -- sa -- da;
+        Nin -- guem | quei -- ra du -- vi -- dar;
+        Que a | Vir -- gem So -- be -- ra -- na;
+        Es -- | tá a nos a -- ju -- dar.
+      \set stanza = "5."
+        Nos dá | for -- ça nos dá co -- ra -- gem;
+        No ca -- | mi -- nho pa -- ra ven -- cer;
+        Com a | for -- ça do meu Pai;
+        Je -- sus | Cris -- to pra nos de -- fen -- der.
+    }
+    verseChords = \chordmode {
+      \repeat volta 2 {
+        s4. | d1.:m | d2.:m g2.:m6
+        | a2. c2. | a2.:7 d4.:m
+      }
+    }
+    theChords = { \verseChords \verseChords \verseChords \verseChords \verseChords}
+    %\layout { #(layout-set-staff-size 17) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
