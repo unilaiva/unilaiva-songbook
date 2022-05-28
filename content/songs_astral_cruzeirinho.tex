@@ -863,20 +863,16 @@
         | b:7 | e2.:m
       }
     }
-    % Custom score block to force guitar tabs to fret 3 and above
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new TabStaff { \clef "moderntab" \set minimumFret = #3 \set restrainOpenStrings = ##t \transpose c'' c \theMelody }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsThree }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsFour }
-      >>
-      \layout { }
+    % Force tabs to fret 3 and above
+    \layout {
+      \context {
+        \TabStaff {
+          \set minimumFret = #3
+          \set restrainOpenStrings = ##t
+        }
+      }
     }
-    \include "tex/lp-internal-midi-score.ly"
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
@@ -1115,7 +1111,7 @@
     | |\[Em7] | |\[A] |\[D] |\[A] |\[D] |\[A7] |\[D] \altchords{| |Dm7 | |G |C |G |C |G7 |C}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    theMelody = \relative d' {
+    theMelody = \relative d'' {
       \key d \major \time 2/4
       \repeat volta 2 {
         | d8 d fis a | d d fis cis | e2 | d4. d,8
@@ -1131,7 +1127,8 @@
         | e:m7 | e:m7 | a | d | a | d | a:7 | d
       }
     }
-    % Use custom score to get high and low staff
+    % Use custom score to get high and low staff, and to get octave
+    % transposing correct in all the staffs and MIDI
     \layout {
       \context {
         \Score {
@@ -1145,9 +1142,12 @@
         \new StaffGroup \with {
           \override StaffGrouper.staffgroup-staff-spacing.padding = #5
         } <<
-          \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-          \new TabStaff { \clef "moderntab" \transpose c' c \theMelody }
-          \new TabStaff { \tabFullNotation \stemDown \clef "moderntab" \set minimumFret = #10  \theMelody }
+          \new Staff { \clef "treble" \transpose c' c \new Voice = "theVoice" { \theMelody } }
+          \include "tex/lp-internal-tabstaff.ly" % the normal tabstaff
+          \new TabStaff { % transposed only one octave down
+            \tabFullNotation \stemDown
+            \clef "moderntab" \set minimumFret = #10  \transpose c' c \theMelody
+          }
         >>
       >>
       \layout { }
