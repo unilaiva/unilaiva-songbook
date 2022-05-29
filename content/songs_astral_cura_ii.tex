@@ -1190,6 +1190,131 @@
 \endsong
 
 
+\beginsong{Eu Entrei em Entendimento}[by={Padr. Alfredo}, off={Madr. Cristina}, key={C}, sks={D, C--E}]
+  \audio{https://www.nossairmandade.com/hymn/519/EntreiEmEntendimento}
+  \mnbeginchorus\memorize
+    \[^\mn{G}](Eu) entrei |\[\mnc{C}C]em enten\[^\mn{D}]di\[\mnc{C}C7]mento \altchords{\id[1]{(D)}|D D7}
+    Entre |\[\mnc{F}F]meu eu e \[^\mn{G}]ma\[\bmc\mn{F}]téria \altchords{|G}
+    Sou \[^\mn{E}]luz |\[\mnc{G}G]ex\[^\mn{D}]pul\[^\mn{F}]so \[^\mn{E}]do\[\mnc{C}C]ença \altchords{|A D}
+    \[^\mn{G}]E \[^\mn{C}]des|\[\mnc{E}G7]trin\[^\mn{D}]cho a \[^\mn{F}]cau\[^\mn{E}]sa \[\mnc{C}C]dela \altchords{|A7 D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Essa |^força eu rece^bi
+    Essa |^força eu tenho em ^mim
+    \[\mnlow{E}]Re\[\mnlow{G}]par|^{-to} com meus ir^mãos
+    Todos |^que fizerem as^sim
+  \endchorus
+  \beginchorus
+    Todos |^que fizerem as^sim
+    Assim |^como meu Pai ^é
+    Todos |^estão avi^sados
+    Desde o |^tempo de No^é
+  \endchorus
+  \beginchorus
+    Vejo a |^batalha fe^chada
+    Firmo |^bem a minha es^pada
+    Se a|^cordem meus ir^mãos
+    Para |^vencer a jor^nada
+  \endchorus
+  \beginchorus
+    Vou se|^guindo passo a ^passo
+    Cumprin|^do a minha mis^são
+    Tudo es|^tá aconte^cendo
+    Se con|^formem meus ir^mãos
+  \endchorus
+  \beginchorus
+    Com a|^firmação dos ^anjos
+    Dos se|^res que nos con^vém
+    Temos |^tudo nesta ^vida
+    E sei |^que Deus nos quer ^bem
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        \altcol\grace \parenthesize g8 \altmark "1." g8 \pomark g8
+        | c8 c8 c8 d8 c8( c8) c8 c8
+        | f8 f8 f8 g8 f8( f8) \altcol\grace e8 \altmark "2." f8 \altcol\grace{ \once\slurUp g8( } e8
+        | g8) d8 f8 e8 c8( c8) g8 c8
+        | e8 d8 f8 e8 c8( c8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      (Eu)~en -- trei | em en -- ten -- di -- men -- to;
+      En -- tre | meu eu e ma -- té -- ria;
+      Sou luz | ex -- pul -- so do -- en -- ça;
+      E des -- | trin -- cho~a cau -- sa de -- la.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Es -- sa | for -- ça~eu re -- ce -- bi; __ _
+      Es -- sa |for -- ça~eu te -- nho~em mim; __ _
+      \altcol Re -- \altcol par -- | _ to~com meus ir -- mãos; __ _
+      To -- dos | que fi -- zerem as -- sim. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      To -- dos | que fi -- zerem as -- sim; __ _
+      As -- sim | co -- mo meu Pai é; __ _
+      To -- dos | es -- tão a -- vi -- sa -- dos;
+      Des -- de~o | tem -- po de No -- é. __ _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      Ve -- jo~a | ba -- ta -- lha fe -- cha -- da;
+      Fir -- mo | bem a mi -- nha~es -- pa -- da;
+      Se a -- | cor -- dem meus ir -- mãos; __ _
+      Pa -- ra | ven -- cer a jor -- na -- da.
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      Vou se -- | guin -- do pas -- so~a pas -- so;
+      Cum -- prin -- | do~a mi -- nha mis -- são; __ _
+      Tu -- do~es -- | tá a -- con -- te -- cen -- do;
+      Se con -- | for -- mem meus ir -- mãos. __ _
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      Com a -- | fir -- ma -- ção dos an -- jos;
+      Dos se -- | res que nos con -- vém; __ _
+      Te -- mos | tu -- do nes -- ta vi -- da;
+      E sei | que Deus nos quer bem. __ _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2 c2:7
+        | f1
+        | g2 c2
+        | g2:7 c4
+      }
+    }
+    \layout { #(layout-set-staff-size 12) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    I entered an undestanding between my self and matter
+    I am light, I expel sickness, and I unravel the cause of it
+    \nextverse
+    This force I received, this force I have in me
+    I share with my brothers and sisters, everyone that does the same
+    \nextverse
+    Everyone that does the same, just as my Father is
+    Everyone is thus warned since the time of Noah
+    \nextverse
+    I see the battle peaking, I firm well my sword
+    And my brothers and sisters, wake up, to overcome the journey
+    \nextverse
+    I keep following step by step, fulfilling my mission
+    Everything is happening; accept this, my brothers and sisters
+    \nextverse
+    With affirmation of the angels, of the beings who benefit us
+    We have everything in this life, and I know that God wishes us well
+  \end{translation}
+\endsong
 
 
 
