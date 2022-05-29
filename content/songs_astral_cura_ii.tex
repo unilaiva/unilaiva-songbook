@@ -972,3 +972,127 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Sou Luz}[by={Padr. Sebastião}, key={C}, sks={D, C--E}, tags={de pé}]
+  \audio{https://www.nossairmandade.com/hymn/74/SouLuz}
+  \newchords{chords_souluz_a}\newchords{chords_souluz_b}
+  \mnbeginchorus\memorize[chords_souluz_a]
+    \[^\mn{E}]Sou |\[\mnc{G}C]Luz\[\bm], \[^\mn{E}]dou |\[\mncii{D}{C}Am]Luz\[\bm] \altchords{\id[1]{(D)}|D |Bm}
+    \[^\mn{A}]E \[^\mn{B}]fa\[^\mn{C}]ço |\[\mnc{D}Dm]tudo i\[\mnc{G}G7]lu\[^\mn{E}]mi|\[\mncii{D}{C}C]nar\[\bm] \altchords{|Em A7 |D}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_souluz_b]
+    \[^\mn{C}]Vejo |\[\mnc{E}Am]meu \[^\mn{C}]Pai \[\bm]nas \[^\mn{B}]al|\[\mnc{G}G]tu\[\bm]ras \altchords{|Bm |A}
+    \[^\mn{D}]E o Po|\[Dm]der a\[\mnc{G}G7]on\[^\mn{E}]de es|\[\mncii{D}{C}C]tá\[\bm] \altchords{|Em A7 |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_souluz_a]
+    \ind A |^for^ça está co|^migo^
+    \ind Falo |^peran^te o Po|^der^
+    \endchorus\glueverses\beginchorus\replay[chords_souluz_b]
+    \ind Fa|^ço o que ^Tu me |^pe^des
+    \ind Eu quero |^ver es^treme|^cer^
+  \endchorus
+  \beginchorus\replay[chords_souluz_a]
+    O a|^mor^ e|^terno^ \altchords{\id[2]{simple (C)}|C | \e}
+    Gra|^vei no ^cora|^ção^ \altchords{|G |C}
+    \endchorus\glueverses\beginchorus\replay[chords_souluz_b]
+    De Vós eu |^rece^bo os en|^si^nos \altchords{|C |G \e}
+    Para explan|^dir para os ^meus ir|^mãos^ \altchords{| - |C}
+  \endchorus
+  \beginchorus\replay[chords_souluz_a]
+    \ind As|^sim ^é que meu Pai |^quer^
+    \ind Pe|^rante es^te Po|^der^
+    \endchorus\glueverses\beginchorus\replay[chords_souluz_b]
+    \ind Não |^fazem o que ^Ele |^pe^de
+    \ind E todos |^querem ^mere|^cer^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        r8\sectionmark "1. & 3." e8( e8) | g2. e4 | d4( c4.)
+        \parenthesize a8 b8( c8) | d4( d8) d8 g4. e8 | \once\slurSolid d4( c4.)
+      } \break
+      \repeat volta 2 {
+        \parenthesize c8 c8 c8 | e4 c4 c4 b4 | g2 g8
+        d'16( d16) d8 d8 | d4( d8) d8 g4. e8 | d4( c4.)
+      } \break
+      \repeat volta 2 {
+        r8\posectionmark "2. & 4." e4 | g2( g8) e8 f8 e8 | d4( c2)
+        b8( c8) | d4. d8 g4. e8 | \once\slurSolid d4( c4.)
+      } \break
+      \repeat volta 2 {
+        r8 c4 | e4 c8( c8) c4 b4 | g2 g8
+        d'8 d8 d8 | d4. d8 g4. e8 | \once\slurSolid d4( c4.)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+        Sou _ | Luz, dou | Luz; __ _
+        E fa -- ço | tu -- do i -- lu -- mi -- | nar. _
+      \set stanza = "1.B"
+        \skip 1 Ve -- jo | meu Pai nas al -- | tu -- ras;
+        E __ _ o Po -- | der __ _ a -- on -- de~es -- | tá. __ _
+      \set stanza = "2.A"
+        A | for -- _ ça~es -- tá co -- | mi -- go;
+        Fa -- lo | pe -- ran -- te~o Po -- | der. _
+      \set stanza = "2.B"
+        Fa -- | ço~o que __ _ Tu me | pe -- des;
+        Eu que -- ro | ver es -- tre -- me -- | cer. _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "3.A"
+        O a -- | mor e -- | ter -- no; \skip 1
+        Gra -- _ | vei __ _ no co -- ra -- | ção. _
+      \set stanza = "3.B"
+        De Vós eu | re -- ce -- bo~os en -- | si -- nos;
+        Pa -- ra ex -- plan -- | dir pa -- ra~os meus ir -- | mã -- os.
+      \set stanza = "4.A"
+        As -- | sim é que meu Pai | quer; __ _
+        Pe -- _ | ran -- te~es -- te Po -- | der. _
+      \set stanza = "4.B"
+        Não | fa -- zem~o que E -- le | pe -- de;
+        E to -- dos | que -- rem me -- re -- | cer.
+    }
+    verseChords = \chordmode {
+      \set chordChanges = ##f % this is needed 'cos verses paired
+      \repeat volta 2 {
+        s4. | c1 | a:m | d2:m g2:7 | \set chordChanges = ##t c2~8
+      }
+      \repeat volta 2 {
+        s4. | a1:m | g | d2:m g2:7 | \set chordChanges = ##t c2~8
+      }
+    }
+    theChords = { \verseChords \verseChords }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  %\translationoff
+  \begin{translation}
+    I am Light, I give Light, and illuminate everything
+    I see my Father in the Heights, and the power where it is
+    \nextverse
+    The force is with me, I speak in the presence of the power
+    I do whatever You ask of me, I want to see everything shake
+    \nextverse
+    The eternal love I inscribed upon my heart
+    From You I receive the teachings to spread to my brothers and sisters
+    \nextverse
+    This is how my Father wants it, in the presence of this power
+    They don't do what He asks, yet they all want to deserve
+  \end{translation}
+\endsong
+
+
+
+
+
+
+
+
+
+
+
+
+
+
