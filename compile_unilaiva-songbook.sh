@@ -19,7 +19,7 @@
 MAIN_FILENAME_BASE="unilaiva-songbook_A5" # filename base for the main document (without .tex suffix)
 PART1_FILENAME_BASE="unilaiva-songbook_part1_A5" # filename base for the 2-part document's part 1 (without .tex suffix)
 PART2_FILENAME_BASE="unilaiva-songbook_part2_A5" # filename base for the 2-part document's part 2 (without .tex suffix)
-ASTRAL_FNAME_PREFIX="unilaiva-astral-" # filename prefix for unilaiva astral books
+ASTRAL_FNAME_PREFIX="unilaiva-astral" # filename prefix for unilaiva astral books
 SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
 SONG_IDX_SCRIPT="ext_packages/songs/songidx.lua"
