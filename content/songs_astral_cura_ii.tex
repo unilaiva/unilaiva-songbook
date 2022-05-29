@@ -1067,7 +1067,6 @@
     \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  %\translationoff
   \begin{translation}
     I am Light, I give Light, and illuminate everything
     I see my Father in the Heights, and the power where it is
@@ -1084,12 +1083,111 @@
 \endsong
 
 
+\beginsong{Tão Bonito é meu Pai}[by={Padr. Sebastião}, key={G}, sks={A, G--B}]
+  \audio{https://www.nossairmandade.com/hymn/75/T\%C3\%A3oBonito\%C3\%89MeuPai}
+  \newchords{chords_taobonitoemeupai_a}\newchords{chords_taobonitoemeupai_b}
+  \mnbeginchorus\memorize[chords_taobonitoemeupai_a]
+    \[^\mn{G}]Tão bo|\[\mnc{B}G]ni\[^\mn{G}]to \[(Em)]é \[^\mn{B}]meu |\[\mnc{D}D]Pai\[\bm] \altchords{\id[1]{(A)}|A (F\#m) |E}
+    \[^\mn{G}]É \[^\mn{F#}]meu |\[\mnc{E}Em]Mes\[^\mn{D}]tre en\[\mncii{B}{G}G]si\[^\mn{B}]na|\[\mnc{D}D]dor\[\bm] \altchords{|F\#m A |E}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_taobonitoemeupai_b]
+    \[^\mn{G}]Va\[^\mn{F#}]mos |\[\mnc{E}Em]re\[^\mn{D}]ce\[\mncii{B}{G}G]ber \[^\mn{B}]a |\[\mnc{D}D]gló\[\bm]ria \altchords{|F\#m A |E}
+    \[^\mn{G}]Do nosso |\[\mnc{B}Bm]Mes\[^\mn{G}]tre \[\mnc{A}D]cu\[^\mn{B}]ra|\[\mnc{G}G]dor\[\bm] \altchords{|C\#m E |A}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_taobonitoemeupai_a]
+    A |^força ^do meu |^Pai^
+    Quem du|^vida é o ^peca|^dor^
+    \endchorus\glueverses\beginchorus\replay[chords_taobonitoemeupai_b]
+    Não se |^lembram do ^que fi|^ze^ram
+    Assassi|^naram o ^Salva|^dor^
+  \endchorus
+  \beginchorus\replay[chords_taobonitoemeupai_a]
+    Le|^varam Ele ^para a |^fren^te \altchords{\id[3]{simple (G)}|G |D}
+    Sem ter |^dó, sem ^ter a|^mor^ \altchords{|G |D}
+    \endchorus\glueverses\beginchorus\replay[chords_taobonitoemeupai_b]
+    Procu|^rando os ^seus dis|^cípu^los \altchords{|G |D}
+    E Todos |^se a^fugen|^tou^ \altchords{|G D |G}
+  \endchorus
+  \beginchorus\replay[chords_taobonitoemeupai_a]
+    A|^qui eu ^vim lem|^brar^
+    Tudo o |^que já ^se pas|^sou^
+    \endchorus\glueverses\beginchorus\replay[chords_taobonitoemeupai_b]
+    Peço |^que nin^guém se es|^que^ça
+    Do nosso |^Mestre ^zela|^dor^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g8( \posectionmark "A" g8) | b8( b8) g8( g8) g4 b4 | d2( d4)
+        g8 fis8 | e4 d8( d8) \once\slurSolid b8( g8) b4 | d2.
+      } \break
+      \repeat volta 2 {
+        g8 \sectionmark "B" fis8 | e4 d8( d8) \once\slurSolid b8( g8) b4 | d4.(d8) d8
+        g,8 g8 g8 | b4 g4 a4 b4 | g2.
+      } \break
 
-
-
-
-
-
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+        Tão bo -- | ni -- _ to __ _ é meu | Pai; __ _
+        É meu | Mes -- tre en -- si -- _ na -- | dor.
+      \set stanza = "1.B"
+        Va -- mos | re -- ce -- _ ber __ _ a | gló -- _ ria;
+        Do nos -- so | Mes -- tre cu -- ra -- | dor.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+        A __ _ | for -- _ ça __ _ do meu | Pai; __ _
+        Quem du -- | vi -- da é~o pe -- _ ca -- | dor.
+      \set stanza = "2.B"
+        Não se | lem -- bram do que __ _ fi -- | ze -- _ ram;
+        As -- sas -- si -- | na -- ram~o Sal -- va -- | dor.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+        Le -- _ | va -- ram E -- le pa -- ra~a | fren -- te;
+        Sem ter | dó, sem __ _ ter __ _ a -- | mor.
+      \set stanza = "3.B"
+        Pro -- cu -- | ran -- do os seus __ _ dis -- | cí -- pu -- los;
+        E To -- dos | se a -- fu -- gen -- | tou.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+        A -- _  | qui __ _ eu __ _ vim lem -- | brar; __ _
+        Tu -- do~o | que já __ _ se __ _ pas -- | sou.
+      \set stanza = "4.B"
+        Pe -- ço | que nin -- _ guém __ _ se~es -- | que -- _ ça;
+        Do nos -- so | Mes -- tre ze -- la -- | dor.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | g2 \parenthesize e2:m | d1
+        | e2:m g2 | d2.
+      }
+      \repeat volta 2 {
+        s4 | e2:m g2 | d1
+        | b2:m d2 | g2.
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    How beautiful is my Father, he is my Master teacher
+    Let us all receive the glory of our Master, the healer
+    \nextverse
+    The force of my Father, who doubts it is a sinner
+    They don't remember what they did, they killed the Savior
+    \nextverse
+    They took Him to the front without pity, without love
+    Seeking his disciples, and all of them fled
+    \nextverse
+    Here I came to remember everything that already happened
+    I ask that no one forget our Master who cares for us
+  \end{translation}
+\endsong
 
 
 
