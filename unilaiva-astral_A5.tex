@@ -1,0 +1,102 @@
+ %% unilaiva-astral
+ %% ===============
+ %%
+ %% Collection of Santo Daime hymns, "Unilaiva no Astral: compilação completo",
+ %% and it holds all other Astral booklets
+ %%
+
+% Setup the book name (the subtitle), and include common settings
+\newcommand{\subbooktitle}{a compilação completa}
+\input{tex/unilaiva-astral_setup_include.tex}
+
+% songs: create indexes (these must be named exactly like this!)
+\newindex{titleidx}{idx_unilaiva-astral_A5_title}
+\newauthorindex{authidx}{idx_unilaiva-astral_A5_auth}
+\newscripindex{tagidx}{idx_unilaiva-astral_A5_tag}
+
+
+\begin{document}
+
+  % Cover page (recto), by larva (photo + edit):
+  \includepdf[]{content/img/unilaiva-astral_COVER.pdf}
+  % The second page (verso):
+  \secondpage
+
+  % TOC:
+  \toc
+
+  % Sets chapter number; will be incremented by one at each \mainchapter,
+  % \songchapter or \chapter:
+  \setcounter{chapter}{0}
+
+  \mainchapter[]{Oração \chapsymbol{lightgray}}
+    \begin{songs}{}
+      \input{content/songs_astral_oracao.tex}
+    \end{songs}
+
+  \mainchapter[]{Hinos da Concentração \chapsymbol{green}}
+    \begin{songs}{}
+      \input{content/songs_astral_concentracao.tex}
+    \end{songs}
+
+  \mainchapter[]{Hinos Diversos da Concentração \chapsymbol{lime}}
+    \begin{songs}{}
+      \input{content/songs_astral_concentracao_diversos.tex}
+    \end{songs}
+
+  \mainchapter[]{Hinos do Daime \chapsymbol{teal}}
+    \begin{songs}{}
+      \input{content/songs_astral_daime.tex}
+    \end{songs}
+
+  \mainchapter[]{Hinos da Santa Maria \chapsymbol{blue}}
+    \begin{songs}{}
+      \input{content/songs_astral_santamaria.tex}
+    \end{songs}
+
+  \mainchapter[]{Hinos Diversos de Cura \chapsymbol{olive}}
+    \begin{songs}{}
+      \input{content/songs_astral_cura_diversos.tex}
+    \end{songs}
+
+  \mainchapter[]{Mestre Irineu Serra: O Cruzeirinho \chapsymbol{yellow}}
+    \begin{songs}{}
+      \input{content/songs_astral_cruzeirinho.tex}
+    \end{songs}
+
+  \mainchapter[]{Hinos do Encerramento \chapsymbol{cyan}}
+    \begin{songs}{}
+      \input{content/songs_astral_encerramento.tex}
+    \end{songs}
+
+  \mainchapter[]{Pontos de Defumação}
+    \begin{songs}{}
+      \input{content/songs_astral_defumacao.tex}
+    \end{songs}
+
+  \mainchapter[]{Cura: Primeira Parte}
+    \begin{songs}{}
+      \input{content/songs_astral_cura_i.tex}
+    \end{songs}
+
+  \mainchapter[]{Cura: Segunda Parte}
+    \begin{songs}{}
+      \input{content/songs_astral_cura_ii.tex}
+    \end{songs}
+
+  \mainchapter[]{Padr. Alfredo: Nova Dimensão}
+    \begin{songs}{}
+      \input{content/songs_astral_novadimensao.tex}
+    \end{songs}
+
+  \mainchapter[]{Glauco Villas Boas: O Chaveirão}
+    \begin{songs}{}
+      \input{content/songs_astral_ochaveirao.tex}
+    \end{songs}
+
+  % Here start appendices: chapter numbering resets and switches to alphabetic
+  \appendix
+  \chapter{Technical}
+    \input{content/section_technical_information.tex}
+
+\end{document}
