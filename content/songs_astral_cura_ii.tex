@@ -1317,3 +1317,125 @@
 \endsong
 
 
+\beginsong{O Daime, é o Daime}[by={Padr. Alfredo}, off={José Teixeira}, tags={mazurka}, key={C}, sks={C}]
+  % Also in Hinos do Daime (#2)
+  \audio{https://www.nossairmandade.com/hymn/536/ODaime\%C3\%89ODaime}
+  \newchords{chords_cura_odaime_a}\newchords{chords_cura_odaime_b}
+  \meter{6}{4}
+  \mnbeginchorus\memorize[chords_cura_odaime_a]
+    \[^\mn{E}]O |\[\mnc{G}C]Daime \[^\mn{E}]é \[^\mn{F}]o \[\bm\mn{G}]Daime
+    Eu |\[^\mn{C}]es\[^\mn{G}]tou \[^\mn{E}\mn{G}]afir\[(G)]mando
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_cura_odaime_b]
+    \[^\mn{C}]É o Di|\[C]vi\[^\mn{G}]no \[^\mn{C}]Pai \[^\mn{E}]E\[(Am/E)]terno
+    \[^\mn{C}]E a Ra|\[G]in\[^\mn{G}]ha \[^\mn{B}]So\[^\mn{D}]be\[\mnc{C}C]rana
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_cura_odaime_a]
+    O |^Daime é o ^Daime
+    O profes|sor dos profes^sores
+  \endchorus\glueverses\beginchorus\replay[chords_cura_odaime_b]
+    É o Di|^vino Pai E^terno
+    E seu |^Filho Reden^tor
+  \endchorus
+  \beginchorus\replay[chords_cura_odaime_a]
+    O |^Daime é o ^Daime
+    O Mestre |de todos en^sinos
+  \endchorus\glueverses\beginchorus\replay[chords_cura_odaime_b]
+    É o Di|^vino Pai E^terno
+    E to|^dos seres di^vinos
+  \endchorus
+  \beginchorus\replay[chords_cura_odaime_a]
+    O |^Daime é o ^Daime
+    Eu agra|deço com a^mor
+  \endchorus\glueverses\beginchorus\replay[chords_cura_odaime_b]
+    É quem me |^dá a minha sa^úde
+    E revi|^gora o meu a^mor
+  \endchorus\brk
+  \beginchorus\replay[chords_cura_odaime_a]
+    Agra|^deço ao Santo ^Daime
+    Agrade|cendo a todos ^seres
+  \endchorus\glueverses\beginchorus\replay[chords_cura_odaime_b]
+    E quem me |^manda agrade^cer
+    É o |^meu Pai verda^deiro
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 6/4 \partial 4.
+      \repeat volta 2 {
+        r8\posectionmark "A" e4 | g g e8 f8 g4 g8( g) g( g) | c4 g e8 g8 g4 g8
+      }
+      \repeat volta 2 {
+        c,8\sectionmark "B" c c | c4 g c8 e8 e4 e8 c c c | c4 g4 b8 d8 c4( c8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      O | Dai -- me é o Dai -- me; __ _
+      Eu __ _ | es -- tou a -- fir -- man -- do;
+      \set stanza = "1.B"
+      É o Di -- | vi -- no Pai E -- ter -- no;
+      E a Ra -- | i -- nha So -- be -- ra -- na.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+        O | Dai -- me é o Dai -- me;
+        O pro -- fes -- | sor dos pro -- fes -- so -- res;
+        \set stanza = "2.B"
+        É o Di -- | vi -- no Pai E -- ter -- no; __ _
+        E seu | Fi -- lho Re -- den -- tor. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      O | Dai -- me é o Dai -- me;
+      O Mes -- tre | de to -- dos en -- si -- nos;
+      \set stanza = "3.B"
+      É o Di -- | vi -- no Pai E -- ter -- no; __ _
+      E to -- | dos se -- res di -- vi -- nos.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      O | Dai -- me é o Dai -- me;
+      Eu a -- gra -- | de -- ço com a -- mor; __ _
+      \set stanza = "4.B"
+      É quem me | dá a~mi -- nha sa -- ú -- de;
+      E re -- vi -- | go -- ra~o meu a -- mor. __ _
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      Agra | de -- ço~ao San -- to Dai -- me;
+      A -- gra -- de -- | cen -- do~a to -- dos se -- res;
+      \set stanza = "5.B"
+      E quem me | man -- da~a -- gra -- de -- cer; __ _
+      \skip 1 É o | meu Pai ver -- da -- dei -- ro.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c2. c | c \parenthesize g4~ g8
+      }
+      \repeat volta 2 {
+        s4. | c2. \parenthesize a:m/e | g c4~ c8
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    The Daime is the Daime, I am affirming
+    It is the divine Eternal Father, and the Sovereign Queen
+    \nextverse
+    The Daime is the Daime, the Teacher of all teachers
+    It is the Divine Eternal Father, and his son the redeemer
+    \nextverse
+    The Daime is the Daime, the master of all teachings
+    It is the Divine Eternal Father, and all Divine Beings
+    \nextverse
+    The Daime is the Daime, I thank with love
+    It is he who gives my health, and renews my faith
+    \nextverse
+    I thank the holy Daime, thanking all beings
+    And who orders me to give thanks, is my truthful Father
+  \end{translation}
+\endsong
+
+
