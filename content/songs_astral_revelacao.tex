@@ -966,7 +966,7 @@
     Este ter|\[E7]reiro \[\bm]ilumi|\[Am]nar\[\bm] \altchords{|F\#7 |G}
   \endchorus
   \beginchorus\replay[chords_eupecoameupai_a]
-    Vamos |^todos ^nos se fir|^mar^ \altchords{\id[1]{(Am)}|Am |Dm}
+    Vamos |^todos ^nos se fir|^mar^ \altchords{\id[3]{(Am)}|Am |Dm}
     É no |^Céu na ^Terra e no |^Mar^ \altchords{|E7 |Am}
     \endchorus\glueverses\beginchorus\replay[chords_eupecoameupai_b]
     Para |^nos ^acredi|^tar^ \altchords{|Am |G}
@@ -1041,32 +1041,95 @@
 \endsong
 
 
-\beginsong{Minha Mãe Minha Rainha}[by={Simja Johannes Lempinen}, off={Sini}, key={Bm}, sks={}]
+\beginsong{Minha Mãe Minha Rainha}[by={Simja Johannes Lempinen}, off={Sini}, key={Dm}, sks={}]
   \audio[key={Bm}]{https://soundcloud.com/johannesbatista/09-2m}
+  \transpose{3}
   \beginchorus\memorize
-    Minha |\[Bm]Mãe Minha Ra|inha
-    Dâ li|\[A]cenca eu co|\[(Em)]lher
-    |\[Em]Os vossos re|\[F#m]médios
-    Para |eu me conhe|\[Bm]cer
+    Minha |\[Bm]Mãe Mi\[F#7]nha Ra|\[Bm]i \[\bm]{-nha}
+    Dâ li|\[Em6]cenca \[\bm]eu co|\[A]lher \[\bm]
+    |Os vos\[\bm]sos re|\[D]médios
+    \[\bm]Para |\[F#7]eu me \[\bm]conhe|\[Bm]cer \[\bm]
   \endchorus
   \beginchorus
-    Minha |^Mãe vós sois Ra|inha
-    Dona |^do meu cora|^ção
-    Sois |^quem me dá a |^luz
-    No mun|do de escuri|^dão
+    Minha |^Mãe vós ^sois Ra|^i ^{-nha}
+    Dona |^{do meu} ^cora|^ção ^
+    Sois |quem me ^dá a |^luz
+    ^No mun|^do de es^curi|^dão ^
   \endchorus
   \beginchorus
-    Ó |^Virgem Sobe|rana
-    Minha |^Mãe Prenda Que|^rida
-    A|^qui Vós agra|^deço
-    Estou com |Vós Eterna |^Vida
+    Ó |^Virgem ^Sobe|^ra ^{-na} \altchords{\id[3]{(Bm)}|Bm F\#7 |Bm}
+    Minha |^Mãe Pren^da Que|^ri^da \altchords{|Em6 |A}
+    A|qui Vós ^agra|^deço \altchords{|A |D}
+    Es^tou com |^Vós E^terna |^Vi^da \altchords{|F\#7 |Bm}
   \endchorus
   \beginchorus
-    Aju|^dai os vossos |filhos
-    Neste |^mundo peca|^dor
-    Para |^todos ter a|^mor
-    E apresen|tar o seu va|^lor
+    Aju|^dai os ^vossos |^fi ^{-lhos} \altchords{\id[5]{L (Bm)}|Bm | \e}
+    Neste |^mundo ^peca|^dor ^ \altchords{|A |(Em)}
+    Para |todos ^ter a|^mor \altchords{|Em |F\#}
+    E a^presen|^tar o ^seu va|^lor ^ \altchords{| - |Bm}
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head-spacious.ly"
+    theMelody = \transpose b d' \relative e'' {
+      \key b \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        b8\sectionmark "1." d8 | fis4 fis4 e4 fis4 | b,2~8 b8
+        fis'8 fis8 | e4 d cis d | e1
+        | e4 e d cis | fis4. fis8
+        d4 b4 | e4 e4 d4 cis4 | b2.
+      } \break
+      \repeat volta 2 {
+        b8\sectionmark "2." d8 | fis4 fis4 e4 fis4 | b,2~8 b8
+        fis'8 fis8 | e4 d cis d | e2.
+        e4 | e4 e d cis | fis2
+        d4 b4 | e4 e4 d4 cis4 | b2.
+      } \break
+      \repeat volta 2 {
+        b8( \sectionmark "3." d8) | fis4 fis4 e4 fis4 | b,2~8 b8
+        fis'8 fis8 | e4 d cis d | e2 e8 r8
+        e4 | e4 e d cis | fis4. fis8
+        d4 b4 | e4 e4 d4 cis4 | b2 b8 r8
+      } \break
+      \repeat volta 2 {
+        b8\sectionmark "4." d8 | fis4 fis4 e4 fis4 | b,2~8 b8
+        fis'8 fis8 | e4 d cis d | e2.
+        e8 e8 | e4 e d cis | fis4 fis4
+        d4 b4 | e4 e4 d4 cis4 | b2.
+      } \break
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+        Mi -- nha | Mãe Mi -- nha Ra -- | i -- nha;
+        Dâ li -- | cen -- ca eu co -- | lher;
+        | Os vos -- sos re -- | mé -- dios;
+        Pa -- ra | eu me co -- nhe -- | cer.
+      \set stanza = "2."
+        Mi -- nha | Mãe vós sois Ra -- | i -- nha;
+        Do -- na | do meu co -- ra -- | ção;
+        Sois | quem me dá a | luz;
+        No mun -- | do de~es -- cu -- ri -- | dão.
+      \set stanza = "3."
+        Ó | Vir -- gem So -- be -- | ra -- na;
+        Mi -- nha | Mãe Pren -- da Que -- | ri -- da;
+        A -- | qui Vós a -- gra -- | de -- ço;~Es --
+        tou com | Vós E -- ter -- na | Vi -- da.
+      \set stanza = "4."
+        A -- ju -- | dai os vos -- sos | fi -- lhos;
+        Nes -- te | mun -- do pe -- ca -- | dor;
+        Pa -- ra | to -- dos ter a -- | mor;
+        E~a -- pre -- sen -- | tar o seu va -- | lor.
+    }
+    verseChords = \transpose b d \chordmode {
+      \repeat volta 2 {
+        s4 | b2:m fis2:7 | b1:m
+        | e1:m6 | a1
+        | a1 | d1
+        | fis1:7 | b2.:m
+      }
+    }
+    theChords = { \verseChords \verseChords \verseChords  \verseChords }
+    \layout { #(layout-set-staff-size 16) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
