@@ -954,30 +954,90 @@
 \endsong
 
 
-\beginsong{Eu peço a meu Pai do Céu}[by={Simja Johannes Lempinen}, off={Lucas Serra}, key={Am}, sks={}]
+\beginsong{Eu peço a meu Pai do Céu}[by={Simja Johannes Lempinen}, off={Lucas Serra}, key={Bm}, sks={}]
   \audio[key={Am}]{https://soundcloud.com/johannesbatista/08-2e}
   \newchords{chords_eupecoameupai_a}\newchords{chords_eupecoameupai_b}
+  \transpose{2}
   \beginchorus\memorize[chords_eupecoameupai_a]
-    Eu |\[Am]peço a meu Pai do |\[Dm]Céu
-    E ao |\[E]Meu Senhor São Mi|\[Am]guel
+    Eu |\[Am]peço a \[\bm]meu Pai do |\[Dm]Céu\[\bm] \altchords{\id[1]{alt. (Bm)}|Bm |Em}
+    E ao |\[E7]Meu Se\[\bm]nhor São Mi|\[Am]guel\[\bm] \altchords{|F\#7 |Bm}
     \endchorus\glueverses\beginchorus\memorize[chords_eupecoameupai_b]
-    Para |\[C]vir nos aju|\[Bm7&5]dar
-    Este ter|\[E7]reiro ilumi|\[Am]nar
+    Para |\[Am]vir \[\bm]nos aju|\[G]dar\[\bm] \altchords{|G |A}
+    Este ter|\[E7]reiro \[\bm]ilumi|\[Am]nar\[\bm] \altchords{|F\#7 |G}
   \endchorus
   \beginchorus\replay[chords_eupecoameupai_a]
-    Vamos |^todos nos se fir|^mar
-    É no |^Céu na Terra e no |^Mar
+    Vamos |^todos ^nos se fir|^mar^ \altchords{\id[1]{(Am)}|Am |Dm}
+    É no |^Céu na ^Terra e no |^Mar^ \altchords{|E7 |Am}
     \endchorus\glueverses\beginchorus\replay[chords_eupecoameupai_b]
-    Para |^nos acredi|^tar
-    Se ali|^nhar, e se transfor|^mar
+    Para |^nos ^acredi|^tar^ \altchords{|Am |G}
+    Se ali|^nhar, e ^se transfor|^mar^ \altchords{|E7 |Am}
   \endchorus
   \beginchorus\replay[chords_eupecoameupai_a]
-    Fir|^mado no Sol e na |^Lua
-    E nas E|^strelas do firma|^mento
+    Fir|^mado no ^Sol e na |^Lu^a \altchords{\id[5]{L (Am)}|Am |Dm}
+    E nas Es|^trelas ^do firma|^men^to \altchords{|E |Am}
     \endchorus\glueverses\beginchorus\replay[chords_eupecoameupai_b]
-    Vou se|^guir com meu São Mi|^guel
-    E corri|^gir o meu pensa|^mento
+    Vou se|^guir com ^meu São Mi|^guel^ \altchords{|C |Bm7b5}
+    E corri|^gir o ^meu pensa|^men^to \altchords{|E7 |Am}
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head-spacious.ly"
+    theMelody = \transpose a b \relative e'' {
+      \key a \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        e4\sectionmark "1." | a4. e8 g4 f8 e8 | d2.
+        e8 f8 | e4. b8 d4 c8 b8 | a2.
+      } \break
+      \repeat volta 2 {
+        a8 b8 | c2 e4 d8 c8 | b2~8
+        e8 e8 f8 | e4. b8 d4 c8 b8 | a2.
+      } \break
+      \repeat volta 2 {
+        e'8\sectionmark "2." e8 | a4. e8 g4 f8 e8 | d2.
+        e8 f8 | e4. b8 d4 c8 b8 | a2.
+      } \break
+      \repeat volta 2 {
+        a8 b8 | c2 e4 d8 c8 | b2~8
+        e8 e8 f8 | e4. b8 d4 c8 b8 | a2.
+      } \break
+      \repeat volta 2 {
+        e'4\sectionmark "3." | a4 a8 e8 g4 f8 e8 | d2 d8 d8
+        e8 f8 | e4. b8 d4 c8 b8 | a2 a4
+      } \break
+      \repeat volta 2 {
+        a8 b8 | c4. c8 e4 d8 c8 | b2~8
+        e8 e8 f8 | e4. b8 d4 c8 b8 | a2 a4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+        Eu | pe -- ço~a meu Pai do | Céu;
+        E ao | Meu Se -- nhor São Mi -- | guel.
+        Pa -- ra | vir nos a -- ju -- |dar;
+        Es -- te ter -- | rei -- ro i -- lu -- mi -- nar.
+      \set stanza = "2."
+        Va -- mos | to -- dos nos se fir -- | mar;
+        É no | Céu na Ter -- ra~e no | Mar;
+        Pa -- ra | nos a -- cre -- di -- | tar;
+        Se a -- li -- | nhar, e se trans -- for -- | mar.
+      \set stanza = "3."
+        Fir -- | ma -- do no Sol e na | Lu -- a;
+        E nas Es -- | tre -- las do fir -- ma -- | men -- to;
+        Vou se -- | guir com meu São Mi -- | guel;
+        E cor -- ri -- | gir o meu pen -- sa -- | men -- to.
+    }
+    verseChords = \transpose a b \chordmode {
+      \repeat volta 2 {
+        s4 | a1:m | d1:m
+        | e1:7 | a2.:m
+      }
+      \repeat volta 2 {
+        s4 | a1:m | g1
+        | e1:7 | a2.:m
+      }
+    }
+    theChords = { \verseChords \verseChords \verseChords }
+    %\layout { #(layout-set-staff-size 17) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
