@@ -1438,3 +1438,89 @@
 \endsong
 
 
+\beginsong{Curo Tudo \\ Eu Vou Me Levantar}[by={Madr. Tetê}, off={Madr. Cristina Raulino}, tags={de pé}, key={A}, sks={B, A\#--C}]
+  \audio{https://www.nossairmandade.com/hymn/78/EuVouMeLevantar}
+  \newchords{chords_curotudo_a}\newchords{chords_curotudo_b}
+  \mnbeginchorus\memorize[chords_curotudo_a]
+    \[^\mn{A}]Eu |\[A]vou me \[^\mn{C#}]le\[^\mn{E}]van\[\mnc{G}G]tar \altchords{\id[1]{(B)}|B A}
+    \[^\mn{A}]Com \[^\mn{G}]a|\[\mnc{F#}D]ju\[^\mn{E}]da \[^\mn{G}]do \[^\mn{F#}]Se\[\mnc{E}A]nhor \altchords{|E B}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_curotudo_b]
+    \[^\mn{A}]Pe|\[A]guei na minha es\[\mnc{C#}(C#m)]pa\[^\mn{E}]da \altchords{|B (D\#m)}
+    \[^\mn{C#}]Foi |\[\mnc{B}D]pa\[^\mn{A}]ra \[^\mn{F#}]guer\[^\mn{A}]re\[A]ar \altchords{|E B}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_curotudo_a]
+    Esta |^força quem me ^deu
+    Foi o Mes|^tre Jurami^dam
+    \endchorus\glueverses\beginchorus\replay[chords_curotudo_b]
+    Para |^eu me levan^tar
+    Com a |^espada na ^mão
+  \endchorus
+  \beginchorus\replay[chords_curotudo_a]
+    Curo |^tudo, expulso ^tudo \altchords{\id[2]{(C)}|C Bb}
+    Com o po|^der do Pai E^terno \altchords{|F C}
+    \endchorus\glueverses\beginchorus\replay[chords_curotudo_b]
+    E da |^Virgem Sobe^rana \altchords{|C (Em)}
+    E do di|^vino Espírito ^Santo \altchords{|F C}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        \parenthesize a8 \posectionmark "A" a8
+        | a a cis e g8( g8) a8 g
+        | fis e g fis e8( e8)
+      }
+      \repeat volta 2 {
+        \parenthesize a,8 \sectionmark "B" a8
+        | a a a a cis8( cis8) e8 cis
+        | b a fis16( fis16) a8 a4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \skip 1 Eu | vou me le -- van -- tar; __ _
+      Com a -- | ju -- da do Se -- nhor. _
+      \set stanza = "1.B"
+      \skip 1 Pe -- | guei na mi -- nha~es -- pa -- _ da;
+      Foi | pa -- ra guer -- _ re -- ar.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Es -- ta | for -- ça quem me deu;
+      Foi o Mes -- | tre Ju -- ra -- mi -- dam; _
+      \set stanza = "2.B"
+      Pa -- ra | eu me le -- van -- tar; __ _
+      Com a | es -- pa -- da __ _ na mão.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      Cu -- ro | tu -- do,~ex -- pul -- so tu -- do;
+      Com~o po -- | der do Pai E -- ter -- no.
+      \set stanza = "3.B"
+      (-to.)~E da | Vir -- gem So -- be -- ra -- na;~E
+      do di -- | vi -- no~Es -- pí -- ri -- to San-
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a2 g2 | d2 a4
+      }
+      \repeat volta 2 {
+        s4 | a2 \parenthesize cis2:m | d2 a4 
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I raise myself up with the aid of the Lord
+    I grabbed my sword in order to make war
+    \nextverse
+    Who gave me this strength was the Master Juramidam
+    To raise myself up with my sword in my hand
+    \nextverse
+    I heal everything, I expel everything, with the power of the Eternal Father
+    And of the Sovereign Virgin and of the Divine Holy Spirit.
+  \end{translation}
+\endsong
