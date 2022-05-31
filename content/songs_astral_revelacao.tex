@@ -1136,17 +1136,73 @@
 \beginsong{Vivo aqui neste mundo pecador}[by={Simja Johannes Lempinen}, off={Milton}, key={C}, sks={}]
   \audio[key={C}]{https://soundcloud.com/johannesbatista/10-2v}
   \beginchorus\memorize
-    Eu vivo a|\[C]qui neste \[G]mundo peca|\[C]dor \[\bm]
-    Estou a|qui ensi\[G]nando meus ir|\[C]mãos \[\bm]
-    \lrep Para |\[F]todos ter fir\[\bm]meza nesta |\[C]linha
-    E sa\[\bm]ber agrade|\[G]cer os en\[\bm]sinos da Ra|\[C]inha \[\bm] \rrep
+    Eu vivo a|\[C]qui neste \[F]mundo peca|\[C]dor \[\bm] \altchords{\id[1]{alt. (C)}|C F |C}
+    Estou a|qui ensi\[F]nando meus ir|\[C]mão\[C7]s \altchords{| - F |C A7}
+    Para |\[F]todos ter fir\[\bm]meza nesta |\[C]linha \altchords{|Dm7 G7 |Em7}
+    E sa\[\bm]ber agrade|\[G7]cer os en\[\bm]sinos da Ra|\[C]i\[C7]nha \altchords{Am7 |Dm7 G7 |C C7}
+    Para |\[F]todos ter fir\[\bm]meza nesta |\[C]linha \altchords{|Dm7 G7 |Em7}
+    E sa\[\bm]ber agrade|\[G7]cer os en\[\bm]sinos da Ra|\[C]i\[\bm]nha \altchords{Am7 |Dm7 G7 |C}
   \endchorus
   \beginchorus
-    Vou se|^guindo com ^fé em meu Se|^nhor ^
-    Vou rece|bendo esta ^luz com todo a|^mor ^
-    \lrep Peço |^força meu Ar^canjo São Mi|^guel
-    E as ^falanges do |^Céu confor^tai os filhos |^seus ^ \rrep
+    Vou se|^guindo com ^fé em meu Se|^nhor ^ \altchords{\id[2]{alt. (C)}|C F |C}
+    Vou rece|bendo esta ^luz com todo a|^mo^r \altchords{| - F |C C7}
+    Peço |^força meu Ar^canjo São Mi|^guel \altchords{|F Fm |Em(7)}
+    E as ^falanges do |^Céu confor^tai os filhos |^seu^s \altchords{Am7 |Dm7 G7 |C C7}
+    Peço |^força meu Ar^canjo São Mi|^guel \altchords{|F Fm |Em(7)}
+    E as ^falanges do |^Céu confor^tai os filhos |^seu^s \altchords{Am7 |Dm7 G7 |C}
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head-spacious.ly"
+    theMelody = \relative c'' {
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        g8\sectionmark "1.A" g8 g8 | c4 e8 e8 d8 d8 a8 b8 | c2~8
+        g8 g8 g8 | c4 e8 e8 d8 d8 a8 b8 | c2~8 \break
+        r8 c8\sectionmark "1.B:i" c8 | f8 f8 a8 a8 g8 g8 f8 f8 | e8 e8
+        g8 g8 f8 f8 e8 e8 | d4 f8 f8 e8 e8 d8 d8 | c2 c8 \break
+        r8 c8\sectionmark "1.B:ii" c8 | f8 f8 a8 a8 g8 g8 f8 f8 | e8 e8
+        g8 g8 f8 f8 e8 e8 | d4 f8 f8 e8 e8 d8 d8 | c2 c8 \break
+      }
+      \repeat volta 2 {
+        r8\sectionmark "2.A" g8 g8 | c4 e8 e8 d8 d8 a8 b8 | c2~8
+        g8 g8 g8 | c8 c8 e8 e8 d8 d8 a8 b8 | c2~8 \break
+        r8 c8\sectionmark "2.B:i" c8 | f8 f8 a8 a8 g8 g8 f8 f8 | e4
+        g8 g8 f8 f8 e8 e8 | d4 f8 f8 e8 e8 d8 d8 | c2~c8 \break
+        r8 c8\sectionmark "2.B:ii" c8 | f8 f8 a8 a8 g8 g8 f8 f8 | e4
+        g8 g8 f8 f8 e8 e8 | d4 f8 f8 e8 e8 d8 d8 | c2~c8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+        Eu vi -- vo~a | qui nes -- te mun -- do pe -- ca -- | dor;
+        Es -- tou a -- | qui en -- si -- nan -- do meus ir -- | mãos.
+      \set stanza = "1.B"
+        Pa -- ra | to -- dos ter fir -- me -- za nes -- ta | li -- nha;
+        E sa -- ber a -- gra -- de -- | cer os en -- si -- nos da Ra -- | i -- nha.
+        Pa -- ra | to -- dos ter fir -- me -- za nes -- ta | li -- nha;
+        E sa -- ber a -- gra -- de -- | cer os en -- si -- nos da Ra -- | i -- nha.
+      \set stanza = "2."
+        Vou se -- | guin -- do com fé em meu Se -- | nhor;
+        Vou re -- ce -- | ben -- do es -- ta luz com to -- do~a -- | mor.
+      \set stanza = "2.B"
+        Pe -- ço | for -- ça meu Ar -- can -- jo São Mi -- | guel;
+        E as fa -- lan -- ges do | Céu con -- for -- tai os fi -- lhos | seus.
+        Pe -- ço | for -- ça meu Ar -- can -- jo São Mi -- | guel;
+        E as fa -- lan -- ges do | Céu con -- for -- tai os fi -- lhos | seus.
+    }
+    verseChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c2 g2 | c1
+        | c2 f2 | c2 c2:7
+        | f1 | c1
+        | g:7 | c2 c2:7
+        | f1 | c1
+        | g:7 | c2~8
+      }
+    }
+    theChords = { \verseChords \verseChords }
+    %\layout { #(layout-set-staff-size 16) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
