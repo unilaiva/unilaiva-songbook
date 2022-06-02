@@ -4,14 +4,16 @@
 #
 # Part of Unilaiva songbook system.
 #
-# Copies the .MIDI files created by Lilypond to another location.
+# Copies the .MIDI files created by Lilypond to another location and creates
+# mp3 audio from those files in the new location also.
+#
 # Run with '--help' argument for usage info.
 #
-# TODO: Create audio files from the MIDI files, perhaps something like this:
-#       timidity midi_file.midi -Ow -o - | lame - -b 320 converted_midi.mp3
+
 
 import sys
 import os
+import subprocess
 import shutil
 import pathlib
 import re
@@ -68,10 +70,12 @@ def cleanstr(text):
 
 class Song:
   """Represents one song with a MIDI file associated to it"""
-  def __init__(self, title, nr, midifile):
+  def __init__(self, chaptertitle, title, nr, midifile):
     """
     Parameters
     ----------
+    chapter title : str
+      Title of the chapter this song belongs to
     title : str
       Title of the song.
     nr : int
@@ -84,9 +88,11 @@ class Song:
     self.nr = nr
     self.nrstr = str(nr)
     self.originalmidifile = midifile
+    self.chaptertitle = chaptertitle
     while len(self.nrstr) < 3:
       self.nrstr = '0' + self.nrstr
     self.newmidifilename = self.nrstr + '_-_' + cleanstr(self.title) + '.midi'
+    self.newmp3filename = self.nrstr + '_-_' + cleanstr(self.title) + '_midi' + '.mp3'
 
   def copymidifile(self, destdir):
     """
@@ -100,9 +106,49 @@ class Song:
       The destination directory to copy the MIDI file into
     """
 
-    if self.originalmidifile.is_file():
-      shutil.copy2(self.originalmidifile, destdir.joinpath(self.newmidifilename))
-      print(destdir.name + " : " + self.newmidifilename)
+    if not self.originalmidifile.is_file():
+      print ("ERROR (copy midi file skipped): source .midi file is not available")
+      return None
+    shutil.copy2(self.originalmidifile, destdir.joinpath(self.newmidifilename))
+    print(destdir.name + " : " + self.newmidifilename)
+
+  def createaudiofile(self, destdir):
+    """
+    Creates an mp3 audio file from the MIDI file associated with this song to
+    another directory using external software (fluidsynth and ffmpeg). If the
+    external software is not available, the file is not created but the script
+    continues. The destination directory must exist and be writable. If the
+    destination file exists, it will be overwritten.
+    """
+    if not self.originalmidifile.is_file():
+      print("ERROR (create mp3 skipped): source .midi file is not available")
+      return None
+    if shutil.which("fluidsynth") == None:
+      print("ERROR (create mp3 skipped): no fluidsynth executable found")
+      return None
+    if shutil.which("ffmpeg") == None:
+      print("ERROR (create mp3 skipped): no ffmpeg executable found")
+      return None
+    soundfontfile = pathlib.Path("/usr/share/sounds/sf2/FluidR3_GM.sf2")
+    if not soundfontfile.is_file():
+      print("ERROR (create mp3 skipped): Soundfont file %s not found"%(soundfontfile))
+    cmdoutput = subprocess.run(
+      "fluidsynth -a file -T raw -O s16 -E little -r 48000 -F - \"%s\" \"%s\"\
+      | ffmpeg -f s32le -ac 1 -ar 48000 -i -\
+      -codec:a libmp3lame -f mp3 -q:a 1\
+      -id3v2_version 3 -write_id3v2 -write_id3v1 1\
+      -metadata title=\"%s [generated from notation]\"\
+      -metadata artist=\"Unilaiva audio generator\"\
+      -metadata album_artist=\"Unilaiva audio generator\"\
+      -metadata track=%d\
+      -metadata album=\"%s\"\
+      -y \"%s\""
+        %(soundfontfile, self.originalmidifile,
+          self.title,
+          self.nr,
+          self.chaptertitle + ' [generated from notation]',
+          destdir.joinpath(self.newmp3filename)),
+        capture_output=False, shell=True, check=True)
 
 class Chapter:
   """Represents a song chapter, a collection of songs"""
@@ -146,10 +192,10 @@ class Chapter:
       midifilename = inputarg.split('-systems.tex',1)[0] + '.midi'
       midifile = basedir.joinpath(midifilename)
       if midifile.is_file(): # add song only if there is a midi file for it
-        self.songs.append(Song(songtitle, songnr, midifile))
+        self.songs.append(Song(self.title, songtitle, songnr, midifile))
       songnr += 1
 
-  def copymidifiles(self, destdir, createsubdir):
+  def copymidifiles(self, destdir, createsubdir, createaudiofiles):
     """
     Copies the midi files associated to this chapter to a new directory,
     optionally inside a subdirectory named after the title of this chapter.
@@ -170,6 +216,8 @@ class Chapter:
       os.makedirs(fullsubdir, 0o777, True)
     for song in self.songs:
       song.copymidifile(fullsubdir)
+      if createaudiofiles:
+        song.createaudiofile(fullsubdir)
 
 
 def execute(depfile, destdir):
@@ -200,7 +248,7 @@ def execute(depfile, destdir):
       chapters.append(Chapter(title, basedir, basedir.joinpath(line)))
 
   for chapter in chapters:
-    chapter.copymidifiles(destdir, True)
+    chapter.copymidifiles(destdir, True, True)
 
 # If there is wrong number of arguments or help is requested, print
 # usage information and exit with an error code 1.
