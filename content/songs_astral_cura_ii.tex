@@ -1524,3 +1524,105 @@
     And of the Sovereign Virgin and of the Divine Holy Spirit.
   \end{translation}
 \endsong
+
+
+\beginsong{Meu Mestre me Cure}[by={Madr. Rita}, key={C}, sks={C}]
+  \newchords{chords_meumestremecure_a}\newchords{chords_meumestremecure_b}
+  \mnbeginchorus\memorize[chords_meumestremecure_a]
+    \[^\mn{E}]Meu |\[\mnc{G}C]Mes\[\mnc{E}(Am)]tre \[\mnc{C}]me |\[\mnc{G}C]cu\[\bmc\mn{C}]re \altchords{\id{alt. (C)}|C | \e}
+    Meu |\[\mnc{E}Am]Mes\[\mnc{D}Dm]tre \[^\mn{C}]me |\[\mnc{G}G]o\[\bm]lhe \altchords{| - |G}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_meumestremecure_b]
+    \[^\mn{C}]Meu |\[\mnc{E}Am]Mes\[\mnc{D}Dm]tre \[^\mn{C}]me en|\[\mnc{G}G]si\[\bm]ne \altchords{|C |G}
+    \[^\mn{C}]Me |\[\mnc{E}Am]dê a \[\mnc{D}G]Santa |\[\mnc{C}C]Gló\[\bm]ria \altchords{|C G |C}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_meumestremecure_a]
+    Eu |^pe^{ço a} meu |Mes^tre
+    Com |^fé de ^alcan|^çar ^
+    \endchorus\glueverses\beginchorus\replay[chords_meumestremecure_b]
+    Meu |^Mes^{tre me} |^le^ve
+    Ao |^reino ce^lesti|^al ^
+  \endchorus
+  \beginchorus\replay[chords_meumestremecure_a]
+    |^Filha ^{te cor}|ri^jas
+    Pa|^ra ser ^perdo|^a^da
+    \endchorus\glueverses\beginchorus\replay[chords_meumestremecure_b]
+    E |^venha ^que Eu te |^le^vo
+    Ao |^reino ce^lesti|^al
+  \endchorus
+  \beginchorus\replay[chords_meumestremecure_a]
+    Meu |^Mes^{tre na} |fren^te
+    Eu |^vou a^compa|^nhar ^
+    \endchorus\glueverses\beginchorus\replay[chords_meumestremecure_b]
+    Com |^fé ^{em meu} |^Mes^tre
+    Eu |^tenho que ^alcan|^çar ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        e4 \posectionmark "A" | g4.( g8) e4 c'4 | g2 c,4 c4 | e4.( e8) d4 c4 | g2( g4)
+      }
+      \repeat volta 2 {
+        c4 \sectionmark "B" | e4.( e8) d4 c4 | g2 g4 c4 | e4( e8) e8 d4 d4 | c2( c4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Meu | Mes -- _ tre me | cu -- re;
+      Meu | Mes -- _ tre me | o -- lhe.
+      \set stanza = "1.B" 
+      Meu | Mes -- _ tre me~en -- | si -- ne;
+      Me | dê __ _ a San -- ta | Gló -- ria.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Eu | pe -- _ ço~a meu | Mes -- tre;
+      Com | fé de al -- can -- | çar. __ _
+      \set stanza = "2.B"
+      Meu | Mes -- _ tre me | le -- ve;
+      Ao | rei -- no ce -- les -- ti -- | al. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \skip 1 | Fi -- lha te cor -- | ri -- jas;
+      Pa -- | ra ser per -- do -- | a -- da.
+      \set stanza = "3.B"
+      E | ve -- nha que~Eu te | le -- vo;
+      Ao | rei -- no ce -- les -- ti -- | al. __ _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "3.A"
+      Meu | Mes -- _ tre na | fren -- te;
+      Eu | vou a -- com -- pa -- | nhar. __ _
+      \set stanza = "3.B"
+      Com | fé __ _ em meu | Mes -- tre;
+      Eu | te -- nho que al -- can -- | çar. __ _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2 \parenthesize a2:m | c1 | a2:m d2:m | g2.
+      }
+      \repeat volta 2 {
+        s4 | a2:m d2:m | g1 | a2:m g2 | c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    My Master, heal me; my Master, watch me
+    My Master, teach me; give me the holy glory
+    \nextverse
+    I ask my Master; with faith to arrive
+    My Master take me to the Celestial Kingdom
+    \nextverse
+    Daughter amend yourself to be forgiven
+    And come so I can take you to the Celestial Kingdom
+    \nextverse
+    My Master in front, I will follow
+    With faith in my Master I'm sure to arrive
+  \end{translation}
+\endsong
+
