@@ -1,0 +1,89 @@
+% Santo Daime: Hinos Diversos (Unilaiva)
+% ======================================
+%
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+\beginsong{Elevei o Pensamento}[by={Ricardo Morais}, key={D}, sks={D, C--A}]
+  \audio[key={D}]{https://www.nossairmandade.com/hymn/25/EleveiOPensamento}
+  \audio[key={D}]{https://soundcloud.com/beijamima/elevei-meu-pensamento}
+  \mnbeginchorus\memorize
+    \[^\mn{D}]Ele\[\bm]vei o \[^\mn{C#}]pensa|\[\mnc{B}Bm]men\[\bm]to | \e \altchords{\id[1]{(C)}|Am | \e}
+    A \[\bm]Deus la \[^\mn{C#}]nas \[^\mn{D}]al|\[\mnc{E}Em]tu\[\bm]ras | \e \altchords{|Dm | \e}
+    \[^\mn{A}]Para \[\bmc\mn{C#}]eu re\[^\mn{B}]conhe|\[\mnc{A}A]cer\[\bm] | \e \altchords{|G | \e}
+    O bri\[\bmc\mn{B}]lho da \[^\mn{C#}]for\[^\mn{E}]mo|\[\mnc{D}D]su\[\bm]ra | \e \altchords{|C | \e}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    O bri^lho da formo|^su^ra | \e \altchords{\id[2]{(F)}|Dm | \e}
+    É u^ma luz de a|^len^to | \e \altchords{|Gm | \e}
+    Que lim^pa meu cora|^ção^ | \e \altchords{|C | \e}
+    E vigo^ra meu pensa|^men^to | \e \altchords{|F | \e}
+  \endchorus
+  \beginchorus
+    A^qui eu vou can|^tan^do | \e \altchords{\id[3]{(G)}|Em | \e}
+    Que a ^minha lida e |^es^sa | \e \altchords{|Am | \e}
+    Viva ^Rei Jurami|^dam^ | \e \altchords{|D | \e}
+    E a Ra^inha da flo|^res^ta | \e \altchords{|G | \e}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 2.
+      \repeat volta 2 {
+        \parenthesize d8 d8 \pomark d8 d8 cis8 cis8 | b2 b2~ | b4
+        \parenthesize b8 b8 b8 b8 cis8 d8 | e2 e2~ | e4
+        a,8 a8 cis8 cis8 b8 b8 | a1~ | a8( \parenthesize a8)
+        a8 a8 b8 b8 cis8 e8 | d2 d2~ | d4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      E -- le -- vei o pen -- sa -- | men -- to; __ | _
+      \skip 1 A Deus la nas al -- | tu -- ras; __ | _
+      Pa -- ra eu re -- co -- nhe -- | cer; __ | _ _
+      O bri -- lho da for -- mo -- | su -- ra. __ | _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      O bri -- lho da for -- mo -- | su -- ra; __ | _
+      É u -- ma luz de a -- | len -- to; __ | _
+      Que lim -- pa meu co -- ra -- | ção; __ | _
+      E vi -- go -- ra meu pen -- sa -- | men -- to; __ | _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \skip 1 A -- qui eu vou can -- | tan -- do; __ | _
+      Que a mi -- nha li -- da~e | es -- sa; __ | _
+      Vi -- va Rei Ju -- ra -- mi -- | dam; __ | _
+      E a Ra -- i -- nha da flo -- | res -- ta; __ | _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2. | b1:m | b:m
+        | e:m | e:m
+        | a | a
+        | d | d4
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I raised up my thought to God there in the heights,
+    For me to recognize the brilliance of beauty
+    \nextverse
+    The brilliance of beauty, it is a light of vital breath
+    Who cleans my heart and invigorates my thoughts
+    \nextverse
+    Here I go singing because this is my task
+    Viva King Juramidam and the Queen of the Forest
+  \end{translation}
+\endsong
+
