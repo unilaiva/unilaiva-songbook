@@ -399,23 +399,76 @@
 \beginsong{Triunfo Maior}[by={Lúcio Mortimer}, off={Orlando Villas Boas e Luisa}, key={G}, sks={G, D\#--B}]
   \audio{https://www.nossairmandade.com/hymn/1445/TriunfoMaior}
   \mnbeginchorus\memorize
-    \[^\mn{B}]Posso can|\[\mncii{F#}{D}D]tar | \[^\mn{F#}]alegrias da |\[^\mn{D}]vida
-    A \[^\mn{F#}]certeza de |\[^\mn{D}]ser \[^\mn{F#}]um fi\[^\mn{E}]lho es\[^\mn{F#}]ti|\[\mnc{G}Em]ma\[^\mn{E}]do | \e
-    \lrep \[^\mn{G}]Agradeço a São |\[\mnc{E}Em]João, meu \[^\mn{G}]Mestre que|\[\mnc{D}G]rido
-    Que \[^\mn{G}]bom ter ou|\[\mnc{F#}D]vido o \[^\mn{E}]seu \[^\mn{F#}]cha|\[\mnc{G}G]mado | \e \rrep
+    \[\bmc\mn{B}]Posso can|\[\mnc{F#}D]ta\[\bmc\mn{D}]r | \[^\mn{F#}]ale\[\bm]grias da |\[^\mn{D}]vi\[^\mn{F#}]da \altchords{\id[1]{(F)}|C | - | \e}
+    A cer\[\bm]teza de |\[^\mn{D}]ser \[^\mn{F#}]um \[\bm]filho \[^\mn{E}]es\[^\mn{F#}]ti|\[\mnc{G}Em]ma\[\bmc\mn{E}]do | \e \altchords{| - |Dm | \e}
+    \lrep \[^\mn{G}]Agra\[\bm]deço a São |\[\mnc{E}Em]João, \[^\mn{G}]meu \[\bm]Mestre que|\[\mnc{D}G]ri\[^\mn{G}]do \altchords{|Dm |F}
+    Que \[\bm]bom ter ou|\[\mnc{F#}D]vido \[\bm]o \[^\mn{E}]seu \[^\mn{F#}]cha|\[\mnc{G}G]ma\[\bm]do | \e \rrep \altchords{|C |F | \e}
   \mnendchorus
   \notesoff
   \beginchorus
-    Sigo con|^tente, | Jesus vai co|migo
-    Do meu cora|ção é o melhor a|^migo | \e
-    \lrep Sou filho da |^Terra, nela pe|^quei
-    Na Santa Dou|^trina me ilumi|^nei | \e \rrep
+    ^Sigo con|^ten^te, | Je^sus vai co|migo
+    Do ^meu cora|ção é ^o melhor a|^mi^go | \e
+    \lrep Sou ^filho da |^Terra, ^nela pe|^quei
+    Na ^Santa Dou|^trina ^me ilumi|^nei | \e \rrep
   \endchorus
   \beginchorus
-    Todo lou|^vor | na Sobera|nia
-    Que a nossa Ra|inha é quem nos |^guia | \e
-    \lrep Triunfo mai|^or vai no cora|^ção
-    De quem quer ou|^vir e seguir a ``Instru|^ção'' | \e \rrep
+    ^Todo lou|^vo^r | na ^Sobera|nia
+    Que a ^nossa Ra|inha ^é quem nos |^gui^a | \e
+    \lrep Tri^unfo mai|^or vai ^no cora|^ção
+    De ^quem quer ou|^vir e se^guir a ``Instru|^ção'' | \e \rrep
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva on 2022-07
+    theMelody =  \relative b' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 2
+        b4 \pomark b8 b8 | fis'2( d2~) | d4 \parenthesize fis8 fis8 fis4 fis8 fis8 | d4 fis8 fis8 fis4 fis8 fis8
+        | d4. fis8 fis8( fis8) e8 fis8 | g2 e2
+      \repeat volta 2 {
+        r4 \parenthesize g8 g8 g4 g8 g8 | e4. g8 g4 g8 g8
+        | d4 g8 g8 g4 g8 g8 | fis4( fis8) fis8 fis8( fis8) e8 fis8
+      } \alternative {
+        { | g2( g2) }
+        { | g2( g2)~ | g2 \dacapo }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Pos -- so can -- | tar __ _ | _ a -- le -- gri -- as da | vi -- da;~A
+      cer -- te -- za de | ser um fi -- lho es -- ti -- | ma -- do.
+        A -- gra -- de -- ço~a São | João, meu Mes -- tre que -- | ri -- do;
+        Que bom ter ou -- | vi -- _ do o __ _ seu cha -- | ma -- do. | ma -- do. __ | _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Si -- go con -- | ten -- te, __ | _ \skip 1 Je -- sus vai co -- | mi -- go
+      Do meu co -- ra -- | ção é o me -- lhor a -- | mi -- go.
+        \skip 1 Sou fi -- lho da | Ter -- ra, ne -- la pe -- | quei
+        \skip 1 Na San -- ta Dou -- | tri -- _ na me i lu -- mi -- | nei. __ _ | nei. __ _ | _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      To -- do lou -- | vor __ _ | _ \skip 1 na So -- be -- ra -- | ni -- a;
+      Que~a nos -- sa Ra -- | i -- nha é __ _ quem nos | gui -- a.
+        \skip 1 Tri -- un -- fo mai -- | or vai no co -- ra -- | ção;
+        \skip 1 De quem quer ou -- | vir e se -- guir a `Ins -- tru -- | ção'. __ _ | ção'. __ _ | _
+    }
+    theChords = \chordmode { % no repeats because the rest would mess 'em up
+      s2 | d1 | d | d | d | e:m | e2:m
+      s2 | \once \set chordChanges = ##f e1:m | g | d | g | g2
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I can sing joys of life, the certainty of being an esteemed son
+    I thank Saint John, my dear Master, glad I heard your call
+    \nextverse
+    I'm still happy, Jesus goes with me; of my heart is the best friend
+    I am a child of the Earth, in it I sinned; in the Holy Doctrine I was enlightened
+    \nextverse
+    All praise in Sovereignty that our Queen is the one who guides us
+    Greater triumph goes in the heart of those who want to hear and follow the ``Instruction''
+  \end{translation}
 \endsong
 
