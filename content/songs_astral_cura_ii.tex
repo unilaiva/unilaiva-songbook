@@ -1740,3 +1740,98 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Lá Vêm o Sol}[by={Madr. Rita}, key={C}, sks={D, C--E}, tags={valsa}]
+  \meter{3}{4}
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Lá |\[\mnc{C}C]vem \[^\mn{E}]o |\[\mnc{D}G]sol \[^\mn{B}]nos \[^\mn{D}]cu|\[\mnc{C}C]rar \altchords{\id[1]{(D)}|D |A |D}
+    Va|\[\mnc{F}F]mos to|\[(G7)]dos se \[^\mn{E}]fir|\[\mnc{G}C]mar \altchords{|G |(A7) |D}
+    \lrep \[^\mn{C}]No |\[\mnc{F}F]sol, na lu|\[(G7)]{a e nas} \[^\mn{E}]es|\[\mnc{G}C]tre\[^\mn{E}]las \altchords{|G |(A7) |D}
+    \[^\mn{C}]E |\[\mnc{E}Em]na Ra|\[\mnc{D}G]i\[^\mn{E}]nha \[^\mn{D}]do |\[\mnc{C}C]mar \rrep \altchords{|F\#m |A |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Che|^guei, já |^estou a|^qui
+    Nin|^guém quei|^{ra duvi}|^dar
+    \lrep O |^que meu |^Pai me or|^dena
+    Eu |^tenho |^que afir|^mar \rrep
+  \endchorus
+  \beginchorus
+    Meu |^Pai Vós |^nos aben|^çoe
+    Nos |^dando o |^Vosso con|^forto
+    \lrep Que |^eu es|^tando com |^Vós
+    Ja|^mais me con|^sidero |^morto \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody =  \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 4
+      g4 \posectionmark "A" | c2 e4 | d4 b4 d4 | c2 c4 | f2 f4 | f4 f4 e4 | g4( g4)
+      \break
+      \repeat volta 2 {
+        c,4 \sectionmark "B" | f4( f4) f4 | f8( f8) f4 e4 | g4( e4) c4 | e4( e4) e4 | d4 e4 d4
+      } \alternative {
+        { | c4( c4) }
+        { | c4( c4) \dacapo }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Lá | vem o | sol nos cu -- | rar;
+      Va -- | mos to -- | dos se fir -- | mar. __ _
+      \repeat volta 2 {
+        No | sol, na lu -- | a e nas es -- | tre -- las;
+        E | na __ _ Ra -- | i -- nha do
+      } \alternative {
+        { | mar. __ _ }
+        { | mar. __ _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Che -- | guei, já | es -- tou a -- | qui;
+      Nin -- | guém quei -- | ra du -- vi -- | dar. __ _
+      \repeat volta 2 {
+        O | que __ _ meu | Pai __ _ me or -- | de -- na;
+        Eu | te -- _ nho | que a -- fir --
+      } \alternative {
+        { | mar. __ _ }
+        { | mar. __ _ }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Meu | Pai Vós | nos a -- ben -- | çoe;
+      Nos | dan -- do~o | Vos -- so con -- | for -- to.
+      \repeat volta 2 {
+        Que | eu __ _ es -- | tan -- _ do com | Vós; __ _
+        Ja -- | mais me con -- | si -- de -- ro
+      } \alternative {
+        { | mor -- to. }
+        { | mor -- to. }
+      }
+    }
+    theChords = \chordmode {
+      s4 | c2. | g | c | f | \parenthesize g:7 | c2
+      \repeat volta 2 {
+        s4 | f2. |  \parenthesize g:7 | c | e:m | g
+      } \alternative {
+        { | c2 }
+        { | c2 }
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Here comes the sun to heal us; let's all firm ourselves
+    In the sun, the moon and the stars, and in the Queen of the Sea
+    \nextverse
+    I arrived, I'm already here; nobody should doubt
+    What my Father orders, I have to affirm
+    \nextverse
+    My Father, may You bless us, giving us Your comfort
+    For I, being with You, will never consider myself dead
+  \end{translation}
+\endsong
+
