@@ -1626,3 +1626,117 @@
   \end{translation}
 \endsong
 
+
+\beginsong{É Pedindo e Rogando}[by={Madr. Rita}, key={C}, sks={D, C--D}]
+  \mnbeginchorus\memorize
+    \[^\mn{G}]É pe|\[\mnc{C}C]din\[^\mn{D}]do \[\bmc\mn{E}]e \[^\mn{D}]ro|\[^\mn{C}]gan\[\bm]do \altchords{\id[1]{(D)}|D |\e}
+    Que po|\[\mnc{F}F]de\[^\mn{G}]mos \[\bmc\mn{A}]al\[^\mn{G}]can|\[\mnc{E}C]çar\[\bmc C7] \altchords{|G |D D7}
+    \lrep \[^\mn{C}]Eu pe|\[\mnc{F}F]di \[^\mn{G}]a \[\bmc\mn{A}]Vir\[^\mn{G}]gem |\[\mncii{E}{C}C]Mãe\[\bmc (Am)] \altchords{|G |D (Bm)}
+    Para |\[^\mn{E}]ela vir \[\bmc\mnc{D}G]nos cu|\[\mnc{C}C]rar\[\bmc \up{1}(C7)] \rrep \altchords{| - A |D \up{1}(D7)}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Meu |^Mestre a ^Vós eu |pe^ço
+    Tenha |^de nós ^compai|^xão^
+    \lrep Nos dê |^paz nos ^dê a|^mor^
+    Aqui |dentro ^da ses|^são^ \rrep
+  \endchorus
+  \beginchorus
+    Nos |^dê a nos^sa sa|ú^de \altchords{\id[3]{alt. (C)}|C G7 |C}
+    Fir|^meza para ^nós can|^tar^ \altchords{|F Dm |C C7}
+    \lrep Meu |^Mestre ^nos se|^gure^ \altchords{|F Dm |C Am}
+    Não |nos dei^xe tom|^bar^ \rrep \altchords{|Em G |C \up{1}(C7)}
+  \endchorus
+  \beginchorus
+    Da|^qui es^tou o|lhan^do
+    Pres |^tando bem ^aten|^ção^
+    \lrep Eu en|^sino é ^ter a|^mor^
+    Mas só |querem a ^ilu|^são^ \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody =  \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+        g8( \posectionmark "A" g8) | c4( c8) d8 e4. d8 | c2 c4 c8( c8) | f8( f8 f8) g8 a4. g8 | e2.
+      \repeat volta 2 {
+        c8( \sectionmark "B" c8) | f4( f8) g8 a4. g8 | e4( c2) c8( c8) | e4( e8) e8 d4. d8
+      } \alternative {
+        { | c2. }
+        { | c2. \dacapo }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      É pe -- | din -- _ do e ro -- | gan -- do;
+      Que po -- | de -- __ _ _ mos al -- can -- | çar.
+      \repeat volta 2 {
+        Eu pe -- | di __ _ a Vir -- gem | Mãe; __ _
+        Pa -- ra | e -- la vir nos cu --
+      } \alternative {
+        { | rar. }
+        { | rar. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Meu __ _ | Mes -- tre a Vós eu | pe -- ço;
+      Te -- nha | de __ _ _ nós com -- pai -- | xão.
+      \repeat volta 2 {
+        Nos dê | paz __ _ nos dê a -- | mor; __ _
+        A -- qui | den -- _ tro da ses --
+      } \alternative {
+        { | são. }
+        { | são. }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Nos __ _ | dê a nos -- sa sa -- | ú -- de;
+      Fir -- _ | me -- za pa -- ra nós can -- | tar.
+      \repeat volta 2 {
+        Meu __ _ | Mes -- _ tre nos se -- | gu -- re;
+        Não __ _ | nos __ _ dei -- xe tom --
+      } \alternative {
+        { | bar. }
+        { | bar. }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      Da -- _ | qui __ _ es -- tou o -- | lhan -- do;
+      Pres -- _  | tan -- _ do bem a -- ten -- | ção.
+      \repeat volta 2 {
+        Eu en -- | si -- no é ter a -- | mor; __ _
+        Mas só | que -- rem a i -- lu --
+      } \alternative {
+        { | são. }
+        { | são. }
+      }
+    }
+    theChords = \chordmode {
+      s4 | c1 | c1 | f1 | c2 c4:7
+      \repeat volta 2 {
+        s4 | f1 | c2 \parenthesize a,2:m | a,2:m g2 
+      } \alternative {
+        { | c2 c4:7 }
+        { | c2. }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    It's by asking and praying that we're able to attain
+    I asked the Virgin Mother to come and heal us
+    \nextverse
+    My Master, I ask of You: have compassion for us
+    Give us peace, give us love, here within the session
+    \nextverse
+    Give us our health, firmness for us to sing
+    My Master hold us, don't let us fall
+    \nextverse
+    From here, I am watching, paying close attention
+    To have love is what I teach, but they only want illusion
+  \end{translation}
+\endsong
+
