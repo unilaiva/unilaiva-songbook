@@ -1,0 +1,173 @@
+% Santo Daime: Hinos do Aniversário
+% =================================
+%
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+
+\beginsong{Parabens}[key={D}, sks={E, C--E}]
+  \audio[key=F]{https://www.youtube.com/watch?v=oLbncgnf8Q4}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Para|\[\mnc{B}D]bens \[\bmc\mn{A}]pra \[^\mn{D}]vo|\[\mnc{C#}A]cê\[\bm]
+    \[^\mn{A}]Nesta |\[^\mn{B}]da\[\bmc\mn{A}]ta \[^\mn{E}]que|\[\mnc{D}D]ri\[\bm]da
+    Muitas |\[^\mn{A}]fe\[\bmc\mn{F#}]li\[^\mn{D}]ci|\[\mnc{C#}A]da\[\mnc{B}G]des
+    \[^\mn{G}]Muitos |\[\mnc{F#}D]a\[\mnc{C#}A7]nos \[^\mn{E}]de |\[\mnc{D}D]vi\[\bm]da
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Tenha |^sem^pre do |^bom^
+    Que a |vi^da con|^tém^
+    Tenha |mui^ta sa|^ú^de
+    E a|^mi^gos tam|^bém^
+  \endchorus
+  \beginchorus
+    Voce |^ho^je faz a|^nos^
+    Porque |Deus ^assim |^quis^
+    O que |nos ^dese|^ja^mos
+    E que |^se^{ja fe}|^liz^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, 2022-07
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        a8 \pomark a8 | b2 a4 d4 | cis2. a8 a8 | b2 a4 e'4 | d2( d4)
+        d8 d8 | a'2 fis4 d4 | cis2 b4 g'8 g8 | fis2 cis4 e4 | d2( d4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Pa -- ra -- | bens pra vo -- | cê;
+        Nes -- ta | da -- ta que -- | ri -- da;
+        Mui -- tas | fe -- li -- ci -- | da -- des;
+        Mui -- tos | a -- nos de | vi -- da.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Te -- nha | sem -- pre do | bom;
+        Que a | vi -- da con -- | tém; __ _
+        Te -- nha | mui -- ta sa -- | ú -- de;
+        E a -- | mi -- gos tam -- | bém. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Vo -- ce | ho -- je faz~a -- | nos;
+        Por -- que | Deus as -- sim | quis; __ _
+        O que | nos de -- se -- | ja -- mos;
+        E que | se -- ja fe -- | liz. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d1 | a1 | a1 | d1 | d1 | a2 g2 | d2 a2:7 | d2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Happy birthday to you in this precious date
+    Very much happiness, many years of life
+    \nextverse
+    May you have all the good, may you have happy days
+    May you have a good health, and many friends as well
+    \nextverse
+    Today is your birthday, because so was God's will
+    That you always be happy is our greatest wish
+  \end{translation}
+\endsong
+
+
+\beginsong{Estamos Todos Reunidos}[by={Odemir}, key={D}, sks={D, C--E}]
+  \audio[key=D]{https://www.youtube.com/watch?v=Tu7ulMvgS50}
+  \mnbeginchorus\memorize
+    \[^\mn{D}]Es\[^\mn{F#}]ta\[^\mn{A}]mos |\[\mnc{F#}D]to\[^\mn{D}]dos \[\bmc\mn{C#}]re\[^\mn{B}]u|\[\mnc{G}Em]ni\[^\mn{E}]dos
+    \[\bmc\mn{C#}]Com \[^\mn{A}]a|\[\mnc{G}A7]mor \[^\mn{E}]no \[\bmc\mn{C#}]co\[^\mn{A}]ra|\[\mncii{A}{F#}D]ção\[\bm]
+    Co\[^\mn{A}]mo é |\[^\mn{F#}]lin\[^\mn{D}]do \[\bmc\mn{C#}]nós \[^\mn{B}]bai|\[\mnc{G}G]larmos
+    \[\bm]Nes\[^\mn{A}]te |\[\mnc{F#}D]di\[^\mn{D}]a \[\mnc{E}A7]de \[^\mn{C#}]São |\[\mnc{D}D]João\[\bm]
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Salve o a|^niver^sari|^ante
+    ^Que fe|^liz a^niver|^sário^
+    Todos |dentro ^do sa|^lão
+    ^Com a|^mor can^tan(do) hi|^ná^rio
+  \endchorus
+  \beginchorus
+    É o |^Daime ^que me |^veste
+    ^Brilha |^dentro e ^brilha |^fora^
+    Vem tra|zer es^ta men|^sagem
+    ^Me des|^pesso e ^vou em|^bo^ra
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, 2022-07
+    theMelody =  \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        d8 fis8 \pomark a8 | fis4 d4 cis4 b4 | g'4 e4 cis4 a4
+        | g'4 e4 cis4 a4 | a'4( fis2)
+        fis8 a8 | fis4 d4 cis4 b4 | g'4. g8 g4 a4
+        | fis4 d4 e4 cis4 | d2~ d8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Es -- ta -- mos | to -- dos re -- u -- | ni -- dos;
+        Com a -- | mor no co -- ra -- | ção; __ _
+        Co -- mo~é | lin -- do nós bai -- | lar -- mos;
+        Nes -- te | di -- a de São | João. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Sal -- ve~o a -- | ni -- ver -- sa -- ri -- | an -- te;
+        Que fe -- | liz a -- ni -- ver -- | sá -- rio;
+        To -- dos | den -- tro do sa -- | lão; __ _
+        Com a -- | mor can -- tan -- (do)~hi -- |ná -- rio.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        \skip 1 É o | Dai -- me que me | ves -- te;
+        Bri -- lha | den -- tro~e bri -- lha | fo -- ra;
+        Vem tra -- | zer es -- ta men -- | sa -- gem;
+        Me des -- | pes -- so~e vou em -- | bo -- ra.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | d1 | e1:m | a1:7 | d1
+        | d1 | g1 | d2 a2:7 | d2~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    We are gathered all togeter, with love in our hearts
+    How lovely it is to dance in this day of Saint John
+    \nextverse
+    Hail to the celebrating one, what a happy birthday
+    All together in the hall, singing the hinario with love
+    \nextverse
+    The Daime dresses me up, it shines inside and outside
+    Came to bring this message, now I say good bye and go
+  \end{translation}
+\endsong
+
