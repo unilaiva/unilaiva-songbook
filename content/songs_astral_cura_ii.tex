@@ -2007,8 +2007,10 @@
       }
     }
     theChords = \chordmode {
-      s4 | a1:m | a1:m | a1:m | g1
-      | g1 | a1:m | \parenthesize c2 g2:7 | c2.
+      \repeat volta 2 {
+        s4 | a1:m | a1:m | a1:m | g1
+        | g1 | a1:m | \parenthesize c2 g2:7 | c2.
+      }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
