@@ -1948,3 +1948,80 @@
     Of shining precious stones; forever here I am
   \end{translation}
 \endsong
+
+
+\beginsong{Sou Filho do Poder}[by={Mestre Irineu Serra}, key={C}, sks={D, C--D}]
+  \mnbeginchorus\memorize
+    \[^\mn{C}]Sou |\[\mnc{A}Am]filho \[\bmc\mn{C}]do \[^\mn{E}]po|\[^\mn{A}]der \altchords{\id[1]{(D)}|Bm | \e}
+    E \[\bmc\mn{G}]den\[^\mn{E}]tro |\[^\mn{C}]des\[^\mn{A}]ta \[\bm]ca\[^\mn{C}]sa es|\[\mnc{G}G]tou\[\bm] \altchords{| - |A}
+    Fa|zendo os \[\bmc\mn{B}]meus \[^\mn{D}]tra|\[\mnc{A}Am]balhos \altchords{| - |Bm}
+    \[\bmc\mn{G}]Que \[^\mn{E}]mi|\[\mnc{C}(C)]nha \[^\mn{A}]Mãe \[\mnc{B}G7]me or\[^\mn{D}]de|\[\mnc{C}C]nou\[\bm] \altchords{|(D) A7 |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Eu |^pedi ^a meu |Pai
+    ^Me deu |o con^senti|^men^to
+    De traba|lhar para os ^meus ir|^mãos
+    ^Aque|^les que es^tão do|^en^tes
+  \endchorus
+  \beginchorus
+    Con|^fessa a ^consci|ência E \altchords{\id[3]{alt. (C)}|Am | \e}
+    ^ale|gra teu ^cora|^ção^ \altchords{|C Am|G7}
+    Que |esta é ^a ver|^dade \altchords{| - |F G }
+    Que eu ^apre|^sento aos ^meus ir|^mãos^ \altchords{|Am G7 |C }
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody =  \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        c4 \pomark | a4. a8 c4 e4 | a4.( a8) g4 e4 | c4 a4 a4 c4 g2( g8)( g8) g8( g8)
+        | g4 g8 g8 b4 d4 | a'4( a8)( a8) g4 e4 | c4 a4 b4 d4 | c2( c4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Sou | fi -- lho do po -- | der;
+        E den -- tro | des -- ta ca -- sa~es -- | tou; __ _ _
+        Fa -- _ | zen -- do os meus tra -- | ba -- _  lhos;
+        Que mi -- | nha Mãe me~or -- de -- | nou. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Eu | pe -- di a meu | Pai; __ _
+        Me deu | o con -- sen -- ti -- | men -- to;
+        De tra -- ba -- | lhar pa -- ra~os meus ir -- | mãos; __ _ _
+        A -- que -- | les que~es -- tão do -- | en -- tes.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Con -- | fes -- sa~a cons -- ci -- | ên -- cia;~E
+        a -- le -- | gra teu co -- ra -- | ção; __ _ _
+        Que __ _ | es -- ta é a ver -- | da -- de;
+        Que~eu a -- pre -- | sen -- to~aos meus ir -- | mãos. __ _
+      }
+    }
+    theChords = \chordmode {
+      s4 | a1:m | a1:m | a1:m | g1
+      | g1 | a1:m | \parenthesize c2 g2:7 | c2.
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I am a son of the Power, and in this house I am
+    Doing my spiritual works that my Mother ordered me to do
+    \nextverse
+    I asked my Father, He gave me His consent
+    To work for my brothers and my sisters, those who are ill
+    \nextverse
+    Confess your conscience and gladden your heart
+    For this is the truth that I present to my brothers and my sisters
+  \end{translation}
+\endsong
+
