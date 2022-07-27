@@ -1,0 +1,115 @@
+% Santo Daime: Hinos Diversos
+% ===========================
+%
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+
+\beginsong{Graduação}[by={Padr. Alfredo}, off={Pedro Mota}, key={C}, sks={C, Bb--D}]
+  \mnbeginchorus\memorize
+    \[^\mn{E}]No |\[\mnc{G}C]ponto em que \[^\mn{E}]es\[\bmc\mn{G}]tou com \[^\mn{E}]meu |\[^\mn{A}]Pai \[^\mn{G}]e mi\[^\mn{E}]nha \[\bmc\mn{C}]Mãe
+    To\[^\mn{A}]da |\[\mnc{C}Am]es\[^\mn{A}]trela que \[\mnc{D}G]dou \[^\mn{E}]é \[^\mn{C}]u|\[\mnc{B}G7]ma \[^\mn{A}]gra\[^\mn{C}]dua\[C]ção
+    Nes\[^\mn{A}]te |\[\mnc{C}Am]ca\[^\mn{A}]minho que \[\mnc{D}G]vou, \[^\mn{E}]u\[^\mn{C}]ma |\[\mnc{B}G7]gran\[^\mn{A}]de \[^\mn{C}]devo\[C]ção
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Escu|^tai que eu ^vou destrin|chando este ca^minho
+    Todo |^ser que agra^do lhe a|^proximo de ^mim
+    Todos |^têm que obede^cer e se com|^por neste jar^dim
+  \endchorus
+  \beginchorus
+    So|^bre todas as ^coisas deve|mos amar a ^Deus \altchords{\id[1]{(D)}|D | \e}
+    E a |^todos seus ir^mãos como |^{se ama} a si ^mesmo \altchords{|Bm A |A7 D}
+    Se|^guir sua mis^são e entrar |^na guerra sem ^medo \altchords{|Bm A |A7 D}
+  \endchorus
+  \beginchorus
+    Toda |^calma e muito a^mor e sa|tisfação na ^fé
+    Ben|^dito é nosso ^Mestre que en|^sina como ^é
+    Vamos |^seguir meus ir^mãos seja |^{o que} Deus qui^ser
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        e8( \pomark e8) | g8 g8 g8 e8 g8( g8) g8 e8 | a8 g8 g8 e8 c8( c8)( c8) a8 | c8 a8 a8 a8 d8( d8) e8 c8
+        | b8 a8 c8 c8 c4 c8 a8 | c8 a8 a8 a8 d8( d8) e8 c8 | b8 a8 c8 c8 c8( c8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        No __ _ | pon -- to~em que es -- tou __ _
+        com meu | Pai e mi -- nha Mãe; __ _
+        To -- da | es -- tre -- la que dou __ _
+        é u -- | ma gra -- du -- a -- ção;
+        Nes -- te | ca -- mi -- nho que vou __ _
+        u -- ma | gran -- de de -- vo -- ção. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Es -- cu -- | ta -- i que eu vou __ _
+        des -- trin -- | chan -- do~es -- te ca -- mi -- nho;
+        To -- do | ser que a -- gra -- do __ _
+        lhe a -- | pro -- xi -- mo de mim;
+        To -- dos | têm que~o -- be -- de -- cer
+        e se com -- | por nes -- te jar -- dim. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        So -- _ | bre to -- das as coi -- sas
+        de -- ve -- | mos a -- mar a Deus; __ _
+        E a | to -- dos seus ir -- mãos __ _
+        co -- mo | se a -- ma~a si mes -- mo;
+        Se -- | guir su -- a mis -- são;
+        e en -- trar | na guer -- ra sem me -- do.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        To -- da | cal -- ma~e mui -- to~a -- mor __ _
+        e sa -- | tis -- fa -- ção na fé; __ _ _
+        Ben -- | di -- to~é nos -- so Mes -- tre
+        que en -- | si -- na co -- mo é;
+        Va -- mos | se -- guir meus ir -- mãos __ _
+        se -- ja | o que Deus qui -- ser. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c1 | c1 | a2:m g2 | g2:7 c2 | a2:m g2 | g2:7 c4
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    At the point where I am with my Father and my Mother
+    Each and every star that I give is a graduation
+    On this path that I go on, a great devotion
+    \nextverse
+    Listen then how I keep unraveling this path
+    Every being that I'm pleased with I bring close to me
+    Everyone has to obey and compose oneself in this garden
+    \nextverse
+    Above all things, we must love God
+    And all your brothers and sisters, as you love yourself
+    To follow your mission and to enter the war without fear
+    \nextverse
+    All calmness and much love and satisfaction in faith
+    Blessed is our Master who teaches how it is
+    Let's follow my brothers however God wills
+  \end{translation}
+\endsong
+
