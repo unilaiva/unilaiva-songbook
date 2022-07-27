@@ -80,7 +80,7 @@
 % environ package's \NewEnviron
 \usepackage{verbatim}%
 \usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
-\usepackage{wasysym}% for filled circle symbol: \newmoon
+\usepackage{pifont}% for font symbols, used in \chapsymbol
 %\usepackage{showframe} % uncomment only for debugging margins etc.
 
 % The most important 'songs' package, use the version in the project tree:
@@ -353,8 +353,10 @@
 % is the color name. Can be used in chapter names, does not mess up PDF
 % hyperrefs.
 \newcommand\chapsymbol[1]{%
-  % \newmoon, a filled circle, is from the wasysym package.
-  \texorpdfstring{\hspace{1em}\textcolor{#1}{\newmoon}}{}%
+  % \ding{86} from pifont package creates a six-pointed star. See the package's
+  % full symbol list at:
+  % https://www.nic.funet.fi/pub/TeX/CTAN/macros/latex/required/psnfss/psnfss2e.pdf
+  \texorpdfstring{\hspace{1em}\textcolor{#1}{\ding{86}}}{}%
 }
 
 % This command creates "the second page" at where it is called. This is supposed
