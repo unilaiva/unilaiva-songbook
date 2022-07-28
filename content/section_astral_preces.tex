@@ -15,16 +15,26 @@
 % no chords here, so line spacing will be less:
 \chordsoff
 % separate verses (translations of the prayers) more:
-\versesep 30pt plus 0pt minus 8pt
+%\versesep 30pt plus 0pt minus 8pt
 
 % Use this to specify a translation title within a verse, eg
 % \translationtitle{EN}{Greed}
 \newcommand{\translationtitle}[2]{
-  \textbf{[#1]} \textit{#2}\vspace{1.618034ex}
+  \vspace{3ex}\textbf{[#1]} \textit{#2}\vspace{1.618034ex}
 }
 % Use this to create a vertical space between "paragraphs"
 %within verses:
 \newcommand{\parspace}{\vspace{1ex}}
+
+% Setup the color for note mark superscripts to be the same as chords'
+% color:
+\definecolor{notemarkcolor}{rgb}{0,0,0}%
+\colorlet{notemarkcolor}{chordcolor}%
+
+% Redefine \up macro to use notemarkcolor
+\renewcommand{\up}[1]{
+  \textsuperscript{\color{notemarkcolor}#1}%
+}
 
 % Environment for a multiline note to be used within a song environment:
 \newenvironment{note}{%
@@ -41,9 +51,9 @@
 
 \beginsong{Sinal da Cruz}
   \beginverse
-    \up{1}Pelo sinal da Santa Cruz
-    \up{2}Livrai-nos Deus, nosso Senhor
-    \up{3}Dos nossos inimigos
+    \up{1}Pelo sinal da Santa Cruz,
+    \up{2}livrai-nos, Deus, nosso Senhor,
+    \up{3}dos nossos inimigos
     \parspace
     \up{4}Em nome do Pai,
     \up{5}do Filho e
@@ -53,9 +63,9 @@
   \endverse
   \beginverse
     \translationtitle{EN}{Sign of the Cross}
-    \up{1}By the sign of the Holy Cross
-    \up{2}Deliver us God, our Lord
-    \up{3}From our enemies
+    \up{1}By the sign of the Holy Cross,
+    \up{2}deliver us, God, our Lord,
+    \up{3}from our enemies
     \parspace
     \up{4}In the name of the Father,
     \up{5}the Son, and
@@ -88,7 +98,7 @@
     por obra e graça do Espírito Santo.
     Nasceu da Maria Virgem;
     padeceu sob o poder de Pôncio Pilatos;
-    foi crucificado, morto e spultado.
+    foi crucificado, morto e sepultado.
     Desceu aos infernos, ao terceiro dia
     ressurgiu dos mortos, Subiu ao Céu e
     Pai Todo-poderoso, de onde há de vir
@@ -123,32 +133,25 @@
     the communion of Saints, the forgiveness of sins,
     the resurrection of the body, and life everlasting.
     \parspace
-    Amen.    
+    Amen.
   \endverse
   \beginverse
     \translationtitle{FI}{Uskontunnustus}
-    Minä uskon Jumalaan,
-    Isään, Kaikkivaltiaaseen,
-    taivaan ja maan Luojaan,
+    Minä uskon Jumalaan, Isään, Kaikkivaltiaaseen,
+    taivaan ja maan Luojaan;
     \parspace
-    ja Jeesukseen Kristukseen,
-    Jumalan ainoaan Poikaan, meidän Herraamme,
-    joka sikisi Pyhästä Hengestä,
-    syntyi neitsyt Mariasta,
-    kärsi Pontius Pilatuksen aikana,
-    ristiinnaulittiin, kuoli ja haudattiin,
-    astui alas tuonelaan,
-    nousi kolmantena päivänä kuolleista,
-    astui ylös taivaisiin,
-    istuu Jumalan, Isän, Kaikkivaltiaan, oikealla puolella
-    ja on sieltä tuleva tuomitsemaan eläviä ja kuolleita,
+    ja Jeesukseen Kristukseen, Jumalan ainoaan Poikaan,
+    meidän Herraamme, joka sikisi Pyhästä Hengestä,
+    syntyi neitsyt Mariasta, kärsi Pontius Pilatuksen
+    aikana, ristiinnaulittiin, kuoli ja haudattiin,
+    astui alas tuonelaan, nousi kolmantena päivänä
+    kuolleista, astui ylös taivaisiin, istuu Jumalan,
+    Isän, Kaikkivaltiaan, oikealla puolella ja on sieltä
+    tuleva tuomitsemaan eläviä ja kuolleita;
     \parspace
-    ja Pyhään Henkeen,
-    pyhän yhteisen seurakunnan,
-    pyhäin yhteyden,
-    syntien anteeksiantamisen,
-    ruumiin ylösnousemisen
-    ja iankaikkisen elämän.
+    ja Pyhään Henkeen, pyhän yhteisen seurakunnan,
+    pyhäin yhteyden, syntien anteeksiantamisen,
+    ruumiin ylösnousemisen ja iankaikkisen elämän.
     \parspace
     Aamen.
   \endverse
@@ -168,6 +171,7 @@
   \beginverse
     \translationtitle{EN}{The Rosary I (official work)}
     \textnote{While praying the Rosary, after every decade:}
+    \parspace
     Glory to the Father, to the Son and to the Holy Spirit.
     As it was in the beginning, is now, and ever shall be,
     for all the ages.
@@ -187,26 +191,515 @@
     \parspace
     Amém.
     \parspace\parspace
-    Oh! meu Jesus, perdoai-me, livrai-me do fogo do inferno.
-    Levai as almas todas para o Céu,
-    e soccorei principalmente aquelas que mais precísarem.
+    Oh! meu Jesus, perdoai-me, livrai-me do fogo do
+    inferno. Levai as almas todas para o Céu, e soccorei
+    principalmente aquelas que mais precísarem.
     \parspace
     Amém.
   \endverse
   \beginverse
     \translationtitle{EN}{The Rosary II (Santa Missa)}
     \textnote{While praying the Rosary, after every decade:}
+    \parspace
     Glory to the Father, to the Son and to the Holy Spirit.
     As it was in the beginning, is now, and ever shall be,
     for all the ages.
     \parspace
     Amen.
     \parspace\parspace
-    Oh my Jesus, forgive me, and save me from the fires of hell.
-    Lead all souls into heaven,
-    and especially help those in most need.
+    Oh my Jesus, forgive me, and save me from the fires
+    of hell. Lead all souls into heaven, and especially
+    help those in most need.
     \parspace
     Amen.
   \endverse
 \endsong
 
+
+\beginsong{Pai nosso}
+  \beginverse
+    Pai nosso,
+    que estais no Céu,
+    santificado seja o Vosso Nome.
+    Vamos nós ao Vosso Reino.
+    Seja feita a Vossa Vontade,
+    assim na terra como no Céu.
+    O pão nosso de cada dia nos daí hoje, Senhor.
+    Perdoai as nossas dividas,
+    assim como nós perdoamos os nossos devedores.
+    Não nos deixas, Senhor, cair em tentação,
+    mas livrai-me e defendei-me, Senhor,
+    de todo mal.
+    \parspace
+    Amém, Jesus, Maria, José.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Our Father}
+    Our Father,
+    who art in Heaven,
+    hallowed be Thy Name.
+    Let us go into Thy Kingdom.
+    Thy Will be done,
+    on earth as it is in Heaven.
+    Give us this day our daily bread, Lord.
+    Forgive us our debts,
+    as we forgive our debtors.
+    Let us not fall in temptation,
+    but deliver me and defend me, Lord,
+    from all evil.
+    \parspace
+    Amen, Jesus, Mary, Joseph.
+  \endverse
+\endsong
+
+
+\beginsong{Ave Maria}
+  \beginverse
+    Ave Maria,
+    cheia de Graça!
+    O Senhor é convosco.
+    Bendita sois Vós entre as mulheres.
+    Bendito é o fruto do Vosso ventre, Jesus.
+    Santa Maria, Mãe de Deus,
+    rogai a Deus por nos pecadores,
+    agora e na hora de nossa morte.
+    \parspace
+    Amém, Jesus, Maria, José.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Hail Mary}
+    Hail Mary,
+    full of grace!
+    The Lord is with Thee.
+    Blessed art Thou amongst women!
+    Blessed is the fruit of Thy womb, Jesus.
+    Holy Mary, Mother of God,
+    pray to God for us sinners,
+    now and at the hour of our death.
+    \parspace
+    Amen, Jesus, Mary, Joseph.
+  \endverse
+\endsong
+
+
+\beginsong{Chave de Harmonia}
+  \beginverse
+    Desejo Harmonia, Amor, Verdade e Justiça a todos os
+    meus irmãos. Com as forças reunidas das silenciosas
+    vibrações dos nossos pensamentos, somos fortes,
+    sádios e felizes, formando assim um elo de
+    fraternidade universal. Estou satisfeito e em paz
+    com o universo inteiro e desejo que todos os seres
+    realizam as suas aspirações mais íntímas. Dou graças
+    ao Pai Invisivel por ter estabelecido a Harmonia,
+    o Amor, a Verdade e a Justiça entre todos os seus
+    filhos.
+    \parspace
+    Assim seja, Amém.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Key of Harmony}
+    I wish Harmony, Love, Truth and Justice to all my
+    brothers and sisters. With the united forces of the
+    silent vibrations of our thoughts, we are strong,
+    healthy and happy, thus forming a link of universal
+    fraternity. I am satisfied and in peace with the
+    whole universe, and I wish that all beings achieve
+    their most intimate aspirations. I give thanks to
+    my Invisible Father for having established Harmony,
+    Love, Truth and Justice among all his children.
+    \parspace
+    So be it, Amen.
+  \endverse
+\endsong
+
+
+\beginsong{Consagração do Aposento}
+  \beginverse
+    Dentro do Circulo Infinito da Divina Presença que
+    me envolve inteiramente, afirmo:
+    \parspace
+    Há uma só presença aqui --- é a da HARMONIA que faz
+    vibrar todos os corações de felicidade e alegria.
+    Quem quer que aqui entre, sentirá as vibrações da
+    Divina Harmonia.
+    \parspace
+    Há uma só presença aqui --- e a do AMOR. Deus é o
+    Amor que envolve todos os seres num só sentimento
+    de unidade. Este recinto está cheio da presença do
+    Amor. No Amor eu vivo, me movo e existo. Quem quer
+    que aqui entre, sentirá a pura e Santa Presença do
+    Amor.
+    \parspace
+    Há uma só presença aqui --- é a da VERDADE. Tudo
+    que aqui existe, tudo o que aqui se fala, tudo o
+    que aqui se pensa é a expressão da Verdade. Quem
+    quer que aqui entre, sentirá a Presença da Verdade.
+    \parspace
+    Há uma só presença aqui --- é a da JUSTIÇA.
+    A Justiça reina neste recinto. Todos os atos aqui
+    praticados são regidos e inspirados pela Justiça.
+    Quem quer que aqui entre, sentirá
+    a Presença da Justiça.
+    \parspace
+    Há uma só presença aqui --- é a presença de Deus,
+    o BEM. Nenhum mal pode entrar aqui. Não há mal em
+    Deus. Deus, o Bem, reside aqui. Quem quer que aqui
+    entre, sentirá a Presença Divina do Bem.
+    \parspace
+    Há uma só presença aqui --- e a presença de Deus,
+    a VIDA. Deus é a Vida essencial de todos os seres.
+    É a saúde do corpo e da mente. Quem quer que aqui
+    entre, sentirá a Divina Presença da Vida e da Saúde.
+    \parspace
+    Há uma só presença aqui --- é a presença de Deus,
+    a PROSPERIDADE. Deus é Prosperidade, pois Ele faz
+    tudo crescer e prosperar. Deus se expressa na
+    Prosperidade de tudo o que aqui é empreendido em
+    seu nome. Quem quer que aqui entre, sentirá
+    a Divina Presença da Prosperidade e da Abundância.
+    \parspace
+    Pelo símbolo esotérico das Asas Divinas, estou
+    em vibração harmoniosa com as correntes universais
+    da Sabedoria, do Poder e da Alegria. A Presença
+    da Divina Sabedoria manifesta-se aqui. A presença
+    da Alegria Divina é profundamente sentida por todos
+    os que aqui entram.
+    \parspace
+    Na mais perfeita comunhão entre o meu eu inferior
+    e o meu Eu Superior, que é Deus em mim, consagro
+    este recinto à perfeita expressão de todas as
+    qualidades divinas que há em mim, e em todos os
+    seres.
+    \parspace
+    As vibrações do meu pensamento são forças de Deus
+    em mim, que aqui ficam armazenadas e daqui se
+    irradiam para todos os seres, constituindo este
+    lugar um centro de emissão e recepção de tudo
+    quanto é Bom, Alegre, e Próspero.
+    \parspace
+    \textbf{ORAÇÃO}
+    \parspace
+    Agradeço-te o Deus, porque este recinto está cheio
+    da Tua Presença.
+    \parspace
+    Agradeço-te, porque vivo e me movo por Ti.
+    \parspace
+    Agradeço-te, porque vivo em tua Vida, Verdade e
+    Saúde, Prosperidade, Paz, Sabedoria, Alegria e Amor.
+    \parspace
+    Agradeço-te, porque todos que entrarem aqui sentirão
+    Tua Presença.
+    \parspace
+    Agradeço-te, porque estou em Harmonia, Amor, Verdade
+    e Justiça com todos os seres.
+    \parspace
+    Amém.
+  \endverse
+  \brk
+  \beginverse
+    \translationtitle{EN}{Consecration of the Space}
+    In the Infinite Circle of the Divine Presence which
+    completely envelopes me, I affirm that:
+    \parspace
+    There is only one presence here --- it is HARMONY,
+    which makes all hearts vibrate with happiness and
+    joy. Whoever enters here will feel the vibration
+    of Divine Harmony.
+    \parspace
+    There is only one presence here --- it is LOVE.
+    God is love, which envelops all beings in a single
+    feeling of unity. This space is filled with the
+    presence of love. In Love, I live, I move and I
+    exist. Whoever enters here will feel the pure and
+    holy Presence of Love.
+    \parspace
+    There is only one presence here --- it is TRUTH.
+    All that exists here, all that is spoken here,
+    all that is thought here is the expression of
+    Truth. Whoever enters here will feel the Presence
+    of Truth.
+    \parspace
+    There is only one presence here --- it is JUSTICE.
+    Justice reigns in this space. Every act practiced
+    here is ruled and inspired by Justice. Whoever
+    enters here will feel the Presence of Justice.
+    \parspace
+    There is only one presence here --- it is the
+    presence of God, who is GOODNESS. No evil can enter
+    here. There is no evil in God. God, who is Goodness,
+    dwells here. Whoever enters here will feel the
+    Divine Presence of Goodness.
+    \parspace
+    There is only one presence here --- it is the
+    presence of God, who is LIFE. God is the essential
+    Life of all beings. He is the health of body and
+    mind. Whoever enters here will feel the Divine
+    Presence of life and Health.
+    \parspace
+    There is only one presence here --- it is the
+    presence of God, who is PROSPERITY. God is
+    Prosperity because He makes everything grow and
+    prosper. God expresses Himself through the
+    Prosperity of all that is carried out in His name.
+    Whoever enters here will feel the Divine Presence
+    of Prosperity and Abundance.
+    \parspace
+    Through the esoteric symbol of the Divine Wings,
+    I am in harmonious vibration with the universal
+    currents of Wisdom, Power and Joy. The Presence
+    of Divine Wisdom is manifested here. The Presence
+    of Divine Joy is deeply felt by all those who enter
+    here.
+    \parspace
+    In the perfect communion between my lower self and
+    my Higher Self, which is God in me, I consecrate
+    this space to the perfect expression of all divine
+    qualities which are in me and in all beings.
+    \parspace
+    The vibrations of my thoughts are the forces of God
+    in me, which are stored here and hence radiated to
+    all beings, thus establishing this place as a center
+    of giving and receiving of all that is Good, Joyful
+    and Prosperous.
+    \parspace
+    \textbf{PRAYER}
+    \parspace
+    I thank You, Oh God, for this space is filled with
+    Your Presence.
+    \parspace
+    I thank you, for I live and move within You.
+    \parspace
+    I thank You, for I live in Your Life, Truth, Health,
+    Prosperity, Peace, Wisdom, Joy and Love.
+    \parspace
+    I thank You, for all who enter here will feel Your
+    Presence.
+    \parspace
+    I thank You, for I am in Harmony, Love, Truth and
+    Justice with all beings.
+    \parspace
+    Amen.
+  \endverse
+\endsong
+
+
+\beginsong{Prece de Carita}
+  \beginverse
+    Deus, nosso Pai que sois todo Poder e Bondade, Dai
+    a força aqueles que passam pela provação.
+    \parspace
+    Dai a luz àquele que procura a verdade.
+    \parspace
+    Ponde no coração do homem a compaixão e a caridade.
+    \parspace
+    Deus! Dai ao viajor a estrela guia; ao aflito,
+    a consolação; ao doente, o repouso!
+    \parspace
+    Pai, dai ao culpado, o arrependimento; ao espírito
+    a verdade; à criança, o guia; ao órfão, o pai!
+    \parspace
+    Senhor, que a Vossa bondade se estenda sobre tudo
+    que criastes.
+    \parspace
+    Piedade, Senhor, para aqueles que Vos não conhecem.
+    \parspace
+    Esperança para aqueles que sofrem.
+    \parspace
+    Que a Vossa bondade permita aos espíritos
+    consoladores derramarem por toda a parte a paz, a
+    esperança e a fé.
+    \parspace
+    Deus! Um raio, uma faísca do vosso amor pode abrasar
+    a terra.
+    \parspace
+    Deixai-nos beber na fonte dessa bondade fecunda
+    e infinita e todas as lágrimas secarão e todas as
+    dores se acalmarão.
+    \parspace
+    Um só coração, um só pensamento subirá até Vós,
+    como um grito de reconhecimento e de amor.
+    \parspace
+    Como Moisés sobre as montanha nós Vós esperamos
+    com os braços abertos.
+    \parspace
+    O Poder, o Bondade, o Beleza, o Perfeição, e
+    queremos de alguma sorte merecer a Vossa infinita
+    misericórdia.
+    \parspace
+    Deus, dai-nos a força de ajudar o progresso a fim
+    de subir-nos até Vós.
+    \parspace
+    Dai-nos a caridade pura, dai-nos a fé e a razão.
+    \parspace
+    Dai-nos a simplicidade que fará de nossas almas o
+    espelho aonde se deve refletir a Vossa imagem.
+    \parspace
+    Amém.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Prayer of Carita}
+    God, our Father who is all Power and Goodness,
+    give strength to those who are going through
+    their trials.
+    \parspace
+    Give light to those who are seeking truth.
+    \parspace
+    Put compassion and charity in the hearts of all
+    people.
+    \parspace
+    God, give the traveler the guiding star; the
+    afflicted consolation; the sick rest.
+    \parspace
+    Father, give the guilty repentance; the spirit
+    truth; the child a guide; the orphan a father.
+    \parspace
+    Lord, may Your goodness extend over all that You
+    created.
+    \parspace
+    Mercy, Lord, on those who don't know You; Hope
+    for those who suffer.
+    \parspace
+    May Your goodness allow the consoling spirits to
+    spread everywhere peace, hope and faith.
+    \parspace
+    God, a ray, a spark of your love can set the earth
+    ablaze.
+    \parspace
+    Let us drink in the fountain of this fertile and
+    infinite goodness, and all the tears will be dried
+    and all the pains will be soothed.
+    \parspace
+    One single  heart, one single thought will rise up
+    to You, like a cry of recognition and of love.
+    \parspace
+    Like Moses on the mountain, we await You with open
+    arms.
+    \parspace
+    Oh Power, oh Goodness, oh Beauty, oh Perfection,
+    and we want, in some way, to deserve Your infinite
+    mercy!
+    \parspace
+    God, give us the strength to help our progress that
+    in the end we may rise up to You.
+    \parspace
+    Give us pure Charity, give us Faith and Reason.
+    \parspace
+    Give us the simplicity that will make our souls the
+    mirror where Your image must be reflected.
+    \parspace
+    Amen.
+  \endverse
+\endsong
+
+
+\beginsong{Salve Rainha}
+  \beginverse
+    Deus Vós salve, oh! Rainha, Mãe de Misericórdia,
+    vida, doçura, esperança nossa, salve!
+    \parspace
+    A Vós bradamos, os degredados filhos de Eva.
+    \parspace
+    A Vós suspiramos, gemendo, e chorando neste vale de
+    lágrimas.
+    \parspace
+    Eia pois, advogada nossa, esses Vossos olhos
+    misericordiosos a nós volveis.
+    \parspace
+    E depois deste desterro mostrai nos Jesus.
+    \parspace
+    Bendito e o fruto do Vosso Ventre!
+    \parspace
+    Oh! Clemente, oh! Piedosa, oh! Doce, Sempre Virgem
+    Maria!
+    \parspace
+    Rogai a Deus por nós, Santíssima Mãe de Deus, para
+    que sejamos dignos de alcançar as promessas de nosso
+    Senhor Jesus Cristo, Senhor nosso.
+    \parspace
+    Amém. Jesus, Maria, e José.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Hail Holy Queen}
+    Hail Holy Queen, Mother of Mercy, our life, our
+    sweetness and our hope.
+    \parspace
+    To You do we cry, poor banished children of Eve;
+    \parspace
+    to You do we send up our sighs, mourning and weeping
+    in this valley of tears.
+    \parspace
+    Turn then, O most Gracious Advocate, Your eyes of
+    mercy towards us.
+    \parspace
+    And after this, our exile, show unto us the blessed
+    fruit of your womb, Jesus.
+    \parspace
+    O! Clement, o! loving, o! sweet Virgin Mary!
+    \parspace
+    Pray for us o Holy Mother of God, that we may be
+    worthy of the promises of our Lord Jesus Christ,
+    our Lord forever.
+    \parspace
+    Amen. Jesus, Mary and Joseph.
+  \endverse
+\endsong
+
+
+\beginsong{Encerramento}
+  \beginverse
+    Louvado seja Deus nas alturas!
+    \textnote{E todos respondem:}
+    Para que sempre seja louvada
+    a nossa Mãe Maria Santissima,
+    sobre toda a humanidade.
+    Amém.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Closing}
+    Praised be God in the Heights!
+    \textnote{And all respond:}
+    May our Mother, the Most Holy Mary,
+    be forever praised above all humanity.
+    Amen.
+  \endverse
+\endsong
+
+
+\beginsong{Sinal da Cruz}
+  \beginverse
+    \up{1}Pelo sinal da Santa Cruz,
+    \up{2}livrai-nos, Deus, nosso Senhor,
+    \up{3}dos nossos inimigos
+    \parspace
+    \up{4}Em nome do Pai,
+    \up{5}do Filho e
+    \up{6}do Espírito \up{7}Santo.
+    \parspace
+    Amém.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Sign of the Cross}
+    \up{1}By the sign of the Holy Cross,
+    \up{2}deliver us, God, our Lord,
+    \up{3}from our enemies
+    \parspace
+    \up{4}In the name of the Father,
+    \up{5}the Son, and
+    \up{6}the Holy \up{7}Spirit.
+    \parspace
+    Amen.
+  \endverse
+  \begin{note}
+    While speaking the prayer, synchronously make
+    the sign of the Cross with with your right thumb
+    on your \up{1}forehead,
+    on your \up{2}mouth, and
+    on your \up{3}chest.
+    \parspace
+    Then, with your right hand, touch
+    your \up{4}forehead,
+    your \up{5}chest,
+    your \up{6}left shoulder and \up{7}right shoulder.
+  \end{note}
+\endsong
