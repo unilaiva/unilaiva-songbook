@@ -1,0 +1,212 @@
+% Santo Daime: Preces
+% ===================
+%
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+% use Roman numerals for song (prayer) numbering:
+\renewcommand{\thesongnum}{\Roman{songnum}}
+% no chords here, so line spacing will be less:
+\chordsoff
+% separate verses (translations of the prayers) more:
+\versesep 30pt plus 0pt minus 8pt
+
+% Use this to specify a translation title within a verse, eg
+% \translationtitle{EN}{Greed}
+\newcommand{\translationtitle}[2]{
+  \textbf{[#1]} \textit{#2}\vspace{1.618034ex}
+}
+% Use this to create a vertical space between "paragraphs"
+%within verses:
+\newcommand{\parspace}{\vspace{1ex}}
+
+% Environment for a multiline note to be used within a song environment:
+\newenvironment{note}{%
+  \yesendsongvfill%
+  \vfill%
+  \beginverse*%
+  \small%
+  \begin{itshape}%
+}{%
+  \end{itshape}%
+  \endverse%
+}
+
+
+\beginsong{Sinal da Cruz}
+  \beginverse
+    \up{1}Pelo sinal da Santa Cruz
+    \up{2}Livrai-nos Deus, nosso Senhor
+    \up{3}Dos nossos inimigos
+    \parspace
+    \up{4}Em nome do Pai,
+    \up{5}do Filho e
+    \up{6}do Espírito \up{7}Santo.
+    \parspace
+    Amém.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Sign of the Cross}
+    \up{1}By the sign of the Holy Cross
+    \up{2}Deliver us God, our Lord
+    \up{3}From our enemies
+    \parspace
+    \up{4}In the name of the Father,
+    \up{5}the Son, and
+    \up{6}the Holy \up{7}Spirit.
+    \parspace
+    Amen.
+  \endverse
+  \begin{note}
+    While speaking the prayer, synchronously make
+    the sign of the Cross with with your right thumb
+    on your \up{1}forehead,
+    on your \up{2}mouth, and
+    on your \up{3}chest.
+    \parspace
+    Then, with your right hand, touch
+    your \up{4}forehead,
+    your \up{5}chest,
+    your \up{6}left shoulder and \up{7}right shoulder.
+  \end{note}
+\endsong
+
+
+\beginsong{Credo}
+  \beginverse
+    Creio em Deus Pai todo Poderoso,
+    Criador do Céu e da terra.
+    \parspace
+    Creio em Jesus Cristo, um só seu filho,
+    Nosso Senhor, o qual for concebido
+    por obra e graça do Espírito Santo.
+    Nasceu da Maria Virgem;
+    padeceu sob o poder de Pôncio Pilatos;
+    foi crucificado, morto e spultado.
+    Desceu aos infernos, ao terceiro dia
+    ressurgiu dos mortos, Subiu ao Céu e
+    Pai Todo-poderoso, de onde há de vir
+    a julgar os vivos e os mortos.
+    \parspace
+    Creio no Espirito Santo, na Santa Igreja,
+    na comunhão dos Santos, na remissão
+    dos pecados, na ressurreição da carne,
+    na vida eterna.
+    \parspace
+    Amém.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Creed}
+    I believe in God, the Father Almighty,
+    Creator of Heaven and earth.
+    \parspace
+    I believe in Jesus Christ, His only Son,
+    Our Lord, who was conceived through
+    the work and grace of the Holy Spirit.
+    He was born of the Virgin Mary;
+    suffered under the power of Pontius Pilate;
+    was crucified, died, and was buried.
+    He decended into Hell; on the third day
+    he rose again from the dead.
+    He ascended into Heaven and is
+    seated at the right hand of God,
+    the Father Almighty, from where He come
+    to judge the living and the dead.
+    \parspace
+    I believe in the Holy Spirit, the Holy Church,
+    the communion of Saints, the forgiveness of sins,
+    the resurrection of the body, and life everlasting.
+    \parspace
+    Amen.    
+  \endverse
+  \beginverse
+    \translationtitle{FI}{Uskontunnustus}
+    Minä uskon Jumalaan,
+    Isään, Kaikkivaltiaaseen,
+    taivaan ja maan Luojaan,
+    \parspace
+    ja Jeesukseen Kristukseen,
+    Jumalan ainoaan Poikaan, meidän Herraamme,
+    joka sikisi Pyhästä Hengestä,
+    syntyi neitsyt Mariasta,
+    kärsi Pontius Pilatuksen aikana,
+    ristiinnaulittiin, kuoli ja haudattiin,
+    astui alas tuonelaan,
+    nousi kolmantena päivänä kuolleista,
+    astui ylös taivaisiin,
+    istuu Jumalan, Isän, Kaikkivaltiaan, oikealla puolella
+    ja on sieltä tuleva tuomitsemaan eläviä ja kuolleita,
+    \parspace
+    ja Pyhään Henkeen,
+    pyhän yhteisen seurakunnan,
+    pyhäin yhteyden,
+    syntien anteeksiantamisen,
+    ruumiin ylösnousemisen
+    ja iankaikkisen elämän.
+    \parspace
+    Aamen.
+  \endverse
+\endsong
+
+
+\beginsong{Rosario I (trabalho officiais)}
+  \beginverse
+    \textnote{Ao rezar o terço, só diz a cada dezena:}
+    \parspace
+    Gloria ao Pai, ao Filho, ao Espírito Santo.
+    Assim como era no princípio, agora e sempre,
+    por todos os séculos dos séculos.
+    \parspace
+    Amém.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{The Rosary I (official work)}
+    \textnote{While praying the Rosary, after every decade:}
+    Glory to the Father, to the Son and to the Holy Spirit.
+    As it was in the beginning, is now, and ever shall be,
+    for all the ages.
+    \parspace
+    Amen.
+  \endverse
+\endsong
+
+
+\beginsong{Rosario II (Santa Missa)}
+  \beginverse
+    \textnote{Ao rezar o terço, só diz a cada dezena:}
+    \parspace
+    Gloria ao Pai, ao Filho, ao Espírito Santo.
+    Assim como era no princípio, agora e sempre,
+    por todos os séculos dos séculos.
+    \parspace
+    Amém.
+    \parspace\parspace
+    Oh! meu Jesus, perdoai-me, livrai-me do fogo do inferno.
+    Levai as almas todas para o Céu,
+    e soccorei principalmente aquelas que mais precísarem.
+    \parspace
+    Amém.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{The Rosary II (Santa Missa)}
+    \textnote{While praying the Rosary, after every decade:}
+    Glory to the Father, to the Son and to the Holy Spirit.
+    As it was in the beginning, is now, and ever shall be,
+    for all the ages.
+    \parspace
+    Amen.
+    \parspace\parspace
+    Oh my Jesus, forgive me, and save me from the fires of hell.
+    Lead all souls into heaven,
+    and especially help those in most need.
+    \parspace
+    Amen.
+  \endverse
+\endsong
+
