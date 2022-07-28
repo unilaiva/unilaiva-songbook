@@ -709,3 +709,102 @@
     For the force is a healing force
   \end{translation}
 \endsong
+
+
+\beginsong{Vim Pedir o Meu Perdão}[by={Gercila}, off={Geraldine}, key={Em}, sks={Em, Cm--Em}]
+  \audio[key=Em]{https://www.youtube.com/watch?v=c9BhGV-wuNs}
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Mi\[^\mn{F#}]nha |\[\mnc{G}Em]Mãe es\[\bmc\mn{F#}]tou \[^\mn{E}]a|\[\mnc{C}C]qui\[\bm] \altchords{\id[1]{(Dm)}|Dm |Bb }
+    \[^\mn{E}]Eu vim \[^\mn{F#}]pe|\[\mnc{G}Am7]{dir o} \[\bmc\mn{F#}]meu \[^\mn{E}]per|\[\mnc{B}B7]dão\[\bm] \altchords{|Gm7 |A7 }
+    \lrep \[^\mn{A}]Eu sei que |\[Am]Vós \[\mnc{B}Asus2]tem po|\[\mnc{E}Em]der \altchords{|Gm Gsus2 |Dm }
+    E \[\bmc\mn{G}]me dê |\[\mnc{F#}B7]se \[^\mn{G}]eu \[\bm\mn{A}]me\[^\mn{G}]re|\[\mnc{E}Em]cer\[\bm] \rrep \altchords{|A7 |Dm }
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Estou pas|^sando um ^julga|^men^to
+    Aqui no |^meio da es^curi|^dão^
+    \lrep Eu peço a |^Vós um en^tendi|^mento
+    ^Que é pa|^ra meu ^segui|^men^to \rrep
+  \endchorus
+  \beginchorus
+    Estou pas|^sando as ^amar|^gu^ras
+    Aqui em|^baixo ^neste |^chão^
+    \lrep Mas sei que |^Vós a^{i de} |^cima
+    ^Me es|^tende as ^vossas |^mãos^ \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, 2022-07
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key e \minor \time 4/4 \partial 4.
+      \parenthesize e8 \posectionmark "A" e8 fis8 | g4 g4 fis4 e4 | c2( 8)
+      e8 e8 fis8 | g4 g4 fis4 e4 | b2~8
+      \repeat volta 2 {
+        a'8 \sectionmark "B" a8 a8 | a4.( a8) b4. b8 | e,4. e8 g4. g8
+        | fis4. g8 a4. g8
+      } \alternative {
+        { | e2( 8) }
+        { | e2( 8) \dacapo }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \skip 1 Mi -- nha | Mãe es -- tou a -- | qui; __ _
+      Eu vim pe -- | dir o meu per -- | dão. __ _
+      \repeat volta 2 {
+        Eu sei que | Vós __ _ tem po -- | der;
+        E me dê | se eu me -- re --
+      } \alternative {
+        { | cer. __ _ }
+        { | cer. __ _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Es -- tou pas -- | san -- do~um jul -- ga -- | men -- to;
+      A -- qui no | meio da~es -- cu -- ri -- | dão. __ _
+      \repeat volta 2 {
+        Eu pe -- ço~a | Vós um~en -- ten -- di -- | men -- to;
+        Que~é pa -- | ra meu se -- gui --
+      } \alternative {
+        { | men -- to. }
+        { | men -- to. }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Es -- tou pas -- | san -- do~as a -- mar -- | gu -- ras;
+      A -- qui em -- | bai -- xo nes -- te | chão. __ _
+      \repeat volta 2 {
+        Mas sei que | Vós a -- i de | ci -- ma;
+        Me es -- | ten -- de~as vos -- sas
+      } \alternative {
+        { | mãos. __ _ }
+        { | mãos. __ _ }
+      }
+    }
+    theChords = \chordmode {
+      s4. | e1:m | c1 | a1:m7 | b2:7~8
+      \repeat volta 2 {
+        s4. | a2:m a2:sus2 | e1:m | b1:7
+      } \alternative {
+        { | e2:m~8 }
+        { | e2:m~8 }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    My mother I'm here, I came to ask for my forgiveness
+    I know you have power and give it to me if I deserve it
+    \nextverse
+    I'm passing a trial here in the middle of the darkness
+    I ask you for an understanding which is for my follow-up
+    \nextverse
+    I'm passing the bitterness down here on this floor
+    But I know that you from above extend your hands to me
+  \end{translation}
+\endsong
+
+
