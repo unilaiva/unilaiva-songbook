@@ -14,57 +14,94 @@
 \setcounter{songnum}{1}
 
 
-\beginsong{Examine a Consciência}[by={Padr. Sebastião},key={C},sks={D, C}]
+\beginsong{Examine a Consciência}[by={Padr. Sebastião}, key={C}, sks={D, C--E}]
   \audio[]{https://www.nossairmandade.com/hymn/1/ExamineAConsci\%C3\%AAncia}
   \audio[key={C},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=18s}
   \mnbeginchorus\memorize
-    \[^\mn{G}]E\[^\mn{C}]xa|\[\mnc{E}C]mine a \[^\mn{D}]con\[^\mn{C}]sci|\[\mnc{G}G]ência
-    E\[^\mn{C}]xa|\[\mnc{E}Am]mine \[^\mn{D}]di\[^\mn{C}]rei|\[\mnc{G}G]tinho
-    \[^\mn{C}]Sou |\[\mnc{E}C]Pai e \[^\mn{D}]não \[^\mn{C}]sou |\[\mnc{G}G]filho
-    Mas \[^\mn{C}]eu |\[\mnc{E}Am]não fa\[\mnc{D}G]ço \[^\mn{E}]as|\[\mnc{C}C]sim
+    \[^\mn{G}]E\[^\mn{C}]xa|\[\mnc{E}C]mine a \[\bmc\mn{D}]con\[^\mn{C}]sci|\[\mnc{G}G]ência \altchords{\id[1]{(D)}|D |A}
+    \[\bm]E\[^\mn{C}]xa|\[\mnc{E}Am]mine \[\bmc\mn{D}]di\[^\mn{C}]rei|\[\mnc{G}G]ti\[\bm]nho \altchords{|Bm |A}
+    \[^\mn{C}]Sou |\[\mnc{E}C]Pai e \[\bmc\mn{D}]não \[^\mn{C}]sou |\[\mnc{G}G]filho \altchords{|D |A}
+    \[\bm]Mas \[^\mn{C}]eu |\[\mnc{E}Am]não fa\[\mnc{D}G]ço \[^\mn{E}]as|\[\mnc{C}C]sim\[\bm] \altchords{|Bm A |D}
   \mnendchorus
   \notesoff
   \beginchorus
-    Cha|^mo de um a |^um \altchords{\id[2]{MK (C)} |C G7 |C}
-    A todos |^eu mostro o ca|^minho \altchords{|Am Dm7 |G}
-    Fa|^zendo como eu |^mando \altchords{|C G7 |C}
-    Tudo |^fica ^bem fa|^cinho \altchords{|Am G7 |C}
+    Cha|^mo de ^um a |^um
+    A ^todos |^eu mos^tro o ca|^mi^nho
+    Fa|^zendo ^como eu |^mando
+    ^Tudo |^fica ^bem fa|^ci^nho
   \endchorus
   \beginchorus
-    Todos |^podem se lem|^brar
-    Do |^tempo de No|^é
-    A dou|^trina do meu |^Pai
-    Eu en|^sino ^como |^é
+    Todos |^podem ^se lem|^brar^ \altchords{\id[3]{MK (C)} |C G7 |C}
+    Do |^tempo ^de No|^é ^ \altchords{|Am Dm7 |G}
+    \noteson \[\mnlow{G}]A \[\mnlow{C}]dou\notesoff|^trina ^do meu |^Pai \altchords{|C G7 |C}
+    ^Eu en|^sino ^como |^é ^ \altchords{|Am G7 |C}
   \endchorus
   \beginchorus
-    |^Vamos meus ir|^mãos
-    Vamos |^todos se humi|^lhar
-    Pe|^dir nosso per|^dão
-    Para nosso |^Pai nos ^perdo|^ar
+    |^Vamos ^meus ir|^mãos
+    ^Vamos |^todos se ^humi|^lhar^
+    Pe|^dir nos^so per|^dão
+    Para ^nosso |^Pai nos ^perdo|^ar ^
   \endchorus
   \beginchorus
-    Quem qui|^ser que se agu|^ente
-    Não tem |^{a quem} se quei|^xar
-    Eu |^bem que avi|^sei
-    Que ha|^via ^de che|^gar
+    Quem qui|^ser que se ^agu|^ente \altchords{\id[5]{simple (C)} |C G |C}
+    ^Não tem |^{a quem} ^se quei|^xar^ \altchords{| - G |C}
+    Eu |^bem que ^avi|^sei \altchords{| - G |C}
+    ^Que ha|^via ^de che|^gar^ \altchords{| - G |C}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        g8\pomark c | e4 e8 e8 d4 c4 | g4. g8 g4 c
-        | e4 e d c | g'2 g4 c,
-        | e4. e8 d4 c | g4. g8 g4 c
-        | e4 e d e | c2.
+        g8( \pomark << \parenthesize g) c >> | e4 e8( e8) d4 c4 | g4.( g8)( g4) c
+        | e4 e8( e8) d4 c | g'2( g4) \once\slurUp << \parenthesize g,8( c >> c8)
+        | e4. e8 d4 c | g4( g8)( g8) g4 c
+        | e4 e d e | c2( c4)
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       \repeat volta 2 {
         E -- xa -- | mi -- ne a con -- ci -- | ên -- cia;
-        E -- xa -- | mi -- ne di -- rei -- | tin -- ho;
-        Sou | Pai e não sou | fil -- ho;
-        Mas eu | não fa -- ço as -- | sim.
+        E -- xa -- | mi -- ne __ _ di -- rei -- | ti -- nho;
+        Sou __ _ | Pai e não sou | fil -- _ ho;
+        Mas eu | não fa -- ço as -- | sim. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Cha -- _ | mo de __ _ um a | um;
+        A to -- dos | eu mos -- _ tro~o ca | mi -- nho;
+        Fa -- _ | zen -- do co -- mo~eu | man -- _ do;
+        Tu -- do | fi -- ca bem fa -- | ci -- nho.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        To -- dos | po -- dem __ _ se lem -- | brar; __ _ _
+        Do | tem -- po __ _ de No -- | é; __ _
+        \parenthesize A dou -- | tri -- na do meu | Pai; __ _ _
+        Eu en -- | si -- no co -- mo | é. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        \skip 1 \skip 1 | Va -- mos __ _ meus ir -- | mãos; __ _
+        Va -- mos | to -- dos se hu -- mi -- | lhar; __ _
+        Pe -- _ | dir nos -- so per -- | dão;
+        Pa -- ra nos -- so | Pai nos per -- do -- | ar. __ _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        Quem qui -- | ser que se a -- gu -- | en -- te;
+        Não tem | a quem __ _ se quei -- | xar; __ _
+        Eu __ _ | bem que a -- vi -- | sei; __ _ _
+        Que ha -- | vi -- a de che -- | gar. __ _
       }
     }
     theChords = \chordmode {
@@ -75,7 +112,8 @@
         | a2:m g | c2.
       }
     }
-    \include "tex/lp-include-tail.ly"
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Examine your conscience; Examine it thoroughly
