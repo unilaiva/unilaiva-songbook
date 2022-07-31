@@ -12,7 +12,7 @@
 
 \audio{https://www.youtube.com/watch?v=NObHfoO_1d8}
 
-\beginsong{Pra Pilar}[by={Mestre Irineu Serra}, key=Bm, sks={Bm, Am--Cm}]
+\beginsong{Pra Pilar}[by={Mestre Irineu Serra}, key={Bm}, sks={Bm, Am--Cm}]
   \newchords{chords_prapilar_a}\newchords{chords_prapilar_b}
   \mnbeginverse\memorize[chords_prapilar_a]
     \[^\mn{D}]Dessa es\[\bm]trada de on\[^\mn{F#}]de eu |\[\mnc{A}A]venho, \[\bmc\mn{F#}]pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{\id[1]{(Dm)}|C |Dm}
@@ -44,7 +44,7 @@
         d8 \sectionmark "B" d8 d8 d8 e8 fis8 d8 | e8 e8 e8 d8 e8 e8 e8 d8
       } \alternative {
         { | b8 }
-        { | b4 \dacapo \bar "|." }
+        { | b4 \bar "|." }
       }
     }
     theLyricsOne = \lyricmode {
@@ -99,6 +99,62 @@
     I look like I am a king, to ponder; that will be enchanted, to ponder
     \nextverse
     It is to ponder, I am pondering, I am pondering, it is to ponder
+  \end{translation}
+\endsong
+
+
+\beginsong{Cachiado}[by={Mestre Irineu Serra}, key={Bm}, sks={Bm, G\#m--Bm}, tags={3x}]
+  \musicnote{Tocar 3 vezes}
+  \mnbeginchorus
+    \[\mn{B}]Ca\[\mn{C#}]che|\[\mnc{D}D]a\[\mn{B}]do \[\bmc\mn{D}]ve\[\mn{C#}]nha |\[\mnc{B}Bm]cá \altchords{\id[1]{(Am)}|C |Am}
+    \[\bm]Car\[\mn{C#}]ra|\[\mnc{D}D]cá \[\mn{C#}]car\[\mnc{B}F#7]ra \[\mn{A#}]cá |\[\mnc{B}Bm]cá \altchords{|C E7 |Am}
+  \mnendchorus\glueverses\mnbeginchorus
+    \[\bmc\mn{B}]Carra|\[\mnc{E}Em]cá car\[\bmc\mn{G}]ra cá |\[\mnc{B}Bm]cá \altchords{|Dm |Am}
+    \[\bmc\mn{F#}]Car\[\mn{G}]ra|\[\mnc{F#}F#7]cá \[\mn{E}]car\[\bmc\mn{D}]ra \[\mn{C#}]cá |\[\mnc{/}Bm]cá \altchords{|E7 |Am}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key b \minor \time 4/4 \partial 2
+      \repeat volta 2 {
+        b4 \posectionmark "A" cis | d4. b8 d4 cis | b2 b4 cis
+        | d cis b ais | b2
+      }
+      \repeat volta 2 {
+        b4 \sectionmark "B" b | e e g g | b2 fis4 g
+        | fis e d cis
+      } \alternative {
+        { | d2 }
+        { | b2 \dacapo \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        Ca -- che -- | a -- do ve -- nha | cá;
+        Car -- ra -- | cá car -- ra cá | cá.
+      }
+      \repeat volta 2 {
+        Car -- ra -- | cá car -- ra cá | cá;
+        Car -- ra -- | cá car -- ra cá | cá.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2 | d1 | b:m | d2 fis2:7 | b2:m
+      }
+      \repeat volta 2 {
+        s2 | e1:m | b:m | fis:7
+      } \alternative {
+        { | b2:m }
+        { | b2:m }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Cacheado come here, Carracá carra cá cá
+    Carracá carra cá cá, Carracá carra cá cá
   \end{translation}
 \endsong
 
