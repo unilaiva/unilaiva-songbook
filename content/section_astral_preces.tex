@@ -17,6 +17,11 @@
 % separate verses (translations of the prayers) more:
 %\versesep 30pt plus 0pt minus 8pt
 
+% Use this to specify a subtitle -- used in Pai nosso + Ave Maria
+\newcommand{\subtitle}[1]{
+  \vspace{3ex}\textbf{\textit{#1}}\vspace{1.618034ex}
+}
+
 % Use this to specify a translation title within a verse, eg
 % \translationtitle{EN}{Greed}
 \newcommand{\translationtitle}[2]{
@@ -212,8 +217,9 @@
 \endsong
 
 
-\beginsong{Pai nosso}
+\beginsong{Pai nosso + Ave Maria}
   \beginverse
+    \subtitle{Pai nosso}
     Pai nosso,
     que estais no Céu,
     santificado seja o Vosso Nome.
@@ -230,6 +236,20 @@
     Amém, Jesus, Maria, José.
   \endverse
   \beginverse
+    \subtitle{Ave Maria}
+    Ave Maria,
+    cheia de Graça!
+    O Senhor é convosco.
+    Bendita sois Vós entre as mulheres.
+    Bendito é o fruto do Vosso ventre, Jesus.
+    Santa Maria, Mãe de Deus,
+    rogai a Deus por nos pecadores,
+    agora e na hora de nossa morte.
+    \parspace
+    Amém, Jesus, Maria, José.
+  \endverse
+  \brk
+  \beginverse
     \translationtitle{EN}{Our Father}
     Our Father,
     who art in Heaven,
@@ -245,22 +265,6 @@
     from all evil.
     \parspace
     Amen, Jesus, Mary, Joseph.
-  \endverse
-\endsong
-
-
-\beginsong{Ave Maria}
-  \beginverse
-    Ave Maria,
-    cheia de Graça!
-    O Senhor é convosco.
-    Bendita sois Vós entre as mulheres.
-    Bendito é o fruto do Vosso ventre, Jesus.
-    Santa Maria, Mãe de Deus,
-    rogai a Deus por nos pecadores,
-    agora e na hora de nossa morte.
-    \parspace
-    Amém, Jesus, Maria, José.
   \endverse
   \beginverse
     \translationtitle{EN}{Hail Mary}
@@ -281,29 +285,33 @@
 \beginsong{Chave de Harmonia}
   \beginverse
     Desejo Harmonia, Amor, Verdade e Justiça a todos os
-    meus irmãos. Com as forças reunidas das silenciosas
-    vibrações dos nossos pensamentos, somos fortes,
-    sádios e felizes, formando assim um elo de
-    fraternidade universal. Estou satisfeito e em paz
-    com o universo inteiro e desejo que todos os seres
-    realizam as suas aspirações mais íntímas. Dou graças
-    ao Pai Invisivel por ter estabelecido a Harmonia,
-    o Amor, a Verdade e a Justiça entre todos os seus
-    filhos.
+    meus irmãos.
+    \ind Com as forças reunidas das silenciosas vibrações
+    dos nossos pensamentos, somos fortes, sádios e
+    felizes, formando assim um elo de fraternidade
+    universal.
+    \ind Estou satisfeito e em paz com o universo inteiro
+    e desejo que todos os seres realizam as suas
+    aspirações mais íntímas.
+    \ind Dou graças ao Pai Invisivel por ter estabelecido
+    a Harmonia, o Amor, a Verdade e a Justiça entre
+    todos os seus filhos.
     \parspace
     Assim seja, Amém.
   \endverse
   \beginverse
     \translationtitle{EN}{Key of Harmony}
     I wish Harmony, Love, Truth and Justice to all my
-    brothers and sisters. With the united forces of the
-    silent vibrations of our thoughts, we are strong,
-    healthy and happy, thus forming a link of universal
-    fraternity. I am satisfied and in peace with the
-    whole universe, and I wish that all beings achieve
-    their most intimate aspirations. I give thanks to
-    my Invisible Father for having established Harmony,
-    Love, Truth and Justice among all his children.
+    brothers and sisters.
+    \ind With the united forces of the silent vibrations
+    of our thoughts, we are strong, healthy and happy,
+    thus forming a link of universal fraternity.
+    \ind I am satisfied and in peace with the whole
+    universe, and I wish that all beings achieve their
+    most intimate aspirations.
+    \ind I give thanks to my Invisible Father for having
+    established Harmony, Love, Truth and Justice among
+    all his children.
     \parspace
     So be it, Amen.
   \endverse
@@ -320,7 +328,7 @@
     Quem quer que aqui entre, sentirá as vibrações da
     Divina Harmonia.
     \parspace
-    Há uma só presença aqui --- e a do AMOR. Deus é o
+    Há uma só presença aqui --- é a do AMOR. Deus é o
     Amor que envolve todos os seres num só sentimento
     de unidade. Este recinto está cheio da presença do
     Amor. No Amor eu vivo, me movo e existo. Quem quer
@@ -343,7 +351,7 @@
     Deus. Deus, o Bem, reside aqui. Quem quer que aqui
     entre, sentirá a Presença Divina do Bem.
     \parspace
-    Há uma só presença aqui --- e a presença de Deus,
+    Há uma só presença aqui --- é a presença de Deus,
     a VIDA. Deus é a Vida essencial de todos os seres.
     É a saúde do corpo e da mente. Quem quer que aqui
     entre, sentirá a Divina Presença da Vida e da Saúde.
@@ -356,7 +364,7 @@
     a Divina Presença da Prosperidade e da Abundância.
     \parspace
     Pelo símbolo esotérico das Asas Divinas, estou
-    em vibração harmoniosa com as correntes universais
+    em vibração harmoniosa com as Correntes Universais
     da Sabedoria, do Poder e da Alegria. A Presença
     da Divina Sabedoria manifesta-se aqui. A presença
     da Alegria Divina é profundamente sentida por todos
@@ -365,29 +373,29 @@
     Na mais perfeita comunhão entre o meu eu inferior
     e o meu Eu Superior, que é Deus em mim, consagro
     este recinto à perfeita expressão de todas as
-    qualidades divinas que há em mim, e em todos os
+    qualidades Divinas que há em mim, e em todos os
     seres.
     \parspace
     As vibrações do meu pensamento são forças de Deus
     em mim, que aqui ficam armazenadas e daqui se
     irradiam para todos os seres, constituindo este
     lugar um centro de emissão e recepção de tudo
-    quanto é Bom, Alegre, e Próspero.
+    quanto é BOM, ALEGRE, e PRÓSPERO.
     \parspace
     \textbf{ORAÇÃO}
     \parspace
-    Agradeço-te o Deus, porque este recinto está cheio
+    Agradeço-Te o Deus, porque este recinto está cheio
     da Tua Presença.
     \parspace
-    Agradeço-te, porque vivo e me movo por Ti.
+    Agradeço-Te, porque vivo e me movo por Ti.
     \parspace
-    Agradeço-te, porque vivo em tua Vida, Verdade e
+    Agradeço-Te, porque vivo em tua Vida, Verdade e
     Saúde, Prosperidade, Paz, Sabedoria, Alegria e Amor.
     \parspace
-    Agradeço-te, porque todos que entrarem aqui sentirão
+    Agradeço-Te, porque todos que entrarem aqui sentirão
     Tua Presença.
     \parspace
-    Agradeço-te, porque estou em Harmonia, Amor, Verdade
+    Agradeço-Te, porque estou em Harmonia, Amor, Verdade
     e Justiça com todos os seres.
     \parspace
     Amém.
@@ -395,73 +403,74 @@
   \brk
   \beginverse
     \translationtitle{EN}{Consecration of the Space}
-    In the Infinite Circle of the Divine Presence which
-    completely envelopes me, I affirm that:
+    Inside the Infinite Circle of the Divine Presence
+    which completely surrounds me, I affirm that:
     \parspace
     There is only one presence here --- it is HARMONY,
-    which makes all hearts vibrate with happiness and
-    joy. Whoever enters here will feel the vibration
+    which makes all hearts vibrate with joy and happiness.
+    Those who choose to enter here will feel the vibration
     of Divine Harmony.
     \parspace
     There is only one presence here --- it is LOVE.
-    God is love, which envelops all beings in a single
+    God is love, which embraces all beings in one
     feeling of unity. This space is filled with the
-    presence of love. In Love, I live, I move and I
-    exist. Whoever enters here will feel the pure and
-    holy Presence of Love.
+    presence of Love. In Love, I live, I move and I
+    exist. Those who choose to enter here will feel
+    the pure and holy Presence of Love.
     \parspace
     There is only one presence here --- it is TRUTH.
     All that exists here, all that is spoken here,
     all that is thought here is the expression of
-    Truth. Whoever enters here will feel the Presence
-    of Truth.
+    Truth. Those who choose to enter here will feel
+    the Presence of Truth.
     \parspace
     There is only one presence here --- it is JUSTICE.
-    Justice reigns in this space. Every act practiced
-    here is ruled and inspired by Justice. Whoever
-    enters here will feel the Presence of Justice.
+    Justice reigns in this space. Everything practiced
+    here is inspired and ruled by Justice. Those who
+    choose to enter here will feel the Presence of
+    Justice.
     \parspace
     There is only one presence here --- it is the
-    presence of God, who is GOODNESS. No evil can enter
-    here. There is no evil in God. God, who is Goodness,
-    dwells here. Whoever enters here will feel the
-    Divine Presence of Goodness.
+    presence of God, the BENEFICIENT. No evil can enter
+    here. There is no evil in God. God, the Beneficient,
+    dwells here. Those who choose to enter here will
+    feel the Divine Presence of the Beneficient.
     \parspace
     There is only one presence here --- it is the
     presence of God, who is LIFE. God is the essential
-    Life of all beings. He is the health of body and
-    mind. Whoever enters here will feel the Divine
-    Presence of life and Health.
+    Life of all beings, the health of body and mind.
+    Those who choose to enter here will feel the Divine
+    Presence of Life and Health.
     \parspace
     There is only one presence here --- it is the
     presence of God, who is PROSPERITY. God is
     Prosperity because He makes everything grow and
     prosper. God expresses Himself through the
-    Prosperity of all that is carried out in His name.
-    Whoever enters here will feel the Divine Presence
-    of Prosperity and Abundance.
+    Prosperity of all that is undertaken in His name.
+    Those who choose to enter here will feel the
+    Divine Presence of Prosperity and Abundance.
     \parspace
     Through the esoteric symbol of the Divine Wings,
     I am in harmonious vibration with the universal
     currents of Wisdom, Power and Joy. The Presence
     of Divine Wisdom is manifested here. The Presence
-    of Divine Joy is deeply felt by all those who enter
-    here.
+    of Divine Joy is deeply felt by all those who choose
+    to enter here.
     \parspace
     In the perfect communion between my lower self and
     my Higher Self, which is God in me, I consecrate
-    this space to the perfect expression of all divine
+    this space to the perfect expression of all Divine
     qualities which are in me and in all beings.
     \parspace
     The vibrations of my thoughts are the forces of God
-    in me, which are stored here and hence radiated to
+    in me, which are stored here and hence radiate to
     all beings, thus establishing this place as a center
-    of giving and receiving of all that is Good, Joyful
-    and Prosperous.
+    of giving and receiving of all that is GOOD, JOYFUL
+    and PROSPEROUS.
     \parspace
     \textbf{PRAYER}
     \parspace
-    I thank You, Oh God, for this space is filled with
+    I thank You, oh God, for this space is filled with
     Your Presence.
     \parspace
     I thank you, for I live and move within You.
@@ -469,8 +478,8 @@
     I thank You, for I live in Your Life, Truth, Health,
     Prosperity, Peace, Wisdom, Joy and Love.
     \parspace
-    I thank You, for all who enter here will feel Your
-    Presence.
+    I thank You, for all those who enter here will feel
+    Your Presence.
     \parspace
     I thank You, for I am in Harmony, Love, Truth and
     Justice with all beings.
@@ -613,7 +622,7 @@
     sobre toda a humanidade.
     Amém!
   \endverse
-  \beginverse
+  \beginverse\small
     \translationtitle{EN}{Closing}
     Praised be God in the Heights!
     \textnote{And all respond:}
@@ -636,28 +645,28 @@
     \parspace
     Amém.
   \endverse
-  \beginverse
+  \beginverse\small
     \translationtitle{EN}{Sign of the Cross}
-    \up{1}By the sign of the Holy Cross,
-    \up{2}deliver us, God, our Lord,
-    \up{3}from our enemies
+    By the sign of the Holy Cross,
+    deliver us, God, our Lord,
+    from our enemies
     \parspace
-    \up{4}In the name of the Father,
-    \up{5}the Son, and
-    \up{6}the Holy \up{7}Spirit.
+    In the name of the Father,
+    the Son, and
+    the Holy Spirit.
     \parspace
     Amen.
   \endverse
-  \begin{note}
-    While speaking the prayer, synchronously make
-    the sign of the Cross with with your right thumb
-    on your \up{1}forehead,
-    on your \up{2}mouth, and
-    on your \up{3}chest.
-    \parspace
-    Then, with your right hand, touch
-    your \up{4}forehead,
-    your \up{5}chest,
-    your \up{6}left shoulder and \up{7}right shoulder.
-  \end{note}
+%   \begin{note}
+%     While speaking the prayer, synchronously make
+%     the sign of the Cross with with your right thumb
+%     on your \up{1}forehead,
+%     on your \up{2}mouth, and
+%     on your \up{3}chest.
+%     \parspace
+%     Then, with your right hand, touch
+%     your \up{4}forehead,
+%     your \up{5}chest,
+%     your \up{6}left shoulder and \up{7}right shoulder.
+%   \end{note}
 \endsong
