@@ -1,0 +1,104 @@
+% Santo Daime: Hinos Diversões do Mestre
+% ======================================
+%
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+\audio{https://www.youtube.com/watch?v=NObHfoO_1d8}
+
+\beginsong{Pra Pilar}[by={Mestre Irineu Serra}, key=Bm, sks={Bm, Am--Cm}]
+  \newchords{chords_prapilar_a}\newchords{chords_prapilar_b}
+  \mnbeginverse\memorize[chords_prapilar_a]
+    \[^\mn{D}]Dessa es\[\bm]trada de on\[^\mn{F#}]de eu |\[\mnc{A}A]venho, \[\bmc\mn{F#}]pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{\id[1]{(Dm)}|C |Dm}
+    \[^\mn{D}]Venho da \[\bm]terra do ci|\[\mnc{F#}F#7]gano, \[\bmc\mn{E}]pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{|A7 |Dm}
+    \[^\mn{D}]A Ra\[\bm]inha me \[^\mn{F#}]man|\[\mnc{A}A]dou, \[\bmc\mn{F#}]pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{|C |Dm}
+    \[^\mn{D}]Eu pas\[\bm]sar aqui can|\[\mnc{F#}F#7]tando, \[\bmc\mn{E}]pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{|A7 |Dm}
+  \mnendverse\glueverses\mnbeginchorus\memorize[chords_prapilar_b]
+    \[^\mn{D}]É pra pi\[\bm]lar \[^\mn{E}]es\[^\mn{F#}]tou \[^\mn{D}]pi|\[\mnc{E}A]lando \altchords{|C}
+    Estou \[^\mn{D}]pi\[\bmc\mn{E}]lando é pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{|Dm}
+  \mnendchorus
+  \notesoff
+  \beginverse\replay[chords_prapilar_a]
+    Passan^do por entre as |^flores, ^pra pi|^lar
+    Vejo um ^retrato or|^nado, ^pra pi|^lar
+    Me pa^rece ser um |^rei, ^pra pi|^lar
+    Que esta^rá ali encan|^tado, ^pra pi|^lar
+  \endverse\glueverses\beginchorus\replay[chords_prapilar_b]
+    É pra pi^lar estou pi|^lando
+    Estou pi^lando é pra pi|^lar
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative f'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key b \minor \time 4/4 \partial 2.
+      d8 \posectionmark "A" d8 d8 d8 d8 fis8 | a4. a8 fis4. d8 | b4 d8 d8 d8 d8 d8 d8 | fis4. fis8 e4. d8
+      | b4 d8 d8 d8 d8 d8 fis8 | a2 fis4. d8 | b4 d8 d8 d8 d8 d8 d8 | fis4. fis8 e4. d8
+      | b8
+      \repeat volta 2 {
+        d8 \sectionmark "B" d8 d8 d8 e8 fis8 d8 | e8 e8 e8 d8 e8 e8 e8 d8
+      } \alternative {
+        { | b8 }
+        { | b4 \dacapo \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Des -- sa~es -- tra -- da de~on -- de~eu | ve -- nho, pra pi -- | lar;
+      Ve -- nho~da ter -- ra do ci -- | ga -- no, pra pi -- | lar;
+      A Ra -- i -- nha me man -- | dou, pra pi -- | lar;
+      Eu pas -- sar a -- qui can -- | tan -- do, pra pi -- | lar.
+      \repeat volta 2 {
+        \set stanza = "1.B"
+        É pra pi -- lar es -- tou pi -- | lan -- do;~Es
+        tou pi -- lan -- do~é pra pi --
+      } \alternative {
+        { | lar. }
+        { | lar. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Pas -- san -- do por en -- tre~as | flo -- res, pra pi -- | lar;
+      Ve -- jo~um re -- tra -- to or -- | na -- do, pra pi -- | lar;
+      Me pa -- re -- ce ser um | rei, pra pi -- | lar;
+      Que~es -- ta -- rá~a -- li en -- can -- | ta -- do, pra pi -- | lar.
+      \repeat volta 2 {
+        \set stanza = "2.B"
+        É pra pi -- lar es -- tou pi -- | lan -- do;~Es
+        tou pi -- lan -- do~é pra pi --
+      } \alternative {
+        { | lar. }
+        { | lar. }
+      }
+    }
+    theChords = \chordmode {
+      s2. | a1 | b:m | fis:7 | b:m | a | b:m | fis:7 | b8:m
+      \repeat volta 2 {
+        s2.~s8 | a1
+      } \alternative {
+        { | b8:m }
+        { | b4:m }
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    This path from where I come, to ponder; I come from the lands of the gypsies, to ponder
+    The Queen ordered me, to ponder; for me to pass here singing, to ponder
+    \nextverse
+    It is to ponder, I am pondering, I am pondering, it is to ponder
+    \nextverse
+    Passing between the flowers, to ponder; I see a ornate portrait, to ponder
+    I look like I am a king, to ponder; that will be enchanted, to ponder
+    \nextverse
+    It is to ponder, I am pondering, I am pondering, it is to ponder
+  \end{translation}
+\endsong
+
