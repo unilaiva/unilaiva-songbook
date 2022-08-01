@@ -134,105 +134,181 @@
 \endsong
 
 
-\beginsong{A meu Pai Peço Firmeza}[by={Padr. Sebastião},tags={á capela, de pé},key={C},sks={D, C}]
+\beginsong{A meu Pai Peço Firmeza}[by={Padr. Sebastião}, tags={á capela, de pé}, key={C}, sks={D, C--E}]
   \audio[]{https://www.nossairmandade.com/hymn/2/AMeuPaiPe\%C3\%A7oFirmeza}
   \audio[key={D},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=180s}
   \beginchorus
-    \[\mnlow{G}]A meu |\[\mnlow{C}]Pai peço \[\mnlow{E}]fir|\[\mnlow{G}]me\[\mnlow{C}]za
-    E não |\[\mnlow{E}]saia \[\mnlow{C}]da \[\mnlow{A}\mnlow{G}]min\[\mnlow{C}]ha |mente
+    \[\mnlow{G}]A meu |\[\mnlow{C}]Pai pe\[\bm]ço \[\mnlow{E}]fir|\[\mnlow{G}]m\[\bm]e\[\mnlow{C}]za
+    E não |\[\mnlow{E}]saia \[\mnlow{C}]da \[\bmc\mnlow{A}\mnlow{G}]min\[\mnlow{C}]ha |men\[\bm]te
   \endchorus\glueverses\beginchorus
-    \[\mnlow{C}]Dou en|\[\mnlow{E}]sino \[\mnlow{C}]a \[\mnlow{A}]quem \[\mnlow{G}]não |sabe
-    \[\mnlow{C}]E a\[\mnlow{D}]con|selho \[\mnlow{C}]os \[\mnlow{A}]i\[\mnlow{C}]no|centes
+    \[\mnlow{C}]Dou en|\[\mnlow{E}]sino \[\mnlow{C}]a \[\bmc\mnlow{A}]quem \[\mnlow{G}]não |s\[\bm]abe
+    \[\mnlow{C}]E a\[\mnlow{D}]con|selho \[\mnlow{C}]os \[\bmc\mnlow{A}]i\[\mnlow{C}]no|cen\[\bm]tes
   \endchorus
   \notesoff\chordsoff\measureson
   \beginchorus
-    Meu |Pai a ti eu |peço
-    E não |saio do meu lu|gar
+    Meu |Pai a \[\bm]ti eu |p\[\bm]eço
+    E não |saio do \[\bm]meu lu|gar\[\bm]
   \endchorus\glueverses\beginchorus
-    Dai-me |força e dai-me a|mor
-    Para eu |poder traba|lhar
+    Dai-me |força e \[\bm]dai-me a|mor\[\bm]
+    Para eu |poder \[\bm]traba|lhar\[\bm]
   \endchorus
   \beginchorus
-    Meu |Pai a ti eu |peço
-    E |aos teus pés es|tou
+    Meu |Pai a \[\bm]ti eu |p\[\bm]eço
+    E |aos teus \[\bm]pés es|tou\[\bm]
   \endchorus\glueverses\beginchorus
-    Ro|gando pelo |povo
-    Para |ser merece|dor
+    Ro|gando \[\bm]pelo |p\[\bm]ovo
+    Para |ser me\[\bm]rece|dor\[\bm]
   \endchorus
   \beginchorus
-    Oh! |Minha Virgem |Mãe
-    Oh! |Virgem prote|tora
+    Oh! |Minha \[\bm]Virgem |Mãe\[\bm]
+    Oh! |Virgem \[\bm]prote|to\[\bm]ra
   \endchorus\glueverses\beginchorus
-    És |Rainha do |mar
-    És |minha profes|sora
+    És |Rai\[\bm]nha do |mar\[\bm]
+    És |minha \[\bm]profes|so\[\bm]ra
   \endchorus
   \beginchorus
-    Oh! |Meu bendito |Pai
-    Oh! |Meu Jurami|dam
+    Oh! |Meu ben\[\bm]dito |Pai\[\bm]
+    Oh! |Meu Ju\[\bm]rami|dam\[\bm]
   \endchorus\glueverses\beginchorus
-    Cha|ma de um a |um
-    Para re|ceber o per|dão
+    Cha|ma de \[\bm]um a |um\[\bm]
+    Para re|ceber \[\bm]o per|dão\[\bm]
   \endchorus
   \beginchorus
-    Se |todos conhe|cessem
-    O po|der que meu Pai |tem
+    Se |todos \[\bm]conhe|ces\[\bm]sem
+    O po|der que \[\bm]meu Pai |tem\[\bm]
   \endchorus\glueverses\beginchorus
-    Dei|xavam a ilu|são
-    Que é |coisa que não con|vém
+    Dei|xavam a \[\bm]ilu|são\[\bm]
+    Que é |coisa que \[\bm]não con|vém\[\bm]
   \endchorus
   \brk
   \beginchorus
-    O |mundo está em ba|lanço
-    E |tudo vai balan|çar
+    O |mundo está \[\bm]em ba|la\[\bm]nço
+    E |tudo vai \[\bm]balan|çar\[\bm]
    \endchorus\glueverses\beginchorus
-    Mas |nos pés do meu |Pai
-    Todos |têm que se cur|var
+    Mas |nos pés \[\bm]do meu |Pai\[\bm]
+    Todos |têm que \[\bm]se cur|var\[\bm]
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        g8\sectionmark "A" g | c4. c8 c4. e8 | g2~ g8 c,8 c8 c8
-        | e4 e8 c8 a8( g4) c8 | c2 c4
+        g8( \sectionmark "A" g) | c8( c8 c8) c8 c4. e8 | g2~ g8 \parenthesize c,8 c8( c8)
+        | e4( e8) c8 \once\slurSolid a8( g4) c8 | c2( c4)
       } \break
       \repeat volta 2 {
-        c8\sectionmark "B" c8 | e4 e8 c8 a4. g8 | g2~ g8 c8 c8 d8
-        | d4. c8 a4. c8 | c2 c4
+        c8( \sectionmark "B" c8) | e4( e8) c8 a4. g8 | g2~ g8 \parenthesize c8 c8 d8
+        | d4( d8) c8 a4. c8 | c2( c4)
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       \repeat volta 2 {
-        A meu | Pai pe -- ço fir -- | me -- za;
-        E não | sai -- a da min -- ha | men -- te;
+        A meu | Pai __ _ _ pe -- ço fir -- | me -- _ za;
+        E não | sai -- a da mi -- _ nha | men -- te;
       }
+      \set stanza = "1.B"
       \repeat volta 2 {
-        Dou en -- | si -- no a quem não | sa -- be;
-        E~a -- con -- | selho os i -- no -- | cen -- tes.
+        Dou en -- | si -- no a quem não | sa -- _ be;
+        E~a -- con -- | se -- _ lho~os i -- no -- | cen -- tes.
       }
     }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Meu __ _ | Pai __ _ _ a ti eu | pe -- _ ço;
+        E não | sai -- o do meu __ _ lu -- | gar. __ _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Dai- -- me | for -- ça e dai- me~a -- | mor; __ _
+        Pa -- ra eu | po -- _ der tra -- ba -- | lhar. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Meu __ _ | Pai __ _ _ a ti eu | pe -- _ ço;
+        E __ _ | aos __ _ teus pés __ _ es -- | tou. __ _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Ro -- _ | gan -- _ do pe -- lo | po -- _ vo;
+        Pa -- ra | ser __ _ me -- re -- ce -- | dor. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Oh! __ _ | Mi -- _ _ nha Vir -- gem | Mãe; __ _
+        \skip 1 Oh! __ _ | Vir -- _ gem pro -- _ te -- | to -- ra.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        És __ _ | Ra -- _ i -- nha do | mar; __ _
+        \skip 1 És __ _ | mi -- _ nha pro -- fes -- | so -- ra.
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        Oh! __ _ | Meu __ _ _ ben -- di -- to | Pai; __ _
+        \skip 1 Oh! __ _ | Meu __ _ Ju -- ra -- _ mi -- | dam. __ _
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        Cha -- _ | ma __ _ de um a | um; __ _
+        Pa -- ra re -- | ce -- _ ber o per -- | dão. __ _
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6.A"
+      \repeat volta 2 {
+        Se __ _ | to -- _ _ dos co -- nhe -- | ces -- _ sem;
+        O po -- | der __ _ que meu __ _ Pai | tem. __ _
+      }
+      \set stanza = "6.B"
+      \repeat volta 2 {
+        Dei -- _ | xa -- vam a i -- lu -- | são; __ _
+        \skip 1 Que é | coi -- sa que não con -- | vém. __ _
+      }
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7.A"
+      \repeat volta 2 {
+        O __ _ | mun -- do es -- tá em ba -- | lan -- _ ço;
+        E __ _ | tu -- do vai ba -- _ lan -- | çar. __ _
+      }
+      \set stanza = "7.B"
+      \repeat volta 2 {
+        Mas __ _ | nos __ _ pés do meu | Pai; __ _
+        \skip 1 To -- dos | têm __ _ que se cur -- | var. __ _
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
-    From my Father I ask for firmness
-    And He never leaves my mind
-    I teach those who don‘t know
-    And I advise the innocents
+    From my Father I ask for firmness, and He never leaves my mind
+    I teach those who don‘t know, and I advise the innocents
     \nextverse
-    My Father, I ask You
-    And I don‘t leave my place
-    Give me strength and give me love
-    So that I can work
+    My Father, I ask You, and I don't leave my place
+    Give me strength and give me love, so that I can work
     \nextverse
-    My Father, I ask You
-    And I am at Your feet
-    Praying for the people
-    For them to be deserving
+    My Father, I ask You, and I am at Your feet
+    Praying for the people, for them to be deserving
     \nextverse
-    Oh! My Virgin Mother
-    Oh! Virgin Protectress
-    You are Queen of the sea
-    You are my Professor
+    Oh! my Virgin Mother, oh! Virgin Protectress
+    You are Queen of the sea, You are my Professor
+    \nextverse
+    Oh! my Father, oh! my Juramidam
+    He calls one by one, to receive forgiveness
+    \nextverse
+    If all knew the power that my Father has
+    They would drop illusion, which is something not worthwhile
+    \nextverse
+    The world is being shaken, and everything is going to shake
+    But at the feet of my Father everyone must bow
   \end{translation}
 \endsong
 
