@@ -313,82 +313,88 @@
 \endsong
 
 
-\beginsong{Eu Vivo com meu Mestre}[by={Padr. Sebastião},key={C},sks={D, C}]
+\beginsong{Eu Vivo com meu Mestre}[by={Padr. Sebastião}, key={C}, sks={D, C--F\#}]
   \audio[]{https://www.nossairmandade.com/hymn/3/EuVivoComMeuMestre}
   \audio[key={C},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=454s}
   % Note: This hino might be sometimes sung two times?
   \newchords{chords_euvivocom_a}\newchords{chords_euvivocom_b}
   \mnbeginchorus\memorize[chords_euvivocom_a]
-    \[^\mn{G}]Eu |\[\mnc{C}C]vivo \[\mnc{A}Am]com \[^\mn{C}]meu |\[\mnc{G}G]Mestre
-    \[^\mn{C}]Eu |\[\mnc{E}Am]vi\[^\mn{C}]vo com \[\mnc{A}F]meus \[^\mn{C}]ir|\[C]mãos
+    \[^\mn{G}]Eu |\[\mnc{C}C]vivo \[\mnc{A}Am]com \[^\mn{C}]meu |\[\mnc{G}G]Mes\[\bm]tre \altchords{\id[1]{(D)} |D Bm |A}
+    \[^\mn{C}]Eu |\[\mnc{E}Am]vi\[^\mn{C}]vo com \[\mnc{A}F]meus \[^\mn{C}]ir|\[C]mãos\[\bm] \altchords{|Bm G |D}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_euvivocom_b]
-    \[^\mn{C}]Eu |\[\mnc{F}F]vivo \[^\mn{E}]na \[\mnc{D}G]san\[^\mn{E}]ta |\[\mnc{C}C]luz
-    Estou \[^\mn{B}]no \[\mnc{A}(F)]pé \[^\mn{B}]da |\[\mnc{G}G]cruz com Ju\[\mnc{C}(Am)]ra\[^\mn{E}]mi|\[\mnc{C}C]dam
+    \[^\mn{C}]Eu |\[\mnc{F}F]vivo \[^\mn{E}]na \[\mnc{D}G]san\[^\mn{E}]ta |\[\mnc{C}C]luz \altchords{|G A |D}
+    Estou \[^\mn{B}]no \[\mnc{A}(F)]pé \[^\mn{B}]da |\[\mnc{G}G]cruz com Ju\[\mnc{C}(Am)]ra\[^\mn{E}]mi|\[\mnc{C}C]dam\[\bm] \altchords{ (G) |A (Bm) |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_euvivocom_a]
-    |^Eu pe^{ço a} meu |^Pai \altchords{\id[2]{MK (C)}|C Am |C}
-    O que eu pe|^dir E^le me |^dá \altchords{|Am F |C}
+    |^Eu pe^{ço a} meu |^Pai
+    ^O que eu pe|^dir E^le me |^dá^
   \endchorus\glueverses\beginchorus\replay[chords_euvivocom_b]
-    Os ini|^migos que vi^erem |^contra \altchords{|F G |Am}
-    Eu ^peço |^força para ^derri|^bar \altchords{F |G Am |C}
+    Os ini|^migos que vi^erem |^contra
+    Eu ^peço |^força para ^derri|^bar^
   \endchorus
   \beginchorus\replay[chords_euvivocom_a]
-    Oh! |^Minha ^Virgem |^Mãe
-    Oh! |^Virgem da ^Concei|^ção
+    Oh! |^Minha ^Virgem |^Mãe^ \altchords{\id[2]{MK (C)}|C Am |C}
+    Oh! |^Virgem da ^Concei|^ção^ \altchords{|Am F |C}
   \endchorus\glueverses\beginchorus\replay[chords_euvivocom_b]
-    Eu |^peço a ^Jesus |^Cristo
-    Pa^ra dar |^força aqui ^{na ses}|^são
+    Eu |^peço a ^Jesus |^Cristo \altchords{|F G |Am}
+    Pa^ra dar |^força aqui ^{na ses}|^são^ \altchords{F |G Am |C}
   \endchorus
   \brk
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative g' {
-      \key c \major \time 4/4 \partial 4
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        g4\posectionmark "A" | c4 c4 a4 c4 | g2 g4 c4 | e4 c8 c8 a4 c4 | c2.
+        r8 \posectionmark "A" g4 | c4 c4 a4 c4 | g2( \altcol\grace c8 \altmark "2." g4) \altcol\grace c8 c8( c8) | e4 c8( c8) a4 c4 | c2~8
       } \break
       \repeat volta 2 {
-        c4\sectionmark "B" | f4 f8 e8 d4 e4 | c8 c8 c8 b8 a4 b4 | g4 g8 g8 c4 e4 | c2.
+        \parenthesize c8 \sectionmark "B" c8( c8) | f8( f8) f8 e8 d4 e4 | c8( c8) c8 b8 a4 b4 | g8( g8) g8 g8 c4 e4 | c2~8
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      \repeat volta 2 {
-        Eu | vi -- vo com meu | Mes -- tre;
-        Eu | vi -- vo com meus ir -- | mãos;
-      }
-      \repeat volta 2 {
-        Eu | vi -- vo na san -- ta | luz;
-        Es -- tou no pé da | cruz com Ju -- ra -- mi -- | dam.
-      }
+      Eu | vi -- vo com meu | Mes -- tre;
+      Eu __ _ | vi -- vo com meus ir -- | mãos. __ _
+        \skip 1 Eu __ _ | vi -- _ vo na san -- ta | luz;
+        Es -- tou no pé da | cruz __ _ com Ju -- ra -- mi -- | dam. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \skip 1 | Eu pe -- ço~a meu | Pai;
+      \altcol O_que eu pe -- | dir E -- _ le me | dá. __ _
+        Os i -- ni -- | mi -- gos que vi -- e -- rem  | con -- _ tra;
+        Eu pe -- ço | for -- ça pa -- ra der -- ri -- | bar. __ _     
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Oh! | Mi -- nha Vir -- gem | Mãe; __ _
+      Oh! __ _ | Vir -- gem da Con -- cei -- | ção. __ _
+        \skip 1 Eu __ _ | pe -- _ ço a Je -- sus | Cris -- _ to;
+        Pa -- ra dar | for -- _ ça~a -- qui na ses -- | são. __ _
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4 | c2 a:m | g1
-        | a2:m f | c2.
+        s4. | c2 a:m | g1
+        | a2:m f | c2~8
       }
       \repeat volta 2 {
-        s4 | f2 g | c \parenthesize f
-        | g \parenthesize a:m | c2.
+        s4. | f2 g | c \parenthesize f
+        | g \parenthesize a:m | c2~8
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
-    I live with my Master
-    I live with my brothers and sisters
-    I live in the holy light
-    I‘m at the foot of the cross with Juramidam
+    I live with my Master; I live with my brothers and sisters
+    I live in the holy light; I'm at the foot of the cross with Juramidam
     \nextverse
-    I ask my Father
-    What I ask, He gives to me
-    The enemies who come against me
-    I ask for strength to defeat them
+    I ask my Father; what I ask, He gives to me
+    The enemies who come against me, I ask for strength to defeat them
     \nextverse
-    Oh! My Virgin Mother
-    Oh! Virgin of Conception
-    I ask Jesus Christ
-    To give strength here in the session
+    Oh! My Virgin Mother; Oh! Virgin of Conception
+    I ask Jesus Christ to give strength here in the session
   \end{translation}
 \endsong
 
