@@ -516,39 +516,123 @@
 \endsong
 
 
-\beginsong{Transformação}[by={Lúcio Mortimer}, off={Apolo}, tags={valsa}]
+\beginsong{Transformação}[by={Lúcio Mortimer}, off={Apolo}, tags={valsa}, key={C}, sks={C, C--D}]
   \audio{https://www.nossairmandade.com/hymn/1444/Transforma\%C3\%A7\%C3\%A3o}
   \meter{3}{4}
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Deus |\[\mnc{C}C]de mi|\[\mnc{D}G7]seri|\[\mnc{E}C]cór\[^\mn{D}]di|\[^\mn{C}]a \altchords{\id[1]{(D)}|D |A7 |D | \e}
+    |\[^\mn{G}]Meu Pai |\[\mnc{A}F]So\[^\mn{G}]be|\[\mnc{E}C]ra|no \altchords{| - |G |D | \e}
+    \[^\mn{G}]Me |dê a |\[\mnc{A}F]Vos\[^\mn{G}]sa |\[\mncii{E}{D}C]mã|\[\mnc{C}(Am)]o \altchords{| - |G |D |(Bm)}
+    \[^\mn{E}]Nas |\[\mnc{D}G]provas que es|\[\mnc{A}F]tão \[^\mn{C}]pas|\[C]san|do \altchords{|A |G |D | \e}
+  \mnendchorus
+  \notesoff
   \beginchorus
-    Deus |de mi|seri|córdi|a
-    |Meu Pai |Sobe|ra|no
-    Me |dê a |Vossa |mã|o
-    Nas |provas que es|tão pas|san|do
+    Dai-|^me a |^paci|^ênci|a
+    Que o |gosto |^é de |^fel | \e
+    Seja |feita Vos|^sa von|^ta|^de
+    Na |^Terra co|^mo no |^Céu | \e
   \endchorus
   \beginchorus
-    Dai-|me a |paci|ênci|a
-    Que o |gosto |é de |fel | \e
-    Seja |feita Vos|sa von|ta|de
-    Na |Terra co|mo no |Céu | \e
+    As|^sim é |^nossa |^vi|da
+    Ale|grias e |^sofri|^men|to
+    Agra|deço |^pela |^vez |^ \e
+    De estar |^neste pa|^deci|^men|to
   \endchorus
   \beginchorus
-    As|sim é |nossa |vi|da
-    Ale|grias e |sofri|men|to
-    Agra|deço |pela |vez | \e
-    De estar |neste pa|deci|men|to
+    Cre|^scei a |^minha |^fé | \e
+    Dai-|me a con|^forma|^ção | \e
+    Pre|cisa |^ter fir|^me|^za
+    E enten|^der a trans|^forma|^ção | \e
   \endchorus
   \beginchorus
-    Cre|scei a |minha |fé | \e
-    Dai-|me a con|forma|ção | \e
-    Pre|cisa |ter fir|me|za
-    E enten|der a trans|forma|ção | \e
+    Eu |^estou |^em pé |^fir|me
+    Fir|mado no |^meu lu|^gar | \e
+    Que |tudo a|^qui pas|^sa|^do
+    Se|^ja para |^Vos lou|^var | \e
   \endchorus
-  \beginchorus
-    Eu |estou |em pé |fir|me
-    Fir|mado no |meu lu|gar | \e
-    Que |tudo a|qui pas|sa|do
-    Se|ja para |Vos lou|var | \e
-  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 4
+      \repeat volta 2 {
+        g4 \pomark | c2 c4 | d2 d4 | e2( d4)( | c4) \altcol \parenthesize g'4 \altmark "3." g8( g8)
+        | g4( g4) g4 | a2 g4 | e2.( | e4) \altcol \parenthesize g4 \altmark "2. & 3." g4
+        | g4( g4) g4 | a2 g4 | \once\slurSolid e2( d4)( | c4) \altcol \parenthesize e4 \altmark "3. & 4." e4
+        | d4 d4 d4 | a2 c4 | c2.( | c2)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+      Deus | de mi -- | se -- ri -- | cór -- di -- | a; __ _ \skip 1 \skip 1
+      | Meu __ _ Pai | So -- be -- | ra -- | no; \skip 1
+      Me | dê __ _ a | Vos -- sa | mã -- _ | o; \skip 1
+      Nas | pro -- vas que~es -- | tão pas -- | san -- | do.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Dai -- | me a | pa -- ci -- | ên -- ci -- | a; __ _
+        Que o | gos -- _ to | é de | fel; __ | _
+        Se -- ja | fei -- ta Vos -- | sa von -- | ta -- _ | de; \skip 1 
+        Na | Ter -- ra co -- | mo no | Céu. __ | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        As -- | sim é | nos -- sa | vi -- _ | da;
+        \altcol A -- le -- _ | gri -- as e | so -- fri -- | men -- | to;
+        A -- gra -- | de -- _ ço | pe -- la | vez; __ _ | _
+        \altcol De~es -- tar | nes -- te pa -- | de -- ci -- | men -- | to.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Cre -- | scei a | mi -- nha | fé; __ _ | _ \skip 1
+        Dai -- _ | me~a __ _ con -- | for -- ma -- | ção; __ | _ \skip 1
+        Pre -- | ci -- _ sa | ter fir -- | me -- _ | za;
+        \altcol E~en -- ten -- | der a trans -- | for -- ma -- | ção. __ | _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        Eu | es -- tou | em pé | fir -- _ | me; \skip 1
+        Fir -- _ | ma -- do no | meu lu -- | gar; __ | _ \skip 1
+        Que | tu -- do a -- | qui pas -- | sa -- _ | do; \skip 1
+        Se -- | ja pa -- ra | Vos lou -- | var. __ | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2. | g:7 | c | c
+        | c | f | c | c
+        | c | f | c | a:m
+        | g | f | c | c2
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    God of mercy, my Sovereign Father
+    Give me Your hand in the tests that are passing
+    \nextverse
+    Give me patience, the taste is like gall
+    Thy will be done on Earth as it is in Heaven
+    \nextverse
+    Such is our life: joys and suffering
+    I thank you for the time to be in this ailment
+    \nextverse
+    Grow my faith, give me the conformation
+    You need to be firm and understand the transformation
+    \nextverse
+    I'm standing firm, steady in my place
+    May everything passing here to praise You
+  \end{translation}
 \endsong
 
 
