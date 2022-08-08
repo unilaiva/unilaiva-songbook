@@ -88,3 +88,109 @@
 \endsong
 
 
+\beginsong{O Bálsamo do Céu}[by={Baixinha}, tags={valsa}, key={Dm}, sks={Dm, Cm--D\#m}]
+  % Also in songs_portuguese.tex (without lilypond notation)
+  % Could this hymn be received by Isabel Barsé instead, as stated in nossairmandade.com?
+  \audio[key=Dm]{https://www.nossairmandade.com/hymn.php?hid=2097}
+  \audio[key=Dm]{https://soundcloud.com/lvaro-xi/b-lsamo-do-c-u}
+  \meter{3}{4}
+  \mnbeginchorus
+    \lrep \[\mn{A}]O |\[\mnc{D}Dm]bálsamo \[\mn{E}]do |\[\mnc{F}F]Céu \[\mn{A}]des|\[\mnc{E}A]ceu \[\mn{F}]à |\[\mnc{E}Dm]Ter\[\mn{D}]ra \rrep
+    \lrep \[\mn{A}]As |\[\mnc{B&}Gm]flo\[\mn{A}]res \[\mn{G}]da |\[\mnc{F}F]Ter\[\mn{E}]ra \[\mn{D}]rece|\[\mnc{A}A7]be\[\mn{C#}]ram \[\mn{E}]a |\[\mnc{D}Dm]Luz \rrep
+  \mnendchorus
+  \beginchorus\memorize
+    \ind \lrep \[\mn{A}]Os |\[\mnc{D}Dm]homens \[\mn{E}]na |\[\mn{F}]Ter\[\mn{D}]ra \[\mn{F}]pre|\[\mnc{E}A]ci\[\mn{C#}]sam \[\mn{E}]do |\[\mnc{D}Dm]Bem \rrep
+    \ind \lrep Meu |\[Gm]Pai é quem |\[F]manda mensa|\[A7]geiros do A|\[Dm]lém \rrep
+  \endchorus
+  \beginchorus
+    \ind \lrep ^Os |^seres ^di|^vi^nos ^quem |^vem ^nos ^cu|^rar \rrep\notesoff
+    \ind \lrep Com seus |^raios de |^Luz vem nos |^ilumi|^nar \rrep
+  \endchorus
+  \begin{translation}
+    The balsam of Heaven came down to Earth
+    The flowers of the Earth received the Light
+    \nextverse
+    The men of the Earth need the goodness
+    My Father is who orders the messengers from beyond
+    \nextverse
+    The divine beings that come to heal us
+    With their rays of light they come to illuminate us
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      % transcribed by larva on 2022-08
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 3/4 \partial 4
+      \repeat volta 2 {
+        a4 \sectionmark "1.A" | d8 d8 d4 e4 | f2 a4 | e2 f4 | e4 d4
+      }
+      \repeat volta 2 {
+        a'4 \sectionmark "1.B" | bes4 a4 g4 | f4 e4 d8 d8 | a4 cis4 e4 | d2
+      }
+      \repeat volta 2 {
+        a4 \sectionmark "2.A" | d4 d4 e4 | f4 d4 f4 | e4 cis4 e4 | d2
+      }
+      \repeat volta 2 {
+        a'4 \sectionmark "2.B" | bes4 a4 g4 | f4 e4 d8 d8 | a4 cis4 e8 e8 | d2
+      }
+      \repeat volta 2 {
+        a4 \posectionmark "3.A" | d4 d4 e4 | f4 d4 f4 | e4 cis4 e4 | d2
+      }
+      \repeat volta 2 {
+        a'8 \sectionmark "3.B" a8 | bes4 a4 g4 | f4 e4 d4 | a4 cis4 e4 | d2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        O | bál -- sa -- mo do | Céu des -- | ceu à | Ter -- ra.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        As | flo -- res da | Ter -- ra re -- ce -- | be -- ram a | Luz.
+      }
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Os | ho -- mens na | Ter -- ra pre -- | ci -- sam do | Bem.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Meu | Pai é quem | man -- da men -- sa -- | gei -- ros do A -- | lem.
+      }
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Os | se -- res di -- | vi -- nos quem | vem nos cu -- | rar.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Com seus | rai -- os de | Luz vem nos | i -- lu -- mi -- | nar.
+      }
+    }
+    theChords = \chordmode {
+      % 1st verse
+      \repeat volta 2 {
+        s4 | d2.:m | f | a | d2:m
+      }
+      \repeat volta 2 {
+        s4 | g2.:m | f | a:7 | d2:m
+      }
+      % 2nd verse
+      \repeat volta 2 {
+        s4 | d2.:m | d:m | a | d2:m
+      }
+      \repeat volta 2 {
+        s4 | g2.:m | f | a:7 | d2:m
+      }
+      % 3rd verse
+      \repeat volta 2 {
+        s4 | d2.:m | d:m | a | d2:m
+      }
+      \repeat volta 2 {
+        s4 | g2.:m | f | a:7 | d2:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
