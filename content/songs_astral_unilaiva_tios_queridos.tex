@@ -11,6 +11,125 @@
 \setcounter{songnum}{1}
 
 
+\beginsong{Viva a Liberdade do Santo Daime}[by={Marco}, off={Chico Corrente}, tags={2x}, key={Am}, sks={Am, G\#m--Bm}]
+  \audio[key=Am]{https://www.youtube.com/watch?v=UA3vqCsrILo}
+  \newchords{chords_viva_a_liberdade_a}\newchords{chords_viva_a_liberdade_b}
+  \mnbeginchorus\memorize[chords_viva_a_liberdade_a]
+    \[^\mn{E}]Olha a |\[\mnc{A}Am]Luz, olha a \[\mnc{G}G]Cruz, \[^\mn{E}]olha a |\[\mncii{C}{B}C]Lu\[\mnc{A}Am]a \altchords{\id[1]{(Bm)}|Bm A |D Bm}
+    O\[^\mn{C}]lha \[^\mn{B}]ll|\[^\mn{A}]ê, olha ll\[\bm]ê, olha \[^\mn{C}]ll|\[\mnc{E}\up{1}(E)]ê \[\bm] \altchords{|Bm |\up{1}(F\#)}
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_viva_a_liberdade_b]
+    \[^\mn{A}]Oxa|\[\mnc{D}Dm]lá, Pai Xan\[\bmc\mn{F}]go, Rei \[^\mn{D}]Sa\[^\mn{C}]lo|\[\mnc{A}Am]mâo\[\bm] \altchords{|Em |Bm}
+    \[^\mn{E}]Firmam a Jus|\[\mnc{B}E7]tica \[^\mn{D}]da Dou\[\bmc\mn{G#}]trina \[^\mn{B}]do Se|\[\mnc{A}Am]nhor\[\bm] \altchords{|F\#7 |Bm}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_viva_a_liberdade_a]
+    Eu dou |^Viva a Liber^dade do Santo |^Dai^me
+    Do Pai E|terno e Jesus ^Cristo Reden|^tor ^
+  \endchorus\glueverses\beginchorus\replay[chords_viva_a_liberdade_b]
+    Se|^guindo ^Mestre Iri|^neu^
+    Com leal|^dade, pati^ençia e a|^mor^
+  \endchorus
+  \beginchorus\replay[chords_viva_a_liberdade_a]
+    Obri|^gado a to^dos Seres Di|^vi^nos \altchords{\id[4]{MK (Am)}|Am C |Am}
+    Por inspi|rar e mos^trar nossa mis|^sâo^ \altchords{| - | \e}
+  \endchorus\glueverses\beginchorus\replay[chords_viva_a_liberdade_b]
+    A Ra|^inha ela ^nos abenço|^ou ^ \altchords{|Dm |Am}
+    Obri|^gado a for^ça que nos cri|^ou ^ \altchords{|E7 |Am}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        e8. \posectionmark "A" e16 | a8.( a16) a8. a16  g8( g16 g16) e8. e16 | \once\slurSolid c4.( b8) a8. a16 c8. b16
+        | a8.( a16) a8. a16 a8. a16 a8. c16
+      } \alternative {
+        { | e2. }
+        { | e2. }
+      }
+      \repeat volta 2 {
+        a,8.( \sectionmark "B" a16) | d8.( d16)( d8.) d16 f8. f16 d8. c16 | a2~8 \parenthesize e'8 e8. e16
+        | b8. b16 d8. d16 gis,8. gis16 b8. b16 | a2.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        O -- lha~a | Luz, __ _ o -- lha~a Cruz, __ _ _ o -- lha~a | Lu -- _ a;
+        O -- lha ll -- | ê, o -- lha ll -- ê, o -- lha ll --
+      } \alternative {
+        { | ê. }
+        { | ê. }
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        O -- xa -- | lá, __ _ Pai Xan -- go, Rei Sa -- lo -- | mâo; __ _
+        Fir -- mam~a Jus -- | ti -- ca da Dou -- tri -- na do Se -- | nhor.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Eu dou | Vi -- va~a Li -- ber -- da -- de do San -- to | Dai -- _ me;
+        Do Pai E -- | ter -- no~e Je -- sus Cris -- to Re -- den --
+      } \alternative {
+        { | tor. }
+        { | tor. }
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Se -- _ | guin -- _ _ do Mes -- tre I -- ri -- | neu; __ _
+        Com le -- al -- | da -- de, pa -- ti -- en -- çia e a -- | mor.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        O -- bri -- | ga -- do a to -- dos Se -- _ res Di -- | vi -- _ nos;
+        Por ins -- pi -- | rar __ _ e mos -- trar nos -- sa mis --
+      } \alternative {
+        { | sâo. }
+        { | sâo. }
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        A Ra -- | i -- nha e -- la nos a -- ben -- ço -- | ou; __ _
+        \skip 1 O -- bri -- | ga -- do a for -- ça que nos cri -- | ou.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a2:m g2 | c2 a2:m | a1:m
+      } \alternative {
+        { | \parenthesize e2. }
+        { | a2.:m }
+      }
+      \repeat volta 2 {
+        s4 | d1:m | a1:m | e1:7 | a2.:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Look at the Light, look at the Cross, look at the Moon
+    Look at it, look at it, look at it
+    Oxalá, Father Xango, King Solomon
+    Firm the Justice of the Doctrine of the Lord
+    \nextverse
+    I give \emph{Viva} to the liberation of Santo Daime
+    Of the Eternal Father and Jesus Christ the Redeemer
+    Following Master Irineu
+    With loyalty, patience and love
+    \nextverse
+    I thank all the Divine Beings
+    For inspiring and showing our mission
+    The Queen, she blessed us
+    I thank the force that created us
+  \end{translation}
+\endsong
+
+
 \beginsong{A Chave da Justiça}[by={Alex Polari}, key={C}, sks={C, G--B}, tags={2x}]
   \audio{https://www.nossairmandade.com/hymn/989/AChaveDaJusti\%C3\%A7a}
   \mnbeginchorus\memorize
