@@ -808,3 +808,148 @@
 \endsong
 
 
+\beginsong{Pequenininho}[by={Saturnito Brito}, off={Ana Emilly}, tags={2x}, key={B}, sks={B}]
+  \audio{https://www.nossairmandade.com/hinario/106/OPequenininho}
+  \mnbeginchorus
+    \[\mn{B}]Pe\[\mn{C#}]que\[\mn{D#}]ni|\[\mnc{E}E]ni\[\bm]nho, \[\mn{C#}]peque\[\mn{B}]ni|\[B]ni\[\bm]nho \altchords{\id[1]{(C)}|F |C}
+    \[\mn{G#}]Peque\[\mn{F#}]ni|\[F#]ni\[\mn{E}]nho pa\[\mn{G#}]ra \[\bm]se\[\mn{C#}]guir no \[\mn{B}]ca|\[\mnc{D#}B]minho \altchords{|G |C}
+  \mnendchorus
+  \mnbeginchorus
+    \ind \[\bmc\mn{B}]Grande na ale|\[B]gri\[\mn{A#}]a, \[\bmc\mn{G#}]gran\[\mn{F#}]de \[\mn{G#}]na \[\mn{B}]ver|\[\mnc{A#}F#]dade \altchords{|C |G}
+    \ind \[\bmc\mn{C#}]Grande na harmo|ni\[\mn{E}]a, \[\bm]gran\[\mn{D#}]de na hu\[\mn{C#}]mil|\[\mnc{B}B]dade \altchords{| - |C}
+  \mnendchorus
+  \beginchorus
+    Pequeni|\[E]ni\[\bm]nho, pequeni|\[B]ni\[\bm]nho
+    Pequeni|\[F#]ninho para \[\bm]seguir no ca|\[B]minho
+  \endchorus
+  \beginchorus
+    \ind \[\bm]Grande na fir|\[B]meza, \[\bm]grande no a|\[F#]mor
+    \ind \[\bm]Grande na cer|teza, do nos\[\bm]so Pai Cria|\[B]dor
+  \endchorus
+  \beginchorus
+    Pequeni|\[E]ni\[\bm]nho, pequeni|\[B]ni\[\bm]nho
+    Pequeni|\[F#]ninho para \[\bm]seguir no ca|\[B]mi\[\bm]nho
+  \endchorus
+  \begin{translation}
+    Tiny, tiny, small to follow on the way
+    \nextverse
+    Big on joy, really big
+    Big on harmony, great in humility
+    \nextverse
+    Tiny, tiny, small to follow on the way
+    \nextverse
+    Big in firmness, big in love
+    Great for sure, from our creator father
+    \nextverse
+    Tiny, tiny, small to follow on the way
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva on 2022-08
+    melodyPequenininho = {
+      \repeat volta 2 {
+        b8 \sectionmark "i." cis dis | e2 e8 cis'8 cis8 b | b2 b8 gis8 gis8 fis8
+        | fis8 e8 e8 dis8 dis8 cis8 cis8 b8
+      } \alternative {
+        { | dis2 dis8 }
+        { | dis4. dis8 }
+      }
+    }
+    theMelody = \relative b' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key b \major \time 4/4 \partial 4.
+      \melodyPequenininho
+      \repeat volta 2 {
+        b8 \sectionmark "1." b8 b8 b8 | b4. ais8 gis8 fis8 gis8 b8 | ais4. ais8 cis8 cis8 cis8 cis8
+        | fis4. e8 e8 dis8 dis8 cis8
+      } \alternative {
+        { | b4. b8 }
+        { | b2 b8 }
+      }
+      \melodyPequenininho
+      \repeat volta 2 {
+        b8 \posectionmark "2." b8 b8 b8 | b4. ais8 gis8 fis8 gis8 b8 | ais2 cis8 cis8 cis8 cis8
+        | fis8 fis8 fis8 e8 e8 dis8 dis8 cis8
+      } \alternative {
+        { | b4. b8 }
+        { | b2 b8 }
+      }
+      \repeat volta 2 { % final without alt. endings
+        b8 \sectionmark "i." cis dis | e2 e8 cis'8 cis8 b | b2 b8 gis8 gis8 fis8
+        | fis8 e8 e8 dis8 dis8 cis8 cis8 b8 | dis2 dis8
+      }
+    }
+    lyricsPequenininho = \lyricmode {
+      \set stanza = "i."
+      \repeat volta 2 {
+        Pe -- que -- ni -- | ni -- nho, pe -- que -- ni -- | ni -- nho;
+        Pe -- que -- ni -- | ni -- nho pa -- ra se -- guir no ca --
+      } \alternative {
+        { | mi -- nho. }
+        { | mi -- nho. }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \lyricsPequenininho
+      \set stanza = "1."
+      \repeat volta 2 {
+        Gran -- de na~a -- le -- | gri -- a;
+        Gran -- de na ver -- | da -- de;
+        Gran -- de na~har -- mo -- | ni -- a;
+        Gran -- de na~hu -- mil --
+      } \alternative {
+        { | da -- de. }
+        { | da -- de. }
+      }
+      \lyricsPequenininho
+      \set stanza = "2."
+      \repeat volta 2 {
+        Gran -- de na -- fir -- | me -- za;
+        Gran -- de no a -- | mor;
+        Gran -- de na cer -- | te -- za;
+        Do nos -- so Pai Cri -- a --
+      } \alternative {
+        { | dor. __ _ }
+        { | dor. __ _ }
+      }
+      \set stanza = "i." % final without alt. endings
+      \repeat volta 2 {
+        Pe -- que -- ni -- | ni -- nho, pe -- que -- ni -- | ni -- nho;
+        Pe -- que -- ni -- | ni -- nho pa -- ra se -- guir no ca -- | mi -- nho.
+      }
+    }
+    chordsPequenininho = \chordmode {
+      % i
+      \repeat volta 2 {
+        s4. | e1 | b | fis
+      } \alternative {
+        { | b2~8 }
+        { | b2 }
+      }
+    }
+    theChords = \chordmode {
+      \chordsPequenininho
+      % verse
+      \repeat volta 2 {
+        s2 | b1 | fis1 | fis1
+      } \alternative {
+        { | b2 }
+        { | b2~8 }
+      }
+      \chordsPequenininho
+      % verse
+      \repeat volta 2 {
+        s2 | b1 | fis1 | fis1
+      } \alternative {
+        { | b2 }
+        { | b2~8 }
+      }
+      % i, final without alt. endings
+      \repeat volta 2 {
+        s4. | e1 | b | fis | b2~8
+      }
+    }
+    \layout { #(layout-set-staff-size 13) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
