@@ -953,3 +953,91 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
+\beginsong{Vigiai}[by={Saturnito Brito}, tags={2x, valsa}, key={C}, sks={C, B--C}]
+  \audio{https://www.nossairmandade.com/hymn/2985/Vigiai}
+  \newchords{chords_vigiai_a}\newchords{chords_vigiai_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_vigiai_a]
+    \[^\mn{G}]Fecha |\[\mnc{C}C]bem \[^\mn{D}]a |\[^\mn{E}]tu\[^\mn{D}]a |\[^\mn{C}]por|ta \altchords{\id[1]{A}|A | - | - | \e}
+    Vigi|\[\mnc{F}F]ai \[^\mn{A}]e |\[^\mn{C}]vi\[^\mn{A}]gi|\[\mnc{G}C]ai | \e \altchords{|D | - |A | \e}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_vigiai_b]
+    \[^\mn{C}]Faz en|\[\mnc{F}F]trar \[^\mn{A}]as |\[^\mn{C}]coi\[^\mn{A}]sas |\[\mnc{G}C]bo|\[G]as \altchords{|D | - |A |E}
+    \[^\mn{B}]Do \[^\mn{A}]Di|\[^\mn{G}]vino, |\[\mnc{F}Dm]nos\[^\mn{D}]so |\[\mnc{C}C]Pai | \e \altchords{| - |Bm |A | \e}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_vigiai_a]
+    Fecha |^bem a |tua |por|ta
+    Vigi|^ai e |vigi|^ai | \e
+    \endchorus\glueverses\beginchorus\replay[chords_vigiai_b]
+    Pra não en|^trar a |coisa à |^to|^a
+    Que desa|grada o |^nosso |^Pai | \e
+  \endchorus
+  \beginchorus\replay[chords_vigiai_a]
+    Fecha |^bem a |tua |por|ta
+    Vigi|^ai e |vigi|^ai | \e
+    \endchorus\glueverses\beginchorus\replay[chords_vigiai_b]
+    Para |^ser um |apa|^re|^lho
+    Do Di|vino |^nosso |^Pai | \e
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva on 2022-08
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 1*5/8
+      \repeat volta 2 {
+        r8 \posectionmark "A" g4 g4 | c2 d4 | e2 d4 | c2. | c4
+        c4 c4 | f2 a4 | c2 a4 | g2.~ | g8
+      }
+      \repeat volta 2 {
+        \altcol\parenthesize c,8 \altmark "2." \sectionmark "B" c4 c4 | f2 a4 | c2 a4 | g2. | g8( \altcol g8) \altmark "2."
+        b4 a4 | g2 g4 | f2 d4 | c2.~ | c8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Fe -- cha | bem a | tu -- a | por -- | ta;
+      Vi -- gi -- | ai e | vi -- gi -- | ai. __ | _
+      \set stanza = "1.B"
+      \skip 1 Faz en -- | trar as | coi -- sas | bo -- | as; __ _
+      Do Di -- | vi -- no, | nos -- so | Pai. __ | _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Fe -- cha | bem a | tu -- a | por -- | ta;
+      Vi -- gi -- | ai e | vi -- gi -- | ai. __ | _
+      \set stanza = "2.B"
+      \altcol Pra não en -- | trar a | coi -- sa~à | to -- | a;
+      \altcol Que de -- sa -- | gra -- da~o | nos -- so | Pai. __ | _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      Fe -- cha | bem a | tu -- a | por -- | ta;
+      Vi -- gi -- | ai e | vi -- gi -- | ai. __ | _
+      \set stanza = "3.B"
+      \skip 1 Pa -- ra | ser um | a -- pa -- | re -- | lho; __ _
+      Do Di -- | vi -- no | nos -- so | Pai. __ | _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2~s8 | c2. | c2. | c2. | c2.
+        | f2. | f2. | c2. | c8
+      }
+      \repeat volta 2 {
+        s2~s8 | f2. | f2. | c2. | g2. | g2. | d2.:m | c2. | c8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Close your door well, watch and watch
+    Bring in the good things from the Divine, our Father
+    \nextverse
+    Close your door well, watch and watch
+    To not enter the random thing that displeases our Father
+    \nextverse
+    Close your door well, watch and watch
+    To be an instrument of the Divine, our Father
+  \end{translation}
+\endsong
