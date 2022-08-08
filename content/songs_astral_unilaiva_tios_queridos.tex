@@ -262,45 +262,159 @@
   \meter{3}{4}
   \mnbeginchorus\memorize
     |\[\mnc{C}C]Para \[^\mn{D}]ser|\[^\mn{E}]vir \[^\mn{D}]e \[^\mn{C}]lou|\[\mnc{G}(G)]var \altchords{\id[1]{(A)}|A | - |(E)}
-    Ao |\[\mnc{C}C]poder di|\[\mnc{D}Dm]vino\altchords{|A |Bm}
-    \[^\mn{E}]Que |\[\mnc{F}\up{2}(G7)]a\[^\mn{E}]qui \[^\mn{/}]es|\[\mnc{/}\up{1}G\up{2}(C)]tá | \e \altchords{|\up{2}(E7) |\up{1}E\up{2}(A) | \e}
+    Ao |\[\mnc{C}C]poder di|\[\mnc{D}Dm]vino \[^\mn{E}]que |\[\mnc{F}\up{2}(G7)]a\[^\mn{E}]qui \[^\mn{/}]es|\[\mnc{/}\up{1}G\up{2}(C)]tá | \e \altchords{|A |Bm |\up{2}(E7) |\up{1}E\up{2}(A) | \e}
   \mnendchorus
   \notesoff
   \beginchorus
     |^Peço fir|meza na |^mente
-    O a|^mor verda|^deiro
-    Sem|^pre apresen|^tar | \e
+    O a|^mor verda|^deiro sem|^{pre apresen}|^tar | \e
   \endchorus
   \beginchorus
     |^Para ser|vir e lou|^var
-    Ao |^Poder Di|^vino
-    Que |^aqui es|^tá | \e
+    Ao |^Poder Di|^vino que |^aqui es|^tá | \e
   \endchorus
   \beginchorus
     |^Peço pa|lavras de |^força
-    Cla|^reza na |^vista
-    Para |^não trope|^çar | \e
+    Cla|^reza na |^vista para |^não trope|^çar | \e
   \endchorus
   \beginchorus
     |^Para ser|vir e lou|^var
-    Ao |^Poder Di|^vino
-    Que |^aqui es|^tá | \e
+    Ao |^Poder Di|^vino que |^aqui es|^tá | \e
   \endchorus
   \beginchorus
     |^Peço este |santo per|^dão
-    Uma |^vida apru|^mada
-    E sa|^ir da ilu|^são | \e
+    Uma |^vida apru|^mada e sa|^{ir da} ilu|^são | \e
   \endchorus
   \beginchorus
-    |^Que a dou|trina está |^viva
-    O |^tempo é che|^gado
-    De |^todos can|^tar | \e
+    |^Que a dou|trina está |^viva \altchords{\id[4]{alt. (C)}|C |Am |G}
+    O |^tempo é che|^gado de |^todos can|^tar | \e \altchords{|\up{1}Am\up{2}(C) |\up{1}Dm\up{2}(G)}
+        \altchords{|\up{1}F\up{2}(G7) |\up{1}G\up{2}(C) | \e}
   \endchorus
   \beginchorus
     Pe|^dindo e ro|gando u|^nidos
-    O |^dom que o |^Mestre
-    Tem |^para nos |^dar | \e
+    O |^dom que o |^Mestre tem |^para nos |^dar | \e
   \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 4
+      \repeat volta 2 {
+        \altcol \parenthesize c4 \altmark "8." \pomark | c4 c d | e d c | g'( g) g
+        | c c c | d, d e8( \altcol e8 \altmark "4." )
+      } \alternative {
+        { | f4 e f | g2.~ | g2 }
+        { | f4 e d | c2.~ | c2 \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        \skip 1 Pa -- ra ser -- | vir e lou -- | var; __ _
+        Ao | po -- der di -- | vi -- no que __ _
+      } \alternative {
+        { | a -- qui es -- | tá. __ | _ }
+        { | a -- qui es -- | tá. __ | _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        \skip 1 | Pe -- ço fir -- | me -- za na | men -- te;~O
+        a -- | mor ver -- da -- | dei -- ro sem -- _
+      } \alternative {
+        { | pre~a -- pre -- sen -- | tar. __ | _ }
+        { | pre~a -- pre -- sen -- | tar. __ | _ }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        \skip 1 | Pa -- ra ser -- | vir e lou -- | var; __ _
+        Ao | Po -- der Di -- | vi -- no que __ _
+      } \alternative {
+        { | a -- qui es -- | tá. __ | _ }
+        { | a -- qui es -- | tá. __ | _ }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        \skip 1 | Pe -- ço pa -- | la -- vras de | for -- ça;
+        Cla -- | re -- za na | vis -- ta pa -- ra
+      } \alternative {
+        { | não tro -- pe -- | çar. __ | _ }
+        { | não tro -- pe -- | çar. __ | _ }
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        \skip 1 | Pa -- ra ser -- | vir e lou -- | var; __ _
+        Ao | Po -- der Di -- | vi -- no que __ _
+      } \alternative {
+        { | a -- qui es -- | tá. __ | _ }
+        { | a -- qui es -- | tá. __ | _ }
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      \repeat volta 2 {
+        \skip 1 | Pe -- ço~es -- te | san -- to per -- | dão;
+        U -- ma | vi -- da~a -- pru -- | ma -- da~e sa -- _
+      } \alternative {
+        { | ir da~i -- lu | são. __ | _ }
+        { | ir da~i -- lu | são. __ | _ }
+      }
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7."
+      \repeat volta 2 {
+        \skip 1 | Que a dou -- | tri -- na~es -- tá | vi -- va;
+        O | tem -- po~é che -- | ga -- do de __ _
+      } \alternative {
+        { | to -- dos can -- | tar. __ | _ }
+        { | to -- dos can -- | tar. __ | _ }
+      }
+    }
+    theLyricsEight = \lyricmode {
+      \set stanza = "8."
+      \repeat volta 2 {
+        Pe -- | din -- do~e ro -- | gan -- do u -- | ni -- dos;
+        O | dom que o | Mes -- tre tem __ _
+      } \alternative {
+        { | pa -- ra nos | dar. __ | _ }
+        { | pa -- ra nos | dar. __ | _ }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2. | c | \parenthesize g
+        | c | d:m
+      } \alternative {
+        { | c | g | g2 }
+        { | g2.:7 | c | c2 }
+      }
+    }
+    %\layout { #(layout-set-staff-size 11) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    To serve and praise, to the divine power that is here
+    \nextverse
+    I ask for firmness in mind, the true love always present
+    \nextverse
+    To serve and praise, to the divine power that is here
+    \nextverse
+    I ask for words of strength, clarity in view, not to trip
+    \nextverse
+    To serve and praise, to the divine power that is here
+    \nextverse
+    I ask this holy pardon, a straight life, and to get out of the illusion
+    \nextverse
+    That the doctrine is alive, the time has come for all to sing
+    \nextverse
+    Asking and begging unity, the gift that the Master has to give us
+  \end{translation}
 \endsong
 
 
