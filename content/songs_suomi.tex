@@ -133,27 +133,24 @@
 \endsong
 
 
-\beginsong{Taivas on sininen ja valkoinen}[by={Kansanlaulu},ph={II}]
+\beginsong{Taivas on sininen ja valkoinen}[by={Kansanlaulu}, ph={II}, key={Am}, sks={Am, G\#m--Am}]
   \meter{2}{4}
   % declare new (global) named chord-replay registers:
   \newchords{chords_taivas_a}\newchords{chords_taivas_b}
-  \beginchorus\memorize[chords_taivas_a] % memorize chords into a named register
-    |\[\mnc{A}Am]Taivas \[^\mn{C}]on \[^\mn{E}]sininen ja |\[E7]valkoi\[Am]nen ja
-    |\[Am]tähtö\[Dm]si\[G7]ä|\[C]täyn\[Em]nä
-  \endchorus
+  \mnbeginchorus\memorize[chords_taivas_a] % memorize chords into a named register
+    |\[\mnc{A}Am]Taivas \[^\mn{C}]on \[\bmc\mn{E}]sininen \[^\mn{D}]ja |\[\mncii{C}{B}E7]val\[^\mn{A}\mn{G#}]koi\[\mnc{A}Am]nen \[^\mn{C}\mn{D}]ja
+    |\[^\mn{E}]tähtö\[\mnc{F}Dm]si\[^\mn{E}\mn{D}]ä|\[\mnc{E}C]täyn\[E7]nä
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_taivas_b] % memorize chords into a named register
+    |\[\mnc{E}Am]Niin on \[\mnc{B}Bm7&5]nuo\[^\mn{A}]ri |\[\mncii{G}{F}G7]sy\[^\mn{E}\mn{D}]dä\[\mnc{E}C]me\[^\mn{A}\mn{B}]ni
+    |\[^\mn{C}\mn{D}]a\[^\mn{E}\mn{D}]ja\[\mnc{C}E7]tuk\[^\mn{B}]sia |\[\mnc{A}Am]täyn\[\bm]nä
+  \mnendchorus
   \notesoff
-  \beginchorus\memorize[chords_taivas_b] % memorize chords into a named register
-    |\[Am]Niin on \[F]nuori |\[G7]sydä\[C]me\[F]ni
-    |\[Am]aja\[E7]tuksia |\[Am]täynnä
-  \endchorus
-  \vspace{1em}
   \beginchorus\replay[chords_taivas_a] % replay chords from a named register
-    |^Enkä mä muille |^ilmoi^ta mun
-    |^sydän^su^ru|^ja^ni
-  \endchorus
-  \beginchorus\replay[chords_taivas_b] % replay chords from a named register
-    |^Synkkä ^metsä ja |^kirkas ^tai^vas ne
-    |^tuntee mun ^huoli|^ani
+    |^Enkä mä ^muille |^ilmoi^{ta mun}
+    |sydän^suru|^ja^ni
+    \endchorus\glueverses\beginchorus\replay[chords_taivas_b] % replay chords from a named register
+    |^Synkkä ^metsä ja |^kirkas ^taivas ne
+    |tuntee mun ^huoli|^a^ni
   \endchorus
 \endsong
 
