@@ -689,70 +689,107 @@
 \endsong
 
 
-\beginsong{Aqui Eu Vou Expor}[by={Padr. Sebastião},key={C},sks={D, C}]
+\beginsong{Aqui Eu Vou Expor}[by={Padr. Sebastião}, key={D}, sks={D, D--E}]
   \audio[]{https://www.nossairmandade.com/hymn/6/AquiEuVouExpor}
   \audio[key={D},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=925s}
+  \transpose{2} % C to D
   \mnbeginchorus\memorize
-    \[^\mn{G}]A|\[\mnc{C}C]qui eu \[(Am)]vou \[^\mn{E}]ex|\[\mnc{G}(G)]po\[\mnc{E}C]r
-    \[^\mn{G}]Eu |\[\mnc{F}Fmaj7]vim \[^\mn{E}]pa\[\mnc{D}C]ra \[^\mn{C}]lemb|\[\mnc{F}F]rar
-    \[^\mn{A}]O mis|tério da \[^\mn{F}]o\[^\mn{A}]ra|\[\mnc{G}G]ção
-    \[^\mn{C}]Não \[^\mn{D}]é |\[\mnc{E}Dm]so\[^\mn{D}]men\[\mnc{A}F]te \[^\mn{B}]re|\[\mnc{C}C]zar
+    \[^\mn{G}]A|\[\mnc{C}C]qui eu \[\bm]vou \[^\mn{E}]ex|\[\mnc{G}(G)]po\[\bmc\mn{E}]r \altchords{\id[1]{(C)}|C |(G)}
+    \[^\mn{G}]Eu |\[\mnc{F}C7]vim \[^\mn{E}]pa\[\bmc\mn{D}]ra \[^\mn{C}]lem|\[\mnc{F}F]brar\[\bm] \altchords{|C7 |F}
+    \[^\mn{A}]O mis|tério da \[\bmc\mn{F}]o\[^\mn{A}]ra|\[\mnc{G}C]ção \altchords{| - |C}
+    \[\bmc\mn{C}]Não \[^\mn{D}]é |\[\mnc{E}G7]so\[^\mn{D}]men\[\bmc\mn{A}]te \[^\mn{B}]re|\[\mnc{C}C]zar\[\bm] \altchords{|G7 |C}
   \mnendchorus
   \notesoff
   \beginchorus
-    É re|^zar e ^por em |^prática \altchords{\id[2]{MK (C)} |C | \e}
-    ^E en|^trar em ^comu|^nhão \altchords{|C7 |F}
-    Se lem|brar de Jesus |^Cristo \altchords{| |C}
-    E esque|^cer a ^ilu|^são \altchords{|G7 |C}
+    É re|^zar e ^por em |^prática
+    ^E en|^trar em ^comu|^nhão^
+    Se lem|brar de ^Jesus |^Cristo
+    E ^esque|^cer a ^{i}lu|^são^
   \endchorus
   \beginchorus
-    A minha |^Mãe sem^pre me |^olha
-    ^E meu |^Pai co^migo es|^tá
-    Me en|trega estes en|^sinos
-    Para a|^qui eu ^expli|^car
+    A minha |^Mãe sem^pre me |^olha \altchords{\id[4]{alt. (C)} |C (Am) |(G) C}
+    ^E meu |^Pai co^migo es|^tá ^ \altchords{|Fmaj7 C |F}
+    Me en|trega es^tes en|^sinos \altchords{| - |G}
+    ^Para a|^qui eu ^expli|^car ^ \altchords{|Dm F |C}
   \endchorus
   \beginchorus
     Cada |^um cui^da de |^si
-    ^Eu tam|^bém cui^do de |^mim
-    Vou ze|lando esta es|^trada
-    Estou fa|^zendo o ^meu jar|^dim
+    ^Eu tam|^bém cui^do de |^mim ^
+    Vou ze|lando es^ta es|^trada
+    Es^tou fa|^zendo o ^meu jar|^dim ^
   \endchorus
   \beginchorus
-    O que é |^do meu ^Pai é |^meu
-    ^O que é |^dele eu ^posso u|^sar
-    Só não |uso o que é dos |^outros
-    Que po|^de me ^derri|^bar
+    O que é |^do meu ^Pai é |^meu \altchords{\id[5]{alt. (D)} |D (Bm) |(A) D}
+    ^O que é |^dele eu ^posso u|^sar ^ \altchords{|Gmaj7 D |G}
+    Só não |uso o que ^é dos |^outros \altchords{| - |A}
+    ^Que po|^de me ^derri|^bar ^ \altchords{|Em G |D}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    theMelody = \relative g' {
-      \key c \major \time 4/4 \partial 4
+    % transcribed by larva on 2022-08
+    theMelody = \transpose c d \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        g4\pomark | c4 c4 c4 e4 | g2( e4) g4
+        \parenthesize g8 \pomark g8( g8) | c4 c4 c4 e4 | g4.( \parenthesize g16)( \parenthesize g16)( e4) g4
         | f4 e4 d4 c4 | f2. a,8 a8
-        | a8. a16 a8 a8 f4 a4 | g2 c4 d4
-        | e4 d4 a4 b4 | c2.
+        | a4( a8) a8 f4 a4 | g4.( g8) c4 d4
+        | e4 d4 a4 b4 | c2~8
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       \repeat volta 2 {
-        A -- | qui eu vou ex -- | por; __
+        \skip 1 A -- _ | qui eu vou ex -- | por; __ _ _ _
         Eu | vim pa -- ra lem -- | brar;
-        O mis -- | té -- ri -- o da o -- ra -- | ção;
-        Não é | so -- men -- te re -- | zar.
+        O mis -- | té -- rio da o -- ra -- | ção; __ _
+        Não é | so -- men -- te re -- | zar. __ _
       }
     }
-    theChords = \chordmode {
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
       \repeat volta 2 {
-        s4 | c2 \parenthesize a:m | \parenthesize g c
-        | f:maj7 c | f1
-        | f | g
-        | d2:m f | c2.
+        \skip 1 É re -- | zar e por em | prá -- ti -- ca;
+        E en -- | trar em co -- mu -- | nhão;
+        Se lem -- | brar __ _ de Je -- sus | Cris -- to;~E
+        es -- que -- | cer a i -- lu -- | são. __ _
       }
     }
-    \include "tex/lp-include-tail.ly"
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        A mi -- nha | Mãe sem -- pre me | o -- lha; __ _
+        E meu | Pai co -- mi -- go~es -- | tá;
+        Me en -- | tre -- ga es -- tes en -- | si -- nos;
+        Pa -- ra~a -- | qui eu ex -- pli -- | car. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        \skip 1 Ca -- da | um cui -- da de | si; __ _ _
+        Eu tam -- | bém cui -- do de | mim;
+        Vou ze -- | lan -- do es -- ta es | tra -- da;~Es --
+        tou fa -- | zen -- do~o meu jar -- | dim. __ _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        O que é | do meu  Pai é | meu; __ _
+        O que é | de -- le~eu  pos -- so~u -- | sar;
+        Só não | u -- so~o que é dos | ou -- tros;
+        Que po -- | de me der -- ri -- | bar. __ _
+      }
+    }
+    theChords = \transpose c d \chordmode {
+      \repeat volta 2 {
+        s4. | c1 | \parenthesize g | c:7 | f
+        | f | c | g:7 | c2~8
+      }
+    }
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}
+  \begin{translation}\scriptsize % smaller to fit whole song on a spread
     Here I'm going to reveal; I came to recall
     The mystery of the prayer; Is not merely to pray
     \nextverse
