@@ -399,73 +399,95 @@
 \endsong
 
 
-\beginsong{É Pedindo e é Rogando}[by={Padr. Sebastião},key={C},sks={D, C}]
+\beginsong{É Pedindo e é Rogando}[by={Padr. Sebastião}, key={C}, sks={D, C--E}]
   \audio[]{https://www.nossairmandade.com/hymn/4/\%C3\%89PedindoE\%C3\%89Rogando}
   \audio[key={D},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=620s}
   \newchords{chords_epedindo_a}\newchords{chords_epedindo_b}
   \mnbeginchorus\memorize[chords_epedindo_a]
-    \[^\mn{G}]É pe|\[\mnc{C}C]dindo \[Am]{e é} \[^\mn{E}]ro|\[\mnc{G}G]gan\[^\mn{F}]do
-    \[^\mn{E}]Que \[^\mn{D}]po|\[\mnc{C}Am]demos \[\mnc{G}G]al\[^\mn{D}]can|\[\mnc{C}C]çar
+    \[^\mn{G}]É pe|\[\mnc{C}C]dindo \[Am]{e é} \[^\mn{E}]ro|\[\mnc{G}G]ga\[\bm]n\[^\mn{F}]do \altchords{\id[1]{(D)}|D Bm |A}
+    \[^\mn{E}]Que \[^\mn{D}]po|\[\mnc{C}Am]demos \[\mnc{G}G]al\[^\mn{D}]can|\[\mnc{C}C]çar \[\bm] \altchords{|Bm A |D}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_epedindo_b]
-    \[^\mn{C}]Não é |\[\mnc{G}C]fa\[^\mn{C}]lar um do |\[\mnc{E}Am]ou\[^\mn{C}]tro
-    Queren|\[\mnc{G}G]do ca\[\mnc{C}Am]lu\[^\mn{E}]ni|\[\mnc{C}C]ar
+    \[^\mn{C}]Não é |\[\mnc{G}C]fa\[^\mn{C}]lar \[\bm]um do |\[\mnc{E}Am]ou\[\bmadj{-1ex}]\[^\mn{C}]tro \altchords{|D |Bm}
+    Queren|\[\mnc{G}G]do ca\[\mnc{C}Am]lu\[^\mn{E}]ni|\[\mnc{C}C]ar \[\bm] \altchords{|A Bm |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_epedindo_a]
-    Me apre|^sento ^{a meu} |^Pai \altchords{\id[2]{MK (C)} |C Am |G}
-    E minha |^história eu ^sei con|^tar \altchords{|C G |C}
+    Me apre|^sento ^{a meu} |^Pa^i
+    E minha his|^tória eu ^sei con|^tar ^
   \endchorus\glueverses\beginchorus\replay[chords_epedindo_b]
-    Peço |^que todos se |^unam \altchords{|C |Am}
-    E a|^prendam a ^respei|^tar \altchords{|C Am |C}
+    Peço |^que to^dos se |^u^nam
+    E a|^prendam a ^respei|^tar ^
   \endchorus
   \beginchorus\replay[chords_epedindo_a]
-    É |^no céu ^{e na} |^terra
-    E é bei|^rando a ^beira |^mar
+    É |^no céu ^{e na} |^te^rra \altchords{\id[2]{MK (C)} |C Am |G}
+    E é bei|^rando a ^beira |^mar ^ \altchords{|C G |C}
   \endchorus\glueverses\beginchorus\replay[chords_epedindo_b]
-    O meu en|^contro com Je|^sus
-    Só |^eu sei ^destrin|^char
+    O meu en|^contro ^com Je|^sus ^ \altchords{|C |Am}
+    Só |^eu sei ^destrin|^char ^ \altchords{|C Am |C}
   \endchorus
   \beginchorus\replay[chords_epedindo_a]
-    Foi |^aí ^neste |^dia
-    E foi nas |^águas ^de Jor|^dão
+    Foi |^aí ^neste |^di^-a
+    E foi nas |^águas ^de Jor|^dão ^
   \endchorus\glueverses\beginchorus\replay[chords_epedindo_b]
-    Que ambos |^foram bati|^zados
-    E come|^çou su^{a mis}|^são
+    Que ambos |^foram ^bati|^za^dos
+    E come|^çou su^{a mis}|^são ^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative g' {
-      \key c \major \time 4/4 \partial 4
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        g8\posectionmark "A" g8 | c4 c4 c4 e4 | g2~ g8 f8 e8 d8
-        | c4 c4 g4 d'4 | c2.
+        \parenthesize g8\posectionmark "A" g8( g8) | c4 c4 c4 e4 | g2~ g8 f8 e8 d8
+        | c4 c8( c8) g4 d'4 | c2~8
       } \break
       \repeat volta 2 {
-        c8\sectionmark "B" c8 | g4 c4 c4 c4 | e2~ e8 c8 c8 c8 |
-        | g4 g4 c4 e4 | c2.
+        \parenthesize c8\sectionmark "B" c8 c8 | g4 c4 c4 c4 | e2~ e8 \parenthesize c8 c8( c8) |
+        | g4 g4 c4 e4 | c2~8
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
-      \repeat volta 2 {
-        É pe -- | din -- do e~é ro -- | gan -- do;
-        Que po -- | de -- mos al -- can -- | çar;
-      }
-      \repeat volta 2 {
-        Não é | fa -- lar um do | out -- ro;
-        Que -- ren -- | do ca -- lu -- ni -- | ar.
-      }
+      \set stanza = "1.A"
+        \skip 1 É pe -- | din -- do e~é ro -- | gan -- _ do;
+        Que po -- | de -- mos __ _ al -- can -- | çar. __ _
+      \set stanza = "1.B"
+        \skip 1 Não é | fa -- lar um do | out -- _ ro;
+        Que -- ren -- | do ca -- lu -- ni -- | ar. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+        Me a -- pre -- | sen -- to a meu | Pai; __ _
+        E mi -- nha~his | tó -- ria eu sei con -- | tar. __ _
+      \set stanza = "2.B"
+        \skip 1 Pe -- ço | que to -- dos se | u -- _ nam;
+        E a -- | pren -- dam~a res -- pei -- | tar. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+        \skip 1 É __ _ | no céu e na | ter -- _ ra;
+        E~é bei -- | ran -- do a bei -- ra | mar. __ _
+      \set stanza = "3.B"
+        O meu en -- | con -- tro com Je -- | sus; __ _
+        \skip 1 Só __ _ | eu sei des -- trin -- | char. __ _
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+        \skip 1 Foi __ _ | a -- í nes -- te | di -- _ a;~E
+        foi nas | á -- guas __ _ de Jor -- | dão. __ _
+      \set stanza = "4.B"
+        Que am -- bos | fo -- ram ba -- ti -- | za -- _ dos;~E
+        co -- me -- | çou su -- a mis -- | são. __ _
     }
     theChords = \chordmode {
       \repeat volta 2 {
-      s4 | c2 a:m | g1
-      | a2:m g | c2.
+        s4. | c2 a:m | g1
+        | a2:m g | c2~8
       }
       \repeat volta 2 {
-      s4 | c1 | a:m
-      | g2 a:m | c2.
+        s4. | c1 | a:m
+        | g2 a:m | c2~8
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     It's by asking and praying
