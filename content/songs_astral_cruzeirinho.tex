@@ -1106,10 +1106,14 @@
 \beginsong{Marchinha \emph{(instrumental)}}[by={Mestre Irineu Serra},key={D}]
   \audio{https://www.nossairmandade.com/hymn/3291}
   \meter{2}{4}
-  \beginchorus
-    |\[D] | |\[A] |\[D] | |\[D7] | |\[G] \altchords{\id[1]{(C)}|C | |G |C | |C7 | |F}
-    | |\[Em7] | |\[A] |\[D] |\[A] |\[D] |\[A7] |\[D] \altchords{| |Dm7 | |G |C |G |C |G7 |C}
-  \endchorus
+  \ifchorded
+    \beginchorus
+      |\[D] | |\[A] |\[D] | |\[D7] | |\[G] \altchords{\id[1]{(C)}|C | |G |C | |C7 | |F}
+      | |\[Em7] | |\[A] |\[D] |\[A] |\[D] |\[A7] |\[D] \altchords{| |Dm7 | |G |C |G |C |G7 |C}
+    \endchorus
+  \else % To not to break non-chorded booklets
+    \textit{(Este hino é instrumental.)}
+  \fi
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative d'' {
       \key d \major \time 2/4
