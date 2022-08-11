@@ -516,71 +516,140 @@
 \endsong
 
 
-\beginsong{Dem Dum}[by={Padr. Sebastião},key={C},sks={D, C}]
+\beginsong{Dem Dum}[by={Padr. Sebastião}, key={C}, sks={D, C--E}]
   \audio[]{https://www.nossairmandade.com/hymn/5/DemDum}
   \audio[key={C},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=785s}
   \newchords{chords_demdum_a}\newchords{chords_demdum_b}
   \mnbeginchorus\rep{3}
-    \ind \[\mn{G}]Dem |\[\mnc{C}C]dum, \[\mn{G}]dem |\[\mn{C}]dum
-    \ind \[\mn{G}]Dem |\[\mnc{E}Am]dum, \[\mn{G}]dem |\[\mnc{C}C]dum
+    \ind \[\mn{G}]Dem |\[\mnc{C}C]dum\[\bm], \[\mn{G}]dem |\[\mn{C}]dum\[\bm] \altchords{\id[1]{(D)}|D | \e}
+    \ind \[\mn{G}]Dem |\[\mnc{E}Am]dum\[\bm], \[\mn{G}]dem |\[\mnc{C}C]dum\[\bm] \altchords{|Bm |D}
   \mnendchorus
   \mnbeginchorus\memorize[chords_demdum_a]
-    \[^\mn{G}]Deus sa|\[\mnc{C}C]be o que está \[^\mn{D}]fa|\[\mnc{C}Am]zendo
-    Sen\[^\mn{D}]ta|\[\mnc{E}C]do \[^\mn{G}]no \[\mnc{D}G]seu \[^\mn{E}]lu|\[\mnc{C}C]gar
+    \[^\mn{G}]Deus sa|\[\mnc{C}C]be o que es\[\bm]tá \[^\mn{D}]fa|\[\mnc{C}Am]zen\[\bmadj{-1ex}]do \altchords{|D |Bm}
+    Sen\[^\mn{D}]ta|\[\mnc{E}C]do \[^\mn{G}]no \[\mnc{D}G]seu \[^\mn{E}]lu|\[\mnc{C}C]gar\[\bm] \altchords{|D A |D}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_demdum_b]
-    \[^\mn{C}]As |\[\mnc{D}Dm]doze \[^\mn{C}]ho\[\mnc{A}F]ras \[^\mn{C}]do |\[\mnc{G}G]dia
-    \[^\mn{C}]Nós \[^\mn{D}]pre|\[\mnc{E}Am]ci\[^\mn{G}]sa\[\mnc{D}G]mos \[^\mn{E}]re|\[\mnc{C}C]zar
+    \[^\mn{C}]As |\[\mnc{D}Dm]doze \[^\mn{C}]ho\[\mnc{A}F]ras \[^\mn{C}]do |\[\mnc{G}G]di\[\bm]a \altchords{|Em G |A}
+    \[^\mn{C}]Nós \[^\mn{D}]pre|\[\mnc{E}Am]ci\[^\mn{G}]sa\[\mnc{D}G]mos \[^\mn{E}]re|\[\mnc{C}C]zar\[\bm] \altchords{|Bm A |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_demdum_a]
-    Pai |^nosso que estais no |^céu
-    Rece|^bemos com ^ale|^gria
+    Pai |^nosso que es^tais no |^céu ^
+    Rece|^bemos com ^ale|^gri^a
   \endchorus\glueverses\beginchorus\replay[chords_demdum_b]
-    Nosso |^Pai e ^nossa |^Mãe
-    A sem|^pre Vir^gem Ma|^ria
+    Nosso |^Pai e ^nossa |^Mãe^
+    A sem|^pre Vir^gem Ma|^ri^a
   \endchorus
   \beginchorus\replay[chords_demdum_a]
-    O po|^der de Deus é |^grande
-    Seja |^feita a vos^sa von|^tade
+    O po|^der de ^Deus é |^gra^nde
+    Seja |^feita a vos^sa von|^ta^de
   \endchorus\glueverses\beginchorus\replay[chords_demdum_b]
-    É quem |^nos dá ^o per|^dão
-    E é a |^nossa ^majes|^tade
+    É quem |^nos dá ^o per|^dão^
+    E é a |^nossa ^majes|^ta^de
   \endchorus
   \beginchorus\replay[chords_demdum_a]
-    Todo |^mundo pede a |^Deus
-    Mas não |^sabem se ^expli|^car
+    Todo |^mundo ^pede a |^Deus ^
+    Mas não |^sabem se ^expli|^car^
   \endchorus\glueverses\beginchorus\replay[chords_demdum_b]
-    Guar|^dai-me, ^defen|^dei-me
-    Livrai-|^me de ^todo |^mal
+    Guar|^dai-me, ^defen|^dei^-me
+    Livrai-|^me de ^todo |^mal^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva on 2022-08
     theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \mark \markup {"3x"} \bar ".|:" \repeat volta 3 {
         g4\sectionmark "i" | c2. g4 | c2. g4
         | e'2. g,4 | c2.
       } \break
       \repeat volta 2 {
-        g8\posectionmark "A" g8 | c4 c4 c4 d4 | c2~ c8 c8 c8 d8
-        | e4 g4 d4 e4 | c2.
+        g8( \segno \posectionmark "A" g8) | c4 c8( c8) c4 d4 | c2~ c8( c8) c8 d8
+        | e4 g8( g8) d4 e4 | c2( c4)
       } \break
       \repeat volta 2 {
-        c4\sectionmark "B" | d4. c8 a4. c8 | g2 g4 c8 d8
-        | e4 g4 d4 e4 | c2.
+        c8( \sectionmark "B" c8) | d4. c8 a4. c8 | g2( g8)( g8) c8 d8
+        | e4 g4 d4 e4
+      } \alternative {
+        { | c2( c4)}
+        { | c2( c4) ^\dalsegno \bar "|." }
       }
     }
     theLyricsOne = \lyricmode {
       \repeat volta 3 {
         Dem | dum, dem | dum; Dem | dum, dem | dum.
       }
-      \repeat volta 2 {
-        Deus sa -- | be~o que~es -- tá fa -- | zen -- do;
-        Sen -- ta -- | do no seu lu -- | gar;
-      }
-      \repeat volta 2 {
-        As | doze ho -- ras do | di -- a;
-        Nós pre -- | ci -- sa -- mos re -- | zar.
-      }
+      << % verses, part A
+        {
+          \set stanza = "1.A"
+          \repeat volta 2 {
+            Deus sa -- | be~o que_es -- _ tá fa -- | zen -- _ do;
+            Sen -- ta -- | do no __ _ seu lu -- | gar; __ _
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "2.A"
+          \repeat volta 2 {
+            Pai __ _ | nos -- so que~es -- tais no | céu; __ _ _
+            Re -- ce -- | be -- mos com a -- le -- | gri -- a.
+          }
+        } 
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "3.A"
+          \repeat volta 2 {
+            O po -- | der de __ _ Deus é | gran -- _ de;
+            Se -- ja | fei -- ta~a vos -- sa von -- | ta -- de.
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "4.A"
+          \repeat volta 2 {
+            To -- do | mun -- do __ _ pe -- de~a | Deus; __ _ _
+            Mas não | sa -- bem se ex -- pli -- | car. _
+          }
+        }
+      >>
+      << % verses, part B
+        {
+          \set stanza = "1.B"
+          \repeat volta 2 {
+            As __ _ | doze ho -- ras do | di -- a; __ _
+            Nós pre -- | ci -- sa -- mos re --
+          } \alternative {
+            { | zar. __ _ }
+            { | zar. __ _ }
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "2.B"
+          \repeat volta 2 {
+            Nos -- so | Pai e nos -- sa | Mãe; __ _ _
+            A sem -- | pre Vir -- gem Ma --
+          } \alternative {
+            { | ri -- a. }
+            { | ri -- a. }
+          }
+        } 
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "3.B"
+          \repeat volta 2 {
+            É quem | nos dá o per -- | dão; __ _
+            E é a | nos -- sa ma -- jes --
+          } \alternative {
+            { | ta -- de. }
+            { | ta -- de. }
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "4.B"
+          \repeat volta 2 {
+            Guar -- _ | dai -- me, de -- fen -- | dei -- _ me;
+            Liv -- rai -- | me de to -- do
+          } \alternative {
+            { | mal. __ _ }
+            { | mal. __ _ }
+          }
+        }
+      >>
     }
     theChords = \chordmode {
       \repeat volta 3 {
@@ -593,12 +662,16 @@
       }
       \repeat volta 2 {
         s4 | d2:m f | g1
-        | a2:m g | c2.
+        | a2:m g
+      } \alternative {
+        { | c2. }
+        { | c2. }
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\footnotesize % to fit whole song on one spread
+  \translationoff
+  \begin{translation}
     Dem dum, dem dum; Dem dum, dem dum
     \nextverse
     God knows what He's doing; Seated in his place
