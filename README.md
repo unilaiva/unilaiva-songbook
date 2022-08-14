@@ -30,8 +30,8 @@ This guarantees the best results, as the actual compiling is done in a Docker
 container that has all the correct packages installed and configured correctly.
 
 Note that the first run will take a long time, as the Docker image is built
-and all the required software downloaded (about 1 GiB) and installed into it.
-When built, the image requires about 2,7 GiB of disk space. Subsequent runs
+and all the required software downloaded (about 800 MiB) and installed into it.
+When built, the image requires about 1,7 GiB of disk space. Subsequent runs
 will be fast as they use the already built image.
 
 ##### Requirements #####
@@ -40,7 +40,7 @@ This method requires the following software installed on your system:
   * `docker`
   * `bash` (installed by default on most systems)
   * `git` (recommended for initially retrieving the songbook source)
-  * 2,7 GiB of disk space (for Docker image)
+  * 1,7 GiB of disk space (for Docker image)
 
 ##### Example: on Debian or Ubuntu, using Docker #####
 
