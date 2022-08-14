@@ -15,6 +15,9 @@
 # Optional binary in PATH: context (will be used to create printout versions)
 #
 
+# Maximum number of parallel compilation jobs. Each job takes quite a bit
+# of memory, so this should be limited.
+MAX_PARALLEL=4
 
 MAIN_FILENAME_BASE="unilaiva-songbook_A5" # filename base for the main document (without .tex suffix)
 PART1_FILENAME_BASE="unilaiva-songbook_part1_A5" # filename base for the 2-part document's part 1 (without .tex suffix)
@@ -503,29 +506,41 @@ if [ ${selections} = "true" ]; then  # add selecion booklets
   done
 fi
 
-dockerized_text=""
-[ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ] || dockerized_text=" within docker container"
+
+[ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ] \
+  && dockerized_text="NO (this is not recommended!)" \
+  || dockerized_text="YES"
+[ ${MAX_PARALLEL} -gt ${doc_count} ] \
+  && concurrent_text="(concurrent: ${doc_count})" \
+  || concurrent_text="(concurrent: ${MAX_PARALLEL})"
+[ ${parallel} = "true" ] \
+  && parallel_text="YES ${concurrent_text}" \
+  || parallel_text="NO"
+[ ${doc_count} = 1 ] && parallel_text="NO (1 document only)"
 echo ""
-if [ ${doc_count} = 1 ]; then
-  echo "Compiling Unilaiva songbook (1 document${dockerized_text})..."
-else
-  parallel_text="sequentially"
-  [ ${parallel} = "true" ] && parallel_text="in parallel"
-  echo "Compiling Unilaiva songbook (${doc_count} documents ${parallel_text}${dockerized_text})..."
-fi
+echo "Compiling Unilaiva songbook(s):"
+echo "  - Documents to compile: ${doc_count}"
+echo "  - Using Docker: ${dockerized_text}"
+echo "  - Parallel compilation: ${parallel_text}"
 echo ""
 
 # Compile the documents in the 'docs' array:
-pid_count=0
-pids[0]=0  # 'pids' array will contain PIDs of sub processes
+running_count=0
+runs_started=0
 for doc in "${docs[@]}"; do
   compile_document "${doc}" &
-  pids[pid_count]=$!
+  ((runs_started++))
+  ((running_count++))
   if [ ${parallel} = "true" ]; then
-    ((pid_count++))
+    if [ ${running_count} -eq ${MAX_PARALLEL} ]; then
+      wait -n # wait for any job to finish
+      ((running_count--))
+    else # start another job right away, except for 1 sec delay
+      [ ${runs_started} -lt ${doc_count} ] && sleep 1
+    fi
   else
     wait  # wait for the last compile_document to finish
-    pids[pid_count]=0  # reset PID
+    ((running_count--))
   fi
 done
 
