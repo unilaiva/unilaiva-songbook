@@ -1,6 +1,8 @@
 %% unilaiva-songbook_common.sty
 %% ============================
 %%
+%% Preferred engine: lualatex
+%%
 %% This file contains the imports, style settings and macro (re)definitions
 %% common to all the different versions of Unilaiva songbook. Please include
 %% this in the beginning of your main .tex file just after \documentclass like
@@ -10,39 +12,46 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{unilaiva-songbook_common}
+%\ProvidesPackage{unilaiva-songbook_common}
 
-% Ensure output PDF to be of version 1.7 (minimum required is 1.5):
-\pdfminorversion=7
 
 
 % BEGIN PACKAGE IMPORTS
 % =====================
 
-% Settings for package imports. These can be set with \newcommand before
-% including this package.
+% Settings for package imports.
 
 % Paper size for geometry package: a4paper, a5paper, ...
 \providecommand{\papersize}{a5paper}
 
 % Actual imports
 
-\usepackage[finnish,english]{babel}\selectlanguage{english}
-\usepackage[utf8x]{inputenc}
+\usepackage[]{polyglossia} % for multiple language support
+\usepackage{fontspec} % font loading & handling
+\usepackage{newunicodechar} % for defining special behaviour for specific characters
 % Use 'microtype' package for better appearance (especially for non-song chapters):
-%   activate={true,nocompatibility} - activate protrusion and expansion
 %   final - enable microtype; use "draft" to disable
+%   protrusion=true, activate protrusion
+%   expansion=false, deactivate expansion, doesn't work with lua(la)tex
 %   tracking=true, kerning=true - activate these techniques
 %   spacing=false - no interword spacing for compatibility with ragged2e,
 %                   \nonfrenchspacing etc.
 %   factor=1100 - add 10% to the protrusion amount (default is 1000)
 %   stretch=10, shrink=10 - reduce stretchability/shrinkability (default is 20/20)
 %   Affected fonts are defined later with \DefineMicrotypeSetDefault
-\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=false,factor=1100,stretch=10,shrink=10]{microtype}
+\usepackage[final,
+            protrusion=true,
+            expansion=false,
+            tracking=true,
+            kerning=false,
+            spacing=false,
+            factor=1100,
+            stretch=10,
+            shrink=10]{microtype}
 % Font weight defaults for Noto are regular and bold; here they are made heavier.
 % Do not use font scaling as it messes with line spacing in some cases.
-\usepackage[medium,extrabold]{noto}
-\usepackage[T1]{fontenc}
+%\usepackage[medium,extrabold]{noto}
+%\usepackage[T1]{fontenc}
 % hyperref is used for URL links and by 'songs' package for index links in PDF.
 % Use option 'colorlinks' to colorize the links always, for both print and
 % digital viewing. It is possible to use colors only for digital viewing and
@@ -51,12 +60,21 @@
 % which creates nicer result for black-and-white prints, but some printing
 % software might ignore both layers thus printing nothing for links -- so we
 % are not using it for now. The actual colors are defined further below.
-\usepackage[bookmarks,unicode,colorlinks]{hyperref} % used by 'songs' package for index links in PDF
+\usepackage[bookmarks,
+           unicode,
+           colorlinks]{hyperref} % used by 'songs' package for index links in PDF
 % NOTE: * In versions before 2018-5-10 we used inner=20mm,outer=10mm,tmargin=16mm,bmargin=10mm,
 %         but now the Golden Ratio rules. Old versions (before fancyheader) also used
 %         headsep=5mm,headheight=3.5mm, but the result is about the same now.
 %       * For the "default" printer, minimum top margin is 16mm (to print the chapter name fully)
-\usepackage[paper=\papersize,inner=16.18mm,outer=10mm,tmargin=16.18mm,bmargin=10mm,headsep=5mm,headheight=4.28mm,nofoot]{geometry} % page size + margins
+\usepackage[paper=\papersize,
+            inner=16.18mm,
+            outer=10mm,
+            tmargin=16.18mm,
+            bmargin=10mm,
+            headsep=5mm,
+            headheight=4.28mm,
+            nofoot]{geometry} % page size + margins
 % xcolor package for using colors in various elements; dvipsnames option imports
 % some CMYK color names
 \usepackage[dvipsnames]{xcolor}%
@@ -122,13 +140,83 @@
 }
 \providecommand{\songbookversion}{\the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}%
 
-% microtype: enable all microtype features (except tracking) for more fonts than in
-% the defaults:
+% microtype: enable some microtype features for more fonts than in the defaults:
 \DeclareMicrotypeSet{mosttext}{encoding={OT1,T1,T2A,LY1,OT4,QX,T5,TS1,EU1,EU2,TU},
                                size={scriptsize-Large}}
-\DeclareMicrotypeSetDefault[protrusion,kerning,spacing,expansion]{mosttext}
+\DeclareMicrotypeSetDefault[protrusion,spacing]{mosttext}
 
-\renewcommand{\familydefault}{\sfdefault} % Sets sans-serif as the default font family everywhere
+% fontspec: setup fonts
+\setmainfont[Ligatures=TeX,
+             UprightFont=*-Medium,
+             BoldFont=*-ExtraBold,
+             ItalicFont = *-MediumItalic,
+             BoldItalicFont = *-ExtraBoldItalic,
+             FontFace = {sl}{\shapedefault}{*-Medium},
+             FontFace = {sl}{it}{*-MediumItalic},
+             FontFace = {b}{\shapedefault}{*-ExtraBold},
+             FontFace = {b}{it}{*-ExtraBoldItalic}]
+            {Noto Serif}
+\setsansfont[Ligatures=TeX,
+             UprightFont=*-Medium,
+             BoldFont=*-ExtraBold,
+             ItalicFont = *-MediumItalic,
+             BoldItalicFont = *-ExtraBoldItalic,
+             FontFace = {sl}{\shapedefault}{*-Medium},
+             FontFace = {sl}{it}{*-MediumItalic},
+             FontFace = {b}{\shapedefault}{*-ExtraBold},
+             FontFace = {b}{it}{*-ExtraBoldItalic}]
+            {Noto Sans}
+\setmonofont[Ligatures=TeX,
+             Scale=MatchLowercase,
+             UprightFont=*-Medium,
+             BoldFont=*-ExtraBold,
+             FontFace = {sl}{\shapedefault}{*-Medium},
+             FontFace = {b}{\shapedefault}{*-ExtraBold}]
+            {Noto Sans Mono} % italic not available for mono
+% Noto Symbols: https://fonts.google.com/noto/specimen/Noto+Sans+Symbols/glyphs
+\newfontfamily{\symbolfont}[Ligatures=TeX,
+                            UprightFont=*-Medium,
+                            BoldFont=*-ExtraBold,
+                            FontFace = {sl}{\shapedefault}{*-Medium},
+                            FontFace = {b}{\shapedefault}{*-ExtraBold}]
+                           {Noto Sans Symbols} % italic not available
+% Noto Symbols 2: https://fonts.google.com/noto/specimen/Noto+Sans+Symbols+2/glyphs
+\newfontfamily{\symboliifont}[Ligatures=TeX,
+                              UprightFont=*-Regular]
+                             {Noto Sans Symbols2} % weights and italic not available
+\newfontfamily{\persianfont}[Script=Arabic,
+                             Ligatures=TeX,
+                             UprightFont=*-Medium,
+                             BoldFont=*-ExtraBold,
+                             FontFace = {sl}{\shapedefault}{*-Medium},
+                             FontFace = {b}{\shapedefault}{*-ExtraBold}]
+                            {Noto Sans Arabic} % italic not available
+\newfontfamily{\persianfontsf}[Script=Arabic,
+                               Ligatures=TeX,
+                               UprightFont=*-Medium,
+                               BoldFont=*-ExtraBold,
+                               FontFace = {sl}{\shapedefault}{*-Medium},
+                               FontFace = {b}{\shapedefault}{*-ExtraBold}]
+                              {Noto Sans Arabic} % italic not available
+
+% Sets sans-serif as the default font family everywhere:
+\renewcommand{\familydefault}{\sfdefault}
+
+% polyglossia: language settings
+\setmainlanguage{english}
+\setotherlanguage{finnish}
+% Picks automatically up the \persianfont and \persianfontsf defined above.
+% Use the persian language by putting it inbetween of \begin{persian} and
+% \end{persian}.
+\setotherlanguage[numerals=maghrib]{persian}
+
+% newunicodechar:
+\newunicodechar{❶}{{\symbolfont ❶}}
+\newunicodechar{❷}{{\symbolfont ❷}}
+\newunicodechar{❸}{{\symbolfont ❸}}
+\newunicodechar{❹}{{\symbolfont ❹}}
+\newunicodechar{♯}{{\textsuperscript\sharp}} % could alternatively be \symbolfont ♯
+\newunicodechar{♭}{{\flt}} % could alternatively be \symbolfont ♭
 
 % Allow further emergency stretching to fix some "overfull hbox" situations.
 % See: https://www.tex.ac.uk/FAQ-overfull.html
@@ -343,11 +431,11 @@
 % This is to work around a problem that only appears in the Samskrtam chapter's
 % page headers strangely in the main non-two-booklet version only:
 % "[PLEASEINSERT\PRERENDERUNICODE{}INTOPREAMBLE]"
-\PrerenderUnicode{ṃ}%\PrerenderUnicode{Ṃ}
-\PrerenderUnicode{ṛ}%\PrerenderUnicode{Ṛ}
+%\PrerenderUnicode{ṃ}%\PrerenderUnicode{Ṃ}
+%\PrerenderUnicode{ṛ}%\PrerenderUnicode{Ṛ}
 % ...this is for the same problem in unilaiva-astral-verde's chapter Oração:
-\PrerenderUnicode{ç}%\PrerenderUnicode{Ç}
-\PrerenderUnicode{ã}%\PrerenderUnicode{Ã}
+%\PrerenderUnicode{ç}%\PrerenderUnicode{Ç}
+%\PrerenderUnicode{ã}%\PrerenderUnicode{Ã}
 
 % Outputs a colored filled circle as a text symbol; the mandatory parameter
 % is the color name. Can be used in chapter names, does not mess up PDF
@@ -494,7 +582,7 @@
   \hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3} \@gtctext{#4}\par%
 }
 % Used by \goto?? commands:
-\newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{→ #1\ldots}}}}
+\newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{{\symboliifont➞ }#1\ldots}}}}
 
 \newcounter{@indentrepeat}% used by \ind
 

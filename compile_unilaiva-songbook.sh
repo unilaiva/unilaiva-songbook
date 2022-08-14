@@ -11,7 +11,7 @@
 # for further information about options, or see function print_usage_and_exit
 # below.
 #
-# Required binaries in PATH: lilypond-book, pdflatex, texlua, awk
+# Required binaries in PATH: lilypond-book, lualatex, texlua, awk
 # Optional binary in PATH: context (will be used to create printout versions)
 #
 
@@ -222,7 +222,7 @@ compile_document() {
   # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
   # the modified .tex files and the musical staff images created by it to subdirectory ${temp_dirname_twolevels}.
   # The directory (last level only) is created if it doesn't exist.
-  lilypond-book -f latex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/out-1_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book! Aborted." "${temp_dirname_twolevels}/out-1_lilypond.log"
+  lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/out-1_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book! Aborted." "${temp_dirname_twolevels}/out-1_lilypond.log"
 
   # Clean up temporary files from the project root
   # (for some reason they're not written to output dir):
@@ -238,10 +238,10 @@ compile_document() {
   cp "../../tags.can" "./"
   ln -s "../../../content/img" "./content/" 2>"/dev/null"  # images are big, so link instead of copy
 
-  echo "EXEC     [${document_basename}]: pdflatex (1st run)"
+  echo "EXEC     [${document_basename}]: lualatex (1st run)"
 
-  # First run of pdflatex:
-  pdflatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex! Aborted." "out-2_pdflatex.log"
+  # First run of lualatex:
+  lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex! Aborted." "out-2_lualatex.log"
 
   # Only create indices, if not compiling a selection booklet (bashism):
   if [[ ${document_basename} != ${SELECTION_FNAME_PREFIX}* ]]; then
@@ -254,15 +254,15 @@ compile_document() {
     texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} -b "tags.can" "idx_${document_basename}_tag.sxd" "idx_${document_basename}_tag.sbx" 1>"out-5_tagidx.log" 2>&1 || die_log $? "Error creating tag (scripture) indices! Aborted." "out-5_tagidx.log"
   fi
 
-  echo "EXEC     [${document_basename}]: pdflatex (2nd run)"
+  echo "EXEC     [${document_basename}]: lualatex (2nd run)"
 
-  # Second run of pdflatex:
-  pdflatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (2nd time)! Aborted." "out-6_pdflatex.log"
+  # Second run of lualatex:
+  lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (2nd time)! Aborted." "out-6_lualatex.log"
 
-  echo "EXEC     [${document_basename}]: pdflatex (3rd run)"
+  echo "EXEC     [${document_basename}]: lualatex (3rd run)"
 
-  # Third run of pdflatex, creates the final main PDF document:
-  pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_pdflatex.log" 2>&1 || die_log $? "Compilation error running pdflatex (3rd time)! Aborted." "out-7_pdflatex.log"
+  # Third run of lualatex, creates the final main PDF document:
+  lualatex -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (3rd time)! Aborted." "out-7_lualatex.log"
 
   cp "${document_basename}.pdf" "../../" || die $? "Error copying ${document_basename}.pdf from temporary directory! Aborted."
   echo "${document_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
@@ -270,9 +270,9 @@ compile_document() {
   # Check warnings in the logs
 
   lp_barwarning_count=$(grep -i "warning: barcheck" "out-1_lilypond.log" | wc -l)
-  overfull_count=$(grep -i overfull "out-7_pdflatex.log" | wc -l)
-  underfull_count=$(grep -i underfull "out-7_pdflatex.log" | wc -l)
-  fontwarning_count=$(grep -i "Font Warning" "out-7_pdflatex.log" | wc -l)
+  overfull_count=$(grep -i overfull "out-7_lualatex.log" | wc -l)
+  underfull_count=$(grep -i underfull "out-7_lualatex.log" | wc -l)
+  fontwarning_count=$(grep -i "Font Warning" "out-7_lualatex.log" | wc -l)
   [ "${lp_barwarning_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Lilypond bar check warnings: ${lp_barwarning_count}"
   [ "${overfull_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Overfull warnings: ${overfull_count}"
   [ "${underfull_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Underfull warnings: ${underfull_count}"
@@ -453,7 +453,7 @@ if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
 fi
 
 # Test executable availability:
-which "pdflatex" >"/dev/null" || die 1 "'pdflatex' binary not found in path! Aborted."
+which "lualatex" >"/dev/null" || die 1 "'lualatex' binary not found in path! Aborted."
 which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path! Aborted."
 which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path! Aborted."
 which "awk" >"/dev/null" || die 1 "'awk' binary not found in path! Aborted."

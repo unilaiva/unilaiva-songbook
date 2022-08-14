@@ -6,35 +6,49 @@
 #
 
 # Use Ubuntu 22.04 LTS:
-FROM ubuntu:jammy-20220428
+FROM ubuntu:jammy-20220801
 
 # Installs everything needed for compiling the songbook, plus qrencode and
 # pdftk utilities. Also generates the required locale fi_FI.utf8.
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    bash \
     locales \
     git \
     context \
     context-modules \
+    fonts-noto-extra \
+    fonts-noto-color-emoji \
+    fonts-noto-core \
+    fonts-noto-mono \
     lilypond \
     texlive \
-    texlive-fonts-extra \
     texlive-font-utils \
+    texlive-lang-arabic \
     texlive-lang-english \
     texlive-lang-european \
+    texlive-latex-base \
     texlive-latex-extra \
+    texlive-luatex \
     texlive-music \
     texlive-plain-generic \
     qrencode \
     pdftk \
   && rm -rf /var/lib/apt/lists/*
-RUN locale-gen fi_FI.utf8
 
 # Enlarge the available memory available to TeX (some ul-selection*.tex files
-# have a problem with too small main memory):
-COPY 99-tex-max-memory.cnf /etc/texmf/texmf.d/
-RUN update-texmf \
-  && texhash
+# have a problem with too small main memory) Commented out as this does not
+# affect lua(la)tex, our current engine:
+#COPY 99-tex-max-memory.cnf /etc/texmf/texmf.d/
+
+# 1. Generate Finnish locale, which is used for sorting indices by default.
+# Finnish alphabet is a superset of English, so this does not need to be changed
+# for English-only books.
+# 2. Create index databases used by TeX
+RUN locale-gen fi_FI.utf8 \
+  && update-texmf \
+  && texhash \
+  && luaotfload-tool --update
 
 # Setup a non-root user for everything. Make it's home world-writable so that
 # we can use host machine's user id and still have access to container's

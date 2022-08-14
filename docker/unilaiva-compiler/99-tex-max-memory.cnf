@@ -1,4 +1,5 @@
-% Use maximum memory settings for TeX
+% Use maximum memory settings for TeX. This is needed for xe(la)tex and
+# pdf(la)tex, but not for lua(la)tex, which allocates memory dynamically.
 main_memory = 12000000
 extra_mem_bot = 12000000
 font_mem_size = 12000000

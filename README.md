@@ -64,7 +64,7 @@ execute the compilation script with `--no-docker` option.
 ##### Requirements #####
 
   * LaTeX 2e distribution (TeX Live is recommended) with some fairly standard
-    packages and the binaries `pdflatex` and `texlua`
+    packages and the binaries `lualatex` and `texlua`
   * Lilypond installation with the binary `lilypond-book`
   * Font 'Noto' for LaTeX
   * Locale 'fi_FI.utf8'
@@ -87,10 +87,11 @@ On Ubuntu 22.04 LTS, to install the dependencies, download the project's
 source and compile the songbook without Docker, you need to run the following
 commands:
 
-  1. `sudo apt update && sudo apt install bash context context-modules git
-     lilypond texlive texlive-fonts-extra texlive-font-utils
-     texlive-lang-english texlive-lang-european texlive-latex-extra
-     texlive-music texlive-plain-generic`
+  1. `sudo apt update && sudo apt install bash locales git context
+     context-modules fonts-noto-extra fonts-noto-color-emoji fonts-noto-core
+     fonts-noto-mono lilypond texlive texlive-font-utils texlive-lang-arabic
+     texlive-lang-english texlive-lang-european texlive-latex-base
+     texlive-latex-extra texlive-luatex texlive-music texlive-plain-generic`
   2. `sudo locale-gen fi_FI.utf8`
   3. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
   4. `cd unilaiva-songbook`
@@ -100,26 +101,27 @@ commands:
 ### Option THREE, compile manually ###
 
 This is the only option for non-UNIX systems (in addition to using a Linux
-virtual machine).
+virtual machine or WSL on Windows).
 
 To build (only) the main document manually, ensure you have all the dependencies
 installed (see **option TWO**) and the project's source downloaded, and then run
 the following commands or their equivalents in this exact sequence in the
 project's root directory:
 
-  1. `lilypond-book -f latex --output=temp unilaiva-songbook.tex`
+  1. `lilypond-book -f latex --latex-program=lualatex --output=temp
+     unilaiva-songbook.tex`
   2. `cd temp ; ln -s ../ext_packages ./ ; ln -s ../../content/img ./content/ ;
      ln -s ../../tex/unilaiva-songbook_common.sty ./tex/ ;
      ln -s ../tags.can ./`
-  3. `pdflatex unilaiva-songbook.tex` # (1st time)
+  3. `lualatex unilaiva-songbook.tex` # (1st time)
   4. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
      idx_unilaiva-songbook_title.sxd idx_unilaiva-songbook_title.sbx`
   5. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
      idx_unilaiva-songbook_auth.sxd idx_unilaiva-songbook_auth.sbx`
   6. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8 -b tags.can
      idx_unilaiva-songbook_tag.sxd idx_unilaiva-songbook_tag.sbx`
-  7. `pdflatex unilaiva-songbook.tex` # (2nd time)
-  8. `pdflatex unilaiva-songbook.tex` # (3rd time)
+  7. `lualatex unilaiva-songbook.tex` # (2nd time)
+  8. `lualatex unilaiva-songbook.tex` # (3rd time)
 
 **Explanation:** Lilypond will create a subdirectory called `temp`, create the
 music notation images there, and copy `.tex` files there also (with necessary
@@ -128,25 +130,15 @@ happens within that directory. Lilypond does not copy all needed files, so we
 need to link them within the `temp` directory, to create directory structure
 equivalent to the one in the project's root. Instead of linking with `ln -s`,
 you can copy the files, but need to remember to do it every time modification
-to the source is made, and new compilation is required. Then `pdflatex` is run,
-the indexes created, and finally `pdflatex` is executed two more times. You
-actually **do** need all three cycles of `pdflatex` to get everything right.
+to the source is made, and new compilation is required. Then `lualatex` is run,
+the indexes created, and finally `lualatex` is executed two more times. You
+actually **do** need all three cycles of `lualatex` to get everything right.
 In the end, you will have the result document, `unilaiva-songbook.pdf` in the
 `temp` directory. Use similar procedure for other `.tex` documents in the
 project's root.
 
-
-#### Font problems ####
-
-Note that on some distributions, for example on Ubuntu 20.04, there is a problem
-with the medium weight Noto Sans font. The songbook will compile, but with
-incorrect fonts. The compile script will display a warning about this.
-To mitigate, one could change the `\usepackage[medium,extrabold]{noto}` to
-`\usepackage[regular,extrabold]{noto}` in `tex/unilaiva-songbook_common.sty`,
-but it would result in lighter and less readable fonts.
-
-A better solution to this and other distribution specific problems is to
-compile using **Option ONE**, the Docker container.
+It is recommended to use `lualatex` engine, but with a little tweaking it is
+also possible to compile with other LaTeX engines.
 
 
 
