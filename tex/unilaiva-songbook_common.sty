@@ -98,7 +98,6 @@
 % environ package's \NewEnviron
 \usepackage{verbatim}%
 \usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
-\usepackage{pifont}% for font symbols, used in \chapsymbol
 %\usepackage{showframe} % uncomment only for debugging margins etc.
 
 % The most important 'songs' package, use the version in the project tree:
@@ -428,14 +427,11 @@
 
 \makeatletter% To allow rewrites of @-containing macros
 
-% Outputs a colored filled circle as a text symbol; the mandatory parameter
-% is the color name. Can be used in chapter names, does not mess up PDF
-% hyperrefs.
+% Outputs a colored filled six-petalled star as a text symbol; the mandatory
+% parameter is the color name. Can be used in chapter names, does not mess up
+% PDF hyperrefs.
 \newcommand\chapsymbol[1]{%
-  % \ding{86} from pifont package creates a six-pointed star. See the package's
-  % full symbol list at:
-  % https://www.nic.funet.fi/pub/TeX/CTAN/macros/latex/required/psnfss/psnfss2e.pdf
-  \texorpdfstring{\hspace{1em}\textcolor{#1}{\ding{86}}}{}%
+  \texorpdfstring{\hspace{1em}\textcolor{#1}{\symboliifont 🟌}}{}%
 }
 
 % This command creates "the second page" at where it is called. This is supposed
