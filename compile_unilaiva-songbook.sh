@@ -541,17 +541,21 @@ for doc in "${docs[@]}"; do
   if [ ${parallel} = "true" ]; then
     if [ ${running_count} -eq ${MAX_PARALLEL} ]; then
       wait -n # wait for any job to finish
+      ec=$?
+      [ $ec -ne 0 ] && die $ec "Last compile was erroneus, now exit [this is not shown]"
       ((running_count--))
-    else # start another job right away, except for 1 sec delay
-      [ ${runs_started} -lt ${doc_count} ] && sleep 1
-    fi
+    fi # else continue loop
   else
     wait  # wait for the last compile_document to finish
+    ec=$?
+    [ $ec -ne 0 ] && die $ec "Last compile was erroneus, now exit [this is not shown]"
     ((running_count--))
   fi
 done
 
 wait # wait for all sub processes to end
+ec=$?
+[ $ec -ne 0 ] && die $ec "Last compile was erroneus, now exit [this is not shown]"
 
 deploy_results
 
