@@ -214,8 +214,8 @@
 \newunicodechar{❷}{{\symbolfont ❷}}
 \newunicodechar{❸}{{\symbolfont ❸}}
 \newunicodechar{❹}{{\symbolfont ❹}}
-\newunicodechar{♯}{{\textsuperscript\sharp}} % could alternatively be \symbolfont ♯
-\newunicodechar{♭}{{\flt}} % could alternatively be \symbolfont ♭
+\newunicodechar{♯}{{\sharpsymbol}} % Use same symbols as in chord lines
+\newunicodechar{♭}{{\flatsymbol}} % Use same symbols as in chord lines
 
 % Allow further emergency stretching to fix some "overfull hbox" situations.
 % See: https://www.tex.ac.uk/FAQ-overfull.html
@@ -270,7 +270,9 @@
 \renewcommand{\idxscripfont}{\sffamily\small\slshape} % songs: font used for tag (scripture) index
 % songs: use same text color for music notes as for chords:
 \renewcommand\musicnote[1]{\ifchorded\textnote{\color{chordcolor}#1}\fi}%
-% songs: use real flat symbol instead of # for typesetting:
+% songs: use real sharp symbol instead of # for typesetting:
+% (\sharpsymbol could use \symbolfont♯ and \flatsymbol \symbolfont♭,
+% but they cause TeX memory exceeded error for some reason.)
 \renewcommand{\sharpsymbol}{\ensuremath{^\sharp}}%
 % songs: change distance of chords to lyrics
 \renewcommand{\clineparams}{%
