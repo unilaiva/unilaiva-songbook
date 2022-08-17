@@ -220,6 +220,8 @@ compile_document() {
   document_basename="$1"
   temp_dirname_twolevels="${TEMP_DIRNAME}/${document_basename}"
 
+  echo "START    [${document_basename}]"
+
   # Test if we are currently in the correct directory:
   [ -f "./${document_basename}.tex" ] || die 1 "Not currently in the project's root directory! Aborted."
 
@@ -229,7 +231,7 @@ compile_document() {
   mkdir -p "${temp_dirname_twolevels}" 2>"/dev/null"
   [ -d "${temp_dirname_twolevels}" ] || die $? "Could not create the build directory ${temp_dirname_twolevels}. Aborted."
 
-  echo "EXEC     [${document_basename}]: lilypond (lilypond-book)"
+  echo "EXEC     [${document_basename}]: lilypond-book"
 
   # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
   # the modified .tex files and the musical staff images created by it to subdirectory ${temp_dirname_twolevels}.
