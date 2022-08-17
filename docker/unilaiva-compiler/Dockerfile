@@ -36,10 +36,11 @@ RUN apt-get update \
     pdftk \
   && rm -rf /var/lib/apt/lists/*
 
-# Enlarge the available memory available to TeX (some ul-selection*.tex files
-# have a problem with too small main memory) Commented out as this does not
-# affect lua(la)tex, our current engine:
-#COPY 99-tex-max-memory.cnf /etc/texmf/texmf.d/
+# Enlarge the available memory available to some TeX engines. (Some
+# ul-selection*.tex files have a problem with too small main memory on such
+# engines). This does not affect lua(la)tex, our default engine, but left
+# here for compatibility with other engines.
+COPY 99-tex-max-memory.cnf /etc/texmf/texmf.d/
 
 # 1. Generate Finnish locale, which is used for sorting indices by default.
 # Finnish alphabet is a superset of English, so this does not need to be changed
