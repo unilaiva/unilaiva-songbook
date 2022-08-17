@@ -93,6 +93,15 @@ print_usage_and_exit() {
   exit 1
 }
 
+# Function: clean up before exiting the whole script
+cleanup() {
+  # return to the original directory
+  cd "${INITIAL_DIR}"
+  # Clean up temporary files from the project root, left by lilypond-book
+  # (for some reason they're not written to output dir):
+  rm tmp????????.sxc tmp????????.out tmp????????.log tmp????????.pdf idx_*.sxd missfont.log 2>"/dev/null"
+}
+
 # Function: exit the program with error code and message.
 # Usage: die <errorcode> <message>
 die() {
@@ -106,7 +115,7 @@ die() {
     echo ""
     # Echo the actual error:
     echo "ERROR:   $2" >&2
-    cd "${INITIAL_DIR}"
+    cleanup
     pkill_available="false"
     which "pkill" >"/dev/null" && pkill_available="true"
     for pid in "${pids[@]}"; do # Loop through the main sub processes
@@ -226,10 +235,6 @@ compile_document() {
   # the modified .tex files and the musical staff images created by it to subdirectory ${temp_dirname_twolevels}.
   # The directory (last level only) is created if it doesn't exist.
   lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/out-1_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book! Aborted." "${temp_dirname_twolevels}/out-1_lilypond.log"
-
-  # Clean up temporary files from the project root
-  # (for some reason they're not written to output dir):
-  rm tmp????????.sxc tmp????????.out idx_*.sxd missfont.log 2>"/dev/null"
 
   # Enter the temp directory. (Do rest of the steps there.)
   cd "${temp_dirname_twolevels}" || die 1 "Cannot enter temporary directory! Aborted."
@@ -547,6 +552,8 @@ done
 wait # wait for all sub processes to end
 
 deploy_results
+
+cleanup
 
 if [ -e "${TOO_MANY_WARNINGS_FILE}" ]; then
   echo ""
