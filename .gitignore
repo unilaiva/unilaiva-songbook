@@ -34,7 +34,7 @@ old_versions
 # result documents
 *.pdf
 !ext_packages/songs/songs.pdf
-!content/img/*_COVER.pdf
+!content/img/*.pdf
 
 # other
 old
