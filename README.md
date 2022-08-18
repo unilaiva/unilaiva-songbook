@@ -119,11 +119,11 @@ equivalents in this exact sequence in the project's root directory:
      ln -s ../tags.can ./`
   3. `lualatex unilaiva-songbook_A5.tex` # (1st time)
   4. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
-     idx_unilaiva-songbook_title.sxd idx_unilaiva-songbook_title.sbx`
+     idx_title.sxd idx_title.sbx`
   5. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
-     idx_unilaiva-songbook_auth.sxd idx_unilaiva-songbook_auth.sbx`
+     idx_auth.sxd idx_auth.sbx`
   6. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8 -b tags.can
-     idx_unilaiva-songbook_tag.sxd idx_unilaiva-songbook_tag.sbx`
+     idx_tag.sxd idx_tag.sbx`
   7. `lualatex unilaiva-songbook_A5.tex` # (2nd time)
   8. `lualatex unilaiva-songbook_A5.tex` # (3rd time)
 
