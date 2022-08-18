@@ -18,6 +18,9 @@
 # Maximum number of parallel compilation jobs. Each job takes quite a bit
 # of memory, so this should be limited.
 MAX_PARALLEL=4
+# Set this to 1 if wanting to use colors, 0 otherwise. This will be disabled if
+# there is no color support.
+USE_COLORS=1
 
 MAIN_FILENAME_BASE="unilaiva-songbook_A5" # filename base for the main document (without .tex suffix)
 PART1_FILENAME_BASE="unilaiva-songbook_part1_A5" # filename base for the 2-part document's part 1 (without .tex suffix)
@@ -114,7 +117,7 @@ die() {
     echo "Error occurred while compiling: $2 (code: $1)" >"${ERROR_OCCURRED_FILE}"
     echo ""
     # Echo the actual error:
-    echo "ERROR:   $2" >&2
+    echo -e "${PRETXT_ERROR}$2" >&2
     cleanup
     pkill_available="false"
     which "pkill" >"/dev/null" && pkill_available="true"
@@ -128,6 +131,81 @@ die() {
     done
   fi
   exit $1
+}
+
+# Function: set up UI strings and colors, called in the beginning of the script
+setup_ui() {
+  # Test if colorization is supported
+  if [ "$USE_COLORS" -eq 1 ]; then
+    if [[ "$TERM" = *xterm*color* ]]; then
+      USE_COLORS=1
+    elif [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+      # We have color support; assume it's compliant with Ecma-48
+      # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+      # a case would tend to support setf rather than setaf.)
+      USE_COLORS=1
+    else
+      USE_COLORS=0
+    fi
+  fi
+  if [ "$USE_COLORS" -eq 1 ]; then # define colors
+    C_BLACK="\033[0;30m"
+    C_BLUE="\033[0;34m"
+    C_GREEN="\033[0;32m"
+    C_CYAN="\033[0;36m"
+    C_RED="\033[0;31m"
+    C_MAGENTA="\033[0;35m"
+    C_BROWN="\033[0;33m"
+    C_GRAY="\033[0;37m"
+    C_DGRAY="\033[1;30m"
+    C_LBLUE="\033[1;34m"
+    C_LGREEN="\033[1;32m"
+    C_LCYAN="\033[1;36m"
+    C_LRED="\033[1;31m"
+    C_LMAGENTA="\033[1;35m"
+    C_YELLOW="\033[1;33m"
+    C_WHITE="\033[1;37m"
+    C_RESET="\033[0m"
+  else # if colors are not supported, set color strings empty
+    C_BLACK=""
+    C_BLUE=""
+    C_GREEN=""
+    C_CYAN=""
+    C_RED=""
+    C_MAGENTA=""
+    C_BROWN=""
+    C_GRAY=""
+    C_DGRAY=""
+    C_LBLUE=""
+    C_LGREEN=""
+    C_LCYAN=""
+    C_LRED=""
+    C_LMAGENTA=""
+    C_YELLOW=""
+    C_WHITE=""
+    C_RESET=""
+  fi
+  # setup DOC_COLORS; each document gets it's own color from this array
+  DOC_COLORS[0]="${C_BROWN}"
+  DOC_COLORS[1]="${C_MAGENTA}"
+  DOC_COLORS[2]="${C_CYAN}"
+  DOC_COLORS[3]="${C_BLUE}"
+  DOC_COLORS[4]="${C_YELLOW}"
+  DOC_COLORS[5]="${C_LMAGENTA}"
+  DOC_COLORS[6]="${C_LCYAN}"
+  DOC_COLORS[7]="${C_LBLUE}"
+  DOC_COLOR_COUNT=8
+  # Some UI Text
+  PRETXT_DOCKER="${C_WHITE}DOCKER   ${C_RESET}"
+  PRETXT_START="${C_GREEN}START    ${C_RESET}"
+  PRETXT_EXEC="${C_WHITE}EXEC     ${C_RESET}"
+  PRETXT_NOEXEC="${C_DGRAY}NOEXEC   ${C_RESET}"
+  PRETXT_DEPLOY="${C_WHITE}DEPLOY   ${C_RESET}"
+  PRETXT_NODEPLOY="${C_DGRAY}NODEPLOY ${C_RESET}"
+  PRETXT_DEBUG="${C_DGRAY}DEBUG    ${C_RESET}"
+  PRETXT_SUCCESS="${C_GREEN}SUCCESS  ${C_RESET}"
+  PRETXT_ERROR="${C_RED}ERROR    ${C_RESET}"
+  TXT_DONE="${C_GREEN}Done.${C_RESET}"
 }
 
 # Build, create and stat docker container and start the compile script therein.
@@ -148,7 +226,7 @@ compile_in_docker() {
   # Build the compiler Docker image only if it doesn't yet exist, or if the
   # Dockerfile (modification date) is newer than the image
 
-  echo "DOCKER   Query compiler image status..."
+  echo -e "${PRETXT_DOCKER}Query compiler image status..."
   docker_build_needed=""
   if [ ! -z $(docker image ls -q unilaiva-compiler) ]; then
     # image exists, compare dates...
@@ -160,10 +238,10 @@ compile_in_docker() {
   fi
 
   if [ "${docker_build_needed}" = "true" ]; then
-    echo "DOCKER   Build compiler image..."
+    echo -e "${PRETXT_DOCKER}Build compiler image..."
     # Build the compiler image
     docker build -t unilaiva-compiler ./docker/unilaiva-compiler || die 1 "Docker build error"
-    echo "DOCKER   Building image complete."
+    echo -e "${PRETXT_DOCKER}Building image complete."
     echo ""
     echo "         To remove old dangling images and unused volumes, it is safe"
     echo "         to run the following command:"
@@ -176,7 +254,7 @@ compile_in_docker() {
     echo ""
   fi
 
-  echo "DOCKER   Start compiler container..."
+  echo -e "${PRETXT_DOCKER}Start compiler container..."
 
   # Run the container with current user's ID and bind mount current directory
   docker run -it --rm \
@@ -188,7 +266,9 @@ compile_in_docker() {
 }
 
 # Function: compile the document given as parameter
-# Usage: compile_document <filename_base_for_tex_document> # without path and without ".tex" suffix
+# Usage: compile_document <filename_base_for_tex_document> <doc_color_string>
+#        - Give filename without path and without ".tex" suffix.
+#        - doc_color_string is a string containing escaped color instructions
 compile_document() {
 
   # Usage: die_log <errorcode> <message> <logfile>
@@ -197,9 +277,9 @@ compile_document() {
     # If it exists, it means that error processing is already underway,
     # and this is only a child process that has been killed.
     if [ ! -f "${ERROR_OCCURRED_FILE}" ]; then
-      echo "ERROR    [${document_basename}]: $2"
+      echo -e "${PRETXT_ERROR}${txt_docbase}: $2"
       echo ""
-      echo "Displaying log file for ${document_basename}.tex: $3"
+      echo -e "Displaying log file for ${txt_doctex}: $3"
       echo ""
       cat "$3"
       echo ""
@@ -218,9 +298,13 @@ compile_document() {
   }
 
   document_basename="$1"
+  # setup some UI text with colors (if enabled):
+  txt_docbase="${C_DGRAY}[${2}${1}${C_DGRAY}]${C_RESET}"
+  txt_docpdf="${C_DGRAY}[${2}${1}.pdf${C_DGRAY}]${C_RESET}"
+  txt_doctex="${C_DGRAY}[${2}${1}.tex${C_DGRAY}]${C_RESET}"
   temp_dirname_twolevels="${TEMP_DIRNAME}/${document_basename}"
 
-  echo "START    [${document_basename}]"
+  echo -e "${PRETXT_START}${txt_docbase}"
 
   # Test if we are currently in the correct directory:
   [ -f "./${document_basename}.tex" ] || die 1 "Not currently in the project's root directory! Aborted."
@@ -231,7 +315,7 @@ compile_document() {
   mkdir -p "${temp_dirname_twolevels}" 2>"/dev/null"
   [ -d "${temp_dirname_twolevels}" ] || die $? "Could not create the build directory ${temp_dirname_twolevels}. Aborted."
 
-  echo "EXEC     [${document_basename}]: lilypond-book"
+  echo -e "${PRETXT_EXEC}${txt_docbase}: lilypond-book"
 
   # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
   # the modified .tex files and the musical staff images created by it to subdirectory ${temp_dirname_twolevels}.
@@ -248,14 +332,14 @@ compile_document() {
   cp "../../tags.can" "./"
   ln -s "../../../content/img" "./content/" 2>"/dev/null"  # images are big, so link instead of copy
 
-  echo "EXEC     [${document_basename}]: lualatex (1st run)"
+  echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (1st run)"
 
   # First run of lualatex:
   lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex! Aborted." "out-2_lualatex.log"
 
   # Only create indices, if not compiling a selection booklet (bashism):
   if [[ ${document_basename} != ${SELECTION_FNAME_PREFIX}* ]]; then
-    echo "EXEC     [${document_basename}]: texlua (create indices)"
+    echo -e "${PRETXT_EXEC}${txt_docbase}: texlua (create indices)"
 
     # Create indices:
     texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} "idx_${document_basename}_title.sxd" "idx_${document_basename}_title.sbx" 1>"out-3_titleidx.log" 2>&1 || die_log $? "Error creating song title indices! Aborted." "out-3_titleidx.log"
@@ -264,12 +348,12 @@ compile_document() {
     texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} -b "tags.can" "idx_${document_basename}_tag.sxd" "idx_${document_basename}_tag.sbx" 1>"out-5_tagidx.log" 2>&1 || die_log $? "Error creating tag (scripture) indices! Aborted." "out-5_tagidx.log"
   fi
 
-  echo "EXEC     [${document_basename}]: lualatex (2nd run)"
+  echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (2nd run)"
 
   # Second run of lualatex:
   lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (2nd time)! Aborted." "out-6_lualatex.log"
 
-  echo "EXEC     [${document_basename}]: lualatex (3rd run)"
+  echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (3rd run)"
 
   # Third run of lualatex, creates the final main PDF document:
   lualatex -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (3rd time)! Aborted." "out-7_lualatex.log"
@@ -283,30 +367,30 @@ compile_document() {
   overfull_count=$(grep -i overfull "out-7_lualatex.log" | wc -l)
   underfull_count=$(grep -i underfull "out-7_lualatex.log" | wc -l)
   fontwarning_count=$(grep -i "Font Warning" "out-7_lualatex.log" | wc -l)
-  [ "${lp_barwarning_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Lilypond bar check warnings: ${lp_barwarning_count}"
-  [ "${overfull_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Overfull warnings: ${overfull_count}"
-  [ "${underfull_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Underfull warnings: ${underfull_count}"
+  [ "${lp_barwarning_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: Lilypond bar check warnings: ${lp_barwarning_count}"
+  [ "${overfull_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: Overfull warnings: ${overfull_count}"
+  [ "${underfull_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: Underfull warnings: ${underfull_count}"
   if [ "${fontwarning_count}" -gt "20" ]; then
-    echo "DEBUG    [${document_basename}]: Font warnings: ${fontwarning_count}; CHECK THE LOG!!"
+    echo -e "${PRETXT_DEBUG}${txt_docbase}: Font warnings: ${fontwarning_count}; ${C_RED}CHECK THE LOG!!${C_RESET}"
     echo "Too many Font warnings! There is a problem!" >>"${TOO_MANY_WARNINGS_FILE}"
   else
-    [ "${fontwarning_count}" -gt "0" ] && echo "DEBUG    [${document_basename}]: Font warnings: ${fontwarning_count}"
+    [ "${fontwarning_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: Font warnings: ${fontwarning_count}"
   fi
 
   # Create printouts, if filename contains _A5 and printouts are not disabled
   # by a command line argument:
 
   if [[ "${document_basename}" != *"_A5"* ]]; then
-    echo "NOEXEC   [${document_basename}]: Extra printout PDFs not created, no _A5 in filename"
+    echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created, no _A5 in filename"
   else
     if [ ${createprintouts} != "true" ]; then
-      echo "NOEXEC   [${document_basename}]: Extra printout PDFs not created as per request"
+      echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created as per request"
     else
       which "context" >"/dev/null"
       if [ $? -ne 0 ]; then
-        echo "NOEXEC   [${document_basename}]: Extra printout PDFs not created; no 'context'"
+        echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created; no 'context'"
       else
-        echo "EXEC     [${document_basename}]: context (create printouts)"
+        echo -e "${PRETXT_EXEC}${txt_docbase}: context (create printouts)"
 
         # A5 on A4, double sided, folded: Use 'awk' to create a copy of the
         # printout template file with changed input PDF file name and then
@@ -335,8 +419,8 @@ compile_document() {
   # Get out of ${temp_dirname_twolevels}:
   cd "${INITIAL_DIR}" || die $? "Cannot return to the main directory."
 
-  echo "DEBUG    [${document_basename}]: Build logs in ${temp_dirname_twolevels}/"
-  echo "SUCCESS  [${document_basename}.pdf]: Compilation successful!"
+  echo -e "${PRETXT_DEBUG}${txt_docbase}: Build logs in ${temp_dirname_twolevels}/"
+  echo -e "${PRETXT_SUCCESS}${txt_docpdf}: Compilation successful!"
 
 } # END compile_document()
 
@@ -349,18 +433,18 @@ deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
   if [ ! -d "./deploy" ]; then
-    echo "NODEPLOY Resulting PDF files NOT copied to ./deploy/ (directory not found)"
+    echo -e "${PRETXT_NODEPLOY}Resulting PDF files NOT copied to ./deploy/ (directory not found)"
     return
   fi
   while IFS= read -r pdf_file; do
     if [[ ${pdf_file} == *"_NODEPLOY"* ]]; then
-      echo "NODEPLOY [${pdf_file}]: not deployed due to filename"
+      echo -e "${PRETXT_NODEPLOY}[${pdf_file}]: not deployed due to filename"
       continue
     fi
     [ -f "${pdf_file}" ] || die 21 "Could not access ${pdf_file} for deployment"
     cp "${pdf_file}" "./deploy/"
     [ $? -eq 0 ] || die 22 "Could not deploy ${pdf_file}"
-    echo "DEPLOY   ${pdf_file} copied to ./deploy/"
+    echo -e "${PRETXT_DEPLOY}${pdf_file} copied to ./deploy/"
   done < "${RESULT_PDF_LIST_FILE}"
 } # END deploy_results()
 
@@ -374,6 +458,8 @@ partialbooks="true"
 selections="true"
 gitpull="false"
 parallel="true"
+
+setup_ui
 
 doc_count=0 # will be increased when documents are added to 'docs' array
 
@@ -440,7 +526,7 @@ while [ $# -gt 0 ]; do
         selections="false"
       else
         echo ""
-        echo "ERROR:   Incorrect argument or nonexisting file name."
+        echo -e "${PRETXT_ERROR}Incorrect argument or nonexisting file name."
         print_usage_and_exit
       fi
       shift;;
@@ -450,13 +536,13 @@ done
 [ -f "./compile_unilaiva-songbook.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
 
 if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
-  if [ ${usedocker} = "true" ]; then
+  if [ ${usedocker} = "true" ]; then # start the script in Docker container
     compile_in_docker ${all_args}
     retcode=$?
     [ ${retcode} -eq 0 ] || exit ${retcode}
     deploy_results
     echo ""
-    echo "Done."
+    echo -e "${TXT_DONE}"
     echo ""
     exit 0
   fi
@@ -534,28 +620,31 @@ echo ""
 # Compile the documents in the 'docs' array:
 running_count=0
 runs_started=0
+doc_color_idx=0
 for doc in "${docs[@]}"; do
-  compile_document "${doc}" &
+  [ ${doc_color_idx} -ge ${DOC_COLOR_COUNT} ] && doc_color_idx=0
+  compile_document "${doc}" "${DOC_COLORS[doc_color_idx]}" &
   ((runs_started++))
   ((running_count++))
+  ((doc_color_idx++))
   if [ ${parallel} = "true" ]; then
     if [ ${running_count} -eq ${MAX_PARALLEL} ]; then
       wait -n # wait for any job to finish
       ec=$?
-      [ $ec -ne 0 ] && die $ec "Last compile was erroneus, now exit [this is not shown]"
+      [ ${ec} -ne 0 ] && die ${ec} "Last compile was erroneus, now exit [this is not shown]"
       ((running_count--))
     fi # else continue loop
   else
     wait  # wait for the last compile_document to finish
     ec=$?
-    [ $ec -ne 0 ] && die $ec "Last compile was erroneus, now exit [this is not shown]"
+    [ ${ec} -ne 0 ] && die ${ec} "Last compile was erroneus, now exit [this is not shown]"
     ((running_count--))
   fi
 done
 
 wait # wait for all sub processes to end
 ec=$?
-[ $ec -ne 0 ] && die $ec "Last compile was erroneus, now exit [this is not shown]"
+[ ${ec} -ne 0 ] && die ${ec} "Last compile was erroneus, now exit [this is not shown]"
 
 deploy_results
 
@@ -577,10 +666,10 @@ fi
 
 if [ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ]; then
   echo ""
-  echo "Done."
+  echo -e "${TXT_DONE}"
   echo ""
-else
-  echo "DOCKER   Stop compiler container..."
+else # we're in docker
+  echo -e "${PRETXT_DOCKER}Stop compiler container..."
 fi
 
 exit 0
