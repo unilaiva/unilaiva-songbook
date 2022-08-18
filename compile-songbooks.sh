@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# This bash shell script for UNIX compiles unilaiva-songbook.tex using
-# different tools to produce the main output file unilaiva-songbook.pdf
-# and others.
+# This bash shell script for UNIX compiles songbooks, in the Unilaiva songbook
+# family of books, using different tools to produce the main output file
+# unilaiva-songbook_A5.pdf and others.
 #
 # Note that this script probably works only with bash, as it uses some of it's
 # features, especially arrays.
@@ -52,7 +52,7 @@ RESULT_PDF_LIST_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/result_pdf_list"
 # Function: print the program usage informationand exit.
 print_usage_and_exit() {
   echo ""
-  echo "Usage: compile_unilaiva-songbook.sh [OPTION]... [FILE]..."
+  echo "Usage: compile-songbooks.sh [OPTION]... [FILE]..."
   echo ""
   echo "TL;DR: just run without arguments for default operation."
   echo ""
@@ -406,7 +406,7 @@ compile_document() {
         # printout template file with changed input PDF file name and then
         # execute 'context' on the new file.
         printout_dsf_basename="printout_${document_basename}_on_A4_doublesided_folded"
-        awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout! Aborted."
+        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout! Aborted."
         context "${printout_dsf_basename}.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
         cp "${printout_dsf_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
         echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
@@ -415,7 +415,7 @@ compile_document() {
         # copy of the printout template file with changed input PDF file name
         # and then execute 'context' on the new file.
         printout_sss_basename="printout_${document_basename}_on_A4_sidebyside_simple"
-        awk "/unilaiva-songbook.pdf/"' { gsub( "'"unilaiva-songbook.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout! Aborted."
+        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout! Aborted."
         context "${printout_sss_basename}.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
         cp "${printout_sss_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
         echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
@@ -543,7 +543,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-[ -f "./compile_unilaiva-songbook.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
+[ -f "./compile-songbooks.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
 
 if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
   if [ ${usedocker} = "true" ]; then # start the script in Docker container

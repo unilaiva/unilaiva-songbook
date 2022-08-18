@@ -1,6 +1,6 @@
 % This is a ConTeXt source file to create a PDF printout from an existing
 % PDF file. If you have 'context' binary on your system,
-%'compile_unilaiva-songbook.sh' will compile a PDF from this source file.
+%'compile-songbooks.sh' will compile a PDF from this source file.
 %
 % The compile script will also use this file as a template for creating
 % similar printouts from other source PDF files. It will only replace the
@@ -40,7 +40,7 @@
 \starttext
   % Insert pages from the precompiled PDF. (No blank space in this format.)
   % Do not change the file name below, it is expected by the compile script.
-  \insertpages[unilaiva-songbook.pdf][width=0pt]
+  \insertpages[replace-this-filename.pdf][width=0pt]
 \stoptext
 
 

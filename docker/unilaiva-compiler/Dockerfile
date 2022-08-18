@@ -1,7 +1,7 @@
 # Dockerfile for compiling Unilaiva songbook
 # ==========================================
 #
-# Run this image with "compile_unilaiva-songbook.sh", as that script will
+# Run this image with "compile-songbooks.sh", as that script will
 # setup the *required* bind mount and use correct user id.
 #
 
@@ -71,4 +71,4 @@ VOLUME /unilaiva-songbook
 WORKDIR /unilaiva-songbook
 
 # Located on the bind mount
-ENTRYPOINT ["./compile_unilaiva-songbook.sh"]
+ENTRYPOINT ["./compile-songbooks.sh"]

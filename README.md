@@ -13,9 +13,9 @@ Compiling the songbook to create a PDF document
 -----------------------------------------------
 
 If you are on a UNIX-compatible system (e.g. Linux), you can use the provided
-`compile_unilaiva-songbook.sh` shell script to build the document. It builds
+`compile-songbooks.sh` shell script to build the document. It builds
 all the book versions, including two-booklet version, each with all printout
-styles. For help about options, run: `compile_unilaiva-songbook.sh --help`
+styles. For help about options, run: `compile-songbooks.sh --help`
 
 Otherwise you must do the compilation steps manually, see **Option THREE**.
 
@@ -53,7 +53,7 @@ commands:
   3. `su <USERNAME>` # relogin for the group setting to become active
   4. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
-  6. `./compile_unilaiva-songbook.sh`
+  6. `./compile-songbooks.sh`
 
 
 ### Option TWO: use the script without Docker ###
@@ -95,7 +95,7 @@ commands:
   2. `sudo locale-gen fi_FI.utf8`
   3. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
   4. `cd unilaiva-songbook`
-  5. `./compile_unilaiva-songbook.sh --no-docker`
+  5. `./compile-songbooks.sh --no-docker`
 
 
 ### Option THREE, compile manually ###
@@ -109,19 +109,19 @@ the following commands or their equivalents in this exact sequence in the
 project's root directory:
 
   1. `lilypond-book -f latex --latex-program=lualatex --output=temp
-     unilaiva-songbook.tex`
+     unilaiva-songbook_A5.tex`
   2. `cd temp ; ln -s ../ext_packages ./ ; ln -s ../../content/img ./content/ ;
      ln -s ../../tex/unilaiva-songbook_common.sty ./tex/ ;
      ln -s ../tags.can ./`
-  3. `lualatex unilaiva-songbook.tex` # (1st time)
+  3. `lualatex unilaiva-songbook_A5.tex` # (1st time)
   4. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
      idx_unilaiva-songbook_title.sxd idx_unilaiva-songbook_title.sbx`
   5. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
      idx_unilaiva-songbook_auth.sxd idx_unilaiva-songbook_auth.sbx`
   6. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8 -b tags.can
      idx_unilaiva-songbook_tag.sxd idx_unilaiva-songbook_tag.sbx`
-  7. `lualatex unilaiva-songbook.tex` # (2nd time)
-  8. `lualatex unilaiva-songbook.tex` # (3rd time)
+  7. `lualatex unilaiva-songbook_A5.tex` # (2nd time)
+  8. `lualatex unilaiva-songbook_A5.tex` # (3rd time)
 
 **Explanation:** Lilypond will create a subdirectory called `temp`, create the
 music notation images there, and copy `.tex` files there also (with necessary
@@ -133,7 +133,7 @@ you can copy the files, but need to remember to do it every time modification
 to the source is made, and new compilation is required. Then `lualatex` is run,
 the indexes created, and finally `lualatex` is executed two more times. You
 actually **do** need all three cycles of `lualatex` to get everything right.
-In the end, you will have the result document, `unilaiva-songbook.pdf` in the
+In the end, you will have the result document, `unilaiva-songbook_A5.pdf` in the
 `temp` directory. Use similar procedure for other `.tex` documents in the
 project's root.
 
@@ -149,7 +149,7 @@ The book is designed to be in **paper size A5** (148 mm x 210 mm), preferably
 double-sided. It looks good as black and white, but color printing gets better
 results (while using the non-black colors sparingly).
 
-You can simply print the main document, `unilaiva-songbook.pdf`. A5 paper ought
+You can simply print the main document, `unilaiva-songbook_A5.pdf`. A5 paper ought
 to be used (and selected in the printing software). Otherwise you will get big
 scaled up pages or pages with wide margins.
 
@@ -169,7 +169,7 @@ There are also special printing options, like printing multiple A5 sized pages
 on an A4 sized paper. They are defined in files named
 `printout_template_*.context` and are to be inputted to *ConTeXt*
 program, which needs to be installed on the system. They operate on a previously
-compiled `unilaiva-songbook.pdf` file. See comments in the beginning of each such
+compiled `unilaiva-songbook_A5.pdf` file. See comments in the beginning of each such
 file. If the compilation script finds the `context` binary, it will by default
 process these too, and use them as templates to create similar printouts of the
 two-booklet version of the songbook as well.
@@ -178,7 +178,7 @@ two-booklet version of the songbook as well.
 
 To print double sided on a printer without a duplexer, one needs to print odd
 pages first, then flip each page around, feed them to the printer, and then
-print the even pages. With the main document, `unilaiva-songbook.pdf`, the
+print the even pages. With the main document, `unilaiva-songbook_A5.pdf`, the
 pages need to be flipped on the long edge. The other files, named
 `printout_unilaiva-songbook*.pdf`, with multiple pages on an A4 sheet, should be
 flipped on the short edge.
@@ -192,8 +192,8 @@ careful to put it in there in the correct way.
 If your printing software is limited, you can extract odd and even pages with,
 for example, `pdftk` like this:
 
-  * `pdftk unilaiva-songbook.pdf cat 1-endodd output unilaiva-songbook_odd.pdf`
-  * `pdftk unilaiva-songbook.pdf cat 1-endeven output unilaiva-songbook_even.pdf`
+  * `pdftk unilaiva-songbook_A5.pdf cat 1-endodd output unilaiva-songbook_odd.pdf`
+  * `pdftk unilaiva-songbook_A5.pdf cat 1-endeven output unilaiva-songbook_even.pdf`
 
 #### larva's example procedure for printing ####
 
@@ -202,7 +202,7 @@ of single-sided printing only. Flipping pages, cutting and binding are done by
 hand. The end result is a book consisting of two-sided A5 pages, which is the
 preferred format.
 
-  1. `./compile_unilaiva-songbook.sh`
+  1. `./compile-songbooks.sh`
   2. `pdftk printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf cat
      1-endodd output unilaiva-songbook_odd.pdf`
   3. `pdftk printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf cat
@@ -236,18 +236,18 @@ Project structure and guidelines
 │   ├── unilaiva-songbook_content_include_part1.tex
 │   ├── unilaiva-songbook_content_include_part2.tex
 │   └── unilaiva-songbook_content_include_part3_appendices.tex
-├── compile_unilaiva-songbook.sh
+├── compile-songbooks.sh
 ├── README.md
 ├── tags.can
 ├── **temp**
 ├── ul-selection_*.tex
 ├── unilaiva-songbook_part1.tex
 ├── unilaiva-songbook_part2.tex
-└── unilaiva-songbook.tex
+└── unilaiva-songbook_A5.tex
 ```
 *(All the files are not included in this representation.)*
 
-Project's main file is `unilaiva-songbook.tex`. It is used to create the full
+Project's main file is `unilaiva-songbook_A5.tex`. It is used to create the full
 songbook. There are also `unilaiva-songbook_part1.tex` and
 `unilaiva-songbook_part2.tex`, which together provide such a version of the
 book, where the content is divided into two parts, booklets, for binding
