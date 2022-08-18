@@ -1,21 +1,23 @@
 unilaiva-songbook
 =================
 
-Unilaiva songbook is a collection of song lyrics etc for the contributors'
-private use written in [LaTeX](https://www.latex-project.org/).
+Unilaiva-songbook is a collection of song lyrics, musical information, etc.,
+and a system to create songbooks out of this data, for the contributors'
+private use. The system is written [LaTeX](https://www.latex-project.org/).
 
-The PDF compiled from these sources is available at
+The PDFs compiled from these sources are available at
 [https://unilaiva.aavalla.net/](https://unilaiva.aavalla.net/)
 
 
 
-Compiling the songbook to create a PDF document
+Compiling the songbooks to create PDF documents
 -----------------------------------------------
 
 If you are on a UNIX-compatible system (e.g. Linux), you can use the provided
-`compile-songbooks.sh` shell script to build the document. It builds
-all the book versions, including two-booklet version, each with all printout
-styles. For help about options, run: `compile-songbooks.sh --help`
+`compile-songbooks.sh` shell script to build the books. By default, if run
+without arguments, it builds all the books contained in this repository, each
+with all supported extra formats. For information about its usage,
+run: `compile-songbooks.sh --help`
 
 Otherwise you must do the compilation steps manually, see **Option THREE**.
 
@@ -66,7 +68,7 @@ execute the compilation script with `--no-docker` option.
   * LaTeX 2e distribution (TeX Live is recommended) with some fairly standard
     packages and the binaries `lualatex` and `texlua`
   * Lilypond installation with the binary `lilypond-book`
-  * Font 'Noto' for LaTeX
+  * Font 'Noto'
   * Locale 'fi_FI.utf8'
   * `bash` (installed by default on most systems)
   * `git` (recommended for retrieving and updating the songbook source)
@@ -241,6 +243,7 @@ Project structure and guidelines
 ├── tags.can
 ├── **temp**
 ├── ul-selection_*.tex
+├── unilaiva-astral*.tex
 ├── unilaiva-songbook_part1.tex
 ├── unilaiva-songbook_part2.tex
 └── unilaiva-songbook_A5.tex
@@ -269,6 +272,8 @@ subdirectory and will be inputed into the main file. Images are put into
 the songs of the full songbook. All files in the project's root matching this
 filename pattern will be automatically compiled by the compile script. See
 `tex/ul-selection_example.tex` for an example.
+
+There are also various 'Unilaiva no Astral' books, named `unilaiva-astral*.tex`.
 
 External packages are in `ext_packages` subdirectory. This currently includes
 only the `songs` package and it's documentation.
