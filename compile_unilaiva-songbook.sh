@@ -15,12 +15,20 @@
 # Optional binary in PATH: context (will be used to create printout versions)
 #
 
+# Set this to 1 if wanting to use colors, 0 otherwise. If colors are wanted,
+# but not suppported, they will be disabled.
+USE_COLORS=1
 # Maximum number of parallel compilation jobs. Each job takes quite a bit
 # of memory, so this should be limited.
 MAX_PARALLEL=4
-# Set this to 1 if wanting to use colors, 0 otherwise. This will be disabled if
-# there is no color support.
-USE_COLORS=1
+# Maximum total memory usage for Docker, 3g should be enough for 4 parallel
+# jobs. This is passed to docker with --memory option.
+MAX_DOCKER_MEMORY="3g"
+# Maximum total memory and swap (together) use for Docker. If set to same as
+# MAX_DOCKER_MEMORY, swap is disabled. This is passed to docker with
+# # --memory-swap option.
+MAX_DOCKER_MEMORY_PLUS_SWAP="4g"
+
 
 MAIN_FILENAME_BASE="unilaiva-songbook_A5" # filename base for the main document (without .tex suffix)
 PART1_FILENAME_BASE="unilaiva-songbook_part1_A5" # filename base for the 2-part document's part 1 (without .tex suffix)
@@ -258,6 +266,8 @@ compile_in_docker() {
 
   # Run the container with current user's ID and bind mount current directory
   docker run -it --rm \
+    --memory="${MAX_DOCKER_MEMORY}" \
+    --memory-swap="${MAX_DOCKER_MEMORY_PLUS_SWAP}" \
     --user $(id -u):$(id -g) \
     --mount type=bind,src="$(realpath .)",dst="/unilaiva-songbook" \
     unilaiva-compiler \
@@ -438,7 +448,7 @@ deploy_results() {
   fi
   while IFS= read -r pdf_file; do
     if [[ ${pdf_file} == *"_NODEPLOY"* ]]; then
-      echo -e "${PRETXT_NODEPLOY}[${pdf_file}]: not deployed due to filename"
+      echo -e "${PRETXT_NODEPLOY}${pdf_file} not deployed due to filename"
       continue
     fi
     [ -f "${pdf_file}" ] || die 21 "Could not access ${pdf_file} for deployment"
