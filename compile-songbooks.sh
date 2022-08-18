@@ -20,12 +20,15 @@
 USE_COLORS=1
 # Maximum number of parallel compilation jobs. Each job takes quite a bit
 # of memory, so this should be limited.
-MAX_PARALLEL=4
-# Maximum total memory usage for Docker, 3g should be enough for 4 parallel
-# jobs. This is passed to docker with --memory option.
-MAX_DOCKER_MEMORY="3g"
-# Maximum total memory and swap (together) use for Docker. If set to same as
-# MAX_DOCKER_MEMORY, swap is disabled. This is passed to docker with
+MAX_PARALLEL=5
+# Soft total max memory usage for Docker container. If this is reached, a
+# warning is emitted. This is passed to docker with --memory-reservation option.
+RES_DOCKER_MEMORY="3.9g"
+# Maximum total memory use for Docker container. 4g should be enough for 5
+# parallel jobs. This is passed to docker with --memory option.
+MAX_DOCKER_MEMORY="4g"
+# Maximum total memory and swap (together) use for Docker container. If set
+# to same as MAX_DOCKER_MEMORY, swap is disabled. This is passed to docker with
 # # --memory-swap option.
 MAX_DOCKER_MEMORY_PLUS_SWAP="4g"
 
@@ -267,6 +270,7 @@ compile_in_docker() {
 
   # Run the container with current user's ID and bind mount current directory
   docker run -it --rm \
+    --memory-reservation="${RES_DOCKER_MEMORY}" \
     --memory="${MAX_DOCKER_MEMORY}" \
     --memory-swap="${MAX_DOCKER_MEMORY_PLUS_SWAP}" \
     --user $(id -u):$(id -g) \
