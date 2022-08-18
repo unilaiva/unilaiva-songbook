@@ -105,10 +105,12 @@ commands:
 This is the only option for non-UNIX systems (in addition to using a Linux
 virtual machine or WSL on Windows).
 
-To build (only) the main document manually, ensure you have all the dependencies
-installed (see **option TWO**) and the project's source downloaded, and then run
-the following commands or their equivalents in this exact sequence in the
-project's root directory:
+Here is described how to build **only** the main document of Unilaiva Songbook.
+To build the others, these instructions must be modified.
+
+Ensure you have all the dependencies installed (see **option TWO**) and the
+project's source downloaded, and then run the following commands or their
+equivalents in this exact sequence in the project's root directory:
 
   1. `lilypond-book -f latex --latex-program=lualatex --output=temp
      unilaiva-songbook_A5.tex`
@@ -146,6 +148,9 @@ also possible to compile with other LaTeX engines.
 
 Printing
 --------
+
+These instructions are for printing the main Unilaiva Songbook. For other A5
+books, the process is the same (except for file names).
 
 The book is designed to be in **paper size A5** (148 mm x 210 mm), preferably
 double-sided. It looks good as black and white, but color printing gets better
