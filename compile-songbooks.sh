@@ -4,19 +4,20 @@
 # family of books, using different tools to produce the main output file
 # unilaiva-songbook_A5.pdf and others.
 #
-# Note that this script probably works only with bash, as it uses some of it's
-# features, especially arrays.
+# Note that this script -- unmodified -- probably works only with bash, as it
+# uses some of it's features, especially for arrays, arithmetic and $BASHPID.
+# Bash version 4 or higher is required, and tested for.
 #
 # Usage: run without argument for default operation. Run with --help argument
 # for further information about options, or see function print_usage_and_exit
 # below.
 #
-#
 # Required binaries in PATH: bash, lilypond-book, lualatex, texlua, awk, ps
-# Optional binary in PATH: context (will be used to create printout versions)
+# Optional binaries in PATH:
+#   - docker: for default compilation mode inside container
+#   - context: used to create printout versions
 #
-# Bash version 4 or higher is required for clean operation.
-#
+
 
 # Set this to 1 if wanting to use colors, 0 otherwise. The terminal's support
 # for colors is tested, and if it is missing, the color codes are disabled
@@ -496,6 +497,8 @@ gitpull="false"
 parallel="true"
 
 setup_ui
+
+[ "${BASH_VERSINFO:-0}" -lt 4 ] && die 9 "Your Bash is too old; v4 or later required."
 
 doc_count=0 # will be increased when documents are added to 'docs' array
 
