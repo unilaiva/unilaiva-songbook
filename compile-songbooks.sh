@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# This bash shell script for UNIX compiles songbooks, in the Unilaiva songbook
+# This bash shell script for Linux compiles songbooks, in the Unilaiva songbook
 # family of books, using different tools to produce the main output file
 # unilaiva-songbook_A5.pdf and others.
 #
@@ -11,8 +11,11 @@
 # for further information about options, or see function print_usage_and_exit
 # below.
 #
-# Required binaries in PATH: lilypond-book, lualatex, texlua, awk
+#
+# Required binaries in PATH: bash, lilypond-book, lualatex, texlua, awk
 # Optional binary in PATH: context (will be used to create printout versions)
+#
+# Bash version 4 or higher is required for clean operation.
 #
 
 # Set this to 1 if wanting to use colors, 0 otherwise. If colors are wanted,
@@ -46,10 +49,11 @@ SORT_LOCALE="fi_FI.utf8" # Recommended default: fi_FI.utf8
 
 INITIAL_DIR="${PWD}" # Store the initial directory
 
-ERROR_OCCURRED_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/compilation_error_occurred"
+ERROR_OCCURRED_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/ERROR_OCCURRED"
 TOO_MANY_WARNINGS_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/too_many_warnings"
 RESULT_PDF_LIST_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/result_pdf_list"
 
+main_pid=$$
 # Function: print the program usage informationand exit.
 print_usage_and_exit() {
   echo ""
@@ -106,7 +110,7 @@ print_usage_and_exit() {
   exit 1
 }
 
-# Function: clean up before exiting the whole script
+# Function: final clean up needed to run before exiting the whole script
 cleanup() {
   # return to the original directory
   cd "${INITIAL_DIR}"
@@ -115,30 +119,54 @@ cleanup() {
   rm tmp????????.sxc tmp????????.out tmp????????.log tmp????????.pdf idx_*.sxd missfont.log 2>"/dev/null"
 }
 
+# Function: sends a signal to a tree of processes (default: KILL)
+# Usage: killtree <root process> <signal>
+#
+# The given signal is sent to the root process and all it's children
+# recursively, leaf first. Current subshell and the main shell, if included
+# in the tree, are not included. If signal argument is omitted, KILL signal
+# used as default.
+#
+# Calls binaries 'kill' and 'ps', requires Bash version 4 or higher.
+# Note: $$ holds the main shell's PID, and $BASHPID (introduced in Bash v4)
+# holds the current subshell's PID.
+killtree() {
+  local _pid=$1
+  local _sig=${2:-KILL}
+  # Stops a parent before killing it's children, to prevent it forking new
+  # children:
+  [ ${_pid} -ne ${BASHPID} ] && [ ${_pid} -ne ${$} ] && kill -STOP ${_pid} >/dev/null 2>&1
+  for _child in $(ps -o pid --no-headers --ppid ${_pid}); do
+    killtree ${_child} ${_sig}
+  done
+  [ ${_pid} -ne ${BASHPID} ] && [ ${_pid} -ne ${$} ] && kill -${_sig} ${_pid} >/dev/null 2>&1
+}
+
 # Function: exit the program with error code and message.
 # Usage: die <errorcode> <message>
 die() {
   # Only print errors, if file ${ERROR_OCCURRED_FILE} does NOT exist.
-  # If it exists, it means that error processing is already underway,
-  # and this is only a child process that has been killed.
+  # If it exists, it means that error has already been processed, and current
+  # call to this function is only the main process that has received TERM
+  # signal.
   if [ ! -f "${ERROR_OCCURRED_FILE}" ]; then
     # Create the file signifying (for child processes) that we are already
     # dying:
-    echo "Error occurred while compiling: $2 (code: $1)" >"${ERROR_OCCURRED_FILE}"
+    echo "Error occurred on the last compile run!" >"${ERROR_OCCURRED_FILE}"
+    echo "Message: ${2}" >>"${ERROR_OCCURRED_FILE}"
+    echo "Exit code: ${1}" >>"${ERROR_OCCURRED_FILE}"
+    # Print the error to stderr:
     echo ""
-    # Echo the actual error:
-    echo -e "${PRETXT_ERROR}$2" >&2
+    echo -e "${PRETXT_ERROR}${2}" >&2
+    # Kill all processes in a tree under the main ${$} shell process, except for
+    # current subprocess and the main process:
+    killtree ${$} KILL
+    # Make the final clean up:
     cleanup
-    pkill_available="false"
-    which "pkill" >"/dev/null" && pkill_available="true"
-    for pid in "${pids[@]}"; do # Loop through the main sub processes
-      # If we have 'pkill', kill children of the main sub process first:
-      if [ "${pkill_available}" = "true" ]; then
-        [ ${pid} != 0 ] && pkill --parent ${pid} -9 >/dev/null 2>&1
-      fi
-      # Kill the main sub process:
-      [ ${pid} != 0 ] && kill -9 ${pid} >/dev/null 2>&1
-    done
+    # If this is a subprocess, send TERM signal to main process
+    if [ ${BASHPID} -ne ${$} ]; then
+      kill -TERM ${$}
+    fi
   fi
   exit $1
 }
@@ -159,41 +187,19 @@ setup_ui() {
     fi
   fi
   if [ "$USE_COLORS" -eq 1 ]; then # define colors
-    C_BLACK="\033[0;30m"
-    C_BLUE="\033[0;34m"
-    C_GREEN="\033[0;32m"
-    C_CYAN="\033[0;36m"
-    C_RED="\033[0;31m"
-    C_MAGENTA="\033[0;35m"
-    C_BROWN="\033[0;33m"
-    C_GRAY="\033[0;37m"
-    C_DGRAY="\033[1;30m"
-    C_LBLUE="\033[1;34m"
-    C_LGREEN="\033[1;32m"
-    C_LCYAN="\033[1;36m"
-    C_LRED="\033[1;31m"
-    C_LMAGENTA="\033[1;35m"
-    C_YELLOW="\033[1;33m"
-    C_WHITE="\033[1;37m"
-    C_RESET="\033[0m"
+    C_BLACK="\033[0;30m" ; C_BLUE="\033[0;34m"     ; C_GREEN="\033[0;32m"
+    C_CYAN="\033[0;36m"  ; C_RED="\033[0;31m"      ; C_MAGENTA="\033[0;35m"
+    C_BROWN="\033[0;33m" ; C_GRAY="\033[0;37m"     ; C_DGRAY="\033[1;30m"
+    C_LBLUE="\033[1;34m" ; C_LGREEN="\033[1;32m"   ; C_LCYAN="\033[1;36m"
+    C_LRED="\033[1;31m"  ; C_LMAGENTA="\033[1;35m" ; C_YELLOW="\033[1;33m"
+    C_WHITE="\033[1;37m" ; C_RESET="\033[0m"
   else # if colors are not supported, set color strings empty
-    C_BLACK=""
-    C_BLUE=""
-    C_GREEN=""
-    C_CYAN=""
-    C_RED=""
-    C_MAGENTA=""
-    C_BROWN=""
-    C_GRAY=""
-    C_DGRAY=""
-    C_LBLUE=""
-    C_LGREEN=""
-    C_LCYAN=""
-    C_LRED=""
-    C_LMAGENTA=""
-    C_YELLOW=""
-    C_WHITE=""
-    C_RESET=""
+    C_BLACK="" ; C_BLUE=""     ; C_GREEN=""
+    C_CYAN=""  ; C_RED=""      ; C_MAGENTA=""
+    C_BROWN="" ; C_GRAY=""     ; C_DGRAY=""
+    C_LBLUE="" ; C_LGREEN=""   ; C_LCYAN=""
+    C_LRED=""  ; C_LMAGENTA="" ; C_YELLOW=""
+    C_WHITE="" ; C_RESET=""
   fi
   # setup DOC_COLORS; each document gets it's own color from this array
   DOC_COLORS[0]="${C_BROWN}"
@@ -215,6 +221,7 @@ setup_ui() {
   PRETXT_DEBUG="${C_DGRAY}DEBUG    ${C_RESET}"
   PRETXT_SUCCESS="${C_GREEN}SUCCESS  ${C_RESET}"
   PRETXT_ERROR="${C_RED}ERROR    ${C_RESET}"
+  PRETXT_SPACE="         "
   TXT_DONE="${C_GREEN}Done.${C_RESET}"
 }
 
@@ -236,7 +243,7 @@ compile_in_docker() {
   # Build the compiler Docker image only if it doesn't yet exist, or if the
   # Dockerfile (modification date) is newer than the image
 
-  echo -e "${PRETXT_DOCKER}Query compiler image status..."
+  echo -e "${PRETXT_DOCKER}Query compiler image status"
   docker_build_needed=""
   if [ ! -z $(docker image ls -q unilaiva-compiler) ]; then
     # image exists, compare dates...
@@ -253,18 +260,18 @@ compile_in_docker() {
     docker build -t unilaiva-compiler ./docker/unilaiva-compiler || die 1 "Docker build error"
     echo -e "${PRETXT_DOCKER}Building image complete."
     echo ""
-    echo "         To remove old dangling images and unused volumes, it is safe"
-    echo "         to run the following command:"
+    echo -e "${PRETXT_SPACE}To remove old dangling images and unused volumes, it is safe"
+    echo -e "${PRETXT_SPACE}to run the following command:"
     echo ""
-    echo "           'docker image prune ; docker volume prune'"
+    echo -e "${PRETXT_SPACE}'docker image prune ; docker volume prune'"
     echo ""
-    echo "         To remove old images, which are not needed anymore, you have"
-    echo "         to find them with 'docker image ls -a' and then remove them"
-    echo "         manually with 'docker image rm <image_id>'."
+    echo -e "${PRETXT_SPACE}To remove old images, which are not needed anymore, you have"
+    echo -e "${PRETXT_SPACE}to find them with 'docker image ls -a' and then remove them"
+    echo -e "${PRETXT_SPACE}manually with 'docker image rm <image_id>'."
     echo ""
   fi
 
-  echo -e "${PRETXT_DOCKER}Start compiler container..."
+  echo -e "${PRETXT_DOCKER}Start compiler container"
 
   # Run the container with current user's ID and bind mount current directory
   docker run -it --rm \
@@ -285,28 +292,23 @@ compile_document() {
 
   # Usage: die_log <errorcode> <message> <logfile>
   die_log() {
-    # Only print errors, if file ${ERROR_OCCURRED_FILE} does NOT exist.
-    # If it exists, it means that error processing is already underway,
-    # and this is only a child process that has been killed.
-    if [ ! -f "${ERROR_OCCURRED_FILE}" ]; then
-      echo -e "${PRETXT_ERROR}${txt_docbase}: $2"
-      echo ""
-      echo -e "Displaying log file for ${txt_doctex}: $3"
-      echo ""
-      cat "$3"
-      echo ""
-      echo "Build logs are in: ${temp_dirname_twolevels}/"
-      # Parse output logs for giving better advice:
-      if [ "$3" = "out-3_titleidx.log" ]; then # test for locale problem
-        grep "invalid locale" "$3" 
-        if [ $? -eq 0 ]; then
-          echo ""
-          echo "Locale ${SORT_LOCALE} must be installed on the system or the compile script"
-          echo "must be modified (line starting with SORT_LOCALE) to use a different locale."
-        fi
+    echo -e "${PRETXT_ERROR}${txt_docbase}: ${2}"
+    echo ""
+    echo -e "${C_WHITE}Displaying log file for ${txt_doctex}: ${C_YELLOW}${3}${C_RESET}"
+    echo ""
+    cat "${3}"
+    echo ""
+    echo -e "${PRETXT_SPACE}See: ${C_YELLOW}${temp_dirname_twolevels}/${3}${C_RESET}"
+    # Parse output logs for giving better advice:
+    if [ "${3}" = "out-3_titleidx.log" ]; then # test for locale problem
+      grep "invalid locale" "${3}"
+      if [ ${?} -eq 0 ]; then
+        echo ""
+        echo -e "${C_RED}Locale ${SORT_LOCALE} must be installed on the system or the compile script"
+        echo -e "must be modified (line starting with SORT_LOCALE) to use a different locale.${C_RESET}"
       fi
     fi
-    die $1 "[${document_basename}]: $2"
+    die $1 "[${document_basename}]: $2\n${PRETXT_SPACE}Exit code: ${C_RED}${1}1\n${PRETXT_SPACE}${C_WHITE}Compiling all documents has been aborted on first error on one of them.${C_RESET}"
   }
 
   document_basename="$1"
@@ -440,10 +442,12 @@ compile_document() {
 #   - not inside Docker container
 #   - deploy is not forbidden by command line argument
 #   - deploy directory exists
+#   - ${RESULT_PDF_LIST_FILE} exists and contains data
 #   - pdf's filename does not contain _NODEPLOY
 deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
+  [ -f ${RESULT_PDF_LIST_FILE} ] || return
   if [ ! -d "./deploy" ]; then
     echo -e "${PRETXT_NODEPLOY}Resulting PDF files NOT copied to ./deploy/ (directory not found)"
     return
@@ -581,7 +585,8 @@ mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
 rm "${TOO_MANY_WARNINGS_FILE}" >"/dev/null" 2>&1
 rm "${RESULT_PDF_LIST_FILE}" >"/dev/null" 2>&1
 
-trap 'die 130 Interrupted.' INT TERM # trap interruptions
+trap 'die 130 Interrupted.' INT # trap interruption (Ctrl-C)
+trap 'die 99 Compile error.' TERM # trap termination, sent by erroneus subprocess
 
 # Insert the documents to be compiled to 'docs' array
 
@@ -643,20 +648,18 @@ for doc in "${docs[@]}"; do
     if [ ${running_count} -eq ${MAX_PARALLEL} ]; then
       wait -n # wait for any job to finish
       ec=$?
-      [ ${ec} -ne 0 ] && die ${ec} "Last compile was erroneus, now exit [this is not shown]"
+      [ ${ec} -ne 0 ] && die ${ec} "(BUG) Error in compile script, should not happen"
       ((running_count--))
     fi # else continue loop
   else
-    wait  # wait for the last compile_document to finish
+    wait # wait for all (= the last) compile_document to finish
     ec=$?
-    [ ${ec} -ne 0 ] && die ${ec} "Last compile was erroneus, now exit [this is not shown]"
+    [ ${ec} -ne 0 ] && die ${ec} "(BUG) Error in compile script, should not happen"
     ((running_count--))
   fi
 done
 
-wait # wait for all sub processes to end
-ec=$?
-[ ${ec} -ne 0 ] && die ${ec} "Last compile was erroneus, now exit [this is not shown]"
+wait # wait for all jobs to end, returns always 0
 
 deploy_results
 
