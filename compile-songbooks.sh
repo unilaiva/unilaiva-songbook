@@ -12,14 +12,15 @@
 # below.
 #
 #
-# Required binaries in PATH: bash, lilypond-book, lualatex, texlua, awk
+# Required binaries in PATH: bash, lilypond-book, lualatex, texlua, awk, ps
 # Optional binary in PATH: context (will be used to create printout versions)
 #
 # Bash version 4 or higher is required for clean operation.
 #
 
-# Set this to 1 if wanting to use colors, 0 otherwise. If colors are wanted,
-# but not suppported, they will be disabled.
+# Set this to 1 if wanting to use colors, 0 otherwise. The terminal's support
+# for colors is tested, and if it is missing, the color codes are disabled
+# regardless of this setting.
 USE_COLORS=1
 
 # Maximum number of parallel compilation jobs. Each job takes quite a bit
@@ -27,11 +28,11 @@ USE_COLORS=1
 MAX_PARALLEL=5
 # Maximum total memory use for Docker container. 4g should be enough for 5
 # parallel jobs. This is passed to docker with --memory option.
-MAX_DOCKER_MEMORY="4g"
+MAX_DOCKER_MEMORY="5g"
 # Maximum total memory and swap (together) use for Docker container. If set
 # to same as MAX_DOCKER_MEMORY, swap is disabled. This is passed to docker with
 # # --memory-swap option.
-MAX_DOCKER_MEMORY_PLUS_SWAP="4g"
+MAX_DOCKER_MEMORY_PLUS_SWAP="5g"
 
 
 MAIN_FILENAME_BASE="unilaiva-songbook_A5" # filename base for the main document (without .tex suffix)
@@ -49,7 +50,6 @@ SORT_LOCALE="fi_FI.utf8" # Recommended default: fi_FI.utf8
 
 INITIAL_DIR="${PWD}" # Store the initial directory
 
-ERROR_OCCURRED_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/ERROR_OCCURRED"
 TOO_MANY_WARNINGS_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/too_many_warnings"
 RESULT_PDF_LIST_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/result_pdf_list"
 
@@ -114,8 +114,8 @@ print_usage_and_exit() {
 cleanup() {
   # return to the original directory
   cd "${INITIAL_DIR}"
-  # Clean up temporary files from the project root, left by lilypond-book
-  # (for some reason they're not written to output dir):
+  # Clean up temporary files from the project root, they are sometimes left
+  # behind.
   rm tmp????????.sxc tmp????????.out tmp????????.log tmp????????.pdf idx_*.sxd missfont.log 2>"/dev/null"
 }
 
@@ -125,7 +125,10 @@ cleanup() {
 # The given signal is sent to the root process and all it's children
 # recursively, leaf first. Current subshell and the main shell, if included
 # in the tree, are not included. If signal argument is omitted, KILL signal
-# used as default.
+# is used as the default.
+#
+# The signal is not sent to the current process or the main process even if
+# they are in the tree.
 #
 # Calls binaries 'kill' and 'ps', requires Bash version 4 or higher.
 # Note: $$ holds the main shell's PID, and $BASHPID (introduced in Bash v4)
@@ -136,37 +139,49 @@ killtree() {
   # Stops a parent before killing it's children, to prevent it forking new
   # children:
   [ ${_pid} -ne ${BASHPID} ] && [ ${_pid} -ne ${$} ] && kill -STOP ${_pid} >/dev/null 2>&1
+  # Recursively handle the children:
   for _child in $(ps -o pid --no-headers --ppid ${_pid}); do
     killtree ${_child} ${_sig}
   done
-  [ ${_pid} -ne ${BASHPID} ] && [ ${_pid} -ne ${$} ] && kill -${_sig} ${_pid} >/dev/null 2>&1
+  # We're at the bottom of the recursion, kill the process, unless it is the
+  # main process or the current process:
+  if [ ${_pid} -ne ${BASHPID} ] && [ ${_pid} -ne ${$} ]; then
+    kill -${_sig} ${_pid} >/dev/null 2>&1
+    wait ${_pid} 2>/dev/null # This wait suppresses the "Killed" output
+  fi
 }
 
-# Function: exit the program with error code and message.
+# Function: print error code and message, kill subprocesses and exit the program.
 # Usage: die <errorcode> <message>
+#
+# If this is called from a subprocess, the error is printed, and TERM signal
+# sent to the main process, and exit the subprocess. Main process has trapped
+# TERM signal, and will respond by calling this function again with <errorcode>
+# 99.
+#
+# If this is called from the main process, print error only if <errorcode> is
+# not 99, then kill all the subprocesses, run final cleanup and exit.
+#
+# Requires Bash v4 or higher for $BASHPID, for current (sub)process id.
 die() {
-  # Only print errors, if file ${ERROR_OCCURRED_FILE} does NOT exist.
-  # If it exists, it means that error has already been processed, and current
-  # call to this function is only the main process that has received TERM
-  # signal.
-  if [ ! -f "${ERROR_OCCURRED_FILE}" ]; then
-    # Create the file signifying (for child processes) that we are already
-    # dying:
-    echo "Error occurred on the last compile run!" >"${ERROR_OCCURRED_FILE}"
-    echo "Message: ${2}" >>"${ERROR_OCCURRED_FILE}"
-    echo "Exit code: ${1}" >>"${ERROR_OCCURRED_FILE}"
-    # Print the error to stderr:
-    echo ""
+  # Do not print the error, if <errorcode> is 99 and we're in the main process.
+  if [ ${1} -eq 99 ] && [ ${$} -eq ${BASHPID} ]; then
+    echo -e "${PRETXT_ABORTED}${C_YELLOW}All compilations are aborted.${C_RESET}" >&2
+  else
+    # Print the error:
     echo -e "${PRETXT_ERROR}${2}" >&2
-    # Kill all processes in a tree under the main ${$} shell process, except for
-    # current subprocess and the main process:
+  fi
+  if [ ${$} -eq ${BASHPID} ]; then
+    # We're in the main process.
+    # Kill the whole tree of child processes:
     killtree ${$} KILL
     # Make the final clean up:
     cleanup
-    # If this is a subprocess, send TERM signal to main process
-    if [ ${BASHPID} -ne ${$} ]; then
-      kill -TERM ${$}
-    fi
+  else
+    # We're in a sub process.
+    # Send a TERM signal to the main process, it will handle the killing of
+    # children and the finalisation of the script.
+    kill -TERM ${$}
   fi
   exit $1
 }
@@ -221,6 +236,8 @@ setup_ui() {
   PRETXT_DEBUG="${C_DGRAY}DEBUG    ${C_RESET}"
   PRETXT_SUCCESS="${C_GREEN}SUCCESS  ${C_RESET}"
   PRETXT_ERROR="${C_RED}ERROR    ${C_RESET}"
+  PRETXT_ABORTED="${C_RED}ABORTED  ${C_RESET}"
+  PRETXT_SEE="See:     "
   PRETXT_SPACE="         "
   TXT_DONE="${C_GREEN}Done.${C_RESET}"
 }
@@ -237,7 +254,7 @@ compile_in_docker() {
     echo "songbook in the 'official' environment. To compile without Docker,"
     echo "use the --no-docker option, but be aware that the resulting book"
     echo "might not be exactly as intended."
-    die 1 "Docker executable not found. Aborted."
+    die 1 "Docker executable not found."
   fi
 
   # Build the compiler Docker image only if it doesn't yet exist, or if the
@@ -288,8 +305,10 @@ compile_in_docker() {
 # Usage: compile_document <filename_base_for_tex_document> <doc_color_string>
 #        - Give filename without path and without ".tex" suffix.
 #        - doc_color_string is a string containing escaped color instructions
+#        - Intended to be called with & to start a new subprocess
 compile_document() {
 
+  # Function: prints the error log and calls die().
   # Usage: die_log <errorcode> <message> <logfile>
   die_log() {
     echo -e "${PRETXT_ERROR}${txt_docbase}: ${2}"
@@ -298,7 +317,8 @@ compile_document() {
     echo ""
     cat "${3}"
     echo ""
-    echo -e "${PRETXT_SPACE}See: ${C_YELLOW}${temp_dirname_twolevels}/${3}${C_RESET}"
+    echo -e "${PRETXT_SEE}${C_YELLOW}${temp_dirname_twolevels}/${3}${C_RESET}"
+    echo ""
     # Parse output logs for giving better advice:
     if [ "${3}" = "out-3_titleidx.log" ]; then # test for locale problem
       grep "invalid locale" "${3}"
@@ -308,7 +328,7 @@ compile_document() {
         echo -e "must be modified (line starting with SORT_LOCALE) to use a different locale.${C_RESET}"
       fi
     fi
-    die $1 "[${document_basename}]: $2\n${PRETXT_SPACE}Exit code: ${C_RED}${1}1\n${PRETXT_SPACE}${C_WHITE}Compiling all documents has been aborted on first error on one of them.${C_RESET}"
+    die $1 "${txt_docbase}: $2\n${PRETXT_SPACE}Exit code: ${C_RED}${1}1${C_RESET}"
   }
 
   document_basename="$1"
@@ -321,23 +341,23 @@ compile_document() {
   echo -e "${PRETXT_START}${txt_docbase}"
 
   # Test if we are currently in the correct directory:
-  [ -f "./${document_basename}.tex" ] || die 1 "Not currently in the project's root directory! Aborted."
+  [ -f "./${document_basename}.tex" ] || die 1 "Not currently in the project's root directory!"
 
   # Clean old build:
   [ -d "${temp_dirname_twolevels}" ] && rm -R "${temp_dirname_twolevels}"/* 2>"/dev/null"
   # Ensure the build directory exists:
   mkdir -p "${temp_dirname_twolevels}" 2>"/dev/null"
-  [ -d "${temp_dirname_twolevels}" ] || die $? "Could not create the build directory ${temp_dirname_twolevels}. Aborted."
+  [ -d "${temp_dirname_twolevels}" ] || die $? "Could not create the build directory ${temp_dirname_twolevels}."
 
   echo -e "${PRETXT_EXEC}${txt_docbase}: lilypond-book"
 
   # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
   # the modified .tex files and the musical staff images created by it to subdirectory ${temp_dirname_twolevels}.
   # The directory (last level only) is created if it doesn't exist.
-  lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/out-1_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book! Aborted." "${temp_dirname_twolevels}/out-1_lilypond.log"
+  lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/out-1_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book!" "${temp_dirname_twolevels}/out-1_lilypond.log"
 
   # Enter the temp directory. (Do rest of the steps there.)
-  cd "${temp_dirname_twolevels}" || die 1 "Cannot enter temporary directory! Aborted."
+  cd "${temp_dirname_twolevels}" || die 1 "Cannot enter temporary directory!"
 
   # Copy the required files not copied by lilypond to the temp directory:
   mkdir -p "ext_packages/songs" 2>"/dev/null"
@@ -349,30 +369,30 @@ compile_document() {
   echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (1st run)"
 
   # First run of lualatex:
-  lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex! Aborted." "out-2_lualatex.log"
+  lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-2_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex!" "out-2_lualatex.log"
 
   # Only create indices, if not compiling a selection booklet (bashism):
   if [[ ${document_basename} != ${SELECTION_FNAME_PREFIX}* ]]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: texlua (create indices)"
 
     # Create indices:
-    texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} "idx_title.sxd" "idx_title.sbx" 1>"out-3_titleidx.log" 2>&1 || die_log $? "Error creating song title indices! Aborted." "out-3_titleidx.log"
+    texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} "idx_title.sxd" "idx_title.sbx" 1>"out-3_titleidx.log" 2>&1 || die_log $? "Error creating song title indices!" "out-3_titleidx.log"
     # Author index creation is commented out, as it is not used (now):
-    # texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} idx_auth.sxd idx_auth.sbx 1>"out-4_authidx.log" 2>&1 || die_log $? "Error creating author indices! Aborted." "out-4_authidx.log"
-    texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} -b "tags.can" "idx_tag.sxd" "idx_tag.sbx" 1>"out-5_tagidx.log" 2>&1 || die_log $? "Error creating tag (scripture) indices! Aborted." "out-5_tagidx.log"
+    # texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} idx_auth.sxd idx_auth.sbx 1>"out-4_authidx.log" 2>&1 || die_log $? "Error creating author indices!" "out-4_authidx.log"
+    texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} -b "tags.can" "idx_tag.sxd" "idx_tag.sbx" 1>"out-5_tagidx.log" 2>&1 || die_log $? "Error creating tag (scripture) indices!" "out-5_tagidx.log"
   fi
 
   echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (2nd run)"
 
   # Second run of lualatex:
-  lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (2nd time)! Aborted." "out-6_lualatex.log"
+  lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-6_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (2nd time)!" "out-6_lualatex.log"
 
   echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (3rd run)"
 
   # Third run of lualatex, creates the final main PDF document:
-  lualatex -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (3rd time)! Aborted." "out-7_lualatex.log"
+  lualatex -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (3rd time)!" "out-7_lualatex.log"
 
-  cp "${document_basename}.pdf" "../../" || die $? "Error copying ${document_basename}.pdf from temporary directory! Aborted."
+  cp "${document_basename}.pdf" "../../" || die $? "Error copying ${document_basename}.pdf from temporary directory!"
   echo "${document_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
 
   # Check warnings in the logs
@@ -410,18 +430,18 @@ compile_document() {
         # printout template file with changed input PDF file name and then
         # execute 'context' on the new file.
         printout_dsf_basename="printout_${document_basename}_on_A4_doublesided_folded"
-        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout! Aborted."
-        context "${printout_dsf_basename}.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout! Aborted." "out-8_printout-dsf.log"
-        cp "${printout_dsf_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
+        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout!"
+        context "${printout_dsf_basename}.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout!" "out-8_printout-dsf.log"
+        cp "${printout_dsf_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory!"
         echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
 
         # A5 on A4, a A5-A5 spread on single A4 surface: Use 'awk' to create a
         # copy of the printout template file with changed input PDF file name
         # and then execute 'context' on the new file.
         printout_sss_basename="printout_${document_basename}_on_A4_sidebyside_simple"
-        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout! Aborted."
-        context "${printout_sss_basename}.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout! Aborted." "out-9_printout-sss.log"
-        cp "${printout_sss_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory! Aborted."
+        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout!"
+        context "${printout_sss_basename}.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout!" "out-9_printout-sss.log"
+        cp "${printout_sss_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory!"
         echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
       fi
     fi
@@ -481,12 +501,6 @@ doc_count=0 # will be increased when documents are added to 'docs' array
 
 all_args="$@"
 
-# Remove the file that's existence signifies that the last compilation had
-# errors. Do it already here to ensure correct working of die() function.
-if [ -f ${ERROR_OCCURRED_FILE} ]; then
-  rm "${ERROR_OCCURRED_FILE}" >"/dev/null" 2>&1
-fi
-
 # Test program arguments:
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -530,9 +544,9 @@ while [ $# -gt 0 ]; do
         tmp=${tmp##*/} # remove everything before and including the last /
         case "${tmp}" in
           *.tex) ;; # is a .tex file, good
-          *) die 1 "Given file does not have a .tex extension! Aborted."
+          *) die 1 "Given file does not have a .tex extension!"
         esac
-        [ -f "${tmp}" ] || die 1 "Given file is not in the current directory! Aborted."
+        [ -f "${tmp}" ] || die 1 "Given file is not in the current directory!"
         tmp=${tmp%.tex} # remove the suffix
         docs[doc_count]=${tmp} ; ((doc_count++))
         # Compile only the given file, when files are explicitly given:
@@ -549,7 +563,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-[ -f "./compile-songbooks.sh" ] || die 1 "Not currently in the project's root directory! Aborted."
+[ -f "./compile-songbooks.sh" ] || die 1 "Not currently in the project's root directory!"
 
 if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
   if [ ${usedocker} = "true" ]; then # start the script in Docker container
@@ -565,28 +579,31 @@ if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
 fi
 
 # Test executable availability:
-which "lualatex" >"/dev/null" || die 1 "'lualatex' binary not found in path! Aborted."
-which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path! Aborted."
-which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path! Aborted."
-which "awk" >"/dev/null" || die 1 "'awk' binary not found in path! Aborted."
+which "lualatex" >"/dev/null" || die 1 "'lualatex' binary not found in path!"
+which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path!"
+which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path!"
+which "awk" >"/dev/null" || die 1 "'awk' binary not found in path!"
 
 if [ ${gitpull} = "true" ]; then
-  which "git" >"/dev/null" || die 1 "'git' binary not found in path! Aborted."
+  which "git" >"/dev/null" || die 1 "'git' binary not found in path!"
   git pull --rebase
-  [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested. Aborted."
+  [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested."
 fi
 
 # Create the 1st level temporary directory in case it doesn't exist.
 mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
-[ -d "./${TEMP_DIRNAME}" ] || die 1 "Could not create temporary directory ${TEMP_DIRNAME}. Aborted."
+[ -d "./${TEMP_DIRNAME}" ] || die 1 "Could not create temporary directory ${TEMP_DIRNAME}."
 
 # Remove the files signifying the last compilation had problems,
-# if they exist (${ERROR_OCCURRED_FILE} has been removed earlier):
+# if they exist:
 rm "${TOO_MANY_WARNINGS_FILE}" >"/dev/null" 2>&1
 rm "${RESULT_PDF_LIST_FILE}" >"/dev/null" 2>&1
 
-trap 'die 130 Interrupted.' INT # trap interruption (Ctrl-C)
-trap 'die 99 Compile error.' TERM # trap termination, sent by erroneus subprocess
+# Trap interruption (Ctrl-C):
+trap 'die 130 Interrupted.' INT
+# trap TERM signal. When a subprocess encounters an error, it sends this signal
+# to the main process.
+trap 'die 99 "Terminated (most likely asked by subprocess)"' TERM
 
 # Insert the documents to be compiled to 'docs' array
 
@@ -667,7 +684,7 @@ cleanup
 
 if [ -e "${TOO_MANY_WARNINGS_FILE}" ]; then
   echo ""
-  echo "!!! WARNING !!!"
+  echo -e "${C_YELLOW}!!! WARNING !!!${C_RESET}"
   echo ""
   echo "There were too many font warnings. Probably the fonts in the result"
   echo "document(s) are not as they should be."
