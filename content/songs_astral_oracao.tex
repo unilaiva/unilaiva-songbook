@@ -854,7 +854,7 @@
     theMelody = \transpose c d \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 2
-      \repeat volta 2 { % e8 g8\posectionmark "A" e8 g8
+      \repeat volta 2 {
         \afterGrace \parenthesize e4 { \altcol g8 \altmark "1. & 4." \posectionmark "A" } \altcol\grace e8 \afterGrace g4 { \altcol g8 } | c8( c8)( c8) \parenthesize b8 a8 b8 c8 a8 | g8( g8)(g8) b8 d8 d8 d8 b8
         | g8( g8)( g8) \parenthesize b8 d8 c8 a8 b8
       } \alternative {
@@ -1003,94 +1003,128 @@
 \endsong
 
 
-\beginsong{Para Estar Junto a Este Cruzeiro}[by={Padr. Sebastião},key={C},sks={D, C}]
+\beginsong{Para Estar Junto a Este Cruzeiro}[by={Padr. Sebastião}, key={C}, sks={D, C--E}]
   \audio[]{https://www.nossairmandade.com/hymn/8/ParaEstarJuntoAEsteCruzeiro}
   \audio[key={D},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=1257s}
   \newchords{chords_paraestarjunto_a}\newchords{chords_paraestarjunto_b}
   \mnbeginchorus\memorize[chords_paraestarjunto_a]
-    \[^\mn{G}]Para es|\[\mnc{C}C]tar junto a \[Am]este \[^\mn{E}]cru|\[\mnc{G}G]zei\[^\mn{E}]ro
-    É \[^\mn{G}]mu|\[\mnc{E}Am]dar \[^\mn{C}]de \[^\mn{A}]o\[\mnc{D}G]pi\[^\mn{E}]ni|\[\mnc{C}C]ão
-  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_paraestarjunto_b]
-    \[^\mn{A}]Quem |\[\mnc{C}Am]a\[^\mn{A}]ma a \[\mnc{D}Dm]Je\[^\mn{C}]sus |\[\mnc{G}G]Cristo
-    \[^\mn{C}]Não |\[\mnc{E}Am]fa\[^\mn{C}]la \[^\mn{A}]do \[\mnc{D}G]seu \[^\mn{E}]ir|\[\mnc{C}C]mão
+    \[^\mn{G}]Para es|\[\mnc{C}C]tar junto a \[\bm]este \[^\mn{E}]cru|\[^\mn{G}]zei\[\bmc\mn{E}]ro \altchords{\id[1]{(D)}|D | \e }
+    É \[^\mn{G}]mu|\[\mnc{E}Am]dar \[^\mn{C}]de \[^\mn{A}]o\[\mnc{D}G]pi\[^\mn{E}]ni|\[\mnc{C}C]ão \[\bm] \altchords{|Bm A |D}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_paraestarjunto_b]
+    \[^\mn{A}]Quem |\[\mnc{C}C]a\[^\mn{A}]ma a \[\mnc{D}Dm]Je\[^\mn{C}]sus |\[\mnc{G}G]Cris\[\bm]to \altchords{|D Em |A}
+    \[^\mn{C}]Não |\[\mnc{E}Am]fa\[^\mn{C}]la \[^\mn{A}]do \[\mnc{D}G]seu \[^\mn{E}]ir|\[\mnc{C}C]mão \[\bm] \altchords{|Bm A |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_paraestarjunto_a]
-    O |^Mestre es^tá a|^qui \altchords{\id[2]{MK (C)}|C | \e}
-    E|^le fala ^bem bai|^xinho \altchords{|Am G7 |C}
-  \endchorus\glueverses\beginchorus\replay[chords_paraestarjunto_b]
-    En|^sina a ^quem pro|^cura \altchords{|Am G7 |C}
-    Dei|^xando quem não ^quer se|^guir \altchords{|Am G7 |C}
+    O |^Mestre es^tá a|qui ^
+    E|^le fala ^bem bai|^xi^nho
+    \endchorus\glueverses\beginchorus\replay[chords_paraestarjunto_b]
+    En|^sina a ^quem pro|^cu^ra
+    Dei|^xando quem não ^quer se|^guir ^
   \endchorus
   \beginchorus\replay[chords_paraestarjunto_a]
-    A|^qui es^tou di|^zendo
-    Para os |^meus ir^mãos ou|^vir
-  \endchorus\glueverses\beginchorus\replay[chords_paraestarjunto_b]
-    Quem for |^filho ^vem che|^gando
-    E quem não |^for vai es^capu|^lir
+    A|^qui es^tou di|zen^do \altchords{\id[3]{alt. (C)}|C Am |G}
+    Para os |^meus ir^mãos ou|^vir ^ \altchords{|Am G |C}
+    \endchorus\glueverses\beginchorus\replay[chords_paraestarjunto_b]
+    Quem for |^filho ^vem che|^gan^do \altchords{|Am Dm |G}
+    E quem não |^for vai es^capu|^lir ^ \altchords{|Am G |C}
   \endchorus
   \beginchorus\replay[chords_paraestarjunto_a]
-    Não a|^dian^ta ser |^grande
-    Sem |^possu^ir no|^breza
-  \endchorus\glueverses\beginchorus\replay[chords_paraestarjunto_b]
-    Meu |^Pai e ^minha |^Mãe
-    Nos mos|^tra a su^a be|^leza
+    Não a|^dian^ta ser |gran^de \altchords{\id[5]{MK (C)}|C | \e}
+    Sem |^possu^ir no|^bre^za \altchords{|Am G7 |C}
+    \endchorus\glueverses\beginchorus\replay[chords_paraestarjunto_b]
+    Meu |^Pai e ^minha |^Mãe ^ \altchords{|Am G7 |C}
+    Nos |^mostra a su^a be|^le^za \altchords{|Am G7 |C}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva on 2022-08
     theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        g8\posectionmark "A" g8 | c4 c8 c8 c4 c8 e8 | g2 e4 e8 g8
-        | e4 c8 a8 d4 e4 | c2.
+        g8( \posectionmark "A" g8) | c4( c8) c8 \once\slurDown c4( << c8) \once\override Slur.color = #color-alt \parenthesize e8( \parenthesize\altmark "2." >> e8)
+          | g2 e4 << e8 \once\override Slur.color = #color-alt \parenthesize g8( \parenthesize\altmark "2. & 4." >> g8)
+        | e4( c8) a8 d4 e4 | c2( c4)
       } \break
       \repeat volta 2 {
-        a4\posectionmark "B" | c4. a8 d4. c8 | g2 g4 c4
-        | e8 c4 a8 d4 e4 | c2.
+        a8( \sectionmark "B" a8) | c4. a8 d4. c8
+          | g2( g8) \altcol\parenthesize c8 \altmark "3." c8( c8)
+        | e8( e8) c8 a8 d4 e4 | c2( c4)
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       \repeat volta 2 {
-        Para es -- | tar jun -- to~a es -- te cru -- | zei -- ro;
-        É mu -- | dar de o -- pi -- ni -- | ão;
+        Pa -- ra~es -- | tar jun -- to~a es -- te cru -- | zei -- ro;
+        É mu -- | dar de o -- pi -- ni -- | ão. __ _
       }
+      \set stanza = "1.B"
       \repeat volta 2 {
-        Quem | a -- ma~a Je -- sus Cris -- to;
-        Não | fa -- la do seu ir -- | mão.
+        Quem __ _ | a -- ma~a Je -- sus | Cris -- to; \skip 1
+        Não __ _ | fa -- _ la do seu ir -- | mão. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        O __ _ | Mes -- tre es -- tá \altcol\parenthesize a -- _ | qui; __ _
+        \altcol \parenthesize E -- _ | le fa -- la bem bai -- | xi -- nho.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        En -- _ | si -- na~a  quem pro -- | cu -- ra; \skip 1
+        Dei -- _ | xan -- do quem não quer se -- | guir. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        A -- _ | qui __ _ es -- tou __ _ di -- | zen -- do;
+        Pa -- ra~os | meus __ _ ir -- mãos ou -- | vir. __ _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Quem for | fi -- lho vem che -- | gan -- do;
+        \altcol E quem não | for __ _ vai es -- ca -- pu -- | lir. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Não a -- | di -- _ an -- ta _ ser | gran -- de;
+        \altcol \parenthesize Sem __ _ | pos -- _ su -- ir no -- | bre -- za.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Meu __ _ | Pai e  mi -- nha | Mãe; __ _ \skip 1
+        Nos __ _ | mos -- _ tra~a su -- a be -- | le -- za.
       }
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4 | c2 a:m | g1
+        s4 | c1 | c1
         | a2:m g | c2.
       }
       \repeat volta 2 {
-        s4 | a2:m d:m | g1
+        s4 | c2 d:m | g1
         | a2:m g | c2.
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
-    To be next to this Cruzeiro
-    One must change one's mind
-    Those who love Jesus Christ
-    Don't talk about their brothers and sisters
+    To be next to this Cruzeiro, one must change one's mind
+    Those who love Jesus Christ don't talk about their brothers and sisters
     \nextverse
-    The Master is here
-    He speaks very softly
-    He teaches those who seek Him
-    Leaving alone those who don't want to follow
+    The Master is here, he speaks very softly
+    He teaches those who seek Him, leaving alone those who don't want to follow
     \nextverse
-    Here I am saying
-    For my brothers and sisters to hear me
-    Those who are children are arriving
-    And those who aren't are going to flee
+    Here I am saying, for my brothers and sisters to hear me
+    Those who are children are arriving, and those who aren't are going to flee
     \nextverse
-    It's no use to be great
-    Without having nobility
-    My Father and my Mother
-    Show us your beauty
+    It's no use to be great without having nobility
+    My Father and my Mother, show us your beauty
   \end{translation}
 \endsong
 
