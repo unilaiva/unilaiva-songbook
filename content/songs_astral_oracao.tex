@@ -1129,73 +1129,113 @@
 \endsong
 
 
-\beginsong{Não Creia nos Mestres que te Aparecem}[by={Padr. Sebastião},key={C},sks={D, C}]
+\beginsong{Não Creia nos Mestres que te Aparecem}[by={Padr. Sebastião}, key={C}, sks={D, C--D}]
   \audio[]{https://www.nossairmandade.com/hymn/9/N\%C3\%A3oCreiaNosMestresQueTeAparecem}
   \audio[key={D},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=1411s}
   \newchords{chords_naocreianosmestres_a}\newchords{chords_naocreianosmestres_b}
   \mnbeginchorus\memorize[chords_naocreianosmestres_a]
-    \[^\mn{G}]Não |\[\mnc{C}C]creia nos \[^\mn{D}]mes\[G]tres \[^\mn{C}]que \[^\mn{A}]te a\[^\mn{C}]pa|\[C]recem
-    E nem \[^\mn{E}]com |\[\mnc{G}G]eles no ca\[F]min\[^\mn{E}]ho \[^\mn{C}]quei\[^\mn{F}]ra an|\[\mnc{E}E]dar
-  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_naocreianosmestres_b]
-    |\[\mnc{G}C]Creia \[^\mn{E}]so\[\mnc{A}G]men\[^\mn{G}]te em \[^\mn{F}]seu \[^\mn{E}]Je|\[\mncii{C}{A}Am]sus
-    \[^\mn{E}]Que |\[\mnc{C}F]E\[^\mn{A}]le é \[^\mn{D}]quem \[G]tem \[^\mn{C}]pa\[^\mn{A}]ra \[^\mn{C}]te |\[C]dar
+    \[^\mn{G}]Não |\[\mnc{C}C]creia nos \[^\mn{D}]mes\[\bm]tres \[^\mn{C}]que \[^\mn{A}]te a\[^\mn{C}]pa|re\[\bm]cem \altchords{\id[1]{(D)}|D | \e}
+    E nem \[^\mn{E}]com |\[\mnc{G}G]eles no ca\[F]min\[^\mn{E}]ho \[^\mn{C}]quei\[^\mn{F}]ra an|\[\mnc{E}E]dar\[\bm] \altchords{|A G |F\shrp{}}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_naocreianosmestres_b]
+    |\[\mnc{G}G]Creia \[^\mn{E}]so\[\mnc{A}Am]men\[^\mn{G}]te em \[^\mn{F}]seu \[^\mn{E}]Je|\[\mnc{C}C]su\[\mnc{A}(Am)]s \altchords{|A Bm |D (Bm)}
+    \[^\mn{E}]Que |\[\mnc{C}F]E\[^\mn{A}]le é \[^\mn{D}]quem \[G7]tem \[^\mn{C}]pa\[^\mn{A}]ra \[^\mn{C}]te |\[C]dar\[\bm] \altchords{|G A7 |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_naocreianosmestres_a]
-    Meu |^Mestre a^qui a vós eu |^peço \altchords{\id[2]{MK (C)}|C G7 |C}
-    |^Para ^Vós me gui|^ar \altchords{|G C |Am}
-  \endchorus\glueverses\beginchorus\replay[chords_naocreianosmestres_b]
-    Me |^guie no ca^minho da santa |^luz \altchords{|C |Am}
-    Não |^deixa nin^guém me ata|^car \altchords{|F G7 |C}
+    Meu |^Mestre a^qui a vós eu |pe^ço
+    |^Para ^Vós me gui|^ar ^
+    \endchorus\glueverses\beginchorus\replay[chords_naocreianosmestres_b]
+    Me |^guie no ca^minho da santa |^luz^
+    Não |^deixa nin^guém me ata|^car^
   \endchorus
   \beginchorus\replay[chords_naocreianosmestres_a]
-    |^Segue ^sempre o teu ca|^minho
-    |^Deixa ^quem quiser fa|^lar
-  \endchorus\glueverses\beginchorus\replay[chords_naocreianosmestres_b]
-    Re|^cebe a tu^a luz de cris|^tal
-    Te |^firma e te com^põe em teu lu|^gar
+    |^Segue ^sempre o Seu ca|mi^nho \altchords{\id[4]{alt. (C)}|C G |C}
+    |^Deixa ^quem quiser fa|^lar^ \altchords{|G F |E}
+    \endchorus\glueverses\beginchorus\replay[chords_naocreianosmestres_b]
+    Re|^cebe a Su^{a luz} de cris|^tal^ \altchords{|C G |Am}
+    Te |^firma e te com^põe em Seu lu|^gar^ \altchords{|F G7 |C}
   \endchorus
   \beginchorus\replay[chords_naocreianosmestres_a]
-    Re|^cebe ^todos que che|^gar
-    |^Faz o que ^eu te man|^dar
-  \endchorus\glueverses\beginchorus\replay[chords_naocreianosmestres_b]
-    Não |^deixa fa^zer o que eles |^querem
-    Es|^pera atá o ^dia que eu che|^gar
+    Re|^cebe ^todos que che|gar^ \altchords{\id[5]{simples (C)}|C (F) |C}
+    |^Faz o que ^eu te man|^dar \altchords{|C |Am}
+    \endchorus\glueverses\beginchorus\replay[chords_naocreianosmestres_b]
+    Não |^deixa fa^zer o que eles |^que^rem \altchords{|C |Am}
+    Es|^pera atá o ^dia que eu che|^gar^ \altchords{|C G |C}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva on 2022-08
     theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        g4\posectionmark "A" | c8 c8 c8 d8 d8 c8 a8 c8 | c2 c8 c8 c8 e8
-        | g8 g8 g8 g8 g8 e8 c8 f8 | e2.
+        \parenthesize g4 \posectionmark "A" | c8( c8)( c8) d8 d8 c8 a8 c8 | c2( c8)( c8 c8) \parenthesize e8
+        | g8( g8)( g8) g8 g8( e8) c8 f8 | e2.
       }
       \repeat volta 2 {
-        \parenthesize e4\posectionmark "B" | g4 g8 e8 a8 g8 f8 e8 | c2( a4) e'4
-        | c4 a8 d8 d8 c8 a8 c8 | c2.
+        \parenthesize e4\sectionmark "B" | g8( g8) g8 e8 a8 g8 f8 e8 | c2( a4) e'4
+        | c8( c8) a8 d8 d8 c8 a8 c8 | c2.
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       \repeat volta 2 {
-          Não | crei -- a nos mes -- tres que te~a -- pa -- | re -- cem;
-          E nem com | e -- les no ca -- min -- ho quei -- ra~an -- | dar;
+        Não | crei -- a nos mes -- tres que te~a -- pa -- | re -- cem;
+        E nem com | e -- les no ca -- min -- ho quei -- ra~an -- | dar.
       }
+      \set stanza = "1.B"
       \repeat volta 2 {
-        \skip 1 | Crei -- a so -- men -- te~em seu Je -- | sus; __
-        Que E -- le~é quem tem pa -- ra te | dar.
+        \skip 1 | Crei -- _ a so -- men -- te~em seu Je -- | sus; __ _
+        Que E -- _ le~é quem tem pa -- ra te | dar.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Meu | Mes -- _ tre a -- qui a vós eu | pe -- ço; __ _ _ \skip 1
+        | Pa -- _ _ ra  Vós __ _ me gui -- | ar.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Me | guie _ no ca -- mi -- nho~da san -- ta | luz; __ _
+        Não | dei -- _ xa nin -- guém me a -- ta -- | car.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        \skip 1 | Se -- _ _ gue sem -- pre~o Seu ca -- | mi -- nho; __ _ _ \skip 1
+        | Dei -- _ _ xa quem qui -- ser fa -- | lar.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Re -- | ce -- be a Su -- a luz de cris -- | tal; __ _
+        Te | fir -- ma~e te com -- põe em Seu lu -- | gar.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Re -- | ce -- _ _ be to -- dos que che -- | gar; __ _ _ _ \skip 1
+        | Faz __ _ o que eu __ _ te man -- | dar.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Não | dei -- _ xa fa -- zer o que~e -- les | que -- rem;
+        Es -- | pe -- ra~a -- tá o di -- a que~eu che -- | gar.
       }
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4 | c2 g | c1
+        s4 | c1 | c1
         | g2 f | e2.
       }
       \repeat volta 2 {
-        s4 | c2 g | a1:m
-        | f2 g | c2.
+        s4 | g2 a2:m | c2 \parenthesize a2:m
+        | f2 g2:7 | c2.
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Don't believe in the masters who appear to you; Nor walk on the path with them
@@ -1204,8 +1244,8 @@
     My Master, here I ask You; For You to guide me
     Guide me on the path of the holy light; Don't let anyone attack me
     \nextverse
-    Always follow your path; Let whoever wants to talk
-    Receive your crystal light; Be firm and composed in your place
+    Always follow Your path; Let whoever wants to talk
+    Receive Your crystal light; Be firm and composed in Your place
     \nextverse
     Receive all who arrive; Do as I tell you
     Don't let be done what they want; Wait until the day that I arrive
