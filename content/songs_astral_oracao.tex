@@ -1901,15 +1901,15 @@
 \endsong
 
 
-\beginsong{Recebendo}[by={Odemir Raulino da Silva}, off={Francinete Oliveira}, tags={valsa}, key={C}, sks={D, C}]
+\beginsong{Recebendo}[by={Odemir Raulino da Silva}, off={Francinete Oliveira}, tags={valsa}, key={C}, sks={D, C--E}]
   \audio[key=D]{https://www.nossairmandade.com/hymn/1527/Recebendo}
   \audio[key={C},title={Play for Daime}]{https://www.youtube.com/watch?v=jJItq9efhqM}
   \meter{3}{4}
   \mnbeginchorus\memorize
-    \lrep \[^\mn{G}]Rece|\[C]ben\[^\mn{E}]do \[^\mn{D}]no |\[^\mn{C}]meu \[^\mn{B}]co\[^\mn{C}]ra|\[\mncii{D}{A}Dm]ção | \e
-    \[^\mn{F}]U\[^\mn{D}]ma |\[\mncii{B}{G}G]flor |\[\mnc{F}G7]que \[^\mn{E}]me \[^\mn{D}]con|\[\mnc{C}C]for|te \rrep
-    \lrep Agra|\[\mnc{A}F]deço por |tudo \[^\mn{B}]de |\[\mncii{C}{G}C]bom |\[A7] \e
-    \[^\mn{E}]Deus \[^\mn{D}]nos |\[\mnc{G}Dm]liv\[^\mn{F}]re \[^\mn{D}]do |\[\mnc{G}G7]que \[^\mn{B}]é \[^\mn{D}]a |\[\mnc{C}C]mor|te \rrep
+    \lrep \[^\mn{G}]Rece|\[C]ben\[^\mn{E}]do \[^\mn{D}]no |\[^\mn{C}]meu \[^\mn{B}]co\[^\mn{C}]ra|\[\mncii{D}{A}Dm]ção | \e \altchords{\id[1]{(D)}|D | - |Em | \e}
+    \[^\mn{F}]U\[^\mn{D}]ma |\[\mncii{B}{G}G]flor |\[\mnc{F}G7]que \[^\mn{E}]me \[^\mn{D}]con|\[\mnc{C}C]for|te \rrep \altchords{|A |A7 |D | \e}
+    \lrep Agra|\[\mnc{A}F]deço por |tudo \[^\mn{B}]de |\[\mncii{C}{G}C]bom |\[A7] \e \altchords{|G | - |D |B7}
+    \[^\mn{E}]Deus \[^\mn{D}]nos |\[\mnc{G}Dm]liv\[^\mn{F}]re \[^\mn{D}]do |\[\mnc{G}G7]que \[^\mn{B}]é \[^\mn{D}]a |\[\mnc{C}C]mor|te \rrep \altchords{|Em |A7 |D | \e }
   \mnendchorus
   \notesoff
   \beginchorus
@@ -1934,42 +1934,44 @@
         f'4 d4 | b2( g4) | f'4 e4 d4 | c2.( | c4)
       }
       \repeat volta 2 {
-        c4\sectionmark "B" c4 | a4 a4 a4 | a4 a4 b4 | c4( g2~ | g4)
-        \grace{\altcol \parenthesize e'8 \altmark "2. & 3." } e4 d4 | g4 f4 d4 | g,4 b4 d4 | c2.( | c4)
+        c4\sectionmark "B" c4 | a4 a4 a4 | a4 a4 b4 | c4( g2~) | g8
+        \parenthesize e'8 \genmark "(2. & 3.)" e4 d4 | g4 f4 d4 | g,4 b4 d4 | c2.( | c4)
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       \repeat volta 2 {
         Re -- ce -- | ben -- do no | meu co -- ra -- | çã -- o; __ _
         U -- ma | flor __ _ | que me con -- | for -- | te.
       }
+      \set stanza = "1.B"
       \repeat volta 2 {
-        A -- gra -- | de -- ço por | tu -- do de | bom; __ _ _
+        A -- gra -- | de -- ço por | tu -- do de | bom; __ _ _ \skip 1
         Deus nos | liv -- re do | que é a | mor -- | te.
       }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
+      \set stanza = "2.A"
       \repeat volta 2 {
         Es -- ta | é u -- ma | men -- sa -- gem | bo -- a; __ _
         Pa -- ra | nós vi -- | ver con -- sci -- | en -- | te.
-
       }
+      \set stanza = "2.B"
       \repeat volta 2 {
         Au -- men -- | tai a nos -- | sa a -- le | gri -- a; __ _
-        (E)_na tris -- | te -- za~um fi -- | nal pa -- ra | sem -- | pre.
+        E na tris -- | te -- za~um fi -- | nal pa -- ra | sem -- | pre.
       }
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
+      \set stanza = "3.A"
       \repeat volta 2 {
         É mais | is -- to que~eu | te -- nho~a di -- | zer; __ _ _
         No meu | pon -- to~e -- | spi -- ri -- tu | al. __ _
       }
+      \set stanza = "3.B"
       \repeat volta 2 {
         Deus nos | cub -- ra com | a vos -- sa | gló -- ria; __ _
-        (E)_nas mal -- | da -- des um | pon -- to fi -- | nal. __ _
+        E nas mal -- | da -- des um | pon -- to fi -- | nal. __ _
       }
     }
     theChords = \chordmode {
