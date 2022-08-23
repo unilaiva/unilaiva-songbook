@@ -1462,7 +1462,7 @@
 \endsong
 
 
-\beginsong{Eu Não sou Deus}[by={Padr. Sebastião},tags={2x, de pé},key={D},sks={D, C}]
+\beginsong{Eu Não Sou Deus}[by={Padr. Sebastião},tags={2x, de pé}, key={D}, sks={D, D\shrp{}--F\shrp{}}]
   \audio[]{https://www.nossairmandade.com/hymn/12/EuN\%C3\%A3oSouDeus}
   \audio[key={F},title={Ceu da Santa Luz}]{https://www.youtube.com/watch?v=wKMY4YGdYeY\&t=1857s}
   \newchords{chords_eunaosoudeus_a}\newchords{chords_eunaosoudeus_b}
@@ -1470,86 +1470,67 @@
   \musicnote{Tocar 2 vezes}
   \mnbeginchorus\memorize[chords_eunaosoudeus_a]
     \[^\mn{C}]Eu \[^\mn{A}]não \[^\mn{C}]sou |\[\mnc{E}C]Deus \altchords{\id[1]{(C)}|C}
-    \[^\mn{C}]Mas \[\mnc{A}Am]tenho uma \[^\mn{E}]es\[^\mn{G}]pe|\[G]rança \altchords{Am |G}
+    \[^\mn{C}]Mas \[\mnc{A}Am]tenho uma \[^\mn{E}]es\[^\mn{G}]pe|\[G]rança\[\bm] \altchords{Am |G}
     Eu \[^\mn{B}]não \[^\mn{D}]sou |\[\mnc{F}F]Deus \altchords{|F}
-    \[^\mn{E}]Mas \[\bm\mn{A}]sou \[^\mn{C}]sua semel|\[C]hança \altchords{G |C}
+    \[^\mn{E}]Mas \[\bm\mn{A}]sou \[^\mn{C}]sua semel|\[C]hança\[\bm] \altchords{G |C}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_eunaosoudeus_b]
     \ind \[^\mn{A}]Deus \[^\mn{C}]é |\[\mnc{E}C]fo\[^\mn{C}]go, \altchords{|C}
-    \ind Deus é \[^\mn{A}]á\[^\mn{G}]gua, \[^\mn{E}]Deus \[^\mn{G}]é |\[\mnc{G}G]tudo \altchords{|G}
-    \ind Eu convido os \[^\mn{B}]meus \[^\mn{D}]ir|\[\mnc{F}F]mãos \altchords{|F}
-    \ind Para co\[^\mn{E}]me\[\bm\mn{A}]çar \[^\mn{C}]nossos es|\[C]tudos \altchords{|C}
+    \ind Deus é \[\bmc\mn{A}]á\[^\mn{G}]gua, \[^\mn{E}]Deus \[^\mn{G}]é |\[\mnc{G}G]tudo \altchords{|G}
+    \ind Eu con\[\bm]vido os \[^\mn{B}]meus \[^\mn{D}]ir|\[\mnc{F}F]mãos \altchords{|F}
+    \ind Para co\[^\mn{E}]me\[\bm\mn{A}]çar \[^\mn{C}]nossos es|\[C]tudos\[\bm] \altchords{|C}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_eunaosoudeus_a]
     Eu não sou |^Deus \altchords{\id[2]{MK (D)}|Bm}
-    Mas ^tenho uma espe|^rança \altchords{|A}
+    Mas ^tenho uma espe|^rança^ \altchords{|A}
     Eu não sou |^Deus \altchords{|G}
-    Mas ^sou sua seme|^lhança \altchords{|D}
+    Mas ^sou sua seme|^lhança^ \altchords{|D}
   \endchorus\glueverses\beginchorus\replay[chords_eunaosoudeus_b]
     \ind Deus no |^céu, \altchords{|Bm}
-    \ind Deus na terra, Deus no |^mar \altchords{|A}
-    \ind Eu convido os meus ir|^mãos \altchords{|G}
-    \ind Para fi^car em seu lu|^gar \altchords{|D}
+    \ind Deus na ^terra, Deus no |^mar \altchords{|A}
+    \ind Eu con^vido os meus ir|^mãos \altchords{|G}
+    \ind Para fi^car em seu lu|^gar ^ \altchords{|D}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva on 2022-08
     theMelody = \transpose c d \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
         c8\posectionmark "A" a8 c8 | e4. c8 a8 a8 e8 g8 | g4 g4. g8 b8 d8
-        | f4. e8 a,8 c8 c8 c8
-      } \alternative {
-        { | c4 c4. }
-        { | c4 c2 }
+        | f4. e8 a,8 c8 c8 c8 | c4 c4.
       }
       \repeat volta 2 {
-        a8\sectionmark "B" c8 | e8. \parenthesize c16 c8 c8 a8 g8 e8 g8 | g8. \parenthesize g16 g8 g8 g8 g8 b8 d8
-        | f8 f16 f16 f8 e8 a,8 c8 c8 c8 | c4 c2
+        r8 a8\sectionmark "B" c8 | e8. \altcol \parenthesize c16 \altmark "1." c8 c8 a8 g8 e8 g8 | g8.( g16) g8 g8 g8 g8 b8 d8
+        | f8 f16( f16) f8 e8 a,8 c8 c8 c8 | c4( c4.)
       }
     }
+    % no repeats in lyrics, as they make a mess when combined with the rest
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
-      \repeat volta 2 {
-        Eu não sou | Deus; Mas tenho uma es -- pe -- | ran -- ça;
-        Eu não sou | Deus; Mas sou sua se -- me --
-      } \alternative {
-        { | lhan -- ça. }
-        { | lhan -- ça. }
-      }
-      \repeat volta 2 {
-        Deus é | fo -- \parenthesize go Deus é á -- gua Deus é | tu -- \parenthesize do;
+      \set stanza = "1.A"
+        Eu não sou | Deus; Mas te -- nho~u -- ma~es -- pe -- | ran -- ça;
+        Eu não sou | Deus; Mas sou sua se -- me -- | lhan -- ça. 
+      \set stanza = "1.B"
+        Deus é | fo -- \altcol go Deus é á -- gua Deus é | tu --  do;
         Eu con -- vi -- do~os meus ir -- | mãos; pa -- ra co -- me -- çar nos -- sos es -- | tu -- dos.
-      }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
-      \repeat volta 2 {
-        Eu não sou | Deus; Mas tenho uma es -- pe -- | ran -- ça;
-        Eu não sou | Deus; Mas sou sua se -- me --
-      } \alternative {
-        { | lhan -- ça. }
-        { | lhan -- ça. }
-      }
-      \repeat volta 2 {
-        Deus no | céu; __ _ Deus na ter -- ra Deus no | mar; __ _
-        Eu con -- vi -- do~os meus ir -- | mã -- os; pa -- ra fi -- car em seu lu -- | gar. __ _
-      }
+      \set stanza = "2.A"
+        Eu não sou | Deus; Mas te -- nho~u -- ma~es -- pe -- | ran -- ça;
+        Eu não sou | Deus; Mas sou sua se -- me -- | lhan -- ça.
+      \set stanza = "2.B"
+        Deus no | céu; \skip 1 Deus na ter -- ra Deus no | mar; __ _
+        Eu con -- vi -- do~os meus ir -- | mãos; pa -- _ ra fi -- car em seu lu -- | gar. __ _
     }
     theChords = \transpose c d \chordmode {
       \repeat volta 2 {
-        s4. | c2 a:m
-        | g1
-        | f
-      } \alternative {
-         { | c2~ c8 }
-         { | c2~ c4 }
+        s4. | c2 a:m | g1 | f | c2~8
       }
       \repeat volta 2 {
-        s4 | c1
-        | g
-        | f
-        | c2.
+        s4. | c1 | g | f | c2~8
       }
     }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
