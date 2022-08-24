@@ -703,7 +703,8 @@
 % with the chord repeats etc. Instead use plain text for chord names. Also note
 % that these plaintext chord names will not be transposed among 'real' chords,
 % if \transpose is used. Not displayed on books without chords.
-% Only place bar lines, plain text, \id and \e within the parameter.
+% Only place bar lines, plain text, \id and \e within the parameter. Sharps
+% and flats need to be specified with \shrp and \flt here.
 %
 % To show an ID text, use \id macro within \altchords, preferably as the first
 % thing on the first line of this chord set. The optional parameter of \id sets
@@ -714,7 +715,7 @@
 %
 % Example:
 %
-%  \altchords{\id[1]{Peter}|C | |G |C}
+%  \altchords{\id[1]{Peter (C)}|C | |G |C}
 %
 \newcommand{\altchords}[1]{%
   \providecommand{\id}[2][1]{\@altchordsid[##1]{##2}}%
