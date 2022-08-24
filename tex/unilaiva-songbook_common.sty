@@ -238,7 +238,10 @@
 \definecolor{altchordcolor_e}{rgb}{0.09,0.33,0.34} % cyan, set 5
 \definecolor{altchordcolor_f}{rgb}{0.36,0.15,0.23} % redish, set 6
 \definecolor{mbarcolor}{rgb}{0.36,0,0.48} % measure bar
-\definecolor{melodynotecolor}{rgb}{0.0,0.1536,0.1824} % encircled melody notes
+% encircled melody notes, the note name inside:
+\definecolor{melodynotecolor}{rgb}{0.0,0.1536,0.1824}
+% encircled melody notes, the circle:
+\definecolor{melodynotecirclecolor}{rgb}{0.0,0.3072,0.3648}
 \definecolor{songnumbgcolor}{rgb}{1,1,1} % song number background
 \definecolor{notebgcolor}{rgb}{0.9,0.9,0.9} % textnote background
 \definecolor{idxbgcolor}{rgb}{1,1,1} % index alphabet background
@@ -279,7 +282,7 @@
 \renewcommand\musicnote[1]{\ifchorded\textnote{\color{chordcolor}#1}\fi}%
 % songs: use real sharp and flat symbols from Noto Symbol font:
 \renewcommand{\sharpsymbol}{\textsuperscript{{\symbolfont♯}}}%
-\renewcommand{\flatsymbol}{\raise.5ex\hbox{{\SB@flatsize{{\symbolfont♭}}}}}
+\renewcommand{\flatsymbol}{\raise.5ex\hbox{\SB@flatsize{{\symbolfont♭}}}}%
 % songs: change distance of chords to lyrics
 \renewcommand{\clineparams}{%
   \baselineskip=10.6pt%
@@ -1160,13 +1163,25 @@
 % beginning of your document to set custom style. This will be called each
 % time the melody note circle is drawn. This can be set for individual notes,
 % too.
-
 \newcommand{\mncirclestyle}{}
-% Setup the style for the melody note "text". Renew this macro in the
+
+% Setup the style for the melody note name "text". Renew this macro in the
 % beginning of your document to set custom style. This will be called each
 % time the melody note circle is drawn. This can be set for individual notes,
 % too.
-\newcommand{\mnstyle}{}
+\newcommand{\mnsymbolstyle}{}
+
+% Base style for the melody note circle, appended with \mncirclestyle:
+\newcommand{\@mncirclestyle}{%
+  \footnotesize\color{melodynotecirclecolor}\mncirclestyle%
+}
+% Base style for the melody note name symbol, appended with \mnsymbolstyle:
+\newcommand{\@mnsymbolstyle}{%
+  \tiny\mdseries\color{melodynotecolor}\mnsymbolstyle%
+}
+
+% Lowered sharp symbol to fit better inside the melody note circle:
+\newcommand{\@lowsharpsymbol}{\raise-.25ex\hbox{\textsuperscript{{\symbolfont♯}}}}%
 
 % Will hold the width of the melody note circle:
 \newdimen{\@mncirclewidth}
@@ -1174,7 +1189,7 @@
 % Calculates the width encircled melody note. Note that if the style in
 % \@note changes, so must it here.
 \newcommand{\@calcmncirclewidth}{%
-  \settowidth{\@mncirclewidth}{\footnotesize\mncirclestyle\textcircled{}}%
+  \settowidth{\@mncirclewidth}{\@mncirclestyle\textcircled{}}%
 }
 
 % If true, negative space will be applied after displaying the note:
@@ -1192,9 +1207,12 @@
     \else%
       \notenamesout abcdefg%
       \raisebox{#1}{%
-        \color{melodynotecolor}%
-        \footnotesize\mncirclestyle%
-        \textcircled{\tiny\mnstyle\textmd{\transposehere{#2}}}% % Show the note transposed and encircled
+        % Use lowered sharp symbol to better fit inside the circle
+        \renewcommand{\sharpsymbol}{\@lowsharpsymbol}%
+        \@mncirclestyle%
+        \textcircled{% % Show the note transposed and encircled
+          \@mnsymbolstyle\transposehere{#2}%
+        }%
         \if@mnnegspace%
           \@calcmncirclewidth% % Calculate the width...
           \hspace{-\@mncirclewidth}% % ...to go left
