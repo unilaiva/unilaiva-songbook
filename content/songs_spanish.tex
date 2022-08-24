@@ -2243,25 +2243,36 @@
 \endsong
 
 
-\beginsong{Plantas Sagradas}[by={Danit Treubig},ph={IV}]
-  \audio[]{https://www.youtube.com/watch?v=tCiDdrh5oks}
-  \beginverse* % Show the beginning chant small and without chords, to fit on page
-    \tiny\chordsoff
-    |\[Dm]Hey hey hey ha |hey hey hey ha, |\[Am]hey ram hey ram |hey ram hey cu|\[Dm]ra y plumajero croma|jerui pinta a|\[Am]buelo | chai
-    |\[Dm]bí bibibí bibi|bí ja cha rai |\[Am]pinta y cura y |cura |\[Dm]medicinai |taita y curan|\[Am]dera | \e
+\beginsong{Plantas Sagradas}[by={Danit Treubig}, ph={IV}, key={Am}, sks={Am, Am--Bm}]
+  \audio[key=Am]{https://www.youtube.com/watch?v=rvaIvhfGbGM}
+  \beginverse*\footnotesize% smaller verse text
+    % songs: make chords smaller in this verse
+    \renewcommand{\printchord}[1]{\sffamily\bfseries\tiny\color{chordcolor}#1}%
+    % songs: make space between chord and lyric line smaller:
+    \renewcommand{\clineparams}{%
+      \baselineskip=6pt%
+      \lineskiplimit=1pt%
+      \lineskip=1pt%
+    }
+    |\[Dm]Hey hey hey ha |hey hey hey ha, |\[Am]hey ram hey ram |hey ram hey
+    cu|\[Dm]{ra y} plumajero croma|jerui pinta a|\[Am]buelo | \e
+    chai |\[Dm]{bí bibibí} bibi|bí ja cha rai |\[Am]pinta y cura y |cura
+    |\[Dm]medicinai |taita y curan|\[Am]dera | \e
   \endverse
-  \beginchorus\memorize
+  \mnbeginchorus\memorize
     \[^\mn{F}]Cami|\[\mnc{D}Dm]nando \[^\mn{F}]por la |\[^\mn{D}]selva si|\[\mnc{C}Am]gui\[^\mn{A}]endo \[^\mn{C}]la be|\[^\mn{A}]lleza,
-    si|\[Dm]guiendo las can|ciones de las |\[Am]plantas. | \e
+    \[^\mn{F}]si|\[\mnc{E}Dm]gui\[^\mn{D}]endo \[^\mn{F}]las can|\[^\mn{D}]ciones \[^\mn{C}]de \[^\mn{D}]las |\[Am]plan\[^\mn{C}]tas. | \e
+  \mnendchorus
+  \mnbeginverse
+    \ind |\[F] \[\mn{C}]Sien\[\mn{A}]to |\[\mn{C}]vivo, |\[Am]sien\[\mn{A}]to la |paz,
+    \ind |\[\mnc{C}F]siento el po|der de \[\mn{D}]la |\[\mnc{C}Am]ma|\[\mn{A}]dre.
+    \ind |\[F] \[\mn{F}]Sien\[\mn{G}]to |\[\mn{A}]vi\[\mn{G}\mn{F}]vo, |\[\mnc{E}Am]siento la |pa\[\mn{A}]z,
+    \ind |\[\mnc{F}F]siento el \[\mn{G}]po|\[\mn{A}]der \[\mn{G}]de \[\mn{F}]la |\[\mnc{E}Am]ma|\[\mn{A}]dre.
+  \mnendverse
+  \beginchorus
+    \ind\ind |\[\mnc{B}Em]Siento las |\[\mnc{G}G]plan\[\mn{C}]tas \[\mn{B}]sa|\[Am]gra|\[\mn{A}]das.
   \endchorus
   \notesoff
-  \beginchorus
-    \ind |\[F] Siento |vivo, |\[Am]siento la |paz,
-    \ind |\[F]siento el po|der de la |\[Am]mad|re.
-  \endchorus
-  \beginchorus
-    \ind\ind |\[Em]Siento las |\[G]plantas sa|\[Am]gra|das.
-  \endchorus
   \beginchorus
     Ya|^gé yagé ya|gé, ya|^gé yagé ya|gé,
     ya|^gé yagé ya|gé, ya|^gé. | \e
@@ -2274,6 +2285,7 @@
   \goto{Siento las plantas}
   \goto{Yagé, yagé \rep{4}}
   \goto{Siento las plantas \rep{5}}
+  \brk
   \begin{translation}
     Walking through the jungle following the beauty,
     following the songs of the plants.
