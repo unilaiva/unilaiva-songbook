@@ -1835,8 +1835,7 @@
   \end{translation}
 \endsong
 
-\beginsong{Encostado a Minha Mãe}[by={Mestre Irineu Serra}, key={Bm}, sks={Cm, (Bm)--Cm--D\shrp{}m}]
-  \transpose{-3}
+\beginsong{Encostado a Minha Mãe}[by={Mestre Irineu Serra}, key={Dm}, sks={Cm, (Bm)--Cm--D\shrp{}m}]
   \mnbeginchorus\memorize
     \[^\mn{A}]Encos|\[\mnc{D}Dm]tado \[^\mn{C#}]à \[\bmc\mn{D}]mi\[^\mn{E}]nha |\[\mnc{F}B&]Mãe \altchords{\id[1]{(Cm)}|Cm |A\flt{} }
     \[^\mn{D}]E \[\bmc\mn{B&}]meu \[^\mn{A}]Pa|\[\mnc{G}Em7&5]pai \[^\mn{E}]lá \[\bmc\mn{F}]no \[^\mn{G}]as|\[\mnc{A}A]tral\[\bm] \altchords{|Dm7\flt{}5 |G }
@@ -1845,10 +1844,10 @@
   \mnendchorus
   \notesoff
   \beginchorus
-    Minha |^flor, minha ^espe|^rança \altchords{\id[2]{(Dm)}|Dm |B\flt{} }
-    ^Minha |^rosa ^do jar|^dim^ \altchords{|Em7\flt{}5 |A }
-    \lrep Para |^sempre eu ^quero es|^tar \altchords{|Gm |Dm }
-    Com ^minha |^Mãe jun^tinho a |^mim^ \rrep \altchords{|A7 |Dm }
+    Minha |^flor, minha ^espe|^rança \altchords{\id[2]{(Bm)}|Bm |G }
+    ^Minha |^rosa ^do jar|^dim^ \altchords{|C\shrp{}m7\flt{}5 |F\shrp{} }
+    \lrep Para |^sempre eu ^quero es|^tar \altchords{|Em |Bm }
+    Com ^minha |^Mãe jun^tinho a |^mim^ \rrep \altchords{|F\shrp{}7 |Bm }
   \endchorus
   \beginchorus
     Eu |^moro ^nesta |^casa
@@ -1857,13 +1856,13 @@
     ^Sempre |^dando o ^seu va|^lor^ \rrep
   \endchorus
   \beginchorus
-    Fa|^zendo al^gumas |^curas \altchords{\id[3]{alt. (Dm)}|Dm | \e }
+    Fa|^zendo al^gumas |^curas \altchords{\id[6]{simples (Dm)}|Dm | \e }
     ^Que mi|^{nha Mãe} ^me orde|^nou^ \altchords{|A |Dm }
     \lrep De bri|^lhantes ^pedras |^finas \altchords{|Gm |Dm }
     ^Para |^sempre a^qui es|^tou^ \rrep \altchords{|A |Dm }
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    theMelody =  \transpose d b, \relative a' {
+    theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \minor \time 4/4 \partial 4.
       r8 a8( \posectionmark "A" a8) | d4 << d8 \once\slurDown \parenthesize cis8 ( >> cis8) d4 e4 | f4 d4 bes'4 a4 | g4 e4 f4 g4 | a2~ a8
@@ -1922,7 +1921,7 @@
         { | tou. __ _ }
       }
     }
-    theChords = \transpose d b, \chordmode {
+    theChords = \chordmode {
       s4. | d1:m | bes1 | e1:m7.5- | a2~8
       \repeat volta 2 {
         s4. | g1:m | d1:m | a1:7
