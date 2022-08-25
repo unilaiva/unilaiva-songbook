@@ -227,44 +227,45 @@
 \endsong
 
 
-\beginsong{Eu Vivo Neste Mundo}[by={Padr. Sebastião},key={C},sks={D, C}]
+\beginsong{Eu Vivo Neste Mundo}[by={Padr. Sebastião}, key={C}, sks={D, C--D}]
   \audio{https://www.nossairmandade.com/hymn/17/EuVivoNesteMundo}
-  \mnbeginchorus\memorize
-    \[^\mn{G}]Eu |\[\mnc{C}C]vivo nes\[^\mn{E}]te |\[\mnc{G}(G)]mundo
-    En\[^\mn{A}]quan|\[\mnc{F}Dm]to \[^\mn{E}]che\[\mnc{D}G7]ga \[^\mn{E}]meu |\[\mnc{C}C]dia
-  \mnendchorus\glueverses\mnbeginchorus
-    \[\mn{G}]Encos|\[\mnc{C}C]ta\[\mn{G}]do \[\mn{C}]a \[\mn{E}]meu |\[\mnc{G}(G)]Mestre
-    E a \[\mn{A}]Sem|\[\mnc{F}Dm]pre \[\mn{E}]Vir\[\mnc{D}G7]gem \[\mn{E}]Ma|\[\mnc{C}C]ria
+  \newchords{chords_euvivonestemundo_a}\newchords{chords_euvivonestemundo_b}
+  \mnbeginchorus\memorize[chords_euvivonestemundo_a]
+    \[^\mn{G}]Eu |\[\mnc{C}C]vivo \[^\bm]nes\[^\mn{E}]te |\[\mnc{G}(G)]mundo \altchords{|D |(A)}
+    \[\bm]En\[^\mn{A}]quan|\[\mnc{F}Dm]to \[^\mn{E}]che\[\mnc{D}G7]ga \[^\mn{E}]meu |\[\mnc{C}C]di\[\bm]a \altchords{|Em A7 |D}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_euvivonestemundo_b]
+    \[^\mn{G}]Encos|\[\mnc{C}C]ta\[^\mn{G}]do \[\bmc\mn{C}]a \[^\mn{E}]meu |\[\mnc{G}(G)]Mestre \altchords{|D |(A)}
+    \[\bm]E a \[^\mn{A}]Sem|\[\mnc{F}Dm]pre \[^\mn{E}]Vir\[\mnc{D}G7]gem \[^\mn{E}]Ma|\[\mnc{C}C]ri\[\bm]a \altchords{|Em A7 |D}
   \mnendchorus
   \notesoff
-  \beginchorus
-    Meu |^Mes\noteson\[\mnlow{G}]tre é \[\mnlow{C}]quem \[\mnlow{E}]me \notesoff|^guia
-    Meu |^Mestre é ^quem me en|^sina
-  \endchorus\glueverses\beginchorus
-    Foi |^Ele quem me |^deu
-    Es|^ta San^ta Dou|^trina
+  \beginchorus\replay[chords_euvivonestemundo_a]
+    Meu |^Mes\noteson\[\mnlow{G}]tre é \[\bmc\mnlow{C}]quem \[\mnlow{E}]me \notesoff|^gui^a
+    Meu |^Mestre é ^quem me en|^si^na
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonestemundo_b]
+    Foi |^Ele ^quem me |^deu ^
+    Es|^ta San^ta Dou|^tri^na
   \endchorus
-  \beginchorus
-    Foi |^E\noteson\[\mnlow{G}]le \[\mnlow{C}]quem \[\mnlow{E}]me \notesoff|^deu
-    Foi |^Ele quem ^me man|^dou
-  \endchorus\glueverses\beginchorus
-    Can|^tar com os meus ir|^mãos
-    Ensi|^nar e ^ter a|^mor
+  \beginchorus\replay[chords_euvivonestemundo_a]
+    Foi |^E\noteson\[\mnlow{G}]le \[\bmc\mnlow{C}]quem \[\mnlow{E}]me \notesoff|^deu ^
+    Foi |^Ele quem ^me man|^dou^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonestemundo_b]
+    Can|^tar com os ^meus ir|^mãos^
+    Ensi|^nar e ^ter a|^mor^
   \endchorus
-  \beginchorus
-    |^Pa\noteson\[\mnlow{G}]ra \[\mnlow{C}]ter \[\mnlow{E}]o a\notesoff|^mor
-    E sen|^tir no ^cora|^ção
-  \endchorus\glueverses\beginchorus
-    Ro|^gar ao Pai E|^terno
-    Para rece|^ber o ^meu per|^dão
+  \beginchorus\replay[chords_euvivonestemundo_a]
+    |^Pa\noteson\[\mnlow{G}]ra \[\bmc\mnlow{C}]ter \[\mnlow{E}]o a\notesoff|^mor
+    ^E sen|^tir no ^cora|^ção^
+    \endchorus\glueverses\beginchorus\replay[chords_euvivonestemundo_b]
+    Ro|^gar ao ^Pai E|^terno
+    Para ^rece|^ber o ^meu per|^dão^
   \endchorus
   \brk
-  \beginchorus
-    |^Pa\noteson\[\mnlow{G}]ra \[\mnlow{C}]ter \[\mnlow{E}]o per\notesoff|^dão
-    E tra|^balhar ^com a|^mor
-  \endchorus\glueverses\beginchorus
-    Pres|^tar bem aten|^ção
-    Os en|^sinos do ^profes|^sor
+  \beginchorus\replay[chords_euvivonestemundo_a]
+    |^Pa\noteson\[\mnlow{G}]ra \[\bmc\mnlow{C}]ter \[\mnlow{E}]o per\notesoff|^dão
+    ^E tra|^balhar ^com a|^mor^
+      \endchorus\glueverses\beginchorus\replay[chords_euvivonestemundo_b]
+    Pres|^tar bem ^aten|^ção
+    ^Os en|^si\noteson\[\mnlow{F}]nos \[\mnlow{E}]do\notesoff{} ^profes|^sor^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative g' {
@@ -351,7 +352,6 @@
     \layout { #(layout-set-staff-size 15) } % to fit all on one spread
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
   \begin{translation}
     I live in this world until my day comes
     Next to my Master and the Ever Virgin Mary
