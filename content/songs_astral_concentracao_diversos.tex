@@ -11,7 +11,7 @@
 \setcounter{songnum}{1}
 
 
-\beginsong{Firmado em Concentração}[by={Padr. Alfredo},tags={valsa},key={Am},sks={Am}]
+\beginsong{Firmado em Concentração}[by={Padr. Alfredo},tags={valsa}, key={Am}, sks={Am, G\shrp{}m--Am}]
   \audio{https://www.nossairmandade.com/hymn/538/FirmadoEmConcentra\%C3\%A7\%C3\%A3o}
   \meter{3}{4}
   \mnbeginchorus\memorize
@@ -22,10 +22,10 @@
   \mnendchorus
   \notesoff
   \beginchorus\replay
-    |^Vou publi|car umas pa|lav|ras \altchords{\id[2]{MK (Am)} |Am | | |E}
-    |Que nos traz |^pura lem|^bran|ça \altchords{|Am |A7 |Dm |-}
-    \lrep Das |^cores |desta ban|^deira \altchords{|Dm | |Am}
-    Do |Pai verda|^deiro, ver|de azul e |^bran|^ca \rrep \altchords{|Am |Bm7\flt{}5 |E7 |Am |\up{1}(A)}
+    |^Vou publi|car umas pa|la|vras
+    |Que nos traz |^pura lem|^bran|ça
+    \lrep Das |^cores |desta ban|^deira
+    Do |Pai verda|^deiro, ver|de azul e |^bran|^ca \rrep
   \endchorus
   \beginchorus\replay
     |^Firmado |no verde |lin|do
@@ -40,59 +40,127 @@
     E |dos meus ir|^mãos, os |que não es|^que|^cem \rrep
   \endchorus
   \beginchorus\replay
-    |^Lembranças |vivas de |De|us
-    |Nos traz o |^branco do Ast|^ral | \e
-    \lrep Com |^todos os |seres do |^alto
+    |^Lembranças |vivas de |Deus | \e
+    |Nos traz o |^branco do As|^tral | \e
+    \lrep Com |^todos |seres do |^alto
     Que |nos ilu|^mina jun|tamente ao |^Sol |^ \e \rrep
   \endchorus
   \beginchorus\replay
-    |^Completei |esta li|ção | \e
-    |Com justi|^ça e leal|^da|de
-    \lrep Para |^todos |se reu|^nir
-    Pro|vando a|^qui sua |capaci|^da|^de \rrep
+    |^Completei |esta li|ção | \e \altchords{\id[4]{MK (Am)} |Am | |E | \e}
+    |Com justi|^ça e leal|^da|de \altchords{|Am |A7 |Dm | \e}
+    \lrep Para |^todos |se reu|^nir \altchords{|Dm | |Am}
+    Pro|vando a|^qui sua |capaci|^da|^de \rrep \altchords{| - |Bm7\flt{}5 |E7 |Am |\up{1}A}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-08
     theMelody = \relative c''' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 3/4
-        | c4\posectionmark "A" a e | c a c | e2.~ | e2.
-        | c'4 a e | cis cis e | d2. | d2
-      \break
+        | c4\posectionmark "A" a e | c a c | e2.( | e2)( e4)
+        | c'4 a e | cis cis e | d2.( | d4)
       \repeat volta 2 {
-        a4\sectionmark "B" | d2 d4 | f e e | c a a | e'2 e4
-        | b b d | gis, gis b | a2.
+        \altcol \parenthesize a4 \sectionmark "B" a4 | d4( d4) d4 | f e e
+        | c \parenthesize a \genmark "(1., 2., 5.)" a | e'4( e4) e4
+        | b( b) d | gis, gis b | a2.(
       } \alternative {
-        { | a2 }
-        { | a2. \bar "|." }
+        { | a4) }
+        { | a2. \repeatTie \dacapo \bar "|." }
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      | Fir -- ma -- do~em | con -- cen -- tra -- | ção; __
+      | Fir -- ma -- do~em | con -- cen -- tra -- | ção; __ _ _
       | Na Vir -- gem | Mãe ver -- da -- | dei -- ra.
       \repeat volta 2 {
-        Eu | vou o -- | lhan -- do~e dou | chan -- ce;
-        A | quem o -- lhar pa -- ra | es -- ta ban -- | dei --
+        \set stanza = "1.B"
+        \skip 1 Eu | vou __ _ o -- | lhan -- do~e dou | chan -- ce;
+        A | quem __ _ o -- | lhar pa -- ra | es -- ta ban -- | dei --
       } \alternative {
         { | ra. }
         { | ra. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Vou pu -- bli -- | car~u -- mas pa -- | la -- | vras; __ _
+      | Que nos traz | pu -- ra lem -- | bran -- | ça.
+      \repeat volta 2 {
+        \set stanza = "2.B"
+        \skip 1 Das | co -- _ res | des -- ta ban -- | dei -- ra;
+        Do | Pai ver -- da -- | dei -- ro, ver -- | de~a -- zul e | bran --
+      } \alternative {
+        { | ca. }
+        { | ca. }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      | Fir -- ma -- do | no ver -- de | lin -- | do; __ _
+      | Sou eu, re -- | pre -- sen -- to~a | Ter -- | ra.
+      \repeat volta 2 {
+        \set stanza = "3.B"
+        \skip 1 Por | is -- to a -- | qui eu es -- | tou; \skip 1
+        Com~a | paz do Se -- | nhor, a -- cal -- | man -- do a | guer --
+      } \alternative {
+        { | ra. }
+        { | ra. }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      | Fir -- ma -- do | nes -- te a -- | zul; __ _
+      Es -- | ta i -- men -- | si -- dão ce -- | les -- | te.
+      \repeat volta 2 {
+        \set stanza = "4.B"
+        \skip 1 Faz | cal -- mar o | meu co -- ra -- | ção; \skip 1
+        E | dos meus ir -- | mãos, __ _ os | que não es -- | que --
+      } \alternative {
+        { | cem. }
+        { | cem. }
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      | Lem -- bran -- ças | vi -- vas de | Deus; __ | _ _
+      | Nos traz o | bran -- co do~As -- | tral. __ | _
+      \repeat volta 2 {
+        \set stanza = "5.B"
+        \skip 1 Com | to -- _ dos | se -- res do | al -- to;
+        Que | nos i -- lu -- | mi -- na jun -- | ta -- men -- te~ao | Sol.
+      } \alternative {
+        { | \skip 1 }
+        { | \skip 1 }
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      | Com -- ple -- tei | es -- ta li -- | ção; __ | _ _
+      | Com jus -- ti -- | ça~e le -- al -- | da -- | de.
+      \repeat volta 2 {
+        \set stanza = "6.B"
+        \altcol Pa -- ra | to -- _ dos | se re -- u -- | nir; \skip 1
+        Pro -- | van -- do a -- | qui su -- a | ca -- pa -- ci -- | da --
+      } \alternative {
+        { | de. }
+        { | de. }
       }
     }
     theChords = \chordmode {
       | a2.:m | a:m | a:m | a:m
-      | a:m | a:7 | d:m | d2:m
+      | a:m | a:7 | d:m | d4:m
       \repeat volta 2  {
         \set chordChanges = ##f
-        s4 | d2.:m
+        s2 | d2.:m
         \set chordChanges = ##t
         | d:m | a:m | a:m
         | e:7 | e:7 | a:m
       } \alternative {
-        { | a2:7 }
+        { | a4:7 }
         { | a2.:m }
       }
     }
-    \layout { #(layout-set-staff-size 15) } % to fit on one spread
-    \include "tex/lp-include-tail.ly"
+    \layout { #(layout-set-staff-size 12) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
   \begin{translation}
