@@ -139,6 +139,14 @@
 }
 \providecommand{\songbookversion}{\the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}%
 
+
+% Set defaults for PDF metadata, if they are not defined. One should define
+% them in the main file before including this package.
+\providecommand{\pdfauthor}{}
+\providecommand{\pdfsubject}{Songbook}
+\providecommand{\pdfkeywords}{}
+
+
 % microtype: enable some microtype features for more fonts than in the defaults:
 \DeclareMicrotypeSet{mosttext}{encoding={OT1,T1,T2A,LY1,OT4,QX,T5,TS1,EU1,EU2,TU},
                                size={scriptsize-Large}}
@@ -256,9 +264,9 @@
             unicode=true,%
             pdfpagelayout=TwoPageRight, % display two pages side-by-side, odd on the right
             pdftitle={\thisbooktitle},%
-            pdfauthor={larva},%
-            pdfsubject={Songbook},%
-            pdfkeywords={songs spiritual entheogens ceremony},%
+            pdfauthor={\pdfauthor},%
+            pdfsubject={\pdfsubject},%
+            pdfkeywords={\pdfkeywords},%
             pdfinfo={DocumentVersion={\songbookversion}}% this is a custom attr
            }
 
