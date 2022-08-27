@@ -563,62 +563,62 @@
 \endsong
 
 
-\beginsong{O Valor que o Mestre Tem}[by={Padr. Sebastião},key={C},sks={D, C}]
+\beginsong{O Valor que o Mestre Tem}[by={Padr. Sebastião}, key={C}, sks={D, C--D}]
   \audio{https://www.nossairmandade.com/hymn/20/OValorQueOMestreTem}
   \newchords{chords_ovalorqueomestre_a}\newchords{chords_ovalorqueomestre_b}
   \mnbeginchorus\memorize[chords_ovalorqueomestre_a]
-    \[^\mn{G}]O va|\[\mnc{C}C]lor \[^\mn{E}]que o \[^\mn{D}]Mest\[^\mn{E}]re |\[^\mn{C}]tem \altchords{\id[1]{(D)} |D |-}
-    \[^\mn{E}]Eu |\[^\mn{G}]vou \[^\mn{E}]es\[\mncii{A}{C}F]clare|\[\mnc{E}C]cer \altchords{|- G |D}
+    \[^\mn{G}]O va|\[\mnc{C}C]lor \[^\mn{E}]que o \[\bmc\mn{D}]Mest\[^\mn{E}]re |\[^\mn{C}]tem\[\bm] \altchords{\id[1]{(D)} |D | \e}
+    \[^\mn{E}]Eu |\[^\mn{G}]vou \[^\mn{E}]es\[\mncii{A}{C}F]clare|\[\mnc{E}C]cer\[\bm] \altchords{| - G |D}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_ovalorqueomestre_b]
-    \[^\mn{D}]Se ti\[^\mn{E}]ver |\[\mnc{F}Fmaj7]alguém \[^\mn{D}]que \[^\mn{E}]du|\[\mnc{C}C]vide \altchords{|Gmaj7 |D}
-    \[^\mn{B}]To\[^\mn{A}]me |\[\mnc{G}G7]Daime \[^\mn{E}]pa\[^\mn{D}]ra |\[\mnc{C}C]ver \altchords{|A7 |D}
+    \[^\mn{D}]Se ti\[^\mn{E}]ver |\[\mnc{F}Fmaj7]alguém \[\bmc\mn{D}]que \[^\mn{E}]du|\[\mnc{C}C]vide \altchords{|Gmaj7 |D}
+    \[\bmc\mn{B}]To\[^\mn{A}]me |\[\mnc{G}G7]Daime \[\bmc\mn{E}]pa\[^\mn{D}]ra |\[\mnc{C}C]ver\[\bm] \altchords{|A7 |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_ovalorqueomestre_a]
-    Meu |^Mestre veio ao |mundo
-    Nas|ceu lá ^no estran|^geiro
+    Meu |^Mestre ^veio ao |mun^do
+    Nas|ceu lá ^no estran|^gei^ro
     \endchorus\glueverses\beginchorus\replay[chords_ovalorqueomestre_b]
-    O va|^{lor que} o Mestre |^tem
-    Não se |^compra com din|^heiro
+    O va|^{lor que} o ^Mestre |^tem
+    ^Não se |^compra ^com di|^nhei^ro
   \endchorus
   \beginchorus\replay[chords_ovalorqueomestre_a]
-    Meu |^Mestre é for|moso \altchords{\id[2]{MK (C)} |C G |Am}
-    É pre|ciso a^credi|^tar \altchords{|C F |C}
+    Meu |^Mestre ^é for|mo^so \altchords{\id[4]{MK (C)} |C G |Am}
+    É pre|ciso a^credi|^tar^ \altchords{|C F |C}
     \endchorus\glueverses\beginchorus\replay[chords_ovalorqueomestre_b]
-    Eu con|^{vido os} meus ir|^mãos \altchords{|Dm G |Am}
-    Vamos |^todos acompan|^har \altchords{|G7 |C}
+    Eu con|^{vido os} ^meus ir|^mãos \altchords{|Dm G |Am}
+    ^Vamos |^todos a^compan|^har^ \altchords{|G7 |C}
   \endchorus
   \beginchorus\replay[chords_ovalorqueomestre_a]
-    Meu |^Mestre a ti eu |peço
-    Na |minha con^centra|^ção
+    Meu |^Mestre a ^ti eu |pe^ço
+    Na |minha con^centra|^ção^
     \endchorus\glueverses\beginchorus\replay[chords_ovalorqueomestre_b]
-    Para |^{vós me} conso|^lar
-    E con|^solar meus ir|^mãos
+    Para |^{vós me} ^conso|^lar
+    ^E con|^solar ^meus ir|^mãos^
   \endchorus
   \brk
   \beginchorus\replay[chords_ovalorqueomestre_a]
-    Meu |^Mestre a ti eu |peço
-    Faça de |mim o ^que qui|^ser
+    Meu |^Mestre a ^ti eu |pe^ço
+    Faça de |mim o ^que qui|^ser^
     \endchorus\glueverses\beginchorus\replay[chords_ovalorqueomestre_b]
-    Meu |^Mestre estou a|^qui
-    E te pro|^meto ser fi|^el
+    Meu |^Mestre es^tou a|^qui
+    E ^te pro|^meto ^ser fi|^el ^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
-      \set melismaBusyProperties = #'()
-      \slurDashed
+      \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        r8 \posectionmark "A" g8( g) | c4 e8( e8) d4 e | c2( c8 c8) << \parenthesize c8 e8( >> e8)
-        | g4( g8) e8 a4. c,8 | e2~ e8
+        r8 \posectionmark "A" g8( g) | c4 e8( e8) d4 e | c2( c8)( c8)
+        << \parenthesize c8 \genmark "(3., 5.)" \once\slurUp e8( >> e8)
+        | g4( g8) e8 a4. c,8 | e2( e8)
       } \break
       \repeat volta 2 {
         \parenthesize d8\sectionmark "B" d e | f4 f8( f8) d4 e4 | c4.( c8) b4 a4
-        | g4( g8) g8 e'4. d8 | c2~ c8
+        | g4( g8) g8 e'4. d8 | c2( c8)
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       O va -- | lor que o Mes -- tre | tem; __ _ _
       Eu __ _ | vou __ _ es -- cla -- re -- | cer. __ _
       \set stanza = "1.B"
@@ -626,7 +626,7 @@
       To -- me | Dai -- _ me pa -- ra | ver. __ _
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
+      \set stanza = "2.A"
       Meu __ _ | Mes -- tre __ _ veio ao | mun -- do; __ _
       Nas -- _ | ceu __ _ lá no~es -- tran -- | gei -- ro.
       \set stanza = "2.B"
@@ -634,7 +634,7 @@
       Não se | com -- _ pra com di -- | nhei -- ro.
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
+      \set stanza = "3.A"
       Meu __ _ | Mes -- tre __ _ é for -- | mo -- so; __ _
       \parenthesize É pre -- | ci -- so a -- cre -- di -- | tar. __ _
       \set stanza = "3.B"
@@ -642,7 +642,7 @@
       Va -- mos | to -- dos a -- com -- pa -- | nhar. __ _
     }
     theLyricsFour = \lyricmode {
-      \set stanza = "4."
+      \set stanza = "4.A"
       Meu __ _ | Mes -- tre a ti eu | pe -- ço; __ _
       Na __ _ | mi -- nha con -- cen -- tra -- | ção. __ _
       \set stanza = "4.B"
@@ -650,7 +650,7 @@
       E con -- | so -- _ lar meus ir -- | mãos. __ _
     }
     theLyricsFive = \lyricmode {
-      \set stanza = "5."
+      \set stanza = "5.A"
       Meu __ _ | Mes -- tre a ti eu | pe -- ço;
       Fa -- \parenthesize ça de | mim __ _ o que qui -- | ser; __ _
       \set stanza = "5.B"
@@ -660,7 +660,7 @@
     theChords = \chordmode {
       \repeat volta 2 {
         s4. | c1 | c1
-        | c2 f2 | c2~c8
+        | c2 f2 | c2~ c8
       }
       \repeat volta 2 {
         s4. | f1:maj7 | c1
@@ -669,31 +669,20 @@
     }
     \include "tex/lp-include-tail-lyricsbelow.ly"
     \end{lilypond}\end{lilywrap}
-  \translationoff
   \begin{translation}
-    The worth that the Master has
-    I am going to clarify
-    If someone is doubtful
-    Take Daime to see
+    The worth that the Master has, I am going to clarify
+    If someone is doubtful, take Daime to see
     \nextverse
-    My Master came to the world
-    He was born in a foreign land
-    The worth that my Master has
-    Cannot be bought with money
+    My Master came to the world, he was born in a foreign land
+    The worth that my Master has, cannot be bought with money
     \nextverse
-    My Master is beautiful
-    One must believe
-    I invite my brothers and sisters
-    Let‘s all accompany Him
+    My Master is beautiful, one must believe
+    I invite my brothers and sisters: let's all accompany Him
     \nextverse
-    My Master I ask You
-    In my concentration
-    For You to console me
-    And console my brothers and sisters
+    My Master, I ask You in my concentration
+    For You to console me, and console my brothers and sisters
     \nextverse
-    My Master I ask You
-    Do with me as you please
-    My Master here I am
-    I promise to be loyal
+    My Master I ask You, do with me as you please
+    My Master here I am, I promise to be loyal
   \end{translation}
 \endsong
