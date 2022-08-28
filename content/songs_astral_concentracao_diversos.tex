@@ -185,59 +185,90 @@
 \endsong
 
 
-\beginsong{Firmeza}[by={Padr. Valdete},key={F},sks={F, E, G}]
+\beginsong{Firmeza}[by={Padr. Valdete}, key={F}, sks={F, C--B}]
   \audio{https://www.nossairmandade.com/hymn/148/Firmeza}
   \mnbeginchorus\memorize
-    \[^\mn{C}]Fir|\[\mnc{F}F]meza, bem fir\[\mnc{C}C]meza peço |\[\mnc{F}F]em concentra\[\mnc{C}C]ção
-    \[^\mn{F}]Fir|\[F]me\[^\mn{C}]za, \[C]bem \[^\mn{F}]fir\[F]me\[^\mn{C}]za \[C]na cor|\[\mnc{F}F]rente da sessão
+    \[^\mn{C}]Fir|\[\mnc{F}F]meza, bem fir\[\bmc\mnc{C}C]meza peço |\[\mnc{F}F]em concentra\[\bmc\mnc{C}C]ção \altchords{\id[1]{(G)}|G D |G D}
+    \[^\mn{F}]Fir|\[F]me\[^\mn{C}]za, \[C]bem \[^\mn{F}]fir\[\bmc{}F]me\[^\mn{C}]za \[C]na cor|\[\mnc{F}F]rente da ses\[\bmc]são \altchords{|G D G D |G}
   \mnendchorus
   \notesoff
   \beginchorus
     Fir|^meza, bem fir^meza, peço ao |^Rei Jurami^dam
-    Fir|^meza, ^bem fir^meza, ^para eu |^sempre ser seu fã
+    Fir|^meza, ^bem fir^meza, ^para eu |^sempre ser seu ^fã
   \endchorus
   \beginchorus
     Fir|^meza, bem fir^meza, peço |^a Virgem Ma^ria
-    Fir|^meza, ^bem fir^meza, ^que Vós |^seja minha Guia
+    Fir|^meza, ^bem fir^meza, ^que Vós |^seja minha ^Guia
   \endchorus
   \beginchorus
     Fir|^meza, bem fir^meza, peço ao |^Senhor São Jo^ão
-    Fir|^meza, ^bem fir^meza, ^para eu |^seguir na missão
+    Fir|^meza, ^bem fir^meza, ^para eu |^seguir na mis^são
   \endchorus
   \beginchorus
     Fir|^meza, bem fir^meza, peço ao |^Pai da Cria^ção
-    Vós me |^dê Paz ^e A^mor, ^e apla|^nai meu coração
+    Vós me |^dê Paz ^e A^mor, e ^apla|^nai meu cora^ção
   \endchorus
   \beginchorus
     Apla|^nai meu cora^ção, para |^eu poder a^mar
-    E as o|^fenças ^dos ir^mãos, ^ eu |^saber perdoar
+    E as o|^fenças ^dos ir^mãos, ^ eu |^saber perdo^ar
   \endchorus
   \beginchorus
     Sa|^bendo perdo^ar, se|^guindo nesta ^Luz
-    Pa|^ra po^der di^zer, ^que es|^tou com meu Jesus
+    Pa|^ra po^der di^zer, ^que es|^tou com meu Je^sus
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-08
     theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key f \major \time 4/4 \partial 8
       \repeat volta 2 {
-        c8\pomark | f8. f16 f8. f16 c8. c16 c8. c16 | f8. f16 f8. f16 c4. f8
-        | f8. c16 c8. f16 f8. c16 c8. c16 | f8. f16 f8. f16 f4.
+        \grace \parenthesize c8 \genmark "6." c8\pomark | f8. f16 f8. f16 c8.( c16)( c8.) c16 | f8. f16 f8. f16 c4( c8) f8
+        | f8. c16 c8. f16 f8. c16 c8. c16 | f8. f16 f8. f16 f4( f8)
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      \repeat volta 2 {
-        Fir -- | me -- za bem fir -- me -- za pe -- ço | em con -- cen -- tra -- ção;
-        Fir -- | me -- za bem fir -- me -- za na cor -- | ren -- te da ses -- são.
-      }
+        Fir -- | me -- za bem fir -- me -- za pe -- ço | em con -- cen -- tra -- ção; __ _
+        Fir -- | me -- za bem fir -- me -- za na cor -- | ren -- te da ses -- são. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+        Fir -- | me -- za, bem fir -- me -- za, pe -- ço~ao | Rei Ju -- ra -- mi -- dam; __ _
+        Fir -- | me -- za, bem fir -- me -- za, pa -- ra~eu | sem -- pre ser seu fã. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+        Fir -- | me -- za, bem fir -- me -- za, pe -- ço | a Vir -- gem Ma -- ri -- a;
+        Fir -- | me -- za, bem fir -- me -- za, que Vós | se -- ja mi -- nha Gui -- a.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+        Fir -- | me -- za, bem fir -- me -- za, pe -- ço~ao | Se -- nhor São Jo -- ão; __ _
+        Fir -- | me -- za, bem fir -- me -- za, pa -- ra~eu | se -- guir na mis -- são. __ _
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+        Fir -- | me -- za, bem fir -- me -- za, pe -- ço~ao | Pai da Cri -- a -- ção;
+        Vós me | dê Paz e A -- mor, e a -- pla -- | nai meu co -- ra -- ção. __ _
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      \set includeGraceNotes = ##f
+        (A)pla -- | nai meu co -- ra -- ção, __ _ pa -- ra | eu po -- der a -- mar;
+        E~as o -- | fen -- ças dos ir -- mãos, \skip 1 \skip 1 eu | sa -- ber per -- do -- ar. __ _
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7."
+        Sa -- | ben -- do per -- do -- ar, __ _ _ se -- | guin -- do nes -- ta Luz; __ _
+        Pa -- | ra po -- der di -- zer, \skip 1 que es -- | tou com meu Je -- sus. __ _
     }
     theChords = \chordmode {
-      \repeat volta 2 {
+      % No repeat here nor in the lyrics, as it would leave the grace note outside
         s8 | f2 c | f c
         | f4 c f c | f2.~ f8
-      }
     }
-    \include "tex/lp-include-tail.ly"
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Firmness, great firmness, I ask in concentration
