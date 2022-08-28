@@ -599,43 +599,49 @@
 \endsong
 
 
-\beginsong{Chamo o Tempo}[by={Mestre Irineu Serra},key={A},sks={A, G}]
-  \audio[key=A]{https://www.nossairmandade.com/hymn/23/ChamoOTempo}
+\beginsong{Chamo o Tempo}[by={Mestre Irineu Serra}, key={A}, sks={A, G--A}]
+  \audio[]{https://www.nossairmandade.com/hymn/23/ChamoOTempo}
   \transpose{2}
   \mnbeginchorus\memorize
-    \[^\mn{B}]Cha\[^\mn{A}]mo o |\[\mnc{G}G]Tempo, eu \[\mnc{A}D]cha\[^\mn{G}]{mo o} |\[\mnc{D}G]Temp\[(D)]o \altchords{\id[1]{(G)}|G D |G (D)}
-    \[^\mn{B}]Para e\[^\mn{A}]le |\[\mnc{G}G]vir me \[\mncii{A}{G}D]ensi|\[\mnc{D}G]na\[G7]r \altchords{|G D |G G7}
-    \lrep Apren|\[\mnc{E}C]der com \[\mnc{F#}D]per\[^\mn{A}]fei|\[\mnc{G}G]çã\[(Em)]o \altchords{|C D |G (Em)}
-    \[^\mn{G}]Pa\[^\mn{A}]ra |\[\mnc{B}Am]po\[^\mn{A}]der \[\mncii{D}{B}D]ensi|\[\mnc{G}G]na\[\up{1}G7]r \rrep \altchords{|Am D |G \up{1}(G7)}
+    \[^\mn{B}]Cha\[^\mn{A}]mo o |\[\mnc{G}G]Tempo, eu \[\mnc{A}D]cha\[^\mn{G}]{mo o} |\[\mnc{D}G]Tempo\[\bm] \altchords{\id[1]{(G)}|G D |G}
+    \[^\mn{B}]Para e\[^\mn{A}]le |\[^\mn{G}]vir me \[\mncii{A}{G}D]ensi|\[\mnc{D}G]nar\[G7] \altchords{| - D |G G7}
+    \lrep Apren|\[\mnc{E}C]der com \[\mnc{F#}D]per\[^\mn{A}]fei|\[\mnc{G}G]ção\[\bm] \altchords{|C D |G}
+    \[^\mn{G}]Pa\[^\mn{A}]ra |\[^\mn{B}]po\[^\mn{A}]der \[\mncii{D}{B}D]ensi|\[\mnc{G}G]nar\[\up{1}G7] \rrep \altchords{| - D |G \up{1}G7}
   \mnendchorus
   \notesoff
   \beginchorus
-    Os que |^forem o^bedi|^ente^s
-    Tra|^tar de ^apren|^de^r
-    \lrep Para |^ser e^terna|^ment^e
-    Para |^Deus lhe ^aten|^de^r \rrep
+    Os que |^forem o^bedi|^entes^
+    Tra|tar de ^apren|^der^
+    \lrep Para |^ser e^terna|^men^te
+    Para |Deus lhe ^aten|^der^ \rrep
   \endchorus
   \beginchorus
-    De|^pois que o ^Tempo |^cheg^a
-    Nin|^guém quis ^apren|^de^r
-    \lrep De|^pois que ^refle|^ti^r
-    É que |^vai se a^rrepen|^de^r \rrep
+    De|^pois que o ^Tempo |^chega^ \altchords{\id[4]{alt. (A)}|A E |A E}
+    Nin|guém quis ^apren|^der^ \altchords{|A E |A A7}
+    \lrep De|^pois que ^refle|^tir^ \altchords{|D E |A F\shrp{}m}
+    É que |vai se ar^repen|^der^ \rrep \altchords{|Bm E |A A7}
   \endchorus
   \beginchorus
-    Fir|^meza no ^pensa|^ment^o
-    Para |^seguir ^no ca|^minh^o
-    \lrep Embora |^que não a^prenda |^muit^o
-    Aprenda |^sempre um ^boca|^dinh^o \rrep
+    Fir|^meza no ^pensa|^mento^
+    Para |seguir ^no ca|^minho^
+    \lrep Embora |^que não a^prenda |^mui^to
+    Aprenda |sempre um ^boca|^di^nho \rrep
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-08
     theMelody = \transpose g a \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key g \major \time 4/4 \partial 4
-      b8\posectionmark "A" ( a) | g4 g8 g8 a4 g4 | d'4 d4. \parenthesize b8 b8( a8)
-      |g4 g a g |d'4( d4.)
+       b8 \posectionmark "A" ( a) | g4 g8 g8 a4 g4
+       | d'4 d4. \parenthesize b8 \genmark "(1.)" b8( a8)
+       | g4 g a g |d'4( d4.)
       \repeat volta 2 {
-        \parenthesize d8\sectionmark "B" d8( d8) | e4 e fis a | \slurDown g2( g8) \parenthesize g,8 g8 a8
-        | b4. a8 d4. b8 | g2( g8)
+        \parenthesize d8 \genmark "(4.)" \sectionmark "B" d8( d8) | e4 e fis a
+        | \slurDown g2( g8) \parenthesize g,8 \genmark "(4.)" g8 a8
+        | b4. a8 d4. b8
+      } \alternative {
+        { | g2( g8) }
+        { | g2( g4) \dacapo \bar "|." }
       }
     }
     theLyricsOne = \lyricmode {
@@ -643,43 +649,64 @@
       Cha -- mo~o | Tem -- po, eu cha -- mo~o | Tem -- po;
       Pa -- ra~e -- le | vir me en -- si -- | nar. __ _
       \repeat volta 2 {
+        \set stanza = "1.B"
         \skip 1 A -- pren -- | der com per -- fei -- | ção; __ _
-        \skip 1 Pa -- ra | po -- der en -- si -- | nar. __ _
+        \skip 1 Pa -- ra | po -- der en -- si --
+      } \alternative {
+        { | nar. __ _ }
+        { | nar. __ _ }
       }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       Os que | fo -- rem o -- be -- di -- | en -- tes; _
       Tra -- _ | tar de a -- pren -- | der. __ _
+      \set stanza = "2.B"
       \repeat volta 2 {
         \skip 1 Pa -- ra | ser e -- ter -- na -- | men -- te; __
-        \skip 1 Pa -- ra | Deus lhe a -- ten -- | der. __ _
+        \skip 1 Pa -- ra | Deus lhe a -- ten --
+      } \alternative {
+        { | der. __ _ }
+        { | der. __ _ }
       }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       De -- _ | pois que o Tem -- po | che -- ga;
       \skip 1 Nin -- _ | guém quis a -- pren -- | der. __ _
+      \set stanza = "3.B"
       \repeat volta 2 {
         \skip 1 De -- _ | pois que re -- fle -- | tir; __ _
-        \skip 1 É que | vai se~ar -- re -- pen -- | der. __ _
+        \skip 1 É que | vai se~ar -- re -- pen --
+      } \alternative {
+        { | der. __ _ }
+        { | der. __ _ }
       }
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
       Fir -- _ | me -- za no pen -- sa -- | men -- to;
       \skip 1 Pa -- ra | se -- guir no ca -- | mi -- nho.
+      \set stanza = "4.B"
       \repeat volta 2 {
         Em -- bo -- ra | que não~a -- pren -- da | mui -- to;
-        A -- pren -- da | sem -- pre~um bo -- ca -- | di -- nho.
+        A -- pren -- da | sem -- pre~um bo -- ca --
+      } \alternative {
+        { | di -- nho. }
+        { | di -- nho. }
       }
     }
     theChords = \transpose g a \chordmode {
-      s4 |g2 d |g \parenthesize d
-      |g d |g g8:7
+      s4 | g2 d | g1
+      | g2 d2 | g g8:7
       \repeat volta 2 {
-        s4. |c2 d |g \parenthesize e:m
-        |a:m d |g2 \mark\markup{\hspace #-1.7 \super{"1"}} \parenthesize g8:7
+        s4. | c2 d | g1
+        | g2 d
+      } \alternative {
+        % NOTE: this was used earlier insead of alternative endings:
+        % \mark\markup{\hspace #-1.7 \super{"1"}} \parenthesize g8:7
+        { g2 g8:7 }
+        { g2. }
       }
     }
     \include "tex/lp-include-tail-lyricsbelow.ly"
