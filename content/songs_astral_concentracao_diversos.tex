@@ -830,16 +830,16 @@
 \endsong
 
 
-\beginsong{Eu Peço a Deus\\Vi Deus no Sol, na Lua e nas Estrelas}[by={Francisco Corrente},tags={2x},key={C},sks={C, D}]
-  \audio[key=C]{https://www.nossairmandade.com/hymn/26/EuPe\%C3\%A7oADeus}
+\beginsong{Eu Peço a Deus\\Vi Deus no Sol, na Lua e nas Estrelas}[by={Francisco Corrente}, tags={2x}, key={C}, sks={C, C--D}]
+  \audio[]{https://www.nossairmandade.com/hymn/26/EuPe\%C3\%A7oADeus}
   \newchords{chords_eupecoadeus_a}\newchords{chords_eupecoadeus_b}
   \musicnote{Tocar 2 vezes}
   \mnbeginchorus\memorize[chords_eupecoadeus_a]
-    \[^\mn{C}]Eu pe\[^\mn{E}]{ço a} |\[\mnc{G}C]Deus que per\[\mnc{A}Am]doe os meus \[^\mn{E}]pe|\[\mnc{G}F]ca\[^\mn{F}]dos\[^\bm]
-    Perdoe \[^\mn{G}]a |\[\mnc{A}Dm]mim e per\[^\bm]doe \[^\mn{F}]{a meus} \[^\mn{A}]ir|\[\mnc{G}G]mã\[^\bm]os
+    \[^\mn{C}]Eu pe\[^\mn{E}]{ço a} |\[\mnc{G}C]Deus que per\[\mnc{A}Am]doe os meus \[^\mn{E}]pe|\[\mnc{G}F]ca\[^\mn{F}]dos\[^\bm] \altchords{\id[1]{(D)}|D Bm |G}
+    Perdoe \[^\mn{G}]a |\[\mnc{A}Dm]mim e per\[^\bm]doe \[^\mn{F}]{a meus} \[^\mn{A}]ir|\[\mnc{G}G]mã\[^\bm]os \altchords{|Em |A}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_eupecoadeus_b]
-    \[^\mn{/}]Eu peço a |\[Am]Deus que me \[^\bm]{dê a Santa} |\[G]Luz\[^\bm]
-    \[^\mn{D}]Para eu a|\[G7]mar Vós no \[^\bmc\mn{E}]meu co\[^\mn{C}]ra|\[C]ção\[^\bm]
+    \[^\mn{/}]Eu peço a |\[\up{1}C \up{2}(Am)]Deus que me \[^\bm]dê \[^\mn{A}]a San\[^\mn{/}]ta |\[\mnc{/}G]Luz\[^\bm] \altchords{|\up{1}D \up{2}(Bm) |A}
+    \[^\mn{D}]Para eu a|\[G7]mar Vós no \[^\bmc\mn{E}]meu co\[^\mn{C}]ra|\[C]ção\[^\bm] \altchords{|A7 |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_eupecoadeus_a]
@@ -857,15 +857,16 @@
     Pra nos sa|^ir deste \[\bm]mundo de ilu|^são\[\bm]
   \endchorus
   \vfill
-  \textnote{This hino can be sung when someone is going through a passage
+  \textnote{This hino can be sung when someone is going through a \emph{passage}
             in a concentration work.}
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-08
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4.
       \repeat volta 2 {
         c8\posectionmark "A" c e | g8( g8) g8 g8 a8 a8 a8 e8 | g4 f4.( \parenthesize f8 \parenthesize f8) \parenthesize g8
-        | a8( a8) a8 a8 a8 f8 f8 a8 | g2~ g8
+        | a8( a8) a8 a8 a8 f8 f8 a8 | g2( g8)
       } \break
       \parenthesize c,8\sectionmark "B:I" \parenthesize c8 \parenthesize c8 | c8( c8) c8 c8 c8 a8 a8 c8 | b4( b4.) d8 d8 d8
       | d8( d8) d8 d8 e8( e8) e8 c8 |  c2~ c8 \parenthesize a8\sectionmark "B:II" \parenthesize a8 \parenthesize a8
@@ -873,7 +874,7 @@
       | d8( d8) d8 d8 e8( e8) e8 c8 | c2~ c8 \bar "|."
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       \repeat volta 2 {
         Eu pe -- ço~a | Deus __ _ que per -- doe Os meus pe -- | ca -- dos;
         Per -- do e~a | mim __ _ e per -- doe a meus ir -- | mã -- os.
@@ -883,10 +884,9 @@
       Pa -- ra eu_a -- | mar __ _ Vós no meu __ _ co -- ra -- | ção. __ _
       Eu pe -- ço~a | Deus __ _ que me dê a San -- ta | Luz; __ _
       Pa -- ra eu_a -- | mar __ _ Vós no meu __ _ co -- ra -- | ção. __ _
-
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
+      \set stanza = "2.A"
       \repeat volta 2 {
         Vi Deus no | sol __ _ Deus na lu -- a~e nas es -- | tre -- las;
         Vi Deus no | ven -- to Deus na ter -- ra Deus no | mar. __ _
@@ -898,7 +898,7 @@
       To -- dos se | fir -- mam se com -- po -- nham~em seu lu -- | gar. __ _
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
+      \set stanza = "3.A"
       \repeat volta 2 {
         Eu di -- go~a | to -- dos com a -- mor no co -- ra -- | çã -- o;
         \skip 1 \skip 1 \skip 1 | Deus é quem nos da a San -- ta | Luz. __ _
@@ -911,15 +911,15 @@
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4. | c2 a:m | f f
-        | d:m d:m | g~ g8
+        s4. | c2 a:m | f1
+        | d1:m | g2~8
       }
-      s4. | a2:m a:m | g g
-      | g:7 g:7 | c c
-      | a2:m a:m | g g
-      | g:7 g:7 | c~ c8
+      s4. | c1 | g1
+      | g1:7 | c1
+      | a1:m | g1
+      | g1:7 | c2~8
     }
-    \layout { #(layout-set-staff-size 13) } % to fit on one spread
+    \layout { #(layout-set-staff-size 14) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
