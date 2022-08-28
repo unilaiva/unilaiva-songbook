@@ -508,34 +508,35 @@
 \endsong
 
 
-\beginsong{Conforto}[by={Padr. Alfredo},key={Dm},sks={Dm, Cm}]
-  \audio[key=Dm]{https://www.nossairmandade.com/hymn/478/Conforto}
+\beginsong{Conforto}[by={Padr. Alfredo}, key={Bm}, sks={Cm, Bm--Cm--(Dm)}]
+  \audio[]{https://www.nossairmandade.com/hymn/478/Conforto}
+  \transpose{-3}
   \beginchorus\memorize
-    \[^\mn{A}]Eu |\[\mnc{F}Dm]pe\[^\mn{D}]ço \[^\mn{F}]con\[\mnc{E}A7]for\[^\mn{C#}]to \[^\mn{E}]aos |\[\mnc{D}Dm]Reis
-    \[^\mn{D}]Do |\[^\mn{A}]Céu, \[^\mn{F}]da \[^\mn{D}]Flo\[\mnc{A}D7]rest\[^\mn{F}]{a e} \[^\mn{D}]do |\[\mnc{G}Gm]Mar
-    |\[^\mn{B&}]Pe\[^\mn{G}]ço \[^\mn{E}]con\[\mnc{C#}A7]fort\[^\mn{A}]{o as} \[^\mn{E}]Ra|\[\mnc{D}Dm]inhas
-    Para |\[\mnc{A}A]nos \[\mnciii{E}{F}{E}A7]ilumi|\[\mnc{D}Dm]nar
+    \[^\mn{A}]Eu |\[\mnc{F}Dm]pe\[^\mn{D}]ço \[^\mn{F}]con\[\mnc{E}A7]for\[^\mn{C#}]to \[^\mn{E}]aos |\[\mnc{D}Dm]Reis \[\bm] \altchords{\id[1]{(Dm)}|Dm A7 |Dm}
+    \[^\mn{D}]Do |\[^\mn{A}]Céu, \[^\mn{F}]da \[^\mn{D}]Flo\[\mnc{A}D7]rest\[^\mn{F}]{a e} \[^\mn{D}]do |\[\mnc{G}Gm]Mar \[\bm] \altchords{| - D7 |Gm}
+    |\[^\mn{B&}]Pe\[^\mn{G}]ço \[^\mn{E}]con\[\mnc{C#}A7]fort\[^\mn{A}]{o as} \[^\mn{E}]Ra|\[\mnc{D}Dm]i\[\bm]nhas \altchords{| - A7 |Dm}
+    Para |\[\mnc{A}A]nos \[\mnciii{E}{F}{E}A7]ilumi|\[\mnc{D}Dm]nar \[\bm] \altchords{|A A7 |Dm}
   \endchorus
   \notesoff
   \beginchorus
-    Eu |^peço con^forto aos |^Príncipes
-    Do |Céu, da Flo^resta e do |^Mar
-    |Peço con^forto as Prin|^cesas
-    Para |^nos ^ilumi|^nar
+    Eu |^peço con^forto aos |^Prínci^pes
+    Do |Céu, da Flo^resta e do |^Mar ^
+    |Peço con^forto as Prin|^ce^sas
+    Para |^nos ^ilumi|^nar ^
   \endchorus
   \beginchorus
-    Eu |^peço con^forto aos |^Anjos
-    Do |Céu, da Flo^resta e do |^Mar
-    |Peço con^forto aos |^Santos
-    Para |^nos ^ilumi|^nar
+    Eu |^peço con^forto aos |^An^jos
+    Do |Céu, da Flo^resta e do |^Mar ^
+    |Peço con^forto aos |^San^tos
+    Para |^nos ^ilumi|^nar ^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, 2021-08
-    theMelody = \relative a' {
+    % transcribed by larva, updated on 2022-08
+    theMelody = \transpose d b, \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \minor \time 4/4 \partial 4
       \repeat volta 2 {
-        a4\pomark | f'4 d8 f8 e4 cis8 e8 | d4.( d8 d4)
+        a4\pomark | f'4 d8 f8 e4 cis8 e8 | d4.( d8)( d4)
         d'4 | a4 f8 d' a4 f8 d | g1 \break
         | bes4 g8 e cis8. cis16 a8 e' | d2 d4
         d8 d8 | a'2 e4 f8 e | d2.
@@ -544,31 +545,31 @@
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       \repeat volta 2 {
-        Eu pe -- ço con -- for -- to aos Reis; __ _ _
-        Do Céu, da Flo -- res -- ta~e do Mar;
-        Pe -- ço con -- for -- to as Ra -- i -- nhas;
-        Pa -- ra nos i -- lu -- mi -- nar.
+        Eu | pe -- ço con -- for -- to aos | Reis; __ _ _
+        Do | Céu, da Flo -- res -- ta~e do | Mar;
+        | Pe -- ço con -- for -- to as Ra -- | i -- nhas;
+        Pa -- ra | nos i -- lu -- mi -- | nar.
       }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \repeat volta 2 {
-        Eu pe -- ço con -- for -- to aos Prín -- ci -- pes;
-        Do Céu, da Flo -- res -- ta~e do Mar;
-        Pe -- ço con -- for -- to as Prin -- ce -- sas;
-        Pa -- ra nos i -- lu -- mi -- nar.
+        Eu | pe -- ço con -- for -- to aos | Prín -- ci -- pes;
+        Do | Céu, da Flo -- res -- ta~e do | Mar;
+        | Pe -- ço con -- for -- to as Prin -- | ce -- sas;
+        Pa -- ra | nos i -- lu -- mi -- | nar.
       }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       \repeat volta 2 {
-        Eu pe -- ço con -- for -- to aos An -- _ jos;
-        Do Céu, da Flo -- res -- ta~e do Mar;
-        Pe -- ço con -- for -- to a -- os San -- tos;
-        Pa -- ra nos i -- lu -- mi -- nar.
+        Eu | pe -- ço con -- for -- to aos | An -- _ jos;
+        Do | Céu, da Flo -- res -- ta~e do | Mar;
+        | Pe -- ço con -- for -- to a -- os | San -- tos;
+        Pa -- ra | nos i -- lu -- mi -- | nar.
       }
     }
-    theChords = \chordmode {
+    theChords = \transpose d b, \chordmode {
       \repeat volta 2 {
         s4 | d2:m a:7 | d1:m
         | d2:m d:7 | g1:m
@@ -576,7 +577,8 @@
         | a2 a:7 | d2.:m
       }
     }
-    \include "tex/lp-include-tail.ly"
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     I ask comfort from the Kings
