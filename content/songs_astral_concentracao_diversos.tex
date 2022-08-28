@@ -731,32 +731,32 @@
   \audio{https://www.nossairmandade.com/hymn/270/ChamoAFor\%C3\%A7a}
   \mnbeginchorus\memorize
     \[^\mn{C}]Cha\[^\mn{B}]{mo a} |\[\mnc{A}Am]força, eu \[\mnc{C}(C)]cha\[^\mn{E}]{mo a} |\[\mnc{A}Am]força\[\bm] \altchords{\id[1]{(Bm)}|Bm (D) |Bm}
-    \[^\mn{G}]A força |\[G]vem \[^\mn{E}]nos \[\mncii{C}{A}C]amos|\[\mnciii{C}{B}{A}Am]trar \altchords{|A D |Bm}
+    \[^\mn{G}]A força |\[G]vem \[^\mn{E}]nos \[\mncii{C}{A}C]amos|\[\mnciii{C}{B}{A}Am]trar \[\bm] \altchords{|A D |Bm}
   \mnendchorus\glueverses\notesoff\mnbeginchorus
     Treme a |^terra e ^balan|^ceia^ \altchords{|Bm (D) |Bm}
-    E vós não |^sai do ^seu lu|^gar \altchords{|A D |Bm}
+    E vós não |^sai do ^seu lu|^gar ^ \altchords{|A D |Bm}
   \mnendchorus
   \beginchorus
     Treme a |^terra, ^treme a |^terra^
-    Treme a |^terra e ^geme o |^mar
+    Treme a |^terra e ^geme o |^mar ^
   \endchorus\glueverses\beginchorus
     Ainda tem |^gente ^que du|^vida^
-    Do po|^der que ^vós me |^dá
+    Do po|^der que ^vós me |^dá ^
   \endchorus
   \beginchorus
     Aqui |^dentro ^da ver|^dade^ \altchords{\id[2]{(Gm)}|Gm (B\flt{}) |Gm}
-    Tem uns |^certos ^menti|^rosos \altchords{|F B\flt{} |Gm}
+    Tem uns |^certos ^menti|^ro^sos \altchords{|F B\flt{} |Gm}
   \endchorus\glueverses\beginchorus
     Que calu|^niam os ^seus ir|^mãos \altchords{|Gm (B\flt{}) |Gm}
-    ^Para se tor|^nar mui^to vi|^çosos \altchords{|F B\flt{} |Gm}
+    ^Para se tor|^nar mui^to vi|^ço^sos \altchords{|F B\flt{} |Gm}
   \endchorus
   \brk
   \beginchorus
     Mas |^ninguém ^não se |^lembra^
-    Chamou o |^Mestre ^menti|^roso
+    Chamou o |^Mestre ^menti|^ro^so
   \endchorus\glueverses\beginchorus
     Devaga|^rinho ^vai che|^gando^
-    E quem cha|^mou é que ^vai fi|^cando
+    E quem cha|^mou é que ^vai fi|^can^do
   \endchorus
   \brk
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
@@ -765,38 +765,42 @@
       \key a \minor \time 4/4 \partial 4.
       \repeat volta 2 {
         r8\posectionmark "A" c8( b) | a4 a c e | a a4. \parenthesize g8 g g
-        | g4 e c a | c4. b8 a8
+        | g4 e c a | c4.( b8)( a8)
       }
       \repeat volta 2 {
         \parenthesize c8\sectionmark "B" c b | a4 a c e | a a4 \parenthesize g8 \parenthesize g8 g g
-        | g4 e c a | c4. b8 a8
+        | g4 e c a | c4.( b8)( a8)
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
         Cha -- mo~a | for -- ça~eu cha -- mo~a | for -- ça;
         A for -- ça | vem nos a -- mos -- | trar. __ _ _
+      \set stanza = "1.B"
         \skip 1 Tre -- me~a | ter -- ra~e ba -- lan -- | cei -- a;
         \skip 1 E vós não | sai do seu lu -- | gar. __ _ _
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
+      \set stanza = "2.A"
         Tre -- me~a | ter -- ra tre -- me~a | ter -- ra;
         Tre -- me a | ter -- ra~e ge -- me~o | mar. __ _ _
+      \set stanza = "2.B"
         Ain -- da tem | gen -- te que du -- | vi -- da;
         \skip 1 \skip 1 Do po -- | der que vós me | dá. __ _ _
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
+      \set stanza = "3.A"
         A -- qui | den -- tro da ver -- | da -- de;
         \skip 1 Tem uns | cer -- tos men -- ti -- | ro -- _ sos.
+      \set stanza = "3.B"
         Que ca -- lu -- | ni -- am os seus~ir -- | mã -- os;
         Pa -- ra se tor -- | nar mui -- to vi -- | ço -- _ sos.
     }
     theLyricsFour = \lyricmode {
-      \set stanza = "4."
+      \set stanza = "4.A"
         Mas __ _ | nin -- guém não se | lem -- bra;
         Cha -- mou o | Mes -- tre men -- ti -- | ro -- _ so.
+      \set stanza = "4.B"
         De -- va -- ga -- | ri -- nho vai che -- | gan -- do;
         \skip 1 E quem cha -- | mou~é que vai fi -- | can -- _ do.
     }
