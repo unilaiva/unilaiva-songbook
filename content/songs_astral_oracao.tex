@@ -193,7 +193,7 @@
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        g8( \sectionmark "A" g) | c8( c8 c8) c8 c4. e8 | g2~ g8 \parenthesize c,8 c8( c8)
+        g8( \posectionmark "A" g) | c8( c8 c8) c8 c4. e8 | g2~ g8 \parenthesize c,8 c8( c8)
         | e4( e8) c8 \once\slurSolid a8( g4) c8 | c2( c4)
       } \break
       \repeat volta 2 {
@@ -283,6 +283,14 @@
       \repeat volta 2 {
         Mas __ _ | nos __ _ pés do meu | Pai; __ _
         \skip 1 To -- dos | têm __ _ que se cur -- | var. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c1 | c1 | c2 f2 | c2.
+      }
+      \repeat volta 2 {
+        s4 | c2 a2:m | g1 | d2:m f2 | c2.
       }
     }
     \layout { #(layout-set-staff-size 15) } % for better fit
