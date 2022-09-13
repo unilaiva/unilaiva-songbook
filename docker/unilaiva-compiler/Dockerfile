@@ -59,6 +59,8 @@ RUN useradd --create-home --shell /bin/bash unilaiva && chmod 777 /home/unilaiva
 
 USER unilaiva
 
+COPY "ssh_config" "/home/unilaiva/.ssh/config"
+
 ENV HOME="/home/unilaiva" \
     IN_UNILAIVA_DOCKER_CONTAINER="true"
 
