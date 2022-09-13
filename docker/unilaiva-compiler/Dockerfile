@@ -6,7 +6,7 @@
 #
 
 # Use Ubuntu 22.04 LTS:
-FROM ubuntu:jammy-20220801
+FROM ubuntu:jammy-20220815
 
 # Installs everything needed for compiling the songbook, plus qrencode and
 # pdftk utilities. Also generates the required locale fi_FI.utf8.
@@ -15,6 +15,7 @@ RUN apt-get update \
     bash \
     locales \
     git \
+    openssh-client \
     context \
     context-modules \
     fonts-noto-extra \
@@ -32,8 +33,8 @@ RUN apt-get update \
     texlive-luatex \
     texlive-music \
     texlive-plain-generic \
+    # pdftk \
     qrencode \
-    pdftk \
   && rm -rf /var/lib/apt/lists/*
 
 # Enlarge the available memory available to some TeX engines. (Some

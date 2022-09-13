@@ -32,8 +32,8 @@ This guarantees the best results, as the actual compiling is done in a Docker
 container that has all the correct packages installed and configured correctly.
 
 Note that the first run will take a long time, as the Docker image is built
-and all the required software downloaded (about 800 MiB) and installed into it.
-When built, the image requires about 1,7 GiB of disk space. Subsequent runs
+and all the required software downloaded (about 700 MiB) and installed into it.
+When built, the image requires about 1,6 GiB of disk space. Subsequent runs
 will be fast as they use the already built image.
 
 ##### Requirements #####
