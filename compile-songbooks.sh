@@ -79,7 +79,8 @@ print_usage_and_exit() {
   echo "  --no-partial    : do not compile partial books"
   echo "  --no-printouts  : do not create extra printout PDFs"
   echo "  --no-selections : do not create selection booklets"
-  echo "  --pull          : Execute git pull before compiling"
+  echo "  --pull          : Execute git pull before compiling;"
+  echo "                    this is always done outside Docker"
   echo "  --sequential    : compile documents sequentially (the default is to"
   echo "                    compile them in parallel)"
   echo "  -q              : use for quick development build of the main document;"
@@ -569,7 +570,14 @@ done
 [ -f "./compile-songbooks.sh" ] || die 1 "Not currently in the project's root directory!"
 
 if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
-  if [ ${usedocker} = "true" ]; then # start the script in Docker container
+  # Run git pull only if not in docker container, and if so requested
+  if [ ${gitpull} = "true" ]; then
+    which "git" >"/dev/null" || die 1 "'git' binary not found in path!"
+    git pull --rebase
+    [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested."
+  fi
+  # If docker is requested, start the container and run this script there
+  if [ ${usedocker} = "true" ]; then
     compile_in_docker ${all_args}
     retcode=$?
     [ ${retcode} -eq 0 ] || exit ${retcode}
@@ -586,12 +594,6 @@ which "lualatex" >"/dev/null" || die 1 "'lualatex' binary not found in path!"
 which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path!"
 which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path!"
 which "awk" >"/dev/null" || die 1 "'awk' binary not found in path!"
-
-if [ ${gitpull} = "true" ]; then
-  which "git" >"/dev/null" || die 1 "'git' binary not found in path!"
-  git pull --rebase
-  [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested."
-fi
 
 # Create the 1st level temporary directory in case it doesn't exist.
 mkdir "${TEMP_DIRNAME}" 2>"/dev/null"

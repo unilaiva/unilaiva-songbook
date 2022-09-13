@@ -14,8 +14,6 @@ RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     bash \
     locales \
-    git \
-    openssh-client \
     context \
     context-modules \
     fonts-noto-extra \
@@ -55,21 +53,19 @@ RUN locale-gen fi_FI.utf8 \
 # Setup a non-root user for everything. Make it's home world-writable so that
 # we can use host machine's user id and still have access to container's
 # ~/.texlive2020 when compiling.
-RUN useradd --create-home --shell /bin/bash unilaiva && chmod 777 /home/unilaiva
+RUN useradd --create-home --shell /bin/bash unilaiva \
+  && chmod 777 /home/unilaiva
 
 USER unilaiva
-
-COPY "ssh_config" "/home/unilaiva/.ssh/config"
 
 ENV HOME="/home/unilaiva" \
     IN_UNILAIVA_DOCKER_CONTAINER="true"
 
-# Make this a volume to make texmf cache within it persistent for a slight
-# performance boost. Otherwise it is just generated each time on demand.
-VOLUME /home/unilaiva
-
-# This must be bind mounted from the host
-VOLUME /unilaiva-songbook
+# Make "/home/unilaiva" a volume to make texmf cache within it persistent for a
+# slight performance boost. Otherwise it is just generated each time on demand.
+# "/unilaiva-songbook" is the directory where songbook data is expected, and it
+# is to be bind mounted from the host (by the compile script)
+VOLUME ["/home/unilaiva", "/unilaiva-songbook"]
 
 WORKDIR /unilaiva-songbook
 
