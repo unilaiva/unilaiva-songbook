@@ -230,6 +230,7 @@ setup_ui() {
   DOC_COLOR_COUNT=8
   # Some UI Text
   PRETXT_DOCKER="${C_WHITE}DOCKER   ${C_RESET}"
+  PRETXT_GIT="${C_WHITE}GIT      ${C_RESET}"
   PRETXT_START="${C_GREEN}START    ${C_RESET}"
   PRETXT_EXEC="${C_WHITE}EXEC     ${C_RESET}"
   PRETXT_NOEXEC="${C_DGRAY}NOEXEC   ${C_RESET}"
@@ -572,7 +573,8 @@ done
 if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
   # Run git pull only if not in docker container, and if so requested
   if [ ${gitpull} = "true" ]; then
-    which "git" >"/dev/null" || die 1 "'git' binary not found in path!"
+    which "git" >"/dev/null" || die 1 "'git' binary not found in path, but pull requested!"
+echo -e "${PRETXT_GIT}Pulling remote changes (with rebase)..."
     git pull --rebase
     [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested."
   fi
