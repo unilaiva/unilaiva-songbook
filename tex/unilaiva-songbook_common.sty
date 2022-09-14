@@ -19,10 +19,32 @@
 % BEGIN PACKAGE IMPORTS
 % =====================
 
-% Settings for package imports.
+% Settings for package imports. These can be changed by setting them using
+% \newcommand in the main document before loading this package.
 
-% Paper size for geometry package: a4paper, a5paper, ...
+% Set up options for the geometry package: paper size and margins
+% \topmargin must be at least 6.35mm (=1/4"), as that is the limit to some
+% printers. \sidemargin and \bottommargin must be somewhat larger, at least
+% 7.7mm, to accomodate for protrusion and still be outside the 6.35mm limit.
+% \bindingoffset is the extra amount of empty left in the inner sides of pages,
+% and should be set to the amount the binding takes.
+%
+% NOTE: If in the logs fancyhdr warns that \headheight is too small, it must
+% be adjusted here. For too small \footersep, the adjustment must be done
+% further below in the fancyhdr setup.
+%
+% header size is using the Golden Mean:
+% \ultopmargin + \ulheadheight + \ulheadsep = 1.618^2 * \ultopmargin
+%
+
 \providecommand{\papersize}{a5paper}
+\providecommand{\ulbindingoffset}{7mm}
+\providecommand{\ulsidemargin}{9mm}
+\providecommand{\ulbottommargin}{9mm}
+\providecommand{\ultopmargin}{6.35mm}
+\providecommand{\ulheadheight}{4.33mm}
+\providecommand{\ulheadsep}{5.943mm}
+
 
 % Actual imports
 
@@ -63,18 +85,19 @@
 \usepackage[bookmarks,
            unicode,
            colorlinks]{hyperref} % used by 'songs' package for index links in PDF
-% NOTE: * In versions before 2018-5-10 we used inner=20mm,outer=10mm,tmargin=16mm,bmargin=10mm,
-%         but now the Golden Ratio rules. Old versions (before fancyheader) also used
-%         headsep=5mm,headheight=3.5mm, but the result is about the same now.
-%       * For the "default" printer, minimum top margin is 16mm (to print the chapter name fully)
-\usepackage[paper=\papersize,
-            inner=16.18mm,
-            outer=10mm,
-            tmargin=16.18mm,
-            bmargin=10mm,
-            headsep=5mm,
-            headheight=4.28mm,
-            nofoot]{geometry} % page size + margins
+% For info on page geometry, see comments above where the \providecommands are set
+\usepackage[%showframe, % uncomment showframe for debugging margins etc
+            paper=\papersize,
+            bindingoffset=\ulbindingoffset,
+            inner=\ulsidemargin,
+            outer=\ulsidemargin,
+            bmargin=\ulbottommargin,
+            tmargin=\ultopmargin,
+            headheight=\ulheadheight,
+            headsep=\ulheadsep,
+            nofoot,
+            includehead,
+            includefoot]{geometry} % page size + margins
 % xcolor package for using colors in various elements; dvipsnames option imports
 % some CMYK color names
 \usepackage[dvipsnames]{xcolor}%
@@ -98,7 +121,6 @@
 % environ package's \NewEnviron
 \usepackage{verbatim}%
 \usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
-%\usepackage{showframe} % uncomment only for debugging margins etc.
 
 % The most important 'songs' package, use the version in the project tree:
 \usepackage[chorded]{ext_packages/songs/songs}
@@ -321,8 +343,10 @@
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}} % can't be inside style block
 \renewcommand{\sectionmark}[1]{\markright{#1}} % can't be inside style block
 \fancypagestyle{unilaiva}[fancy]{%
-  \setlength{\footskip}{3.7pt} % to work around a warning
-  \setlength{\headheight}{12.3pt} % to work around a warning
+  % NOTE: If fancydr warns that \footskip is too small, adjust the value here,
+  % but for too small \headsep, set it instead when loading geometry package
+  % above.
+  \setlength{\footskip}{3.60004pt} % this value comes from fancyhdr warning
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
   \fancyhf{}
