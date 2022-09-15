@@ -17,7 +17,7 @@ RUN apt-get update \
     context \
     context-modules \
     fonts-noto-extra \
-    fonts-noto-color-emoji \
+    #fonts-noto-color-emoji \
     fonts-noto-core \
     fonts-noto-mono \
     lilypond \
@@ -45,16 +45,16 @@ COPY 99-tex-max-memory.cnf /etc/texmf/texmf.d/
 # Finnish alphabet is a superset of English, so this does not need to be changed
 # for English-only books.
 # 2. Create index databases used by TeX
+# 3. Setup a non-root user for everything. Make it's home world-writable so that
+#    we can use host machine's user id and still have access to container's
+#    ~/.texlive20?? when compiling.
 RUN locale-gen fi_FI.utf8 \
   && update-texmf \
   && texhash \
   && luaotfload-tool --update
-
-# Setup a non-root user for everything. Make it's home world-writable so that
-# we can use host machine's user id and still have access to container's
-# ~/.texlive2020 when compiling.
-RUN useradd --create-home --shell /bin/bash unilaiva \
+  && useradd --create-home --shell /bin/bash unilaiva \
   && chmod 777 /home/unilaiva
+
 
 USER unilaiva
 

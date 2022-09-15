@@ -294,11 +294,12 @@ compile_in_docker() {
   echo -e "${PRETXT_DOCKER}Start compiler container"
 
   # Run the container with current user's ID and bind mount current directory
-  docker run -it --rm \
+  docker run -it --rm --read-only \
     --memory="${MAX_DOCKER_MEMORY}" \
     --memory-swap="${MAX_DOCKER_MEMORY_PLUS_SWAP}" \
     --user $(id -u):$(id -g) \
     --mount type=bind,src="$(realpath .)",dst="/unilaiva-songbook" \
+    --mount type=volume,target="/home/unilaiva" \
     unilaiva-compiler \
     $@
   return $?
