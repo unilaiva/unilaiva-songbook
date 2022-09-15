@@ -752,6 +752,7 @@
 %
 \newcommand{\altchords}[1]{%
   \providecommand{\id}[2][1]{\@altchordsid[##1]{##2}}%
+  \renewcommand{\meterfont}{\color{chordcolor}\normalfont\tiny\sffamily\upshape}
   \ifchorded\ifshowaltchords%
     \vspaceifnotinverse{.618034\baselineskip}%
     \hfill%
