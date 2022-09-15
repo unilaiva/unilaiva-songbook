@@ -51,7 +51,7 @@ COPY 99-tex-max-memory.cnf /etc/texmf/texmf.d/
 RUN locale-gen fi_FI.utf8 \
   && update-texmf \
   && texhash \
-  && luaotfload-tool --update
+  && luaotfload-tool --update \
   && useradd --create-home --shell /bin/bash unilaiva \
   && chmod 777 /home/unilaiva
 
