@@ -1,0 +1,58 @@
+ %% setup_default-A5-fullmusic_include.tex
+ %% ======================================
+ %%
+ %% Common settings for unilaiva-songbook-* songbooks. Also imports the
+ %% unilaiva-songbook_common.sty package.
+ %%
+ %%
+ %% Input this file in the header of a main songbook file, right after
+ %% optionally giving different versions (with \newcommand{}) for the macros
+ %% provided below with \providecommand. The \show??? settings, can be changed
+ %% after including this file.
+ %%
+ %% Usage:
+ %%
+ %%   \input{tex/setup_default-A5-fullmusic_include.tex}
+ %%
+
+% This can be set with \newcommand before including this file, if different
+% font size is required
+\providecommand{\basicfontsize}{10pt} % 10pt, 11pt, 12pt
+
+\documentclass[twoside,\basicfontsize]{book}
+
+% Set the title of this document:
+\providecommand{\mainbooktitle}{Unilaiva songbook}
+% Set things shown on the second page:
+
+\providecommand{\bookmotto}{paths to higher knowledge}
+\providecommand{\bookcompiledbytext}{%
+ Compiled by: larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})%
+}%
+
+% Setup PDF metadata:
+\providecommand{\pdfauthor}{larva}
+\providecommand{\pdfsubject}{Songbook}
+\providecommand{\pdfkeywords}{songs spiritual entheogens ceremony}
+
+% The following package contains all the imports, style settings etc:
+\usepackage{tex/unilaiva-songbook_common}
+
+% unilaiva-songbook_common: setup
+\showphtrue
+\showphintoctrue
+\showkeytrue
+\showskstrue
+\showtranslationtrue
+\showofftrue
+\showextrue
+\showtagstrue
+\shownotestrue
+\showbeatstrue
+\showauthtrue
+\showlilypondtrue
+\showexplanationtrue
+\showtranslationtrue
+\showfeelertrue
+\showaltchordstrue
+

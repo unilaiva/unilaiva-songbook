@@ -1,13 +1,22 @@
- %% unilaiva-astral_setup_include.tex
- %% =================================
+ %% setup_astral-A5-fullmusic_include.tex
+ %% =====================================
  %%
- %% Common settings for unilaiva-astral-* songbooks.
+ %% Common settings for unilaiva-astral-* songbooks. Also imports the
+ %% unilaiva-songbook_common.sty package.
  %%
- %% Input this file as the second thing in the header of a main songbook file,
- %% right after setting the book's subtitle, like this:
+ %%
+ %% Input this file in the header of a main songbook file, right after
+ %% optionally giving different versions (with \newcommand{}) for the macros
+ %% provided below with \providecommand. The \show??? settings, can be changed
+ %% after including this file.
+ %%
+ %% For astral books, the sub book title must be set before calling this,
+ %% as shown below.
+ %%
+ %% Usage:
  %%
  %%   \newcommand{\subbooktitle}{Book name}
- %%   \input{tex/unilaiva-astral_setup_include.tex}
+ %%   \input{tex/setup_astral-A5-fullmusic_include.tex}
  %%
 
 % This can be set with \newcommand before including this file, if different
@@ -17,19 +26,19 @@
 \documentclass[twoside,\basicfontsize]{book}
 
 % Set the title of this document:
-\newcommand{\mainbooktitle}{Unilaiva no Astral}
+\providecommand{\mainbooktitle}{Unilaiva no Astral}
 % Set things shown on the second page:
-\newcommand{\bookmotto}{com informação musical}
-\newcommand{\bookbytext}{%
+\providecommand{\bookmotto}{com informação musical}
+\providecommand{\bookbytext}{%
   Received by:\par\vspace{0.618034ex}\textbf{\Large humankind}%
 }%
-\newcommand{\bookcompiledbytext}{%
+\providecommand{\bookcompiledbytext}{%
   Compiled by: larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})%
 }%
 % Setup PDF metadata:
-\newcommand{\pdfauthor}{larva}
-\newcommand{\pdfsubject}{Songbook}
-\newcommand{\pdfkeywords}{songs spiritual entheogens ceremony}
+\providecommand{\pdfauthor}{larva}
+\providecommand{\pdfsubject}{Songbook}
+\providecommand{\pdfkeywords}{songs spiritual entheogens ceremony}
 
 % The following package contains all the imports, style settings etc:
 \usepackage{tex/unilaiva-songbook_common}
