@@ -299,9 +299,9 @@ compile_in_docker() {
     --memory-swap="${MAX_DOCKER_MEMORY_PLUS_SWAP}" \
     --user $(id -u):$(id -g) \
     --mount type=bind,src="$(realpath .)",dst="/unilaiva-songbook" \
-    --mount type=tmpfs,tmpfs-size=32m,target="/home/unilaiva" \
-    --mount type=tmpfs,tmpfs-size=192m,destination="/tmp" \
-    --mount type=tmpfs,tmpfs-size=16m,destination="/run" \
+    --mount type=volume,src="unilaiva-compiler_homecache",dst="/home/unilaiva" \
+    --mount type=tmpfs,tmpfs-size=128m,dst="/tmp" \
+    --mount type=tmpfs,tmpfs-size=16m,dst="/run" \
     unilaiva-compiler \
     $@
   return $?
