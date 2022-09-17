@@ -442,6 +442,12 @@
 %
 %
 
+% This gets rid of implicit uppercasing, as it creates problems with images
+% in the chapter titles. Upcasing is now done differently and controlled with
+% \upcase...true/false settings. Note that these can't be inside style blocks.
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
 % Returns the book's title formatted for headers. Used in fancyhdr style below.
 \newcommand{\headerbooktitle}{%
   \rmfamily\small\itshape{%   % even center: book name
@@ -474,9 +480,6 @@
     \fi%
   }
 }
-
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % can't be inside style block
-\renewcommand{\sectionmark}[1]{\markright{#1}} % can't be inside style block
 
 % Setup main header style
 \fancypagestyle{unilaiva}[fancy]{%
