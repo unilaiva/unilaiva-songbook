@@ -135,7 +135,7 @@
 % BEGIN STYLE & OTHER SETTINGS
 % ============================
 
-% BEGIN STYLE & OTHER SETTINGS: TOGGLES
+% BEGIN Toggles
 
 % Introduce toggles for some global features and set their defaults. If you
 % want a specific feature enabled or disabled, you must set it's toggle to
@@ -229,7 +229,7 @@
 % Toggle uppercasing the book name in page headers
 \newif\ifupcasebooktitleinheader\upcasebooktitleinheadertrue
 
-% END STYLE & OTHER SETTINGS: TOGGLES
+% END Toggles
 
 
 % Gets a roman uppercase number from the number given as parameter
@@ -439,8 +439,46 @@
 % Note that some pages (the first pages of TOC and chapters etc) automatically
 % use the style 'plain'. If needed, this style can also be modified with
 % \fancypagestyle{plain}
+%
+%
+
+% Returns the book's title formatted for headers. Used in fancyhdr style below.
+\newcommand{\headerbooktitle}{%
+  \rmfamily\small\itshape{%   % even center: book name
+    \ifupcasebooktitleinheader%
+      \MakeUppercase{\thisbooktitle}%
+    \else%
+      \thisbooktitle%
+    \fi%
+  }%
+}
+
+% Returns the chapter's title formatted for headers. Used in fancyhdr style
+% below.
+\newcommand{\headerchaptertitle}{%
+  % Note that chapter title's optional upcasing is done elsewhere in the
+  % definition of \mainchapter, because it cannot be done here due to possible
+  % chapter images).
+  \rmfamily\small\itshape{\leftmark}%
+}
+
+% Returns the sections's title formatted for headers. Used in fancyhdr style
+% below.
+\newcommand{\headersectiontitle}{%
+  \rmfamily\small\itshape{%
+    \ifupcasesectiontitleinheader%
+      % for pdf's index, \MakeUppercase can't be used.
+      \texorpdfstring{\MakeUppercase{\rightmark}}{\rightmark}%
+    \else%
+      \rightmark%
+    \fi%
+  }
+}
+
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}} % can't be inside style block
 \renewcommand{\sectionmark}[1]{\markright{#1}} % can't be inside style block
+
+% Setup main header style
 \fancypagestyle{unilaiva}[fancy]{%
   % NOTE: If fancydr warns that \footskip is too small, adjust the value here,
   % but for too small \headsep, set it instead when loading geometry package
@@ -450,28 +488,19 @@
   \renewcommand{\footrulewidth}{0pt}
   \fancyhf{}
   \fancyhead[LE,RO]{\rmfamily\small\thepage} % page nr
-  \fancyhead[CE]{\rmfamily\small\itshape{%   % even center: book name
-    \ifupcasebooktitleinheader%
-      \MakeUppercase{\thisbooktitle}%
-    \else%
-      \thisbooktitle%
-    \fi%
-  }}%
-  \fancyhead[LO]{\rmfamily\small\itshape{\leftmark}} % odd left: chapter name
-  \fancyhead[CO]{\rmfamily\small\itshape{% % odd center: section name
-    \ifupcasesectiontitleinheader%
-      \texorpdfstring{\MakeUppercase{\rightmark}}{\rightmark}%
-    \else%
-      \rightmark%
-    \fi%
-  }}%
+  \fancyhead[CE]{\headerbooktitle}%    % even center: book title
+  \fancyhead[LO]{\headerchaptertitle}% % odd    left: chapter title
+  \fancyhead[CO]{\headersectiontitle}% % odd  center: section title
 }
-\fancypagestyle{unilaivatoc}[unilaiva]{% Used in the TOC
+
+% Setup style for TOC
+\fancypagestyle{unilaivatoc}[unilaiva]{%
   \fancyhead[LO]{} % odd left: nothing
-  \fancyhead[CO]{\rmfamily\small\itshape{\leftmark}} % odd center: chapter name
+  \fancyhead[CO]{\rmfamily\small\itshape{\leftmark}} % odd center: chapter title: "CONTENTS"
 }
 \pagestyle{unilaiva} % set the default page style
-% END setup headers using fancyhdr
+
+% END Setup headers using fancyhdr
 
 % songs: Verse separation +/-; +/- 0 would be best, but in some cases a song can be
 % fitted on a page with smaller separation only (Hopefully \glueverses is not used
@@ -649,7 +678,7 @@
   \def\shorttitlefull{%
     % Include the image in the chapter title string, if the image is given and
     % the feature is turned on.
-    \texorpdfstring{%
+    \texorpdfstring{% pdf indexes can't contain images or \MakeUppercase
       \ifupcaseshortchaptertitle\MakeUppercase{\shorttitletext}\else\shorttitletext\fi%
       \ifshowimageinchaptername\ifdefined\smallchapterimage\hspace{1em}\smallchapterimage\fi\fi%
     }{\shorttitletext}%
