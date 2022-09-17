@@ -121,6 +121,7 @@
 % environ package's \NewEnviron
 \usepackage{verbatim}%
 \usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
+\usepackage{xparse}% Used in \mainchapter
 
 % The most important 'songs' package, use the version in the project tree:
 \usepackage[chorded]{ext_packages/songs/songs}
@@ -133,6 +134,103 @@
 
 % BEGIN STYLE & OTHER SETTINGS
 % ============================
+
+% BEGIN STYLE & OTHER SETTINGS: TOGGLES
+
+% Introduce toggles for some global features and set their defaults. If you
+% want a specific feature enabled or disabled, you must set it's toggle to
+% true or false in the main document preamble (after including this package).
+% Example: \showtagsfalse would disable showing tags in song preludes, and
+%          \showtagstrue would enable showing them.
+
+% Toggle for showing extra info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[ex={this song is good}]"
+\newif\ifshowex\showextrue
+
+% Toggle for showing extra info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[off={My Muse}]"
+\newif\ifshowoff\showofftrue
+
+% Toggle for showing key info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[key={Am}]". Make sure that
+% it is correct, that the key set here corresponds to the actual key displayed
+% in the final document (after possible transpose).
+\newif\ifshowkey\showkeytrue
+
+% Toggle for showing suggested keys in song preludes. To set it/them for a song,
+% define it as \beginsong parameter: "\beginsong[sks={Am, Dm}]". The first
+% is the preferred one.
+\newif\ifshowsks\showskstrue
+
+% Toggle for showing phase info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[ph={I, II}]"
+\newif\ifshowph\showphtrue
+
+% Toggle for showing phase info in the TOC:
+\newif\ifshowphintoc\showphintoctrue
+
+% Toggle for showing tags in song preludes. To set them for a song,
+% define them as \beginsong parameter: "\beginsong[tags={love, light}]"
+% Note the mandatory '1' (that will not be shown) and that the tags must be
+% defined in file 'tags.can' to use them.
+\newif\ifshowtags\showtagstrue
+
+% Toggle for showing melody notes in songs. To set them for a song, use the
+% \note??? macros inside chord definitions. To set them temporarily on or
+% off within a (part of a) song, use macros \notesoff and \noteson.
+\newif\ifshownotes\shownotestrue
+
+% Toggle for showing beat marks in songs. To set them for a song, use the
+% \bm??? macros inside chord definitions. To set them temporarily on or
+% off within a (part of a) song, use macros \beatsoff and \beatson.
+\newif\ifshowbeats\showbeatstrue
+
+% Toggle for showing authors in the song preludes. Personal opinion: the
+% authors should definitely be shown in all cases. This option is here for
+% the sake of completeness. :)
+\newif\ifshowauth\showauthtrue
+
+% Toggle for showing verse numbers. Suggestion: keep this as false!
+\newif\ifshowversenumbers\showversenumbersfalse
+
+% Toggle for showing Lilypond music scores
+\newif\ifshowlilypond\showlilypondtrue
+
+% Toggle for showing explanations
+\newif\ifshowexplanation\showexplanationtrue
+
+% Toggle for showing translations
+\newif\ifshowtranslation\showtranslationtrue
+
+% Toggle for showing feelers
+\newif\ifshowfeeler\showfeelertrue
+
+% Toggle showing of alternate chord sets
+\newif\ifshowaltchords\showaltchordstrue
+
+% Toggle appending the (optional) chapter image or symbol appended to the
+% chapter name wherever it shows up, e.g. in TOC and page headers. The image is
+% never shown in PDF index though, as only characters are supported there.
+\newif\ifshowimageinchaptername\showimageinchapternametrue
+
+% Toggle showing the (optional) chapter image or symbol on the front page of
+% a chapter.
+\newif\ifshowimageonchapterfrontpage\showimageonchapterfrontpagetrue
+
+% Toggle uppercasing the long chapter title shown on chapter front pages
+\newif\ifupcaselongchaptertitle\upcaselongchaptertitlefalse
+
+% Toggle uppercasing the short chapter title shown in TOC and page headers
+\newif\ifupcaseshortchaptertitle\upcaseshortchaptertitletrue
+
+% Toggle uppercasing the book name in page headers
+\newif\ifupcasesectiontitleinheader\upcasesectiontitleinheaderfalse
+
+% Toggle uppercasing the book name in page headers
+\newif\ifupcasebooktitleinheader\upcasebooktitleinheadertrue
+
+% END STYLE & OTHER SETTINGS: TOGGLES
+
 
 % Gets a roman uppercase number from the number given as parameter
 \newcommand{\romanupnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
@@ -351,9 +449,21 @@
   \renewcommand{\footrulewidth}{0pt}
   \fancyhf{}
   \fancyhead[LE,RO]{\rmfamily\small\thepage} % page nr
-  \fancyhead[CE]{\rmfamily\small\itshape{\thisbooktitle}} % even center: book name
+  \fancyhead[CE]{\rmfamily\small\itshape{%   % even center: book name
+    \ifupcasebooktitleinheader%
+      \MakeUppercase{\thisbooktitle}%
+    \else%
+      \thisbooktitle%
+    \fi%
+  }}%
   \fancyhead[LO]{\rmfamily\small\itshape{\leftmark}} % odd left: chapter name
-  \fancyhead[CO]{\rmfamily\small\itshape{\rightmark}} % odd center: section name
+  \fancyhead[CO]{\rmfamily\small\itshape{% % odd center: section name
+    \ifupcasesectiontitleinheader%
+      \texorpdfstring{\MakeUppercase{\rightmark}}{\rightmark}%
+    \else%
+      \rightmark%
+    \fi%
+  }}%
 }
 \fancypagestyle{unilaivatoc}[unilaiva]{% Used in the TOC
   \fancyhead[LO]{} % odd left: nothing
@@ -383,83 +493,6 @@
 \newcount\blockpenalty%
 \blockpenalty=0 % between (and before the song's first) in-song blocks (default here: 0)
 
-% Introduce toggles for some global features and set their defaults. If you
-% want a specific feature enabled or disabled, you must set it's toggle to
-% true or false in the main document preamble (after including this package).
-% Example: \showtagsfalse would disable showing tags in song preludes, and
-%          \showtagstrue would enable showing them.
-
-% Toggle for showing extra info in song preludes. To set it for a song,
-% define it as \beginsong parameter: "\beginsong[ex={this song is good}]"
-\newif\ifshowex\showextrue
-
-% Toggle for showing extra info in song preludes. To set it for a song,
-% define it as \beginsong parameter: "\beginsong[off={My Muse}]"
-\newif\ifshowoff\showofftrue
-
-% Toggle for showing key info in song preludes. To set it for a song,
-% define it as \beginsong parameter: "\beginsong[key={Am}]". Make sure that
-% it is correct, that the key set here corresponds to the actual key displayed
-% in the final document (after possible transpose).
-\newif\ifshowkey\showkeytrue
-
-% Toggle for showing suggested keys in song preludes. To set it/them for a song,
-% define it as \beginsong parameter: "\beginsong[sks={Am, Dm}]". The first
-% is the preferred one.
-\newif\ifshowsks\showskstrue
-
-% Toggle for showing phase info in song preludes. To set it for a song,
-% define it as \beginsong parameter: "\beginsong[ph={I, II}]"
-\newif\ifshowph\showphtrue
-
-% Toggle for showing phase info in the TOC:
-\newif\ifshowphintoc\showphintoctrue
-
-% Toggle for showing tags in song preludes. To set them for a song,
-% define them as \beginsong parameter: "\beginsong[tags={love, light}]"
-% Note the mandatory '1' (that will not be shown) and that the tags must be
-% defined in file 'tags.can' to use them.
-\newif\ifshowtags\showtagstrue
-
-% Toggle for showing melody notes in songs. To set them for a song, use the
-% \note??? macros inside chord definitions. To set them temporarily on or
-% off within a (part of a) song, use macros \notesoff and \noteson.
-\newif\ifshownotes\shownotestrue
-
-% Toggle for showing beat marks in songs. To set them for a song, use the
-% \bm??? macros inside chord definitions. To set them temporarily on or
-% off within a (part of a) song, use macros \beatsoff and \beatson.
-\newif\ifshowbeats\showbeatstrue
-
-% Toggle for showing authors in the song preludes. Personal opinion: the
-% authors should definitely be shown in all cases. This option is here for
-% the sake of completeness. :)
-\newif\ifshowauth\showauthtrue
-
-% Toggle for showing verse numbers. Suggestion: keep this as false!
-\newif\ifshowversenumbers\showversenumbersfalse
-
-% Toggle for showing Lilypond music scores
-\newif\ifshowlilypond\showlilypondtrue
-
-% Toggle for showing explanations
-\newif\ifshowexplanation\showexplanationtrue
-
-% Toggle for showing translations
-\newif\ifshowtranslation\showtranslationtrue
-
-% Toggle for showing feelers
-\newif\ifshowfeeler\showfeelertrue
-
-% Toggle showing of alternate chord sets
-\newif\ifshowaltchords\showaltchordstrue
-
-% Toggle appending the (optional) header image appended to the chapter name
-% wherever it shows up, e.g. in TOC and page headers. The image is never
-% shown in PDF contents though, as only characters are supported there.
-\newif\ifincludeimageinchaptername\includeimageinchapternametrue
-
-
 % END STYLE & OTHER SETTINGS
 
 
@@ -470,13 +503,6 @@
 % ==============================
 
 \makeatletter% To allow rewrites of @-containing macros
-
-% Outputs a colored filled six-petalled star as a text symbol; the mandatory
-% parameter is the color name. Can be used in chapter names, does not mess up
-% PDF hyperrefs.
-\newcommand\chapsymbol[1]{%
-  \texorpdfstring{\hspace{1em}\textcolor{#1}{\symboliifont 🟌}}{}%
-}
 
 % This command creates "the second page" at where it is called. This is supposed
 % to be the odd verso page right after the cover. The following macros, if
@@ -551,23 +577,90 @@
   \newpage\pagestyle{unilaiva}% return to the default header style
 }
 
-% This is used for the main chapters of the book. Indices, instead, use \songchapter (internally).
-% Required parameter is the chapter name, and optional is a filename for an image. So use it like:
-% \mainchapter{Chapter Name} or \mainchapter[image.png]{Chapter Name}
-\newcommand{\mainchapter}[2][]{%
-  \chapter{%
-    % Include the image in the chapter name string, if the image is given and
+% Returns the chapter symbol (six-petalled star) as a text symbol. Renew to
+% change.
+\newcommand\chaptersymbol{%
+  {\symboliifont 🟌}%
+}
+
+% Outputs the chapter symbol defined above in color; the mandatory parameter
+% is the color name.
+\newcommand\coloredchaptersymbol[1]{%
+  {\textcolor{#1}\chaptersymbol}%
+}
+
+% This is used to define the main chapters of the book. Indices, instead, use
+% \songchapter (internally).
+%
+% Usage:
+%
+%   \mainchapter*[short title]{long title}*[symbol info]
+%
+%   1st star:    This optional star signifies an unnumbered chapter; the star,
+%                if present, is passed to \chapter macro.
+%   short title: This is used in TOC and page headers -- if omitted, the long
+%                title is used.
+%   long title:  The long title, used on chapter front pages (and elsewhere,
+%                if short title is not given). This is the only mandatory
+%                parameter.
+%   2nd star:    If present, means that 'symbol info' parameter contains an
+%                image file name, otherwise 'symbol info' contains a color name
+%                to color the chapter symbol.
+%   symbol info: if 2nd star is given, this ought to contain an image file name,
+%                otherwise a color (name) to color the chapter symbol. If this
+%                parameter is omitted, no chapter image or symbol is used.
+%
+% Examples:
+%
+%   \mainchapter{Good songs}
+%   \mainchapter[Nice chapter]{Very very very very nice chapter}[red]
+%   \mainchapter{Bad songs}*[bad_songs_image.png]
+%
+% Note: \NewDocumentCommand, IfValueTF etc. come from xparse package, and allow
+%       nice handling of parameters.
+\NewDocumentCommand{\mainchapter}{s o m s o}{% star, [short title], {long title}, star(means image) [symbol color / image name]
+  \IfValueTF{#2}{% short title is given
+    \def\shorttitletext{#2}%
+  }{ % short title is not given, use the long one as the short title
+    \def\shorttitletext{#3}%
+  }%
+  \def\longtitletext{#3}%
+  \IfValueTF{#5}{ % #5 is given, there is image name or symbol color
+    \IfBooleanTF{#4}{% star is given, #5 is image name
+      \def\smallchapterimage{%
+        \includegraphics[width=1em,height=1em,keepaspectratio=true]{#5}%
+      }%
+      \def\largechapterimage{%
+        \vspace{-1em}%
+        \imagecc[1]{#5}%
+      }%
+    }{% star not given: #5 is color for \chaptersymbol
+      \def\smallchapterimage{\coloredchaptersymbol{#5}}%
+      \def\largechapterimage{{\Huge\coloredchaptersymbol{#5}}}%
+    }
+  }{% there is no image name nor symbol color given
+    \let\smallchapterimage\undefined%
+    \let\largechapterimage\undefined%
+  }
+  \def\shorttitlefull{%
+    % Include the image in the chapter title string, if the image is given and
     % the feature is turned on.
-    #2\ifx&#1&\else\ifincludeimageinchaptername%
-      \texorpdfstring{\hspace{1em}\includegraphics[width=1em,height=1em,keepaspectratio=true]{#1}}%
-                     {}% % except for the index in the PDF version
-    \fi\fi}%
-  \thispagestyle{empty}% to omit the page number in the bottom
-  \ifx&#1&% parameter #1 is empty (the optional one, given inside [])
-  \else % parameter #1 is not empty, display image
-    \vspace{-1em}%
-    \imagecc[1]{#1}%
-  \fi%
+    \texorpdfstring{%
+      \ifupcaseshortchaptertitle\MakeUppercase{\shorttitletext}\else\shorttitletext\fi%
+      \ifshowimageinchaptername\ifdefined\smallchapterimage\hspace{1em}\smallchapterimage\fi\fi%
+    }{\shorttitletext}%
+  }
+  \def\longtitlefull{%
+    \ifupcaselongchaptertitle\MakeUppercase{\longtitletext}\else\longtitletext\fi%
+  }
+  \IfBooleanTF{#1}{% \mainchapter with star, call \chapter with star also
+    \chapter*[\shorttitlefull]{\longtitlefull}%
+  }{% \mainchapter without star, call \chapter without it also
+    \chapter[\shorttitlefull]{\longtitlefull}%
+  }
+  % The rest setups the chapter's front page
+  \thispagestyle{empty}% to omit the page number in the bottom of the page
+  \ifshowimageonchapterfrontpage\ifdefined\largechapterimage\vspace{-1em}\largechapterimage\fi\fi%
   \clearpage%
 }
 
