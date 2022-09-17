@@ -442,15 +442,45 @@
 %
 %
 
+% The style for book, chapter and section titles in page headers
+\providecommand{\headertitlestyle}{%
+  \rmfamily\small\itshape%
+}
+
+% The style for page numbers in page headers
+\providecommand{\pagenumberstyle}{%
+  \rmfamily\small%
+}
+
 % This gets rid of implicit uppercasing, as it creates problems with images
 % in the chapter titles. Upcasing is now done differently and controlled with
 % \upcase...true/false settings. Note that these can't be inside style blocks.
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 
+% Utility macro for testing if the argument has no width when put in a box i.e.
+% it is empty. If so, the first token will be expanded, otherwise the second.
+% Example:
+%   \ifnowidth{\somemacro}{%
+%     EMPTY
+%   }{%
+%     NOT EMPTY
+%   }
+\newcommand{\ifnowidth}[1]{%
+  \begingroup%
+  \sbox\z@{#1}%
+  \expandafter\endgroup%
+  \ifdim\wd\z@=\z@%
+    \expandafter\@firstoftwo%
+  \else%
+    \expandafter\@secondoftwo%
+  \fi%
+}
+
 % Returns the book's title formatted for headers. Used in fancyhdr style below.
 \newcommand{\headerbooktitle}{%
-  \rmfamily\small\itshape{%   % even center: book name
+  {%
+    \headertitlestyle%
     \ifupcasebooktitleinheader%
       \MakeUppercase{\thisbooktitle}%
     \else%
@@ -459,19 +489,11 @@
   }%
 }
 
-% Returns the chapter's title formatted for headers. Used in fancyhdr style
-% below.
-\newcommand{\headerchaptertitle}{%
-  % Note that chapter title's optional upcasing is done elsewhere in the
-  % definition of \mainchapter, because it cannot be done here due to possible
-  % chapter images).
-  \rmfamily\small\itshape{\leftmark}%
-}
-
 % Returns the sections's title formatted for headers. Used in fancyhdr style
 % below.
 \newcommand{\headersectiontitle}{%
-  \rmfamily\small\itshape{%
+  {%
+    \headertitlestyle%
     \ifupcasesectiontitleinheader%
       % for pdf's index, \MakeUppercase can't be used.
       \texorpdfstring{\MakeUppercase{\rightmark}}{\rightmark}%
@@ -479,6 +501,23 @@
       \rightmark%
     \fi%
   }
+}
+
+% Returns the chapter's title formatted for headers. Used in fancyhdr style
+% below.
+\newcommand{\headerchaptertitle}{%
+  % Note that chapter title's optional upcasing is done elsewhere in the
+  % definition of \mainchapter, because it cannot be done here due to possible
+  % chapter images).
+  {\headertitlestyle{\leftmark}}%
+}
+
+\newcommand{\headerchapterandsectiontitles}{%
+  \rmfamily\small%
+  \headerchaptertitle%
+  \ifnowidth{\rightmark}{}{%
+    \hspace{1em}---\hspace{1em}\headersectiontitle%
+  }%
 }
 
 % Setup main header style
@@ -490,10 +529,9 @@
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
   \fancyhf{}
-  \fancyhead[LE,RO]{\rmfamily\small\thepage} % page nr
+  \fancyhead[LE,RO]{\pagenumberstyle\thepage} % page nr
   \fancyhead[CE]{\headerbooktitle}%    % even center: book title
-  \fancyhead[LO]{\headerchaptertitle}% % odd    left: chapter title
-  \fancyhead[CO]{\headersectiontitle}% % odd  center: section title
+  \fancyhead[CO]{\headerchapterandsectiontitles} % chapter title --- section title
 }
 
 % Setup style for TOC

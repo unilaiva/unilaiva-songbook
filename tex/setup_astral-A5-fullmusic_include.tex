@@ -67,11 +67,3 @@
 \renewcommand\mnsymbolstyle{\scriptsize} % make the melody note name text larger
 % larger chord font:
 \renewcommand{\printchord}[1]{\sffamily\bfseries\normalsize\color{chordcolor}#1}
-
-% fancyhdr: setup header (by modifying the existing unilaiva style)
-\fancypagestyle{unilaiva}{%
-  \fancyhead[CE]{\headerbooktitle} % even center: book name
-  \fancyhead[RE]{}
-  \fancyhead[LO]{}
-  \fancyhead[CO]{\headerchaptertitle} % odd center: chapter name
-}

@@ -24,10 +24,7 @@
 
 % fancyhdr: setup header (modify the existing unilaiva style)
 \fancypagestyle{unilaiva}{%
-  \fancyhead[CE]{\rmfamily\small\itshape{\mainbooktitle}} % "Unilaiva no Astral"
-  \fancyhead[RE]{}
-  \fancyhead[LO]{}
-  \fancyhead[CO]{\rmfamily\small\itshape{\leftmark}} % odd center: chapter name
+  \fancyhead[CE]{\headertitlestyle\MakeUppercase{\mainbooktitle}} % "Unilaiva no Astral"
 }
 
 \renewcommand{\bookbytext}{%
