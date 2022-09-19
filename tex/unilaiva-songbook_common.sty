@@ -901,6 +901,12 @@
   \fi\fi%
 }%
 
+% Set up the style for alternative chords. This is added to the normal chords
+% style.
+\providecommand{\altchordstyle}{%
+  \footnotesize\itshape%
+}
+
 % Meant to be used at the end of a lyric line to specify an alternate set
 % of chords for that line to be displayed floated to the right of the line
 % in question. Do NOT set chords with \[] macro inside this, as it would mess
@@ -927,7 +933,7 @@
   \ifchorded\ifshowaltchords%
     \vspaceifnotinverse{.618034\baselineskip}%
     \hfill%
-    {\printchord{\footnotesize\emph{\color{currentaltchordcolor}#1}}}%
+    {\printchord{\altchordstyle\color{currentaltchordcolor}#1}}%
   \fi\fi%
 }
 
