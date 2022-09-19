@@ -712,7 +712,9 @@
       }%
     }{% star not given: #5 is color for \chaptersymbol
       \def\smallchapterimage{\coloredchaptersymbol{#5}}%
-      \def\largechapterimage{{\Huge\coloredchaptersymbol{#5}}}%
+      \def\largechapterimage{\vfill\vspace{-1em}\begin{center}{%
+        \fontsize{108pt}{128pt}\coloredchaptersymbol{#5}%
+      }\end{center}\vfill}%
     }
   }{% there is no image name nor symbol color given
     \let\smallchapterimage\undefined%
