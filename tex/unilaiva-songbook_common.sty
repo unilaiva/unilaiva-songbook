@@ -1848,20 +1848,20 @@
          \setcounter{@preludeRTrowcount}{0}%
          \@setpreludeRTraise%
          \hfill%
-         \ifshowph% % Show phase
+         \ifshowph\ifnowidth{\phaselist}{}{% % Show phase
            \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
              \tiny\normalfont\rmfamily\phaselist%
            }}%
            \stepcounter{@preludeRTrowcount}%
            \@setpreludeRTraise%
-         \fi%
-         \ifshowtags% % Show tags
+         }\fi%
+         \ifshowtags\ifnowidth{\taglist}{}{% % Show tags
            \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
              \tiny\textit{\preludetagstyle\taglist}%
            }}%
            \stepcounter{@preludeRTrowcount}%
            \@setpreludeRTraise%
-         \fi%
+         }\fi%
          \ifchorded% % Show key + suggested keys (if in chorded mode)
            \def\keylinetext{}%
            \ifshowkey\ifx\key\empty\else%
