@@ -2389,7 +2389,7 @@
 \endsong
 
 
-\beginsong{Santa Maria}[by={Yatra}, ph={III, IV}, key={C}, sks={C, C--C\shrp}]
+\beginsong{Santa Maria}[by={Yatra}, ph={III, IV}, key={C}, sks={C, C--C\shrp{}}]
   \audio[key=C]{https://soundcloud.com/sound-of-light/santa-maria-266-florestral}
   \newchords{chords_santamaria_a}\newchords{chords_santamaria_b}
   \beginverse\memorize[chords_santamaria_a]
@@ -2445,52 +2445,47 @@
 \endsong
 
 
-\beginsong{Caminhando com Fé}[by={Ambika},ph={IV}]
-  \audio[]{https://soundcloud.com/mantric-mambo/01-seguindo-com-fe}
-  \newchords{chords_caminhando_a}\newchords{chords_caminhando_b}
-  %\capo{3} % no space on the spread for this
+\beginsong{Caminhando com Fé}[by={Ambika}, ph={IV}, key={Em}, sks={Gm, Gm--G\shrp{}m}]
+  \audio[key=Gm]{https://soundcloud.com/mantric-mambo/01-seguindo-com-fe}
+  \newchords{chords_caminhando_a}\newchords{chords_caminhando_b}\newchords{chords_caminhando_c}
+  \capo{3}
+  %\transpose{3}
   \meter{2}{4}
   \beginverse\memorize[chords_caminhando_a]
     \[^\mn{B}]Eu |\[\mnc{E}Em]vou cami\[^\mn{B}]nhando com |\[^\mn{G}]fé si\[^\mn{E}]go \[^\mn{G}]nes\[^\mn{E}]ta |\[\mnc{G}B7]mis\[^\mn{F#}]são | \e
     Lou|vando tudo que é sa|grado com os meus pés |\[Em]no chão | \e
-  \endverse
-  \notesoff
-  \beginverse\replay[chords_caminhando_a]
+    \endverse\notesoff\glueverses\beginverse\replay[chords_caminhando_a]
     Me |^firmo na força do |vento que sopra |^além | \e
     E |vou balançando nas |ondas num eterno |^vai e vem | \e
   \endverse
-  \beginverse\memorize[chords_caminhando_b]
-    \ind E |\[Am]ando na terra a |cantar me |\[Em]banho nas águas do |mar
-    \ind Ol|\[C]hando o horizonte re|cebo minha mãe Ie|\[B7]manjá | \e
-  \endverse
-  \beginverse\replay[chords_caminhando_b]
+  \beginverse\memorize[chords_caminhando_b]\noteson
+    \ind \[^\mn{B}]E |\[\mnc{A}Am]ando na terra a ca|n\[^\mn{E}]tar me |\[\mnc{G}Em]banho nas á\[^\mn{E}]guas \[^\mn{G}]do |\[^\mn{B}]mar
+    \ind O|\[C]lhando o horizonte re|cebo minha mãe Ie|\[B7]manjá | \e
+    \endverse\glueverses\beginverse\replay[chords_caminhando_b]
     \ind E |^olho as estrelas |no céu, a |^lua e o sol a bri|lhar
     \ind Ma|^gia que faz o infi|nito se manife|^star | \e
   \endverse
   \beginverse\replay[chords_caminhando_a]
     Me en|^trego na dança da |vida com satis|^fação | \e
     Dan|çando com tranquili|dade neste fura|^cão | \e
-  \endverse
-  \beginverse\replay[chords_caminhando_a]
+    \endverse\glueverses\beginverse\replay[chords_caminhando_a]
     |^Tudo vai passando aos |olhos e aquilo que |^fica | \e
     É a es|sência divina que |faz essa vida bo|^nita | \e
   \endverse
   \beginverse\replay[chords_caminhando_b]
     \ind Vi|^rando os olhos pra |frente man|^tendo focada a |mente
     \ind No mis|^tério que faz o uni|verso flore|^scer | \e
-  \endverse
-  \beginverse\replay[chords_caminhando_b]
+    \endverse\glueverses\beginverse\replay[chords_caminhando_b]
     \ind Vi|^vendo o momento |como é com as |^cores de Oxuma|ré
     \ind Dei|^xando que a vida nos |faça um instrumento di|^vino | \e
   \endverse
   \brk
-  \beginverse\replay[chords_caminhando_a]
-    Mamãe Ju|^rema chega a|qui nesta mo|^rada
-    Aben|çoai esta jor|nada confor|tai este vi|^ver | \e
-  \endverse
-  \beginverse\replay[chords_caminhando_a]
-    Seu Sete |^Flechas que nos |dá a dire|^ção
-    Ele en|sina segue em |frente e com a|mor agrade|^cer | \e
+  \beginverse\noteson\memorize[chords_caminhando_c]
+    \ind[2]\[^\mn{B}]Ma\[^\mn{G}]mãe \[^\mn{F#}]Ju|\[\mnc{E}Em]re\[^\mn{B}]ma chega a|qui nes\[^\mn{D}]ta \[^\mn{C}]mo|\[\mnc{B}B7]ra\[^\mn{F#}]da
+    \ind[2]Aben|çoai esta jor|nada confor|tai este vi|\[Em]ver | \e
+    \endverse\glueverses\beginverse\replay[chords_caminhando_c]
+    \ind[2]Seu Sete |^Flechas que nos |dá a dire|^ção
+    \ind[2]Ele en|sina segue em |frente e com a|mor agrade|^cer | \e
   \endverse
   \begin{translation}
     I will walk with faith, I follow this mission
