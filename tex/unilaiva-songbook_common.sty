@@ -704,7 +704,7 @@
   \IfValueTF{#5}{ % #5 is given, there is image name or symbol color
     \IfBooleanTF{#4}{% star is given, #5 is image name
       \def\smallchapterimage{%
-        \includegraphics[width=1em,height=1em,keepaspectratio=true]{#5}%
+        \includegraphics[height=1em,keepaspectratio=true]{#5}%
       }%
       \def\largechapterimage{%
         \vspace{-1em}%
