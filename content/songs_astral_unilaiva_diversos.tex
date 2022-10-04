@@ -194,3 +194,141 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
+\beginsong{Saint Germain}[by={Léo Artese}, tags={valsa}, key={Bm}, sks={Cm, (Bm)--(Cm)}]
+  \audio[key=Em]{https://soundcloud.com/sergio-moreira-slmore/24-saint-germain}
+  \audio[key=Em]{https://www.youtube.com/watch?v=wZ5x4su95eg}
+  \newchords{chords_saintgermain_a}\newchords{chords_saintgermain_b}
+  \meter{3}{4}
+  \transpose{-5}
+  \mnbeginverse\memorize[chords_saintgermain_a]
+    Vou di|\[Em]zer |{ } o que |deves fa|zer para |\[B7]alcan|çar |{ }{ }{ } | \e
+    Um lu|\[Em]gar |{ } na infi|nita cons|ciência de |\[B7]Deus |{ }{ }{ } |{ }{ }{ } | \e
+    \mnendverse\glueverses\mnbeginchorus\memorize[chords_saintgermain_b]
+    Compreen|\[Am]der |{ } que Deus |é{ } |{ }{ } tu|\[Em]do |{ }{ } que |há | \e
+    Eu |\[B7]e |{ }{ } vo|cê, |{ } meu ir|\[Em]mão |{ }{ }{ } |\[\up{1}(E7)]{ } | \e
+  \mnendchorus
+  \beginverse\replay[chords_saintgermain_a]
+    Eu sou |^Luz, |{ } sou A|mor, sou Sa|úde, eu sou |^Perfei|ção |{ }{ }{ } | \e
+    Sei que eu |^sou |{ } a pre|sença de |Deus em a|^ção |{ }{ }{ } |{ }{ }{ }  | \e
+    \endverse\glueverses\beginchorus\replay[chords_saintgermain_b]
+    Sou que |^sou, |{ } sou fi|lho |{ }{ } da |^Cri|{ }{ } a|ção | \e
+    Eu |^e |{ }{ } vo|cê, |{ } meu ir|^mão |{ }{ }{ } |^{ } | \e
+  \endchorus
+  \beginverse\replay[chords_saintgermain_a]
+    Eu Sou |^Pai, |{ } eu sou |Mãe, sou Fi|lho também |^sou Ir|mão |{ }{ }{ } | \e
+    Sou o |^Yin |{ } e o |Yang em per|feita uni|^ão |{ }{ }{ } |{ }{ }{ } | \e
+    \endverse\glueverses\beginchorus\replay[chords_saintgermain_b]
+    Sou a |^Cha{ - }|{ } ma Vio|le{ - }|{ } ta em |^ex{ - }|{ }{ } pan|são | \e
+    Sou |^Saint |{ } Ger|main, |{ } meu ir|^mão |{ }{ }{ } |^{ } | \e
+  \endchorus
+  \beginverse\replay[chords_saintgermain_a]
+    Vás bus|^car |{ } a cons|ciência do |Cristo In|^teri|or |{ }{ }{ } | \e
+    Prati|^can{ - }|{ } do o a|mor que não |tem condi|^ção |{ }{ }{ } |{ }{ }{ } | \e
+    \endverse\glueverses\beginchorus\replay[chords_saintgermain_b]
+    Nova |^e|{ } ra, na |ter|ra se i|^ni|{ }{ } ci|ou | \e
+    Quem |^é |{ } vo|cê, |{ } meu ir|^mão? |{ }{ }{ } |^{ } | \e
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-10
+    theMelody = \transpose e b, \relative b'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key e \minor \time 3/4 \partial 2
+      b4 _\posectionmark "A" g4 | e2.~ | e4 e4 e4 | e e e | e g e | fis2 dis4 | b2.~ | b2.~ | b4
+      b'4 g4 | e2.~ | e4 e4 e4 | e e e | e g e | fis2.~ | fis2.~ | fis2.~ | fis4
+      \repeat volta 2 {
+        fis4 \sectionmark "B" g | a2.~ | a4 a4 b4 | c2.( | c2) e4 | b2.~ | b2 g4 | e2.~ | e2
+        g4 | fis2.~ | fis2 dis4 | b2.~ | b4 g'4 fis4 | e2.~ | e2.~
+      } \alternative {
+        { | e2.~ | e4 }
+        { | e2.~ \repeatTie | e4 \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Vou di -- | zer __ | _ o que | de -- ves fa -- | zer pa -- ra | al -- can -- | çar; __ | _ | _
+      Um lu -- | gar __ | _ na~in -- fi -- | ni -- ta cons -- | ciên -- cia de | Deus. __ | _ | _ | _
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Com -- preen -- | der __ | _ Que Deus | é __ | _ tu -- | do __ | _ que | há; __ | _
+        Eu | e __ | _ vo -- | cê, __ | _ meu ir -- | mão. __ | _ | _ | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Eu sou | Luz, __ | _  sou A -- | mor, sou Sa -- | ú -- de,~eu sou | Per -- fei -- | ção; __ | _ | _
+      Sei que~eu | sou __ | _ a pre -- | sen -- ça de | Deus em a -- | ção. __ | _ | _  | _
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Sou que | sou, __ | _ sou fi -- | lho __ | _ da | Cri -- | _ a -- | ção; __ | _
+        Eu | e __ | _ vo -- | cê, __ | _ meu ir -- | mão. __ | _ | _ | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      Eu sou | Pai, __ | _ eu sou | Mãe, sou Fi -- | lho, tam -- bém | sou Ir -- | mão; __ | _ | _
+      Sou o | Yin __ | _ e o | Yang em per -- | fei -- ta~u -- ni -- | ão. __ | _ | _ | _
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Sou a | Cha -- | _ ma Vio -- | le -- | _ ta~em | ex -- | _ pan -- | são; __ | _
+        Sou | Saint __ | _ Ger -- | main, __ | _ meu ir -- | mão. __ | _ | _ | _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      Vás bus -- | car __ | _ a cons -- | ciên -- cia do | Cris -- to In -- | te -- ri -- | or; __ | _ | _
+      Pra -- ti -- | can -- | _ do~o a -- | mor que não | tem con -- di -- | ção. __ | _ | _ | _
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        No -- va | e -- | _ ra, na | ter -- | ra se~i -- | ni -- | _ ci -- | ou; __ | _
+        Quem | é __ | _ vo -- | cê, __ | _ meu ir -- | mão? __ | _ | _ | _
+      }
+    }
+    theChords = \transpose e b, \chordmode {
+      r2 | e2.:m | e:m | e:m | e:m
+      | b2.:7 | b:7 | b:7 | b:7
+      | e2.:m | e2.:m | e:m | e:m
+      | b2.:7 | b:7 | b:7 | b4:7
+      \repeat volta 2 {
+        s2 | a2.:m | a:m | a:m | a:m
+        | e2.:m | e2.:m | e:m | e:m
+        | b2.:7 | b:7 | b:7 | b:7
+        | e2.:m | e2.:m
+      } \alternative {
+        { | e2.:7 | e4:7 }
+        { | e2.:m | e4:m }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    I will tell you what you must do to achieve
+    A place in the infinite consciousness of God
+    Understanding that God is all there is
+    I and you, my brother
+    \nextverse
+    I am Light, I am Love, I am Health, I am Perfection
+    I know that I am the presence of God in action
+    I am who I am, I am a child of Creation
+    I and you, my brother
+    \nextverse
+    I am a Father, I am a Mother, I am a Son, I am a brother too
+    I am Yin and Yang in perfect union
+    I am the expanding Violet Flame
+    I am Saint Germain, my brother
+    \nextverse
+    Go seek the consciousness of the Inner Christ
+    Practicing the love that has no condition
+    A new age on Earth has begun
+    Who are you, my brother?
+  \end{translation}
+  % % Commented out to fit on a spread
+  % \begin{explanation}
+  %   \textbf{Saint Germain} (also sometimes referred to as Master Rákóczi or Master R)
+  %   is a legendary spiritual master of the ancient wisdom in various Theosophical
+  %   and post-Theosophical teachings, said to be responsible for the New Age culture
+  %   of the Age of Aquarius and identified with the Count Saint Germain (fl. 1710–-1784).
+  % \end{explanation}
+\endsong
