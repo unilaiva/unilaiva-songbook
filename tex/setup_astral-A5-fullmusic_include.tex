@@ -19,9 +19,11 @@
  %%   \input{tex/setup_astral-A5-fullmusic_include.tex}
  %%
 
-% This can be set with \newcommand before including this file, if different
-% font size is required
+% These \providecommands can be set differently before including this file,
+% in the main document.
+
 \providecommand{\basicfontsize}{10pt} % 10pt, 11pt, 12pt
+\providecommand{\ulbindingoffset}{7mm} % 7 mm for 2:1 wire binding, 25 mm wires
 
 \documentclass[twoside,\basicfontsize]{book}
 
@@ -35,6 +37,7 @@
 \providecommand{\bookcompiledbytext}{%
   Compiled by: larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})%
 }%
+
 % Setup PDF metadata:
 \providecommand{\pdfauthor}{larva}
 \providecommand{\pdfsubject}{Songbook}
