@@ -789,8 +789,8 @@
       \set melismaBusyProperties = #'() \slurDashed
       \key d \major \time 4/4 \partial 4
       \repeat volta 2 {
-        a8( \pomark a8) | d4 << \parenthesize d8 \once\slurUp fis8( >> fis8) e4 d | d4.( d8) fis,4 a | d fis e d | a'2( a4) a,
-        | d4 << d8 \once\slurUp \parenthesize fis8( >> fis8) e4 d | d4. \parenthesize a8 fis4 a | d fis e d | d2( d4)
+        a8( \pomark a8) | d4 << \parenthesize d8 \genmark "(2.)" \once\slurUp fis8( >> fis8) e4 d | d4.( d8) fis,4 a | d fis e d | a'2( a4) a,
+        | d4 << d8 \once\slurUp \parenthesize fis8( \genmark "(4.)" >> fis8) e4 d | d4. \parenthesize a8 \genmark "(1., 3.)" fis4 a | d fis e d | d2( d4)
       }
     }
     theLyricsOne = \lyricmode {
