@@ -1011,19 +1011,22 @@
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
         r8\sectionmark "1. & 3." e8( e8) | g2. e4 | d4( c4.)
-        \parenthesize a8 b8( c8) | d4( d8) d8 g4. e8 | \once\slurSolid d4( c4.)
+        \parenthesize a8 \genmark "(1.)" b8( c8) | d4( d8) d8 g4. e8 | \once\slurSolid d4( c4.)
       } \break
       \repeat volta 2 {
-        \parenthesize c8 c8 c8 | e4 c4 c4 b4 | g2 g8
+        \parenthesize c8 \genmark "(3.)" c8 c8 | e4 c4 c4 b4 | g2 g8
         d'16( d16) d8 d8 | d4( d8) d8 g4. e8 | d4( c4.)
       } \break
       \repeat volta 2 {
-        r8\posectionmark "2. & 4." e4 | g2( g8) e8 f8 e8 | d4( c2)
+        r8 \posectionmark "2., 4." e4 | g2( g8) e8 f8 e8 | d4( c2)
         b8( c8) | d4. d8 g4. e8 | \once\slurSolid d4( c4.)
       } \break
       \repeat volta 2 {
         r8 c4 | e4 c8( c8) c4 b4 | g2 g8
-        d'8 d8 d8 | d4. d8 g4. e8 | \once\slurSolid d4( c4.)
+        d'8 d8 d8 | d4. d8 g4. e8
+      } \alternative {
+        { | \once\slurSolid d4( c4.) }
+        { | \once\slurSolid d4( c4.) \dacapo \bar "|." }
       }
     }
     theLyricsOne = \lyricmode {
@@ -1032,13 +1035,13 @@
         E fa -- ço | tu -- do i -- lu -- mi -- | nar. _
       \set stanza = "1.B"
         \skip 1 Ve -- jo | meu Pai nas al -- | tu -- ras;
-        E __ _ o Po -- | der __ _ a -- on -- de~es -- | tá. __ _
+        E __ _ o Po -- | der __ _ a -- on -- de~es -- | tá. _
       \set stanza = "2.A"
         A | for -- _ ça~es -- tá co -- | mi -- go;
         Fa -- lo | pe -- ran -- te~o Po -- | der. _
       \set stanza = "2.B"
         Fa -- | ço~o que __ _ Tu me | pe -- des;
-        Eu que -- ro | ver es -- tre -- me -- | cer. _
+        Eu que -- ro | ver es -- tre -- me -- | cer. _ | cer. _
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "3.A"
@@ -1052,18 +1055,32 @@
         Pe -- _ | ran -- te~es -- te Po -- | der. _
       \set stanza = "4.B"
         Não | fa -- zem~o que E -- le | pe -- de;
-        E to -- dos | que -- rem me -- re -- | cer.
+        E to -- dos | que -- rem me -- re -- | cer. _ | cer. _
     }
-    verseChords = \chordmode {
-      \set chordChanges = ##f % this is needed 'cos verses paired
-      \repeat volta 2 {
+    theChordsA = \chordmode { % chords for part A
+       \repeat volta 2 {
         s4. | c1 | a:m | d2:m g2:7 | \set chordChanges = ##t c2~8
       }
+    }
+    theChords = \chordmode {
+      \set chordChanges = ##f % this is needed 'cos verses paired
+      % A (1. & 3.)
+      \theChordsA
+      % B (1. & 3.)
       \repeat volta 2 {
-        s4. | a1:m | g | d2:m g2:7 | \set chordChanges = ##t c2~8
+        s4. | a1:m | g | d2:m g2:7 | c2~8
+      }
+      \set chordChanges = ##f % this is needed 'cos verses paired
+      % A (2. & 4.)
+      \theChordsA
+      % B (2. & 4.)
+      \repeat volta 2 {
+        s4. | a1:m | g | d2:m g2:7
+      } \alternative {
+        { | c2~8 }
+        { | c2~8 }
       }
     }
-    theChords = { \verseChords \verseChords }
     \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
