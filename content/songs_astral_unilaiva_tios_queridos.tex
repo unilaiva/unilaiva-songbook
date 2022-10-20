@@ -132,10 +132,11 @@
 
 \beginsong{A Chave da Justiça}[by={Alex Polari}, key={C}, sks={C, G--B}, tags={2x}]
   \audio{https://www.nossairmandade.com/hymn/989/AChaveDaJusti\%C3\%A7a}
+  \audio{https://soundcloud.com/canaljagube/107_a-chave-da-justica}
   \mnbeginchorus\memorize
     |\[\mnc{C}C]Ei\[^\mn{G}]a, vem a\[\bm]qui \[^\mn{F}]no |\[\mnc{A}F]mei\[^\mn{F}]o, vem a\[\bm]qui \[^\mn{E}]com o |\[\mnc{G}G]re\[^\mn{D}]lho \altchords{\id{(B)}|B |E |F\shrp{}}
     Eia eu \[\bmc\mn{F}]vou \[^\mn{E}]che|\[\mnc{C}C]gar,\[\bm] |viva São Mi\[\bmc\mn{F}]guel \[^\mn{E}]que |\[^\mn{C}]veio \altchords{|B | - | \e}
-    Veio a\[\bmc\mn{F}]brir \[^\mn{E}]a |\[\mnc{G}G7]ban\[^\mn{D}]ca lá dos \[\bm]O\[^\mn{C}]ri|\[\mnc{/}C]xás\[\bm] \altchords{|F\shrp{}7 |B}
+    Veio a\[\bmc\mn{F}]brir \[^\mn{E}]a |\[\mnc{G}G7]ban\[^\mn{D}]ca lá dos \[\bm]O\[^\mn{C}]ri|\[\mnc{E}C]xás\[\bm] \altchords{|F\shrp{}7 |B}
   \mnendchorus
   \notesoff
   \beginchorus\replay
@@ -151,7 +152,7 @@
   \beginchorus\replay
     |^Salve o meu ^Mestre Im|^pério, que nes^se Cru|^zeiro
     Bem fir^mado es|^tá,^ |deu para São ^João na |terra
-    A chave ^da jus|^tiça no Santo ^Daime es|^tá.^
+    A chave ^da jus|^tiça no Santo ^Daime es|\noteson\[C\mnlow{C}]tá. \[\bm]
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody =  \relative c''' {
@@ -161,10 +162,7 @@
         c8 \pomark g8 g8 g8 g4 f4 | a8 f8 f8 f8 f4 e4
         | g8 d8 d8 d8 f4 e4 | c2~ c4. \parenthesize \altcol c8 \altmark "2."
         | c8 c8 c8 c8 f4 e4 | c8 c8 c8 c8 f4 e4
-        | g8 d16 ( d16) d8 d8 d4 c4 
-      } \alternative {
-        { | e1 }
-        { | c1 }
+        | g8 d16 ( d16) d8 d8 d4 c4 | << e1 \parenthesize c1 \genmark "(4.:ii)" >>
       }
     }
     theLyricsOne = \lyricmode {
@@ -175,10 +173,7 @@
         Eia eu vou che -- | gar, __ _
         \skip 1 | vi -- va São Mi -- guel que | vei -- o;
         Vei -- o~a -- brir a | ban -- ca __ _
-        lá dos O -- ri --
-      } \alternative {
-        { | xás. }
-        { | xás. }
+        lá dos O -- ri -- | xás.
       }
     }
     theLyricsTwo = \lyricmode {
@@ -189,10 +184,7 @@
         Vei -- o pra~a -- vi -- | sar __ _
         \altcol que | Je -- sus Cris -- to é o | do -- no;~A
         qui des -- se ter -- | rei -- ro, e
-        é pra se~en -- tre --
-      } \alternative {
-        { | gar. }
-        { | gar. }
+        é pra se~en -- tre -- | gar.
       }
     }
     theLyricsThree = \lyricmode {
@@ -203,10 +195,7 @@
         Vei -- o do -- mi -- | nar, __ _ \skip 1
         | pei -- a pra quem é re -- | bel -- de;
         O fis -- cal que | vei -- o, __ _
-        foi pa -- ra~a -- pu --
-      } \alternative {
-        { | rar. }
-        { | rar. }
+        foi pa -- ra~a -- pu -- | rar.
       }
     }
     theLyricsFour = \lyricmode {
@@ -217,10 +206,7 @@
         Bem fir -- ma -- do~es -- | tá, __ _ \skip 1
         | deu pa -- ra São João na | ter -- ra;~A
         cha -- ve da jus -- | ti -- ça no
-        San -- to Dai -- me~es --
-      } \alternative {
-        { | tá. }
-        { | tá. }
+        San -- to Dai -- me~es -- | \parenthesize tá.
       }
     }
     theChords = \chordmode {
@@ -228,10 +214,7 @@
         c1 | f
         | g | c
         | c | c
-        | g:7
-      } \alternative {
-        { | c }
-        { | c }
+        | g:7 | c
       }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
