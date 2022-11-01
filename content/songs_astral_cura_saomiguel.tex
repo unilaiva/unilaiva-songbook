@@ -159,9 +159,116 @@
     The King has the force, Jesus Christ, the Master of all time
     Everything in the heart of Mary, on the Earth, and in the whole Firmament
   \end{translation}
-
-
-
-
-
 \endsong
+
+
+\beginsong{A Chave da Justiça}[by={Alex Polari}, key={C}, sks={C, G--B}, tags={2x}]
+  % Also in: songs_astral_unilaiva_tios_queridos.tex
+  \audio{https://www.nossairmandade.com/hymn/989/AChaveDaJusti\%C3\%A7a}
+  \audio{https://soundcloud.com/canaljagube/107_a-chave-da-justica}
+  \mnbeginchorus\memorize
+    |\[\mnc{C}C]Ei\[^\mn{G}]a, vem a\[\bm]qui \[^\mn{F}]no |\[\mnc{A}F]mei\[^\mn{F}]o, vem a\[\bm]qui \[^\mn{E}]com o |\[\mnc{G}G]re\[^\mn{D}]lho \altchords{\id{(B)}|B |E |F\shrp{}}
+    Eia eu \[\bmc\mn{F}]vou \[^\mn{E}]che|\[\mnc{C}C]gar,\[\bm] |viva São Mi\[\bmc\mn{F}]guel \[^\mn{E}]que |\[^\mn{C}]veio \altchords{|B | - | \e}
+    Veio a\[\bmc\mn{F}]brir \[^\mn{E}]a |\[\mnc{G}G7]ban\[^\mn{D}]ca lá dos \[\bm]O\[^\mn{C}]ri|\[\mnc{E}C]xás\[\bm] \altchords{|F\shrp{}7 |B}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay
+    |^Eia, São Mi^guel que |^veio com ba^laça e es|^pada
+    Veio ^pra avi|^sar^ que |Jesus Cristo ^é o |dono
+    Aqui des^se ter|^reiro, e é pra ^se entre|^gar^
+  \endchorus
+  \beginchorus\replay
+    |^Eia, São Mi^guel que |^veio balan^çando a |^tropa
+    Veio ^domi|^nar,^ |peia pra quem ^é re|belde
+    O fis^cal que |^veio, foi pa^ra apu|^rar^
+  \endchorus
+  \beginchorus\replay
+    |^Salve o meu ^Mestre Im|^pério, que nes^se Cru|^zeiro
+    Bem fir^mado es|^tá,^ |deu para São ^João na |terra
+    A chave ^da jus|^tiça no Santo ^Daime es|\noteson\[C \up{2}\mnlow{C}]tá. \[\bm]
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    theMelody =  \relative c''' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4
+      \repeat volta 2 {
+        c8 \pomark g8 g8 g8 g4 f4 | a8 f8 f8 f8 f4 e4
+        | g8 d8 d8 d8 f4 e4 | c2~ c4. \parenthesize \altcol c8 \altmark "2."
+        | c8 c8 c8 c8 f4 e4 | c8 c8 c8 c8 f4 e4
+        | g8 d16 ( d16) d8 d8 d4 c4 | << e1 \parenthesize c1 \genmark "(4.:ii)" >>
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        | Ei -- a, vem a -- qui no | mei -- o,
+        vem a -- qui com~o | re -- lho;
+        Eia eu vou che -- | gar, __ _
+        \skip 1 | vi -- va São Mi -- guel que | vei -- o;
+        Vei -- o~a -- brir a | ban -- ca __ _
+        lá dos O -- ri -- | xás.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        | Ei -- a, São Mi -- guel que | vei -- o
+        com ba -- la -- ça~e~es -- | pa -- da;
+        Vei -- o pra~a -- vi -- | sar __ _
+        \altcol que | Je -- sus Cris -- to é o | do -- no;~A
+        qui des -- se ter -- | rei -- ro, e
+        é pra se~en -- tre -- | gar.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        | Ei -- a, São Mi -- guel que | vei -- o
+        ba -- lan -- çan -- do~a | tro -- pa;
+        Vei -- o do -- mi -- | nar, __ _ \skip 1
+        | pei -- a pra quem é re -- | bel -- de;
+        O fis -- cal que | vei -- o, __ _
+        foi pa -- ra~a -- pu -- | rar.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        | Sal -- ve o meu Mes -- tre~Im -- | pé -- rio,
+        que nes -- se Cru -- | zei -- ro;
+        Bem fir -- ma -- do~es -- | tá, __ _ \skip 1
+        | deu pa -- ra São João na | ter -- ra;~A
+        cha -- ve da jus -- | ti -- ça no
+        San -- to Dai -- me~es -- | \parenthesize tá.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        c1 | f
+        | g | c
+        | c | c
+        | g:7 | c
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Eia come here in the middle, come here with the whip
+    Eia, I will arrive, viva Saint Michael who came
+    Came to open the banca of the Orixás
+    \nextverse
+    Eia Saint Michael who came with the scale and the sword
+    Came to advise that Jesus Christ is the owner
+    Here in this terreiro, and that it is for us to surrender
+    \nextverse
+    Eia São Michael who came rocking the army
+    He comes to dominate, consequences for those who are rebellious
+    The guardian who came, came to purify
+    \nextverse
+    Salve, Oh! My Imperial Master, That this Cross
+    Is well firmed here, gave to Saint John on Earth
+    The key of Justice is here in the Santo Daime
+  \end{translation}
+\endsong
+
