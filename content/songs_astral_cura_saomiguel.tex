@@ -272,3 +272,85 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Mensageiro do Anjo Azul}[by={Maria Alice}, key={C}, sks={D, C--D}, tags={mazurka}]
+  \meter{6}{4}
+  \mnbeginchorus
+    \[\mn{C}]Sou Men\[\mn{E}]sa|\[\mnc{G}C]geiro do \[\mn{A}]Anjo A\[\bmc\mn{G}]zul
+    Foi \[\mn{A}]São Mi|\[\mnc{G}G7]guel \[\mn{E}]quem \[\mn{F}]me \[\mn{D}]man\[\mnc{C}C]dou
+    \mnendchorus\glueverses\mnbeginchorus
+    \[\mn{C}]Eu venho a|\[\mnc{G}C]qui \[\mn{C}]para do\[\mnc{E}Am]mar
+    \[\mn{G}]A ca|\[\mn{E}]beça \[\mn{G}]do dra\[\mnc{C}C]gão
+  \mnendchorus
+  \mnbeginverse
+    \[\mn{C}]Aqui \[\mn{E}]na |\[\mnc{G}C]terra
+    Ve\[\mn{A}]nho fa\[\mnc{G}G7]zer \[\mn{E}]a \[\mn{F}]li\[\mn{D}]ga|\[\mnc{C}C]ção
+    \[\mn{C}]Aqui \[\mn{E}]na \[\bmc\mn{G}]terra
+    Ve\[\mn{A}]nho fa|\[\mnc{G}G7]zer \[\mn{E}]a \[\mn{F}]li\[\mn{D}]ga\[\mnc{C}C]ção
+    \mnendverse\glueverses\mnbeginchorus
+    \[\mn{C}]Ma|\[\mnc{G}C]mãe \[\mn{C}]Ieman\[\mnc{E}Am]já
+    \[\mn{G}]O|\[\mn{E}]gum da \[\mn{G}]Beira \[\mnc{C}C]Mar
+  \endchorus
+  \begin{translation}
+    I am the messenger of the Blue Angel, Saint Michael is who commands me
+    I come here to tame the head of the dragon
+    \nextverse
+    Here on Earth I come to make a connection
+    Mother Iemanjá, Ogum of the Sea-Shore
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-11
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 6/4 \partial 4.
+      \repeat volta 2 {
+        c8 \posectionmark "1.A" c e | g4 g8 g8 a8 a8  g4. g8 a8 a8
+        | g4. e8 f8 d8  c4.
+      }
+      \repeat volta 2 {
+        c8 \sectionmark "1.B" c8 c8 | g4. c8 c8 c8  e2 g,8 g8
+        | e'4. e8 g,8 g8  c4.
+      }
+      % Section 2.A is 3/4 shorter than 1.A, thus filling the mazurka
+      % bars only after two repeats -- that's why it's written unfolded
+      c8 \sectionmark "2.A:i" c e | g4 g8 g8 a8 a8  g4. e8 f8 d8 | c4.
+      c8 \sectionmark "ii" c e g4 g8 g8 a8 a8 | g4. e8 f8 d8 c4.
+      \repeat volta 2 {
+        r8 \sectionmark "2.B" c4 | g4. c8 c8 c8  e2 g,4
+        | e'4. e8 g,8 g8  c4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+        Sou Men -- sa -- | gei -- ro do An -- jo~A -- zul;
+        Foi São Mi -- | guel quem me man -- dou.
+      \set stanza = "1.B"
+        Eu ve -- nho~a -- | qui pa -- ra do -- mar;
+        A ca -- | be -- ça do dra -- gão.
+      \set stanza = "2.A"
+        A -- qui na | ter -- ra;
+        Ve -- nho fa -- zer a li -- ga -- | ção.
+        A -- qui na ter -- ra;
+        Ve -- nho fa -- | zer a li -- ga -- ção.
+      \set stanza = "2.B"
+        Ma -- | mãe I -- e -- man -- já;
+        O -- | gum da Bei -- ra Mar.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c1. | g2.:7  c4.
+      }
+      \repeat volta 2 {
+        s4. | c2.  a2.:m | a2.:m  c4.
+      }
+      s4. | c2.  g2.:7 | c4.
+      s4.  c2. | g2.:7  c4.
+      \repeat volta 2 {
+        s4. | c2.  a2.:m | a2.:m  c4.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
