@@ -354,3 +354,104 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
+\beginsong{São Miguel}[by={Lúcio Mortimer}, key={C}, sks={D, C--E}]
+  \audio{https://www.nossairmandade.com/hymn/1424/S\%C3\%A3oMiguel}
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Eu pe|\[\mnc{C}C]di para esta \[(Am)]Luz \[^\mn{A}]me \[^\mn{B}]cla\[^\mn{C}]re|\[\mnc{D}Dm]ar \[\bm] \altchords{\id[0]{(D)}|D (Bm) |Em}
+    Eu \[^\mn{E}]pe|\[\mnc{F}F]di que eu tives\[(Dm)]se \[^\mn{D}]es\[^\mn{E}]te \[^\mn{F}]a|\[\mnc{G}G]mor \[\bm] \altchords{|G (Em) |A}
+    Eu pe|di para ter \[(G7)]for\[^\mn{F}]ça \[^\mn{E}]de a\[^\mn{D}]ju|\[\mnc{C}C]dar \[\bm] \altchords{| - (A7) |D}
+    \[^\mn{G}]Aos es|\[G]píritos neste \[(G7)]mundo \[^\mn{A}]so\[^\mn{B}]fre|\[\mnc{C}C]dor \[\bm] \altchords{|A (A7) |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Rece|^bi de meu Je^{sus esta} mis|^são ^
+    Fazer es|^forço de aju^{dar o} preci|^sa^do
+    Rogando à |Deus com fé ^{e convic}|^ção ^
+    Para o pe|^di do po^der ser escu|^ta^do
+  \endchorus
+  \beginchorus
+    Vou se|^guindo firme e ^forte a jor|^na^da
+    Estou fir|^mado com este ^meu sagrado |^vi^nho
+    Rogando |sempre defen^{der destas} ci|^la^das
+    Que o ini|^mi go apre^senta no ca|^mi^nho
+  \endchorus
+  \beginchorus
+    Com São Mi|^guel, meu Ar^canjo Prote|^tor ^
+    Eu tenho |^força de pas^{sar em} toda |^pro^va
+    Vou confi|ando, pois es^tou com meu Se|^nhor ^
+    Que ao vence|^dor prome^teu a vida |^no^va
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-11
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        \parenthesize g8 \genmark "(4.)" \pomark g8 g8 | c8 c16( c16) c8 c c a b c | d2( \parenthesize d8)( \parenthesize d8) d8 e8
+        | f8 f16( f16) f8 f8 f8 d e f | g2( \parenthesize g8 \parenthesize g8) g8 g8
+        | g8( g) g g g f e d | c2( \parenthesize c8) \parenthesize g8 g g
+        | g16( \parenthesize g16)( \parenthesize g16)( \parenthesize g16) g8 g8 g8 g8 a b | c2( c8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        \skip 1 Eu pe -- | di pa -- ra es -- ta Luz me cla -- re -- | ar; __ _ _
+        Eu pe -- | di que eu ti -- ves -- se es -- te a -- | mor; __ _ _
+        Eu pe -- | di pa -- ra ter for -- ça de~a -- ju -- | dar; __ _
+        \skip 1 Aos es -- | pí -- ri -- tos __ _ nes -- te mun -- do so -- fre -- | dor. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        \skip 1 Re -- ce -- | bi de __ _ meu Je -- sus es -- ta mis -- | são; __ _
+        Fa -- zer es -- | for -- ço __ _ de~a -- ju -- dar o pre -- ci -- | sa -- do;
+        Ro -- gan -- do~à | Deus __ _ com fé e con -- vi -- c -- | ção; __ _
+        Pa -- ra~o pe -- | di -- _ _ _ do po -- der ser es -- cu -- | ta -- do.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        \skip 1 Vou se -- | guin -- do __ _ fir -- me~e for -- te a jor -- | na -- da;
+        Es -- tou fir -- | ma -- do com es -- te meu sa -- gra -- do | vi -- nho;
+        Ro -- gan -- do | sem -- pre de -- fen -- der des -- tas ci -- | la -- das;
+        Que~o i -- ni -- | mi -- _ _ go a -- pre -- sen -- ta no ca -- | mi -- nho.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Com São Mi -- | guel, __ _ _ meu Ar -- can -- jo Pro -- te -- | tor; __ _
+        Eu te -- nho | for -- ça __ _ de pas -- sar em to -- da | pro -- va;
+        Vou con -- fi -- | an -- do, pois es -- tou com meu Se -- | nhor; __ _
+        Que~ao ven -- ce -- | dor __ _ _ _ pro -- me -- teu a vi -- da | no -- va.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c2 \parenthesize a:m | d1:m | f2 \parenthesize d:m | g1
+        | g2 \parenthesize g:7 | c1 | g2 \parenthesize g:7 | c2~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    I ask for this light to get me clear, I ask that I will have this love
+    I ask to have strength to help the spirits suffering in this world
+    \nextverse
+    I receive from Jesus this mission, to have strength to help those who need it
+    Praying to God with faith and conviction, for this request to be able to be heard
+    \nextverse
+    I will follow firmly with strength on this journey, I am firm with my sacred wine
+    Praying always to defend these ambushes that the enemy presents on the road
+    \nextverse
+    With Saint Michael my protector Archangel I have strength to pass through all the test
+    I go trusting therefore I am with my Lord, to the winner He promised the new life
+  \end{translation}
+\endsong
+
