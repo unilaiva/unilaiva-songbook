@@ -358,7 +358,7 @@
 \beginsong{São Miguel}[by={Lúcio Mortimer}, key={C}, sks={D, C--E}]
   \audio{https://www.nossairmandade.com/hymn/1424/S\%C3\%A3oMiguel}
   \mnbeginchorus\memorize
-    \[^\mn{G}]Eu pe|\[\mnc{C}C]di para esta \[(Am)]Luz \[^\mn{A}]me \[^\mn{B}]cla\[^\mn{C}]re|\[\mnc{D}Dm]ar \[\bm] \altchords{\id[0]{(D)}|D (Bm) |Em}
+    \[^\mn{G}]Eu pe|\[\mnc{C}C]di para esta \[(Am)]Luz \[^\mn{A}]me \[^\mn{B}]cla\[^\mn{C}]re|\[\mnc{D}Dm]ar \[\bm] \altchords{\id[1]{(D)}|D (Bm) |Em}
     Eu \[^\mn{E}]pe|\[\mnc{F}F]di que eu tives\[(Dm)]se \[^\mn{D}]es\[^\mn{E}]te \[^\mn{F}]a|\[\mnc{G}G]mor \[\bm] \altchords{|G (Em) |A}
     Eu pe|di para ter \[(G7)]for\[^\mn{F}]ça \[^\mn{E}]de a\[^\mn{D}]ju|\[\mnc{C}C]dar \[\bm] \altchords{| - (A7) |D}
     \[^\mn{G}]Aos es|\[G]píritos neste \[(G7)]mundo \[^\mn{A}]so\[^\mn{B}]fre|\[\mnc{C}C]dor \[\bm] \altchords{|A (A7) |D}
@@ -455,3 +455,77 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Força do Céu}[by={Dalvina Corrente}, key={C}, sks={D, C--D}]
+  \audio{https://www.nossairmandade.com/hymn/1969/For\%C3\%A7aDoC\%C3\%A9u}
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Pe|\[\mnc{C}C]di força do \[\bm]céu, da flo|\[^\mn{E}]resta \[^\mn{D}]e do \[\mnc{C}(C7)]mar \altchords{\id[1]{(D)}|D | - (D7)}
+    Pe|\[\mnc{F}F]di aos meus Ar\[\bm]canjos para |\[\mnc{A}(Am)]{vir e} \[^\mn{G}]aju\[\mnc{F}F]dar \altchords{|G |(Bm) G}
+    \[^\mn{G}]Pe|\[G]di a São Mi\[\bm]guel para |\[^\mn{E}]me a\[^\mn{D}]benço\[\mnc{C}C]ar \altchords{|A | - D}
+    \[^\mn{G}]Lim|\[^\mn{C}]par a minha es\[\bm]trada \[^\mn{G}]para eu |\[\mnc{E}G]poder \[^\mn{D}]cami\[\mnc{C}C]nhar \altchords{| - |A D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Pe|^di a Santa Es^trela para |me ilumi^nar
+    Pe|^di meu Papai ^Velho, São Jo|^{sé de Ar}riba^mar
+    Pe|^di a Virgem ^Mãe para |me purifi^car
+    Eu |pedi um con^forto a minha |^Mãe Ieman^já
+  \endchorus
+  \begin{translation}
+    I ask the force of heaven, of the forest and the sea
+    I ask my Archangels to come and help me
+    I ask Sain Michael in order to bless me
+    Clean my path so that I can walk
+    \nextverse
+    I ask the Holy Star in order to illuminate me
+    I ask my Papai Velho, São Jose de Arribamar
+    I ask the Virgin Mother in order to purify me
+    I ask for the comfort of my mother Iemanjá
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-11
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 8
+      \repeat volta 2 {
+        g8 \pomark | c c c c c( c) c c | e e d d c4. c8
+        | f f f f f8. f16 f8 f | a8( a16) a16 g8 g f4. g8
+        | g g g g g4 g8 g | e e d d c4. g8
+        | c c c c c c g g | e'8( e16)( e16) d8 d c4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Pe -- | di for -- ça do céu, __ _
+        da flo -- | res -- ta e do mar;
+        Pe -- | di aos meus Ar -- can -- jos
+        pa -- ra | vir __ _ e a -- ju -- dar;
+        Pe -- | di a São Mi -- guel
+        pa -- ra | me a -- ben -- ço -- ar;
+        Lim -- | par a mi -- nha~es -- tra -- da
+        pa -- ra~eu | po -- der __ _ ca -- mi -- nhar.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Pe -- | di a San -- ta~Es -- tre -- la
+        pa -- ra | me i -- lu -- mi -- nar;
+        Pe -- | di meu Pa -- pai Ve -- lho,
+        São Jo -- | sé de Ar -- ri -- ba -- mar;
+        Pe -- | di a Vir -- gem Mãe
+        pa -- ra | me pu -- ri -- fi -- car;
+        Eu | pe -- di um con -- for -- to~a
+        mi -- nha | Mãe __ _ I -- e -- man -- já.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s8 | c1 | c2 \parenthesize c:7 | f1 | \parenthesize a2:m f | g1 | g2 c | c1 | g2 c4.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
