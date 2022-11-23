@@ -609,6 +609,7 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
 \beginsong{Mensageiro da Luz}[by={Albertina Corrente}, key={C}, sks={C, C--D}, tags={valsa}, ex={not in all books}]
   \audio{https://www.nossairmandade.com/hymn/2263/MensageiroDaLuz}
   \meter{3}{4}
@@ -692,7 +693,7 @@
     \nextverse
     I follow my path, my path is of Jesus
     \nextverse
-    I played my bugle to remember
+    I played my trumpet to remember
     \nextverse
     To follow this Path, everyone has to firm
     \nextverse
@@ -701,3 +702,170 @@
     Here I came to affirm what my Father ordered
   \end{translation}
 \endsong
+
+
+\beginsong{Meu Beija-flor o Sol Raiou}[by={Alessandra}, key={Dm}, sks={Dm, Cm--Em}]
+  \audio{https://www.nossairmandade.com/hymn/2264/MeuBeija-FlorOSolRaiou}
+  \newchords{chords_meu_bf_sol_raiou_a}\newchords{chords_meu_bf_sol_raiou_b}
+  \mnbeginchorus\memorize[chords_meu_bf_sol_raiou_a]
+    \[^\mn{D}]Meu bei\[^\mn{E}]ja-|\[\mnc{F}Dm]flor \[^\mn{D}]o \[\bmc\mn{F}]sol \[^\mn{E}]rai|\[\mnc{A}A]ou \[\bm] \altchords{\id[1]{(Cm)}|Cm |G}
+    \[^\mn{A}]Ouvi os |\[\mnc{G}Gm]pás\[^\mn{F}]sa\[\bmc\mn{E}]ros \[^\mn{D}]can|\[\mnc{A}A]tar \[\up{1}A7] \altchords{|Fm |G \up{1}G7}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_meu_bf_sol_raiou_b]
+    \[^\mn{A}]Anunci|\[\mnc{G}Gm]an\[^\mn{F}]do o \[\bmc\mn{E}]Sal\[^\mn{D}]va|\[\mnc{A}Dm]dor \altchords{|Fm |Cm}
+    \[\bmc\mn{D}]Que \[^\mn{E}]à |\[\mnc{F}(B&)]Ter\[^\mn{D}]ra i\[\mnc{F}A7]rá \[^\mn{E}]vol|\[\mnc{D}Dm]tar \[\up{1}D7] \altchords{|(A\flt) G7 |Cm \up{1}C7}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_meu_bf_sol_raiou_a]
+    No firma|^mento ^um cla|^rão ^
+    Resplande|^ceu em ^todo |^Céu ^
+    \endchorus\glueverses\beginchorus\replay[chords_meu_bf_sol_raiou_b]
+    Tocou e |^tornou ^a to|^car
+    A ^corne|^ta de ^São Mi|^guel ^
+  \endchorus
+  \beginchorus\replay[chords_meu_bf_sol_raiou_a]
+    Santa Ma|^{ria a}^nunci|^ou ^ \altchords{\id[2]{(Em)}|Em |B}
+    Na tribo |^tocou ^o cla|^rim ^ \altchords{|Am |B \up{1}B7}
+    \endchorus\glueverses\beginchorus\replay[chords_meu_bf_sol_raiou_b]
+    Já vem des|^cendo ^das Es|^trelas \altchords{|Am |Em}
+    ^Meu guer|^reiro ^Beija-|^mim ^ \altchords{|(C) B7 |Em \up{1}E7}
+  \endchorus
+  \beginchorus\replay[chords_meu_bf_sol_raiou_a]
+    Tu Beija-|^mim flor ^de a|^mor ^
+    Guerreiro |^do Pai ^Cria|^dor ^
+    \endchorus\glueverses\beginchorus\replay[chords_meu_bf_sol_raiou_b]
+    Dainos Sa|^úde e ^Uni|^ão
+    ^Vem cu|^rar nes^ta ses|^são ^
+  \endchorus
+  \beginchorus\replay[chords_meu_bf_sol_raiou_a]
+    Mensagei|^{ro do} ^fim dos |^tem^pos
+    Rei Beija-|^mim se^nhor do |^Bem ^
+    \endchorus\glueverses\beginchorus\replay[chords_meu_bf_sol_raiou_b]
+    Vem decla|^{rar o} ^nasci|^mento
+    ^Da No|^va Je^rusa|^lém ^
+  \endchorus
+  \beginchorus\replay[chords_meu_bf_sol_raiou_a]
+    Sigo na |^bata^lha do a|^mor ^
+    Com espe|^rança ^de che|^gar ^
+    \endchorus\glueverses\beginchorus\replay[chords_meu_bf_sol_raiou_b]
+    Agrade|^cendo ao ^Sol e à |^Lua
+    ^E a |^Rai^nha do |^Mar ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-11
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        d8 \posectionmark "A" d8 e8 | f4 d f e | a,2( a8) a' a a
+        | g4 f e d | a2~ a8
+      }
+      \repeat volta 2 {
+        a'8 \sectionmark "B" a8 a8 | g4 f e d | a4.( a8) d4 e
+        | f d f e | d2~ d8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Meu bei -- ja -- | flor o sol rai -- | ou; __ _
+        Ou -- vi os | pás -- sa -- ros can -- | tar. _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        A -- nun -- ci -- | an -- do~o Sal -- va -- | dor; __ _
+        Que à | Ter -- ra~i -- rá vol -- | tar. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        No fir -- ma -- | men -- to um cla -- | rão; __ _
+        Res -- plan -- de -- | ceu em to -- do | Céu. _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        To -- cou e | tor -- nou a to -- | car;
+        A cor -- ne -- | ta de São Mi -- | guel. _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        San -- ta Ma -- | ri -- a~a -- nun -- ci -- | ou; __ _
+        Na tri -- bo | to -- cou o cla -- | rim. _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Já vem des -- | cen -- do das Es -- | tre -- las;
+        Meu guer -- | rei -- ro Bei -- ja -- | mim. _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Tu Bei -- ja -- | mim flor de a -- | mor; __ _
+        Guer -- rei -- ro | do Pai Cri -- a -- | dor. _
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Dai -- nos Sa -- | ú -- de~e U -- ni -- | ão; __ _
+        Vem cu -- | rar nes -- ta ses -- | são. _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        Men -- sa -- gei -- | ro do fim dos | tem -- pos;
+        Rei Bei -- ja -- | mim se -- nhor do | Bem. _
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        Vem de -- cla -- | rar o nas -- ci -- | men -- to;
+        Da No -- | va Je -- ru -- sa -- | lém. _
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6.A"
+      \repeat volta 2 {
+        Si -- go na | ba -- ta -- lha do~a -- | mor; __ _
+        Com es -- pe -- | ran -- ça de che -- | gar. _
+      }
+      \set stanza = "6.B"
+      \repeat volta 2 {
+        A -- gra -- de -- | cen -- do~ao Sol e~à | Lu -- a;
+        E a | Ra -- i -- nha do | Mar. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | d1:m | a1 | g1:m | a2 \mark \markup{\hspace #-1.5 \super{"1"}} \parenthesize a8:7
+      }
+      \repeat volta 2 {
+        s4. | g1:m | d1:m | \parenthesize bes2 a:7 | d2:m \mark \markup{\hspace #-1.5 \super{"1"}} \parenthesize d8:7
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    My hummingbird, the Sun radiated, I heard the birds sing
+    Announcing the Savior, who is coming back to Earth
+    \nextverse
+    In the firmament a flash shimmered all throughout the heavens
+    Touched and became the sounding of the trumpet of Saint Michael
+    \nextverse
+    Holy Mary announced, the tribe sounded the bugle
+    Already from the descending stars came my warrior Beija-mim
+    \nextverse
+    Your Beija-mim flower of love, warrior of the Father Creator
+    Give us ouyr health and our union, come to heal in this session
+    \nextverse
+    Messenger of the end of times, king Beija-mim the Lord of Good
+    He comes to declare the birth of the New Jerusalem
+    \nextverse
+    I follow in this battle of love, with hope to arrive
+    Giving thanks to the sun and the moon, and the Queen of the Sea
+  \end{translation}
+\endsong
+
