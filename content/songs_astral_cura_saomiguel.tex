@@ -610,7 +610,7 @@
 \endsong
 
 
-\beginsong{Mensageiro da Luz}[by={Albertina Corrente}, key={C}, sks={C, C--D}, tags={valsa}, ex={not in all books}]
+\beginsong{Mensageiro da Luz}[by={Albertina Corrente}, key={C}, sks={C, C--D}, tags={valsa}, ex={Mesa Branca}]
   \audio{https://www.nossairmandade.com/hymn/2263/MensageiroDaLuz}
   \meter{3}{4}
   \mnbeginchorus\memorize
@@ -866,6 +866,108 @@
     \nextverse
     I follow in this battle of love, with hope to arrive
     Giving thanks to the sun and the moon, and the Queen of the Sea
+  \end{translation}
+\endsong
+
+
+\beginsong{Santo Daime Beija-mim}[by={Marina Ruberti}, tags={mazurka}, key={Dm}, sks={Dm, Cm--Em}, ex={Mesa Branca}]
+  \audio{https://www.nossairmandade.com/hymn/2265/SantoDaimeBeija-Mim}
+  \newchords{chords_santodaimebm_a}\newchords{chords_santodaimebm_b}
+  \meter{6}{4}
+  \mnbeginchorus\memorize[chords_santodaimebm_a]
+    \[^\mn{A}]Com a|\[\mnc{D}Dm]mor eu re\[^\mn{E}]ce\[\mnc{F}(F)]bi \altchords{\id[1]{(Cm)}|Cm (E\flt)}
+    \[^\mn{A}]Com a|\[\mnc{E}A]mor \[^\mn{C#}]eu \[^\mn{F}]vou \[^\mn{E}]te \[\mnc{D}Dm]dar \altchords{|G Cm}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_santodaimebm_b]
+    \[^\mn{D}]Santo |\[\mnc{G}Gm]Daime \[^\mn{F}]Bei\[^\mn{E}]ja-\[\mnc{F}Dm]mim \altchords{|Fm Cm}
+    \[^\mn{D}]Com a|\[\mnc{E}A7]mor vou \[^\mn{D}]te \[^\mn{C#}]cu\[\mnc{D}Dm]rar \altchords{|G7 Cm}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_santodaimebm_a]
+    Com a|^mor eu rece^bi
+    Com ver|^dade eu vou te ^dar
+    \endchorus\glueverses\beginchorus\replay[chords_santodaimebm_b]
+    Santo |^Daime Beija-^mim
+    Um se|^gredo para desven^dar
+  \mnendchorus
+  \beginchorus\replay[chords_santodaimebm_a]
+    Com a|^mor eu rece^bi \altchords{\id[2]{(Em)}|Em (G)}
+    Com a|^mor eu vou te ^dar \altchords{|B Em}
+    \endchorus\glueverses\beginchorus\replay[chords_santodaimebm_b]
+    Santo |^Daime para se^guir \altchords{|Am Em}
+    Este a|^mor para ze^lar \altchords{|B7 Em}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-11
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 6/4 \partial 4
+      \repeat volta 2 {
+        a8 \posectionmark "A" a8
+        | d4 d d8 e8  f2 a8 a8
+        | e4 cis8( cis8) f e  d2
+      }
+      \repeat volta 2 {
+        d8 \sectionmark "B" d8
+        | g4 g8( g8) f8 e8  f2 d8 d8
+        | e8( e8) e8( e8) d cis  d2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Com a -- | mor eu re -- ce -- bi;
+        Com a -- | mor eu __ _ vou te dar.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        San -- to | Dai -- me __ _ Bei -- ja -- mim
+        Com a -- | mor __ _ vou __ _ te cu -- rar.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Com a -- | mor eu re -- ce -- bi;
+        Com ver -- | da -- de eu vou te dar.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        San -- to | Dai -- me __ _ Bei -- ja -- mim;
+        Um se -- | gre -- do pa -- ra des -- ven -- dar.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Com a -- | mor eu re -- ce -- bi;
+        Com a -- | mor eu __ _ vou te dar.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        San -- to | Dai -- me pa -- ra se -- guir;
+        Es -- te~a -- | mor __ _ pa -- _ ra ze -- lar.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d2.:m \parenthesize f | a d2:m
+      }
+      \repeat volta 2 {
+        s4 | g2.:m d:m | a:7 d2:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    With love I receive, with love I am going to give you
+    Santo Daime Beija-mim, with love I am going to heal you
+    \nextverse
+    With love I receive, with truth I am going to give you
+    Santo Daime Beija-mim, a secret to reveal
+    \nextverse
+    With love I receive, with love I am going to give you
+    Santo Daime to follow, this love to take care of
   \end{translation}
 \endsong
 
