@@ -608,3 +608,96 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
+
+\beginsong{Mensageiro da Luz}[by={Albertina Corrente}, key={C}, sks={C, C--D}, tags={valsa}, ex={not in all books}]
+  \audio{https://www.nossairmandade.com/hymn/2263/MensageiroDaLuz}
+  \meter{3}{4}
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Eu |\[\mnc{C}C]sou um men\[^\mn{E}]sa|\[^\mn{G}]geiro \altchords{\id[1]{(D)}|D | -}
+    Mensa|\[\mnc{A}Dm]gei\[^\mn{F}]ro \[^\mn{D}]da |\[\mnc{C}C]Luz \altchords{|Em |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Eu |^sigo o meu ca|minho
+    Meu ca|^minho é de Je|^sus
+  \endchorus
+  \notesoff
+  \beginchorus
+    To|^quei minha cor|neta
+    Pa|^{ra relem}|^brar
+  \endchorus
+  \beginchorus
+    Para se|^guir neste Ca|minho
+    Todos |^tem que se fir|^mar
+  \endchorus
+  \beginchorus
+    Eu |^sou um beija-|flor
+    Sou do |^reino do a|^mor
+  \endchorus
+  \beginchorus
+    A|^qui vim afir|mar
+    O que |^meu Pai man|^dou
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-11
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 4.
+      \repeat volta 2 {
+        \parenthesize g8 \genmark "(4.)" g8( \pomark g8)
+        | c8( c8) c4 e | g( g) g8( g8)
+        | a8( a8) f4 d4 | c4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \skip 1 Eu __ _ | sou um men -- sa -- | gei -- ro;
+      Men -- sa -- | gei -- _ ro da | Luz.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \skip 1 Eu __ _ | si -- go~o meu ca -- | mi -- nho;
+      Meu ca -- | mi -- nho~é de Je -- | sus.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \skip 1 To -- _ | quei mi -- nha cor -- | ne -- ta;
+      Pa -- _ | ra __ _ re -- lem -- brar.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      Pa -- ra se -- | guir nes -- te Ca -- | mi -- nho;
+      To -- dos | tem que se fir -- mar.
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \skip 1 Eu __ _ | sou um bei -- ja -- | flor; __ _
+      Sou do | rei -- _ no do~a -- | mor.
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      \skip 1 A -- _ | qui vim a -- fir -- | mar;
+      O que __ _ | meu __ _ Pai man -- | dou.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c2. | c | d:m | c4.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I am a messenger, messenger of the Light
+    \nextverse
+    I follow my path, my path is of Jesus
+    \nextverse
+    I played my bugle to remember
+    \nextverse
+    To follow this Path, everyone has to firm
+    \nextverse
+    I'm a hummingbird, I'm from the realm of love
+    \nextverse
+    Here I came to affirm what my Father ordered
+  \end{translation}
+\endsong
