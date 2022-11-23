@@ -529,3 +529,82 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
+
+
+\beginsong{Sou Comando de Maria}[by={Padr. Corrente}, key={D}, sks={D, D--E}]
+  \audio{https://www.nossairmandade.com/hymn/1222/S\%C3\%A3oMiguel}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Sou co|\[\mnc{D}D]man\[^\mn{A}]do \[^\mn{D}]de \[^\mn{F#}]Ma\[\bmc\mn{A}]ri\[^\mn{F#}]a \altchords{\id[1]{(E)}|E}
+    \[^\mn{D}]Prote|tor de \[^\mn{A}]São \[^\mn{E}]Jo\[\bmc\mn{D}]sé \altchords{| -}
+    \[^\mn{A}]O meu |\[\mnc{G}G]nome é \[^\mn{B}]São \[\mnc{D}D]Miguel \altchords{|A E}
+    \[^\mn{A}]Ar|\[A]canjo de \[^\mn{C#}]Na\[^\mn{E}]za\[\mnc{D}D]ré \altchords{|B E}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Ando, |^ando no es^paço
+    Junto |com meu São Jo^ão
+    Estou |^dentro desta ^guerra
+    Com o Pa|^drinho Sebasti^ão
+  \endchorus
+  \beginchorus
+    Pise |^firme, pise ^firme
+    No ca|minho de Je^sus
+    Vôo |^junto com vo^cês
+    Vou ze|^lando esta ^Luz
+  \endchorus
+  \begin{translation}
+    I am the command of Mary, protector of Saint Joseph
+    My name is Saint Michael, Archangel of Nazareth
+    \nextverse
+    I walk, I walk within the space, together with Saint John
+    I am within this war, with Pardrinho Sebastião
+    \nextverse
+    Step firmly, step firmly, on the path of Jesus
+    I fly together with you, I watch over this light
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-11
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 8
+      \repeat volta 2 {
+        a16 a16 | d8 a d fis a fis4 d16 d16 | d8 d a e' d4 \parenthesize a8 a8
+        | g8 g b d d8( d4) a16( a16) | a8 a16( a16) cis8 e d4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Sou co -- | man -- do de Ma -- ri -- a;
+        Pro -- te -- | tor de São Jo -- sé;
+        O meu | no -- me~é São Mi -- guel; __ _
+        Ar -- _ | can -- jo de Na -- za -- ré.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        An -- do, | an -- do no es -- pa -- ço;
+        Jun -- to | com meu São Jo -- ão;
+        Es -- tou | den -- tro des -- ta guer -- ra;
+        Com~o Pa -- | dri -- nho Se -- bas -- ti -- ão.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Pi -- se | fir -- me, pi -- se fir -- me;
+        No ca -- | mi -- nho de Je -- sus;
+        \skip 1 Vôo | jun -- to com vo -- cês; __ _
+        Vou ze -- | lan -- do __ _ es -- ta Luz.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s8 | d1 | d1 | g2 d2 | a2 d4.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
