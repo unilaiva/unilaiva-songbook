@@ -971,3 +971,197 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Eu Peço a Meu São Miguel}[by={Padr. Valdete}, key={C}, sks={D, C--E}]
+  \newchords{chords_eupecoameusaomiguel_a}\newchords{chords_eupecoameusaomiguel_b}
+  \mnbeginchorus\memorize[chords_eupecoameusaomiguel_a]
+    \[^\mn{G}]Eu |\[\mnc{C}C]peço \[^\mn{E}]a \[\bmc\mn{G}]meu \[^\mn{F}]São \[^\mn{E}]Mi|\[\mnc{G}G]guel\[\bm], para |\[\mnc{F}F]Vós \[^\mn{E}]com \[\mnc{G}G]a \[^\mn{F}]Sua \[^\mn{E}]es|\[\mnc{C}C]pa\[\bm]da.
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_eupecoameusaomiguel_b]
+    \[^\mn{C}]Aju|\[\mnc{E}C]dai a \[^\mn{C}]domi\[\mnc{A}F]nar \[^\mn{C}]este |\[C]po\[\bm]vo, para |\[^\mn{E}]se\[^\mn{C}]guir nu\[\mnc{A}F]ma \[^\mn{C}]boa es|\[C]tra\[\bm]da.
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_eupecoameusaomiguel_a]
+    Para |^seguir nes^ta boa es|^tra^da, do |^Mestre ^que nos en|^si^na.
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_eupecoameusaomiguel_b]
+    É cum|^prir to^dos manda|^men^tos, con|tidos aqui ^nesta Dou|^tri^na.
+  \endchorus
+  \beginchorus\replay[chords_eupecoameusaomiguel_a]
+    En|^xotando ^os malfa|^ze^jos, a|^qui ^na Linha do Tu|^cum^.
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_eupecoameusaomiguel_b]
+    Meus ir|^mãos vamos ^prestar aten|^ção^, para |que nós não ^sejamos |^um^.
+  \endchorus
+  \beginchorus\replay[chords_eupecoameusaomiguel_a]
+    Is|^to não é ^um julga|^men^to, mas |^é um a^viso se|^ríssi^mo.
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_eupecoameusaomiguel_b]
+    Para |^quem quer se^guir na Dou|^tri^na, e pres|tar bem con^ta do ser|^vi^ço.
+  \endchorus
+  \beginchorus\replay[chords_eupecoameusaomiguel_a]
+    E pres|^tar bem con^ta do ser|^vi^ço, ao |^nosso Mes^tre ensina|^dor^.
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_eupecoameusaomiguel_b]
+    Para |^ver se es^tamos se|^guin^do, ou se |somos só ^uns zomba|^do^res.
+  \endchorus
+  \beginchorus\replay[chords_eupecoameusaomiguel_a]
+    Meu |^irmão se ^está zom|^ban^do, tra|^te de se ^arrepen|^der^.
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_eupecoameusaomiguel_b]
+    E |^peça seu ^perdão a |^Deus^, para |ver se po^der mere|^cer^.
+  \endchorus
+  \beginchorus\replay[chords_eupecoameusaomiguel_a]
+    É se ar|^repender ^de cora|^ção^, não |^é so por ^compara|^ção^.
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_eupecoameusaomiguel_b]
+    Por|^ que o nos^so Mestre |^sa^be, se |pode te ^dar o per|^dão^.
+  \endchorus
+  \beginchorus\replay[chords_eupecoameusaomiguel_a]
+    Se se ar|^repender ^de cora|^ção^, dá |^para to^do mundo |^ver^.
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_eupecoameusaomiguel_b]
+    No |^seu se^guir a Dou|^tri^na, e |nas ações ^que come|^ter^.
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g8( \posectionmark "A" g8) | c4 c8 e8 g4 f8 e8
+        | g2( g4) g8( g8) | f4( f8) e8 g4 f8 e8 | c4.( c8)( c4)
+      }
+      \repeat volta 2 {
+        c8( \sectionmark "B" c8) | e8( e)( << c \parenthesize e) \genmark "(2., 8.)" >> c a4 c8 c | c2( c4) c8( c8)
+        | e8( e8) c8 c8 a4 c8 c8 | c2( c4)
+
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Eu __ _ | pe -- ço a meu São Mi -- | guel, __ _
+        pa -- ra | Vós __ _ com a Sua es -- | pa -- _ da.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        A -- ju -- | dai a do -- mi -- nar es -- te | po -- vo,
+        pa -- ra | se -- _ guir nu -- ma boa es -- | tra -- da.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Pa -- ra | se -- guir nes -- ta boa es -- | tra -- da,
+        do __ _ | Mes -- _ tre que nos en -- | si -- _ na.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        É cum -- | prir __ _ _ to -- dos man -- da -- | men -- tos,
+        con -- _ | ti -- dos a -- qui nes -- ta Dou -- | tri -- na.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        En -- _ | xo -- tan -- do os mal -- fa -- | ze -- jos,
+        a -- _ | qui na Li -- nha do Tu -- | cum. __ _ _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Meus ir -- | mãos __ _ va -- mos pres -- tar aten -- | ção, __ _
+        pa -- ra | que __ _ nós não se -- ja -- mos | um. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Is -- _ | to não é um jul -- ga -- | men -- to,
+        mas __ _ | é um a -- vi -- so se -- | rís -- si -- mo.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Pa -- ra | quem __ _ quer se -- guir na Dou -- | tri -- na,
+        e pres -- | tar __ _ bem con -- ta do ser -- | vi -- ço.
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        E pres -- | tar bem con -- ta do ser -- | vi -- ço,
+        ao __ _ | nos -- so Mes -- tre~en -- si -- na -- | dor. __ _ _
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        Pa -- ra | ver __ _ se es -- ta -- mos se -- | guin -- do,
+        ou se | so -- _ mos só uns zom -- ba -- | do -- res.
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6.A"
+      \repeat volta 2 {
+        Meu __ _ | ir -- mão se es -- tá zom -- | ban -- do,
+        tra -- _ | te de se ar -- re -- pen -- | der. __ _ _
+      }
+      \set stanza = "6.B"
+      \repeat volta 2 {
+        E __ _ | pe -- _ ça seu per -- dão a | Deus, __ _
+        pa -- ra | ver __ _ se po -- der me -- re -- | cer. __ _
+      }
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7.A"
+      \repeat volta 2 {
+        É se~ar -- | re -- pen -- der de co -- ra -- | ção, __ _
+        não __ _ | é so por com -- pa -- ra -- | ção. __ _ _
+      }
+      \set stanza = "7.B"
+      \repeat volta 2 {
+        Por -- _ | que __ _  o nos -- so Mes -- tre | sa -- be,
+        se __ _ | po -- _ de te dar o per -- | dão. __ _
+      }
+    }
+    theLyricsEight = \lyricmode {
+      \set stanza = "8.A"
+      \repeat volta 2 {
+        Se se~ar -- | re -- pen -- der de co -- ra -- | ção, __ _
+        dá __ _ | pa -- ra to -- do mun -- do | ver. __ _ _
+      }
+      \set stanza = "8.B"
+      \repeat volta 2 {
+        No __ _ | seu __ _ _ se -- guir a Dou -- | tri -- na,
+        e __ _ | nas __ _ a -- ções que co -- me -- | ter. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c1 | g | f2 g2 | c2.
+      }
+      \repeat volta 2 {
+        s4 | c2 f2 | c1 | c2 f2 | c2.
+      }
+    }
+    \layout { #(layout-set-staff-size 13) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    I ask my Saint Michael, for you with your sword.
+    Help me have dominion over the people to follow on a good road.
+    \nextverse
+    To follow this good road of the Master who teaches us.
+    We must abide by all the commandments that are contained in this doctrine.
+    \nextverse
+    Driving aways evildoers, here in the line of Tucum.
+    My brothers and sisters, let's pay attention, so that we aren't one of those.
+    \nextverse
+    This is not a judgement, but it is a serious warning.
+    For those who want to follow the doctrine and present a good record of service.
+    \nextverse
+    It is to present a good record of service to our Master Teacher.
+    To see if we are following, or if we are only mockers.
+    \nextverse
+    My brothers and siters, if you're mocking, be sure to repent.
+    And ask forgiveness from God to see if you can deserve it.
+    \nextverse
+    It is to repent in our hearts, it is not to compare.
+    Because Our Master knows if He can give you the forgiveness.
+    \nextverse
+    It is to repent in your heart, everyone can see it.
+    In the way you follow the doctrine, and in the actions that you take.
+  \end{translation}
+\endsong
+
