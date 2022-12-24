@@ -1031,7 +1031,6 @@
       \repeat volta 2 {
         c8( \sectionmark "B" c8) | e8( e)( << c \parenthesize e) \genmark "(2., 8.)" >> c a4 c8 c | c2( c4) c8( c8)
         | e8( e8) c8 c8 a4 c8 c8 | c2( c4)
-
       }
     }
     theLyricsOne = \lyricmode {
@@ -1166,6 +1165,167 @@
     \nextverse
     It is to repent in your heart, everyone can see it.
     In the way you follow the doctrine, and in the actions that you take.
+  \end{translation}
+\endsong
+
+
+\beginsong{As Seguranças do Céu \\ Papapapaparuê}[by={Padr. Valdete}, key={G}, sks={G, D\shrp{}--B}, tags={de pé, à capela}]
+  \audio{https://www.nossairmandade.com/hymn/139/AsSeguran\%C3\%A7asDoC\%C3\%A9u}
+  \mnbeginchorus
+    \ind[2]\[\bmc\mnlow{B}]Pa\[\mnlow{D}]pa|\[\mnlow{G}]papa\[\bmc\mnlow{D}]paru\[\mnlow{G}]ê |-\[\bm] | \e
+    \ind[2]\[\bmc\mnlow{B}]Pa\[\mnlow{D}]pa|\[\mnlow{G}]papa\[\bmc\mnlow{D}]paru\[\mnlow{G}]á |-\[\bm] | \e
+  \mnendchorus
+  \mnbeginchorus
+    \ind[1]\[\bmc\mnlow{B}]Vou \[\mnlow{D}]cha|\[\mnlow{G}]mar nes\[\bmc\mnlow{D}]te ter\[\mnlow{G}]r|ei\[\bm]ro
+    \ind[1]O|\[\mnlow{B}]gum \[\mnlow{D}]da \[\bmc\mnlow{G}]Mata O|\[\mnlow{D}]gum do \[\mnlow{G}\bm]Mar | \e
+  \mnendchorus
+  \mnbeginchorus
+    \[\bmc\mnlow{B}]Tam\[\mnlow{D}]bém |\[\mnlow{F#}]vou cha\[\bmc\mnlow{D}]mar a\[\mnlow{F#}]q|ui \[\bm]
+    |\[\mnlow{D}]As se\[\bmc\mnlow{F#}]guran|\[\mnlow{D}]ças do \[\mnlow{G}\bm]Céu | \e
+  \mnendchorus
+  \beginchorus
+    \[\bm]São Mi|guel, São \[\bm]Gabrie|l \[\bm]
+    |Junto \[\bm]com São |Rafae\[\bm]l | \e
+  \endchorus
+  \beginchorus
+    \[\bm]Para |vir nos \[\bm]ajud|ar \[\bm]
+    A |segu\[\bm]ranças |do quarte\[\bm]l | \e
+  \endchorus
+  \beginchorus
+    \[\bm]Para |só po\[\bm]der entr|ar \[\bm]
+    |As fa\[\bm]langes que |vem do C\[\bm]éu | \e
+  \endchorus
+  \beginchorus
+    \[\bm]E não |poder \[\bm]penetr|ar \[\bm]
+    |As fa\[\bm]langes de |Lúcif\[\bm]er | \e
+  \endchorus
+  \mnbeginchorus
+    \ind[1]\[\bmc\mnlow{B}]Pa\[\mnlow{D}]ra |\[\mnlow{G}]isto \[\bmc\mnlow{D}]é pre\[\mnlow{G}]c|i\[\bm]so
+    \ind[1]|\[\mnlow{B}]Ser\[\mnlow{D}]mos \[\bmc\mnlow{G}]solda|\[\mnlow{D}]dos fi\[\mnlow{G}\bm]éis | \e
+  \mnendchorus
+  \mnbeginchorus
+    \[\bmc\mnlow{B}]Pa\[\mnlow{D}]ra |\[\mnlow{F#}]poder \[\bmc\mnlow{D}]mere\[\mnlow{F#}]c|er \[\bm]
+    |\[\mnlow{D}]A se\[\bmc\mnlow{F#}]guran|\[\mnlow{D}]ças do \[\mnlow{G}\bm]Céu | \e
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative b' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 2
+      \repeat volta 2 {
+        b4 \sectionmark "1." d | g g d d8. g16~ | g1~ | g2 b,4 d | g g d4 d8. g16~  | g1~ | g2
+      } \break
+      \repeat volta 2 {
+        b,4 \sectionmark "2." d | g g d d8. g16~ | g2 g4. g8 | b,4 d g g8 g8 | d4 d8. g16~ g2~ | g2
+      } \break
+      \repeat volta 10 {
+        \mark \markup {"10x"} b,4 \sectionmark "3.-7." d | fis fis d d8. fis16~ | \slurUp fis2.~8( << fis8 \parenthesize d8) \genmark "(5.)" >> | d4 d fis fis8( fis8) | d4 d8. g16~ g2~ | g2
+      } \break
+      \repeat volta 2 {
+        b,4 \sectionmark "8." d | g g d d8. g16~ | g2 g2 | b,4 d g g | d d8. g16~ g2~ | g2
+      } \break
+      \repeat volta 2 {
+        b,4 \sectionmark "9." d | fis fis d d8. fis16~ | fis1 | d4 d fis fis4 | d4 d8. g16~ g2~ | g2
+      } \break
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Pa -- pa -- | pa -- pa -- pa -- ru -- ê; | _ | _
+        Pa -- pa -- | pa -- pa -- pa -- ru -- á. | _ | _
+      }
+      \set stanza = "2."
+      \repeat volta 2 {
+        Vou cha -- | mar nes -- te ter -- rei -- | _ ro;
+        O -- | gum da Ma -- ta O -- | gum do Mar. _ | _
+      }
+      <<
+        {
+          \set stanza = "3."
+          \repeat volta 2 {
+            Tam -- bém | vou cha -- mar a -- qui; | _ _ _
+            | As se -- gu -- ran -- _ | ças do Céu. _ | _
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "4."
+          \repeat volta 2 {
+            São Mi -- | guel, São Ga -- bri -- el; | _ _ _
+            | Jun -- to com São __ _ | Ra -- fa -- el. _ | _
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "5."
+          \repeat volta 2 {
+            Pa -- ra | vir nos a -- ju -- dar; | _ _ (A)
+            | se -- gu -- ran -- ças __ _ | do quar -- tel. _ | _
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "6."
+          \repeat volta 2 {
+            Pa -- ra | só po -- der en -- trar; | _ _ _
+            | As fa -- lan -- ges que | vem do Céu. _ | _
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "7."
+          \repeat volta 2 {
+            E não | po -- der pe -- ne -- trar; | _ _ _
+            | As fa -- lan -- ges de | Lú -- ci -- fer. _ | _
+          }
+        }
+      >>
+      \set stanza = "8."
+      \repeat volta 2 {
+        Pa -- ra | is -- to é pre -- ci -- | _ so;
+        | Ser -- mos sol -- da -- | dos fi -- éis. _ | _
+      }
+      \set stanza = "9."
+      \repeat volta 2 {
+        Pa -- ra | po -- der me -- re -- cer; | _
+        | A se -- gu -- ran -- | ças do Céu. _ | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2 | g1 | g1 | g1 | g1 | g1 | g2
+      }
+      \repeat volta 2 {
+        s2 | g1 | g1 | g1 | g1 | g2
+      }
+      \repeat volta 10 {
+        s2 | b1:m | b1:m | d1 | d2 g2 | g2
+      }
+      \repeat volta 2 {
+        s2 | g1 | g1 | g1 | g1 | g2
+      }
+      \repeat volta 2 {
+        s2 | b1:m | b1:m | d1 | d2 g2 | g2
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    Papapapaparuê, Papapapaparuá
+    \nextverse
+    I'm going to call in this sacred place: Ogum of the Forest and Ogum of the Sea
+    \nextverse
+    I am also going to call here the guards of heaven
+    \nextverse
+    Saint Michael, Saint Gabriel, together with Saint Raphael
+    \nextverse
+    To come to help us, to guard this fortress
+    \nextverse
+    To only allow the entrance of the armies that come from heaven
+    \nextverse
+    And not permit the penetration of the phalanxes of Lucifer
+    \nextverse
+    For this it is necessary to be faithful soldiers
+    \nextverse
+    To be able to merit the security of heaven
   \end{translation}
 \endsong
 
