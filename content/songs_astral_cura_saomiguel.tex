@@ -1330,3 +1330,80 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Viva o Senhor São Miguel \\ Falanges do Céu}[by={Padr. Valdete}, key={C}, sks={D, C--E}, tags={2x}]
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Viva o \[^\mn{E}]Se|\[\mnc{G}C]nhor \[^\mn{E}]São \[^\mn{C}]Mi|\[^\mn{G}]guel \altchords{\id[1]{(D)}|D | \e}
+    \[^\mn{G}]Viva as \[^\mn{E}]fa|\[^\mn{G}]lan\[^\mn{E}]ges \[^\mn{C}]do |\[^\mn{G}]Céu \altchords{| - | \e}
+    \[^\mn{G}]E os arcan|jos Que\[^\mn{E}]ru|\[\mnc{G}G]bins | | \e \altchords{| - |A | - | \e}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Viva a Mãe |^do Salva|dor
+    E viva |Nosso Se|nhor
+    E os an|jos Sera|^fins | | \e
+  \endchorus
+  \beginchorus
+    Que com Deus |^não tem i|gual
+    Nos livra |de todo |mal
+    De tudo en|quanto é ru|^im | | \e
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative g'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 1*9/16
+      \repeat volta 2 {
+        g16 \pomark g4 e | g e c | g8. g'16 g4 e | g e c | g8. g'16 g4 g
+        | g g e4 | g2.~ | g2.~ | g8.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Vi -- va~o Se -- | nhor São Mi -- | guel;
+        Vi -- va~as fa -- | lan -- ges do | Céu;
+        E~os ar -- can -- | jos Que -- ru -- | bins. | _ | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Vi -- va~a Mãe | do Sal -- va -- | dor;
+        E vi -- va | Nos -- so Se -- | nhor;
+        E os an -- | jos Se -- ra -- | fins. | _ | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Que com Deus | não tem i -- | gual;
+        Nos li -- vra | de to -- do | mal;
+        De tu -- do~en -- | quan -- to~é ru -- | im. | _ | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s16~s2 | c2. | c2. | c2. | c2.
+        | c2. | g2. | g2. | g8.
+      }
+
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Viva the Lord Saint Michael
+    Viva the phalanxes of heaven
+    And the cherubim archangels
+    \nextverse
+    Viva the Mother of the Savior
+    And viva our Lord
+    And the seraphim angels
+    \nextverse
+    Because God has no equal
+    He delivers us from all evil
+    From everything that is bad
+  \end{translation}
+\endsong
+
