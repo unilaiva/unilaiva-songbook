@@ -389,8 +389,9 @@ the following string replacements ought to be done in the following order:
  5. " __" -> ""
  6. " _" -> ""
  7. "__ " -> ""
- 8. "\skip 1 " -> ""
- 9. "~" -> " "
+ 8. "|_" -> "|"
+ 9. "\skip 1 " -> ""
+10. "~" -> " "
 
 Be careful with the whitespaces!
 
