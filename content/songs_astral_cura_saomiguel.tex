@@ -1408,3 +1408,112 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Sete Cruzes de São Miguel}[by={Isabel Barsé}, key={Dm}, sks={Cm--Em}, tags={mazurca}]
+  \audio{https://www.nossairmandade.com/hymn/2266/SeteCruzesDeS\%C3\%A3oMiguel}
+  \meter{6}{4}
+  \mnbeginchorus\memorize
+    \lrep \[^\mn{A}]As sete |\[\mnc{D}Dm]cruzes de São \[^\mn{F}]Mi\[\bmc\mn{A}]guel \altchords{\id[1]{(Em)}|Em}
+    \[^\mn{G}]Estão a|\[\mnc{F}A7]qui \[^\mn{E}]pra \[^\mn{C#}]te \[^\mn{E}]liber\[\mnc{D}Dm]tar \rrep \altchords{|B7 Em}
+    \lrep \[^\mn{D}]São sete |\[Dm]cruzes, são sete \[\bm]cru\[^\mn{A}]zes \altchords{|Em}
+    São sete |\[\mnc{F}A7]cruzes \[^\mn{E}]pra \[^\mn{C#}]te \[^\mn{E}]liber\[\mnc{D}Dm]tar \rrep \altchords{|B7 Em}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    \lrep Todos os |^seres que me acom^panham
+    Vós |^queiram me respei^tar \rrep
+    \lrep Eu sou o |^chefe desta ^casa
+    Estou a |^qui para coman^dar \rrep
+  \endchorus
+  \beginchorus
+    \lrep Esta |^é a casa de ^Deus
+    Esta |^é a casa de ^Deus \rrep
+    \lrep Sou |^Luz, sou ^Luz
+    Estou a|^qui pra te liber^tar \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 6/4 \partial 4.
+      \repeat volta 2 {
+        \parenthesize a8 \posectionmark "A" a a | d4 d8 d d f  a4( a8)( << a8) \parenthesize g8 \genmark "(1.)" >> g( g) | f4 e8 cis e e  d4.
+      }
+      \repeat volta 2 {
+        \parenthesize d8 \sectionmark "B" d( d) | d4 d8( d) d( d)  d4 \parenthesize a8 a a a
+      } \alternative {
+        { | f'8( f) e cis e e  d4. }
+        { | f8( f) e cis e e  d4. \dacapo  \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        As se -- te | cru -- zes de São Mi -- guel; __ _
+        (Es) -- tão a -- | qui pra te li -- ber -- tar.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        São se -- te | cru -- zes, são se -- te cru -- zes;
+        São se -- te 
+      } \alternative {
+        { | cru -- zes pra te li -- ber -- tar. }
+        { | cru -- zes pra te li -- ber -- tar. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        To -- dos os | se -- res que me~a -- com -- pa -- nham; __ _
+        Vós __ _ | quei -- ram me res -- pei -- tar.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Eu sou o | che -- fe __ _ des -- ta ca -- sa;
+        Es -- tou a -- 
+      } \alternative {
+        { | qui __ _ pa -- ra co -- man -- dar. }
+        { | qui __ _ pa -- ra co -- man -- dar. }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        \skip 1 Es -- ta | é a ca -- sa de Deus; __ _
+        \skip 1 Es -- ta | é a ca -- sa de Deus.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \skip 1 Sou __ _ | Luz, __ _ _ sou __ _ Luz;
+        \skip 1 Es -- tou a --
+      } \alternative {
+        { | qui __ _ pra te li -- ber -- tar. }
+        { | qui __ _ pra te li -- ber -- tar. }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | d2.:m  d2.:m | a2.:7  d4.:m
+      }
+      \repeat volta 2 {
+       s4. | d2.:m  d2.:m
+      } \alternative {
+        { | a2.:7  d4.:m }
+        { | a2.:7  d4.:m }
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    These seven crosses of Saint Michael are here to set you free
+    They are 7 crosses, they nare 7 crosses, they are 7 crosses to set you free
+    \nextverse
+    All the beings who accompany me, you all want me to respect
+    I am the chief of this house, I am here to command
+    \nextverse
+    This is the house of Godd, this is the house of God
+    I am light, I am light, I am light to set you free
+  \end{translation}
+\endsong
+
