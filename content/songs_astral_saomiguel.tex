@@ -1561,3 +1561,125 @@
 \endsong
 
 
+\beginsong{A São Miguel que Domine}[by={Francisco Cavalcante de Lima}, tags={valsa}, ex={Mesa Branca}, key={Gm}, sks={Gm, (F\shrp{}m)--(Gm)}]
+  \audio{https://www.nossairmandade.com/hymn/2268/AS\%C3\%A3oMiguelQueDomine}
+  \newchords{chords_asaomiguelquedomine_a}\newchords{chords_asaomiguelquedomine_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_asaomiguelquedomine_a]
+    \[^\mn{D}]Eu |\[\mnc{G}Gm]peço \[^\mn{A}]o |\[^\mn{B&}]meu São \[^\mn{A}]Mi|\[\mnc{C}Cm]guel \altchords{\id[1]{(Em) \capo{3}}|Em | - |Am}
+    Que \[^\mn{B&}]do|\[^\mn{A}]mine \[^\mn{G}]o |\[\mnc{F#}D]mal \[^\mn{D}]que a|\[\mnc{E&}Cm]qui \[^\mn{D}]e\[^\mn{C}]xis|\[\mnc{D}D]tir |\[\up{1}D7] \e \altchords{| - |B |Am |B |\up{1}B7}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_asaomiguelquedomine_b]
+    \[^\mn{D}]A|\[\mnc{C}Cm]qui nós \[^\mn{D}]bus|\[^\mn{E&}]ca\[^\mn{D}]mos \[^\mn{C}]o |\[\mnc{G}Gm]bem \[^\mn{D}]e \[^\mn{B&}]a \altchords{|Am | - |Em}
+    |\[^\mn{G}]Fa\[^\mn{D}]zer \[^\mn{E&}]o |\[^\mn{D}]bem \[^\mn{C}]e \[^\mn{B&}]sem |\[\mnc{A}D7]o\[^\mn{B&}]lhar \[^\mn{A}]a |\[\mnc{G}Gm]quem |\[\up{1}G7] \e \altchords{| - | - |B7 |Em |\up{1}E7}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_asaomiguelquedomine_a]
+    O |^centro |do Mestre é |^livre
+    Na |linha di|^reita nós |^vamos se|^guir |^ \e
+    \endchorus\glueverses\beginchorus\replay[chords_asaomiguelquedomine_b]
+    Consa|^grando |este apo|^sento ze|lando
+    A |luz, que é o |^nosso ali|^men|^to
+  \endchorus
+  \beginchorus\replay[chords_asaomiguelquedomine_a]
+    Conser|^vando |a Santa |^Luz \altchords{\id[2]{(Am)}|Am | - |Dm}
+    Ela é |quem nós con|^duz va|^mos cami|^nhar |^ \e \altchords{| - |E |Dm |E |\up{1}E7}
+    \endchorus\glueverses\beginchorus\replay[chords_asaomiguelquedomine_b]
+    Todos |^seres que |devem res|^peito \altchords{|Dm | - |Am}
+    To|da natu|reza cons|^pira e|^fei|^to \altchords{| - | - |E7 |Am |\up{1}A7}
+  \endchorus
+  \beginchorus\replay[chords_asaomiguelquedomine_a]
+    Curru|^pipi|pipira|^guá o |Mestre
+    Cha|^mou va|^mos traba|^lhar |^ \e
+    \endchorus\glueverses\beginchorus\replay[chords_asaomiguelquedomine_b]
+    Agrade|^cemos a |força Di|^vina
+    Jun|to a São Mi|guel é |^quem nós do|^mi|^na
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \minor \time 3/4 \partial 1*5/8
+      \repeat volta 2 {
+        r8 \posectionmark "A" \parenthesize d4( d) | g( g) a | bes bes a | c( c) bes | a a g
+        | fis( d) d | es d c | d2.~ | d8 
+      }
+      \repeat volta 2 {
+        \parenthesize d8 \sectionmark "B" \parenthesize d4 d | c( c) d | es d c | g' d bes | g d' es
+        | d( c) bes | a bes a | g2.~ | g8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        \skip 1 Eu | pe -- ço o | meu São Mi -- | guel;
+        Que do -- | mi -- ne o | mal que a -- | qui e -- xis -- | tir. __ | _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        \skip 1 \skip 1 A -- | qui nós bus -- | ca -- mos o | bem e a;
+        | Fa -- zer o | bem e sem | o -- lhar a | quem. __ | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        \skip 1 O | cen -- _ tro | do Mes -- tre~é | li -- vre;
+        Na | li -- nha di -- | rei -- ta nós | va -- mos se -- | guir. __ | _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        \skip 1 Con -- sa -- | gran -- _ do | es -- te~a -- po -- | sen -- to ze -- | lan -- do;
+        A | luz, que~é o | nos -- so~a -- li -- | men -- | to.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Con -- ser -- | van -- _ do | a San -- ta | Luz;
+        E -- la~é | quem nós con -- | duz __ _ va -- | mos ca -- mi -- | nhar. __ | _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \skip 1 To -- dos | se -- res que | de -- vem res -- | pei -- to;
+        To -- | da na -- tu -- | re -- za cons -- | pi -- ra e -- | fei -- | to.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Cur -- ru -- | pi -- _ pi -- | pi -- pi -- ra -- | guá __ _ o | Mes -- tre;
+        Cha -- | mou __ _ va -- | mos tra -- ba -- | lhar. __ | _
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        A -- gra -- de -- | ce -- mos a | for -- ça Di -- | vi -- na;
+        Jun -- | to~a São Mi -- | guel __ _ é | quem nós do -- | mi -- | na.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2 s8 | g2.:m | g:m | c:m | c:m
+        | d | c:m | d | \mark\markup{\super{"1"}}\parenthesize d8:7
+      }
+      \repeat volta 2 {
+        s2 s8 | c2.:m | c2.:m | g:m | g:m
+        | g:m | d:7 | g:m | \mark\markup{\super{"1"}}\parenthesize g8:7
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I ask of my Saint Michael who dominates over the negativity that exists here
+    Here we seek the good and we do good work without regard to who it is
+    \nextverse
+    The center of the Master is free, in the direct line we are going to follow
+    Consecrating this space, caring for the light, which is our food
+    \nextverse
+    Conserving the Holy Light, it is what directs us, let's walk
+    All beings that can respect, all of nature conspires in this effect
+    \nextverse
+    Currupipipipiraguá the Master calls us to work
+    We give thanks to the divine strength who, together with Saint Michael, dominates
+  \end{translation}
+\endsong
