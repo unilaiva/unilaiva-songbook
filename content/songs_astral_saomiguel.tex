@@ -1862,3 +1862,143 @@
 \endsong
 
 
+\beginsong{O Anjo de Deus}[by={Padr. Alfredo}, tags={valsa}, key={Am}, sks={Am, (G\shrp{m})--(Cm)}]
+  \audio{https://www.nossairmandade.com/hymn/609/OAnjoDeDeus}
+  \newchords{chords_oanjodedeus_a}\newchords{chords_oanjodedeus_b}\newchords{chords_oanjodedeus_c}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_oanjodedeus_a]
+    \[^\mn{E}]O |\[\mnc{A}Am]anjo \[^\mn{B}]de |\[^\mn{C}]Deus nos \[^\mn{B}]pro|\[^\mn{A}]te|\[^\mn{E}]ge
+    Com |\[\mnc{D}Bm7&5]{seu san}\[^\mn{B}]to |\[\mnc{G#}E]manto \[^\mn{E}]a|\[\mnc{A}Am]zul \up{1}(| \e)
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_oanjodedeus_b]
+    \ind \[^\mn{A}]De |\[\mnc{D}Dm]leste a o|este, |\[^\mn{F}]de \[^\mn{D}]nor\[^\mn{F}]te a |\[\mnc{E}Am]sul
+    \ind |\[E7]Vi\[^\mn{F}]va a \[^\mn{E}]Es|\[^\mn{D}]tre\[^\mn{C}]la \[^\mn{B}]do a|\[\mnc{A}Am]zul
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_oanjodedeus_c]
+    \ind |\[\mnc{D}Dm]Que faz bri|lhar as Es|\[^\mn{F}]tre\[^\mn{D}]las \[^\mn{F}]do |\[\mnc{E}Am]Céu
+    \ind |\[E7]Do \[^\mn{F}]ar\[^\mn{E}]can|\[^\mn{D}]jo \[^\mn{C}]Ra\[^\mn{B}]fa|\[\mnc{A}Am]el \up{2}(| \e)
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_oanjodedeus_a]
+    Este |^globo |gira per|fei|to
+    Com di|^versas amos|^tragens de |^cor \up{1}(| \e)
+    \endchorus\glueverses\beginchorus\replay[chords_oanjodedeus_b]
+    \ind |^{É Deus} em |tudo, é o |fruto, é a |^flor
+    \ind |^Vida do |meu Cria|^dor
+    \endchorus\glueverses\beginchorus\replay[chords_oanjodedeus_c]
+    \ind |^Que faz bro|tar com |todo vi|^gor
+    \ind |^Vida do |Rei do a|^mor \up{2}(| \e)
+  \endchorus
+  \begin{translation}
+    The angel of God protects us with his holy blue mantle
+    From east to west, from north to south, viva the Blue Star
+    Which makes the stars of heaven shine of the Archangel Raphael
+    \nextverse
+    This globe turns perfectly, with diverse patterns of color
+    It's God in everything, it's the fruit, it's the flower; life of my creator
+    That causes budding with all vigor; life of the King of love
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 3/4 \partial 2
+      \repeat volta 2 {
+        \parenthesize e4 \sectionmark "A" e | a( a) b | c c b | a2. | e4( e) e
+        | d d b8( b) | gis4 gis e
+      } \alternative {
+        { | a2.~ | a4 }
+        { | a2 }
+      } \break
+      \repeat volta 2 {
+        \parenthesize a4 \sectionmark "B" | d d d | d( d) d | f d f | e2.
+        | e4 f e | d c b
+      } \alternative {
+        { | a2 }
+        { | a2. }
+      } \break
+      \repeat volta 2 {
+        | d4 \posectionmark "C" d d | d4.( d8) d4 | f d f | e2.
+        | e4 f e | d c b
+      } \alternative {
+        { | a2. }
+        { | a2.~ | a4 \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        \skip 1 O | an -- jo de | Deus nos pro -- | te -- | ge; __ _
+        Com | seu san -- to __ _ | man -- to a --
+      } \alternative {
+        { | zul. | _ }
+        { | zul. }
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        De | les -- te~a o -- | es -- _ te, | de nor -- te~a | sul;
+        | Vi -- va~a Es -- | tre -- la do~a --
+      } \alternative {
+        { | zul. }
+        { | zul. }
+      }
+      \set stanza = "1.C"
+      \repeat volta 2 {
+        | Que faz bri -- | lhar as Es -- | tre -- las do | Céu;
+        | Do ar -- can -- | jo Ra -- fa --
+      } \alternative {
+        { | el. }
+        { | el. | _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Es -- te | glo -- _ bo | gi -- ra per -- | fei -- | to;
+        Com di -- | ver -- sas a -- mos -- | tra -- gens de
+      } \alternative {
+        { | cor. | _ }
+        { | cor. }
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        \skip 1 | É Deus em | tu -- do,~é o | fru -- to,~é a | flor;
+        | Vi -- da do | meu Cri -- a --
+      } \alternative {
+        { | dor. }
+        { | dor. }
+      }
+      \set stanza = "2.C"
+      \repeat volta 2 {
+        | Que faz bro -- | tar __ _ com | to -- do vi -- | gor;
+        | Vi -- da do | Rei do a --
+      } \alternative {
+        { | mor. }
+        { | mor. | _ }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2 | a2.:m | a:m | a:m | a:m
+        | b:m7.5- | e 
+      } \alternative {
+        { | a:m | a4:m}
+        { | a2:m }
+      }
+      \repeat volta 2 {
+        s4 | d2.:m | d:m | d:m | a:m
+        | e:7 | e:7 
+      } \alternative {
+        { | a2:m }
+        { | a2.:m }
+      }
+      \repeat volta 2 {
+        | d2.:m | d:m | d:m | a:m
+        | e:7 | e:7
+      } \alternative {
+        { | a2.:m }
+        { | a2.:m | a4:m}
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
