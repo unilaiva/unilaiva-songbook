@@ -1765,3 +1765,100 @@
 \endsong
 
 
+\beginsong{A Estrela Azul}[by={Baixinha}, key={A}, sks={A, G--B}, tags={2x}]
+  \audio{https://www.nossairmandade.com/hymn/1158/AEstrelaAzul}
+  \meter{4}{4}
+  \transpose{2}
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Vem \[^\mn{B}]le\[^\mn{D}]van|\[\mnc{G}G]ta\[\bm]n|-do do fun\[\bmc\mn{F#}]do \[^\mn{E}]do |\[\mnc{D}D]mar \[\bm] | \e \altchords{\id[1]{(G)}|G | - |D | \e}
+    \[^\mn{B}]A Es\[\bmc\mn{E}]tre\[^\mn{D}]la A|\[\mnc{A}Am]zul \[\bm] \[^\mn{C}]em seu \meter{2}{4}|\[\mnc{B}D]trono \[^\mn{A}]divi\meter{4}{4}|\[\mnc{G}G]nal \[\bm] | \e \altchords{|Am \meter{2}{4}|D \meter{4}{4}|G | \e}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Lá vem, lá |^vem^ | para ^nos cu|^rar ^ | \e \altchords{|G | - |D | \e}
+    A Es^trela A|^zul ^ em seu \meter{2}{4}|^trono divi\meter{4}{4}|^nal ^ \up{1}(| \e) \altchords{|Am \meter{2}{4}|D \meter{4}{4}|G \up{1}(| \e)}
+  \endchorus
+  \mnbeginchorus\noteson
+    \ind \[\mn{G}]Ela \meter{2}{4}|\[\mnc{B}G]vem \[\mn{D}]cu\meter{4}{4}|\[\mnc{A}Am]rar \[\bm] \[\mn{C}]quem a\meter{2}{4}|\[\mn{B}]cre\[\mn{A}]di\meter{4}{4}|\[\mnc{G}G]tar\[\bm] \altchords{\meter{2}{4}|G \meter{4}{4}|Am \meter{2}{4}| - \meter{4}{4}|G}
+    \ind A Es\meter{2}{4}|\[\mn{B}]tre\[\mn{D}]la A\meter{4}{4}|\[\mnc{A}Am]zul \[\bm] \[\mn{C}]em seu \meter{2}{4}|\[\mnc{B}D]trono \[\mn{A}]divi\meter{4}{4}|\[\mnc{G}G]nal \[\bm] \up{2}(| \e) \altchords{\meter{2}{4}| - \meter{4}{4}|Am \meter{2}{4}|D \meter{4}{4}|G \up{2}(| \e)}
+  \mnendchorus
+  \begin{translation}
+    It comes rising from the depth of the sea
+    The Blue Star in its divine throne
+    \nextverse
+    It comes, it comes to cure us
+    The Blue Star in its divine throne
+    \nextverse
+    It comes to cure those who believe
+    The Blue Star in its divine throne
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \transpose g a \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 2.
+      \repeat volta 4 {
+        \mark \markup {"4x"} \bar ".|:"
+        g4 \posectionmark "1., 2." b d | g1~ | g8( g) g g fis4 e | d1~ | d4 b8 b8 e4 d
+        | a2. c8 c \time 2/4 | b b a a \time 4/4
+      } \alternative {
+        { | g1~ | g4 }
+        { | g2. }
+      }
+      \repeat volta 2 {
+        g8 \sectionmark "3." g \time 2/4 | b4 d \time 4/4 | a2. c8 c \time 2/4 | b4 a \time 4/4 | g2.
+        g8 g \time 2/4 | b4 d \time 4/4 | a2. c8 c \time 2/4 | b8 b a a \time 4/4
+      } \alternative {
+        { | g2. }
+        { | g1~ | g4 \dacapo \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Vem le -- van -- | tan -- | _ do do fun -- do do | mar; __ | _
+        A Es -- tre -- la~A -- | zul em seu | tro -- no di -- vi --
+      } \alternative {
+        { | nal. __ | _ }
+        { | nal. }
+      }
+      \set stanza = "3."
+      \repeat volta 2 {
+        E -- la | vem cu -- | rar quem a -- | cre -- di -- | tar;
+        A Es -- | tre -- la~A -- | zul em seu | tro -- no di -- vi --
+      } \alternative {
+        { | nal. }
+        { | nal. __ | _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Lá vem, lá | vem __ | _ _ pa -- ra nos cu -- | rar; __ | _
+        A Es -- tre -- la~A -- | zul em seu | tro -- no di -- vi --
+      } \alternative {
+        { | nal. __ | _ }
+        { | nal. }
+      }
+    }
+    theChords = \transpose g a \chordmode {
+      \repeat volta 4 {
+        s2. | g1 | g | d | d
+        | a:m | d2
+      } \alternative {
+        { | g1 | g4 }
+        { | g2. }
+      }
+      \repeat volta 2 {
+        s4 | g2 | a1:m | a2:m | g1 | g2 | a1:m | d2
+      } \alternative {
+        { | g2. }
+        { | g1 | g4 }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
