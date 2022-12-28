@@ -1,0 +1,139 @@
+% Santo Daime: closing for São Miguel & Mesa Branca works
+% =======================================================
+%
+
+
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+
+\beginsong{Em Pé Firme na Floresta}[by={Padr. Alfredo}, tags={perfilado, 3x, mazurca}, key={Am}, sks={Am, G\shrp{}m--(Am)}]
+  \audio{https://www.nossairmandade.com/hymn/551/EmP\%C3\%A9FirmeNaFloresta}
+  \newchords{chords_empefirme_a}\newchords{chords_empefirme_b}
+  \meter{6}{4}
+  \mnbeginchorus\memorize[chords_empefirme_a]
+    \[^\mn{E}]Em pé |\[\mnc{A}Am]fir\[^\mn{E}]me \[^\mn{C}]na \[^\mn{B}]Flo\[\bmc\mn{A}]res\[^\mn{E}]ta
+    \[^\mn{C}]Re\[^\mn{A}]ce|\[\mnc{C}E7]ben\[^\mn{B}]do a \[^\mn{A}]san\[^\mn{G#}]ta \[\mnc{A}Am]Luz
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_empefirme_b]
+    \[^\mn{A}]Sou \[^\mn{B}]hu|\[\mnc{C}Am]mil\[^\mn{E}]de, \[^\mn{D}]sou \[^\mn{C}]hu\[Fmaj7]mil\[^\mn{B}]de
+    \[^\mn{G#}]Sou \[^\mn{B}]hu|\[\mnc{E}E7]mil\[^\mn{D}]de \[^\mn{C}]de \[^\mn{B}]Je\[\mnc{A}Am]sus
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_empefirme_a]
+    O im|^pério destas ^matas
+    Não e|^xiste força mai^or
+    \endchorus\glueverses\beginchorus\replay[chords_empefirme_b]
+    Agora a|^qui peço fir^meza
+    As Es|^trelas, a Lua e ao ^Sol
+  \endchorus
+  \beginchorus\replay[chords_empefirme_a]
+    To|^quei a minha cor^neta
+    Já é a |última cha^mada
+    \endchorus\glueverses\beginchorus\replay[chords_empefirme_b]
+    Se per|^filem coman^dantes
+    Para |^vencer a jor^nada
+  \endchorus
+  \beginchorus\replay[chords_empefirme_a]
+    Esta |^força verda^deira
+    É o |^reinado do ^Sol
+    \endchorus\glueverses\beginchorus\replay[chords_empefirme_b]
+    Em |^cima vivem os ^astros
+    E em|^baixo vivem os ^paus
+  \endchorus
+  \beginchorus\replay[chords_empefirme_a]
+    Oh! Meu |^Pai onipo^tente
+    Que me dá |^força e me se^gura
+    \endchorus\glueverses\beginchorus\replay[chords_empefirme_b]
+    Para |^eu ser Vosso ^filho
+    E me li|^vrar das amar^guras
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 6/4 \partial 4.
+      \repeat volta 2 {
+        r8 \posectionmark "A" e8( e)
+        | a4 e8( e) c'8 b  a4 e8( e) c8 a
+        | c4 b8( b) a gis  a4( a8)
+      }
+      \repeat volta 2 {
+        a8 \sectionmark "B" a( b)
+        | c4 e d8 c  c4 b8( b) gis b
+        | e8( e) d( d) c b  a4( a8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+        Em pé | fir -- me __ _ na Flo -- res -- ta; __ _
+        Re -- ce -- | ben -- do a san -- ta Luz. __ _
+      \set stanza = "1.B"
+        \skip 1 Sou hu -- | mil -- de, sou hu -- mil -- de; __ _
+        Sou hu -- | mil -- _ de _ de Je -- sus. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+        O im -- | pé -- rio __ _ des -- tas ma -- tas; __ _
+        Não e -- | xis -- te for -- ça mai -- or. __ _
+      \set stanza = "2.B"
+        A -- go -- ra~a -- | qui pe -- ço fir -- me -- za; __ _
+        As Es -- | tre -- las, a Lu -- a~e ao Sol. __ _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+        To -- _ | quei a mi -- nha cor -- ne -- ta; __ _
+        Já é~a | úl -- ti -- _ ma cha -- ma -- da.
+      \set stanza = "3.B"
+        \skip 1 Se per -- | fi -- lem co -- man -- dan -- tes; __ _
+        Pa -- ra | ven -- _ cer __ _ a jor -- na -- da.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+        Es -- ta | for -- ça __ _ ver -- da -- dei -- ra; __ _
+        É o | rei -- na -- _ do do Sol. __ _
+      \set stanza = "4.B"
+        \skip 1 Em __ _ | ci -- ma vi -- vem~os as -- tros; __ _
+        E em -- | bai -- _ xo __ _ vi -- vem~os paus. __ _
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+        Oh! Meu | Pai o -- _ ni -- po -- ten -- te;
+        Que me dá | for -- ça e me se -- gu -- ra.
+      \set stanza = "5.B"
+        \skip 1 Pa -- ra | eu ser Vos -- so fi -- lho
+        E me li -- | vrar __ _ das __ _ a -- mar -- gu -- ras.
+      }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a2.:m a:m | e:7 a4.:m
+      }
+      \repeat volta 2 {
+        s4. | a2.:m f:maj7 | e:7 a4.:m
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Standing firm in the forest, receiving the Holy Light
+    I am huble, I am huble, I am humble of Jesus
+    \nextverse
+    The Empire of these forests; no force is greater than this
+    Now here I ask for firmness; from the stars, the Moon and the Sun
+    \nextverse
+    I sounded my trumpt; it's already th last call
+    Stand up straight, commanders, in order to overcome the journey
+    \nextverse
+    This true force is the kingdom of the Sun
+    In the heights dwell the heavenly bodies, and down here dwell the logs
+    \nextverse
+    Oh! My Omnipotent Father who gives me strength and secures me
+    For me to be Your son, and to deliver me from bitterness
+  \end{translation}
+\endsong
