@@ -11,7 +11,105 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{songnum}{0}
+
+
+\beginsong{Sol, Lua, Estrela}[by={Mestre Irineu Serra}, key={C}, sks={C, (B)--(C)}, tags={perfilado, 3x}]
+  \audio{https://www.nossairmandade.com/hymn/219/Sol,Lua,Estrela}
+  \mnbeginchorus\memorize
+    |\[\mnc{E}C]Sol, \[\bm]Lua, \[^\mn{D}]Es|\[^\mn{E}]tre\[\bmc\mn{C}]la \altchords{\id[1]{(A) \capo{3}}|A | \e}
+    \[^\mn{E}]A |\[\mnc{G}G]Ter\[^\mn{A}]ra o \[\bmc\mn{G}]Ven\[^\mn{A}]to e o |\[\mncii{G}{F}C]Mar\[\bmc\mn{E}] \altchords{|E |A}
+    \[^\mn{G}]É a |\[\mnc{C}F]Luz \[^\mn{B}]do \[\bmc\mn{A}]Fir\[^\mn{G}]ma|\[\mnc{E}C]men\[^\mn{G}]to \[\bm] \altchords{|D |A}
+    É \[^\mn{E}]só |\[\mnc{G}G]quem \[^\mn{C}]eu \[\bmc\mn{E}]de\[^\mn{G}]vo a|\[\mnc{C}C]mar \[\bm] \altchords{|E |A}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    É só |^quem eu ^devo a|mar ^
+    Trago |^sempre ^na lem|^bran^ça
+    É |^Deus que es^tá no |^Céu ^
+    Aonde es|^tá minha ^espe|^ran^ça
+  \endchorus
+  \beginchorus
+    A |^Virgem ^Mãe man|dou ^
+    Para |^mim es^ta li|^ção ^
+    Me lem|^brar de ^Jesus |^Cristo^
+    E esque|^cer a ^ilu|^são ^
+  \endchorus
+  \beginchorus
+    Tri|^lhar es^te ca|mi^nho
+    Toda |^hora e ^todo |^di^a
+    O Di|^vino es^tá no |^Céu ^
+    Jesus |^filho ^de Ma|^ri^a
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        \parenthesize e8 \pomark \parenthesize e | e4( e4) e4 \once\slurDown << \parenthesize \single\altcol e8 \altmark "(1.)" d8( >> d) | e2( c4) e8( e) | g4 a g a | g4.( f8 e4)
+        g8( g) | c4 b a g | e( g4.) \parenthesize g8 \genmark "(2., 3.)"g8 e | g,4 c8( c) e4 g | c,2( c4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        \skip 1 \skip 1 | Sol, __ _ Lu -- a, Es -- | tre -- la;
+        A __ _ | Ter -- ra~o Ven -- to~e~o | Mar; __ _ _
+        É a | Luz do Fir -- ma -- | men -- to;
+        \skip 1 É só | quem eu __ _ de -- vo~a | mar. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        É só | quem eu de -- vo a -- | mar; __ _
+        Tra -- go | sem -- pre na lem -- | bran -- _ ça;
+        É __ _ | Deus que~es -- tá no | Céu; __ _
+        A -- on -- de~es -- | tá mi -- nha es -- pe -- | ran -- ça.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        A __ _ | Vir -- gem Mãe man -- _ | dou; __ _
+        Pa -- ra | mim es -- ta li -- | ção; __ _ _
+        Me lem -- | brar de Je -- sus | Cris -- to;
+        E es -- que -- | cer a __ _ i -- lu -- | são. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Tri -- _ | lhar es -- te ca -- _ | mi -- nho;
+        To -- da | ho -- ra~e to -- do | di -- _ a;
+        O Di -- | vi -- no~es -- tá no | Céu; __ _
+        \skip 1 Je -- sus | fi -- lho __ _ de Ma -- | ri -- a.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c1 | c | g | c | f | c | g | c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Sun, Moon, Star, the Earth, the Wind and the Sea
+    It's the light of the firmament, it's only this that I must love
+    \nextverse
+    It's only this that I must love, I always carry it in my memory
+    It's God who is in heaven where my hope is
+    \nextverse
+    The Virgin Mother sent this lesson for me
+    To remember Jesus Christ, and to forget the illusion
+    \nextverse
+    To tread this path, every hour and every day
+    The Divine is in heaven, Jesus, Son of Mary
+  \end{translation}
+\endsong
+
 
 \beginsong{Com o Poder do Céu}[by={Padr. Alfredo}, key={Am}, sks={Am, G\shrp{}m--Bm}, tags={valsa, 3x, perfilado}]
   \newchords{chords_comopoderdoceu_a}\newchords{chords_comopoderdoceu_b}
