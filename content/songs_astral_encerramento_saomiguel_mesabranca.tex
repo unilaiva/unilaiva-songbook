@@ -137,3 +137,93 @@
     For me to be Your son, and to deliver me from bitterness
   \end{translation}
 \endsong
+
+
+\beginsong{Devo Amar Aquela Luz}[by={Mestre Irineu Serra}, tags={perfilado, 2x}, key={Am}, sks={Am, (G\shrp{}m)--(Cm)}]
+  \audio{https://www.nossairmandade.com/hymn/220/DevoAmarAquelaLuz}
+  \meter{2}{4}
+  \mnbeginverse
+    \[\mn{A}]De\[\mn{B}]vo a|\[\mnc{C}Am]mar |\[\mnc{B}E7]a\[\mn{A}]que\[\mn{G#}]la |\[\mnc{A}Am]luz | \e
+    \[\mn{C}]O \[\mn{E}]Di|\[\mn{A}]vi|\[\mnc{G}A7]no a\[\mn{E}]on\[\mn{C}]de es|\[\mnc{D}Dm]tá | \e
+    Pa\[\mn{F}]ra |\[\mn{A}]ser |\[\mn{G}]um \[\mn{F}]fi\[\mn{E}]lho |\[\mn{D}]seu
+    \[\mn{C}]No |\[Am]cora|\[\mnc{B}E7]ção \[\mn{D}]eu |\[\mn{B}]de\[\mn{C}]vo a|\[\mnc{A}Am]mar
+    \[\mn{E}]No |\[\mn{A}]co\[\mn{B}]ra|\[\mnc{C}C]ção \[\mn{D}]eu |\[\mnc{E}E7]de\[\mn{F}]vo a|\[\mn{E}]mar \[\mn{C}]a |\[\mnc{A}Am]luz | \e
+  \mnendverse
+  \mnbeginverse\memorize
+    \ind \[^\mn{A}]A \[^\mn{C}]Vir\[^\mn{E}]gem |\[\mnc{A}Am]Mãe |\[\mnc{G}A7]foi \[^\mn{E}]quem \[^\mn{C}]me |\[\mnc{D}Dm]deu | \e
+    \ind Para en\[^\mn{F}]si|\[^\mn{A}]nar |\[^\mn{G}]os \[^\mn{F}]meus \[^\mn{E}]ir|\[^\mn{D}]mãos
+    \ind |\[\mnc{C}Am]Para |\[\mnc{B}E7]ser \[^\mn{D}]um |\[^\mn{B}]fi\[^\mn{C}]lho |\[\mnc{A}Am]seu
+    \ind |\[^\mn{A}]Pa\[^\mn{B}]ra |\[\mnc{C}C]ser \[^\mn{D}]um |\[\mnc{E}E7]fi\[^\mn{F}]lho |\[^\mn{E}]seu \[^\mn{C}]de a|\[\mnc{A}Am]mor | \e
+  \mnendverse
+  \notesoff
+  \beginverse
+    \ind No cora|^ção |^este pri|^mor | \e
+    \ind Conhe|cer |esta ver|dade
+    \ind |^Deus do |^Céu foi |quem man|^dou
+    \ind |Deus do |^Céu foi |^quem man|dou a |^luz | \e
+  \endverse
+  \begin{translation}
+    I must love this light, the Divine wherever it is, to be a son of Yours
+    In the heart I must love, in the heart I must love the light
+    \nextverse
+    The Virgin Mother who gave me to teach my brothers and sisters
+    To be a son of Yours, to be a son of Yours of love
+    \nextverse
+    In the heart this splendor, to know this truth
+    God in Heaven is the one who sent, God in Heaven is the one who sent the light
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 2/4 \partial 4.
+      r8 \posectionmark "1." a8 b
+      | c2 | b4 a8 gis8 | a2~ | a4 c8 e | a2 | g4 e8 c8
+      | d2~ | d4 d8 f8 | a2 | g4 f8 e | d4. c8 | c4 c | b d
+      | b c | a4. e8 a4 b | c d | e f | e4. c8 | a2~ | a8
+      \repeat volta 2 {
+        a8 \sectionmark "2., 3." c e
+        | a2 | g4 e8 c | d2~ | d8( \parenthesize d) d f | a2
+        | g4 f8 e | d4.( d8) | c4 c | b d | b c | a2
+        | a4 b | c d | e f | e4. c8 | a2~ | a8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      De -- vo~a -- | mar | a -- que -- la | luz; | _
+      O Di -- | vi -- | no~a -- on -- de~es -- | tá; | _
+      Pa -- ra | ser | um fi -- lho | seu;
+      No | co -- ra -- | ção eu | de -- vo~a -- | mar;
+      No | co -- ra -- | ção eu | de -- vo~a -- | mar a | luz. | _
+      <<
+        {
+          \set stanza = "2."
+          A Vir -- gem | Mãe | foi quem me | deu; | _
+          Para en -- si -- | nar | os meus ir -- | mãos; __ _
+          | Pa -- ra | ser um | fi -- lho | seu;
+          | Pa -- ra | ser um | fi -- lho | seu de~a -- | mor. | _
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "3."
+          No co -- ra -- | ção | es -- te pri -- | mor; | _ _
+          Co -- nhe -- | cer | es -- ta ver -- | da -- de;
+          | Deus do | Céu foi | quem man -- | dou;
+          | Deus do | Céu foi | quem man -- | dou a | luz. | _
+        }
+      >>
+    }
+    theChords = \chordmode {
+      s4. | a2:m | e:7 | a:m | a:m | a:m | a:7
+      | d:m | d:m | d:m | d:m | d:m | a:m | e:7
+      | e:7 | a:m | a:m | c | e:7 | e:7 | a:m | a8:m
+      \repeat volta 2 {
+        s4. | a2:m | a:7 | d:m | d:m | d:m
+        | d:m | d:m | a:m | e:7 | e:7 | a:m
+        | a:m | c | e:7 | e:7 | a:m | a8:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
