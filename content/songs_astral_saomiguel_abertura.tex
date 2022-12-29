@@ -1,0 +1,501 @@
+% Santo Daime: Cura de São Miguel, Abertura dos portões celestiais
+% ================================================================
+%
+
+{ % Put everything in this file in a block to not bleed settings
+
+  % use Roman numerals for song (prayer) numbering:
+  \renewcommand{\thesongnum}{\Roman{songnum}}
+
+  % Use this to specify a translation title within a verse, eg
+  % \translationtitle{EN}{Greed}
+  \newcommand{\translationtitle}[2]{
+    \vspace{3ex}\textbf{[#1]} \textit{#2}\vspace{1.618034ex}
+  }
+  % Use this to create a vertical space between "paragraphs"
+  % within verses:
+  \newcommand{\parspace}{\vspace{1ex}}
+
+
+\setcounter{songnum}{1}
+\scleardpage
+\beginsong{Sol, Lua, Estrela}[by={Mestre Irineu Serra}, key={C}, sks={C, (B)--(C)}, tags={perfilado, 3x}]
+  \audio{https://www.nossairmandade.com/hymn/219/Sol,Lua,Estrela}
+  \mnbeginchorus\memorize
+    |\[\mnc{E}C]Sol, \[\bm]Lua, \[^\mn{D}]Es|\[^\mn{E}]tre\[\bmc\mn{C}]la \altchords{\id[1]{(A) \capo{3}}|A | \e}
+    \[^\mn{E}]A |\[\mnc{G}G]Ter\[^\mn{A}]ra o \[\bmc\mn{G}]Ven\[^\mn{A}]to e o |\[\mncii{G}{F}C]Mar\[\bmc\mn{E}] \altchords{|E |A}
+    \[^\mn{G}]É a |\[\mnc{C}F]Luz \[^\mn{B}]do \[\bmc\mn{A}]Fir\[^\mn{G}]ma|\[\mnc{E}C]men\[^\mn{G}]to \[\bm] \altchords{|D |A}
+    É \[^\mn{E}]só |\[\mnc{G}G]quem \[^\mn{C}]eu \[\bmc\mn{E}]de\[^\mn{G}]vo a|\[\mnc{C}C]mar \[\bm] \altchords{|E |A}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    É só |^quem eu ^devo a|mar ^
+    Trago |^sempre ^na lem|^bran^ça
+    É |^Deus que es^tá no |^Céu ^
+    Aonde es|^tá minha ^espe|^ran^ça
+  \endchorus
+  \beginchorus
+    A |^Virgem ^Mãe man|dou ^
+    Para |^mim es^ta li|^ção ^
+    Me lem|^brar de ^Jesus |^Cristo^
+    E esque|^cer a ^ilu|^são ^
+  \endchorus
+  \beginchorus
+    Tri|^lhar es^te ca|mi^nho
+    Toda |^hora e ^todo |^di^a
+    O Di|^vino es^tá no |^Céu ^
+    Jesus |^filho ^de Ma|^ri^a
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        \parenthesize e8 \pomark \parenthesize e | e4( e4) e4 \once\slurDown << \parenthesize \single\altcol e8 \altmark "(1.)" d8( >> d) | e2( c4) e8( e) | g4 a g a | g4.( f8 e4)
+        g8( g) | c4 b a g | e( g4.) \parenthesize g8 \genmark "(2., 3.)"g8 e | g,4 c8( c) e4 g | c,2( c4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        \skip 1 \skip 1 | Sol, __ _ Lu -- a, Es -- | tre -- la;
+        A __ _ | Ter -- ra~o Ven -- to~e~o | Mar; __ _ _
+        É a | Luz do Fir -- ma -- | men -- to;
+        \skip 1 É só | quem eu __ _ de -- vo~a | mar. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        É só | quem eu de -- vo a -- | mar; __ _
+        Tra -- go | sem -- pre na lem -- | bran -- _ ça;
+        É __ _ | Deus que~es -- tá no | Céu; __ _
+        A -- on -- de~es -- | tá mi -- nha es -- pe -- | ran -- ça.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        A __ _ | Vir -- gem Mãe man -- _ | dou; __ _
+        Pa -- ra | mim es -- ta li -- | ção; __ _ _
+        Me lem -- | brar de Je -- sus | Cris -- to;
+        E es -- que -- | cer a __ _ i -- lu -- | são. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Tri -- _ | lhar es -- te ca -- _ | mi -- nho;
+        To -- da | ho -- ra~e to -- do | di -- _ a;
+        O Di -- | vi -- no~es -- tá no | Céu; __ _
+        \skip 1 Je -- sus | fi -- lho __ _ de Ma -- | ri -- a.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c1 | c | g | c | f | c | g | c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Sun, Moon, Star, the Earth, the Wind and the Sea
+    It's the light of the firmament, it's only this that I must love
+    \nextverse
+    It's only this that I must love, I always carry it in my memory
+    It's God who is in heaven where my hope is
+    \nextverse
+    The Virgin Mother sent this lesson for me
+    To remember Jesus Christ, and to forget the illusion
+    \nextverse
+    To tread this path, every hour and every day
+    The Divine is in heaven, Jesus, Son of Mary
+  \end{translation}
+\endsong
+
+
+\beginsong{Prece para o Começo da Reunião}[by={Allan Kardec}]
+  \chordsoff
+  \textnote{Antes que esta oração seja recitada o Consagração do Aposento}
+  \beginverse
+    Ao Senhor Deus Todo-poderoso pedimos que envie bons
+    espíritos para nos assistirem, que afaste os que
+    puderem induzir-nos ao erro, e que nos dê a luz de
+    que precisamos para distinguir a verdade da impostura.
+    \parspace
+    Afastai de nós também, Senhor, os espíritos malévolos,
+    encarnados ou descarnados, que tentem lançar a
+    desunião entre nós e, bem assim, desviar-nos da
+    caridade e do amor do próximo. Se alguns procurarem
+    introduzir-se aqui, fazei Senhor, que não achem acesso
+    em nossos corações.
+    \parspace
+    Bons espíritos que vos dignais vir instruir-nos, tornai-
+    nos dóceis aos vossos conselhos, isentai-nos de qualquer
+    pensamento de egoísmo, de orgulho, de inveja e de ciúme;
+    inspirai-nos indulgência e benevolência para com os
+    nossos semelhantes, presentes ou ausentes, amigos ou
+    inimigos; fazei, enfim, que pelos sentimentos que nos
+    animam, reconheçamos a vossa salutar influência.
+    \parspace
+    Dai aos médiuns que encarregardes de nos transmitir os
+    vossos ensinamentos, consciência da santidade do mandato
+    que lhes é confiado e da gravidade do ato que vão
+    desempenhar, a fim de que o pratiquem com o fervor e o
+    recolhimento necessários.
+    \parspace
+    Se entre nós se encontrarem pessoas dominadas por
+    sentimentos que não sejam do bem, abri-lhes os olhos à
+    luz e perdoai-lhes como lhe perdoamos, se por ventura
+    trazem malévolas intenções.
+    \parspace
+    Pedimos especialmente a nosso guia espiritual, São João
+    Batista, que nos assista e por nós vele.
+  \endverse
+  \brk
+  \beginverse
+    \translationtitle{EN}{Prayer for the Beginning of the Meeting}
+    We implore You, oh God, the All Powerful, to send us
+    the good spirits to help us and keep away any spirits
+    that may lead us into error. Give us the necessary light
+    to distinguish truth from falsehood.
+    \parspace
+    Keep away wicked spirits, whether incarnate or
+    discarnate, that might try to cause dissension among us
+    and turn us away from charity and the love of our
+    neighbors. If any such spirits try to disturb our
+    meeting, don't let them have access to our hearts.
+    \parspace
+    Good spirits, who see fit to come and teach us, make us
+    yielding to your direction. Turn us away from all
+    selfish, proud, jealous, and envious thoughts. Inspire
+    in us tolerance and goodwill toward our fellow human
+    beings, present or absent, friend or enemy. Finally
+    help us to acknowledge your uplifting presence in the
+    feelings that hearten our souls.
+    \parspace
+    God, give the mediums who have been charged with the
+    responsibility of transmitting higher teachings an
+    awareness of their high commission. Give them a sense
+    of the seriousness of their task so that they can
+    undertake it with the necessary fervor and
+    introspection.
+    \parspace
+    If, at our meeting, there are individuals motivated by
+    feelings other than goodwill, open their eyes to the
+    light and forgive them --- as we forgive them --- for
+    any malevolent disposition they may display
+    \parspace
+    We ask especially that the spirit of Saint John the
+    Baptist, our spiritual guide, help and watch over us.
+  \endverse
+\endsong
+
+\scleardpage
+\beginsong{Prece para os Médiuns}[by={Allan Kardec}]
+  \chordsoff
+  \beginverse
+    Deus Onipotente, permiti que os bons espíritos me
+    assistam na comunicação que solicito. Preservai-me da
+    presunção de me acreditar ao abrigo dos maus espíritos;
+    do orgulho que poderia induzir-me ao erro acerca do
+    valor que obtenho; de todo sentimento contrário
+    caridade para com os outros médiuns.
+    \parspace
+    Se for lavado ao erro, inspirai a alguém o pensamento
+    de advertir-me, e dai-me hulmildade para receber, chei
+    de reconhecimento, a crítica que me façam, para tomar
+    por dados a mim mesmo, e não aos outros, os conselhos
+    que os bons espíritos hajam por bem ditar-me.
+    \parspace
+    Se me vir tentado a abusar, seja no que for, ou me
+    envaidecer da faculdade que vos aprouve conceder-me,
+    eu vos peço que ma retireis antes que consistais se
+    afaste ela do seu fim providencial, que é o bem de
+    todos e o meu próprio adiantamento moral.
+  \endverse
+  \brk
+  \beginverse
+    \translationtitle{EN}{Prayer for the Mediums}
+    Almighty God, let the good spirits come and help me
+    with the requested communication. Keep me from
+    presuming that I am immune to the influence of wrong-
+    doing spirits; to pride, which can lead me to
+    misinterpret the value of what I receiveM and to any
+    feelings of uncharitableness toward other mediums.
+    \parspace
+    If I make mistakes, inspire someone to alert me to
+    this fact, and give me the humility to accept the
+    deserved criticism. May I also realize that the
+    advice the good spirits give through me is not only
+    directed to others but also me.
+    \parspace
+    If I am tempted in any way to abuse, in any form,
+    the gift bestowed on me by Your grace, or if I become
+    proud of it, I ask that You take it back rather than
+    let it stray from its providential objective, which
+    is the good of all and my own moral advancement.
+  \endverse
+\endsong
+
+
+\scleardpage
+\beginsong{Com o Poder do Céu}[by={Padr. Alfredo}, key={Am}, sks={Am, G\shrp{}m--Bm}, tags={valsa, 3x, perfilado}]
+  \newchords{chords_comopoderdoceu_a}\newchords{chords_comopoderdoceu_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_comopoderdoceu_a]
+    |\[\mnc{E}Am]Com o |\[^\mn{C}]po\[^\mn{A}]der \[^\mn{C}]do |\[^\mn{E}]Céu, | \[^\mn{A}]da |\[\mnc{E}A]Ter\[^\mn{C#}]ra \[^\mn{A}]e |\[\mnc{E}A7]tam\[^\mn{C#}]bém \[^\mn{A}]do |\[\mnc{D}Dm]Mar | \e
+    \lrep \[^\mn{D}]Or|\[Dm]deno |a \[^\mn{C}]São \[^\mn{B}]Mi|\[\mnc{A}Am]guel, | \[^\mn{E}]a |\[\mnc{B}E7]for\[^\mn{G#}]ça |\[^\mn{C}]Deus é \[^\mn{B}]quem |\[\mnc{A}Am]dá | \e \rrep
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_comopoderdoceu_b]
+    \ind \[^\mn{A}]A |\[A]força |\[A7]Deus é quem |\[\mnc{D}Dm]dá, | \[^\mn{F}]pa\[^\mn{G}]ra |\[\mnc{A}F]quem tem |\[\mnc{G}G]conhe\[^\mn{A}]ci|\[\mnc{E}Am]men|to
+    \ind Re|\[\mnc{G}C]conhe|\[\mnc{F}Dm]cendo os \[^\mn{E}]pri|\[\mnc{B}E]mo|res, \[^\mn{E}]e |\[\mnc{C}Am]não \[^\mn{A}]tirar |\[\mnc{C}E7]do \[^\mn{B}]pen\[^\mn{C}]sa|\[\mnc{A}Am]men|to
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_comopoderdoceu_a]
+    Só |^Deus, só |Deus, só |Deus, | é |^quem pode |^nos segu|^rar | \e
+    \lrep Para |^nós ven|cer a ba|^ta|lha, para a|^diante |se alcan|^çar | \e \rrep
+  \endchorus\glueverses
+  \beginchorus\replay[chords_comopoderdoceu_b]
+    \ind Para a|^diante |^se alcan|^çar, | o que |^custa gran|^de sofri|^men|to
+    \ind Que |^é a|^mar com fir|^me|za, a |^Deus Pai |^do firma|^men|to
+  \endchorus
+  \beginchorus\replay[chords_comopoderdoceu_a]
+    O |^Deus |do firma|men|to, |^é o |^Sol e a |^Lu|a
+    \lrep No firma|^mento es|tá o car|^rei|ro, e o Cru|^zeiro, ca|minhada |^su|a \rrep
+  \endchorus\glueverses
+  \beginchorus\replay[chords_comopoderdoceu_b]
+    \ind A |^conste|^lação che|^gou, | bem jun|^tinho da |^Virgem Ma|^ri|a
+    \ind \noteson\[\mnlow{G}]No \[\mnlow{G}]Cru\notesoff{}|^zeiro es|^{tá o} Ro|^sá|rio, dos pe|^didos |^em ago|^ni|a
+  \endchorus
+  \beginchorus\replay[chords_comopoderdoceu_a]
+    A |^força quem |tem é o |Rei, | Jesus |^Cristo, o |^Mestre de |^sem|pre
+    \lrep Tudo |^no cora|ção de Ma|^ri|a, na |^Terra e em to|do firma|^men|to \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-11
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 3/4 \partial 2
+      \repeat volta 2 {
+        r4 \parenthesize a4 \posectionmark "(1, 3, 5, 7).A" | e'4( e4)( e4) | c( a) c | e2.( | e4)( e4) \parenthesize a4
+        | e4 \parenthesize cis a' | e cis a | d2.( | d4)
+          \altcol\grace d8 \altmark "5." \parenthesize d4 \sectionmark "B:i" d4 | d4( d4) d4 | d c b | a2.( | a4) \parenthesize e'4
+          e4 | b8( b8)( b4) gis4 | c c b | a2.( | a4)
+          \altcol\grace d8 \altmark "5." \parenthesize d4 \sectionmark "B:ii" d4 | d4( d4) d4 | d c b | a2.( | a4) \parenthesize e'4
+          e4 | b8( b8)( b4) gis4 | c c b | a2.( | a4)
+        }
+      \repeat volta 2 {
+        \parenthesize a4 \sectionmark "2., 4., 6." a4 | a2 a4 | a a a | d2.~ | d4 f g | a4( a4) a4 | g g a | e2. | \once\slurDown e4( << e4) \single\altcol g4 \altmark "6." >> << e4 \single\altcol g4 >>
+        | g4( g4) g4 | f f e | b2. | b4( b4) e4 | c( a) a | c b c | a2. | a4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \skip 1 | Com __ _ o | po -- der do | Céu, __ | _ _
+      da | Ter -- ra e | tam -- bém do | Mar. __ | _
+        \set stanza = "1.B"
+        \skip 1 Or -- | de -- _ no | a São Mi -- | guel, __ | _
+        \skip 1 a | for -- _ _ ça | Deus é quem | dá. __ | _
+        \skip 1 Or -- | de -- _ no | a São Mi -- | guel, __ | _
+        \skip 1 a | for -- _ _ ça | Deus é quem | dá. __ | _
+      \set stanza = "2."
+      \skip 1 A | for -- ça | Deus é quem | dá, __ | _
+      pa -- ra | quem __ _ tem | co -- nhe -- ci -- | men -- | to; __ _
+      Re -- | co -- _ nhe -- | cen -- do~os pri -- | mo -- | res, __ _
+      e | não ti -- rar | do pen -- sa -- | men -- | to.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "3.A"
+      Só | Deus, __ _ só | Deus, __ _ só | Deus, __ | _ _
+      é | quem po -- de | nos se -- gu -- | rar. __ | _
+        \set stanza = "3.B"
+        Pa -- ra | nós __ _ ven -- | cer a ba -- | ta -- | lha,
+        pa -- ra~a -- | dian -- _ _ te | se al -- can -- | çar. __ | _
+        Pa -- ra | nós __ _ ven -- | cer a ba -- | ta -- | lha,
+        pa -- ra~a -- | dian -- _ _ te | se al -- can -- | çar. __ | _
+      \set stanza = "4."
+      Pa -- ra~a -- | dian -- te | se al -- can -- | çar, __ | _
+      o que | cus -- ta gran -- | de so -- fri -- | men -- | to; __ _
+      Que | é __ _ a -- | mar com fir -- | me -- | za, __ _
+      a | Deus __ _ Pai | do fir -- ma -- | men -- | to.
+    }
+    theLyricsThree = \lyricmode {
+      \set includeGraceNotes = ##t
+      \set stanza = "5.A"
+      O | Deus __ _ _ | do fir -- ma -- | men -- | to, __ _
+      \skip 1 | é \skip 1 o | Sol e a | Lu -- | a.
+        \set stanza = "5.B"
+        \altcol No fir -- ma -- | men -- to es -- | tá o car -- | rei -- | ro,
+        e~o Cru -- | zei -- _ ro, ca -- | mi -- nha -- da | su -- | a.
+        \altcol No fir -- ma -- | men -- to es -- | tá o car -- | rei -- | ro,
+        e~o Cru -- | zei -- _ ro, ca -- | mi -- nha -- da | su -- | a.
+      \set stanza = "6."
+      \skip 1 A | cons -- te -- | la -- ção che -- | gou, __ | _
+      bem jun -- | ti -- nho da | Vir -- gem Ma -- | ri -- | a;
+      \altcol No \altcol Cru -- | zei -- ro es -- | tá o ro -- | sá -- | rio,
+      dos pe -- | di -- _ dos | em a -- go -- | ni -- | a.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "7.A"
+      A | for -- ça quem | tem é o | Rei __ | _
+      Je -- sus | Cris -- to, o | Mes -- tre de | sem -- | pre.
+        \set stanza = "7.B"
+        Tu -- do | no co -- ra -- | ção de Ma -- | ri -- | a
+        \skip 1 Na | Ter -- ra~e em to -- | do fir -- ma -- | men -- | to.
+        Tu -- do | no co -- ra -- | ção de Ma -- | ri -- | a
+        \skip 1 Na | Ter -- ra~e em to -- | do fir -- ma -- | men -- | \once\override LyricText.color = #darkgreen to.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2 | a2.:m | a:m | a:m | a:m
+        | a | a:7 | d:m | d2:m
+          % part B
+          s4 | d2.:m | d:m | a:m | a:m
+          | e:7 | e:7 | a:m | a2:m
+          s4 | d2.:m | d:m | a:m | a:m
+          | e:7 | e:7 | a:m | a4:m
+      }
+      \repeat volta 2 {
+        s2 | a2. | a:7 | d:m | d:m
+        | f | g | a:m | a:m
+        | c | d:m | e | e
+        | a:m | e:7 | a:m | a4:m
+      }
+    }
+    \layout { #(layout-set-staff-size 12) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    With the power of heaven, of Earth and the Sea
+    I order Saint Michael, the strength is given by God
+    \ind The strength is given by God, for those who have understanding
+    \ind Recognizing the splendors, and not forgetting them
+    \nextverse
+    Only God, only God, only God, is who can secure us
+    For us to overcome the battle, to be able to attain afterwards
+    \ind To be able to attain afterwards, which costs great suffering
+    \ind That is to love with firmness, The Father God of the Firmament
+    \nextverse
+    The Father God of the Firmament, is the Sun and the Moon
+    In the firmament is the trail, and the Cross is His path
+    \ind The constellation arriver, very close to the Virgin Mary
+    \ind On the Cross is the Rosary, of the prayers in agony
+    \nextverse
+    The King has the force, Jesus Christ, the Master of all time
+    Everything in the heart of Mary, on the Earth, and in the whole Firmament
+  \end{translation}
+\endsong
+
+
+\scleardpage
+\beginsong{Prece para afastar os maus espîritos}[by={Allan Kardec}]
+  \chordsoff
+  \beginverse
+    ``Ai de vós, escribas e fariseus hipócritas, que
+    limpais por fora o copo e o prato, conservando-se
+    por dentro, cheio de rapinas e de impurezas.
+    Fariseus cegos, limpai primairamente o interior do
+    copo e do prato a fim de que pelo interior também
+    fiquem limpos.
+    \parspace
+    Ai de vós escribas e fariseus hipócritas, que vos
+    assemelhais a sepulcros caiados, mas cheios por
+    dentro, de toda sorte de podridões. Assim, por fora
+    pareceis justos aos olhos dos homens, mas, por
+    dentro, estais cheios de hipocrisia e indignidades.''
+    \textit{(Mateus, cap. 23, vers. 25 á 28.)}
+    \parspace
+    Os maus espíritos vão onde acham meio de satisfazer
+    a sua perversidade. Para os afastarmos não basta que
+    lhes peçamos, nem mesmo lhes ordenemos que se retirem.
+    É necessário que nos expurguemos daquilo que os atrai.
+    Os maus espíritos farejam as chagas da alma, qual o
+    fazem as moscas com as do corpo. Assim como se limpa
+    o corpo para evitar a bicheira, também se deve limpar
+    a alma de suas impurezas a para evitar os maus
+    espíritos. Como vivemos no mundo onde eles pululam,
+    nem sempre as boas qualidades de coração nos põem ao
+    abrigo das suas tentativas; mas nos dão, forças para
+    lhes resistir.
+    \parspace
+    \textbf{PRECE}
+    \parspace
+    Que em nome de Deus Onipotente se afastem de mim os
+    maus espíritos e que os bons me sirvam de escudo contra
+    eles.
+    \parspace
+    Espíritos malfazejos, que aos homens inspirai maus
+    pensamentos, espíritos zombeteiros que mofais da
+    credulidade deles, eu vos repilo com todas as forças
+    de minha alma e fecho os ouvidos às vossas sugestões,
+    mas suplico para vós a misericórdia de Deus.
+    \parspace
+    Bons espíritos que vos dignais de me assistir, dai-me
+    forças para resistir à influência dos maus espíritos
+    e as luzes necessários para não ser vítima de seus
+    embustes.
+    \parspace
+    Preservai-me do orgulho e da presunção; isentai o meu
+    coração do ciúme, do ódio, da malevolência, e de
+    qualquer sentimento contrário à caridade, que são
+    outras tantas portas abertas ao espírito do mal.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Prayer to Remove Wrong-doing Spirits}
+    ``Woe unto you, scribes and Pharisees, hypocrites, for
+    you clean the outside of the cup and dish, but you
+    remain on the inside, full of plunders and impurities.
+    Blind Pharisees, clean first the inside of the cup and
+    dish, so that on the inside you may also be clean.
+    \parspace
+    Woe unto you, scribes and Pharisees, hypocrites, for
+    you are like tombs that are whitewashed but full, on
+    the inside, of all kinds of rottenness. In the same way,
+    on the outside, you appear to people as righteous, but
+    on the inside, you are full of hypocrisy and wickedness.''
+    \textit{(Matthew, chapter 23, verses 25--28.)}
+    \parspace
+    Wrong-doing spirits can only be found where they have a
+    chance to satisfy their desires. To keep them at bay, it
+    isn't enough simply to ask them to go away or even to
+    order them to go. It's essential first that we eliminate
+    from ourselves whatever in us is attracting them. Wrong-
+    doing spirits discover the ulcers of the soul in the same
+    way flies discover wounds on the body. So, just as you
+    wash your wounds in order to avoid maggots, clean your
+    soul of its impurities in order to avoid bad spirits.
+    We live in a world that teems with these spirits, and the
+    good qualities of our hearts aren't always enough to stop
+    their attempts on us. Nevertheless, these qualities give
+    us strength in resisting them.
+    \parspace
+    \textbf{PRAYER}
+    \parspace
+    In the name of Almighty God, may the wrong-doing spirits
+    stay away from me and the good spirits protect me from
+    their influence.
+    \parspace
+    Wicked spirits, that inspire bad thoughts, deceiving and
+    lying spirits that delude the unwary, mocking spirits that
+    delude the naive, I repel you with all the strength in my
+    soul and close my ears to your suggestions. And I pray also
+    that God have mercy on you.
+    \parspace
+    Good spirits that undertook to guide me, give me the
+    strength I need to resist the influence of lower spirits
+    and the discernment not to become a victim of their
+    designs.
+    \parspace
+    Keep me safe from pride and presumption. Turn my heart
+    away from all thoughts of jealousy, hate, badness, and any
+    feelings opposed to charity, since these are all open doors
+    to wrong-doing spirits.
+  \endverse
+\endsong
+
+
+}

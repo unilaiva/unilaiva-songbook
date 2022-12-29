@@ -2,14 +2,20 @@
 % =======================================================
 %
 
+{ % Put everything in this file in a block to not bleed settings
 
-% The following sets the song number for the first song in this file.
-% The number will automatically be incremented by one for each song.
-% Please do not change this! Changing would make different versions of
-% the songbook to have different numbers for the same songs, and it
-% would totally mess up the selection booklets causing them to have
-% wrong songs in them. (For the same reason, add new songs only to the
-% end of each songs_ file.)
+% use Roman numerals for song (prayer) numbering:
+\renewcommand{\thesongnum}{\Roman{songnum}}
+
+% Use this to specify a translation title within a verse, eg
+% \translationtitle{EN}{Greed}
+\newcommand{\translationtitle}[2]{
+  \vspace{3ex}\textbf{[#1]} \textit{#2}\vspace{1.618034ex}
+}
+% Use this to create a vertical space between "paragraphs"
+% within verses:
+\newcommand{\parspace}{\vspace{1ex}}
+
 \setcounter{songnum}{1}
 
 
@@ -34,7 +40,7 @@
   \endchorus
   \beginchorus\replay[chords_empefirme_a]
     To|^quei a minha cor^neta
-    Já é a |última cha^mada
+    Já é a |^última cha^mada
     \endchorus\glueverses\beginchorus\replay[chords_empefirme_b]
     Se per|^filem coman^dantes
     Para |^vencer a jor^nada
@@ -227,3 +233,52 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
+\beginsong{Prece para o Encerramento da Reunião}[by={Allan Kardec}]
+  \chordsoff
+  \beginverse
+    Agradecemos aos bons espíritos que anuíram em vir
+    comunicar-se conosco e lhjes pedimos que nos
+    ajudem a por em prática as instruções que nos
+    deram e façam com que ao sairmos daqui cada um de
+    nós se sinta fortalecido na prática do bem e do
+    amor ao próximo.
+    \parspace
+    Desejamos igualmente que as instruções que recebemos
+    sejam proveitosas aos espíritos sofredores,
+    ignorantes ou viciosos, que hajam assistido à nossa
+    reunião, espíritos esses para os quais imploramos
+    misericórdia de Deus.
+  \endverse
+  \beginverse
+    \translationtitle{EN}{Prayer to Close the Meeting}
+    We give thanks to the good spirits who have come
+    to communicate with us, and ask them to help us put
+    the advice they've given us into practice. We also
+    ask that, when we leave this gathering, they help
+    us to feel strengthened in the practice of goodness
+    and love toward our fellow human beings.
+    \parspace
+    We hope that today's teachings are healing to all
+    suffering, unaware of misguided spirits who have
+    been present at this meeting. For them we implore
+    God's mercy.
+  \endverse
+\endsong
+
+
+\vfill
+\begin{intersong}
+  \vspace{1ex}
+  \textbf{Finalmente:}
+  \begin{itemize}
+    \item 3 x Pai Nosso \& Ave Maria
+    \item Credo
+    \item Salve Rainha
+    \item Encerramento por Juramidam
+    \item Sinal da Cruz
+  \end{itemize}
+\end{intersong}
+
+
+}

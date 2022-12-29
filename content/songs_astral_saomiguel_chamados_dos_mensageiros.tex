@@ -11,253 +11,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{0}
-
-
-\beginsong{Sol, Lua, Estrela}[by={Mestre Irineu Serra}, key={C}, sks={C, (B)--(C)}, tags={perfilado, 3x}]
-  \audio{https://www.nossairmandade.com/hymn/219/Sol,Lua,Estrela}
-  \mnbeginchorus\memorize
-    |\[\mnc{E}C]Sol, \[\bm]Lua, \[^\mn{D}]Es|\[^\mn{E}]tre\[\bmc\mn{C}]la \altchords{\id[1]{(A) \capo{3}}|A | \e}
-    \[^\mn{E}]A |\[\mnc{G}G]Ter\[^\mn{A}]ra o \[\bmc\mn{G}]Ven\[^\mn{A}]to e o |\[\mncii{G}{F}C]Mar\[\bmc\mn{E}] \altchords{|E |A}
-    \[^\mn{G}]É a |\[\mnc{C}F]Luz \[^\mn{B}]do \[\bmc\mn{A}]Fir\[^\mn{G}]ma|\[\mnc{E}C]men\[^\mn{G}]to \[\bm] \altchords{|D |A}
-    É \[^\mn{E}]só |\[\mnc{G}G]quem \[^\mn{C}]eu \[\bmc\mn{E}]de\[^\mn{G}]vo a|\[\mnc{C}C]mar \[\bm] \altchords{|E |A}
-  \mnendchorus
-  \notesoff
-  \beginchorus
-    É só |^quem eu ^devo a|mar ^
-    Trago |^sempre ^na lem|^bran^ça
-    É |^Deus que es^tá no |^Céu ^
-    Aonde es|^tá minha ^espe|^ran^ça
-  \endchorus
-  \beginchorus
-    A |^Virgem ^Mãe man|dou ^
-    Para |^mim es^ta li|^ção ^
-    Me lem|^brar de ^Jesus |^Cristo^
-    E esque|^cer a ^ilu|^são ^
-  \endchorus
-  \beginchorus
-    Tri|^lhar es^te ca|mi^nho
-    Toda |^hora e ^todo |^di^a
-    O Di|^vino es^tá no |^Céu ^
-    Jesus |^filho ^de Ma|^ri^a
-  \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2022-12
-    theMelody = \relative e'' {
-      \set melismaBusyProperties = #'() \slurDashed
-      \key c \major \time 4/4 \partial 4
-      \repeat volta 2 {
-        \parenthesize e8 \pomark \parenthesize e | e4( e4) e4 \once\slurDown << \parenthesize \single\altcol e8 \altmark "(1.)" d8( >> d) | e2( c4) e8( e) | g4 a g a | g4.( f8 e4)
-        g8( g) | c4 b a g | e( g4.) \parenthesize g8 \genmark "(2., 3.)"g8 e | g,4 c8( c) e4 g | c,2( c4)
-      }
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "1."
-      \repeat volta 2 {
-        \skip 1 \skip 1 | Sol, __ _ Lu -- a, Es -- | tre -- la;
-        A __ _ | Ter -- ra~o Ven -- to~e~o | Mar; __ _ _
-        É a | Luz do Fir -- ma -- | men -- to;
-        \skip 1 É só | quem eu __ _ de -- vo~a | mar. __ _
-      }
-    }
-    theLyricsTwo = \lyricmode {
-      \set stanza = "2."
-      \repeat volta 2 {
-        É só | quem eu de -- vo a -- | mar; __ _
-        Tra -- go | sem -- pre na lem -- | bran -- _ ça;
-        É __ _ | Deus que~es -- tá no | Céu; __ _
-        A -- on -- de~es -- | tá mi -- nha es -- pe -- | ran -- ça.
-      }
-    }
-    theLyricsThree = \lyricmode {
-      \set stanza = "3."
-      \repeat volta 2 {
-        A __ _ | Vir -- gem Mãe man -- _ | dou; __ _
-        Pa -- ra | mim es -- ta li -- | ção; __ _ _
-        Me lem -- | brar de Je -- sus | Cris -- to;
-        E es -- que -- | cer a __ _ i -- lu -- | são. __ _
-      }
-    }
-    theLyricsFour = \lyricmode {
-      \set stanza = "4."
-      \repeat volta 2 {
-        Tri -- _ | lhar es -- te ca -- _ | mi -- nho;
-        To -- da | ho -- ra~e to -- do | di -- _ a;
-        O Di -- | vi -- no~es -- tá no | Céu; __ _
-        \skip 1 Je -- sus | fi -- lho __ _ de Ma -- | ri -- a.
-      }
-    }
-    theChords = \chordmode {
-      \repeat volta 2 {
-        s4 | c1 | c | g | c | f | c | g | c2.
-      }
-    }
-    %\layout { #(layout-set-staff-size 15) } % for better fit
-    \include "tex/lp-include-tail-lyricsbelow.ly"
-  \end{lilypond}\end{lilywrap}
-  \begin{translation}
-    Sun, Moon, Star, the Earth, the Wind and the Sea
-    It's the light of the firmament, it's only this that I must love
-    \nextverse
-    It's only this that I must love, I always carry it in my memory
-    It's God who is in heaven where my hope is
-    \nextverse
-    The Virgin Mother sent this lesson for me
-    To remember Jesus Christ, and to forget the illusion
-    \nextverse
-    To tread this path, every hour and every day
-    The Divine is in heaven, Jesus, Son of Mary
-  \end{translation}
-\endsong
-
-
-\beginsong{Com o Poder do Céu}[by={Padr. Alfredo}, key={Am}, sks={Am, G\shrp{}m--Bm}, tags={valsa, 3x, perfilado}]
-  \newchords{chords_comopoderdoceu_a}\newchords{chords_comopoderdoceu_b}
-  \meter{3}{4}
-  \mnbeginchorus\memorize[chords_comopoderdoceu_a]
-    |\[\mnc{E}Am]Com o |\[^\mn{C}]po\[^\mn{A}]der \[^\mn{C}]do |\[^\mn{E}]Céu, | \[^\mn{A}]da |\[\mnc{E}A]Ter\[^\mn{C#}]ra \[^\mn{A}]e |\[\mnc{E}A7]tam\[^\mn{C#}]bém \[^\mn{A}]do |\[\mnc{D}Dm]Mar | \e
-    \lrep \[^\mn{D}]Or|\[Dm]deno |a \[^\mn{C}]São \[^\mn{B}]Mi|\[\mnc{A}Am]guel, | \[^\mn{E}]a |\[\mnc{B}E7]for\[^\mn{G#}]ça |\[^\mn{C}]Deus é \[^\mn{B}]quem |\[\mnc{A}Am]dá | \e \rrep
-  \mnendchorus\glueverses
-  \mnbeginchorus\memorize[chords_comopoderdoceu_b]
-    \ind \[^\mn{A}]A |\[A]força |\[A7]Deus é quem |\[\mnc{D}Dm]dá, | \[^\mn{F}]pa\[^\mn{G}]ra |\[\mnc{A}F]quem tem |\[\mnc{G}G]conhe\[^\mn{A}]ci|\[\mnc{E}Am]men|to
-    \ind Re|\[\mnc{G}C]conhe|\[\mnc{F}Dm]cendo os \[^\mn{E}]pri|\[\mnc{B}E]mo|res, \[^\mn{E}]e |\[\mnc{C}Am]não \[^\mn{A}]tirar |\[\mnc{C}E7]do \[^\mn{B}]pen\[^\mn{C}]sa|\[\mnc{A}Am]men|to
-  \mnendchorus
-  \notesoff
-  \beginchorus\replay[chords_comopoderdoceu_a]
-    Só |^Deus, só |Deus, só |Deus, | é |^quem pode |^nos segu|^rar | \e
-    \lrep Para |^nós ven|cer a ba|^ta|lha, para a|^diante |se alcan|^çar | \e \rrep
-  \endchorus\glueverses
-  \beginchorus\replay[chords_comopoderdoceu_b]
-    \ind Para a|^diante |^se alcan|^çar, | o que |^custa gran|^de sofri|^men|to
-    \ind Que |^é a|^mar com fir|^me|za, a |^Deus Pai |^do firma|^men|to
-  \endchorus
-  \beginchorus\replay[chords_comopoderdoceu_a]
-    O |^Deus |do firma|men|to, |^é o |^Sol e a |^Lu|a
-    \lrep No firma|^mento es|tá o car|^rei|ro, e o Cru|^zeiro, ca|minhada |^su|a \rrep
-  \endchorus\glueverses
-  \beginchorus\replay[chords_comopoderdoceu_b]
-    \ind A |^conste|^lação che|^gou, | bem jun|^tinho da |^Virgem Ma|^ri|a
-    \ind \noteson\[\mnlow{G}]No \[\mnlow{G}]Cru\notesoff{}|^zeiro es|^{tá o} Ro|^sá|rio, dos pe|^didos |^em ago|^ni|a
-  \endchorus
-  \beginchorus\replay[chords_comopoderdoceu_a]
-    A |^força quem |tem é o |Rei, | Jesus |^Cristo, o |^Mestre de |^sem|pre
-    \lrep Tudo |^no cora|ção de Ma|^ri|a, na |^Terra e em to|do firma|^men|to \rrep
-  \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2022-11
-    theMelody = \relative a' {
-      \set melismaBusyProperties = #'() \slurDashed
-      \key a \minor \time 3/4 \partial 2
-      \repeat volta 2 {
-        r4 \parenthesize a4 \posectionmark "(1, 3, 5, 7).A" | e'4( e4)( e4) | c( a) c | e2.( | e4)( e4) \parenthesize a4
-        | e4 \parenthesize cis a' | e cis a | d2.( | d4)
-          \altcol\grace d8 \altmark "5." \parenthesize d4 \sectionmark "B:i" d4 | d4( d4) d4 | d c b | a2.( | a4) \parenthesize e'4
-          e4 | b8( b8)( b4) gis4 | c c b | a2.( | a4)
-          \altcol\grace d8 \altmark "5." \parenthesize d4 \sectionmark "B:ii" d4 | d4( d4) d4 | d c b | a2.( | a4) \parenthesize e'4
-          e4 | b8( b8)( b4) gis4 | c c b | a2.( | a4)
-        }
-      \repeat volta 2 {
-        \parenthesize a4 \sectionmark "2., 4., 6." a4 | a2 a4 | a a a | d2.~ | d4 f g | a4( a4) a4 | g g a | e2. | \once\slurDown e4( << e4) \single\altcol g4 \altmark "6." >> << e4 \single\altcol g4 >>
-        | g4( g4) g4 | f f e | b2. | b4( b4) e4 | c( a) a | c b c | a2. | a4
-      }
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "1.A"
-      \skip 1 | Com __ _ o | po -- der do | Céu, __ | _ _
-      da | Ter -- ra e | tam -- bém do | Mar. __ | _
-        \set stanza = "1.B"
-        \skip 1 Or -- | de -- _ no | a São Mi -- | guel, __ | _
-        \skip 1 a | for -- _ _ ça | Deus é quem | dá. __ | _
-        \skip 1 Or -- | de -- _ no | a São Mi -- | guel, __ | _
-        \skip 1 a | for -- _ _ ça | Deus é quem | dá. __ | _
-      \set stanza = "2."
-      \skip 1 A | for -- ça | Deus é quem | dá, __ | _
-      pa -- ra | quem __ _ tem | co -- nhe -- ci -- | men -- | to; __ _
-      Re -- | co -- _ nhe -- | cen -- do~os pri -- | mo -- | res, __ _
-      e | não ti -- rar | do pen -- sa -- | men -- | to.
-    }
-    theLyricsTwo = \lyricmode {
-      \set stanza = "3.A"
-      Só | Deus, __ _ só | Deus, __ _ só | Deus, __ | _ _
-      é | quem po -- de | nos se -- gu -- | rar. __ | _
-        \set stanza = "3.B"
-        Pa -- ra | nós __ _ ven -- | cer a ba -- | ta -- | lha,
-        pa -- ra~a -- | dian -- _ _ te | se al -- can -- | çar. __ | _
-        Pa -- ra | nós __ _ ven -- | cer a ba -- | ta -- | lha,
-        pa -- ra~a -- | dian -- _ _ te | se al -- can -- | çar. __ | _       
-      \set stanza = "4."
-      Pa -- ra~a -- | dian -- te | se al -- can -- | çar, __ | _
-      o que | cus -- ta gran -- | de so -- fri -- | men -- | to; __ _
-      Que | é __ _ a -- | mar com fir -- | me -- | za, __ _
-      a | Deus __ _ Pai | do fir -- ma -- | men -- | to.
-    }
-    theLyricsThree = \lyricmode {
-      \set includeGraceNotes = ##t
-      \set stanza = "5.A"
-      O | Deus __ _ _ | do fir -- ma -- | men -- | to, __ _
-      \skip 1 | é \skip 1 o | Sol e a | Lu -- | a.
-        \set stanza = "5.B"
-        \altcol No fir -- ma -- | men -- to es -- | tá o car -- | rei -- | ro,
-        e~o Cru -- | zei -- _ ro, ca -- | mi -- nha -- da | su -- | a.
-        \altcol No fir -- ma -- | men -- to es -- | tá o car -- | rei -- | ro,
-        e~o Cru -- | zei -- _ ro, ca -- | mi -- nha -- da | su -- | a.
-      \set stanza = "6."
-      \skip 1 A | cons -- te -- | la -- ção che -- | gou, __ | _
-      bem jun -- | ti -- nho da | Vir -- gem Ma -- | ri -- | a;
-      \altcol No \altcol Cru -- | zei -- ro es -- | tá o ro -- | sá -- | rio,
-      dos pe -- | di -- _ dos | em a -- go -- | ni -- | a.
-    }
-    theLyricsFour = \lyricmode {
-      \set stanza = "7.A"
-      A | for -- ça quem | tem é o | Rei __ | _
-      Je -- sus | Cris -- to, o | Mes -- tre de | sem -- | pre.
-        \set stanza = "7.B"
-        Tu -- do | no co -- ra -- | ção de Ma -- | ri -- | a
-        \skip 1 Na | Ter -- ra~e em to -- | do fir -- ma -- | men -- | to.
-        Tu -- do | no co -- ra -- | ção de Ma -- | ri -- | a
-        \skip 1 Na | Ter -- ra~e em to -- | do fir -- ma -- | men -- | \once\override LyricText.color = #darkgreen to.
-    }
-    theChords = \chordmode {
-      \repeat volta 2 {
-        s2 | a2.:m | a:m | a:m | a:m
-        | a | a:7 | d:m | d2:m
-          % part B
-          s4 | d2.:m | d:m | a:m | a:m
-          | e:7 | e:7 | a:m | a2:m
-          s4 | d2.:m | d:m | a:m | a:m
-          | e:7 | e:7 | a:m | a4:m
-      }
-      \repeat volta 2 {
-        s2 | a2. | a:7 | d:m | d:m
-        | f | g | a:m | a:m
-        | c | d:m | e | e
-        | a:m | e:7 | a:m | a4:m
-      }
-    }
-    \layout { #(layout-set-staff-size 13) } % for better fit
-    \include "tex/lp-include-tail-lyricsbelow.ly"
-  \end{lilypond}\end{lilywrap}
-  \translationoff
-  \begin{translation}
-    With the power of heaven, of Earth and the Sea
-    I order Saint Michael, the strength is given by God
-    \ind The strength is given by God, for those who have understanding
-    \ind Recognizing the splendors, and not forgetting them
-    \nextverse
-    Only God, only God, only God, is who can secure us
-    For us to overcome the battle, to be able to attain afterwards
-    \ind To be able to attain afterwards, which costs great suffering
-    \ind That is to love with firmness, The Father God of the Firmament
-    \nextverse
-    The Father God of the Firmament, is the Sun and the Moon
-    In the firmament is the trail, and the Cross is His path
-    \ind The constellation arriver, very close to the Virgin Mary
-    \ind On the Cross is the Rosary, of the prayers in agony
-    \nextverse
-    The King has the force, Jesus Christ, the Master of all time
-    Everything in the heart of Mary, on the Earth, and in the whole Firmament
-  \end{translation}
-\endsong
+\setcounter{songnum}{1}
 
 
 \beginsong{A Chave da Justiça}[by={Alex Polari}, key={C}, sks={C, G--B}, tags={2x}]
@@ -708,7 +462,7 @@
 \endsong
 
 
-\beginsong{Mensageiro da Luz}[by={Albertina Corrente}, key={C}, sks={C, C--D}, tags={valsa}, ex={Mesa Branca}]
+\beginsong{Mensageiro da Luz}[by={Albertina Corrente}, key={C}, sks={C, C--D}, tags={valsa, Mesa Branca}]
   \audio{https://www.nossairmandade.com/hymn/2263/MensageiroDaLuz}
   \meter{3}{4}
   \mnbeginchorus\memorize
@@ -968,7 +722,7 @@
 \endsong
 
 
-\beginsong{Santo Daime Beija-mim}[by={Marina Ruberti}, tags={mazurka}, key={Dm}, sks={Dm, Cm--Em}, ex={Mesa Branca}]
+\beginsong{Santo Daime Beija-mim}[by={Marina Ruberti}, tags={mazurka, Mesa Branca}, key={Dm}, sks={Dm, Cm--Em}]
   \audio{https://www.nossairmandade.com/hymn/2265/SantoDaimeBeija-Mim}
   \newchords{chords_santodaimebm_a}\newchords{chords_santodaimebm_b}
   \meter{6}{4}
@@ -1659,7 +1413,7 @@
 \endsong
 
 
-\beginsong{A São Miguel que Domine}[by={Francisco Cavalcante de Lima}, tags={valsa}, ex={Mesa Branca}, key={Gm}, sks={Gm, (F\shrp{}m)--(Gm)}]
+\beginsong{A São Miguel que Domine}[by={Francisco Cavalcante de Lima}, tags={valsa, Mesa Branca}, key={Gm}, sks={Gm, (F\shrp{}m)--(Gm)}]
   \audio{https://www.nossairmandade.com/hymn/2268/AS\%C3\%A3oMiguelQueDomine}
   \newchords{chords_asaomiguelquedomine_a}\newchords{chords_asaomiguelquedomine_b}
   \meter{3}{4}
@@ -1868,12 +1622,12 @@
   \meter{4}{4}
   \transpose{2}
   \mnbeginchorus\memorize
-    \[^\mn{G}]Vem \[^\mn{B}]le\[^\mn{D}]van|\[\mnc{G}G]ta\[\bm]n|-do do fun\[\bmc\mn{F#}]do \[^\mn{E}]do |\[\mnc{D}D]mar \[\bm] | \e \altchords{\id[1]{(G)}|G | - |D | \e}
+    \[^\mn{G}]Vem \[\bmc\mn{B}]le\[^\mn{D}]van|\[\mnc{G}G]ta\[\bm]n|-do do fun\[\bmc\mn{F#}]do \[^\mn{E}]do |\[\mnc{D}D]mar \[\bm] | \e \altchords{\id[1]{(G)}|G | - |D | \e}
     \[^\mn{B}]A Es\[\bmc\mn{E}]tre\[^\mn{D}]la A|\[\mnc{A}Am]zul \[\bm] \[^\mn{C}]em seu \meter{2}{4}|\[\mnc{B}D]trono \[^\mn{A}]divi\meter{4}{4}|\[\mnc{G}G]nal \[\bm] | \e \altchords{|Am \meter{2}{4}|D \meter{4}{4}|G | \e}
   \mnendchorus
   \notesoff
   \beginchorus
-    Lá vem, lá |^vem^ | para ^nos cu|^rar ^ | \e \altchords{|G | - |D | \e}
+    Lá ^vem, lá |^vem^ | para ^nos cu|^rar ^ | \e \altchords{|G | - |D | \e}
     A Es^trela A|^zul ^ em seu \meter{2}{4}|^trono divi\meter{4}{4}|^nal ^ \up{1}(| \e) \altchords{|Am \meter{2}{4}|D \meter{4}{4}|G \up{1}(| \e)}
   \endchorus
   \mnbeginchorus\noteson
