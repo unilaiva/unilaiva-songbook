@@ -131,39 +131,41 @@
   \end{translation}
 \endsong
 
-\beginsong{Todos Querem Ser Irmão}[by={Mestre Irineu Serra},key={Am},sks={Am}]
+
+\beginsong{Todos Querem Ser Irmão}[by={Mestre Irineu Serra},key={Am},sks={Am, Gm--G\shrp{}m--(Am)}]
   \audio{https://www.nossairmandade.com/hymn/86/TodosQueremSerIrm\%C3\%A3o}
   \newchords{chords_todosquerem_a}\newchords{chords_todosquerem_b}
   \mnbeginchorus\memorize[chords_todosquerem_a]
-    \[^\mn{E}]Todos |\[\mnc{A}Am]que\[^\mn{E}]rem \[\bmc\mn{C}]ser \[^\mn{A}]ir|\[\mnc{B}E/B]mã\[^\mn{A}]os
-    \[\mnc{E}E]Mas \[^\mn{G}]não |\[G]têm a \[\mnc{D}Dm]leal|\[\mnc{C}C]da\[^\mn{A}]de\[Am]
+    \[^\mn{E}]Todos |\[\mnc{A}Am]que\[^\mn{E}]rem \[\bmc\mn{C}]ser \[^\mn{A}]ir|\[\mnc{B}E/B]mã\[^\mn{A}]os \altchords{\id[1]{(Gm)}|Gm |D/A}
+    \[\mnc{E}E]Mas \[^\mn{G}]não |\[G]têm a \[\mnc{D}Dm]leal|\[\mnc{C}C]da\[^\mn{A}]de\[Am] \altchords{D |F Cm |B\flt{} Gm}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_todosquerem_b]
-    \[^\mn{E}]Para \[^\mn{G}]se|\[G]guir \[^\mn{D}]na \[Dm]Vida \[^\mn{G}]E|\[\mnc{A}Am]spírita
-    Que \[\bmc\mn{A}]é \[^\mn{C}]o |\[\mnc{E}E]Rei\[^\mn{D}]no \[\mnc{B}E7/B]da \[^\mn{C}]Ver|\[\mnc{A}Am]dade
+    \[^\mn{E}]Para \[^\mn{G}]se|\[G]guir \[^\mn{D}]na \[\bm]Vida \[^\mn{F}]Es|\[\mnc{A}Am]pírita \altchords{|F |Gm}
+    Que \[\bmc\mn{A}]é \[^\mn{C}]o |\[\mnc{E}E]Rei\[^\mn{D}]no \[\mnc{B}E7/B]da \[^\mn{C}]Ver|\[\mnc{A}Am]dade \altchords{|D D7/A |Gm}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_todosquerem_a]
-    É o |^Reino ^da Ver|^dade \altchords{\id[2]{ED}|Am |F}
-    É ^a Es|^trada ^do A|^mor^ \altchords{|G |Am}
+    É o |^Reino ^da Ver|^dade
+    É ^a Es|^trada ^do A|^mor^
     \endchorus\glueverses\beginchorus\replay[chords_todosquerem_b]
-    É todos |^prestar ^aten|^ção \altchords{|G |F}
-    ^Os en|^sinos do ^profes|^sor \altchords{|E E7 |Am}
+    É todos |^prestar ^aten|^ção
+    ^Os en|^sinos do ^profes|^sor
   \endchorus
   \beginchorus\replay[chords_todosquerem_a]
-    Os en|^sinos do ^profes|^sor \altchords{\id[3]{MK}|Am | \e}
-    É ^quem nos |^traz be^las li|^ções^ \altchords{|G Dm |Am}
+    Os en|^sinos do ^profes|^sor \altchords{\id[4]{ED (Am)}|Am |F}
+    É ^quem nos |^traz be^las li|^ções^ \altchords{|G |Am}
     \endchorus\glueverses\beginchorus\replay[chords_todosquerem_b]
-    Para |^todos ^se u|^nir \altchords{|G Dm |Am}
-    E ^respei|^tar os ^seus ir|^mãos \altchords{|C G |Am}
+    Para |^todos ^se u|^nir \altchords{|G |F}
+    E ^respei|^tar os ^seus ir|^mãos \altchords{|E E7 |Am}
   \endchorus
   \beginchorus\replay[chords_todosquerem_a]
-    Respei|^tar os ^seus ir|^mãos
-    Com ^ale|^gria e ^com a|^mor^
+    Respei|^tar os ^seus ir|^mãos \altchords{\id[5]{MK (Am)}|Am | \e}
+    Com ^ale|^gria e ^com a|^mor^ \altchords{|G Dm |Am}
     \endchorus\glueverses\beginchorus\replay[chords_todosquerem_b]
-    Para |^todos ^conhe|^cer
-    E ^saber |^dar o ^seu va|^lor
+    Para |^todos ^conhe|^cer \altchords{|G Dm |Am}
+    E ^saber |^dar o ^seu va|^lor \altchords{|C G |Am}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4.
@@ -172,7 +174,7 @@
         | g4. g8 d4. d8 | c4( a4.)
       }
       \repeat volta 2 {
-        \parenthesize e'8\sectionmark "B" e8 g8 | g4. d8 d4 d8( \parenthesize g8) | a8( a a a) a,4. c8
+        \parenthesize e'8\sectionmark "B" e8 g8 | g4. d8 d4( d8) f8 | a8( a a a) a,4. c8
         | e4( e8) d8 b4. c8 | a2( a8)
       }
     }
@@ -181,15 +183,15 @@
       To -- dos | que -- rem ser ir -- | mã -- os;
       Mas não | têm a le -- al -- | da -- de.
       \set stanza = "1.B"
-      Pa -- ra se -- | guir na Vi -- da E -- | spí -- ri -- ta;
+      Pa -- ra se -- | guir na Vi -- da Es -- | pí -- ri -- ta;
       Que é o | Rei -- _ no da Ver -- | da -- de.
-  }
+    }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       É o | Rei -- no da Ver -- | da -- de;~É
       a Es -- | tra -- da do A -- | mor. __ _
       \set stanza = "2.B"
-      É to -- dos | pres -- tar a -- ten -- _ | ção; __ _ _ _
+      É to -- dos | pres -- tar a -- _ ten -- | ção; __ _ _ _
       Os en -- | si -- nos  do pro -- fes -- | sor. __ _
     }
     theLyricsThree = \lyricmode {
@@ -197,7 +199,7 @@
       Os en -- | sinos do pro -- fes -- | sor;
       é quem nos | traz be -- las li -- | çõ -- es.
       \set stanza = "3.B"
-      \skip 1 Pa -- ra | to -- dos se u -- _ | nir; __ _ _
+      \skip 1 Pa -- ra | to -- dos se __ _ u -- | nir; __ _ _
       E res -- pei -- | tar __ _ os seus ir -- | mã -- os.
     }
     theLyricsFour = \lyricmode {
@@ -205,7 +207,7 @@
       Res -- pei -- | tar os seus ir -- | mãos;
       Com a -- le -- | gria e com a -- | mor. __ _
       \set stanza = "4.B"
-      \skip 1 Pa -- ra | to -- dos co -- nhe -- _ | cer; __ _ _
+      \skip 1 Pa -- ra | to -- dos co -- _ nhe -- | cer; __ _ _
       E sa -- ber | dar __ _ o seu va -- | lor. __ _
     }
     theChords = \chordmode {
@@ -214,8 +216,8 @@
         | g2 d:m | c a8:m
       }
       \repeat volta 2 {
-        s4. | g2 d:m | a:m a:m
-        | e e:7/b | a2:m~ a8:m
+        s4. | g1 | a1:m
+        | e2 e:7/b | a2:m~ a8:m
       }
     }
     \include "tex/lp-include-tail-lyricsbelow.ly"
