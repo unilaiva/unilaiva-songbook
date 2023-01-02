@@ -520,7 +520,7 @@
     }
     theLyricsOne = \lyricmode {
       \repeat volta 2 {
-        \set stanza = "1."
+        \set stanza = "1.A"
         \skip 1 Es -- ta | For -- ça, | es -- te Po -- | der;
         | Eu de -- vo~a -- | mar no | meu co -- ra -- | ção. __ | _
       }
@@ -532,7 +532,7 @@
     }
     theLyricsTwo = \lyricmode {
       \repeat volta 2 {
-        \set stanza = "2."
+        \set stanza = "2.A"
         Es -- tou a -- | qui, __ _ | nes -- te lu -- | gar;
         | Foi mi -- nha | Mãe __ _ | que me man -- | dou. __ _
       }
@@ -557,45 +557,46 @@
 \endsong
 
 
-\beginsong{Quem Procurar Esta Casa}[by={Mestre Irineu Serra}, ph={I}, key={Am}, sks={Am, Gm--Am}]
+\beginsong{Quem Procurar Esta Casa}[by={Mestre Irineu Serra}, ph={I}, key={Am}, sks={Am, Gm--G\shrp{}m--(Am)}]
   % Also in: Santa Maria hinos
   \audio{https://www.nossairmandade.com/hymn/90/QuemProcurarEstaCasa}
   \mnbeginchorus\memorize
-    |\[\mnc{A}Am]Quem pro\[^\mn{B}]cu\[\bmc\mn{C}]rar \[^\mn{B}]es\[^\mn{A}]ta |\[\mnc{F}Dm/F]ca\[\mnc{D}Dm]sa \altchords{\id{(Em)}|Em |Am/C Am}
+    |\[\mnc{A}Am]Quem pro\[^\mn{B}]cu\[\bmc\mn{C}]rar \[^\mn{B}]es\[^\mn{A}]ta |\[\mnc{F}Dm/F]ca\[\mnc{D}Dm]sa \altchords{\id{(Em) \capo{5}}|Em |Am/C Am}
     |\[\mnc{A}F]Que a\[^\mn{B}]qui \[\mnc{C}(Bm7&5)]ne\[^\mn{B}]la \[^\mn{A}]che|\[\mnc{E}E]gar \[(E7)] \altchords{|C (F\shrp{}m7\flt{}5) |B (B7)}
-    \lrep \[^\mn{E}]En|\[\mnc{A}Am]contra \[^\mn{B}]{com a} \[\mnc{C}C]Vir\[^\mn{B}]gem \[^\mn{A}]Ma|\[\mncii{D}{F}Dm]ri\[\mnc{A}(F)]a \altchords{|Em G |Am (C)}
+    \lrep \[^\mn{E}]En|\[\mnc{A}Am]contra \[^\mn{B}]{com a} \[\mnc{C}(C)]Vir\[^\mn{B}]gem \[^\mn{A}]Ma|\[\mncii{D}{F}Dm]ri\[\mnc{A}(F)]a \altchords{|Em (G) |Am (C)}
     |\[\mnc{E}Am]Su\[^\mn{F}]a \[^\mn{E}]sa\[\mnc{D}E7]úde \[^\mn{C}]E\[^\mn{B}]la |\[\mnc{A}Am]dá \[\bm] \rrep \altchords{|Em B7 |Em}
   \mnendchorus
   \notesoff
   \beginchorus
-    Mi|^nha Sempre ^Virgem Ma|^ri^a
-    |^Perdoai ^{os filhos} |^seus ^
-    \lrep |^Vós como ^Mãe sobe|^ra^na
-    |^A Divi^na Mãe de |^Deus^ \rrep
+    Mi|^nha Sempre ^Virgem Ma|^ri^a \altchords{\id[4]{ED (Am)}|Am |Dm}
+    |^Perdoai ^{os filhos} |^seus ^ \altchords{|F G |C}
+    \lrep |^Vós como ^Mãe sobe|^ra^na \altchords{|Am |Dm F}
+    |^A Divi^na Mãe de |^Deus^ \rrep \altchords{|E E7 |Am}
   \endchorus
   \beginchorus
-    |^Eu peço a ^vós, bem con|^tri^to \altchords{\id[4]{AP (Am)}|Am C |F Dm}
+    |^Eu peço a ^vós, bem con|^tri^to \altchords{\id[5]{AP (Am)}|Am C |F Dm}
     Fa|^zendo as mi^{nhas ora}|^ções ^ \altchords{|Am C |E}
     \lrep |^Peço a vós ^a Santa |^Lu^z \altchords{|Am C |Dm F}
     |^Para ilumi^nar o meu per|^dão ^ \rrep \altchords{|E Dm |Am}
   \endchorus
   \beginchorus
     |^Aqui den^tro desta |^ca^sa \altchords{\id[6]{simples (Am)}|Am |Dm}
-    |^Tem tudo ^{que procu}|^rar ^ \altchords{| - |E}
+    |^Tem tudo ^{que procu}|^rar ^ \altchords{|Am |E}
     \lrep |^Seguindo ^o bom ca|^mi^nho \altchords{|Am |Dm}
     |^Fazer bem, ^não fazer |^mal ^ \rrep \altchords{|E |Am}
   \endchorus
   \brk
-  %% Only in Santa Maria hinos:
-  %\textnote{This hymn is sung before the Santa Maria is consecrated.}
+  %% This note only in Santa Maria hinos:
+  %\textnote{Este hino é cantado antes da consagração de Santa Maria.}
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
     theMelody = \relative a'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4
-      \parenthesize e4\posectionmark "A" | a4 a8 b8 c4 b8 a8 | f2 d4( d4)
+      \parenthesize e4\posectionmark "A" \genmark "(2.)" | a4 a8 b8 c4 b8 a8 | f2 d4( d4)
       | a'4 a8 b8 c4 b8 a8 | e2.
       \repeat volta 2 {
-        \parenthesize e4\sectionmark "B" | a,4 a8 b8 c4 b8 a8 | \slurSolid d4.( f8) a2
+        \parenthesize e4\sectionmark "B" \genmark "(1.)" | a,4 a8 b8 c4 b8 a8 | \once\slurSolid d4.( f8)( a2)
         \slurDashed
         | e8( e8) f8 e8 d8( d8) c8 b8
       } \alternative {
@@ -609,7 +610,7 @@
       | Que a -- qui ne -- la che -- | gar;
       \repeat volta 2 {
         \set stanza = "1.B"
-        \parenthesize En -- | con -- tra com~a Vir -- gem Ma -- | ri __ _ -- a;
+        En -- | con -- tra com~a Vir -- gem Ma -- | ri -- _ a;
         | Su -- _ a sa -- ú -- de E -- la
       } \alternative {
         { | dá. }
@@ -618,11 +619,11 @@
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
-      \parenthesize Mi -- | nha Sem -- pre Vir -- gem Ma -- | ri  -- a; __ _
+      Mi -- | nha Sem -- pre Vir -- gem Ma -- | ri  -- a; __ _
       | Per -- do -- ai os fi -- lhos | seus.
       \repeat volta 2 {
         \set stanza = "2.B"
-        \skip 1 | Vós co -- mo Mãe so -- be -- | ra __ _ -- na;
+        \skip 1 | Vós co -- mo Mãe so -- be -- | ra -- _ na;
         | A __ _ Di -- vi -- na __ _ Mãe de
       } \alternative {
         { | Deus. }
@@ -632,7 +633,7 @@
     theLyricsThree = \lyricmode {
       \set stanza = "3."
         \skip 1 Eu pe -- ço~a vós bem con -- | tri -- to;
-        Fa -- | zen -- do as mi -- nhas ora -- | ções.
+        Fa -- | zen -- do~as mi -- nhas o -- ra -- | ções.
       \repeat volta 2 {
         \set stanza = "3.B"
         \skip 1 | Pe -- ço~a vós a San -- ta | Luz; __ _ _
@@ -648,7 +649,7 @@
       | Tem tu -- do que pro -- cu -- | rar.
       \repeat volta 2 {
         \set stanza = "4.B"
-        \skip 1 | Se -- guin -- do o bom ca -- | mi __ _ -- nho;
+        \skip 1 | Se -- guin -- do o bom ca -- | mi -- _ nho;
         | Fa -- _ zer bem não __ _ fa -- zer
       } \alternative {
         { | mal. }
@@ -659,13 +660,14 @@
       s4 | a1:m | d2:m/f d:m
       | f2 \parenthesize b:m7.5- | e \parenthesize e4:7
       \repeat volta 2 {
-        s4 | a2:m c | d:m \parenthesize f
+        s4 | a2:m \parenthesize c | d:m \parenthesize f
         | a:m e:7
       } \alternative {
         { | a2.:m }
         { | a2.:m }
       }
     }
+    \layout { #(layout-set-staff-size 14) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}\footnotesize % to fit whole song on one spread
