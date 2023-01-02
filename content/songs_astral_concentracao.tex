@@ -231,7 +231,7 @@
   \audio{https://www.nossairmandade.com/hymn/17/EuVivoNesteMundo}
   \newchords{chords_euvivonestemundo_a}\newchords{chords_euvivonestemundo_b}
   \mnbeginchorus\memorize[chords_euvivonestemundo_a]
-    \[^\mn{G}]Eu |\[\mnc{C}C]vivo \[^\bm]nes\[^\mn{E}]te |\[\mnc{G}(G)]mundo \altchords{|D |(A)}
+    \[^\mn{G}]Eu |\[\mnc{C}C]vivo \[^\bm]nes\[^\mn{E}]te |\[\mnc{G}(G)]mundo \altchords{\id[1]{(D)}|D |(A)}
     \[\bm]En\[^\mn{A}]quan|\[\mnc{F}Dm]to \[^\mn{E}]che\[\mnc{D}G7]ga \[^\mn{E}]meu |\[\mnc{C}C]di\[\bm]a \altchords{|Em A7 |D}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_euvivonestemundo_b]
     \[^\mn{G}]Encos|\[\mnc{C}C]ta\[^\mn{G}]do \[\bmc\mn{C}]a \[^\mn{E}]meu |\[\mnc{G}(G)]Mestre \altchords{|D |(A)}
@@ -240,24 +240,24 @@
   \notesoff
   \beginchorus\replay[chords_euvivonestemundo_a]
     Meu |^Mes\noteson\[\mnlow{G}]tre é \[\bmc\mnlow{C}]quem \[\mnlow{E}]me \notesoff|^gui^a
-    Meu |^Mestre é ^quem me en|^si^na
+    Meu |^Me\noteson\[\mnlow{F}]stre \[\mnlow{E}]é \notesoff^quem me en|^si^na
     \endchorus\glueverses\beginchorus\replay[chords_euvivonestemundo_b]
     Foi |^Ele ^quem me |^deu ^
     Es|^ta San^ta Dou|^tri^na
   \endchorus
   \beginchorus\replay[chords_euvivonestemundo_a]
     Foi |^E\noteson\[\mnlow{G}]le \[\bmc\mnlow{C}]quem \[\mnlow{E}]me \notesoff|^deu ^
-    Foi |^Ele quem ^me man|^dou^
+    Foi |^E\noteson\[\mnlow{F}]le \[\mnlow{E}]quem \notesoff^me man|^dou^
     \endchorus\glueverses\beginchorus\replay[chords_euvivonestemundo_b]
-    Can|^tar com os ^meus ir|^mãos^
-    Ensi|^nar e ^ter a|^mor^
+    Can|^tar com os ^meus ir|^mãos
+    ^Ensi|^nar e ^ter a|^mor^
   \endchorus
   \beginchorus\replay[chords_euvivonestemundo_a]
     |^Pa\noteson\[\mnlow{G}]ra \[\bmc\mnlow{C}]ter \[\mnlow{E}]o a\notesoff|^mor
     ^E sen|^tir no ^cora|^ção^
     \endchorus\glueverses\beginchorus\replay[chords_euvivonestemundo_b]
     Ro|^gar ao ^Pai E|^terno
-    Para ^rece|^ber o ^meu per|^dão^
+    Pa\noteson\[\mnlow{E}]ra \[\bmc\mnlow{A}]rece\notesoff|\[Dm]ber o \[G7]meu per|\[C]dão\[\bm]
   \endchorus
   \brk
   \beginchorus\replay[chords_euvivonestemundo_a]
@@ -274,11 +274,11 @@
       \key c \major \time 4/4 \partial 4
       #(define afterGraceFraction (cons 1 4))
       \repeat volta 2 {
-         g4\posectionmark "A" | c << \grace { \altcol\parenthesize c \altmark "1." } g >> c e | g4.( g8 g4 )
+         \parenthesize g4 \posectionmark "A" | c << \grace { \altcol\parenthesize c \altmark "1." } g >> c e | g4.( g8 g4 )
          a | f \grace{\once\stemDown\altcol\parenthesize f8\altmark "2. & 3." } \afterGrace e4 {\once\stemDown\altcol\parenthesize e8} d4 e | c2( c4)
       } \break
       \repeat volta 2 {
-         g4\sectionmark "B" | c g8( g8) c4 e | g4.( g8 g4 )
+         g8(\sectionmark "B" g) | c4 g8( g8) c4 e | \once\slurDown g8( g8 g8 \grace { \altcol \parenthesize e8  \altmark "4." } g8 \grace { \altcol \parenthesize a4 } g4 )
          a | f \grace{\once\stemDown\altcol\parenthesize f8\altmark "5." } \afterGrace e4 {\once\stemDown\altcol\parenthesize e8} d4 e | c2( c4)
       }
     }
@@ -290,19 +290,19 @@
       }
       \repeat volta 2 {
         \set stanza = "1.B"
-        Encos -- | ta -- do __ _ a meu | Mes -- tre;
-        e~a Sem -- | pre Vir -- gem Ma -- | ri -- a.
+        En -- cos -- | ta -- do __ _ a meu | Mes -- _ _ tre;~e
+        a Sem -- | pre Vir -- gem Ma -- | ri -- a.
       }
     }
     theLyricsTwo = \lyricmode {
       \repeat volta 2 {
         \set stanza = "2.A"
-        Meu | Mes -- tre~é quem me | gui -- a; __ _
+        Meu | Mes -- tre~é quem me | gui -- _ a;
         meu | Mes -- \altcol (tre_é) quem me~en -- | si -- na.
       }
       \repeat volta 2 {
         \set stanza = "2.B"
-        Foi | E -- le __ _ quem me | deu; __ _ _
+        Foi __ _ | E -- le __ _ quem me | deu; __ _ _ _ _
         es -- | ta San -- ta Dou -- | tri -- na.
       }
     }
@@ -314,7 +314,7 @@
       }
       \repeat volta 2 {
         \set stanza = "3.B"
-        Can -- | tar com os meus ir -- | mãos; __ _
+        Can -- _ | tar com os meus ir -- | mãos; __ _ _ _
         en -- si -- | nar e ter a -- | mor. __ _
       }
     }
@@ -326,19 +326,19 @@
       }
       \repeat volta 2 {
         \set stanza = "4.B"
-        Ro -- | gar ao __ _ Pai E -- | terno;~pa --
-        ra re -- ce -- | ber o meu per -- | dão. __ _
+        Ro -- _ | gar ao __ _ Pai E -- | ter -- no; pa --
+        \altcol (ra \altcol re) -- ce -- | ber o meu per -- | dão. __ _
       }
     }
     theLyricsFive = \lyricmode {
       \repeat volta 2 {
         \set stanza = "5.A"
-        \skip 1 | Pa -- ra ter o~per -- | dão; __ _
+        \skip 1 | Pa -- ra ter~o per -- | dão; __ _
         e tra -- | ba -- lhar com a -- | mor. __ _
       }
       \repeat volta 2 {
         \set stanza = "5.B"
-        Pres -- | tar bem __ _ a -- ten -- | ção; __ _
+        Pres -- _ | tar bem __ _ a -- ten -- | ção; __ _ _ _
         os en -- | si -- \altcol (nos_do) pro -- fes -- | sor. __ _
       }
     }
