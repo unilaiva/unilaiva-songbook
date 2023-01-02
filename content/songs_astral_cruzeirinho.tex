@@ -246,7 +246,7 @@
 \endsong
 
 
-\beginsong{Confia}[by={Mestre Irineu Serra},key={Dm},sks={Dm, Em, Cm}]
+\beginsong{Confia}[by={Mestre Irineu Serra},key={Dm},sks={Dm, Cm--Em}]
   \audio{https://www.nossairmandade.com/hymn/87/Confia}
   \mnbeginchorus\memorize
     \[^\mn{A}]Con|\[Dm]fia, con\[\bm]fia, con|\[^\mn{A}]fia no \[^\mn{F}]Po\[\mnc{G}Gm]der \altchords{\id[1]{(Em)}|Em | - Am}
@@ -262,13 +262,13 @@
     E não pro|cura compreen^der
   \endchorus
   \beginchorus
-    |^ Es^tamos |todos reu^nidos \altchords{\id[2]{ED (Dm)}|Dm |D7/F\shrp{} Gm}
+    |^ Es^tamos |todos reu^nidos \altchords{\id[4]{ED (Dm)}|Dm |D7/F\shrp{} Gm}
     Com a nos|sa chave na ^mão \altchords{|C7 F}
     A lim|par mentali^dade \altchords{|B\flt{}maj7 A7sus4}
     Para en|trar neste sa^lão \altchords{|A7/G Dm}
   \endchorus
   \beginchorus
-    |^{\up{2}(ros)} Este ^é |o Salão Dou^rado \altchords{\id[3]{MK (Dm)}|Dm |- Gm}
+    |^{\up{2}(ros)} Este ^é |o Salão Dou^rado \altchords{\id[5]{MK (Dm)}|Dm |- Gm}
     Do nos|so Pai Verda^deiro \altchords{|A7 Dm}
     Todos |nós somos ^filhos \altchords{| - A7}
     E todos |nós somos her^dei- \altchords{| - Dm}
@@ -280,50 +280,51 @@
     É quem |tem para nos ^dar
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \minor \time 4/4 \partial 8
       \repeat volta 2 {
-        \parenthesize a8\pomark | << \parenthesize d4 a4 >> a8( a8) a4( a8)( a8) | a'8( a8) a8 f8 g4. e8
-        | g8 g8 g8 e8 f4. d8 | f4 f8 g8 a4. g8 | f8 e8 d8 cis8 d4.
+        \parenthesize a8\pomark | << \parenthesize d4 \genmark "(4.:ii, 5.:i)" a4 >> a8( a8) a4( a8)( a8) | a'8( a8) a8 f8 g8( g g) e8
+        | g8 g8 g8 e8 f8( f8) \altcol \parenthesize d8 \altmark "3., 4." d8 | f8( f8) f8 g8 a8( a a) g8 | f8 e8 d8 cis8 d4.
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      Con -- | fi -- a, con -- fi -- a, con -- | fi -- a no Po -- der;
-      Con -- | fi -- a no sa -- ber;
-      Con -- | fi -- a na for -- ça;~A --
+      Con -- | fi -- a, con -- fi -- a, con -- | fi -- a no Po -- der; __ _ _
+      Con -- | fi -- a no sa -- ber; __ _
+      \skip 1 Con -- | fi -- _ a na for -- _ _ ça;~A --
       | on -- de po -- de ser.
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \skip 1 | \skip 1
-      Es -- ta for -- _ ça | é __ _ mui -- to sim -- ples;
-      | To -- do mun -- do vê;
-      Mas | pas -- sa por ela;~E~não pro -- | cu -- ra com -- preen -- der.
+      Es -- ta for -- _ ça | é __ _ mui -- to sim -- _ _ ples;
+      | To -- do mun -- do vê; __ _
+      \skip 1 Mas | pas -- _ sa por e -- la;~E não pro -- | cu -- ra com -- preen -- der.
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       \skip 1 | \skip 1
-      Es -- _ ta -- _ mos | to -- dos re -- u -- nidos;~Com~a
-      nos -- | sa cha -- ve na mão;~A
-      lim -- | par~men -- ta -- li -- dade;~Pa -- ra~en -- | trar nes -- te sa -- lão.
+      Es -- _ ta -- _ mos | to -- dos re -- u -- ni -- dos; Com~a
+      nos -- | sa cha -- ve na mão; __ _
+      \altcol A lim -- | par men -- ta -- li -- da -- de; Pa -- ra~en -- | trar nes -- te sa -- lão.
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
       \skip 1 | \markup{\super{"2"}\parenthesize ros.}
-      Es -- te é __ _ _ | o Sa -- lão Dou -- rado;~Do
-      nos -- | so Pai Ver -- da -- deiro;~To --
-      dos | nós so -- mos filhos;~E~to --
+      Es -- te é __ _ _ | o Sa -- lão Dou -- ra -- do;
+      Do nos -- | so Pai Ver -- da -- dei -- ro;
+      \altcol To -- dos | nós __ _ so -- mos fi -- lhos;~E to --
       dos | nós so -- mos her -- dei-
     }
     theLyricsFive = \lyricmode {
       \set stanza = "5."
       \skip 1 | \markup{\super{"1"}\parenthesize ros.}
-      Nós __ _ to -- _ _ | dos __ _ so -- mos filhos;~E~é
-      pre -- | ci -- so tra -- ba -- lhar;
-      A -- | mar~o Pai E -- terno;~é
-      quem | tem pa -- ra nos dar.
+      Nós __ _ to -- _ _ | dos __ _ so -- mos fi -- lhos;
+      E~é pre -- | ci -- so tra -- ba -- lhar; __ _
+      \skip 1 A -- | mar ao Pai E -- ter -- no;
+      É quem | tem pa -- ra nos dar.
     }
     theChords = \chordmode {
       \repeat volta 2 {
@@ -356,37 +357,35 @@
 \endsong
 
 
-\beginsong{Eu Peço}[by={Mestre Irineu Serra},key={C},sks={D, C}]
+\beginsong{Eu Peço}[by={Mestre Irineu Serra},key={C},sks={D, C-E}]
   \audio{https://www.nossairmandade.com/hymn/88/EuPe\%C3\%A7o}
-  \ifshowlilypond%
-    \vspace*{-.75ex} % an ugly hack to fit the whole song on one spread
-  \fi
   \mnbeginchorus
-    \ind \[\mn{E}]Eu |\[\mnc{C}C]pe\[\mnc{G}(G)]ço, \[\mn{E}]eu |\[\mnc{C}C]pe\[\mnc{G}(G)]ço \altchords{\id[1]{(D)}|D (A) |D (A)}
-    \ind \[\mn{E}]Eu |\[\mnc{C}C]pe\[\mn{G}]ço ao \[\mn{C}]Pai \[\mn{E}]Di|\[\mnc{D}Dm]vino \altchords{|D |Em}
-    \ind Que me |dê a Santa |\[\mnc{G}G7]Luz \altchords{| |A7}
-    \ind Para ilu\[\mn{F}]mi|\[\mnc{E}(Em)]nar \[\mn{D}]o \[\mnc{C}G7]meu \[\mn{B}]ca|\[\mnc{C}C]minho \altchords{|(F\shrp{}m) A7 |D}
+    \ind \[\mn{E}]Eu |\[\mnc{C}C]pe\[\bmc\mn{G}]ço, \[\mn{E}]eu |\[\mnc{C}C]pe\[\bmc\mn{G}]ço \altchords{\id[1]{(D)}|D | \e }
+    \ind \[\mn{E}]Eu |\[\mnc{C}C]pe\[\mn{G}]ço ao \[\bmc\mn{C}]Pai \[\mn{E}]Di|\[\mnc{D}Dm]vi\[\bm]no \altchords{| - |Em}
+    \ind Que me |dê a \[\bm]Santa |\[\mnc{G}G7]Luz \altchords{| |A7}
+    \ind Para i\[\bm]lu\[\mn{F}]mi|\[\mnc{E}(Em)]nar \[\mn{D}]o \[\mnc{C}G7]meu \[\mn{B}]ca|\[\mnc{C}C]mi\[\bm]nho \altchords{|(F\shrp{}m) A7 |D}
   \mnendchorus
   \mnbeginchorus\memorize
-    \[^\mn{E}]Eu |\[\mnc{C}C]pe\[^\mn{G}]ço à \[^\mn{C}]Vir\[^\mn{E}]gem |\[^\mn{C}]Mãe
-    \[^\mn{G}]E a \[^\mn{C}]Je\[^\mn{E}]sus |\[^\mn{C}]Cris\[^\mn{G}]to \[^\mn{C}]Re\[^\mn{E}]den|\[\mnc{D}Dm]tor
-    Ilumi|nai o meu ca|\[\mnc{G}G7]minho
-    Nes\[^\mn{F}]sa Es|\[\mnc{E}(Em)]tra\[^\mn{D}]da \[\mnc{C}G7]do \[^\mn{B}]A|\[\mnc{C}C]mor
+    \[^\mn{E}]Eu |\[\mnc{C}C]pe\[^\mn{G}]ço à \[\bmc\mn{C}]Vir\[^\mn{E}]gem |\[^\mn{C}]Mãe
+    \[^\mn{G}]E a \[\bmc\mn{C}]Je\[^\mn{E}]sus |\[^\mn{C}]Cris\[^\mn{G}]to \[\bmc\mn{C}]Re\[^\mn{E}]den|\[\mnc{D}Dm]tor \[\bm]
+    Ilumi|nai o \[\bm]meu ca|\[\mnc{G}G7]minho
+    \[\bm]Nes\[^\mn{F}]sa Es|\[\mnc{E}(Em)]tra\[^\mn{D}]da \[\bmc\mnc{C}G7]do \[^\mn{B}]A|\[\mnc{C}C]mor \[\bm]
   \mnendchorus
   \notesoff
   \beginchorus
-    Essa Es|^trada do A|mor \altchords{\id[2]{ED (C)}|C G |C}
-    Dentro |do meu cora|^ção \altchords{|Am |Dm}
-    Eu |peço a Jesus |^Cristo \altchords{|F |C}
-    Que nos |^dê a ^Salva|^ção \altchords{|G7 |C}
+    Essa Es|^trada ^do A|mor \altchords{\id[4]{ED (C)}|C G |C}
+    ^Dentro |do meu ^cora|^ção ^ \altchords{|Am |Dm}
+    Eu |peço a ^Jesus |^Cristo \altchords{|F |C}
+    ^Que nos |^{dê a} ^Salva|^ção ^ \altchords{|G7 |C}
   \endchorus
   \beginchorus
-    Eu |^peço a Salva|ção \altchords{\id[3]{MK (C)}|C | \e}
-    Que só |Vós pode nos |^dar \altchords{| |G}
-    Perdo|ai-nos neste |^mundo \altchords{|Dm |G}
-    E na vi|^da es^piritu|^al \altchords{|G7 |C}
+    Eu |^peço a ^Salva|ção \altchords{\id[5]{MK (C)}|C | \e}
+    ^Que só |Vós po^de nos |^dar ^ \altchords{| |G}
+    Perdo|ai-nos ^neste |^mundo \altchords{|Dm |G}
+    E ^na vi|^{da es}^piritu|^al ^ \altchords{|G7 |C}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2022-12
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'()
       \key c \major \time 4/4 \partial 4.
@@ -412,7 +411,7 @@
       Eu | pe -- ço, eu | pe -- ço;
       Eu | pe -- ço~ao Pai Di -- | vi -- no;
       Que me | dê a San -- ta | Luz;
-      Pa -- ra ilu -- mi -- | nar o meu ca -- | mi -- nho. __
+      Pa -- ra~i -- lu -- mi -- | nar o meu ca -- | mi -- nho. __
       \set stanza = "2."
       \skip 1 Eu | pe -- ço~à Vir -- gem | Mãe;
       E~a Je -- sus | Cris -- to Re -- den -- | tor; __ _
@@ -431,7 +430,7 @@
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4. | c2 \parenthesize g2 | c2 \parenthesize g2
+        s4. | c1 | c1
         | c1 | d1:m
         | d1:m | g1:7
         | \parenthesize e2:m \parenthesize g2:7 | c2~ c8
@@ -455,7 +454,7 @@
         | \parenthesize e2:m g2:7 | c2~ c8
       }
     }
-    \layout { #(layout-set-staff-size 15) } % to fit on one spread
+    \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
