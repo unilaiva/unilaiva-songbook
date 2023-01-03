@@ -788,42 +788,43 @@
 \endsong
 
 
-\beginsong{Eu Tomo Esta Bebida}[by={Mestre Irineu Serra},key={Gm},sks={Gm, F\shrp{}m}]
+\beginsong{Eu Tomo Esta Bebida}[by={Mestre Irineu Serra},key={Gm},sks={F\shrp{}m, (Em)--(Gm)}]
   \audio{https://www.nossairmandade.com/hymn/92/EuTomoEstaBebida}
   \transpose{3}\preferflats
   \mnbeginchorus\memorize
-    \[^\mn{B}]Eu |\[\mnc{E}Em]tomo esta \[^\mn{G}]be|\[^\mn{B}]bida \altchords{\id[1]{(Em)}|Em | \e}
-    Que tem \[^\mn{G}]po|\[\mnc{E}E7]der ina\[^\mn{B}]cre\[^\mn{D}]di|\[\mnc{A}Am]tável \altchords{|E7 |Am}
-    \lrep \[^\mn{/}]Ela |\[\mnc{A}Am]mostra a \[^\mn{C}]to\[^\mn{E}]dos |\[\mnc{G}Em]nós \altchords{| |Em}
-    A\[^\mn{B}]qui \[^\mn{E}]den|\[\mnc{F#}B7]tro \[^\mn{A}]des\[^\mn{C}]ta \[^\mn{B}]ver|\[\mnc{E}\up{1}E7\up{2}(Em)]dade \rrep \altchords{|B7 |Em}
+    \[^\mn{B}]Eu |\[\mnc{E}Em]tomo es\[\bm]ta \[^\mn{G}]be|\[^\mn{B}]bida \altchords{\id[1]{(Em) \capo{3}}|Em | \e}
+    Que \[\bm]tem \[^\mn{G}]po|\[\mnc{E}E7]der ina\[\bmc\mn{B}]cre\[^\mn{D}]di|\[\mnc{A}Am]tá\[\bm]vel \altchords{|E7 |Am}
+    \lrep \[^\mn{/}]Ela |\[\mnc{A}Am]mostra a \[\bmc\mn{C}]to\[^\mn{E}]dos |\[\mnc{G}Em]nós \altchords{| |Em}
+    A\[\bmc\mn{B}]qui \[^\mn{E}]den|\[\mnc{F#}B7]tro \[^\mn{A}]des\[\bmc\mn{C}]ta \[^\mn{B}]ver|\[\mnc{E}\up{1}E7 \up{2}(Em)]da\[\bm]de \rrep \altchords{|B7 |\up{1}E7 \up{2}(Em)}
   \mnendchorus
   \notesoff
   \beginchorus
-    Su|^bi, subi, su|bi
-    Su|^bi foi com ale|^gria
-    \lrep Quando eu |^chequei nas al|^turas
-    Encontrei |^com a Virgem Ma|^ria \rrep
+    Su|^{bi, su}^bi, su|bi ^ \altchords{\id[2]{F\shrp{}m}|F\shrp{}m | \e}
+    Su|^{bi foi} com ^ale|^gri^a \altchords{|F\shrp{}7 |Bm}
+    \lrep Quando eu |^chequei ^nas al|^turas \altchords{|Bm |F\shrp{}m }
+    En^contrei |^com a Vir^gem Ma|^ri^a \rrep \altchords{|C\shrp{}7 |\up{1}F\shrp{}7 \up{2}(F\shrp{}m)}
   \endchorus
   \beginchorus
-    Su|^bi, subi, su|bi
-    Su|^bi foi com a|^mor
-    \lrep Encon|^trei com o Pai E|^terno
-    E Jesus |^Cristo Reden|^tor \rrep
+    Su|^{bi, su}^bi, su|bi ^
+    Su|^{bi foi} ^com a|^mor ^
+    \lrep Encon|^trei com o ^Pai E|^terno
+    E ^Jesus |^Cristo ^Reden|^tor ^ \rrep
   \endchorus
   \beginchorus
-    Su|^bi, subi, su|bi
-    Con|^forme os meus en|^sinos
-    \lrep |^Viva o Pai E|^terno
-    E viva |^todo Ser Di|^vino \rrep
+    Su|^{bi, su}^bi, su|bi ^
+    Con|^forme os ^meus en|^si^nos
+    \lrep |^Viva o ^Pai E|^terno
+    E ^viva |^todo ^Ser Di|^vi^no \rrep
     % or "...todos Seres Divinos"?
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2023-01
     theMelody = \transpose e g \relative b' {
       \set melismaBusyProperties = #'() \slurDashed
       \key e \minor \time 4/4 \partial 4
       \repeat volta 2 {
         b4\posectionmark "A" | e4 e8( e8) e4 g4 | b4( b8 b8 b4) g4
-        | e4 e8 e8 b4 d4 | a2 a4 \parenthesize a8\sectionmark "B:I" \parenthesize a8
+        | e4 e8 e8 b4 d4 | a2( a4) \parenthesize a8\sectionmark "B:I" \parenthesize a8
         % repeated section:
         | a4 a4 c4 e4 | g,4( g8) g8 b4 e4
         | fis,4 a4 c4 b4 | e,2( e4) \parenthesize b'8\sectionmark "B:II" \parenthesize b8
@@ -836,10 +837,10 @@
         \set stanza = "1."
         Eu | to -- mo es -- ta be -- | bi -- da;
         Que tem po -- | der in -- a -- cre -- di -- | tá -- vel.
-        \set stanza = "1.B-I"
+        \set stanza = "1.B:I"
         E -- la | mos -- tra~a to -- dos | nós; __ _
         A -- qui den -- | tro des -- ta ver -- | da -- de.
-        \set stanza = "1.B-II"
+        \set stanza = "1.B:II"
         E -- la | mos -- tra~a to -- dos | nós; __ _
         A -- qui den -- | tro des -- ta ver -- | da -- de.
       }
@@ -848,11 +849,11 @@
       \repeat volta 2 {
         \set stanza = "2."
         Su -- | bi, su -- _ bi, su -- | bi; __ _ _ _
-        Su -- | bi foi com a -- le -- | gri -- a.
-        \set stanza = "2.B-I"
+        Su -- | bi foi __ _ com~a -- le -- | gri -- a.
+        \set stanza = "2.B:I"
         Quan -- do~eu | che -- quei nas al -- | tu -- ras;
         En -- con -- trei | com~a Vir -- gem Ma -- | ri -- a.
-        \set stanza = "2.B-II"
+        \set stanza = "2.B:II"
         Quan -- do~eu | che -- quei nas al -- | tu -- ras;
         En -- con -- trei | com~a Vir -- gem Ma -- | ri -- a.
       }
@@ -862,10 +863,10 @@
         \set stanza = "3."
         Su -- | bi, su -- _ bi, su -- | bi; __ _ _ _
         Su -- | bi foi __ _ com a -- | mor. __ _
-        \set stanza = "3.B-I"
+        \set stanza = "3.B:I"
         En -- con -- | trei com~o Pai E -- | ter -- no;
         E Je -- sus | Cris -- to Re -- den -- | tor. __ _
-        \set stanza = "3.B-II"
+        \set stanza = "3.B:II"
         En -- con -- | trei com~o Pai E -- | ter -- no;
         E Je -- sus | Cris -- to Re -- den -- | tor. __ _
       }
@@ -875,10 +876,10 @@
         \set stanza = "4."
         Su -- | bi, su -- _ bi, su -- | bi; __ _ _ _
         Con -- | for -- me os meus en -- | si -- nos.
-        \set stanza = "4.B-I"
+        \set stanza = "4.B:I"
         \skip 1 \skip 1 | Vi -- va~o Pai E -- | ter -- no;
-        E vi -- va | to -- dos Seres Di -- | vi -- nos.
-        \set stanza = "4.B-II"
+        E vi -- va | to -- do Ser Di -- | vi -- no.
+        \set stanza = "4.B:II"
         \skip 1 \skip 1 | Vi -- va~o Pai E -- | ter -- no;
         E vi -- va | to -- do Ser Di -- | vi -- no.
         % or "...todos Seres Divinos"?
