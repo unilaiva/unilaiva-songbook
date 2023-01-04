@@ -923,40 +923,41 @@
 \endsong
 
 
-\beginsong{Aqui Estou Dizendo}[by={Mestre Irineu Serra},key={Am},sks={Am, Bm}]
+\beginsong{Aqui Estou Dizendo}[by={Mestre Irineu Serra},key={Am},sks={Am, Gm--Bm}]
   \audio{https://www.nossairmandade.com/hymn/93/AquiEstouDizendo}
   \mnbeginchorus\memorize
-    \[^\mn{E}]A|\[\mnc{A}Am]qui \[^\mn{G}]es\[^\mn{F}]tou \[^\mn{E}]di|\[\mnc{G}Dm]zen\[^\mn{F}]do\[(Dm/F)] \altchords{\id[1]{(Bm)}|Bm |Em (Em/G)}
-    \[^\mn{D}]A|\[\mnc{G}G]qui \[^\mn{F}]es\[^\mn{E}]tou \[^\mn{D}]can|\[\mnc{F}F]tan\[^\mn{E}]do\[E7] \altchords{|A |G F\shrp{}7}
+    \[^\mn{E}]A|\[\mnc{A}Am]qui \[\bm] \[^\mn{G}]es\[^\mn{F}]tou \[^\mn{E}]di|\[\mnc{G}Dm]zen\[^\mn{F}]do\[(Dm/F)] \altchords{\id[1]{(Bm)}|Bm |Em (Em/G)}
+    \[^\mn{D}]A|\[\mnc{G}G]qui \[\bm] \[^\mn{F}]es\[^\mn{E}]tou \[^\mn{D}]can|\[\mnc{F}F]tan\[^\mn{E}]do\[E7] \altchords{|A |G F\shrp{}7}
     \lrep \[^\mn{C}]Eu |\[\mnc{A}Am]digo \[\mnc{C}(C)]pa\[^\mn{E}]ra |\[\mnc{D}Dm]todos \altchords{|Bm (D) |Em}
-    \[^\mn{E}]E \[^\mn{F}]os |\[\mnc{E}E7]hinos \[^\mn{D}]estão \[\bmc\mn{C}]en\[^\mn{B}]si|\[\mnc{A}Am]nando \rrep \altchords{|F\shrp{}7 |Bm}
+    \[\bmc\mn{E}]E \[^\mn{F}]os |\[\mnc{E}E7]hinos \[^\mn{D}]estão \[\bmc\mn{C}]en\[^\mn{B}]si|\[\mnc{A}Am]nan\[\bm]do \rrep \altchords{|F\shrp{}7 |Bm}
   \mnendchorus
   \notesoff
   \beginchorus
-    Aque|^les que compreen|^derem^
-    Os que qui|^ser seguir co|^migo^
+    Aque|^les ^ que compreen|^derem^
+    Os que qui|^ser ^ seguir co|^migo^
     \lrep \noteson\[\mnlow{C}]Ten\[\mnlow{B}]do \notesoff|^fé e ^tendo a|^mor
-    Não de|^vem enca^rar pe|^rigo \rrep
+    ^Não de|^vem enca^rar pe|^ri^go \rrep
   \endchorus
   \beginchorus
-    Si|^go os meus passos em |^frente^
-    Com ale|^gria e com a|^mor^
+    Si|^{go os} ^ meus passos em |^frente^
+    Com ale|^gria ^ e com a|^mor^
     \lrep \noteson\[\mnlow{C}]Por\[\mnlow{B}]que \notesoff|^Deus é ^Sobe|^rano
-    E nesta |^firme^za es|^tou \rrep
+    E ^nesta |^firme^za es|^tou^ \rrep
   \endchorus
   \beginchorus
-    A Virgem |^Mãe é Sobe|^rana^
-    Foi |^Ela quem me ensi|^nou^
+    A Virgem |^Mãe ^ é Sobe|^rana^
+    Foi |^Ela ^ quem me ensi|^nou^
     \lrep \noteson\[\mnlow{C}]E\[\mnlow{B}]la \notesoff|^me man^dou pra |^cá
-    Para |^ser um ^Profes|^sor \rrep
+    ^Para |^ser um ^Profes|^sor \rrep
   \endchorus
-  \beginchorus
-    Vamos se|^quir, vamos se\noteson|^guir
-    \[\mnlow{F}]Va^\[\mnlow{D}]mos \[\mnlow{B}]se\notesoff|^guir, vamos em|^bora^
-    \lrep \noteson\[\mnlow{C}]Que \[\mnlow{B}]nós \notesoff|^somos ^Filhos E|^ternos
-    Filhos |^de Nos^sa Se|^nhora \rrep
-  \endchorus
+  \mnbeginchorus\noteson
+    \[\mn{E}]Vamos se|^quir^, \[\mn{G}]va\[\mn{F}]mos \[\mn{E}]se|^guir
+    \[\mn{F}]Va\[\mnc{D}]^mos \[\mn{B}]se|^guir^, \[\mn{F}]va\[\mn{E}]mos \[\mn{D}]em|^bo\[\mn{E}]ra^
+    \lrep \[\mn{C}]Que \[\mn{B}]nós |^somos ^Filhos \[\mn{E}]E|^ternos
+    ^Fi\[\mn{F}]lhos |^de \[\mn{D}]Nos^sa \[\mn{B}]Se|^nho^ra \rrep
+  \mnendchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2023-01
     theMelody = \relative b' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4.
@@ -1014,14 +1015,14 @@
         | e:7 | a2:m~ a8:m
       }
       % for verse 5 (same chords):
-      s4. | \once \set chordChanges = ##f a1:m | d2:m f
+      s4. | \once \set chordChanges = ##f a1:m | d2:m \parenthesize d2:m/f
       | g1 | f2 e8:7
       \repeat volta 2 {
         s4. | a2:m \parenthesize c | d1:m
         | e:7 | a2:m~ a8:m
       }
     }
-     \layout { #(layout-set-staff-size 13) } % to fit on one spread
+    \layout { #(layout-set-staff-size 13) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \translationoff
