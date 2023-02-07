@@ -1138,61 +1138,114 @@
 \endsong
 
 
-\beginsong{Marchinha \emph{(instrumental)}}[by={Mestre Irineu Serra},key={D}]
+\beginsong{Marchinha \emph{(instrumental)}}[by={Mestre Irineu Serra},key={D \& C}, sks={D}]
   \audio{https://www.nossairmandade.com/hymn/3291}
-  \meter{2}{4}
   \ifchorded
+    \musicnote{(D):}
+    \meter{2}{4}
     \beginchorus
-      |\[D] | |\[A] |\[D] | |\[D7] | |\[G] \altchords{\id[1]{(C)}|C | |G |C | |C7 | |F}
-      | |\[Em7] | |\[A] |\[D] |\[A] |\[D] |\[A7] |\[D] \altchords{| |Dm7 | |G |C |G |C |G7 |C}
+      |\[D] | |\[A] |\[D] | |\[D7] | |\[G]
+      | |\[Em7] | |\[A] |\[D] |\[A] |\[D] |\[A7] |\[D]
     \endchorus
-  \else % To not to break non-chorded booklets
-    \textit{(Este hino é instrumental.)}
-  \fi
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    theMelody = \relative d'' {
-      \key d \major \time 2/4
-      \repeat volta 2 {
-        | d8 d fis a | d d fis cis | e2 | d4. d,8
-        | d8 d fis a | c c a fis | d d e fis | g2~
-        | g8 d e fis | g4 g4 | g8 b b b | a4 a4
-        | a8 fis fis g | a4 a4 | a8 fis' fis cis | e4 e8 e
-        | d2
-      }
-    }
-    theChords = \chordmode {
-      \repeat volta 2 {
-        | d2 | d | a | d | d | d:7 | d:7 | g | g
-        | e:m7 | e:m7 | a | d | a | d | a:7 | d
-      }
-    }
-    % Use custom score to get high and low staff, and to get octave
-    % transposing correct in all the staffs and MIDI
-    \layout {
-      \context {
-        \Score {
-          \override StaffGrouper.staff-staff-spacing.padding = #2
+    \vspace{.6em} % for aligning with the next page
+    \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+      theMelody = \relative d'' {
+        \key d \major \time 2/4
+        \repeat volta 2 {
+          | d8 d fis a | d d fis cis | e2 | d4. d,8
+          | d8 d fis a | c c a fis | d d e fis | g2~
+          | g8 d e fis | g4 g4 | g8 b b b | a4 a4
+          | a8 fis fis g | a4 a4 | a8 fis' fis cis | e4 e8 e
+          | d2
         }
       }
-    }
-    \score {
-      <<
-        \new ChordNames { \theChords }
-        \new StaffGroup \with {
-          \override StaffGrouper.staffgroup-staff-spacing.padding = #5
-        } <<
-          \new Staff { \clef "treble" \transpose c' c \new Voice = "theVoice" { \theMelody } }
-          \include "tex/lp-internal-tabstaff.ly" % the normal tabstaff
-          \new TabStaff { % transposed only one octave down
-            \tabFullNotation \stemDown
-            \clef "moderntab" \set minimumFret = #10  \transpose c' c \theMelody
+      theChords = \chordmode {
+        \repeat volta 2 {
+          | d2 | d | a | d | d | d:7 | d:7 | g | g
+          | e:m7 | e:m7 | a | d | a | d | a:7 | d
+        }
+      }
+      % Use custom score to get high and low staff, and to get octave
+      % transposing correct in all the staffs and MIDI
+      \layout {
+        \context {
+          \Score {
+            \override StaffGrouper.staff-staff-spacing.padding = #2
           }
+        }
+      }
+      \score {
+        <<
+          \new ChordNames { \theChords }
+          \new StaffGroup \with {
+            \override StaffGrouper.staffgroup-staff-spacing.padding = #5
+          } <<
+            \new Staff { \clef "treble" \transpose c' c \new Voice = "theVoice" { \theMelody } }
+            \include "tex/lp-internal-tabstaff.ly" % the normal tabstaff
+            \new TabStaff { % transposed only one octave down
+              \tabFullNotation \stemDown
+              \clef "moderntab" \set minimumFret = #10  \transpose c' c \theMelody
+            }
+          >>
         >>
-      >>
-      \layout { }
-    }
-    \include "tex/lp-internal-midi-score.ly"
-  \end{lilypond}\end{lilywrap}
+        \layout { }
+      }
+      \include "tex/lp-internal-midi-score.ly"
+    \end{lilypond}\end{lilywrap}
+    \vfill\vspace{6em}\brk % to push the rest onto the next page (or column)
+    \musicnote{(C):}
+    \meter{2}{4}
+    \beginchorus
+      |\[C] | |\[G] |\[C] | |\[C7] | |\[F]
+      | |\[Dm7] | |\[G] |\[C] |\[G] |\[C] |\[G7] |\[C]
+    \endchorus
+    \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+      theMelody = \transpose d c \relative d'' {
+        \key d \major \time 2/4
+        \repeat volta 2 {
+          | d8 d fis a | d d fis cis | e2 | d4. d,8
+          | d8 d fis a | c c a fis | d d e fis | g2~
+          | g8 d e fis | g4 g4 | g8 b b b | a4 a4
+          | a8 fis fis g | a4 a4 | a8 fis' fis cis | e4 e8 e
+          | d2
+        }
+      }
+      theChords = \transpose d c \chordmode {
+        \repeat volta 2 {
+          | d2 | d | a | d | d | d:7 | d:7 | g | g
+          | e:m7 | e:m7 | a | d | a | d | a:7 | d
+        }
+      }
+      % Use custom score to get high and low staff, and to get octave
+      % transposing correct in all the staffs and MIDI
+      \layout {
+        \context {
+          \Score {
+            \override StaffGrouper.staff-staff-spacing.padding = #2
+          }
+        }
+      }
+      \score {
+        <<
+          \new ChordNames { \theChords }
+          \new StaffGroup \with {
+            \override StaffGrouper.staffgroup-staff-spacing.padding = #5
+          } <<
+            \new Staff { \clef "treble" \transpose c' c \new Voice = "theVoice" { \theMelody } }
+            \include "tex/lp-internal-tabstaff.ly" % the normal tabstaff
+            \new TabStaff { % transposed only one octave down
+              \tabFullNotation \stemDown
+              \clef "moderntab" \set minimumFret = #8  \transpose c' c \theMelody
+            }
+          >>
+        >>
+        \layout { }
+      }
+      \include "tex/lp-internal-midi-score.ly"
+    \end{lilypond}\end{lilywrap}
+  \else % not chorded: to not to break non-chorded booklets
+    \textit{(Este hino é instrumental.)}
+  \fi
 \endsong
 
 
