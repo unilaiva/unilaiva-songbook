@@ -1590,31 +1590,16 @@
 %   \[\bmc\mnc{C}C]Trallallaaa
 %
 
-%% Lay the actual mark
 
-%% BEGIN BEAT MARKS / smaller mark version
-% \newcommand{\@bmmark}{{%
-%   \color{mbarcolor}%
-%   \raisebox{-.46ex}[0pt][.25ex]{%
-%     \tiny\symboliifont{▾}%
-%   }%
-% }}%
-% %% Leading space before beat mark (ex comes from chord font):
-% \newcommand{\@bmleadspace}{.38ex}
-%% END BEAT MARKS / smaller mark version
-
-%% BEGIN BEAT MARKS / larger mark version
-%% Lay the actual mark
-%% The following is for a LARGER mark
+% Lay the actual mark
 \newcommand{\@bmmark}{{%
   \color{mbarcolor}%
-  \raisebox{-.64ex}[0pt][.22ex]{%
-    \scriptsize\symboliifont{▾}%
+  \raisebox{-.65ex}[0pt][.25ex]{%
+    \scriptsize\symboliifont{🞄}%
   }%
 }}%
-%% Leading space before beat mark (ex comes from chord font):
-\newcommand{\@bmleadspace}{.35ex}
-%% END BEAT MARKS / larger mark version
+% Leading space before beat mark (ex comes from chord font):
+\newcommand{\@bmleadspace}{.36ex}
 
 % Will hold the width of the beat mark without leading space:
 \newdimen{\@bmwidth}%
