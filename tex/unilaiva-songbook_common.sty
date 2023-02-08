@@ -1696,6 +1696,11 @@
 \newsongkey{key}{\def\key{}}
                 {\def\key{#1}}
 
+% Texts for key info in prelude. Can be set before including this file.
+\providecommand{\preludetextkey}{Key:}
+\providecommand{\preludetextgood}{good:} % ", " is prepended before this
+\providecommand{\preludetextgoodkeysalone}{Good keys:}
+
 % Support for suggested keys for a song. This key is supposed to hold the
 % suggested good keys this song to be played in. The first is the preferred
 % one. The suggested keys are displayed in the song preamble.
@@ -1879,13 +1884,13 @@
          \ifchorded% % Show key + suggested keys (if in chorded mode)
            \def\keylinetext{}%
            \ifshowkey\ifx\key\empty\else%
-             \g@addto@macro\keylinetext{\textit{Key:} \textbf{\color{chordcolor}\key}}%
+             \g@addto@macro\keylinetext{\textit{\preludetextkey} \textbf{\color{chordcolor}\key}}%
            \fi\fi%
            \ifshowsks\ifx\suggestedkeys\empty\else%
              \ifx\keylinetext\empty%
-               \g@addto@macro\keylinetext{\textit{Good keys:} \textbf{\suggestedkeys}}%
+               \g@addto@macro\keylinetext{\textit{\preludetextgoodkeysalone} \textbf{\suggestedkeys}}%
              \else%
-               \g@addto@macro\keylinetext{\textit{, good:} \textbf{\suggestedkeys}}%
+               \g@addto@macro\keylinetext{\textit{, \preludetextgood} \textbf{\suggestedkeys}}%
              \fi%
            \fi\fi%
            \ifx\keylinetext\empty\else%
