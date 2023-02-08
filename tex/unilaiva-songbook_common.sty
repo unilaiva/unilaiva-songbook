@@ -272,6 +272,7 @@
 %   \thisbooktitle
 %   \bookmotto
 %   \bookbytext
+%   \bookversionpretext
 %   \bookcompiledbytext
 %   \secondpagefootnote
 % All of them are optional, and for some there are defaults defined below.
@@ -282,12 +283,7 @@
   \mainbooktitle\ifdefined\subbooktitle{: \subbooktitle}\fi%
 }
 \providecommand{\bookbytext}{By:\par\vspace{0.618034ex}\textbf{\Large humankind}}%
-\providecommand{\secondpagefootnote}{%
-  The material in this book is collected and transcribed, with help from a
-  multitude of people, from various audio and text sources --- and through
-  singing, playing, dancing, sharing, studying and learning. This is a work in
-  progress, made with Gratitude and Love.
-}
+\providecommand{\bookversionpretext}{Version:}
 \providecommand{\songbookversion}{\the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}%
 
 
@@ -640,7 +636,7 @@
         {\large \bookbytext}
         \par\vspace{2ex}
       \fi
-      {\large Version:}
+      {\large \bookversionpretext}
       \par\vspace{0.618034ex}
       {\Large%
         %vvvv-mm-dd % Use hardcoded date date for tagged printout releases
