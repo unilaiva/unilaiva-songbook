@@ -88,176 +88,6 @@
 \endsong
 
 
-\beginsong{Chamei Mamãe Jurema}[by={Padr. Valdete}, key={Bm}, sks={Cm, (Bm)--Cm--D\shrp{}m}]
-  \audio{https://nossairmandade.com/hymn/149/ChameiMam\%C3\%A3eJurema}
-  \audio[key=Bm]{https://soundcloud.com/spencer-stewart-3/15-chamei-mamae-jurema-06}
-  \audio[key=Bm]{https://www.youtube.com/watch?v=hCAdRdcadVU}
-  \mnbeginchorus\memorize
-    \[^\mn{F#}]Cha|\[\mnc{B}Bm]mei \[\bmc\mn{D}]Mamãe Ju|\[^\mn{C#}]re\[^\mn{B}]ma\[\bm], \[^\mn{F#}]cha|\[^\mn{B}]mei \[^\mn{C#}]Ma\[\mnc{D}B7]mãe \[^\mn{C#}]Ie\[^\mn{B}]man|\[\mnc{E}Em]já \[\bm]
-    \lrep \[^\mn{E}]Cha|\[Em]mei Papai \[\bmc\mn{G}]Ogum \[^\mn{F#}]da |\[\mnc{D}Bm]Ma\[^\mn{B}]ta\[\bm], \[^\mn{D}]cha|\[\mnc{C#}F#]mei Pa\[^\mn{D}]pai \[\mnc{E}F#7]O\[^\mn{D}]gum \[^\mn{C#}]do |\[\mnc{B}Bm]Mar \[\up{1}B7] \rrep
-  \mnendchorus
-  \notesoff
-  \beginchorus
-    Cha|^mei to^dos os ca|boclos^, cha|mei to^dos Ori|^xás ^
-    \lrep Cha|^mei to^das as fa|^langes^, que Deus do|^mina na ^terra e no |^mar ^ \rrep
-  \endchorus
-  \beginchorus
-    Cha|^mei to^das essas |forças^, para |virem ^me aju|^dar ^
-    \lrep Me |^defender ^das tenta|^ções^, que |^so querem ^me derri|^bar ^ \rrep
-  \endchorus
-  \beginchorus
-    Tenho |^fé no ^meu Pai E|terno^, e na |minha Mãe ^Imacu|^la^da
-    \lrep Que |^com meu Se^nhor São Mi|^guel^, eu |^vou ven^cer a jor|^na^da \rrep
-  \endchorus
-  \beginchorus
-    É |^so pres^tar aten|ção^, na li|ção que es^ta estu|^dan^do
-    \lrep |^Para ^poder pas|^sar^, nas |^provas ^que vem che|^gan^do \rrep
-  \endchorus
-  \beginchorus\ifchorded\normalsize\fi % to fit on a spread
-    Es|^tuda ^com aten|ção^, na es|cola que se ^matricu|^lou ^
-    \lrep Para pro|^var que ^é bom a|^luno^: e es|^ta com o ^seu Profes|^sor ^ \rrep
-  \endchorus
-  \beginchorus\ifchorded\normalsize\fi % to fit on a spread
-    |^Eu pro^meto a meu |Mestre^, que eu |vou pi^sar no ba|^ten^te
-    \lrep |^Que de a^gora pra |^frente, e ^olho por |^olho e ^dente por |^den^te \rrep
-  \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2023-02
-    theMelody = \relative fis' {
-      \set melismaBusyProperties = #'() \slurDashed
-      \key b \minor \time 4/4 \partial 4.
-      r8 \posectionmark "A" fis8( fis8) | b4. ( b8 ) d8( d8)( d8) d8 | cis4( b2)
-      fis8( fis8) | b8( b8)( b8) cis8 d4 cis8 b8 | e2( e8)
-      \repeat volta 2 {
-        \parenthesize e8 \sectionmark "B" e8( e8) | e4( e8) e8 g4 g8 fis8 | d4( b8)( b8)
-        \parenthesize d8( \parenthesize d8) d8( d8) | cis4( cis8) d8 e4 d8 cis8
-      } \alternative {
-        { | b2( b8) } 
-        { | b2( b8) \dacapo s16 \bar "|." } % s16 is to allow space for D.C.
-      }
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "1."
-      Cha -- _ | mei __ _ Ma -- mãe __ _ Ju -- | re -- ma;
-      cha -- _ | mei __ _ _ Ma -- mãe Ie -- man -- | já; __ _
-      \repeat volta 2 {
-        \skip 1 Cha -- _ | mei Pa -- pai O -- gum da | Ma -- ta; __ _
-        \skip 1 \skip 1 cha -- _ | mei Pa -- pai O -- gum do
-      } \alternative {
-        { | Mar. __ _ }
-        { | Mar. __ _ }
-      }
-    }
-    theLyricsTwo = \lyricmode {
-      \set stanza = "2."
-      Cha -- _ | mei to -- dos __ _ os ca -- | bo -- clos,
-      cha -- _ | mei __ _ _ to -- dos O -- ri -- | xás; __ _
-      \repeat volta 2 {
-        \skip 1 Cha -- _ | mei __ _ to -- das as fa -- | lan -- ges, __ _
-        \skip 1 que Deus do -- | mi -- na na ter -- ra~e no 
-      } \alternative {
-        { | mar. __ _ }
-        { | mar. __ _ }
-      }
-    }
-    theLyricsThree = \lyricmode {
-      \set stanza = "3."
-      Cha -- _ | mei to -- das __ _ es -- sas | for -- ças,
-      pa -- ra | vi -- _ _ rem me a -- ju -- | dar; __ _
-      \repeat volta 2 {
-        \skip 1 Me __ _ | de -- fen -- der das ten -- ta -- ções, __ _ _
-        \skip 1 \skip 1 que __ _ so que -- rem me der -- ri -- 
-      } \alternative {
-        { | bar. __ _ }
-        { | bar. __ _ }
-      }
-    }
-    theLyricsFour = \lyricmode {
-      \set stanza = "4."
-      Te -- nho | fé no meu __ _ Pai E -- | ter -- no,
-      e na | mi -- _ nha Mãe I -- ma -- cu -- | la -- da;
-      \repeat volta 2 {
-        \skip 1 Que __ _ | com meu Se -- nhor São Mi -- | guel, __ _ _
-        \skip 1 \skip 1 eu __ _ | vou __ _ ven -- cer a jor --
-      } \alternative {
-        { | na -- da. }
-        { | na -- da. }
-      }
-    }
-    theLyricsFive = \lyricmode {
-      \set stanza = "5."
-        É __ _ | so pres -- tar __ _ a -- ten -- | ção, __ _
-        na li -- | ção __ _ que es -- ta es -- tu -- | dan -- do;
-      \repeat volta 2 {
-        \skip 1 \skip 1 \skip 1 | Pa -- _ ra po -- der pas -- | sar, __ _ _
-        \skip 1 \skip 1 nas __ _ | pro -- _ vas que vem che --
-      } \alternative {
-        { | gan -- do. }
-        { | gan -- do. }
-      }
-    }
-    theLyricsSix = \lyricmode {
-      \set stanza = "6."
-        Es -- _ | tu -- da com __ _ a -- ten -- ção; __ _
-        na es -- | co -- la que se ma -- tri -- cu -- | lou, __ _
-      \repeat volta 2 {
-          Pa -- ra pro -- | var __ _ que é bom a -- | lu -- no: __ _
-          \skip 1 \skip 1 e es -- | ta com o seu Pro -- fes --
-      } \alternative {
-        { | sor. __ _ }
-        { | sor. __ _ }
-      }
-    }
-    theLyricsSeven = \lyricmode {
-      \set stanza = "7."
-      \skip 1 \skip 1 | Eu pro -- me -- _ to~a meu | Mes -- tre,
-      que eu | vou __ _ _ pi -- sar no ba -- | ten -- te;
-      \repeat volta 2 {
-        \skip 1 \skip 1 \skip 1 | Que de a -- go -- ra pra | fren -- te,
-        e o -- _ lho por | o -- lho e den -- te por
-      } \alternative {
-        { | den -- te. }
-        { | den -- te. }
-      }
-    }
-    theChords = \chordmode {
-        s4. | b1:m | b1:m | b2:m b2:7 | e'2:m~8
-      \repeat volta 2 {
-        s4. | \once \set chordChanges = ##f e'1:m | b1:m | fis2 fis2:7
-      } \alternative {
-        { | b2:m b8:7 }
-        { | b2.:m~8 }
-      }
-    }
-    \layout { #(layout-set-staff-size 15) } % for better fit
-    \include "tex/lp-include-tail-lyricsbelow.ly"
-  \end{lilypond}\end{lilywrap}
-  \translationoff
-  \begin{translation}
-    I called on Mother Jurema, I called on Mother Yemanja
-    I called on Father Ogum of the forest, I called on Father Ogum of the sea
-    \nextverse
-    I called on all the caboclos, I called on all the Orixás
-    I called on all the phalanxes that God rules on land and sea
-    \nextverse
-    I called on all these forces to come and help me
-    To defend me from the temptations that only want to bring me down
-    \nextverse
-    I have faith in my Eternal Father and in my Immaculate Mother
-    that with my Lord Saint Michael, I will overcome the journey
-    \nextverse
-    Just pay attention to the lesson you are studying
-    So that you can pass the tests that are coming
-    \nextverse
-    Study attentively in the school you enrolled in
-    To prove that you are a good student and are with your Teacher
-    \nextverse
-    I promise my Master that I will work hard
-    From now on it's an eye for an eye and a tooth for a tooth.
-  \end{translation}
-\endsong
-
-
 \beginsong{O Bálsamo do Céu}[by={Baixinha}, tags={valsa}, key={Dm}, sks={Dm, Cm--D\shrp{}m}]
   % Also in songs_portuguese.tex (without lilypond notation)
   % Could this hymn be received by Isabel Barsé instead, as stated in nossairmandade.com?
@@ -503,3 +333,175 @@
   %   of the Age of Aquarius and identified with the Count Saint Germain (fl. 1710–-1784).
   % \end{explanation}
 \endsong
+
+
+\beginsong{Chamei Mamãe Jurema}[by={Padr. Valdete}, key={Bm}, sks={Cm, (Bm)--Cm--D\shrp{}m}]
+  \audio{https://nossairmandade.com/hymn/149/ChameiMam\%C3\%A3eJurema}
+  \audio[key=Bm]{https://soundcloud.com/spencer-stewart-3/15-chamei-mamae-jurema-06}
+  \audio[key=Bm]{https://www.youtube.com/watch?v=hCAdRdcadVU}
+  \mnbeginchorus\memorize
+    \[^\mn{F#}]Cha|\[\mnc{B}Bm]mei \[\bmc\mn{D}]Mamãe Ju|\[^\mn{C#}]re\[^\mn{B}]ma\[\bm], \[^\mn{F#}]cha|\[^\mn{B}]mei \[^\mn{C#}]Ma\[\mnc{D}B7]mãe \[^\mn{C#}]Ie\[^\mn{B}]man|\[\mnc{E}Em]já \[\bm]
+    \lrep \[^\mn{E}]Cha|\[Em]mei Papai \[\bmc\mn{G}]Ogum \[^\mn{F#}]da |\[\mnc{D}Bm]Ma\[^\mn{B}]ta\[\bm], \[^\mn{D}]cha|\[\mnc{C#}F#]mei Pa\[^\mn{D}]pai \[\mnc{E}F#7]O\[^\mn{D}]gum \[^\mn{C#}]do |\[\mnc{B}Bm]Mar \[\up{1}B7] \rrep
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Cha|^mei to^dos os ca|boclos^, cha|mei to^dos Ori|^xás ^
+    \lrep Cha|^mei to^das as fa|^langes^, que Deus do|^mina na ^terra e no |^mar ^ \rrep
+  \endchorus
+  \beginchorus
+    Cha|^mei to^das essas |forças^, para |virem ^me aju|^dar ^
+    \lrep Me |^defender ^das tenta|^ções^, que |^so querem ^me derri|^bar ^ \rrep
+  \endchorus
+  \beginchorus
+    Tenho |^fé no ^meu Pai E|terno^, e na |minha Mãe ^Imacu|^la^da
+    \lrep Que |^com meu Se^nhor São Mi|^guel^, eu |^vou ven^cer a jor|^na^da \rrep
+  \endchorus
+  \beginchorus
+    É |^so pres^tar aten|ção^, na li|ção que es^ta estu|^dan^do
+    \lrep |^Para ^poder pas|^sar^, nas |^provas ^que vem che|^gan^do \rrep
+  \endchorus
+  \beginchorus\ifchorded\normalsize\fi % to fit on a spread
+    Es|^tuda ^com aten|ção^, na es|cola que se ^matricu|^lou ^
+    \lrep Para pro|^var que ^é bom a|^luno^: e es|^ta com o ^seu Profes|^sor ^ \rrep
+  \endchorus
+  \beginchorus\ifchorded\normalsize\fi % to fit on a spread
+    |^Eu pro^meto a meu |Mestre^, que eu |vou pi^sar no ba|^ten^te
+    \lrep |^Que de a^gora pra |^frente, e ^olho por |^olho e ^dente por |^den^te \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2023-02
+    theMelody = \relative fis' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key b \minor \time 4/4 \partial 4.
+      r8 \posectionmark "A" fis8( fis8) | b4. ( b8 ) d8( d8)( d8) d8 | cis4( b2)
+      fis8( fis8) | b8( b8)( b8) cis8 d4 cis8 b8 | e2( e8)
+      \repeat volta 2 {
+        \parenthesize e8 \sectionmark "B" e8( e8) | e4( e8) e8 g4 g8 fis8 | d4( b8)( b8)
+        \parenthesize d8( \parenthesize d8) d8( d8) | cis4( cis8) d8 e4 d8 cis8
+      } \alternative {
+        { | b2( b8) } 
+        { | b2( b8) \dacapo s16 \bar "|." } % s16 is to allow space for D.C.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Cha -- _ | mei __ _ Ma -- mãe __ _ Ju -- | re -- ma;
+      cha -- _ | mei __ _ _ Ma -- mãe Ie -- man -- | já; __ _
+      \repeat volta 2 {
+        \skip 1 Cha -- _ | mei Pa -- pai O -- gum da | Ma -- ta; __ _
+        \skip 1 \skip 1 cha -- _ | mei Pa -- pai O -- gum do
+      } \alternative {
+        { | Mar. __ _ }
+        { | Mar. __ _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Cha -- _ | mei to -- dos __ _ os ca -- | bo -- clos,
+      cha -- _ | mei __ _ _ to -- dos O -- ri -- | xás; __ _
+      \repeat volta 2 {
+        \skip 1 Cha -- _ | mei __ _ to -- das as fa -- | lan -- ges, __ _
+        \skip 1 que Deus do -- | mi -- na na ter -- ra~e no 
+      } \alternative {
+        { | mar. __ _ }
+        { | mar. __ _ }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Cha -- _ | mei to -- das __ _ es -- sas | for -- ças,
+      pa -- ra | vi -- _ _ rem me a -- ju -- | dar; __ _
+      \repeat volta 2 {
+        \skip 1 Me __ _ | de -- fen -- der das ten -- ta -- ções, __ _ _
+        \skip 1 \skip 1 que __ _ so que -- rem me der -- ri -- 
+      } \alternative {
+        { | bar. __ _ }
+        { | bar. __ _ }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      Te -- nho | fé no meu __ _ Pai E -- | ter -- no,
+      e na | mi -- _ nha Mãe I -- ma -- cu -- | la -- da;
+      \repeat volta 2 {
+        \skip 1 Que __ _ | com meu Se -- nhor São Mi -- | guel, __ _ _
+        \skip 1 \skip 1 eu __ _ | vou __ _ ven -- cer a jor --
+      } \alternative {
+        { | na -- da. }
+        { | na -- da. }
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+        É __ _ | so pres -- tar __ _ a -- ten -- | ção, __ _
+        na li -- | ção __ _ que es -- ta es -- tu -- | dan -- do;
+      \repeat volta 2 {
+        \skip 1 \skip 1 \skip 1 | Pa -- _ ra po -- der pas -- | sar, __ _ _
+        \skip 1 \skip 1 nas __ _ | pro -- _ vas que vem che --
+      } \alternative {
+        { | gan -- do. }
+        { | gan -- do. }
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+        Es -- _ | tu -- da com __ _ a -- ten -- ção; __ _
+        na es -- | co -- la que se ma -- tri -- cu -- | lou, __ _
+      \repeat volta 2 {
+          Pa -- ra pro -- | var __ _ que é bom a -- | lu -- no: __ _
+          \skip 1 \skip 1 e es -- | ta com o seu Pro -- fes --
+      } \alternative {
+        { | sor. __ _ }
+        { | sor. __ _ }
+      }
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7."
+      \skip 1 \skip 1 | Eu pro -- me -- _ to~a meu | Mes -- tre,
+      que eu | vou __ _ _ pi -- sar no ba -- | ten -- te;
+      \repeat volta 2 {
+        \skip 1 \skip 1 \skip 1 | Que de a -- go -- ra pra | fren -- te,
+        e o -- _ lho por | o -- lho e den -- te por
+      } \alternative {
+        { | den -- te. }
+        { | den -- te. }
+      }
+    }
+    theChords = \chordmode {
+        s4. | b1:m | b1:m | b2:m b2:7 | e'2:m~8
+      \repeat volta 2 {
+        s4. | \once \set chordChanges = ##f e'1:m | b1:m | fis2 fis2:7
+      } \alternative {
+        { | b2:m b8:7 }
+        { | b2.:m~8 }
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    I called on Mother Jurema, I called on Mother Yemanja
+    I called on Father Ogum of the forest, I called on Father Ogum of the sea
+    \nextverse
+    I called on all the caboclos, I called on all the Orixás
+    I called on all the phalanxes that God rules on land and sea
+    \nextverse
+    I called on all these forces to come and help me
+    To defend me from the temptations that only want to bring me down
+    \nextverse
+    I have faith in my Eternal Father and in my Immaculate Mother
+    that with my Lord Saint Michael, I will overcome the journey
+    \nextverse
+    Just pay attention to the lesson you are studying
+    So that you can pass the tests that are coming
+    \nextverse
+    Study attentively in the school you enrolled in
+    To prove that you are a good student and are with your Teacher
+    \nextverse
+    I promise my Master that I will work hard
+    From now on it's an eye for an eye and a tooth for a tooth.
+  \end{translation}
+\endsong
+
+
