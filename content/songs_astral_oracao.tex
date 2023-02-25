@@ -679,7 +679,7 @@
     }
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     Dem dum, dem dum; Dem dum, dem dum
     \nextverse
@@ -982,7 +982,7 @@
     \layout { #(layout-set-staff-size 12) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I'm going to pray for everyone to see
     Our Father who art in heaven please defend me
@@ -1700,7 +1700,7 @@
     %\layout { #(layout-set-staff-size 14) } % for all verses: 14
     \include "tex/lp-include-tail.ly" % for all verses: -lyricsbelow.ly
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I asked and received the touch
     Of the forest and the Astral
@@ -1888,7 +1888,7 @@
     \layout { #(layout-set-staff-size 11) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     My Saint John, My Saint John, was who sang this song
     For me and for you, the magic of the Oração

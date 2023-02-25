@@ -162,7 +162,7 @@
     \layout { #(layout-set-staff-size 12) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     Firmed in concentration, in the true Virgin Mother
     I keep looking and I give opportunity to those who look for this banner
@@ -922,7 +922,7 @@
     \layout { #(layout-set-staff-size 14) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I ask God to forgive my sins
     Forgive me and forgive my brothers and sisters

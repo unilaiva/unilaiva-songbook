@@ -368,7 +368,7 @@
     \layout { #(layout-set-staff-size 12) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     With the power of heaven, of Earth and the Sea
     I order Saint Michael, the strength is given by God

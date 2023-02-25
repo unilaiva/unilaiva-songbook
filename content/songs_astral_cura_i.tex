@@ -456,7 +456,7 @@
     }
     \include "tex/lp-internal-midi-score.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I called the Master Juramidam, for my Master to come here
     \nextverse
@@ -737,7 +737,7 @@
     \layout { #(layout-set-staff-size 15) } % for better division
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     In this very moment I want to declare
     A few words which I heard being announced
@@ -873,7 +873,7 @@
     }
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     Harmony, truth and forgiveness
     Are the three points that secure this union.
@@ -1159,7 +1159,7 @@
     \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I look at the firmament, I see the whole Universe
     This force that I receive, I always sing and always ask
@@ -1281,7 +1281,7 @@
     \layout { #(layout-set-staff-size 14) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     Sun, Moon, Star; the Earth, the wind and the sea
     The forest and its mysteries for everyone to study

@@ -303,7 +303,7 @@
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I will tell you what you must do to achieve
     A place in the infinite consciousness of God
@@ -360,11 +360,11 @@
     É |^so pres^tar aten|ção^, na li|ção que es^ta estu|^dan^do
     \lrep |^Para ^poder pas|^sar^, nas |^provas ^que vem che|^gan^do \rrep
   \endchorus
-  \beginchorus\ifchorded\normalsize\fi % to fit on a spread
+  \beginchorus\ifshowlilypond\normalsize\fi % to fit on a spread
     Es|^tuda ^com aten|ção^, na es|cola que se ^matricu|^lou ^
     \lrep Para pro|^var que ^é bom a|^luno^: e es|^ta com o ^seu Profes|^sor ^ \rrep
   \endchorus
-  \beginchorus\ifchorded\normalsize\fi % to fit on a spread
+  \beginchorus\ifshowlilypond\normalsize\fi % to fit on a spread
     |^Eu pro^meto a meu |Mestre^, que eu |vou pi^sar no ba|^ten^te
     \lrep |^Que de a^gora pra |^frente, e ^olho por |^olho e ^dente por |^den^te \rrep
   \endchorus
@@ -379,7 +379,7 @@
         \parenthesize e8 \sectionmark "B" e8( e8) | e4( e8) e8 g4 g8 fis8 | d4( b8)( b8)
         \parenthesize d8( \parenthesize d8) d8( d8) | cis4( cis8) d8 e4 d8 cis8
       } \alternative {
-        { | b2( b8) } 
+        { | b2( b8) }
         { | b2( b8) \dacapo s16 \bar "|." } % s16 is to allow space for D.C.
       }
     }
@@ -479,7 +479,7 @@
     \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I called on Mother Jurema, I called on Mother Yemanja
     I called on Father Ogum of the forest, I called on Father Ogum of the sea

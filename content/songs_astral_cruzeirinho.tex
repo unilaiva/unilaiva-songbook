@@ -458,7 +458,7 @@
     \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I ask, I ask, I ask the Divine Father
     To give me the Holy Light, to illuminate my path
@@ -907,7 +907,7 @@
     }
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I take this drink which has an incredible Power
     It shows all of us here in this Truth
@@ -1026,7 +1026,7 @@
     \layout { #(layout-set-staff-size 13) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     Here I am saying, here I am singing
     I tell everybody the hymns are teaching us

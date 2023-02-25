@@ -171,7 +171,7 @@
     \layout { #(layout-set-staff-size 13) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I live in the forest, I have my teachings
     I don't call myself Daime, I am a Divine Being
@@ -322,7 +322,7 @@
     \layout { #(layout-set-staff-size 14) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     Jesus Christ is in Heaven, is on the earth, is in the sea
     The Princess Janaina, she comes to teach me
@@ -660,7 +660,7 @@
     \layout { #(layout-set-staff-size 14) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  %\translationoff
+  %\ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     It's the humming-, hummingbird that my Mother gave me
     To remove all the sickness of the ones who are deserving
@@ -1313,7 +1313,7 @@
     \layout { #(layout-set-staff-size 12) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}
     I entered an undestanding between my self and matter
     I am light, I expel sickness, and I unravel the cause of it
