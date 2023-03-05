@@ -1692,6 +1692,11 @@
 \newsongkey{key}{\def\key{}}
                 {\def\key{#1}}
 
+
+% Text style for the key line in the prelude, meant for changing the font
+% and size -- colors, italics and bolds are set implicitly. Can be set before
+% including this file.
+\providecommand{\preludekeylinestyle}{}
 % Texts for key info in prelude. Can be set before including this file.
 \providecommand{\preludetextkey}{Key:}
 \providecommand{\preludetextgood}{good:} % ", " is prepended before this
@@ -1727,11 +1732,10 @@
 % An example: \beginsong{Songname}[tags={fire, water}]. Valid tags are defined
 % in file 'tags.can'.
 
-% Setup the style for the taglist in the prelude, empty by default. Renew this
-% macro in the beginning of your document to set custom style for tags.
-% (This will be called each time in the beginning of the taglist block in
-% the prelude, within it.)
-\newcommand{\preludetagstyle}{}
+% Setup the style for the taglist in the prelude, empty by default. Set before
+% including this file. (This will be called each time in the beginning of the
+% taglist block in the prelude, within it.)
+\providecommand{\preludetagstyle}{}
 
 \newcommand{\taglist}{}% defined below for each song
 
@@ -1878,7 +1882,7 @@
            \@setpreludeRTraise%
          }\fi%
          \ifchorded% % Show key + suggested keys (if in chorded mode)
-           \def\keylinetext{}%
+           \def\keylinetext{\normalfont}%
            \ifshowkey\ifx\key\empty\else%
              \g@addto@macro\keylinetext{\textit{\preludetextkey} \textbf{\color{chordcolor}\key}}%
            \fi\fi%
@@ -1891,7 +1895,7 @@
            \fi\fi%
            \ifx\keylinetext\empty\else%
              \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
-               \tiny\normalfont\keylinetext%
+               \tiny\preludekeylinestyle\keylinetext%
              }}%
              \stepcounter{@preludeRTrowcount}%
              \@setpreludeRTraise%
