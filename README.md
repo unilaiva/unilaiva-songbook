@@ -24,7 +24,7 @@ Otherwise you must do the compilation steps manually, see **Option THREE**.
 
 ### Option ONE: use the script with Docker (preferred) ###
 
-This works only on a Linux system.
+This works on Linux and MacOS, or Windows with WSL.
 
 Execute the compilation script **without** `--no-docker` argument.
 
@@ -44,7 +44,7 @@ This method requires the following software installed on your system:
   * `git` (recommended for initially retrieving the songbook source)
   * 1,7 GiB of disk space (for Docker image)
 
-##### Example: on Debian or Ubuntu, using Docker #####
+##### Example: on Debian or Ubuntu Linux, using Docker #####
 
 To install the dependencies, download the project's source and compile
 the songbook using a Docker container, you need to run the following
@@ -53,9 +53,27 @@ commands:
   1. `sudo apt install docker.io git`
   2. `sudo adduser <USERNAME> docker` # replace <USERNAME> with your username
   3. `su <USERNAME>` # relogin for the group setting to become active
-  4. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
+  4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
   6. `./compile-songbooks.sh`
+
+##### Example: on MacOS, using Docker #####
+
+This is tested with MacOS Ventura 13.2.1 on an Intel system, but should work
+on other OS versions and also on ARM systems.
+
+First, install Docker Desktop from <https://docs.docker.com/desktop/install/mac-install/>.
+Then start the command prompt and run the following commands:
+  1. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
+  2. `cd unilaiva-songbook`
+  3. `./compile-songbooks.sh`
+  
+If `git` is not installed, it will be automatically installed when trying to
+run it for the first time.
+
+##### Example: on Windows, using Docker #####
+
+One must use Windows Subsystem for Linux (WSL). TODO: write instructions.
 
 
 ### Option TWO: use the script without Docker ###
@@ -95,15 +113,15 @@ commands:
      texlive-lang-english texlive-lang-european texlive-latex-base
      texlive-latex-extra texlive-luatex texlive-music texlive-plain-generic`
   2. `sudo locale-gen fi_FI.utf8`
-  3. `git clone --depth 1 git://github.com/unilaiva/unilaiva-songbook.git`
+  3. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   4. `cd unilaiva-songbook`
   5. `./compile-songbooks.sh --no-docker`
 
 
 ### Option THREE, compile manually ###
 
-This is the only option for non-UNIX systems (in addition to using a Linux
-virtual machine or WSL on Windows).
+This option is for compiling manually without using the compile script nor
+Docker. This way is not recommended. 
 
 Here is described how to build **only** the main document of Unilaiva Songbook.
 To build the others, these instructions must be modified.
