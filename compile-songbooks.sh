@@ -268,9 +268,15 @@ compile_in_docker() {
   docker_build_needed=""
   if [ ! -z $(docker image ls -q unilaiva-compiler) ]; then
     # image exists, compare dates...
+    # NOTE: Date comparison does not work with date -d on MacOS.
     dockerimage_ts="$(date -d $(docker inspect -f '{{ .Created }}' unilaiva-compiler) +%s)"
-    dockerfile_ts="$(date -r docker/unilaiva-compiler/Dockerfile +%s)"
-    [ ${dockerfile_ts} -gt ${dockerimage_ts} ] && docker_build_needed="true"
+    if [ $? -eq 0 ]; then
+      # first date command worked, do the rest of the comparison
+      dockerfile_ts="$(date -r docker/unilaiva-compiler/Dockerfile +%s)"
+      [ ${dockerfile_ts} -gt ${dockerimage_ts} ] && docker_build_needed="true"
+    else
+     echo -e "${PRETXT_ERROR}Can not test the version of docker image. Rebuild manually if needed."
+    fi
   else
     docker_build_needed="true"
   fi
