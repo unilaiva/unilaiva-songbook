@@ -13,18 +13,19 @@ The PDFs compiled from these sources are available at
 Compiling the songbooks to create PDF documents
 -----------------------------------------------
 
-If you are on a UNIX-compatible system (e.g. Linux), you can use the provided
-`compile-songbooks.sh` shell script to build the books. By default, if run
-without arguments, it builds all the books contained in this repository, each
-with all supported extra formats. For information about its usage,
-run: `compile-songbooks.sh --help`
+If you are on a UNIX-compatible system (e.g. Linux, MacOS or Windows WSL),
+you can use the provided `compile-songbooks.sh` shell script to build the
+books. By default, if run without arguments, it builds all the books
+contained in this repository, each with all supported extra formats.
+For information about its usage, run: `compile-songbooks.sh --help`
 
 Otherwise you must do the compilation steps manually, see **Option THREE**.
 
 
 ### Option ONE: use the script with Docker (preferred) ###
 
-This works on Linux and MacOS, or Windows with WSL.
+This works on Linux and MacOS, or Windows with WSL. Using Linux is
+recommended, as it is the most tested of the operating systems.
 
 Execute the compilation script **without** `--no-docker` argument.
 
