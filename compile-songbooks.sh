@@ -6,7 +6,8 @@
 #
 # Note that this script -- unmodified -- probably works only with bash, as it
 # uses some of it's features, especially for arrays, arithmetic and $BASHPID.
-# Bash version 4 or higher is required, and tested for.
+# Bash version 4 or higher is required, and tested for. If using Docker for
+# compiling, as is the default, Bash version 3 is enough on the host system.
 #
 # Usage: run without argument for default operation. Run with --help argument
 # for further information about options, or see function print_usage_and_exit
@@ -503,8 +504,6 @@ parallel="true"
 
 setup_ui
 
-[ "${BASH_VERSINFO:-0}" -lt 4 ] && die 9 "Your Bash is too old; v4 or later required."
-
 doc_count=0 # will be increased when documents are added to 'docs' array
 
 all_args="$@"
@@ -593,6 +592,10 @@ echo -e "${PRETXT_GIT}Pulling remote changes (with rebase)..."
     exit 0
   fi
 fi
+
+# Test Bash version here and not earlier, to allow using the script with
+# docker and MacOS (which has version 3 by default).
+[ "${BASH_VERSINFO:-0}" -lt 4 ] && die 9 "Your Bash is too old; v4 or later required."
 
 # Test executable availability:
 which "lualatex" >"/dev/null" || die 1 "'lualatex' binary not found in path!"
