@@ -13,6 +13,164 @@
 % end of each songs_ file.)
 \setcounter{songnum}{1}
 
+\beginsong{Brilhantes Pedras Finas}[by={Pard. Alfredo}, key={A}, sks={A, (A)--(B\flt{})}, tags={marcha e valsa}, off={Angelina}]
+  \audio{https://nossairmandade.com/hymn/3240/BrilhantesPedrasFinas}
+  \audio[key=A]{https://soundcloud.com/violeiro-daime/brilhantes-pedras-finas}
+  \audio[key=A]{https://soundcloud.com/canaljagube/01-brilhantes-pedras-finas?in=canaljagube/sets/hinario-nova-dimensao-1}
+  \newchords{chords_brilhantes_pedras_a}\newchords{chords_brilhantes_pedras_b}
+  \mnbeginchorus\memorize[chords_brilhantes_pedras_a]
+    \[^\mn{A}]Ao pai e\meter{4}{4}|\[A]ter\[^\mn{E}]no nunca \[\bmc\mn{F#}]dei\[^\mn{E}]xo de pe|\[^\mn{A}]dir\[\bm]
+    \[^\mn{A}]Na minha |\[A7]mãe \[^\mn{E}]eu nunca \[\bm]pa\[^\mn{C#}]ro \[^\mn{D}]de \[^\mn{E}]fa|\[\mnc{F#}D]lar\[\bm]
+    \[^\mn{B}]Je\[^\mn{C#}]sus |\[^\mn{D}]Cristo nos\[^\mn{F#}]so \[\bmc\mn{B}]gui\[^\mn{A}]a eterna|\[\mnc{E}A]men\[^\mn{C#}]te\[\bm]
+    \[^\mn{E}]E me dá |\[E]forças \[^\mn{B}]pa\[^\mn{C#}]ra \[\bmc\mn{D}]eu e\[^\mn{A}]xe\[^\mn{B}]cu|\[\mnc{C#}A]tar\[A7]
+    \[^\mn{A}]Es\[^\mn{B}]ta \[^\mn{C#}]mis|\[\mnc{D}D]são edu\[^\mn{F#}]ca\[\bmc\mn{B}]ção \[^\mn{A}]em nossa |\[\mnc{E}A]men\[^\mn{C#}]te\[\bm]
+    \[^\mn{E}]Eterna|\[E]mente \[^\mn{B}]pa\[^\mn{C#}]ra \[\bmc\mn{D}]todos \[^\mn{C#}]nós \[^\mn{B}]can\up{1}(|\[\mnc{A}A]tar\[\bm] ) \up{2}(\meter{3}{4}|\[\mnc{A}A]tar)
+  \mnendchorus
+  \mnbeginchorus\memorize[chords_brilhantes_pedras_b]
+    \ind \[^\mn{A}]Se\meter{3}{4}|\[A7]guin\[^\mn{B}]do es\[^\mn{C#}]ta |\[\mnc{D}D]rosa \[^\mn{F#}]de |\[^\mn{B}]luz \[^\mn{A}]e \[^\mn{C#}]ca|\[\mnc{E}E]lor
+    \ind \[^\mn{F#}]Que |\[^\mn{E}]no \[^\mn{C#}]meu \[^\mn{A}]jar|\[^\mn{B}]dim fez nas|cer \[^\mn{A}]es\[^\mn{C#}]ta |\[A]flor
+    \ind Es|\[\mnc{A}A7]ta \[^\mn{B}]flor \[^\mn{C#}]me|\[\mnc{D}D]nina, \[^\mn{F#}]di|\[^\mn{B}]vi\[^\mn{A}]na es\[^\mn{C#}]ta |\[\mnc{E}E]flor
+    \ind \[^\mn{F#}]Jar|\[^\mn{E}]dim \[^\mn{C#}]da \[^\mn{A}]in|\[^\mn{B}]fância \[^\mn{A}]Jar|\[^\mn{C#}]dim \[^\mn{A}]do \[^\mn{F#}]a\up{1}(|\[\mnc{A}A]mor) \up{2}(\meter{4}{4}|\[\mnc{A}A]mor\[\bm] )
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_brilhantes_pedras_a]
+    Vem das es\meter{4}{4}|^trelas o vi^gor desta mis|são^
+    São nossos |^guias que vem ^para nos cu|^rar^
+    Passando o |visto o ser di^vino santo |^daime^
+    Nos traz o |^dom e o po^der de transfor|^mar^
+    Aqui na |^terra de bri^lhantes pedras |^finas^
+    O nosso |^mestre tem po^der de nos sal\up{1}(|^var^ ) \up{2}(\meter{3}{4}|^var)
+    \endchorus
+  \beginchorus\replay[chords_brilhantes_pedras_b]
+    \ind No \meter{3}{4}|^jardim lou|^vando a |nossa mãe|^zinha
+    \ind Que |foi quem nos |deu es|ta pedra |^fina
+    \ind Es|^te dia|^mante de i|lumina|^ção
+    \ind E|leva o es|tudo No|va Dimen\up{1}(|^são) \up{2}(\meter{4}{4}|^são^ )
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2023-04
+    theMelody = \relative a'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        a8 \posectionmark "A" a a | a e e e fis e e e | a,2~8 a' a a
+        | a e e e e cis d e | fis2~8 \parenthesize b,8 b cis
+        | d d d fis b a a a | e4 cis4. e8 e e
+        | e e b cis d d a b | cis2~8 a b cis
+        | d d d fis b a a a | e4 cis4. e8 e e
+        | e e b cis d d cis b
+      } \alternative {
+        { | a2~8 }
+        { \time 3/4 | a2 \once \override Score.TimeSignature.stencil = ##f }
+      } \break
+      \repeat volta 2 { \time 3/4 \partial 4
+        a4 \sectionmark "B" | a b cis | d d fis | b a cis, | e( e) fis
+        | e cis a | b( b) b | b a cis | cis( cis) cis
+        | a b cis | d d fis | b a cis, | e2 fis4
+        | e cis a | b b a | cis a fis
+      } \alternative {
+        { a2 }
+        { \time 4/4 a2~8 \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        \set stanza = "1.A"
+        Ao pai e -- | ter -- no nun -- ca dei -- xo de pe -- | dir; _
+        Na mi -- nha | mãe eu nun -- ca pa -- ro de fa -- | lar; _
+        \skip 1 Je -- sus | Cris -- to nos -- so gui -- a~e -- ter -- na -- | men -- te;
+        E me dá | for -- ças pa -- ra eu e -- xe -- cu -- | tar; _
+        Es -- ta mis -- | são e -- du -- ca -- ção em nos -- sa | men -- te;
+        E -- ter -- na -- | men -- te pa -- ra to -- dos nós can --
+      } \alternative {
+        { | tar. _ }
+        { | tar. }
+      }
+      \repeat volta 2 {
+        \set stanza = "1.B"
+        Se -- | guin -- do~es -- ta | ro -- sa de | luz e ca -- | lor; __ _
+        Que | no meu jar -- | dim fez nas -- | cer es -- ta | flor; __ _
+        Es -- | ta flor me -- | ni -- na, di -- | vi -- na~es -- ta | flor;
+        Jar -- | dim da in -- | fân -- cia, jar -- | dim do a --
+      } \alternative {
+        { | mor. }
+        { | mor. _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \repeat volta 2 {
+        \set stanza = "2.A"
+        Vem das es -- | tre -- las o vi -- gor des -- ta mis -- | são; _
+        São nos -- sos | gui -- as que vem pa -- ra nos cu -- | rar; _
+        Pas -- san -- do~o | vis -- to~o ser di -- vi -- no san -- to | dai -- me;
+        Nos traz o | dom e o po -- der de trans -- for -- | mar; _
+        A -- qui na | ter -- ra de bri -- lhan -- tes pe -- dras | fi -- nas;
+        O nos -- so | mes -- tre tem po -- der de nos sal --
+      } \alternative {
+        { | var. _ }
+        { | var. }
+      }
+      \repeat volta 2 {
+        \set stanza = "2.B"
+        No | jar -- dim lou -- | van -- do a | nos -- sa mãe -- | zi -- nha;
+        Que | foi quem nos | deu __ _ es -- | ta pe -- dra | fi -- na;
+        Es -- | te di -- a -- | man -- te de~i -- | lu -- mi -- na -- | ção;
+        E -- | le -- va~o es -- | tu -- do No -- | va Di -- men --
+      } \alternative {
+        { | são. }
+        { | são. _ }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a1 | a | a:7 | d
+        | d | a | e | a2 a2:7
+        | d1 | a | e
+      } \alternative {
+        { | a2~8 }
+        { | a2 }
+      }
+      \repeat volta 2 {
+        s4 | a2.:7 | d | d | e
+        | e | e | e | a
+        | a:7 | d | d | e
+        | e | e | e
+      } \alternative {
+        { | a2 }
+        { | a2~8 }
+      }
+    }
+    \layout { #(layout-set-staff-size 10.3) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    Of the Eternal Father I never cease to ask
+    I never stop speaking about my Mother
+    Jesus Christ our guide forever
+    And gives me strength to perform
+    This mission education in our mind
+    Forever for all of us to sing
+    \nextverse
+    \ind Following this rose of light and warmth
+    \ind That in my garden gave birth to this flower
+    \ind This little girl flower, this flower divine
+    \ind Garden of childhood, garden of love
+    \nextverse
+    The vigor of this mission comes from the stars
+    It is our guides who come to heal us
+    The divine being of Santo Daime grading our work
+    Which brings the gift and the power to transform
+    Here in the land of shining precious stones
+    Our master has power to save us
+    \nextverse
+    \ind In the garden praising our Mother
+    \ind Who was the one who gave us this fine stone
+    \ind This diamond of illumination
+    \ind Elevates the study of the New Dimension
+  \end{translation}
+\endsong
+
 
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Pard. Alfredo},key={Am},sks={Am}]
