@@ -172,6 +172,119 @@
 \endsong
 
 
+\beginsong{Ciranda do Amor \\ Ciranda do Santo Daime}[by={Pard. Alfredo}, key={Am}, sks={Bm, (Am)--(Cm)}, tags={marcha e meia valsa}, off={April, Lemoni e Grace}]
+  \audio{https://nossairmandade.com/hymn/3237/CirandaDoSantoDaime}
+  \audio[key=Am]{https://soundcloud.com/violeiro-daime/ciranda-do-santo-daime?in=violeiro-daime/sets/hinario-nova-dimensao}
+  \newchords{chords_cirandadoamor_a}\newchords{chords_cirandadoamor_b}
+  \mnbeginchorus\memorize[chords_cirandadoamor_a]
+    \ind \[^\mn{E}]O |\[\mnc{A}Am]que Pa\[\bm]pai \[^\mn{B}]me |\[^\mn{A}]de\[\mnc{G}Am7]{-u} \altchords{\id[1]{(Bm)}|Bm | - Bm7}
+    \ind |\[Em]Ma\[^\mn{F#}]mãe \[\bmc\mn{G}]con\[^\mn{A}]sa|\[\mnc{E}E7]grou \[\bm] \altchords{|F\shrp{}m |F\shrp{}7}
+  \mnendchorus
+  \mnbeginchorus\memorize[chords_cirandadoamor_b]
+    \[^\mn{A}]Gira, |\[Am]gira, \[^\mn{E}]crian\[\bmc\mn{C}]ci\[^\mn{A}]nha, |\[^\mn{C}]gi\[^\mn{A}]ra \altchords{|Bm | \e}
+    \[\bm]Na ci|\[\mnc{E}E7]randa \[\bmc\mn{A}]do \[^\mn{B}]a|\[\mnc{C}C]mor \[\bm] \altchords{|F\shrp{}7 |D}
+    \[^\mn{A}]Gira, |\[Am]gira, \[^\mn{E}]crian\[\bmc\mn{C}]ci\[^\mn{A}]nha, |\[^\mn{C}]gi\[^\mn{A}]ra \altchords{|Bm | \e}
+    \[\bm]Que a |\[\mnc{E}E7]Virgem \[\bmc\mn{C}]Mãe \[^\mn{B}]man|\[\mnc{A}Am]dou \[\bm] \altchords{|F\shrp{}7 |Bm}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_cirandadoamor_a]
+    \ind O |^que Ma^mãe me |dis^se \altchords{\id[4]{alt. (Am)}|Am | - G}
+    \ind |^Papai ^confir|^mou ^ \altchords{| - |E7}
+  \endchorus
+  \beginchorus\replay[chords_cirandadoamor_b]
+    Gira, |^gira, cabo^clinha, |gira \altchords{|Am C | - Am}
+    ^Gira |^na gi^ra do a|^mor ^ \altchords{|E7 Am |C}
+    Gira, |^gira, cabo^clinha, |gira \altchords{|Am C | - Am}
+    ^Na gi|^ra que ^Deus man|^dou ^ \altchords{|E7 C |Am}
+  \endchorus
+  \beginchorus\replay[chords_cirandadoamor_a]
+    \ind O |^velho ^tempo |pas^sa \altchords{\id[5]{alt. (Bm)}|Bm | - A}
+    \ind No|^vo tem^po che|^gou ^ \altchords{| - |F\shrp{}7}
+  \endchorus
+  \beginchorus\replay[chords_cirandadoamor_b]
+    Novo |^mundo, novo ^povo, nova |era, \altchords{|Bm D | - Bm}
+    ^E um |^novo ^profes|^sor ^ \altchords{|F\shrp{}7 Bm |D}
+    Novo |^mundo, novo ^povo, nova |era \altchords{|Bm D | - Bm}
+    ^E um |^novo ^profes|^sor ^ \altchords{|F\shrp{}7 D |Bm}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2023-04
+    theMelody = \relative a'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        e4 \posectionmark "A" | a a a b | a2( g4)( g) | g fis g a | e2.
+      }
+      \repeat volta 2 {
+        a8 \sectionmark "B" a | a a e e c8( c8) a8( a8) | c4 a4 a4 a4 | e4 e a b | c2.
+        a'8 a | a a e e c8( c8) a8( a8) | c4 a4 a4 a4 | e4 e c' b | a2.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        O | que Pa -- pai me | deu; __ _ _
+        | Ma -- mãe con -- sa -- | grou.
+      }
+      \repeat volta 2 {
+        Gi -- ra, | gi -- ra, cri -- an -- ci -- _ nha, __ _ | gi -- ra
+        Na ci -- | ran -- da do a -- | mor;
+        Gi -- ra, | gi -- ra, cri -- an -- ci -- _ nha, __ _ | gi -- ra
+        Que a | Vir -- gem Mãe man -- | dou.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \repeat volta 2 {
+        O | que Ma -- mãe me | dis -- se; __ _
+        | Pa -- pai con -- fir -- | mou.
+      }
+      \repeat volta 2 {
+        Gi -- ra, | gi -- ra, ca -- bo -- cli -- _ nha, __ _ | gi -- ra
+        Gi -- ra | na gi -- ra do~a -- | mor;
+        Gi -- ra, | gi -- ra, ca -- bo -- cli -- _ nha, __ _ | gi -- ra
+        Na gi -- | ra que Deus man -- | dou.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \repeat volta 2 {
+        O | ve -- lho tem -- po | pas -- sa;
+        No -- | vo tem -- po che -- | gou.
+      }
+      \repeat volta 2 {
+        No -- vo | mun -- do, no -- vo po -- vo, no -- va | e -- ra,
+        E um | no -- vo pro -- fes -- | sor;
+        No -- vo | mun -- do, no -- vo po -- vo, no -- va | e -- ra
+        E um | no -- vo pro -- fes -- | sor.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a1:m | a2:m a2:m7 | e1:m | e2.:7
+      }
+      \repeat volta 2 {
+        s4 | a1:m  | a:m | e:7 | c1
+        | a1:m | a:m | e:7 | a2.:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \translationoff
+  \begin{translation}
+    That which Daddy gave to me, Mommy consecrated it
+    Go around, go around, little child, go around in the ciranda of love
+    Go around, go around, little child, go around because the Virgin Mother ordered it
+    \nextverse
+    What Mommy told me, Daddy confirmed it.
+    Go around, go around, little cabocla, go around
+    Go around, go around, little cabocla, go around in the ring, because God ordered it
+    \nextverse
+    The old time passes, the new time has arrived
+    New world, new people, new age, and a new teacher
+    New world, new people, new age, and a new teacher
+  \end{translation}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Pard. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
