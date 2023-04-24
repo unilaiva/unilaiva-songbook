@@ -36,6 +36,9 @@ old_versions
 !ext_packages/songs/songs.pdf
 !content/img/*.pdf
 
+# Temporary transcribing work files
+WIP_*
+
 # other
 old
 *~

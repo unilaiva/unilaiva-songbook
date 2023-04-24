@@ -1,0 +1,13 @@
+<frescobaldi-shortcut name="Unilaiva">
+  <!--
+  Created by Frescobaldi 3.2.
+-->
+  <collection name="snippets">
+    <name name="comment">
+      <shortcut>Ctrl+D</shortcut>
+    </name>
+    <name name="uncomment">
+      <shortcut>Ctrl+Shift+D</shortcut>
+    </name>
+  </collection>
+</frescobaldi-shortcut>

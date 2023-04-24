@@ -262,6 +262,7 @@ Project structure and guidelines
 │   ├── unilaiva-songbook_content_include_part1.tex
 │   ├── unilaiva-songbook_content_include_part2.tex
 │   └── unilaiva-songbook_content_include_part3_appendices.tex
+├── **workspace**
 ├── compile-songbooks.sh
 ├── README.md
 ├── tags.can
@@ -301,6 +302,8 @@ There are also various 'Unilaiva no Astral' books, named `unilaiva-astral*.tex`.
 
 External packages are in `ext_packages` subdirectory. This currently includes
 only the `songs` package and it's documentation.
+
+`workspace` subdirectory contains template files useful for transcribing work.
 
 Code lines in the source ought to be maximum of 100 characters long, but
 exceptions are allowed when needed, especially for song data.
