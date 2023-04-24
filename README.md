@@ -253,6 +253,7 @@ Project structure and guidelines
 ├── **docker**
 ├── **ext_packages**
 │   └── **songs**
+├── **result**
 ├── **tex**
 │   ├── printout_template_A5_on_A4_doublesided_folded.context
 │   ├── printout_template_A5_on_A4_sidebyside_simple.context
@@ -302,6 +303,8 @@ There are also various 'Unilaiva no Astral' books, named `unilaiva-astral*.tex`.
 
 External packages are in `ext_packages` subdirectory. This currently includes
 only the `songs` package and it's documentation.
+
+The compilation script will place the final PDF files in the `result` directory.
 
 `workspace` subdirectory contains template files useful for transcribing work.
 

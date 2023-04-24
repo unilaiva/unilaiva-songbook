@@ -23,6 +23,10 @@ temp/
 deploy/
 deploy
 
+# result directory (also a symlink)
+result/
+result
+
 # unilaiva VM's shared deploy directory
 deploy_from_vm/
 deploy_from_vm

@@ -9,14 +9,14 @@
 # Bash version 4 or higher is required, and tested for. If using Docker for
 # compiling, as is the default, Bash version 3 is enough on the host system.
 #
-# Usage: run without argument for default operation. Run with --help argument
-# for further information about options, or see function print_usage_and_exit
-# below.
-#
 # Required binaries in PATH: bash, lilypond-book, lualatex, texlua, awk, ps
 # Optional binaries in PATH:
 #   - docker: for default compilation mode inside container
 #   - context: used to create printout versions
+#
+# Usage: run without argument for default operation. Run with --help argument
+# for further information about options, or see function print_usage_and_exit
+# below.
 #
 
 
@@ -43,6 +43,8 @@ PART2_FILENAME_BASE="unilaiva-songbook_part2_A5" # filename base for the 2-part 
 ASTRAL_FNAME_PREFIX="unilaiva-astral" # filename prefix for unilaiva astral books
 SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
+RESULT_DIRNAME="result" # just the name of a subdirectory, not an absolute path
+DEPLOY_DIRNAME="deploy" # just the name of a subdirectory, not an absolute path
 SONG_IDX_SCRIPT="ext_packages/songs/songidx.lua"
 # The following is the locale used in creating the indexes, thus affecting the
 # sort order. Finnish (UTF8) is the default. Note that the locale used must be
@@ -61,12 +63,13 @@ print_usage_and_exit() {
   echo ""
   echo "Usage: compile-songbooks.sh [OPTION]... [FILE]..."
   echo ""
-  echo "TL;DR: just run without arguments for default operation."
+  echo "TL;DR: just run without arguments for default operation. The resulting"
+  echo "       PDF files will be put in the '${RESULT_DIRNAME}' subdirectory."
   echo ""
   echo "If run without any arguments, all main .tex documents of Unilaiva songbook"
   echo "family (main book, astral books, partial booklets and selections) will be"
   echo "compiled, plus all supported extra formats for all of them, and the"
-  echo "resulting files will be copied to the 'deploy' directory (if it exists)."
+  echo "resulting files will be copied to the '${DEPLOY_DIRNAME}' directory (if it exists)."
   echo ""
   echo "If file names are given as arguments, *only* they will be compiled. The"
   echo "files must reside in the project's root directory and have .tex extension."
@@ -76,7 +79,7 @@ print_usage_and_exit() {
   echo "  --no-docker     : do not use the Docker container for compiling"
   echo "  --help          : print this usage information"
   echo "  --no-astral     : do not compile unilaiva-astral* books"
-  echo "  --no-deploy     : do not copy PDF files to ./deploy/"
+  echo "  --no-deploy     : do not copy PDF files to ./${DEPLOY_DIRNAME}/"
   echo "  --no-partial    : do not compile partial books"
   echo "  --no-printouts  : do not create extra printout PDFs"
   echo "  --no-selections : do not create selection booklets"
@@ -106,7 +109,7 @@ print_usage_and_exit() {
   echo "printing on A4 sized paper are created, if 'context' binary is available"
   echo "and --no-printouts option is not given."
   echo ""
-  echo "The resulting PDF files will also be copied to ./deploy/ directory (if"
+  echo "The resulting PDF files will also be copied to ./${DEPLOY_DIRNAME}/ directory (if"
   echo "it exists), unless they have _NODEPLOY in their filename or --no-deploy"
   echo "option is given."
   echo ""
@@ -347,8 +350,8 @@ compile_document() {
   document_basename="$1"
   # setup some UI text with colors (if enabled):
   txt_docbase="${C_DGRAY}[${2}${1}${C_DGRAY}]${C_RESET}"
-  txt_docpdf="${C_DGRAY}[${2}${1}.pdf${C_DGRAY}]${C_RESET}"
   txt_doctex="${C_DGRAY}[${2}${1}.tex${C_DGRAY}]${C_RESET}"
+  txt_resultpdf="${C_DGRAY}[${2}${RESULT_DIRNAME}/${1}.pdf${C_DGRAY}]${C_RESET}"
   temp_dirname_twolevels="${TEMP_DIRNAME}/${document_basename}"
 
   echo -e "${PRETXT_START}${txt_docbase}"
@@ -361,6 +364,10 @@ compile_document() {
   # Ensure the build directory exists:
   mkdir -p "${temp_dirname_twolevels}" 2>"/dev/null"
   [ -d "${temp_dirname_twolevels}" ] || die $? "Could not create the build directory ${temp_dirname_twolevels}."
+
+  # Ensure the result directory exists:
+  mkdir -p "./${RESULT_DIRNAME}" 2>"/dev/null"
+  [ -d "./${RESULT_DIRNAME}" ] || die $? "Could not create the result directory ./${RESULT_DIRNAME}."
 
   echo -e "${PRETXT_EXEC}${txt_docbase}: lilypond-book"
 
@@ -405,7 +412,7 @@ compile_document() {
   # Third run of lualatex, creates the final main PDF document:
   lualatex -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"out-7_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (3rd time)!" "out-7_lualatex.log"
 
-  cp "${document_basename}.pdf" "../../" || die $? "Error copying ${document_basename}.pdf from temporary directory!"
+  cp "${document_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying ${document_basename}.pdf from temporary directory!"
   echo "${document_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
 
   # Check warnings in the logs
@@ -445,7 +452,7 @@ compile_document() {
         printout_dsf_basename="printout_${document_basename}_on_A4_doublesided_folded"
         awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout!"
         context "${printout_dsf_basename}.context" 1>"out-8_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout!" "out-8_printout-dsf.log"
-        cp "${printout_dsf_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory!"
+        cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
         echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
 
         # A5 on A4, a A5-A5 spread on single A4 surface: Use 'awk' to create a
@@ -454,7 +461,7 @@ compile_document() {
         printout_sss_basename="printout_${document_basename}_on_A4_sidebyside_simple"
         awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout!"
         context "${printout_sss_basename}.context" 1>"out-9_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout!" "out-9_printout-sss.log"
-        cp "${printout_sss_basename}.pdf" "../../" || die $? "Error copying printout PDF from temporary directory!"
+        cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
         echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
       fi
     fi
@@ -467,11 +474,11 @@ compile_document() {
   cd "${INITIAL_DIR}" || die $? "Cannot return to the main directory."
 
   echo -e "${PRETXT_DEBUG}${txt_docbase}: Build logs in ${temp_dirname_twolevels}/"
-  echo -e "${PRETXT_SUCCESS}${txt_docpdf}: Compilation successful!"
+  echo -e "${PRETXT_SUCCESS}${txt_resultpdf}: Compilation successful!"
 
 } # END compile_document()
 
-# Copies the result .pdf's to the deploy directory, if:
+# Copies the result .pdf's to the deploy directory ${DEPLOY_DIRNAME}, if:
 #   - not inside Docker container
 #   - deploy is not forbidden by command line argument
 #   - deploy directory exists
@@ -481,8 +488,8 @@ deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
   [ -f ${RESULT_PDF_LIST_FILE} ] || return
-  if [ ! -d "./deploy" ]; then
-    echo -e "${PRETXT_NODEPLOY}Resulting PDF files NOT copied to ./deploy/ (directory not found)"
+  if [ ! -d "./${DEPLOY_DIRNAME}" ]; then
+    echo -e "${PRETXT_NODEPLOY}Resulting PDF files NOT copied to ./${DEPLOY_DIRNAME}/ (directory not found)"
     return
   fi
   while IFS= read -r pdf_file; do
@@ -490,10 +497,10 @@ deploy_results() {
       echo -e "${PRETXT_NODEPLOY}${pdf_file} not deployed due to filename"
       continue
     fi
-    [ -f "${pdf_file}" ] || die 21 "Could not access ${pdf_file} for deployment"
-    cp "${pdf_file}" "./deploy/"
+    [ -f "./${RESULT_DIRNAME}/${pdf_file}" ] || die 21 "Could not access ${pdf_file} for deployment"
+    cp "./${RESULT_DIRNAME}/${pdf_file}" "./${DEPLOY_DIRNAME}/"
     [ $? -eq 0 ] || die 22 "Could not deploy ${pdf_file}"
-    echo -e "${PRETXT_DEPLOY}${pdf_file} copied to ./deploy/"
+    echo -e "${PRETXT_DEPLOY}${pdf_file} copied to ./${DEPLOY_DIRNAME}/"
   done < "${RESULT_PDF_LIST_FILE}"
 } # END deploy_results()
 
