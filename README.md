@@ -87,7 +87,7 @@ execute the compilation script with `--no-docker` option.
   * LaTeX 2e distribution (TeX Live is recommended) with some fairly standard
     packages and the binaries `lualatex` and `texlua`
   * Lilypond installation with the binary `lilypond-book`
-  * Font 'Noto'
+  * Fonts 'Noto Sans' and 'Noto Serif', with medium and extrabold weights
   * Locale 'fi_FI.utf8'
   * `bash` (installed by default on most systems)
   * `git` (recommended for retrieving and updating the songbook source)
