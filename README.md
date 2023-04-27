@@ -111,8 +111,9 @@ commands:
   1. `sudo apt update && sudo apt install bash locales git context
      context-modules fonts-noto-extra fonts-noto-color-emoji fonts-noto-core
      fonts-noto-mono lilypond texlive texlive-font-utils texlive-lang-arabic
-     texlive-lang-english texlive-lang-european texlive-latex-base
-     texlive-latex-extra texlive-luatex texlive-music texlive-plain-generic`
+     texlive-lang-english texlive-lang-european texlive-lang-portuguese
+     texlive-lang-spanish texlive-latex-base texlive-latex-extra texlive-luatex
+     texlive-music texlive-plain-generic`
   2. `sudo locale-gen fi_FI.utf8`
   3. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   4. `cd unilaiva-songbook`
