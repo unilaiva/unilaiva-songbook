@@ -303,8 +303,20 @@
 % below. Also, the compile script must be modified to copy the file to the
 % temporary compile directory.
 %
+% To afterwards convert the file to CMYK, the following Ghostscript invocation
+% might do the trick:
+% gs \
+%    -o output-file-cmyk.pdf \
+%    -sDEVICE=pdfwrite \
+%    -sProcessColorModel=DeviceCMYK \
+%    -sColorConversionStrategy=CMYK \
+%    -sColorConversionStrategyForImages=CMYK \
+%    -dEncodeColorImages=false \
+%    source-file.pdf
+%
 % See: https://tex.stackexchange.com/questions/61217/latex-color-and-icc-color-profiles
 % See: https://tex.stackexchange.com/questions/227429/pdf-a-with-cmyk-how/536060#536060
+% See: https://stackoverflow.com/questions/6241282/converting-pdf-to-cmyk-with-identify-recognizing-cmyk
 \immediate\pdfobj stream attr{/N 3} file{sRGB.icc}
 \pdfcatalog{%
   /OutputIntents [
