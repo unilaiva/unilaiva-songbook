@@ -260,9 +260,9 @@
 
 % END Toggles
 
-
 % Gets a roman uppercase number from the number given as parameter
 \newcommand{\romanupnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+
 
 % Set book titles if they're not yet defined. One should define them in the main
 % file before including this package. The supported macros are:
@@ -292,6 +292,38 @@
 \providecommand{\pdfauthor}{}
 \providecommand{\pdfsubject}{Songbook}
 \providecommand{\pdfkeywords}{}
+
+
+% Color profile settings. Use sRGB and create OutputIntent. We won't be able to
+% use CMYK for the whole document anyway without converting the images. For the
+% same reason PDF/A is not possible. To use CMYK, some other things need to be
+% changed too, for example use cmyk option for xcolor.
+% Note that sRGB.icc file should be contained in the TeX installation -- if not,
+% it must be put within the project source and include the relative path to it
+% below. Also, the compile script must be modified to copy the file to the
+% temporary compile directory.
+%
+% See: https://tex.stackexchange.com/questions/61217/latex-color-and-icc-color-profiles
+% See: https://tex.stackexchange.com/questions/227429/pdf-a-with-cmyk-how/536060#536060
+\immediate\pdfobj stream attr{/N 3} file{sRGB.icc}
+\pdfcatalog{%
+  /OutputIntents [
+    <<
+      /Type /OutputIntent
+      /S /GTS_PDFA1
+      /DestOutputProfile \the\pdflastobj\space 0 R
+      /OutputConditionIdentifier (sRGB)
+      /Info (sRGB)
+    >>
+    <<
+      /Type /OutputIntent
+      /S /GTS_PDFX
+      /DestOutputProfile \the\pdflastobj\space 0 R
+      /OutputConditionIdentifier (sRGB)
+      /Info (sRGB)
+    >>
+  ]
+}
 
 
 % microtype: enable some microtype features for more fonts than in the defaults:
