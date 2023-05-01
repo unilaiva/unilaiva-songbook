@@ -6,7 +6,7 @@
 #
 
 # Use Ubuntu 22.04 LTS:
-FROM ubuntu:jammy-20220815
+FROM ubuntu:jammy-20230308
 
 # Installs everything needed for compiling the songbook, plus qrencode and
 # pdftk utilities. Also generates the required locale fi_FI.utf8.
