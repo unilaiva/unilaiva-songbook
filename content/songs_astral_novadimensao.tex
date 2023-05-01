@@ -406,6 +406,116 @@
 \endsong
 
 
+\beginsong{Salmo}[by={Pard. Alfredo}, key={Dm}, sks={Dm, Cm--Dm}, off={Alexandre}, tags={valsa}]
+  \audio{https://nossairmandade.com/hymn/3800/Salmo}
+  \audio[key=Dm]{https://soundcloud.com/violeiro-daime/nova-dimensao?in=violeiro-daime/sets/hinario-nova-dimensao}
+  \newchords{chords_salmo_a}\newchords{chords_salmo_b}\newchords{chords_salmo_c}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_salmo_a]
+    \[^\mn{A}]Eu |\[\mnc{D}Dm]vou \[^\mn{E}]re|\[\mnc{D}A7]zan\[^\mn{C#}]do, \[^\mn{A}]pa|\[\mnc{D}Dm]pai \[^\mn{E}]do |\[\mncii{D}{C#}A7]Céu
+    \[^\mn{A}]ma|\[^\mn{C#}]mãe \[^\mn{E}]do |\[\mnc{D}Dm]Céu, ma|\[\mnc{C#}A7]mãe \[^\mn{E}]do |\[\mnc{D}Dm]Céu | \e
+    \mnendchorus\glueverses\mnbeginverse\memorize[chords_salmo_b]
+    \[^\mn{D}]Eu |\[\mnc{G}Gm]vou can|\[\mnc{B&}(B&)]tan\[^\mn{A}]do, e este |\[\mnc{F}Dm]sal\[^\mn{D}]mo bai|\[\mnc{F}(F)]lan\[^\mn{E}]do
+    \[^\mn{D}]es|\[\mnc{C#}A]te \[^\mn{A}]do\[^\mn{B&}]ce |\[^\mn{A}]mel |\[A7] \e
+    \mnendverse\glueverses\mnbeginchorus\memorize[chords_salmo_c]
+    \[^\mn{D}]Vou |\[\mnc{G}Gm]implo|\[\mnc{B&}(B&)]ran\[^\mn{A}]do, pe|\[\mnc{F}Dm]din\[^\mn{D}]do e ro|\[\mnc{F}(F)]gan\[^\mn{E}]do
+    \[^\mn{D}]Ao |\[\mnc{C#}A7]meu São \[^\mn{E}]Mi|\[\mnc{D}Dm]guel, |\[\mnc{C#}A7]meu São \[^\mn{E}]Mi|\[\mnc{D}Dm]guel | \e
+  \mnendchorus
+  \notesoff
+  \vspace{2ex}
+  \beginchorus\replay[chords_salmo_a]
+    Vou |^medi|^tando, na |^minha dou|^trina
+    a |cami|^nhar, |^cami|^nhar | \e
+    \endchorus\glueverses\beginverse\replay[chords_salmo_b]
+    Fir|^mando os en|^sinos, do cri|^ador di|^vino
+    nos |^faz enxer|gar |^ \e
+    \endverse\glueverses\beginchorus\replay[chords_salmo_c]
+    O |^nosso sis|^tema: Sol, |^Lua, es|^trelas
+    ter|^ra, vento e |^mar, ter|^ra, vento e |^mar | \e
+  \endchorus
+  \begin{translation}
+    I am praying, father of Heaven, mother of Heaven, mother of Heaven
+    I am singing, and this psalm dancing, this sweet honey
+    I am imploring, asking and praying, to my Saint Michael, my Saint Michael
+    \nextverse
+    I meditate in my doctrine, in walking, to walk
+    Firming the teachings of the divine creator, makes us see
+    Our system: Sun, Moon, stars, Earth, wind and sea, Earth, wind and sea
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 3/4 \partial 4
+      \repeat volta 2 {
+        \mark \markup \with-color #darkgreen \italic "Final: toque tudo, mas parte A sem repetição"
+        a4 \posectionmark "A" | d2 e4 | d cis a | d4( d4) e4 | d( cis) a | cis2 e4
+        | d2 d4 | cis2 e4 | d2.~ | d2
+      }
+      d4 \sectionmark "B" | g4 (g4) g4 | bes4 a4 a8 a8 | f4 d d | f e d | cis a bes | a2.~ | a2
+      \repeat volta 2 {
+        d4 \sectionmark "C" | g4( g4) g4 | bes a a | f d d | f e d | cis cis e
+        | d2( d4) | cis4 cis e | d2.~ | d2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Eu | vou re -- | zan -- do
+        pa -- | pai __ _ do | céu; __ _
+        ma -- | mãe do | céu
+        ma -- | mãe do | céu. | _
+      }
+      \set stanza = "1.B"
+        Eu | vou __ _ can -- | tan -- do~E
+        es -- te | sal -- mo bai -- | lan -- do;
+        es -- | te do -- ce | mel. | _
+      \set stanza = "1.C"
+      \repeat volta 2 {
+        Vou | im -- _ plo -- | ran -- do
+        Pe -- | din -- do~e ro -- | gan -- do;
+        Ao | meu São Mi -- | guel __ _
+        | meu São Mi -- | guel. | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Vou | me -- di -- | tan -- do
+        na | mi -- nha dou -- | tri -- na;
+        a | ca -- mi -- | nhar
+        \skip 1 | ca -- mi -- | nhar. | _
+      }
+      \set stanza = "2.B"
+        Fir -- | man -- do~os en -- | si -- nos
+        do cri -- | a -- dor di -- | vi -- no;
+        nos | faz en -- xer -- | gar. | _
+      \set stanza = "2.C"
+      \repeat volta 2 {
+        O | nos -- so sis -- | te -- ma:
+        Sol, | Lu -- a, es -- | tre -- las;
+        ter -- | ra, ven -- to~e | mar
+        ter -- | ra, ven -- to~e | mar. | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d2.:m | a:7 | d:m | a:7 | a:7
+        | d:m | a:7 | d:m | d2:m
+      }
+      s4 | g2.:m | \parenthesize bes | d:m | \parenthesize f | a | a | a2:7
+      \repeat volta 2 {
+        s4 | g2.:m | \parenthesize bes | d:m | \parenthesize f | a:7
+        | d:m | a:7 | d:m | d2:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Pard. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
