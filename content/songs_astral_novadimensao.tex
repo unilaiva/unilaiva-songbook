@@ -285,6 +285,127 @@
 \endsong
 
 
+\beginsong{Luzeiro do Meu Hinário}[by={Pard. Alfredo}, key={Dm}, sks={Dm, Cm--Em}, off={Rosália}]
+  \audio{https://nossairmandade.com/hymn/3257/LuaCheia}
+  \audio[key=Am]{https://soundcloud.com/violeiro-daime/lua-cheia?in=violeiro-daime/sets/hinario-nova-dimensao}
+  \newchords{chords_luzeirodomeuhinario_a}\newchords{chords_luzeirodomeuhinario_b}
+  \mnbeginchorus\memorize[chords_luzeirodomeuhinario_a]
+    \[^\mn{F}]A\[^\mn{D}]com|\[\mnc{A}A]panho \[\bm]es\[^\mn{F}]ta |\[^\mn{E}]Luz \[\bm] \altchords{\id[1]{(Am) \capo{5}}|E | \e}
+    \[^\mn{E}]Cla\[^\mn{C#}]re|\[^\mn{A}]ando o \[\bm]nos\[^\mn{E}]so |\[\mnc{D}Dm]chão \[\bm] \altchords{| - | Am}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_luzeirodomeuhinario_b]
+    \[^\mn{F}]Da mi\[^\mn{E}]nha |\[\mnc{D}Dm]Mãe lá \[\mnc{F}(F)]no \[^\mn{D}]As|\[\mnc{G}Gm]tral \[\bmadj{-.5ex}] \altchords{|Am (C) |Dm }
+    \[^\mn{E}]{É que} me |\[\mnc{A}A]vem \[^\mn{G}]es\[\mnc{C#}A7]te \[^\mn{E}]cla|\[\mnc{D}Dm]rão \[\bm] \altchords{|E E7 |Am}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_luzeirodomeuhinario_a]
+    Oh! Luz |^que cla^reia a |noi^te
+    Lu|zeiro do ^meu hi|^ná^rio
+    \endchorus\glueverses\beginchorus\replay[chords_luzeirodomeuhinario_b]
+    Sua |^força es^tá em |^tu^{'do}
+    Meu Di|^vino ^calen|^dá^rio
+  \endchorus
+  \beginchorus\replay[chords_luzeirodomeuhinario_a]
+    Está na |^grande^za dos |as^tros \altchords{\id[2]{(Em)}|B | \e}
+    O re|médio ^para |^tu^do \altchords{| - |Em}
+    \endchorus\glueverses\beginchorus\replay[chords_luzeirodomeuhinario_b]
+    Na Dou|^trina ^eu a|^pren^{'do} \altchords{|Em (G) |Am}
+    E na Dou|^trina ^eu me |^cu^ro \altchords{|B B7 |Em}
+  \endchorus
+  \beginchorus\replay[chords_luzeirodomeuhinario_a]
+    Também não |^é só ^tomar |Dai^me
+    Sem pres|tar bem ^aten|^ção ^
+    \endchorus\glueverses\beginchorus\replay[chords_luzeirodomeuhinario_b]
+    Nos diz |^Padrinho ^Iri|^neu ^
+    E Pa|^pai Se^basti|^ão ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        \parenthesize f8 \posectionmark "A" f8 d | a4. a8 a4. f'8 | e2( e4) \once\slurUp e8( << \single\altcol e) \altmark "2." cis >> | a4( a8) a8 a4. e'8 | d2( 8)
+      }
+      \repeat volta 2 {
+        \parenthesize f8 \sectionmark "B" f e | d4 ( d8 ) d8 f4. d8 | g2~ g8 \parenthesize e e e | a4. g8 cis,4. e8 | d2( 8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        \skip 1 A -- com -- | pa -- nho es -- ta | Luz; __ _
+        Cla -- re -- | an -- _ do~o nos -- so | chão. __ _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Da mi -- nha | Mãe __ _ lá no As -- | tral; _
+        É que me | vem es -- te cla -- | rão. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        \skip 1 Oh! Luz | que cla -- rei -- a~a | noi -- te;
+        Lu -- _ | zei -- ro do meu hi -- | ná -- rio.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        \skip 1 Su -- a | for -- ça es -- tá em | tu -- _ do;
+        Meu Di -- | vi -- no ca -- len -- | dá -- rio.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Es -- tá na | gran -- de -- za dos | as -- tros;
+        O re -- | mé -- _ dio pa -- ra | tu -- do.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \skip 1 Na Dou -- | tri -- _ na eu a -- | pren -- _ do;~E
+        na Dou -- | tri -- na eu me | cu -- ro.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Tam -- bém não | é só to -- mar | Dai -- me;
+        Sem pres -- | tar __ _ bem a -- ten -- | ção. __ _
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        \skip 1 Nos diz | Pa -- dri -- nho I -- ri -- | neu; _
+        \skip 1 E Pa -- | pai Se -- bas -- ti -- | ão. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a1 | a | a | d2:m~ 8
+      }
+      \repeat volta 2 {
+        s4. | d2:m \parenthesize f2 | g1:m | a2 a2:7 | d2:m~ 8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I follow the Light, clearing our ground
+    It is from my mother there in the Astral, where this clarity comes
+    \nextverse
+    Oh! Light that clears the night, beacon of my hinário
+    Your strength is in everything, my Divine calendar
+    \nextverse
+    It is the greatness of the stars, the remedy for everything
+    I learn in the Doctrine, and in the Doctrine I heal myself
+    \nextverse
+    Also is it not just taking Daime without paying close attention
+    Padrinho Irineu tells us, and Papa Sebastião
+  \end{translation}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Pard. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
