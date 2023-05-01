@@ -25,7 +25,7 @@ RUN apt-get update \
     texlive-font-utils \
     texlive-lang-arabic \
     texlive-lang-english \
-    texlive-lang-european \ # includes Finnish and others
+    texlive-lang-european \
     texlive-lang-portuguese \
     texlive-lang-spanish \
     texlive-latex-base \
