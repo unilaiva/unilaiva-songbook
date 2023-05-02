@@ -516,6 +516,154 @@
 \endsong
 
 
+\beginsong{Rei da Ciência}[by={Padr. Alfredo}, key={Am}, sks={Am, Gm--G\shrp{}m--(Am)}, off={Lúcio \& Cristiane}, tags={mazurca}]
+  \audio{https://nossairmandade.com/hymn/3801/ReiDaCi\%C3\%AAncia}
+  \audio[key=Am]{https://soundcloud.com/violeiro-daime/mundo-novo?in=violeiro-daime/sets/hinario-nova-dimensao}
+  \newchords{chords_reidaciencia_a}\newchords{chords_reidaciencia_b}
+  \meter{6}{4}
+  \mnbeginchorus\memorize[chords_reidaciencia_a]
+    \[^\mn{A}]Pesqui|\[\mnc{C}Am]san\[^\mn{A}]do a \[^\mn{C}]Na\[^\mn{E}]tu\[\bmc\mn{A}]reza \altchords{\id[1]{(Gm)}|Gm}
+    Não \[^\mn{B}]se |\[^\mn{C}]tem \[^\mn{A}]na\[^\mn{E}]da \[^\mn{D}]mai\[\mnc{C}C]or \altchords{| - B\flt{}}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_reidaciencia_b]
+    \[^\mn{A}]To\[^\mn{C}]da |\[\mnc{E}E]vida \[^\mn{F}]vai \[^\mn{E}]ao \[^\mn{D}]a\[\mncii{C}{A}Am]lém \altchords{|D Gm}
+    Toda \[^\mn{B}]ma|\[\mnc{C}E]téria \[^\mn{D}]fi\[^\mn{B}]ca \[^\mn{C}]no \[\mnc{A}Am]pó \altchords{|D Gm}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_reidaciencia_a]
+    Estu|^dando a Mãe da ^Vida
+    O pla|neta do A^mor
+    \endchorus\glueverses\beginchorus\replay[chords_reidaciencia_b]
+    Salve as |^águas e salve a ^Terra
+    Onde Je|^sus Cristo pi^sou
+  \endchorus
+  \beginchorus\replay[chords_reidaciencia_a]
+    Vamos |^todos meus ir^mãos
+    Constru|ir um mundo ^novo
+    \endchorus\glueverses\beginchorus\replay[chords_reidaciencia_b]
+    O ver|^de Paz da flo^resta
+    O ver|^melho, justiça do ^fogo
+  \endchorus
+  \beginchorus\replay[chords_reidaciencia_a]
+    Aqui |^com a juven^tude
+    Rezo |esta ora^ção
+    \endchorus\glueverses\beginchorus\replay[chords_reidaciencia_b]
+    Me lem|^brar do Pai E^terno
+    O dono |^Rei Jurami^dam
+  \endchorus
+  \beginchorus\replay[chords_reidaciencia_a]
+    Feito a|^qui este con^vite
+    Em ple|no dois mil e ^doze
+    \endchorus\glueverses\beginchorus\replay[chords_reidaciencia_b]
+    Lembran|^do o Rei da Ci^ência
+    Mais ma|^duro e mais i^doso
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 6/4 \partial 4
+      \repeat volta 2 {
+        a8 a8
+        | c4 a8( a) c e  a4( a) a8 b
+        | c4 a e8 d  c4( c)
+      }
+      \repeat volta 2 {
+        a8 c8
+        | e4 << e8 \once\slurUp \single\altcol f \altmark "3., 4., 5." \single\altcol ( >> f) e d  \once\slurUp c4( a8)( a) a b
+        | c8( c) << c8 \once\slurUp \single\altcol d \altmark "2., 4." \single\altcol ( >> d) b c  a4( a)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Pes -- qui -- | san -- do a Na -- tu -- re -- za;
+        Não se | tem na -- da mai -- or. __ _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        To -- da | vi -- da vai ao a -- lém; __ _
+        To -- da ma -- | té -- _ ria fi -- ca no pó. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Es -- tu -- | dan -- do a Mãe da Vi -- da;
+        O pla -- | ne -- ta do A -- mor. __ _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Sal -- ve~as | á -- guas e sal -- ve~a Ter -- ra;
+        On -- de Je -- | sus __ _ \altcol Cris -- _ to pi -- sou. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Va -- mos | to -- dos __ _ meus ir -- mãos; __ _
+        Cons -- tru -- | ir um mun -- do no -- vo.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        O ver -- | de \altcol Paz __ _ da flo -- res -- ta; __ _
+        O ver -- | me -- lho, jus -- ti -- ça do fo -- go.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        A -- qui | com a __ _ ju -- ven -- tu -- de;
+        Re -- zo | es -- ta o -- ra -- ção. __ _
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Me lem -- | brar \altcol do __ _ Pai E -- ter -- no; __
+        O do -- no | Rei __ _ \altcol Ju -- _ ra -- mi -- dam. __ _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        Fei -- to~a -- | qui es -- _ te con -- vi -- te;
+        Em ple -- | no dois mil e do -- ze.
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        Lem -- bran -- | do~o \altcol Rei __ _ da Ci -- ên -- cia; __ _
+        Mais ma -- | du -- _ ro e mais i -- do -- so.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a2.:m a:m | a:m c2
+      }
+      \repeat volta 2 {
+        s4 | e2. a:m | e a2:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Searching for Nature, there has been no greater way
+    All life goes to the beyond, all matter remains in dust
+    \nextverse
+    Studying the Mother of Life, the planet of Love
+    Hail the water and hail the Earth where Jesus Christ stepped
+    \nextverse
+    Let's all go my brothers and sisters to construct a new world
+    The green, Peace of the forest; the red, justice of the fire
+    \nextverse
+    Here with the youth I pray this prayer
+    I remember the Eternal Father, the owner, King Juramidam
+    \nextverse
+    Made here, this invitation, in the middle of two thousand and twelve
+    Remembering the King of Science, more mature and older
+  \end{translation}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Padr. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
