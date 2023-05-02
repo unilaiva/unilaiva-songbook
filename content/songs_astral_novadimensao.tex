@@ -564,12 +564,12 @@
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 6/4 \partial 4
       \repeat volta 2 {
-        a8 a8
+        a8 \posectionmark "A" a8
         | c4 a8( a) c e  a4( a) a8 b
         | c4 a e8 d  c4( c)
       }
       \repeat volta 2 {
-        a8 c8
+        a8 \sectionmark "B" c8
         | e4 << e8 \once\slurUp \single\altcol f \altmark "3., 4., 5." \single\altcol ( >> f) e d  \once\slurUp c4( a8)( a) a b
         | c8( c) << c8 \once\slurUp \single\altcol d \altmark "2., 4." \single\altcol ( >> d) b c  a4( a)
       }
