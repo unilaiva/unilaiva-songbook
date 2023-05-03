@@ -664,6 +664,109 @@
 \endsong
 
 
+\beginsong{In, in \\ In Agradecimento}[by={Padr. Alfredo}, key={C}, sks={C, B\flt{}--E}, off={José Bento}, tags={mazurca}]
+  \audio{https://nossairmandade.com/hymn/3804/InAgradecimento}
+  \audio[key=D]{https://soundcloud.com/violeiro-daime/in-agradecimento?in=violeiro-daime/sets/hinario-nova-dimensao}
+  \newchords{chords_inin_a}\newchords{chords_inin_b}
+  \mnbeginchorus\memorize[chords_inin_a]
+    \[^\mn{E}]Meu |\[\mnc{D}Dm]Pai, \[^\mn{A}]Vos \[\mnc{C}Fmaj7]a\[^\mn{E}]gra|\[\mnc{C}C]de\[\bmc\mn{A}]ço \altchords{\id[1]{(D)}|Em Gmaj7 |D}
+    O \[^\mn{E}]que o Se|\[\mnc{D}Dm]nhor \[^\mn{A}]con\[\mnc{C}Fmaj7]ce\[^\mn{E}]de a |\[\mnc{C}C]mim \[\bm] \altchords{|Em Gmaj7 |D}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_inin_b]
+    \[^\mn{C}]Com \[^\mn{B}]pa|\[\mnc{A}F]lavras, Vos \[\bmc\mn{C}]a\[^\mn{E}]gra|\[\mnc{G}C]de\[^\mn{E}]ço \[\bm] \altchords{|G |D}
+    Santís\[^\mn{G}]si|\[^\mn{E}]ma \[^\mn{C}]flor \[\mnc{A}F]de \[^\mn{C}]Jas|\[C]mim \[\bm] \altchords{| - G |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_inin_a]
+    \noteson\[\mn{C}]Mamãe \[\mn{E}]Di\notesoff|^vina ^Natu|^re^za
+    Para |^sempre a^grade|^cer ^
+    \endchorus\glueverses\beginchorus\replay[chords_inin_b]
+    O ali|^mento ^do es|^pírito^
+    E na ma|téria, ^conhe|^cer ^
+  \endchorus
+  \beginchorus\replay[chords_inin_a]
+    \noteson\[\mn{C}]Jura\[\mn{E}]mi\notesoff|^dam, Vos ^agra|^de^ço
+    Me ensi|^nou can^{tar as}|^sim ^
+    \endchorus\glueverses\beginchorus\replay[chords_inin_b]
+    Sem pa|^lavras, Vos ^agra|^deço^
+    In, |in, in, ^in, in, |^in ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        \parenthesize c8 \posectionmark "A" << c \once\slurUp \single\altcol e \altmark "1." \single\altcol ( >> e )
+        | d4. a8 c4. e8 | c2 a4 e'8 e
+        | d4. a8 c4. e8 | c2~ 8
+      }
+      \repeat volta 2 {
+        \parenthesize c8 \sectionmark "B" c8 b
+        | a4( a8) a8 c4. e8 | g8( g8) e4. \parenthesize e8 \parenthesize e8 g8
+        | e4. c8 a4. c8 | c2~ 8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        \skip 1 \altcol Meu __ _ | Pai, Vos a -- gra -- | de -- ço;~O
+        que~o Se -- | nhor con -- ce -- de~a | mim. _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        \skip 1 Com pa -- | la -- vras, Vos a -- gra -- | de -- _ ço;
+        San -- tís -- si -- | ma flor de Jas -- | mim. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Ma -- mãe Di -- | vi -- na Na -- tu -- | re -- za;
+        Pa -- ra | sem -- pre~a -- gra -- de -- | cer. _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        O a -- li -- | men -- _ to do es -- | pí -- ri -- to;
+        E na ma -- | té -- ria, co -- nhe -- | cer. _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Ju -- ra -- mi -- | dam, Vos a -- gra -- | de -- ço;
+        Me~en -- si -- | nou can -- tar as -- | sim. _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \skip 1 Sem pa -- | la -- vras, Vos a -- gra -- | de -- _ ço;
+        \skip 1 \skip 1 In, | in, in, in, in, | in. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | d2:m f:maj7 | c1 | d2:m f:maj7 | c2~8
+      }
+      \repeat volta 2 {
+        s4. | f1 | c | c2 f | c2~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    My Father, I thank You, for what the Lord grants me
+    With words, I thank You, most Holy Jasmine Flower
+    \nextverse
+    Divine Mother Nature, forever I thank you
+    The nourishment of the spirit, and in the matter, knowing
+    \nextverse
+    Juramidam, I thank You, You taught me to sing like this
+    Without words, I thank You, in, in, in, in, in, in
+  \end{translation}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Padr. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
