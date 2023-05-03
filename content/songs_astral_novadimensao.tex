@@ -767,6 +767,133 @@
 \endsong
 
 
+\beginsong{Porto Seguro}[by={Padr. Alfredo}, key={A}, sks={A, G--B}, off={Isabella, Sophia Sterling e família}]
+  \audio{https://nossairmandade.com/hymn/4002/PortoSeguro}
+  \audio[key=A]{https://soundcloud.com/violeiro-daime/porto-seguro?in=violeiro-daime/sets/hinario-nova-dimensao}
+  \newchords{chords_portoseguro_a}\newchords{chords_portoseguro_b}
+  \mnbeginchorus\memorize[chords_portoseguro_a]
+    \[^\mn{C#}]Meu |\[\mnc{E}A]Deus\[\bm] | \e \altchords{\id[1]{(G)}|G | \e}
+    Desde \[\bmc\mn{A}]o infi|ni\[^\mn{E}]to\[\bm] | \e \altchords{| - | \e}
+    \[^\mn{C#}]Escu\[\bmc\mn{E}]tai o meu |\[E]gri\[^\mn{B}]to\[\bm] | \e \altchords{|D | \e}
+    Minha o\[\bm]ra\[^\mn{A}]ção \[^\mn{C#}]de a|\[A]mor\[\bm] |\[\up{2}(A7)] \[\bm] \altchords{|G |\up{2}(G7)}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_portoseguro_b]
+    \ind \[^\mn{A}]Por|\[\mnc{D}D]que\[\bm] | \e \altchords{|C | \e}
+    \ind Sois \[^\mn{F#}]meu \[\bmc\mn{A}]porto se|\[A]gu\[^\mn{E}]ro\[\bm] | \e \altchords{|G | \e}
+    \ind \[^\mn{C#}]Só com \[\bmc\mn{E}]Vós eu me |\[E]cu\[^\mn{B}]ro\[\bm] | \e \altchords{|D | \e}
+    \ind E só \[\bm]com \[^\mn{A}]Vós, \[^\mn{C#}]eu |\[\mnc{A}A]sou\[\bm] |\[\up{1}A7] \[\bm] \altchords{|G |\up{1}G7}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_portoseguro_a]
+    Sois |^luz^ | \e
+    Brilha em ^todo uni|verso^ | \e
+    Meu Pai, ^a Vós eu |^peço^ | \e
+    O ^Vosso vi|^gor^ |^ ^
+    \endchorus\glueverses\beginchorus\replay[chords_portoseguro_b]
+    \ind Can|^tar^ | \e
+    \ind E sa^ir do es|^curo^ | \e
+    \ind Só com ^Vós me se|^guro^ | \e
+    \ind Meu Di^vino Se|^nhor^ |^ ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        cis4 \posectionmark "A"
+        | e1~ | e4 e8 e a4 a8 a | a4 e2.~ | e4 cis8 cis e4 e8 e
+        | e4 b2.~ | b4 \parenthesize b8 b b4 a8 cis
+      } \alternative {
+        { | cis1~ | cis2. }
+        { | cis1~ | cis2. }
+      }
+      \repeat volta 2 {
+        a4 \sectionmark "B"
+        | d1~ | d4 d8 fis a4 a8 a | a4 e2.~ | e4 cis8 cis e4 e8 e
+        | e4 b2.~ | b4 b8 b b4 a8 cis
+      } \alternative {
+        { | a1~ | a2. }
+        { | a1~ | a2. \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Meu | Deus | _
+        Des -- de o in -- fi -- | ni -- to | _
+        Es -- cu -- tai o meu | gri -- to | _
+        Mi -- nha~o -- ra -- ção de~a --
+      } \alternative {
+        { | mor. | _ }
+        { | mor. | _ }
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Por -- | que | _
+        Sois meu por -- to se -- | gu -- ro | _
+        Só com Vós eu me | cu -- ro | _
+        E só com Vós, eu
+      } \alternative {
+        { | sou. | _ }
+        { | sou. | _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Sois | luz; | _
+        Bri -- lha~em to -- do~u -- ni -- | ver -- so; | _
+        Meu Pai, a Vós eu | pe -- ço; | _
+        \skip 1 O Vos -- so vi --
+      } \alternative {
+        { | gor. | _ }
+        { | gor. | _ }
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Can -- | tar; | _
+        E sa -- ir do es -- | cu -- ro; | _
+        Só com Vós me se -- | gu -- ro; | _
+        Meu Di -- vi -- no Se --
+      } \alternative {
+        { | nhor. | _ }
+        { | nhor. | _ }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a1 | a | a | a | e | e
+      } \alternative {
+        { | a1 | a2. }
+        { | a1 | a2.:7 }
+      }
+      \repeat volta 2 {
+        s4 | d1 | d | a | a | e | e
+      } \alternative {
+        { | a1 | a2.:7 }
+        { | a1 | a2. }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Oh my God, from the infinite
+    Hear my cry, my prayer of love
+    \nextverse
+    Because You are my safe harbor
+    Only with You do I heal, and only with You, I am
+    \nextverse
+    You are light, shining throughout the universe
+    My Father, I ask of You, Your vigor
+    \nextverse
+    To sing, and to leave the darkness
+    Only with You am I safe, my Divine Lord
+  \end{translation}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Padr. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
