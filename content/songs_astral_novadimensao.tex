@@ -894,6 +894,110 @@
 \endsong
 
 
+\beginsong{Mamãe Maria}[by={Padr. Alfredo}, key={C}, sks={C, (B\flt{})--(C)}, off={Gabriela Shore}]
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Firmo |\[\mnc{C}C]lá na al\[\bm]tu\[^\mn{B}]ra E
+    no |\[^\mn{E}]fundo \[^\mn{D}]do \[\bmc\mn{C}]mar
+    Vem |\[\mnc{D}Dm]Mamãe Ma\[\bm]ria \[^\mn{A}]e Ma|\[\mnc{C}C]mãe Ieman\[\bm]já
+    \[^\mn{A}]Vem |\[Am]Mamãe Ma\[\bm]ria \[^\mn{G}]e Ma|\[\mnc{C}C]mãe Ieman\[\bm]já
+    \[^\mn{A}]Vem |\[Am]Mamãe Ma\[\bm]ria \[^\mn{G}]e Ma|\[\mnc{C}C]mãe Ieman\[\bm]já
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Na |^força das ^ondas
+    Lá |do alto ^mar
+    O|^gum Rei Guer^reiro
+    |^Vem doutri^nar
+    |^Neste ter^reiro |^ilumi^nar
+    |^Neste ter^reiro |^ilumi^nar
+  \endchorus
+  \beginchorus
+    Viva a |^força das ^mães
+    E as prin|cesas do ^mar
+    Os pri|^mores das ^águas
+    No |^seu balan^çar
+    |^Salve o en^canto dos |^seres do ^mar
+    |^Salve o en^canto dos |^seres do ^mar
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g'8( \pomark g)
+        | c4 c8 c c8( c8) g8 g | e8( e8)( e8) d c4 \parenthesize c8 c8
+        | d8 d4 d8 d8.( d16) \parenthesize a8 a | c4 c8 c c4. \parenthesize a8
+        | a8( a8)( a8) a8 a8.( a16) \parenthesize g8 g | c4 c8 c c4. \parenthesize a8
+        | a8( a8)( a8) a8 a8.( a16) \parenthesize g8 g | c4 c8 c8 c4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Fir -- mo | lá na al -- tu -- _ ra;~E
+        no | fun -- _ do do mar; \skip 1
+        Vem | Ma -- mãe Ma -- ri -- a e Ma -- | mãe Ie -- man -- já;
+        Vem | Ma -- mãe __ _ Ma -- ri -- a e Ma -- | mãe Ie -- man -- já;
+        Vem | Ma -- mãe __ _ Ma -- ri -- a e Ma -- | mãe Ie -- man -- já.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Na __ _ | for -- ça das on -- _ das;
+        Lá | do al -- _ to mar; \skip 1
+        O -- | gum Rei Guer -- rei -- _ \skip 1 ro;
+        | Vem dou -- tri -- nar;
+        \skip 1 | Nes -- _ te ter -- rei -- _ \skip 1 ro | i -- lu -- mi -- nar;
+        \skip 1 | Nes -- _ te ter -- rei -- _ \skip 1 ro | i -- lu -- mi -- nar.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Vi -- va~a | for -- ça das mães;
+        E as prin -- | ce -- _ sas do mar;
+        Os pri -- | mo -- res das á -- _ guas;
+        No | seu ba -- lan -- çar;
+        \skip 1 | Sal -- _ ve~o en -- can -- _ to dos | se -- res do mar;
+        \skip 1 | Sal -- _ ve~o en -- can -- _ to dos | se -- res do mar.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c1 | c | d:m | c
+        | a:m | c | a:m | c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I am firm there in the heights
+    And in the depths of the sea
+    Coming are Mother Mary and Mother Iemanjá
+    Coming are Mother Mary and Mother Iemanjá
+    Coming are Mother Mary and Mother Iemanjá
+    \nextverse
+    In the force of the waves
+    There from the high seas
+    Ogun Warrior King
+    Comes to indoctrinate
+    To illuminate in this land
+    To illuminate in this land
+    \nextverse
+    Viva the force of the Mothers
+    And the princesses of the sea
+    The splendors of the waters
+    In its shaking
+    Hail the enchantment of the beings of the sea
+    Hail the enchantment of the beings of the sea
+  \end{translation}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Padr. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
