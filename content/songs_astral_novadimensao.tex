@@ -1151,6 +1151,73 @@
 \endsong
 
 
+\beginsong{Excelência}[by={Padr. Alfredo}, key={Am}, sks={Am, Gm--Bm}, off={Kelly Cristina}, tags={valsa, 3x}]
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Meu São \[^\mn{B}]Jo|\[\mnc{C}C]ão,\[\bm] meu São \[^\mn{B}]Jo|\[\mnc{A}Am]ão \[\bm]
+    Vos\[^\mn{C}]sa ex\[^\mn{E}]ce|\[^\mn{A}]lência e Jesus \[\bm]Cristo Reden|\[\mnc{D}Dm]tor \[\bm]
+    São quem \[^\mn{C}]me en|\[\mnc{B}E]sinam nesta es\[\bm]cola \[^\mn{C}]do \[^\mn{D}]a|\[\mnc{E}Am]mor \[\bm]
+    \[^\mn{A}]A Vir\[^\mn{C}]gem |\[\mnc{E}E]Mãe e o \[^\mn{D}]nosso \[\bmc\mn{C}]Mestre En\[^\mn{B}]sina|\[\mnc{A}Am]dor \[\bm]
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Santo Cru|^zei^ro, Santa Dou|^tri^na
+    O Santo |Daime, esta ^luz que nos en|^si^na
+    Para |^sempre só nos ^resta agrade|^cer ^
+    Para |^sempre com a^mor hei de ven|^cer ^
+  \endchorus
+  \begin{translation}
+    My Saint John, my Saint John
+    Your Excellency and Jesus Christ the Redeemer
+    They are who teach me in this school of love
+    The Virgin Mother and our Master Teacher
+    \nextverse
+    Holy Cross, Holy Doctrine
+    The Santo Daime, this light that teaches us
+    Forever all that remains is for us to be thankful
+    Forever with love I will overcome
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        a8 \pomark a b
+        | c2( 8) c8 c b | a2( 8) a8 c e | a a a a a a a a | d,2( 8)( d8) d c
+        | b b b b b b c d | e2~ 8 \parenthesize a,8 a c | e e d d c c b b | a2~ 8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Meu São Jo -- | ão, __ _ meu São Jo -- | ão; __ _
+        Vos -- sa~ex -- ce -- | lên -- cia~e Je -- sus Cris -- to Re -- den -- | tor; __ _
+        São quem me~en -- | si -- nam nes -- ta~es -- co -- la do a -- | mor; _
+        A Vir -- gem | Mãe e~o nos -- so Mes -- tre~En -- si -- na -- | dor. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        San -- to Cru -- | zei -- ro, San -- ta Dou -- | tri -- na;
+        O San -- to | Dai -- me, es -- ta luz que nos en -- | si -- na; __ _
+        Pa -- ra | sem -- pre só nos res -- ta~a -- gra -- de -- | cer; _
+        \skip 1 Pa -- ra | sem -- pre com a -- mor hei de ven -- | cer. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4.
+        | c1 | a:m | a:m | d:m | e | a:m | e | a2:m~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Padr. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
