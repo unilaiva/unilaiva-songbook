@@ -1022,6 +1022,135 @@
 \endsong
 
 
+\beginsong{Eu Sou Flor das Águas}[by={Padr. Alfredo}, key={Am}, sks={Bm, G\shrp{}m--Bm}, off={Mariana, Mikael}, tags={valsa, 2x}]
+  \audio{https://nossairmandade.com/hymn/4282/EuSouFlorDas\%C3\%81guas}
+  \newchords{chords_eusouflordasaguas_a}\newchords{chords_eusouflordasaguas_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_eusouflordasaguas_a]
+    \[^\mn{E}]Eu |\[Am]sou \[^\mn{F}]flor \[^\mn{E}]das |\[^\mn{C}]á\[^\mn{A}]guas \altchords{\id[1]{(Bm)}|Bm | \e}
+    E |\[^\mn{C}]te\[^\mn{A}]nho \[^\mn{C}]po|\[\mnc{B}E]der \altchords{| - |F\shrp{}}
+    \[^\mn{D}]Eu |\[E7/D]sa\[^\mn{E}]cio \[^\mn{D}]a |\[\mnc{B}E]se\[^\mn{G#}]de \altchords{|F\shrp{}7/E |F\shrp{}}
+    \[^\mn{B}]De |\[\mnc{D}Dm]quem \[^\mn{E}]me\[^\mn{F}]re|\[\mnc{E}E]cer \altchords{|Em |F\shrp{}}
+  \mnendchorus
+  \mnbeginchorus\memorize[chords_eusouflordasaguas_b]
+    \ind |\[^\mn{E}]Da \[^\mn{F}]on\[^\mn{E}]de |\[\mnc{D}Dm]vens \altchords{| - |Em}
+    \ind Pa|\[^\mn{F}]ra on\[^\mn{A}]de |\[\mnc{E}E]vais \altchords{| - |F\shrp{}}
+    \ind Eu |sou \[^\mn{F}]flor \[^\mn{E}]das |\[\mnc{D}Dm]á\[^\mn{B}]guas \altchords{| - |Em}
+    \ind \[^\mn{C}]Somos |\[\mnc{D}E7]e \[^\mn{G#}]de\[^\mn{B}]ve |\[\mnc{A}Am]ser \altchords{|F\shrp{}7 |Bm}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_eusouflordasaguas_a]
+    Fa|^zer a lim|peza
+    No |meu cora|^ção
+    Dou |^{viva a} Je|^sus
+    Dou vi|^{va a} São Jo|^ão
+  \endchorus
+  \beginchorus\replay[chords_eusouflordasaguas_b]
+    \ind E |Nossa Se|^nhora
+    \ind |Da Concei|^ção
+    \ind Na |Santa Dou|^trina
+    \ind Nos |^dá a ben|^ção
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 3/4 \partial 4
+      \repeat volta 2 {
+        e4 \posectionmark "A"
+        | e f e | c a a | c a c | b2 d4
+        | d e d | b gis b | d e f
+      } \alternative {
+        { | e2 }
+        { | e2 \parenthesize e4 \sectionmark "B" | e f e }
+      }
+      \repeat volta 2 {
+        | d2 d4 | f f a | e2 e4
+        | e f e | d b c8( c8) | d4 gis, b
+      } \alternative {
+        { | a2 \parenthesize e'4 | e f e  }
+        { | a2 \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Eu | sou flor das | á -- guas;
+        E | te -- nho po -- | der;
+        Eu | sa -- cio a | se -- de;
+        De | quem me -- re --
+      } \alternative {
+        { | cer. }
+        { | cer. \set stanza = "1.B" \skip 1 | Da on -- de  }
+      }
+      \repeat volta 2 {
+        | vens;
+        Pa -- | ra on -- de | vais;
+        Eu | sou flor das | á -- guas;
+        So -- mos | e de -- ve
+      } \alternative {
+        { | ser. \skip 1 | Da on -- de }
+        { | ser. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Fa -- | zer a lim -- | pe -- za;
+        No | meu co -- ra -- | ção;
+        Dou | vi -- va~a Je -- | sus;
+        Dou vi -- | va~a São Jo --
+      } \alternative {
+        { | ão. }
+        { | ão. \set stanza = "2.B" E | Nos -- sa Se -- }
+      }
+      \repeat volta 2 {
+        | nho -- ra;
+        | Da Con -- cei -- | ção;
+        Na | San -- ta Dou -- | tri -- na;
+        Nos __ _ | dá a ben --
+      } \alternative {
+        { | ção. E | Nos -- sa Se -- }
+        { | ção. }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4
+        | a2.:m | a:m | a:m | e
+        | e:7/d | e | d:m
+      } \alternative {
+        { | e2 }
+        { | e2. | e2. }
+      }
+      \repeat volta 2 {
+        | d:m | d:m | e | e
+        | d:m | e:7
+      } \alternative {
+        { | a2.:m | a2.:m }
+        { | a2:m }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I am the flower of the waters, and I have power
+    I quench the thirst of those who merit it
+    \nextverse
+    From where you come, where you go
+    I am the flower of the waters, we are and we must be
+    \nextverse
+    To do a cleansing in my heart
+    I give viva to Jesus, I give viva to St. John
+    \nextverse
+    And Our Lady of Conception
+    In the Holy Doctrine gives us the blessing
+  \end{translation}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Padr. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
