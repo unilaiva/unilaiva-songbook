@@ -1218,6 +1218,121 @@
 \endsong
 
 
+\beginsong{Louvar o Criador}[by={Padr. Alfredo}, key={C}, sks={C, B\flt{}--B--(C)}, off={Kayke}]
+  \newchords{chords_louvarocriador_a}\newchords{chords_louvarocriador_b}\newchords{chords_louvarocriador_c}
+  \mnbeginchorus\memorize[chords_louvarocriador_a]
+    \[^\mn{C}]Lou|\[\mnc{G}C]var\[\bmc\mn{E}], \[^\mn{A}]lou|\[^\mn{E}]van\[\bmc\mn{C}]do \altchords{\id[1]{(A) \capo{3}}|A | \e}
+    \[^\mn{D}]Lou|\[G]var \[^\mn{C}]o \[\mnc{A}F]Cri\[^\mn{C}]a|\[\mnc{C}C]dor \[\bm] \altchords{|E D |A}
+  \mnendchorus
+  \mnbeginchorus\memorize[chords_louvarocriador_b]
+    \ind \[^\mn{C}]Por tu\[^\mn{B}]do o |\[\mnc{A}F]que já \[\bmc\mn{C}]es\[^\mn{E}]tá |\[\mnc{G}C]fei\[\mnc{E}(Am)]to \altchords{|D |A (F\shrp{}m)}
+    \ind \[^\mn{A}]E tudo o |\[\mnc{E}C]que \[^\mn{C}]nos \[\mnc{A}F]en\[^\mn{C}]si|\[C]nou \[\bm] \altchords{|A D |A}
+  \mnendchorus
+  \mnbeginchorus\memorize[chords_louvarocriador_c]
+    \ind[2] \[^\mn{A}]Lou|\[\mnc{D}G]var, \[^\mn{A}]lou\[\mnc{C}F]var lou|\[C]van\[\mnc{A}(Am)]do \altchords{|E D |A (F\shrp{}m)}
+    \ind[2] Lou|\[\mnc{D}G]var \[^\mn{A}]o \[\mnc{C}F]Cria|\[C]dor \[\bm] \altchords{|E D |A}
+  \mnendchorus
+  \notesoff
+  % verse two
+  \beginchorus\replay[chords_louvarocriador_a]
+    Di|^vi^no san|tíssi^mo
+    Cora|^ção do ^Santo A|^mor ^
+  \endchorus
+  \beginchorus\replay[chords_louvarocriador_b]
+    \ind A Ra|^inha ^da flo|^res^ta
+    \ind Mãe do |^mestre en^sina|^dor ^
+  \endchorus
+  \beginchorus\replay[chords_louvarocriador_c]
+    \ind[2] Pa|^pai, Ma^mãe tam|^bém
+    \ind[2] ^Filho Es|^pírito ^Santo a|^mém ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c''' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+        \mark \markup \with-color #darkgreen \italic "Final: toque tudo, mas parte A sem repetição"
+      \repeat volta 2 {
+        r8 \posectionmark "A" c4
+        | g2( e4) a4 | e4.( e8) c4 d8( d)
+        | d4 c4 a4 c4 | c2~ 8
+      }
+      \repeat volta 2 {
+        \parenthesize c8 \sectionmark "B" c b
+        | a4 a c e | g2 e8 \parenthesize a a a
+        | e4 c a c | c2~ 8
+      }
+      \repeat volta 2 {
+        r8 \sectionmark "C" a4
+        | d4. a8 c4 c4 | c2 a4 a4
+        | d4( d8) a8 c4 c4 | c2~ 8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Lou -- | var, __ _ lou -- | van -- _ do;
+        Lou -- _ | var o Cri -- a -- | dor. _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Por tu -- do~o | que já es -- tá | fei -- to;
+        E tu -- do~o | que nos en -- si -- | nou. _
+      }
+      \set stanza = "1.C"
+      \repeat volta 2 {
+        Lou -- | var, lou -- var lou -- | van -- do;
+        Lou -- | var __ _ o Cri -- a -- | dor. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Di -- | vi -- no san -- | tís -- si -- mo;
+        Co -- ra -- | ção do San -- to~A -- | mor. _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        \skip 1 A Ra -- | i -- nha da flo -- | res -- ta; __ _
+        Mãe do | mes -- tre~en -- si -- na -- | dor. _
+      }
+      \set stanza = "2.C"
+      \repeat volta 2 {
+        Pa -- | pai, Ma -- mãe tam -- | bém;
+        Fi -- lho~Es -- | pí -- ri -- to San -- to~a -- | mém. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c1 | c | g2 f2 | c2~8
+      }
+      \repeat volta 2 {
+        s4. | f1 | c2 \parenthesize a2:m | c2 f2 | c2~8
+      }
+      \repeat volta 2 {
+        s4. | g2 f2 | c2 \parenthesize a2:m | g2 f2 | c2~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    To praise, praising, to praise the Creator
+    \nextverse
+    \ind For all that is already been done, and all that taught us
+    \nextverse
+    \ind[2] To praise, praising, to praise the Creator
+    \nextverse
+    Holy Divine, heart of Holy Love
+    \nextverse
+    \ind The Queen of the forest, mother of the Master Teacher
+    \nextverse
+    \ind[2] Papa, Mama also, Son Holy Spirit Amen
+  \end{translation}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Padr. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
