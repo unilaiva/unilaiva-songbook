@@ -178,13 +178,13 @@
   \newchords{chords_cirandadoamor_a}\newchords{chords_cirandadoamor_b}
   \mnbeginchorus\memorize[chords_cirandadoamor_a]
     \ind \[^\mn{E}]O |\[\mnc{A}Am]que Pa\[\bm]pai \[^\mn{B}]me |\[^\mn{A}]de\[\mnc{G}Am7]{-u} \altchords{\id[1]{(Bm)}|Bm | - Bm7}
-    \ind |\[Em]Ma\[^\mn{F#}]mãe \[\bmc\mn{G}]con\[^\mn{A}]sa|\[\mnc{E}E7]grou \[\bm] \altchords{|F\shrp{}m |F\shrp{}7}
+    \ind |\[Em]Ma\[^\mn{F#}]mãe \[\bmc\mn{G}]con\[^\mn{A}]sa|\[\mnc{E}E]grou \[E7] \altchords{|F\shrp{}m |F\shrp{} F\shrp{}7}
   \mnendchorus
   \mnbeginchorus\memorize[chords_cirandadoamor_b]
     \[^\mn{A}]Gira, |\[Am]gira, \[^\mn{E}]crian\[\bmc\mn{C}]ci\[^\mn{A}]nha, |\[^\mn{C}]gi\[^\mn{A}]ra \altchords{|Bm | \e}
-    \[\bm]Na ci|\[\mnc{E}E7]randa \[\bmc\mn{A}]do \[^\mn{B}]a|\[\mnc{C}C]mor \[\bm] \altchords{|F\shrp{}7 |D}
+    \[\bm]Na ci|\[\mnc{E}E]randa \[\bmc\mn{A}]do \[^\mn{B}]a|\[\mnc{C}C]mor \[\bm] \altchords{|F\shrp{} |D}
     \[^\mn{A}]Gira, |\[Am]gira, \[^\mn{E}]crian\[\bmc\mn{C}]ci\[^\mn{A}]nha, |\[^\mn{C}]gi\[^\mn{A}]ra \altchords{|Bm | \e}
-    \[\bm]Que a |\[\mnc{E}E7]Virgem \[\bmc\mn{C}]Mãe \[^\mn{B}]man|\[\mnc{A}Am]dou \[\bm] \altchords{|F\shrp{}7 |Bm}
+    \[\bm]Que a |\[\mnc{E}E]Virgem \[\bmc\mn{C}]Mãe \[^\mn{B}]man|\[\mnc{A}Am]dou \[\bm] \altchords{|F\shrp{} |Bm}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_cirandadoamor_a]
@@ -221,10 +221,12 @@
       }
     }
     theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
       \repeat volta 2 {
         O | que Pa -- pai me | deu; __ _ _
         | Ma -- mãe con -- sa -- | grou.
       }
+      \set stanza = "1.B"
       \repeat volta 2 {
         Gi -- ra, | gi -- ra, cri -- an -- ci -- _ nha, __ _ | gi -- ra
         Na ci -- | ran -- da do a -- | mor;
@@ -233,10 +235,12 @@
       }
     }
     theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
       \repeat volta 2 {
         O | que Ma -- mãe me | dis -- se; __ _
         | Pa -- pai con -- fir -- | mou.
       }
+      \set stanza = "2.B"
       \repeat volta 2 {
         Gi -- ra, | gi -- ra, ca -- bo -- cli -- _ nha, __ _ | gi -- ra
         Gi -- ra | na gi -- ra do~a -- | mor;
@@ -245,10 +249,12 @@
       }
     }
     theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
       \repeat volta 2 {
         O | ve -- lho tem -- po | pas -- sa;
         No -- | vo tem -- po che -- | gou.
       }
+      \set stanza = "3.B"
       \repeat volta 2 {
         No -- vo | mun -- do, no -- vo po -- vo, no -- va | e -- ra,
         E um | no -- vo pro -- fes -- | sor;
@@ -258,11 +264,11 @@
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4 | a1:m | a2:m a2:m7 | e1:m | e2.:7
+        s4 | a1:m | a2:m a2:m7 | e1:m | e2 e4:7
       }
       \repeat volta 2 {
-        s4 | a1:m  | a:m | e:7 | c1
-        | a1:m | a:m | e:7 | a2.:m
+        s4 | a1:m  | a:m | e1 | c1
+        | a1:m | a:m | e1 | a2.:m
       }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
