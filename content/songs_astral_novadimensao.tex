@@ -1342,6 +1342,99 @@
 \endsong
 
 
+\beginsong{Tucum}[by={Padr. Alfredo}, key={C}, sks={C, (B)--(C)}, off={Samara Melo}]
+  \audio{https://nossairmandade.com/hymn/4369/Tucum}
+  \audio[key=C]{https://soundcloud.com/violeiro-daime/12-tucum?in=violeiro-daime/sets/hinario-nova-dimensao}
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Eu |\[\mnc{C}C]me \[^\mn{G}]santi\[\bmc\mn{E}]fi\[^\mn{C}]co e |\[\mnc{D}G]minhas \[^\mn{E}]pa\[\mnc{C}C]la\[^\mn{A}]vras
+    E |\[Am]guardo a \[\mnc{D}G]fé em |\[\mnc{E}C]mi\[^\mn{C}]nha me\[\bm]mória
+    \lrep \[^\mn{C}]E |\[C]quando eu or\[\mnc{A}(Am7)]de\[^\mn{G}]no esse |\[\mnc{C}C]mal vai em\[\bmc\mn{E}]bora
+    É em |\[^\mn{C}]nome \[^\mn{E}]de \[\mnc{G}G]Deus \[^\mn{D}]e de |\[G7]Nos\[^\mn{C}]sa Se\[C]nhora
+    É em |nome \[^\mn{E}]de \[\mnc{G}G]Deus \[^\mn{D}]e de |\[G7]Nos\[^\mn{C}]sa Se\[C]nhora \rrep
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    E |^na minha ^linha ver|^dadeira e ^reta
+    Li|^nha do Tu^cum A|^mor da Flo^resta
+    \lrep Enxo|^tando os ^maus que não |^querem ou^vir
+    A Jus|tiça do ^Mestre pa|^ra ser fe^liz
+    A Jus|tiça do ^Mestre pa|^ra ser fe^liz \rrep
+  \endchorus
+  \begin{translation}
+    I sanctify myself and my words
+    And keep the faith in my memory
+    \nextverse
+    And when I give the order this evil goes away
+    It's in the name of God and of Our Lady
+    \nextverse
+    And in my line true and straight
+    Line of Tucum, Love of the Forest
+    \nextverse
+    Expelling the wicked that do not want to hear
+    The Justice of the Master, in order to be happy
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 8
+        g8 \posectionmark "A"
+        | c4 g8 g8 e4 c8 c8 | d4 d8 e8 c4 a8 a8
+        | a4 a8 a8 d4. d8 | e4 c8 c8 c4 c8
+      \repeat volta 2 {
+        c8 \sectionmark "B"
+        | c4 c8 c8 a4 g8 g8 | c4 c8 c8 e4 e8 e8
+        | c4 c8 e8 g4 d8 d8 | d4 c8 c8 c4 c8 c8
+        | c4 c8 e8 g4 d8 d8
+      } \alternative {
+        { | d4 c8 c8 c4 c8 }
+        { | d4 c8 c8 c4( c8) \dacapo \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Eu | me san -- ti -- fi -- co e | mi -- nhas pa -- la -- vras;
+      E | guar -- do a fé em | mi -- nha me -- mó -- ria.
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        E | quan -- do~eu or -- de -- no~es -- se | mal vai em -- bo -- ra;
+        É~em | no -- me de Deus e de | Nos -- sa Se -- nho -- ra;
+        É~em | no -- me de Deus e de
+      } \alternative {
+        { | Nos -- sa Se -- nho -- ra. }
+        { | Nos -- sa Se -- nho -- ra. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      E | na mi -- nha li -- nha ver -- | da -- dei -- ra~e re -- ta;
+      Li -- | nha do Tu -- cum A -- | mor da Flo -- res -- ta.~En
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        xo -- | tan -- do os maus que não | que -- rem ou -- vir;
+        A Jus -- | ti -- ça do Mes -- tre pa -- | ra ser fe -- liz;
+        A Jus -- | ti -- ça do Mes -- tre pa --
+      } \alternative {
+        { | ra ser fe -- liz. En }
+        { | ra ser fe -- liz. __ _ }
+      }
+    }
+    theChords = \chordmode {
+      s8 | c1 | g2 c2 | a2:m g2 | c2.~8
+      \repeat volta 2 {
+        s8 | c2 \parenthesize a2:m7 | c1 | c2 g2 | g2:7 c2 | c2 g2
+      } \alternative {
+        { | g2:7 c4. }
+        { | g2:7 c4. }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 \setcounter{songnum}{15}
 \beginsong{Vida}[by={Padr. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
