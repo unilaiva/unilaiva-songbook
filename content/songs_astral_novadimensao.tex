@@ -1551,7 +1551,107 @@
 \endsong
 
 
-\setcounter{songnum}{15}
+\beginsong{Bastão}[by={Padr. Alfredo},key={C},sks={C, B\flt{}--D},off={Vicente e o povo do Japão}]
+  \audio[key=C]{https://www.youtube.com/watch?v=Bxypv25DNsE}
+  \audio{https://nossairmandade.com/hymn/4417/Bast\%C3\%A3o}
+  \mnbeginchorus\memorize
+    \[^\mn{C}]É se|\[\mnc{D}Dm]guir o \[^\mn{A}]nos\[^\mn{B}]so \[\mnc{C}C]mestre \altchords{\id[1]{(D)}|Em D}
+    Den\[^\mn{E}]tro |\[^\mn{G}]da vossa ins\[^\mn{E}]tru\[\bmc\mn{G}]ção \altchords{| \e}
+    E po|\[\mnc{A}Dm]der \[^\mn{G}]se \[^\mn{F}]le\[^\mn{E}]van\[\mnc{C}F]tar \altchords{|Em G}
+    Com a \[^\mn{E}]su|\[\mnc{D}G7]a ca\[^\mn{A}]du\[^\mn{B}]ca\[\mnc{C}C]ção \altchords{|A7 D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    É se|^guindo a instru^ção
+    Papai |velho e mamãe ^velha
+    Mamãe |^velha sempre ^dá
+    E pa|^pai acari^nhar
+  \endchorus
+  \beginchorus
+    Sou eu |^nasci em Na^tal
+    Vós me |dê o meu bas^tão
+    Sou |^eu sou, eu sou ^eu
+    Com a mi|^nha caduca^ção
+  \endchorus
+  \beginchorus
+    Viva os |^mestres desta es^cola
+    Atra|vés dos nossos ^hinos
+    Viva o |^nosso Cria^dor
+    E to|^dos Seres Di^vinos
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-05
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        c8 \pomark c8 | d8 d8 a8 b8 c8( c8) c8 e8
+        | g8 g8 g8 e8 g8( g8 g8) g8
+        | a8 g8 f8 e8 c8( c8) c8 e8
+        | d8 d8 a8 b8 c8( c8)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        É se -- | guir o nos -- so mes -- tre;
+        Den -- tro | da vos -- sa~ins -- tru -- ção; __ _
+        E po -- | der se le -- van -- tar;
+        Com a su -- | a ca -- du -- ca -- ção. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        É se -- | guin -- do~a ins -- tru -- ção; __ _
+        Pa -- pai | ve -- lho~e ma -- mãe ve -- lha;
+        Ma -- mãe | ve -- lha sem -- pre dá; __ _
+        E pa -- | pai a -- ca -- ri -- nhar. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Sou eu | nas -- ci em Na -- tal; __ _
+        Vós me | dê o meu bas -- tão; __ _ _
+        Sou | eu sou, eu sou eu;
+        Com a mi -- | nha ca -- du -- ca -- ção. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Vi -- va~os | mes -- tres des -- ta~es -- co -- la;
+        A -- tra -- | vés dos nos -- sos hi -- nos;
+        Vi -- va~o | nos -- so Cri -- a -- dor; __ _
+        E to -- | dos Se -- res Di -- vi -- nos.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d2:m c | c c | d:m f | g:7 c4
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    It is following our master within your instruction
+    And being able to stand up with your aging
+    \nextverse
+    It is following the instruction, elder papa and elder mama
+    Elder mama always gives, and papa cares
+    \nextverse
+    I was bor on Christmas, you give me my staff
+    It's me, it's me, it's me, with my aging
+    \nextverse
+    Long live the masters of this school, through our hymns
+    Long live our Creator and all Divine Beings
+  \end{translation}
+\endsong
+
+
 \beginsong{Vida}[by={Padr. Alfredo},key={Am},sks={Am}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
   \mnbeginchorus\memorize
