@@ -870,13 +870,16 @@
   \repeat%
 }
 
+% Text for the next song mark. Can be set before including this file.
+\providecommand{\textnextsong}{next song}
+
 % This command puts an arrow with a text "next song" above it to the end of
 % the current line. It is meant to be used on the last line of the last
 % verse, to suggest that one can continue playing the next song straight.
 \newcommand{\tonextsongmark}[0]{
   \hfill%
   \makebox[0pt][l]{\raisebox{1ex}{%
-    \tiny\textit{next song}%
+    \tiny\textit{\textnextsong}%
   }}%
   $\Longrightarrow$
 }
