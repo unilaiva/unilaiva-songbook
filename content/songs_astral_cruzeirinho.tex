@@ -1249,26 +1249,26 @@
 \endsong
 
 
-\beginsong{Eu Pedi}[by={Mestre Irineu Serra},key={G},sks={G, A}]
+\beginsong{Eu Pedi}[by={Mestre Irineu Serra},key={G},sks={G, (F\shrp{})--(G)}]
   \audio{https://www.nossairmandade.com/hymn/95/EuPedi}
   \mnbeginchorus\memorize
-    \[^\mn{D}]Eu pe|\[\mnc{G}G]di, \[^\mn{D}]eu pe\[^\mn{G}]di, \[^\mn{D}]eu pe|\[^\mn{G}]di \altchords{\id[1]{(A)}|A | \e}
-    \[^\mn{B}]Eu \[^\mn{D}]pe|\[^\mn{G}]di Ma\[^\mn{A}]mãe \[^\mn{G}]me |\[\mnc{E}C]deu \altchords{| |D}
+    \[^\mn{D}]Eu pe|\[\mnc{G}G]di, \[^\mn{D}]eu pe\[\bmc\mn{G}]di, \[^\mn{D}]eu pe|\[^\mn{G}]di \[\bm] \altchords{\id[1]{(A)}|A | \e}
+    \[^\mn{B}]Eu \[^\mn{D}]pe|\[^\mn{G}]di Ma\[\bmc\mn{A}]mãe \[^\mn{G}]me |\[\mnc{E}C]deu \[\bm] \altchords{| |D}
     \[^\mn{A}]Para |\[Am]mim \[^\mn{C}]a\[\mnc{B}(D)]pre\[^\mn{A}]sen|\[\mncii{B}{G}G]tar \[(Em)]\altchords{|Bm (E) |A (F\shrp{}m)}
-    \[^\mn{B}]Ao \[^\mn{E}]Di|\[\mnc{D}D7]vi\[^\mn{C}]no \[\mnc{A}(Am)]Se\[^\mn{B}]nhor |\[\mnc{G}G]Deus\altchords{|E7 (Bm) |A}
+    \[^\mn{B}]Ao \[^\mn{E}]Di|\[\mnc{D}D7]vi\[^\mn{C}]no \[\mnc{A}(Am)]Se\[^\mn{B}]nhor |\[\mnc{G}G]Deus \[\bm] \altchords{|E7 (Bm) |A}
   \mnendchorus
   \notesoff
   \beginchorus
-    Meu Di|^vino Senhor \noteson|\[\mnlow{G}]De\[\mnlow{D}]us \notesoff
-    É Pai |de todo a|^mor
+    Meu Di|^vino ^Senhor \noteson|\[\mnlow{G}]De\[\mnlow{D}]us ^ \notesoff
+    É Pai |de to^do a|^mor ^
     Perdo|^{ai os} ^Vossos |^filho^s
-    Neste |^mundo ^peca|^dor
+    Neste |^mundo ^peca|^dor ^
   \endchorus
   \beginchorus
-    Jesus |^Cristo Reden\noteson|\[\mnlow{G}\mnlow{D}]tor \notesoff
-    Senhor |do meu cora|^ção
+    Jesus |^Cristo ^Reden\noteson|\[\mnlow{G}\mnlow{D}]tor ^ \notesoff
+    Senhor |do meu ^cora|^ção ^
     Defen|^dei os ^Vossos |^filho^s
-    Neste |^mundo ^{de ilu}|^são \tonextsongmark
+    Neste |^mundo ^{de ilu}|^são ^ \tonextsongmark
   \endchorus
   \begin{translation}
     I asked, I asked, I asked, I asked, Mother allow me
@@ -1281,58 +1281,56 @@
     Defend Your children in this world of illusion
   \end{translation}
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, latest update on 2023-06
+    \include "tex/lp-include-head.ly"
     theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
       \key g \major \time 4/4 \partial 4
       \repeat volta 2 {
-        d8\sectionmark "1." d8 | g4 d8 d8 g4 d8 d8 | g2. b,8 d8 | g4 g4 a4 g4 | e2. a8 a8
-        | a4 c4 b4 a4 | b4( g2) b,8 e8 | d4 c4 a4 b4 | g2.
-      } \break
-      \repeat volta 2 {
-        d'8\sectionmark "2." d8 | g4 d4 g4 d4 | g4( d2) b8 d8 | g4 g4 a4 g4 | e2. a8 a8
-        | a4 c4 b4 a4 | b4 g2 b,8 e8 | d4 c4 a4 b4 | g2.
-      } \break
-      \repeat volta 2 {
-        d'8\posectionmark "3." d8 | g4 d4 g4 d4 | g4( d2) b8 d8 | g4 g4 a4 g4 | e2. a8 a8
-        | a4 c4 b4 a4 | b4 g2 b,8 e8 | d4 c4 a4 b4 | g2.
+        d8\pomark d8
+        | g4 d8( d8) g4 d8( d8) | g4( << g2) \single\altcol d2 \altmark "2., 3." >> b8 d8
+        | g4 g4 a4 g4 | e2. a8 a8
+        | a4 c4 b4 a4 | b4( g2) b,8 e8
+        | d4 c4 a4 b4 | g2.
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      Eu pe -- | di, eu pe -- di, eu pe -- | di;
+      Eu pe -- | di, eu pe -- di, eu pe -- | di; __ _
       Eu pe -- | di Ma -- mãe me | deu;
-      Pa -- ra | mim a -- pre -- sen -- | tar; __
+      Pa -- ra | mim a -- pre -- sen -- | tar; __ _
       Ao Di -- | vi -- no Se -- nhor | Deus.
+    }
+    theLyricsTwo = \lyricmode {
       \set stanza = "2."
-      Meu Di -- | vi -- no Se -- nhor | Deus;
+      Meu Di -- | vi -- no __ _ Se -- nhor __ _ | Deus; __ _
       É Pai | de to -- do a -- | mor;
       Per -- do -- | ai os Vos -- sos | fi -- lhos;
       Nes -- te | mun -- do pe -- ca -- | dor.
+    }
+    theLyricsThree = \lyricmode {
       \set stanza = "3."
-      Je -- sus | Cris -- to Re -- den -- | tor; __
+      Je -- sus | Cris -- to __ _ Re -- den -- _ | tor; __ _
       Se -- nhor | do meu co -- ra -- | ção;
       De -- fen -- | dei os Vos -- sos | fi -- lhos;
-      Nes -- te | mun -- do de ilu -- | são.
+      Nes -- te | mun -- do de~i -- lu -- | são.
     }
     theChords = \chordmode {
-      % chords are the same for all verses
-      \repeat volta 2 { % verse 1
-        s4 | g1 | g | g | c
-        | a2:m \parenthesize d | g \parenthesize e:m | d2:7 \parenthesize a:m | g2.
-      }
-      \repeat volta 2 { % verse 2
-        \once \set chordChanges = ##f
-        s4 | g1 | g | g | c
-        | a2:m \parenthesize d | g \parenthesize e:m | d2:7 \parenthesize a:m | g2.
-      }
-      \repeat volta 2 { % verse 3
-        \once \set chordChanges = ##f
-        s4 | g1 | g | g | c
-        | a2:m \parenthesize d | g \parenthesize e:m | d2:7 \parenthesize a:m | g2.
+      \repeat volta 2 {
+        s4
+        | g1 | g
+        | g | c
+        | a2:m \parenthesize d | g \parenthesize e:m
+        | d2:7 \parenthesize a:m | g2.
       }
     }
-    \layout { #(layout-set-staff-size 15) } % to fit on one spread
+    %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
+  \vfill
+  \beginverse \noteson % first line of the next hino
+    \hfill\tonextsongmark \hfill \[\mn{B}]Eu |\[\mnc{D}G]cheguei \[\mnc{B}(Em/B)]nes\[\mn{E}]ta |\[\mncii{D}{G}G]casa \ldots \altchords{|A (F\shrp{}m/C\shrp{}) |A}
+  \endverse
 \endsong
 
 
