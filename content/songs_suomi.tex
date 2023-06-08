@@ -856,13 +856,14 @@
 \endsong
 
 
-\beginsong{Kosketa minua henki}[by={Ilkka Kuusisto 1979},ex={Virsi 125},ph={III}]
-  \transpose{2} % transpose to C for easier chords
+\beginsong{Kosketa minua henki}[by={Ilkka Kuusisto 1979},ex={Virsi 125},ph={III},key={G},sks={G, E\flt{}--G}]
+  % in Bb the notes range from D to D, in transposed G they range from B to B
+  \transpose{-3} % to G (3)
   \meter{3}{4}
-  \beginverse
-    |\[\mnc{D}B&]Kosketa |\[\mnc{F}Dm]minua, |\[\mnc{G}Gm]Hen|\[^\mn{D}]ki, |\[Cm7]kosketa |\[Dm]kirkka|\[E&]us! |\[G7/D]
-    |\[Cm]Anna |\[F7]elä|\[B&maj7]mäl|\[G]le |\[Cm7]suunta ja |\[F7]tarkoi|\[B&]tus. | \e
-  \endverse
+  \mnbeginverse
+    |\[\mnc{D}B&]Kosketa |\[\mnc{F}Dm]minua, |\[\mnc{G}Gm]Hen|\[^\mn{D}]ki, |\[\mnc{E&}Cm7]kos\[^\mn{F}]ke\[^\mn{G}]ta |\[\mnc{A}Dm]kirk\[^\mn{F}]ka|\[\mnc{G}E&]us! |\[G7/D]
+    |\[\mnc{G}Cm]An\[^\mn{B&}]na |\[\mncii{D}{C}F7]e\[^\mn{B&}]lä|\[\mncii{A}{F}B&maj7]mäl|\[\mnc{D}G]le |\[\mnc{G}Cm7]suun\[^\mn{F}]ta \[^\mn{G}]ja |\[\mnc{F}F7]tar\[^\mn{E&}]koi|\[\mnc{D}B&]tus. | \e
+  \mnendverse
   \notesoff
   \beginverse
     |^Kosketa, |^Jumalan |^Hen|ki, |^syvälle |^sydä|^meen. |^
@@ -879,6 +880,10 @@
   \beginverse
     |^Kosketa |^minua, |^Hen|ki! |^Herätä |^kiittä|^mään, |^
     |^sinun |^lähel|^lä|^si |^armosta |^elä|^mään. | \e
+  \endverse
+  \beginverse % for alt key (F) chords only
+    \altchords{\id[1]{(F)}|F |Am |Dm | - |Gm7 |Am |B\flt{} |D7/A}
+    \altchords{|Gm |C7 |Fmaj7 |D |Gm7 |C7 |F | \e}
   \endverse
 \endsong
 
