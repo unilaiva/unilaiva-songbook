@@ -934,6 +934,107 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\beginsong{Rakastan sinua elämä}[by={Eduard Komanovski, Konstantin Vanshenkin}, key={Am}, sks={Am, (Am)--(Cm)}]
+  % Finnish words by: Pauli Salonen
+  \newchords{chords_rakastan_elamaa_a}\newchords{chords_rakastan_elamaa_b}
+  \mnbeginverse\memorize[chords_rakastan_elamaa_a]
+    \[^\mn{E}]Päättyy |\[\mnc{A}Am]yö, \[\bm] \[^\mn{C}]aa\[^\mn{A}]mu |\[\mnc{F}Dm]saa,\[\bm] uusi |\[\mnc{E}E7]päi\[^\mn{D}]vä \[^\mn{C}]kun \[\bmc\mn{B}]kirk\[^\mn{A}]kaa\[^\mn{B}]na |\[\mnc{C}Am]lois\[^\mn{A}]taa.\[\bm]
+    \[^\mn{E}]Sulle |\[^\mn{A}]oi, \[\bm] \[^\mn{C}]ko\[^\mn{A}]ti|\[\mnc{A}F]maa, \[\bm] sävel |\[\mnc{G}G7]kau\[^\mn{F}]ne\[^\mn{E}]hin \[\bmc\mn{D}]tuu\[^\mn{C}]les\[^\mn{D}]sa |\[\mnc{F}C]soit\[^\mn{E}]taa.\[\bm]
+    \mnendverse\glueverses\mnbeginchorus\memorize[chords_rakastan_elamaa_b]
+    \[^\mn{E}]Rakas|\[\mnc{B}E7]tan\[\bm] \[^\mn{A}]e\[^\mn{G#}]lä|\[\mnc{A}F]mää, \[Am\mn{E}]{{ }{ }{ }{ }{ }{ }jo}\[^\mn{F}]ka |\[\mnc{G}Gm6]uute\[^\mn{A}]na \[\mnc{G}A7]aa\[^\mn{F}]mus\[^\mn{E}]sa |\[\mnc{A}Dm]au\[^\mn{D}]kee.\[\bm]
+    \[^\mn{E}]Ra\[^\mn{D}]kas|\[\mnc{F}Dm6]tan \[E7\mn{E}]{ }{ }{ }{ }{e}\[^\mn{D}]lä|\[\mnc{C}Am]mää, \[D7\mn{D}]{{ }{ }{ }{ }{ }jo}\[^\mn{B}]ka |\[\mnc{E}Am]uu\[^\mn{C}]pu\[^\mn{A}]en \[\mnc{E}E7]il\[^\mn{C}]las\[^\mn{B}]sa |\[\mnc{C}Am]rau\[^\mn{A}]kee.\[\bm]
+  \mnendchorus
+  \notesoff
+  \beginverse\replay[chords_rakastan_elamaa_a]
+    Kirkka|^hin ^ päivä |^ei, ^ aina |^parhainta ^loistetta |^suone.^
+    Unel|man ^ usein |^vei, ^ eikä |^ystävä ^lohtua |^tuone.^
+    \endverse\glueverses\beginchorus\replay[chords_rakastan_elamaa_b]
+    Rakas|^tan ^ elä|^mää, ^{{ }{ }{ }{ }{ }jo}ka |^kyynelten ^helminä |^hohtaa.^
+    Rakas|^tan ^ elä|^mää, ^{{ }{ }{ }{ }jo}ka |^myrskyihin ^tietäni |^johtaa.^
+  \endchorus
+  \beginverse\replay[chords_rakastan_elamaa_a]
+    Jäänyt |^on ^ päivän |^työ, ^ ilta |^varjoja ^tielleni |^siirtää.^
+    Kaupun|gin ^ sydän |^lyö, ^ valot |^laineille ^siltoja |^piirtää.^
+    \endverse\glueverses\beginverse\replay[chords_rakastan_elamaa_b]
+    Rakas|^tan ^ elä|^mää, ^{{ }{ }{ }{ }{ }jo}ka |^nuoruuden ^haaveita |^kantaa.^
+    Rakas|^tan ^ elä|^mää, ^{{ }{ }{ }{ }jo}ka |^muistojen ^hetkiä |^antaa.^ \replay[chords_rakastan_elamaa_b]
+    Rakas|^tan ^ elä|^mää, ^{{ }{ }{ }{ }{ }sil}le |^lempeni ^tahdon mä |^antaa.^
+    Rakas|^tan ^ elä|^mää, ^{{ }{ }{ }{ }jo}ka |^muistojen ^hetkiä |^kantaa.^
+  \endverse
+%   %% Lilypond commented out for space saving reasons in the main songbook
+%   \begin{lilywrap}\begin{lilypond}[]
+%     % transcribed by larva, latest update on 2023-06
+%     \include "tex/lp-include-head.ly"
+%     theMelody = \relative c' {
+%       \key a \minor \time 4/4 \partial 4
+%       \set melismaBusyProperties = #'() \slurDashed
+%       e8. \sectionmark "A" e16
+%       | a2. c8. a16 | f'2. 8. 16 | e4 d8. c16 b4 a8. b16 | c4 a4 r4
+%       e8. e16
+%       | a2. c8. a16 | a'2. 8. 16 | g4 f8. e16 d4 c8. d16 | f4 e4 r4 \break
+%       \repeat volta 2 {
+%         e8 \sectionmark "B" e8
+%         | b'2. a8 gis8 | a2. e8 f8 | g4 8. a16 g4 f8. e16 | a4 d,4 r4
+%         e8 d8
+%         | f2. e8 d8 | c2. d8 b8
+%         | e4 c8 a8 e4 c'8. b16 | c4 a4 r4
+%       }
+%     }
+%     theLyricsOne = \lyricmode {
+%       \set stanza = "1.A"
+%       Päät -- tyy | yö, aa -- mu | saa, uu -- si | päi -- vä kun kirk -- kaa -- na | lois -- taa.
+%       Sul -- le | oi, ko -- ti -- | maa, sä -- vel | kau -- ne -- hin tuu -- les -- sa | soit -- taa.
+%       \repeat volta 2 {
+%         \set stanza = "1.B"
+%         Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | uu -- te -- na aa -- mus -- sa | au -- kee.
+%         Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | uu -- pu -- en il -- las -- sa | rau -- kee.
+%       }
+%     }
+%     theLyricsTwo = \lyricmode {
+%       \set stanza = "2.A"
+%       Kirk -- ka -- | hin päi -- vä | ei, ai -- na | par -- hain -- ta lois -- tet -- ta | suo -- ne.
+%       U -- nel -- | man u -- sein | vei, ei -- kä | ys -- tä -- vä loh -- tu -- a | tuo -- ne.
+%       \repeat volta 2 {
+%         \set stanza = "2.B"
+%         Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | kyy -- nel -- ten hel -- mi -- nä | hoh -- taa.
+%         Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | myrs -- kyi -- hin tie -- tä -- ni | joh -- taa.
+%       }
+%     }
+%     theLyricsThree = \lyricmode {
+%       \set stanza = "3.A"
+%       Jää -- nyt | on päi -- vän | työ, il -- ta | var -- jo -- ja tiel -- le -- ni | siir -- tää.
+%       Kau -- pun -- | gin sy -- dän | lyö, va -- lot | lai -- neil -- le sil -- to -- ja | piir -- tää.
+%       \repeat volta 2 {
+%         <<
+%           {
+%             \set stanza = "3.B:i"
+%             Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | nuo -- ruu -- den haa -- vei -- ta | kan -- taa.
+%             Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | muis -- to -- jen het -- ki -- ä | an -- taa.
+%           }
+%           \new Lyrics { \set associatedVoice = "theMelody"
+%             \set stanza = "3.B:ii"
+%             \override LyricText.color = #grey Ra -- kas -- | tan e -- lä -- | mää, \override LyricText.color = #black sil -- le | lem -- pe -- ni tah -- don mä | an -- taa.
+%             \override LyricText.color = #grey Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | muis -- to -- jen het -- ki -- ä \override LyricText.color = #black | kan -- taa.
+%           }
+%         >>
+%       }
+%     }
+%     theChords = \chordmode {
+%       s4
+%       | a1:m | d:m | e:7 | a:m
+%       | a:m | f | g:7 | c2.
+%       \repeat volta 2 {
+%         s4
+%         | e1:7 | f2 a2:m | g2:m6 a2:7 | d1:m
+%         | d2:m6 e2:7 | a2:m7 d2:7 | a2:m e2:7 | a2.:m
+%       }
+%     }
+%     %\layout { #(layout-set-staff-size 15) } % for better fit
+%     \include "tex/lp-include-tail-lyricsbelow.ly"
+%   \end{lilypond}\end{lilywrap}
+\endsong
+
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}
