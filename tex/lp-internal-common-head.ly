@@ -157,7 +157,9 @@
 
     % Setup the following note or lyric token's color to #color-alt. Use this
     % to mark a note to be of different color to signify alternative playing.
-    % To explain this, use \altmark function *after* the note.
+    % To explain this, use \altmark function *after* the note. To colorize only
+    % one note head in a beam with multiple heads, state \single immediately
+    % before \altcol.
     altcol = {
       \once\override NoteHead.color = #color-alt
       \once\override Stem.color = #color-alt
