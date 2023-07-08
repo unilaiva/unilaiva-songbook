@@ -507,3 +507,148 @@
 \endsong
 
 
+\beginsong{Verdade Pura}[by={William Vilas Boas}, key={Gm}, sks={Gm}]
+  \audio[key=Gm]{https://www.youtube.com/watch?v=VtNEgkn707I}
+  \mnbeginchorus\memorize
+    \lrep \[^\mn{D}]Esta é \[\bmc\mn{B&}]a \[^\mn{A}]dou|\[\mnc{D}Gm]tri\[\bm]na, | do Sol \[\bmc\mn{E&}]e \[^\mn{D}]da |\[\mnc{C}Cm]Lu\[\bm]a |\[Cm6] \e
+    \[^\mn{A}]E \[\bm]das \[^\mn{G}]Es|\[\mnc{F#}D]tre\[\bmc\mn{D}]las, |\[D7] e da \[^\mn{E&}]Ver\[\bmc\mn{D}]da\[^\mn{C}]de |\[\mnc{D}Gm]Pu\[\bm]ra |\[\up{2}(G7)] \e \rrep
+    \ind \lrep \[^\mn{D}]Para \[\bmc\mn{E&}]com\[^\mn{D}]preen|\[\mnc{C}Cm]der, pa\[^\mn{D}]ra \[\bmc\mn{B&}]com\[^\mn{D}]preen|\[^\mn{C}]der
+    \ind \[^\mn{A}]É \[^\mn{B&}]ter \[^\mn{C}]e\[\bmc\mn{D}]du\[^\mn{C}]ca|\[\mnc{B&}B&]ção, \[^\mn{A}]é \[^\mn{B&}]ter \[^\mn{C}]e\[\bmc\mn{D}]du\[^\mn{C}]ca|\[^\mn{B&}]ção
+    \ind Não \[\bmc\mn{C}]se \[^\mn{B&}]jul|\[\mnc{A}D]gar,\[\bm] |\[D7] nem jul\[\bmc\mn{B&}]gar os \[^\mn{A}]seus ir|\[\mnc{/}Gm]mãos\[\bm] |\[\up{1}G7] \e \rrep
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    \lrep Quem ^mais quer |^ser ^ | é quem ^menos |^é ^ |^
+    Sigamos ^o ex|^em^plo |^ do bom Je^sus de Naza|^ré ^ |^ \e \rrep
+    \ind Tanto ^que so|^freu, tanto ^que so|freu
+    \ind Que se ^humi|^lhou, que se ^humi|lhou
+    \ind So^freu na |^cruz^ |^ e a todos ^Ele perdo|^ou ^ |\[G7] \e
+    \ind Tanto \[\bm]que so|\[Cm]freu, tanto \[\bm]que so|freu
+    \ind Que se \[\bm]humi|\[B&]lhou, que se \[\bm]humi|lhou
+    \ind Mor\[\bm]reu na |\[D]cruz\[\bm] |\[D7] para ensi\[\bm]nar o que é o A|\[Gm]mor \[\bm] | \e
+  \endchorus
+  \begin{translation}\scriptsize % to fit on a page
+    This is the doctrine of the Sun and the Moon
+    And of the Stars and the Pure Truth
+    \ind To understand, to understand
+    \ind It's education, it's education
+    \ind Do not judge yourself or judge your brothers
+    \nextverse
+    Who more wants to be, is who least is
+    Let us follow the example of the good Jesus of Nazareth
+    \ind So much he suffered, so much he suffered
+    \ind Who humbled himself, who humbled himself
+    \ind \up{1}Suffered on the cross, and all He forgave
+    \ind \up{2}He died on the cross to teach what love is
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \key g \minor \time 4/4 \partial 2.
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat volta 2 {
+        d8( \posectionmark "A" d) bes'4 a
+        | d,2( d2)~ | d4 d8 d8 es4 d4 | c2( c2)~ | \once\slurDown c8\parenthesize a' a8( a) a4 g4
+        | fis2 d2~ | d8 d8 8 es d8( d) c( c)
+      } \alternative {
+        { | d2( d2)~ | d4 }
+        { | d2( d2)~ | d4 }
+      } \break
+      \repeat volta 2 {
+        d8 \sectionmark "B" d es4 d
+        | c c8 d es4 d | c8 \parenthesize a bes c d4 c | bes8 \parenthesize a bes c d4 c | bes bes c bes
+        | a1~ | a8( a8) a8 a bes bes a a
+      } \alternative {
+        { | d1~ | d4 }
+        { | g,1~ | g4 \dacapo \bar "|." }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Es -- ta~é a dou -- | tri -- na | _
+        Do Sol e da | Lu -- a; | _ _
+        E __ _ das Es -- | tre -- las | _
+        E da Ver -- da -- _ de __ _
+      } \alternative {
+        { | Pu -- ra. | _ }
+        { | Pu -- ra. | _ }
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Pa -- ra com -- preen -- | der
+        Pa -- ra com -- preen -- | der;
+        É ter e -- du -- ca -- | ção
+        É ter e -- du -- ca -- | ção;
+        Não se jul -- | gar __ | _ _
+        Nem jul -- gar os seus ir --
+      } \alternative {
+        { | mãos. | _ }
+        { | mãos. | _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Quem __ _ mais quer | ser __ _ | _
+        É quem me -- nos | é; __ _ | _
+        Si -- ga -- mos o ex -- | em -- plo | _
+        Do bom Je -- sus de Na -- za --
+      } \alternative {
+        { | ré. __ _ | _ }
+        { | ré. __ _ | _}
+      }
+      <<
+        {
+          \set stanza = "2.B:i"
+          \repeat volta 2 {
+            Tan -- to que so -- | freu
+            Tan -- to que so -- | freu;
+            \skip 1 Que se hu -- mi -- | lhou
+            \skip 1 Que se hu -- mi -- | lhou;
+            So -- freu na | cruz | _
+            E~a to -- dos E -- le per -- do --
+          } \alternative {
+            { | ou. | _ }
+            { | | }
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "2.B:ii"
+          \repeat volta 2 {
+            Tan -- to que so -- | freu
+            Tan -- to que so -- | freu;
+            \skip 1 Que se hu -- mi -- | lhou
+            \skip 1 Que se hu -- mi -- | lhou;
+            Mor -- reu na | cruz | _
+            Pa -- ra~en -- si -- nar o que~é~o A-
+          } \alternative {
+            { }
+            { | _ | _ | mor. | _ }
+          }
+        }
+      >>
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2.
+        | g1:m | 1 | c:m | c:m6
+        | d | d:7
+      } \alternative {
+        { | g1:m | 4 }
+        { | g1:m | g4:7~ }
+      }
+      \repeat volta 2 {
+        2.
+        | c1:m | 1 | bes
+        | bes | d | d:7
+      } \alternative {
+        { | g1:m | g4:7 }
+        { | g1:m | 4~ }
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
