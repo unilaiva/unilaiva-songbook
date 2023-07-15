@@ -652,3 +652,129 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
+
+
+\beginsong{Santíssimo Daime}[by={José Ricardo}, off={Cyrenia}, key={Am}, gk={Am, Gm--Bm}]
+  \audio{https://nossairmandade.com/hymn/2172/Sant\%C3\%ADssimoDaime}
+  \audio[key=Am]{https://soundcloud.com/igreja-mestre-irineu/santissimo-daime}
+  \audio[key=Am]{https://www.youtube.com/watch?v=hoYtePc5ICg}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Eu que\[^\mn{C}]ro |\[\mnc{E}Am]mais\[\bm] \[^\mn{D}]é \[^\mn{E}]to\[^\mn{D}]mar |\[^\mn{A}]Dai\[\bm]me \altchords{\id[1]{(Bm)}|Bm | \e}
+    Eu \[^\mn{C}]que\[^\mn{E}]ro |\[^\mn{A}]mais\[\bm] \[^\mn{G}]é \[^\mn{A}]me \[^\mn{G}]cu|\[\mnc{D}Dm]rar \[\bm] \altchords{| - | Em}
+    De tudo o |que ainda me \[\bm]pega nes\[^\mn{F}]ses |\[\mnc{A}Am]di\[\bm]as \altchords{| - |Bm}
+    \[^\mn{A}]Um di\[^\mn{C}]a a|\[\mnc{E}E]in\[E7]{-} \[^\mn{D}]{da eu} \[^\mn{E}]che\[^\mn{D}]go |\[\mnc{A}Am]lá \[\bm] \altchords{|F\shrp{} F\shrp{}7 |Bm}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Eu chego |^lá \noteson\[\mnlow{D}]e é \[\mnlow{E}]pa\[\mnlow{D}]ra\notesoff{} ^nunca mais vol|tar ^
+    Voltar pras |tre\noteson\[\mnlow{G}]vas \[\mnlow{A}]des\[\mnlow{G}]se\notesoff{} ^mundo de ilu|^são ^
+    Falso bri|lhante, por^tal da escuri|^dão ^
+    Com Deus eu |^que^{-ro é} sempre es|^tar ^
+  \endchorus
+  \beginchorus
+    Pra cami|^nhar \noteson\[\mnlow{D}]nes\[\mnlow{E}]se \[\mnlow{D}]de\notesoff{}^serto, eu tomo |Dai^me \altchords{\id[2]{(Gm)}|Gm | \e}
+    Qual beija|flor \noteson\[\mnlow{G}]eu \[\mnlow{A}]vou \[\mnlow{G}]be\notesoff{}^bendo desse a|^mor ^ \altchords{| - | Cm}
+    O Santo |Daime é que ^mata a minha |^se^de \altchords{| - |Gm}
+    E me dá |^bri\noteson\[\mnlow{D}]lho \[\mnlow{E}]pra eu \[\mnlow{D}]po\notesoff{}^der continu|^ar ^ \altchords{|D D7 |Gm}
+  \endchorus
+  \beginchorus
+    O Santo |^Dai\noteson\[\mnlow{D}]me, \[\mnlow{E}]a\[\mnlow{D}]go\notesoff{}^ra vou afir|mar ^
+    É Jesus |Cris\noteson\[\mnlow{G}]to \[\mnlow{A}]que \[\mnlow{G}]vol\notesoff{}^tou com Seu A|^mor ^
+    Miseri|córdia, Bon^dade Infi|^ni^ta
+    Eu agra|^de^{-ço e} dou lou|^vor ^
+  \endchorus
+  \beginchorus
+    Se a|^cor\noteson\[\mnlow{D}]dem \[\mnlow{E}]meus \[\mnlow{D}]ir\notesoff{}^mãos pra esse a|mor ^
+    E compre|en\noteson\[\mnlow{G}]dam \[\mnlow{A}]es\[\mnlow{G}]se\notesoff{} ^tempo em que vi|^ve^mos
+    É prova|ção mas é ^a transforma|^ção ^
+    A grande |^chan\[\mnlow{D}]ce \[\mnlow{E}]pa\[\mnlow{D}]ra a\notesoff{} ^ilumina|^ção ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \key a \minor \time 4/4 \partial 4.
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat volta 2 {
+        \parenthesize a8 \pomark a c | e8( \altcol\parenthesize d \altmark "2., 3., 4., 5." \altcol\parenthesize e \altcol\parenthesize d \parenthesize e) d8 e d | a2( \parenthesize a8)
+        a8 c e | a8( \altcol\parenthesize g \altmark "2., 3., 4., 5." \altcol\parenthesize a \altcol\parenthesize g \parenthesize a) g8 a g | d2( \parenthesize d8)
+        d8 d d | d8( d8) d8 d d d d f | a2( \parenthesize a8)
+        a,8 a8 c | e8( \altcol \parenthesize d \altmark "3., 5." \altcol \parenthesize e \altcol \parenthesize d \parenthesize e8) d e d | a2~ a8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Eu que -- ro | mais __ _ _ _ _ é to -- mar | Dai -- me;
+        Eu que -- ro | mais __ _ _ _ _ é me cu -- | rar; __ _
+        De tu -- do~o | que ain -- da me pe -- ga nes -- ses | di -- as;
+        Um di -- a~a -- | in -- _ _ _ _ da~eu che -- go | lá. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Eu che -- go | lá \altcol e~é \altcol pa -- \altcol ra nun -- ca mais vol -- | tar; __ _
+        Vol -- tar pras | tre -- \altcol vas \altcol des -- \altcol se mun -- do de~i -- lu -- | são; __ _
+        Fal -- so bri -- | lhan -- _ te, por -- tal da~es -- cu -- ri -- | dão; __ _
+        Com Deus eu | que -- _ _ _ _ ro~é sem -- pre~es -- | tar. _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        \set stanza = "3."
+        Pra ca -- mi -- | nhar \altcol nes -- \altcol se \altcol de -- ser -- to,~eu to -- mo | Dai -- me;
+        Qual bei -- ja -- | flor \altcol eu \altcol vou \altcol be -- ben -- do des -- se~a -- | mor; __ _
+        O San -- to | Dai -- me é que ma -- ta~a mi -- nha | se -- de;
+        E me dá | bri -- \altcol lho \altcol pra~eu \altcol po -- der con -- ti -- nu -- | ar. _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        O San -- to | Dai -- \altcol me, \altcol a -- \altcol go -- ra vou a -- fir -- | mar; __ _
+        É Je -- sus | Cris -- \altcol to \altcol que \altcol vol -- tou com Seu A -- | mor; __ _
+        Mi -- se -- ri -- | cór -- _ dia, Bon -- da -- de In -- fi -- | ni -- ta;
+        Eu a -- gra -- | de -- _ _ _ _ ço~e dou lou -- | vor. _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        \skip 1 Se a -- | cor -- \altcol dem \altcol meus \altcol ir -- mãos pra es -- se~a -- | mor; __ _
+        E com -- pre -- | en -- \altcol dam \altcol es -- \altcol se tem -- po~em que vi -- | ve -- mos;
+        É pro -- va -- | ção _ mas é a trans -- for -- ma -- | ção; __ _
+        A gran -- de | chan -- \altcol ce \altcol pa -- \altcol ra~a i -- lu -- mi -- na -- | ção. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4.
+        | a1:m | a:m
+        | a:m | d:m
+        | d:m | a:m
+        | e2 e:7 | a2:m~ 8
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation} % to fit on one spread
+    What I want more is to drink Daime, what I want more is to heal myself
+    Of everything that still gets me these days, one day I'll get there
+    \nextverse
+    I get there and it's never to return, to return to the darkness of this world of illusion
+    Fake brilliance, portal of darkness; with God I always want to be
+    \nextverse
+    To walk in this desert, I drink Daime; like hummingbird I am drinking from this love
+    The Santo Daime is what quenches my thirst, and it gives me brightness so I can carry on
+    \nextverse
+    The Santo Daime, now I will affirm, it is Jesus Christ who has returned with His Love
+    Mercy, Infinite Goodness; I give thanks and praise
+    \nextverse
+    Wake up my brothers for this love, and understand this time we live in
+    It's ordeal but it's the transformation, the big chance for enlightenment
+  \end{translation}
+\endsong
