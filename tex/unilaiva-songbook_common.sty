@@ -186,10 +186,13 @@
 % in the final document (after possible transpose).
 \newif\ifshowkey\showkeytrue
 
-% Toggle for showing suggested keys in song preludes. To set it/them for a song,
-% define it as \beginsong parameter: "\beginsong[sks={Am, Dm}]". The first
-% is the preferred one.
-\newif\ifshowsks\showskstrue
+% Toggle for showing good keys in song preludes. To set it/them for a song,
+% define it as \beginsong parameter: "\beginsong[gk={Am, Gm--Bm}]". The first
+% is the preferred one, and then comes the range of keys suitable for singing
+% in such a way that the melody falls within (inlcuding) a G note in the low
+% end, and a B note of the next octave in the high end. If such a range is
+% impossible, put the keys in the range in parenthesis.
+\newif\ifshowgoodkeys\showgoodkeystrue
 
 % Toggle for showing phase info in song preludes. To set it for a song,
 % define it as \beginsong parameter: "\beginsong[ph={I, II}]"
@@ -1749,16 +1752,22 @@
 \providecommand{\preludetextgood}{good:} % ", " is prepended before this
 \providecommand{\preludetextgoodkeysalone}{Good keys:}
 
-% Support for suggested keys for a song. This key is supposed to hold the
-% suggested good keys this song to be played in. The first is the preferred
-% one. The suggested keys are displayed in the song preamble.
-% To disable displaying these keys in the song preludes for the whole
-% document, set \showsksfalse in the main document preamble (after including
-% this package).
-% To set this for a song, use the optional sks={} parameter for \beginsong.
-\newcommand{\suggestedkeys}{}
-\newsongkey{sks}{\def\suggestedkeys{}}
-                {\def\suggestedkeys{#1}}
+% Support for a list of good keys (range) for a song. This keyval is supposed
+% to hold the good (for singing) keys this song to be played in.
+%
+% To set this for a song, use the optional gk={} parameter for \beginsong.
+% The preferred format for this text is {X, Y--Z}, where X is the preferred
+% "best" key, and the Y--Z is the range of keys where the melody stays within
+% a range limited by G note in the low end, and the B note of the next octave
+% in the high end. Example: gk={Bm, Gm--Cm}. If such a range is impossible,
+% put the keys in the range in parenthesis.
+%
+% The good keys list is displayed in the song preamble. To disable displaying
+% this for the whole document, set \showgoodkeysfalse in the main document
+% preamble (after including this package).
+\newcommand{\goodkeys}{}
+\newsongkey{gk}{\def\goodkeys{}}
+               {\def\goodkeys{#1}}
 
 % Support for phase hints for songs.
 % To disable displaying these phases in the song preludes for the whole
@@ -1859,25 +1868,29 @@
 \newdimen{\@preludeRTfirstraise}\setlength{\@preludeRTfirstraise}{1.618034ex}%
 \newdimen{\@preludeRTsecondraise}\setlength{\@preludeRTsecondraise}{0pt}%
 \newdimen{\@preludeRTthirdraise}\setlength{\@preludeRTthirdraise}{-1.618034ex}%
+\newdimen{\@preludeRTfourthraise}\setlength{\@preludeRTfourthraise}{-3.236068ex}%
 \newdimen{\@preludeRTraise} % set later
 
-\newcounter{@preludeRTrowcount}
-% sets the \@preludeRTraise dimension on basis of @preludeRTrowcount, ie how
+\newcounter{@preludeRTrowscreatedcount}
+% sets the \@preludeRTraise dimension on basis of @preludeRTrowscreatedcount, ie how
 % many lines have already been added to the prelude's RT component.
 \newcommand\@setpreludeRTraise{%
-  \ifnum\value{@preludeRTrowcount}=0%
+  \ifnum\value{@preludeRTrowscreatedcount}=0%
     \setlength{\@preludeRTraise}{\@preludeRTfirstraise}%
   \fi%
-  \ifnum\value{@preludeRTrowcount}=1%
+  \ifnum\value{@preludeRTrowscreatedcount}=1%
     \setlength{\@preludeRTraise}{\@preludeRTsecondraise}%
   \fi%
-  \ifnum\value{@preludeRTrowcount}=2%
+  \ifnum\value{@preludeRTrowscreatedcount}=2%
     \setlength{\@preludeRTraise}{\@preludeRTthirdraise}%
+  \fi%
+  \ifnum\value{@preludeRTrowscreatedcount}=3%
+    \setlength{\@preludeRTraise}{\@preludeRTfourthraise}%
   \fi%
 }
 
-% Redefine the song prelude display. Only one line is modified (see comment)
-% to show the phase and tag lists.
+% Redefine the song prelude display. Only one line is modified (into a block,
+% see comment) to show the phase, tags and key info.
 \renewcommand\makeprelude{
   \resettitles%
   \ifslides%
@@ -1911,40 +1924,40 @@
       {\stitlefont\relax%
        \songtitle%
        {% larva: begin modifications for RT area: ph, tags and keys display
-         \setcounter{@preludeRTrowcount}{0}%
+         \setcounter{@preludeRTrowscreatedcount}{0}%
          \@setpreludeRTraise%
          \hfill%
          \ifshowph\ifnowidth{\phaselist}{}{% % Show phase
            \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
              \tiny\normalfont\rmfamily\phaselist%
            }}%
-           \stepcounter{@preludeRTrowcount}%
+           \stepcounter{@preludeRTrowscreatedcount}%
            \@setpreludeRTraise%
          }\fi%
          \ifshowtags\ifnowidth{\taglist}{}{% % Show tags
            \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
              \tiny\textit{\preludetagstyle\taglist}%
            }}%
-           \stepcounter{@preludeRTrowcount}%
+           \stepcounter{@preludeRTrowscreatedcount}%
            \@setpreludeRTraise%
          }\fi%
-         \ifchorded% % Show key + suggested keys (if in chorded mode)
+         \ifchorded% % Show key + good keys (if in chorded mode)
            \def\keylinetext{\normalfont}%
            \ifshowkey\ifx\key\empty\else%
              \g@addto@macro\keylinetext{\textit{\preludetextkey} \textbf{\color{chordcolor}\key}}%
            \fi\fi%
-           \ifshowsks\ifx\suggestedkeys\empty\else%
+           \ifshowgoodkeys\ifx\goodkeys\empty\else%
              \ifx\keylinetext\empty%
-               \g@addto@macro\keylinetext{\textit{\preludetextgoodkeysalone} \textbf{\suggestedkeys}}%
+               \g@addto@macro\keylinetext{\textit{\preludetextgoodkeysalone} \textbf{\goodkeys}}%
              \else%
-               \g@addto@macro\keylinetext{\textit{, \preludetextgood} \textbf{\suggestedkeys}}%
+               \g@addto@macro\keylinetext{\textit{, \preludetextgood} \textbf{\goodkeys}}%
              \fi%
            \fi\fi%
            \ifx\keylinetext\empty\else%
              \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
                \tiny\preludekeylinestyle\keylinetext%
              }}%
-             \stepcounter{@preludeRTrowcount}%
+             \stepcounter{@preludeRTrowscreatedcount}%
              \@setpreludeRTraise%
            \fi
          \fi

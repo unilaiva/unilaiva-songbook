@@ -11,7 +11,7 @@
 \setcounter{songnum}{600}
 
 
-\beginsong{Kalevala-sävelmä}[key={Am}, sks={Dm, Gm--Em}]
+\beginsong{Kalevala-sävelmä}[key={Am}, gk={Dm, Gm--Em}]
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = {
@@ -51,7 +51,7 @@
 \endsong
 
 
-\beginsong{Juurilaulu \\ Kuulumme piiriin}[tags={piiri}, ph={I, V}, key={Am}, sks={Bm, Am--G\shrp{}m}]
+\beginsong{Juurilaulu \\ Kuulumme piiriin}[tags={piiri}, ph={I, V}, key={Am}, gk={Bm, Am--G\shrp{}m}]
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
@@ -78,7 +78,7 @@
 \endsong
 
 
-\beginsong{Lampaanpolska \\ Kekrilaulu \\ Yksi kaksi kolme neljä}[ph={III}, key={Am}, sks={Am, G\shrp{}m--Em}]
+\beginsong{Lampaanpolska \\ Kekrilaulu \\ Yksi kaksi kolme neljä}[ph={III}, key={Am}, gk={Am, G\shrp{}m--Em}]
   \meter{3}{4}
   \beginverse
     |\[\mnc{A}Am]Yksi kaksi kolme |\[\mnc{B}E]neljä, |\[\mnc{C}Am]anna \[\mn{A}]i\[\mnc{G#}E]lon |\[\mnc{A}Am]olla.
@@ -93,7 +93,7 @@
 \endsong
 
 
-\beginsong{Laulu oravasta}[by={Otto Kotilainen, Aleksis Kivi}, key={Dm}, sks={Dm, Dm--Em}]
+\beginsong{Laulu oravasta}[by={Otto Kotilainen, Aleksis Kivi}, key={Dm}, gk={Dm, Dm--Em}]
   % NOTE: this is based on the version by Aapo Similä
   \transpose{5} % transpose to Dm: then lowest note is G, the highest A
   \beginverse
@@ -133,7 +133,7 @@
 \endsong
 
 
-\beginsong{Taivas on sininen ja valkoinen}[by={Kansanlaulu}, ph={II}, key={Am}, sks={Am, G\shrp{}m--Am}]
+\beginsong{Taivas on sininen ja valkoinen}[by={Kansanlaulu}, ph={II}, key={Am}, gk={Am, G\shrp{}m--Am}]
   \meter{4}{4}
   % declare new (global) named chord-replay registers:
   \newchords{chords_taivas_a}\newchords{chords_taivas_b}
@@ -226,7 +226,7 @@
 \endsong
 
 
-\beginsong{Päivänsäde ja menninkäinen}[by={Reino Helismaa},ph={IV},key={C},sks={C, (B)--(C)}]
+\beginsong{Päivänsäde ja menninkäinen}[by={Reino Helismaa},ph={IV},key={C},gk={C, (B)--(C)}]
   \beginverse
     |\[\mnc{C}Am]Aurin\[^\mn{B}]ko \[^\mn{A}]kun |\[\mnc{D}Dm]päätti \[^\mn{C}]ret\[^\mn{B}]ken, |\[\mnc{C}Am]siskois\[^\mn{B}]taan \[^\mn{A}]jäi |\[\mnc{D}Dm]jälkeen \[^\mn{C}]het\[^\mn{B}]ken
     |\[Am]päivänsäde |\[E7]viimei|\[Am]nen. | \e
@@ -298,7 +298,7 @@
 \endsong
 
 
-\beginsong{Täss' on nainen}[by={Hedningarna},ph={II},key={Am},sks={Am, Am--Em}]
+\beginsong{Täss' on nainen}[by={Hedningarna},ph={II},key={Am},gk={Am, Am--Em}]
     % TODO: chords (note: melody is good for Kalevala-type stuff)
   \meter{5}{8}
   \mnbeginchorus\memorize
@@ -329,7 +329,7 @@
 \endsong
 
 
-\beginsong{Sadelaulu}[by={Sanna Kurki-Suonio},tags={vesi},ph={II},key={\~Dm}, sks={\~Dm, \~Gm--\~Dm}]
+\beginsong{Sadelaulu}[by={Sanna Kurki-Suonio},tags={vesi},ph={II},key={\~Dm}, gk={\~Dm, \~Gm--\~Dm}]
   \audio[key=Dm]{https://soundcloud.com/sannakurki-suonio/sadelaulu}
   % in ~Dm, the notes range from D to C'
   \beginverse
@@ -379,7 +379,7 @@
 \endsong
 
 
-\beginsong{Sisältäni portin löysin}[by={Pekka Streng},ph={III, IV},key={D},sks={D, C--D}]
+\beginsong{Sisältäni portin löysin}[by={Pekka Streng},ph={III, IV},key={D},gk={D, C--D}]
   % in D the notes range from A to B'
   \beginverse\memorize
     |\[A] \[^\mn{A}]Sisäl|täni \[^\mn{B}]por\[^\mn{A}]tin |\[D]löy\[^\mn{F#}]sin | \e
@@ -517,7 +517,7 @@
 \endsong
 
 
-\beginsong{Koti mun luona}[by={Malla Maanpiiri}, ph={III, IV}, key={G}, sks={G, G--B}]
+\beginsong{Koti mun luona}[by={Malla Maanpiiri}, ph={III, IV}, key={G}, gk={G, G--B}]
   \mnbeginchorus\memorize
     |\[\mnc{C}C]Sulla sulla |\[\mnc{G}G]siskokulta on
     |\[\mnc{C}Am]aina koti mun |\[\mnc{G}Em/G]luona | \e
@@ -540,7 +540,7 @@
 \endsong
 
 
-\beginsong{Siunattu voima}[by={Lotta Maija}, ph={III}, key={Am}, sks={Am, Am--Em}]
+\beginsong{Siunattu voima}[by={Lotta Maija}, ph={III}, key={Am}, gk={Am, Am--Em}]
   \audio[key=Am]{https://www.youtube.com/watch?v=PHNaFQiBNuU}
   \mnbeginverse
     |\[\mncii{A}{B}Am]Illan \[^\mn{A}]suus\[^\mn{G}]sa |\[^\mn{A}]va\[^\mn{B}\mnc{C}]lon \[^\mn{B}]voi\[^\mn{G}]ma, |\emph{\[^\mn{A}\mn{B}\mn{C}]siunat\[^\mn{D}]tu |\[^\mn{E}]voima} \altchords{\id[1]{(Bm)}|Bm | - | - | \e }
@@ -604,7 +604,7 @@
 \endsong
 
 
-\beginsong{Nyt on laulut laulettu}[ex={based on a Hungarian folk song},ph={V},key={Am},sks={Am, Gm--D\shrp{}m}]
+\beginsong{Nyt on laulut laulettu}[ex={based on a Hungarian folk song},ph={V},key={Am},gk={Am, Gm--D\shrp{}m}]
   \audio{https://www.youtube.com/watch?v=voIa8mZ3UDc}
   \mnbeginverse
     |\[\mnc{C}Am]Nyt on \[\bmc\mn{B}]laulut |\[^\mn{A}]laulet\[\bm]tu ja |\[\mnc{E}C]lähdet\[\mnc{D}G]tävä |\[\mnc{C}C]on. \[\bm]
@@ -731,7 +731,7 @@
 \endsong
 
 
-\beginsong{Pieni tytön tylleröinen}[tags={uni},key={Dm},sks={Dm, Cm--D\shrp{}m}]
+\beginsong{Pieni tytön tylleröinen}[tags={uni},key={Dm},gk={Dm, Cm--D\shrp{}m}]
   \audio[key=Dm]{https://www.youtube.com/watch?v=iFEi8XTWSRM}
   \mnbeginverse
     |\[\mnc{D}Dm]Pie\[^\mn{A}]ni \up{*}ty\[^\mn{B&}]tön |\[\mnc{A}Gm]tyl\[^\mn{G}]leröi\[^\mn{E}]nen |\[\mnc{F}Dm]tietä pit\[^\mn{E}]kin |\[^\mn{F}]kul\[^\mn{A}]ki.
@@ -763,7 +763,7 @@
 \endsong
 
 
-\beginsong{Tuuin yössä muukalaista}[by={Neilikka},tags={uni},key={Bm},sks={Cm, Cm--D\shrp{}m}]
+\beginsong{Tuuin yössä muukalaista}[by={Neilikka},tags={uni},key={Bm},gk={Cm, Cm--D\shrp{}m}]
   \audio[key=Cm]{https://www.youtube.com/watch?v=OR7YYnrGvPg}
   \meter{3}{4}
   \transpose{2} % in Am the notes range from E to F', in Dm from A to Bb', in Bm from F# to G'
@@ -859,7 +859,7 @@
 \endsong
 
 
-\beginsong{Kosketa minua henki}[by={Ilkka Kuusisto 1979},ex={Virsi 125},ph={III},key={G},sks={G, E\flt{}--G}]
+\beginsong{Kosketa minua henki}[by={Ilkka Kuusisto 1979},ex={Virsi 125},ph={III},key={G},gk={G, E\flt{}--G}]
   % in Bb the notes range from D to D, in transposed G they range from B to B
   \transpose{-3} % to G (3)
   \meter{3}{4}
@@ -937,7 +937,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\beginsong{Rakastan sinua elämä}[by={Eduard Komanovski, Konstantin Vanshenkin}, key={Am}, sks={Am, (Am)--(Cm)}]
+\beginsong{Rakastan sinua elämä}[by={Eduard Komanovski, Konstantin Vanshenkin}, key={Am}, gk={Am, (Am)--(Cm)}]
   % Finnish words by: Pauli Salonen
   \newchords{chords_rakastan_elamaa_a}\newchords{chords_rakastan_elamaa_b}
   \mnbeginverse\memorize[chords_rakastan_elamaa_a]
