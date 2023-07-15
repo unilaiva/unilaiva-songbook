@@ -1014,67 +1014,83 @@
 \endsong
 
 
-\beginsong{O Lindo Daime}[by={Luiz Mendes},key={Am},gk={Cm, Bm, Am}]
+\beginsong{O Lindo Daime}[by={Luiz Mendes},key={Am},gk={Bm, Gm--Em}]
   \audio{https://www.nossairmandade.com/hymn/34/OLindoDaime}
+  \audio[key=G\shrp{}m]{https://www.youtube.com/watch?v=WprArHvxDz8}
   \mnbeginchorus\memorize
-    |\[\mnc{A}Am]O \[^\mn{C}]lin\[^\mn{A}]do |\[\mnc{E}(E)]Daime
-    |\[\mncii{A}{B}Am]Veja \[^\mn{C}]co\[^\mn{A}]mo |\[\mnc{E}(E)]é
-    \lrep |\[\mnc{A}Am]É \[^\mn{C}]ma\[^\mn{A}]ra|\[\mnc{E}E]vilha
-    Pa\[^\mn{D}]ra |\[\mnc{C}(C)]to\[^\mn{B}]dos \[\mnc{E}E7]ten\[^\mn{C}]do |\[\mnc{A}Am]fé \rrep
+    |\[\mnc{A}Am]O \[\bmc\mn{C}]lin\[^\mn{A}]do |\[\mnc{E}(E)]Dai\[^\bmadj{-.5ex}]{-me} \altchords{\id[1]{(Bm)}|Bm |(F\shrp{})}
+    |\[\mncii{A}{B}Am]Veja \[\bmc\mn{C}]co\[^\mn{A}]mo |\[\mnc{E}(E)]é \[\bm] \altchords{|Bm |(F\shrp{})}
+    \lrep |\[\mnc{A}Am]É \[\bmc\mn{C}]ma\[^\mn{A}]ra|\[\mnc{E}E]vilha \altchords{|Bm |F\shrp{}}
+    \[\bmc]Pa\[^\mn{D}]ra |\[\mnc{C}(C)]to\[^\mn{B}]dos \[\mnc{E}E7]ten\[^\mn{C}]do |\[\mnc{A}Am]fé \[\bm] \rrep \altchords{|(D) F\shrp{}7 |Bm}
   \mnendchorus
   \notesoff
   \beginchorus
-    |^Eu peço a meu |^Mestre
-    |^No meu cora|^ção
-    \lrep |^A santa |^luz
-    Da vir|^gem da ^Concei|^ção \rrep
+    |^Eu pe^ço a meu |^Mes\[\bmadj{-.5ex}]{-tre}
+    |^No meu ^cora|^ção ^
+    \lrep |^A ^santa |^luz
+    ^Da vir|^gem da ^Concei|^ção ^ \rrep
   \endchorus
   \beginchorus
-    |^Te afirma em |^Deus
-    |^Em concentra|^ção
-    \lrep |^Que tu te|^rás
-    A |^san^ta ben|^ção \rrep
+    |^Te a^firma em |^Deus \[\bm]
+    |^Em con^centra|^ção ^
+    \lrep |^Que ^tu te|^rás ^
+    A |^san^ta ben|^ção ^ \rrep
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4
-      | a4._\posectionmark "A" \parenthesize b8 c4 a4 | e'2( e4 e4) | a,4. b8 c4 a4 | e'1
+      | a4._\posectionmark "A" \altcol \parenthesize b8 \altmark "2., 3." c4 a4 | e'2.( e4) | a,4. b8 c4 a4 | e'1
       \repeat volta 2 {
-        | a,2_\sectionmark "B" c4 a4 | e'4.( e8 e4) d4 | c4( b4) e4 c4 | a1
+        | a,2_\sectionmark "B" c4 a4 | e'4.( e8 e4) d4 | c4( b4) e4 c4
+      } \alternative {
+        { | a1 }
+        { | a1 \dacapo \bar "|."}
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      | O __ _ lin -- do | Dai -- _ me;
+      | O \skip 1 lin -- do | Dai -- me;
       | Ve -- ja co -- mo | é.
       \repeat volta 2 {
         | É ma -- ra -- | vi -- lha;
-        Pa -- ra | to -- dos ten -- do | fé.
+        Pa -- ra | to -- dos ten -- do
+      } \alternative {
+        { | fé. }
+        { | fé. }
       }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
-      | Eu pe -- ço~a meu | Mes -- tre; __ _
+      | Eu \altcol pe -- ço~a meu | Mes -- tre;
       | No meu co -- ra -- | ção.
       \repeat volta 2 {
         | A san -- ta | luz; __ _
-        Da vir -- | gem da Con -- cei -- | ção.
+        Da vir -- | gem da Con -- cei --
+      } \alternative {
+        { | ção. }
+        { | ção. }
       }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
-      | Te a -- fir -- ma~em | Deus; __ _ _
+      | Te \altcol a -- fir -- ma~em | Deus; __ _
       | Em con -- cen -- tra -- | ção.
       \repeat volta 2 {
         | Que tu te -- | rás; __ _ _
-        A | san -- _ ta ben -- | ção.
+        A | san -- _ ta ben --
+      } \alternative {
+        { | ção. }
+        { | ção. }
       }
     }
     theChords = \chordmode {
       | a1:m | \parenthesize e | a:m | \parenthesize e
       \repeat volta 2 {
-        | a1:m | e | \parenthesize c2 e2:7 | a1:m
+        | a1:m | e | \parenthesize c2 e2:7
+      } \alternative {
+        { | a1:m }
+        { | a1:m }
       }
     }
     \include "tex/lp-include-tail-lyricsbelow.ly"
