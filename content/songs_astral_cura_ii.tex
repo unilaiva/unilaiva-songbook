@@ -786,13 +786,13 @@
     ^Como |^{é que} ^vai fi|^car ^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2023-01
+    % transcribed by larva, updated on 2023-07
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \major \time 4/4 \partial 4
       \repeat volta 2 {
-        a8( \pomark a8) | d4 << \parenthesize d8 \genmark "(2.)" \once\slurUp fis8( >> fis8) e4 d | d4.( d8) fis,4 a | d fis e d | a'2( a4) a,
-        | d4 << d8 \once\slurUp \parenthesize fis8( \genmark "(4.)" >> fis8) e4 d | d4. \parenthesize a8 \genmark "(1., 3.)" fis4 a | d fis e d | d2( d4)
+        a8( \pomark a8) | d4 << \single\altcol d8 \altmark "2." \once\slurUp fis8( >> fis8) e4 d | d4.( d8) fis,4 a | d fis e d | a'2( a4) a,
+        | d4 << d8 \once\slurUp \single\altcol fis8( \altmark "4." >> fis8) e4 d | d4. \parenthesize a8 \genmark "(1., 3.)" fis4 a | d fis e d | d2( d4)
       }
     }
     theLyricsOne = \lyricmode {
@@ -807,7 +807,7 @@
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \repeat volta 2 {
-        Le -- _ | van -- (to~a) mi -- nha ban -- | dei -- _ ra;
+        Le -- _ | van -- \altcol to~a mi -- nha ban -- | dei -- _ ra;
         Mos -- | tran -- do~o meu va -- | lor; __ _
         An -- | dan -- do por mi -- nha~es -- | tra -- \skip 1 da;
         Por | on -- de~o Mes -- tre~an -- | dou. __ _
@@ -827,7 +827,7 @@
       \repeat volta 2 {
         Sou __ _ | fi -- lho __ _ da ver -- | da -- de;
         Mas não | que -- rem~me es -- cu -- | tar; __ _
-        O | mun -- (do) __ _ de~i -- lu -- | são; \skip 1
+        O | mun -- \altcol do __ _ de~i -- lu -- | são; \skip 1
         Co -- mo | é que vai fi -- | car. __ _
       }
     }
