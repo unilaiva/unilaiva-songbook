@@ -1037,6 +1037,81 @@
 %   \end{lilypond}\end{lilywrap}
 \endsong
 
+\beginsong{Tuuditan tulisoroista}[by={Kansanlaulu}, key={Em}, gk={Gm, Gm--Bm}, tags={uni}]
+  \audio[key=B\flt{}m]{https://www.youtube.com/watch?v=mpHEc8SjfZc}
+  \newchords{chords_tulisoroinen_a}\newchords{chords_tulisoroinen_b}
+  \capo{3}
+  \mnbeginverse\memorize[chords_tulisoroinen_a]
+    |\[\mnc{B}Em]Tuuditan \[^\mn{A}]tu|\[^\mn{G}]li\[^\mn{B}]so\[^\mn{E}]rois\[^\mn{F#}]ta, |\[^\mn{G}]kipunaista \[\mnc{A}Am]kiikut|\[\mnc{B}Em]telen \altchords{\id[1]{Am}|Am | - | - Dm |Am}
+    \mnendverse\glueverses\mnbeginchorus\memorize[chords_tulisoroinen_b]
+    |\[\mnc{B}Em]Vaa\[^\mn{E}]lin \[^\mn{B}]pien\[^\mn{A}]tä |\[^\mn{G}]val\[^\mn{B}]ke\[^\mn{E}]ais\[^\mn{F#}]ta, |\[\mnc{G}G]luojan lasta \[\mnc{F#}Bm]liikut|\[\mnc{E}Em]telen \altchords{|Am | - |C Em |Am}
+  \mnendchorus
+  \notesoff
+  \beginverse\replay[chords_tulisoroinen_a]
+    |^Taivahast' on |lahja tullut, |taivahan tu^len ki|^soista
+    \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
+    |^Luojan lemmen |leikinnöistä, |^ei vahingon ^valke|^oista
+  \endchorus
+  \beginverse\replay[chords_tulisoroinen_a]
+    |^Tuudin lasta |maan valoksi, |en vahingon ^valke|^aksi
+    \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
+    |^Tuudin toivo|jen tuleksi, |^työn jaloisen ^jatka|^jaksi
+  \endchorus
+  \beginverse\replay[chords_tulisoroinen_a]
+    |^Senpä tuudin |tuikkeheksi, |tähdeksi tä^hän ta|^lohon
+    \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
+    |^Maan hyväksi |maineheksi, |^suurionnis^ten i|^lohon
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \key e \minor \time 4/4
+      \set melismaBusyProperties = #'() \slurDashed
+      | b4 b b a | g b e,4. fis8 | g8 g g g a4 a | b2 b2
+      \repeat volta 2 {
+        | b4 e b4. a8 | g4 b e,4. fis8 | g8 g g g fis4 fis | e2 e2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Tuu -- di -- tan tu -- | li -- so -- rois -- ta, | ki -- pu -- nais -- ta kii -- kut -- | te -- len;
+      \repeat volta 2 {
+        | Vaa -- lin pien -- tä | val -- ke -- ais -- ta, | luo -- jan las -- ta lii -- kut -- | te -- len.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Tai -- va -- hast' on | lah -- ja tul -- lut, | tai -- va -- han tu -- len ki -- | sois -- ta;
+      \repeat volta 2 {
+        | Luo -- jan lem -- men | lei -- kin -- nöis -- tä, | ei va -- hin -- gon val -- ke -- | ois -- ta.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      | Tuu -- din las -- ta | maan va -- lok -- si, | en va -- hin -- gon val -- ke -- | ak -- si;
+      \repeat volta 2 {
+        | Tuu -- din toi -- vo -- | jen tu -- lek -- si, | työn ja -- loi -- sen jat -- ka -- | jak -- si.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      | Sen -- pä tuu -- din | tuik -- ke -- hek -- si, | täh -- dek -- si tä -- hän ta -- | lo -- hon;
+      \repeat volta 2 {
+        | Maan hy -- väk -- si | mai -- ne -- hek -- si, | suu -- ri -- on -- nis -- ten i -- | lo -- hon.
+      }
+    }
+    theChords = \chordmode {
+      | e1:m | e:m | e2:m a2:m | e1:m
+      \repeat volta 2 {
+        | e1:m | e:m | g2 b2:m | e1:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
 
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
