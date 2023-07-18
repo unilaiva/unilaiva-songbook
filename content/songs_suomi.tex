@@ -1115,6 +1115,71 @@
 \endsong
 
 
+\beginsong{Lemminkäisen äiti}[index={Tuima on tuuli}by={Oskar Merikanto, Eino Leino}, key={Am}, gk={Cm, Cm--Em}]
+  \capo{3}
+  \mnbeginverse
+    |\[\mnc{E}Am]Tuima \[^\mn{A}]on \[\bmc\mn{C}]tuuli ja |\[\mnc{B}E]pimeä \[^\mn{A}]on \[\bmc\mn{B}]tai\[^\mn{E}]vo, \altchords{\id[1]{(Cm)}|Cm |G}
+    |\[\mnc{A}Am]suuri \[^\mn{C}]on \[\mnc{D}G]ula\[^\mn{B}]pal\[^\mn{D}]la |\[\mnc{E}E]aalto\[^\mn{D}]jen \[\mnc{E}E7]rai\[^\mn{D}]vo, \altchords{|Cm B\flt{} |G G7}
+    |\[\mnc{C}C]lahti on \[\mnc{B}G]tyy\[^\mn{G}]ni \[^\mn{B}]ja |\[\mnc{A}Am]selkeä \[\bmc\mn{E}]vaan. \altchords{|E\flt{} B\flt{} |Cm}
+    |\[\mnc{E}C]Kus\[^\mn{C}]sa mun \[\mnc{B}E7]kot\[^\mn{E}]ka\[^\mn{G#}]ni |\[\mnc{A}Am]kulkee\[\bm]kaan? \altchords{|E\flt{} G7 |Cm}
+  \mnendverse
+  \notesoff
+  \beginverse
+    |^Joudu jo ^kotihin ja |^lentosi ^heitä!
+    |^Taikka jo ^ajeletkin |^aaltojen ^teitä,
+    |^poikani ^pieni ja |^hentoi^nen.
+    |^Lahti on ^tyyni ja |^rauhai^nen.
+  \endverse
+  \beginverse
+    |^Ulkona ^ulapalla |^myrskyt ne ^pauhaa, \altchords{\id[2]{(Dm)}|Dm |A}
+    |^täällä on ^lämmintä ja |^täällä on ^lauhaa, \altchords{|Dm C |A A7}
+    |^lahti on ^tyyni ja |^selkeä ^vaan. \altchords{|F C |Dm }
+    |^Laske jo ^lahtesi |^valka^maan! \altchords{|F A7 |Dm}
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e' {
+      \key a \minor \time 4/4
+      \set melismaBusyProperties = #'() \slurDashed
+      | e4 e8 a c8( c) c c | b( b) b a b4 e,4
+      | a4 a8 c d d b d | e4 e8 d e4 d4
+      | c4 c8 c b4 g8 b | a4 a8( a) e2
+      | e'4 c8 c b4 e,8 gis | a4 a a2 \bar "|."
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Tui -- ma on tuu -- _ li ja | pi -- me -- ä on tai -- vo,
+      | suu -- ri on u -- la -- pal -- la | aal -- to -- jen rai -- vo,
+      | lah -- ti on tyy -- ni ja | sel -- ke -- ä vaan.
+      | Kus -- sa mun kot -- ka -- ni | kul -- kee -- kaan?
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Jou -- du jo ko -- ti -- hin ja | len -- _ to -- si hei -- tä!
+      | Taik -- ka jo a -- je -- let -- kin | aal -- to -- jen tei -- tä,
+      | poi -- ka -- ni pie -- ni ja | hen -- toi -- _ nen.
+      | Lah -- ti on tyy -- ni ja | rau -- hai -- nen.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      | Ul -- ko -- na u -- la -- pal -- la | myrs -- _ kyt ne pau -- haa,
+      | tääl -- lä on läm -- min -- tä ja | tääl -- lä on lau -- haa,
+      | lah -- ti on tyy -- ni ja | sel -- ke -- ä vaan.
+      | Las -- ke jo lah -- te -- si | val -- ka -- maan!
+    }
+    theChords = \chordmode {
+      | a2:m a2:m | e e
+      | a:m g | e e:7
+      | c g | a:m a:m
+      | c e:7 | a:m a:m
+    }
+    %\layout { #(layout-set-staff-size 13) } % for better fit
+    \include "tex/lp-include-tail-notab-nolyrics.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}
