@@ -761,7 +761,7 @@
     |^Laula, ^laula, |^uni^lintu, |^tuoksu, ^tuomen|^tert^tu.
     |Nuku, ^puna|^paitu^lainen, |^pikku ^leppä|^kert^tu.
   \endverse
-  \beginverse % for alt key chords only
+  \beginverse\small % for alt key chords only
     \altchords{\id[1]{(Am)}|Am |E |Dm Am |E7 Am}
     \altchords{|Am |Dm7 E |E7 |Am}
   \endverse
@@ -773,7 +773,7 @@
       \key d \minor \time 4/4
       \set melismaBusyProperties = #'() \slurDashed
       | d4 d4 a'4 a4 | a4 a4 e4 e4
-      | g4 g4 f4 f4 | e2 d2
+      | g4 g4 f4 f4 | e2 d2 \break
       | f4 d4 e4 f4 | g4 f4 e4 e4
       | a4 g4 f4 e4 | d2 d2 \bar "|."
     }
@@ -805,7 +805,7 @@
       | d1:m | g2:m7 a2
       | a1:7 | d1:m
     }
-    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
   \noendsongvfill % align lp to the bottom
