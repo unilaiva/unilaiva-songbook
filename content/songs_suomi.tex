@@ -1180,6 +1180,91 @@
 \endsong
 
 
+\beginsong{Katselin taivahan tähtiä}[by={Kansanlaulu}, key={Em}, gk={Gm, Gm--Am}]
+  \audio[key=Gm]{https://www.youtube.com/watch?v=efchOgWBFtI}
+  \capo{3}
+  \newchords{chords_katselintaivahan_a}\newchords{chords_katselintaivahan_b}
+  \mnbeginchorus\memorize[chords_katselintaivahan_a]
+    |\[\mnc{B}Em]Kat\[^\mn{E}]selin \[\bm]tai\[^\mn{D}]va\[^\mn{E}]han |\[\mnc{F#}D]tähti\[\bmc\mn{D}]ä, ja |\[\mnc{C}Am]tuli mi\[^\mn{B}]nun \[\bmc\mn{C}]i\[^\mn{A}]kä|\[\mnc{B}B]vä\[\bm]ni
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_katselintaivahan_b]
+    \[^\mn{B}]Kun |\[\mnc{C}Am]heit' o\[^\mn{B}]li \[\bmc\mn{A}]aina |\[\mnc{B}Em]kaksi \[^\mn{A}]ja \[\bmc\mn{G}]kaksi, \[^\mn{F#}]ja |\[\mnc{A}Am]minä o\[^\mn{F#}]lin \[\mnc{B}B7]yk\[^\mn{F#}]si|\[\mnc{E}Em]nä\[\bm]ni
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_katselintaivahan_a]
+    |^Oi jos ^saisin sen |^omak^seni, jok' on |^keskellä ^sydän|^tä^ni
+    \endchorus\glueverses\beginchorus\replay[chords_katselintaivahan_b]
+    En |^surisi mä ^köyhää |^koti^ani, enkä |^orjan ^päivi|^ä^ni
+  \endchorus
+  \beginchorus\replay[chords_katselintaivahan_a]
+    |^Niin minä ^olen |^yksi^näni, kuin |^kataja ^muista |^puis^ta
+    \endchorus\glueverses\beginchorus\replay[chords_katselintaivahan_b]
+    |^Ei ole ^uutta |^ei ole ^vanhaa, |^ei ole ^omi|^tuis^ta
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \key e \minor \time 4/4 \partial 8
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat volta 2 {
+        r8 | b4 e8( e8) e4 d8( e8) | fis4 fis d8( d8)
+        d8( d8) | c8( c) c( b) c4 a | b2 b4.
+      }
+      \repeat volta 2 {
+        \parenthesize b8 | c8( c8) c8 b a4 a | b4 b8( a8) g8( g8)
+        g8( fis8) | a8( a) a( fis) b4 fis4 | e2 e4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        | Kat -- se -- lin tai -- va -- han | täh -- ti -- ä __ _
+        ja __ _ | tu -- li mi -- nun i -- kä -- | vä -- ni.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Kun | heit' __ _ o -- li ai -- na | kak -- si ja kak -- _ si
+        ja | mi -- nä o -- lin yk -- si -- | nä -- ni.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        | Oi jos __ _ sai -- sin sen | o -- mak -- se -- ni
+        jok' on | kes -- _ kel -- lä sy -- dän -- | tä -- ni.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        En | su -- ri -- si mä köy -- hää | ko -- ti -- _ a -- ni
+        en -- kä | or -- _ jan __ _ päi -- vi -- | ä -- ni.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        | Niin mi -- nä o -- len __ _ | yk -- si -- nä -- ni
+        kuin __ _ | ka -- ta -- ja __ _ muis -- ta | puis -- ta.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \skip 1 | Ei __ _ o -- le uut -- ta | ei o -- le van -- _ haa __ _
+        | Ei __ _ o -- le o -- mi -- | tuis -- ta.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s8 | e1:m | d | a:m | b,2.~8
+      }
+      \repeat volta 2 {
+        s8 | a1:m | e:m | a2:m b,:7 | e2.:m~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}
