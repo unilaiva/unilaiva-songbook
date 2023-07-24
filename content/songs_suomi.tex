@@ -13,10 +13,10 @@
 
 \beginsong{Kalevala-sävelmä}[key={Am}, gk={Dm, Gm--Em}]
   \meter{2}{4}
-  \beginverse
+  \mnbeginchorus
     |\[\mnc{A}Am]Vaka |\[\mnc{B}Em/B]vanha |\[\mnc{C}C]Väi\[\mn{E}]nä|\[\mnc{B}Em/B]möi|\[Em]nen,
     |\[\mnc{c}Am]tie\[\mn{A}]tä|\[\mnc{D}Dm7]jä \[\mn{C}]i|\[\mnc{B}Em]än \[\mn{C}]i|\[\mnc{A}Am]kui|nen
-  \endverse
+  \mnendchorus
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-07
@@ -24,16 +24,22 @@
     theMelody = \relative c'' {
       \key a \minor \time 2/4
       \set melismaBusyProperties = #'() \slurDashed
-      | a4 a | b b | c e | b2 | b2
-      | c4 a | d c | b c | a2 a2 \bar "|."
+      \repeat volta 2 {
+        | a4 a | b b | c e | b2 | b2
+        | c4 a | d c | b c | a2 a2
+      }
     }
     theLyricsOne = \lyricmode {
-      | Va -- ka | van -- ha | Väi -- nä -- | möi -- | nen,
-      | tie -- tä -- | jä i -- | än i -- | kui -- | nen
+      \repeat volta 2 {
+        | Va -- ka | van -- ha | Väi -- nä -- | möi -- | nen,
+        | tie -- tä -- | jä i -- | än i -- | kui -- | nen
+      }
     }
     theChords = \chordmode {
-     | a2:m | e:m/b | c | e:m/b | e:m
-     | a:m | d:m7 | e:m | a:m | a:m
+      \repeat volta 2 {
+        | a2:m | e:m/b | c | e:m/b | e:m
+        | a:m | d:m7 | e:m | a:m | a:m
+      }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-notab.ly"
@@ -45,16 +51,22 @@
   %   theMelody = \relative c'' {
   %     \key a \minor \time 2/4
   %     \set melismaBusyProperties = #'() \slurDashed
-  %     | d4 d | d a | d c | b2 | b2
-  %     | d4 d| d c | b c | a2 a2 \bar "|."
+  %     \repeat volta 2 {
+  %       | d4 d | d a | d c | b2 | b2
+  %       | d4 d| d c | b c | a2 a2
+  %     }
   %   }
   %   theLyricsOne = \lyricmode {
-  %     | Va -- ka | van -- ha | Väi -- nä -- | möi -- | nen,
-  %     | tie -- tä -- | jä i -- | än i -- | kui -- | nen
+  %     \repeat volta 2 {
+  %       | Va -- ka | van -- ha | Väi -- nä -- | möi -- | nen,
+  %       | tie -- tä -- | jä i -- | än i -- | kui -- | nen
+  %     }
   %   }
   %   theChords = \chordmode {
-  %     | d2:m | d:m | d:m7 | e:m/b | e:m
-  %     | d:m | d:m7 | e:m | a:m | a:m
+  %     \repeat volta 2 {
+  %       | d2:m | d:m | d:m7 | e:m/b | e:m
+  %       | d:m | d:m7 | e:m | a:m | a:m
+  %     }
   %   }
   %   %\layout { #(layout-set-staff-size 15) } % for better fit
   %   \include "tex/lp-include-tail.ly"
