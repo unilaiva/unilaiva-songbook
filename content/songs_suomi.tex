@@ -731,42 +731,69 @@
 \endsong
 
 
-\beginsong{Leppäkerttu}[by={trad.},tags={uni},ph={V}]
+\beginsong{Leppäkerttu}[by={trad.},tags={uni},ph={V},key={Dm}, gk={Dm, Gm--Em}]
   \meter{4}{4}
-  \beginverse
-    |\[\mnc{D}Dm]Lennä, \[^\mn{A}]lennä |\[A]leppäkerttu, |\[Gm]ison \[Dm]kiven |\[A7]juu\[Dm]reen.
-    |\[Dm]Lennä leikki|\[Gm7]kedon \[A]kautta |\[A7]unipuuhun |\[Dm]suureen.
-  \endverse
+  \mnbeginverse
+    |\[\mnc{D}Dm]Lennä, \[\bmc\mn{A}]lennä |\[A]leppä\[\bmc\mn{E}]kerttu, |\[\mnc{G}Gm]ison \[\mnc{F}Dm]kiven |\[\mnc{E}A7]juu\[\mnc{D}Dm]reen.
+    |\[^\mn{F}]Len\[^\mn{D}]nä \[\bmc\mn{E}]leik\[^\mn{F}]ki|\[\mnc{G}Gm7]ke\[^\mn{F}]don \[\mnc{E}A]kautta |\[\mnc{A}A7]u\[^\mn{G}]ni\[\bmc\mn{F}]puu\[^\mn{E}]hun |\[\mnc{D}Dm]suu\[\bm]reen.
+  \mnendverse
   \notesoff
   \beginverse
-    |^Kulta-kulta|^lehden alla |^äiti ^puuron |^keit^tää.
-    |^Unituutu |^leppä^kertun |^lämpimästi |^peittää.
+    |^Kulta-^kulta|^lehden ^alla |^äiti ^puuron |^keit^tää.
+    |Uni^tuutu |^leppä^kertun |^lämpi^mästi |^peit^tää.
   \endverse
   \beginverse
-    |^Laula, laula, |^unilintu, |^tuoksu, ^tuomen|^tert^tu.
-    |^Nuku, puna|^paitu^lainen, |^pikku leppä|^kerttu.
+    |^Laula, ^laula, |^uni^lintu, |^tuoksu, ^tuomen|^tert^tu.
+    |Nuku, ^puna|^paitu^lainen, |^pikku ^leppä|^kert^tu.
+  \endverse
+  \beginverse % for alt key chords only
+    \altchords{\id[1]{(Am)}|Am |E |Dm Am |E7 Am}
+    \altchords{|Am |Dm7 E |E7 |Am}
   \endverse
   % Present the melody on a staff using Lilypond
-  \begin{lilywrap}
-    \imagerb[5]{leppakerttu_transparent_bg_353x279px.png}
-    \begin{lilypond}[] \include "tex/lp-include-head.ly"
-      {\key d \minor \time 4/4
-        d'4 d'4 a'4 a'4 | a'4 a'4 e'4 e'4
-        g'4 g'4 f'4 f'4 | e'2 d'2
-        f'4 d'4 e'4 f'4 | g'4 f'4 e'4 e'4
-        a'4 g'4 f'4 e'4 | d'2 d'2 \bar "|."
-      }\addlyrics{
-        Len -- nä, len -- nä lep -- pä -- kert -- tu,
-        i -- son ki -- ven juu -- reen.
-        Len -- nä leik -- ki -- ke -- don kaut -- ta
-        u -- ni -- puu -- hun suu -- reen.
-      }
-    \end{lilypond}
-  \end{lilywrap}
-  % Nicely align music notation on both songs of this spread to the bottom.
-  % for symmetry. (This is actually the default if Lilypond block is last,
-  % but in if it changes, it doesn't have to change here.)
-  \noendsongvfill
+  \begin{lilywrap}\imagerb[5]{leppakerttu_transparent_bg_353x279px.png}\par\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \key d \minor \time 4/4
+      \set melismaBusyProperties = #'() \slurDashed
+      | d4 d4 a'4 a4 | a4 a4 e4 e4
+      | g4 g4 f4 f4 | e2 d2
+      | f4 d4 e4 f4 | g4 f4 e4 e4
+      | a4 g4 f4 e4 | d2 d2 \bar "|."
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Len -- nä, len -- nä | lep -- pä -- kert -- tu,
+      | i -- son ki -- ven | juu -- reen;
+      | Len -- nä leik -- ki -- | ke -- don kaut -- ta
+      | u -- ni -- puu -- hun | suu -- reen.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Kul -- ta -- kul -- ta -- | leh -- den al -- la
+      | äi -- ti puu -- ron | keit -- tää;
+      | U -- ni -- tuu -- tu | lep -- pä -- ker -- tun
+      | läm -- pi -- mäs -- ti | peit -- tää.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      | Lau -- la, lau -- la, | u -- ni -- lin -- tu,
+      | tuok -- su, tuo -- men -- | tert -- tu;
+      | Nu -- ku, pu -- na -- | pai -- tu -- lai -- nen,
+      | pik -- ku lep -- pä -- | kert -- tu.
+    }
+    theChords = \chordmode {
+      d1:m | a
+      | g2:m d2:m
+      | a2:7 d2:m
+      | d1:m | g2:m7 a2
+      | a1:7 | d1:m
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+  \noendsongvfill % align lp to the bottom
 \endsong
 
 
