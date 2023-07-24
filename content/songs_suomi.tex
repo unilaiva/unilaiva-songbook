@@ -1265,6 +1265,66 @@
 \endsong
 
 
+\beginsong{Kettu itki poikiansa}[by={Kansanlaulu}, key={Am}, gk={Am, Gm--Em}]
+  \audio[key=Dm]{https://www.youtube.com/watch?v=rWARJsJewC8}
+  \meter{5}{4}
+  \mnbeginverse
+    |\[\mnc{A}Am]Ket\[^\mn{B}]tu \[^\mn{C}]it\[^\mn{D}]ki \[^\mn{E}]poi\[^\mn{C}]ki\[\mnc{B}E]ansa, |\[E7]ki\[^\mn{D}]ven \[^\mn{C}]päällä \[^\mn{B}]kyykyl\[\mnc{E}Am]länsä.
+    |\[^\mn{A}]Ka\[^\mn{B}]hen \[^\mn{C}]kau\[^\mn{D}]pun\[^\mn{E}]gin \[^\mn{C}]vä\[\mnc{B}E]lillä, |\[E7]ka\[^\mn{D}]hen \[^\mn{C}]kirkon \[^\mn{B}]kuulu\[\mnc{A}Am]villa.
+  \mnendverse
+  \notesoff
+  \beginverse
+    |^Kun ei poikani me^nisi, |^pitkähännät piipot^taisi.
+    |Noille vieraille pi^hoille, |^kaupunkien karta^noille.
+  \endverse
+  \beginverse
+    |^Siellä nuoli noppa^jaisi, |^tinapalli paisko^aisi. \altchords{\id[1]{(Dm)}|Dm A |A7 Dm}
+    |Siellä surma suin pi^täisi, |^kova kuolo kohta^jaisi. \altchords{| - A |A7 Dm}
+  \endverse
+  % Original image downloaded from: https://cdn.pixabay.com/photo/2014/04/03/11/48/fox-312203_960_720.png
+  % Image license: Public Domain
+  % Edited by: larva
+  \begin{lilywrap}\imagel[4]{fox_drawing_ed_by_larva__transbg_CC0_900x1200.png}\par\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \key a \minor \time 5/4
+      \set melismaBusyProperties = #'() \slurDashed
+      | a8. b16 c8 d e c b4 b | b8 d c c b b e4 e
+      | a,8. b16 c8 d e c b4 b | b8 d c c b b a4 a \bar "|."
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Ket -- tu it -- ki poi -- ki -- an -- sa,
+      | ki -- ven pääl -- lä kyy -- kyl -- län -- sä.
+      | Ka -- hen kau -- pun -- gin vä -- lil -- lä,
+      | ka -- hen kir -- kon kuu -- lu -- vil -- la.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Kun ei poi -- ka -- ni me -- ni -- si,
+      | pit -- kä -- hän -- nät pii -- pot -- tai -- si.
+      | Noil -- le vie -- rail -- le pi -- hoil -- le,
+      | kau -- pun -- ki -- en kar -- ta -- noil -- le.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      | Siel -- lä nuo -- li nop -- pa -- jai -- si,
+      | ti -- na -- pal -- li pais -- ko -- ai -- si.
+      | Siel -- lä sur -- ma suin pi -- täi -- si,
+      | ko -- va kuo -- lo koh -- ta -- jai -- si.
+    }
+    theChords = \chordmode {
+      | a2.:m e2 | e2.:7 a2:m
+      | a2.:m e2 | e2.:7 a2:m
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+  \noendsongvfill % align lp to the bottom
+\endsong
+
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}

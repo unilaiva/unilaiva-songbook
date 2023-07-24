@@ -1306,14 +1306,15 @@
 % the power [0..7] and if not given, defaults to 1. Value 0 will scale the
 % image to maximum size, so it's width is \linewidth. The mandatory parameter
 % is the image file name without path. Put the image in content/img (or other
-% path specified by \graphicspath above). These commands can be used in and
-% out of songs.
+% path specified by \graphicspath above). These commands can be used within and
+% outside of songs.
 %
 %   - \imagel puts the image exactly at the current position
 %   - \imager pushes the image to the right
 %   - \ịmagec centers the image horizontally
 %   - \imagecc centers the image horizontally and vertically
-%   - \imagerb pushes the image to the right and bottom of page
+%   - \imagecb centers the image horizontally and pushes it to the bottom of the page
+%   - \imagelc centers the image vertically
 %   - \imagerc pushes the image to the right and centers it vertically
 %   - \imagerb pushes the image to the right and bottom of page
 %
@@ -1350,6 +1351,12 @@
     \imagel[#1]{#2}%
     \noendsongvfill%
   \end{center}%
+}
+
+\newcommand{\imagelc}[2][1]{%
+  \ifSB@insong\@blockstart\else\vfill\fi%
+  \imagel[#1]{#2}%
+  \ifSB@insong\yesendsongvfill\else\vfill\fi%
 }
 
 \newcommand{\imagerc}[2][1]{%

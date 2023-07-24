@@ -373,7 +373,8 @@ compile_document() {
 
   # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
   # the modified .tex files and the musical staff images created by it to subdirectory ${temp_dirname_twolevels}.
-  # The directory (last level only) is created if it doesn't exist.
+  # The directory (last level only) is created if it doesn't exist. Note that here the need to include the
+  # path for the log file, as we are not in the subdirectory yet.
   lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/out-1_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book!" "${temp_dirname_twolevels}/out-1_lilypond.log"
 
   # Enter the temp directory. (Do rest of the steps there.)
