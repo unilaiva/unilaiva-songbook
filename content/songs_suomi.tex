@@ -687,47 +687,62 @@
 \endsong
 
 
-\beginsong{Tupakkarulla}[by={trad.},tags={uni}]
+\beginsong{Tupakkarulla}[by={trad.},tags={uni},key={Dm},gk={Dm, Gm--Em}]
   \meter{2}{4}
-  \beginverse
-    |\[\mnc{D}Dm]Tuu |\[^\mn{A}]tuu |tupakka|\[A]rul|la \brk|\[Gm]mistäs |\[Dm]tiesit |\[A7]tänne |\[Dm]tul|la?
-    |\[Dm]Tulin |pitkin |\[Gm7]Turun |\[A]tie|tä, \brk|\[A7]hämä|\[Dm]läisten |\[A7]härkä|\[Dm]tie|tä.
-  \endverse
+  \mnbeginverse
+    |\[\mnc{D}Dm]Tuu |\[^\mn{A}]tuu |tupak\[^\mn{F}]ka|\[\mnc{E}A]rul|la \brk|\[\mnc{G}Gm]mistäs |\[\mnc{A}Dm]tie\[^\mn{F}]sit |\[\mnc{E}A7]tän\[^\mn{F}]ne |\[\mnc{D}Dm]tul|la?
+    |\[^\mn{F}]Tu\[^\mn{D}]lin |\[^\mn{E}]pit\[^\mn{F}]kin |\[\mnc{G}Gm7]Tu\[^\mn{F}]run |\[\mnc{E}A]tie|tä, \brk|\[\mnc{A}A7]hä\[^\mn{G}]mä|\[\mnc{F}Dm]läisten |\[\mnc{E}A7]här\[^\mn{F}]kä|\[\mnc{D}Dm]tie|tä.
+  \mnendverse
   \notesoff
   \beginverse
     |^Mistäs |tunsit |meidän |^por|tin? \brk|^Siitä |^tunsin |^uuden |^por|tin:
-    |^haka |alla, |^pyörä |^pääl|lä \brk|^karhun |^talja |^portin |^pääl|lä
+    |haka |alla, |^pyörä |^pääl|lä \brk|^karhun |^talja |^portin |^pääl|lä.
   \endverse
   \beginverse
     |^Uni |kysyi |uunin |^pääl|tä, \brk|^unen |^poika |^porstu|^as|ta:
-    |^Onko |lasta |^kätky|^es|sä, \brk|^pientä |^peittei|^den si|^säs|sä?
+    |Onko |lasta |^kätky|^es|sä, \brk|^pientä |^peittei|^den si|^säs|sä?
   \endverse
   \beginverse
     |^Tuoppa |unta |tuokko|^ses|sa, \brk|^kanna |^vaski |^vakka|^ses|sa,
-    |^sillä |silmät |^sive|^le,| \brk|^näky|^miset |^näppä|^e|le.
+    |sillä |silmät |^sive|^le,|{ }{ }{ }{ } \brk|^näky|^miset |^näppä|^e|le.
   \endverse
   \beginverse
     |^Nuku |nuku |nurmi|^lin|tu, \brk|^väsy |^väsy |^västä|^räk|ki,
-    |^nuku |kun mi|^nä nu|^ku|tan, \brk|^väsy |^kun mi|^nä vä|^sy|tän.
+    |nuku |kun mi|^nä nu|^ku|tan, \brk|^väsy |^kun mi|^nä vä|^sy|tän.
+  \endverse
+  \beginverse\small % for alt key chords only
+    \altchords{\id[1]{(Am)}|Am | - | - |E | - |Dm |Am |E7 |Am | \e}
+    \altchords{| - | - |Dm7 |E | - |E7 |Am |E7 |Am | \e}
   \endverse
   % Present the melody on a staff using Lilypond
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    {\key d \minor \time 2/4
-      d'2 | a'2 | a'8 a'4 f'8 | e'2 | e'2
-      g'4 g'4 | a'4 f'4 | e'4 f'4 | d'2 | d'2
-      f'4 d'4 | e'4 f'4 | g'4 f'4 | e'2 | e'2
-      a'4. g'8 | f'4 f'4 | e'4 f'4 | d'2 | d'2 \bar "|."
-    }\addlyrics{
-      Tuu tuu tu -- pak -- ka -- rul -- la,
-      mis -- täs tie -- sit tän -- ne tul -- la?
-      Tu -- lin pit -- kin Tu -- run tie -- tä,
-      hä -- mä -- läis -- ten här -- kä -- tie -- tä.
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody =  \relative d'' {
+      \key d \minor \time 2/4
+      \set melismaBusyProperties = #'() \slurDashed
+      d2 | a'2 | a8 a4 f8 | e2 | e2
+      g4 g4 | a4 f4 | e4 f4 | d2 | d2 \break
+      f4 d4 | e4 f4 | g4 f4 | e2 | e2
+      a4. g8 | f4 f4 | e4 f4 | d2 | d2 \bar "|."
     }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Tuu | tuu | tu -- pak -- ka -- | rul -- | la,
+      | mis -- täs | tie -- sit | tän -- ne | tul -- | la?
+      | Tu -- lin | pit -- kin | Tu -- run | tie -- | tä,
+      | hä -- mä -- | läis -- ten | här -- kä -- | tie -- | tä.
+    } % no space for the rest of the verses
+    theChords = \chordmode {
+      | d2:m | d:m | d:m | a | a
+      | g:m | d:m | a:7 | d:m | d:m
+      | d:m | d:m | g:m7 | a | a
+      | a:7 | d:m | a:7 | d:m | d:m
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  % Nicely align music notation on both songs of this spread to the bottom.
-  % for symmetry. (This is actually the default if Lilypond block is last,
-  % but in if it changes, it doesn't have to change here.)
-  \noendsongvfill
+  \noendsongvfill % align lp to the bottom
 \endsong
 
 
