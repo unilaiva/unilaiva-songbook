@@ -77,8 +77,8 @@
 
 \beginsong{Juurilaulu \\ Kuulumme piiriin}[tags={piiri}, ph={I, V}, key={Am}, gk={Bm, Am--G\shrp{}m}]
   \mnbeginchorus
-    \[\mn{A}]Kuulumme |\[\mncii{G}{A}Am]{pii}riin, | { }{ }kuulum\[\mn{B}]me |\[\mn{C}\mn{A}]{pii}riin, | \e
-    aiko\[\mn{B}]jen |\[\mnc{C}C]takaa, | { }{ }\[\mncii{C}{B}G]takai\[\mn{G}]sin |\[Am]kier\[\mn{A}]toon | \e
+    \[\bmc\mn{A}]Kuulumme |\[\mncii{G}{A}Am]{pii}\[\bm]riin, | { }{ }\[\bm]kuulum\[\mn{B}]me |\[\mn{C}\mn{A}]{pii}\[\bm]riin, | \e
+    \[\bm]aiko\[\mn{B}]jen |\[\mnc{C}C]takaa\[\bm], | { }{ }\[\mnc{C}G]ta\[\mn{B}]kai\[\mn{G}]sin |\[Am]kier\[\mn{A}]toon\[\bm] | \e
   \mnendchorus
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[]
@@ -86,7 +86,7 @@
     \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \key a \minor \time 4/4 \partial 2
-      \set melismaBusyProperties = #'() \slurDashed
+      \set melismaBusyProperties = #'() \slurSolid
       \repeat volta 2 {
         a4 a8 a8 | g8( a8) a2.~
         | a2 a4 a8 b | c( a) a2.~
