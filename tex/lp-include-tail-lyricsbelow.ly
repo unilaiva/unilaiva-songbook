@@ -12,7 +12,10 @@
     \score {
       <<
         \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new Staff {
+          \clef "treble"
+          \new Voice = "theVoice" { \theMelody }
+        }
         \include "tex/lp-internal-tabstaff.ly"
         \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }

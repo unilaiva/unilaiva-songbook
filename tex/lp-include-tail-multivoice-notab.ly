@@ -12,10 +12,11 @@
     \score {
       <<
         \new ChordNames { \theChords }
-        \new Staff {
+        \new Staff <<
           \clef "treble"
           \new Voice = "theVoice" { \theMelody }
-        }
+          \new Voice = "theVoiceTwo" { \theMelodyTwo }
+        >>
         \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
         \new Lyrics \lyricsto "theVoice" { \theLyricsThree }

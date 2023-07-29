@@ -174,6 +174,7 @@
 
     % Defines some variables as empty, so that if the user doesn't define them,
     % nothing breaks and they will just be ignored.
+    theMelodyTwo = {}
     theChords = \chordmode {}
     theLyricsOne = \lyricmode {}
     theLyricsTwo = \lyricmode {}

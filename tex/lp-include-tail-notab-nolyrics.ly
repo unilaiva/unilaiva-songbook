@@ -12,7 +12,10 @@
     \score {
       <<
         \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
+        \new Staff {
+          \clef "treble"
+          \new Voice = "theVoice" { \theMelody }
+        }
       >>
       \layout { }
     }

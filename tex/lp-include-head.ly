@@ -27,9 +27,19 @@
     %% 'tex/lp-include-tail-notab.ly', no guitar tabulature is created. Or if
     %% it is replaced with 'tex/lp-include-tail-lyricsbelow.ly', the lyrics will
     %% be laid below the tabulature staff instead of between normal and tab
-    %% staffs.
+    %% staffs. 'tex/lp-include-tail-notab-nolyrics' omits the lyrics and tabs,
+    %% both.
     %%
-    %% Note that tabulature is transposed two octaves down!
+    %% `lp-include-tail-multivoice-notab.ly` has support for two voices written
+    %% on the same staff. The second voice is put into 'theMelodyTwo' variable.
+    %% It might be reasonable to include '\voiceOne' instruction within
+    %% 'theMelody', and '\voiceTwo' within theMelodyTwo.
+    %%
+    %% Melodies are supposed to be written one octave above the common female
+    %% singing range (two octaves above the male one). This is taken into
+    %% account for tabulature staff and MIDI. Tabs are by default transposed
+    %% two octaves down, and for MIDI the main melody is transposed one octave
+    %% down. Optional second voice is transposed two octaves down by default.
     %%
 
     % Includes the common settings
