@@ -1407,6 +1407,77 @@
 \endsong
 
 
+\beginsong{On suuri sun rantas' autius}[by={trad.}, key={Dm}, gk={Em, Dm--F\shrp{}m}]
+  \audio[key=Gm]{https://www.youtube.com/watch?v=xnj-vGbWzSA}
+  \mnbeginverse
+    \[^\mn{A}]On |\[\mnc{D}Dm]suuri sun \[\bm]ran\[^\mn{E}]tas' |\[\mnc{C}Am]auti\[\bm]us. \[^\mn{A}]Sitä |\[\mnc{B&}Gm]sen\[^\mn{G}]tään \[\bmc\mn{B&}]i\[^\mn{D}]kä|\[\mnc{A}A]vöin, \[\bm]
+    miten |\[\mnc{F}F]villi\[\bm]sor\[^\mn{G}\mn{F}]san |\[\mnc{E}C]vali\[\bmc\mn{F}]tus \[^\mn{E}]soi |\[\mnc{D}Dm]kais\[^\mn{A}]li\[\mnc{C#}A7]kos\[^\mn{E}]sa |\[\mnc{D}Dm]öin. \[\bm]
+  \mnendverse
+  \notesoff
+  \beginverse
+    Joku |^yksi^näinen |^eksy^nyt, joka |^vilua ^vaike|^roi, ^
+    jok' on |^kaisli^kossa |^kierrel^lyt eik' |^emoa ^löytää |^voi. ^
+  \endverse
+  \beginverse
+    Sun |^harma^jata |^aalto^as olen |^katsonut ^kyyne|^lein: ^
+    ens' |^surunsa ^itkenyt |^rannal^las mun on |^oma ^nuoruu|^tein. ^
+  \endverse
+  \beginverse
+    On |^syvään sun ^kuvasi |^painu^nut ja |^sitä ^ikä|^vöin. ^
+    Olen |^villi^sorsaa |^kuunnel^lut  mä |^siellä ^monin |^öin. ^
+  \endverse
+  \beginverse % for alt key (Em) chords only
+    \altchords{\id[1]{(Em)}|Em |Bm |Am |B}
+    \altchords{|G |D |Em B7 |Em}
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \key d \minor \time 4/4 \partial 4
+      \set melismaBusyProperties = #'() \slurDashed
+      a8( a8) | d8( d8)( d8)( d8) d8( d8) e4 | c4 c c a8( a) | bes8( bes8) g8( g8) bes4 d | a2.
+      a8( a) | f'8( f8)( f8)( f8) f4 g8( f8) | e4 e f e8( e8) | d8( d8) a4 cis e | d2. \bar "|."
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      On __ _ | suu -- _ ri sun ran -- _ tas' | au -- ti -- us.
+      Si -- tä | sen -- _ tään __ _ i -- kä -- | vöin,
+      mi -- ten | vil -- _ li -- _ sor -- san __ _ | va -- li -- tus
+      soi __ _ | kais -- _ li -- kos -- sa | öin.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Jo -- ku | yk -- _ si -- _ näi -- _ nen | ek -- sy -- nyt,
+      jo -- ka | vi -- lu -- a __ _ vai -- ke -- | roi,
+      jok' on | kais -- _ li -- _ kos -- sa __ _ | kier -- rel -- lyt
+      eik' __ _ | e -- mo -- a löy -- tää | voi.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Sun __ _ | har -- _ ma -- _ ja -- _ ta | aal -- to -- as
+      o -- len | kat -- _ so -- nut kyy -- ne -- | lein:
+      ens' __ _ | su -- run -- _ sa it -- ke -- nyt | ran -- nal -- las
+      mun on | o -- _ ma nuo -- ruu -- | tein.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      On __ _ | sy -- vään __ _ sun ku -- va -- si | pai -- nu -- nut
+      ja __ _ | si -- _ tä __ _ i -- kä -- | vöin.
+      O -- len | vil -- _ li -- _ sor -- saa __ _ | kuun -- nel -- lut
+      mä __ _ | siel -- _ lä mo -- nin | öin.
+    }
+    theChords = \chordmode {
+      s4 | d1:m | a:m | g:m | a
+      | f | c | d2:m a2:7 | d2.:m
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+  \noendsongvfill % align lp to the bottom
+\endsong
+
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}
