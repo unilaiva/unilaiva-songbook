@@ -359,33 +359,37 @@ compile_document() {
   # Test if we are currently in the correct directory:
   [ -f "./${document_basename}.tex" ] || die 1 "Not currently in the project's root directory!"
 
+  # Ensure the result directory exists:
+  mkdir -p "./${RESULT_DIRNAME}" 2>"/dev/null"
+  [ -d "./${RESULT_DIRNAME}" ] || die $? "Could not create the result directory ./${RESULT_DIRNAME}."
+
   # Clean old build:
   [ -d "${temp_dirname_twolevels}" ] && rm -R "${temp_dirname_twolevels}"/* 2>"/dev/null"
   # Ensure the build directory exists:
   mkdir -p "${temp_dirname_twolevels}" 2>"/dev/null"
   [ -d "${temp_dirname_twolevels}" ] || die $? "Could not create the build directory ${temp_dirname_twolevels}."
 
-  # Ensure the result directory exists:
-  mkdir -p "./${RESULT_DIRNAME}" 2>"/dev/null"
-  [ -d "./${RESULT_DIRNAME}" ] || die $? "Could not create the result directory ./${RESULT_DIRNAME}."
+  # Copy/link the required files to the temp directory (lilypond-book will copy
+  # the rest of them):
+  mkdir -p "${temp_dirname_twolevels}/ext_packages/songs"
+  mkdir "${temp_dirname_twolevels}/content"
+  cp -R "tex" "${temp_dirname_twolevels}/tex"
+  cp "ext_packages/songs/"{songs.sty,songidx.lua} "${temp_dirname_twolevels}/ext_packages/songs/"
+  cp "tags.can" "${temp_dirname_twolevels}/"
+  # images are big (and not all of them are needed), so link instead of copy:
+  ln -s "../../../content/img" "${temp_dirname_twolevels}/content/img"
 
   echo -e "${PRETXT_EXEC}${txt_docbase}: lilypond-book"
 
-  # Run lilypond-book. It compiles images out of lilypond source code within tex files and outputs
-  # the modified .tex files and the musical staff images created by it to subdirectory ${temp_dirname_twolevels}.
-  # The directory (last level only) is created if it doesn't exist. Note that here the need to include the
-  # path for the log file, as we are not in the subdirectory yet.
+  # Run lilypond-book. It compiles images out of lilypond source code within tex
+  # files and outputs the modified .tex files and the musical staff images
+  # created by it to subdirectory ${temp_dirname_twolevels}. The directory
+  # (last level only) is created if it doesn't exist. Note the need to include
+  # the path for the log file, as we are not in the subdirectory yet.
   lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/out-1_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book!" "${temp_dirname_twolevels}/out-1_lilypond.log"
 
   # Enter the temp directory. (Do rest of the steps there.)
   cd "${temp_dirname_twolevels}" || die 1 "Cannot enter temporary directory!"
-
-  # Copy the required files not copied by lilypond to the temp directory:
-  mkdir -p "ext_packages/songs" 2>"/dev/null"
-  cp "../../tex/unilaiva-songbook_common.sty" "./tex/"
-  cp "../../ext_packages/songs/"{songs.sty,songidx.lua} "./ext_packages/songs/"
-  cp "../../tags.can" "./"
-  ln -s "../../../content/img" "./content/" 2>"/dev/null"  # images are big, so link instead of copy
 
   echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (1st run)"
 
