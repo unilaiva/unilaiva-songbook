@@ -1312,6 +1312,24 @@
     |^Lahti on ^tyyni ja |^rauhai^nen.
   \endverse
   \beginverse
+    |^Heitä jo ^haukkojen |^sotakisat ^kerran!
+    |^Kustapa ^löytänet |^itsesi ^verran,
+    |^poikani ^suuri ja |^kaunoi^nen?
+    |^Lahti on ^tyyni ja |^rauhai^nen.
+  \endverse
+  \beginverse
+    |^Anna jo ^pääskyjen |^rauhassa ^lentää!
+    |^Tuostapa ^emollesi |^surusanat ^entää,
+    |^poikani ^synkeä, |^syylli^nen.
+    |^Lahti on ^tyyni ja |^rauhai^nen.
+  \endverse
+  \beginverse
+    |^Ihmiset ^pahaks sinut |^parjaavat ^mulle;
+    |^paha lienet ^muille, mut |^hyvä olet ^mulle,
+    |^poikani ^lempeä, |^puhtoi^nen.
+    |^Lahti on ^tyyni ja |^rauhai^nen.
+  \endverse
+  \beginverse
     |^Ulkona ^ulapalla |^myrskyt ne ^pauhaa, \altchords{\id[2]{(Dm)}|Dm |A}
     |^täällä on ^lämmintä ja |^täällä on ^lauhaa, \altchords{|Dm C |A A7}
     |^lahti on ^tyyni ja |^selkeä ^vaan. \altchords{|F C |Dm }
@@ -1324,28 +1342,50 @@
       \key a \minor \time 4/4
       \set melismaBusyProperties = #'() \slurDashed
       | e4 e8 a c8( c) c c | b( b) b a b4 e,4
-      | a4 a8 c d d b d | e4 e8 d e4 d4
+      | a8( a8) a8 c d( d) b d | e8( e8) e8 d e4 d4
       | c4 c8 c b4 g8 b | a4 a8( a) e2
       | e'4 c8 c b4 e,8 gis | a4 a a2 \fermata \bar "|."
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       | Tui -- ma on tuu -- _ li ja | pi -- me -- ä on tai -- vo,
-      | suu -- ri on u -- la -- pal -- la | aal -- to -- jen rai -- vo,
+      | suu -- _ ri on u -- la -- pal -- la | aal -- _ to -- jen rai -- vo,
       | lah -- ti on tyy -- ni ja | sel -- ke -- ä vaan.
       | Kus -- sa mun kot -- ka -- ni | kul -- kee -- kaan?
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       | Jou -- du jo ko -- ti -- hin ja | len -- _ to -- si hei -- tä!
-      | Taik -- ka jo a -- je -- let -- kin | aal -- to -- jen tei -- tä,
+      | Taik -- _ ka jo a -- je -- let -- kin | aal -- _ to -- jen tei -- tä,
       | poi -- ka -- ni pie -- ni ja | hen -- toi -- _ nen.
       | Lah -- ti on tyy -- ni ja | rau -- hai -- nen.
     }
+    % The verses 3-5 of the original poem are not included in Merikanto's song
     theLyricsThree = \lyricmode {
       \set stanza = "3."
+      | Hei -- tä jo hauk -- _ ko -- jen | so -- ta -- ki -- sat ker -- ran!
+      | Kus -- _ ta -- pa löy -- _ tä -- net | it -- _ se -- si ver -- ran,
+      | poi -- ka -- ni suu -- ri ja | kau -- noi -- _ nen?
+      | Lah -- ti on tyy -- ni ja | rau -- hai -- nen.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      | An -- na jo pääs -- _ ky -- jen | rau -- _ has -- sa len -- tää!
+      | Tuos -- _ ta -- pa e -- mol -- le -- si | su -- ru -- sa -- nat en -- tää,
+      | poi -- ka -- ni syn -- ke -- ä, | syyl -- li -- _ nen.
+      | Lah -- ti on tyy -- ni ja | rau -- hai -- nen.
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      | Ih -- mi -- set pa -- haks si -- nut | par -- _ jaa -- vat mul -- le;
+      | pa -- ha lie -- net muil -- _ le, mut | hy -- vä o -- let mul -- le,
+      | poi -- ka -- ni lem -- pe -- ä, | puh -- toi -- _ nen.
+      | Lah -- ti on tyy -- ni ja | rau -- hai -- nen.
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
       | Ul -- ko -- na u -- la -- pal -- la | myrs -- _ kyt ne pau -- haa,
-      | tääl -- lä on läm -- min -- tä ja | tääl -- lä on lau -- haa,
+      | tääl -- _ lä on läm -- min -- tä ja | tääl -- _ lä on lau -- haa,
       | lah -- ti on tyy -- ni ja | sel -- ke -- ä vaan.
       | Las -- ke jo lah -- te -- si | val -- ka -- maan!
     }
@@ -1355,8 +1395,8 @@
       | c g | a:m a:m
       | c e:7 | a:m a:m
     }
-    %\layout { #(layout-set-staff-size 13) } % for better fit
-    \include "tex/lp-include-tail-notab-nolyrics.ly"
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
   \noendsongvfill % align lp to the bottom
 \endsong
