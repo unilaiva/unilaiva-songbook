@@ -27,8 +27,8 @@ USE_COLORS=1
 
 # Maximum number of parallel compilation jobs. Each job takes quite a bit
 # of memory, so this should be limited.
-MAX_PARALLEL=5
-# Maximum total memory use for Docker container. 4g should be enough for 5
+MAX_PARALLEL=6
+# Maximum total memory use for Docker container. 5g should be enough for 6
 # parallel jobs. This is passed to docker with --memory option.
 MAX_DOCKER_MEMORY="5g"
 # Maximum total memory and swap (together) use for Docker container. If set
@@ -86,7 +86,7 @@ print_usage_and_exit() {
   echo "  --pull          : Execute git pull before compiling;"
   echo "                    this is always done outside Docker"
   echo "  --sequential    : compile documents sequentially (the default is to"
-  echo "                    compile them in parallel)"
+  echo "                    compile them in parallel), use on low memory systems"
   echo "  --shell         : Execute an interactive shell within docker only,"
   echo "                    does not compile anything."
   echo "  -q              : use for quick development build of the main document;"
@@ -681,11 +681,8 @@ fi
 [ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ] \
   && dockerized_text="NO (this is not recommended!)" \
   || dockerized_text="YES"
-[ ${MAX_PARALLEL} -gt ${doc_count} ] \
-  && concurrent_text="(concurrent: ${doc_count})" \
-  || concurrent_text="(concurrent: ${MAX_PARALLEL})"
 [ ${parallel} = "true" ] \
-  && parallel_text="YES ${concurrent_text}" \
+  && parallel_text="YES (maximum concurrency: ${MAX_PARALLEL})" \
   || parallel_text="NO"
 [ ${doc_count} = 1 ] && parallel_text="NO (1 document only)"
 echo ""
