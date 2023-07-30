@@ -25,6 +25,17 @@
       }
     }
 
+    % Modify chord name display for some chords
+    chExceptionMusic = {
+      <c e g d'>1-\markup { \super "add9" }      % usage example: g1:1.3.5.9
+      <c e g b d'>1-\markup { \super "maj9" }    % usage example: g1:maj9
+      <c e g a d'>1-\markup { \super "6(add9)" } % usage example: g1:6.9
+    }
+    % Convert music to list and prepend to existing exceptions.
+    chExceptions = #(append
+      (sequential-music-to-chord-exceptions chExceptionMusic #t)
+      ignatzekExceptions)
+
     % Chord name color. This ought to be manually synced with 'chordcolor'
     % defined in file unilaiva-songbook_common.sty:
     color-chordnames = #(rgb-color 0.20 0 0.22)

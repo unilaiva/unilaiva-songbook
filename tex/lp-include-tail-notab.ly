@@ -11,7 +11,11 @@
     %%
     \score {
       <<
-        \new ChordNames { \theChords }
+        \new ChordNames {
+          % Use chord name modifications defined in lp-internal-common-head.ly
+          \set chordNameExceptions = #chExceptions
+          \theChords
+        }
         \new Staff {
           \clef "treble"
           \new Voice = "theVoice" { \theMelody }
