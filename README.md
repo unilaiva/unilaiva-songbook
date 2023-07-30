@@ -97,8 +97,8 @@ the host system only if compiling without using the Docker image.
 
   * LaTeX 2e distribution (TeX Live is recommended) with some fairly standard
     packages and the binaries `lualatex` and `texlua`
-  * Lilypond installation version 2.24.1 or later with the binary
-    `lilypond-book`
+  * Lilypond installation version 2.22.1 (or probably any later one) with the
+    binary `lilypond-book`
   * Fonts 'Noto Sans' and 'Noto Serif', with medium and extrabold weights
   * Locale 'fi_FI.utf8'
   * `bash` (installed by default on most systems)
@@ -114,9 +114,9 @@ included in the project tree and used instead of a one possibly installed on
 the system. This is because of compatibility reasons to ensure a specific
 version: the package is used heavily and some of its macros are redefined.
 
-##### Example: on Ubuntu 23.04, without Docker #####
+##### Example: on Ubuntu 22.04 LTS, without Docker #####
 
-On Ubuntu 23.04, to install the dependencies, download the project's
+On Ubuntu 22.04 LTS (jammy), to install the dependencies, download the project's
 source and compile the songbook without Docker, you need to run the following
 commands:
 
