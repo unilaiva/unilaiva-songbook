@@ -76,10 +76,10 @@ print_usage_and_exit() {
   echo ""
   echo "Options:"
   echo ""
-  echo "  --no-docker     : do not use the Docker container for compiling"
   echo "  --help          : print this usage information"
   echo "  --no-astral     : do not compile unilaiva-astral* books"
   echo "  --no-deploy     : do not copy PDF files to ./${DEPLOY_DIRNAME}/"
+  echo "  --no-docker     : do not use the Docker container for compiling"
   echo "  --no-partial    : do not compile partial books"
   echo "  --no-printouts  : do not create extra printout PDFs"
   echo "  --no-selections : do not create selection booklets"
@@ -87,6 +87,8 @@ print_usage_and_exit() {
   echo "                    this is always done outside Docker"
   echo "  --sequential    : compile documents sequentially (the default is to"
   echo "                    compile them in parallel)"
+  echo "  --shell         : Execute an interactive shell within docker only,"
+  echo "                    does not compile anything."
   echo "  -q              : use for quick development build of the main document;"
   echo "                    equals to --no-partial --no-selections --no-astral"
   echo "                    --no-printouts --no-deploy"
@@ -519,6 +521,7 @@ partialbooks="true"
 selections="true"
 gitpull="false"
 parallel="true"
+shellonly="false"
 
 setup_ui
 
@@ -552,6 +555,9 @@ while [ $# -gt 0 ]; do
       shift;;
     "--sequential")
       parallel="false"
+      shift;;
+    "--shell")
+      shellonly="true"
       shift;;
     "-q")
       deployfinal="false"
@@ -608,6 +614,13 @@ echo -e "${PRETXT_GIT}Pulling remote changes (with rebase)..."
     echo -e "${TXT_DONE}"
     echo ""
     exit 0
+  fi
+else # we are in the container
+  if [ ${shellonly} = "true" ]; then
+    # If debug shell is requested, only run interactive shell and exit.
+    echo -e "${PRETXT_DOCKER}Start interactive shell in the container only"
+    bash
+    exit 127
   fi
 fi
 
