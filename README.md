@@ -69,8 +69,11 @@ Then start the command prompt and run the following commands:
   2. `cd unilaiva-songbook`
   3. `./compile-songbooks.sh`
   
-If `git` is not installed, it will be automatically installed when trying to
-run it for the first time.
+If `git` is not installed, it will be automatically installed by the OS when
+trying to run it for the first time.
+
+The `bash` version MacOS has by default is old, but compilation script works
+with it mostly (when using Docker).
 
 ##### Example: on Windows, using Docker #####
 
@@ -84,9 +87,13 @@ execute the compilation script with `--no-docker` option.
 
 ##### Requirements #####
 
+These dependencies are included in the Docker image, and need be installed on
+the host system only if compiling without using the Docker image.
+
   * LaTeX 2e distribution (TeX Live is recommended) with some fairly standard
     packages and the binaries `lualatex` and `texlua`
-  * Lilypond installation with the binary `lilypond-book`
+  * Lilypond installation version 2.24.1 or later with the binary
+    `lilypond-book`
   * Fonts 'Noto Sans' and 'Noto Serif', with medium and extrabold weights
   * Locale 'fi_FI.utf8'
   * `bash` (installed by default on most systems)
@@ -102,9 +109,9 @@ included in the project tree and used instead of a one possibly installed on
 the system. This is because of compatibility reasons to ensure a specific
 version: the package is used heavily and some of its macros are redefined.
 
-##### Example: on Ubuntu 22.04, without Docker #####
+##### Example: on Ubuntu 23.04, without Docker #####
 
-On Ubuntu 22.04 LTS, to install the dependencies, download the project's
+On Ubuntu 23.04, to install the dependencies, download the project's
 source and compile the songbook without Docker, you need to run the following
 commands:
 
