@@ -445,6 +445,8 @@
 \definecolor{melodynotecolor}{rgb}{0.0,0.1536,0.1824}
 % encircled melody notes, the circle:
 \definecolor{melodynotecirclecolor}{rgb}{0.0,0.3072,0.3648}
+% color for repetition signs (\lrep \rrep and \rep):
+\definecolor{repetitionsigncolor}{rgb}{0.1,0.1,0.3}
 \definecolor{songnumbgcolor}{rgb}{1,1,1} % song number background
 \definecolor{notebgcolor}{rgb}{0.9,0.9,0.9} % textnote background
 \definecolor{idxbgcolor}{rgb}{1,1,1} % index alphabet background
@@ -2159,7 +2161,8 @@
 
 % The following rewrite shortens the vertical line displayed on the left side of choruses.
 % This is done to accomodate using choruses as repeats with \glueverses. The \ifSB@chorustop
-% blocks commented with 'added by larva' are added.
+% blocks commented with 'added by larva' are added, and the \color macro with the surrounding
+% block, too.
 \newlength{\cbstartadj}% larva: will hold chorus line's top y coordinate adjustment value
 \newlength{\cbendadj}% larva: will hold chorus line's bottom y coordinate adjustment value
 \renewcommand\SB@chorusbar[1]{%
@@ -2182,7 +2185,9 @@
     \ifSB@chorustop% added by larva
       \vskip\cbstartadj% top y, push line start down
     \fi%
-    \leaders\vrule\@width\cbarwidth\vskip\SB@skip%
+    {\color{repetitionsigncolor}% % block and color addad by larva
+      \leaders\vrule\@width\cbarwidth\vskip\SB@skip%
+    }%
     \ifSB@chorustop\ifchorded\else%
       \advance\SB@skip-\SB@dimenii%
     \fi\fi%
@@ -2208,6 +2213,15 @@
       \fi%
     \fi%
   \fi%
+}
+
+% Colorize the output of macros \lrep, \rrep and \rep
+\let\@lreporig\lrep
+\let\@rreporig\rrep
+\let\@reporig\rep
+\renewcommand{\lrep}{{\color{repetitionsigncolor}\@lreporig}}
+\renewcommand{\rrep}{{\color{repetitionsigncolor}\@rreporig}}
+\renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}
 }
 
 \makeatother% let @ become something ...tooootally else!
