@@ -369,7 +369,7 @@ package commands is meant to be used, and nested repeats can't be done this
 way (we use the vertical line only for outmost repeats). Insert command
 `\glueverses` between these verses / choruses, if you want them to appear as
 one verse. To signal repeat of more than two times, add a `\rep{n}` (replacing
-*n* with the actual repeat count) on the last line of the 'chorus' by itself.
+*n* with the actual repeat count) alone on the first line of the 'chorus'.
 
 When some other phrase (than a verse) is repeated, or you need inner nested
 repeats, the repeated part is to be put between `\lrep` and `\rrep` macros.
