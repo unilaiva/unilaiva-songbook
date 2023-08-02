@@ -1580,6 +1580,7 @@
 \newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
 
 \newlength{\@mnoldbaselineadj} % to save the \baselineadj before change
+\@mnoldbaselineadj=\baselineadj % set the first value
 
 % Increases the spacing between lyric rows, if melody notes are on
 \newcommand{\@mnincreasebaseline}{%
@@ -1597,15 +1598,22 @@
   \baselineadj=\@mnoldbaselineadj\relax%
 }
 
-% \mn<begin|end><verse|chorus> macros are replacements for the ordinary
-% \<begin|end><verse|chorus>, with increased line spacing to accomodate notes
+% \mnbegin<verse|chorus> macros are replacements for the ordinary
+% \begin<verse|chorus>, with increased line spacing to accomodate notes
 % also in other than the first line of lyrics without resorting to \mnlow macro
 % and it's caveats. For non-chorded books or if melody notes are disabled,
 % spacing is not increased.
 \newcommand{\mnbeginverse}{\@mnincreasebaseline\beginverse}
-\newcommand{\mnendverse}{\endverse\@mnresetbaseline}
 \newcommand{\mnbeginchorus}{\@mnincreasebaseline\beginchorus}
-\newcommand{\mnendchorus}{\endchorus\@mnresetbaseline}
+\newcommand{\mnendverse}{\endverse} % For backwards compatibility, deprecated
+\newcommand{\mnendchorus}{\endchorus} % For backwards compatibility, deprecated
+
+% Replace the macros called at the end of each verse/chorus with versions that
+% call the originals and reset the baseline to the last saved one.
+\let\@SB@endverseorig\SB@endverse
+\let\@SB@endchorusorig\SB@endchorus
+\renewcommand{\SB@endverse}{\@SB@endverseorig\@mnresetbaseline}
+\renewcommand{\SB@endchorus}{\@SB@endchorusorig\@mnresetbaseline}
 
 % END MELODY NOTES
 
