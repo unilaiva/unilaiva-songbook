@@ -146,15 +146,14 @@ equivalents in this exact sequence in the project's root directory:
 
   1. `lilypond-book -f latex --latex-program=lualatex --output=temp
      unilaiva-songbook_A5.tex`
-  2. `cd temp ; ln -s ../ext_packages ./ ; ln -s ../../content/img ./content/ ;
-     ln -s ../../tex/unilaiva-songbook_common.sty ./tex/ ;
+  2. `cd temp ; ln -s ../tex ./ ; ln -s ../../content/img ./content/ ;
      ln -s ../tags.can ./`
   3. `lualatex unilaiva-songbook_A5.tex` # (1st time)
-  4. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
+  4. `texlua tex/ext_packages/songs/songidx.lua -l fi_FI.utf8
      idx_title.sxd idx_title.sbx`
-  5. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8
+  5. `texlua tex/ext_packages/songs/songidx.lua -l fi_FI.utf8
      idx_auth.sxd idx_auth.sbx`
-  6. `texlua ext_packages/songs/songidx.lua -l fi_FI.utf8 -b tags.can
+  6. `texlua tex/ext_packages/songs/songidx.lua -l fi_FI.utf8 -b tags.can
      idx_tag.sxd idx_tag.sbx`
   7. `lualatex unilaiva-songbook_A5.tex` # (2nd time)
   8. `lualatex unilaiva-songbook_A5.tex` # (3rd time)
@@ -264,10 +263,10 @@ Project structure and guidelines
 │   └── **img**
 ├── **deploy**
 ├── **docker**
-├── **ext_packages**
 │   └── **songs**
 ├── **result**
 ├── **tex**
+│   ├── **ext_packages**
 │   ├── printout_template_A5_on_A4_doublesided_folded.context
 │   ├── printout_template_A5_on_A4_sidebyside_simple.context
 │   ├── ul-selection_example.tex
@@ -314,8 +313,8 @@ filename pattern will be automatically compiled by the compile script. See
 
 There are also various 'Unilaiva no Astral' books, named `unilaiva-astral*.tex`.
 
-External packages are in `ext_packages` subdirectory. This currently includes
-only the `songs` package and it's documentation.
+External packages are in `tex/ext_packages` subdirectory. This currently
+includes only the `songs` package and it's documentation.
 
 The compilation script will place the final PDF files in the `result` directory.
 
@@ -330,7 +329,7 @@ Adding and editing songs
 
 To begin, see the already existing songs in `content` directory. Also, it is
 a good idea to take a look at `songs` package documentation. It is included as
-a PDF file in `ext_packages/songs/songs.pdf`. It can also be viewed online at
+a PDF file in `tex/ext_packages/songs/songs.pdf`. It can also be viewed online at
 [http://songs.sourceforge.net/songsdoc/songs.html](http://songs.sourceforge.net/songsdoc/songs.html).
 
 Below we're explaining mostly Unilaiva-specific things, so understanding how

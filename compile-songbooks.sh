@@ -45,7 +45,7 @@ SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
 RESULT_DIRNAME="result" # just the name of a subdirectory, not an absolute path
 DEPLOY_DIRNAME="deploy" # just the name of a subdirectory, not an absolute path
-SONG_IDX_SCRIPT="ext_packages/songs/songidx.lua"
+SONG_IDX_SCRIPT="tex/ext_packages/songs/songidx.lua"
 # The following is the locale used in creating the indexes, thus affecting the
 # sort order. Finnish (UTF8) is the default. Note that the locale used must be
 # installed on the system. To list installed locales on an UNIX, execute
@@ -373,10 +373,8 @@ compile_document() {
 
   # Copy/link the required files to the temp directory (lilypond-book will copy
   # the rest of them):
-  mkdir -p "${temp_dirname_twolevels}/ext_packages/songs"
   mkdir "${temp_dirname_twolevels}/content"
-  cp -R "tex" "${temp_dirname_twolevels}/tex"
-  cp "ext_packages/songs/"{songs.sty,songidx.lua} "${temp_dirname_twolevels}/ext_packages/songs/"
+  cp -R "tex" "${temp_dirname_twolevels}/"
   cp "tags.can" "${temp_dirname_twolevels}/"
   # images are big (and not all of them are needed), so link instead of copy:
   ln -s "../../../content/img" "${temp_dirname_twolevels}/content/img"
