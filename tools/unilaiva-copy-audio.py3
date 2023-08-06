@@ -11,6 +11,7 @@
 #
 
 
+import argparse
 import sys
 import os
 import subprocess
@@ -18,6 +19,8 @@ import shutil
 import pathlib
 import re
 import unicodedata
+
+defaultsffile = '/usr/share/sounds/sf2/FluidR3_GM.sf2'
 
 
 def strip_accents(text):
@@ -107,48 +110,48 @@ class Song:
     """
 
     if not self.originalmidifile.is_file():
-      print ("ERROR (copy midi file skipped): source .midi file is not available")
-      return None
+      print ('ERROR    : source .midi file is not available')
+      exit(4)
     shutil.copy2(self.originalmidifile, destdir.joinpath(self.newmidifilename))
-    print(destdir.name + " : " + self.newmidifilename)
+    print(destdir.name + ' : ' + self.newmidifilename)
 
   def createaudiofile(self, destdir):
     """
     Creates an mp3 audio file from the MIDI file associated with this song to
-    another directory using external software (fluidsynth and ffmpeg). If the
-    external software is not available, the file is not created but the script
-    continues. The destination directory must exist and be writable. If the
-    destination file exists, it will be overwritten.
+    another directory using external software (fluidsynth and ffmpeg). The
+    destination directory must exist and be writable. If the destination file
+    exists, it will be overwritten. The sound font file is picked from global
+    variable args.
     """
+
     if not self.originalmidifile.is_file():
-      print("ERROR (create mp3 skipped): source .midi file is not available")
-      return None
-    if shutil.which("fluidsynth") == None:
-      print("ERROR (create mp3 skipped): no fluidsynth executable found")
-      return None
-    if shutil.which("ffmpeg") == None:
-      print("ERROR (create mp3 skipped): no ffmpeg executable found")
-      return None
-    soundfontfile = pathlib.Path("/usr/share/sounds/sf2/FluidR3_GM.sf2")
-    if not soundfontfile.is_file():
-      print("ERROR (create mp3 skipped): Soundfont file %s not found"%(soundfontfile))
-    cmdoutput = subprocess.run(
-      "fluidsynth -a file -T raw -O s16 -E little -r 48000 -F - \"%s\" \"%s\"\
-      | ffmpeg -f s32le -ac 1 -ar 48000 -i -\
-      -codec:a libmp3lame -f mp3 -q:a 1\
-      -id3v2_version 3 -write_id3v2 -write_id3v1 1\
-      -metadata title=\"%s [generated from notation]\"\
-      -metadata artist=\"Unilaiva audio generator\"\
-      -metadata album_artist=\"Unilaiva audio generator\"\
-      -metadata track=%d\
-      -metadata album=\"%s\"\
-      -y \"%s\""
-        %(soundfontfile, self.originalmidifile,
-          self.title,
-          self.nr,
-          self.chaptertitle + ' [generated from notation]',
-          destdir.joinpath(self.newmp3filename)),
-        capture_output=False, shell=True, check=True)
+      print('ERROR    : source .midi file is not available')
+      exit(4)
+
+    try:
+      mp3process = subprocess.run(
+        'fluidsynth -a file -T raw -O s16 -E little -r 48000 -F - \"%s\" \"%s\"\
+        | ffmpeg -f s32le -ac 1 -ar 48000 -i -\
+        -codec:a libmp3lame -f mp3 -q:a 1\
+        -id3v2_version 3 -write_id3v2 -write_id3v1 1\
+        -metadata title=\"%s [generated from notation]\"\
+        -metadata artist=\"Unilaiva audio generator\"\
+        -metadata album_artist=\"Unilaiva audio generator\"\
+        -metadata track=%d\
+        -metadata album=\"%s\"\
+        -y \"%s\"'
+          %(args.sf, self.originalmidifile,
+            self.title,
+            self.nr,
+            self.chaptertitle + ' [generated from notation]',
+            destdir.joinpath(self.newmp3filename)),
+          capture_output=True, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+      print('ERROR    : mp3 coversion fails with error %i'%e.returncode)
+      print('\n' + e.stderr.decode("utf-8"))
+      exit(5)
+    print(destdir.name + ' : ' + self.newmp3filename)
+
 
 class Chapter:
   """Represents a song chapter, a collection of songs"""
@@ -181,9 +184,9 @@ class Chapter:
         pretext = pretext.split('\\setcounter',1)[1]
         countername = pretext.split('{',1)[1].split('}',1)[0].strip()
         if countername == 'songnum':
-          print(countername)
+          #print(countername)
           songnr = int(pretext.split('{',2)[2].split('}',1)[0].strip())
-          print(songnr)
+          #print(songnr)
       if 'lilypondbook' not in rawsong:
         continue
       songtitle = rawsong.split('\\beginsong',1)[1].split('{',1)[1].split('}',1)[0].strip()
@@ -195,7 +198,7 @@ class Chapter:
         self.songs.append(Song(self.title, songtitle, songnr, midifile))
       songnr += 1
 
-  def copymidifiles(self, destdir, createsubdir, createaudiofiles):
+  def copymidifiles(self, destdir, createsubdir):
     """
     Copies the midi files associated to this chapter to a new directory,
     optionally inside a subdirectory named after the title of this chapter.
@@ -210,34 +213,53 @@ class Chapter:
       chapter.
     """
 
+    if len(self.songs) == 0:
+      return None
     fullsubdir = destdir
     if createsubdir and len(self.songs) > 0:
       fullsubdir = destdir.joinpath(self.title)
       os.makedirs(fullsubdir, 0o777, True)
     for song in self.songs:
       song.copymidifile(fullsubdir)
-      if createaudiofiles:
-        song.createaudiofile(fullsubdir)
+
+  def createaudiofiles(self, destdir, createsubdir):
+    """
+    Creates audio files based on the midi files associated to this chapter to a
+    directory, optionally inside a subdirectory named after the title of
+    this chapter.
+
+    Parameters
+    ----------
+    destdir : pathlib.Path
+      Destination directory. It must exist.
+    createsubdir : boolean
+      If true, a subdirectory will be created for this chapter's songs under
+      the destination directory. The subdir is named after the title of this
+      chapter.
+    """
+
+    if len(self.songs) == 0:
+      return None
+    fullsubdir = destdir
+    if createsubdir:
+      fullsubdir = destdir.joinpath(self.title)
+      os.makedirs(fullsubdir, 0o777, True)
+    for song in self.songs:
+      song.createaudiofile(fullsubdir)
 
 
-def execute(depfile, destdir):
+def execute():
   """
-  Executes everything: parses the files listed in a .dep file created by
-  Lilypond for song chapters and copies the found MIDI files to the
-  destination directory.
-
-  Parameters
-  ----------
-  depfile : pathlib.Path
-    The .dep file created by Lilypond
-  destdir : pathlib.Path
-    The destination directory to copy MIDI files into. The directory must exist.
+  Executes everything: creates chapters and initiates midi file copying and/or
+  mp3 creation for each of them. Gets arguments from global variable args.
+  NOTE: Only songs defined in content/songs_*.tex files are included, and each
+        such a file is considered a chapter.
   """
 
   # TODO: Get chapter titles from the main .tex file
 
-  basedir = depfile.parent
-  with open(depfile, 'r') as depfile:
+  basedir = args.depfile.parent
+  with open(args.depfile, 'r') as depfile:
     deplines = depfile.read().strip().split(' ')
 
   chapters = []
@@ -248,38 +270,62 @@ def execute(depfile, destdir):
       chapters.append(Chapter(title, basedir, basedir.joinpath(line)))
 
   for chapter in chapters:
-    chapter.copymidifiles(destdir, True, True)
+    if not args.nomidi:
+      chapter.copymidifiles(args.destdir, True)
+    if not args.nomp3:
+      chapter.createaudiofiles(args.destdir, True)
 
-# If there is wrong number of arguments or help is requested, print
-# usage information and exit with an error code 1.
-if len(sys.argv) != 3 or '--help' in sys.argv or '-h' in sys.argv:
-  print('unilaiva-copy-audio.py3')
-  print('=======================')
-  print('')
-  print('Copies .midi files created by Lilypond elsewhere.')
-  print('')
-  print('USAGE:')
-  print('')
-  print('  copymidifiles <dep-file> <dest-dir>')
-  print('')
-  print('  <dep-file> is a .dep file created by lilypond')
-  print('')
-  print('  <dest-dir> destination directory under where the midi files will be')
-  print('             copied as a set of subdirectories named after chapters.')
-  print('')
-  exit(1)
 
-depfile = pathlib.Path(sys.argv[1])
-destdir = pathlib.Path(sys.argv[2])
+# Main program start
 
-# Check the validity of command line arguments and exit with an error code if
-# there is a problem.
-if not depfile.is_file():
-  print ('Error: ' + depfile.__str__() + ' does not exist')
+# Parse arguments and check for their validity.
+
+parser = argparse.ArgumentParser(
+  description='This utility is part of Unilaiva songbook system. Copies the \
+               .midi files created by lilypond-book to another location, \
+               and/or creates mp3 audio from those files in the new location \
+               also. Note that only songs defined in content/songs_*.tex files \
+               are included, and each such a file is considered a chapter.')
+parser.add_argument('depfile', type=pathlib.Path,
+                    help='The .dep file created by lilypond-book')
+parser.add_argument('destdir', type=pathlib.Path, help='Destination directory under \
+                    where the midi and audio files will be copied as a set of \
+                    subdirectories named after chapters. The directory must exist.')
+parser.add_argument('--sf', type=pathlib.Path, default=defaultsffile,
+                    help='Path to a soundfont file. If this argument is not present, \
+                    the default %s is used'%defaultsffile)
+parser.add_argument('--nomidi', action='store_true', help='skip copying of midi files')
+parser.add_argument('--nomp3', action='store_true', help='skip creation of mp3 files')
+
+args = parser.parse_args()
+
+if not args.depfile.is_file():
+  print ('ERROR    : ' + args.depfile.__str__() + ' does not exist')
   exit(2)
-if not destdir.is_dir():
-  print ('Error: destination directory does not exist')
+if not args.destdir.is_dir():
+  print ('ERROR    : destination directory does not exist')
   exit(2)
+if args.nomidi and args.nomp3:
+  print ('ERROR    : Both --nomidi and --nomp3 arguments present: nothing to do!')
+  exit(2)
+if not args.nomp3:
+  if shutil.which('fluidsynth') == None:
+    print('ERROR    : No fluidsynth executable found')
+    print('           It is required for mp3 creation. Either install it or')
+    print('           skip mp3 creation using --nomp3 argument.')
+    exit(3)
+  if shutil.which('ffmpeg') == None:
+    print('ERROR    : No ffmpeg executable found')
+    print('           It is required for mp3 creation. Either install it or')
+    print('           skip mp3 creation using --nomp3 argument.')
+    exit(3)
+  if not args.sf.is_file():
+    print('ERROR    : Soundfont file %s not found'%(args.sf))
+    print('           It is required for mp3 creation. Either install it, or')
+    print('           specify another soundfont file using --sf argument, or')
+    print('           skip mp3 creation using --nomp3 argument.')
+    exit(3)
+
 
 # Do what we came here for!
-execute(depfile, destdir)
+execute()
