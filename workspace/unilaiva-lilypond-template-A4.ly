@@ -70,9 +70,17 @@
 
     \score {
       <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \new TabStaff { \clef "moderntab" \transpose c' c, \theMelody }
+        \new ChordNames {
+          \set chordNameExceptions = #chExceptions
+          \theChords
+        }
+        \new Staff <<
+          \clef "treble"
+          \new Voice = "theVoice" { \theMelody }
+          %\new Voice = "theVoiceTwo" { \theMelodyTwo }
+        >>
+        \new TabStaff { \clef "moderntab" \transpose c c,, \theMelody }
+        %\new TabStaff { \clef "moderntab" \transpose c c,, \theMelodyTwo }
         \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
         \new Lyrics \lyricsto "theVoice" { \theLyricsThree }
@@ -84,7 +92,6 @@
         \new Lyrics \lyricsto "theVoice" { \theLyricsNine }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTen }
       >>
-      \layout { }
     }
 
 % END lp-include-tail-lyricsbelow.ly
@@ -94,18 +101,25 @@
     \score { % for MIDI
       <<
         \unfoldRepeats \new Staff { % melody
-          \set Staff.midiInstrument = #"acoustic guitar (nylon)"
-          \set Staff.midiMinimumVolume = #0.7
+          \set Staff.midiInstrument = #"flute"
+          \set Staff.midiMinimumVolume = #0.6
           \set Staff.midiMaximumVolume = #0.9
-          \transpose c' c, \theMelody
+          % Transposed down one octave to the common female singing range
+          \transpose c c, \theMelody
         }
-        % % Chords, commented out for possible problems with repeats:
-        % % not all songs have repeats used correctly in chords
-        \unfoldRepeats \transpose c c, \new Staff {
-          \set Staff.midiInstrument = #"acoustic guitar (nylon)"
+        \unfoldRepeats \new Staff { % melody, 2nd voice
+          \set Staff.midiInstrument = #"accordion"
           \set Staff.midiMinimumVolume = #0.5
+          \set Staff.midiMaximumVolume = #0.8
+          % Transposed down two octaves to the common male singing range
+          \transpose c c,, \theMelodyTwo
+        }
+        \unfoldRepeats \new Staff {
+          \set Staff.midiInstrument = #"acoustic guitar (nylon)"
+          \set Staff.midiMinimumVolume = #0.4
           \set Staff.midiMaximumVolume = #0.7
-          \theChords
+          % Transposed down two octaves to the guitar open chord range
+          \transpose c c,, \theChords
         }
       >>
       \midi {
