@@ -27,14 +27,14 @@ Otherwise you must do the compilation steps manually, see **Option THREE**.
 This works on Linux and MacOS, or Windows with WSL. Using Linux is
 recommended, as it is the most tested of the operating systems.
 
-Execute the compilation script **without** `--no-docker` argument.
+Simply execute the compilation script without arguments.
 
 This guarantees the best results, as the actual compiling is done in a Docker
 container that has all the correct packages installed and configured correctly.
 
 Note that the first run will take a long time, as the Docker image is built
-and all the required software downloaded (about 700 MiB) and installed into it.
-When built, the image requires about 1,7 GiB of disk space. Subsequent runs
+and all the required software downloaded (about 900 MiB) and installed into it.
+When built, the image requires about 2,5 GiB of disk space. Subsequent runs
 will be fast as they use the already built image.
 
 By default the compile script uses a maximum of 5 GiB of memory when running
@@ -48,7 +48,7 @@ This method requires the following software installed on your system:
   * `docker`
   * `bash` (installed by default on most systems)
   * `git` (recommended for initially retrieving the songbook source)
-  * 1,7 GiB of disk space (for Docker image)
+  * ...and 2,5 GiB of disk space (for Docker image)
 
 ##### Example: on Debian or Ubuntu Linux, using Docker #####
 
@@ -58,7 +58,7 @@ commands:
 
   1. `sudo apt install docker.io git`
   2. `sudo adduser <USERNAME> docker` # replace <USERNAME> with your username
-  3. `su <USERNAME>` # relogin for the group setting to become active
+  3. `su <USERNAME>` # relogin for the group setting to become active (or reboot)
   4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
   6. `./compile-songbooks.sh`
@@ -103,6 +103,9 @@ the host system only if compiling without using the Docker image.
   * Locale 'fi_FI.utf8'
   * `bash` (installed by default on most systems)
   * `git` (recommended for retrieving and updating the songbook source)
+  * *Optionally* `context` for creating versions for printing A5 size on A4 paper
+  * *Optionally* `ffmpeg` and `fluidsynth` for encoding mp3 audio from Lilypond
+    sources
 
 Our project requires only some pretty standard LaTeX packages, which are
 included in many LaTeX installations by default, to be installed on the system.
@@ -121,24 +124,27 @@ source and compile the songbook without Docker, you need to run the following
 commands:
 
   1. `sudo apt update && sudo apt install bash locales git context
-     context-modules fonts-noto-extra fonts-noto-color-emoji fonts-noto-core
-     fonts-noto-mono lilypond texlive texlive-font-utils texlive-lang-arabic
-     texlive-lang-english texlive-lang-european texlive-lang-portuguese
-     texlive-lang-spanish texlive-latex-base texlive-latex-extra texlive-luatex
-     texlive-music texlive-plain-generic`
+     context-modules ffmpeg fluidsynth fluid-soundfont-gm fonts-noto-core
+     fonts-noto-extra fonts-noto-mono lilypond python3 texlive texlive-font-utils
+     texlive-lang-arabic texlive-lang-english texlive-lang-european
+     texlive-lang-portuguese texlive-lang-spanish texlive-latex-base
+     texlive-latex-extra texlive-luatex texlive-music texlive-plain-generic`
   2. `sudo locale-gen fi_FI.utf8`
   3. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   4. `cd unilaiva-songbook`
   5. `./compile-songbooks.sh --no-docker`
 
+Some of these packages are already installed by default.
 
 ### Option THREE, compile manually ###
 
 This option is for compiling manually without using the compile script nor
 Docker. This way is not recommended. 
 
-Here is described how to build **only** the main document of Unilaiva Songbook.
-To build the others, these instructions must be modified.
+Here is **only** described how to build the main document of Unilaiva Songbook.
+To build the others, these instructions must be modified. To create also the
+collated printout versions (for printing A5 size on A4 paper), and to create
+audio files from Lilypond sources, see the compile script.
 
 Ensure you have all the dependencies installed (see **option TWO**) and the
 project's source downloaded, and then run the following commands or their
