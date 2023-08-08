@@ -432,22 +432,6 @@ compile_document() {
   cp "${document_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying ${document_basename}.pdf from temporary directory!"
   echo "${document_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
 
-  # Check warnings in the logs
-
-  lp_barwarning_count=$(grep -i "warning: barcheck" "log-01_lilypond.log" | wc -l)
-  overfull_count=$(grep -i overfull "log-07_lualatex.log" | wc -l)
-  underfull_count=$(grep -i underfull "log-07_lualatex.log" | wc -l)
-  fontwarning_count=$(grep -i "Font Warning" "log-07_lualatex.log" | wc -l)
-  [ "${lp_barwarning_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: Lilypond bar check warnings: ${lp_barwarning_count}"
-  [ "${overfull_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: Overfull warnings: ${overfull_count}"
-  [ "${underfull_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: Underfull warnings: ${underfull_count}"
-  if [ "${fontwarning_count}" -gt "20" ]; then
-    echo -e "${PRETXT_DEBUG}${txt_docbase}: Font warnings: ${fontwarning_count}; ${C_RED}CHECK THE LOG!!${C_RESET}"
-    echo "Too many Font warnings! There is a problem!" >>"${TOO_MANY_WARNINGS_FILE}"
-  else
-    [ "${fontwarning_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: Font warnings: ${fontwarning_count}"
-  fi
-
   # Create printouts, if filename contains _A5 and printouts are not disabled
   # by a command line argument:
 
@@ -490,7 +474,7 @@ compile_document() {
     which "python3" >"/dev/null" || die 1 "'python3' binary not found in path"
   fi
   if [ ${midifiles} == "true" ]; then
-    echo -e "${PRETXT_EXEC}${txt_docbase}: Copying MIDI files from Lilypond's output"
+    echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (copy midi files)"
     local cur_res_midi_subdirname="${RESULT_MIDI_DIRNAME}/${document_basename}"
     rm -R "${cur_res_midi_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_midi_subdirname}" 2>"/dev/null"
@@ -502,7 +486,7 @@ compile_document() {
       || die_log $? "Error copying midi files to result directory" "log-10_copy-midi.log"
   fi
   if [ ${audiofiles} == "true" ]; then
-    echo -e "${PRETXT_EXEC}${txt_docbase}: Encoding audio from Lilypond's MIDI files"
+    echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (encode audio)"
     local cur_res_audio_subdirname="${RESULT_AUDIO_DIRNAME}/${document_basename}"
     rm -R "${cur_res_audio_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_audio_subdirname}" 2>"/dev/null"
@@ -516,6 +500,25 @@ compile_document() {
 
   # Clean up the compile directory: remove some temporary files.
   rm tmp*.out tmp*.sxc 2>"/dev/null"
+
+  # Check warnings in the logs
+
+  lp_barwarning_count=$(grep -i "warning: barcheck" "log-01_lilypond.log" | wc -l)
+  overfull_count=$(grep -i overfull "log-07_lualatex.log" | wc -l)
+  underfull_count=$(grep -i underfull "log-07_lualatex.log" | wc -l)
+  fontwarning_count=$(grep -i "Font Warning" "log-07_lualatex.log" | wc -l)
+  if [ "${lp_barwarning_count}" -gt "0" ]; then
+    echo -e "${PRETXT_DEBUG}${txt_docbase}: Lilypond bar check warnings: ${lp_barwarning_count}"
+  fi
+  if [ "${overfull_count}" -gt "0" ] || [ "${underfull_count}" -gt "0" ]; then
+    echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - overfull: ${overfull_count}, underfull: ${underfull_count}"
+  fi
+  if [ "${fontwarning_count}" -gt "20" ]; then
+    echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - font: ${fontwarning_count}; ${C_RED}CHECK THE LOG!!${C_RESET}"
+    echo "Too many font warnings! There is a problem!" >>"${TOO_MANY_WARNINGS_FILE}"
+  else
+    [ "${fontwarning_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - font: ${fontwarning_count}"
+  fi
 
   # Get out of ${temp_dirname_twolevels}:
   cd "${INITIAL_DIR}" || die $? "Cannot return to the main directory."
