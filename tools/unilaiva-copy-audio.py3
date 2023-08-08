@@ -5,13 +5,17 @@
 # Part of Unilaiva songbook system.
 #
 # Copies the .MIDI files created by Lilypond to another location and creates
-# mp3 audio from those files in the new location also.
+# audio files (mp3) from those files in the new location also.
 #
-# Run with '--help' argument for usage info.
+# For audio creation, executables 'ffmpeg' and 'fluidsynth', and a sound font
+# file are required.
+#
+# Run with '-h' argument for usage info.
 #
 
 
 import argparse
+from argparse import RawDescriptionHelpFormatter
 import sys
 import os
 import subprocess
@@ -43,7 +47,7 @@ def strip_accents(text):
         pass
     text = unicodedata.normalize('NFD', text)
     text = text.encode('ascii', 'ignore')
-    text = text.decode("utf-8")
+    text = text.decode('utf-8')
 
     return str(text)
 
@@ -110,7 +114,7 @@ class Song:
     """
 
     if not self.originalmidifile.is_file():
-      print ('ERROR    : source .midi file is not available')
+      print ('ERROR    : source MIDI file is not available')
       exit(4)
     shutil.copy2(self.originalmidifile, destdir.joinpath(self.newmidifilename))
     print(destdir.name + ' : ' + self.newmidifilename)
@@ -122,10 +126,15 @@ class Song:
     destination directory must exist and be writable. If the destination file
     exists, it will be overwritten. The sound font file is picked from global
     variable args.
+
+    Parameters
+    ----------
+    destdir : pathlib.Path
+      The destination directory to create the mp3 file into
     """
 
     if not self.originalmidifile.is_file():
-      print('ERROR    : source .midi file is not available')
+      print('ERROR    : source MIDI file is not available')
       exit(4)
 
     try:
@@ -133,22 +142,22 @@ class Song:
         'fluidsynth -a file -T raw -O s16 -E little -r 48000 -F - \"%s\" \"%s\"\
         | ffmpeg -f s32le -ac 1 -ar 48000 -i -\
         -codec:a libmp3lame -f mp3 -q:a 1\
-        -id3v2_version 3 -write_id3v2 -write_id3v1 1\
-        -metadata title=\"%s [generated from notation]\"\
+        -id3v2_version 3 -write_id3v2 -write_id3v1\
+        -metadata title=\"%s\"\
         -metadata artist=\"Unilaiva audio generator\"\
         -metadata album_artist=\"Unilaiva audio generator\"\
         -metadata track=%d\
         -metadata album=\"%s\"\
         -y \"%s\"'
           %(args.sf, self.originalmidifile,
-            self.title,
+            self.title + ' [generated from notation]',
             self.nr,
             self.chaptertitle + ' [generated from notation]',
             destdir.joinpath(self.newmp3filename)),
           capture_output=True, shell=True, check=True)
     except subprocess.CalledProcessError as e:
       print('ERROR    : mp3 coversion fails with error %i'%e.returncode)
-      print('\n' + e.stderr.decode("utf-8"))
+      print('\n' + e.stderr.decode('utf-8'))
       exit(5)
     print(destdir.name + ' : ' + self.newmp3filename)
 
@@ -270,9 +279,9 @@ def execute():
       chapters.append(Chapter(title, basedir, basedir.joinpath(line)))
 
   for chapter in chapters:
-    if not args.nomidi:
+    if args.midi:
       chapter.copymidifiles(args.destdir, True)
-    if not args.nomp3:
+    if args.audio:
       chapter.createaudiofiles(args.destdir, True)
 
 
@@ -281,11 +290,13 @@ def execute():
 # Parse arguments and check for their validity.
 
 parser = argparse.ArgumentParser(
-  description='This utility is part of Unilaiva songbook system. Copies the \
-               .midi files created by lilypond-book to another location, \
-               and/or creates mp3 audio from those files in the new location \
-               also. Note that only songs defined in content/songs_*.tex files \
-               are included, and each such a file is considered a chapter.')
+  description='This utility is part of Unilaiva songbook system.\n\n' +
+              'Copies the MIDI files created by lilypond-book to another location, \n' +
+              'and creates MP3 audio from those files in the new location also.\n' +
+              'Note that only songs defined in content/songs_*.tex files are included,\n' +
+              'and each such a file is considered a chapter by which a subdirectory\n' +
+              'is created for the songs contained within.',
+  formatter_class=RawDescriptionHelpFormatter)
 parser.add_argument('depfile', type=pathlib.Path,
                     help='The .dep file created by lilypond-book')
 parser.add_argument('destdir', type=pathlib.Path, help='Destination directory under \
@@ -294,36 +305,37 @@ parser.add_argument('destdir', type=pathlib.Path, help='Destination directory un
 parser.add_argument('--sf', type=pathlib.Path, default=defaultsffile,
                     help='Path to a soundfont file. If this argument is not present, \
                     the default %s is used'%defaultsffile)
-parser.add_argument('--nomidi', action='store_true', help='skip copying of midi files')
-parser.add_argument('--nomp3', action='store_true', help='skip creation of mp3 files')
+parser.add_argument('--midi', action='store_true', help='Copy MIDI files')
+parser.add_argument('--audio', action='store_true', help='Create MP3 files')
 
 args = parser.parse_args()
 
 if not args.depfile.is_file():
-  print ('ERROR    : ' + args.depfile.__str__() + ' does not exist')
+  print('ERROR    : ' + args.depfile.__str__() + ' does not exist')
   exit(2)
 if not args.destdir.is_dir():
-  print ('ERROR    : destination directory does not exist')
+  print('ERROR    : destination directory does not exist')
   exit(2)
-if args.nomidi and args.nomp3:
-  print ('ERROR    : Both --nomidi and --nomp3 arguments present: nothing to do!')
+if not args.midi and not args.audio:
+  print('ERROR    : No --midi nor --audio argument present: nothing to do!')
+  print('           At least one of them is needed.')
   exit(2)
-if not args.nomp3:
+if args.audio:
   if shutil.which('fluidsynth') == None:
-    print('ERROR    : No fluidsynth executable found')
-    print('           It is required for mp3 creation. Either install it or')
-    print('           skip mp3 creation using --nomp3 argument.')
+    print("ERROR    : 'fluidsynth' executable not found in path!")
+    print('           It is required for audio (MP3) creation. Either install it or')
+    print('           skip audio creation using by not specifying --audio argument.')
     exit(3)
   if shutil.which('ffmpeg') == None:
-    print('ERROR    : No ffmpeg executable found')
-    print('           It is required for mp3 creation. Either install it or')
-    print('           skip mp3 creation using --nomp3 argument.')
+    print("ERROR    : 'ffmpeg' executable not found in path!")
+    print('           It is required for audio (MP3) creation. Either install it or')
+    print('           skip audio creation using by not specifying --audio argument.')
     exit(3)
   if not args.sf.is_file():
-    print('ERROR    : Soundfont file %s not found'%(args.sf))
-    print('           It is required for mp3 creation. Either install it, or')
-    print('           specify another soundfont file using --sf argument, or')
-    print('           skip mp3 creation using --nomp3 argument.')
+    print('ERROR    : Soundfont file not found: %s'%(args.sf))
+    print('           It is required for audio (MP3) creation. Either install it, or')
+    print('           specify another soundfont file (location) using --sf argument, or')
+    print('           skip audio creation using by not specifying --audio argument.')
     exit(3)
 
 
