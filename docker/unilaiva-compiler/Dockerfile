@@ -16,11 +16,15 @@ RUN apt-get update \
     locales \
     context \
     context-modules \
+    ffmpeg \
+    fluidsynth \
+    fluid-soundfont-gm \
     fonts-noto-extra \
     #fonts-noto-color-emoji \
     fonts-noto-core \
     fonts-noto-mono \
     lilypond \
+    python3 \
     texlive \
     texlive-font-utils \
     texlive-lang-arabic \
@@ -33,7 +37,7 @@ RUN apt-get update \
     texlive-luatex \
     texlive-music \
     texlive-plain-generic \
-    # pdftk \
+    #pdftk \
     qrencode \
   && rm -rf /var/lib/apt/lists/*
 
