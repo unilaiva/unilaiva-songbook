@@ -206,12 +206,12 @@ margins, page number positions etc. are optimized for that order.
 Note that margins ought to be set to zero in the printing software and the
 printer drivers setup, if such options are available. On Linux and MacOS, the
 `lp` program is recommended for printing without extra margins. Simply state
-e.g. `lp -o PageSize=A4 printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf`
+e.g. `lp -o PageSize=A4 printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf`
 without the `fit-to-page` option that some GUI programs like to pass to it.
 
 There are also special printing options, like printing multiple A5 sized pages
 on an A4 sized paper. They are defined in files named
-`printout_template_*.context` and are to be inputted to *ConTeXt*
+`printout-template_*.context` and are to be inputted to *ConTeXt*
 program, which needs to be installed on the system. They operate on a previously
 compiled `unilaiva-songbook_A5.pdf` file. See comments in the beginning of each such
 file. If the compilation script finds the `context` binary, it will by default
@@ -224,7 +224,7 @@ To print double sided on a printer without a duplexer, one needs to print odd
 pages first, then flip each page around, feed them to the printer, and then
 print the even pages. With the main document, `unilaiva-songbook_A5.pdf`, the
 pages need to be flipped on the long edge. The other files, named
-`printout_unilaiva-songbook*.pdf`, with multiple pages on an A4 sheet, should be
+`printout-*unilaiva-songbook*.pdf`, with multiple pages on an A4 sheet, should be
 flipped on the short edge.
 
 To flip pages *on the short edge* manually: put the printed stack of papers in
@@ -247,9 +247,9 @@ hand. The end result is a book consisting of two-sided A5 pages, which is the
 preferred format.
 
   1. `./compile-songbooks.sh`
-  2. `pdftk printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf cat
+  2. `pdftk printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf cat
      1-endodd output unilaiva-songbook_odd.pdf`
-  3. `pdftk printout_unilaiva-songbook_A5_on_A4_doublesided_folded.pdf cat
+  3. `pdftk printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf cat
      1-endeven output unilaiva-songbook_even.pdf`
   4. `lp -o PageSize=A4 unilaiva-songbook_odd.pdf`
   5. Flip the pages manually on the short edge and feed them to the printer.
@@ -273,8 +273,8 @@ Project structure and guidelines
 ├── **result**
 ├── **tex**
 │   ├── **ext_packages**
-│   ├── printout_template_A5_on_A4_doublesided_folded.context
-│   ├── printout_template_A5_on_A4_sidebyside_simple.context
+│   ├── printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context
+│   ├── printout-template_EASY-A5-on-A4-sidebyside-simple.context
 │   ├── ul-selection_example.tex
 │   ├── ul-selection_include.tex
 │   ├── unilaiva-songbook_common.sty

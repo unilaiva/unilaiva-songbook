@@ -447,20 +447,20 @@ compile_document() {
       else
         echo -e "${PRETXT_EXEC}${txt_docbase}: context (create printouts)"
 
-        # A5 on A4, double sided, folded: Use 'awk' to create a copy of the
+        # A5 on A4, double sided, must cut: Use 'awk' to create a copy of the
         # printout template file with changed input PDF file name and then
         # execute 'context' on the new file.
-        printout_dsf_basename="printout_${document_basename}_on_A4_doublesided_folded"
-        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_doublesided_folded.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout!"
+        printout_dsf_basename="printout-BOOKLET_${document_basename}-on-A4-doublesided-needs-cutting"
+        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout!"
         context "${printout_dsf_basename}.context" 1>"log-08_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout!" "log-08_printout-dsf.log"
         cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
         echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
 
-        # A5 on A4, a A5-A5 spread on single A4 surface: Use 'awk' to create a
+        # A5 on A4, a A5+A5 spread on single A4 surface: Use 'awk' to create a
         # copy of the printout template file with changed input PDF file name
         # and then execute 'context' on the new file.
-        printout_sss_basename="printout_${document_basename}_on_A4_sidebyside_simple"
-        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout_template_A5_on_A4_sidebyside_simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout!"
+        printout_sss_basename="printout-EASY_${document_basename}-on-A4-sidebyside-simple"
+        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_EASY-A5-on-A4-sidebyside-simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout!"
         context "${printout_sss_basename}.context" 1>"log-09_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout!" "log-09_printout-sss.log"
         cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
         echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
