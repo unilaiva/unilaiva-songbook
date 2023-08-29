@@ -277,7 +277,7 @@
 %   \bookbytext
 %   \bookversionpretext
 %   \bookcompiledbytext
-%   \secondpagefootnote
+%   \imprintpagefootnote
 % All of them are optional, and for some there are defaults defined below.
 \providecommand\mainbooktitle{Not named songbook} % the main title
 % The book title to display on top of each verso page (if doesn't exist, it is
@@ -663,8 +663,8 @@
 %   \bookwebsitelink
 %   \bookwebsitelinkqrimage (this is image filename in content/img without path)
 %   \bookcompiledbytext
-%   \secondpagefootnote
-\newcommand{\secondpage}{
+%   \imprintpagefootnote
+\newcommand{\imprintpage}{
   { % must be contained within a block for the settings to not bleed
     \thispagestyle{empty}
     \topskip0pt
@@ -714,8 +714,8 @@
         {\footnotesize\bookcompiledbytext}
         \par\vspace{4ex}
       \fi
-      \ifdefined\secondpagefootnote%
-        {\scriptsize\secondpagefootnote}%
+      \ifdefined\imprintpagefootnote%
+        {\scriptsize\imprintpagefootnote}%
       \fi
     \end{center}
     \vspace{-1.85ex}% workaround to align page bottom with other pages

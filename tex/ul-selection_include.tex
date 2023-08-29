@@ -37,7 +37,7 @@
 }
 
 % This will create the second page for a selection booklet
-\newcommand{\secondpageforselection}[2]{
+\newcommand{\imprintpageforselection}[2]{
   { % must be contained within a block for the settings to not bleed
     \thispagestyle{empty}
     \topskip0pt
@@ -87,7 +87,7 @@
       }
     \end{center}
   }
-} % END \secondpageforselection
+} % END \imprintpageforselection
 
 
 \begin{document}
@@ -108,7 +108,7 @@
 
   \coverpageforselection % cover page here
   \clearpage
-  \secondpageforselection{}{} % the second (title) page here (verso)
+  \imprintpageforselection{}{} % the second (title) page here (verso)
 
   % TOC:
   \toc
