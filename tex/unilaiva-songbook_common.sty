@@ -659,6 +659,9 @@
 %   \subsubbooktitle
 %   \bookmotto
 %   \bookbytext
+%   \bookversionpretext
+%   \bookwebsitelink
+%   \bookwebsitelinkqrimage (this is image filename in content/img without path)
 %   \bookcompiledbytext
 %   \secondpagefootnote
 \newcommand{\secondpage}{
@@ -693,12 +696,20 @@
         \ifchorded\else{\par\emph{(lyrics only)}}\fi% if non-chorded version, mention it here
       }
       \par\vspace*{\fill}
-      % Created with: qrencode -s 32 -l Q -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
-      % --> then added the Unilaiva icon in the middle as transparent 320x320 image
-      \imagel[3]{QR_https_unilaiva_aavalla_net.png} % is already centered, so 'l' version ok
-      \par
-      {\small\url{https://unilaiva.aavalla.net/}}
-      \par\vspace*{\fill}
+      \ifdefined\bookwebsitelinkqrimage% \bookwebsitelink exists
+        \imagel[3]{QR_https_unilaiva_aavalla_net.png} % is already centered, so 'l' version ok
+        \par
+      \fi
+      \ifdefined\bookwebsitelink% \bookwebsitelink exists
+        {\small\url{\bookwebsitelink}}
+      \fi
+      % Add vspace once, if either \bookwebsitelink or \bookwebsitelinkqrimage,
+      % or both, exist
+      \ifdefined\bookwebsitelinkqrimage%
+        \par\vspace*{\fill}
+      \else\ifdefined\bookwebsitelink%
+        \par\vspace*{\fill}
+      \fi\fi
       \ifdefined\bookcompiledbytext% \bookcompiledbytext exists
         {\footnotesize\bookcompiledbytext}
         \par\vspace{4ex}
