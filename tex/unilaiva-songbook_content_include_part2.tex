@@ -61,7 +61,7 @@
       \clearpage\scleardpage
       \section{Runoja, loitsuja}
         \begin{songs}{titleidx,authidx,tagidx}
-          \ifchorded\newcommand{\waschorded}{true}\fi
+          \ifchorded\newcommand{\waschorded}{true}\fi % remember chorded state
           \chordsoff % songs: do not show (empty line for non-existing) chords
           % songs: increase line spacing for better readability (+.95pt is the
           % maximum so that this section doesn't extend on the next page;
@@ -79,7 +79,7 @@
           \songcolumns{1} % songs: back to the default: one column per page
           \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
           \baselineadj=0pt % songs: back to the default line spacing
-          \ifdefined\waschorded\chordson\fi % songs: back to the default: show chords
+          \ifdefined\waschorded\chordson\fi % songs: back to the previous chorded state
         \end{songs}
     \end{finnish}
 

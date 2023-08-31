@@ -560,13 +560,16 @@ compile_document() {
 
   if [ ${lyricbooks} == "true" ]; then
     grep '\\input{.*setup_.*\.tex}' "${document_basename}.tex" >"/dev/null"
-    [ $? -eq 0 ] || die $? "Unable to create lyric book: '\input{setup_<something>.tex}' not found in doc"
-    local lyricdoc_basename="${document_basename}_LYRICS-ONLY"
-    cat "${document_basename}.tex" \
-      | sed -e 's/\(\\input{.*setup_.*\.tex}\)/\\input{tex\/internal-lyricbook-presetup.tex}\1\\input{tex\/internal-lyricbook-postsetup.tex}/g' \
-      >>"${lyricdoc_basename}.tex"
-    rm ./idx_*.sxd ./idx_*.sbx 2>"/dev/null"
-    compile_document_sub "${lyricdoc_basename}" "$2" "lyric-"
+    if [ $? -ne 0 ]; then
+      echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra lyric-only book not created, as no '\input{setup_<...>}' in doc"
+    else
+      local lyricdoc_basename="${document_basename}_LYRICS-ONLY"
+      cat "${document_basename}.tex" \
+        | sed -e 's/\(\\input{.*setup_.*\.tex}\)/\\input{tex\/internal-lyricbook-presetup.tex}\1\\input{tex\/internal-lyricbook-postsetup.tex}/g' \
+        >>"${lyricdoc_basename}.tex"
+      rm ./idx_*.sxd ./idx_*.sbx 2>"/dev/null"
+      compile_document_sub "${lyricdoc_basename}" "$2" "lyric-"
+    fi
   fi
 
   # Clean up the compile directory: remove some temporary files.

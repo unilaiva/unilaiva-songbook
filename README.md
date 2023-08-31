@@ -353,10 +353,9 @@ The main document must have an `\input` instruction for a file named
 package is loaded. This is required for automatically creating a lyrics-only
 version of the document. You can copy the file
 `tex/setup_default-A5-fullmusic_include.tex` and make your own version, but
-the filename must start with `setup_`.
+the filename must start with `setup_` to allow for automatic creation of
+lyric-only book version.
 
-If your document doesn't follow this rule, it must be compiled with the
-`--no-lyric` option of the compile script.
 
 #### Page and line breaks ####
 

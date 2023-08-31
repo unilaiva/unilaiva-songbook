@@ -124,6 +124,7 @@
     \input{content/songs_suomi.tex}
     \input{content/songs_suomi_larva.tex}
 
+    \ifchorded\newcommand{\waschorded}{true}\fi % remember chorded state
     \chordsoff % songs: do not show (empty line for non-existing) chords
     \renewcommand{\lyricfont}{\small} % songs: use smaller font
     \songcolumns{2} % songs: two columns per page
@@ -136,7 +137,7 @@
     \songpos{3} % songs: back to the default: avoid all breaks whenever possible
     \songcolumns{1} % songs: back to the default: one column per page
     \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
-    \chordson % songs: back to the default: show chords
+    \ifdefined\waschorded\chordson\fi % songs: back to the previous chorded state
   \end{songs}
 
 \end{document}
