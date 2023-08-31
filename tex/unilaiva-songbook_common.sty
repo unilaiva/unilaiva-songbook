@@ -1197,21 +1197,12 @@
     % The first block after verses needs a bit more vertical space before it:
     \ifnum\value{@aftersongblocks}=0%
       \vspace{1.618034em}%
-      \brkpenalty\blockpenalty%
-      \brk%
-      % The following zero-height box causes fills to be added before the first
-      % block, even if the block is the first thing on a page. This ensures
-      % the vertical centering of the blocks when the song verses are on a
-      % previous page and the blocks are all on this one.
-      %\vbox to0pt{}%
-      \vspace*{\fill}%
     \else%
       \vspace{1em}%
-      \brkpenalty\blockpenalty%
-      \brk%
-      \vbox to0pt{}%
-      \vspace*{\fill}%
     \fi%
+    \brkpenalty\blockpenalty%
+    \brk%
+    \vspace*{\fill}% % with star to not be deleted after page break
     \addtocounter{@aftersongblocks}{1}%
   \else%
     \ifSB@intersong%

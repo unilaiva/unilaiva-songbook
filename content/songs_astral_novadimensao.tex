@@ -144,8 +144,7 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi
-  \begin{translation}
-    \ifchorded\else\brk\vfill\fi
+  \begin{translation}\ifchorded\else\brk\vbox to0pt{}\vfill\fi
     Of the Eternal Father I never cease to ask
     I never stop speaking about my Mother
     Jesus Christ our guide forever

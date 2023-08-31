@@ -1327,10 +1327,12 @@
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \vfill
-  \beginverse \noteson % first line of the next hino
-    \hfill\tonextsongmark \hfill \[\mn{B}]Eu |\[\mnc{D}G]cheguei \[\mnc{B}(Em/B)]nes\[\mn{E}]ta |\[\mncii{D}{G}G]casa \ldots \altchords{|A (F\shrp{}m/C\shrp{}) |A}
-  \endverse
+  \ifchorded%
+    \vfill
+    \beginverse \noteson % first line of the next hino
+      \hfill\tonextsongmark \hfill \[\mn{B}]Eu |\[\mnc{D}G]cheguei \[\mnc{B}(Em/B)]nes\[\mn{E}]ta |\[\mncii{D}{G}G]casa \ldots \altchords{|A (F\shrp{}m/C\shrp{}) |A}
+    \endverse
+  \fi
 \endsong
 
 
