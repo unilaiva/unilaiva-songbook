@@ -641,7 +641,7 @@ while [ $# -gt 0 ]; do
     "--no-midi")
       midifiles="false"
       shift;;
-    "--no-mp3")
+    "--no-audio")
       audiofiles="false"
       shift;;
     "--no-docker")
