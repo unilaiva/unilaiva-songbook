@@ -83,6 +83,7 @@ print_usage_and_exit() {
   echo "  --no-astral     : do not compile unilaiva-astral* books"
   echo "  --no-deploy     : do not copy PDF files to ./${DEPLOY_DIRNAME}/"
   echo "  --no-docker     : do not use the Docker container for compiling"
+  echo "  --no-lyric      : do not generate additional lyrics-only books"
   echo "  --no-midi       : do not copy MIDI files created by Lilypond to the result"
   echo "                    directory"
   echo "  --no-partial    : do not compile partial books"
@@ -96,7 +97,8 @@ print_usage_and_exit() {
   echo "                    does not compile anything."
   echo "  -q              : use for quick development build of the main document;"
   echo "                    equals to --no-partial --no-selections --no-astral"
-  echo "                    --no-printouts --no-deploy"
+  echo "                    --no-printouts --no-deploy --no-midi --no-audio"
+  echo "                    --no-lyric"
   echo ""
   echo "In addition to the full version of tha main Unilaiva Songbook, also"
   echo "two-booklet version of it is created, with parts 1 and 2 in separate PDFs."
@@ -114,6 +116,10 @@ print_usage_and_exit() {
   echo ""
   echo "If .tex files are explicitly given on the command line, only those"
   echo "documents are compiled."
+  echo ""
+  echo "By default, additional lyrics-only books are generated also. They have"
+  echo "no notation, chords, etc. musical information, except for lyrics and"
+  echo "bar lines. Use --no-lyric option to not create them."
   echo ""
   echo "By default, MIDI files and audio files are extracted and generated from"
   echo "Lilypond sources and copied to '${RESULT_MIDI_DIRNAME}' and '${RESULT_AUDIO_DIRNAME}'"
@@ -331,6 +337,7 @@ compile_in_docker() {
   return $?
 }
 
+
 # Function: compile the document given as parameter
 # Usage: compile_document <filename_base_for_tex_document> <doc_color_string>
 #        - Give filename without path and without ".tex" suffix.
@@ -361,12 +368,121 @@ compile_document() {
     die $1 "${txt_docbase}: $2\n${PRETXT_SPACE}Exit code: ${C_RED}${1}1${C_RESET}"
   }
 
-  document_basename="$1"
+  # Function: compile the document given as parameter.
+  # Only creates a PDF document. Must already be in the subdirectory created by
+  # lilypond-book. Available for compile_document only.
+  # Usage: compile_document <filename_base_for_tex_document> <doc_color_string>
+  #        - Give filename without path and without ".tex" suffix.
+  #        - doc_color_string is a string containing escaped color instructions
+  #        - prefix for log filenames, can be empty string
+  compile_document_sub() {
+
+    local currentdoc_basename="${1}"
+    local txt_docbase="${C_DGRAY}[${2}${1}${C_DGRAY}]${C_RESET}"
+    local logfileprefix="${3}"
+
+    echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (1st run)"
+
+    # First run of lualatex:
+    local log02file="${logfileprefix}log-02_lualatex.log"
+    lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${currentdoc_basename}.tex" 1>"${log02file}" 2>&1 || die_log $? "Compilation error running lualatex!" "${log02file}"
+
+    # Only create indices, if not compiling a selection booklet (bashism):
+    if [[ ${currentdoc_basename} != ${SELECTION_FNAME_PREFIX}* ]]; then
+      echo -e "${PRETXT_EXEC}${txt_docbase}: texlua (create indices)"
+
+      # Create indices:
+      local log03file="${logfileprefix}log-03_titleidx.log"
+      texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} "idx_title.sxd" "idx_title.sbx" 1>"${log03file}" 2>&1 || die_log $? "Error creating song title indices!" "${log03file}"
+      # Author index creation is commented out, as it is not used (now):
+      # local log04file="${logfileprefix}log-04_authidx.log"
+      # texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} idx_auth.sxd idx_auth.sbx 1>"${log04file}" 2>&1 || die_log $? "Error creating author indices!" "${log04file}"
+      local log05file="${logfileprefix}log-05_tagidx.log"
+      texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} -b "tags.can" "idx_tag.sxd" "idx_tag.sbx" 1>"${log05file}" 2>&1 || die_log $? "Error creating tag (scripture) indices!" "${log05file}"
+    fi
+
+    echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (2nd run)"
+
+    # Second run of lualatex:
+    local log06file="${logfileprefix}log-06_lualatex.log"
+    lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${currentdoc_basename}.tex" 1>"${log06file}" 2>&1 || die_log $? "Compilation error running lualatex (2nd time)!" "${log06file}"
+
+    echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (3rd run)"
+
+    # Third run of lualatex, creates the final main PDF document:
+    local log07file="${logfileprefix}log-07_lualatex.log"
+    lualatex -file-line-error -halt-on-error -interaction=nonstopmode "${currentdoc_basename}.tex" 1>"${log07file}" 2>&1 || die_log $? "Compilation error running lualatex (3rd time)!" "${log07file}"
+
+    cp "${currentdoc_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying ${currentdoc_basename}.pdf from temporary directory!"
+    echo "${currentdoc_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
+
+    # Create printouts, if filename contains _A5 and printouts are not disabled
+    # by a command line argument:
+
+    if [[ "${currentdoc_basename}" != *"_A5"* ]]; then
+      echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created, no _A5 in filename"
+    else
+      if [ ${createprintouts} != "true" ]; then
+        echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created as per request"
+      else
+        which "context" >"/dev/null"
+        if [ $? -ne 0 ]; then
+          echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created; no 'context'"
+        else
+          echo -e "${PRETXT_EXEC}${txt_docbase}: context (create printouts)"
+
+          # A5 on A4, double sided, must cut: Use 'awk' to create a copy of the
+          # printout template file with changed input PDF file name and then
+          # execute 'context' on the new file.
+          printout_dsf_basename="printout-BOOKLET_${currentdoc_basename}-on-A4-doublesided-needs-cutting"
+          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context" >"${printout_dsf_basename}.context" || die $? "[${currentdoc_basename}]: Error with 'awk' when creating dsf printout!"
+          local log08file="${logfileprefix}log-08_printout-dsf.log"
+          context "${printout_dsf_basename}.context" 1>"${log08file}" 2>&1 || die_log $? "Error creating dsf printout!" "${log08file}"
+          cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
+          echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
+
+          # A5 on A4, a A5+A5 spread on single A4 surface: Use 'awk' to create a
+          # copy of the printout template file with changed input PDF file name
+          # and then execute 'context' on the new file.
+          printout_sss_basename="printout-EASY_${currentdoc_basename}-on-A4-sidebyside-simple"
+          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_EASY-A5-on-A4-sidebyside-simple.context" >"${printout_sss_basename}.context" || die $? "[${currentdoc_basename}]: Error with 'awk' when creating sss printout!"
+          local log09file="${logfileprefix}log-09_printout-sss.log"
+          context "${printout_sss_basename}.context" 1>"${log09file}" 2>&1 || die_log $? "Error creating sss printout!" "${log09file}"
+          cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
+          echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
+        fi
+      fi
+    fi
+
+    # Check warnings in the logs
+
+    lp_barwarning_count=$(grep -i "warning: barcheck" "${log01file}" | wc -l)
+    overfull_count=$(grep -i "overfull" "${log07file}" | wc -l)
+    underfull_count=$(grep -i "underfull" "${log07file}" | wc -l)
+    fontwarning_count=$(grep -i "Font Warning" "${log07file}" | wc -l)
+    if [ "${lp_barwarning_count}" -gt "0" ]; then
+      echo -e "${PRETXT_DEBUG}${txt_docbase}: Lilypond bar check warnings: ${lp_barwarning_count}"
+    fi
+    if [ "${overfull_count}" -gt "0" ] || [ "${underfull_count}" -gt "0" ]; then
+      echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - overfull: ${overfull_count}, underfull: ${underfull_count}"
+    fi
+    if [ "${fontwarning_count}" -gt "20" ]; then
+      echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - font: ${fontwarning_count}; ${C_RED}CHECK THE LOG!!${C_RESET}"
+      echo "Too many font warnings! There is a problem!" >>"${TOO_MANY_WARNINGS_FILE}"
+    else
+      [ "${fontwarning_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - font: ${fontwarning_count}"
+    fi
+
+  } # END compile_document_sub
+
+
+  local document_basename="$1"
+
   # setup some UI text with colors (if enabled):
-  txt_docbase="${C_DGRAY}[${2}${1}${C_DGRAY}]${C_RESET}"
-  txt_doctex="${C_DGRAY}[${2}${1}.tex${C_DGRAY}]${C_RESET}"
-  txt_resultpdf="${C_DGRAY}[${2}${RESULT_DIRNAME}/${1}.pdf${C_DGRAY}]${C_RESET}"
-  temp_dirname_twolevels="${TEMP_DIRNAME}/${document_basename}"
+  local txt_docbase="${C_DGRAY}[${2}${1}${C_DGRAY}]${C_RESET}"
+  local txt_doctex="${C_DGRAY}[${2}${1}.tex${C_DGRAY}]${C_RESET}"
+  local txt_resultpdf="${C_DGRAY}[${2}${RESULT_DIRNAME}/${1}.pdf${C_DGRAY}]${C_RESET}"
+  local temp_dirname_twolevels="${TEMP_DIRNAME}/${document_basename}"
 
   echo -e "${PRETXT_START}${txt_docbase}"
 
@@ -398,75 +514,15 @@ compile_document() {
   # created by it to subdirectory ${temp_dirname_twolevels}. The directory
   # (last level only) is created if it doesn't exist. Note the need to include
   # the path for the log file, as we are not in the subdirectory yet.
-  lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/log-01_lilypond.log" 2>&1 || die_log $? "Error running lilypond-book!" "${temp_dirname_twolevels}/log-01_lilypond.log"
+  local log01file="log-01_lilypond.log"
+  lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/${log01file}" 2>&1 || die_log $? "Error running lilypond-book!" "${temp_dirname_twolevels}/${log01file}"
 
   # Enter the temp directory. (Do rest of the steps there.)
   cd "${temp_dirname_twolevels}" || die 1 "Cannot enter temporary directory!"
 
-  echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (1st run)"
 
-  # First run of lualatex:
-  lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"log-02_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex!" "log-02_lualatex.log"
+  compile_document_sub "$1" "$2" ""
 
-  # Only create indices, if not compiling a selection booklet (bashism):
-  if [[ ${document_basename} != ${SELECTION_FNAME_PREFIX}* ]]; then
-    echo -e "${PRETXT_EXEC}${txt_docbase}: texlua (create indices)"
-
-    # Create indices:
-    texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} "idx_title.sxd" "idx_title.sbx" 1>"log-03_titleidx.log" 2>&1 || die_log $? "Error creating song title indices!" "log-03_titleidx.log"
-    # Author index creation is commented out, as it is not used (now):
-    # texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} idx_auth.sxd idx_auth.sbx 1>"log-04_authidx.log" 2>&1 || die_log $? "Error creating author indices!" "log-04_authidx.log"
-    texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} -b "tags.can" "idx_tag.sxd" "idx_tag.sbx" 1>"log-05_tagidx.log" 2>&1 || die_log $? "Error creating tag (scripture) indices!" "log-05_tagidx.log"
-  fi
-
-  echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (2nd run)"
-
-  # Second run of lualatex:
-  lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"log-06_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (2nd time)!" "log-06_lualatex.log"
-
-  echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (3rd run)"
-
-  # Third run of lualatex, creates the final main PDF document:
-  lualatex -file-line-error -halt-on-error -interaction=nonstopmode "${document_basename}.tex" 1>"log-07_lualatex.log" 2>&1 || die_log $? "Compilation error running lualatex (3rd time)!" "log-07_lualatex.log"
-
-  cp "${document_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying ${document_basename}.pdf from temporary directory!"
-  echo "${document_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
-
-  # Create printouts, if filename contains _A5 and printouts are not disabled
-  # by a command line argument:
-
-  if [[ "${document_basename}" != *"_A5"* ]]; then
-    echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created, no _A5 in filename"
-  else
-    if [ ${createprintouts} != "true" ]; then
-      echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created as per request"
-    else
-      which "context" >"/dev/null"
-      if [ $? -ne 0 ]; then
-        echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created; no 'context'"
-      else
-        echo -e "${PRETXT_EXEC}${txt_docbase}: context (create printouts)"
-
-        # A5 on A4, double sided, must cut: Use 'awk' to create a copy of the
-        # printout template file with changed input PDF file name and then
-        # execute 'context' on the new file.
-        printout_dsf_basename="printout-BOOKLET_${document_basename}-on-A4-doublesided-needs-cutting"
-        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context" >"${printout_dsf_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating dsf printout!"
-        context "${printout_dsf_basename}.context" 1>"log-08_printout-dsf.log" 2>&1 || die_log $? "Error creating dsf printout!" "log-08_printout-dsf.log"
-        cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
-        echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
-
-        # A5 on A4, a A5+A5 spread on single A4 surface: Use 'awk' to create a
-        # copy of the printout template file with changed input PDF file name
-        # and then execute 'context' on the new file.
-        printout_sss_basename="printout-EASY_${document_basename}-on-A4-sidebyside-simple"
-        awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${document_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_EASY-A5-on-A4-sidebyside-simple.context" >"${printout_sss_basename}.context" || die $? "[${document_basename}]: Error with 'awk' when creating sss printout!"
-        context "${printout_sss_basename}.context" 1>"log-09_printout-sss.log" 2>&1 || die_log $? "Error creating sss printout!" "log-09_printout-sss.log"
-        cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
-        echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
-      fi
-    fi
-  fi
 
   # Handle midi & mp3
 
@@ -479,11 +535,12 @@ compile_document() {
     rm -R "${cur_res_midi_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_midi_subdirname}" 2>"/dev/null"
     [ -d "../../${cur_res_midi_subdirname}" ] || die $? "Could not create the midi result directory ./${cur_res_midi_subdirname}."
-    # Execute the audio copy tool
+    local log10file="log-10_copy-midi.log"
+    # Execute the audio copy tool for midi files
     ../../tools/unilaiva-copy-audio.py3 --midi \
       "${document_basename}.dep" "../../${cur_res_midi_subdirname}" \
-      1>"log-10_copy-midi.log" 2>&1 \
-      || die_log $? "Error copying midi files to result directory" "log-10_copy-midi.log"
+      1>"${log10file}" 2>&1 \
+      || die_log $? "Error copying midi files to result directory" "${log10file}"
   fi
   if [ ${audiofiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (encode audio)"
@@ -491,34 +548,29 @@ compile_document() {
     rm -R "${cur_res_audio_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_audio_subdirname}" 2>"/dev/null"
     [ -d "../../${cur_res_audio_subdirname}" ] || die $? "Could not create the audio result directory ./${cur_res_audio_subdirname}."
-    # Execute the audio copy tool
+    local log11file="log-11_encode-audio.log"
+    # Execute the audio copy tool for encoding audio files
     ../../tools/unilaiva-copy-audio.py3 --audio \
       "${document_basename}.dep" "../../${cur_res_audio_subdirname}" \
-      1>"log-11_encode-audio.log" 2>&1 \
-      || die_log $? "Error encoding audio files!" "log-11_encode-audio.log"
+      1>"${log11file}" 2>&1 \
+      || die_log $? "Error encoding audio files!" "${log11file}"
+  fi
+
+  # Create lyrics-only books, if so wanted
+
+  if [ ${lyricbooks} == "true" ]; then
+    grep '\\input{.*setup_.*\.tex}' "${document_basename}.tex" >"/dev/null"
+    [ $? -eq 0 ] || die $? "Unable to create lyric book: '\input{setup_<something>.tex}' not found in doc"
+    local lyricdoc_basename="${document_basename}_LYRICS-ONLY"
+    cat "${document_basename}.tex" \
+      | sed -e 's/\(\\input{.*setup_.*\.tex}\)/\\input{tex\/internal-lyricbook-presetup.tex}\1\\input{tex\/internal-lyricbook-postsetup.tex}/g' \
+      >>"${lyricdoc_basename}.tex"
+    rm ./idx_*.sxd ./idx_*.sbx 2>"/dev/null"
+    compile_document_sub "${lyricdoc_basename}" "$2" "lyric-"
   fi
 
   # Clean up the compile directory: remove some temporary files.
-  rm tmp*.out tmp*.sxc 2>"/dev/null"
-
-  # Check warnings in the logs
-
-  lp_barwarning_count=$(grep -i "warning: barcheck" "log-01_lilypond.log" | wc -l)
-  overfull_count=$(grep -i overfull "log-07_lualatex.log" | wc -l)
-  underfull_count=$(grep -i underfull "log-07_lualatex.log" | wc -l)
-  fontwarning_count=$(grep -i "Font Warning" "log-07_lualatex.log" | wc -l)
-  if [ "${lp_barwarning_count}" -gt "0" ]; then
-    echo -e "${PRETXT_DEBUG}${txt_docbase}: Lilypond bar check warnings: ${lp_barwarning_count}"
-  fi
-  if [ "${overfull_count}" -gt "0" ] || [ "${underfull_count}" -gt "0" ]; then
-    echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - overfull: ${overfull_count}, underfull: ${underfull_count}"
-  fi
-  if [ "${fontwarning_count}" -gt "20" ]; then
-    echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - font: ${fontwarning_count}; ${C_RED}CHECK THE LOG!!${C_RESET}"
-    echo "Too many font warnings! There is a problem!" >>"${TOO_MANY_WARNINGS_FILE}"
-  else
-    [ "${fontwarning_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - font: ${fontwarning_count}"
-  fi
+  rm ./tmp*.out ./tmp*.sxc 2>"/dev/null"
 
   # Get out of ${temp_dirname_twolevels}:
   cd "${INITIAL_DIR}" || die $? "Cannot return to the main directory."
@@ -527,6 +579,7 @@ compile_document() {
   echo -e "${PRETXT_SUCCESS}${txt_resultpdf}: Compilation successful!"
 
 } # END compile_document()
+
 
 # Copies the result .pdf's to the deploy directory ${DEPLOY_DIRNAME}, if:
 #   - not inside Docker container
@@ -554,6 +607,7 @@ deploy_results() {
   done < "${RESULT_PDF_LIST_FILE}"
 } # END deploy_results()
 
+
 # Set defaults:
 usedocker="true"
 deployfinal="true"
@@ -562,6 +616,7 @@ mainbook="true"
 astralbooks="true"
 partialbooks="true"
 selections="true"
+lyricbooks="true"
 midifiles="true"
 audiofiles="true"
 gitpull="false"
@@ -577,6 +632,9 @@ all_args="$@"
 # Test program arguments:
 while [ $# -gt 0 ]; do
   case "$1" in
+    "--no-lyric")
+      lyricbooks="false"
+      shift;;
     "--no-midi")
       midifiles="false"
       shift;;
@@ -616,6 +674,7 @@ while [ $# -gt 0 ]; do
       astralbooks="false"
       partialbooks="false"
       selections="false"
+      lyricbooks="false"
       midifiles="false"
       audiofiles="false"
       shift;;
@@ -686,6 +745,7 @@ which "lualatex" >"/dev/null" || die 1 "'lualatex' binary not found in path!"
 which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path!"
 which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path!"
 which "awk" >"/dev/null" || die 1 "'awk' binary not found in path!"
+which "sed" >"/dev/null" || die 1 "'sed' binary not found in path!"
 
 # Create the 1st level temporary directory in case it doesn't exist.
 mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
@@ -732,15 +792,18 @@ fi
 
 
 [ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ] \
-  && dockerized_text="NO (this is not recommended!)" \
+  && dockerized_text="NO ${C_YELLOW}(this is not recommended!)" \
   || dockerized_text="YES"
 [ ${parallel} = "true" ] \
-  && parallel_text="YES (maximum concurrency: ${MAX_PARALLEL})" \
+  && parallel_text="YES ${C_RESET}(maximum concurrency: ${MAX_PARALLEL})" \
   || parallel_text="NO"
-[ ${doc_count} = 1 ] && parallel_text="NO (1 document only)"
+[ ${doc_count} = 1 ] && parallel_text="NO ${C_RESET}(1 document only)"
 [ ${createprintouts} = "true" ] \
   && createprintouts_text="YES" \
   || createprintouts_text="NO"
+[ ${lyricbooks} = "true" ] \
+  && lyricbooks_text="YES" \
+  || lyricbooks_text="NO"
 [ ${midifiles} = "true" ] \
   && midifiles_text="YES" \
   || midifiles_text="NO"
@@ -748,17 +811,20 @@ fi
   && audiofiles_text="YES" \
   || audiofiles_text="NO"
 [ ${deployfinal} = "true" ] \
-  && deployfinal_text="YES" \
+  && deployfinal_text="${C_YELLOW}YES" \
   || deployfinal_text="NO"
+
 echo ""
-echo "Compiling Unilaiva songbook(s):"
-echo "  - Documents to compile: ${doc_count}"
-echo "  - Using Docker: ${dockerized_text}"
-echo "  - Parallel compilation: ${parallel_text}"
-echo "  - Printouts: ${createprintouts_text}"
-echo "  - Midi: ${midifiles_text}"
-echo "  - Audio: ${audiofiles_text}"
-echo "  - Deploy: ${deployfinal_text}"
+echo -e "Compiling Unilaiva songbook(s):"
+echo ""
+echo -e "  - Documents to compile: ${C_WHITE}${doc_count}${C_RESET}"
+echo -e "  - Using Docker: ${C_WHITE}${dockerized_text}${C_RESET}"
+echo -e "  - Parallel compilation: ${C_WHITE}${parallel_text}${C_RESET}"
+echo -e "  - Additional lyrics only versions: ${C_WHITE}${lyricbooks_text}${C_RESET}"
+echo -e "  - Printouts: ${C_WHITE}${createprintouts_text}${C_RESET}"
+echo -e "  - Midi: ${C_WHITE}${midifiles_text}${C_RESET}"
+echo -e "  - Audio: ${C_WHITE}${audiofiles_text}${C_RESET}"
+echo -e "  - Deploy: ${C_WHITE}${deployfinal_text}${C_RESET}"
 echo ""
 
 

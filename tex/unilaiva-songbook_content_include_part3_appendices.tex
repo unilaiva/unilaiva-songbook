@@ -12,8 +12,11 @@
 
   % Here start appendices: chapter numbering resets and switches to alphabetic
   \appendix
-  \chapter{Technical}
-    \input{content/section_technical_information.tex}
+
+  \ifchorded%
+    \chapter{Technical}
+      \input{content/section_technical_information.tex}
+  \fi
 
   \clearpage\scleardpage % both are needed here
   % to have totally flat right edge of indices (microtype package):

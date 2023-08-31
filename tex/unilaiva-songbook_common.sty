@@ -67,6 +67,7 @@
 %
 
 \providecommand{\papersize}{a5paper}
+\providecommand{\songbooktype}{chorded}
 \providecommand{\ulbindingoffset}{8mm} % 8 mm for 2:1 wire binding, 32 mm wires
 \providecommand{\ulsidemargin}{9mm}
 \providecommand{\ulbottommargin}{9mm}
@@ -152,8 +153,12 @@
 \usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
 \usepackage{xparse}% Used in \mainchapter
 
-% The most important 'songs' package, use the version in the project tree:
-\usepackage[chorded]{tex/ext_packages/songs/songs}
+% The most important 'songs' package, use the version in the project tree.
+% The \songbooktype macro contains by default 'chorded', but it can be defined
+% to be 'lyric' before including this file to produce lyrics-only songbooks.
+% In such a case it would be a good idea to setup the book with \show* macros
+% after including this file, too.
+\usepackage[\songbooktype]{tex/ext_packages/songs/songs}
 
 % END PACKAGE IMPORTS
 
@@ -288,7 +293,7 @@
 \providecommand{\bookbytext}{By:\par\vspace{0.618034ex}\textbf{\Large humankind}}%
 \providecommand{\bookversionpretext}{Version:}
 \providecommand{\songbookversion}{\the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}%
-
+\providecommand{\lyricsonlytext}{lyrics only}
 
 % Set defaults for PDF metadata, if they are not defined. One should define
 % them in the main file before including this package.
@@ -460,6 +465,7 @@
             urlcolor=urllinkcolor,%
             unicode=true,%
             pdfpagelayout=TwoPageRight, % display two pages side-by-side, odd on the right
+            pdfprintscaling=None, %
             pdftitle={\thisbooktitle},%
             pdfauthor={\pdfauthor},%
             pdfsubject={\pdfsubject},%
@@ -693,11 +699,11 @@
       {\Large%
         %vvvv-mm-dd % Use hardcoded date date for tagged printout releases
         \songbookversion% current date, the default
-        \ifchorded\else{\par\emph{(lyrics only)}}\fi% if non-chorded version, mention it here
+        \ifchorded\else{\par\large\emph{\lyricsonlytext}}\fi% if non-chorded version, mention it here
       }
       \par\vspace*{\fill}
       \ifdefined\bookwebsitelinkqrimage% \bookwebsitelink exists
-        \imagel[3]{QR_https_unilaiva_aavalla_net.png} % is already centered, so 'l' version ok
+        \imagel[3]{\bookwebsitelinkqrimage} % is already centered, so 'l' version ok
         \par
       \fi
       \ifdefined\bookwebsitelink% \bookwebsitelink exists
@@ -1030,7 +1036,7 @@
 
 % Just prints a dash if measure bar lines are enabled and does nothing otherwise.
 % Use this if a line would end at a new measure starting without any lyrics in that
-% bar on the same line. This signifies that there indeed is a measure here. them
+% bar on the same line. This signifies that there indeed is a measure here. The
 % measure might or might not continue on the next line. You can think of this as
 % an abbreviation for "Empty" or "End". :)
 \newcommand{\e}{\ifmeasures--\fi}

@@ -143,8 +143,9 @@
     \layout { #(layout-set-staff-size 10.3) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi
   \begin{translation}
+    \ifchorded\else\brk\vfill\fi
     Of the Eternal Father I never cease to ask
     I never stop speaking about my Mother
     Jesus Christ our guide forever
@@ -274,7 +275,7 @@
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \translationoff
+  \ifshowlilypond\translationoff\fi
   \begin{translation}
     That which Daddy gave to me, Mommy consecrated it
     Go around, go around, little child, go around in the ciranda of love

@@ -135,7 +135,9 @@
 
   % Here start appendices: chapter numbering resets and switches to alphabetic
   \appendix
+
+  \ifchorded
   \chapter{Technical}
     \input{content/section_technical_information.tex}
-
+  \fi
 \end{document}

@@ -346,8 +346,19 @@ a prefix `songs_`) ought to contain only individual songs (and data related to
 them) between `\beginsong` and `\endsong` macros plus other data wrapped in
 `intersong` environments.
 
+#### General instructions ####
 
-#### Page and line breaks #####
+The main document must have an `\input` instruction for a file named
+`setup_<...>.tex`, and this file must be where `unilaiva-songbook_common.sty`
+package is loaded. This is required for automatically creating a lyrics-only
+version of the document. You can copy the file
+`tex/setup_default-A5-fullmusic_include.tex` and make your own version, but
+the filename must start with `setup_`.
+
+If your document doesn't follow this rule, it must be compiled with the
+`--no-lyric` option of the compile script.
+
+#### Page and line breaks ####
 
 The `songs` package does a very good job in organising the songs for a nice
 output, but sometimes it needs a little bit of help.
