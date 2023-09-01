@@ -1275,7 +1275,7 @@
   % The following, including the environment body, is only expanded and
   % processed, if no hiding is needed:
   \yesendsongvfill%
-  \newcommand{\nextverse}{\vspace{.5em}}% some vertical space between verses
+  \newcommand{\nextverse}{\brkpenalty=800\brk\vspace{.5em}}% some vertical space between verses
   \beginverse*%
   \vspace{-\versesep}% remove the vertical space created by \beginverse
   \@blockstart%
