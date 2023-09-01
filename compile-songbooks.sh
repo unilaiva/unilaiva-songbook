@@ -563,7 +563,9 @@ compile_document() {
     if [ $? -ne 0 ]; then
       echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra lyric-only book not created, as no '\input{setup_<...>}' in doc"
     else
-      local lyricdoc_basename="${document_basename}_LYRICS-ONLY"
+      local ldoc_bname_pre=$(echo "${document_basename}" | awk '{ split($0, arr, "_A[0-9]"); print arr[1] }')
+      local ldoc_bname_post=$(echo "${document_basename}" "${ldoc_bname_pre}" | awk '{ split($1, arr, $2); print arr[2] }')
+      local lyricdoc_basename="${ldoc_bname_pre}_LYRICS-ONLY${ldoc_bname_post}"
       cat "${document_basename}.tex" \
         | sed -e 's/\(\\input{.*setup_.*\.tex}\)/\\input{tex\/internal-lyricbook-presetup.tex}\1\\input{tex\/internal-lyricbook-postsetup.tex}/g' \
         >>"${lyricdoc_basename}.tex"
