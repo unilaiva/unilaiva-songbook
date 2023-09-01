@@ -47,6 +47,7 @@ RESULT_DIRNAME="result" # just the name of a subdirectory, not an absolute path
 RESULT_AUDIO_DIRNAME="result/audio" # just the name of a subdirectory, not an absolute path
 RESULT_MIDI_DIRNAME="result/midi" # just the name of a subdirectory, not an absolute path
 DEPLOY_DIRNAME="deploy" # just the name of a subdirectory, not an absolute path
+LYRICSONLY_FNAMEPART="_LYRICS-ONLY" # added to filenames for lyrics-only books
 SONG_IDX_SCRIPT="tex/ext_packages/songs/songidx.lua"
 # The following is the locale used in creating the indexes, thus affecting the
 # sort order. Finnish (UTF8) is the default. Note that the locale used must be
@@ -456,21 +457,26 @@ compile_document() {
 
     # Check warnings in the logs
 
-    lp_barwarning_count=$(grep -i "warning: barcheck" "${log01file}" | wc -l)
-    overfull_count=$(grep -i "overfull" "${log07file}" | wc -l)
-    underfull_count=$(grep -i "underfull" "${log07file}" | wc -l)
-    fontwarning_count=$(grep -i "Font Warning" "${log07file}" | wc -l)
-    if [ "${lp_barwarning_count}" -gt "0" ]; then
-      echo -e "${PRETXT_DEBUG}${txt_docbase}: Lilypond bar check warnings: ${lp_barwarning_count}"
+    echo "${currentdoc_basename}" | grep "${LYRICSONLY_FNAMEPART}" >"/dev/null"
+    if [ $? -ne 0 ]; then # only check lilypond logs if not creating lyrics-only book
+      local lp_barwarning_count=$(grep -i "warning: barcheck" "${log01file}" | wc -l)
+      if [ "${lp_barwarning_count}" -gt "0" ]; then
+        echo -e "${PRETXT_DEBUG}${txt_docbase}: Lilypond bar check warnings: ${lp_barwarning_count}"
+      fi
     fi
-    if [ "${overfull_count}" -gt "0" ] || [ "${underfull_count}" -gt "0" ]; then
-      echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - overfull: ${overfull_count}, underfull: ${underfull_count}"
+    local allwarning_count=$(grep -i "warning" "${log07file}" | wc -l)
+    local fontwarning_count=$(grep -i "Font Warning" "${log07file}" | wc -l)
+    local overfull_count=$(grep -i "overfull" "${log07file}" | wc -l)
+    local underfull_count=$(grep -i "underfull" "${log07file}" | wc -l)
+    if [ "${allwarning_count}" -gt "0" ]; then
+      echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - all: ${allwarning_count}, font: ${fontwarning_count}"
     fi
     if [ "${fontwarning_count}" -gt "20" ]; then
-      echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - font: ${fontwarning_count}; ${C_RED}CHECK THE LOG!!${C_RESET}"
+      echo -e "${PRETXT_DEBUG}${txt_docbase}: ${C_RED}Too many font warnings! CHECK THE LOG!!${C_RESET}"
       echo "Too many font warnings! There is a problem!" >>"${TOO_MANY_WARNINGS_FILE}"
-    else
-      [ "${fontwarning_count}" -gt "0" ] && echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - font: ${fontwarning_count}"
+    fi
+    if [ "${overfull_count}" -gt "0" ] || [ "${underfull_count}" -gt "0" ]; then
+      echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX fullness - overfull: ${overfull_count}, underfull: ${underfull_count}"
     fi
 
   } # END compile_document_sub
@@ -565,7 +571,7 @@ compile_document() {
     else
       local ldoc_bname_pre=$(echo "${document_basename}" | awk '{ split($0, arr, "_A[0-9]"); print arr[1] }')
       local ldoc_bname_post=$(echo "${document_basename}" "${ldoc_bname_pre}" | awk '{ split($1, arr, $2); print arr[2] }')
-      local lyricdoc_basename="${ldoc_bname_pre}_LYRICS-ONLY${ldoc_bname_post}"
+      local lyricdoc_basename="${ldoc_bname_pre}${LYRICSONLY_FNAMEPART}${ldoc_bname_post}"
       cat "${document_basename}.tex" \
         | sed -e 's/\(\\input{.*setup_.*\.tex}\)/\\input{tex\/internal-lyricbook-presetup.tex}\1\\input{tex\/internal-lyricbook-postsetup.tex}/g' \
         >>"${lyricdoc_basename}.tex"
