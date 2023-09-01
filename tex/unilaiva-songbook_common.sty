@@ -494,6 +494,8 @@
 % songs: use real sharp and flat symbols from Noto Symbol font:
 \renewcommand{\sharpsymbol}{\textsuperscript{{\symbolfont♯}}}%
 \renewcommand{\flatsymbol}{\raise.5ex\hbox{\SB@flatsize{{\symbolfont♭}}}}%
+% songs: adjust baseline distance within lyric lines to not stretch
+\baselineadj=0pt plus 0pt minus 0pt
 % songs: change distance of chords to lyrics
 \renewcommand{\clineparams}{%
   \baselineskip=10.6pt%
