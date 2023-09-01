@@ -9,18 +9,22 @@
   \renewcommand{\thesongnum}{\Roman{songnum}}
   % no chords here, so line spacing will be less:
   \chordsoff
-  % separate verses (translations of the prayers) more:
-  %\versesep 30pt plus 0pt minus 8pt
+
+  % Add a little more line spacing
+  \baselineadj=+1pt plus 0pt minus 0pt
 
   % Use this to specify a subtitle -- used in Pai nosso + Ave Maria
   \newcommand{\subtitle}[1]{
-    \vspace{3ex}\textbf{\textit{#1}}\vspace{1.618034ex}
+    \vspace{2.618034ex}\textbf{\textit{#1}}\vspace{1.618034ex}
   }
 
   % Use this to specify a translation title within a verse, eg
   % \translationtitle{EN}{Greed}
   \newcommand{\translationtitle}[2]{
-    \vspace{3ex}\textbf{[#1]} \textit{#2}\vspace{1.618034ex}
+    \brkpenalty=-9000\brk%
+    \vspace{2.618034ex}%
+    \textbf{[#1]} \textit{#2}%
+    \vspace{1.618034ex}%
   }
   % Use this to create a vertical space between "paragraphs"
   %within verses:
@@ -67,7 +71,7 @@
         \parspace
         Amém.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Sign of the Cross}
         \up{1}By the sign of the Holy Cross,
         \up{2}deliver us, God, our Lord,
@@ -95,6 +99,7 @@
 
 
     \beginsong{Credo}[tags={bailado}]
+      \baselineadj=0pt\relax% To fit
       \beginverse
         Creio em Deus Pai todo Poderoso,
         Criador do Céu e da terra.
@@ -115,7 +120,7 @@
         \parspace
         Amém.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Creed}
         I believe in God, the Father Almighty,
         Creator of Heaven and earth.
@@ -137,7 +142,7 @@
         Amen.
       \endverse
     %% Skip the Finnish version for now, to save space
-    %   \beginverse
+    %   \beginverse\color{finnishcolor}
     %     \translationtitle{FI}{Uskontunnustus}
     %     Minä uskon Jumalaan, Isään, Kaikkivaltiaaseen,
     %     taivaan ja maan Luojaan;
@@ -191,9 +196,8 @@
         \parspace
         Amém, Jesus, Maria, José.
       \endverse
-      \brk
-      \vspace*{\fill}\vspace{-1em}
-      \beginverse
+      \forcebrk\vspace*{\fill}
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Our Father}
         Our Father,
         who art in Heaven,
@@ -210,7 +214,7 @@
         \parspace
         Amen, Jesus, Mary, Joseph.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Hail Mary}
         Hail Mary,
         full of grace!
@@ -223,7 +227,7 @@
         \parspace
         Amen, Jesus, Mary, Joseph.
       \endverse
-      \vfill
+      \vspace*{\fill}
     \endsong
 
 
@@ -237,7 +241,7 @@
         \parspace
         Amém.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{The Rosary I (official work)}
         \textnote{While praying the Rosary, after every decade:}
         \parspace
@@ -288,7 +292,7 @@
         \parspace
         Amém.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{The Rosary II (Santa Missa)}
         \textnote{While praying the Rosary, after every decade:}
         \parspace
@@ -324,7 +328,7 @@
         \parspace
         Assim seja, Amém.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Key of Harmony}
         I wish Harmony, Love, Truth and Justice to all my
         brothers and sisters.
@@ -428,7 +432,7 @@
         \parspace
         Amém.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Consecration of the Space}
         \textnote{In sitting works: after Oração}
         \parspace
@@ -515,7 +519,7 @@
         \parspace
         Amen.
       \endverse
-      \beginverse
+      \beginverse\color{finnishcolor}
         \translationtitle{FI}{Paikan pyhittäminen}
         \textnote{Istumatöissä: Oraçãon jälkeen}
         \parspace
@@ -551,13 +555,13 @@
         läsnäolon.
         \parspace
         Täällä on vain yksi läsnäolo, Jumalan läsnäolo, joka on
-        ELÄMÄ. Jumala on kaikkien olentojen elämän ydin. Mielen
-        ja ruumiin terveys. Kuka tahansa, joka tulee tähän
-        tilaan, saa tuntea elämän ja terveyden jumalallisen
+        ELÄMÄ. Jumala on kaikkien olentojen elämän ydin.
+        Mielen ja ruumiin terveys. Kuka tahansa, joka tulee
+        tähän tilaan, saa tuntea elämän ja terveyden jumalallisen
         läsnäolon.
         \parspace
-        Täällä on vain yksi läsnäolo, KUKOISTUS. Jumala on
-        kukoistus, koska Hän saa kaiken kasvamaan ja menestymään.
+        Täällä on vain yksi läsnäolo, KUKOISTUS. Jumala on kukois-
+        tus, koska Hän saa kaiken kasvamaan ja menestymään.
         Jumala ilmaisee itseään kaiken sen kukoistamisessa,
         mihin täällä ryhdytään Hänen nimessään. Kuka tahansa,
         joka tulee tähän tilaan, tuntee kukoistamisen ja
@@ -652,9 +656,8 @@
         \parspace
         Amém, Jesus, Maria, José.
       \endverse
-      \brk
-      \vspace*{\fill}\vspace{1.618em}
-      \beginverse
+      \forcebrk\vspace*{\fill}
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Our Father}
         Our Father,
         who art in Heaven,
@@ -671,7 +674,7 @@
         \parspace
         Amen, Jesus, Mary, Joseph.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Hail Mary}
         Hail Mary,
         full of grace!
@@ -684,11 +687,12 @@
         \parspace
         Amen, Jesus, Mary, Joseph.
       \endverse
-      \vfill
+      \vspace*{\fill}
     \endsong
 
 
     \beginsong{Credo}[tags={Mesa Branca, São Miguel}]
+      \baselineadj=0pt\relax% To fit
       \beginverse
         Creio em Deus Pai todo Poderoso,
         Criador do Céu e da terra.
@@ -709,7 +713,7 @@
         \parspace
         Amém.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Creed}
         I believe in God, the Father Almighty,
         Creator of Heaven and earth.
@@ -731,7 +735,7 @@
         Amen.
       \endverse
       % Keep the Finnish version here, as we need something for the recto page :)
-      \beginverse
+      \beginverse\color{finnishcolor}
         \translationtitle{FI}{Uskontunnustus}
         Minä uskon Jumalaan, Isään, Kaikkivaltiaaseen,
         taivaan ja maan Luojaan;
@@ -792,9 +796,9 @@
         \parspace
         Amém.
       \endverse
-      \brk
+      \forcebrk
       \vspace*{-1.1em}
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Prayer of Caritas}
         God, our Father who is all Power and Kindness,
         give strength to those who're going through
@@ -853,7 +857,7 @@
         \parspace
         Amém, Jesus, Maria, e José.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Hail Holy Queen}
         Hail Holy Queen, Mother of Mercy, our life, our
         sweetness and our hope.
@@ -889,7 +893,7 @@
         Para que sempre seja louvada a nossa Mãe Maria
         Santíssima, sobre toda a humanidade. Amém!
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Closing}
         \textnote{Leader of the work pronounces:}
         In the name of God the Almighty Father, of the Sovereign
@@ -918,7 +922,7 @@
         \parspace
         Amém.
       \endverse
-      \beginverse
+      \beginverse\color{englishcolor}
         \translationtitle{EN}{Sign of the Cross}
         \up{1}By the sign of the Holy Cross,
         \up{2}deliver us, God, our Lord,

@@ -154,16 +154,9 @@
     \input{content/songs_suomi.tex}
     \input{content/songs_suomi_larva.tex}
 
-    \ifchorded
-      \newcommand{\waschorded}{true} % remember chorded state
-      \newlength{\oldbaselineadj}
-      \oldbaselineadj=\baselineadj % remember old value
-      % songs: increase line spacing for better readability, not needed
-      % in lyrics-only books, as they already set the baselines further
-      % apart (this is done in internal-lyricbook-postsetup.tex)
-      \baselineadj=+1pt plus 0pt minus 0pt
-    \fi
     \chordsoff % songs: do not show (empty line for non-existing) chords
+    % songs: Increase line spacing for better readability
+    \baselineadj=+1pt plus 0pt minus 0pt%
     \renewcommand{\lyricfont}{\small} % songs: use smaller font
     \songcolumns{2} % songs: two columns per page
     \songpos{1} % songs: avoid ONLY page-turns within songs
@@ -171,14 +164,6 @@
     % (The default for \interlinepenalty is 1000, and for all the others 200.)
     \interlinepenalty=200 %
     \input{content/songs_suomi_runoja_loitsuja.tex}
-    \interlinepenalty=1000 % songs: back to the default: avoid breaks within verses the most
-    \songpos{3} % songs: back to the default: avoid all breaks whenever possible
-    \songcolumns{1} % songs: back to the default: one column per page
-    \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
-    \ifdefined\waschorded % songs: back to the previous state
-      \chordson
-      \baselineadj=\oldbaselineadj
-    \fi
   \end{songs}
 
 \end{document}

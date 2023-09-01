@@ -556,6 +556,20 @@
   \fi%
 }
 
+% Utility macro: set a length register #1 with value #2 in the global scope.
+\gdef\gsetlength#1#2{%
+  \begingroup
+    \setlength\tmp@{#2} % Local assignment to a temporary register
+    \global#1=\tmp@     % Global assignement to #1
+                        % \relax not needed because of the following \endgroup
+  \endgroup             % \tmp@ is restored
+}
+
+% Forces a column break
+\newcommand{\forcebrk}{%
+  \brkpenalty=-10000\brk
+}
+
 % Returns the book's title formatted for headers. Used in fancyhdr style below.
 \newcommand{\headerbooktitle}{%
   {%
@@ -1587,11 +1601,21 @@
 \newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
 
 \newlength{\@mnoldbaselineadj} % to save the \baselineadj before change
-\@mnoldbaselineadj=\baselineadj % set the first value
+%\@mnoldbaselineadj=\baselineadj % Not needed
+
+% Save baselineadj value to a register
+\newcommand{\@mnsavebaselineadj}{%
+  \@mnoldbaselineadj=\baselineadj%
+}
+
+% Reset baselineadj to the old value
+\newcommand{\@mnresetbaselineadj}{%
+  \baselineadj=\@mnoldbaselineadj%
+}
 
 % Increases the spacing between lyric rows, if melody notes are on
 \newcommand{\@mnincreasebaseline}{%
-  \@mnoldbaselineadj=\baselineadj%
+  \@mnsavebaselineadj%
   \ifchorded\ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
@@ -1600,27 +1624,29 @@
   \fi\fi%
 }
 
-% Reset baselineadj to the old value
-\newcommand{\@mnresetbaseline}{
-  \baselineadj=\@mnoldbaselineadj\relax%
-}
+% Replace the verse/chorus starting macros with versions that save the baseline
+% adjustment value before calling the originals.
+\let\@beginverseorig\beginverse
+\let\@beginchorusorig\beginchorus
+\renewcommand{\beginverse}{\@mnsavebaselineadj\@beginverseorig}
+\renewcommand{\beginchorus}{\@mnsavebaselineadj\@beginchorusorig}
+% Replace the macros called at the end of each verse/chorus with versions that
+% call the originals and reset the baseline to the last saved one.
+\let\@SB@endverseorig\SB@endverse
+\let\@SB@endchorusorig\SB@endchorus
+\renewcommand{\SB@endverse}{\@SB@endverseorig\@mnresetbaselineadj}
+\renewcommand{\SB@endchorus}{\@SB@endchorusorig\@mnresetbaselineadj}
 
 % \mnbegin<verse|chorus> macros are replacements for the ordinary
 % \begin<verse|chorus>, with increased line spacing to accomodate notes
 % also in other than the first line of lyrics without resorting to \mnlow macro
 % and it's caveats. For non-chorded books or if melody notes are disabled,
 % spacing is not increased.
-\newcommand{\mnbeginverse}{\@mnincreasebaseline\beginverse}
-\newcommand{\mnbeginchorus}{\@mnincreasebaseline\beginchorus}
+\newcommand{\mnbeginverse}{\@mnincreasebaseline\@beginverseorig}
+\newcommand{\mnbeginchorus}{\@mnincreasebaseline\@beginchorusorig}
 \newcommand{\mnendverse}{\endverse} % For backwards compatibility, deprecated
 \newcommand{\mnendchorus}{\endchorus} % For backwards compatibility, deprecated
 
-% Replace the macros called at the end of each verse/chorus with versions that
-% call the originals and reset the baseline to the last saved one.
-\let\@SB@endverseorig\SB@endverse
-\let\@SB@endchorusorig\SB@endchorus
-\renewcommand{\SB@endverse}{\@SB@endverseorig\@mnresetbaseline}
-\renewcommand{\SB@endchorus}{\@SB@endchorusorig\@mnresetbaseline}
 
 % END MELODY NOTES
 
@@ -2160,7 +2186,10 @@
 \ifshowversenumbers%
 \else%
   \noversenumbers%
-  \renewcommand\beginverse{%
+  % We renew \@beginverseorig instead of \beginverse to not lose the changes
+  % made to \beginverse above in the melody notes section for saving the
+  % baseline adjustment.
+  \renewcommand\@beginverseorig{%
     \begingroup%
       \SB@loadactives%
       \@ifstar{\endgroup\vnumberedfalse\SB@beginverse}% % keep this to consume the star
