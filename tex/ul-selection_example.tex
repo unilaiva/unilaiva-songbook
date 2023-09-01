@@ -14,26 +14,19 @@
  %% which is named ul-selection_*.tex and put in the root directory of the
  %% project.
 
-\documentclass[twoside,10pt]{book}
 
 %% Set the title of this document:
-\newcommand{\mainbooktitle}{Example selection}
+\providecommand{\mainbooktitle}{Unilaiva Selection}
+\providecommand{\subbooktitle}{Example Set of Songs}
+\providecommand{\bookmotto}{a selection of songs from Unilaiva Songbook}
 
 %% Uncomment this and set the filename without path (the file must be found
 %% in content/img), to use a single-page PDF as a cover. Otherwise a cover
 %% will be generated.
 % \newcommand{\coverpdf}{my_selection_cover.pdf}
 
-%% The following required package contains all the imports, style settings etc:
-\usepackage{tex/unilaiva-songbook_common}
-
-%% Settings (comment out as per your wishes):
-\showtagsfalse    % Comment out to show tags in preludes
-\showphfalse      % Comment out to show phase info in preludes
-\showphintocfalse % Comment out to show phase info in TOC
-%\shownotesfalse   % Comment out to show melody notes
-%\showbeatsfalse   % Comment out to show beat marks
-%\chordsoff        % Comment out to show chords
+%% Required:
+\input{tex/setup_default-A5-fullmusic_include.tex}
 
 %% Here we set the song numbers included in this selection:
 \includeonlysongs{107,232,333,334,502,703,105,324}

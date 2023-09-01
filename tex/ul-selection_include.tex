@@ -9,111 +9,141 @@
 %%
 
 
-\providecommand{\mainbooktitle}{Selection}
+\providecommand{\mainbooktitle}{Unilaiva Selection}
+\providecommand{\bookmotto}{a selection of songs from Unilaiva Songbook}
+\providecommand{\fullbookcoverimage}{Unilaiva-songbook_COVER.pdf}
 
-% Do not show chapter nor section in the page headers
-\fancyhead[LO]{}
-\fancyhead[RE]{}
+% Disable Lilypond, as it doesn't work in selections for some reason. TODO: fix.
+\showlilypondfalse
+
+\upcasebooktitleinheadertrue
+\upcasesectiontitleinheadertrue
+
+% Do not show chapter nor section in the page headers, as they don't exist.
+% Instead spread the book title and subtitle onto odd and even pages.
+\fancypagestyle{unilaiva}[fancy]{%
+  \fancyhead[CE]{%
+    \headertitlestyle%
+    \ifupcasebooktitleinheader%
+      \MakeUppercase{\mainbooktitle}%
+    \else%
+      \mainbooktitle%
+    \fi%
+  }
+  \fancyhead[CO]{%
+    \headertitlestyle%
+    \ifdefined\subbooktitle%
+      \ifupcasesectiontitleinheader%
+        \MakeUppercase{\subbooktitle}%
+      \else%
+        \subbooktitle%
+      \fi%
+    \fi
+  }
+}
 
 % This will create the cover page for a selection booklet. If macro \coverpdf
 % is defined, it's content will be assumed to be a file name of a PDF file in
 % content/img, and will be used as a cover page. Otherwise a cover will be
-% generated.
+% generated from \mainbooktitle, \subbooktitle (optional) and
+% \fullbookcoverimage.
 \newcommand{\coverpageforselection}{
   \ifdefined\coverpdf{
     \includepdf[]{content/img/\coverpdf}
   }\else{ % must be contained within a block for the settings to not bleed
     \thispagestyle{empty}
     \topskip0pt
-    \vspace*{5.05em} % align with "Contents" heading on the next page; BAD for any changes
+    \vspace*{11.3ex} % align with "Contents" heading on the next page; BAD for any changes
     \begin{center}
-      \Huge \mainbooktitle\\
-      \vspace*{\fill}
-      \imagec[2]{Unilaiva-songbook_COVER.pdf}
-      %\vspace*{\fill}
+      {\Huge \mainbooktitle}
+      \ifdefined\bookmotto%
+        {\par\normalsize\textit{\bookmotto}}
+      \fi
+      \par\vspace*{6.98ex}
+      \ifdefined\subbooktitle%
+        {\Large \textbf{\subbooktitle}}
+      \fi
+      \par\vspace*{\fill}\vspace*{\fill}
+      \imagec[2]{\fullbookcoverimage}
+      \par\vspace*{\fill}
     \end{center}
   }
   \fi
 }
 
 % This will create the second page for a selection booklet
-\newcommand{\imprintpageforselection}[2]{
+\newcommand{\imprintpageforselection}{
   { % must be contained within a block for the settings to not bleed
     \thispagestyle{empty}
     \topskip0pt
-    \vspace*{5.05em} % align with "Contents" heading on the next page; BAD for any changes
+    \normalsize
+    \vspace*{11.3ex} % align with "Contents" heading on the next page; BAD for any changes
     \begin{center}
-      \Huge \mainbooktitle\\
-      \normalsize\textit{a selection of songs from Unilaiva songbook}\\
-      \vspace*{\fill}
-      \imagec[4]{Unilaiva-songbook_COVER.pdf}
-      \ifx&#1&% #1 is empty
-      \else % #1 not empty
-        \vspace{1em}
-        \Large \textbf{#1}\\
-        \ifx&#2&% #2 is empty
-        \else % #2 not empty
-          \vspace{0.3em}%
-          \normalsize #2\\
+      {\Huge \mainbooktitle}
+      \ifdefined\bookmotto% \bookmotto exists
+        \par\textit{\normalsize\bookmotto}
+      \fi
+      \ifdefined\subbooktitle% \subbooktitle exists
+        \par\vspace{2ex}
+        {\Large \textbf{\subbooktitle}}
+        \ifdefined\subsubbooktitle% \subsubbooktitle exists
+          \par\vspace{0.618034ex}%
+          {\normalsize \subsubbooktitle}
         \fi
       \fi
-      \vspace*{\fill}
-      \large By:\\
-      \Large \textbf{humankind}\\
-      \vspace{1em}
-      \large Version:\\
-      % vvvv-mm-dd % Use hardcoded date for tagged printout releases
-      \Large \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day% current date, the default
-      \ifchorded\else{\\\emph{(without chords)}}\fi% if non-chorded version, mention it here
-      \\
-      \vspace*{\fill}
+      \par\vspace*{\fill}
+      \ifdefined\bookbytext% \bookbytext exists
+        {\large \bookbytext}
+        \par\vspace{2ex}
+      \fi
+      {\large \bookversionpretext}
+      \par\vspace{0.618034ex}
+      {\Large%
+        %vvvv-mm-dd % Use hardcoded date date for tagged printout releases
+        \songbookversion% current date, the default
+        \ifchorded\else{\par\large\emph{\lyricsonlytext}}\fi% if non-chorded version, mention it here
+      }
+      \par\vspace*{\fill}
       {\normalsize Find the complete songbook at:}
       \\
-      % Created with: qrencode -s 32 -l Q -o content/img/QR_https_unilaiva_aavalla_net.png "https://unilaiva.aavalla.net/"
-      % --> then added the Unilaiva icon in the middle as transparent 320x320 image
-      \imagel[3]{QR_https_unilaiva_aavalla_net.png} % Already centered, so l-version ok
-      \\
-      {\small\url{https://unilaiva.aavalla.net/}}
-      \\
-      \vspace*{\fill}
-      {\footnotesize Compiled by: larva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})}
-      \\
-      \vspace{1.5em}
-      {\scriptsize
-        The material in this book is collected from various sources over time.\\
-        \vspace{-1em} % workaround for too large line spacing
-        This is a work in progress, and made for the contributors' private use.
-        \vspace{-1em} % workaround for too large line spacing
-      }
+      \ifdefined\bookwebsitelinkqrimage% \bookwebsitelink exists
+        \imagel[3]{\bookwebsitelinkqrimage} % is already centered, so 'l' version ok
+        \par
+      \fi
+      \ifdefined\bookwebsitelink% \bookwebsitelink exists
+        {\small\url{\bookwebsitelink}}
+      \fi
+      % Add vspace once, if either \bookwebsitelink or \bookwebsitelinkqrimage,
+      % or both, exist
+      \ifdefined\bookwebsitelinkqrimage%
+        \par\vspace*{\fill}
+      \else\ifdefined\bookwebsitelink%
+        \par\vspace*{\fill}
+      \fi\fi
+      \ifdefined\bookcompiledbytext% \bookcompiledbytext exists
+        {\footnotesize\bookcompiledbytext}
+        \par\vspace{4ex}
+      \fi
+      \ifdefined\imprintpagefootnote%
+        {\scriptsize\imprintpagefootnote}%
+      \fi
     \end{center}
+    \vspace{-1.85ex}% workaround to align page bottom with other pages
   }
 } % END \imprintpageforselection
 
 
 \begin{document}
 
-  % Remove chapter & section name from page headers, as they do not exist
-  % in the selection format.
-  \fancypagestyle{unilaiva}[fancy]{%
-    \setlength{\footskip}{3.7pt} % to work around a warning
-    \setlength{\headheight}{12.3pt} % to work around a warning
-    \renewcommand{\headrulewidth}{0pt}
-    \renewcommand{\footrulewidth}{0pt}
-    \fancyhf{}
-    \fancyhead[LE,RO]{\rmfamily\small\thepage} % page nr
-    \fancyhead[CE]{\rmfamily\small\itshape{\thisbooktitle}} % even center: book name
-    \fancyhead[LO]{\rmfamily\small\itshape{}} % odd left: empty
-    \fancyhead[CO]{\rmfamily\small\itshape{}} % odd center: empty
-  }
-
   \coverpageforselection % cover page here
   \clearpage
-  \imprintpageforselection{}{} % the second (title) page here (verso)
+  \imprintpageforselection % the second (title) page here (verso)
 
   % TOC:
   \toc
 
   \clearpage
+
   \begin{songs}{}
     \input{content/songs_spanish.tex}
     \input{content/songs_portuguese.tex}
@@ -126,6 +156,10 @@
 
     \ifchorded\newcommand{\waschorded}{true}\fi % remember chorded state
     \chordsoff % songs: do not show (empty line for non-existing) chords
+    % songs: increase line spacing for better readability (+.95pt is the
+    % maximum so that this section doesn't extend on the next page;
+    % adjust if material is added/removed):
+    \baselineadj=+.95pt plus 0pt minus 0pt %
     \renewcommand{\lyricfont}{\small} % songs: use smaller font
     \songcolumns{2} % songs: two columns per page
     \songpos{1} % songs: avoid ONLY page-turns within songs
@@ -137,6 +171,7 @@
     \songpos{3} % songs: back to the default: avoid all breaks whenever possible
     \songcolumns{1} % songs: back to the default: one column per page
     \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
+    \baselineadj=0pt % songs: back to the default line spacing
     \ifdefined\waschorded\chordson\fi % songs: back to the previous chorded state
   \end{songs}
 
