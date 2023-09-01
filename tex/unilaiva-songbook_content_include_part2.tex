@@ -61,12 +61,16 @@
       \clearpage\scleardpage
       \section{Runoja, loitsuja}
         \begin{songs}{titleidx,authidx,tagidx}
-          \ifchorded\newcommand{\waschorded}{true}\fi % remember chorded state
+          \ifchorded
+            \newcommand{\waschorded}{true} % remember chorded state
+            \newlength{\oldbaselineadj}
+            \oldbaselineadj=\baselineadj % remember old value
+            % songs: increase line spacing for better readability, not needed
+            % in lyrics-only books, as they already set the baselines further
+            % apart (this is done in internal-lyricbook-postsetup.tex)
+            \baselineadj=+1pt plus 0pt minus 0pt
+          \fi
           \chordsoff % songs: do not show (empty line for non-existing) chords
-          % songs: increase line spacing for better readability (+.95pt is the
-          % maximum so that this section doesn't extend on the next page;
-          % adjust if material is added/removed):
-          \baselineadj=+.95pt plus 0pt minus 0pt %
           \renewcommand{\lyricfont}{\small} % songs: use smaller font
           \songcolumns{2} % songs: two columns per page
           \songpos{1} % songs: avoid ONLY page-turns within songs
@@ -78,8 +82,10 @@
           \songpos{3} % songs: back to the default: avoid all breaks whenever possible
           \songcolumns{1} % songs: back to the default: one column per page
           \renewcommand{\lyricfont}{\defaultlyricfont} % songs: back to the default font
-          \baselineadj=0pt % songs: back to the default line spacing
-          \ifdefined\waschorded\chordson\fi % songs: back to the previous chorded state
+          \ifdefined\waschorded % songs: back to the previous state
+            \chordson
+            \baselineadj=\oldbaselineadj
+          \fi
         \end{songs}
     \end{finnish}
 

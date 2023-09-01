@@ -506,10 +506,6 @@
 \renewcommand\capo[1]{%
   \iftranscapos\transpose{#1}\else\musicnote{{\scriptsize capo #1}}\fi%
 }
-% songs: reduces line spacing in non-chorded lyrics by the amount the chords would take space
-%        without needing to set \chordsoff; also removes measure bar lines. Commented out for
-%        now:
-% \setlength\baselineadj{-\baselineskip}
 
 %\addto\captionsfinnish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: finnish
 \addto\captionsenglish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: english
