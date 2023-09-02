@@ -2268,6 +2268,16 @@
 \renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}
 }
 
+% This rewrite is required for newer LaTeX distributions. Ubuntu 22.04 with
+% lualatex 1.14 worked without this, but 23.04 with lualatex 1.15 requires
+% this change. Note that the change is *not* backwards compatible.
+% See: https://tex.stackexchange.com/questions/650106/recent-update-broke-songs-package
+\renewcommand\SB@obeylines{%
+  \let\obeyedline\SB@par%
+  \obeylines%
+  \let\@par\SB@@par%
+}
+
 \makeatother% let @ become something ...tooootally else!
 
 % END DEFINITIONS AND REWRITES

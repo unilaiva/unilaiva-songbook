@@ -95,9 +95,12 @@ execute the compilation script with `--no-docker` option.
 These dependencies are included in the Docker image, and need be installed on
 the host system only if compiling without using the Docker image.
 
-  * LaTeX 2e distribution (TeX Live is recommended) with some fairly standard
-    packages and the binaries `lualatex` and `texlua`
-  * Lilypond installation version 2.22.1 (or probably any later one) with the
+  * Newish LaTeX 2e distribution (TeX Live 2022 is recommended) with some fairly
+    standard packages and the binaries `lualatex` and `texlua`. If you use an
+    older LaTeX distribution, you might have a problem with incorrect line
+    breaking within songs, which can be corrected by deleting the rewrite
+    of \SB@obeylines macro in the unilaiva-songbook-common.sty file.
+  * Lilypond installation version 2.24.1 (or probably any later one) with the
     binary `lilypond-book`
   * Fonts 'Noto Sans' and 'Noto Serif', with medium and extrabold weights
   * Locale 'fi_FI.utf8'
@@ -117,9 +120,12 @@ included in the project tree and used instead of a one possibly installed on
 the system. This is because of compatibility reasons to ensure a specific
 version: the package is used heavily and some of its macros are redefined.
 
-##### Example: on Ubuntu 22.04 LTS, without Docker #####
+##### Example: on Ubuntu 23.04, without Docker #####
 
-On Ubuntu 22.04 LTS (jammy), to install the dependencies, download the project's
+Note that earlier Ubuntu versions than 23.04 require a change in the songbook
+system's source. See the Requirements section above.
+
+On Ubuntu 23.04 (lunar), to install the dependencies, download the project's
 source and compile the songbook without Docker, you need to run the following
 commands:
 
