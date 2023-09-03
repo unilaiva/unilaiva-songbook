@@ -550,10 +550,6 @@
 }
 % songs: set width of the vertical repetition line used in choruses etc (default: 1pt):
 \setlength{\cbarwidth}{1.2pt}
-% songs: make capo note smaller
-\renewcommand\capo[1]{%
-  \iftranscapos\transpose{#1}\else\musicnote{{\scriptsize capo #1}}\fi%
-}
 
 %\addto\captionsfinnish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: finnish
 \addto\captionsenglish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: english
@@ -928,10 +924,10 @@
 }
 
 
-% BEGIN GLUEVERSES
+% BEGIN GLUESTANZAS
 
 % Toggled by \glueverses and \SB@stanzabreak
-\newif\if@versesglued\@versesgluedfalse
+\newif\if@stanzasglued\@stanzasgluedfalse
 
 % This rewrite supports \glueverses. If \glueverses is declared before starting
 % a new verse/chorus, vertical space between verses is not inserted, and penalty
@@ -941,7 +937,7 @@
   \ifhmode\par\fi%
   \ifSB@stanza%
     \SB@breakpoint{%
-      \if@versesglued% line added by larva
+      \if@stanzasglued% line added by larva
         \gluepenalty% line added by larva
       \else% line added by larva
         \ifSB@inverse%
@@ -951,8 +947,8 @@
         \fi%
       \fi% line added by larva
     }%
-    \if@versesglued% line added by larva
-      \global\@versesgluedfalse% line added by larva
+    \if@stanzasglued% line added by larva
+      \global\@stanzasgluedfalse% line added by larva
     \else% line added by larva
       \vskip\versesep%
     \fi% line added by larva
@@ -964,14 +960,14 @@
 % within a verse (see and set penalties above). This is to be used within
 % a song environment, and is valid until the next new verse/chorus beginning
 % within the same song after declaring this, so use it either in between the
-% verses to glue, or within the previous verse. Glueverses status is always
+% verses to glue, or within the previous verse. Gluestanzas status is always
 % reset when a new song begins, and (after applying it) when a new verse/chorus
 % begins.
 \newcommand{\glueverses}{%
-  \global\@versesgluedtrue%
+  \global\@stanzasgluedtrue%
 }
 
-% END GLUEVERSES
+% END GLUESTANZAS
 
 
 % BEGIN ALTCHORDS
@@ -2092,6 +2088,159 @@
 
 % END AUDIO
 
+
+% BEGIN textual notes
+
+% Displays a textual note given as parameter on a new line. This is similar
+% to song.sty's \textnote, but with some additions.
+%
+% If given from within a stanza (verse/chorus), only small vertical space is
+% added before and after the note. Otherwise the vertical space given as
+% optional parameters is used.
+%
+% The note is attached to the material after it (default), or to the matter
+% after it (if first optional star is present). This means that column breaks do
+% not happen between the note and the stuff it is attached to. Attachment is
+% ignored if called from within a stanza.
+%
+% If the note is attached to the material after it, and called from outside of
+% of stanzas, the \glueverses macro is called to remove the \vspace the
+% beginning of the next verse in the current song would give. This might cause
+% a problem if there is material between this note and the next stanza. In such
+% a case one can attach the note to the material before, or add the second star
+% to signify that \glueverses is never called from within this macro.
+%
+% Usage:
+%
+%   \ultextnote*[vspace before][vspace after]{text}*
+%
+%   1st star:      This optional star signifies that the note is attached to the
+%                  stuff before it. If it is omitted, the note is attached to
+%                  the stuff coming after it.
+%   vspace before: The amount of vspace added before the note. This is passed
+%                  to \vspace, and can contain macros, for example:
+%                  "0.5\versesep". Default: 0pt.
+%   vspace after:  The amount of vspace added after the note. This is passed
+%                  to \vspace, and can contain macros, for example:
+%                  "0.5\versesep". Default: 0pt.
+%   text:          The text content of the note.
+%   2nd star:      If present, this star means that \glueverses is not called in
+%                  any case.
+%
+% NOTE: If optional parameters are omitted, also the empty bracket pair must
+%       be left out! So no "[]".
+%
+%
+% Note: \NewDocumentCommand, IfValueTF etc. come from xparse package, and allow
+%       nice handling of parameters.
+\NewDocumentCommand{\ultextnote}{s o o m s}{% star (attach to stuff before), [vspace before], [vspace after] {text}, star (skip glue next verse in all cases)
+  \newif\if@@alwaysskipgluenextstanza%
+  \newif\if@@attachtobefore%
+  \IfBooleanTF{#1}{% star is given: attach to the previous stanza
+    \@@attachtobeforetrue%
+  }{% star is not given: attach to the next stanza
+    \@@attachtobeforefalse%
+  }
+  \IfValueTF{#2}{% vspace for before is given
+    \def\@@vspacebef{#2}%
+  }{ % vspace for before is not given
+    \def\@@vspacebef{0pt}%
+  }%
+  \IfValueTF{#3}{% vspace for after is given
+    \def\@@vspaceaft{#3}%
+  }{ % vspace for after is not given
+    \def\@@vspaceaft{0pt}%
+  }%
+  \def\content{#4}%
+  \IfBooleanTF{#5}{% star is given: skip gluestanzas always
+    \@@alwaysskipgluenextstanzatrue%
+  }{% star is not given: might have gluestanzas if attached to aft
+    \@@alwaysskipgluenextstanzafalse%
+  }%
+  % The following is an adaptation of \textnote in songs.sty
+  \ifhmode\par\fi%
+  \ifnum\lastpenalty=12345\else%
+    \ifSB@inverse%
+      \vskip2\p@\relax%
+    \else\ifSB@inchorus%
+      \vskip2\p@\relax%
+    \else\ifSB@stanza%
+      \if@@attachtobefore\else%
+        \brkpenalty=\vvpenalty\brk%
+      \fi%
+      \vspace{\@@vspacebef}%
+    \fi\fi\fi%
+  \fi%
+  \begingroup%
+    \everypar{}%
+    \ifchorded\chordedfalse\SB@setbaselineskip\chordedtrue\fi%
+    \placenote{\SB@colorbox\notebgcolor{\SB@boxup{\content}}}%
+  \endgroup%
+  \nobreak%
+  \ifSB@inverse%
+    \vskip2\p@\relax%
+  \else\ifSB@inchorus%
+    \vskip2\p@\relax%
+  \else%
+    \if@@attachtobefore%
+      \ifSB@stanza%
+        \brkpenalty=\vvpenalty\brk%
+      \fi%
+    \else%
+      \nobreak%
+      \if@@alwaysskipgluenextstanza\else\glueverses\fi%
+    \fi%
+    \vspace{\@@vspaceaft}%
+  \fi\fi%
+}
+
+% Creates a textual note attached to the material preceding it.
+\newcommand{\textnoteforprev}[1]{%
+  \ultextnote*[0.618034\versesep][\versesep]{#1}%
+}
+
+% Creates a textual note attached to the material coming after it.
+\newcommand{\textnotefornext}[1]{%
+  \ultextnote[\versesep][0.618034\versesep]{#1}%
+}
+
+% Creates a textual note in the middle of preceding and consequent material.
+% It is attached to the material coming after it, but does not call \glueverses.
+\newcommand{\textnotemiddle}[1]{%
+  \ultextnote[\versesep][\versesep]{#1}*%
+}
+
+% Creates a music note attached to the material preceding it.
+% Music notes are only displayed if chords are enabled, and in the same color
+% as the chords.
+\newcommand{\musicnoteforprev}[1]{%
+  \ifchorded\textnoteforprev{\color{chordcolor}#1}\fi%
+}
+
+% Creates a music note attached to the material coming after it.
+% Music notes are only displayed if chords are enabled, and in the same color
+% as the chords.
+\newcommand{\musicnotefornext}[1]{%
+  \ifchorded\textnotefornext{\color{chordcolor}#1}\fi%
+}
+
+% Creates a textual note in the middle of preceding and consequent material.
+% It is attached to the material coming after it, but does not call \glueverses.
+% Music notes are only displayed if chords are enabled, and in the same color
+% as the chords.
+\newcommand{\musicnotemiddle}[1]{%
+  \ifchorded\textnotemiddle{\color{chordcolor}#1}\fi%
+}
+
+% Rewrite capo presentation to attach to the material coming after it, and to
+% make it smaller than the default. Only shown if chords are enabled.
+\renewcommand\capo[1]{%
+  \iftranscapos\transpose{#1}\else\musicnotefornext{{\scriptsize capo #1}}\fi%
+}
+
+% END textual notes
+
+
 % Save the original command; will be called.
 \let\@SB@@@beginsongorig\SB@@@beginsong
 
@@ -2100,7 +2249,7 @@
 % adds the song to the basic TOC also (in addition to indices).
 \renewcommand\SB@@@beginsong{%
   % Reset verseglue state:
-  \global\@versesgluedfalse%
+  \global\@stanzasgluedfalse%
   % Call the original command:
   \@SB@@@beginsongorig%
   % Create the TOC line. Note that these belong to a group started in the
@@ -2273,37 +2422,6 @@
 \renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}
 }
 
-% Rewrite to reduce the vertical space after the note, if not in verse/chorus.
-% In such cases we also set \glueverses, so the next verse/chorus within current
-% song does not add vertical space before it, even if there is something between
-% it and the textnote.
-\renewcommand\textnote[1]{%
-  \ifhmode\par\fi%
-  \ifnum\lastpenalty=12345\else%
-    \ifSB@inverse%
-      \vskip2\p@\relax%
-    \else\ifSB@inchorus%
-      \vskip2\p@\relax%
-    \else\ifSB@stanza%
-      \brkpenalty=\vvpenalty\brk\vskip\versesep% line modified by larva
-    \fi\fi\fi%
-  \fi%
-  \begingroup%
-    \everypar{}%
-    \ifchorded\chordedfalse\SB@setbaselineskip\chordedtrue\fi%
-    \placenote{\SB@colorbox\notebgcolor{\SB@boxup{#1}}}%
-  \endgroup%
-  \nobreak%
-  \ifSB@inverse%
-    \vskip2\p@\relax%
-  \else\ifSB@inchorus%
-    \vskip2\p@\relax%
-  \else\ifSB@stanza%
-    \nobreak\vskip0.5\versesep\glueverses% % line added by larva
-  \else%
-    \nobreak\vskip0.5\versesep\glueverses% % line modified by larva
-  \fi\fi\fi%
-}
 
 % This rewrite is required for newer LaTeX distributions. Ubuntu 22.04 with
 % lualatex 1.14 worked without this, but 23.04 with lualatex 1.15 requires
