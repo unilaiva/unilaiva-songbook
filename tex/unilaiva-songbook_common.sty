@@ -2257,6 +2257,24 @@
 
 % END textual notes
 
+% BEGIN musical markings
+
+% Outputs the Segno mark
+\newcommand{\segno}{%
+  \textnotefornext{\musSegno}%
+}
+
+% Outputs a textual note for "D.C. al fine"
+\newcommand{\dacapo}{%
+  \textnoteforprev{\emph{D.C. al fine}}%
+}
+
+% Outputs a textual note for "D.S. al fine"
+\newcommand{\dalsegno}{%
+  \textnoteforprev{\emph{D.S. al fine}}%
+}
+
+% END musical markings
 
 % Save the original command; will be called.
 \let\@SB@@@beginsongorig\SB@@@beginsong
