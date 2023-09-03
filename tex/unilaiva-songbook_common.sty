@@ -198,6 +198,23 @@
   \endgroup             % \tmp@ is restored
 }
 
+% This rewrite ensures that empty pages created with \cleardoublepage, like the
+% empty pages at the end of chapters, do not have headers.
+\renewcommand*{\cleardoublepage}{%
+  \clearpage%
+  \if@twoside%
+    \ifodd\c@page%
+    \else%
+      \hbox{}%
+      \thispagestyle{empty}%
+      \newpage%
+      \if@twocolumn%
+        \hbox{}\newpage%
+      \fi%
+    \fi%
+  \fi%
+}
+
 % END GENERIC UTILITY MACROS
 
 
@@ -2396,22 +2413,6 @@
   \fi%
 }
 
-% This rewrite ensures that empty pages created with \cleardoublepage, like the
-% empty pages at the end of chapters, do not have headers.
-\renewcommand*{\cleardoublepage}{%
-  \clearpage%
-  \if@twoside%
-    \ifodd\c@page%
-    \else%
-      \hbox{}%
-      \thispagestyle{empty}%
-      \newpage%
-      \if@twocolumn%
-        \hbox{}\newpage%
-      \fi%
-    \fi%
-  \fi%
-}
 
 % Colorize the output of macros \lrep, \rrep and \rep
 \let\@lreporig\lrep
