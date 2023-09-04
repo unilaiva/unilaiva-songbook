@@ -304,6 +304,7 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \forcebrkifchordsoff
   \begin{translation}
     I will tell you what you must do to achieve
     A place in the infinite consciousness of God
@@ -654,6 +655,7 @@
 \endsong
 
 
+\ifchorded\else\sclearpage\fi
 \beginsong{Santíssimo Daime}[by={José Ricardo}, off={Cyrenia}, key={Am}, gk={Am, Gm--Bm}]
   \audio{https://nossairmandade.com/hymn/2172/Sant\%C3\%ADssimoDaime}
   \audio[key=Am]{https://soundcloud.com/igreja-mestre-irineu/santissimo-daime}
