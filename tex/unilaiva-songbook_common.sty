@@ -2176,17 +2176,21 @@
   }%
   % The following is an adaptation of \textnote in songs.sty
   \ifhmode\par\fi%
-  \ifnum\lastpenalty=12345\else%
-    \ifSB@inverse%
-      \vskip2\p@\relax%
-    \else\ifSB@inchorus%
-      \vskip2\p@\relax%
-    \else\ifSB@stanza%
-      \if@@attachtobefore\else%
-        \brkpenalty=\vvpenalty\brk%
-      \fi%
-      \vspace{\@@vspacebef}%
-    \fi\fi\fi%
+  \ifSB@insong%
+    \ifnum\lastpenalty=12345\else%
+      \ifSB@inverse%
+        \vskip2\p@\relax%
+      \else\ifSB@inchorus%
+        \vskip2\p@\relax%
+      \else\ifSB@stanza%
+        \if@@attachtobefore\else%
+          \brkpenalty=\vvpenalty\brk%
+        \fi%
+        \vspace{\@@vspacebef}%
+      \fi\fi\fi%
+    \fi%
+  \else%
+    \vspace{\@@vspacebef}%
   \fi%
   \begingroup%
     \everypar{}%
@@ -2194,21 +2198,25 @@
     \placenote{\SB@colorbox\notebgcolor{\SB@boxup{\content}}}%
   \endgroup%
   \nobreak%
-  \ifSB@inverse%
-    \vskip2\p@\relax%
-  \else\ifSB@inchorus%
-    \vskip2\p@\relax%
-  \else%
-    \if@@attachtobefore%
-      \ifSB@stanza%
-        \brkpenalty=\vvpenalty\brk%
-      \fi%
+  \ifSB@insong%
+    \ifSB@inverse%
+      \vskip2\p@\relax%
+    \else\ifSB@inchorus%
+      \vskip2\p@\relax%
     \else%
-      \nobreak%
-      \if@@alwaysskipgluenextstanza\else\glueverses\fi%
-    \fi%
+      \if@@attachtobefore%
+        \ifSB@stanza%
+          \brkpenalty=\vvpenalty\brk%
+        \fi%
+      \else%
+        \nobreak%
+        \if@@alwaysskipgluenextstanza\else\glueverses\fi%
+      \fi%
+      \vspace{\@@vspaceaft}%
+    \fi\fi%
+  \else%
     \vspace{\@@vspaceaft}%
-  \fi\fi%
+  \fi%
 }
 
 % Creates a textual note attached to the material preceding it.
@@ -2225,6 +2233,13 @@
 % It is attached to the material coming after it, but does not call \glueverses.
 \newcommand{\textnotemiddle}[1]{%
   \ultextnote[\versesep][\versesep]{#1}*%
+}
+
+% Creates a textual note in the middle of preceding and consequent material
+% with smaller vertical space around it.
+% It is attached to the material coming after it, but does not call \glueverses.
+\newcommand{\textnotemiddletight}[1]{%
+  \ultextnote[0.618034\versesep][0.618034\versesep]{#1}*%
 }
 
 % Creates a music note attached to the material preceding it.
