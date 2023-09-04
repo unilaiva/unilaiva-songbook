@@ -2447,6 +2447,23 @@
   \fi%
 }
 
+% Rewrite this to have the same behaviour in chorded and non-chorded books:
+% insert stretchable glue to the bottom of each column. Without this change
+% non-chorded books would increase line spacing to verse lines to fill a column.
+\renewcommand\SB@chordsoff{%
+  \chordedfalse\lyrictrue%
+  \def\SB@bracket##1]{\ignorespaces}%
+  \let\SB@rechord\relax%
+  \let\SB@ch\SB@ch@off%
+  \ifSB@measurespec%
+    \ifmeasures\SB@measureson\else\SB@measuresoff\fi%
+  \else%
+    \SB@measuresoff%
+  \fi%
+  \ifSB@preamble\def\colbotglue{\z@\@plus.5\textheight}\fi% changed line
+  \SB@setbaselineskip%
+}
+
 
 % Colorize the output of macros \lrep, \rrep and \rep
 \let\@lreporig\lrep
