@@ -1918,10 +1918,12 @@
     |^que llama el \up{1}canto |^del colibrí. \altlyr[2]{vuelo}
   \endverse
   \beginverse\replay[chords_comotequieroyo_a]
-    \textnotefornext{Instrumental, on 2nd playthrough:}
-    \ind[3] |^{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ }
-    \ind[3] |{ }{ }{ }{ }^{ }{ }{ }{ } | { }{ }{ }{ }^{ }{ }{ }{ } |{ }{ }{ }{ }^{ }{ }{ }{ }
-    \ind[3] |{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } |{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } | \e
+    \textnotefornext{Instrumental, on 2nd playthrough\ifchorded:\fi}
+    \ifchorded{\nolyrics%
+      \ind[3] |^{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ }
+      \ind[3] |{ }{ }{ }{ }^{ }{ }{ }{ } | { }{ }{ }{ }^{ }{ }{ }{ } |{ }{ }{ }{ }^{ }{ }{ }{ }
+      \ind[3] |{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } |{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } | \e
+    }\fi%
   \endverse
   \beginverse\replay[chords_comotequieroyo_a]
     \ind |^Como te quiero |^yo, como te |^quiero yo-o-o-|^oo

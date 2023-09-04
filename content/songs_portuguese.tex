@@ -2490,6 +2490,9 @@
 \beginsong{Cavalo Marinho}[ph={III, IV}, key={C}, gk={C, C--F\shrp{}}]
   \audio[key=C]{https://rainerscheurenbrand.bandcamp.com/track/cavalo-marinho}
   \audio[key=C]{https://www.youtube.com/watch?v=-8bfTg6Re8g}
+  \ifchorded\else% Do not show measure bars (with meters) in lyrics-only book
+    \measuresoff%
+  \fi
   \beginchorus\memorize
     \[\bm\mn{G}]Ga\meter{8}{8}|\[\bmc\mnc{C}C\bm]lop\[\bm]a \[\bm]ca\[\bmc\mnc{D}G]va\[\bmc\mn{C}]lo \[\bmc\mn{D}]ma\[\bmc\mn{E}]ri|\[\bmc\mnc{C}C\bm\bm]nho \altchords{\id[1]{(D)}\meter{8}{8}|D A |D}
     M\[\bm]e en\[\bmc F]sin\[\bm]a o \[\bm]cam\[\bm]i\meter{2}{8}|\[\bmc C]nho \[\bm]que \meter{3}{8}|\[\bmc Dm]dev\[\bm]o \[\bm]to\meter{8}{8}|\[\bmc Am\bm\bm\bm]mar \[\bm\bm\bm\bm] \altchords{G \meter{2}{8}|D \meter{3}{8}|Em \meter{8}{8}|Bm}
@@ -3126,9 +3129,11 @@
     \ind \echo{\[\mn{F#}]Eu| \[\mn{A}]mo\[\mn{G}]ro \[\mn{F#}]no \[\mn{E}]ma|\[Em]r \[\mn{C#}]e ho\[\mn{D}]je |\[\mnc{E}F#7]sou \[\mn{F#}]seu \[\mn{D}]na\[\mn{C#}]mor|\[\mncadj{.5ex}{B}Bm]ado} | \e
   \mnendverse
   \beginverse
-    \textnotemiddle{Instrumental, on 1st playthrough:}
-    \ind[3] |\[Em] |{ } { } {} |\[Bm] |{ } { } {} |\[F#]{ } |{ } { } {} |\[Bm] | \e
-    \ind[3] |\[Em] |{ } { } {} |\[Bm] |{ } { } {} |\[F#]{ } |{ } { } {} |\[Bm]
+    \textnotemiddle{Instrumental, on 1st playthrough\ifchorded:\fi}
+    \ifchorded{\nolyrics%
+      \ind[3] |\[Em] |{ } { } {} |\[Bm] |{ } { } {} |\[F#]{ } |{ } { } {} |\[Bm] | \e
+      \ind[3] |\[Em] |{ } { } {} |\[Bm] |{ } { } {} |\[F#]{ } |{ } { } {} |\[Bm]
+    }\fi%
   \endverse
   \dacapo
   \mnbeginchorus

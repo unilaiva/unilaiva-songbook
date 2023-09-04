@@ -133,10 +133,16 @@
 \beginsong{Laulu oravasta}[by={Otto Kotilainen, Aleksis Kivi}, key={Dm}, gk={Dm, Dm--Em}]
   % NOTE: this is based on the version by Aapo Similä
   \transpose{5} % transpose to Dm: then lowest note is G, the highest A
-  \beginverse
-    \musicnotefornext{intro:}
-    \up{*}\meter{3}{4}|\[C] \[F] \[Em]
-  \endverse
+  \ifchorded%
+    \beginverse
+      \musicnotefornext{intro:}
+      {\nolyrics%
+        \up{*}\meter{3}{4}|\[C] \[F] \[Em]
+      }%
+    \endverse
+  \else% % Do not show measure bars (with meters) in lyrics-only book
+    \measuresoff%
+  \fi
   \beginverse\memorize
     \meter{3}{4}|\[\mnc{E}Am]Make\[^\mn{A}]as\[^\mn{C}]ti |\[\mncii{B}{A}Em]ora\[^\mn{G}]vai\[^\mn{E}]nen
     \meter{5}{4}|\[F]Makaa sammalhuonees\[G]sansa;

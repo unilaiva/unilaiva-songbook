@@ -1763,10 +1763,14 @@
 
 
 \beginsong{Three Little Birds}[by={Bob Marley},tags={morning},ph={IV}]
-  \beginverse
-    \musicnotefornext{intro:}
-    |\[A] |  |  | \e
-  \endverse
+  \ifchorded%
+    \beginverse
+      \musicnotefornext{intro:}
+      {\nolyrics%
+        |\[A] |  |  | \e
+      }%
+    \endverse
+  \fi%
   \beginverse
     \ind Don't |\[\mnc{B}A]wor\[\mn{A}]ry, about a th|ing
     \ind 'Cause |\[D]every little thing, gonna be alr|\[A]ight
