@@ -132,6 +132,7 @@
     \ind[3]E a minha |\[D]vida eu dedico com a|\[A]mor
     \ind[3]Ao sonho |vivo da nossa humani|\[Bm]dade
   \endchorus
+  \brkifchordsoff
   \beginchorus
     \ind[2]\[\mn{D}]Sou mensa|\[Bm]geiro, sou cometa, eu sou indí|\[A]ge\[\mn{C#}]na
     \ind[2]Eu sou |filho da nação do Arco |\[Bm]Íris
@@ -290,6 +291,22 @@
     \nextverse
     Oh tranquility touching my heart
     Like a friend, companion in the dark
+  \end{translation}
+\endsong
+
+\ifchorded\else\brk\fi
+\beginsong{Calma e Tranquilidade}[by={Deva Premal, Miten}, ph={II, III}, key={Am}, gk={Bm, Am--Em}]
+  \audio[]{https://www.youtube.com/watch?v=arNT11J2b-k}
+  \audio[]{https://soundcloud.com/caminhantecosmico/calma-e-tranquilidade}
+  \transpose{5} % in Am the notes go from G to E
+  \beginverse
+    \[^\mn{E}]Cal\[^\mn{F#}]ma |\[\mnc{G}Em]e Tran\[\mnc{F#}D]qui\[^\mn{E}]li|\[\mnc{G}Em]dade, são as |ordens \[D]do Sen|\[Em]hor
+    Calma |e Tranquili|\[Am]dade para |\[B7]receber o A|\[Em]mor | \e
+    \[D]Hoo-|\[Em]oo |\hspace{1em}\[D]Hoo-|\[Em]oo | \e
+  \endverse
+  \begin{translation}
+    Calm and Tranquility, these are the Lord's orders
+    Calm and Tranquility to receive Love
   \end{translation}
 \endsong
 
@@ -473,7 +490,8 @@
     Oh Jur|^ema feitice|^ira
   \endchorus
   \goto{Jurema}
-  \begin{translation}
+  \hardbrk
+  \begin{translation}\iflyriconly\scriptsize\fi % to fit on one page in lyrics-only book
     I was in the woods with my arrow in my hand,
     and Mama Jurema inside my heart.
     \nextverse
@@ -492,7 +510,7 @@
   \begin{explanation}
     \begin{description}
       \item[Caboclo Tupinambá] is a spirit that personifies the orixá Oxóssi
-        (the orixá of hunt, forest, animals and wealth). He is firm and 
+        (the orixá of hunt, forest, animals and wealth). He is firm and
         combative without ceasing to be cheerful and affectionate. As wise,
         patient and charismatic, he is like a father.
       \item[Tupinambá, the people:] one of the ethnic groups that inhabited the
@@ -509,23 +527,6 @@
         found in it.
     \end{description}
   \end{explanation}
-  \yesendsongvfill
-\endsong
-
-
-\beginsong{Calma e Tranquilidade}[by={Deva Premal, Miten}, ph={II, III}, key={Am}, gk={Bm, Am--Em}]
-  \audio[]{https://www.youtube.com/watch?v=arNT11J2b-k}
-  \audio[]{https://soundcloud.com/caminhantecosmico/calma-e-tranquilidade}
-  \transpose{5} % in Am the notes go from G to E
-  \beginverse
-    \[^\mn{E}]Cal\[^\mn{F#}]ma |\[\mnc{G}Em]e Tran\[\mnc{F#}D]qui\[^\mn{E}]li|\[\mnc{G}Em]dade, são as |ordens \[D]do Sen|\[Em]hor
-    Calma |e Tranquili|\[Am]dade para |\[B7]receber o A|\[Em]mor | \e
-    \[D]Hoo-|\[Em]oo |\hspace{1em}\[D]Hoo-|\[Em]oo | \e
-  \endverse
-  \begin{translation}
-    Calm and Tranquility, these are the Lord's orders
-    Calm and Tranquility to receive Love
-  \end{translation}
 \endsong
 
 
@@ -964,6 +965,7 @@
     Coman|\[C]da\[C7]{do por} Jesus |\[F]Cris\[\bm]to, na Luz da |\[A]Virgem \[A7]Concei|\[Dm]ção
   \endchorus
   \musicnotemiddle{instrumental}
+  \iflyriconly\forcebrk\fi
   \textnotefornext{Chuva}
   \beginchorus
     \[\mn{A}]Ó \[\bmc\mn{G}]san\[\mn{F}]ta \[\mn{E}]Mi\[\mn{D}]la|\[\mnc{C}C]grosa, \[\mn{D}]Vir\[\bmc\mn{E}]gem \[\mn{C}]da \[\mn{D}]Con\[\mn{E}]cei|\[\mnc{F}F]ção
@@ -974,7 +976,7 @@
   \beginchorus
     |\[\mnc{A}Dm]Chu\[\bmc\mn{G}]va \[\mn{F}]de Es\[\mn{E}]me|\[\mnc{C}C]ral\[\bm]das
     |Cai sobre \[\bm]esse Co|\[F]ma\[A]{'n}|\[Dm]do
-    \[\bm]Pétalas de |\[C]Luzes\[\bm] do Ar|\[F]ca\[A7]{njo Rafa}|\[Dm]el \[\bm]
+    \[\bm]Pétalas de |\[C]Luzes\[\bm]{} do Ar|\[F]ca\[A7]{njo Rafa}|\[Dm]el \[\bm]
   \endchorus
   \begin{translation}
     \definecolor{esmeraldacolor}{rgb}{0.314,0.784,0.471} % #50c878
@@ -1032,7 +1034,7 @@
     \ind Canta Passa|^rinho, canta Ver|^dade tira men|^tira | \e
     \ind Para so|^rrir, com Ale|^gria, com Ale|^gria. | \e
   \endverse
-  \begin{translation}
+  \begin{translation}\footnotesize% to fit on one page in lyrics-only book
     Oh my lady, you are the divine mother
     Who illuminates and guides my steps.
     Strong wind, flowing water
@@ -1089,7 +1091,7 @@
   \endchorus
   \goto{Rainha das Aguas \ldots vem nos curar}
   \goto{Rainha Iemanjá}
-  \begin{translation}
+  \begin{translation}\footnotesize% to fit on one page in lyrics-only book
     Queen of Waters, Queen of the Sea
     Queen of the Stars, that shine on the seashore
     \nextverse
@@ -1269,6 +1271,7 @@
   \endchorus
   \goto{Neste jardim do universo}
   \goto{Divina Mãe, Flor de Jasmim}
+  \iflyriconly\forcebrk\fi
   % Original image downloaded from: https://pxhere.com/en/photo/151450
   % Edited by: larva
   % Image license: CC0 (public domain)
@@ -1470,6 +1473,7 @@
     Da |^sua fonte crista|^lina
     Correm |^asas de esplen|^dor
   \endchorus
+  \iflyriconly\forcebrk\fi
   \begin{translation}
     Secrets come from the forest of light:
     Pachamama, Pachamama
@@ -1608,6 +1612,7 @@
 %     \include "tex/lp-include-tail-lyricsbelow.ly"
 %   \end{lilypond}\end{lilywrap}
 %   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \iflyriconly\forcebrk\fi
   \begin{translation}
     I will tell you what you must do to achieve
     A place in the infinite consciousness of God
@@ -1743,7 +1748,7 @@
   \hfill\makebox[0pt][r]{\raisebox{0pt}[0pt][0pt]{%
     \imager[4]{stripe-butterfly_transparent_bg_PD_1200x1150px.png}%
   }}%
-  \begin{translation}\scriptsize % for fitting on a spread
+  \begin{translation}\iflyriconly\else\scriptsize\fi % for fitting on a spread
     It's time to break up the cocoon in you
     It's time to fly, be butterfly and flapping wings
     It's time to fly, flap your wings and butterfly be
@@ -1806,6 +1811,7 @@
     \ind Tämä |^lahja juma|^lainen, hedel|^mä hellyyden |^aidon,
     \ind Joka |^paljastaa aar|^tehet rakkau|^den | \e
   \endverse
+  \iflyriconly\forcebrk\fi
   \begin{translation}
     Heart that begins to open in a thousand flower petals;
     I feel you, I receive you, Hummingbird.
@@ -1834,7 +1840,7 @@
     \up{1}desven|^dar o oceano interi|^or \altlyr[2]{mergulhar no}
   \endchorus
   \beginchorus\noteson
-    \ind \[\mn{C}\mn{A}]Beija-|\[\mnc{G}C]flor me |\[\mncii{A}{F}Dm]le|\[\mnc{E}Am]va |\[F] \e \replay \altchords{|B |C\shrp{}m |G\shrp{}m |E}
+    \ind \[\mn{C}\mn{A}]Beija-|\[\mnc{G}C]flor me |\[\mncii{A}{F}Dm]le|\[\mnc{E}Am]va |\[F]{} \e \replay \altchords{|B |C\shrp{}m |G\shrp{}m |E}
     \ind Beija-|\[C]flor des|\[Dm]per|\[B&]ta (em) |\[F](mim) \altchords{|B |C\shrp{}m |A |E}
   \endchorus
   \beginchorus
@@ -1853,6 +1859,7 @@
     Me |^leva para onde você |^for
   \endchorus
   \goto{Beija-flor}
+  \iflyriconly\hardbrk\fi
   \begin{translation}
     Silent flight of the mystery of love
     I close my eyes to see where I am going
@@ -1931,7 +1938,7 @@
     Eu |\[Dm]peço con|\[Am]forto das |\[Dm]Águas do |\[Am]Mar \altchords{|Dm |Am |Dm |Am}
     Eu |\[Dm]peço con|\[G]forto da |\[E7]Mãe Yeman|\[Am]já \altchords{|Dm |G |E7 |Am}
     \endchorus\glueverses\beginchorus\replay[chords_cura_a]
-    |^ |^ |^ |^ \altchords{|Am |F |G |Am}
+    |^ |^ |^ |^{} \e \altchords{|Am |F |G |Am}
   \endchorus
   \beginchorus\replay[chords_cura_a]
     E|^stou apren|^dendo dei|^xar a ilu|^são
@@ -1939,7 +1946,7 @@
     Eu |^peço a cla|^reza das |^Águas do |^Mar
     Eu |^peço a cla|^reza da |^Mãe Yeman|^já
     \endchorus\glueverses\beginchorus\replay[chords_cura_a]
-    |^ |^ |^ |^
+    |^ |^ |^ |^{} \e
   \endchorus
   \beginchorus\replay[chords_cura_a]
     E|^stou apren|^dendo a |^me fir|^mar \altchords{\id[2]{(Dm)}|Dm |B\flt{} |C |Dm}
@@ -1947,7 +1954,7 @@
     Eu |^peço a fir|^meza das |^Águas do |^Mar \altchords{|Gm |Dm |Gm |Dm}
     Eu |^peço a |^força da |^Mãe Yeman|^já \altchords{|Gm |C |A7 |Dm}
     \endchorus\glueverses\beginchorus\replay[chords_cura_a]
-    |^ |^ |^ |^ \altchords{|Dm |B\flt{} |C |Dm}
+    |^ |^ |^ |^{} \e \altchords{|Dm |B\flt{} |C |Dm}
   \endchorus
   \begin{translation}
     I am learning to heal myself
@@ -2190,7 +2197,7 @@
     \lrep |^Vamos bril|^har meus ir|^mã|os
     Nos |^somos co|^rações da |^luz | \e \rrep
   \endchorus
-  \begin{translation}
+  \begin{translation}\iflyriconly\footnotesize\fi
     O great mystery of the universe
     I'll cry for joy
     Beautiful bird hummingbird
@@ -2251,7 +2258,7 @@
   \mnbeginchorus\memorize
     \[^\mn{D}]Ele\[\bm]vei o \[^\mn{C#}]pensa|\[\mnc{B}Bm]men\[\bm]to | \e \altchords{\id[1]{(C)}|Am | \e}
     A \[\bm]Deus la \[^\mn{C#}]nas \[^\mn{D}]al|\[\mnc{E}Em]tu\[\bm]ras | \e \altchords{|Dm | \e}
-    \[^\mn{A}]Para \[\bmc\mn{C#}]eu re\[^\mn{B}]conhe|\[\mnc{A}A]cer\[\bm] | \e \altchords{|G | \e}
+    \[^\mn{A}]Para \[\bmc\mn{C#}]eu re\[^\mn{B}]conhe|\[\mnc{A}A]cer\[\bm]{} | \e \altchords{|G | \e}
     O bri\[\bmc\mn{B}]lho da \[^\mn{C#}]for\[^\mn{E}]mo|\[\mnc{D}D]su\[\bm]ra | \e \altchords{|C | \e}
   \mnendchorus
   \notesoff
@@ -2293,6 +2300,7 @@
     \[^\mn{B}]Sop\[^\mn{A}]ran\[^\mn{G}]do o |\[\mnc{F#}B7]vento, com \[^\mn{A}]vos\[^\mn{C}]so \[\bmc\mn{B}]rai\[^\mn{A}]o pu\[^\mn{G}]ri\[^\mn{/}]fi|\[\mnc{/}Em]car\[\bm] \altchords{|D7 |Gm}
   \mnendchorus
   \notesoff
+  \iflyriconly\hardbrk\fi
   \beginchorus\replay[chords_mamaedosventos_a]
     O vosso |^raio, é que ^rompe a imensi|dão^
     Para eu po|^der ouvir ^{a voz} do tro|^vão^
@@ -2307,7 +2315,6 @@
     Estais no |^fogo da fo^gueira de São |^João
     ^Vós limpai a |^casa para a ^justifica|^ção
   \endchorus
-  \brk
   \beginchorus\replay[chords_mamaedosventos_a]
     Mamãe dos |^Ventos, a ^vós eu vou lou|var^
     E o meu Ro|^sário também ^vos apresen|^tar^
@@ -2379,6 +2386,7 @@
     Apren^da a silenci|^ar o ego ^tao engana|^dor
     ^Fazendo aflo|^rar a luz di^vina que eu |^sou
   \endverse
+  \iflyriconly\forcebrk\fi
   \begin{translation}
     It is the force that moves and teaches us to be a brother
     To have simplicity to believe in the heart
@@ -2529,7 +2537,7 @@
   \vfill
   \musicnotemiddle{Alternate, simplified rhythm: make each chord last for 2 beats,
     and double that to 4 for the `Am' and the final `C' chords.}
-  \noendsongvfill
+  \ifchorded\noendsongvfill\fi
 \endsong
 
 
@@ -2564,6 +2572,7 @@
     É a Es^trela ^Matu|^tina
     Que ilu^mina esta ses|^são^
   \endchorus
+  \iflyriconly\hardbrk\fi
   \begin{translation}
     Santa Maria made the White Moon shine
     When she came with Her Power of the Astral
@@ -3073,6 +3082,7 @@
     Para mos|^trar que nesse ^mundo de ilu|^são ^
     o que im|^porta é o a^mor no cora|^ção ^ \up{2}(| ^ \e)
   \endchorus
+  \iflyriconly\forcebrk\fi
   \begin{translation}
     I saw a black panther in the astral.
     It came from afar expelling all evil,
@@ -3283,6 +3293,7 @@
 \endsong
 
 
+\iflyriconly\brk\fi
 \beginsong{Caboclo na Mata}[ph={IV}, key={Am}, gk={Bm, Gm--Em}]
   \audio[key=Bm]{https://soundcloud.com/pachamamachurch/caboblo-na-mata}
   \beginchorus\memorize
@@ -3466,6 +3477,7 @@
     \lrep Estando |^bem per^to de |^mim
     Junto a |^mim é ^prenda |^minha \rrep
   \endchorus
+  \iflyriconly\else\hardbrk\fi
   \beginchorus
     A ri|^queza todos |^têm
     Mas é pre|^ciso compreen|^der
@@ -3740,6 +3752,7 @@
     Que vem liv|^rar de todo |mal a minha es|^trada | \e
     Que forta|^lece no meu |peito a minha |^fé | \e
   \endchorus
+  \iflyriconly\hardbrk\fi
   \begin{translation}
     Hail Tupã, Juramidam, hail Oxóssi
     Hail Ossain, Tupinambá, Maraximbé
