@@ -806,7 +806,7 @@ fi
   && dockerized_text="NO ${C_YELLOW}(this is not recommended!)" \
   || dockerized_text="YES"
 [ ${parallel} = "true" ] \
-  && parallel_text="YES ${C_RESET}(maximum concurrency: ${MAX_PARALLEL})" \
+  && parallel_text="YES ${C_RESET}(max concurrency: ${MAX_PARALLEL})" \
   || parallel_text="NO"
 [ ${doc_count} = 1 ] && parallel_text="NO ${C_RESET}(1 document only)"
 [ ${createprintouts} = "true" ] \
@@ -828,7 +828,7 @@ fi
 echo ""
 echo -e "Compiling Unilaiva songbook(s):"
 echo ""
-echo -e "  - Documents to compile: ${C_WHITE}${doc_count}${C_RESET}"
+echo -e "  - Main documents to compile: ${C_WHITE}${doc_count}${C_RESET}"
 echo -e "  - Using Docker: ${C_WHITE}${dockerized_text}${C_RESET}"
 echo -e "  - Parallel compilation: ${C_WHITE}${parallel_text}${C_RESET}"
 echo -e "  - Additional lyrics only versions: ${C_WHITE}${lyricbooks_text}${C_RESET}"
