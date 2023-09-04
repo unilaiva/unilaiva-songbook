@@ -617,6 +617,7 @@
     That |^holds to|^gether the |^atoms and |^stars as
     |^well as |^me and |^you | \e  \goto{Ó daime \rep{3}}
   \endverse
+  \forcebrkifchordsoff
   \begin{translation}
     Oh give me, give me love, daime my beloved.
     Daime, give me light, I am with You... eternal life.
@@ -858,6 +859,7 @@
 \endsong
 
 
+\forcebrkifchordsoff
 \beginsong{Ho'oponopono}[ph={III}, key={Am}, gk={Am, Gm--Bm}]
   \musicnotefornext{\tiny melody from Loreena Mckennitt's ``Tango to Evora''}
   \transpose{5} % in Am the melody ranges from A to A'
@@ -874,10 +876,12 @@
     |^I am ^sorry | Please for^give me
     |^I ^love you | I ^thank you \up{2}(|^ ^ | ^ \e)
   \endchorus
-  \beginverse
+  \ifchorded\nolyrics{%
     \musicnotefornext{interlude:}
-    \ind |\[Am] \[\bm] |{ }{ } \[\bm] |\[Em] \[\bm] |{ }{ } \[\bm] |\[Bm] \[\bm] |{ }{ } \[\bm] |\[Em] { }{ } |{ }{ } \[\bm] \e{ } \rep{2}
-  \endverse
+    \beginverse
+      \ind |\[Am] \[\bm] |{ }{ } \[\bm] |\[Em] \[\bm] |{ }{ } \[\bm] |\[Bm] \[\bm] |{ }{ } \[\bm] |\[Em] { }{ } |{ }{ } \[\bm] \e{ } \rep{2}
+    \endverse
+  }\fi%
   \textnotefornext{suomeksi:}
   \beginchorus
     |^Olen pahoil^lani | Annathan ^anteeksi
