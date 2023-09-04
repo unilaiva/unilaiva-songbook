@@ -1027,7 +1027,7 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
-  \begin{translation}
+  \begin{translation}\scriptsize % to fit whole song on one page in lyrics-only book
     Here I am saying, here I am singing
     I tell everybody the hymns are teaching us
     \nextverse
@@ -1077,11 +1077,25 @@
     This profound secret is in all of humanity
     If everyone knew themselves here within the Truth
   \end{translation}
-  \begin{explanation}\tiny % to fit
-    It is said that after \emph{Flor das Águas} was first presented at a
-    concentration work, Mestre asked everyone attending: ``Where is the heart of
-    the world?'' Nobody answered. He asked again and still got no response. Then
-    he said: ``\textbf{The heart of the world is the sea!}''
+  \begin{explanation}
+    \ifchorded% to fit
+      \tiny%
+      It is said that after \emph{Flor das Águas} was first presented at a
+      concentration work, Mestre asked everyone attending: ``Where is the heart
+      of the world?'' Nobody answered. He asked again and still got no response.
+      Then he said: ``\textbf{The heart of the world is the sea!}''
+    \else
+      Diz-se que depois que \emph{Flor das Águas} foi apresentado pela primeira
+      vez em um trabalho de concentração, o Mestre perguntou a todos que estavam
+      presentes: ``Onde está o coração do mundo?'' Ninguém respondeu. Ele
+      perguntou novamente e ainda não obteve resposta. Então ele disse:
+      ``\textbf{O coração do mundo é o mar!}''
+      \par
+      It is said that after \emph{Flor das Águas} was first presented at a
+      concentration work, Mestre asked everyone attending: ``Where is the heart
+      of the world?'' Nobody answered. He asked again and still got no response.
+      Then he said: ``\textbf{The heart of the world is the sea!}''
+    \fi
   \end{explanation}
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva, updated on 2023-01
@@ -1244,7 +1258,7 @@
       \include "tex/lp-internal-midi-score.ly"
     \end{lilypond}\end{lilywrap}
   \else % not chorded: to not to break non-chorded booklets
-    \textit{(Este hino é instrumental.)}
+    \textnotemiddle{Este hino é instrumental. / This hymn is instrumental.}
   \fi
 \endsong
 
