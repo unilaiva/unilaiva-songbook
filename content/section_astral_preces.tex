@@ -27,7 +27,7 @@
     \vspace{1.618034ex}%
   }
   % Use this to create a vertical space between "paragraphs"
-  %within verses:
+  % within verses:
   \newcommand{\parspace}{\vspace{1ex}}
 
   % Setup the color for note mark superscripts to be the same as chords'
@@ -142,7 +142,7 @@
         Amen.
       \endverse
     %% Skip the Finnish version for now, to save space
-    %   \beginverse\color{finnishcolor}
+    %   \beginverse\brk\vbox to0pt{}\vfill\color{finnishcolor}
     %     \translationtitle{FI}{Uskontunnustus}
     %     Minä uskon Jumalaan, Isään, Kaikkivaltiaaseen,
     %     taivaan ja maan Luojaan;
@@ -233,7 +233,7 @@
 
     \beginsong{O Terço I (trabalho officiais)}[tags={bailado}]
       \beginverse
-        \textnote{Ao rezar o terço, só diz a cada dezena:}
+        \textnotefornext{Ao rezar o terço, só diz a cada dezena:}
         \parspace
         Gloria ao Pai, ao Filho, ao Espírito Santo.
         Assim como era no princípio, agora e sempre,
@@ -243,7 +243,7 @@
       \endverse
       \beginverse\color{englishcolor}
         \translationtitle{EN}{The Rosary I (official work)}
-        \textnote{While praying the Rosary, after every decade:}
+        \textnotefornext{While praying the Rosary, after every decade:}
         \parspace
         Glory to the Father, to the Son and to the Holy Spirit.
         As it was in the beginning, is now, and ever shall be,
@@ -255,7 +255,7 @@
 
 
     \begin{intersong}
-      \textnote{Ao fim do terço, (normalmente) a comandante do pelotão feminino:}
+      \textnotefornext{Ao fim do terço, (normalmente) a comandante do pelotão feminino:}
       \parspace
       Em nome de Deus Pai Todo-Poderoso, da Virgem Soberana Mãe,\\
       do Nosso Senhor Jesus Cristo, do Patriarca São José e de\\
@@ -264,8 +264,8 @@
       trabalhos, meus irmãos e minhas irmãs. Que Deus e a Virgem Mãe\\
       sejam nossos guias para sempre. Amém!\\
       \emph{(Todos se benzem.)}\\
-      \parspace
-      \textnote{\textbf{[EN]} At the end of Rosary, (usually) the commander of the feminine batallion:}
+      \parspace\color{englishcolor}
+      \textnotefornext{\textbf{[EN]} At the end of Rosary, (usually) the commander of the feminine batallion:}
       \parspace
       In the name of God the Almighty Father, of the Sovereign Virgin
       Mother, of Our Lord Jesus Christ, of the Patriarch Saint Joseph and of\\
@@ -278,7 +278,7 @@
 
     \beginsong{O Terço II (Santa Missa)}[tags={Santa Missa}]
       \beginverse
-        \textnote{Ao rezar o terço, só diz a cada dezena:}
+        \textnotefornext{Ao rezar o terço, só diz a cada dezena:}
         \parspace
         Gloria ao Pai, ao Filho, ao Espírito Santo.
         Assim como era no princípio, agora e sempre,
@@ -294,7 +294,7 @@
       \endverse
       \beginverse\color{englishcolor}
         \translationtitle{EN}{The Rosary II (Santa Missa)}
-        \textnote{While praying the Rosary, after every decade:}
+        \textnotefornext{While praying the Rosary, after every decade:}
         \parspace
         Glory to the Father, to the Son and to the Holy Spirit.
         As it was in the beginning, is now, and ever shall be,
@@ -349,7 +349,7 @@
 
     \sclearpage
     \beginsong{Consagração do Aposento}
-      \textnote{Nos trabalhos de mesa: após Hinos da Oração}
+      \textnotefornext{Nos trabalhos de mesa: após Hinos da Oração}
       \parspace
       \beginverse
         Dentro do Circulo Infinito da Divina Presença que
@@ -434,7 +434,7 @@
       \endverse
       \beginverse\color{englishcolor}
         \translationtitle{EN}{Consecration of the Space}
-        \textnote{In sitting works: after Oração}
+        \textnotefornext{In sitting works: after Oração}
         \parspace
         Inside the Infinite Circle of the Divine Presence
         which completely surrounds me, I affirm that:
@@ -521,7 +521,7 @@
       \endverse
       \beginverse\color{finnishcolor}
         \translationtitle{FI}{Paikan pyhittäminen}
-        \textnote{Istumatöissä: Oraçãon jälkeen}
+        \textnotefornext{Istumatöissä: Oraçãon jälkeen}
         \parspace
         Jumalallisen läsnäolon äärettömästä piiristä käsin,
         joka ympäröi minut täysin, todistan:
@@ -735,7 +735,7 @@
         Amen.
       \endverse
       % Keep the Finnish version here, as we need something for the recto page :)
-      \beginverse\color{finnishcolor}
+      \beginverse\brk\vbox to0pt{}\vfill\color{finnishcolor}
         \translationtitle{FI}{Uskontunnustus}
         Minä uskon Jumalaan, Isään, Kaikkivaltiaaseen,
         taivaan ja maan Luojaan;
@@ -880,7 +880,7 @@
 
     \beginsong{Encerramento}
       \beginverse
-        \textnote{Dirigente do trabalho pronuncia:}
+        \textnotefornext{Dirigente do trabalho pronuncia:}
         Em nome de Deus Pai Todo-Poderoso, da Virgem
         Soberana Mãe, do Patriarca São José e de todos
         os Seres Divinos da Corte Celestial, e com
@@ -889,13 +889,13 @@
         e minhas irmãs.
         \textbf{Louvado seja Deus nas alturas!}
         \parspace
-        \textnote{E todos respondem:}
+        \textnotefornext{E todos respondem:}
         Para que sempre seja louvada a nossa Mãe Maria
         Santíssima, sobre toda a humanidade. Amém!
       \endverse
       \beginverse\color{englishcolor}
         \translationtitle{EN}{Closing}
-        \textnote{Leader of the work pronounces:}
+        \textnotefornext{Leader of the work pronounces:}
         In the name of God the Almighty Father, of the Sovereign
         Virgin Mother, of the Patriarch Saint Joseph and of all
         the Divine Beings of the Celestial Court, and with
@@ -903,7 +903,7 @@
         our work is ended, my brothers and my sisters.
         \textbf{Praised be God in the Heights!}
         \parspace
-        \textnote{And all respond:}
+        \textnotefornext{And all respond:}
         May our Mother, the Most Holy Mary, be forever
         praised above all humanity. Amen!
       \endverse
