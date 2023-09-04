@@ -582,7 +582,7 @@
     \layout { #(layout-set-staff-size 13) } % to fit translation, too
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \forcebrkifchordsoff
+  \iflyriconly\forcebrk\fi
   \begin{translation}
     The Stars already arrived to say their name
     I am, I am, I am, I am a son of God

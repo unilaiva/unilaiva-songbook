@@ -44,7 +44,7 @@
   \ifchorded\else\vfill\fi
   \textnotefornext{Este hino é cantado antes da consagração de Santa Maria.}
   \textnoteforprev{This hymn is sung before the consecration of Santa Maria.}
-  \forcebrkifchordsoff
+  \iflyriconly\forcebrk\fi
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva, updated on 2022-12
     theMelody = \relative a'' {
@@ -917,7 +917,7 @@
     }
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \forcebrkifchordsoff
+  \iflyriconly\forcebrk\fi
   \begin{translation}\scriptsize % smaller to fit whole song on a spread
     I'll tell a nice story, the plant that has more love
     She was a little one that Padrinho saw and blessed
@@ -1170,7 +1170,7 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
-  \forcebrkifchordsoff
+  \iflyriconly\forcebrk\fi
   \begin{translation}
     O Virgin Mother, I ask of you that some day
     I may know how to love Santa Maria

@@ -116,7 +116,7 @@
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \forcebrkifchordsoff
+  \iflyriconly\forcebrk\fi
   \begin{translation}
     Examine your conscience; Examine it thoroughly
     I‘m the Father, not the son; But I don‘t act that way
@@ -1544,7 +1544,7 @@
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \forcebrkifchordsoff
+  \iflyriconly\forcebrk\fi
   \begin{translation}
     I am not God; But I have a hope
     I am not God; But I am His likeness
@@ -1609,7 +1609,7 @@
     Foge o |^Vento ^das al|^turas
     ^Treme a |Terra e ^geme o |^Mar ^
   \endchorus
-  \forcebrkifchordsoff
+  \iflyriconly\forcebrk\fi
   \beginchorus\replay[chords_eupedietive_a]
     A Meu |^Pai eu ^agra|^de^ço
     Por es|^ta com^preen|^são ^
