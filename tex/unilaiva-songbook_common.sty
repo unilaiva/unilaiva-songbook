@@ -665,9 +665,14 @@
 
 % BEGIN Setup column break penalties
 
-% Forces a column break
+% Force a column break
 \newcommand{\forcebrk}{%
   \brkpenalty=-10000\brk%
+}
+
+% Strongly suggest a column break
+\newcommand{\hardbrk}{%
+  \brkpenalty=-500\brk%
 }
 
 % Suggest a column brake if chords are off (lyrics-only book)
