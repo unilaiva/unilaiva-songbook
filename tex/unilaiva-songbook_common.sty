@@ -673,16 +673,17 @@
 % songs: Set penalties for column (page) breaks (<=-10000: break is forced)
 % NOTE: Be careful changing these. At least check that the page count of the
 %       final PDF is the same as before the change.
+\spenalty=0     % between songs (songs default: 100, here 0)
 \vvpenalty=200  % between verse and verse (songs default: 200, here 200)
 \vcpenalty=200  % between verse and chorus (songs default: 200, here 200)
 \ccpenalty=200  % between chorus and chorus (songs default: 200, here 200)
 \cvpenalty=200  % between chorus and verse (songs default: 200, here 200)
-\brkpenalty=-100  % for \brk (songs default: 200, here -100)
+\brkpenalty=50  % for \brk (songs default: 200, here 50)
 \interlinepenalty=1000 % between in-verse lines (songs default: 1000, here 1000)
 \newcount\gluepenalty%
 \gluepenalty=950 % between verses glued together with \glueverses (default here: 950)
 \newcount\blockpenalty%
-\blockpenalty=0 % between (and before the song's first) in-song blocks (default here: 0)
+\blockpenalty=100 % between (and before the song's first) in-song blocks (default here: 0)
 \newcount\translationvvpenalty%
 \translationvvpenalty=900 % between translation verses (when \nextverse is called)
 
