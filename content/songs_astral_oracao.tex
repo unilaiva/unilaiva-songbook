@@ -116,6 +116,7 @@
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
+  \forcebrkifchordsoff
   \begin{translation}
     Examine your conscience; Examine it thoroughly
     I‘m the Father, not the son; But I don‘t act that way
@@ -181,7 +182,7 @@
     Dei|xavam a \[\bm]ilu|são\[\bm]
     Que é |coisa que \[\bm]não con|vém\[\bm]
   \endchorus
-  \brk
+  \forcebrk
   \beginchorus
     O |mundo está \[\bm]em ba|la\[\bm]nço
     E |tudo vai \[\bm]balan|çar\[\bm]
@@ -1543,6 +1544,7 @@
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
+  \forcebrkifchordsoff
   \begin{translation}
     I am not God; But I have a hope
     I am not God; But I am His likeness
@@ -1607,6 +1609,7 @@
     Foge o |^Vento ^das al|^turas
     ^Treme a |Terra e ^geme o |^Mar ^
   \endchorus
+  \forcebrkifchordsoff
   \beginchorus\replay[chords_eupedietive_a]
     A Meu |^Pai eu ^agra|^de^ço
     Por es|^ta com^preen|^são ^
