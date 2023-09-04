@@ -670,6 +670,11 @@
   \brkpenalty=-10000\brk%
 }
 
+% Suggest a column brake if chords are off (lyrics-only book)
+\newcommand\brkifchordsoff{%
+  \ifchorded\else\brk\fi%
+}
+
 % songs: Set penalties for column (page) breaks (<=-10000: break is forced)
 % NOTE: Be careful changing these. At least check that the page count of the
 %       final PDF is the same as before the change.
