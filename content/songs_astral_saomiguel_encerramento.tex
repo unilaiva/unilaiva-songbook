@@ -10,7 +10,10 @@
 % Use this to specify a translation title within a verse, eg
 % \translationtitle{EN}{Greed}
 \newcommand{\translationtitle}[2]{
-  \vspace{3ex}\textbf{[#1]} \textit{#2}\vspace{1.618034ex}
+  \brkpenalty=-9000\brk%
+  \vspace{2.618034ex}%
+  \textbf{[#1]} \textit{#2}%
+  \vspace{1.618034ex}%
 }
 % Use this to create a vertical space between "paragraphs"
 % within verses:
@@ -250,7 +253,7 @@
     reunião, espíritos esses para os quais imploramos
     misericórdia de Deus.
   \endverse
-  \beginverse
+  \beginverse\color{englishcolor}
     \translationtitle{EN}{Prayer to Close the Meeting}
     We give thanks to the good spirits who have come
     to communicate with us, and ask them to help us put

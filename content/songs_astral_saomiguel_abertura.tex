@@ -4,17 +4,20 @@
 
 { % Put everything in this file in a block to not bleed settings
 
-  % use Roman numerals for song (prayer) numbering:
-  \renewcommand{\thesongnum}{\Roman{songnum}}
+% use Roman numerals for song (prayer) numbering:
+\renewcommand{\thesongnum}{\Roman{songnum}}
 
-  % Use this to specify a translation title within a verse, eg
-  % \translationtitle{EN}{Greed}
-  \newcommand{\translationtitle}[2]{
-    \vspace{3ex}\textbf{[#1]} \textit{#2}\vspace{1.618034ex}
-  }
-  % Use this to create a vertical space between "paragraphs"
-  % within verses:
-  \newcommand{\parspace}{\vspace{1ex}}
+% Use this to specify a translation title within a verse, eg
+% \translationtitle{EN}{Greed}
+\newcommand{\translationtitle}[2]{
+  \brkpenalty=-9000\brk%
+  \vspace{2.618034ex}%
+  \textbf{[#1]} \textit{#2}%
+  \vspace{1.618034ex}%
+}
+% Use this to create a vertical space between "paragraphs"
+% within verses:
+\newcommand{\parspace}{\vspace{1ex}}
 
 
 \setcounter{songnum}{1}
@@ -155,8 +158,9 @@
     Batista, que nos assista e por nós vele.
   \endverse
   \brk
-  \beginverse
+  \beginverse\color{englishcolor}
     \translationtitle{EN}{Prayer for the Beginning of the Meeting}
+    \textnotemiddle{Before this prayer, recite the Consecration of the Space}
     We implore You, oh God, the All Powerful, to send us
     the good spirits to help us and keep away any spirits
     that may lead us into error. Give us the necessary light
@@ -444,7 +448,7 @@
     qualquer sentimento contrário à caridade, que são
     outras tantas portas abertas ao espírito do mal.
   \endverse
-  \beginverse
+  \beginverse\color{englishcolor}
     \translationtitle{EN}{Prayer to Remove Wrong-doing Spirits}
     ``Woe unto you, scribes and Pharisees, hypocrites, for
     you clean the outside of the cup and dish, but you
