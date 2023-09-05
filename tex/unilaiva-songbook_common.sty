@@ -495,7 +495,10 @@
 % See: https://www.tex.ac.uk/FAQ-overfull.html
 \setlength{\emergencystretch}{3em}
 
-\graphicspath{ {./content/img/} } % graphicx: set path to find images from
+% Set the image path. Must have the trailing slash.
+\providecommand{\ulimagepath}{./content/img/}
+
+\graphicspath{\ulimagepath} % graphicx: set path to find images from
 
 % color: Color definitions:
 \definecolor{chordcolor}{rgb}{0.20,0,0.22} % chords
@@ -662,7 +665,6 @@
 
 % END Setup headers using fancyhdr
 
-
 % BEGIN Setup column break penalties
 
 % Force a column break
@@ -705,6 +707,131 @@
 % ==============================
 
 \makeatletter% To allow rewrites of @-containing macros
+
+% BEGIN front matter
+
+% Alternate implementations for \insertcovericons, placing the icons in
+% alternate corners either horizontally or vertically:
+
+\newcommand{\insertcovericonsvtl}{% top left, vertical
+  \ifdefined\limgi\par\vspace{\cigapsize}\hspace{\cileftoffset}\includegraphics[height=\ciiconsize]{\limgi}\fi%
+  \ifdefined\limgii\par\vspace{\cigapsize}\hspace{\cileftoffset}\includegraphics[height=\ciiconsize]{\limgii}\fi%
+  \ifdefined\limgiii\par\vspace{\cigapsize}\hspace{\cileftoffset}\includegraphics[height=\ciiconsize]{\limgiii}\fi%
+  \ifdefined\limgiv\par\vspace{\cigapsize}\hspace{\cileftoffset}\includegraphics[height=\ciiconsize]{\limgiv}\fi%
+  \ifdefined\rimgi\par\vspace{\cigapsize}\hspace{\cileftoffset}\includegraphics[height=\ciiconsize]{\rimgi}\fi%
+  \ifdefined\rimgii\par\vspace{\cigapsize}\hspace{\cileftoffset}\includegraphics[height=\ciiconsize]{\rimgii}\fi%
+  \ifdefined\rimgiii\par\vspace{\cigapsize}\hspace{\cileftoffset}\includegraphics[height=\ciiconsize]{\rimgiii}\fi%
+  \ifdefined\rimgiv\par\vspace{\cigapsize}\hspace{\cileftoffset}\includegraphics[height=\ciiconsize]{\rimgiv}\fi%
+}
+\newcommand{\insertcovericonsvtr}{% top right, vertical
+  \ifdefined\limgi\par\vspace{\cigapsize}\hfill\includegraphics[height=\ciiconsize]{\limgi}\fi%
+  \ifdefined\limgii\par\vspace{\cigapsize}\hfill\includegraphics[height=\ciiconsize]{\limgii}\fi%
+  \ifdefined\limgiii\par\vspace{\cigapsize}\hfill\includegraphics[height=\ciiconsize]{\limgiii}\fi%
+  \ifdefined\limgiv\par\vspace{\cigapsize}\hfill\includegraphics[height=\ciiconsize]{\limgiv}\fi%
+  \ifdefined\rimgi\par\vspace{\cigapsize}\hfill\includegraphics[height=\ciiconsize]{\rimgi}\fi%
+  \ifdefined\rimgii\par\vspace{\cigapsize}\hfill\includegraphics[height=\ciiconsize]{\rimgii}\fi%
+  \ifdefined\rimgiii\par\vspace{\cigapsize}\hfill\includegraphics[height=\ciiconsize]{\rimgiii}\fi%
+  \ifdefined\rimgiv\par\vspace{\cigapsize}\hfill\includegraphics[height=\ciiconsize]{\rimgiv}\fi%
+}
+\newcommand{\insertcovericonshtl}{% top left, horizontal
+  \hspace{\cileftoffset}%
+  \ifdefined\limgi\includegraphics[width=\ciiconsize]{\limgi}\hspace{\cigapsize}\fi%
+  \ifdefined\limgii\includegraphics[width=\ciiconsize]{\limgii}\hspace{\cigapsize}\fi%
+  \ifdefined\limgiii\includegraphics[width=\ciiconsize]{\limgiii}\hspace{\cigapsize}\fi%
+  \ifdefined\limgiv\includegraphics[width=\ciiconsize]{\limgiv}\hspace{\cigapsize}\fi%
+  \ifdefined\rimgi\includegraphics[width=\ciiconsize]{\rimgi}\hspace{\cigapsize}\fi%
+  \ifdefined\rimgii\includegraphics[width=\ciiconsize]{\rimgii}\hspace{\cigapsize}\fi%
+  \ifdefined\rimgiii\includegraphics[width=\ciiconsize]{\rimgiii}\hspace{\cigapsize}\fi%
+  \ifdefined\rimgiv\includegraphics[width=\ciiconsize]{\rimgiv}\fi%
+}
+\newcommand{\insertcovericonshtr}{% top right, horizontal}
+  \hspace{\fill}%
+  \ifdefined\limgi\hspace{\cigapsize}\includegraphics[width=\ciiconsize]{\limgi}\fi%
+  \ifdefined\limgii\hspace{\cigapsize}\includegraphics[width=\ciiconsize]{\limgii}\fi%
+  \ifdefined\limgiii\hspace{\cigapsize}\includegraphics[width=\ciiconsize]{\limgiii}\fi%
+  \ifdefined\limgiv\hspace{\cigapsize}\includegraphics[width=\ciiconsize]{\limgiv}\fi%
+  \ifdefined\rimgi\hspace{\cigapsize}\includegraphics[width=\ciiconsize]{\rimgi}\fi%
+  \ifdefined\rimgii\hspace{\cigapsize}\includegraphics[width=\ciiconsize]{\rimgii}\fi%
+  \ifdefined\rimgiii\hspace{\cigapsize}\includegraphics[width=\ciiconsize]{\rimgiii}\fi%
+  \ifdefined\rimgiv\hspace{\cigapsize}\includegraphics[width=\ciiconsize]{\rimgiv}\fi%
+}
+\newcommand{\insertcovericonsvbl}{% bottom left, vertical
+  \vspace*{\fill}%
+  \insertcovericonsvtl%
+}
+\newcommand{\insertcovericonsvbr}{% bottom right, vertical
+  \vspace*{\fill}%
+  \insertcovericonsvtr%
+}
+\newcommand{\insertcovericonshbl}{% bottom left, horizontal
+  \vspace*{\fill}%
+  \insertcovericonshtl%
+}
+\newcommand{\insertcovericonshbr}{% bottom right, horizontal
+  \vspace*{\fill}%
+  \insertcovericonshtr%
+}
+
+
+% Called by \insertcovericons to print the first set of cover icons. Can be
+% renewed. The actual icon file names are in \limgi, \limgii, \limgiii, and
+% \limgiv macros for the permanent ones, and \rimgi, \rimgii, \rimgiii, and
+% \rimgiv for the replacaple ones. The macros are undefined, if icons are
+% missing. You can provide your own implementation, or choose one of the
+% \insertcovericons??? macros.
+\providecommand{\insertcovericons}{\insertcovericonshbr}%
+
+% The icon (in default image path) used to signify a lyrics-only book.
+\providecommand{\nolyricsicon}{unilaiva-mode-icon-lyricsonly_512x512px.png}%
+
+% Inserts the cover icons here. Meant to be called by \ulcoverpage. Calls the
+% public \insertcovericons to do the actual outputing.
+\newcommand{\@insertcovericons}{%
+  \newlength\ciiconsize\ciiconsize=0.1\textwidth%
+  \newlength\cigapsize\cigapsize=0.023606\textwidth% % 0.1*0.618034^3 = 0.023606
+  % The following offsets are required so that the top and left are exactly at
+  % the margin positions (used inside the book). See e.g.:
+  % https://tex.stackexchange.com/questions/287119/using-headsep-with-the-geometry-and-fanchyhdr-packages
+  \newlength\cileftoffset\cileftoffset=\dimexpr-\parindent\relax%
+  \newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\baselineskip-0.4pt\relax%
+  \thispagestyle{empty}%
+  \vspace*{\citopoffset}%
+  \insertcovericons%
+}
+
+% Creates a cover page here. Ought to be the first command used after
+% \begin{document}.
+% There is one mandatory parameter, which is the cover PDF's file name without
+% path (it should reside in folder defined by \ulimagepath), and it must be in
+% PDF format. Only the first page is displayed and scaled as the cover image.
+%
+% Before the mandatory parameter, maximum of four image file names (not pdf)
+% can be presented, each in it's own brackets. They will be laid over the
+% cover image as small icons.
+%
+% After the mandatory parameter, maximum of three image file names (not pdf)
+% can be given, each in it's own brackets. These are also laid over the cover
+% image as additional icons. The icons after the mandatory parameter are skipped
+% when autogenerating a lyrics-only book. Instead the second set of icons is
+% replaced with the lyrics only icon defined in \nolyricsicon.
+\NewDocumentCommand{\ulcoverpage}{s o o o o m o o o}{%
+  \IfValueT{#2}{\newcommand\limgi{#2}}%
+  \IfValueT{#3}{\newcommand\limgii{#3}}%
+  \IfValueT{#4}{\newcommand\limgiii{#4}}%
+  \IfValueT{#5}{\newcommand\limgiv{#5}}%
+  \iflyriconly% skip given set ii icons in lyric-only books
+    \IfBooleanF{#1}{% false, no star --> use nolyricsicon as set ii
+      \newcommand\rimgi{\nolyricsicon}%
+    }%
+  \else%
+    \IfValueT{#7}{\newcommand\rimgi{#7}}%
+    \IfValueT{#8}{\newcommand\rimgii{#8}}%
+    \IfValueT{#9}{\newcommand\rimgiii{#9}}%
+  \fi%
+  % include the cover PDF (with path)
+  \includepdf[pages={1},pagecommand=\@insertcovericons]{\ulimagepath#6}%
+}
+
 
 % This command creates "the imprint page", usually the "second page", the odd
 % verso page right after the cover. The information on the page is constructed
@@ -780,6 +907,8 @@
   \addtocontents{toc}{~\hfill\textbf{Page}\par}
   \newpage\pagestyle{unilaiva}% return to the default header style
 }
+
+% END front matter
 
 % Returns the chapter symbol (six-petalled star) as a text symbol. Renew to
 % change.
@@ -872,6 +1001,7 @@
   \ifshowimageonchapterfrontpage\ifdefined\largechapterimage\vspace{-1em}\largechapterimage\fi\fi%
   \clearpage%
 }
+
 
 % Adds vertical space, if not currently in a verse nor a chorus. The amount
 % of space is given as a length parameter.  Must be called only in vertical

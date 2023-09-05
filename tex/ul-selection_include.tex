@@ -49,7 +49,9 @@
 % \fullbookcoverimage.
 \newcommand{\coverpageforselection}{
   \ifdefined\coverpdf{
-    \includepdf[]{content/img/\coverpdf}
+    \ulcoverpage[unilaiva-mode-icon-partial_512x512px.png]
+                {\coverpdf}
+                [unilaiva-mode-icon-music_512x512px]
   }\else{ % must be contained within a block for the settings to not bleed
     \thispagestyle{empty}
     \topskip0pt
