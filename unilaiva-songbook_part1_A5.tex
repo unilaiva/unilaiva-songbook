@@ -13,11 +13,16 @@
 % The following file contains all the imports, style settings etc:
 \input{tex/setup_default-A5-fullmusic_include.tex}
 
+\renewcommand{\insertcovericons}{\insertcovericonshtl}%
+
 
 \begin{document}
 
   % Cover page (recto), by larva (photo + edit):
-  \includepdf[]{content/img/unilaiva-songbook_part1_COVER.pdf}
+  \ulcoverpage[Huichol_deer__transparent_bg_1042x1098px.png]%
+              [caapi_heart_drawing_transparent_bg_1000x797px.png]%
+              {unilaiva-songbook_part1_COVER.pdf}%
+              [unilaiva-mode-icon-music_512x512px]
   % The second page (verso):
   \imprintpage
 
