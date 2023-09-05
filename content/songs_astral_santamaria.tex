@@ -127,7 +127,7 @@
     \layout { #(layout-set-staff-size 14) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\footnotesize % to fit whole song on one spread
+  \begin{translation}
     Whoever arrives at this house and comes into it here
     Encounters the Virgin Mary, she is who gives you your well being
     \nextverse
@@ -1531,6 +1531,7 @@
     Aju|dai os \[\mn{E}]fi\[\mn{D}]lhos \[\mnc{C}C]seus|' \e \altchords{|- A | \e}
     \[\mn{G}]Assim |\[G7]como \[\mn{E}]meu \[\mn{D}]Pai \[\mnc{C}C]faz|' \e \altchords{|E7 A | \e}
   \mnendchorus
+  \ifshowlilypond\hardbrk\fi% to not leave the recto page empty
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva on 2021-08
     theMelody = \relative c''' {

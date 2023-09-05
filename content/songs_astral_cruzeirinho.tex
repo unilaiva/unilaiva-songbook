@@ -671,7 +671,7 @@
     \layout { #(layout-set-staff-size 14) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\footnotesize % to fit whole song on one spread
+  \begin{translation}
     Whoever arrives at this house and comes into it here
     Encounters the Virgin Mary, she is who gives you your well being
     \nextverse
@@ -1027,7 +1027,7 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
-  \begin{translation}\scriptsize % to fit whole song on one page in lyrics-only book
+  \begin{translation}\iflyriconly\scriptsize\fi % to fit whole song on one page in lyrics-only book
     Here I am saying, here I am singing
     I tell everybody the hymns are teaching us
     \nextverse

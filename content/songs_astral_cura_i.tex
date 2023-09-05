@@ -269,7 +269,7 @@
     \layout { #(layout-set-staff-size 15) } % for better division
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\scriptsize% to fit on one page in lyrics-only books
+  \begin{translation}\iflyriconly\scriptsize\fi% to fit on one page in lyrics-only books
     I called my Master in the name of the truth
     Because the truth is God, the King of charity
     \nextverse
@@ -1412,7 +1412,7 @@
     \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\scriptsize% to fit on one page in lyrics-only books
+  \begin{translation}\iflyriconly\scriptsize\fi% to fit on one page in lyrics-only books
     Now I stop and ask, I ask and pray to the Lord God
     To give me the holy health, for all His sons and daughters
     \nextverse

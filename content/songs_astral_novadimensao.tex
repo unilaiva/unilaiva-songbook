@@ -675,7 +675,7 @@
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\scriptsize % to fit on one page in lyrics-only book
+  \begin{translation}\iflyriconly\scriptsize\fi % to fit on one page in lyrics-only book
     Searching for Nature, there has been no greater way
     All life goes to the beyond, all matter remains in dust
     \nextverse
@@ -1733,7 +1733,7 @@
     \layout { #(layout-set-staff-size 15) } % to fit all on one spread
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\scriptsize % to fit on one spread
+  \begin{translation}\iflyriconly\else\scriptsize\fi % to fit on one spread in chorded book
     Life Saint John, life my Jesus
     The full moon, its glow shines
     It's so beautiful, the power of the fire
