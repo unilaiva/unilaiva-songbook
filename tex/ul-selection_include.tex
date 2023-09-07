@@ -12,6 +12,7 @@
 \providecommand{\mainbooktitle}{Unilaiva Selection}
 \providecommand{\bookmotto}{a selection of songs from Unilaiva Songbook}
 \providecommand{\fullbookcoverimage}{Unilaiva-songbook_COVER.pdf}
+\providecommand{\linkpretext}{Find the complete songbook at:}
 
 % Disable Lilypond, as it doesn't work in selections for some reason. TODO: fix.
 \showlilypondfalse
@@ -42,20 +43,21 @@
   }
 }
 
+\setcovericonsperm[unilaiva-mode-icon-partial_512x512px.png]%
+\setcovericonsvar[unilaiva-mode-icon-music_512x512px]
+
 % This will create the cover page for a selection booklet. If macro \coverpdf
 % is defined, it's content will be assumed to be a file name of a PDF file in
 % content/img, and will be used as a cover page. Otherwise a cover will be
 % generated from \mainbooktitle, \subbooktitle (optional) and
 % \fullbookcoverimage.
 \newcommand{\coverpageforselection}{
-  \ifdefined\coverpdf{
-    \ulcoverpage[unilaiva-mode-icon-partial_512x512px.png]
-                {\coverpdf}
-                [unilaiva-mode-icon-music_512x512px]
+  \ifdefined\coverpdf{%
+    \ulcoverpage{\coverpdf}%
   }\else{ % must be contained within a block for the settings to not bleed
-    \thispagestyle{empty}
-    \topskip0pt
-    \vspace*{11.3ex} % align with "Contents" heading on the next page; BAD for any changes
+    \thispagestyle{empty}%
+    \topskip0pt%
+    \vspace*{11.2ex} % align with "Contents" heading on the next page; BAD for any changes
     \begin{center}
       {\Huge \mainbooktitle}
       \ifdefined\bookmotto%
@@ -69,77 +71,16 @@
       \imagec[2]{\fullbookcoverimage}
       \par\vspace*{\fill}
     \end{center}
+    \insertcovericonshbc
   }
   \fi
 }
-
-% This will create the second page for a selection booklet
-\newcommand{\imprintpageforselection}{
-  { % must be contained within a block for the settings to not bleed
-    \thispagestyle{empty}
-    \topskip0pt
-    \normalsize
-    \vspace*{11.3ex} % align with "Contents" heading on the next page; BAD for any changes
-    \begin{center}
-      {\Huge \mainbooktitle}
-      \ifdefined\bookmotto% \bookmotto exists
-        \par\textit{\normalsize\bookmotto}
-      \fi
-      \ifdefined\subbooktitle% \subbooktitle exists
-        \par\vspace{2ex}
-        {\Large \textbf{\subbooktitle}}
-        \ifdefined\subsubbooktitle% \subsubbooktitle exists
-          \par\vspace{0.618034ex}%
-          {\normalsize \subsubbooktitle}
-        \fi
-      \fi
-      \par\vspace*{\fill}
-      \ifdefined\bookbytext% \bookbytext exists
-        {\large \bookbytext}
-        \par\vspace{2ex}
-      \fi
-      {\large \bookversionpretext}
-      \par\vspace{0.618034ex}
-      {\Large%
-        %vvvv-mm-dd % Use hardcoded date date for tagged printout releases
-        \songbookversion% current date, the default
-        \ifchorded\else{\par\large\emph{\lyricsonlytext}}\fi% if non-chorded version, mention it here
-      }
-      \par\vspace*{\fill}
-      {\normalsize Find the complete songbook at:}
-      \\
-      \ifdefined\bookwebsitelinkqrimage% \bookwebsitelink exists
-        \imagel[3]{\bookwebsitelinkqrimage} % is already centered, so 'l' version ok
-        \par
-      \fi
-      \ifdefined\bookwebsitelink% \bookwebsitelink exists
-        {\small\url{\bookwebsitelink}}
-      \fi
-      % Add vspace once, if either \bookwebsitelink or \bookwebsitelinkqrimage,
-      % or both, exist
-      \ifdefined\bookwebsitelinkqrimage%
-        \par\vspace*{\fill}
-      \else\ifdefined\bookwebsitelink%
-        \par\vspace*{\fill}
-      \fi\fi
-      \ifdefined\bookcompiledbytext% \bookcompiledbytext exists
-        {\footnotesize\bookcompiledbytext}
-        \par\vspace{4ex}
-      \fi
-      \ifdefined\imprintpagefootnote%
-        {\scriptsize\imprintpagefootnote}%
-      \fi
-    \end{center}
-    \vspace{-1.85ex}% workaround to align page bottom with other pages
-  }
-} % END \imprintpageforselection
-
 
 \begin{document}
 
   \coverpageforselection % cover page here
   \clearpage
-  \imprintpageforselection % the second (title) page here (verso)
+  \imprintpage % the second (title) page here (verso)
 
   % TOC:
   \toc
@@ -155,17 +96,18 @@
     \input{content/songs_other.tex}
     \input{content/songs_suomi.tex}
     \input{content/songs_suomi_larva.tex}
-
-    \chordsoff % songs: do not show (empty line for non-existing) chords
-    % songs: Increase line spacing for better readability
-    \baselineadj=+1pt plus 0pt minus 0pt%
-    \renewcommand{\lyricfont}{\small} % songs: use smaller font
-    \songcolumns{2} % songs: two columns per page
-    \songpos{1} % songs: avoid ONLY page-turns within songs
-    % songs: make penalty for breaking column/page at any line of lyrics to be the same:
-    % (The default for \interlinepenalty is 1000, and for all the others 200.)
-    \interlinepenalty=200 %
-    \input{content/songs_suomi_runoja_loitsuja.tex}
+    { % for the settings not to bleed, as we are in the same environment
+      \chordsoff % songs: do not show (empty line for non-existing) chords
+      % songs: Increase line spacing for better readability
+      \baselineadj=+1pt plus 0pt minus 0pt%
+      \renewcommand{\lyricfont}{\small} % songs: use smaller font
+      \songcolumns{2} % songs: two columns per page
+      \songpos{1} % songs: avoid ONLY page-turns within songs
+      % songs: make penalty for breaking column/page at any line of lyrics to be the same:
+      % (The default for \interlinepenalty is 1000, and for all the others 200.)
+      \interlinepenalty=200 %
+      \input{content/songs_suomi_runoja_loitsuja.tex}
+    }
   \end{songs}
 
 \end{document}

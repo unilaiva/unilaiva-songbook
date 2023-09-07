@@ -335,6 +335,9 @@
 %   \bookmotto
 %   \bookbytext
 %   \bookversionpretext
+%   \bookvariantpretext
+%   \variantdefaulttext
+%   \variantlyricsonlytext
 %   \bookwebsitelink
 %   \bookwebsitelinkqrimage (this is image filename in content/img without path)
 %   \bookcompiledbytext
@@ -351,7 +354,9 @@
 \providecommand{\songbookversion}{%
   \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day%
 }
-\providecommand{\lyricsonlytext}{lyrics only}
+\providecommand{\bookvariantpretext}{Variant:}
+\providecommand{\variantdefaulttext}{default}
+\providecommand{\variantlyricsonlytext}{lyrics only}
 
 % Set defaults for PDF metadata, if they are not defined. One should define
 % them in the main file before including this package.
@@ -710,6 +715,18 @@
 
 % BEGIN front matter
 
+% Sizes, gaps and positions for mode icons
+
+% The following offsets are required so that the top and left are exactly at
+% the margin positions (used inside the book). See e.g.:
+% https://tex.stackexchange.com/questions/287119/using-headsep-with-the-geometry-and-fanchyhdr-packages
+\newlength\cipermsize\cipermsize=.090169\textwidth% 0.618034^5 = 0.09169
+\newlength\cipermgapsize\cipermgapsize=.021286\textwidth% % 0.618034^8 = 0.021286
+\newlength\civarsize\civarsize=\cipermsize
+\newlength\civargapsize\civargapsize=\cipermgapsize
+\newlength\cileftoffset\cileftoffset=\dimexpr-\parindent\relax%
+\newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\baselineskip-0.4pt\relax%
+
 % Alternate implementations for \insertcovericons, placing the icons in
 % alternate corners either horizontally or vertically:
 
@@ -802,12 +819,23 @@
   \vspace*{\fill}%
   \insertcovericonshtr%
 }
-\newcommand{\insertcovericonshtc}{% bottom left, horizontal
+\newcommand{\insertcovericonshtc}{% top center, horizontal
   \hfill\insertcovericonshtl\hfill%
 }
-\newcommand{\insertcovericonshbc}{% bottom left, horizontal
+\newcommand{\insertcovericonshbc}{% bottom center, horizontal
   \vspace*{\fill}
   \insertcovericonshtc%
+}
+
+\newcommand\varianticonstextsize{%
+  \ifdefined\covivari\hspace{1ex}\includegraphics[height=2ex]{\covivari}\fi%
+  \ifdefined\covivarii\hspace{1ex}\includegraphics[height=2ex]{\covivarii}\fi%
+  \ifdefined\covivariii\hspace{1ex}\includegraphics[height=2ex]{\covivariii}\fi%
+  \ifdefined\covivariv\hspace{1ex}\includegraphics[height=2ex]{\covivariv}\fi%
+  \ifdefined\covivarv\hspace{1ex}\includegraphics[height=2ex]{\covivarv}\fi%
+  \ifdefined\covivarvi\hspace{1ex}\includegraphics[height=2ex]{\covivarvi}\fi%
+  \ifdefined\covivarvii\hspace{1ex}\includegraphics[height=2ex]{\covivarvii}\fi%
+  \ifdefined\covivarviii\hspace{1ex}\includegraphics[height=2ex]{\covivarviii}\fi%
 }
 
 
@@ -825,15 +853,6 @@
 % Inserts the cover icons here. Meant to be called by \ulcoverpage. Calls the
 % public \insertcovericons to do the actual outputing.
 \newcommand{\@insertcovericons}{%
-  \newlength\cipermsize\cipermsize=.090169\textwidth% 0.618034^5 = 0.09169
-  \newlength\cipermgapsize\cipermgapsize=.021286\textwidth% % 0.618034^8 = 0.021286
-  \newlength\civarsize\civarsize=\cipermsize
-  \newlength\civargapsize\civargapsize=\cipermgapsize
-  % The following offsets are required so that the top and left are exactly at
-  % the margin positions (used inside the book). See e.g.:
-  % https://tex.stackexchange.com/questions/287119/using-headsep-with-the-geometry-and-fanchyhdr-packages
-  \newlength\cileftoffset\cileftoffset=\dimexpr-\parindent\relax%
-  \newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\baselineskip-0.4pt\relax%
   \thispagestyle{empty}%
   \vspace*{\citopoffset}%
   \insertcovericons%
@@ -899,12 +918,15 @@
     \thispagestyle{empty}
     \topskip0pt
     \normalsize
-    \vspace*{11.3ex} % align with "Contents" heading on the next page; BAD for any changes
+    \vspace*{11.2ex} % align with "Contents" heading on the next page; BAD for any changes
     \begin{center}
+      % Main title
       {\Huge \mainbooktitle}
+      % Motto
       \ifdefined\bookmotto% \bookmotto exists
         \par\textit{\normalsize\bookmotto}
       \fi
+      % Subtitle (e.g. Part I)
       \ifdefined\subbooktitle% \subbooktitle exists
         \par\vspace{2ex}
         {\Large \textbf{\subbooktitle}}
@@ -914,22 +936,44 @@
         \fi
       \fi
       \par\vspace*{\fill}
-      \ifdefined\bookbytext% \bookbytext exists
-        {\large \bookbytext}
-        \par\vspace{2ex}
-      \fi
+      % Variant
+      {\large \bookvariantpretext}
+      \par\vspace{0.618034ex}
+      {\Large%
+        \par\large\emph{\iflyriconly\variantlyricsonlytext\else\variantdefaulttext\fi}%
+        \varianticonstextsize%
+      }
+      \par\vspace{2ex}
+      % Version
       {\large \bookversionpretext}
       \par\vspace{0.618034ex}
       {\Large%
         %vvvv-mm-dd % Use hardcoded date date for tagged printout releases
         \songbookversion% current date, the default
-        \ifchorded\else{\par\large\emph{\lyricsonlytext}}\fi% if non-chorded version, mention it here
       }
+      % By
       \par\vspace*{\fill}
+      \ifdefined\bookbytext% \bookbytext exists
+        {\large \bookbytext}
+      \fi
+      \par\vspace*{\fill}
+      % Link pretext (used in selections)
+      \def\showlinkpretext{true}%
+      \ifdefined\bookwebsitelinkqrimage\else%
+        \ifdefined\bookwebsitelink\else%
+          \let\showlinkpretext\undefined%
+        \fi%
+      \fi%
+      \ifdefined\linkpretext\else\let\showlinkpretext\undefined\fi%
+      \ifdefined\showlinkpretext%
+        {\linkpretext}\par%
+      \fi%
+      % website QR image
       \ifdefined\bookwebsitelinkqrimage% \bookwebsitelink exists
         \imagel[3]{\bookwebsitelinkqrimage} % is already centered, so 'l' version ok
         \par
       \fi
+      % website textual link
       \ifdefined\bookwebsitelink% \bookwebsitelink exists
         {\small\url{\bookwebsitelink}}
       \fi
