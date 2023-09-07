@@ -54,11 +54,12 @@ SONG_IDX_SCRIPT="tex/ext_packages/songs/songidx.lua"
 # installed on the system. To list installed locales on an UNIX, execute
 # "locale -a".
 SORT_LOCALE="fi_FI.utf8" # Recommended default: fi_FI.utf8
+COVERIMAGE_WIDTH="1024" # Width for the optionally extracted cover image file
 
 INITIAL_DIR="${PWD}" # Store the initial directory
 
 TOO_MANY_WARNINGS_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/too_many_warnings"
-RESULT_PDF_LIST_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/result_pdf_list"
+RESULT_FILES_LIST="${INITIAL_DIR}/${TEMP_DIRNAME}/result_files_list"
 
 main_pid=$$
 # Function: print the program usage informationand exit.
@@ -82,6 +83,7 @@ print_usage_and_exit() {
   echo "  --help          : print this usage information"
   echo "  --no-audio      : do not create audio (mp3) files from Lilypond sources"
   echo "  --no-astral     : do not compile unilaiva-astral* books"
+  echo "  --no-coverimage : do not extract cover page as image"
   echo "  --no-deploy     : do not copy PDF files to ./${DEPLOY_DIRNAME}/"
   echo "  --no-docker     : do not use the Docker container for compiling"
   echo "  --no-lyric      : do not generate additional lyrics-only books"
@@ -98,8 +100,8 @@ print_usage_and_exit() {
   echo "                    does not compile anything."
   echo "  -q              : use for quick development build of the main document;"
   echo "                    equals to --no-partial --no-selections --no-astral"
-  echo "                    --no-printouts --no-deploy --no-midi --no-audio"
-  echo "                    --no-lyric"
+  echo "                    --no-printouts --no-coverimage --no-deploy --no-midi"
+  echo "                    --no-audio --no-lyric"
   echo ""
   echo "In addition to the full version of tha main Unilaiva Songbook, also"
   echo "two-booklet version of it is created, with parts 1 and 2 in separate PDFs."
@@ -415,7 +417,7 @@ compile_document() {
     lualatex -file-line-error -halt-on-error -interaction=nonstopmode "${currentdoc_basename}.tex" 1>"${log07file}" 2>&1 || die_log $? "Compilation error running lualatex (3rd time)!" "${log07file}"
 
     cp "${currentdoc_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying ${currentdoc_basename}.pdf from temporary directory!"
-    echo "${currentdoc_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
+    echo "${currentdoc_basename}.pdf" >>${RESULT_FILES_LIST}
 
     # Create printouts, if filename contains _A5 and printouts are not disabled
     # by a command line argument:
@@ -440,7 +442,7 @@ compile_document() {
           local log08file="${logfileprefix}log-08_printout-dsf.log"
           context "${printout_dsf_basename}.context" 1>"${log08file}" 2>&1 || die_log $? "Error creating dsf printout!" "${log08file}"
           cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
-          echo "${printout_dsf_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
+          echo "${printout_dsf_basename}.pdf" >>${RESULT_FILES_LIST}
 
           # A5 on A4, a A5+A5 spread on single A4 surface: Use 'awk' to create a
           # copy of the printout template file with changed input PDF file name
@@ -450,8 +452,26 @@ compile_document() {
           local log09file="${logfileprefix}log-09_printout-sss.log"
           context "${printout_sss_basename}.context" 1>"${log09file}" 2>&1 || die_log $? "Error creating sss printout!" "${log09file}"
           cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
-          echo "${printout_sss_basename}.pdf" >>${RESULT_PDF_LIST_FILE}
+          echo "${printout_sss_basename}.pdf" >>${RESULT_FILES_LIST}
         fi
+      fi
+    fi
+
+    # Extract cover page as a raster image file
+    if [ ${coverimage} == "true" ]; then
+      which "pdftoppm" >"/dev/null"
+      if [ $? -ne 0 ]; then
+        echo -e "${PRETXT_NOEXEC}${txt_docbase}: Cover not extracted as image; no 'pdftoppm'"
+      else
+        echo -e "${PRETXT_EXEC}${txt_docbase}: pdftoppm (extract cover as image)"
+        local log10file="${logfileprefix}log-10_coverimage-extract.log"
+        pdftoppm -f 1 -singlefile -png -scale-to-x "${COVERIMAGE_WIDTH}" -scale-to-y -1 \
+                 "${currentdoc_basename}.pdf" "${currentdoc_basename}" \
+                 1>"${log10file}" 2>&1 \
+                 || die_log $? "Error extracting cover image!" "${log10file}"
+        cp "${currentdoc_basename}.png" "../../${RESULT_DIRNAME}/" \
+           || die $? "Error copying ${currentdoc_basename}.png from temporary directory!"
+      echo "${currentdoc_basename}.png" >>${RESULT_FILES_LIST}
       fi
     fi
 
@@ -541,12 +561,12 @@ compile_document() {
     rm -R "${cur_res_midi_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_midi_subdirname}" 2>"/dev/null"
     [ -d "../../${cur_res_midi_subdirname}" ] || die $? "Could not create the midi result directory ./${cur_res_midi_subdirname}."
-    local log10file="log-10_copy-midi.log"
+    local log11file="log-11_copy-midi.log"
     # Execute the audio copy tool for midi files
     ../../tools/unilaiva-copy-audio.py3 --midi \
       "${document_basename}.dep" "../../${cur_res_midi_subdirname}" \
-      1>"${log10file}" 2>&1 \
-      || die_log $? "Error copying midi files to result directory" "${log10file}"
+      1>"${log11file}" 2>&1 \
+      || die_log $? "Error copying midi files to result directory" "${log11file}"
   fi
   if [ ${audiofiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (encode audio)"
@@ -554,12 +574,12 @@ compile_document() {
     rm -R "${cur_res_audio_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_audio_subdirname}" 2>"/dev/null"
     [ -d "../../${cur_res_audio_subdirname}" ] || die $? "Could not create the audio result directory ./${cur_res_audio_subdirname}."
-    local log11file="log-11_encode-audio.log"
+    local log12file="log-12_encode-audio.log"
     # Execute the audio copy tool for encoding audio files
     ../../tools/unilaiva-copy-audio.py3 --audio \
       "${document_basename}.dep" "../../${cur_res_audio_subdirname}" \
-      1>"${log11file}" 2>&1 \
-      || die_log $? "Error encoding audio files!" "${log11file}"
+      1>"${log12file}" 2>&1 \
+      || die_log $? "Error encoding audio files!" "${log12file}"
   fi
 
   # Create lyrics-only books, if so wanted
@@ -596,12 +616,12 @@ compile_document() {
 #   - not inside Docker container
 #   - deploy is not forbidden by command line argument
 #   - deploy directory exists
-#   - ${RESULT_PDF_LIST_FILE} exists and contains data
+#   - ${RESULT_FILES_LIST} exists and contains data
 #   - pdf's filename does not contain _NODEPLOY
 deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
-  [ -f ${RESULT_PDF_LIST_FILE} ] || return
+  [ -f ${RESULT_FILES_LIST} ] || return
   if [ ! -d "./${DEPLOY_DIRNAME}" ]; then
     echo -e "${PRETXT_NODEPLOY}Resulting PDF files NOT copied to ./${DEPLOY_DIRNAME}/ (directory not found)"
     return
@@ -615,7 +635,7 @@ deploy_results() {
     cp "./${RESULT_DIRNAME}/${pdf_file}" "./${DEPLOY_DIRNAME}/"
     [ $? -eq 0 ] || die 22 "Could not deploy ${pdf_file}"
     echo -e "${PRETXT_DEPLOY}${pdf_file} copied to ./${DEPLOY_DIRNAME}/"
-  done < "${RESULT_PDF_LIST_FILE}"
+  done < "${RESULT_FILES_LIST}"
 } # END deploy_results()
 
 
@@ -623,6 +643,7 @@ deploy_results() {
 usedocker="true"
 deployfinal="true"
 createprintouts="true"
+coverimage="true"
 mainbook="true"
 astralbooks="true"
 partialbooks="true"
@@ -651,6 +672,9 @@ while [ $# -gt 0 ]; do
       shift;;
     "--no-audio")
       audiofiles="false"
+      shift;;
+    "--no-coverimage")
+      coverimage="false"
       shift;;
     "--no-docker")
       usedocker="false"
@@ -682,6 +706,7 @@ while [ $# -gt 0 ]; do
     "-q")
       deployfinal="false"
       createprintouts="false"
+      coverimage="false"
       astralbooks="false"
       partialbooks="false"
       selections="false"
@@ -765,7 +790,7 @@ mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
 # Remove the files signifying the last compilation had problems,
 # if they exist:
 rm "${TOO_MANY_WARNINGS_FILE}" >"/dev/null" 2>&1
-rm "${RESULT_PDF_LIST_FILE}" >"/dev/null" 2>&1
+rm "${RESULT_FILES_LIST}" >"/dev/null" 2>&1
 
 # Trap interruption (Ctrl-C):
 trap 'die 130 Interrupted.' INT
@@ -815,6 +840,9 @@ fi
 [ ${lyricbooks} = "true" ] \
   && lyricbooks_text="YES" \
   || lyricbooks_text="NO"
+[ ${coverimage} = "true" ] \
+  && coverimage_text="YES" \
+  || coverimage_text="NO"
 [ ${midifiles} = "true" ] \
   && midifiles_text="YES" \
   || midifiles_text="NO"
@@ -833,6 +861,7 @@ echo -e "  - Using Docker: ${C_WHITE}${dockerized_text}${C_RESET}"
 echo -e "  - Parallel compilation: ${C_WHITE}${parallel_text}${C_RESET}"
 echo -e "  - Additional lyrics only versions: ${C_WHITE}${lyricbooks_text}${C_RESET}"
 echo -e "  - Printouts: ${C_WHITE}${createprintouts_text}${C_RESET}"
+echo -e "  - Cover image extraction: ${C_WHITE}${coverimage_text}${C_RESET}"
 echo -e "  - Midi: ${C_WHITE}${midifiles_text}${C_RESET}"
 echo -e "  - Audio: ${C_WHITE}${audiofiles_text}${C_RESET}"
 echo -e "  - Deploy: ${C_WHITE}${deployfinal_text}${C_RESET}"
