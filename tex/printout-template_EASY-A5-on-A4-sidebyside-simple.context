@@ -11,7 +11,7 @@
 %        http://wiki.contextgarden.net/Imposition
 %
 % This file is used to create a printout where two A5 size pages are
-% put side by side on a A4 landscape A4 page. A blank page is inserted
+% put side by side on a A4 landscape page. A blank page is inserted
 % in the beginning to ensure that the pages meant to be facing each
 % other are printed side-by-side.
 %
