@@ -388,7 +388,10 @@ compile_document() {
 
     # First run of lualatex:
     local log02file="${logfileprefix}log-02_lualatex.log"
-    lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${currentdoc_basename}.tex" 1>"${log02file}" 2>&1 || die_log $? "Compilation error running lualatex!" "${log02file}"
+    lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode \
+             "${currentdoc_basename}.tex" \
+             1>"${log02file}" 2>&1 \
+             || die_log $? "Compilation error running lualatex!" "${log02file}"
 
     # Only create indices, if not compiling a selection booklet (bashism):
     if [[ ${currentdoc_basename} != ${SELECTION_FNAME_PREFIX}* ]]; then
@@ -396,27 +399,43 @@ compile_document() {
 
       # Create indices:
       local log03file="${logfileprefix}log-03_titleidx.log"
-      texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} "idx_title.sxd" "idx_title.sbx" 1>"${log03file}" 2>&1 || die_log $? "Error creating song title indices!" "${log03file}"
+      texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} \
+             "idx_title.sxd" "idx_title.sbx" \
+             1>"${log03file}" 2>&1 \
+             || die_log $? "Error creating song title indices!" "${log03file}"
       # Author index creation is commented out, as it is not used (now):
       # local log04file="${logfileprefix}log-04_authidx.log"
-      # texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} idx_auth.sxd idx_auth.sbx 1>"${log04file}" 2>&1 || die_log $? "Error creating author indices!" "${log04file}"
+      # texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} \
+      #        idx_auth.sxd idx_auth.sbx \
+      #        1>"${log04file}" 2>&1 \
+      #        || die_log $? "Error creating author indices!" "${log04file}"
       local log05file="${logfileprefix}log-05_tagidx.log"
-      texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} -b "tags.can" "idx_tag.sxd" "idx_tag.sbx" 1>"${log05file}" 2>&1 || die_log $? "Error creating tag (scripture) indices!" "${log05file}"
+      texlua "${SONG_IDX_SCRIPT}" -l ${SORT_LOCALE} -b "tags.can" \
+             "idx_tag.sxd" "idx_tag.sbx" \
+             1>"${log05file}" 2>&1 \
+             || die_log $? "Error creating tag (scripture) indices!" "${log05file}"
     fi
 
     echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (2nd run)"
 
     # Second run of lualatex:
     local log06file="${logfileprefix}log-06_lualatex.log"
-    lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode "${currentdoc_basename}.tex" 1>"${log06file}" 2>&1 || die_log $? "Compilation error running lualatex (2nd time)!" "${log06file}"
+    lualatex -draftmode -file-line-error -halt-on-error -interaction=nonstopmode \
+             "${currentdoc_basename}.tex" \
+             1>"${log06file}" 2>&1 \
+             || die_log $? "Compilation error running lualatex (2nd time)!" "${log06file}"
 
     echo -e "${PRETXT_EXEC}${txt_docbase}: lualatex (3rd run)"
 
     # Third run of lualatex, creates the final main PDF document:
     local log07file="${logfileprefix}log-07_lualatex.log"
-    lualatex -file-line-error -halt-on-error -interaction=nonstopmode "${currentdoc_basename}.tex" 1>"${log07file}" 2>&1 || die_log $? "Compilation error running lualatex (3rd time)!" "${log07file}"
+    lualatex -file-line-error -halt-on-error -interaction=nonstopmode \
+             "${currentdoc_basename}.tex" \
+             1>"${log07file}" 2>&1 \
+             || die_log $? "Compilation error running lualatex (3rd time)!" "${log07file}"
 
-    cp "${currentdoc_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying ${currentdoc_basename}.pdf from temporary directory!"
+    cp "${currentdoc_basename}.pdf" "../../${RESULT_DIRNAME}/" \
+       || die $? "Error copying ${currentdoc_basename}.pdf from temporary directory!"
     echo "${currentdoc_basename}.pdf" >>${RESULT_FILES_LIST}
 
     # Create printouts, if filename contains _A5 and printouts are not disabled
@@ -438,20 +457,28 @@ compile_document() {
           # printout template file with changed input PDF file name and then
           # execute 'context' on the new file.
           printout_dsf_basename="printout-BOOKLET_${currentdoc_basename}-on-A4-doublesided-needs-cutting"
-          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context" >"${printout_dsf_basename}.context" || die $? "[${currentdoc_basename}]: Error with 'awk' when creating dsf printout!"
+          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context" >"${printout_dsf_basename}.context" \
+              || die $? "[${currentdoc_basename}]: Error with 'awk' when creating dsf printout!"
           local log08file="${logfileprefix}log-08_printout-dsf.log"
-          context "${printout_dsf_basename}.context" 1>"${log08file}" 2>&1 || die_log $? "Error creating dsf printout!" "${log08file}"
-          cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
+          context "${printout_dsf_basename}.context" \
+                  1>"${log08file}" 2>&1 \
+                  || die_log $? "Error creating dsf printout!" "${log08file}"
+          cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/" \
+             || die $? "Error copying printout PDF from temporary directory!"
           echo "${printout_dsf_basename}.pdf" >>${RESULT_FILES_LIST}
 
           # A5 on A4, a A5+A5 spread on single A4 surface: Use 'awk' to create a
           # copy of the printout template file with changed input PDF file name
           # and then execute 'context' on the new file.
           printout_sss_basename="printout-EASY_${currentdoc_basename}-on-A4-sidebyside-simple"
-          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_EASY-A5-on-A4-sidebyside-simple.context" >"${printout_sss_basename}.context" || die $? "[${currentdoc_basename}]: Error with 'awk' when creating sss printout!"
+          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_EASY-A5-on-A4-sidebyside-simple.context" >"${printout_sss_basename}.context" \
+              || die $? "[${currentdoc_basename}]: Error with 'awk' when creating sss printout!"
           local log09file="${logfileprefix}log-09_printout-sss.log"
-          context "${printout_sss_basename}.context" 1>"${log09file}" 2>&1 || die_log $? "Error creating sss printout!" "${log09file}"
-          cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/" || die $? "Error copying printout PDF from temporary directory!"
+          context "${printout_sss_basename}.context" \
+                  1>"${log09file}" 2>&1 \
+                  || die_log $? "Error creating sss printout!" "${log09file}"
+          cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/" \
+             || die $? "Error copying printout PDF from temporary directory!"
           echo "${printout_sss_basename}.pdf" >>${RESULT_FILES_LIST}
         fi
       fi
@@ -541,7 +568,10 @@ compile_document() {
   # (last level only) is created if it doesn't exist. Note the need to include
   # the path for the log file, as we are not in the subdirectory yet.
   local log01file="log-01_lilypond.log"
-  lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" "${document_basename}.tex" 1>"${temp_dirname_twolevels}/${log01file}" 2>&1 || die_log $? "Error running lilypond-book!" "${temp_dirname_twolevels}/${log01file}"
+  lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" \
+                "${document_basename}.tex" \
+                1>"${temp_dirname_twolevels}/${log01file}" 2>&1 \
+                || die_log $? "Error running lilypond-book!" "${temp_dirname_twolevels}/${log01file}"
 
   # Enter the temp directory. (Do rest of the steps there.)
   cd "${temp_dirname_twolevels}" || die 1 "Cannot enter temporary directory!"
@@ -589,8 +619,10 @@ compile_document() {
     if [ $? -ne 0 ]; then
       echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra lyric-only book not created, as no '\input{setup_<...>}' in doc"
     else
-      local ldoc_bname_pre=$(echo "${document_basename}" | awk '{ split($0, arr, "_A[0-9]"); print arr[1] }')
-      local ldoc_bname_post=$(echo "${document_basename}" "${ldoc_bname_pre}" | awk '{ split($1, arr, $2); print arr[2] }')
+      local ldoc_bname_pre=$(echo "${document_basename}" \
+            | awk '{ split($0, arr, "_A[0-9]"); print arr[1] }')
+      local ldoc_bname_post=$(echo "${document_basename}" "${ldoc_bname_pre}" \
+            | awk '{ split($1, arr, $2); print arr[2] }')
       local lyricdoc_basename="${ldoc_bname_pre}${LYRICSONLY_FNAMEPART}${ldoc_bname_post}"
       cat "${document_basename}.tex" \
         | sed -e 's/\(\\input{.*setup_.*\.tex}\)/\\input{tex\/internal-lyricbook-presetup.tex}\1\\input{tex\/internal-lyricbook-postsetup.tex}/g' \
@@ -748,7 +780,7 @@ if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
   # Run git pull only if not in docker container, and if so requested
   if [ ${gitpull} = "true" ]; then
     which "git" >"/dev/null" || die 1 "'git' binary not found in path, but pull requested!"
-echo -e "${PRETXT_GIT}Pulling remote changes (with rebase)..."
+    echo -e "${PRETXT_GIT}Pulling remote changes (with rebase)..."
     git pull --rebase
     [ $? -eq 0 ] || die 5 "Cannot pull changes from git as requested."
   fi
