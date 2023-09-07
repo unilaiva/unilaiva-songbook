@@ -24,6 +24,7 @@ RUN apt-get update \
     fonts-noto-core \
     fonts-noto-mono \
     lilypond \
+    poppler-utils \
     python3 \
     texlive \
     texlive-font-utils \
