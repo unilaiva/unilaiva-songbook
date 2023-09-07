@@ -650,9 +650,15 @@
   }%
 }
 
-\newdimen\colrectoffseti\colrectoffseti=\dimexpr2mm\relax%
-\newdimen\colrectoffsetiix\colrectoffsetiix=\dimexpr4mm\relax%
-\newdimen\colrectoffsetiiy\colrectoffsetiiy=\dimexpr4mm\relax%
+% Setup the colored chapter corner mark for all pages within mainchapters.
+%
+% \chapcornermarkoffset should be at least 2mm to leave room for imprecise
+% cutting of the page. \chapcornermarkoffset + \chapcornermarkwidth should
+% be less than 4 mm, so that the whole mark is left outside of printer margins
+% when printing on home printer to a paper that requires no cutting.
+\newdimen\chapcornermarkoffset\chapcornermarkoffset=2.5mm%
+\newdimen\chapcornermarkwidth\chapcornermarkwidth=.954915mm% 2.5 * 0.618034^2 :)
+\newdimen\chapcornermarklength\chapcornermarklength=\dimexpr\headsep+\headheight-\chapcornermarkoffset\relax%
 
 % Setup main header style
 \fancypagestyle{unilaiva}[fancy]{%
@@ -668,23 +674,32 @@
   \fancyhead[CO]{\headerchapterandsectiontitles} % chapter title --- section title
   \fancyhead[RO]{%
     \pagenumberstyle\thepage% page nr
-    \ifusechaptercolors% draw a colored rectangle
+    % NOTE: in tikz coordinate system X increases to the right, Y to up
+    \ifusechaptercolors% draw colored marks in the odd pages' top right corners
       \begin{tikzpicture}[overlay,remember picture]%
         \fill[color=\currentchaptercolor]%
-            ($ (current page.north east) - (\colrectoffseti, \colrectoffseti) $)%
+            ($ (current page.north east) + (-\chapcornermarkoffset, -\chapcornermarkoffset) $)%
             rectangle%
-            ($ (current page.north east) + (-\colrectoffsetiix,-\colrectoffsetiiy) $);%
+            ++(-\chapcornermarklength,-\chapcornermarkwidth);
+        \fill[color=\currentchaptercolor]%
+            ($ (current page.north east) + (-\chapcornermarkoffset, -\chapcornermarkoffset) $)%
+            rectangle%
+            ++(-\chapcornermarkwidth,-\chapcornermarklength);
       \end{tikzpicture}%
     \fi%
   }
   \fancyhead[LE]{%
     \pagenumberstyle\thepage% page nr
-    \ifusechaptercolors% draw a colored rectangle
+    \ifusechaptercolors% draw colored marks in the even pages' top left corners
       \begin{tikzpicture}[overlay,remember picture]%
         \fill[color=\currentchaptercolor]%
-            ($ (current page.north west) + (\colrectoffseti,-\colrectoffseti) $)%
+            ($ (current page.north west) + (\chapcornermarkoffset,-\chapcornermarkoffset) $)%
             rectangle%
-            ($ (current page.north west) + (+\colrectoffsetiix,-\colrectoffsetiiy) $);%
+            ++(\chapcornermarklength,-\chapcornermarkwidth);%
+        \fill[color=\currentchaptercolor]%
+            ($ (current page.north west) + (\chapcornermarkoffset,-\chapcornermarkoffset) $)%
+            rectangle%
+            ++(\chapcornermarkwidth,-\chapcornermarklength);%
       \end{tikzpicture}%
     \fi
   }
@@ -758,13 +773,14 @@
 \newlength\civarsize\civarsize=\cipermsize
 \newlength\civargapsize\civargapsize=\cipermgapsize
 \newlength\cileftoffset\cileftoffset=\dimexpr-\parindent\relax%
-\newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\baselineskip-0.4pt\relax%
+%\newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\baselineskip-0.4pt\relax%
+\newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\headheight\relax%
 
 % Alternate implementations for \insertcovericons, placing the icons in
 % alternate corners either horizontally or vertically:
 
 \newcommand{\insertcovericonsvtl}{% top left, vertical
-  \ifdefined\covipermi\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermi}\fi%
+  \ifdefined\covipermi\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermi}\fi%
   \ifdefined\covipermii\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermii}\fi%
   \ifdefined\covipermiii\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermiii}\fi%
   \ifdefined\covipermiv\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermiv}\fi%
@@ -781,7 +797,7 @@
   \ifdefined\covivarviii\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivarviii}\fi%
 }
 \newcommand{\insertcovericonsvtr}{% top right, vertical
-  \ifdefined\covipermi\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermi}\fi%
+  \ifdefined\covipermi\hfill\includegraphics[height=\cipermsize]{\covipermi}\fi%
   \ifdefined\covipermii\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermii}\fi%
   \ifdefined\covipermiii\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermiii}\fi%
   \ifdefined\covipermiv\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermiv}\fi%
@@ -1045,8 +1061,7 @@
 
 % END front matter
 
-% Returns the chapter symbol (six-petalled star) as a text symbol. Renew to
-% change.
+% Returns the chapter symbol as a text symbol. Renew to change.
 \providecommand\chaptersymbol{%
   {\symboliifont 🟒}%
 }
