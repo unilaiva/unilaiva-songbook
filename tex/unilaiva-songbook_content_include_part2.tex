@@ -10,6 +10,12 @@
 %% This file contains the latter content chapters of the book.
 %%
 
+  % Setup chapter colors (picked from chapter images)
+  \definecolor{englishcolor}{rgb}{.1725,.8588,.1725}
+  \definecolor{sanskritcolor}{rgb}{1,.996,0}
+  \definecolor{othercolor}{rgb}{.2235,.0941,.0352}
+  \definecolor{finnishcolor}{rgb}{.0078,.0039,.2549}
+
   % Sets chapter number; will be incremented by one at each \mainchapter,
   % \songchapter or \chapter:
   \setcounter{chapter}{2}
@@ -17,12 +23,12 @@
   % IMAGE: Original downloaded from https://freesvg.org/zxr6tasu1wah9a
   % License: Public Domain (CC0)
   % Edited by: larva
-  \mainchapter{English}*[green_fractalish_circles_ed_by_larva_CC0_1200px.jpg]
+  \mainchapter{English}{englishcolor}[green_fractalish_circles_ed_by_larva_CC0_1200px.jpg]
     \begin{songs}{titleidx,authidx,tagidx}
       \input{content/songs_english.tex}
     \end{songs}
 
-  \mainchapter{Saṃskṛtam}*[lotus_om_transparent_bg_2000px.png]
+  \mainchapter{Saṃskṛtam}{sanskritcolor}[lotus_om_transparent_bg_2000px.png]
     \section{About mantras}
       \input{content/section_mantra_explanation.tex}
     \clearpage\scleardpage
@@ -40,14 +46,14 @@
   % Also found in: https://imgbin.com/png/6ymgAY92/native-americans-in-the-united-states-visual-arts-by-indigenous-peoples-of-the-americas-hopi-navajo-nation-zuni-png
   % License: Public Domain (CC0)
   % Edited by: larva
-  \mainchapter{Other}*[Hopi_Navajo_Zuni_circle_ed_by_larva__transbg_CC0_1200px.png]
+  \mainchapter{Other}{brown}[Hopi_Navajo_Zuni_circle_ed_by_larva__transbg_CC0_1200px.png]
     \begin{songs}{titleidx,authidx,tagidx}
       \input{content/songs_other.tex}
     \end{songs}
 
   % IMAGE: Permalainen rauta-ajan lintuaihe
   % From: J.R. Aspelin --- Muinaisjäännöksiä suomen suvun asuma-aloilta, 1877
-  \mainchapter{Suomi}*[lintu_muinaissuomalaisilta_asuma-aloilta_perma__1426x1158px.png]
+  \mainchapter{Suomi}{finnishcolor}[lintu_muinaissuomalaisilta_asuma-aloilta_perma__1426x1158px.png]
     \begin{finnish} % set language to finnish for hyphenation etc (polyglossia package)
       \section{Lauluja}
         \begin{songs}{titleidx,authidx,tagidx}

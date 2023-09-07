@@ -10,13 +10,17 @@
 %% This file contains the first content chapters of the book.
 %%
 
+  % Setup chapter colors (picked from chapter images)
+  \definecolor{spanishcolor}{rgb}{.156,.698,.7921}
+  \definecolor{portuguesecolor}{rgb}{.9411,.145,.7843}
+
   % Sets chapter number; will be incremented by one at each \mainchapter,
   % \songchapter or \chapter:
   \setcounter{chapter}{0}
 
   % IMAGE: Downloaded from: https://imgbin.com/png/FCTCBwif/red-deer-huichol-art-wirikuta-png
   % License: Free for non-commercial use
-  \mainchapter{Español}*[Huichol_deer__transparent_bg_1042x1098px.png]
+  \mainchapter{Español}{spanishcolor}[Huichol_deer__transparent_bg_1042x1098px.png]
     \begin{songs}{titleidx,authidx,tagidx}
       \input{content/songs_spanish.tex}
     \end{songs}
@@ -24,7 +28,7 @@
   % IMAGE: Original downloaded from: https://imgbin.com/png/az0Q1MFH/flower-art-floral-design-color-png
   % Edited by: larva
   % License: Free for non-commercial use
-  \mainchapter{Português}*[caapi_heart_drawing_transparent_bg_1000x797px.png]
+  \mainchapter{Português}{portuguesecolor}[caapi_heart_drawing_transparent_bg_1000x797px.png]
     \begin{songs}{titleidx,authidx,tagidx}
       \input{content/songs_portuguese.tex}
     \end{songs}

@@ -142,6 +142,7 @@
 \usepackage{enumitem} % used to modify 'description' env within 'explanation' env
 \usepackage{xstring} % used for string manipulation (at least in GR macros)
 \usepackage{amssymb} % for some math symbols
+\usepackage{tikz}\usetikzlibrary{calc}%
 \usepackage{fancyhdr} % for customizing headers
 \usepackage[bigger]{musicography} % musical symbols (at least \musSegno is used)
 % environ's \NewEnviron is used instead of \newenvironment in in-song blocks,
@@ -320,6 +321,9 @@
 
 % Toggle uppercasing the book name in page headers
 \newif\ifupcasebooktitleinheader\upcasebooktitleinheadertrue
+
+% Toggle use of chapter colors in page corners
+\newif\ifusechaptercolors\usechaptercolorstrue
 
 % END Toggles
 
@@ -646,6 +650,10 @@
   }%
 }
 
+\newdimen\colrectoffseti\colrectoffseti=\dimexpr2mm\relax%
+\newdimen\colrectoffsetiix\colrectoffsetiix=\dimexpr4mm\relax%
+\newdimen\colrectoffsetiiy\colrectoffsetiiy=\dimexpr4mm\relax%
+
 % Setup main header style
 \fancypagestyle{unilaiva}[fancy]{%
   % NOTE: If fancydr warns that \footskip is too small, adjust the value here,
@@ -655,14 +663,39 @@
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
   \fancyhf{}
-  \fancyhead[LE,RO]{\pagenumberstyle\thepage} % page nr
+  %\fancyhead[LE,RO]{\pagenumberstyle\thepage} % page nr
   \fancyhead[CE]{\headerbooktitle}%    % even center: book title
   \fancyhead[CO]{\headerchapterandsectiontitles} % chapter title --- section title
+  \fancyhead[RO]{%
+    \pagenumberstyle\thepage% page nr
+    \ifusechaptercolors% draw a colored rectangle
+      \begin{tikzpicture}[overlay,remember picture]%
+        \fill[color=\currentchaptercolor]%
+            ($ (current page.north east) - (\colrectoffseti, \colrectoffseti) $)%
+            rectangle%
+            ($ (current page.north east) + (-\colrectoffsetiix,-\colrectoffsetiiy) $);%
+      \end{tikzpicture}%
+    \fi%
+  }
+  \fancyhead[LE]{%
+    \pagenumberstyle\thepage% page nr
+    \ifusechaptercolors% draw a colored rectangle
+      \begin{tikzpicture}[overlay,remember picture]%
+        \fill[color=\currentchaptercolor]%
+            ($ (current page.north west) + (\colrectoffseti,-\colrectoffseti) $)%
+            rectangle%
+            ($ (current page.north west) + (+\colrectoffsetiix,-\colrectoffsetiiy) $);%
+      \end{tikzpicture}%
+    \fi
+  }
 }
 
 % Setup style for TOC
 \fancypagestyle{unilaivatoc}[unilaiva]{%
   \fancyhead[LO]{} % odd left: nothing
+  \fancyhead[LE,RO]{%
+    \pagenumberstyle\thepage%
+  }
   \fancyhead[CO]{\rmfamily\small\itshape{\leftmark}} % odd center: chapter title: "CONTENTS"
 }
 
@@ -1014,9 +1047,11 @@
 
 % Returns the chapter symbol (six-petalled star) as a text symbol. Renew to
 % change.
-\newcommand\chaptersymbol{%
-  {\symboliifont 🟌}%
+\providecommand\chaptersymbol{%
+  {\symboliifont 🟒}%
 }
+
+\def\currentchaptercolor{white}
 
 % Outputs the chapter symbol defined above in color; the mandatory parameter
 % is the color name.
@@ -1056,32 +1091,32 @@
 %
 % Note: \NewDocumentCommand, IfValueTF etc. come from xparse package, and allow
 %       nice handling of parameters.
-\NewDocumentCommand{\mainchapter}{s o m s o}{% star, [short title], {long title}, star(means image) [symbol color / image name]
+\NewDocumentCommand{\mainchapter}{s o m m o}{% star, [short title], {long title}, star(means image) [symbol color / image name]
   \IfValueTF{#2}{% short title is given
     \def\shorttitletext{#2}%
   }{ % short title is not given, use the long one as the short title
     \def\shorttitletext{#3}%
   }%
   \def\longtitletext{#3}%
-  \IfValueTF{#5}{ % #5 is given, there is image name or symbol color
-    \IfBooleanTF{#4}{% star is given, #5 is image name
-      \def\smallchapterimage{%
-        \includegraphics[height=1em,keepaspectratio=true]{#5}%
-      }%
-      \def\largechapterimage{%
-        \vspace{-1em}%
-        \imagecc[1]{#5}%
-      }%
-    }{% star not given: #5 is color for \chaptersymbol
-      \def\smallchapterimage{\coloredchaptersymbol{#5}}%
-      \def\largechapterimage{\vfill\vspace{-1em}\begin{center}{%
-        \fontsize{108pt}{128pt}\coloredchaptersymbol{#5}%
-      }\end{center}\vfill}%
-    }
-  }{% there is no image name nor symbol color given
-    \let\smallchapterimage\undefined%
-    \let\largechapterimage\undefined%
-  }
+  \gdef\currentchaptercolor{#4}%
+  \IfValueTF{#5}{% yes, there is image given
+    \def\smallchapterimage{%
+      \includegraphics[height=1em,keepaspectratio=true]{#5}%
+    }%
+    \def\largechapterimage{%
+      \vspace{-1em}%
+      \imagecc[1]{#5}%
+    }%
+  }{% no image given, use symbol instead
+    \def\smallchapterimage{\coloredchaptersymbol{#4}}%
+    \def\largechapterimage{%
+      \vfill\vspace{-1em}%
+      \begin{center}%
+        \fontsize{108pt}{128pt}\coloredchaptersymbol{#4}%
+      \end{center}%
+      \vfill%
+    }%
+  }%
   \def\shorttitlefull{%
     % Include the image in the chapter title string, if the image is given and
     % the feature is turned on.
