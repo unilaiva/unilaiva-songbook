@@ -42,12 +42,21 @@ PART1_FILENAME_BASE="unilaiva-songbook_part1_A5" # filename base for the 2-part 
 PART2_FILENAME_BASE="unilaiva-songbook_part2_A5" # filename base for the 2-part document's part 2 (without .tex suffix)
 ASTRAL_FNAME_PREFIX="unilaiva-astral" # filename prefix for unilaiva astral books
 SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
-TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
-RESULT_DIRNAME="result" # just the name of a subdirectory, not an absolute path
-RESULT_AUDIO_DIRNAME="result/audio" # just the name of a subdirectory, not an absolute path
-RESULT_MIDI_DIRNAME="result/midi" # just the name of a subdirectory, not an absolute path
-DEPLOY_DIRNAME="deploy" # just the name of a subdirectory, not an absolute path
 LYRICSONLY_FNAMEPART="_LYRICS-ONLY" # added to filenames for lyrics-only books
+NODEPLOY_FNAMEPART="_NODEPLOY" # files having this in their name are not deployed
+PAPERA5_FNAMEPART="_A5" # files having this in their name are treated as having A5 size pages
+TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
+LOCKFILE="${TEMP_DIRNAME}/lock" # if exists, compilation is underway (or uncleanly aborted)
+RESULT_DIRNAME="result" # just the name of a subdirectory, not an absolute path
+RESULT_IMAGE_SUBDIRNAME="images" # just the name of a subdirectory, not an absolute path
+RESULT_PRINTOUT_SUBDIRNAME="printouts" # just the name of a subdirectory, not an
+RESULT_AUDIO_SUBDIRNAME="audio" # just the name of a subdirectory, not an absolute path
+RESULT_MIDI_SUBDIRNAME="midi" # just the name of a subdirectory, not an absolute path
+DEPLOY_DIRNAME="deploy" # just the name of a subdirectory, not an absolute path
+DEPLOY_IMAGE_SUBDIRNAME="images" # just the name of a subdirectory, not an absolute path
+DEPLOY_PRINTOUT_SUBDIRNAME="printouts" # just the name of a subdirectory, not an absolute path
+DEPLOY_AUDIO_SUBDIRNAME="audio" # just the name of a subdirectory, not an absolute path
+DEPLOY_MIDI_SUBDIRNAME="midi" # just the name of a subdirectory, not an absolute path
 SONG_IDX_SCRIPT="tex/ext_packages/songs/songidx.lua"
 # The following is the locale used in creating the indexes, thus affecting the
 # sort order. Finnish (UTF8) is the default. Note that the locale used must be
@@ -56,12 +65,19 @@ SONG_IDX_SCRIPT="tex/ext_packages/songs/songidx.lua"
 SORT_LOCALE="fi_FI.utf8" # Recommended default: fi_FI.utf8
 COVERIMAGE_WIDTH="1024" # Width for the optionally extracted cover image file
 
-INITIAL_DIR="${PWD}" # Store the initial directory
+INITIAL_DIR="${PWD}" # Store the initial directory (absolute path)
 
 TOO_MANY_WARNINGS_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/too_many_warnings"
 RESULT_FILES_LIST="${INITIAL_DIR}/${TEMP_DIRNAME}/result_files_list"
+RESULT_TYPE_MAIN_PDF="MAINPDF"
+RESULT_TYPE_PRINTOUT_PDF="PRINTOUTPDF"
+RESULT_TYPE_LYRICONLY_PDF="LYRICONLYPDF"
+RESULT_TYPE_IMAGE="IMAGE"
+RESULT_TYPE_AUDIODIR="AUDIODIR"
+RESULT_TYPE_MIDIDIR="MIDIDIR"
+RESULT_SEPARATOR="~"
 
-main_pid=$$
+
 # Function: print the program usage informationand exit.
 print_usage_and_exit() {
   echo ""
@@ -125,15 +141,15 @@ print_usage_and_exit() {
   echo "bar lines. Use --no-lyric option to not create them."
   echo ""
   echo "By default, MIDI files and audio files are extracted and generated from"
-  echo "Lilypond sources and copied to '${RESULT_MIDI_DIRNAME}' and '${RESULT_AUDIO_DIRNAME}'"
+  echo "Lilypond sources and copied to '${RESULT_DIRNAME}/${RESULT_MIDI_SUBDIRNAME}' and '${RESULT_DIRNAME}/${RESULT_AUDIO_SUBDIRNAME}'"
   echo "respectively, unless --no-midi or --no-audio options are present."
   echo ""
-  echo "For documents containing _A5 in their filename, special versions for"
+  echo "For documents containing ${PAPERA5_FNAMEPART} in their filename, special versions for"
   echo "printing on A4 sized paper are created, if 'context' binary is available"
   echo "and --no-printouts option is not given."
   echo ""
   echo "The resulting PDF files will also be copied to ./${DEPLOY_DIRNAME}/ directory (if"
-  echo "it exists), unless they have _NODEPLOY in their filename or --no-deploy"
+  echo "it exists), unless they have ${NODEPLOY_FNAMEPART} in their filename or --no-deploy"
   echo "option is given."
   echo ""
   exit 1
@@ -146,6 +162,8 @@ cleanup() {
   # Clean up temporary files from the project root, they are sometimes left
   # behind.
   rm tmp????????.sxc tmp????????.out tmp????????.log tmp????????.pdf idx_*.sxd missfont.log 2>"/dev/null"
+  # Remove lockfile
+  rm "${LOCKFILE}" 2>"/dev/null"
 }
 
 # Function: sends a signal to a tree of processes (default: KILL)
@@ -183,6 +201,8 @@ killtree() {
 # Function: print error code and message, kill subprocesses and exit the program.
 # Usage: die <errorcode> <message>
 #
+# If errorcode is 255, only prints error and exits without cleanup.
+#
 # If this is called from a subprocess, the error is printed, and TERM signal
 # sent to the main process, and exit the subprocess. Main process has trapped
 # TERM signal, and will respond by calling this function again with <errorcode>
@@ -200,6 +220,7 @@ die() {
     # Print the error:
     echo -e "${PRETXT_ERROR}${2}" >&2
   fi
+  [ ${1} -eq 255 ] && exit ${1} # Just exit if code is 255 (lockfile present)
   if [ ${$} -eq ${BASHPID} ]; then
     # We're in the main process.
     # Kill the whole tree of child processes:
@@ -212,7 +233,7 @@ die() {
     # children and the finalisation of the script.
     kill -TERM ${$}
   fi
-  exit $1
+  exit ${1}
 }
 
 # Function: set up UI strings and colors, called in the beginning of the script
@@ -436,13 +457,14 @@ compile_document() {
 
     cp "${currentdoc_basename}.pdf" "../../${RESULT_DIRNAME}/" \
        || die $? "Error copying ${currentdoc_basename}.pdf from temporary directory!"
-    echo "${currentdoc_basename}.pdf" >>${RESULT_FILES_LIST}
+    echo "${RESULT_TYPE_MAIN_PDF}${RESULT_SEPARATOR}${currentdoc_basename}.pdf" \
+         >>${RESULT_FILES_LIST}
 
-    # Create printouts, if filename contains _A5 and printouts are not disabled
+    # Create printouts, if filename contains ${PAPERA5_FNAMEPART} and printouts are not disabled
     # by a command line argument:
 
-    if [[ "${currentdoc_basename}" != *"_A5"* ]]; then
-      echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created, no _A5 in filename"
+    if [[ "${currentdoc_basename}" != *"${PAPERA5_FNAMEPART}"* ]]; then
+      echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created, no ${PAPERA5_FNAMEPART} in filename"
     else
       if [ ${createprintouts} != "true" ]; then
         echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created as per request"
@@ -452,7 +474,7 @@ compile_document() {
           echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created; no 'context'"
         else
           echo -e "${PRETXT_EXEC}${txt_docbase}: context (create printouts)"
-
+          mkdir "../../${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}" 2>"/dev/null"
           # A5 on A4, double sided, must cut: Use 'awk' to create a copy of the
           # printout template file with changed input PDF file name and then
           # execute 'context' on the new file.
@@ -463,9 +485,10 @@ compile_document() {
           context "${printout_dsf_basename}.context" \
                   1>"${log08file}" 2>&1 \
                   || die_log $? "Error creating dsf printout!" "${log08file}"
-          cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/" \
+          cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
              || die $? "Error copying printout PDF from temporary directory!"
-          echo "${printout_dsf_basename}.pdf" >>${RESULT_FILES_LIST}
+          echo "${RESULT_TYPE_PRINTOUT_PDF}${RESULT_SEPARATOR}${printout_dsf_basename}.pdf" \
+               >>${RESULT_FILES_LIST}
 
           # A5 on A4, a A5+A5 spread on single A4 surface: Use 'awk' to create a
           # copy of the printout template file with changed input PDF file name
@@ -477,9 +500,10 @@ compile_document() {
           context "${printout_sss_basename}.context" \
                   1>"${log09file}" 2>&1 \
                   || die_log $? "Error creating sss printout!" "${log09file}"
-          cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/" \
+          cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
              || die $? "Error copying printout PDF from temporary directory!"
-          echo "${printout_sss_basename}.pdf" >>${RESULT_FILES_LIST}
+          echo "${RESULT_TYPE_PRINTOUT_PDF}${RESULT_SEPARATOR}${printout_sss_basename}.pdf" \
+               >>${RESULT_FILES_LIST}
         fi
       fi
     fi
@@ -491,14 +515,16 @@ compile_document() {
         echo -e "${PRETXT_NOEXEC}${txt_docbase}: Cover not extracted as image; no 'pdftoppm'"
       else
         echo -e "${PRETXT_EXEC}${txt_docbase}: pdftoppm (extract cover as image)"
+        mkdir "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}" 2>"/dev/null"
         local log10file="${logfileprefix}log-10_coverimage-extract.log"
         pdftoppm -f 1 -singlefile -png -scale-to-x "${COVERIMAGE_WIDTH}" -scale-to-y -1 \
                  "${currentdoc_basename}.pdf" "${currentdoc_basename}" \
                  1>"${log10file}" 2>&1 \
                  || die_log $? "Error extracting cover image!" "${log10file}"
-        cp "${currentdoc_basename}.png" "../../${RESULT_DIRNAME}/" \
+        cp "${currentdoc_basename}.png" "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
            || die $? "Error copying ${currentdoc_basename}.png from temporary directory!"
-      echo "${currentdoc_basename}.png" >>${RESULT_FILES_LIST}
+        echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}.png" \
+            >>${RESULT_FILES_LIST}
       fi
     fi
 
@@ -527,7 +553,6 @@ compile_document() {
     fi
 
   } # END compile_document_sub
-
 
   local document_basename="$1"
 
@@ -587,7 +612,7 @@ compile_document() {
   fi
   if [ ${midifiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (copy midi files)"
-    local cur_res_midi_subdirname="${RESULT_MIDI_DIRNAME}/${document_basename}"
+    local cur_res_midi_subdirname="${RESULT_DIRNAME}/${RESULT_MIDI_SUBDIRNAME}/${document_basename}"
     rm -R "${cur_res_midi_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_midi_subdirname}" 2>"/dev/null"
     [ -d "../../${cur_res_midi_subdirname}" ] || die $? "Could not create the midi result directory ./${cur_res_midi_subdirname}."
@@ -597,10 +622,12 @@ compile_document() {
       "${document_basename}.dep" "../../${cur_res_midi_subdirname}" \
       1>"${log11file}" 2>&1 \
       || die_log $? "Error copying midi files to result directory" "${log11file}"
+    echo "${RESULT_TYPE_MIDIDIR}${RESULT_SEPARATOR}${document_basename}" \
+         >>${RESULT_FILES_LIST}
   fi
   if [ ${audiofiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (encode audio)"
-    local cur_res_audio_subdirname="${RESULT_AUDIO_DIRNAME}/${document_basename}"
+    local cur_res_audio_subdirname="${RESULT_DIRNAME}/${RESULT_AUDIO_SUBDIRNAME}/${document_basename}"
     rm -R "${cur_res_audio_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_audio_subdirname}" 2>"/dev/null"
     [ -d "../../${cur_res_audio_subdirname}" ] || die $? "Could not create the audio result directory ./${cur_res_audio_subdirname}."
@@ -610,6 +637,8 @@ compile_document() {
       "${document_basename}.dep" "../../${cur_res_audio_subdirname}" \
       1>"${log12file}" 2>&1 \
       || die_log $? "Error encoding audio files!" "${log12file}"
+    echo "${RESULT_TYPE_AUDIODIR}${RESULT_SEPARATOR}${document_basename}" \
+         >>${RESULT_FILES_LIST}
   fi
 
   # Create lyrics-only books, if so wanted
@@ -644,12 +673,13 @@ compile_document() {
 } # END compile_document()
 
 
-# Copies the result .pdf's to the deploy directory ${DEPLOY_DIRNAME}, if:
+# Copies the result files to the deploy directory ${DEPLOY_DIRNAME}, or it's
+# subdirectory depending on file type, if:
 #   - not inside Docker container
 #   - deploy is not forbidden by command line argument
 #   - deploy directory exists
 #   - ${RESULT_FILES_LIST} exists and contains data
-#   - pdf's filename does not contain _NODEPLOY
+#   - result file's filename does not contain ${NODEPLOY_FNAMEPART}
 deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
@@ -658,17 +688,63 @@ deploy_results() {
     echo -e "${PRETXT_NODEPLOY}Resulting PDF files NOT copied to ./${DEPLOY_DIRNAME}/ (directory not found)"
     return
   fi
-  while IFS= read -r pdf_file; do
-    if [[ ${pdf_file} == *"_NODEPLOY"* ]]; then
-      echo -e "${PRETXT_NODEPLOY}${pdf_file} not deployed due to filename"
+  while IFS="${RESULT_SEPARATOR}" read -r ftype fname; do
+    if [[ ${fname} == *"${NODEPLOY_FNAMEPART}"* ]]; then
+      echo -e "${PRETXT_NODEPLOY}${fname} not deployed due to filename"
       continue
     fi
-    [ -f "./${RESULT_DIRNAME}/${pdf_file}" ] || die 21 "Could not access ${pdf_file} for deployment"
-    cp "./${RESULT_DIRNAME}/${pdf_file}" "./${DEPLOY_DIRNAME}/"
-    [ $? -eq 0 ] || die 22 "Could not deploy ${pdf_file}"
-    echo -e "${PRETXT_DEPLOY}${pdf_file} copied to ./${DEPLOY_DIRNAME}/"
+    local deploydir="TOBECHANGED" # leave this here for safety in rm -R below
+    local resultisdir="false"
+    local resultdir="./${RESULT_DIRNAME}"
+    case "${ftype}" in
+      "${RESULT_TYPE_MAIN_PDF}")
+        deploydir="./${DEPLOY_DIRNAME}"
+        ;;
+      "${RESULT_TYPE_LYRICONLY_PDF}")
+        deploydir="./${DEPLOY_DIRNAME}"
+        ;;
+      "${RESULT_TYPE_PRINTOUT_PDF}")
+        resultdir="./${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}"
+        deploydir="./${DEPLOY_DIRNAME}/${DEPLOY_PRINTOUT_SUBDIRNAME}"
+        ;;
+      "${RESULT_TYPE_IMAGE}")
+        resultdir="./${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}"
+        deploydir="./${DEPLOY_DIRNAME}/${DEPLOY_IMAGE_SUBDIRNAME}"
+        ;;
+      "${RESULT_TYPE_MIDIDIR}")
+        deploydir="./${DEPLOY_DIRNAME}/${DEPLOY_MIDI_SUBDIRNAME}"
+        resultdir="./${RESULT_DIRNAME}/${RESULT_MIDI_SUBDIRNAME}"
+        resultisdir="true"
+        ;;
+      "${RESULT_TYPE_AUDIODIR}")
+        deploydir="./${DEPLOY_DIRNAME}/${DEPLOY_AUDIO_SUBDIRNAME}"
+        resultdir="./${RESULT_DIRNAME}/${RESULT_AUDIO_SUBDIRNAME}"
+        resultisdir="true"
+        ;;
+      *)
+        echo -e "${PRETXT_NODEPLOY}${fname} not deployed due to ${C_RED}internal error${C_RESET}"
+        continue
+      ;;
+    esac
+    mkdir -p "${deploydir}" 2>"/dev/null"
+    if [ ${resultisdir} == "true" ]; then
+      [ -d "${resultdir}/${fname}" ] || die 21 "Could not access directory ${fname} for deployment"
+      # do not rm the root dir for possible shares to persist
+      rm -R "${deploydir}/${fname}"/* >"/dev/null" 2>&1
+      mkdir "${deploydir}/${fname}" 2>"/dev/null"
+      cp -R "${resultdir}/${fname}"/* "${deploydir}/${fname}/" >"/dev/null" 2>&1
+      [ $? -eq 0 ] || die 22 "Could not deploy directory ${deploydir}/${fname}"
+    else
+      [ -f "${resultdir}/${fname}" ] || die 21 "Could not access ${fname} for deployment"
+      cp "${resultdir}/${fname}" "${deploydir}/" >"/dev/null" 2>&1
+      [ $? -eq 0 ] || die 22 "Could not deploy ${fname}"
+    fi
+    echo -e "${PRETXT_DEPLOY}${deploydir}/${fname}"
   done < "${RESULT_FILES_LIST}"
 } # END deploy_results()
+
+
+
 
 
 # Set defaults:
@@ -687,11 +763,12 @@ gitpull="false"
 parallel="true"
 shellonly="false"
 
-setup_ui
-
+main_pid=$$
 doc_count=0 # will be increased when documents are added to 'docs' array
 
 all_args="$@"
+
+setup_ui
 
 # Test program arguments:
 while [ $# -gt 0 ]; do
@@ -777,6 +854,15 @@ done
 [ -f "./compile-songbooks.sh" ] || die 1 "Not currently in the project's root directory!"
 
 if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
+  # Locking
+  if [ -f "${LOCKFILE}" ]; then
+    # do not change this error code, as die() recognizes it and does not
+    # remove the lock file
+    which "ps" >"/dev/null" || die 255 "Compilation already underway. If this is incorrect, remove ${LOCKFILE}"
+    ps aux | grep "compile-songbooks.sh" >"/dev/null" 2>&1
+    [ ${?} -eq 0 ] && die 255 "Compilation process already running. Only one allowed!"
+  fi
+  touch "${LOCKFILE}"
   # Run git pull only if not in docker container, and if so requested
   if [ ${gitpull} = "true" ]; then
     which "git" >"/dev/null" || die 1 "'git' binary not found in path, but pull requested!"
