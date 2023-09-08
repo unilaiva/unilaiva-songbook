@@ -45,8 +45,6 @@ SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
 LYRICSONLY_FNAMEPART="_LYRICS-ONLY" # added to filenames for lyrics-only books
 NODEPLOY_FNAMEPART="_NODEPLOY" # files having this in their name are not deployed
 PAPERA5_FNAMEPART="_A5" # files having this in their name are treated as having A5 size pages
-AUTOCROP_FNAME_POSTFIX="_AUTOCROPPED" # will be added to auto cropped images' basename
-AUTOSQUARE_FNAME_POSTFIX="_AUTOSQUARED" # will be added to automatically squared images' basename
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
 LOCKFILE="${TEMP_DIRNAME}/lock" # if exists, compilation is underway (or uncleanly aborted)
 RESULT_DIRNAME="result" # just the name of a subdirectory, not an absolute path
@@ -65,7 +63,11 @@ SONG_IDX_SCRIPT="tex/ext_packages/songs/songidx.lua"
 # installed on the system. To list installed locales on an UNIX, execute
 # "locale -a".
 SORT_LOCALE="fi_FI.utf8" # Recommended default: fi_FI.utf8
+
+IMG_AUTOCROP_FNAME_POSTFIX="_AUTOCROPPED" # will be added to auto cropped images' basename
+IMG_AUTOEXT_FNAME_POSTFIX="_AUTOEXTENDED" # will be added to auto extended images' basename
 COVERIMAGE_HEIGHT="1024" # Height for the optionally extracted cover image file
+COVERIMAGE_AUTOEXT_WIDTH="976" # Width of the optionally extended cover image file
 
 INITIAL_DIR="${PWD}" # Store the initial directory (absolute path)
 
@@ -542,18 +544,18 @@ compile_document() {
         echo -e "${PRETXT_NOEXEC}${txt_docbase}: Square cover image not created; no 'convert'"
       else # create a squared version of the image, too:
         convert "${currentdoc_basename}.png" -gravity center \
-                -extent "${COVERIMAGE_HEIGHT}x${COVERIMAGE_HEIGHT}" \
-                ${currentdoc_basename}${AUTOSQUARE_FNAME_POSTFIX}.png \
+                -extent "${COVERIMAGE_AUTOEXT_WIDTH}x${COVERIMAGE_HEIGHT}" \
+                ${currentdoc_basename}${IMG_AUTOEXT_FNAME_POSTFIX}.png \
                 1>"${log10file}" 2>&1 \
                 || die_log $? "Error squaring cover image!" "${log10file}"
-        cp "${currentdoc_basename}${AUTOSQUARE_FNAME_POSTFIX}.png" "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
-           || die $? "Error copying ${currentdoc_basename}${AUTOSQUARE_FNAME_POSTFIX}.png from temporary directory!"
-        echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}${AUTOSQUARE_FNAME_POSTFIX}.png" \
+        cp "${currentdoc_basename}${IMG_AUTOEXT_FNAME_POSTFIX}.png" "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
+           || die $? "Error copying ${currentdoc_basename}${IMG_AUTOEXT_FNAME_POSTFIX}.png from temporary directory!"
+        echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}${IMG_AUTOEXT_FNAME_POSTFIX}.png" \
             >>${RESULT_FILES_LIST}
       fi
 #         # Make a cropped image for astral books
 #         if [[ ${currentdoc_basename} == "${ASTRAL_FNAME_PREFIX}"* ]]; then
-#           local curimgbasename=${currentdoc_basename}${AUTOCROP_FNAME_POSTFIX}
+#           local curimgbasename=${currentdoc_basename}${IMG_AUTOCROP_FNAME_POSTFIX}
 #           pdftoppm -f 1 -singlefile -png -scale-to-x 1024 -scale-to-y -1 \
 #                    -x 50 -y 0 -W 976 -H 1024 \
 #                    "${currentdoc_basename}.pdf" "${curimgbasename}" \
