@@ -922,6 +922,7 @@ else # we are in the container
     # If debug shell is requested, only run interactive shell and exit.
     echo -e "${PRETXT_DOCKER}Start interactive shell in the container only"
     bash
+    rm ${LOCKFILE} 2>"/dev/null"
     exit 127
   fi
 fi
