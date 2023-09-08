@@ -296,6 +296,14 @@ setup_ui() {
   TXT_DONE="${C_GREEN}Done.${C_RESET}"
 }
 
+# Returns 0 if directory given as argument exists and is not empty, 1 otherwise.
+dir_notempty() {
+  if [ -d ${1} ]; then
+    [ "$(ls -A ${1})" ] && return 0
+  fi
+  return 1
+}
+
 # Build, create and stat docker container and start the compile script therein.
 # Usage: compile_in_docker <arguments for compile script>
 compile_in_docker() {
@@ -750,11 +758,13 @@ deploy_results() {
     mkdir -p "${deploydir}" 2>"/dev/null"
     if [ ${resultisdir} == "true" ]; then
       [ -d "${resultdir}/${fname}" ] || die 21 "Could not access directory ${fname} for deployment"
-      # do not rm the root dir for possible shares to persist
-      rm -R "${deploydir}/${fname}"/* >"/dev/null" 2>&1
-      mkdir "${deploydir}/${fname}" 2>"/dev/null"
-      cp -R "${resultdir}/${fname}"/* "${deploydir}/${fname}/" >"/dev/null" 2>&1
-      [ $? -eq 0 ] || die 22 "Could not deploy directory ${deploydir}/${fname}"
+      if dir_notempty "${resultdir}/${fname}"; then
+        # do not rm the root dir for possible shares to persist
+        rm -R "${deploydir}/${fname}"/* >"/dev/null" 2>&1
+        mkdir "${deploydir}/${fname}" 2>"/dev/null"
+        cp -R "${resultdir}/${fname}"/* "${deploydir}/${fname}/" >"/dev/null" 2>&1
+        [ $? -eq 0 ] || die 22 "Could not deploy directory ${deploydir}/${fname}"
+      fi
     else
       [ -f "${resultdir}/${fname}" ] || die 21 "Could not access ${fname} for deployment"
       cp "${resultdir}/${fname}" "${deploydir}/" >"/dev/null" 2>&1
