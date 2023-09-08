@@ -29,7 +29,25 @@
   \setcounter{chapter}{0}
 
   \mainchapter{Preces}{precescolor}[SD_cross_simple_flat_blueish_transparent_bg.png]
-    \input{content/section_astral_preces.tex}
+    { % enclose in a block for settings to not bleed
+      % no chords here, so line spacing will be less:
+      \chordsoff
+      \baselineadj=+1pt plus 0pt minus 0pt
+      \scleardpage
+      \songsection{Abertura}
+      \begin{songs}{}
+        \input{content/section_astral_preces_abertura.tex}
+      \end{songs}{}
+      \begin{intersong}
+        % to sit between starting and ending prayers
+        \imagecc[4]{SD_cross_simple_flat_blueish_transparent_bg.png}
+      \end{intersong}
+      \scleardpage
+      \songsection{Encerramento}
+      \begin{songs}{}
+        \input{content/section_astral_preces_encerramento.tex}
+      \end{songs}{}
+    }
 
   \mainchapter{Oração}{oracaocolor}
     \begin{songs}{}
@@ -75,6 +93,20 @@
     \begin{songs}{}
       \input{content/songs_astral_encerramento.tex}
     \end{songs}
+    { % enclose in a block for settings to not bleed
+      % no chords here, so line spacing will be less:
+      \chordsoff
+      \baselineadj=+1pt plus 0pt minus 0pt
+      \sclearpage
+      \songsection{Preces de encerramento}
+      \begin{songs}{}
+        % work around the page break \include wants to add, as \input cannot
+        % be used here for the second time
+        \global\let\savedclearpage\clearpage
+        \include{content/section_astral_preces_encerramento.tex}
+        \global\let\clearpage\savedclearpage
+      \end{songs}{}
+    }
 
   \mainchapter{Pontos de Defumação}{defumacaocolor}
     \begin{songs}{}

@@ -6,19 +6,6 @@
 
 % use Roman numerals for song (prayer) numbering:
 \renewcommand{\thesongnum}{\Roman{songnum}}
-
-% Use this to specify a translation title within a verse, eg
-% \translationtitle{EN}{Greed}
-\newcommand{\translationtitle}[2]{
-  \brkpenalty=-9000\brk%
-  \vspace{2.618034ex}%
-  \textbf{[#1]} \textit{#2}%
-  \vspace{1.618034ex}%
-}
-% Use this to create a vertical space between "paragraphs"
-% within verses:
-\newcommand{\parspace}{\vspace{1ex}}
-
 \setcounter{songnum}{1}
 
 
@@ -239,6 +226,7 @@
 
 \beginsong{Prece para o Encerramento da Reunião}[by={Allan Kardec}]
   \chordsoff
+  \baselineadj=+1pt plus 0pt minus 0pt
   \beginverse
     Agradecemos aos bons espíritos que anuíram em vir
     comunicar-se conosco e lhjes pedimos que nos
@@ -246,7 +234,7 @@
     deram e façam com que ao sairmos daqui cada um de
     nós se sinta fortalecido na prática do bem e do
     amor ao próximo.
-    \parspace
+    \preceparspace
     Desejamos igualmente que as instruções que recebemos
     sejam proveitosas aos espíritos sofredores,
     ignorantes ou viciosos, que hajam assistido à nossa
@@ -254,14 +242,14 @@
     misericórdia de Deus.
   \endverse
   \beginverse\color{englishcolor}
-    \translationtitle{EN}{Prayer to Close the Meeting}
+    \precetranstitle{EN}{Prayer to Close the Meeting}
     We give thanks to the good spirits who have come
     to communicate with us, and ask them to help us put
     the advice they've given us into practice. We also
     ask that, when we leave this gathering, they help
     us to feel strengthened in the practice of goodness
     and love toward our fellow human beings.
-    \parspace
+    \preceparspace
     We hope that today's teachings are healing to all
     suffering, unaware of misguided spirits who have
     been present at this meeting. For them we implore
