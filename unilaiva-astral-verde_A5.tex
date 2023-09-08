@@ -98,11 +98,12 @@
       \chordsoff
       \baselineadj=+1pt plus 0pt minus 0pt
       \sclearpage
-      \songsection{Preces de encerramento}
+      \songsection{Preces do Encerramento}
       \begin{songs}{}
         % work around the page break \include wants to add, as \input cannot
         % be used here for the second time
         \global\let\savedclearpage\clearpage
+        \global\let\clearpage\relax
         \include{content/section_astral_preces_encerramento.tex}
         \global\let\clearpage\savedclearpage
       \end{songs}{}
