@@ -675,8 +675,9 @@
   \fancyhead[RO]{%
     \pagenumberstyle\thepage% page nr
     % NOTE: in tikz coordinate system X increases to the right, Y to up
-    \ifusechaptercolors% draw colored marks in the odd pages' top right corners
+    \ifusechaptercolors% draw colored marks in the odd pages outer corners
       \begin{tikzpicture}[overlay,remember picture]%
+        % top right
         \fill[color=\currentchaptercolor]%
             ($ (current page.north east) + (-\chapcornermarkoffset, -\chapcornermarkoffset) $)%
             rectangle%
@@ -685,21 +686,40 @@
             ($ (current page.north east) + (-\chapcornermarkoffset, -\chapcornermarkoffset) $)%
             rectangle%
             ++(-\chapcornermarkwidth,-\chapcornermarklength);
+        % bottom right
+        \fill[color=\currentchaptercolor]%
+            ($ (current page.south east) + (-\chapcornermarkoffset, +\chapcornermarkoffset) $)%
+            rectangle%
+            ++(-\chapcornermarklength,+\chapcornermarkwidth);
+        \fill[color=\currentchaptercolor]%
+            ($ (current page.south east) + (-\chapcornermarkoffset, +\chapcornermarkoffset) $)%
+            rectangle%
+            ++(-\chapcornermarkwidth,+\chapcornermarklength);
       \end{tikzpicture}%
     \fi%
   }
   \fancyhead[LE]{%
     \pagenumberstyle\thepage% page nr
-    \ifusechaptercolors% draw colored marks in the even pages' top left corners
+    \ifusechaptercolors% draw colored marks in the even pages' outer corners
       \begin{tikzpicture}[overlay,remember picture]%
+        % top left
         \fill[color=\currentchaptercolor]%
-            ($ (current page.north west) + (\chapcornermarkoffset,-\chapcornermarkoffset) $)%
+            ($ (current page.north west) + (+\chapcornermarkoffset,-\chapcornermarkoffset) $)%
             rectangle%
-            ++(\chapcornermarklength,-\chapcornermarkwidth);%
+            ++(+\chapcornermarklength,-\chapcornermarkwidth);%
         \fill[color=\currentchaptercolor]%
-            ($ (current page.north west) + (\chapcornermarkoffset,-\chapcornermarkoffset) $)%
+            ($ (current page.north west) + (+\chapcornermarkoffset,-\chapcornermarkoffset) $)%
             rectangle%
-            ++(\chapcornermarkwidth,-\chapcornermarklength);%
+            ++(+\chapcornermarkwidth,-\chapcornermarklength);%
+        % bottom left
+        \fill[color=\currentchaptercolor]%
+            ($ (current page.south west) + (+\chapcornermarkoffset,+\chapcornermarkoffset) $)%
+            rectangle%
+            ++(+\chapcornermarklength,+\chapcornermarkwidth);%
+        \fill[color=\currentchaptercolor]%
+            ($ (current page.south west) + (+\chapcornermarkoffset,+\chapcornermarkoffset) $)%
+            rectangle%
+            ++(+\chapcornermarkwidth,+\chapcornermarklength);%
       \end{tikzpicture}%
     \fi
   }
