@@ -45,6 +45,7 @@ SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
 LYRICSONLY_FNAMEPART="_LYRICS-ONLY" # added to filenames for lyrics-only books
 NODEPLOY_FNAMEPART="_NODEPLOY" # files having this in their name are not deployed
 PAPERA5_FNAMEPART="_A5" # files having this in their name are treated as having A5 size pages
+AUTOCROP_FNAME_POSTFIX="_AUTOCROPPED" # will be added to auto cropped images' basename
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
 LOCKFILE="${TEMP_DIRNAME}/lock" # if exists, compilation is underway (or uncleanly aborted)
 RESULT_DIRNAME="result" # just the name of a subdirectory, not an absolute path
@@ -508,7 +509,7 @@ compile_document() {
       fi
     fi
 
-    # Extract cover page as a raster image file
+    # Extract cover page as a raster image file(s)
     if [ ${coverimage} == "true" ]; then
       which "pdftoppm" >"/dev/null"
       if [ $? -ne 0 ]; then
@@ -525,6 +526,19 @@ compile_document() {
            || die $? "Error copying ${currentdoc_basename}.png from temporary directory!"
         echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}.png" \
             >>${RESULT_FILES_LIST}
+        # Make a cropped image for astral books
+        if [[ ${currentdoc_basename} == "${ASTRAL_FNAME_PREFIX}"* ]]; then
+          local curimgbasename=${currentdoc_basename}${AUTOCROP_FNAME_POSTFIX}
+          pdftoppm -f 1 -singlefile -png -scale-to-x 1024 -scale-to-y -1 \
+                   -x 50 -y 0 -W 976 -H 1024 \
+                   "${currentdoc_basename}.pdf" "${curimgbasename}" \
+                   1>>"${log10file}" 2>&1 \
+                   || die_log $? "Error extracting cover image (cropped)!" "${log10file}"
+          cp "${curimgbasename}.png" "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
+             || die $? "Error copying ${curimgbasename}.png from temporary directory!"
+          echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${curimgbasename}.png" \
+               >>${RESULT_FILES_LIST}
+        fi
       fi
     fi
 
