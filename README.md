@@ -109,8 +109,9 @@ the host system only if compiling without using the Docker image.
   * *Optionally* `context` for creating versions for printing A5 size on A4 paper
   * *Optionally* `ffmpeg` and `fluidsynth` for encoding mp3 audio from Lilypond
     sources
-  * *Optionally* `pdftoppm` from poppler-utils to extract the cover page of
-    produced PDF as raster image file for e.g. website
+  * *Optionally* `pdftoppm` from poppler-utils and `convert` from imagemagick
+    to extract the cover page of produced PDF as raster image file for e.g.
+    website
 
 Our project requires only some pretty standard LaTeX packages, which are
 included in many LaTeX installations by default, to be installed on the system.
@@ -133,8 +134,8 @@ commands:
 
   1. `sudo apt update && sudo apt install bash locales git context
      context-modules ffmpeg fluidsynth fluid-soundfont-gm fonts-noto-core
-     fonts-noto-extra fonts-noto-mono lilypond poppler-utils python3 texlive
-     texlive-font-utils texlive-lang-arabic texlive-lang-english
+     fonts-noto-extra fonts-noto-mono imagemagick lilypond poppler-utils
+     python3 texlive texlive-font-utils texlive-lang-arabic texlive-lang-english
      texlive-lang-european texlive-lang-portuguese texlive-lang-spanish
      texlive-latex-base texlive-latex-extra texlive-luatex texlive-music
      texlive-plain-generic`

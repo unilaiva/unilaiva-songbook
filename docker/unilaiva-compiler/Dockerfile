@@ -23,6 +23,7 @@ RUN apt-get update \
     #fonts-noto-color-emoji \
     fonts-noto-core \
     fonts-noto-mono \
+    imagemagick \
     lilypond \
     poppler-utils \
     python3 \
