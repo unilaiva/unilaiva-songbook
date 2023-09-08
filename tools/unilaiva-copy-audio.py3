@@ -138,8 +138,11 @@ class Song:
       exit(4)
 
     try:
+      "Check options with: fluidsynth -o help"
       mp3process = subprocess.run(
-        'fluidsynth -a file -T raw -O s16 -E little -r 48000 -F - \"%s\" \"%s\"\
+        'fluidsynth -a file -T raw -O s16 -E little -r 48000 \
+        -g 2 -o synth.reverb.level=.9 -o synth.reverb.room-size=0.3 -o synth.reverb.width=1 \
+        -F - \"%s\" \"%s\"\
         | ffmpeg -f s32le -ac 1 -ar 48000 -i -\
         -codec:a libmp3lame -f mp3 -q:a 1\
         -id3v2_version 3 -write_id3v2 -write_id3v1\
