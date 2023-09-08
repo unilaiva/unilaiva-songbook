@@ -98,6 +98,8 @@ print_usage_and_exit() {
   echo "Options:"
   echo ""
   echo "  --help          : print this usage information"
+  echo "  --deploy-last   : only deploy the files created by the last compile, "
+  echo "                    do nothing else"
   echo "  --no-audio      : do not create audio (mp3) files from Lilypond sources"
   echo "  --no-astral     : do not compile unilaiva-astral* books"
   echo "  --no-coverimage : do not extract cover page as image"
@@ -697,7 +699,12 @@ compile_document() {
 deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
-  [ -f ${RESULT_FILES_LIST} ] || return
+  if [ -f ${RESULT_FILES_LIST} ]; then
+    tmp='' # Do nothing, result list file exists
+  else
+    echo -e "${PRETXT_NODEPLOY}Nothing to deploy!"
+    return
+  fi
   if [ ! -d "./${DEPLOY_DIRNAME}" ]; then
     echo -e "${PRETXT_NODEPLOY}Resulting PDF files NOT copied to ./${DEPLOY_DIRNAME}/ (directory not found)"
     return
@@ -787,6 +794,11 @@ setup_ui
 # Test program arguments:
 while [ $# -gt 0 ]; do
   case "$1" in
+    "--deploy-last") # only deploy the last results, do nothing else
+      deployfinal="true"
+      deploy_results
+      exit 0
+      ;;
     "--no-lyric")
       lyricbooks="false"
       shift;;
