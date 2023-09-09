@@ -111,30 +111,31 @@ print_usage_and_exit() {
   echo ""
   echo "Options:"
   echo ""
-  echo "  --help          : print this usage information"
-  echo "  --deploy-last   : only deploy the files created by the last compile, "
-  echo "                    do nothing else"
-  echo "  --no-audio      : do not create audio (mp3) files from Lilypond sources"
-  echo "  --no-astral     : do not compile unilaiva-astral* books"
-  echo "  --no-coverimage : do not extract cover page as image"
-  echo "  --no-deploy     : do not copy PDF files to ./${DEPLOY_DIRNAME}/"
-  echo "  --no-docker     : do not use the Docker container for compiling"
-  echo "  --no-lyric      : do not generate additional lyrics-only books"
-  echo "  --no-midi       : do not copy MIDI files created by Lilypond to the result"
-  echo "                    directory"
-  echo "  --no-partial    : do not compile partial books"
-  echo "  --no-printouts  : do not create extra printout PDFs"
-  echo "  --no-selections : do not create selection booklets"
-  echo "  --pull          : Execute git pull before compiling;"
-  echo "                    this is always done outside Docker"
-  echo "  --sequential    : compile documents sequentially (the default is to"
-  echo "                    compile them in parallel), use on low memory systems"
-  echo "  --shell         : Execute an interactive shell within docker only,"
-  echo "                    does not compile anything."
-  echo "  -q              : use for quick development build of the main document;"
-  echo "                    equals to --no-partial --no-selections --no-astral"
-  echo "                    --no-printouts --no-coverimage --no-deploy --no-midi"
-  echo "                    --no-audio --no-lyric"
+  echo "  --help           : print this usage information"
+  echo "  --docker-rebuild : force rebuilding of Docker image. Not normally needed."
+  echo "  --deploy-last    : only deploy the files created by the last compile, "
+  echo "                     do nothing else"
+  echo "  --no-audio       : do not create audio (mp3) files from Lilypond sources"
+  echo "  --no-astral      : do not compile unilaiva-astral* books"
+  echo "  --no-coverimage  : do not extract cover page as image"
+  echo "  --no-deploy      : do not copy PDF files to ./${DEPLOY_DIRNAME}/"
+  echo "  --no-docker      : do not use the Docker container for compiling"
+  echo "  --no-lyric       : do not generate additional lyrics-only books"
+  echo "  --no-midi        : do not copy MIDI files created by Lilypond to the result"
+  echo "                     directory"
+  echo "  --no-partial     : do not compile partial books"
+  echo "  --no-printouts   : do not create extra printout PDFs"
+  echo "  --no-selections  : do not create selection booklets"
+  echo "  --pull           : Execute git pull before compiling;"
+  echo "                     this is always done outside Docker"
+  echo "  --sequential     : compile documents sequentially (the default is to"
+  echo "                     compile them in parallel), use on low memory systems"
+  echo "  --shell          : Execute an interactive shell within docker only,"
+  echo "                     does not compile anything."
+  echo "  -q               : use for quick development build of the main document;"
+  echo "                     equals to --no-partial --no-selections --no-astral"
+  echo "                     --no-printouts --no-coverimage --no-deploy --no-midi"
+  echo "                     --no-audio --no-lyric"
   echo ""
   echo "In addition to the full version of tha main Unilaiva Songbook, also"
   echo "two-booklet version of it is created, with parts 1 and 2 in separate PDFs."
@@ -336,21 +337,25 @@ compile_in_docker() {
   # Build the compiler Docker image only if it doesn't yet exist, or if the
   # Dockerfile (modification date) is newer than the image
 
-  echo -e "${PRETXT_DOCKER}Query compiler image status"
-  docker_build_needed=""
-  if [ ! -z $(docker image ls -q unilaiva-compiler) ]; then
-    # image exists, compare dates...
-    # NOTE: Date comparison does not work with date -d on MacOS.
-    dockerimage_ts="$(date -d $(docker inspect -f '{{ .Created }}' unilaiva-compiler) +%s)"
-    if [ $? -eq 0 ]; then
-      # first date command worked, do the rest of the comparison
-      dockerfile_ts="$(date -r docker/unilaiva-compiler/Dockerfile +%s)"
-      [ ${dockerfile_ts} -gt ${dockerimage_ts} ] && docker_build_needed="true"
-    else
-     echo -e "${PRETXT_ERROR}Can not test the version of docker image. Rebuild manually if needed."
-    fi
-  else
+  if [ "${dockerrebuild}" == "true" ]; then # rebuild requested by argument
     docker_build_needed="true"
+  else # try to see
+    echo -e "${PRETXT_DOCKER}Query compiler image status"
+    docker_build_needed=""
+    if [ ! -z $(docker image ls -q unilaiva-compiler) ]; then
+      # image exists, compare dates...
+      # NOTE: Date comparison does not work with date -d on MacOS.
+      dockerimage_ts="$(date -d $(docker inspect -f '{{ .Created }}' unilaiva-compiler) +%s)"
+      if [ $? -eq 0 ]; then
+        # first date command worked, do the rest of the comparison
+        dockerfile_ts="$(date -r docker/unilaiva-compiler/Dockerfile +%s)"
+        [ ${dockerfile_ts} -gt ${dockerimage_ts} ] && docker_build_needed="true"
+      else
+      echo -e "${PRETXT_ERROR}Can not test the version of docker image. Use --docker-rebuild option if needed."
+      fi
+    else
+      docker_build_needed="true"
+    fi
   fi
 
   if [ "${docker_build_needed}" = "true" ]; then
@@ -807,6 +812,7 @@ deploy_results() {
 
 # Set defaults:
 usedocker="true"
+dockerrebuild="false"
 deployfinal="true"
 createprintouts="true"
 coverimage="true"
@@ -832,10 +838,10 @@ setup_ui
 # if version is lower.
 if [ "${BASH_VERSINFO:-0}" -lt 4 ]; then
   if [ ${OSTYPE} == 'darwin' ]; then
-    echo "You seem to be running MacOS, which by default has a Bash version 3,"
+    echo "You seem to be running MacOS, which by default has a BASH version 3,"
     echo "and this script requires a minimum of version 4."
     echo ""
-    echo "A newer Bash can be installed with Homebrew <https://brew.sh/>."
+    echo "A newer BASH can be installed with Homebrew <https://brew.sh/>."
     echo "It is best to see up to date instructions on their site, but FYI,"
     echo "running theese commands should take care of installing a newer Bash:"
     echo ""
@@ -848,23 +854,28 @@ if [ "${BASH_VERSINFO:-0}" -lt 4 ]; then
     echo "Note also that the 'date' command in MacOS is not compatible with"
     echo "the way 'date' is used in this script to check whether the Docker"
     echo "image configuration has been updated and needs a rebuild. This can"
-    echo "be remedied by running 'docker build' manually if the Dockerfile"
-    echo "has been changed in a later revision of this package. Or one could"
-    echo "install 'coreutils' with Homebrew and changing this script to use"
-    echo "'gdate' command instead of 'date'. But for now, don't worry about it!"
+    echo "be remedied by using --docker-rebuild option to force rebuilding"
+    echo "the compiler image whenever the Dockerfile is changed in a later"
+    echo "revision of this package. (Or one could install 'coreutils' with"
+    echo "Homebrew and changing this script to use 'gdate' command instead"
+    echo "of 'date'.) But for now, don't worry about it. Just update BASH!"
     echo ""
   fi
-  die 9 "Your Bash is too old; v4 or later required."
+  die 9 "Your BASH is too old; version 4 or later required."
 fi
 
 
 # Test program arguments:
 while [ $# -gt 0 ]; do
   case "$1" in
+    "--docker-rebuild") # force rebuild of the Docker image
+      dockerrebuild="true"
+      usedocker="true"
+      shift;;
     "--deploy-last") # only deploy the last results, do nothing else
       deployfinal="true"
       deploy_results
-      exit 0
+      exit $?
       ;;
     "--no-lyric")
       lyricbooks="false"
@@ -953,7 +964,7 @@ if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
     # remove the lock file
     which "ps" >"/dev/null" || die 255 "Compilation already underway. If this is incorrect, remove ${LOCKFILE}"
     ps aux | grep "compile-songbooks.sh" >"/dev/null" 2>&1
-    [ ${?} -eq 0 ] && die 255 "Compilation process already running. Only one allowed!"
+    [ ${?} -eq 0 ] && die 255 "Compilation process already running, only one allowed! (or remove ${LOCKFILE})"
   fi
   touch "${LOCKFILE}"
   # Run git pull only if not in docker container, and if so requested
