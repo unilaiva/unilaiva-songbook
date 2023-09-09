@@ -7,12 +7,22 @@
 # Note that this script -- unmodified -- probably works only with bash, as it
 # uses some of it's features, especially for arrays, arithmetic and $BASHPID.
 # Bash version 4 or higher is required, and tested for. If using Docker for
-# compiling, as is the default, Bash version 3 is enough on the host system.
+# compiling, as is the default, Bash version 3 might be enough if the version
+# check is removed, but for compiling without Docker, more changes would need
+# to be done.
 #
-# Required binaries in PATH: bash, lilypond-book, lualatex, texlua, awk, ps
-# Optional binaries in PATH:
+# Required binaries in PATH if not using Docker: :)
+#   bash, lilypond-book, lualatex, texlua, awk, sed, ps, rm, grep, mkdir, which
+#
+# Optional binaries in PATH if not using Docker:
 #   - docker: for default compilation mode inside container
 #   - context: used to create printout versions
+#   - pdftoppm, convert: for extracting cover images from result PDFs
+#   - python3, fluidsynth, ffmpeg: for extracting midi and encoding audio
+#
+# Required binaries in PATH if using Docker (the default): :)
+#   bash, docker, ps, rm, mkdir, cp, grep
+#
 #
 # Usage: run without argument for default operation. Run with --help argument
 # for further information about options, or see function print_usage_and_exit
@@ -79,6 +89,7 @@ RESULT_TYPE_LYRICONLY_PDF="LYRICONLYPDF"
 RESULT_TYPE_IMAGE="IMAGE"
 RESULT_TYPE_AUDIODIR="AUDIODIR"
 RESULT_TYPE_MIDIDIR="MIDIDIR"
+# used as separator in result files list, must be only one character
 RESULT_SEPARATOR="~"
 
 
@@ -794,7 +805,6 @@ deploy_results() {
 
 
 
-
 # Set defaults:
 usedocker="true"
 deployfinal="true"
@@ -817,6 +827,36 @@ doc_count=0 # will be increased when documents are added to 'docs' array
 all_args="$@"
 
 setup_ui
+
+# Bash version 4 or later is required for this script. Test for it and abort
+# if version is lower.
+if [ "${BASH_VERSINFO:-0}" -lt 4 ]; then
+  if [ ${OSTYPE} == 'darwin' ]; then
+    echo "You seem to be running MacOS, which by default has a Bash version 3,"
+    echo "and this script requires a minimum of version 4."
+    echo ""
+    echo "A newer Bash can be installed with Homebrew <https://brew.sh/>."
+    echo "It is best to see up to date instructions on their site, but FYI,"
+    echo "running theese commands should take care of installing a newer Bash:"
+    echo ""
+    echo '  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+    echo "  brew install bash"
+    echo ""
+    echo "Follow the instructions given by the command before for setting PATH,"
+    echo "and restart your shell application afterwards."
+    echo ""
+    echo "Note also that the 'date' command in MacOS is not compatible with"
+    echo "the way 'date' is used in this script to check whether the Docker"
+    echo "image configuration has been updated and needs a rebuild. This can"
+    echo "be remedied by running 'docker build' manually if the Dockerfile"
+    echo "has been changed in a later revision of this package. Or one could"
+    echo "install 'coreutils' with Homebrew and changing this script to use"
+    echo "'gdate' command instead of 'date'. But for now, don't worry about it!"
+    echo ""
+  fi
+  die 9 "Your Bash is too old; v4 or later required."
+fi
+
 
 # Test program arguments:
 while [ $# -gt 0 ]; do
@@ -943,10 +983,6 @@ else # we are in the container
     exit 127
   fi
 fi
-
-# Test Bash version here and not earlier, to allow using the script with
-# docker and MacOS (which has version 3 by default).
-[ "${BASH_VERSINFO:-0}" -lt 4 ] && die 9 "Your Bash is too old; v4 or later required."
 
 # Test executable availability:
 which "lualatex" >"/dev/null" || die 1 "'lualatex' binary not found in path!"
