@@ -69,6 +69,22 @@ This is tested with MacOS Ventura 13.2.1 on an Intel system, but should work
 on other OS versions and also on ARM systems.
 
 First, install Docker Desktop from <https://docs.docker.com/desktop/install/mac-install/>.
+
+Next, install [Homebrew](https://brew.sh/) and using it, Bash (the Bash version
+included in MacOS by default is too old):
+```sh
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # Follow instructions given by this command for setting PATH
+  brew install bash
+```
+
+**Optional:** To enable automatic building of the Docker image in case it is
+later updated, you also need GNU's version of `date`. To get it,
+run `brew install coreutils`, and edit the compile script to use `gdate`
+command instead of `date`. On first run of the compile script, the Docker
+image is built regardless of this, and later, if the image is updated, you can
+alternatively manually trigger a rebuild by using Docker commands.
+
 Then start the command prompt and run the following commands:
   1. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   2. `cd unilaiva-songbook`
@@ -76,9 +92,6 @@ Then start the command prompt and run the following commands:
   
 If `git` is not installed, it will be automatically installed by the OS when
 trying to run it for the first time.
-
-The `bash` version MacOS has by default is old, but compilation script works
-with it mostly (when using Docker).
 
 ##### Example: on Windows, using Docker #####
 
