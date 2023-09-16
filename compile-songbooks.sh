@@ -74,10 +74,10 @@ SONG_IDX_SCRIPT="tex/ext_packages/songs/songidx.lua"
 # "locale -a".
 SORT_LOCALE="fi_FI.utf8" # Recommended default: fi_FI.utf8
 
-IMG_AUTOCROP_FNAME_POSTFIX="_AUTOCROPPED" # will be added to auto cropped images' basename
-IMG_AUTOEXT_FNAME_POSTFIX="_AUTOEXTENDED" # will be added to auto extended images' basename
+# will be added to automatically modified images basename
+IMG_AUTOWIDENOTAGS_FNAME_POSTFIX="_AUTOWIDENOTAGS"
 COVERIMAGE_HEIGHT="1024" # Height for the optionally extracted cover image file
-COVERIMAGE_AUTOEXT_WIDTH="976" # Width of the optionally extended cover image file
+COVERIMAGE_AUTOWIDE_WIDTH="976" # Width of the optionally extended cover image file
 
 INITIAL_DIR="${PWD}" # Store the initial directory (absolute path)
 
@@ -555,33 +555,33 @@ compile_document() {
            || die $? "Error copying ${currentdoc_basename}.png from temporary directory!"
         echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}.png" \
             >>${RESULT_FILES_LIST}
-      which "convert" >"/dev/null"
-      if [ $? -ne 0 ]; then
-        echo -e "${PRETXT_NOEXEC}${txt_docbase}: Square cover image not created; no 'convert'"
-      else # create a squared version of the image, too:
-        convert "${currentdoc_basename}.png" -gravity center \
-                -extent "${COVERIMAGE_AUTOEXT_WIDTH}x${COVERIMAGE_HEIGHT}" \
-                ${currentdoc_basename}${IMG_AUTOEXT_FNAME_POSTFIX}.png \
-                1>"${log10file}" 2>&1 \
-                || die_log $? "Error squaring cover image!" "${log10file}"
-        cp "${currentdoc_basename}${IMG_AUTOEXT_FNAME_POSTFIX}.png" "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
-           || die $? "Error copying ${currentdoc_basename}${IMG_AUTOEXT_FNAME_POSTFIX}.png from temporary directory!"
-        echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}${IMG_AUTOEXT_FNAME_POSTFIX}.png" \
-            >>${RESULT_FILES_LIST}
-      fi
-#         # Make a cropped image for astral books
-#         if [[ ${currentdoc_basename} == "${ASTRAL_FNAME_PREFIX}"* ]]; then
-#           local curimgbasename=${currentdoc_basename}${IMG_AUTOCROP_FNAME_POSTFIX}
-#           pdftoppm -f 1 -singlefile -png -scale-to-x 1024 -scale-to-y -1 \
-#                    -x 50 -y 0 -W 976 -H 1024 \
-#                    "${currentdoc_basename}.pdf" "${curimgbasename}" \
-#                    1>>"${log10file}" 2>&1 \
-#                    || die_log $? "Error extracting cover image (cropped)!" "${log10file}"
-#           cp "${curimgbasename}.png" "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
-#              || die $? "Error copying ${curimgbasename}.png from temporary directory!"
-#           echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${curimgbasename}.png" \
-#                >>${RESULT_FILES_LIST}
-#         fi
+        which "convert" >"/dev/null"
+        if [ $? -ne 0 ]; then
+          echo -e "${PRETXT_NOEXEC}${txt_docbase}: Widened tagless cover image not created; no 'convert'"
+        else # create extended (closer to square) and tagless version of the image, too:
+          echo -e "${PRETXT_EXEC}${txt_docbase}: convert (create widened tagless cover image)"
+          if [[ ${currentdoc_basename} == "${ASTRAL_FNAME_PREFIX}"* ]]; then
+            convert "${currentdoc_basename}.png" \
+                    -fill white -draw "rectangle 0,0 200,400" \
+                    -gravity center \
+                    -extent "${COVERIMAGE_AUTOWIDE_WIDTH}x${COVERIMAGE_HEIGHT}" \
+                    ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png \
+                    1>>"${log10file}" 2>&1 \
+                    || die_log $? "Error modifying cover image!" "${log10file}"
+          else
+            convert "${currentdoc_basename}.png"\
+                    -fill white -draw "rectangle 0,0 1024,100" \
+                    -gravity center \
+                    -extent "${COVERIMAGE_AUTOWIDE_WIDTH}x${COVERIMAGE_HEIGHT}" \
+                    ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png \
+                    1>>"${log10file}" 2>&1 \
+                    || die_log $? "Error modifying cover image!" "${log10file}"
+          fi
+          cp "${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
+            || die $? "Error copying ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png from temporary directory!"
+          echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" \
+              >>${RESULT_FILES_LIST}
+        fi
       fi
     fi
 
