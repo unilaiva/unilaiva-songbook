@@ -1,0 +1,328 @@
+{
+  "book_path": "/songbook-data",
+  "image_path": "/songbook-data/images",
+  "icon_path": "/songbook-data/images/icons",
+  "tags": [
+    {
+      "id": "charango",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-charango_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "tabulature for charango"
+      }
+    },
+    {
+      "id": "guitar",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-guitar_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "tabulature for guitar"
+      }
+    },
+    {
+      "id": "partial",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-partial_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "partial edition"
+      }
+    },
+    {
+      "id": "complete.ed",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-complete_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "complete edition"
+      }
+    },
+    {
+      "id": "lyricsonly",
+      "iconfile_i18n": { 
+        "en": "unilaiva-tag-icon-lyricsonly_512x512px.png",
+        "pt": "unilaiva-tag-icon-somenteletras_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "lyrics only",
+        "pt": "somente letras"
+      }
+    },
+    {
+      "id": "sheetmusic",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-sheetmusic_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "with sheet music"
+      }
+    },
+    {
+      "id": "complete.comp",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-edicaocompleta_512x512px.png"
+      },
+      "text_i18n": {
+        "pt": "compilação completa"
+      }
+    },
+    {
+      "id": "chords",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-music_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "chords"
+      }
+    },
+    {
+      "id": "chapter1",
+      "iconfile_i18n": { 
+        "*": "ul-default-chapter-01_huichol_deer_transbg_1042x1098px.png"
+      },
+      "text_i18n": {
+        "en": "Chapter 1: Español",
+        "fi": "Luku 1: Español",
+        "pt": "Capítulo 1: Español"
+      }
+    },
+    {
+      "id": "chapter2",
+      "iconfile_i18n": { 
+        "*": "ul-default-chapter-02_caapi_heart_transbg_1000x797px.png"
+      },
+      "text_i18n": {
+        "en": "Chapter 2: Português",
+        "fi": "Luku 2: Português",
+        "pt": "Capítulo 2: Português"
+      }
+    },
+    {
+      "id": "chapter3",
+      "iconfile_i18n": { 
+        "*": "ul-default-chapter-03_green_circles_ed_by_larva_CC0_1200px.jpg"
+      },
+      "text_i18n": {
+        "en": "Chapter 3: English",
+        "fi": "Luku 3: English",
+        "pt": "Capítulo 3: English"
+      }
+    },
+    {
+      "id": "chapter4",
+      "iconfile_i18n": { 
+        "*": "ul-default-chapter-04_lotus_om_transbg_2000px.png"
+      },
+      "text_i18n": {
+        "en": "Chapter 4: Saṃskṛtam",
+        "fi": "Luku 4: Saṃskṛtam",
+        "pt": "Capítulo 4: Saṃskṛtam"
+      }
+    },
+    {
+      "id": "chapter5",
+      "iconfile_i18n": { 
+        "*": "ul-default-chapter-05_Hopi_Navajo_Zuni_circle_ed_by_larva_transbg_CC0_1200px.png"
+      },
+      "text_i18n": {
+        "en": "Chapter 5: Other",
+        "fi": "Luku 5: Other",
+        "pt": "Capítulo 5: Other"
+      }
+    },
+    {
+      "id": "chapter6",
+      "iconfile_i18n": { 
+        "*": "ul-default-chapter-06_lintu_muinaissuomalaisilta_asuma-aloilta_perma_1426x1158px.png"
+      },
+      "text_i18n": {
+        "en": "Chapter 6: Suomi",
+        "fi": "Luku 6: Suomi",
+        "pt": "Capítulo 6: Suomi"
+      }
+    }
+  ],
+  "books": [
+    {
+      "enabled": true,
+      "file": "unilaiva-songbook_A5.pdf",
+      "image": "unilaiva-songbook_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "complete.ed", "chords" ],
+      "title_i18n": {
+        "en": "Unilaiva Songbook"
+      },
+      "subtitle_i18n": {
+        "en": "Complete Edition, with chords",
+        "pt": "Edição completa, com acordes",
+        "fi": "Täysi editio, soinnuilla"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/kMSRkbdD9BdjtpW",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "extra_printout_links": [
+        {
+          "enabled": false,
+          "file": "extraprintout.pdf",
+          "title_i18n": {
+            "en": "Extra printout",
+            "fi": "Lisätuloste"
+          }
+        }
+      ],
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/larva-424852704/sets/unilaiva-songbook",
+          "title_i18n": {
+            "en": "Playlist on SoundCloud",
+            "pt": "Lista de reprodução no SoundCloud",
+            "fi": "Soittolista SoundCloudissa"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-songbook_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-songbook_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "complete.ed", "lyricsonly" ],
+      "title_i18n": {
+        "en": "Unilaiva Songbook"
+      },
+      "subtitle_i18n": {
+        "en": "Lyrics Only",
+        "pt": "Somente letras",
+        "fi": "Vain sanoitukset"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/ir8rdkXd8mKzFip",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/larva-424852704/sets/unilaiva-songbook",
+          "title_i18n": {
+            "en": "Playlist on SoundCloud",
+            "pt": "Lista de reprodução no SoundCloud",
+            "fi": "Soittolista SoundCloudissa"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": false,
+      "file": "unilaiva-songbook_part1_A5.pdf",
+      "image": "unilaiva-songbook_part1_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "partial", "chapter1", "chapter2", "chords" ],
+      "title_i18n": {
+        "en": "Unilaiva Songbook: part 1"
+      },
+      "subtitle_i18n": {
+        "en": "Chapters: Español, Portuguêse; with chords",
+        "pt": "Capítulos: Español, Portuguêse; com acordes",
+        "fi": "Luvut: Español, Portuguêse; soinnuilla"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/c2oXRKXwMgYteDy",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/larva-424852704/sets/unilaiva-songbook",
+          "title_i18n": {
+            "en": "Playlist on SoundCloud",
+            "pt": "Lista de reprodução no SoundCloud",
+            "fi": "Soittolista SoundCloudissa"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": false,
+      "file": "unilaiva-songbook_part1_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-songbook_part1_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "partial", "chapter1", "chapter2", "lyricsonly" ],
+      "title_i18n": {
+        "en": "Unilaiva Songbook: part 1"
+      },
+      "subtitle_i18n": {
+        "en": "Chapters: Español, Portuguêse; lyrics only",
+        "pt": "Capítulos: Español, Portuguêse; somente letras",
+        "fi": "Luvut: Español, Portuguêse; vain sanoitukset"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/tRsEJ8oHyNNFS6n",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/larva-424852704/sets/unilaiva-songbook",
+          "title_i18n": {
+            "en": "Playlist on SoundCloud",
+            "pt": "Lista de reprodução no SoundCloud",
+            "fi": "Soittolista SoundCloudissa"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": false,
+      "file": "unilaiva-songbook_part2_A5.pdf",
+      "image": "unilaiva-songbook_part2_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "partial", "chapter3", "chapter4", "chapter5", "chapter6", "chords" ],
+      "title_i18n": {
+        "en": "Unilaiva Songbook: part 2"
+      },
+      "subtitle_i18n": {
+        "en": "Chapters: English, Saṃskṛtam, Other, Suomi; with chords",
+        "pt": "Capítulos: English, Saṃskṛtam, Other, Suomi; com acordes",
+        "fi": "Luvut: English, Saṃskṛtam, Other, Suomi;  soinnuilla"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/ePMMAq3mpjp9Zmo",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/larva-424852704/sets/unilaiva-songbook",
+          "title_i18n": {
+            "en": "Playlist on SoundCloud",
+            "pt": "Lista de reprodução no SoundCloud",
+            "fi": "Soittolista SoundCloudissa"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": false,
+      "file": "unilaiva-songbook_part2_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-songbook_part2_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "partial", "chapter3", "chapter4", "chapter5", "chapter6", "lyricsonly" ],
+      "title_i18n": {
+        "en": "Unilaiva Songbook: part 2"
+      },
+      "subtitle_i18n": {
+        "en": "Chapters: English, Saṃskṛtam, Other, Suomi; lyrics only",
+        "pt": "Capítulos: English, Saṃskṛtam, Other, Suomi; somente letras",
+        "fi": "Luvut: English, Saṃskṛtam, Other, Suomi; vain sanoitukset"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/RZYGLpBeL7sBLQ9",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/larva-424852704/sets/unilaiva-songbook",
+          "title_i18n": {
+            "en": "Playlist on SoundCloud",
+            "pt": "Lista de reprodução no SoundCloud",
+            "fi": "Soittolista SoundCloudissa"
+          }
+        }
+      ]
+    }
+  ]
+}
+

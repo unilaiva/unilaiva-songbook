@@ -1,0 +1,312 @@
+{
+  "book_path": "/songbook-data",
+  "image_path": "/songbook-data/images",
+  "icon_path": "/songbook-data/images/icons",
+  "tags": [
+    {
+      "id": "charango",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-charango_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "tabulature for charango"
+      }
+    },
+    {
+      "id": "guitar",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-guitar_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "tabulature for guitar"
+      }
+    },
+    {
+      "id": "partial",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-partial_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "partial edition"
+      }
+    },
+    {
+      "id": "complete.ed",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-complete_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "complete edition"
+      }
+    },
+    {
+      "id": "lyricsonly",
+      "iconfile_i18n": { 
+        "en": "unilaiva-tag-icon-lyricsonly_512x512px.png",
+        "pt": "unilaiva-tag-icon-somenteletras_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "lyrics only",
+        "pt": "somente letras"
+      }
+    },
+    {
+      "id": "sheetmusic",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-sheetmusic_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "with sheet music"
+      }
+    },
+    {
+      "id": "complete.comp",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-edicaocompleta_512x512px.png"
+      },
+      "text_i18n": {
+        "pt": "compilação completa"
+      }
+    },
+    {
+      "id": "chords",
+      "iconfile_i18n": { 
+        "*": "unilaiva-tag-icon-music_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "chords"
+      }
+    }
+  ],
+  "books": [
+    {
+      "enabled": true,
+      "file": "unilaiva-astral-verde_A5.pdf",
+      "image": "unilaiva-astral-verde_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "chords", "sheetmusic", "guitar" ],
+      "title_i18n": {
+        "pt": "o Livro Verde",
+        "en": "The Green Book",
+        "fi": "Vihreä Kirja"
+      },
+      "subtitle_i18n": {
+        "en": "With musical information",
+        "pt": "Com informação musical",
+        "fi": "Musiikillisin tiedoin"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/SSXm7fwPzMMStDL",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/wQrAjTpW8RMsaKo",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-astral-verde_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-astral-verde_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "lyricsonly" ],
+      "title_i18n": {
+        "pt": "o Livro Verde",
+        "en": "The Green Book",
+        "fi": "Vihreä Kirja"
+      },
+      "subtitle_i18n": {
+        "en": "Lyrics Only",
+        "pt": "Somente letras",
+        "fi": "Vain sanoitukset"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/8dGgmXw5npfdSgr",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/wQrAjTpW8RMsaKo",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-astral-cura_A5.pdf",
+      "image": "unilaiva-astral-cura_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "chords", "sheetmusic", "guitar" ],
+      "title_i18n": {
+        "pt": "Cura"
+      },
+      "subtitle_i18n": {
+        "en": "With musical information",
+        "pt": "Com informação musical",
+        "fi": "Musiikillisin tiedoin"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/mAJyTbC9gJi8nRX",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/TW4qDJbN3KKwEsy",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-astral-cura_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-astral-cura_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "lyricsonly" ],
+      "title_i18n": {
+        "pt": "Cura"
+      },
+      "subtitle_i18n": {
+        "en": "Lyrics Only",
+        "pt": "Somente letras",
+        "fi": "Vain sanoitukset"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/xS4EStLEQp5CR8R",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/TW4qDJbN3KKwEsy",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-astral-alfredo_A5.pdf",
+      "image": "unilaiva-astral-alfredo_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "chords", "sheetmusic", "guitar" ],
+      "title_i18n": {
+        "pt": "Padr. Alfredo: Nova Dimensão"
+      },
+      "subtitle_i18n": {
+        "en": "With musical information",
+        "pt": "Com informação musical",
+        "fi": "Musiikillisin tiedoin"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/NsDt4gPsqsRaz6i",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/FXiYJRm5bwWECWq",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-astral-alfredo_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-astral-alfredo_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "lyricsonly" ],
+      "title_i18n": {
+        "pt": "Padr. Alfredo: Nova Dimensão"
+      },
+      "subtitle_i18n": {
+        "en": "Lyrics Only",
+        "pt": "Somente letras",
+        "fi": "Vain sanoitukset"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/NQtWix23Sn7S4wN",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/FXiYJRm5bwWECWq",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-astral_A5.pdf",
+      "image": "unilaiva-astral_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "complete.comp", "chords", "sheetmusic", "guitar" ],
+      "title_i18n": {
+        "pt": "A compilação completa"
+      },
+      "subtitle_i18n": {
+        "en": "With musical information",
+        "pt": "Com informação musical",
+        "fi": "Musiikillisin tiedoin"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/CnwqzrMx8CwmCGS",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/gL9bDmeECBp6ZxB",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-astral_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-astral_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "complete.comp", "lyricsonly" ],
+      "title_i18n": {
+        "pt": "A compilação completa"
+      },
+      "subtitle_i18n": {
+        "en": "Lyrics Only",
+        "pt": "Somente letras",
+        "fi": "Vain sanoitukset"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/ZJeydsrSew45MzC",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/gL9bDmeECBp6ZxB",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    }
+  ]
+}
+
