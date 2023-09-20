@@ -19,6 +19,7 @@
 #   - context: used to create printout versions
 #   - pdftoppm, convert: for extracting cover images from result PDFs
 #   - python3, fluidsynth, ffmpeg: for extracting midi and encoding audio
+#   - sha256 to compare file contents in order to not deploy unless needed
 #
 # Required binaries in PATH if using Docker (the default): :)
 #   bash, docker, ps, rm, mkdir, cp, grep
@@ -306,6 +307,7 @@ setup_ui() {
   PRETXT_SUCCESS="${C_LGREEN}SUCCESS  ${C_RESET}"
   PRETXT_ERROR="${C_RED}ERROR    ${C_RESET}"
   PRETXT_ABORTED="${C_RED}ABORTED  ${C_RESET}"
+  PRETXT_WARNING="${C_YELLOW}WARNING  ${C_RESET}"
   PRETXT_SEE="See:     "
   PRETXT_SPACE="         "
   TXT_DONE="${C_GREEN}Done.${C_RESET}"
@@ -800,6 +802,22 @@ deploy_results() {
       fi
     else
       [ -f "${resultdir}/${fname}" ] || die 21 "Could not access ${fname} for deployment"
+
+      # Do not overwrite existing file in deploy dir, if it has the same content
+      # as the new file in the result dir. This way we don't invalidate caches,
+      # if the deploy dir is synced somewhere and/or served with a web server.
+      if [ -f "${deploydir}/${fname}" ]; then
+        which "sha256sum" >"/dev/null"
+        [ ${?} -eq 0 ] || echo -e "${PRETXT_WARNING}'sha256sum' not found in path: file deployed even if no change"
+        local newhash="$(sha256sum -b ${resultdir}/${fname} | cut -d' ' -f1)"
+        local oldhash="$(sha256sum -b ${deploydir}/${fname} | cut -d' ' -f1)"
+        if [ ${newhash} = ${oldhash} ]; then
+          echo -e "${PRETXT_NODEPLOY}Identical file already exists: ${fname}"
+          continue
+        fi
+      fi
+
+      # Actual copy:
       cp "${resultdir}/${fname}" "${deploydir}/" >"/dev/null" 2>&1
       [ $? -eq 0 ] || die 22 "Could not deploy ${fname}"
     fi
