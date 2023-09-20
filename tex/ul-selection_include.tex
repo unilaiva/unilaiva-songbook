@@ -71,6 +71,9 @@
       \imagec[2]{\fullbookcoverimage}
       \par\vspace*{\fill}
     \end{center}
+    \iflyriconly% skip given set ii icons in lyric-only books
+      \setcovericonsvar[\nolyricsicon]%
+    \fi%
     \insertcovericonshbc
   }
   \fi
