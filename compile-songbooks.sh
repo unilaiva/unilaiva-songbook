@@ -63,11 +63,15 @@ RESULT_IMAGE_SUBDIRNAME="images" # just the name of a subdirectory, not an absol
 RESULT_PRINTOUT_SUBDIRNAME="printouts" # just the name of a subdirectory, not an
 RESULT_AUDIO_SUBDIRNAME="audio" # just the name of a subdirectory, not an absolute path
 RESULT_MIDI_SUBDIRNAME="midi" # just the name of a subdirectory, not an absolute path
+COMMONICON_DIRNAME="content/img"
+COMMONMETADATA_DIRNAME="metadata"
 DEPLOY_DIRNAME="deploy" # just the name of a subdirectory, not an absolute path
 DEPLOY_IMAGE_SUBDIRNAME="images" # just the name of a subdirectory, not an absolute path
 DEPLOY_PRINTOUT_SUBDIRNAME="printouts" # just the name of a subdirectory, not an absolute path
 DEPLOY_AUDIO_SUBDIRNAME="audio" # just the name of a subdirectory, not an absolute path
 DEPLOY_MIDI_SUBDIRNAME="midi" # just the name of a subdirectory, not an absolute path
+DEPLOY_COMMONICON_SUBDIRNAME="${RESULT_IMAGE_SUBDIRNAME}/icons"
+DEPLOY_COMMONMETADATA_SUBDIRNAME="metadata"
 SONG_IDX_SCRIPT="tex/ext_packages/songs/songidx.lua"
 # The following is the locale used in creating the indexes, thus affecting the
 # sort order. Finnish (UTF8) is the default. Note that the locale used must be
@@ -90,6 +94,8 @@ RESULT_TYPE_LYRICONLY_PDF="LYRICONLYPDF"
 RESULT_TYPE_IMAGE="IMAGE"
 RESULT_TYPE_AUDIODIR="AUDIODIR"
 RESULT_TYPE_MIDIDIR="MIDIDIR"
+RESULT_TYPE_COMMONICON="COMMONICON"
+RESULT_TYPE_COMMONMETADATA="COMMONMETADATA"
 # used as separator in result files list, must be only one character
 RESULT_SEPARATOR="~"
 
@@ -112,7 +118,9 @@ print_usage_and_exit() {
   echo ""
   echo "Options:"
   echo ""
-  echo "  --deploy-last    : only deploy the files created by the last compile, "
+  echo "  --deploy-last    : only deploy the files created by the last compile; "
+  echo "                     do nothing else"
+  echo "  --deploy-common  : only deploy common files (icons, metadata);"
   echo "                     do nothing else"
   echo "  --docker-rebuild : force rebuilding of Docker image. Not normally needed."
   echo "  --help           : print this usage information"
@@ -169,7 +177,8 @@ print_usage_and_exit() {
   echo ""
   echo "The resulting PDF files will also be copied to ./${DEPLOY_DIRNAME}/ directory (if"
   echo "it exists), unless they have ${NODEPLOY_FNAMEPART} in their filename or --no-deploy"
-  echo "option is given."
+  echo "option is given. Common data is always deployed, if there is anything else"
+  echo "to deploy. To only deploy the common data alone, use --deploy-common option."
   echo ""
   exit 1
 }
@@ -742,16 +751,50 @@ compile_document() {
 deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
+
   if [ -f ${RESULT_FILES_LIST} ]; then
-    tmp='' # Do nothing, result list file exists
+    # Result file exists, there is something to deploy; add common files
+    # to the file if they don't already exist there
+
+    cd "${COMMONICON_DIRNAME}"
+    local tagicons=(unilaiva-tag-icon*)
+    cd "${INITIAL_DIR}"
+    for icon in "${tagicons[@]}"; do
+      local resultline="${RESULT_TYPE_COMMONICON}${RESULT_SEPARATOR}${icon}"
+      grep "${resultline}" "${RESULT_FILES_LIST}" >"/dev/null"
+      [ ${?} -ne 0 ] && echo "${resultline}" >>${RESULT_FILES_LIST}
+    done
+
+    cd "${COMMONICON_DIRNAME}"
+    local chapicons=(ul-default-chapter-*)
+    cd "${INITIAL_DIR}"
+    for icon in "${chapicons[@]}"; do
+      local resultline="${RESULT_TYPE_COMMONICON}${RESULT_SEPARATOR}${icon}"
+      grep "${resultline}" "${RESULT_FILES_LIST}" >"/dev/null"
+      [ ${?} -ne 0 ] && echo "${resultline}" >>${RESULT_FILES_LIST}
+    done
+
+    cd "${COMMONMETADATA_DIRNAME}"
+    local metadatafiles=(*.json)
+    cd "${INITIAL_DIR}"
+    for mdfile in "${metadatafiles[@]}"; do
+      local resultline="${RESULT_TYPE_COMMONMETADATA}${RESULT_SEPARATOR}${mdfile}"
+      grep "${resultline}" "${RESULT_FILES_LIST}" >"/dev/null"
+      [ ${?} -ne 0 ] && echo "${resultline}" >>${RESULT_FILES_LIST}
+    done
+
   else
     echo -e "${PRETXT_NODEPLOY}Nothing to deploy!"
     return
   fi
+
   if [ ! -d "./${DEPLOY_DIRNAME}" ]; then
     echo -e "${PRETXT_NODEPLOY}Resulting PDF files NOT copied to ./${DEPLOY_DIRNAME}/ (directory not found)"
     return
   fi
+
+  local idcontent_skippedcount=0
+
   while IFS="${RESULT_SEPARATOR}" read -r ftype fname; do
     if [[ ${fname} == *"${NODEPLOY_FNAMEPART}"* ]]; then
       echo -e "${PRETXT_NODEPLOY}${fname} not deployed due to filename"
@@ -785,11 +828,20 @@ deploy_results() {
         resultdir="./${RESULT_DIRNAME}/${RESULT_AUDIO_SUBDIRNAME}"
         resultisdir="true"
         ;;
+      "${RESULT_TYPE_COMMONICON}")
+        deploydir="./${DEPLOY_DIRNAME}/${DEPLOY_COMMONICON_SUBDIRNAME}"
+        resultdir="${COMMONICON_DIRNAME}"
+        ;;
+      "${RESULT_TYPE_COMMONMETADATA}")
+        deploydir="./${DEPLOY_DIRNAME}/${DEPLOY_COMMONMETADATA_SUBDIRNAME}"
+        resultdir="${COMMONMETADATA_DIRNAME}"
+        ;;
       *)
         echo -e "${PRETXT_NODEPLOY}${fname} not deployed due to ${C_RED}internal error${C_RESET}"
         continue
       ;;
     esac
+
     mkdir -p "${deploydir}" 2>"/dev/null"
     if [ ${resultisdir} == "true" ]; then
       [ -d "${resultdir}/${fname}" ] || die 21 "Could not access directory ${fname} for deployment"
@@ -811,8 +863,8 @@ deploy_results() {
         [ ${?} -eq 0 ] || echo -e "${PRETXT_WARNING}'sha256sum' not found in path: file deployed even if no change"
         local newhash="$(sha256sum -b ${resultdir}/${fname} | cut -d' ' -f1)"
         local oldhash="$(sha256sum -b ${deploydir}/${fname} | cut -d' ' -f1)"
-        if [ ${newhash} = ${oldhash} ]; then
-          echo -e "${PRETXT_NODEPLOY}Identical file already exists: ${fname}"
+        if [ ${newhash} = ${oldhash} ]; then # files identical
+          ((idcontent_skippedcount++))
           continue
         fi
       fi
@@ -821,8 +873,15 @@ deploy_results() {
       cp "${resultdir}/${fname}" "${deploydir}/" >"/dev/null" 2>&1
       [ $? -eq 0 ] || die 22 "Could not deploy ${fname}"
     fi
+
     echo -e "${PRETXT_DEPLOY}${deploydir}/${fname}"
+
   done < "${RESULT_FILES_LIST}"
+
+  if [ ${idcontent_skippedcount} -gt 0 ]; then
+    echo -e "${PRETXT_NODEPLOY}Files skipped due to identical existing content: ${idcontent_skippedcount}"
+  fi
+
 } # END deploy_results()
 
 
@@ -893,7 +952,15 @@ while [ $# -gt 0 ]; do
     "--deploy-last") # only deploy the last results, do nothing else
       deployfinal="true"
       deploy_results
-      exit $?
+      exit ${?}
+      ;;
+    "--deploy-common") # only deploy the common files, do nothing else
+      deployfinal="true"
+      rm ${RESULT_FILES_LIST} 2>"/dev/null"; touch ${RESULT_FILES_LIST}
+      deploy_results
+      code=${?}
+      rm ${RESULT_FILES_LIST}
+      exit ${code}
       ;;
     "--no-lyric")
       lyricbooks="false"
