@@ -690,6 +690,7 @@ compile_document() {
       "${document_basename}.dep" "../../${cur_res_midi_subdirname}" \
       1>"${log11file}" 2>&1 \
       || die_log $? "Error copying midi files to result directory" "${log11file}"
+    cp "../../metadata/audio-dirs-Readme.md" "../../${cur_res_midi_subdirname}/Readme.md"
     echo "${RESULT_TYPE_MIDIDIR}${RESULT_SEPARATOR}${document_basename}" \
          >>${RESULT_FILES_LIST}
   fi
@@ -705,6 +706,7 @@ compile_document() {
       "${document_basename}.dep" "../../${cur_res_audio_subdirname}" \
       1>"${log12file}" 2>&1 \
       || die_log $? "Error encoding audio files!" "${log12file}"
+    cp "../../metadata/audio-dirs-Readme.md" "../../${cur_res_audio_subdirname}/Readme.md"
     echo "${RESULT_TYPE_AUDIODIR}${RESULT_SEPARATOR}${document_basename}" \
          >>${RESULT_FILES_LIST}
   fi
