@@ -5,7 +5,7 @@
   "tags": [
     {
       "id": "charango",
-      "iconfile_i18n": { 
+      "iconfile_i18n": {
         "*": "unilaiva-tag-icon-charango_512x512px.png"
       },
       "text_i18n": {
@@ -14,7 +14,7 @@
     },
     {
       "id": "guitar",
-      "iconfile_i18n": { 
+      "iconfile_i18n": {
         "*": "unilaiva-tag-icon-guitar_512x512px.png"
       },
       "text_i18n": {
@@ -22,37 +22,47 @@
       }
     },
     {
-      "id": "partial",
-      "iconfile_i18n": { 
-        "*": "unilaiva-tag-icon-partial_512x512px.png"
+      "id": "partial.ed",
+      "iconfile_i18n": {
+        "en": "unilaiva-tag-icon-partial-edition_EN_512x512px.png",
+        "pt": "unilaiva-tag-icon-partial-edition_PT_512x512px.png",
+        "fi": "unilaiva-tag-icon-partial-edition_FI_512x512px.png"
       },
       "text_i18n": {
-        "en": "partial edition"
+        "en": "partial edition",
+        "pt": "edição parcial",
+        "fi": "osittainen editio"
       }
     },
     {
       "id": "complete.ed",
-      "iconfile_i18n": { 
-        "*": "unilaiva-tag-icon-complete_512x512px.png"
+      "iconfile_i18n": {
+        "en": "unilaiva-tag-icon-complete-edition_EN_512x512px.png",
+        "pt": "unilaiva-tag-icon-complete-edition_PT_512x512px.png",
+        "fi": "unilaiva-tag-icon-complete-edition_FI_512x512px.png"
       },
       "text_i18n": {
-        "en": "complete edition"
+        "en": "complete edition",
+        "pt": "edição completa",
+        "fi": "täysi editio"
       }
     },
     {
       "id": "lyricsonly",
-      "iconfile_i18n": { 
-        "en": "unilaiva-tag-icon-lyricsonly_512x512px.png",
-        "pt": "unilaiva-tag-icon-somenteletras_512x512px.png"
+      "iconfile_i18n": {
+        "en": "unilaiva-tag-icon-lyrics-only_EN_512x512px.png",
+        "pt": "unilaiva-tag-icon-lyrics-only_PT_512x512px.png",
+        "fi": "unilaiva-tag-icon-lyrics-only_FI_512x512px.png"
       },
       "text_i18n": {
         "en": "lyrics only",
-        "pt": "somente letras"
+        "pt": "somente letras",
+        "fi": "vain lyriikat"
       }
     },
     {
       "id": "sheetmusic",
-      "iconfile_i18n": { 
+      "iconfile_i18n": {
         "*": "unilaiva-tag-icon-sheetmusic_512x512px.png"
       },
       "text_i18n": {
@@ -61,16 +71,20 @@
     },
     {
       "id": "complete.comp",
-      "iconfile_i18n": { 
-        "*": "unilaiva-tag-icon-edicaocompleta_512x512px.png"
+      "iconfile_i18n": {
+        "en": "unilaiva-tag-icon-complete-compilation_EN_512x512px.png",
+        "pt": "unilaiva-tag-icon-complete-compilation_PT_512x512px.png",
+        "fi": "unilaiva-tag-icon-complete-compilation_FI_512x512px.png"
       },
       "text_i18n": {
-        "pt": "compilação completa"
+        "en": "complete compilation",
+        "pt": "compilação completa",
+        "fi": "täysi kokoelma"
       }
     },
     {
       "id": "chords",
-      "iconfile_i18n": { 
+      "iconfile_i18n": {
         "*": "unilaiva-tag-icon-music_512x512px.png"
       },
       "text_i18n": {

@@ -22,32 +22,42 @@
       }
     },
     {
-      "id": "partial",
+      "id": "partial.ed",
       "iconfile_i18n": { 
-        "*": "unilaiva-tag-icon-partial_512x512px.png"
+        "en": "unilaiva-tag-icon-partial-edition_EN_512x512px.png",
+        "pt": "unilaiva-tag-icon-partial-edition_PT_512x512px.png",
+        "fi": "unilaiva-tag-icon-partial-edition_FI_512x512px.png"
       },
       "text_i18n": {
-        "en": "partial edition"
+        "en": "partial edition",
+        "pt": "edição parcial",
+        "fi": "osittainen editio"
       }
     },
     {
       "id": "complete.ed",
       "iconfile_i18n": { 
-        "*": "unilaiva-tag-icon-complete_512x512px.png"
+        "en": "unilaiva-tag-icon-complete-edition_EN_512x512px.png",
+        "pt": "unilaiva-tag-icon-complete-edition_PT_512x512px.png",
+        "fi": "unilaiva-tag-icon-complete-edition_FI_512x512px.png"
       },
       "text_i18n": {
-        "en": "complete edition"
+        "en": "complete edition",
+        "pt": "edição completa",
+        "fi": "täysi editio"
       }
     },
     {
       "id": "lyricsonly",
       "iconfile_i18n": { 
-        "en": "unilaiva-tag-icon-lyricsonly_512x512px.png",
-        "pt": "unilaiva-tag-icon-somenteletras_512x512px.png"
+        "en": "unilaiva-tag-icon-lyrics-only_EN_512x512px.png",
+        "pt": "unilaiva-tag-icon-lyrics-only_PT_512x512px.png",
+        "fi": "unilaiva-tag-icon-lyrics-only_FI_512x512px.png"
       },
       "text_i18n": {
         "en": "lyrics only",
-        "pt": "somente letras"
+        "pt": "somente letras",
+        "fi": "vain lyriikat"
       }
     },
     {
@@ -62,10 +72,14 @@
     {
       "id": "complete.comp",
       "iconfile_i18n": { 
-        "*": "unilaiva-tag-icon-edicaocompleta_512x512px.png"
+        "en": "unilaiva-tag-icon-complete-compilation_EN_512x512px.png",
+        "pt": "unilaiva-tag-icon-complete-compilation_PT_512x512px.png",
+        "fi": "unilaiva-tag-icon-complete-compilation_FI_512x512px.png"
       },
       "text_i18n": {
-        "pt": "compilação completa"
+        "en": "complete compilation",
+        "pt": "compilação completa",
+        "fi": "täysi kokoelma"
       }
     },
     {
@@ -215,7 +229,7 @@
       "enabled": false,
       "file": "unilaiva-songbook_part1_A5.pdf",
       "image": "unilaiva-songbook_part1_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "partial", "chapter1", "chapter2", "chords" ],
+      "tag_ids": [ "partial.ed", "chapter1", "chapter2", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 1"
       },
@@ -243,7 +257,7 @@
       "enabled": false,
       "file": "unilaiva-songbook_part1_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-songbook_part1_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "partial", "chapter1", "chapter2", "lyricsonly" ],
+      "tag_ids": [ "partial.ed", "chapter1", "chapter2", "lyricsonly" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 1"
       },
@@ -271,7 +285,7 @@
       "enabled": false,
       "file": "unilaiva-songbook_part2_A5.pdf",
       "image": "unilaiva-songbook_part2_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "partial", "chapter3", "chapter4", "chapter5", "chapter6", "chords" ],
+      "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 2"
       },
@@ -299,7 +313,7 @@
       "enabled": false,
       "file": "unilaiva-songbook_part2_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-songbook_part2_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "partial", "chapter3", "chapter4", "chapter5", "chapter6", "lyricsonly" ],
+      "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "lyricsonly" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 2"
       },
