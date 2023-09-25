@@ -13,16 +13,22 @@
   % Here start appendices: chapter numbering resets and switches to alphabetic
   \appendix
 
-  \ifchorded%
-    \chapter{Technical}
-      \input{content/section_technical_information.tex}
-  \fi
+  {% in a block for settings not to bleed
 
-  \clearpage\scleardpage % both are needed here
-  % to have totally flat right edge of indices (microtype package):
-  \microtypesetup{protrusion=false}
-  \showindex[2]{Song Index}{titleidx} % song title index
-  % \showindex{Author Index}{authidx} % song author index
-  \scleardpage%
-  \showindex[2]{Tag Index}{tagidx} % tags index
-  \microtypesetup{protrusion=true} % back to default (microtype package)
+    \usechaptercolorsfalse
+
+    \ifchorded%
+      \chapter{Technical}
+        \input{content/section_technical_information.tex}
+    \fi
+
+    \clearpage\scleardpage % both are needed here
+    % to have totally flat right edge of indices (microtype package):
+    \microtypesetup{protrusion=false}
+    \showindex[2]{Song Index}{titleidx} % song title index
+    % \showindex{Author Index}{authidx} % song author index
+    \scleardpage%
+    \showindex[2]{Tag Index}{tagidx} % tags index
+    \microtypesetup{protrusion=true} % back to default (microtype package)
+
+  }
