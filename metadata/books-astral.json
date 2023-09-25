@@ -183,18 +183,18 @@
           "enabled": true,
           "url": "https://soundcloud.com/canaljagube/sets/hinario-de-cura",
           "title_i18n": {
-            "en": "Studio recording of Cura I &amp; II, on Soundcloud",
-            "pt": "Gravação de estúdio de Cura I &amp; II, no Soundcloud",
-            "fi": "Studioäänite: Cura I &amp; II, Soundcloudissa"
+            "en": "Studio recording of Cura I &amp; II",
+            "pt": "Gravação de estúdio de Cura I &amp; II",
+            "fi": "Studioäänite: Cura I &amp; II"
           }
         },
         {
           "enabled": true,
           "url": "https://soundcloud.com/spencer-stewart-3/sets/sao-miguel-work-with-padrinho",
           "title_i18n": {
-            "en": "São Miguel work with Padrinho Alfredo, on Soundcloud",
-            "pt": "Trabalho de São Miguel com Padrinho Alfredo, no Soundcloud",
-            "fi": "São Miguel -työ Padrinho Alfredon canssa, Soundcloudissa"
+            "en": "São Miguel work with Padr. Alfredo",
+            "pt": "Trabalho de São Miguel com Padr. Alfredo",
+            "fi": "São Miguel -työ Padr. Alfredon kanssa"
           }
         }
       ]
@@ -229,18 +229,18 @@
           "enabled": true,
           "url": "https://soundcloud.com/canaljagube/sets/hinario-de-cura",
           "title_i18n": {
-            "en": "Studio recording of Cura I &amp; II, on Soundcloud",
-            "pt": "Gravação de estúdio de Cura I &amp; II, no Soundcloud",
-            "fi": "Studioäänite: Cura I &amp; II, Soundcloudissa"
+            "en": "Studio recording of Cura I &amp; II",
+            "pt": "Gravação de estúdio de Cura I &amp; II",
+            "fi": "Studioäänite: Cura I &amp; II"
           }
         },
         {
           "enabled": true,
           "url": "https://soundcloud.com/spencer-stewart-3/sets/sao-miguel-work-with-padrinho",
           "title_i18n": {
-            "en": "São Miguel work with Padrinho Alfredo, on Soundcloud",
-            "pt": "Trabalho de São Miguel com Padrinho Alfredo, no Soundcloud",
-            "fi": "São Miguel -työ Padrinho Alfredon canssa, Soundcloudissa"
+            "en": "São Miguel work with Padr. Alfredo",
+            "pt": "Trabalho de São Miguel com Padr. Alfredo",
+            "fi": "São Miguel -työ Padr. Alfredon kanssa"
           }
         }
       ]
