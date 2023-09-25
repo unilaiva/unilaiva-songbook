@@ -178,6 +178,24 @@
             "pt": "Melodias geradas a partir de notação",
             "fi": "Nuoteista generoidut melodiat"
           }
+        },
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/canaljagube/sets/hinario-de-cura",
+          "title_i18n": {
+            "en": "Studio recording of Cura I &amp; II, on Soundcloud",
+            "pt": "Gravação de estúdio de Cura I &amp; II, no Soundcloud",
+            "fi": "Studioäänite: Cura I &amp; II, Soundcloudissa"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/spencer-stewart-3/sets/sao-miguel-work-with-padrinho",
+          "title_i18n": {
+            "en": "São Miguel work with Padrinho Alfredo, on Soundcloud",
+            "pt": "Trabalho de São Miguel com Padrinho Alfredo, no Soundcloud",
+            "fi": "São Miguel -työ Padrinho Alfredon canssa, Soundcloudissa"
+          }
         }
       ]
     },
@@ -205,6 +223,24 @@
             "en": "Melodies generated from notation",
             "pt": "Melodias geradas a partir de notação",
             "fi": "Nuoteista generoidut melodiat"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/canaljagube/sets/hinario-de-cura",
+          "title_i18n": {
+            "en": "Studio recording of Cura I &amp; II, on Soundcloud",
+            "pt": "Gravação de estúdio de Cura I &amp; II, no Soundcloud",
+            "fi": "Studioäänite: Cura I &amp; II, Soundcloudissa"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/spencer-stewart-3/sets/sao-miguel-work-with-padrinho",
+          "title_i18n": {
+            "en": "São Miguel work with Padrinho Alfredo, on Soundcloud",
+            "pt": "Trabalho de São Miguel com Padrinho Alfredo, no Soundcloud",
+            "fi": "São Miguel -työ Padrinho Alfredon canssa, Soundcloudissa"
           }
         }
       ]
