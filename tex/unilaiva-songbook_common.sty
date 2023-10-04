@@ -2589,7 +2589,11 @@
 % Rewrite capo presentation to attach to the material coming after it, and to
 % make it smaller than the default. Only shown if chords are enabled.
 \renewcommand\capo[1]{%
-  \iftranscapos\transpose{#1}\else\musicnotefornext{{\scriptsize capo #1}}\fi%
+  \iftranscapos\transpose{#1}\else%
+    \ifchorded%
+      \ultextnote[\versesep][0.618034\versesep]{\color{chordcolor}\scriptsize capo #1}*
+    \fi%
+  \fi%
 }
 
 % END textual notes
