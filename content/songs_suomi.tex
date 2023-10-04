@@ -1626,6 +1626,92 @@
 \endsong
 
 
+\beginsong{Yksin kuljen autiolla tiellä}[by={trad., Russian}, key={Em}, gk={Gm, Gm--Am}]
+  \capo{3}
+  \mnbeginverse
+    \[^\mn{E}]Yk\[^\mn{G}]sin |\[\mnc{B}Em]kul\[^\mn{E}]jen \[\mnc{E}Am]auti\[^\mn{D}]ol\[^\mn{C}]la |\[\mncii{B}{G}Em]tiel\[\bmc\mn{E}]lä \altchords{\id[1]{(Gm)}|Gm Cm |Gm}
+    \[^\mn{G}]hal\[^\mn{A}]ki |\[^\mn{B}]seudun \[\mnc{D}Am]aa\[^\mn{C}]van \[\mnc{F#}B7]su\[^\mn{A}]mui|\[\mnc{G}Em]sen. \[\bm] \altchords{|Gm Cm D7 |Gm}
+    \[^\mn{B}]Yö \[^\mn{G}]on |\[\mnc{F#}B7]vai\[^\mn{B}]ti. \[\bmc\mn{F#}]Hil\[^\mn{B}]jai\[^\mn{F#}]si\[^\mn{G}]na |\[\mnc{E}C]si\[\mncii{D}{C}D7]el\[\mnc{B}G]lä \altchords{|D7 |E\flt{} F7 B\flt{} Cm6}
+    \[\mnc{C}Am6]tähdet |\[\mnc{B}Em/B]tuikki\[\mnc{C#}B7]vat \[^\mn{D#}]vain \[^\mn{E}]toi\[^\mn{F#}]sil|\[\mnc{G}Em]leen, \[Am6] \altchords{|Gm/D D7 |Gm Cm6}
+    \[^\mn{C}]tähdet |\[\mnc{B}Em]tuikki\[\mnc{D}Am]vat \[^\mn{C}]vain \[\mnc{F#}B7]toi\[^\mn{G}]sil|\[\mnc{E}Em]leen. \[\bm] \altchords{|Gm Cm D7 |Gm}
+  \mnendverse
+  \notesoff
+  \beginverse
+    Öinen |^taivas ^tumman kaaren |^lail^la
+    kietoo |tienoon ^sini^harsol|^laan. ^
+    Miksi |^miele^ni on rauhaa |^va^il^la?
+    ^Elon |^onne^ako odo|^tan, ^
+    elon |^onne^ako ^odo|^tan? ^
+  \endverse
+  \beginverse
+    Mitä |^toivon ^enää elä|^mäl^tä? \altchords{\id[2]{(Am)}|Am Dm |Am}
+    Mua |mennyt ^ei voi ^lohdut|^taa. ^ \altchords{|Am Dm E7 |Am}
+    Etsin |^rauhaa, ^että voisin |^tä^äl^tä \altchords{|E7 |F G7 C Dm6}
+    ^unhoi|^tukseen ^uneen uinah|^taa, ^ \altchords{|Am/E E7 |Am Dm6}
+    unhoi|^tukseen ^uneen ^uinah|^taa. ^ \altchords{|Am Dm E7 |Am}
+  \endverse
+  \beginverse
+    Öin ja |^päivin ^hellän äänen |^soi^sin
+    mulle |lemmen^laulun ^laula|^van. ^
+    Toivon, |^että ^nukkuessa |^vo^i^sin
+    ^aina |^kuulla ^tammen humi|^nan, ^
+    aina |^kuulla ^tammen ^humi|^nan. ^
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-10
+    \include "tex/lp-include-head.ly"
+    theMelody = \transpose a e \relative a' {
+      \key a \minor \time 4/4 \partial 4
+      \set melismaBusyProperties = #'() \slurSolid
+      a8 c | e4. a,8 a'8 a8 g f | e4.( c8) a4 c8 d8 | e4. e8 g8 f8 b,8 d8 | c2.
+      e8 c'8 | b4. e,8 b'8 e,8 b'8 c8 | a4.( g16 f16) e4 f8 f8 | e4. e8 fis8 gis8 a8 b8 | c2.
+      f,8 f8 | e4. e8 g8 f8 b,8 c8 | a2. \bar "|."
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Yk -- sin | kul -- jen au -- ti -- ol -- la | tiel _ -- lä
+      hal -- ki | seu -- dun aa -- van su -- mui -- | sen.
+      Yö on | vai -- ti. Hil -- jai -- si -- na | siel _ _ -- lä
+      täh -- det | tuik -- ki -- vat vain toi -- sil -- | leen,
+      täh -- det | tuik -- ki -- vat vain toi -- sil -- | leen.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Öi -- nen | tai -- vas tum -- man kaa -- ren | lail _ -- la
+      kie -- too | tie -- noon si -- ni -- har -- sol -- | laan.
+      Mik -- si | mie -- le -- ni on rau -- haa | vail _ _ -- la?
+      E -- lon | on -- ne -- a -- ko o -- do -- | tan,
+      e -- lon | on -- ne -- a -- ko o -- do -- | tan?
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Mi -- tä | toi -- von e -- nää e -- lä -- | mäl _ -- tä?
+      Mu -- a | men -- nyt ei voi loh -- dut -- | taa.
+      Et -- sin | rau -- haa, et -- tä voi -- sin | tääl _ _ -- tä
+      un -- hoi -- | tuk -- seen u -- neen ui -- nah -- | taa,
+      un -- hoi -- | tuk -- seen u -- neen ui -- nah -- | taa.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      Öin ja | päi -- vin hel -- län ää -- nen | soi _ -- sin
+      mul -- le -- | lem -- men lau -- lun lau -- la -- | van.
+      Toi -- von, | et -- tä nuk -- ku -- es -- sa | voi _ _ -- sin
+      ai -- na | kuul -- la tam -- men hu -- mi -- | nan,
+      ai -- na | kuul -- la tam -- men hu -- mi -- | nan.
+    }
+    theChords = \transpose a e \chordmode {
+      s4 | a2:m d2:m | a1:m
+      | a2:m d4:m e4:7 | a1:m
+      | e1:7 | f4 g:7 c d:m6
+      | a2:m/e e2:7 | a2:m d2:m6
+      | a2:m d4:m e:7 | a2.:m
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+
+\endsong
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}
