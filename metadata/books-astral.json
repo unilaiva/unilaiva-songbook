@@ -303,8 +303,8 @@
     },
     {
       "enabled": true,
-      "file": "unilaiva-astral_A5.pdf",
-      "image": "unilaiva-astral_A5_AUTOWIDENOTAGS.png",
+      "file": "unilaiva-astral-completa_A5.pdf",
+      "image": "unilaiva-astral-completa_A5_AUTOWIDENOTAGS.png",
       "tag_ids": [ "complete.comp", "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
         "pt": "A compilação completa"
@@ -331,8 +331,8 @@
     },
     {
       "enabled": true,
-      "file": "unilaiva-astral_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "file": "unilaiva-astral-completa_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-astral-completa_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
       "tag_ids": [ "complete.comp", "lyricsonly" ],
       "title_i18n": {
         "pt": "A compilação completa"
