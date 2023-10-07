@@ -780,3 +780,134 @@
     It's ordeal but it's the transformation, the big chance for enlightenment
   \end{translation}
 \endsong
+
+
+\beginsong{Quando o Daime Chega}[by={Baixinha}, off={Jonathan Goldman}, key={C}, gk={C, G--D}]
+  \audio[key=C]{https://soundcloud.com/user-682281070/quando-daime-chega-baixinha-jose-rosa-work-feb-2017}
+  \audio[key=D]{https://soundcloud.com/flor-da-montanha/estrela-dagua-5-quando-o-daime?in=flor-da-montanha/sets/hinario-estrela-d-agua-baixinha}
+  \mnbeginchorus
+    \lrep |\[\mnc{C}C]Quando o \[\bm{}]Dai\[\mn{D}]me |\[\mn{C}]chega \altchords{\id[1]{(D)}|D | \e}
+    É \[\bmc\mn{E}]pa\[\mn{G}]ra |\[\mn{E}]to\[\mn{C}]dos \[\bm{}]nós \[\mn{G}]to|\[\mn{E}]mar \[\up{2}(C7)] \rrep \altchords{| - | - \up{2}(D7)}
+    \lrep \[\mn{E}]A|\[\mnc{A}F]gra\[\mn{G}]de\[\bmc\mn{F}]cer \[\mn{E}]a |\[\mnc{C}C]Deus \altchords{|G |D}
+    O \[\bmc\mn{E}]que \[\mn{G}]Deus |\[\mnc{D}Dm]tem \[\mn{C}]pa\[(Fmaj7)]ra \[\mn{E}]nós |\[\mnc{C}C]dar \[\up{1}C7] \rrep \altchords{|Em (Gmaj7) |D \up{1}D7}
+  \mnendchorus
+  \mnbeginchorus
+    \ind \lrep |\[\mnc{C}C]Quando o \[\bm{}]Dai\[\mn{D}]me |\[\mn{C}]chega \altchords{|D | \e}
+    \ind É \[\bm{}]pa\[\mn{E}]ra |\[\mnc{G}G]todos \[\bmc\mn{E}]nós \[\mn{A}]to|\[\mn{G}]mar \[\up{1}G7] \rrep \altchords{|A | - \up{1}A7}
+    \ind \lrep \[\mn{E}]A|\[\mnc{A}F]gra\[\mn{G}]de\[\bmc\mn{F}]cer \[\mn{E}]a |\[\mnc{C}C]Deus \altchords{|G |D}
+    \ind O \[\bmc\mn{E}]que \[\mn{G}]Deus |\[\mnc{D}Dm]tem \[\mn{C}]pa\[(Fmaj7)]ra \[\mn{E}]nós |\[\mnc{C}C]dar \[\up{1}C7] \rrep \altchords{|Em (Gmaj7) |D \up{1}D7}
+  \mnendchorus
+  \begin{translation}
+    When the Daime arrives
+    It's for all of us to take
+    Being grateful to God
+    Because God has what we seek
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-10
+    % About segno repeat structure, see:
+    % https://lilypond.org/doc/v2.24/Documentation/notation/long-repeats#segno-repeat-structure
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \key c \major \time 4/4
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | c4. \sectionmark "1." c8 c4 d | c4. c8 e4 g4 | e4. c8 c4 g'4
+        } \alternative {
+          { | e1 }
+          { | e2. }
+        }
+        \repeat volta 2 {
+          e4 | a4. g8 f4 e | c4. c8 e4 g4 | d4. c8 c4 e4
+        } \alternative {
+          { | c2. }
+          { | c1 }
+        }
+      }
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | c4. \posectionmark "2." c8 c4 d | c4. c8 c4 e4 | g4. g8 e4 a4
+        } \alternative {
+          { | g1 }
+          { | g2. }
+        }
+        \repeat volta 2 {
+          g4 | a4. g8 f4 e | c4. c8 e4 g4 | d4. c8 c4 e4
+        } \alternative {
+          { | c2. }
+          { | c1 }
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | Quan -- do~o Dai -- me | che -- ga;~É
+          pa -- ra | to -- dos nós to --
+        } \alternative {
+          { | mar. }
+          { | mar. }
+        }
+        \repeat volta 2 {
+          A -- | gra -- de -- cer a | Deus;
+          O que Deus | tem pa -- ra nós
+        } \alternative {
+          { | dar. }
+          { | dar. }
+        }
+      }
+      \set stanza = "2."
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | Quan -- do~o Dai -- me | che -- ga;~É
+          pa -- ra | to -- dos nós to --
+        } \alternative {
+          { | mar. }
+          { | mar. }
+        }
+        \repeat volta 2 {
+          A -- | gra -- de -- cer a | Deus;
+          O que Deus | tem pa -- ra nós
+        } \alternative {
+          { | dar. }
+          { | dar. }
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | c1 | c1 | c1
+        } \alternative {
+          { | c1 }
+          { | c2 c4:7 }
+        }
+        \repeat volta 2 {
+          s4 | f1 | c | d2:m \parenthesize f2:maj7
+        } \alternative {
+          { | c2 c4:7 }
+          { | c1 }
+        }
+      }
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | c1 | c1 | g1
+        } \alternative {
+          { | g2 g2:7 }
+          { | g2. }
+        }
+        \repeat volta 2 {
+          s4 | f1 | c | d2:m \parenthesize f2:maj7
+        } \alternative {
+          { | c2 c4:7 }
+          { | c1 }
+        }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
