@@ -911,3 +911,98 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
+
+
+\beginsong{Sou o Daime}[by={Neiva}, off={Padr. Manoel Corrente [Caboclo Guerreiro \#20]}, key={C}, gk={C, C--D}]
+  \audio[key=C]{https://soundcloud.com/luizpfer/20-sou-o-daime?in=luizpfer/sets/caboclo-guerreiro-manoel-corrente}
+  \newchords{chords_souodaime_a}\newchords{chords_souodaime_b}
+  \mnbeginchorus\memorize[chords_souodaime_a]
+    \[^\mn{G}]Eu sou o |\[\mnc{C}C]Daime, eu sou a \[\mnc{D}G]vida, eu sou \[^\mn{C}]o a|\[\mncii{E}{C}C]mor \[\bm{}] \altchords{\id[1]{(D)}|D A |D}
+    Sou es\[^\mn{E}]pe|\[\mnc{G}G]rança, sou a \[F]luz \[^\mn{E}]do \[^\mn{C}]Cri\[^\mn{F}]a|\[\mnc{E}Em]dor \[\bm{}] \altchords{|A G |F\shrp{}m}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_souodaime_b]
+    \[^\mn{C}]Meu rei\[^\mn{E}]no é |\[\mnc{G}G]este o \[^\mn{E}]Im\[\bmc\mn{A}]pé\[^\mn{G}]rio \[^\mn{F}]des\[^\mn{E}]tas |\[\mnc{C}C]ma\[^\mn{A}]tas \[Am] \altchords{|A |D Bm}
+    \[^\mn{E}]Eu sou teu |\[\mnc{D}Dm]guia, \[^\mn{C}]eu \[\mnc{A}F]sou \[^\mn{C}]teu cura|\[C]dor \[\bm{}] \altchords{|Em G |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_souodaime_a]
+    Eu sou o |^Daime, sou o ^Mestre Ensina|^dor ^
+    Eu sou o |^Sol, eu sou a ^Lua, eu sou a |^flor ^
+    \endchorus\glueverses\beginchorus\replay[chords_souodaime_b]
+    Meu reino é |^este o Im^pério destas |^matas ^
+    Eu sou teu |^guia, eu ^sou teu cura|^dor ^
+  \endchorus
+  \beginchorus\replay[chords_souodaime_a]
+    Eu sou per|^feito, sou tão ^puro, sou e|^terno ^
+    Sou a Dou|^trina da Vir^gem Senhora |^Mãe ^
+    \endchorus\glueverses\beginchorus\replay[chords_souodaime_b]
+    Quem me man|^dou para a ver^dade ensi|^nar ^
+    Não quer sa|^ber de malda^de nos cora|^ções
+  \endchorus
+  \begin{translation}
+    I am the Daime, I am Life, I am Love, I am Hope, I am the Light of the Creator
+    My Kingdom is this one, the Empire of the Forest, I am your Guide, I am your healer.
+    \nextverse
+    I am the Daime, I am your teaching Master, I am the Sun, I am the Moon, I am the Flower.
+    My Kingdom is this one, the Empire of the Forest, I am your Guide, I am your healer.
+    \nextverse
+    I am perfect, I am so pure, I am eternal, I am the Doctrine of the Virgin Lady Mother.
+    Who sent me to teach the Truth doesn't want to know about evil in the heart.
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-10
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \key c \major \time 4/4 \partial 4.
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat volta 2 {
+        g8 \posectionmark "A" g g | c c c c d d d c | e4( c4.) c8 c e | g g g g g e c f | e2~8
+      }
+      \repeat volta 2 {
+        c8 \sectionmark "B" c e | g8( g8) g8 e a g f e | c4( a4.) e'8 e e | d8( d8) d8 c a c c c | c2~8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Eu sou o | Dai -- me,~eu sou a vi -- da,~eu sou o~a -- | mor; __ _
+        Sou es -- pe -- | ran -- ça, sou a luz do Cri -- a -- | dor. _
+      }
+      \repeat volta 2 {
+        Meu rei -- no~é | es _ -- te~o Im -- pé -- rio des -- tas | ma -- tas;
+        Eu sou teu | gui _ -- a, eu sou teu cu -- ra -- | dor. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Eu sou o | Dai -- me, sou o Mes -- tre~En -- si -- na -- | dor; __ _
+        Eu sou o | Sol, eu sou a Lu -- a,~eu sou a | flor. _
+      }
+      \repeat volta 2 {
+        Meu rei -- no~é | es _ -- te~o Im -- pé -- rio des -- tas | ma -- tas;
+        Eu sou teu | gui _ -- a, eu sou teu cu -- ra -- | dor. _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Eu sou per -- | fei -- to, sou tão pu -- ro, sou e -- | ter -- no;
+        Sou a Dou -- | tri -- na da Vir -- gem Se -- nho -- ra | Mãe. _
+      }
+      \repeat volta 2 {
+        Quem me man -- | dou pa -- ra~a ver -- da -- de en -- si -- | nar; __ _
+        Não quer sa -- | ber de mal -- da -- de nos co -- ra -- | ções. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c2 g2 | c1 | g2 f | e2:m~8
+      }
+      \repeat volta 2 {
+        s4. | g1 | c2 a:m | d:m f | c2~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
