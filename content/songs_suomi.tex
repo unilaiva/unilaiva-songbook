@@ -1709,8 +1709,74 @@
     \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-
 \endsong
+
+
+\beginsong{Talven valtakunta}[index={Äsken aalto heitti vain kuohun valkoisen},by={trad.}, key={Am}, gk={Am, Am--Bm}]
+  \meter{2}{4}
+  \mnbeginverse\memorize
+    \[^\mn{E}]Äs\[^\mn{D}]ken |\[\mnc{C}Am]aal\[^\mn{E}]to |\[\mnc{B}Em]heit\[^\mn{E}]ti vain |\[\mnc{A}Am]kuohun \[^\mn{C}]valkoi|\[^\mn{E}]sen \altchords{\id[1]{(Em)}|Em |Bm |Em | \e}
+    Nyt \[^\mn{F}]jo |\[\mnc{G}G]allee\[^\mn{D}]n |peitti jäi\[^\mn{F}]nen |\[\mnc{A}Am]silta |\[^\mn{E}]sen \altchords{|D | - |Em | \e}
+    Lau\[^\mn{F}]lun |\[\mnc{G}G]laula\[^\mn{D}]{ -} |en hiih\[^\mn{F}]dän |\[\mnc{A}Am]hangen |\[^\mn{A}]lunta | \e \altchords{|D | - |Em | - | \e}
+    Tal\[^\mn{B}]ven |\[\mnc{C}C]valta\[^\mn{B}]kun\[^\mn{A}]ta |\[\mnc{B}Em]on niin \[^\mn{A}]val\[^\mn{G}]koi|\[\mnc{A}Am]nen | \e \altchords{|G |Bm |Em | \e }
+  \mnendverse
+  \notesoff
+  \beginverse
+    Nyt jo |^päivä |^painuu ja |^metsä tummen|tuu
+    Tuolta |^taiva|iltaan katsoo |^suuri |puu
+    Honka |^latvas|saan taivaan |^kaarta |kantaa | \e
+    Hangel|^le se antaa |^tähtihohdet|^taan | \e
+  \endverse
+  \beginverse
+    Tiedän |^majan |^pienen ja |^aina lämpöi|sen \altchords{\id[2]{(Gm)}|Gm |Dm |Gm | \e}
+    Yksin |^siellä |lienen valti|^aana |sen \altchords{|F | - |Gm | \e}
+    Laulun |^laula|en hiihdän |^uutta |lunta | \e \altchords{|F | - |Gm | - | \e}
+    Talven |^valtakunta |^on niin valkoi|^nen | \e \altchords{|B\flt{} |Dm |Gm | \e}
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-10
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \key a \minor \time 2/4 \partial 4
+      \set melismaBusyProperties = #'() \slurSolid
+      e8 d8 | c4 e | b e8 e | a,8 a c c | e4
+      e8 f | g4 g8( d) | d8 d d f | a4 a4 | e4
+      e8 f | g4 g8( d) | d4 d8 f | a4 a | a, a~ | a4
+      a8 b | c c b a | b b a g | a2~ | a4 \bar "|."
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Äs -- ken | aal -- to | heit -- ti vain | kuo -- hun val -- koi -- | sen;
+      Nyt jo | al -- leen _ | peit -- ti jäi -- nen | sil -- ta | sen;
+      Lau -- lun | lau -- la _ -- | en hiih -- dän | han -- gen | lun -- ta; | _
+      Tal -- ven | val -- ta -- kun -- ta | on niin val -- koi -- | nen. | _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Nyt jo | päi -- vä | pai -- nuu ja | met -- sä tum -- men -- | tuu;
+      Tuol -- ta | tai -- va _ -- | il -- taan kat -- soo | suu -- ri | puu;
+      Hon -- ka | lat -- vas _ -- | saan tai -- vaan | kaar -- ta | kan -- taa; | _
+      Han -- gel -- | le se an -- taa | täh -- ti -- hoh -- det -- | taan. | _
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      Tie -- dän | ma -- jan | pie -- nen ja | ai -- na läm -- pöi -- | sen;
+      Yk -- sin | siel -- lä _ | lie -- nen val -- ti -- | aa -- na | sen;
+      Lau -- lun | lau -- la _ -- | en hiih -- dän | uut -- ta | lun -- ta; | _
+      Tal -- ven | val -- ta -- kun -- ta | on niin val -- koi -- | nen. | _
+    }
+    theChords = \chordmode {
+      s4
+      | a2:m | e2:m | a2:m | a2:m
+      | g2 | g2 | a2:m | a2:m
+      | g2 | g2 | a2:m | a2:m
+      | a2:m | c2 | e2:m | a2:m | a4:m
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
 
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
