@@ -158,3 +158,86 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Cantar Me Apareceu}[by={Mestre Irineu Serra}, key={A}, gk={A, G--A}, tags={2x}]
+  \musicnotefornext{Tocar 2 vezes}
+  \mnbeginchorus
+    \[\mn{C#}]Can|\[\mnc{E}A]tar \[\mn{C#}]me a\[\mnc{E}E]pa\[\mn{C#}]re|\[\mnc{E}A]ceu \[\bm] \altchords{\id[1]{(G)}|G D |G}
+    \[\mn{C#}]{E tu} |\[\mn{E}]não \[\mn{C#}]me \[\mnc{E}E]co\[\mn{C#}]nhe|\[\mnc{E}A]ceu \[\bm] \altchords{| - D |G}
+    \lrep \[\mn{E}]Fe|\[\mnc{F#}D]liz, \[\mn{B}]fe|\[\mncii{A}{C#}A]liz \[\bm] \altchords{|C |G}
+    \[\mn{F#}]Fe|\[\mncii{E}{D}E]liz { }\[\bmc\mn{B}] \[\mn{C#}]a|\[\mnc{A}A]deus \[\bm] \rrep \altchords{|D |G}
+  \mnendchorus
+  \vspace{1ex}
+  \mnbeginchorus
+    \[\mn{C#}]Depois tor|\[\mnc{E}A]na\[\mn{C#}]mos a \[\mnc{E}E]se en\[\mn{C#}]con|\[\mnc{E}A]trar \[\bm] \altchords{\id[2]{(B)}|B F\shrp{} |B}
+    \[\mn{C#}]{E come}|\[\mn{E}]ça\[\mn{C#}]mos a \[\mnc{E}E]con\[\mn{C#}]ver|\[\mnc{E}A]sar \[\bm] \altchords{| - F\shrp{} |B}
+    \lrep \[\mn{E}]Eu não |\[\mnc{F#}D]te \[\mn{D}]dis\[\bmc\mn{F#}]se \[\mn{B}]quem |\[\mnc{A}A]era \altchords{|E |B}
+    \[\bmc\mn{E}]Pa\[\mn{F#}]ra |\[\mnc{E}E]ti \[\mn{D}]me \[\bmc\mn{B}]per\[\mn{C#}]gun|\[\mnc{A}A]tar \[\bm] \rrep \altchords{|F\shrp{} |B}
+  \mnendchorus
+  \begin{translation}
+    Singing you appeared to me, and you did not know me.
+    Happy, happy, happy goodbye; happy, happy, happy goodbye.
+    \nextverse
+    Later we saw each other again, and we started to talk.
+    I did not say who I was, so you would ask me.
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-10
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \key a \major \time 4/4 \partial 4.
+      \set melismaBusyProperties = #'() \slurSolid
+      \repeat segno 2 {
+        r8 \sectionmark "1." cis4 | e4 cis8 cis8 e4 cis4 | e2. cis8 cis8 | e4 cis e cis | e2~ 8
+        \repeat volta 2 {
+          r8 \sectionmark "1.B" e4 | fis2. b4 | a2( cis,4) fis4 | e4.( d8 b4) cis4 | a2~ 8
+        }
+      }
+      \break
+      \repeat segno 2 {
+        cis8 \posectionmark "2." cis8 cis8 | e4 cis8 cis8 e4 cis4 | e2~ 8 cis8 cis8 cis8 | e4 cis8 cis8 e4 cis | e2~ 8
+        \repeat volta 2 {
+          r8 \sectionmark "2.B" e8 e8 | fis4 d4 fis4 b4 | a4. a8 e4 fis4 | e4 d4 b4 cis4 | a2~ 8
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat segno 2 {
+        Can -- | tar me a -- pa -- re -- | ceu;
+        E tu | não me co -- nhe -- | ceu. _
+        \repeat volta 2 {
+          Fe -- | liz, fe -- | liz; _
+          Fe -- | liz _ _ a -- | deus. _
+        }
+      }
+      \set stanza = "2."
+      \repeat segno 2 {
+        De -- pois tor -- | na -- mos a se~en -- con -- | trar; _
+        E co -- me -- | ça -- mos a con -- ver -- | sar. _
+        \repeat volta 2 {
+          Eu não | te dis -- se quem | e -- ra;
+          Pa -- ra | ti me per -- gun -- | tar. _
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        s4. | a2 e2 | a1 | a2 e2 | a2~ 8
+        \repeat volta 2 {
+          s4. | d1 | a1 | e1 | a2~ 8
+        }
+      }
+      \repeat segno 2 {
+        s4. | a2 e2 | a1 | a2 e2 | a2~ 8
+        \repeat volta 2 {
+          s4. | d1 | a1 | e1 | a2~ 8
+        }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
