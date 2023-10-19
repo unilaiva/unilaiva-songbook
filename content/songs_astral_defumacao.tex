@@ -22,55 +22,45 @@
     O \[\bmc\mn{E}]mal \[\mn{F}]que a|\[\mnc{E}E]qui \[\bmc\mn{B}]pos\[\mn{C}]sa es|\[\mnc{A}Am]tar \tonextsongmark
   \mnendchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, 2021-08
+    % transcribed by larva, latest update on 2023-10
+    \include "tex/lp-include-head.ly"
     theMelody = \relative e'' {
-      \key a \minor \time 4/4 \partial 4
-      \repeat volta 2 {
-        e4\posectionmark "A" | a,8 a4 b8 c4 d4 | e2
-        e4 e4 | a,8 a8 a8 b8 c4 b4
-      } \alternative {
-        { | a2. }
-        { | a2 }
-      }
-      \repeat volta 2 {
-        e'8\sectionmark "B" e4 e8 | a2 e4 f | d4. d8
-        e4 f8 f8 | e2 b4 c8 c8
-      } \alternative {
-        { | a2 }
-        { | a2. _\dacapo }
+      \key a \minor \time 4/4 \partial 2
+      \repeat segno 2 {
+        \repeat volta 2 {
+          r4 \posectionmark "A" e4 | a,8 a4 b8 c4 d4 | e2
+          e4 e4 | a,8 a8 a8 b8 c4 b4 | a2
+        }
+        \repeat volta 2 {
+          e'8\sectionmark "B" e4 e8 | a2 e4 f | d4. d8
+          e4 f8 f8 | e2 b4 c8 c8 | a2
+        }
       }
     }
     theLyricsOne = \lyricmode {
-      \repeat volta 2 {
-        De -- | fu -- ma de -- fu -- ma -- | dor;
-        Es -- ta | ca -- sa de Nos -- so Se --
-      } \alternative {
-        { | nhor. }
-        { | nhor. }
-      }
-      \repeat volta 2 {
-        Le -- va pra's | on -- das do | mar;
-        O mal que a -- | qui pos -- sa es --
-      } \alternative {
-        { | tar. }
-        { | tar. }
+      \repeat segno 2 {
+        \repeat volta 2 {
+          De -- | fu -- ma de -- fu -- ma -- | dor;
+          Es -- ta | ca -- sa de Nos -- so Se -- | nhor.
+        }
+        \repeat volta 2 {
+          Le -- va pra's | on -- das do | mar;
+          O mal que a -- | qui pos -- sa es -- | tar.
+        }
       }
     }
     theChords = \chordmode {
-      \repeat volta 2 {
-        s4 | a1:m | e | a:m
-      } \alternative {
-        { | a2.:m }
-        { | a2:m }
-      }
-      \repeat volta 2 {
-        s2 | a2:m a:7 | d1:m | e
-      } \alternative {
-        { | a2:m }
-        { | a2.:m }
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s2 | a1:m | e | a:m | a2:m
+        }
+        \repeat volta 2 {
+          s2 | a2:m a:7 | d1:m | e | a2:m
+        }
       }
     }
-    \include "tex/lp-include-tail-lyricsbelow.ly"
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Cense, incenser, this house of our Lord
