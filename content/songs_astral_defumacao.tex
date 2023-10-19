@@ -130,3 +130,66 @@
     I am the prayer, the son of Umbanda, with the Cross of God all evil relents
   \end{translation}
 \endsong
+
+
+\beginsong{Defumação 3}[tags={2x}, ph={I}, key={G}, gk={G}]
+  \audio{https://nossairmandade.com/index.php/hymn/1482}
+  \textnotefornext{Tocar 2 vezes. / Sing twice.}
+  \mnbeginchorus
+    \[\mn{D}]De|\[\mnc{G}G]fuma com \[\mn{F#}]as \[\bmc\mn{E}]er\[\mn{F#}]vas \[\mn{E}]da \[\mn{D}]Ju|\[\mncii{C}{E}C]rema \[\bm] \altchords{\id[1]{(A)}|A |D}
+    \[\mn{C}]De|\[\mnc{F#}D]fuma com \[\mn{E}]ar\[\bmc\mn{D}]ru\[\mn{E}]da \[\mn{D}]e \[\mn{C}]gui|\[\mnc{D}G]né \[\bm]{} \altchords{|E |A}
+    \mnendchorus\glueverses\mnbeginchorus
+    \[\mn{G}]Bejo|\[\mnc{C}C]im, a\[\mn{E}]le\[\bmc\mn{A}]crim e al\[\mn{G}]fa|\[\mncii{B}{G}G]zema \[\bm]{} \altchords{|D |A}
+    \[\mn{A}]O\[\mn{G}]ra |\[\mn{B}]va\[\mn{G}]mos de\[\mn{D}]fu\[\mnc{E}D7]mar \[\mn{D}]filhos de |\[\mnc{G}G]fé \altchords{| - E7 |A}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-10
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \key g \major \time 4/4 \partial 4
+      \set melismaBusyProperties = #'() \slurSolid
+      \repeat segno 2 {
+        \repeat volta 2 {
+          r8 \posectionmark "A" d8 | g g g fis e fis e d | c( e) e2~ 8
+          c8 | fis8 fis fis e d e d c | d2.
+        }
+        \break
+        \repeat volta 2 {
+          g,8 \sectionmark "B" g8 | c4 c8 e8 a4 a8 g8 | b8( g8) g2 a8 g8
+          | b8 g g d e d d d | g,2.
+        }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          De -- | fu -- ma com as er -- vas da Ju -- | re _ -- ma; _
+          De -- | fu -- ma com ar -- ru -- da e gui -- | né.
+        }
+        \repeat volta 2 {
+          Be -- jo -- | im, a -- le -- crim~e al -- fa -- | ze _ -- ma;
+          O -- ra | va -- mos de -- fu -- mar fi -- lhos de | fé.
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4 | g1 | c1 | d1 | g2.
+        }
+        \repeat volta 2 {
+          s4 | c1 | g1 | g2 d2:7 | g2.
+        }
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Smudge with herbs of Jurema
+    Smudge with rue and guiné
+    \nextverse
+    Benzoin, rosemary, and lavender
+    Now let's smudge children of faith
+  \end{translation}
+\endsong
