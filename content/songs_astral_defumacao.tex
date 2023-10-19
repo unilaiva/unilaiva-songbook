@@ -81,39 +81,47 @@
     \[\mn{D}]Com |a \[\mn{E}]Cruz \[\mn{F}]de |\[\mnc{E}E]Deus \[\mn{F}]to\[\mn{E}]do |\[\mnc{D}E7/D]mal \[\mn{C}]se \[\mn{B}]a|\[Am]bran\[\mn{A}]da
   \mnendchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, 2021-08
+    % transcribed by larva, latest update on 2023-10
+    \include "tex/lp-include-head.ly"
     theMelody = \relative e'' {
       \key a \minor \time 3/4 \partial 4
-      \repeat volta 2 {
-        e4\posectionmark "A" | a8 a8 a4 e4 | a2 e4 | e4 f e | d4 b4 d4
-        | b'4 gis e | b' gis e | d c b | b a
-      }
-      \repeat volta 2 {
-        c4\sectionmark "B" | c c c | c2 c4 | c4 d4 e8 e8 | d4 b4
-        d4 | d4 e4 f4 | e4 f4 e4 | d c b | b a _\dacapo
+      \repeat segno 2 {
+        \repeat volta 2 {
+          e4\posectionmark "A" | a8 a8 a4 e4 | a2 e4 | e4 f e | d4 b4 d4
+          | b'4 gis e | b' gis e | d c b | b a
+        }
+        \repeat volta 2 {
+          c4\sectionmark "B" | c c c | c2 c4 | c4 d4 e8 e8 | d4 b4
+          d4 | d4 e4 f4 | e4 f4 e4 | d c b | b a
+        }
       }
     }
     theLyricsOne = \lyricmode {
-      \repeat volta 2 {
-        De -- | fu -- ma es -- ta | ca -- sa | bem de -- fu -- | ma -- da;
-        Com | a Cruz de | Deus e -- la | vai ser re -- | za -- da.
-      }
-      \repeat volta 2 {
-        Eu | sou re -- za -- | dor sou | fi -- lho de Um -- | ban -- da;
-        Com | a Cruz de | Deus to -- do | mal se a -- | bran -- da.
+      \repeat segno 2 {
+        \repeat volta 2 {
+          De -- | fu -- ma es -- ta | ca -- sa | bem de -- fu -- | ma -- da;
+          Com | a Cruz de | Deus e -- la | vai ser re -- | za -- da.
+        }
+        \repeat volta 2 {
+          Eu | sou re -- za -- | dor sou | fi -- lho de Um -- | ban -- da;
+          Com | a Cruz de | Deus to -- do | mal se a -- | bran -- da.
+        }
       }
     }
     theChords = \chordmode {
-      \repeat volta 2 {
-        s4 | a2.:m | a:m | a:7 | d:m
-        | e/b | e | e:7/d | a2:m
-      }
-      \repeat volta 2 {
-        s4 | c2. | c | c | d:m
-        | d:m | e | e:7/d | a2:m
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4 | a2.:m | a:m | a:7 | d:m
+          | e/b | e | e:7/d | a2:m
+        }
+        \repeat volta 2 {
+          s4 | c2. | c | c | d:m
+          | d:m | e | e:7/d | a2:m
+        }
       }
     }
-    \include "tex/lp-include-tail-lyricsbelow.ly"
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
     Cense this incensed house, with the Cross of God will be prayed
