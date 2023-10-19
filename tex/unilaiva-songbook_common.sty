@@ -1471,11 +1471,15 @@
 % the end of the song:
 \beforepostludeskip=0pt plus 0pt minus 0pt
 
-% songs: rewrite this macro to support adding a \vfill to song's end
-% conditionally. Also reset alternate chord colors. The modified part is in
-% the beginning.
+% songs: rewrite this macro to support two things:
+%   1) adding a \vfill to song's end conditionally. Also reset alternate
+%      chord colors.
+%   2) support for adding 'song end mark' to just above the horizontal
+%      line ending a song, if \songendmark is defined. The mark is positioned
+%      touching the right margin of the page, and does not take vertical space,
+%      so it might overlap on song content in some cases.
 \renewcommand\SB@endsong{%
-  % BEGIN modification by larva
+  % BEGIN modification by larva, for song end vfill (1)
   \ifnum\value{@endsongvfillneeded}>0%
     \ifnum\SB@numcols=1% only do a vfill in 1-column situation
       \vspace{0pt plus 1fill minus 0pt}%
@@ -1484,7 +1488,7 @@
   \yesendsongvfill% default to being needed in the next song
   \setcounter{@aftersongblocks}{0}% reset counter for next song
   \@setaltchordscolor{1}%
-  % END modification by larva
+  % END modification by larva, for song end vfill (1)
   \ifSB@insong%
       \ifSB@inverse\SB@erreov\endverse\fi%
       \ifSB@inchorus\SB@erreoc\endchorus\fi%
@@ -1529,7 +1533,20 @@
         \ifdim\sbarheight>\z@%
           \nobreak\vskip2\p@\@plus\p@%
           \nointerlineskip%
-          \hbox{\vrule\@height\sbarheight\@width\hsize}%
+          \hbox{%
+            \vrule\@height\sbarheight\@width\hsize%
+            % BEGIN modification by larva, for song end mark (2)
+            \ifdefined\songendmark%
+              {%
+                \normalsize%
+                \newdimen\@songendmarkwidth%
+                \settowidth{\@songendmarkwidth}{\songendmark}%
+                \hspace{-\@songendmarkwidth}%
+                \raisebox{.618034ex}[0pt][0pt]{\songendmark}%
+              }%
+            \fi%
+            % END modification by larva, for song end mark (2)
+          }%
         \fi%
       }%
     \endgroup%

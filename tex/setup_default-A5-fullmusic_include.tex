@@ -71,3 +71,8 @@
 \showfeelertrue
 \showaltchordstrue
 
+% Setup the mark at song end, just above the horizontal line that ends a song;
+% if this macro is not defined (the default), only the line is displayed.
+\newcommand{\songendmark}{%
+  \color{gray}\symboliifont ◼%
+}
