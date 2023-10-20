@@ -1108,3 +1108,107 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
+
+
+\beginsong{Pena de Prata}[by={Sonia Maria Palhares}, key={Dm}, gk={Dm, Cm--F\shrp{}m}]
+  \audio[key=Dm]{https://nossairmandade.com/hymn.php?hid=1377}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]No |\[\mnc{D}Dm]al\[^\mn{F}]to \[\bmc\mn{E}]da \[^\mn{C#}]mon\[^\mn{E}]ta|-\[^\mn{D}]nha \[\bm] \altchords{\id[1]{(Em)}|Em | \e}
+    \[^\mn{A}]Lá no |\[^\mn{D}]al\[^\mn{F}]to \[\bmc\mn{E}]mui\[^\mn{D}]to a\[^\mn{E}]lé|\[A]m \[\bm] \altchords{| - |B}
+    Tem um |palá\[\bm]cio de \[^\mn{G}]ge|\[\mncadj{1ex}{F}Gm]{-lo} \[^\mn{E}]tão \[^\mn{D}]su\[\bmc\mn{C#}]bli\[^\mn{A}]me \altchords{| - |Am}
+    \[^\mn{E}]Que vi|\[A]ra \[^\mn{G}]á\[\mnc{F}A7]gua \[^\mn{E}]tam\[^\mn{D}]bé|\[Dm]m \[\bm] \altchords{|B B7 |Em}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    A |^água ^vai pra ma|-ta ^
+    Mãe Ju|rema a^bençoo|^u ^
+    Uma |cabo^cla de pe|^{-na} cor de ^prata
+    Que Pai |^Oxa^lá crio|^u ^
+  \endchorus
+  \beginchorus
+    O |^Sol bri^lha na Ter|-ra ^
+    E dá luz aos ^que sofre|^u ^
+    E |põe um ^Ser Divi|^{-no} em cada ^folha
+    Pra cu|^rar os ^filhos Seu|^s ^
+  \endchorus
+  \beginchorus
+    Minha |^Mãe, mi^nha Rai|-nha ^
+    Quero as |almas i^lumina|^r ^
+    Com es|se cris^tal tão pu|^{-ro} e verda^deiro
+    Que vei|^o me a^companha|^r ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-10
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        a8( a) | d4 f e cis8 e8~ | e8 d8~ 2
+        a8 a | d4 f8( f8) e4 d8 e8~ | e2.
+        e8( e8) | e4 e e e8 g8~ | g8 f e d cis a e' e
+        | e4 g f e8 d8~ | d2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        No __ _ | al -- to da mon -- ta -- | _ nha; _
+        Lá no | al -- to __ _ mui -- to~a -- lém; | _
+        Tem um | pa -- lá -- cio de ge -- | _ lo tão su -- bli -- me;
+        Que vi -- | ra á -- gua tam -- bém. | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        A __ _ | á -- gua vai pra ma -- | _ ta; _
+        Mãe Ju -- | re -- ma a -- ben -- ço -- ou; | _
+        U -- ma | ca -- bo -- cla de pe -- | _ na cor de pra -- ta;
+        Que Pai | O -- xa -- lá cri -- ou. | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        O __ _ | Sol bri -- lha na Ter -- | _ ra; _
+        E dá luz aos __ _ que so -- freu; | _
+        E __ _ | põe um Ser Di -- vi -- | _ no~em ca -- da fo -- lha;
+        Pra cu -- | rar os fi -- lhos Seus. | _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Mi -- nha | Mãe, mi -- nha Ra -- i -- | _ nha; _
+        Que -- ro~as | al -- mas i -- lu -- mi -- nar; | _
+        Com es -- | se cris -- tal tão pu -- | _ ro~e ver -- da -- dei -- ro;
+        Que vei -- | o me~a -- com -- pa -- nhar. | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4
+        | d1:m | d:m | d:m | a
+        | a | g:m | a2 a2:7 | d2.:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    On the heights of the mountain, there in the heights far always
+    Is an ice palace so sublime that it turns into water
+    \nextverse
+    The water comes by the forest, mother Jurema blesses it
+    A cabocla of silver feathers that Father Oxala created
+    \nextverse
+    The Sun shines on the Earth and gives light to those who suffer
+    And puts a Divine being in every leaf to heal His children
+    \nextverse
+    My Mother, my Queen, I want to illuminate the souls
+    With this crystal so pure and true, that comes to accompany me
+  \end{translation}
+\endsong
+
