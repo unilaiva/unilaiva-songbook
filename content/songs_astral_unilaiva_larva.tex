@@ -12,26 +12,26 @@
 
 \beginsong{O Ego}[by={larva}, key={Am}, gk={Am, Gm--G\shrp{}m--(Am)}]
   \mnbeginchorus\memorize
-    |\[Am] \[^\mn{E}]Na i\[\bmc\mn{A}]gre|ja, \[\bm] o |\[^\mn{C}]e\[^\mn{B}]go \[^\mn{A}]se \[\mnc{G}Am7]re\[^\mn{F}]ve\[^\mn{E}]la |\[\mnc{D}Dm]for\[\bm]te; | \e
+    \[^\mn{E}]Na i|\[\mnc{A}Am]gre\[\bm]ja, o |\[^\mn{C}]e\[^\mn{B}]go \[^\mn{A}]se \[\mnc{G}Am7]re\[^\mn{F}]ve\[^\mn{E}]la |\[\mnc{D}Dm]for\[\bm]te; | \e
     Mas \[\bmc\mn{C}]não \[^\mn{B}]vou \[^\mn{E}]m|\[Am]ais \[\bmc\mn{C}]resis\[^\mn{B}]t|\[E]ir, não \[\bmc\mn{C}]vou \[^\mn{B}]com\[^\mn{A}]pe|\[Am]tir. \[\bm]
     Em |\[\mnc{D}Dm]to\[\bm]dos, | ve\[\bmc\mn{E}]jo \[^\mn{F}]a\[^\mn{E}]m|\[Am]{or ---} \[^\mn{C}]um \[\bm]dom da \[^\mn{B}]s|\[E]orte;
     \[^\mn{A}]No \[\bmc\mn{B}]co\[^\mn{A}]ra\[^\mn{B}]ç|ão, a \[E7]luz \[^\mn{C}]que |\[\mnc{B}Am]vai \[^\mn{A}]brilh\[\bm]ar. |{ }{ }\[\bm]{ }{ }{ } \e
   \mnendchorus
   \notesoff
   \beginchorus
-    |^ Não ^que|ro ^ |jogos de ^poder, só |^paz;^ | \e \altchords{\id[1]{(Gm)}|Gm | - | - Gm7 |Cm | \e}
+    Não |^que^ro |jogos de ^poder, só |^paz;^ | \e \altchords{\id[1]{(Gm)}|Gm | - Gm7 |Cm | \e}
     A ^conex|^ão ^e o am|^or vou ^priori|^zar.^ \altchords{|Gm |D |Gm}
     Nas |^al^mas, | en^contro a l|^uz que i^lumin|^a; \altchords{|Cm | - |Gm |D}
     E as ^difer|enças ^vão se |^dissip^ar. |{ }{ }^{ }{ }{ } \e \altchords{| - D7 |Gm | \e}
   \endchorus
   \beginchorus
-    |^ Na i^gre|ja ^ e |fora de^{la, vou} o|^lhar:^ | \e
+    Na i|^gre^ja e |fora de^{la, vou} o|^lhar:^ | \e
     A ^chama a b|^on^ da|^de que es^tá lá, no |^ser.
     A ^necessi|^da^de | de ^control|^e vai se ^dissip|^ar;
     Na bus^ca do am|or,^ vou |^renasc^er. |{ }{ }^{ }{ }{ } \e
   \endchorus
   \beginchorus
-    |^ A compreen^são|{ }{ } ^{ } |nos leva ^{a transcen}|^der;^ | \e
+    A compreen|^são ^{ }{ } |nos leva ^{a transcen}|^der;^ | \e
     Os ^problem|^as ^se diss|^ol-^vem no o|^lhar.^
     Atra|^vés ^ |{ } ^do am|^or, va^mos cresc|^er;
     Na ^paz do Santo |Daime, ^ vou |^medit^ar. |{ }{ }^{ }{ }{ } \e
@@ -40,57 +40,58 @@
     % song and transcription by larva, latest update on 2023-10
     \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
-      \key a \minor \time 4/4 %\partial 1*7/8
+      \key a \minor \time 4/4 \partial 4.
       \set melismaBusyProperties = #'() \slurDashed
       \repeat volta 2 {
-        | r8 \parenthesize e8 \pomark e8( e8) a2(
-        | a2)~ a4. \parenthesize a8 | \tuplet 3/2 2 { c4 b4 a } \tuplet 3/2 2 { g f e } d2( d2)~
+        \parenthesize e8 \pomark e8( e8) | a2(
+        a4.) \parenthesize a8 | \tuplet 3/2 2 { c4 b4 a } \tuplet 3/2 2 { g f e } d2( d2)~
         | d4 d4 c b8 e8~ | \once\slurUp e2 \single\altcol ( << \single\altcol e4 \altmark "3." ) c4 >> << c8 \single\altcol b8 \altmark "3." \single\altcol ( >> b8)( | b4) b4 \tuplet 3/2 2 { c4 b4 a4 } | a4.( a8)( a8) \parenthesize a8( a8)( a8)
         | d2( d2)~ | d4 d4 e f8 e8~ | e4 \parenthesize c8 c8 c4 c8 b8~
-        | b4 b8 a8 b8( b8) << a8 \altmark "4." \single\altcol b8 >> << \single\altcol a8 b8( >> | b4)( b8)( \parenthesize b8) \parenthesize b4 c4 | b4 a8 a8~ a2~ | a1
+        | b4 b8 a8 b8( b8) << a8 \altmark "4." \single\altcol b8 >> << \single\altcol a8 b8( >> | b4)( b8)( \parenthesize b8) \parenthesize b4 c4 | b4 a8 a8~ a2~ | a2~ 8
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       \repeat volta 2 {
-        \skip 1 Na i -- gre -- | ja, _ o | e -- go se re -- ve -- la | for -- te; | _
+        \skip 1 Na i -- | gre -- ja, o | e -- go se re -- ve -- la | for -- te; | _
         Mas não vou mais __ | _ re -- sis -- tir, __ | _ não vou com -- pe -- | tir. __ _ _
         \skip 1 Em __ _ | to -- dos, | _ ve -- jo a -- mor— | _ \skip 1 um dom da sor | _ -- te;
-        No co _ -- ra -- ção, __ | _ _ a luz que | vai bri -- lhar. _ _ | _
+        No co _ -- ra -- ção, __ | _ _ a luz que | vai bri -- lhar. _ | _ _
       }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \repeat volta 2 {
-        \skip 1 Não __ _ que -- | ro _ \skip 1 | jo -- gos de po -- der, só | paz; __ _ | _
+        \skip 1 Não __ _ | que -- ro \skip 1 | jo -- gos de po -- der, só | paz; __ _ | _
         A co -- ne -- xão __ | _ e o~a -- mor __ | _ vou pri -- o -- ri -- | zar. __ _ _
         \skip 1 Nas __ _ | al -- mas, | _ en -- con -- tro~a luz | _ \skip 1 que~i -- lu -- mi -- na; | _
-        E as di _ -- fe -- ren | _ _ -- ças vão se | dis -- si -- par. _ _ | _
+        E as di _ -- fe -- ren | _ _ -- ças vão se | dis -- si -- par. _ | _ _
       }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       \repeat volta 2 {
-        \skip 1 Na i -- gre -- | ja _ e | fo -- ra de -- la, vou o -- | lhar: __ _ | _
+        \skip 1 Na i -- | gre -- ja e | fo -- ra de -- la, vou o -- | lhar: __ _ | _
         A cha -- ma~a bon -- | _ _ \altcol da _ -- | de que~es -- tá lá, no | ser.
         A ne -- ces _ -- si -- | da -- de | _ de con -- tro -- le | _ vai se dis -- si -- par; | _
-        Na bus -- ca __ _ do~a -- mor, __ | _ _ \skip 1 \skip 1 vou | re -- nas -- cer. _ _ | _
+        Na bus -- ca __ _ do~a -- mor, __ | _ _ \skip 1 \skip 1 vou | re -- nas -- cer. _ | _ _
       }
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
       \repeat volta 2 {
-        A com -- preen -- são __ | _ _ \skip 1 | nos le -- va a trans -- cen -- | der; __ _ | _
+        A com -- preen -- | são __ _ \skip 1 | nos le -- va a trans -- cen -- | der; __ _ | _
         Os pro -- ble -- mas __ | _ se dis -- sol | _ _ -- vem no o -- | lhar. __ _ _
         \skip 1 A -- tra -- | vés __ _ | _ _ do a -- mor, |  _ \skip 1 va -- mos cres -- cer; | _
-        \skip 1 Na paz do \altcol San -- \altcol to | Dai -- me, __ _ \skip 1 vou | me -- di -- tar. _ _ | _
+        \skip 1 Na paz do \altcol San -- \altcol to | Dai -- me, __ _ \skip 1 vou | me -- di -- tar. _ | _ _
       }
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        | a1:m | a1:m | a2:m a2:m7 | d1:m | d1:m | a1:m
+        s4.
+        | a1:m | a2:m a2:m7 | d1:m | d1:m | a1:m
         | e1 | a1:m | d1:m | d1:m | a1:m
-        | e1 | e2 e2:7 | a1:m | a1:m
+        | e1 | e2 e2:7 | a1:m | a2:m~ 8
       }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
