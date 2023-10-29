@@ -2758,34 +2758,36 @@
 \newlength{\cbendadj}% larva: will hold chorus line's bottom y coordinate adjustment value
 \renewcommand\SB@chorusbar[1]{%
   \ifdim\cbarwidth>\z@%
-    \SB@dimen\ht#1%
-    \SB@dimenii\dp#1%
-    \advance\SB@dimen%
-      \ifSB@chorustop\ifchorded\else2\fi\fi\SB@dimenii%
-    \ifSB@chorustop% added by larva
-      \setlength{\cbstartadj}{.15em}%  top y, set value to push it down
-      \setlength{\cbendadj}{-.8\SB@dimenii}% bottom y, set value to rise it by a factor of depth
-      \addtolength{\SB@skip}{-\cbstartadj}% top y
-      \addtolength{\SB@dimen}{-\cbstartadj}% fix bottom y to reflect top y adjustment
-      \addtolength{\SB@dimen}{\cbendadj}% bottom y, adjust
-    \fi%
-    \SB@skip\SB@dimen\relax%
-    \SB@computess\SB@skip1\@plus#1%
-    \SB@computess\SB@skip{-1}\@minus#1%
-    \nointerlineskip\null\nobreak%
-    \ifSB@chorustop% added by larva
-      \vskip\cbstartadj% top y, push line start down
-    \fi%
-    {\color{repetitionsigncolor}% % block and color addad by larva
+    {% block start added by larva to contain the color,
+     % note that the block must be here instead of around leaders line below
+      \color{repetitionsigncolor}% % added by larva, change color
+      \SB@dimen\ht#1%
+      \SB@dimenii\dp#1%
+      \advance\SB@dimen%
+        \ifSB@chorustop\ifchorded\else2\fi\fi\SB@dimenii%
+      \ifSB@chorustop% added by larva
+        \setlength{\cbstartadj}{.15em}%  top y, set value to push it down
+        \setlength{\cbendadj}{-.8\SB@dimenii}% bottom y, set value to rise it by a factor of depth
+        \addtolength{\SB@skip}{-\cbstartadj}% top y
+        \addtolength{\SB@dimen}{-\cbstartadj}% fix bottom y to reflect top y adjustment
+        \addtolength{\SB@dimen}{\cbendadj}% bottom y, adjust
+      \fi%
+      \SB@skip\SB@dimen\relax%
+      \SB@computess\SB@skip1\@plus#1%
+      \SB@computess\SB@skip{-1}\@minus#1%
+      \nointerlineskip\null\nobreak%
+      \ifSB@chorustop% added by larva
+        \vskip\cbstartadj% top y, push line start down
+      \fi%
       \leaders\vrule\@width\cbarwidth\vskip\SB@skip%
-    }%
-    \ifSB@chorustop\ifchorded\else%
-      \advance\SB@skip-\SB@dimenii%
-    \fi\fi%
-    \ifSB@chorustop% added by larva
-      \addtolength{\SB@skip}{\cbstartadj}% top y, reset \SB@skip to it's earliel value
-    \fi%
-    \nobreak\vskip-\SB@skip%
+      \ifSB@chorustop\ifchorded\else%
+        \advance\SB@skip-\SB@dimenii%
+      \fi\fi%
+      \ifSB@chorustop% added by larva
+        \addtolength{\SB@skip}{\cbstartadj}% top y, reset \SB@skip to it's earliel value
+      \fi%
+      \nobreak\vskip-\SB@skip%
+    }% % block end added by larva
   \fi%
 }
 
