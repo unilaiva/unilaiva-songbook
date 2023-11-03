@@ -1212,3 +1212,163 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Coração Alado}[by={Madr. Regina Pereira}, key={Dm}, gk={Dm, Cm--E\flt{}m}, tags={valsa}]
+  \audio[key=Am]{https://soundcloud.com/canaljagube/coracao-alado}
+  \audio[key=Dm]{https://www.youtube.com/watch?v=S8LsAn4BGU0}
+  \newchords{chords_coracaoalado_a}\newchords{chords_coracaoalado_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_coracaoalado_a]
+    \[^\mn{A}]Nes|\[\mnc{D}Dm]{se dom} \[^\mn{E}]Di|\[\mnc{F}F]vino ouço |\[\mnc{E}A]o \[^\mn{D}]men\[^\mn{C#}]sa|\[\mnc{D}Dm]geiro
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_coracaoalado_b]
+    \[^\mn{D}]Que é o |\[Dm]Se\[^\mn{G}]nhor \[^\mn{A}]do |\[\mnc{B&}Gm]tempo, em |mar\[^\mn{G}]cha \[^\mn{F}]se |\[\mnc{E}C]põe
+    E|le \[^\mn{F}]vem \[^\mn{G}]lem|\[\mnc{A}A]brar, que o |tem\[^\mn{F}]po \[^\mn{E}]vol|\[\mnc{D}Dm]tou
+    E que o |Rei\[^\mn{E}]no \[^\mn{F}]de |\[\mncii{G}{E}Gm6]Paz |\[^\mn{G}]e \[^\mn{E}]de \[^\mn{D}]A|\[\mnc{C#}A]mor com cer|\[A7]te\[^\mn{D}]za \[^\mn{E}]vi|\[\mnc{D}Dm]rá
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_coracaoalado_a]
+    Con|^centre na |^força do |^seu pensa|^mento \altchords{\id[1]{Am}|Am |C |E |Am}
+    \endchorus\glueverses\beginchorus\replay[chords_coracaoalado_b]
+    E Res|^pire na |^força des|se beija-|^flor \altchords{|Am |Dm | - |G}
+    Que |te ali|^menta e te |dá o a|^lento \altchords{| - |E | - |Am}
+    Co|ração a|^lado |voa na |^força do |^seu beija-|^flor \altchords{| - |Dm6 | - |E |E7 |Am}
+  \endchorus
+  \beginchorus\replay[chords_coracaoalado_a]
+    Co|^ração a|^lado, o se|^gredo é can|^tar
+    \endchorus\glueverses\beginchorus\replay[chords_coracaoalado_b]
+    Nes|^{sa vira}|^ção que |o tempo |^dá
+    O |vento que |^sopra faz |alivi|^ar
+    Tan|gendo a tris|^teza |e toda |^dor pra |^outro lu|^gar
+  \endchorus
+  \beginchorus\replay[chords_coracaoalado_a]
+    |^Neste oce|^ano va|^mos nave|^gar
+    \endchorus\glueverses\beginchorus\replay[chords_coracaoalado_b]
+    Es|^tar no bar|^quinho, a fir|meza é can|^tar
+    Com |os meus ir|^mãos, pres|tando aten|^ção
+    |Nessa jor|^nada do |Rei Salo|^mão e do |^meu São Jo|^ão
+  \endchorus
+  \beginchorus\replay[chords_coracaoalado_a]
+    Meu |^Pai eu lhe |^peço, me |^dê a ben|^ção
+    \endchorus\glueverses\beginchorus\replay[chords_coracaoalado_b]
+    Pa|^{ra eu} se|^guir nessa |apura|^ção
+    A|legre con|^tente com |os meus ir|^mãos
+    |Nessa mis|^são |da Virgem |^Mãe e de |^Jurami|^dam
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-11
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \key d \minor \time 3/4 \partial 4
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat volta 2 {
+        \parenthesize a4 \posectionmark "A" | d d e | f f f8( f) | e4 d cis | d( d)
+      }
+      \repeat volta 2 {
+        \altcol\grace d4 d4 \posectionmark "B" | d g a | bes( bes) bes | bes g f | e2
+        e4 | e f g | a( a) a | a f e | d4( d4)(
+        d4) | d e f | g4( g4)( e4) | g e d | cis4( cis4)
+        cis4 | cis d e | d2
+      }
+    }
+    theLyricsOne = \lyricmode { \set includeGraceNotes = ##f
+      \set stanza = "1."
+      \repeat volta 2 {
+        Nes -- | se dom Di -- | vi -- no ou -- ço | o men -- sa -- | gei -- ro.
+      }
+      \repeat volta 2 {
+        Que~é~o | Se -- nhor do | tem -- po, em | mar -- cha se | põe;
+        E -- | le vem lem -- | brar, que o | tem -- po vol -- | tou;
+        E que~o | Rei -- no de | Paz __ _ _ | e de A -- | mor com cer -- | te -- za vi -- | rá.
+      }
+    }
+    theLyricsTwo = \lyricmode { \set includeGraceNotes = ##t
+      \set stanza = "2."
+      \repeat volta 2 {
+        Con -- | cen -- tre na | for -- ça do __ _ | seu pen -- sa -- | men -- to.
+      }
+      \repeat volta 2 {
+        \altcol E Res -- | pi -- re na | for -- ça des -- | se bei -- ja -- | flor;
+        Que | te a -- li -- | men -- ta~e te | dá o a -- | len -- to;
+        Co -- | ra -- ção a -- | la -- _ do | vo -- a na | for -- ça do | seu bei -- ja -- | flor.
+      }
+    }
+    theLyricsThree = \lyricmode { \set includeGraceNotes = ##f
+      \set stanza = "3."
+      \repeat volta 2 {
+        Co -- | ra -- ção a -- | la -- do,~o se -- _ | gre -- do~é can -- | tar. __ _
+      }
+      \repeat volta 2 {
+        Nes -- | sa vi -- ra -- | ção __ _ que | o tem -- po | dá;
+        O | ven -- to que | so -- pra faz | a -- li -- vi -- | ar; __ _
+        Tan -- | gen -- do~a tris -- | te -- _ za | e to -- da | dor __ _ pra | ou -- tro lu -- | gar.
+      }
+    }
+    theLyricsFour = \lyricmode { \set includeGraceNotes = ##f
+      \set stanza = "4."
+      \repeat volta 2 {
+        \skip 1 | Nes -- te~o -- ce -- | a -- no va -- _ | mos na -- ve -- | gar. __ _
+      }
+      \repeat volta 2 {
+        Es -- | tar no bar -- | qui -- nho,~a fir -- | me -- za~é can -- | tar;
+        Com | os meus ir -- | mãos, __ _ pres -- | tan -- do~a -- ten -- | ção; __ _ _
+        | Nes -- sa jor -- | na -- da do | Rei Sa -- lo -- | mão e do | meu São Jo -- | ão.
+      }
+    }
+    theLyricsFive = \lyricmode { \set includeGraceNotes = ##f
+      \set stanza = "5."
+      \repeat volta 2 {
+        Meu | Pai eu lhe | pe -- ço, me __ _ | dê a ben -- | ção. __ _
+      }
+      \repeat volta 2 {
+        Pa -- | ra eu se -- | guir nes -- sa | a -- pu -- ra -- | ção;
+        A -- | le -- gre con -- | ten -- te com | os meus ir -- | mãos; __ _ _
+        | Nes -- sa mis -- | são __ _ _ | da Vir -- gem | Mãe e de | Ju -- ra -- mi -- | dam.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d2.:m | f | a | d2:m
+      }
+      \repeat volta 2 { % must have the invisible grace note here
+        \grace s4 s4 | d2.:m | g:m | g:m | c
+        | c | a | a | d:m
+        | d:m| g:m | g:m | a
+        | a:7 | d2:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}
+    In this divine gift, I hear the messenger
+    Who is the Lord of time, setting out on a journey
+    He comes to remind us that time has returned
+    And that the Kingdom of Peace and Love will surely come
+    \nextverse
+    Focus on the power of your thoughts
+    And breathe in the strength of that hummingbird
+    That nourishes you and gives you courage
+    A winged heart soars in the strength of your hummingbird
+    \nextverse
+    Winged heart, the secret is to sing
+    In this breeze that time provides
+    The wind that blows brings relief
+    Chasing away sadness and all pain to another place
+    \nextverse
+    In this ocean, we will sail
+    Being on the little boat, the firmness is in singing
+    With my brothers, paying attention
+    On this journey of King Solomon and my Saint John
+    \nextverse
+    My Father, I ask for your blessing
+    So I can continue in this investigation
+    Joyful and content with my brothers
+    In this mission of the Virgin Mother and Juramidam
+  \end{translation}
+
+
+
+\endsong
+
+
