@@ -1161,7 +1161,6 @@
       |\[D]{} | |\[A] |\[D]{} | |\[D7]{} | |\[G]
       | |\[Em7]{} | |\[A] |\[D]{} |\[A] |\[D]{} |\[A7]{} |\[D]
     \endchorus
-    \vspace{.6em} % for aligning with the next page
     \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
       theMelody = \relative d'' {
         \key d \major \time 2/4
@@ -1206,7 +1205,7 @@
       }
       \include "tex/lp-internal-midi-score.ly"
     \end{lilypond}\end{lilywrap}
-    \vfill\vspace{6em}\brk % to push the rest onto the next page (or column)
+    \vspace*{\fill}\vspace{6em}\brk % to push the rest onto the next page (or column)
     \musicnotefornext{(C):}
     \meter{2}{4}
     \beginchorus
