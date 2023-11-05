@@ -80,6 +80,22 @@
 % The following package contains all the imports, style settings etc:
 \usepackage{tex/unilaiva-songbook_common}
 
+% Adds a note about the rest in this chapter not being in other books. Use
+% this within a song chapter, but outside of songs.
+\providecommand{\noteulspecific}{%
+  \begin{intersong}
+    \vfill
+    A partir deste ponto em diante, o capítulo atual possui adições específicas
+    de \textbf{Unilaiva}, que podem não estar presentes em outros livros.
+    \par\vspace{1em}
+    \begin{english}
+      From this point onward, the current chapter has \textbf{Unilaiva} specific
+      additions, which might not be present in other books.
+    \end{english}
+    \vfill
+  \end{intersong}
+}
+
 
 % BEGIN helpers for prece chapters
 
