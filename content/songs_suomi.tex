@@ -1778,6 +1778,85 @@
 \endsong
 
 
+\beginsong{Kalevalainen vieraan tervehdys}[index={Kamanat kohottukohot}, by={Ilmari Hannikainen}, ex={Kalevala 21: 137--144}, ph={I}, key={C}, gk={D, C--D}]
+  \meter{2}{4}
+  \mnbeginverse
+    |\[\mnc{G}C]Kama|\[^\mn{C}]nat \[^\mn{D}]ko|\[^\mn{E}]hot\[^\mn{G}]tu|\[\mnc{D}G]ko|hot \altchords{\id[1]{(D)}|D | - | - |A | \e}
+    |\[\mnc{F}F]lakin |\[\mnc{E}C]pääs\[^\mn{C}]tä |\[\mnc{D}G]las\[^\mn{E}]ke|\[\mnc{C}C]mat|ta, \altchords{|G |D |A |D | \e}
+    |\[^\mn{G}]kynnyk|\[^\mn{C}]set \[^\mn{D}]a|\[^\mn{E}]len\[^\mn{C}]tu|\[\mnc{D}G]ko|hot \altchords{| - | - | - |A | \e}
+    |\[\mnc{F}F]kengän |\[\mnc{E}C]kan\[^\mn{C}]nan |\[\mnc{D}G]kos\[^\mn{E}]ke|\[\mnc{C}C]mat|ta, \altchords{|G |D |A |D | \e}
+    |\[\mnc{A}F]pihti|puolet |\[^\mn{F}\mn{G}]vält\[^\mn{A}]ty|\[\mnc{G}G]kö|höt, \altchords{|G | - | - |A | \e}
+    |\[\mnc{F}F]ovet |\[\mnc{E}C]il\[^\mn{C}]man |\[^\mn{E}]au\[^\mn{G}]et|\[\mnc{D}G]ko|hot \altchords{|G |D | - |A | \e}
+    |\[\mnc{C}C]vieraan |\[\mnc{D}G]tulles|\[\mnc{E}C]sa \[^\mn{G}]tu|\[\mnc{D}Dm]pa|\[^\mn{E}\mn{F}]han, \altchords{|D |A |D |Em | \e}
+    |\[\mnc{G}G]as\[^\mn{A}]tu|\[^\mn{G}]es\[^\mn{E}]sa |\[\mnc{D}G7]ai\[^\mn{E}]mo |\[\mnc{C}C]mie|hen! \altchords{|A | - |A7 |D | \e}
+  \mnendverse
+  \notesoff
+  \beginverse
+    |^Harvoin |yhte|hen y|^hym|me,
+    |^saamme |^toinen |^toisi|^him|me
+    |näillä |Väinö|län a|^hoil|la,
+    |^Kale|^valan |^kanka|^hil|la.
+    |^Terve |tänne |tultu|^an|ne,
+    |^suuri |^valta|viera|^ham|me,
+    |^juhla|^hetkem|^me i|^lok|si,
+    |^päivän |kuulun |^kunni|^ak|si!
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-11
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \key c \major \time 2/4
+      \set melismaBusyProperties = #'() \slurSolid
+      | g4 g | c d | e g | d2 | d2
+      | f4 f | e c | d e | c2 | c2
+      | g4 g | c d | e c | d2 | d2
+      | f4 f | e c | d e | c2 | c2
+      | a'4 a | a a | f8( g) a4 | g2 | g2
+      | f4 f | e c | e g | d2 | d2
+      | c4 c | d d | e g | d2
+      | e4( f) | g a | g e | d e | c2 | c2
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Ka -- ma -- | nat ko -- | hot -- tu -- | ko -- | hot
+      | la -- kin | pääs -- tä | las -- ke -- | mat -- | ta,
+      | kyn -- nyk -- | set a -- | len -- tu -- | ko -- | hot
+      | ken -- gän | kan -- nan | kos -- ke -- | mat -- | ta,
+      | pih -- ti -- | puo -- let | vält -- _ ty -- | kö -- | höt,
+      | o -- vet | il -- man | au -- et -- | ko -- | hot
+      | vie -- raan | tul -- les -- | sa tu -- | pa -- | han, _
+      | as -- tu -- | es -- sa | ai -- mo | mie -- | hen!
+
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Har -- voin | yh -- te -- | hen y -- | hym -- | me,
+      | saam -- me | toi -- nen | toi -- si -- | him -- | me
+      | näil -- lä | Väi -- nö -- | län a -- | hoil -- | la,
+      | Ka -- le -- | va -- lan | kan -- ka -- | hil -- | la.
+      | Ter -- ve | tän -- ne | tul -- _ tu -- | an -- | ne,
+      | suu -- ri | val -- ta -- | vie -- ra -- | ham -- | me,
+      | juh -- la -- | het -- kem -- | me i -- | lok -- | si, _
+      | päi -- vän | kuu -- lun | kun -- ni -- | ak -- | si!
+    }
+
+    theChords = \chordmode {
+      | c2 | c | c | g | g
+      | f | c | g | c | c
+      | c | c | c | g | g
+      | f | c | g | c | c
+      | f | f | f | g | g
+      | f | c | c | g | g
+      | c | g | c | d:m | d:m
+      | g | g | g:7 | c | c
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}
