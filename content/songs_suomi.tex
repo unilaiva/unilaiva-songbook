@@ -1357,14 +1357,21 @@
     |^Maan hyväksi |maineheksi, |^suurionnis^ten i|^lohon
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-07
+    % transcribed by larva, latest update on 2023-11
     \include "tex/lp-include-head.ly"
     theMelody = \relative b' {
-      \key e \minor \time 4/4
+      \key e \minor \time 4/4 \voiceOne
       \set melismaBusyProperties = #'() \slurDashed
       | b4 b b g | fis b e,4. fis8 | g8 g g g a4 a | b2 b2
       \repeat volta 2 {
         | b4 e b4. a8 | g4 b e,4. fis8 | g8 g g g fis4 fis | e2 e2
+      }
+    }
+    theMelodyTwo = \relative b' {
+      \key e \minor \time 4/4 \voiceTwo
+      | b4 a g e | e dis e4. b8 | e8 e e e d4 d | g2 g2
+      \repeat volta 2 {
+        | g4 g g4. fis8 | e4 b e4. dis8 | e8 e e e fis4 dis | e2 e2
       }
     }
     theLyricsOne = \lyricmode {
@@ -1402,7 +1409,7 @@
       }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
-    \include "tex/lp-include-tail-notab.ly"
+    \include "tex/lp-include-tail-multivoice-notab.ly"
   \end{lilypond}\end{lilywrap}
   \noendsongvfill % align lp to the bottom
 \endsong
