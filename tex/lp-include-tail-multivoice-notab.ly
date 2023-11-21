@@ -1,9 +1,12 @@
-    %% lp-include-tail-notab.ly
-    %% ========================
+    %% lp-include-tail-multivoice-notab.ly
+    %% ===================================
     %%
     %% This file should be included as the last thing within 'lilypond'
-    %% environment, and creates a score with chord names, notes and
-    %% lyrics, in that order, if they have been defined.
+    %% environment, and creates a score with chord names, notes with
+    %% two voices, and lyrics, in that order, if they have been defined.
+    %%
+    %% In the songs using this, specify \voiceOne and \voiceTwo within
+    %% \theMelodyOne and \theMeldodyTwo to set stem direction.
     %%
     %% Requires that 'lp-include-head.ly' has been included before.
     %%
