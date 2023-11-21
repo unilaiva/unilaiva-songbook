@@ -1331,21 +1331,22 @@
 \endsong
 
 
-\beginsong{Tuuditan tulisoroista}[by={trad.}, key={Em}, gk={Gm, Gm--Bm}, tags={uni}]
+\beginsong{Tuuditan tulisoroista}[by={trad.}, key={Am}, gk={Gm, Gm--Bm}, tags={uni}]
   \audio[key=B\flt{}m]{https://www.youtube.com/watch?v=mpHEc8SjfZc}
   \newchords{chords_tulisoroinen_a}\newchords{chords_tulisoroinen_b}
-  \capo{3}
+  \transpose{5} % from Em to Am
   \mnbeginverse\memorize[chords_tulisoroinen_a]
-    |\[\mnc{B}Em]Tuuditan \[^\mn{G}]tu|\[^\mn{F#}]li\[^\mn{B}]so\[^\mn{E}]rois\[^\mn{F#}]ta, |\[^\mn{G}]kipunaista \[\mnc{A}Am]kiikut|\[\mnc{B}Em]telen \altchords{\id[1]{Am}|Am | - | - Dm |Am}
+    |\[\mnc{B}Em]Tuuditan \[^\mn{G}]tu|\[^\mn{F#}]li\[^\mn{B}]so\[^\mn{E}]rois\[^\mn{F#}]ta, |\[^\mn{G}]kipunaista \[\mnc{A}D]kiikut|\[\mnc{B}Em]telen \altchords{\id[1]{Em}|Em | - | - D |Em}
     \mnendverse\glueverses\mnbeginchorus\memorize[chords_tulisoroinen_b]
-    |\[\mnc{B}Em]Vaa\[^\mn{E}]lin \[^\mn{B}]pien\[^\mn{A}]tä |\[^\mn{G}]val\[^\mn{B}]ke\[^\mn{E}]ais\[^\mn{F#}]ta, |\[\mnc{G}G]luojan lasta \[\mnc{F#}Bm]liikut|\[\mnc{E}Em]telen \altchords{|Am | - |C Em |Am}
+    |\[\mnc{B}Em]Vaa\[^\mn{E}]lin \[^\mn{B}]pien\[^\mn{A}]tä |\[^\mn{G}]val\[^\mn{B}]ke\[^\mn{E}]ais\[^\mn{F#}]ta, |\[\mnc{G}G]luojan lasta \[\mnc{F#}B7]liikut|\[\mnc{E}Em]telen \altchords{|Em | - |G B7 |Em}
   \mnendchorus
-  \notesoff
-  \beginverse\replay[chords_tulisoroinen_a]
-    |^Taivahast' on |lahja tullut, |taivahan tu^len ki|^soista
-    \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
-    |^Luojan lemmen |leikinnöistä, |^ei vahingon ^valke|^oista
+  \usealtmncolortrue% use alternate melody note color
+  \beginverse% notes (\mn) in this verse signify the 2nd voice
+    |\[\mnc{B}Em]Tai\[\mn{A}]va\[\mn{G}]hast' \[\mn{E}]on |lah\[\mn{D#}]ja \[\mn{E}]tul\[\mn{B}]lut, |\[\mn{E}]taivahan tu\[\mnc{D}D]len ki|\[\mnc{G}Em]soista
+    \endverse\glueverses\beginchorus
+    |\[\mnc{G}Em]Luojan lem\[\mn{F#}]men |\[\mn{E}]lei\[\mn{B}]kin\[\mn{E}]nöis\[\mn{D#}]tä, |\[\mnc{E}G]ei vahingon \[\mnc{F#}B7]val\[\mn{D#}]ke|\[\mnc{E}Em]oista
   \endchorus
+  \notesoff
   \beginverse\replay[chords_tulisoroinen_a]
     |^Tuudin lasta |maan valoksi, |en vahingon ^valke|^aksi
     \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
@@ -1359,7 +1360,7 @@
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-11
     \include "tex/lp-include-head.ly"
-    theMelody = \relative b' {
+    theMelody = \transpose e a \relative b' {
       \key e \minor \time 4/4 \voiceOne
       \set melismaBusyProperties = #'() \slurDashed
       | b4 b b g | fis b e,4. fis8 | g8 g g g a4 a | b2 b2
@@ -1367,7 +1368,7 @@
         | b4 e b4. a8 | g4 b e,4. fis8 | g8 g g g fis4 fis | e2 e2
       }
     }
-    theMelodyTwo = \relative b' {
+    theMelodyTwo = \transpose e a \relative b' {
       \key e \minor \time 4/4 \voiceTwo
       | b4 a g e | e dis e4. b8 | e8 e e e d4 d | g2 g2
       \repeat volta 2 {
@@ -1402,10 +1403,10 @@
         | Maan hy -- väk -- si | mai -- ne -- hek -- si, | suu -- ri -- on -- nis -- ten i -- | lo -- hon.
       }
     }
-    theChords = \chordmode {
-      | e1:m | e:m | e2:m a2:m | e1:m
+    theChords = \transpose e a \chordmode {
+      | e1:m | e:m | e2:m d | e1:m
       \repeat volta 2 {
-        | e1:m | e:m | g2 b2:m | e1:m
+        | e1:m | e:m | g2 b:7 | e1:m
       }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
