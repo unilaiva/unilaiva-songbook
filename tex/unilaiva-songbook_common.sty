@@ -325,6 +325,9 @@
 % Toggle use of chapter colors in page corners
 \newif\ifusechaptercolors\usechaptercolorstrue
 
+% Toggle the use of alternate melody note color (use for e.g. 2nd voice)
+\newif\ifusealtmncolor\usealtmncolorfalse
+
 % END Toggles
 
 % BEGIN Book titles etc
@@ -522,6 +525,10 @@
 \definecolor{melodynotecolor}{rgb}{0.0,0.1536,0.1824}
 % encircled melody notes, the circle:
 \definecolor{melodynotecirclecolor}{rgb}{0.0,0.3072,0.3648}
+% encircled melody notes (alt.), the note name inside:
+\definecolor{melodynotealtcolor}{rgb}{0.2,0,0}
+% encircled melody notes (alt.), the circle:
+\definecolor{melodynotealtcirclecolor}{rgb}{0.35,0,0}
 % color for repetition signs (\lrep \rrep and \rep):
 \definecolor{repetitionsigncolor}{rgb}{0.1,0.1,0.4}
 \definecolor{songnumbgcolor}{rgb}{1,1,1} % song number background
@@ -1939,11 +1946,23 @@
 
 % Base style for the melody note circle, appended with \mncirclestyle:
 \newcommand{\@mncirclestyle}{%
-  \footnotesize\color{melodynotecirclecolor}\mncirclestyle%
+  \footnotesize%
+  \ifusealtmncolor%
+    \color{melodynotealtcirclecolor}%
+  \else%
+    \color{melodynotecirclecolor}%
+  \fi%
+  \mncirclestyle%
 }
 % Base style for the melody note name symbol, appended with \mnsymbolstyle:
 \newcommand{\@mnsymbolstyle}{%
-  \tiny\mdseries\color{melodynotecolor}\mnsymbolstyle%
+  \tiny\mdseries%
+  \ifusealtmncolor%
+    \color{melodynotealtcolor}%
+  \else%
+    \color{melodynotecolor}%
+  \fi%
+  \mnsymbolstyle%
 }
 
 % Lowered sharp symbol to fit better inside the melody note circle:
