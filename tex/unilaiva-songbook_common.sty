@@ -500,11 +500,13 @@
 % \end{persian}.
 \setotherlanguage[numerals=maghrib]{persian}
 
-% newunicodechar:
-\newunicodechar{❶}{{\symbolfont ❶}}
-\newunicodechar{❷}{{\symbolfont ❷}}
-\newunicodechar{❸}{{\symbolfont ❸}}
-\newunicodechar{❹}{{\symbolfont ❹}}
+% newunicodechar (symbols):
+\newunicodechar{❶}{{\symbolfont ❶}}\newcommand\symone{❶}
+\newunicodechar{❷}{{\symbolfont ❷}}\newcommand\symtwo{❷}
+\newunicodechar{❸}{{\symbolfont ❸}}\newcommand\symthree{❸}
+\newunicodechar{❹}{{\symbolfont ❹}}\newcommand\symfour{❹}
+\newunicodechar{✝}{{\symbolfont ✝}}\newcommand\symcross{✝}
+\newunicodechar{☨}{{\symbolfont ☨}}\newcommand\symsdcross{☨}
 
 % Allow further emergency stretching to fix some "overfull hbox" situations.
 % See: https://www.tex.ac.uk/FAQ-overfull.html
