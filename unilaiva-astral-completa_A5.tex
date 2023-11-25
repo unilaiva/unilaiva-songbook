@@ -37,9 +37,23 @@
     \end{songs}{}
     \begin{intersong}
       % to sit between starting and ending prayers
-      \imagecc[4]{SD_cross_simple_flat_blueish_transparent_bg.png}
+      {%
+        \Large\bfseries%
+        \vfill
+        \begin{center}
+          {\Huge\symlarrow}\\
+          \vspace{-1ex}
+          Abertura\\
+          \vspace{2ex}
+          \imagel[5]{SD_cross_simple_flat_blueish_transparent_bg.png}\\
+          \vspace{1ex}
+          Encerramento\\
+          {\Huge\symrarrow}
+        \end{center}
+        \vfill
+      }
     \end{intersong}
-    \scleardpage
+    \sclearpage
     \songsection{Encerramento}
     \begin{songs}{}
       \input{content/section_astral_preces_encerramento.tex}
@@ -89,7 +103,15 @@
     \begin{songs}{}
       \input{content/songs_astral_encerramento.tex}
     \end{songs}
-    \scleardpage
+    \sclearpage
+    \begin{intersong}
+      % to sit between hinos and prayers
+      \Large\bfseries%
+      \vfill
+      \imagecc[5]{SD_cross_simple_flat_blueish_transparent_bg.png}
+      \vfill
+    \end{intersong}
+    \sclearpage
     \songsection{Preces do Encerramento}
     \begin{songs}{}
       % work around the page break \include wants to add, as \input cannot
