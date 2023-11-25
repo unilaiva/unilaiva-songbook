@@ -331,6 +331,9 @@
 % Toggle the use of alternate melody note color (use for e.g. 2nd voice)
 \newif\ifusealtmncolor\usealtmncolorfalse
 
+% Toggle uppercasing the titles in passage environment
+\newif\ifupcasepassagetitle\upcasepassagetitlefalse
+
 % END Toggles
 
 % BEGIN Book titles etc
@@ -542,6 +545,13 @@
 \definecolor{internallinkcolor}{rgb}{0,0,0.3} % internal links
 \definecolor{urllinkcolor}{rgb}{0.3,0,0.3} % external links
 \definecolor{linkboxcolor}{rgb}{0.5,0.9,0.6} % boxed links (view), not used now
+% passage environment: the color for \pup marks
+\definecolor{passagemarkcolor}{rgb}{0,0,0}%
+\colorlet{passagemarkcolor}{chordcolor}%
+% Colors used for different languages (at least) in the passage environment
+\definecolor{portuguesecolor}{rgb}{0,0,0}%
+\definecolor{englishcolor}{rgb}{0,0.26,0.26}%
+\definecolor{finnishcolor}{rgb}{0,0.05,0.38}%
 
 % hyperref: setup
 \hypersetup{linkbordercolor=linkboxcolor,%
@@ -563,8 +573,7 @@
 
 \songcolumns{1} % songs: number of columns per page in songs environment
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
-\newcommand{\defaultlyricfont}{\sffamily\large} % set the lyrics font style (used below)
-\renewcommand{\lyricfont}{\defaultlyricfont} % songs: modify lyrics font style
+\renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
 % songs: modify chord font style (add color and make smaller):
 \renewcommand{\printchord}[1]{\sffamily\bfseries\small\color{chordcolor}#1}
 % songs: modify meter class font style (add color):
@@ -1876,6 +1885,140 @@
 }
 
 % END IMAGES (IN-SONG AND OUT)
+
+% BEGIN PASSAGE ENVIRONMENT
+
+% passage environment: style for the title, default: same as song title
+\providecommand{\passagetitlestyle}{\stitlefont}%
+% passage environment: style for the default text
+\providecommand{\passagefontstyle}{\lyricfont}
+
+% The amount content is to be indented; used at least in passage environment
+\newlength\contentindentwidth%
+\setlength\contentindentwidth{\z@}
+\ifdim\cbarwidth>\z@%
+  \advance\contentindentwidth\cbarwidth%
+  \advance\contentindentwidth5\p@\relax%
+\fi%
+
+% Amount of indentation for default text inside passage environment
+\newlength\passageleftskip\setlength\passageleftskip{2em}%
+\newlength\passagerightskip\setlength\passagerightskip{2em}%
+
+% A boxed text note pushed to line's end. Intended for use within passage
+% environment.
+%
+% Usage: \passagenote*{Note text}
+%
+% If the star is present, there will be a bit less space above it. It is good
+% to use, if the note is put just after beginning a passage environment.
+\NewDocumentCommand{\passagenote}{s m}{%
+  {%
+    \ifhmode\par\fi%
+    \IfBooleanT{#1}{%
+      \vspace{-1.5ex}%
+    }%
+    \rightskip=\passagerightskip%
+    \hfill\SB@colorbox\notebgcolor{\SB@boxup{\sffamily\itshape #2}}%
+    \par%
+  }%
+}%
+
+% Starts a new subsubsection and prints it's title given as the only parameter.
+% Used in the definition of passage environment.
+\newcommand\@passagesection{\@startsection{subsubsection}{3}{\contentindentwidth}%\z@
+                              {-3.25ex\@plus -1ex \@minus -.2ex}%
+                              {1.3ex \@plus .2ex}%
+                              {\passagetitlestyle}}
+
+
+% Passage of text that can be put inside a song environment and elsewhere.
+% Supports colouring and hyphenation of language texts.
+% Requires packages: xstring, xparse, xcolor
+% Usage: \begin{passage}*[LANGCODE]{<title>}*
+%   - 1st star: language code is displayed (and section started) even if title
+%     is empty
+%   - If LANGCODE is present, it is displayed before the title in brackets.
+%     If it is one of the supported ones: PT, EN, or FI (must be uppercase),
+%     the passage text is coloured and hyphenation for that language is used.
+%   - 2nd star: obey lines
+%   - If <title> is empty and 1st star is present, no title is displayed
+\NewDocumentEnvironment{passage}{s o m s}{% pre env
+  \bgroup%
+  \newcommand{\pobeylines}{\obeylines\parskip=0pt}%
+  \newcommand{\polpar}{\par\vspace{.618034\baselineskip}}%
+  \newcommand{\pup}[1]{\textsuperscript{\color{passagemarkcolor}##1}}%
+  \sffamily%
+  \large%
+  \IfValueTF{#2}{% optional lang id (must be upcase) signifying translation
+    \def\passagelang{#2}%
+    \def\passagetitle{#3}%
+    \def\passagefulltitle{{\normalfont\textbf{[\passagelang]}}\hspace{.618034em}\passagetitle}%
+    \IfBooleanF{#1}{% if title is empty and there is no star, display no title
+      \ifx\passagetitle\empty%
+        \def\passagefulltitle{}%
+      \fi%
+    }%
+    \IfStrEq{\passagelang}{PT}{%
+      \color{portuguesecolor}%
+      \begin{portuguese}%
+    }{}%
+    \IfStrEq{\passagelang}{EN}{%
+      \color{englishcolor}%
+      \begin{english}%
+    }{}%
+    \IfStrEq{\passagelang}{FI}{%
+      \color{finnishcolor}%
+      \begin{finnish}%
+    }{}%
+    \IfStrEq{\passagelang}{NOTE}{%
+      \def\passagefulltitle{\passagetitle}
+      \vspace{.25cm}\vfil\normalsize\sffamily\itshape%
+    }{}%
+  }{% there was no lang set
+    \def\passagelang{}%
+    \def\passagefulltitle{\passagetitle}
+  }%
+  \ifx\passagefulltitle\empty\else%
+    \ifupcasepassagetitle%
+      \@passagesection{\MakeUppercase{\passagefulltitle}}% Create section
+    \else%
+      \@passagesection{\passagefulltitle}% Create section
+    \fi
+  \fi%
+  \IfBooleanTF{#4}{% 2nd star
+    \vspace{.25cm}%
+    \pobeylines%
+  }{% no star
+    \disobeylines%
+    \justifying%
+    %\parskip=.618034\baselineskip%
+    \parskip=.381966\baselineskip%
+  }%
+  \chordsoff%
+  \baselineskip=1.1\baselineskip%
+  \parindent=0pt%
+  \advance\leftskip\passageleftskip%
+  \rightskip=\passagerightskip%
+}{% post env
+  \par%
+  \IfStrEq{\passagelang}{PT}{%
+    \end{portuguese}%
+  }{}%
+  \IfStrEq{\passagelang}{EN}{%
+    \end{english}%
+  }{}%
+  \IfStrEq{\passagelang}{FI}{%
+    \end{finnish}%
+  }{}%
+  \IfStrEq{\passagelang}{NOTE}{%
+  }{%
+    \vfil%
+  }%
+  \egroup%
+}
+
+% END PASSAGE ENVIRONMENT
 
 % BEGIN MELODY NOTES
 
