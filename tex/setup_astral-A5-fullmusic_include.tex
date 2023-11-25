@@ -99,50 +99,6 @@
 }
 
 
-% BEGIN helpers for prece chapters
-
-% Use this to specify a subtitle -- used in Pai nosso + Ave Maria
-\newcommand{\precesubtitle}[1]{
-  \vspace{2.618034ex}\textbf{\textit{#1}}\vspace{1.618034ex}
-}
-
-% Use this to specify a translation title within a verse, eg
-% \precetranstitle{EN}{Greed}
-\newcommand{\precetranstitle}[2]{
-  \brkpenalty=-9000\brk%
-  \vspace{2.618034ex}%
-  \textbf{[#1]} \textit{#2}%
-  \vspace{1.618034ex}%
-}
-% Use this to create a vertical space between "paragraphs"
-% within verses:
-\newcommand{\preceparspace}{\vspace{1ex}}
-
-% Setup the color for note mark superscripts to be the same as chords'
-% color:
-\definecolor{precenotemarkcolor}{rgb}{0,0,0}%
-\colorlet{precenotemarkcolor}{chordcolor}%
-
-% Superscipt with notemarkcolor
-\newcommand{\preceup}[1]{
-  \textsuperscript{\color{precenotemarkcolor}#1}%
-}
-
-% Environment for a multiline note to be used within a song environment:
-\newenvironment{precenote}{%
-  \yesendsongvfill%
-  \vfill%
-  \beginverse*%
-  \small%
-  \begin{itshape}%
-}{%
-  \end{itshape}%
-  \endverse%
-}
-
-% END helpers for prece chapters
-
-
 % Setup the icons displayed on the front cover
 \renewcommand{\nolyricsicon}{unilaiva-tag-icon-lyrics-only_PT_512x512px.png}
 \renewcommand{\insertcovericons}{\insertcovericonsvtl}%
@@ -175,10 +131,6 @@
 \renewcommand\mnsymbolstyle{\scriptsize} % make the melody note name text larger
 % larger chord font:
 \renewcommand{\printchord}[1]{\sffamily\bfseries\normalsize\color{chordcolor}#1}
-
-% Colors used for different languages (at least) in the prayers section
-\definecolor{englishcolor}{rgb}{0,0.26,0.26} %
-\definecolor{finnishcolor}{rgb}{0,0.05,0.38} %
 
 % Setup chapter colors
 \definecolor{precescolor}{rgb}{.196,.5176,.749} % from the image

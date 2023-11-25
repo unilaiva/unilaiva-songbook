@@ -1,56 +1,66 @@
-% Santo Daime: Preces: abertura
-% =============================
+% Santo Daime Preces: abertura
+% ============================
 %
+% Note that this file is supposed to be wrapped in 'songs' environment.
 
 % use Roman numerals for song (prayer) numbering:
 \renewcommand{\thesongnum}{\Roman{songnum}}
 \setcounter{songnum}{1}
 
+
 \beginsong{Sinal da Cruz}[tags={bailado, São Miguel, Mesa Branca}]
-  \beginverse
-    \preceup{1}Pelo sinal da Santa Cruz,
-    \preceup{2}livrai-nos, Deus, nosso Senhor,
-    \preceup{3}dos nossos inimigos
-    \preceparspace
-    \preceup{4}Em nome do Pai,
-    \preceup{5}do Filho e
-    \preceup{6}do Espírito \preceup{7}Santo.
-    \preceparspace
+  \begin{passage}[PT]{}*
+    \pup{1}Pelo sinal da Santa Cruz,
+    \pup{2}livrai-nos, Deus, nosso Senhor,
+    \pup{3}dos nossos inimigos
+    \polpar
+    \pup{4}Em nome do Pai, \pup{5}do Filho e \pup{6}do Espírito \pup{7}Santo.
+    \polpar
     Amém.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Sign of the Cross}
-    \preceup{1}By the sign of the Holy Cross,
-    \preceup{2}deliver us, God, our Lord,
-    \preceup{3}from our enemies
-    \preceparspace
-    \preceup{4}In the name of the Father,
-    \preceup{5}the Son, and
-    \preceup{6}the Holy \preceup{7}Spirit.
-    \preceparspace
+  \end{passage}
+  \begin{passage}[EN]{Sign of the Cross}*
+    \pup{1}By the sign of the Holy Cross,
+    \pup{2}deliver us, God, our Lord,
+    \pup{3}from our enemies
+    \polpar
+    \pup{4}In the name of the Father, \pup{5}the Son, and \pup{6}the Holy \pup{7}Spirit.
+    \polpar
     Amen.
-  \endverse
-  \begin{precenote}
+  \end{passage}
+  \begin{passage}[FI]{Ristinmerkki}*
+    \pup{1}Pyhällä ristinmerkillä
+    \pup{2}Vapauta meidät Jumala, Herramme
+    \pup{3}Vihollisistamme
+    \polpar
+    \pup{4}Isän, \pup{5}Pojan ja \pup{6}Pyhän \pup{7}Hengen nimeen.
+    \polpar
+    Aamen.
+  \end{passage}
+  %\vspace*{\fill}
+  \hardbrk
+  \vspace*{\fill}
+  \begin{passage}[NOTE]{}*
     While speaking the prayer, synchronously make
     the sign of the Cross with with your right thumb
-    on your \preceup{1}forehead,
-    on your \preceup{2}mouth, and
-    on your \preceup{3}chest.
-    \preceparspace
+    on your \pup{1}forehead,
+    on your \pup{2}mouth, and
+    on your \pup{3}chest.
+    \polpar
     Then, with your right hand, touch
-    your \preceup{4}forehead,
-    your \preceup{5}chest,
-    your \preceup{6}left shoulder and \preceup{7}right shoulder.
-  \end{precenote}
+    your \pup{4}forehead,
+    your \pup{5}chest,
+    your \pup{6}left shoulder and \pup{7}right shoulder.
+  \end{passage}
+  \vspace*{\fill}
 \endsong
 
 
+\scleardpage
 \beginsong{Credo}[tags={bailado}]
-  \baselineadj=0pt\relax% To fit
-  \beginverse
+  \begin{passage}[PT]{}
     Creio em Deus Pai todo Poderoso,
     Criador do Céu e da terra.
-    \preceparspace
+    \par
     Creio em Jesus Cristo, um só seu filho, Nosso
     Senhor, o qual for concebido por obra e graça do
     Espírito Santo. Nasceu da Maria Virgem;
@@ -59,19 +69,19 @@
     infernos, ao terceiro dia ressurgiu dos mortos,
     Subiu ao Céu e Pai Todo-poderoso, de onde há de vir
     a julgar os vivos e os mortos.
-    \preceparspace
+    \par
     Creio no Espirito Santo, na Santa Igreja,
     na comunhão dos Santos, na remissão
     dos pecados, na ressurreição da carne,
     na vida eterna.
-    \preceparspace
+    \par
     Amém.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Creed}
+  \end{passage}
+  \hardbrk
+  \begin{passage}[EN]{Creed}
     I believe in God, the Father Almighty,
     Creator of Heaven and earth.
-    \preceparspace
+    \par
     I believe in Jesus Christ, His only Son, Our Lord,
     who was conceived through the work and grace of
     the Holy Spirit. He was born of the Virgin Mary;
@@ -81,346 +91,417 @@
     the dead. He ascended into Heaven and is seated
     at the right hand of God, the Father Almighty, from
     where He come to judge the living and the dead.
-    \preceparspace
+    \par
     I believe in the Holy Spirit, the Holy Church,
     the communion of Saints, the forgiveness of sins,
     the resurrection of the body, and life everlasting.
-    \preceparspace
+    \par
     Amen.
-  \endverse
-%% Skip the Finnish version for now, to save space
-%   \beginverse\brk\vbox to0pt{}\vfill\color{finnishcolor}
-%     \precetranstitle{FI}{Uskontunnustus}
-%     Minä uskon Jumalaan, Isään, Kaikkivaltiaaseen,
-%     taivaan ja maan Luojaan;
-%     \preceparspace
-%     ja Jeesukseen Kristukseen, Jumalan ainoaan Poikaan,
-%     meidän Herraamme, joka sikisi Pyhästä Hengestä,
-%     syntyi neitsyt Mariasta, kärsi Pontius Pilatuksen
-%     aikana, ristiinnaulittiin, kuoli ja haudattiin,
-%     astui alas tuonelaan, nousi kolmantena päivänä
-%     kuolleista, astui ylös taivaisiin, istuu Jumalan,
-%     Isän, Kaikkivaltiaan, oikealla puolella ja on sieltä
-%     tuleva tuomitsemaan eläviä ja kuolleita;
-%     \preceparspace
-%     ja Pyhään Henkeen, pyhän yhteisen seurakunnan,
-%     pyhäin yhteyden, syntien anteeksiantamisen,
-%     ruumiin ylösnousemisen ja iankaikkisen elämän.
-%     \preceparspace
-%     Aamen.
-%   \endverse
+  \end{passage}
+  \begin{passage}[FI]{Uskontunnustus}
+    Minä uskon Jumalaan, Isään, Kaikkivaltiaaseen, taivaan ja maan Luojaan; ja
+    \par
+    Jeesukseen Kristukseen, Jumalan ainoaan Poikaan, meidän Herraamme,
+    joka sikisi Pyhän Hengen toimesta ja armosta, syntyi neitsyt Mariasta,
+    kärsi Pontius Pilatuksen aikana, ristiinnaulittiin, kuoli ja haudattiin,
+    astui alas tuonelaan, nousi kolmantena päivänä kuolleista, astui ylös
+    taivaisiin, istuu Jumalan, Isän, Kaikkivaltiaan, oikealla puolella ja on
+    sieltä tuleva tuomitsemaan eläviä ja kuolleita; ja
+    \par
+    Pyhään Henkeen, pyhään yhteiseen seurakuntaan, pyhäin yhteyteen, syntien
+    anteeksiantamiseen, ruumiin ylösnousemiseen ja iankaikkiseen elämään.
+    \par
+    Aamen.
+  \end{passage}
 \endsong
 
 
-\beginsong{Pai nosso \& Ave Maria}
-  \beginverse
-    \precesubtitle{Pai nosso}
+\scleardpage
+\beginsong{Pai nosso \& Ave Maria}[tags={3x}]
+  \vspace*{\fill}
+  \begin{passage}[PT]{Pai nosso}
     Pai nosso,
     que estais no Céu,
     santificado seja o Vosso Nome.
+    \par
     Vamos nós ao Vosso Reino.
+    \par
     Seja feita a Vossa Vontade,
     assim na terra como no Céu.
+    \par
     O pão nosso de cada dia nos daí hoje, Senhor.
+    \par
     Perdoai as nossas dividas,
     assim como nós perdoamos os nossos devedores.
+    \par
     Não nos deixas, Senhor, cair em tentação,
     mas livrai-me e defendei-me, Senhor,
     de todo mal.
-    \preceparspace
+    \par
     Amém, Jesus, Maria, José.
-  \endverse
-  \beginverse
-    \precesubtitle{Ave Maria}
+  \end{passage}
+  \begin{passage}[PT]{Ave Maria}
     Ave Maria,
     cheia de Graça!
     O Senhor é convosco.
+    \par
     Bendita sois Vós entre as mulheres.
     Bendito é o fruto do Vosso ventre, Jesus.
+    \par
     Santa Maria, Mãe de Deus,
     rogai a Deus por nos pecadores,
     agora e na hora de nossa morte.
-    \preceparspace
+    \par
     Amém, Jesus, Maria, José.
-  \endverse
-  \forcebrk\vspace*{\fill}
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Our Father}
+  \end{passage}
+  \vspace*{\fill}
+  \hardbrk
+  \vspace*{1.65ex} % to align with the opposing page
+  \vspace*{\fill}
+  \begin{passage}[EN]{Our Father}
     Our Father,
     who art in Heaven,
     hallowed be Thy Name.
+    \par
     Let us go into Thy Kingdom.
+    \par
     Thy Will be done,
     on earth as it is in Heaven.
+    \par
     Give us this day our daily bread, Lord.
+    \par
     Forgive us our debts,
     as we forgive our debtors.
+    \par
     Let us not fall in temptation,
     but deliver me and defend me, Lord,
     from all evil.
-    \preceparspace
+    \par
     Amen, Jesus, Mary, Joseph.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Hail Mary}
+  \end{passage}
+  \begin{passage}[EN]{Hail Mary}
     Hail Mary,
     full of grace!
     The Lord is with Thee.
+    \par
     Blessed art Thou amongst women!
     Blessed is the fruit of Thy womb, Jesus.
+    \par
     Holy Mary, Mother of God,
     pray to God for us sinners,
     now and at the hour of our death.
-    \preceparspace
+    \par
     Amen, Jesus, Mary, Joseph.
-  \endverse
+  \end{passage}
+  \vspace*{\fill}
+  \hardbrk
+  \vspace*{\fill}
+  \begin{passage}[FI]{Isä Meidän}
+    Isä meidän, joka olet taivaassa,
+    pyhitetty olkoon sinun nimesi.
+    \par
+    Menkäämme valtakuntaasi.
+    \par
+    Tapahtukoon sinun tahtosi niin
+    maan päällä kuin taivaassa.
+    \par
+    Anna meille tänä päivänä meidän
+    jokapäiväinen leipämme, Herra.
+    \par
+    Anna meille meidän velkamme anteeksi,
+    niin kuin mekin anteeksi annamme velallisillemme.
+    \par
+    Äläkä anna meidän langeta kiusaukseen,
+    vaan vapauta ja suojele minut,
+    Herra, kaikelta pahalta.
+    \par
+    Aamen, Jeesus, Maria, Joosef
+  \end{passage}
+  \begin{passage}[FI]{Terve Maria}
+    Terve Maria, armoitettu,
+    Herra sinun kanssasi.
+    \par
+    Siunattu sinä naisten joukossa,
+    ja siunattu kohtusi hedelmä, Jeesus.
+    \par
+    Pyhä Maria, Jumalan äiti, rukoile meidän
+    syntisten puolesta nyt, ja kuolemamme hetkenä.
+    \par
+    Aamen, Jeesus, Maria, Joosef
+  \end{passage}
   \vspace*{\fill}
 \endsong
 
 
 \beginsong{O Terço I (trabalho officiais)}[tags={bailado}]
-  \beginverse
-    \textnotefornext{Ao rezar o terço, só diz a cada dezena:}
-    \preceparspace
+  \begin{passage}[PT]{}
+    \passagenote*{Ao rezar o terço, só diz a cada dezena:}
     Gloria ao Pai, ao Filho, ao Espírito Santo.
     Assim como era no princípio, agora e sempre,
-    por todos os séculos dos séculos.
-    \preceparspace
-    Amém.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{The Rosary I (official work)}
-    \textnotefornext{While praying the Rosary, after every decade:}
-    \preceparspace
+    por todos os séculos dos séculos. Amém.
+  \end{passage}
+  \begin{passage}[EN]{The Rosary I}
+    \passagenote*{While praying the Rosary, after every decade:}
     Glory to the Father, to the Son and to the Holy Spirit.
     As it was in the beginning, is now, and ever shall be,
-    for all the ages of the ages.
-    \preceparspace
-    Amen.
-  \endverse
+    for all the ages of the ages. Amen.
+  \end{passage}
+  \begin{passage}[FI]{Rukousnauha I}
+    \passagenote*{Rukoillessa Rukousnauhaa, jokaisen kymmenikön jälkeen:}
+    Kunnia olkoon Isälle, Pojalle ja Pyhälle Hengelle,
+    niin kuin oli alussa, nyt on ja aina,
+    kautta vuosisatojen.\\
+    Aamen.
+  \end{passage}
 \endsong
 
 
 \begin{intersong}
-  \preceparspace%
-  \textnotemiddletight{Ao fim do terço, (normalmente) a comandante do pelotão feminino:}
-  Em nome de Deus Pai Todo-Poderoso, da Virgem Soberana Mãe,\\
-  do Nosso Senhor Jesus Cristo, do Patriarca São José e de\\
-  todos os Seres Divinos da Corte Celestial, com a ordem de\\
-  nosso Mestre Império Juramidam, estão abertos os nossos\\
-  trabalhos, meus irmãos e minhas irmãs. Que Deus e a Virgem Mãe\\
-  sejam nossos guias para sempre. Amém!\\
-  \emph{(Todos se benzem.)}\\
-  \preceparspace\color{englishcolor}%
-  \textnotemiddletight{\textbf{[EN]} At the end of Rosary, (usually) the commander of the feminine batallion:}
-  In the name of God the Almighty Father, of the Sovereign Virgin
-  Mother, of Our Lord Jesus Christ, of the Patriarch Saint Joseph and of\\
-  all the Divine Beings of the Celestial Court, with the order of our Master
-  Governor Juramidam, our works are open, my brothers and sisters.\\
-  May God and the Virgin Mother be our guides forever. Amen!\\
-  \emph{(All make the sign of the cross.)}\\
+  \begin{passage}[PT]{}
+    \passagenote{Ao fim do terço, (normalmente) a comandante do pelotão feminino:}
+    Em nome de Deus Pai Todo-Poderoso, da Virgem Soberana Mãe,
+    do Nosso Senhor Jesus Cristo, do Patriarca São José e de
+    todos os Seres Divinos da Corte Celestial, com a ordem de
+    nosso Mestre Império Juramidam, estão abertos os nossos
+    trabalhos, meus irmãos e minhas irmãs. Que Deus e a Virgem Mãe
+    sejam nossos guias para sempre. Amém!
+    \passagenote*{Todos se benzem.}
+  \end{passage}
+  \begin{passage}*[EN]{}
+    \passagenote*{At the end of Rosary, (usually) the commander of the feminine batallion:}
+    In the name of God the Almighty Father, of the Sovereign Virgin
+    Mother, of Our Lord Jesus Christ, of the Patriarch Saint Joseph and of
+    all the Divine Beings of the Celestial Court, with the order of our Master
+    Governor Juramidam, our works are open, my brothers and sisters.
+    May God and the Virgin Mother be our guides forever. Amen!
+    \passagenote*{All make the sign of the cross.}
+  \end{passage}
+  \vfill
 \end{intersong}
 
 
 \beginsong{O Terço II (Santa Missa)}[tags={Santa Missa}]
-  \beginverse
-    \textnotefornext{Ao rezar o terço, só diz a cada dezena:}
-    \preceparspace
+  \begin{passage}[PT]{}
+    \passagenote*{Ao rezar o terço, só diz a cada dezena:}
     Gloria ao Pai, ao Filho, ao Espírito Santo.
     Assim como era no princípio, agora e sempre,
-    por todos os séculos dos séculos.
-    \preceparspace
-    Amém.
-    \preceparspace\preceparspace
+    por todos os séculos dos séculos. Amém.
+    \par
     Oh! meu Jesus, perdoai-me, livrai-me do fogo do
     inferno. Levai as almas todas para o Céu, e soccorei
-    principalmente aquelas que mais precísarem.
-    \preceparspace
-    Amém.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{The Rosary II (Santa Missa)}
-    \textnotefornext{While praying the Rosary, after every decade:}
-    \preceparspace
+    principalmente aquelas que mais precísarem. Amém.
+  \end{passage}
+  \begin{passage}[EN]{The Rosary II}
+    \passagenote*{While praying the Rosary, after every decade:}
     Glory to the Father, to the Son and to the Holy Spirit.
     As it was in the beginning, is now, and ever shall be,
-    for all the ages of the ages.
-    \preceparspace
-    Amen.
-    \preceparspace\preceparspace
+    for all the ages of the ages. Amen.
+    \par
     Oh my Jesus, forgive me, and save me from the fires
     of hell. Lead all souls into heaven, and especially
-    help those in most need.
-    \preceparspace
-    Amen.
-  \endverse
-\endsong
-
-
-\beginsong{Chave de Harmonia}[tags={trabalhos de mesa}]
-  \beginverse
-    Desejo Harmonia, Amor, Verdade e Justiça a todos os
-    meus irmãos.
-    \ind Com as forças reunidas das silenciosas vibrações
-    dos nossos pensamentos, somos fortes, sádios e
-    felizes, formando assim um elo de fraternidade
-    universal.
-    \ind Estou satisfeito e em paz com o universo inteiro
-    e desejo que todos os seres realizam as suas
-    aspirações mais íntímas.
-    \ind Dou graças ao Pai Invisivel por ter estabelecido
-    a Harmonia, o Amor, a Verdade e a Justiça entre
-    todos os seus filhos.
-    \preceparspace
-    Assim seja, Amém.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Key of Harmony}
-    I wish Harmony, Love, Truth and Justice to all my
-    brothers and sisters.
-    \ind With the united forces of the silent vibrations
-    of our thoughts, we are strong, healthy and happy,
-    thus forming a link of universal fraternity.
-    \ind I am satisfied and in peace with the whole
-    universe, and I wish that all beings achieve their
-    most intimate aspirations.
-    \ind I give thanks to my Invisible Father for having
-    established Harmony, Love, Truth and Justice among
-    all his children.
-    \preceparspace
-    So be it, Amen.
-  \endverse
+    help those in most need. Amen.
+  \end{passage}
+  \begin{passage}[FI]{Rukousnauha II}
+    \passagenote*{Rukoillessa Rukousnauhaa, jokaisen kymmenikön jälkeen:}
+    Kunnia olkoon Isälle, Pojalle ja Pyhälle Hengelle,
+    niin kuin oli alussa, nyt on ja aina,
+    kautta vuosisatojen.\\
+    Aamen.
+    \par
+    Oi, Jeesukseni! Anna minulle anteeksi ja vapauta
+    minut helvetin tulelta. Johdata kaikki
+    sielut taivaaseen ja auta erityisesti niitä,
+    jotka sitä eniten tarvitsevat. Aamen.
+  \end{passage}
 \endsong
 
 
 \sclearpage
+\beginsong{Chave de Harmonia}[tags={trabalhos de mesa}]
+  \begin{passage}[PT]{}
+    Desejo Harmonia, Amor, Verdade e Justiça a todos os
+    meus irmãos.
+    \par
+    Com as forças reunidas das silenciosas vibrações
+    dos nossos pensamentos, somos fortes, sádios e
+    felizes, formando assim um elo de fraternidade
+    universal.
+    \par
+    Estou satisfeito e em paz com o universo inteiro
+    e desejo que todos os seres realizam as suas
+    aspirações mais íntímas.
+    \par
+    Dou graças ao Pai Invisivel por ter estabelecido
+    a Harmonia, o Amor, a Verdade e a Justiça entre
+    todos os seus filhos.
+    \par
+    Assim seja, Amém.
+  \end{passage}
+  \hardbrk
+  \begin{passage}[EN]{Key of Harmony}
+    I wish Harmony, Love, Truth and Justice to all my
+    brothers and sisters.
+    \par
+    With the united forces of the silent vibrations
+    of our thoughts, we are strong, healthy and happy,
+    thus forming a link of universal fraternity.
+    \par
+    I am satisfied and in peace with the whole
+    universe, and I wish that all beings achieve their
+    most intimate aspirations.
+    \par
+    I give thanks to my Invisible Father for having
+    established Harmony, Love, Truth and Justice among
+    all his children.
+    \par
+    So be it, Amen.
+  \end{passage}
+  \begin{passage}[FI]{Harmonian avain}
+    Toivon harmoniaa, rakkautta, totuutta ja oikeutta kaikille sisaruksilleni.
+    \par
+    Ajatustemme hiljaisten värähtelyjen yhdistettyjen voimien kautta, olemme
+    vahvoja, terveitä ja onnellisia rakentaen näin maailmanlaajuisen
+    sisarusyhteyden.
+    \par
+    Olen tyytyväinen ja rauhassa koko maailmankaikkeuden kanssa ja toivon,
+    että kaikki olennot toteuttavat syvimmät pyrkimyksensä.
+    \par
+    Kiitän näkymätöntä Isää hänen luomastaan harmoniasta, rakkaudesta,
+    totuudesta ja oikeudesta kaikkien lastensa kesken.
+    \par
+    Näin olkoon, Aamen.
+  \end{passage}
+\endsong
+
+
+\scleardpage
 \beginsong{Consagração do Aposento}
-  \textnotefornext{Nos trabalhos de mesa: após Hinos da Oração}
-  \preceparspace
-  \beginverse
+  \begin{passage}[PT]{}
+    \passagenote*{Nos trabalhos de mesa: após Hinos da Oração}
+    \par
     Dentro do Circulo Infinito da Divina Presença que
     me envolve inteiramente, afirmo:
-    \preceparspace
+    \par
     Há uma só presença aqui --- é a da HARMONIA que faz
     vibrar todos os corações de felicidade e alegria.
     Quem quer que aqui entre, sentirá as vibrações da
     Divina Harmonia.
-    \preceparspace
+    \par
     Há uma só presença aqui --- é a do AMOR. Deus é o
     Amor que envolve todos os seres num só sentimento
     de unidade. Este recinto está cheio da presença do
     Amor. No Amor eu vivo, me movo e existo. Quem quer
     que aqui entre, sentirá a pura e Santa Presença do
     Amor.
-    \preceparspace
+    \par
     Há uma só presença aqui --- é a da VERDADE. Tudo
     que aqui existe, tudo o que aqui se fala, tudo o
     que aqui se pensa é a expressão da Verdade. Quem
     quer que aqui entre, sentirá a Presença da Verdade.
-    \preceparspace
+    \par
     Há uma só presença aqui --- é a da JUSTIÇA.
     A Justiça reina neste recinto. Todos os atos aqui
     praticados são regidos e inspirados pela Justiça.
     Quem quer que aqui entre, sentirá
     a Presença da Justiça.
-    \preceparspace
+    \par
     Há uma só presença aqui --- é a presença de Deus,
     o BEM. Nenhum mal pode entrar aqui. Não há mal em
     Deus. Deus, o Bem, reside aqui. Quem quer que aqui
     entre, sentirá a Presença Divina do Bem.
-    \preceparspace
+    \par
     Há uma só presença aqui --- é a presença de Deus,
     a VIDA. Deus é a Vida essencial de todos os seres.
     É a saúde do corpo e da mente. Quem quer que aqui
     entre, sentirá a Divina Presença da Vida e da Saúde.
-    \preceparspace
+    \par
     Há uma só presença aqui --- é a presença de Deus,
     a PROSPERIDADE. Deus é Prosperidade, pois Ele faz
     tudo crescer e prosperar. Deus se expressa na
     Prosperidade de tudo o que aqui é empreendido em
     seu nome. Quem quer que aqui entre, sentirá
     a Divina Presença da Prosperidade e da Abundância.
-    \preceparspace
+    \hardbrk\par
     Pelo símbolo esotérico das Asas Divinas, estou
     em vibração harmoniosa com as Correntes Universais
     da Sabedoria, do Poder e da Alegria. A Presença
     da Divina Sabedoria manifesta-se aqui. A presença
     da Alegria Divina é profundamente sentida por todos
     os que aqui entram.
-    \preceparspace
+    \par
     Na mais perfeita comunhão entre o meu eu inferior
     e o meu Eu Superior, que é Deus em mim, consagro
     este recinto à perfeita expressão de todas as
     qualidades Divinas que há em mim, e em todos os
     seres.
-    \preceparspace
+    \par
     As vibrações do meu pensamento são forças de Deus
     em mim, que aqui ficam armazenadas e daqui se
     irradiam para todos os seres, constituindo este
     lugar um centro de emissão e recepção de tudo
     quanto é BOM, ALEGRE, e PRÓSPERO.
-    \preceparspace
+    \par
+    \vspace{1ex}
     \textbf{ORAÇÃO}
-    \preceparspace
+    \par
     Agradeço-Te o Deus, porque este recinto está cheio
     da Tua Presença.
-    \preceparspace
+    \par
     Agradeço-Te, porque vivo e me movo por Ti.
-    \preceparspace
+    \par
     Agradeço-Te, porque vivo em tua Vida, Verdade e
     Saúde, Prosperidade, Paz, Sabedoria, Alegria e Amor.
-    \preceparspace
+    \par
     Agradeço-Te, porque todos que entrarem aqui sentirão
     Tua Presença.
-    \preceparspace
+    \par
     Agradeço-Te, porque estou em Harmonia, Amor, Verdade
     e Justiça com todos os seres.
-    \preceparspace
+    \par
     Amém.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Consecration of the Space}
-    \textnotefornext{In sitting works: after Oração}
-    \preceparspace
+  \end{passage}
+  \begin{passage}[EN]{Consecration of the Space}
+    \passagenote*{In sitting works: after Oração}
+    \par
     Inside the Infinite Circle of the Divine Presence
     which completely surrounds me, I affirm that:
-    \preceparspace
+    \par
     There is only one presence here --- it is HARMONY,
     which makes all hearts vibrate with joy and happiness.
     Those who choose to enter here will feel the vibration
     of Divine Harmony.
-    \preceparspace
+    \par
     There is only one presence here --- it is LOVE.
     God is love, which embraces all beings in one
     feeling of unity. This space is filled with the
     presence of Love. In Love, I live, I move and I
     exist. Those who choose to enter here will feel
     the pure and holy Presence of Love.
-    \preceparspace
+    \par
     There is only one presence here --- it is TRUTH.
     All that exists here, all that is spoken here,
     all that is thought here is the expression of
     Truth. Those who choose to enter here will feel
     the Presence of Truth.
-    \preceparspace
+    \par
     There is only one presence here --- it is JUSTICE.
     Justice reigns in this space. Everything practiced
     here is inspired and ruled by Justice. Those who
     choose to enter here will feel the Presence of
     Justice.
-    \preceparspace
+    \par
     There is only one presence here --- it is the
     presence of God, the BENEFICIENT. No evil can enter
     here. There is no evil in God. God, the Beneficient,
     dwells here. Those who choose to enter here will
     feel the Divine Presence of the Beneficient.
-    \preceparspace
+    \par
     There is only one presence here --- it is the
     presence of God, who is LIFE. God is the essential
     Life of all beings, the health of body and mind.
     Those who choose to enter here will feel the Divine
     Presence of Life and Health.
-    \preceparspace
+    \par
     There is only one presence here --- it is the
     presence of God, who is PROSPERITY. God is
     Prosperity because He makes everything grow and
@@ -428,128 +509,137 @@
     Prosperity of all that is undertaken in His name.
     Those who choose to enter here will feel the
     Divine Presence of Prosperity and Abundance.
-    \preceparspace
+    \par
     Through the esoteric symbol of the Divine Wings,
     I am in harmonious vibration with the universal
     currents of Wisdom, Power and Joy. The Presence
     of Divine Wisdom is manifested here. The Presence
     of Divine Joy is deeply felt by all those who choose
     to enter here.
-    \preceparspace
+    \par
     In the perfect communion between my lower self and
     my Higher Self, which is God in me, I consecrate
     this space to the perfect expression of all Divine
     qualities which are in me and in all beings.
-    \preceparspace
+    \par
     The vibrations of my thoughts are the forces of God
     in me, which are stored here and hence radiate to
     all beings, thus establishing this place as a center
     of giving and receiving of all that is GOOD, JOYFUL
     and PROSPEROUS.
-    \preceparspace
+    \par
+    \vspace{1ex}
     \textbf{PRAYER}
-    \preceparspace
+    \par
     I thank You, oh God, for this space is filled with
     Your Presence.
-    \preceparspace
+    \par
     I thank you, for I live and move within You.
-    \preceparspace
+    \par
     I thank You, for I live in Your Life, Truth, Health,
     Prosperity, Peace, Wisdom, Joy and Love.
-    \preceparspace
+    \par
     I thank You, for all those who enter here will feel
     Your Presence.
-    \preceparspace
+    \par
     I thank You, for I am in Harmony, Love, Truth and
     Justice with all beings.
-    \preceparspace
+    \par
     Amen.
-  \endverse
-  \beginverse\color{finnishcolor}
-    \precetranstitle{FI}{Paikan pyhittäminen}
-    \textnotefornext{Istumatöissä: Oraçãon jälkeen}
-    \preceparspace
+  \end{passage}
+  \begin{passage}[FI]{Paikan pyhittäminen}
+    \passagenote*{Istumatöissä: Oraçãon jälkeen}
+    \par
     Jumalallisen läsnäolon äärettömästä piiristä käsin,
     joka ympäröi minut täysin, todistan:
-    \preceparspace
+    \par
     Täällä on vain yksi läsnäolo, HARMONIAN läsnäolo,
     joka saa kaikkien sydämet värähtelemään  onnea ja
     iloa. Kuka tahansa, joka tulee tähän tilaan, saa
     tuntea jumalallisen harmonian värähtelyn.
-    \preceparspace
+    \par
     Täällä on vain yksi läsnäolo, RAKKAUDEN läsnäolo.
     Jumala on rakkaus, joka syleilee kaikkia olentoja
     kaikenkattavalla ykseyden tunteella. Tämä paikka on
     täynnä rakkauden läsnäoloa. Rakkaudessa minä elän,
     liikun ja olen. Kuka tahansa, joka tulee tähän tilaan,
     saa tuntea rakkauden puhtaan ja pyhän läsnäolon.
-    \preceparspace
+    \par
     Täällä on vain yksi läsnäolo, TOTUUS. Kaikki mitä
     täällä on, kaikki mitä täällä puhutaan, kaikki mitä
     täällä ajatellaan on totuuden ilmaisua. Kuka tahansa,
     joka tulee tähän tilaan, saa tuntea totuuden läsnäolon.
-    \preceparspace
+    \par
     Täällä on vain yksi läsnäolo, OIKEUS. Oikeus hallitsee
     tässä paikassa. Kaikki täällä tehdyt teot ovat oikeuden
     johtamia ja inspiroimia. Kuka tahansa, joka tulee tähän
     tilaan, saa tuntea oikeuden läsnäolon.
-    \preceparspace
+    \par
     Täällä on vain yksi läsnäolo, Jumalan läsnäolo, HYVYYS.
     Mikään paha ei pääse tänne. Jumalassa ei ole pahaa.
     Jumala, joka on hyvyys, asuu täällä. Kuka tahansa, joka
     tulee tähän tilaan, saa tuntea hyvyyden jumalallisen
     läsnäolon.
-    \preceparspace
+    \par
     Täällä on vain yksi läsnäolo, Jumalan läsnäolo, joka on
     ELÄMÄ. Jumala on kaikkien olentojen elämän ydin.
     Mielen ja ruumiin terveys. Kuka tahansa, joka tulee
     tähän tilaan, saa tuntea elämän ja terveyden jumalallisen
     läsnäolon.
-    \preceparspace
-    Täällä on vain yksi läsnäolo, KUKOISTUS. Jumala on kukois-
-    tus, koska Hän saa kaiken kasvamaan ja menestymään.
+    \par
+    Täällä on vain yksi läsnäolo, KUKOISTUS. Jumala on kukoistus,
+    koska Hän saa kaiken kasvamaan ja menestymään.
     Jumala ilmaisee itseään kaiken sen kukoistamisessa,
     mihin täällä ryhdytään Hänen nimessään. Kuka tahansa,
     joka tulee tähän tilaan, tuntee kukoistamisen ja
     yltäkylläisyyden jumalallisen läsnäolon.
-    \preceparspace
+    \par
     Jumalallisten siipien esoteerisen symbolin kautta
     värähtelen harmoniassa VIISAUDEN, VOIMAN ja ILON
     universaalien virtausten kanssa. Jumalallisen viisauden
     läsnäolo ilmentyköön täällä. Jumalallisen ilon
     läsnäolon tuntevat syvästi kaikki ne, jotka tähän
     tilaan saapuvat.
-    \preceparspace
+    \par
     Mitä täydellisimmässä yhteydessä alemman minäni ja
     korkeamman minäni välillä, joka on Jumala minussa,
     pyhitän tämän paikan kaikkien niiden jumalallisten
     ominaisuuksien täydelliselle ilmaisulle, jotka ovat
     minussa ja kaikissa olennoissa.
-    \preceparspace
+    \par
     AJATUSTENI värähtelyt ovat Jumalan voimia minussa,
     jotka kootaan täällä ja lähetetään täältä kaikille
     olennoille, niin että tästä paikasta tulee keskus,
     josta lähetetään ja vastaanotetaan kaikkea, mikä on
     HYVÄÄ, ILOISTA ja KUKOISTAVAA.
-    \preceparspace
+    \par
+    \vspace{1ex}
     \textbf{RUKOUS}
-    \preceparspace
+    \par
     Kiitän sinua, oi Jumala, koska tämä paikka on täynnä
     sinun läsnäoloasi.
-    \preceparspace
+    \par
     Kiitän sinua, koska elän ja liikun sinussa.
-    \preceparspace
+    \par
     Kiitän sinua, koska elän sinun Elämässäsi, Totuudessasi,
     Terveydessäsi, Kukoistuksessasi, Rauhassasi,
     Viisaudessasi, Ilossasi ja Rakkaudessasi.
-    \preceparspace
+    \par
     Kiitän sinua, koska kaikki jotka saapuvat tänne saavat
     tuntea sinun läsnäolosi.
-    \preceparspace
+    \par
     Kiitän sinua, koska olen Harmoniassa, Rakkaudessa,
     Totuudessa ja Oikeudessa kaikkien olentojen kanssa.
-    \preceparspace
+    \par
     Aamen.
-  \endverse
+  \end{passage}
 \endsong
+
+
+
+
+
+
+
+
 

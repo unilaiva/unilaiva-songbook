@@ -1,83 +1,132 @@
-% Santo Daime: Preces: encerramento
-% =================================
+% Santo Daime Preces: encerramento
+% ================================
 %
 
 % use Roman numerals for song (prayer) numbering:
 \renewcommand{\thesongnum}{\Roman{songnum}}
 \setcounter{songnum}{1}
 
-\beginsong{Pai nosso \& Ave Maria}
-  \beginverse
-    \precesubtitle{Pai nosso}
+\beginsong{Pai nosso \& Ave Maria}[tags={3x}]
+  \vspace*{\fill}
+  \begin{passage}[PT]{Pai nosso}
     Pai nosso,
     que estais no Céu,
     santificado seja o Vosso Nome.
+    \par
     Vamos nós ao Vosso Reino.
+    \par
     Seja feita a Vossa Vontade,
     assim na terra como no Céu.
+    \par
     O pão nosso de cada dia nos daí hoje, Senhor.
+    \par
     Perdoai as nossas dividas,
     assim como nós perdoamos os nossos devedores.
+    \par
     Não nos deixas, Senhor, cair em tentação,
     mas livrai-me e defendei-me, Senhor,
     de todo mal.
-    \preceparspace
+    \par
     Amém, Jesus, Maria, José.
-  \endverse
-  \beginverse
-    \precesubtitle{Ave Maria}
+  \end{passage}
+  \begin{passage}[PT]{Ave Maria}
     Ave Maria,
     cheia de Graça!
     O Senhor é convosco.
+    \par
     Bendita sois Vós entre as mulheres.
     Bendito é o fruto do Vosso ventre, Jesus.
+    \par
     Santa Maria, Mãe de Deus,
     rogai a Deus por nos pecadores,
     agora e na hora de nossa morte.
-    \preceparspace
+    \par
     Amém, Jesus, Maria, José.
-  \endverse
-  \forcebrk\vspace*{\fill}
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Our Father}
+  \end{passage}
+  \vspace*{\fill}
+  \hardbrk
+  \vspace*{1.65ex} % to align with the opposing page
+  \vspace*{\fill}
+  \begin{passage}[EN]{Our Father}
     Our Father,
     who art in Heaven,
     hallowed be Thy Name.
+    \par
     Let us go into Thy Kingdom.
+    \par
     Thy Will be done,
     on earth as it is in Heaven.
+    \par
     Give us this day our daily bread, Lord.
+    \par
     Forgive us our debts,
     as we forgive our debtors.
+    \par
     Let us not fall in temptation,
     but deliver me and defend me, Lord,
     from all evil.
-    \preceparspace
+    \par
     Amen, Jesus, Mary, Joseph.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Hail Mary}
+  \end{passage}
+  \begin{passage}[EN]{Hail Mary}
     Hail Mary,
     full of grace!
     The Lord is with Thee.
+    \par
     Blessed art Thou amongst women!
     Blessed is the fruit of Thy womb, Jesus.
+    \par
     Holy Mary, Mother of God,
     pray to God for us sinners,
     now and at the hour of our death.
-    \preceparspace
+    \par
     Amen, Jesus, Mary, Joseph.
-  \endverse
+  \end{passage}
+  \vspace*{\fill}
+  \hardbrk
+  \vspace*{\fill}
+  \begin{passage}[FI]{Isä Meidän}
+    Isä meidän, joka olet taivaassa,
+    pyhitetty olkoon sinun nimesi.
+    \par
+    Menkäämme valtakuntaasi.
+    \par
+    Tapahtukoon sinun tahtosi niin
+    maan päällä kuin taivaassa.
+    \par
+    Anna meille tänä päivänä meidän
+    jokapäiväinen leipämme, Herra.
+    \par
+    Anna meille meidän velkamme anteeksi,
+    niin kuin mekin anteeksi annamme velallisillemme.
+    \par
+    Äläkä anna meidän langeta kiusaukseen,
+    vaan vapauta ja suojele minut,
+    Herra, kaikelta pahalta.
+    \par
+    Aamen, Jeesus, Maria, Joosef
+  \end{passage}
+  \begin{passage}[FI]{Terve Maria}
+    Terve Maria, armoitettu,
+    Herra sinun kanssasi.
+    \par
+    Siunattu sinä naisten joukossa,
+    ja siunattu kohtusi hedelmä, Jeesus.
+    \par
+    Pyhä Maria, Jumalan äiti, rukoile meidän
+    syntisten puolesta nyt, ja kuolemamme hetkenä.
+    \par
+    Aamen, Jeesus, Maria, Joosef
+  \end{passage}
   \vspace*{\fill}
 \endsong
 
 
 \beginsong{Credo}[tags={Mesa Branca, São Miguel}]
-  \baselineadj=0pt\relax% To fit
-  \beginverse
+  \begin{passage}[PT]{}
     Creio em Deus Pai todo Poderoso,
     Criador do Céu e da terra.
-    \preceparspace
+    \par
     Creio em Jesus Cristo, um só seu filho, Nosso
     Senhor, o qual for concebido por obra e graça do
     Espírito Santo. Nasceu da Maria Virgem;
@@ -86,19 +135,19 @@
     infernos, ao terceiro dia ressurgiu dos mortos,
     Subiu ao Céu e Pai Todo-poderoso, de onde há de vir
     a julgar os vivos e os mortos.
-    \preceparspace
+    \par
     Creio no Espirito Santo, na Santa Igreja,
     na comunhão dos Santos, na remissão
     dos pecados, na ressurreição da carne,
     na vida eterna.
-    \preceparspace
+    \par
     Amém.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Creed}
+  \end{passage}
+  \hardbrk
+  \begin{passage}[EN]{Creed}
     I believe in God, the Father Almighty,
     Creator of Heaven and earth.
-    \preceparspace
+    \par
     I believe in Jesus Christ, His only Son, Our Lord,
     who was conceived through the work and grace of
     the Holy Spirit. He was born of the Virgin Mary;
@@ -108,162 +157,250 @@
     the dead. He ascended into Heaven and is seated
     at the right hand of God, the Father Almighty, from
     where He come to judge the living and the dead.
-    \preceparspace
+    \par
     I believe in the Holy Spirit, the Holy Church,
     the communion of Saints, the forgiveness of sins,
     the resurrection of the body, and life everlasting.
-    \preceparspace
+    \par
     Amen.
-  \endverse
-  % Keep the Finnish version here, as we need something for the recto page :)
-  \forcebrk\vbox to0pt{}\vfill
-  \beginverse\color{finnishcolor}
-    \precetranstitle{FI}{Uskontunnustus}
-    Minä uskon Jumalaan, Isään, Kaikkivaltiaaseen,
-    taivaan ja maan Luojaan;
-    \preceparspace
-    ja Jeesukseen Kristukseen, Jumalan ainoaan Poikaan,
-    meidän Herraamme, joka sikisi Pyhästä Hengestä,
-    syntyi neitsyt Mariasta, kärsi Pontius Pilatuksen
-    aikana, ristiinnaulittiin, kuoli ja haudattiin,
-    astui alas tuonelaan, nousi kolmantena päivänä
-    kuolleista, astui ylös taivaisiin, istuu Jumalan,
-    Isän, Kaikkivaltiaan, oikealla puolella ja on sieltä
-    tuleva tuomitsemaan eläviä ja kuolleita;
-    \preceparspace
-    ja Pyhään Henkeen, pyhän yhteisen seurakunnan,
-    pyhäin yhteyden, syntien anteeksiantamisen,
-    ruumiin ylösnousemisen ja iankaikkisen elämän.
-    \preceparspace
+  \end{passage}
+  \begin{passage}[FI]{Uskontunnustus}
+    Minä uskon Jumalaan, Isään, Kaikkivaltiaaseen, taivaan ja maan Luojaan; ja
+    \par
+    Jeesukseen Kristukseen, Jumalan ainoaan Poikaan, meidän Herraamme,
+    joka sikisi Pyhän Hengen toimesta ja armosta, syntyi neitsyt Mariasta,
+    kärsi Pontius Pilatuksen aikana, ristiinnaulittiin, kuoli ja haudattiin,
+    astui alas tuonelaan, nousi kolmantena päivänä kuolleista, astui ylös
+    taivaisiin, istuu Jumalan, Isän, Kaikkivaltiaan, oikealla puolella ja on
+    sieltä tuleva tuomitsemaan eläviä ja kuolleita; ja
+    \par
+    Pyhään Henkeen, pyhään yhteiseen seurakuntaan, pyhäin yhteyteen, syntien
+    anteeksiantamiseen, ruumiin ylösnousemiseen ja iankaikkiseen elämään.
+    \par
     Aamen.
-  \endverse
-  \vfill
+  \end{passage}
 \endsong
 
 
 \sclearpage
 \beginsong{Prece de Cáritas}[tags={cura}]
-  \beginverse
+  \begin{passage}[PT]{}
     Deus, nosso Pai que sois todo Poder e Bondade, dai
     a força àquele que passa pela provação.
-    \ind Dai a luz àquela que procura a verdade.
-    \ind Ponde no coração do homem a compaixão e a caridade.
-    \ind Deus! Dai ao viajor a estrela guia; ao aflito,
+    \par
+    Dai a luz àquela que procura a verdade.
+    \par
+    Ponde no coração do homem a compaixão e a caridade.
+    \par
+    Deus! Dai ao viajor a estrela guia; ao aflito,
     a consolação; ao doente, o repouso!
-    \ind Pai, dai ao culpado, o arrependimento; ao espírito,
+    \par
+    Pai, dai ao culpado, o arrependimento; ao espírito,
     a verdade; à criança, o guia; ao órfão, o pai!
-    \ind Senhor, que a Vossa bondade se estenda sobre tudo
+    \par
+    Senhor, que a Vossa bondade se estenda sobre tudo
     que criastes.
-    \ind Piedade, Senhor, para aqueles que Vos não conhecem.
-    \ind Esperança para aqueles que sofrem.
-    \ind Que a Vossa bondade permita aos espíritos
+    \par
+    Piedade, Senhor, para aqueles que Vos não conhecem.
+    \par
+    Esperança para aqueles que sofrem.
+    \par
+    Que a Vossa bondade permita aos espíritos
     consoladores derramarem por toda a parte a paz, a
     esperança e a fé.
-    \ind Deus! Um raio, uma faísca do Vosso amor pode abraçar
+    \par
+    Deus! Um raio, uma faísca do Vosso amor pode abraçar
     a terra.
-    \ind Deixa-nos beber na fonte dessa bondade fecunda
+    \par
+    Deixa-nos beber na fonte dessa bondade fecunda
     e infinita e todas as lágrimas secarão e todas as
     dores se acalmarão.
-    \ind Um só coração, um só pensamento subirá até Vós,
+    \par
+    Um só coração, um só pensamento subirá até Vós,
     como um grito de reconhecimento e de Amor.
-    \ind Como Moisés sobre as montanha nós Vós esperamos
-    com os braços abertos.
-    \ind O Poder, o Bondade, o Beleza, o Perfeição, e
-    queremos de alguma sorte merecer a Vossa infinita
+    \par
+    Como Moisés sobre as montanha nós Vós esperamos
+    com os braços abertos. ---
+    O Poder, o Bondade, o Beleza, o Perfeição ---
+    e queremos de alguma sorte merecer a Vossa infinita
     misericórdia.
-    \ind Deus, dai-nos a força de ajudar o progresso a fim
+    \par
+    Deus, dai-nos a força de ajudar o progresso a fim
     de subir-nos até Vós.
-    \ind Dai-nos a caridade pura, dai-nos a fé e a razão.
-    \ind Dai-nos a simplicidade que fará de nossas almas o
+    \par
+    Dai-nos a caridade pura.
+    \par
+    Dai-nos a fé e a razão.
+    \par
+    Dai-nos a simplicidade que fará de nossas almas o
     espelho aonde se deve refletir a Vossa imagem.
-    \preceparspace
+    \par
     Amém.
-  \endverse
-  \forcebrk
-  \vspace*{-1.1em}
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Prayer of Caritas}
+  \end{passage}
+  \begin{passage}[EN]{Prayer of Caritas}
     God, our Father who is all Power and Kindness,
     give strength to those who're going through
     their trials.
-    \ind Give light to those who are seeking the truth.
-    \ind Put in the hearts of men compassion and charity.
-    \ind God, give to the one who travels, a guiding star;
+    \par
+    Give light to those who are seeking the truth.
+    \par
+    Put in the hearts of men compassion and charity.
+    \par
+    God, give to the one who travels, a guiding star;
     to the afflicted, consolation; to the sick, rest.
-    \ind Father, give to the guilty, repentance; to the
+    \par
+    Father, give to the guilty, repentance; to the
     spirit, truth; to the child, a guide; to the orphan,
     a father.
-    \ind Lord, may Your kindness spread above all that You
+    \par
+    Lord, may Your kindness spread above all that You
     have created.
-    \ind Mercy, Lord, for those who don't know You.
-    \ind Hope for those who suffer.
-    \ind May Your kindness allow the consoling spirits to
+    \par
+    Mercy, Lord, for those who don't know You.
+    \par
+    Hope for those who suffer.
+    \par
+    May Your kindness allow the consoling spirits to
     spread everywhere Peace, Hope and Faith.
-    \ind God, one ray, one spark of Your Love can enlighten
+    \par
+    God, one ray, one spark of Your Love can enlighten
     the earth.
-    \ind Let us drink in the fountain of this fertile and
+    \par
+    Let us drink in the fountain of this fertile and
     infinite kindness, and all tears will dry, and all pains
     will quiet down.
-    \ind One single heart, one single thought will go up to
+    \par
+    One single heart, one single thought will go up to
     You, like a cry of thankfullness and of love.
-    \ind Like Moses on the mountain, we await for You with
-    open arms.
-    \ind Oh Power, oh Kindness, oh Beauty, oh Perfection,
-    we want, in some way, to deserve Your infinite Mercy!
-    \ind God, give us the strength to support the progress,
+    \par
+    Like Moses on the mountain, we await for You with
+    open arms. --- Oh Power, oh Kindness, oh Beauty, oh Perfection --- we want, in some way, to deserve Your infinite Mercy!
+    \par
+    God, give us the strength to support the progress,
     in order to rise up to You.
-    \ind Give us pure Charity, give us Faith and Reason.
-    \ind Give us the simplicity that will make our souls the
+    \par
+    Give us pure Charity, give us Faith and Reason.
+    \par
+    Give us the simplicity that will make our souls the
     mirror where Your image must be reflected.
-    \preceparspace
+    \par
     Amen.
-  \endverse
+  \end{passage}
+  \begin{passage}[FI]{Caritan rukous}
+    Jumala, Isämme kaikki voima ja hyvyys, anna voimaa sille, joka käy läpi koettelemuksia.
+    \par
+    Anna Valoa sille, joka etsii totuutta.
+    \par
+    Aseta ihmisen sydämeen myötätuntoa ja hyväntekeväisyyttä.
+    \par
+    Jumala! Anna kulkijalle opastava tähti;
+    ahdistetulle lohtu ja sairaalle lepo!
+    \par
+    Isä, anna syylliselle katumus; hengelle totuus;
+    lapselle opas ja orvolle Isä!
+    \par
+    Herra, ulottukoon Hyvyytesi kaiken luomasi ylle.
+    \par
+    Armoa, Herra, heille, jotka eivät Sinua tunne.
+    \par
+    Toivoa niille, jotka kärsivät.
+    \par
+    Hyvyytesi sallikoon lohduttavien henkien jakaa
+    kaikkialle rauhaa, toivoa ja uskoa.
+    \par
+    Jumala! Yksi säde, yksi rakkautesi kipinä voi
+    syleillä koko maata.
+    \par
+    Anna meidän juoda tästä hedelmällisestä ja
+    ikuisesta lähteestä, ja kaikki kyyneleet kuivuvat
+    ja kaikki kivut tyyntyvät.
+    \par
+    Yksi ainoa sydän, yksi ainoa ajatus nousee
+    luoksesi kuin tunnistamisen ja rakkauden
+    huuto.
+    \par
+    Kuin Mooses vuorella me odotamme Sinua
+    avosylin --- Oi voima! Oi hyvyys! Oi kauneus!
+    Oi täydellisyys! --- ja tahdomme jollakin tavalla
+    ansaita rajattoman armosi.
+    \par
+    Jumala, anna meille voimaa auttamaan luoksesi nousemisen edistymistä.
+    \par
+    Anna meille vilpitöntä armeliaisuutta.
+    \par
+    Anna meille uskoa ja peruste.
+    \par
+    Anna meille yksinkertaisuutta, joka tekee sielustamme peilin,
+    jossa kuvasi tulee näkyä.
+    Aamen.
+  \end{passage}
 \endsong
 
 
 \beginsong{Salve Rainha}
-  \beginverse
+  \begin{passage}[PT]{}
     Deus Vós salve, oh! Rainha, Mãe de Misericórdia,
     vida, doçura, esperança nossa, salve!
-    \ind A Vós bradamos, os degredados filhos de Eva.
-    \ind A Vós suspiramos, gemendo, e chorando neste
+    \par
+    A Vós bradamos, os degredados filhos de Eva.
+    A Vós suspiramos, gemendo, e chorando neste
     vale de lágrimas.
-    \ind Eia pois, advogada nossa, esses Vossos olhos
+    \par
+    Eia pois, advogada nossa, esses Vossos olhos
     misericordiosos a nós volveis.
-    \ind E depois deste desterro mostrai-nos Jesus.
-    \ind Bendito é o fruto do Vosso Ventre!
-    \ind Oh! Clemente, oh! Piedosa, oh! Doce, sempre
+    E depois deste desterro mostrai-nos Jesus.
+    Bendito é o fruto do Vosso Ventre!
+    \par
+    Oh! Clemente, oh! Piedosa, oh! Doce, sempre
     Virgem Maria!
-    \ind Rogai a Deus por nós, Santíssima Mãe de Deus,
+    Rogai a Deus por nós, Santíssima Mãe de Deus,
     para que sejamos dignos de alcançar as promessas
     de nosso Senhor Jesus Cristo, Senhor nosso.
-    \preceparspace
+    \par
     Amém, Jesus, Maria, e José.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Hail Holy Queen}
+  \end{passage}
+  \hardbrk
+  \begin{passage}[EN]{Hail Holy Queen}
     Hail Holy Queen, Mother of Mercy, our life, our
     sweetness and our hope.
-    \ind To You do we cry, poor banished children of Eve;
-    \ind to You do we send up our sighs, mourning and
+    \par
+    To You do we cry, poor banished children of Eve;
+    to You do we send up our sighs, mourning and
     weeping in this valley of tears.
-    \ind Turn then, O most Gracious Advocate, Your eyes
-    of mercy towards us.
-    \ind And after this, our exile, show unto us the
+    \par
+    Turn then, O most Gracious Advocate, Your eyes
+    of mercy towards us. And after this, our exile, show unto us the
     blessed fruit of your womb, Jesus.
-    \ind O! Clement, o! loving, o! sweet Virgin Mary!
-    \ind Pray for us o Holy Mother of God, that we may
+    \par
+    O! Clement, o! loving, o! sweet Virgin Mary!
+    Pray for us o Holy Mother of God, that we may
     be worthy of the promises of our Lord Jesus Christ,
     our Lord forever.
-    \preceparspace
+    \par
     Amen, Jesus, Mary and Joseph.
-  \endverse
+  \end{passage}
+  \begin{passage}[FI]{Terve, Kuningatar}
+    Jumala varjelkoon sinua, oi kuningatar, laupeuden äiti, elämä, ihanuus ja toivomme, terve!
+    \par
+    Sinua huudamme, Eevan karkotetut lapset. Sinulle huokaamme vaikeroiden ja
+    itkien tässä kyynelten laaksossa.
+    \par
+    Eijaa, puolustajamme, käännä puoleemme laupias katseesi. Ja tämän
+    maanpaon jälkeen näytä meille Jeesus. Siunattu olkoon kohtusi hedelmä!
+    \par
+    Oi armelias! Oi uskollinen! Oi suloinen ikuisesti Neitsyt Maria,
+    rukoile Jumalaa puolestamme, kaikkein Pyhin Jumalan Äiti, jotta
+    olisimme arvolliset saavuttamaan lupaukset, jotka on antanut
+    Herramme Jeesus Kristus, meidän Herramme.
+    \par
+    Aamen, Jeesus, Maria ja Joosef.
+  \end{passage}
 \endsong
 
 
 \beginsong{Encerramento}
-  \beginverse
-    \textnotefornext{Dirigente do trabalho pronuncia:}
+  \begin{passage}[PT]{}
+    \passagenote*{Dirigente do trabalho pronuncia:}
     Em nome de Deus Pai Todo-Poderoso, da Virgem
     Soberana Mãe, do Patriarca São José e de todos
     os Seres Divinos da Corte Celestial, e com
@@ -271,62 +408,76 @@
     está encerrado o nosso trabalho, meus irmãos
     e minhas irmãs.
     \textbf{Louvado seja Deus nas alturas!}
-    \preceparspace
-    \textnotefornext{E todos respondem:}
+    \par
+    \passagenote{E todos respondem:}
     Para que sempre seja louvada a nossa Mãe Maria
     Santíssima, sobre toda a humanidade. Amém!
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Closing}
-    \textnotefornext{Leader of the work pronounces:}
+  \end{passage}
+  \begin{passage}[EN]{Closing}
+    \passagenote*{Leader of the work pronounces:}
     In the name of God the Almighty Father, of the Sovereign
     Virgin Mother, of the Patriarch Saint Joseph and of all
     the Divine Beings of the Celestial Court, and with
     the Order of our Master Governor Juramidam,
     our work is ended, my brothers and my sisters.
     \textbf{Praised be God in the Heights!}
-    \preceparspace
-    \textnotefornext{And all respond:}
+    \par
+    \passagenote{And all respond:}
     May our Mother, the Most Holy Mary, be forever
     praised above all humanity. Amen!
-  \endverse
+  \end{passage}
+  \begin{passage}[FI]{Lopetus}
+    \passagenote*{Työn komentaja lausuu:}
+    \ldots\textbf{Ylistetty olkoon Jumala korkeuksissa!}
+    \par
+    \passagenote{Ja kaikki vastaavat:}
+    Ikuisesti olkoon ylistetty Äitimme, Kaikkein pyhin Maria,
+    koko ihmiskuntaa ylempi. Aamen!
+  \end{passage}
 \endsong
 
 
-\beginsong{Sinal da Cruz}
-  \beginverse
-    \preceup{1}Pelo sinal da Santa Cruz,
-    \preceup{2}livrai-nos, Deus, nosso Senhor,
-    \preceup{3}dos nossos inimigos
-    \preceparspace
-    \preceup{4}Em nome do Pai,
-    \preceup{5}do Filho e
-    \preceup{6}do Espírito \preceup{7}Santo.
-    \preceparspace
+\beginsong{Sinal da Cruz}[tags={bailado, São Miguel, Mesa Branca}]
+  \begin{passage}[PT]{}*
+    \pup{1}Pelo sinal da Santa Cruz,
+    \pup{2}livrai-nos, Deus, nosso Senhor,
+    \pup{3}dos nossos inimigos
+    \polpar
+    \pup{4}Em nome do Pai, \pup{5}do Filho e \pup{6}do Espírito \pup{7}Santo.
+    \polpar
     Amém.
-  \endverse
-  \beginverse\color{englishcolor}
-    \precetranstitle{EN}{Sign of the Cross}
-    \preceup{1}By the sign of the Holy Cross,
-    \preceup{2}deliver us, God, our Lord,
-    \preceup{3}from our enemies
-    \preceparspace
-    \preceup{4}In the name of the Father,
-    \preceup{5}the Son, and
-    \preceup{6}the Holy \preceup{7}Spirit.
-    \preceparspace
+  \end{passage}
+  \begin{passage}[EN]{Sign of the Cross}*
+    \pup{1}By the sign of the Holy Cross,
+    \pup{2}deliver us, God, our Lord,
+    \pup{3}from our enemies
+    \polpar
+    \pup{4}In the name of the Father, \pup{5}the Son, and \pup{6}the Holy \pup{7}Spirit.
+    \polpar
     Amen.
-  \endverse
-  \begin{precenote}
-    While speaking the prayer, synchronously make
-    the sign of the Cross with with your right thumb
-    on your \preceup{1}forehead,
-    on your \preceup{2}mouth, and
-    on your \preceup{3}chest.
-    \preceparspace
-    Then, with your right hand, touch
-    your \preceup{4}forehead,
-    your \preceup{5}chest,
-    your \preceup{6}left shoulder and \preceup{7}right shoulder.
-  \end{precenote}
+  \end{passage}
+  \begin{passage}[FI]{Ristinmerkki}*
+    \pup{1}Pyhällä ristinmerkillä
+    \pup{2}Vapauta meidät Jumala, Herramme
+    \pup{3}Vihollisistamme
+    \polpar
+    \pup{4}Isän, \pup{5}Pojan ja \pup{6}Pyhän \pup{7}Hengen nimeen.
+    \polpar
+    Aamen.
+  \end{passage}
+%   \hardbrk
+%   \vspace*{\fill}
+%   \begin{passage}[NOTE]{}*
+%     While speaking the prayer, synchronously make
+%     the sign of the Cross with with your right thumb
+%     on your \pup{1}forehead,
+%     on your \pup{2}mouth, and
+%     on your \pup{3}chest.
+%     \polpar
+%     Then, with your right hand, touch
+%     your \pup{4}forehead,
+%     your \pup{5}chest,
+%     your \pup{6}left shoulder and \pup{7}right shoulder.
+%   \end{passage}
+  \vspace*{\fill}
 \endsong
