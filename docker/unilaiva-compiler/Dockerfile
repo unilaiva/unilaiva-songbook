@@ -5,8 +5,8 @@
 # setup the *required* bind mount and use correct user id.
 #
 
-# Use Ubuntu 23.04:
-FROM ubuntu:lunar-20230816
+# Use Ubuntu 23.10:
+FROM ubuntu:mantic-20231011
 
 # Installs everything needed for compiling the songbook, plus qrencode and
 # pdftk utilities. Also generates the required locale fi_FI.utf8.
