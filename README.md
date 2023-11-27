@@ -33,11 +33,11 @@ This guarantees the best results, as the actual compiling is done in a Docker
 container that has all the correct packages installed and configured correctly.
 
 Note that the first run will take a long time, as the Docker image is built
-and all the required software downloaded (about 900 MiB) and installed into it.
-When built, the image requires about 2,5 GiB of disk space. Subsequent runs
+and all the required software downloaded (about 1100 MiB) and installed into it.
+When built, the image requires about 2,3 GiB of disk space. Subsequent runs
 will be fast as they use the already built image.
 
-By default the compile script uses a maximum of 5 GiB of memory when running
+By default the compile script uses a maximum of 6 GiB of memory when running
 6 parallel compilations (the default maximum for parallelism). On low memory
 systems, use the `--sequential` option for the compile script to compile
 one document at a time.

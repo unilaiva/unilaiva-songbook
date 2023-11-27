@@ -39,13 +39,13 @@ USE_COLORS=1
 # Maximum number of parallel compilation jobs. Each job takes quite a bit
 # of memory, so this should be limited.
 MAX_PARALLEL=6
-# Maximum total memory use for Docker container. 5g should be enough for 6
+# Maximum total memory use for Docker container. 6g should be enough for 6
 # parallel jobs. This is passed to docker with --memory option.
-MAX_DOCKER_MEMORY="5g"
+MAX_DOCKER_MEMORY="6g"
 # Maximum total memory and swap (together) use for Docker container. If set
 # to same as MAX_DOCKER_MEMORY, swap is disabled. This is passed to docker with
 # # --memory-swap option.
-MAX_DOCKER_MEMORY_PLUS_SWAP="5g"
+MAX_DOCKER_MEMORY_PLUS_SWAP="6g"
 
 
 MAIN_FILENAME_BASE="unilaiva-songbook_A5" # filename base for the main document (without .tex suffix)
