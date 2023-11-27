@@ -26,7 +26,7 @@
   \fancyhead[CE]{%
     \headertitlestyle%
     \ifupcasebooktitleinheader%
-      \MakeUppercase{\mainbooktitle}%
+      \protect\MakeUppercase{\expandafter\mainbooktitle}%
     \else%
       \mainbooktitle%
     \fi%
@@ -35,7 +35,7 @@
     \headertitlestyle%
     \ifdefined\subbooktitle%
       \ifupcasesectiontitleinheader%
-        \MakeUppercase{\subbooktitle}%
+        \protect\MakeUppercase{\expandafter\subbooktitle}%
       \else%
         \subbooktitle%
       \fi%

@@ -498,10 +498,11 @@
 % polyglossia: language settings
 \setmainlanguage{english}
 \setotherlanguage{finnish}
+
 % Picks automatically up the \persianfont and \persianfontsf defined above.
 % Use the persian language by putting it inbetween of \begin{persian} and
 % \end{persian}.
-\setotherlanguage[numerals=maghrib]{persian}
+\setotherlanguage[numerals=eastern]{persian}
 
 % newunicodechar (symbols):
 \newunicodechar{❶}{{\symbolfont ❶}}\newcommand\symone{❶}
@@ -521,7 +522,7 @@
 % Set the image path. Must have the trailing slash.
 \providecommand{\ulimagepath}{./content/img/}
 
-\graphicspath{\ulimagepath} % graphicx: set path to find images from
+\expandafter\graphicspath\expandafter{\expandafter{\ulimagepath}} % graphicx: set path to find images from
 
 % color: Color definitions:
 \definecolor{chordcolor}{rgb}{0.20,0,0.22} % chords
@@ -636,7 +637,7 @@
   {%
     \headertitlestyle%
     \ifupcasebooktitleinheader%
-      \MakeUppercase{\thisbooktitle}%
+      \protect\MakeUppercase{\expandafter\thisbooktitle}%
     \else%
       \thisbooktitle%
     \fi%
@@ -649,8 +650,7 @@
   {%
     \headertitlestyle%
     \ifupcasesectiontitleinheader%
-      % for pdf's index, \MakeUppercase can't be used.
-      \texorpdfstring{\MakeUppercase{\rightmark}}{\rightmark}%
+      \protect\MakeUppercase{\expandafter\rightmark}
     \else%
       \rightmark%
     \fi%
@@ -1258,13 +1258,13 @@
   \def\shorttitlefull{%
     % Include the image in the chapter title string, if the image is given and
     % the feature is turned on.
-    \texorpdfstring{% pdf indexes can't contain images or \MakeUppercase
-      \ifupcaseshortchaptertitle\MakeUppercase{\shorttitletext}\else\shorttitletext\fi%
+    \texorpdfstring{% pdf indexes can't contain images (and \MakeUppercase must be protected)
+      \ifupcaseshortchaptertitle\protect\MakeUppercase{\expandafter\shorttitletext}\else\shorttitletext\fi%
       \ifshowimageinchaptername\ifdefined\smallchapterimage\hspace{1em}\smallchapterimage\fi\fi%
-    }{\shorttitletext}%
+    }{\protect\MakeUppercase{\expandafter\shorttitletext}}%
   }
   \def\longtitlefull{%
-    \ifupcaselongchaptertitle\MakeUppercase{\longtitletext}\else\longtitletext\fi%
+    \ifupcaselongchaptertitle\protect\MakeUppercase{\expandafter\longtitletext}\else\longtitletext\fi%
   }
   \IfBooleanTF{#1}{% \mainchapter with star, call \chapter with star also
     \chapter*[\shorttitlefull]{\longtitlefull}%
@@ -1984,7 +1984,7 @@
   }%
   \ifx\passagefulltitle\empty\else%
     \ifupcasepassagetitle%
-      \@passagesection{\MakeUppercase{\passagefulltitle}}% Create section
+      \@passagesection{\protect\MakeUppercase{\expandafter\passagefulltitle}}% Create section
     \else%
       \@passagesection{\passagefulltitle}% Create section
     \fi
