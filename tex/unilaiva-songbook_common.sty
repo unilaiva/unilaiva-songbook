@@ -1170,6 +1170,8 @@
   }
 }
 
+\providecommand{\toctextpage}{Page}
+
 % Creates the Table Of Contents here. Use this instead of \tableofcontents macro
 \newcommand{\toc}{
   \pagestyle{unilaivatoc}% use alternate header style for TOC
@@ -1180,7 +1182,7 @@
   % Remove the overlapping page number in the bottom of the first TOC page:
   \addtocontents{toc}{\protect\thispagestyle{empty}}
   % Adds text "Page" on top of the TOC:
-  \addtocontents{toc}{~\hfill\textbf{Page}\par}
+  \addtocontents{toc}{~\hfill\textbf{\toctextpage}\par}
   \newpage\pagestyle{unilaiva}% return to the default header style
 }
 
