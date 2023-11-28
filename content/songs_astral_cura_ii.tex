@@ -13,10 +13,11 @@
 \setcounter{songnum}{1}
 
 \beginsong{Eu Vivo na Floresta}[by={Padr. Sebastião}, key={C}, gk={C, B\flt{}--C}]
+  \audio{https://soundcloud.com/canaljagube/1-eu-vivo-na-floresta?in=canaljagube/sets/hinario-de-cura}
   \audio{https://www.nossairmandade.com/hymn/66/EuVivoNaFloresta}
   \newchords{chords_cura_euvivonafloresta_a}\newchords{chords_cura_euvivonafloresta_b}
   \mnbeginchorus\memorize[chords_cura_euvivonafloresta_a]
-    \[^\mn{C}]Eu |\[C]vivo \[\bm]na flo|\[\mnc{A}F]res\[\bmc\mn{F}]ta, \[^\mn{A}]eu |te\[^\mn{G}]nho os \[\bmc\mn{C}]meus \[^\mn{E}]en|\[\mnc{G}G]si\[\bm]nos
+    \[^\mn{C}]Eu |\[\mnc{A}C]vi\[^\mn{C}]vo \[\bm]na flo|\[\mnc{A}F]res\[\bmc\mn{F}]ta, \[^\mn{A}]eu |te\[^\mn{G}]nho os \[\bmc\mn{C}]meus \[^\mn{E}]en|\[\mnc{G}G]si\[\bm]nos
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_cura_euvivonafloresta_b]
     \[^\mn{G}]Eu |\[\mnc{E}C]não \[^\mn{C}]me \[\bmc\mn{D}]cha\[^\mn{C}]mo |\[\mnc{A}Am]Dai\[\bmc\mn{C}]me, \[^\mn{E}]eu |\[\mnc{G}G]sou \[^\mn{E}]é um \[\mnc{F}G7]ser \[^\mn{D}]di|\[\mnc{C}C]vi\[\bm]no
   \mnendchorus
@@ -68,12 +69,12 @@
     \noteson\[\mnlow{E}]Mas \[\mnlow{G}]dei\notesoff|^xou os ^seus en|^sinos, pa^ra quem |^quiser ^apren|^der ^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2023-01
+    % transcribed by larva, updated on 2023-11
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        \altcol \parenthesize c8 \altmark "8." c8\posectionmark "A" ( c8) | c4 c c c | a'4( a8) \parenthesize f8 f4 a | a g8( g8) c4 e, | g2( g8)
+        \altcol \parenthesize c8 \altmark "8." c8\posectionmark "A" ( c8) | a4 c c c | a'4( a8) \parenthesize f8 f4 a | a g8( g8) c4 e, | g2( g8)
       } \break
       \repeat volta 2 {
         \altcol \parenthesize e8 \altmark "9." << e8 \parenthesize g8( \sectionmark "B" >> g8)
@@ -680,20 +681,22 @@
 \endsong
 
 
-\beginsong{Deus É Para Todos}[by={Padr. Sebastião}, key={C}, gk={D, C--D}]
+\beginsong{Deus É Para Todos}[by={Padr. Sebastião}, key={D}, gk={D, (D)--(D\shrp{})}]
   \audio{https://www.nossairmandade.com/hymn/71/Deus\%C3\%89ParaTodos}
+  \audio{https://soundcloud.com/canaljagube/6-deus-e-para-todos?in=canaljagube/sets/hinario-de-cura}
+  \transpose{2}
   \mnbeginchorus\memorize
-    \[^\mn{E}]Eu |\[\mnc{G}C]vim pa\[\mnc{A}(F)]ra \[^\mn{G}]lem|\[\mnc{E}C]brar \[\bm]{} \altchords{\id[1]{(D)}|D (G) |D}
-    \[^\mn{C}]Eu |\[\mnc{B}G]te\[^\mn{D}]nho \[\mnc{A}(Am)]que \[^\mn{B}]di|\[\mnc{G}G]zer \[\bm]{} \altchords{|A (Bm) |A}
-    |\[\mnc{C}C]Deus é \[\bm]para |\[\mnc{E}(Am/E)]to\[\bm]dos \altchords{|D |(Bm/F\shrp{})}
-    \[^\mn{C}]Não |\[\mnc{B}G]se \[^\mn{D}]po\[\mnc{A}(F)]de es\[^\mn{B}]co|\[\mnc{C}C]lher \[\bm]{} \altchords{|A (G) |D}
+    \[^\mn{E}]Eu |\[\mnc{G}C]vim pa\[\mnc{A}(F)]ra \[^\mn{G}]lem|\[\mnc{E}C]brar \[\bm]{} \altchords{\id[1]{(C)}|C (F) |C}
+    \[^\mn{C}]Eu |\[\mnc{B}G]te\[^\mn{D}]nho \[\mnc{A}(Am)]que \[^\mn{B}]di|\[\mnc{G}G]zer \[\bm]{} \altchords{|G (Am) |G}
+    |\[\mnc{C}C]Deus é \[\bm]para |\[\mnc{E}(Am/E)]to\[\bm]dos \altchords{|C |(Am/E)}
+    \[^\mn{C}]Não |\[\mnc{B}G]se \[^\mn{D}]po\[\mnc{A}(F)]de es\[^\mn{B}]con|\[\mnc{C}C]der \[\bm]{} \altchords{|G (F) |C}
   \mnendchorus
   \notesoff
   \beginchorus
-    Do |^que vi^ve o E|^terno
+    Do |^que vi^{ve o} E|^ter\noteson\[\mnlow{C}]no\notesoff
     ^É do |^Vosso ^grande a|^mor
-    ^E da |^onde ^vem a |^luz
-    ^É do |^nosso ^Salva|^dor ^
+    \noteson\[\bmc\mnlow{E}]E\notesoff da |\[C]onde \[\bm]vem a |\[Am/E]luz
+    \[\bm]É do |\[G]nosso \[(F)]Salva|\[C]dor \[\bm]
   \endchorus
   \beginchorus
     Meu |^Pai e ^minha |^Mãe ^ \altchords{\id[2]{(E)}|E (A) |E}
@@ -701,12 +704,19 @@
     |^Vêem ^mas não |^sa-^ {bem} \altchords{|E |(C\shrp{}m/G\shrp{})}
     |^Ficam ^por sa|^ber ^ \altchords{|B (A) |E}
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    theMelody = \relative e'' {
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-11
+    \include "tex/lp-include-head.ly"
+    %% This would suppresses 1 (iota 1) warning of "No string for pitch",
+    %% which comes from having simultaneous G and E (due to differing 2nd verse)
+    %% in key C, but is commented out for transposed key D where this problem
+    %% doesn't exist.
+    %#(for-each (lambda (x) (ly:expect-warning "No string for pitch")) (iota 1))
+    theMelody = \transpose c d \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        e4 \pomark | g g a g | e4.( e8 e4)( c4) | b d a b | g2( g4 g4)
+        e4 \pomark | g g a g | e4.( << e8 \single\altcol c8 \altmark "2." >> << e4 \single\altcol c4 >> c4) | b d a b | g2( << \single\altcol e4 \altmark "2." g4 >> g4)
         | c4 c c c | e2( e4) c | b d a b | c2.
       }
     }
@@ -716,15 +726,15 @@
         Eu | vim pa -- ra lem -- | brar; __ _ _
         Eu | te -- nho que di -- | zer; __ _ _
         | Deus é pa -- ra | to -- dos;
-        Não | se po -- de~es -- co -- | lher.
+        Não | se po -- de~es -- con -- | der.
       }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \repeat volta 2 {
-        Do | que vi -- ve~o E -- | ter -- no;
-        É do | Vos -- so gran -- de~a -- | mor;
-        E da | on -- de vem a | luz;
+        Do | que vi -- ve~o E -- | ter -- \altcol no;
+        \altcol É \altcol do | Vos -- so gran -- de~a -- | mor;
+        \altcol E da | on -- de vem a | luz;
         É do | nos -- so Sal -- va -- | dor.
       }
     }
@@ -737,12 +747,13 @@
         | Fi -- cam por sa -- | ber.
       }
     }
-    theChords = \chordmode {
+    theChords = \transpose c d \chordmode {
       \repeat volta 2 {
         s4 | c2 \parenthesize f | c1 | g2 \parenthesize a:m | g1
         | c | \parenthesize a:m/e | g2 \parenthesize f | c2.
       }
     }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
