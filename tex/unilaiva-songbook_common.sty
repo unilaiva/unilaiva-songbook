@@ -222,7 +222,7 @@
 % If the currently active languages name (polyglossia) is the same as the
 % first argument, the second argument is expanded; otherwise the third.
 % Example \IfLangTF{portuguese}{Círculos}{Circles}
-\newcommand\IfLangTF[3]{%
+\protect\newcommand\IfLangTF[3]{%
   \IfStrEq{\languagename}{#1}{% equals
     #2%
   }{%
@@ -367,20 +367,32 @@
 %   \bookcompiledbytext
 %   \imprintpagefootnote
 % All of them are optional, and for some there are defaults defined below.
-\providecommand\mainbooktitle{\IfLangTF{portuguese}{Songbook Sem Nome}{Songbook Without Name}} % the main title
+
+\IfLangTF{portuguese}{%
+  \providecommand{\mainbooktitle}{Songbook Sem Nome}
+  \providecommand{\bookbytext}{Por:\par\vspace{0.618034ex}\textbf{\Large humanidade}}
+  \providecommand{\bookversionpretext}{Versão:}
+  \providecommand{\bookvariantpretext}{Variante:}
+  \providecommand{\variantdefaulttext}{padrão}
+  \providecommand{\variantlyricsonlytext}{somente letras}
+}{%
+  \providecommand{\mainbooktitle}{Songbook Without Name}
+  \providecommand{\bookbytext}{By:\par\vspace{0.618034ex}\textbf{\Large humankind}}
+  \providecommand{\bookversionpretext}{Version:}
+  \providecommand{\bookvariantpretext}{Variant:}
+  \providecommand{\variantdefaulttext}{default}
+  \providecommand{\variantlyricsonlytext}{lyrics only}
+}
+
 % The book title to display on top of each verso page (if doesn't exist, it is
 % constructed here from \mainbooktitle and optional \subbooktitle):
 \providecommand{\thisbooktitle}{% main title (+ subtitle, if defined)
   \mainbooktitle\ifdefined\subbooktitle{: \subbooktitle}\fi%
 }
-\providecommand{\bookbytext}{\IfLangTF{portuguese}{Por:}{By:}\par\vspace{0.618034ex}\textbf{\Large \IfLangTF{portuguese}{humanidade}{humankind}}}%
-\providecommand{\bookversionpretext}{\IfLangTF{portuguese}{Versão:}{Version:}}
+% The default is the current date
 \providecommand{\songbookversion}{%
   \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day%
 }
-\providecommand{\bookvariantpretext}{\IfLangTF{portuguese}{Variante:}{Variant:}}
-\providecommand{\variantdefaulttext}{\IfLangTF{portuguese}{padrão}{default}}
-\providecommand{\variantlyricsonlytext}{\IfLangTF{portuguese}{somente letras}{lyrics only}}
 
 % Set defaults for PDF metadata, if they are not defined. One should define
 % them in the main file before including this package.
