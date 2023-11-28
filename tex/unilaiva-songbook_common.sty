@@ -367,20 +367,20 @@
 %   \bookcompiledbytext
 %   \imprintpagefootnote
 % All of them are optional, and for some there are defaults defined below.
-\providecommand\mainbooktitle{Not named songbook} % the main title
+\providecommand\mainbooktitle{\IfLangTF{portuguese}{Songbook Sem Nome}{Songbook Without Name}} % the main title
 % The book title to display on top of each verso page (if doesn't exist, it is
 % constructed here from \mainbooktitle and optional \subbooktitle):
 \providecommand{\thisbooktitle}{% main title (+ subtitle, if defined)
   \mainbooktitle\ifdefined\subbooktitle{: \subbooktitle}\fi%
 }
-\providecommand{\bookbytext}{By:\par\vspace{0.618034ex}\textbf{\Large humankind}}%
-\providecommand{\bookversionpretext}{Version:}
+\providecommand{\bookbytext}{\IfLangTF{portuguese}{Por:}{By:}\par\vspace{0.618034ex}\textbf{\Large \IfLangTF{portuguese}{humanidade}{humankind}}}%
+\providecommand{\bookversionpretext}{\IfLangTF{portuguese}{Versão:}{Version:}}
 \providecommand{\songbookversion}{%
   \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day%
 }
-\providecommand{\bookvariantpretext}{Variant:}
-\providecommand{\variantdefaulttext}{default}
-\providecommand{\variantlyricsonlytext}{lyrics only}
+\providecommand{\bookvariantpretext}{\IfLangTF{portuguese}{Variante:}{Variant:}}
+\providecommand{\variantdefaulttext}{\IfLangTF{portuguese}{padrão}{default}}
+\providecommand{\variantlyricsonlytext}{\IfLangTF{portuguese}{somente letras}{lyrics only}}
 
 % Set defaults for PDF metadata, if they are not defined. One should define
 % them in the main file before including this package.
@@ -1181,8 +1181,6 @@
   }
 }
 
-\providecommand{\toctextpage}{Page}
-
 % Creates the Table Of Contents here. Use this instead of \tableofcontents macro
 \newcommand{\toc}{
   \pagestyle{unilaivatoc}% use alternate header style for TOC
@@ -1193,7 +1191,11 @@
   % Remove the overlapping page number in the bottom of the first TOC page:
   \addtocontents{toc}{\protect\thispagestyle{empty}}
   % Adds text "Page" on top of the TOC:
-  \addtocontents{toc}{~\hfill\textbf{\toctextpage}\par}
+  \IfLangTF{portuguese}{%
+    \addtocontents{toc}{~\hfill\textbf{Página}\par}
+  }{%
+    \addtocontents{toc}{~\hfill\textbf{Page}\par}
+  }
   \newpage\pagestyle{unilaiva}% return to the default header style
 }
 
@@ -1354,16 +1356,13 @@
   \repeat%
 }
 
-% Text for the next song mark. Can be set before including this file.
-\providecommand{\textnextsong}{next song}
-
 % This command puts an arrow with a text "next song" above it to the end of
 % the current line. It is meant to be used on the last line of the last
 % verse, to suggest that one can continue playing the next song straight.
 \newcommand{\tonextsongmark}[0]{
   \hfill%
   \makebox[0pt][l]{\raisebox{1ex}{%
-    \tiny\textit{\textnextsong}%
+    \tiny\textit{\IfLangTF{portuguese}{seguinte}{next song}}%
   }}%
   $\Longrightarrow$
 }
@@ -2432,9 +2431,9 @@
 % including this file.
 \providecommand{\preludekeylinestyle}{}
 % Texts for key info in prelude. Can be set before including this file.
-\providecommand{\preludetextkey}{Key:}
-\providecommand{\preludetextgood}{good:} % ", " is prepended before this
-\providecommand{\preludetextgoodkeysalone}{Good keys:}
+\providecommand{\preludetextkey}{\IfLangTF{portuguese}{Tom:}{Key:}}
+\providecommand{\preludetextgood}{\IfLangTF{portuguese}{boas:}{good:}} % ", " is prepended before this
+\providecommand{\preludetextgoodkeysalone}{\IfLangTF{portuguese}{Boas tons:}{Good keys:}}
 
 % Support for a list of good keys (range) for a song. This keyval is supposed
 % to hold the good (for singing) keys this song to be played in.
