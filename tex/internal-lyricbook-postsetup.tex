@@ -26,8 +26,11 @@
 \showlilypondfalse
 \showaltchordsfalse
 
-% Make numbers in the meter smaller:
-\renewcommand{\meterfont}{\color{chordcolor}\tiny\sffamily\upshape}
+% Make the measure bar lighter
+\definecolor{mbarcolor}{rgb}{.68,.44,.82}
+
+% Make numbers in the meter smaller and the same color as mbar:
+\renewcommand{\meterfont}{\color{mbarcolor}\tiny\sffamily\upshape}
 
 \baselineadj=+1pt plus 0pt minus 0pt
 \hypersetup{pdftitle={\thisbooktitle { (\variantlyricsonlytext)}}}
