@@ -219,6 +219,17 @@
 % Repeal the effects of \obeylines
 \newcommand\disobeylines{\catcode`\^^M=5 }%
 
+% If the currently active languages name (polyglossia) is the same as the
+% first argument, the second argument is expanded; otherwise the third.
+% Example \IfLangTF{portuguese}{Círculos}{Circles}
+\newcommand\IfLangTF[3]{%
+  \IfStrEq{\languagename}{#1}{% equals
+    #2%
+  }{%
+    #3%
+  }%
+}
+
 % END GENERIC UTILITY MACROS
 
 
