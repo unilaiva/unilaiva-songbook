@@ -1848,3 +1848,99 @@
     Jesus Christ and Saint John
   \end{translation}
 \endsong
+
+
+\beginsong{Santa Cura}[by={Padr. Alfredo},key={C},gk={C, C--D}]
+  \newchords{chords_santacura_a}\newchords{chords_santacura_b}
+  \mnbeginchorus\memorize[chords_santacura_a]
+    \[^\mn{G}]Santa |\[\mnc{C}C]cura \[\bm]san\[^\mn{E}]ta |\[^\mn{G}]cura \altchords{\id[1]{(D)}|D | \e}
+    \[\bm]San\[^\mn{A}]ta |\[^\mn{E}]cu\[^\mn{G}]ra \[\mnc{D}G]do \[^\mn{C}]a|\[\mnc{E}C]mor \[\bm] \altchords{| - A |D}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_santacura_b]
+    \[^\mn{A}]Para |\[F]nun\[^\mn{G}]ca \[Am7]{se es}que|\[\mnc{D}Dm]cer \altchords{|G Bm7 |Em}
+    \[\bmc\mn{F}]Do \[^\mn{E}]di|\[\mnc{G}Dsus4]vi\[^\mn{F}]no \[\mnc{E}Dsus2]cu\[^\mn{D}]ra|\[\mnc{G}G]dor \[\bm] \altchords{|Esus4 Esus2 |A}
+    \[^\mn{A}]Para |\[F]sem\[^\mn{G}]pre \[Am7]{se lem}|\[\mnc{D}Dm]brar \altchords{|G Bm7 |Em}
+    \[\bmc\mn{F}]Do \[^\mn{E}]e|\[\mnc{G}G]ter\[^\mn{F}]no \[\mnc{E}G7]cri\[^\mn{D}]a|\[\mnc{C}C]dor \[\bm] \altchords{|A A7 |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_santacura_a]
+    Estudo |^fino es^tudo |fino
+    ^É pre|ciso ^compreen|^der ^
+    \endchorus\glueverses\beginchorus\replay[chords_santacura_b]
+    Disse o |^nosso a^migo |^velho
+    ^Somos |^somos e ^deve |^ser ^
+    Para |^sempre A^mém Je|^sus
+    ^Pronto |^para ^nos va|^ler ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-12
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        \parenthesize g8 \posectionmark "A" g8 g
+        | c4 c c e | g4. g8 g4 a4
+        | e g d c | e2~8
+      } \break
+      \repeat volta 2 {
+        r8 a8 \sectionmark "B" a
+        | a4 g g g | d4.( d8) f4. e8
+        | g4 f8( f8) e4 d | g2. \break
+        a8 a
+        | a4 g g g | d2 f4. e8
+        | g4 f e d | c2~8
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        \skip 1 San -- ta | cu -- ra san -- ta | cu -- ra;
+        San -- ta | cu -- ra do a -- | mor. _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Pa -- ra | nun -- ca se~es -- que -- | cer; __ _
+        Do di -- | vi -- no __ _ cu -- ra -- | dor;
+        Pa -- ra | sem -- pre se lem -- | brar;
+        Do e -- | ter -- no cri -- a -- | dor. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Es -- tu -- do | fi -- no~es -- tu -- do | fi -- no;
+        É pre -- | ci -- so com -- preen -- | der. _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Dis -- se~o | nos -- so~a -- mi -- go | ve -- lho;
+        So -- mos | so -- mos e de -- ve | ser;
+        Pa -- ra | sem -- pre~A -- mém Je -- | sus;
+        Pron -- to | pa -- ra nos va -- | ler. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c1 | c | c2 g2 | c2~8
+      }
+      \repeat volta 2 {
+        s4. | f2 a2:m7 | d1:m | d2:sus4 d2:sus2 | g2~8
+        s4. | f2 a2:m7 | d1:m | g2 g2:7 | c2~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Holy healing, holy healing, holy healing of love
+    Never to forget the divine healer
+    Forever to remember the eternal creator
+    \nextverse
+    Fine study, fine study; it is necessary to understand
+    Said our old friend; we are, we are, and it must be
+    Forever, Amen, Jesus, ready to help us
+  \end{translation}
+\endsong
+
+
