@@ -1140,9 +1140,111 @@
     Joyful and content with my brothers
     In this mission of the Virgin Mother and Juramidam
   \end{translation}
-
-
-
 \endsong
 
+
+\beginsong{Eu Vi a Mãe Santa Maria}[by={Cidu}, key={Am}, gk={Am, Gm--G\shrp{}m--(Am)}]
+  \audio[key=Am]{https://soundcloud.com/gustavo-camargo-6/eu-vi-a-mae-santa-maria-cidu}
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Eu |\[\mnc{A}Am]{vi a Mãe} \[^\mn{B}]San\[\bmc\mn{C}]ta \[^\mn{B}]Ma\[^\mn{A}]r|i\[^\mn{E}]a \altchords{\id[1]{(Gm)}|Gm | \e}
+    Cheia \[\bmc\mn{G}]de a\[^\mn{F}]le\[^\mn{E}]gri|\[\mncadj{.8ex}{B}Bm7&5]{-a lá} \[^\mn{D}]no \[\bmc\mn{C}]seu \[^\mn{B}]jar\[^\mn{E}]di|\[E]m \[\bm] \altchords{|Am7\flt{}5 |D}
+    Ha|\[\mnc{D}Dm]via um an\[^\mn{E}]jo i\[\bmc\mn{F}]lu\[^\mn{D}]mi\[^\mn{A}]na|\[Am]{-do} \altchords{|Cm |Gm}
+    \[^\mn{E}]Junto \[\bmc\mn{C}]ao \[^\mn{A}]seu \[^\mn{B}]la|\[E]{-do} vin\[^\mn{D}]do \[\mnc{C}E7]pa\[^\mn{B}]ra \[^\mn{A}]mi|\[Am]m \[\bm] \altchords{|D D7 |Gm}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Eu |^{vi a lua} ^radian|-te
+    Lá no ^céu distan|^{-te derra}^mar sua lu|^z ^
+    Em |^meio a tan^ta bele|^{-za}
+    Com sua ^Reale|^{-za} Apare^ceu Jesu|^s ^
+  \endchorus
+  \beginchorus
+    Não |^{sei por} quanto ^tempo e|u
+    Permane^ci para|^{-do no mes}^mo luga|^r ^
+    A|^quele olhar lin^do e sere|^{-no}
+    Me sen^ti peque|^{-no} me pus ^a chora|^r ^
+  \endchorus
+  \beginchorus
+    Aos |^poucos tudo ^foi subin|-do
+    Foi se ^desmanchan|^{-do na i}^mensidã|^o ^
+    En|^tão eu enxu^guei meu pran|^{-to}
+    Nunca ^chorei tan|^{-to} feliz ^de emoçã|^o ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-12
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        e4 | a8 a a b c4 b8 a8~ | a8 e e e g4 f8 e8~
+        | e8 b b d c4 b8 e8~ | e2.
+        e4 | d8 d d e f4 d8 a'8~ | a8 a e e c4 a8 b8~
+        | b8 b b d c4 b8 a8~ | a2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1"
+      \repeat volta 2 {
+        Eu | vi a Mãe San -- ta Ma -- ri -- | _ a;
+        Chei -- a de~a -- le -- gri -- | _ a lá no seu jar -- dim; | _
+        Ha -- | vi -- a~um an -- jo~i -- lu -- mi -- na -- | _ do;
+        Jun -- to ao seu la -- | _ do vin -- do pa -- ra mim. | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Eu | vi a lu -- a ra -- di -- an -- | _ te;
+        Lá no céu dis -- tan -- | _ te der -- ra -- mar sua luz; | _
+        Em | mei -- o a tan -- ta be -- le -- | _ za;
+        Com sua Re -- a -- le -- | _ za~A -- pa -- re -- ceu Je -- sus. | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Não | sei por quan -- to tem -- po eu; | _
+        Per -- ma -- ne -- ci pa -- ra -- | _ do no mes -- mo lu -- gar; | _
+        A -- | que -- le~o -- lhar lin -- do~e se -- re -- | _ no;
+        Me sen -- ti pe -- que -- | _ no me pus a cho -- rar. | _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Aos | pou -- cos tu -- do foi su -- bin -- | _ do;
+        Foi se des -- man -- chan -- | _ do na i -- men -- si -- dão; | _
+        En -- | tão eu en -- xu -- guei meu pran -- | _ to;
+        Nun -- ca cho -- rei tan -- | _ to fe -- liz de~e -- mo -- ção. | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4
+        | a1:m | a:m | b:m7.5- | e
+        | d:m | a:m | e2 e2:7 | a2.:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I saw Mother Holy Mary full of joy there in her garden,
+    there was an illuminated angel by her side coming towards me.
+    \nextverse
+    I saw the radiant moon in the distant sky pouring its light,
+    amidst so much beauty, with his Majesty, Jesus appeared.
+    \nextverse
+    I don't know for how long I stood still in the same place,
+    that beautiful and serene gaze made me feel small, and I started to cry.
+    \nextverse
+    Little by little, everything was rising, unraveling in the vastness,
+    then I wiped away my tears, never cried so much, happy with emotion.
+  \end{translation}
+  \begin{explanation}
+    Cidu é a mãe de Glauco. / Cidu is the mother of Glauco.
+  \end{explanation}
+\endsong
 
