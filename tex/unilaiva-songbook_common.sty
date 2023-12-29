@@ -1466,7 +1466,7 @@
       \renewcommand\capo[1]{% % redefines \capo command inside this command
         {\normalfont (capo ##1)}%
       }%
-      \makebox[0pt][r]{\raisebox{4ex}{%
+      \makebox[0pt][r]{\raisebox{4.5ex}{%
         \tiny\colorbox{notebgcolor}{\normalfont \textbf{#2:}}%
       }}%
     \fi%
@@ -1505,7 +1505,7 @@
   \ifchorded\ifshowaltchords%
     \vspaceifnotinverse{.618034\baselineskip}%
     \hfill%
-    {\printchord{\altchordstyle\color{currentaltchordcolor}#1}}%
+    {\printchord{\raisebox{.5ex}{\altchordstyle\color{currentaltchordcolor}#1}}}%
   \fi\fi%
 }
 
