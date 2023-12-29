@@ -2839,9 +2839,15 @@
 }
 
 % Creates a textual note attached to the material coming after it.
-\newcommand{\textnotefornext}[1]{%
-  \ultextnote[\versesep][0.618034\versesep]{#1}%
-}
+% Starred version omits glueverses. The starred version omits glueverses:
+% use the star if before 1st verse.
+\NewDocumentCommand{\textnotefornext}{m s}{%
+  \IfBooleanTF{#2}{%
+    \ultextnote[\versesep][0.618034\versesep]{#1}*%
+  }{%
+    \ultextnote[\versesep][0.618034\versesep]{#1}%
+  }%
+}%
 
 % Creates a textual note in the middle of preceding and consequent material.
 % It is attached to the material coming after it, but does not call \glueverses.
@@ -2865,9 +2871,16 @@
 
 % Creates a music note attached to the material coming after it.
 % Music notes are only displayed if chords are enabled, and in the same color
-% as the chords.
-\newcommand{\musicnotefornext}[1]{%
-  \ifchorded\textnotefornext{\color{chordcolor}#1}\fi%
+% as the chords. The starred version omits glueverses: use the star if before
+% 1st verse.
+\NewDocumentCommand{\musicnotefornext}{m s}{%
+  \ifchorded%
+    \IfBooleanTF{#2}{%
+      \textnotefornext{\color{chordcolor}#1}*%
+    }{%
+      \textnotefornext{\color{chordcolor}#1}%
+    }%
+  \fi%
 }
 
 % Creates a textual note in the middle of preceding and consequent material.
