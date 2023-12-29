@@ -3978,3 +3978,212 @@
   \end{explanation}
 \endsong
 
+
+\scleardpage
+\beginsong{Santa Cura}[by={Marie Gabriella}, key={Bm}, gk={Bm, (Bm)--C}, ph={III}]
+  \audio[key=Bm]{https://www.youtube.com/watch?v=ryTDgrUhD1g}
+  \audio[key=Bm]{https://soundcloud.com/victor-coelho-428056579/santa-cura-marie-gabriella-mp3}
+  \meter{3}{4}
+  \textnotefornext{intro:}*
+  \mnbeginchorus
+    \ind[2] \[\mn{B}]Cura |\[\mnc{D}Bm]vem\[\mn{B}], |\[\mn{D}]vem \[\mn{B}]cu|\[\mnc{F#}F#m]rar | \e \altchords{\id[1]{Am \capo{2}}\meter{3}{4}|Am |  |Em | \e}
+    \ind[2] \[\mn{B}]Vem cu|\[Bm]rar to|\[\mn{D}]das \[\mn{B}]do|\[\mnc{F#}D]enças \altchords{|Am |  |C}
+    \ind[2] |\[\mnc{E}Em]Santa |\[\mnc{D}D]cu\[\mn{B}]ra |\[\mnc{D}F#m]vem \[\mn{C#}]cu|\[\mnc{B}Bm]rar \altchords{|Dm |C |Em |Am}
+  \mnendchorus
+  \meter{4}{4}
+  \mnbeginchorus
+    \[\bmc\mn{D}]Os \[\mn{C#}]pon|\[\mnc{B}Bm]tos são \[\bmc\mn{D}]tão \[\mn{B}]es|\[\mnc{F#}F#m]curos \altchords{\meter{4}{4}|Am |Em}
+    \[\bmc\mn{E}]Quem pe|\[\mnc{D}Bm]de \[\mn{B}]ja \[\mnc{G}Em]me \[\mn{F#}]faz |\[\mn{E}]ver \altchords{|Am Dm | \e}
+    \[\bmc\mn{G}]Que é \[\mn{F#}]pe|\[\mn{E}]din\[\mn{D}]do \[\bmc\mn{C#}]e \[\mn{B}]ro|\[\mnc{F#}Bm]gando \altchords{|  |Am}
+    \[\bmc\mn{B}]Que co|\[\mnc{F#}F#m]meça a \[\mn{B}]se \[\bmc\mn{D}]com\[\mn{C#}]preen|\[\mnc{B}Bm]der \altchords{|Em |Am}
+  \mnendchorus
+  \mnbeginchorus\memorize
+    \ind \[\bmc\mn{D}]Co\[^\mn{B}]mo |\[\mnc{D}Bm]tu \[^\mn{B}]és \[\bmc\mn{D}]com\[^\mn{B}]pai|\[\mnc{F#}F#m]xão
+    \ind \[\bmc\mn{B}]E o a|\[Bm]mor su\[\mnc{G}Em]a \[^\mn{F#}]pre|\[^\mn{E}]sença
+    \ind \[\bmc\mn{G}]Te\[^\mn{F#}]nha |\[^\mn{E}]pie\[\bmc\mn{C#}]da\[^\mn{B}]de |\[\mnc{F#}Bm]mãe
+    \ind \[\bmc\mn{B}]De tan|\[\mnc{F#}F#m]ta \[^\mn{B}]in\[\bmc\mn{D}]cons\[^\mn{C#}]ci|\[\mnc{B}Bm]ência
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    ^Nos de |^força pa^ra se|^guir
+    ^Não nos |^deixa es^more|cer
+    ^Santa |cura ^vem a|^qui
+    Pa^ra sa|^úde esta^bele|^cer
+  \endchorus
+  \beginchorus
+    \ind ^Nos de |^força pa^ra se|^guir
+    \ind For^ça da |^Terra ^vem sa|nar
+    \ind Sa^úde e |vens para ^prosse|^guir
+    \ind Er^vas e |^plantas a ^nos \up{1}sal|^var \altlyr[2]{sau|dar}
+  \endchorus
+  \beginchorus
+    ^Verde |^vem, verde ^vem vem |^mais
+    ^Verde |^vem vem es^verde|ar
+    ^Vem mos|trar a ^sua |^força
+    ^Força |^das á^guas do |^mar
+  \endchorus
+  \beginchorus
+    \ind ^Verde |^vem com ^seu a|^mor
+    \ind ^Verde |^vem pu^rifi|car
+    \ind ^Verde |vem cu^rando a |^dor
+    \ind Cu^rando |^vem a^livi|^ar
+  \endchorus
+  \beginchorus
+    Ver^de é a|^mor, ver^de é espe|^rança
+    ^Verde |^{é e sem}^pre se|rá
+    ^A cor |da sa^grada |^Ganga
+    ^Que está |^sempre a a^benço|^ar
+  \endchorus
+  \showlilypondfalse % to save space
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-12
+    \include "tex/lp-include-head.ly"
+
+    theMelody = \relative b' {
+      \key b \minor
+      \set melismaBusyProperties = #'()
+      \slurSolid
+      \time 3/4 \partial 2
+      \tempo "Andante moderato" 4 = 100
+      \repeat volta 2 { % intro
+        b4 \sectionmark "intro" b | d2( b4) | d2 b4 | fis2.~ | fis4 b b | b2 b4 | d2 b4 | fis'2 fis4
+        | e2 e4 | d2 b4 | d2 cis4 | b2.~ \fermata | b4
+      }
+      \slurDashed
+      \time 4/4 \partial 2
+      \tempo "Moderato" 4 = 120
+      \repeat segno 3 {
+        \repeat volta 2 { % odd verses
+          d4 \sectionmark "1., 3., 5." cis | b b8( b) d4 b | fis'4.( fis8) e4 e | d b g'4. fis8 | e2
+          g4 fis | e d cis b | fis4( fis8) fis8 b4 b | fis'4 << fis8 \once\slurDown \single\altcol b,8 \single\altcol ( >> b8) d4 cis4 | b2
+        }
+        \repeat volta 2 { % even verses
+          d4 \sectionmark "2., 4., 6." b | d << \single\altcol d8 \once\slurDown b8( >> b) d4 b | fis4( << fis) \single\altcol b4 >> b4 b | b b g' \single\altcol ( << \single\altcol g8) \once\slurDown fis8( >> fis8) | e4( e8)( e8) g4 fis | e << \single\altcol e8 \once\slurDown d8( >> d8) cis4 b | fis4.( fis8)
+          b4 b | fis'<< \single\altcol fis8 \once\slurDown b,8( >> b8) d4 cis | b4( b4) \genmark "(6.ii)"
+        }
+      }
+      \repeat volta 2 { % final verse (odd style)
+        d4 \sectionmark "7." cis | b b4 d4 b | fis'4. fis8 e4 e | d b g'4. fis8 | e2
+        g4 fis | e d cis b | fis4 fis4 b4 b | fis'4 << fis8 \once\slurDown \single\altcol b,8 \single\altcol ( >> b8) d4 cis4 | b4( b4) \genmark "(i)"
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "[intro]"
+      \repeat volta 2 {
+        Cu -- ra | vem, _ | vem cu -- | rar;
+        | _ Vem cu -- | rar to -- | das do -- | en -- ças;
+        | San -- ta | cu -- ra | vem cu -- | rar. _
+      }
+      \repeat segno 3 {
+        <<
+          {
+            \set stanza = "1."
+            \repeat volta 2 {
+              Os pon -- | tos são __ _ tão es -- | cu -- ros;
+              Quem pe -- | de ja me faz | ver;
+              Que~é pe -- | din -- do e ro -- | gan -- do; __ _
+              Que co -- | me -- ça~a se com -- preen -- | der.
+            }
+            \set stanza = "2."
+            \repeat volta 2 {
+              Co -- mo | tu és __ _ com -- pai -- | xão; __ _
+              E~o a -- | mor su -- a pre -- _ | sen -- ça; __ _
+              Te -- nha | pi -- e -- _ da -- de | mãe; __ _
+              De tan -- | ta in -- _ cons -- ci -- | ên -- cia.
+            }
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "3."
+            \repeat volta 2 {
+              Nos de | for -- ça pa -- ra se -- | guir; __ _
+              Não nos | dei -- xa~es -- mo -- re -- | cer;
+              San -- ta | cu -- ra vem a -- | qui; __ _
+              Pa -- ra sa -- | ú -- de~es -- ta -- be -- le -- | cer.
+            }
+            \set stanza = "4."
+            \repeat volta 2 {
+              Nos de | for -- \altcol ça pa -- ra se -- | guir;
+              \altcol For -- ça da | Ter -- ra \altcol vem __ _ sa -- | nar; __ _
+              Sa -- ú -- de~e | vens \altcol pa -- ra pros -- se -- | guir;
+              Er -- vas e | plan -- \altcol tas a nos sal -- | var. _ % 2nd repeat: sau | dar. _
+            }
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "5."
+            \repeat volta 2 {
+              Ver -- de | vem, ver -- de vem vem | mais; __ _
+              Ver -- de | vem vem~es -- ver -- de -- | ar;
+              Vem mos -- | trar a su -- a | for -- ça; __ _
+              For -- ça | das \altcol á -- _ guas do | mar.
+            }
+            \set stanza = "6."
+            \repeat volta 2 {
+              Ver -- de | vem com __ _ seu a -- | mor; __ _
+              Ver -- de | vem pu -- ri -- fi -- _ | car; __ _ _
+              Ver -- de | vem cu -- _ ran -- do~a | dor;
+              Cu -- ran -- do | vem a -- _ li -- vi -- | ar. \set stanza = "7." \parenthesize Ver--
+            }
+          }
+        >>
+      }
+      \set stanza = "7."
+      \repeat volta 2 {
+        de~é a -- | mor, ver -- de~é~es -- pe -- | ran -- ça;
+        Ver -- de | é~e sem -- pre se -- | rá;
+        A cor | da sa -- gra -- da | Gan -- ga;
+        Que~es -- tá | sem -- pre a~a -- ben -- ço -- | ar. \parenthesize Ver--
+      }
+    }
+    theChords = \chordmode {
+      %\time 3/4 \partial 2
+      \repeat volta 2 {
+        s2 | b2.:m | b2.:m | fis2.:m | fis2.:m
+        | b2.:m | b2.:m | d2. | e2.:m | d2. | fis2.:m | b2.:m | b4:m
+      }
+      %\time 4/4 \partial 2
+      \repeat segno 3 {
+        \repeat volta 2 {
+          s2 | b1:m | fis1:m | b2:m e2:m
+          | e1:m | e1:m | b1:m | fis1:m | b2:m
+        }
+        \repeat volta 2 {
+          s2 | b1:m | fis1:m | b2:m e2:m
+          | e1:m | e1:m | b1:m | fis1:m | b2:m
+        }
+      }
+      \repeat volta 2 {
+        s2 | b1:m | fis1:m | b2:m e2:m
+        | e1:m | e1:m | b1:m | fis1:m | b2:m
+      }
+    }
+%     \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Healing comes, come to heal
+    Come to heal all diseases
+    Holy healing come to heal
+    \nextverse
+    The points are so dark, whoever asks makes me see
+    It is by asking and pleading that understanding begins
+    \nextverse
+    How compassionate you are, and love is your presence
+    Have mercy, mother, on so much unconsciousness
+    \nextverse
+    Give us strength to go on, don't let us weaken
+    Holy healing come here to establish health
+    \nextverse
+    Give us strength to go on; strength of the Earth, come heal
+    Health and come to continue; herbs and plants to \up{1}save us \up{2}(salute us)
+    \nextverse
+    Green comes, green comes, come more, green comes, come verdant
+    Come show your strength, strength of the waters of the sea
+    \nextverse
+    Green comes with your love, green comes to purify
+    Green comes healing the pain, healing comes to relieve
+    \nextverse
+    Green is love, green is hope; Green is and always will be
+    The color of the sacred Ganges, that is always blessing
+  \end{translation}
+\endsong
