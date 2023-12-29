@@ -168,22 +168,88 @@
 
 
 \beginsong{Lämpö, löyly}[by={larva}, tags={sauna}, key={Am}, gk={Am, G\shrp{}m--Em}]
-  \beginchorus\memorize
-    |\[Am]{} \[^\mn{A}]Lämpö, |\[^\mn{E}]löyly, \[\mncii{D}{E}G]iha|\[\mncii{C}{B}C]nai\[^\mn{C}]nen | \e
-    |\[Dm]{} Poista |\[E]kiire aina|\[Am]hinen | \e
-  \endchorus
+  \mnbeginchorus\memorize
+    |\[Am] \[\bmc\mn{A}]Lämpö, |\[^\mn{E}]löyly, \[\mnc{D}G]i\[^\mn{E}]ha|\[\mncii{C}{B}C]nai\[^\mn{C}]nen\[\bm] |{ }{ }\[\bm]\e
+    |\[Dm] \[\bmc\mn{D}]Poista \[^\mn{E}]k|\[E]ii\[^\mn{D}]re \[^\mn{C}]a\[\bm]i\[^\mn{B}]na|\[\mncii{A}{G#}Am]hi\[^\mn{A}]nen\[\bm] |{ }{ }\[\bm]\e
+  \mnendchorus
   \notesoff
   \beginchorus
-    |^ Täytä s|ielu, t^yhjää |^mieli | \e
-    |^ Anna |^ajatusten |^sulaa | \e
+    |^ ^Täytä s|ielu, t^yhjää |^mieli^ |{ }{ } ^\e
+    |^ ^Anna a|^{-ja}t^usten |^sulaa^ |{ }{ } ^\e
   \endchorus
   \beginchorus
-    |^ Tuli, |vesi, ^vasta|^jaiset | \e \altchords{\id[1]{(Dm)}|Dm | - C |F | \e}
-    |^ Yhes |^löylyn tänne |^tuovat | \e \altchords{|Gm |A |Dm | \e}
+    |^ ^Tuli, |vesi, ^vasta|^jaiset^ |{ }{ } ^\e \altchords{\id[1]{(Dm)}|Dm | - C |F | \e}
+    |^ ^Yhes |^löylyn ^tänne |^tuovat^ |{ }{ } ^\e \altchords{|Gm |A |Dm | \e}
   \endchorus
-  \beginchorus\noteson
-    \ind |\[F]{} \[\mn{C}]Ilon, |\[\mnc{D}E7]rau\[\mn{C}]han, \[\mn{B}]meil\[\mn{C}]le |\[\mncii{A}{G#}Am]suo\[\mn{A}]vat \altchords{|B\flt{} |A7 |Dm}
-  \endchorus
+  \mnbeginchorus\noteson
+    \ind |\[F] \[\bmc\mn{C}]Ilon, |\[\mnc{D}E7]rau\[\mn{C}]han, \[\bmc\mn{B}]meil\[\mn{C}]le |\[\mncii{A}{G#}Am]suo\[\mn{A}]vat\[\bm] |{ }{ } \[\bm]\e \altchords{|B\flt{} |A7 |Dm | \e}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % written and transcribed by larva, latest update on 2023-12
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \key a \minor \slurSolid
+      \set melismaBusyProperties = #'()
+      %\tempo 4 = 100
+      \time 4/4 %\partial 2
+      \repeat volta 2 { %v1
+        r2 a4 a | e' e d e | c8( b8) c2.~ | c1
+        r2 d4 d8 e8~ | e4 d8 c8~c4 b | a8( gis) a2.~ | a1
+      }
+      \repeat volta 2 { %v2
+        r2 a4 a8 e'8~ | e4 e8 d8~ d4 e | c8( b8) c2.~ | c1
+        r2 d4 d8 e8~ | e4 d8 c8~c4 b | a8  a~ a2.~ | a1
+      }
+      \repeat volta 2 { %v3
+        r2 a8 a4. | e'8 e8~ e4 d e | c8( b8) c2.~ | c1
+        r2 d8 d4. | e4 d c b | a8( gis) a2.~ | a1
+      }
+      \tempo "rit."
+      \repeat volta 2 { %outro
+        r2 c8 c8~ c4 | d c b c | a8( gis) a2.~ | a1
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Läm -- pö, | löy -- ly, i -- ha -- | nai -- _ nen; | _
+        Pois -- ta kii -- | _ re ai -- _ na -- | hi -- _ nen. | _
+      }
+      \set stanza = "2."
+      \repeat volta 2 {
+        Täy -- tä sie -- | _ lu, tyh -- _ jää | mie -- _ li; _
+        An -- na a -- | _ ja -- tus -- _ ten | su -- laa. _ | _
+      }
+      \set stanza = "3."
+      \repeat volta 2 {
+        Tu -- li, | ve -- si, _ vas -- ta -- | jai -- _ set; | _
+        Y -- hes | löy -- lyn tän -- ne | tuo -- _ vat. | _
+      }
+      \repeat volta 2 {
+        I -- lon, _ | rau -- han, meil -- le | suo -- _ vat. | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        | a1:m | a2:m g | c1 | c1
+        | d1:m | e1 | a1:m | a1:m
+      }
+      \repeat volta 2 {
+        | a1:m | a2:m g | c1 | c1
+        | d1:m | e1 | a1:m | a1:m
+      }
+      \repeat volta 2 {
+        | a1:m | a2:m g | c1 | c1
+        | d1:m | e1 | a1:m | a1:m
+      }
+      \repeat volta 2 {
+        | f1 | e1:7 | a1:m | a1:m
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+   \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 \nextcol % Jump to the next page; can be removed when there wouldn't be an empty page
