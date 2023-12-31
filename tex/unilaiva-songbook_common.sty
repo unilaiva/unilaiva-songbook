@@ -2077,6 +2077,10 @@
 %   \mnc{<note>}                    : on verse's first line, above a chord
 %   \mncii{<note>}{<note>}          : on first line, 2 notes, above a chord
 %   \mnciii{<note>}{<note>}{<note>} : on first line, 3 notes, above a chord
+%   \mnciv{<note>}{<note>}{<note>}{<note>}
+%                                   : on first line, 4 notes, above a chord
+%   \mncv{<note>}{<note>}{<note>}{<note>}{<note}
+%                                   : on first line, 4 notes, above a chord
 %   \mncadj{<hadj>}{<note>}         : on first line, above a chord, with
 %                                     adjusted horizontal position
 %   \mnlow{<notename>}              : on other lines of a verse
@@ -2226,6 +2230,34 @@
       \@note{#1}\@note{#2}\@note{#3}%
       \@calcmncirclewidth%
       \hspace{-3\@mncirclewidth}%
+    \fi%
+  \fi%
+}
+
+% Displays four melody notes above a chord, to be used on the first line of
+% lyrics. See above for usage information.
+\newcommand{\mnciv}[4]{%
+  \ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \@mnnegspacefalse%
+      \@note{#1}\@note{#2}\@note{#3}\@note{#4}%
+      \@calcmncirclewidth%
+      \hspace{-4\@mncirclewidth}%
+    \fi%
+  \fi%
+}
+
+% Displays five melody notes above a chord, to be used on the first line of
+% lyrics. See above for usage information.
+\newcommand{\mncv}[5]{%
+  \ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \@mnnegspacefalse%
+      \@note{#1}\@note{#2}\@note{#3}\@note{#4}\@note{#5}%
+      \@calcmncirclewidth%
+      \hspace{-5\@mncirclewidth}%
     \fi%
   \fi%
 }

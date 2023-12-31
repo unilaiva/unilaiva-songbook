@@ -74,23 +74,109 @@
 \endsong
 
 
-\beginsong{Hetki}[by={larva},tags={kiitollisuus},ph={III, IV}]
-  \beginchorus\memorize
-    |\[\mnc{D}Dm]Mie\[^\mn{A}]li |\[Gm]kuljettaa |\[Am]mennee\[Am7]seen ja |\[Dm]tulevaan
-    |\[Dm]Hetki |\[Gm]katoaa |\[Am]aja\[C]tusten |\[Dm]mukana
-  \endchorus
-  \notesoff
-  \beginchorus
-    |\[Dm]Oi kuinka \[C]kaipaan |\[Dm]niin
-    |\[B&]Sitä mitä \[C]en osaa |\[Dm]saavuttaa
-  \endchorus
-  \beginchorus
-    \up{1}(mutta) |\[C#]Kiitos kiitos kiitos kiitos |kiitos tästä hetkes|\[Dm]tä | \e
-  \endchorus
-  \beginchorus
-    Se |^opettaa |^elämään |^elämää ^ |^tässä vaan
-    |^Opettaa |^elämään |^e-^elä|^mää!
-  \endchorus
+\beginsong{Hetki}[by={larva},tags={kiitollisuus},ph={III, IV},key={Bm},gk={Bm}]
+  \mnbeginchorus
+    |\[\mnc{B}Bm]Mie\[\bm]{ - }\[\mn{F#}]li |\[\mnc{G}Em]kul\[\mn{F#}]jet\[\mn{G}]taa\[\bm]{} |\[\mnc{F#}F#m]mennee\[F#m7]seen \[\mn{C#}]ja |\[\mnc{D}Bm]tu\[\mn{C#}]le\[\mn{B}]vaan\[\bm]
+    |Het\[\bm]{ - }\[\mn{F#}]ki |\[\mnc{G}Em]ka\[\mn{F#}]to\[\mn{G}]aa\[\bm]{} |\[\mnc{F#}F#m]ajat\[A]us\[\mn{C#}]ten |\[\mnc{D}Bm]mu\[\mn{C#}]ka\[\mn{B}]na \[\bm]
+  \mnendchorus
+  \mnbeginchorus
+    |\[\mnc{B}Bm]Oi kuin\[\mn{C#}]ka \[\mnc{D}A]kaipaan |\[\mnciii{D}{C#}{B}Bm]niin \[\mn{A}]\[\bmc\mn{B}] |\[\mnc{G}G]sitä mitä \[\mnc{A}A]en osaa |\[\mnc{B}Bm]saa\[\mn{A}]vut\[\mn{B}]taa\[\bm]
+  \mnendchorus
+  \mnbeginchorus
+    \up{1}(mutta) |\[\mnc{A#}A#]Kiitos kiitos \[\bm]kiitos kiitos |kiitos tästä \[\bmc\mn{C#}]hetkes|\[\mnc{B}Bm]tä \[\bm]{} | \e
+  \mnendchorus
+  \mnbeginchorus
+    \[\mn{F#}]Se |\[Bm]o\[\mn{E}]pet\[\mn{F#}]taa\[\bm]{} |\[\mnc{G}Em]e\[\mn{F#}]lä\[\mn{G}]mään\[\bm]{} |\[\mnc{F#}F#m]e\[\mn{E}]lä\[\mn{F#}]mää\[F#m7]{} |\[\mnc{D}Bm]täs\[\mn{C#}]sä \[\mn{B}]vaa\[\bm]n
+    |\[\mn{F#}]O\[\mn{E}]pet\[\mn{F#}]taa\[\bm]{} |\[\mnc{G}Em]e\[\mn{F#}]lä\[\mn{G}]mään\[\bm]{} |\[\mnc{F#}F#m]e\[\mnc{A}A]elä|\[\mnc{B}Bm]mää! \[\bm]
+  \mnendchorus
+  \ifshowlilypond\vspace{-1ex}\fi % to fit on one page
+  \begin{lilywrap}\begin{lilypond}[]
+    % by larva (2018), transcribed by larva (latest update on 2023-12)
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \key b \minor \slurSolid
+      \set melismaBusyProperties = #'()
+      %\tempo 4 = 120
+      \time 4/4
+      \repeat volta 2 {
+        | b2. fis'4 | g8 fis g2. | fis4 fis fis4. cis8 | d8 cis b2.
+        | b2. fis'4 | g8 fis g2. | fis4 fis8 fis8~4 cis4 | d8 cis b2.
+      }
+      \repeat volta 2 {
+        | b4 b8 cis d4 d | d8( cis b a b2) | g8 g g g a4 a8 a
+      } \alternative {
+        { | b8 a b2. }
+        { | b8 a b2 b8 b8 }
+      }
+      \repeat volta 2 {
+        | ais8 8 8 8 8 8 8 8 | 8 8 8 8 cis4 cis4
+      } \alternative {
+        { | b1~ | b1 }
+        { | b1~ | b2. }
+      }
+      \repeat volta 2 {
+        fis'4 | fis8 e8 fis2. | g8 fis g2. | fis8 e8 fis2. | d4 cis8 b8~ 2
+        | fis'8 e8 fis2. | g8 fis g2. | fis2( a4) a
+      } \alternative {
+        { | b2. }
+        { | b1 }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 2 {
+        | Mie -- li | kul -- jet -- taa | men -- nee -- seen ja | tu -- le -- vaan
+        | Het -- ki | ka -- to -- aa | a -- ja -- tus -- _ ten | mu -- ka -- na
+      }
+      \repeat volta 2 {
+        | Oi kuin -- ka kai -- paan | niin _ _ _ _ | si -- tä mi -- tä en o -- saa
+      } \alternative {
+        { | saa -- vut -- taa }
+        { | saa -- vut -- taa, mut -- ta }
+      }
+      \repeat volta 2 {
+        | Kii -- tos kii -- tos kii -- tos kii -- tos | kii -- tos täs -- tä het -- kes --
+      } \alternative {
+        { | tä | _ }
+        { | tä | _ }
+      }
+      \repeat volta 2 {
+        Se | o -- pet -- taa | e -- lä -- mään | e -- lä -- mää | täs -- sä vaan _
+        | O -- pet -- taa | e -- lä -- mään | e -- _ lä --
+      } \alternative {
+        { | mää! }
+        { | mää! }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        | b1:m | e:m | fis2:m fis2:m7 | b1:m
+        | b:m | e:m | fis2:m a2 | b1:m
+      }
+      \repeat volta 2 {
+        | b2:m a | b1:m | g2 a2
+      } \alternative {
+        { | b1:m }
+        { | b1:m }
+      }
+      \repeat volta 2 {
+        | ais1 | ais
+      } \alternative {
+        { | b:m | b:m }
+        { | b:m | b2.:m }
+      }
+      \repeat volta 2 {
+        s4
+        | b1:m | e:m | fis2:m fis2:m7 | b1:m
+        | b:m | e:m | fis2:m a2
+      } \alternative {
+        { | b2.:m }
+        { | b1:m }
+      }
+    }
+    \layout { #(layout-set-staff-size 11) } % for better fit
+   \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
@@ -182,7 +268,7 @@
     |^ ^Yhes |^löylyn ^tänne |^tuovat^ |{ }{ } ^\e \altchords{|Gm |A |Dm | \e}
   \endchorus
   \mnbeginchorus\noteson
-    \ind |\[F] \[\bmc\mn{C}]Ilon, |\[\mnc{D}E7]rau\[\mn{C}]han, \[\bmc\mn{B}]meil\[\mn{C}]le |\[\mncii{A}{G#}Am]suo\[\mn{A}]vat\[\bm] |{ }{ } \[\bm]\e \altchords{|B\flt{} |A7 |Dm | \e}
+    \ind |\[F] \[\bmc\mn{C}]Ilon, |\[\mnc{D}E7]rau\[\mn{C}]han, \[\bmc\mn{B}]meil\[\mn{C}]le |\[\mncii{A}{G#}Am]suo\[\mn{A}]vat\[\bm]{} |{ }{ } \[\bm]\e \altchords{|B\flt{} |A7 |Dm | \e}
   \mnendchorus
   \begin{lilywrap}\begin{lilypond}[]
     % by larva in 2015, transcribed by larva (latest update on 2023-12)
