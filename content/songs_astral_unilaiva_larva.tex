@@ -120,3 +120,114 @@
     In the peace of Santo Daime, I'll meditate.
   \end{translation}
 \endsong
+
+
+\beginsong{Sou Daime, Sou um Espelho}[by={larva}, key={Am}, gk={Am, Gm--Am}]
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Sou |\[\mnc{A}Am]Dai\[^\mn{B}]me, \[\bmc\mn{C}]sou \[^\mn{B}]um \[^\mn{A}]es|\[\mnc{D}Dm]pe\[\bm]lho
+    para |te \[^\mn{F}]mos\[\mnc{A}F]trar \[^\mn{F}]{a ti} |\[\mnc{E}E]mes\[\bm]mo
+    Se es|ti\[^\mn{G#}]ve\[^\mn{A}]res \[\bmc\mn{B}]dis\[^\mn{A}]pos\[^\mn{G#}]{to a} |\[^\mn{E}]ver \[\bm]
+    Se es|\[\mnc{D}Dm]ti\[^\mn{B}]ve\[^\mn{F}]res \[\mnc{E}E]dis\[^\mn{C}]pos\[^\mn{B}]{to a} |\[\mnc{A}Am]ver \[\bm]
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Sou |^Daime, ^sou um por|^tal ^ \altchords{\id[1]{(Gm)}|Gm |Cm}
+    Para |mundos re^ais e imagi|^na^dos \altchords{| - E\flt{} |D}
+    Deves |julgar ^qual é |qual ^ \altchords{| - | \e}
+    Deves |^julgar ^qual é |^qual ^ \altchords{|Cm D |Gm}
+  \endchorus
+  \beginchorus
+    Sou |^Daime, ^sou A|^mor ^
+    E |tam^bém és |^tu ^
+    A|mor per^meia |tu^do
+    A|^mor per^meia |^tu^do
+  \endchorus
+  \beginchorus
+    Sou |^Daime, con^fia em |^mim, ^
+    No Uni|verso, ^em ti |^mes^mo
+    E se|rás a^benço|a^do
+    E se|^rás a^benço|^a^do
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %  song and transcription by larva, latest update on 2024-01
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \key a \minor \slurDashed
+      \set melismaBusyProperties = #'()
+      %\tempo 4 = 100
+      \time 4/4 \partial 4
+      \repeat volta 2 {
+        e4 \posectionmark "A" | a,4( a8) b8 c4( b8) a8 | d2( d8)( d8)( d8) d8
+        | d4( d8) f8 a8( a8) f8( f8) | e2 e4
+        \parenthesize e8 \sectionmark "B:i" e8
+        | e4 gis8( a8) b4( a8) gis8 | e2( e4)
+        \parenthesize e8 \sectionmark "B:ii" e8
+        | d4 b8( f'8) e4( c8) b8 | a2( a4)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Sou | Dai -- _ me, sou um es -- | pe -- lho; __ _
+        pa -- ra | te __ _ mos -- trar __ _ a ti | mes -- mo;
+        Se es -- | ti -- ve -- res dis -- pos -- to~a | ver; __ _
+        Se es -- | ti -- ve -- res dis -- pos -- to~a | ver. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Sou | Dai -- _ me, sou um por -- | tal; __ _ _
+        Pa -- ra | mun -- dos re -- ais e~i -- ma -- gi -- | na -- dos;
+        De -- ves | jul -- gar __ _ qual __ _ é | qual; __ _
+        De -- ves | jul -- gar __ _ qual __ _ é | qual. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Sou | Dai -- _ me, sou __ _ A -- | mor; __ _ _
+        \skip 1 E | tam -- _ _ bém __ _ és __ _ | tu; __ _
+        \skip 1 A -- | mor per -- _ mei -- _ a | tu -- do;
+        \skip 1 A -- | mor per -- _ mei -- _ a | tu -- do.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Sou | Dai -- me, con -- fi -- a em | mim, __ _
+        No U -- ni -- | ver -- _ so, em __ _ ti __ _ | mes -- mo;
+        E se -- | rás a -- _ ben -- _ ço -- | a -- do;
+        E se -- | rás a -- _ ben -- _ ço -- | a -- do.
+      }
+    }
+    theChords = \transpose a g \chordmode {
+      \repeat volta 2 {
+        s4 | a1:m | d:m | d2:m f
+        | e2.
+        s4
+        | e1 | e2.
+        s4
+        | d2:m e2 | a2.:m
+      }
+    }
+%     \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    I am Daime; I am a mirror to show you yourself,
+    If you're willing to see, if you're willing to see.
+    \nextverse
+    I am Daime; I am a portal to worlds real and imagined.
+    You must judge which is which, you must judge which is which.
+    \nextverse
+    I am Daime; I am Love, and so are you.
+    Love permeates everything, love permeates everything.
+    \nextverse
+    I am Daime; trust me, the Universe, yourself,
+    And you will be blessed, and you will be blessed.
+  \end{translation}
+\endsong
+
+
