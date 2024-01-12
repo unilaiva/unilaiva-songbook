@@ -122,97 +122,102 @@
 \endsong
 
 
-\beginsong{Sou Daime, Sou um Espelho}[by={larva}, key={Am}, gk={Am, Gm--Am}]
+\beginsong{Sou Daime, Sou um Espelho}[by={larva}, key={Am}, gk={Bm, (Am)--(Bm)--(Cm)}]
   \mnbeginchorus\memorize
-    \[^\mn{E}]Sou |\[\mnc{A}Am]Dai\[^\mn{B}]me, \[\bmc\mn{C}]sou \[^\mn{B}]um \[^\mn{A}]es|\[\mnc{D}Dm]pe\[\bm]lho
-    Para |te \[^\mn{F}]mos\[\mnc{A}F]trar \[^\mn{F}]{a ti} |\[\mnc{E}E]mes\[\bm]mo
-    Se es|ti\[^\mn{G#}]ve\[^\mn{A}]res \[\bmc\mn{B}]dis\[^\mn{A}]pos\[^\mn{G#}]{to a} |\[^\mn{E}]ver \[\bm]
-    Se es|\[\mnc{D}Dm]ti\[^\mn{B}]ve\[^\mn{F}]res \[\mnc{E}E]dis\[^\mn{C}]pos\[^\mn{B}]{to a} |\[\mnc{A}Am]ver \[\bm]
+    |\[\mnc{A}Am]Sou \[A\up{sus2}]{}\[^\mn{B}]Dai|\[\mnc{D}A\up{sus4}]me, \[Am]{}\[^\mn{C}]{} |\[\mnc{B}A\up{sus2}]sou \[Am]{}\[^\mn{C}]um es|\[\mncii{B}{A}A\up{sus2}]{pe}lho \[Am]
+    \[^\mn{E}]Pa|\[^\mn{A}]ra \[A\up{sus2}]{}\[^\mn{B}]{te mos}|\[\mnc{D}A\up{sus4}]trar \[Am]{}\[^\mn{C}]{} |\[\mnc{B}A\up{sus2}]a \[Am]{}\[^\mn{C}]ti |\[\mncii{B}{A}A\up{sus2}]{mes}mo{}\[A\up{sus4}]
+    Se esti|\[\mnc{D}Dm]ve\[\bm]res | dis\[\mnc{E}D\up{sus2}]pos\[^\mn{F}]{to a} |\[\mncii{A}{E}Am]ver \[\bm]{} |{ }{ } \[A\up{sus2}]{} \e
+    Se esti|\[\mnc{B}Em]ve\[\bm]res | dis\[\mnc{D}E7]pos\[^\mn{C}\mn{B}]{to a} |\[\mnc{A}Am]ver \[\bm]{} |{ }{ } \[\bm]{} \e
   \mnendchorus
   \notesoff
   \beginchorus
-    Sou |^Daime, ^sou um por|^tal ^ \altchords{\id[1]{(Gm)}|Gm |Cm}
-    Para |mundos re^ais e imagi|^na^dos \altchords{| - E\flt{} |D}
-    Deves |julgar ^qual é |qual ^ \altchords{| - | \e}
-    Deves |^julgar ^qual é |^qual ^ \altchords{|Cm D |Gm}
+    |^Sou ^{}Dai|^me, ^ |^sou ^{}um por|^tal ^
+    Pa|ra ^{}mun|^dos ^ re|^ais ^{}e imagi|^nados ^
+    Deves jul|^gar ^ |{ }{ } ^qual é |^qual ^ |{ }{ } ^ \e
+    Deves jul|^gar ^ |{ }{ } ^qual é |^qual ^ |{ }{ } ^ \e
   \endchorus
   \beginchorus
-    Sou |^Daime, ^sou A|^mor ^
-    E |tam^bém és |^tu ^
-    A|mor per^meia |tu^do
-    A|^mor per^meia |^tu^do
+    |^Sou ^{}Dai|^me, ^ |^sou ^{}A|^mor ^
+    |E ^{}tam|^bém ^ |^és ^ |^tu ^
+    A|^mor ^ | per^meia |^tu^do |{ }{ } ^ \e
+    A|^mor ^ | per^meia |^tu^do |{ }{ } ^ \e
   \endchorus
   \beginchorus
-    Sou |^Daime, con^fia em |^mim, ^
-    No Uni|verso, ^em ti |^mes^mo
-    E se|rás a^benço|a^do
-    E se|^rás a^benço|^a^do
+    |^Sou ^{}Dai|^me, ^{}con|^fi ^{- a} em |^mim, ^
+    No |U ^{- ni}|^ver ^ |^so, ^{}em ti |^mesmo ^
+    E se|^rás ^ | a^benço|^ { - a}^do |{ }{ } ^ \e
+    E se|^rás ^ | a^benço|^ { - a}^do |{ }{ } ^ \e
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
-    %  song and transcription by larva, latest update on 2024-01
+    % transcribed by larva, latest update on 2024-01
+    % \header {
+    %   title = "Sou Daime, Sou um espelho"
+    %   subtitle = "A Transparência #2"
+    %   composer = "Lari Natri (2024-01)"
+    %   copyright = "CC BY-NC-SA 4.0"
+    % }
     \include "tex/lp-include-head.ly"
-    theMelody = \relative e'' {
+    theMelody = \relative e' {
       \key a \minor \slurDashed
       \set melismaBusyProperties = #'()
-      %\tempo 4 = 100
-      \time 4/4 \partial 4
+      \tempo 4 = 116
+      \time 4/4
       \repeat volta 2 {
-        e4 \posectionmark "A" | a,4( a8) b8 c4( b8) a8 | d2( d8)( d8)( d8) d8
-        | d4( d8) f8 a8( a8) f8( f8) | e2 e4
-        \parenthesize e8 \sectionmark "B:i" e8
-        | e4 gis8( a8) b4( a8) gis8 | e2( e4)
-        \parenthesize e8 \sectionmark "B:ii" e8
-        | d4 b8( f'8) e4( c8) b8 | a2( a4)
+        | a2. \pomark b4 | d2.( c4) | b2. c8( c8) | \once\slurSolid b8( a8)( a2)
+        %\break
+        \parenthesize e4 | a2. b8( b8) | d2.( c4) | b2~ b8( \altcol \parenthesize c8 \altmark "2." c8)( c8) | \once\slurSolid b8( a8)( a4.)
+        %\break
+        \parenthesize a8 a8( a8) | d2( d2~) | d4( d4) e4 f4 | \once\slurSolid a4.( e8)( e2~) | e2~ e8
+        %\break
+        \parenthesize e8[ e8( e8)] | b2( b2~) | b4( b4) d4 c8( b8) | a2( a2~) | a1
       }
       \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       \repeat volta 2 {
-        Sou | Dai -- _ me, sou um es -- | pe -- lho; __ _
-        Pa -- ra | te __ _ mos -- trar __ _ a ti | mes -- mo;
-        Se es -- | ti -- ve -- res dis -- pos -- to~a | ver; __ _
-        Se es -- | ti -- ve -- res dis -- pos -- to~a | ver. __ _
+        | Sou Dai -- | me, __ _ | sou um es -- | pe -- _ lho;
+        Pa -- | ra te mos -- | trar __ _ | a _ \skip 1 ti __ _ | mes -- _ mo;
+        Se es -- ti -- | ve -- res __ | _ dis -- pos -- to~a | ver; __ _ _ | _ _
+        Se es -- ti -- | ve -- res __ | _ dis -- pos -- to a | ver. __ _ | _
       }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \repeat volta 2 {
-        Sou | Dai -- _ me, sou um por -- | tal; __ _ _
-        Pa -- ra | mun -- dos re -- ais e~i -- ma -- gi -- | na -- dos;
-        De -- ves | jul -- gar __ _ qual __ _ é | qual; __ _
-        De -- ves | jul -- gar __ _ qual __ _ é | qual. __ _
+        | Sou Dai -- | me, __ _ | sou um por -- | tal; __ _ _
+        Pa -- | ra mun -- _ | dos re -- | ais _ \altcol e~i -- ma -- gi -- | na -- _ dos;
+        De -- ves jul -- | gar __ _ | _ _ qual é | qual; __ _ _ | _ _
+        De -- ves jul -- | gar __ _ | _ _ qual é __ _ | qual. __ _ | _
       }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       \repeat volta 2 {
-        Sou | Dai -- _ me, sou __ _ A -- | mor; __ _ _
-        \skip 1 E | tam -- _ _ bém __ _ és __ _ | tu; __ _
-        \skip 1 A -- | mor per -- _ mei -- _ a | tu -- do;
-        \skip 1 A -- | mor per -- _ mei -- _ a | tu -- do.
+        | Sou Dai -- | me, __ _ | sou A -- _ | mor; __ _ _
+        \skip 1 | E tam -- _ | bém __ _ | és __ _ _ _ _ | tu; __ _ _
+        \skip 1 A -- _ | mor __ _ | _ per -- mei -- a | tu -- _ do; | _ _
+        \skip 1 A -- _ | mor __ _ | _ per -- mei -- a __ _ | tu -- do. | _
       }
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
       \repeat volta 2 {
-        Sou | Dai -- me, con -- fi -- a em | mim, __ _
-        No U -- ni -- | ver -- _ so, em __ _ ti __ _ | mes -- mo;
-        E se -- | rás a -- _ ben -- _ ço -- | a -- do;
-        E se -- | rás a -- _ ben -- _ ço -- | a -- do.
+        | Sou Dai -- | me, con -- | fi -- a em | mim, __ _ _
+        No | U -- ni -- _ | ver -- _ | so, _ \skip 1 em ti | mes -- _ mo;
+        \skip 1 E se -- | rás __ _ | _ a -- ben -- ço -- | a -- _ do; | _ _
+        \skip 1 E se -- | rás __ _ | _ a -- ben -- ço -- _ | a -- do. | _
       }
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4 | a1:m | d:m | d2:m f
-        | e2.
-        s4
-        | e1 | e2.
-        s4
-        | d2:m e2 | a2.:m
+        | a2:m a:sus2 | a:sus4 a:m | a:sus2 a:m | a:sus2 a:m
+        | a:m a:sus2 | a:sus4 a:m | a:sus2 a:m | a:sus2 a:sus4
+        | d:m d:m | d:m d:sus2 | a:m a:m | a:m a:sus2
+        | e:m e:m | e:m e:7 | a:m a:m | a1:m
       }
     }
-%     \layout { #(layout-set-staff-size 15) } % for better fit
+   % \layout { #(layout-set-staff-size 15) } % for better fit
    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}
