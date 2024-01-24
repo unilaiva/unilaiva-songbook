@@ -610,6 +610,131 @@
 \endsong
 
 
+\beginsong{Vem, Mãe Natureza}[by={trad., version by Curawaka}, ex={hancha kuin, português}, ph={II, III}, key={Am}, gk={Am, Gm--Bm}]
+  \audio[key=Am]{https://soundcloud.com/curawaka_official/vem-mae-natureza}
+  \audio[key=Am]{https://www.youtube.com/watch?v=pwAsfZ7feTU}
+  \audio[key=Am]{https://soundcloud.com/yakuruna/mae-natureza}
+  \mnbeginchorus\memorize
+    |\[\mnc{A}Am]Vem, \[\bmc\mn{E}]vem, mãe \[^\mn{A}]natu|re\[\bm]za; |\[\mnc{G}G]vem, \[\bmc\mn{D}]vem, mãe \[^\mn{G}]natu|re\[\bm]za\[^\mn{F}]
+    |\[\mnc{E}Am]Vem, \[\bm]vem, mãe natu|\[\mncii{E}{D}E7]re-za; \[\mnc{E}E]vem nos ensi|\[\mnc{A}Am]nar \[\bm] |{ } { } \[\bm] \e
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    |^Vem, ^vem, tete pã|wã; ^ |^vem, ^vem, tete pã|wã ^
+    |^Vem, ^vem, tete pã|^wã; ^vem a nos cu|^rar ^ |{ } { } ^ \e
+  \endchorus
+  \beginchorus
+    |^Vem, ^vem, yube she|nu; ^ |^vem, ^vem, yube she|nu ^
+    |^Vem, ^vem, yube she|^nu; yube ^shenu kene|^ya ^ |{ } { } ^ \e
+  \endchorus
+  \mnbeginchorus\noteson\memorize
+    \ind \[^\mn{A}]Kene|\[Am]ya \[^\mn{E}]hãwã \[\mnc{C}\bm]beru \[^\mn{A}]kene|ya; \[\bm] \[^\mn{G}]kene|\[G]ya \[^\mn{D}]hãwã \[\mnc{B}\bm]beru \[^\mn{G}]kene|ya \[\bm]
+    \ind \[^\mn{D}]Kene|\[\mnc{E}Am]ya hãwã \[\bm]beru kene|\[\mncadj{1ex}{D}E7]ya; Yube \[\mnc{E}E]beru kene|\[\mnc{A}Am]ya \[\bm] |{ } { }\[\bm] \e
+  \mnendchorus
+  \beginchorus
+    \ind Maï|^{te hãwã} ^shaka maï|te; ^ maï|^te hãwã ^shaka maï|te ^
+    \ind Maï|^{te hãwã} ^shaka maï|^te; yube ^shaka maï|^te ^ |{ } { } ^ \e
+  \endchorus
+  \showlilypondfalse % to save space
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-01
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a'' {
+      \key a \minor \slurDashed
+      \set melismaBusyProperties = #'()
+      \tempo 4 = 94
+      \time 4/4 \partial 4
+      \repeat volta 6 {
+        r4 \mark \markup {"6x"} | a2 e8 e8 a8 a8 | a2( a2)
+        | g2 d8 d8 g8 g8 | g2( g4)( f4)
+        | e2 e8 e8 e8 e8 | \once\slurSolid e8( d8)( d8)(d8) e8 e8 e8 e8
+        | a,1~ | a2.
+      }
+      \repeat volta 4 {
+        a'8 \mark \markup {"4x"} a8 | a4 e8 e8 c8 c8 a'8 a8 | a2.
+        g8 g8 | g4 d8 d8 b8 b8 g'8 g8 | g2.
+        d8 d8 | e4 e8 e8 e8 e8 e8 e8 | \once\slurSolid e8( d8) d8 d8 e8 e8 e8 e8
+        | a,1~ | a2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        | Vem, vem, mãe na -- tu -- | re -- za;
+        | Vem, vem, mãe na -- tu -- | re -- za; _
+        | Vem, vem, mãe na -- tu -- | re -- _ za; __ _
+        Vem nos en -- si -- | nar. | _
+      }
+      \set stanza = "4."
+      \repeat volta 2 {
+        Ke -- ne -- | ya hã -- wã be -- ru ke -- ne -- | ya;
+        Ke -- ne -- | ya hã -- wã be -- ru ke -- ne -- | ya;
+        Ke -- ne -- | ya hã -- wã be -- ru ke -- ne -- | ya; _
+        Yu -- be be -- ru ke -- ne -- | ya. | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        | Vem, vem, te -- te pã -- | wã; __ _
+        | Vem, vem, te -- te pã -- | wã; __ _ _
+        | Vem, vem, te -- te pã -- | wã; __ _ _ _
+        Vem a nos cu -- | rar. | _
+      }
+      \set stanza = "5."
+      \repeat volta 2 {
+        Ma -- ï -- | te hã -- wã sha -- ka ma -- ï -- | te;
+        Ma -- ï -- | te hã -- wã sha -- ka ma -- ï -- | te;
+        Ma -- ï -- | te hã -- wã sha -- ka ma -- ï -- | te; _
+        Yu -- be sha -- ka ma -- ï -- | te. | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        | Vem, vem, yu -- be she -- | nu; __ _
+        | Vem, vem, yu -- be she -- | nu; __ _ _
+        | Vem, vem, yu -- be she -- | nu; _
+        Yu -- be she -- nu ke -- ne -- | ya. | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 6 {
+        s4 | a1:m | a:m
+        | g | g
+        | a:m | e2:7 e2
+        | a1:m | a2.:m
+      }
+      \repeat volta 4 {
+        s4 | a1:m | a:m
+        | g | g
+        | a:m | e2:7 e2
+        | a1:m | a2.:m
+      }
+    }
+%     \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Come, come, Mother Nature \rep{3}
+    Come, teach us
+    \nextverse
+    Come, come, Plant Spirits \rep{3}
+    Come to heal us
+    \nextverse
+    Come, come, Spirits of the Forest \rep{3}
+    Spirits of the Forest, hear our plea
+    \nextverse
+    Our Earth, our mother, hear our plea \rep{3}
+    Spirits of the Earth, hear our plea
+    \nextverse
+    Wind, our mother, hear our plea \rep{3}
+    Spirits of the wind, hear our plea
+  \end{translation}
+\endsong
+
+
 \beginsong{Eskawatã kayawey}[by={pajé Agostinho Inkamuru},ex={hancha kuin},ph={III, IV}]
   \transpose{7}
   \beginchorus\memorize
