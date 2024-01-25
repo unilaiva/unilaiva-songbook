@@ -1887,6 +1887,109 @@
 \endsong
 
 
+\beginsong{Varpunen jouluaamuna}[by={Otto Kotilainen, Z. Topelius}, key={Am}, gk={Am, Gm--Bm}]
+  \meter{3}{4}
+  \mnbeginverse
+    |\[\mnc{A}Am]Lumi \[^\mn{B}]on \[^\mn{C}]jo |\[\mnc{D}Dm]peit\[^\mn{C}]tä\[^\mn{B}]nyt |\[\mnc{C}Am]ku\[^\mn{D}]kat \[^\mn{E}]laak\[^\mn{D}]so|\[\mnc{E}Em]sessa,
+    |\[\mnc{C}Am]järven \[^\mn{D}]aal\[^\mn{E}]to |\[\mnc{F}Dm]jää\[^\mn{E}]ty\[^\mn{D}]nyt |\[\mnc{E}G]tal\[^\mn{F}]vi\[^\mn{G}]pak\[^\mn{D}]ka|\[\mnc{E}C]sessa.
+    |\[\mnc{A}Am]Varpunen |\[\mnc{G}Em]pie\[^\mn{F#}]noi\[^\mn{E}]nen |\[\mnc{G}C]syönyt kesä|\[\mnc{F#}B7]ei\[^\mn{E}]ne\[^\mn{D#}]hen.
+    |\[\mnc{E}Am]Järven \[^\mn{C}]aal\[^\mn{D}]to |\[\mnc{E}E7]jää\[^\mn{D}]ty\[^\mn{E}]nyt |\[\mnc{F}Dm]tal\[^\mn{D}]vi\[^\mn{B}]pak\[^\mn{D}]ka|\[\mnc{A}Am]sessa.
+  \mnendverse
+  \notesoff
+  \beginverse
+    |^Pienen pirtin |^portailla |^{oli tyttö}|^kulta: \altchords{\id[1]{(Bm)}|Bm |Em |Bm |F\shrp{}m}
+    |^tule, varpu, |^riemulla |^ota siemen |^multa! \altchords{|Bm |Em |A |D}
+    |^Joulu on, |^koditon |^varpuseni |^onneton, \altchords{|Bm |F\shrp{}m |D |C\shrp{}7}
+    |^tule tänne, |^riemulla |^ota siemen |^multa! \altchords{|Bm |F\shrp{}7 |Em |Bm}
+  \endverse
+  \beginverse
+    |^Tytön luo nyt |^riemuiten |^riensi varpu|^kulta:
+    |^kiitollisna |^siemenen |^otan kyllä |^sulta.
+    |^Palkita |^Jumala |^kerran tahtoo |^sinua.
+    |^Kiitollisna |^siemenen |^otan kyllä |^sulta.
+  \endverse
+  \beginverse
+    |^En ma ole, |^lapseni, |^lintu tästä |^maasta,
+    |^olen pieni |^veljesi, |^tulin taiva|^hasta.
+    \endverse\glueverses\beginverse
+    |\[Am]Siemenen |\[Em]pienoisen, |\[C]jonka annoit |\[B7]köyhällen,
+    |\[Am]pieni sai sun |\[E7]veljesi |\[Dm]enkeleitten |\[Am]maasta.
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-01
+    \include "tex/lp-include-head.ly"
+    % \header {
+    %   title = "Varpunen jouluaamuna"
+    %   composer = "Otto Kotilainen"
+    %   poet = "Z. Topelius"
+    % }
+    theMelody = \relative a' {
+      \key a \minor %\slurDashed
+      % \set melismaBusyProperties = #'()
+      \tempo 4 = 86
+      \time 3/4
+      \repeat volta 3 {
+        | \mark \markup {"3x"} a8 a8 b4 c4 | d4. c8 b4 | c8 d8 e4. d8 | e4 e4 r4
+        | c8 c8 d4 e4 | f4. e8 d4 | e8 f8 g4. d8 | e4 e4 r4
+        | a4. a8 a4 | g4 fis4 e4 | g4 g4 g8 g8 | fis4. e8 dis4
+        | e8 e8 c4 d4 | e4. d8 e4 | f8 d8 b4. d8 | a4 a4 r4
+      }
+      | a8. a16 b4 c4 | d4. c8 b4 | c8. d16 e4. d8 | e4 e4 r4
+      | c8 c8 d4 e4 | f4. e8 d4 | e8 f8 g4. d8 | e4 e4 r4
+      \repeat volta 2 {
+        | a4. a8 a4 | g4 fis4 e4 | g8. g16 g4 g4 | fis4 e4 dis4
+        | e8. e16 c4 d4 | e4. d8 e4 | f8. d16 b4. d8 | a4 a4 r4
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Lu -- mi on jo | peit -- tä -- nyt | ku -- kat laak -- so -- | ses -- sa,
+      | jär -- ven aal -- to | jää -- ty -- nyt | tal -- vi -- pak -- ka -- | ses -- sa.
+      | Var -- pu -- nen | pie -- noi -- nen | syö -- nyt ke -- sä -- | ei -- ne -- hen.
+      | Jär -- ven aal -- to | jää -- ty -- nyt | tal -- vi -- pak -- ka -- | ses -- sa.
+      \set stanza = "4."
+      | En ma o -- le, | lap -- se -- ni, | lin -- tu täs -- tä | maas -- ta,
+      | o -- len pie -- ni | vel -- je -- si, | tu -- lin tai -- va -- | has -- ta.
+      \repeat volta 2 {
+        | Sie -- me -- nen | pie -- noi -- sen, | jon -- ka an -- noit | köy -- häl -- len,
+        | pie -- ni sai sun | vel -- je -- si | en -- ke -- leit -- ten  | maas -- ta.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Pie -- nen pir -- tin | por -- tail -- la | o -- li tyt -- tö -- | kul -- ta:
+      | tu -- le, var -- pu, | rie -- mul -- la | o -- ta sie -- men | mul -- ta!
+      | Jou -- lu on, | ko -- di -- ton | var -- pu -- se -- ni | on -- ne -- ton,
+      | tu -- le tän -- ne, | rie -- mul -- la | o -- ta sie -- men | mul -- ta!
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      | Ty -- tön luo nyt | rie -- mui -- ten | rien -- si var -- pu -- | kul -- ta:
+      | kii -- tol -- lis -- na | sie -- me -- nen | o -- tan kyl -- lä | sul -- ta.
+      | Pal -- ki -- ta | Ju -- ma -- la | ker -- ran tah -- too | si -- nu -- a.
+      | Kii -- tol -- lis -- na | sie -- me -- nen | o -- tan kyl -- lä | sul -- ta.
+    }
+    theChords = \chordmode {
+      \repeat volta 3 {
+        | a2.:m | d:m | a:m | e:m
+        | a:m | d:m | g | c
+        | a:m | e:m | c | b:7
+        | a:m | e:7 | d:m | a:m
+      }
+      | a2.:m | d:m | a:m | e:m
+      | a:m | d:m | g | c
+      \repeat volta 2 {
+        | a:m | e:m | c | b:7
+        | a:m | e:7 | d:m | a:m
+      }
+    }
+%     \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}
