@@ -268,7 +268,7 @@
   %\capo{3}
   \mnbeginchorus\memorize
     |\[\mnc{C}Am]Sinto a |\[\mnc{B}Em]tu\[^\mn{C}]a |\[\mnc{A}Am]mã|o to|\[\mnc{A}F]cando meu |\[\mnc{G}G]co\[^\mn{A}]ra|\[\mnc{E}Am]ção | \e
-    Ca|\[\mnc{G}Em]lor que |\[\mnc{F}F]limpa \[^\mn{E}]minha |\[\mncii{C}{B}Am]al|\[^\mn{A}]ma \[^\mn{B}]cla|\[\mnc{C}F]rea \[^\mn{F}]a |\[\mncii{B}{C}Em]men|\[\mnc{A}Am]te | \e
+    Ca|\[\mnc{G}Em]lor que |\[\mnc{F}F]limpa \[^\mn{E}]minha |\[\mnc{C}Am]al\[^\mn{B}]{ }|\[^\mn{A}]ma \[^\mn{B}]cla|\[\mnc{C}F]rea \[^\mn{F}]a |\[\mncii{B}{C}Em]men|\[\mnc{A}Am]te | \e
   \mnendchorus
   \notesoff
   \beginchorus
@@ -291,30 +291,31 @@
     %   composer = "Bettina Maureenji"
     % }
     theMelody = \relative a' {
-      \key a \minor \slurDashed
+      \key a \minor \slurSolid
       \set melismaBusyProperties = #'()
       \tempo 4 = 108
       \time 3/4
       % p1
       \repeat volta 2 {
         | c2 c8 c | b2 c4 | a2.~ | a2 a4 | a'4 a a | g2 a4 | e2.~ | e2 e4 \break
-        | g2 g4 | f4 f e8 e | c2( b4) | a2 b4 | c2 f4 | \once\slurSolid b,2( c4) | a2.~ | a2.
+        | g2 g4 | f4 f e8 e | c2~ c8( b8) | a2 b4 | c2 f4 | b,2( c4) | a2.~ | a2.
       } \break
       % p2
       \repeat volta 2 {
         | c4 c4 c4 | b4 \altcol c4 \altcol b4 | a2.~ | a2. | a'4 a a | g2 a4 | e2.~ | e2. \break
-        | g4 g g4 | f4 f e4 | c2( b4) | a2 b4 | c2 f4 | b,2 c4 | a2.~ | a2.
+        | g4 g g4 | f4 f e4 | c2~ c8( b8) | a2 b4 | c2 f4 | b,2 c4 | a2.~ | a2.
       } \break
       % p3
       \repeat volta 2 {
         | c2 c4 | b2 c4 | a2. | a2 a4 | a'4 a a | g2 a4 | e2.~ | e2. \break
-        | g2 g4 | f2 e4 | c2( b4) | a4 a b | c4 c f | b,2 c4 | a2.~ | a2.
+        | g2 g4 | f2 e4 | c2~ c8( b8) | a4 a b | c4 c f | b,2 c4 | a2.~ | a2.
       }
-      | g'2 g4 | f2 e4 | c2( b4) | a4 \break
+      | g'2 g4 | f2 e4 | c2~ c8( b8) | a4 \break
       \repeat volta 4 {
         a b | c4 c f
         \alternative {
-          \volta 1,2 { | b,2 c4 | a2.~ | a4 }
+          \volta 1 { | b,2 c4 | a2.~ | a4 }
+          \volta 2 { | b2 c4 | a2.~ | a4 }
           \volta 3 { | f'2 e4 | e2.~ | e4 }
           \volta 4 { | b2 c4 | a2.~ | a2. }
         }
@@ -325,19 +326,19 @@
       \set stanza = "1."
       \repeat volta 2 {
         | Sin -- to a | tu -- a | mão | _ to -- | can -- do meu | co -- ra -- | ção; | _
-        Ca -- | lor que | lim -- pa mi -- nha | al -- _ | ma,  cla -- | rea a | men -- _ | te. _
+        Ca -- | lor que | lim -- pa mi -- nha | al -- _ _ | ma,  cla -- | rea a | men -- _ | te. _
       }
       \set stanza = "2."
       \repeat volta 2 {
         Ve -- jo mun -- | do~u -- \altcol ni -- \altcol ver -- | sal | _ | sin -- to a | u -- ni -- | ão; | _
-        | For -- ça da | luz a -- fa -- | gai -- _ | me,  dai -- | me con -- | sci -- ên -- | cia. | _
+        | For -- ça da | luz a -- fa -- | gai -- _ _ | me,  dai -- | me con -- | sci -- ên -- | cia. | _
       }
       \set stanza = "3."
       \repeat volta 2 {
         | Oh tran -- | qui -- li -- | da -- | de to -- | can -- do meu | co -- ra -- | ção; | _
-        | Co -- mo | um a -- | mi -- _ | go, com -- pa -- | nhei -- ro na~es -- | cu -- ri -- | dão. | _
+        | Co -- mo | um a -- | mi -- _ _ | go, com -- pa -- | nhei -- ro na~es -- | cu -- ri -- | dão. | _
       }
-      | Co -- mo | um a -- | mi -- _ | go,
+      | Co -- mo | um a -- | mi -- _ _ | go,
       \repeat volta 4 {
         com -- pa -- | nhei -- ro na~es --
         \alternative {
@@ -365,7 +366,8 @@
       \repeat volta 4 {
         s2 | f2.
         \alternative {
-          \volta 1,2 { | e:m | a:m | a4:m }
+          \volta 1 { | e2.:m | a:m | a4:m }
+          \volta 2 { | e2.:m | a:m | a4:m }
           \volta 3 { | f2 e4:m | a2.:m | a4:m }
           \volta 4 { | e2.:m | a:m | a:m }
         }
