@@ -278,9 +278,23 @@
   \beginchorus
     |^Oh tran|^quili|^da|de to|^cando meu |^cora|^ção | \e
     |^Como |^um a|^mi|go compa|^nheiro na es|^curi|^dão | \e
-  \endchorus\glueverses
-  \beginverse
-    |\[Em]Como |\[F]um a|\[Am]mi|go \lrep compa|\[F]nheiro na es|\[Em]curi|\[Am]dão | \e \rrep \rep{4}
+    \endchorus\glueverses\beginverse
+    |\[Em]Como |\[F]um a|\[Am]mi|go \lrep compa|\[F]nheiro na es|\[Em \up{3}(F)]curi|\[Am]dão | \e \rrep \rep{4}
+  \endverse
+  \textnotefornext{suomeksi:} % by: Sanni
+  \beginchorus
+    |^Tunnen |^sinun kä|^te|si kos|^kettavan |^sydän|^tä|ni
+    Se |^lämmöllä |^puhdistaa |^sielu|ni ja |^kirkastaa |^miele|^ni | \e
+  \endchorus
+  \beginchorus
+    |^Maailman |^sylei|^lys|sä näen |^että |^kaikki on |^yh|tä
+    |^Valon |^voima |^hellii minu|a ja |^antaa ym|^märrys|^tä | \e
+  \endchorus
+  \beginchorus
+    |^Rauha |^sisäl|^lä|ni |^koskettaa |^sydän|^tä|ni
+    |^Niin |^kuin |^ystä|vä, ys|^tävä pi|^meydes|^sä | \e
+    \endchorus\glueverses\beginverse
+    |\[Em]Niin |\[F]kuin |\[Am]ystä|vä, \lrep ys|\[F]tävä pi|\[Em \up{3}(F)]meydes|\[Am]sä | \e \rrep
   \endverse
   \showlilypondfalse % to save space
   \begin{lilywrap}\begin{lilypond}[]
@@ -293,7 +307,7 @@
     theMelody = \relative a' {
       \key a \minor \slurSolid
       \set melismaBusyProperties = #'()
-      \tempo 4 = 108
+      \tempo 4 = 110
       \time 3/4
       % p1
       \repeat volta 2 {
