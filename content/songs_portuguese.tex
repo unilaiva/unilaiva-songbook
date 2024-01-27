@@ -262,7 +262,7 @@
 \endsong
 
 
-%\ifchorded\else\brk\fi
+\ifchorded\else\brk\fi
 \beginsong{Calma e Tranquilidade}[by={Deva Premal, Miten}, ph={II, III}, key={Am}, gk={Bm, Am--Em}]
   \audio[]{https://www.youtube.com/watch?v=arNT11J2b-k}
   \audio[]{https://soundcloud.com/caminhantecosmico/calma-e-tranquilidade}
@@ -279,7 +279,7 @@
 \endsong
 
 
-\beginsong{Companheiro na Escuridão}[by={Bettina Maureenji, Amu Ahava}, ph={II}, key={Am}, gk={Am, Gm--Bm}]
+\beginsong{Companheiro na Escuridão}[by={Bettina Maureenji}, ph={II}, key={Am}, gk={Am, Gm--Bm}]
   \audio[]{https://maureenji.bandcamp.com/track/companheiro-na-escuridao-2}
   \meter{3}{4}
   %\capo{3}
@@ -313,7 +313,7 @@
     \endchorus\glueverses\beginverse
     |\[Em]Niin |\[F]kuin |\[Am]ystä|vä, \lrep ys|\[F]tävä pi|\[Em \up{3}(F)]meydes|\[Am]sä | \e \rrep
   \endverse
-  \showlilypondfalse % to save space
+  %\showlilypondfalse % to save space
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2024-01
     \include "tex/lp-include-head.ly"
@@ -399,15 +399,15 @@
         \alternative {
           \volta 1 { | e2.:m | a:m | a4:m }
           \volta 2 { | e2.:m | a:m | a4:m }
-          \volta 3 { | f2 e4:m | a2.:m | a4:m }
+          \volta 3 { \once\set chordChanges = ##f | f2. | a2.:m | a4:m }
           \volta 4 { | e2.:m | a:m | a:m }
         }
       }
     }
-%     \layout { #(layout-set-staff-size 15) } % for better fit
+    \layout { #(layout-set-staff-size 15) } % for better fit
    \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}\scriptsize % to save space on page
+  \begin{translation}
     I feel your hand touching my heart
     Warmth that cleanses my soul, clears the mind
     \nextverse
