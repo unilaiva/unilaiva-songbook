@@ -2036,6 +2036,7 @@
     I\ldots
     This song\ldots
   \endverse
+  \showlilypondfalse % to save space
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-06
@@ -2066,6 +2067,7 @@
       }
       s2. | c1 | c1 | g1 | g | g | g | g4
     }
+    %\layout { #(layout-set-staff-size 14) } % for better fit
     \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
