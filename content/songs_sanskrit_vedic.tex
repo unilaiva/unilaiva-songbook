@@ -217,19 +217,75 @@
 \endsong
 
 
-\beginsong{Om Asato Ma \\ Pavamana Mantra}[ex={from Bṛhadāraṇyaka Upaniṣad},tags={transcendence},ph={III}]
-  \beginverse
-    |\[\mnc{A}Am\mn{G}]O|\[\mnc{E}Em]om asa\[^\mn{A}]to \[^\mn{B}]ma |\[\mnc{A}Am]sat ga\[^\mn{G}]ma\[^\mn{E}]ya
-    |\[Em]{} Tamaso ma |\[C]jyotir gama|\[G]ya
-    Mrit|\[Em]yor ma amri|\[Am]tam gamaya | \e
-  \endverse
+\beginsong{Pavamāna Mantra \\ Om Asato Mā}[ex={from Bṛhadāraṇyaka Upaniṣad},tags={transcendence},ph={I, II, III},key={Dm},gk={Dm, Cm--F\shrp{}m}]
+  \mnbeginchorus\memorize
+    |\[\mnc{D}Dm]Om \[\bm]{}\[^\mn{C}]{ } |\[\mnc{A}Am] asa\[\bmc\mn{D}]to \[^\mn{E}]mā |\[\mnc{D}Dm]sadga\[^\mn{C}]ma\[\bmc\mn{D}]ya, |\[Am]\e
+    \[^\mn{A}]Tama\[\bmc\mn{D}]so \[^\mn{E}]mā |\[\mnc{F}F]jyoti\[\bm]r\[^\mn{G}]ga\[^\mn{F}]ma|\[\mnc{E}C]ya, \[\bm]
+    Mṛ\[^\mn{F}]t|\[\mnc{E}Am]yor\[^\mn{D}]mā\[\bmc\mn{C}]{'m}\[^\mn{E}]ṛ|\[\mnc{D}Dm]taṃ ga\[^\mn{C}]ma\[\bmc\mn{D}]ya. | \e\[\bm]
+  \mnendchorus
   \notesoff
   \textnotefornext{suomeksi:}
-  \beginverse
-    |^O|^om Johda minut |^totuuteen
-    |^ Pimeydestä |^va|^loon
-    Tiedot|^tomuudesta tietoi|^suuteen | \e
-  \endverse
+  \beginchorus
+    |^Joh^{-}da|^ta ^minut |^totuu^teen, |^ \e
+    ^Pimeydes|^tä ^kirkkau|^teen,
+    ^Tiedotto|^muudes^ta tie|^toisuu^teen. | \e^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-02
+    % based on Deva Premal's version, but not exactly it
+    \include "tex/lp-include-head.ly"
+    % \header {
+    %   title = "Pavamāna Mantra"
+    % }
+    theMelody = \relative d'' {
+      \key d \minor \slurDashed
+      \set melismaBusyProperties = #'()
+      %\tempo 4 = 110
+      \time 4/4
+      \repeat volta 2 {
+        | d2.( c4 | a4)( a8 a8) d4 e4 | d8( d8)( d8)( c8) d2~ | d4 \parenthesize a8 \parenthesize a8
+        d8( d8) e4 | f4( f4)( f4) g8( f8) | e2( e8 e8)( e8)( f8)
+        | e4 d4 c4 e4 | d4 d8( c8) d2~ | d1
+      }
+      % Deva Premal's version:
+      % \repeat volta 2 {
+      %   | d2.( c4 | a4)( a8 a8) d4 e4 | d8( d8)( d8)( c8) d2~ | d4 \parenthesize a8 \parenthesize a8
+      %   d8( d8) e4 | d2 d4 c8( c8) | a2( a8) e'8( e8)( e8)
+      %   | e4 d4 c4 e4 | d4 d8( c8) d2~ | d1
+      % }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        | Om __ _ | _ a -- sa -- to mā | sad -- _ ga -- ma -- ya, | _
+        Ta -- ma -- so __ _ mā | jyo -- tir -- _ ga -- ma -- | ya, __ _ _
+        Mṛt -- _ | yor -- mā -- 'm -- ṛ -- | taṃ ga -- ma -- ya. | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      % Finnish translation and phrasing by S.
+      \set stanza = "2."
+      \repeat volta 2 {
+        | Joh -- da -- | ta __ _ _ mi -- nut | to -- tuu -- _ _ teen, | _ \skip 1 \skip 1
+        Pi -- mey -- des -- | tä __ _ kirk -- kau -- _ | teen,
+        Tie -- dot -- _ to -- | muu -- des -- ta tie -- | toi -- suu -- _ teen. | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        | d1:m | a:m | d:m | a:m
+        | f1 | c | a:m | d:m | d:m
+      }
+      % % Deva Premal's version:
+      % \repeat volta 2 {
+      %   | d1:m | a:m | d:m | a:m
+      %   | f | a:m | a:m | d:m | d:m
+      % }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
   \begin{translation}
     Lead me from illusion to reality \emph{(of eternal self)},
     from darkness \emph{(ignorance)} to light \emph{(spiritual understanding)},
