@@ -1358,29 +1358,29 @@
   \newchords{chords_tulisoroinen_a}\newchords{chords_tulisoroinen_b}
   \transpose{5} % from Em to Am
   \mnbeginverse\memorize[chords_tulisoroinen_a]
-    |\[\mnc{B}Em]Tuuditan \[^\mn{G}]tu|\[^\mn{F#}]li\[^\mn{B}]so\[^\mn{E}]rois\[^\mn{F#}]ta, |\[^\mn{G}]kipunaista \[\mnc{A}D]kiikut|\[\mnc{B}G]telen
+    |\[\mnc{B}Em]Tuuditan \[^\mn{G}]tu|\[\mnc{F#}B]li\[^\mn{B}]so\[\mnc{E}Em]rois\[^\mn{F#}]ta, |\[^\mn{G}]kipunaista \[\mnc{A}D]kiikut|\[\mnc{B}G]te\[\bm]len
     \mnendverse\glueverses\mnbeginchorus\memorize[chords_tulisoroinen_b]
-    |\[\mnc{B}G]Vaa\[^\mn{E}]lin \[^\mn{B}]pien\[^\mn{A}]tä |\[\mnc{G}Em/B]val\[^\mn{B}]ke\[\mnc{E}Em]ais\[^\mn{F#}]ta, |\[^\mn{G}]luojan lasta \[\mnc{F#}B7]liikut|\[\mnc{E}Em]telen
+    |\[\mnc{B}G]Vaa\[^\mn{E}]lin \[\mn{B}\bm]pien\[^\mn{A}]tä |\[\mnc{G}Em/B]val\[^\mn{B}]ke\[\mnc{E}Em]ais\[^\mn{F#}]ta, |\[^\mn{G}]luojan lasta \[\mnc{F#}B7]liikut|\[\mnc{E}Em]te\[\bm]len
   \mnendchorus
   \usealtmncolortrue% use alternate melody note color
   \beginverse% notes (\mn) in this verse signify the 2nd voice
-    |\[\mnc{B}Em]Tai\[\mn{A}]va\[\mn{G}]hast' \[\mn{E}]on |lah\[\mn{D#}]ja \[\mn{E}]tul\[\mn{B}]lut, |\[\mn{E}]taivahan tu\[\mnc{D}D]len ki|\[\mnc{G}G]soista
+    |\[\mnc{B}Em]Tai\[\mn{A}]va\[\mn{G}]hast' \[\mn{E}]on |\[B]lah\[\mn{D#}]ja \[\mnc{E}Em]tul\[\mn{B}]lut, |\[\mn{E}]taivahan tu\[\mnc{D}D]len ki|\[\mnc{G}G]sois\[\bm]ta
     \endverse\glueverses\beginchorus
-    |\[\mnc{G}G]Luojan lem\[\mn{F#}]men |\[\mnc{E}Em/B]lei\[\mn{B}]kin\[\mnc{E}Em]nöis\[\mn{D#}]tä, |\[\mn{E}]ei vahingon \[\mnc{F#}B7]val\[\mn{D#}]ke|\[\mnc{E}Em]oista
+    |\[\mnc{G}G]Luojan \[\bm]lem\[\mn{F#}]men |\[\mnc{E}Em/B]lei\[\mn{B}]kin\[\mnc{E}Em]nöis\[\mn{D#}]tä, |\[\mn{E}]ei vahingon \[\mnc{F#}B7]val\[\mn{D#}]ke|\[\mnc{E}Em]ois\[\bm]ta
   \endchorus
   \notesoff
   \beginverse\replay[chords_tulisoroinen_a]
-    |^Tuudin lasta |maan valoksi, |en vahingon ^valke|^aksi
+    |^Tuudin lasta |^maan va^loksi, |en vahingon ^valke|^ak^si
     \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
-    |^Tuudin toivo|^{jen tu}^leksi, |työn jaloisen ^jatka|^jaksi
+    |^Tuudin ^toivo|^{jen tu}^leksi, |työn jaloisen ^jatka|^jak^si
   \endchorus
   \beginverse\replay[chords_tulisoroinen_a]
-    |^Senpä tuudin |tuikkeheksi, |tähdeksi tä^hän ta|^lohon
+    |^Senpä tuudin |^tuikke^heksi, |tähdeksi tä^hän ta|^lo^hon
     \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
-    |^Maan hyväksi |^maine^heksi, |suurionnis^ten i|^lohon
+    |^Maan hy^väksi |^maine^heksi, |suurionnis^ten i|^lo^hon
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-12
+    % transcribed by larva, latest update on 2024-02
     \include "tex/lp-include-head.ly"
     theMelody = \transpose e a \relative b' {
       \key e \minor \time 4/4 \voiceOne
@@ -1398,37 +1398,41 @@
       }
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       | Tuu -- di -- tan tu -- | li -- so -- rois -- ta, | ki -- pu -- nais -- ta kii -- kut -- | te -- len;
+      \set stanza = "1.B"
       \repeat volta 2 {
         | Vaa -- lin pien -- tä | val -- ke -- ais -- ta, | luo -- jan las -- ta lii -- kut -- | te -- len.
       }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
+      \set stanza = "2.A"
       | Tai -- va -- hast' on | lah -- ja tul -- lut, | tai -- va -- han tu -- len ki -- | sois -- ta;
+      \set stanza = "2.B"
       \repeat volta 2 {
         | Luo -- jan lem -- men | lei -- kin -- nöis -- tä, | ei va -- hin -- gon val -- ke -- | ois -- ta.
       }
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
+      \set stanza = "3.A"
       | Tuu -- din las -- ta | maan va -- lok -- si, | en va -- hin -- gon val -- ke -- | ak -- si;
+      \set stanza = "3.B"
       \repeat volta 2 {
         | Tuu -- din toi -- vo -- | jen tu -- lek -- si, | työn ja -- loi -- sen jat -- ka -- | jak -- si.
       }
     }
     theLyricsFour = \lyricmode {
-      \set stanza = "4."
+      \set stanza = "4.A"
       | Sen -- pä tuu -- din | tuik -- ke -- hek -- si, | täh -- dek -- si tä -- hän ta -- | lo -- hon;
+      \set stanza = "4.B"
       \repeat volta 2 {
         | Maan hy -- väk -- si | mai -- ne -- hek -- si, | suu -- ri -- on -- nis -- ten i -- | lo -- hon.
       }
     }
     theChords = \transpose e a \chordmode {
-      | e1:m | e:m | e2:m d | g1
+      | e1:m | b2 e2:m | e2:m d | g1
       \repeat volta 2 {
-        | g1 | e:m | e2:m b:7 | e1:m
+        | g1 | e2:m/b e2:m | e2:m b:7 | e1:m
       }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
