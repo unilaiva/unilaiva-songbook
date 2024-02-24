@@ -681,7 +681,7 @@ compile_document() {
   if [ ${midifiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (copy midi files)"
     local cur_res_midi_subdirname="${RESULT_DIRNAME}/${RESULT_MIDI_SUBDIRNAME}/${document_basename}"
-    rm -R "${cur_res_midi_subdirname}"/* 2>"/dev/null"
+    rm -R "../../${cur_res_midi_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_midi_subdirname}" 2>"/dev/null"
     [ -d "../../${cur_res_midi_subdirname}" ] || die $? "Could not create the midi result directory ./${cur_res_midi_subdirname}."
     local log11file="log-11_copy-midi.log"
@@ -697,7 +697,7 @@ compile_document() {
   if [ ${audiofiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (encode audio)"
     local cur_res_audio_subdirname="${RESULT_DIRNAME}/${RESULT_AUDIO_SUBDIRNAME}/${document_basename}"
-    rm -R "${cur_res_audio_subdirname}"/* 2>"/dev/null"
+    rm -R "../../${cur_res_audio_subdirname}"/* 2>"/dev/null"
     mkdir -p "../../${cur_res_audio_subdirname}" 2>"/dev/null"
     [ -d "../../${cur_res_audio_subdirname}" ] || die $? "Could not create the audio result directory ./${cur_res_audio_subdirname}."
     local log12file="log-12_encode-audio.log"
