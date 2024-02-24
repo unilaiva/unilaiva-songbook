@@ -194,6 +194,15 @@
             "pt": "Lista de reprodução no SoundCloud",
             "fi": "Soittolista SoundCloudissa"
           }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/tMaDaPFtCCxtaYf",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
         }
       ]
     },
@@ -221,6 +230,15 @@
             "en": "Playlist on SoundCloud",
             "pt": "Lista de reprodução no SoundCloud",
             "fi": "Soittolista SoundCloudissa"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/tMaDaPFtCCxtaYf",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
           }
         }
       ]
@@ -250,6 +268,15 @@
             "pt": "Lista de reprodução no SoundCloud",
             "fi": "Soittolista SoundCloudissa"
           }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/kZHCJbrc8ybsJRb",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
         }
       ]
     },
@@ -277,6 +304,15 @@
             "en": "Playlist on SoundCloud",
             "pt": "Lista de reprodução no SoundCloud",
             "fi": "Soittolista SoundCloudissa"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/kZHCJbrc8ybsJRb",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
           }
         }
       ]
@@ -306,6 +342,15 @@
             "pt": "Lista de reprodução no SoundCloud",
             "fi": "Soittolista SoundCloudissa"
           }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/7qGEe4ikc4dDsJA",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
         }
       ]
     },
@@ -333,6 +378,15 @@
             "en": "Playlist on SoundCloud",
             "pt": "Lista de reprodução no SoundCloud",
             "fi": "Soittolista SoundCloudissa"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/7qGEe4ikc4dDsJA",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
           }
         }
       ]
