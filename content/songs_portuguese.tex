@@ -1874,6 +1874,191 @@
     Butterfly, you can fly; it is your merit for knowing how to wait
     Before you were crawling larva, today you are the reigning butterfly!
   \end{translation}
+  % Do not show this lilypond, as it would require work for better
+  % presentation (and it takes a lot of space). Nevertheless it is
+  % not commented out, so that we get the MIDI file from it.
+  \showlilypondfalse
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-02
+    \include "tex/lp-include-head.ly"
+    % \header {
+    %   title = "Borboleta"
+    %   composer = "Mitmeel Ananda"
+    % }
+    melOnePartA = \relative a' {
+      c4 \sectionmark "A" c c | d c b c | a1~ | 2 r2
+      | r2 a'4 a | g8 d d d d4 f | e1~ | 2 r2
+      | r4 a4 a a | b a g f | e1~ | 2 r2
+      | r4 c4 c c | d8 b b b b4 c | a1~ | 2 r2
+      | r4 a'4 a a | b a g f | e1~ | 2 r2
+      | r4 c4 c c8 c8 | d b b b b4 c | a1~ | 2
+    }
+    melOnePartAA = \relative a' {
+      c4 \sectionmark "A" c c | d c b c | a1~ | 2 r2
+      | r4 a'4 a a | g8 d d d d4 f | e1~ | 2 r2
+      | r4 a4 a a | b a g f | e1~ | 2 r2
+      | r4 c4 c c | d8( b) b4 b c | a1~ | 2 r2
+      | r4 a'4 a a | b a g f | e1~ | 2 r2
+      | r4 c4 c c4 | d8( b) b4 b c | a1~ | 2
+    }
+    melOnePartB = \relative a' {
+      a4 \sectionmark "B" c | a'2 a2~ | 2 r2 | r1
+      | r4 a4 c4. b8 | a1~ | 2 r2 | r1
+      | r8 c,8 c c c4 c | d2 f2~ | 2 r2 | r1
+      | r4 a,8 a8 a8 a8 b4 | a1~ | 2 r2 | r1
+      | r4 e'8 e d4 c | d2 f2~ | 2 r2 | r1
+      | r4 a,4 a c | a1~ | 2 r2 | r1
+      | r4 e'8 e d4 c | d2 f2~ | 2 r2 | r1
+      | r2 a4 c | a1~ | 2
+    }
+    melOnePartBB = \relative a' {
+      a4 \sectionmark "B" c | a'2 a2~ | 2 r2 | r1
+      | r4 a4 c4. b8 | a1~ | 2 r2 | r1
+      | r8 c,8 c c c4 c | d2 f2~ | 2 r2 | r1
+      | r4 a,8 a8 a8 a8 b4 | a1~ | 2 r2 | r1
+      | r4 e'8 e d4 c | d2 f2~ | 2 r2 | r1
+      | r4 a,4 a c | a1~ | 2 r2 | r1
+      | r4 e'8 e d4 c | d2 f2~ | 2 r2 | r1
+      | r4 a4 a c | a1~ | 2
+    }
+    melTwoPartA = \relative a' {
+      \melOnePartA
+    }
+    melTwoPartAA = \relative a' {
+      \melOnePartAA
+    }
+    melTwoPartB = \relative a' {
+      a4 \sectionmark "B" c | a'2 a2~ | 2 r2 | r1
+      | r4 a4 c4. b8 | a1~ | 2 r2 | r1
+      | r8 c,8 c c c4 c | d2 f2~ | 2 r2 | r1
+      | r4 a,8 a8 a8 a8 b4 | a'1~ | 2 r2 | r1
+      | r4 e8 e d4 c | d2 f2~ | 2 r2 | r1
+      | r4 a,4 a c | a'1~ | 2 r2 | r1
+      | r4 e8 e d4 c | d2 f2~ | 2 r2 | r1
+      | r2 a4 c | a1~ | 2
+    }
+    melTwoPartBB = \relative a' {
+      a4 \sectionmark "B" c | a'2 a2~ | 2 r2 | r1
+      | r4 a4 c4. b8 | a1~ | 2 r2 | r1
+      | r8 c,8 c c c4 c | d2 f2~ | 2 r2 | r1
+      | r4 a,8 a8 a8 a8 b4 | a'1~ | 2 r2 | r1
+      | r4 e8 e d4 c | d2 f2~ | 2 r2 | r1
+      | r4 a,4 a c | a'1~ | 2 r2 | r1
+      | r4 e8 e d4 c | d2 f2~ | 2 r2 | r1
+      | r2 a4 c | a1~ | 2
+    }
+    theMelody = \relative a' { \voiceOne
+      \key a \minor \slurSolid
+      \set melismaBusyProperties = #'()
+      \tempo 4 = 110
+      | r4
+      \melOnePartA
+      \melOnePartB
+      r2 | r1 | r1
+      \repeat volta 2 {
+        | r4
+        \melOnePartAA
+        \melOnePartBB
+        r2 | r1 | r1
+      }
+      \fine
+    }
+    theMelodyTwo = { \voiceTwo
+      \key a \minor \slurSolid
+      \set melismaBusyProperties = #'()
+      | r4
+      \melTwoPartA
+      r2 | r1 | r2
+      \melTwoPartB
+      r2
+      \repeat volta 2 {
+        | r1 | r1 | r4
+        \melTwoPartAA
+        \melTwoPartBB
+        r2
+      }
+    }
+    theLyricsA = \lyricmode {
+      Es -- tá na | ho -- ra de rom -- | per | _
+      O ca -- | su -- lo que há em vo -- cê | _
+      Es -- tá na | ho -- ra de vo -- | ar | _
+      Ser bor -- bo -- | le -- ta e a -- sas ba -- | ter | _
+      Es -- tá na | ho -- ra de vo -- | ar | _
+      Ba -- ter suas a -- | sas e bor -- bo -- le -- ta | ser | _
+    }
+    theLyricsB = \lyricmode {
+      Bor -- bo -- | le -- ta | _
+      Po -- des vo -- | ar | _
+      É seu me -- re -- ci -- | men -- to | _
+      Por sa -- ber es -- pe -- | rar | _
+      An -- tes e -- ras | lar -- va | _
+      A ras -- te -- | jar | _
+      Ho -- je~és bor -- bo -- | le -- ta | _
+      A vo -- | ar! | _
+    }
+    theLyricsAA = \lyricmode {
+      Es -- tá na | ho -- ra de rei -- | nar | _
+      Os pen -- sa -- | men -- tos que há em vo -- cê | _
+      Es -- tá na | ho -- ra de~im -- pe -- | rar | _
+      O gran -- de | rei -- _ no que~é seu | ser | _
+      Es -- tá na | ho -- ra de~im -- pe -- | rar | _
+      O gran -- de | rei -- _ no que~és vo -- | cê | _
+    }
+    theLyricsBB = \lyricmode {
+      Bor -- bo -- | le -- ta | _
+      Po -- des vo -- | ar | _
+      É seu me -- re -- ci -- | men -- to | _
+      Por sa -- ber es -- pe -- | rar | _
+      An -- tes e -- ras | lar -- va | _
+      A ras -- te -- | jar | _
+      Ho -- je~és bor -- bo -- | le -- ta | _
+      A im -- pe -- | rar! | _
+    }
+    theLyricsOne = \lyricmode {
+      \theLyricsA
+      \theLyricsB
+      \repeat volta 2 {
+        \theLyricsAA
+        \theLyricsBB
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \theLyricsA
+      \theLyricsB
+      \repeat volta 2 {
+        \theLyricsAA
+        \theLyricsBB
+      }
+    }
+    chordsA = \chordmode {
+      | f1 | g | a:m | a:m
+      | f1 | g | a:m | a:m
+      | f1 | g | a:m | a:m
+      | f1 | g | a:m | a:m
+      | f1 | g | a:m | a:m
+      | f1 | g | a:m | a:m
+    }
+    chordsB = \chordmode {
+      | f1 | 1 | 1 | 1
+      | a:m | 1 | 1 | 1
+      | d:m | 1 | 1 | 1
+      | a:m | 1 | 1 | 1
+      | d:m | 1 | 1 | 1
+      | a:m | 1 | 1 | 1
+      | d:m | 1 | 1 | 1
+      | a:m | 1 | 1 | 1
+    }
+    theChords = \chordmode {
+      \chordsA
+      \chordsB
+      \repeat volta 2 {
+        \chordsA
+        \chordsB
+      }
+    }
+%    \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
