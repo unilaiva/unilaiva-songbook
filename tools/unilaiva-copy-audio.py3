@@ -200,6 +200,7 @@ class Chapter:
           songnr = int(pretext.split('{',2)[2].split('}',1)[0].strip())
           #print(songnr)
       if 'lilypondbook' not in rawsong:
+        songnr += 1
         continue
       songtitle = rawsong.split('\\beginsong',1)[1].split('{',1)[1].split('}',1)[0].strip()
       inputarg = rawsong.split('lilypondbook',1)[1].split('\\input{',1)[1].split('}',1)[0].strip()
