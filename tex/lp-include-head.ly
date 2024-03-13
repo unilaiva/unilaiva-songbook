@@ -87,6 +87,13 @@
             .default-staff-staff-spacing.basic-distance = #5 % default: #10?
           \override VerticalAxisGroup
             .default-staff-staff-spacing.minimum-distance = #5 % default: #10?
+          % Setup \sectionLabel style:
+          \override SectionLabel
+            .stencil = #(make-stencil-boxer 0.1 0.5 ly:text-interface::print)
+          \override SectionLabel
+            .color = #blue
+          \override SectionLabel
+            .font-size = #0
         }
       }
       \context {

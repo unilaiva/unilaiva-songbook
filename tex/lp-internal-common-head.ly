@@ -88,6 +88,7 @@
     % Mark a spot in the music with a boxed blue text above the staff.
     % Use this to mark beginnings of musical sections. The text is given
     % as the only input parameter. Example: \sectionmark "2.A"
+    % DEPRECATED! Use \sectionLabel "2.A"
     sectionmark =
     #(define-event-function
       (parser location marktext)
@@ -113,6 +114,7 @@
     % Mark the playout start spot with a symbol followed by a boxed text used
     % to mark the beginning of a section. The text is given as the only input
     % parameter. Example: \posectionmark "2.B"
+    % DEPRECATED! Use \sectionLabel "2.B" instead, and \pomark
     posectionmark =
     #(define-event-function
       (parser location sectiontext)
