@@ -2275,6 +2275,9 @@
 \newcommand{\notesoff}{\def\@melodynotesdisabled{}}
 \newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
 
+% Is true, if baseline is increased due to being in mnverse or mnchorus
+\newif\if@baselineincreased\@baselineincreasedfalse
+
 \newlength{\@mnoldbaselineadj} % to save the \baselineadj before change
 %\@mnoldbaselineadj=\baselineadj % Not needed
 
@@ -2286,18 +2289,21 @@
 % Reset baselineadj to the old value
 \newcommand{\@mnresetbaselineadj}{%
   \baselineadj=\@mnoldbaselineadj%
+  \@baselineincreasedfalse%
 }
 
 % Increases the spacing between lyric rows, if melody notes are on
-\newcommand{\@mnincreasebaseline}{%
+\newcommand{\@mnincreasebaselineadj}{%
   \@mnsavebaselineadj%
   \ifchorded\ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
       \baselineadj=+.5em\relax%
+      \@baselineincreasedtrue%
     \fi%
   \fi\fi%
 }
+
 
 % Replace the verse/chorus starting macros with versions that save the baseline
 % adjustment value before calling the originals.
@@ -2317,8 +2323,8 @@
 % also in other than the first line of lyrics without resorting to \mnlow macro
 % and it's caveats. For non-chorded books or if melody notes are disabled,
 % spacing is not increased.
-\newcommand{\mnbeginverse}{\@mnincreasebaseline\@beginverseorig}
-\newcommand{\mnbeginchorus}{\@mnincreasebaseline\@beginchorusorig}
+\newcommand{\mnbeginverse}{\@mnincreasebaselineadj\@beginverseorig}
+\newcommand{\mnbeginchorus}{\@mnincreasebaselineadj\@beginchorusorig}
 \newcommand{\mnendverse}{\endverse} % For backwards compatibility, deprecated
 \newcommand{\mnendchorus}{\endchorus} % For backwards compatibility, deprecated
 
@@ -3138,6 +3144,16 @@
 \renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}
 }
 
+% Use this instead of \rep to signify number of repeats on the first line
+% of a chorus. The parameter is the number of repetitions, as in \rep macro.
+\newcommand{\prep}[1]{%
+  \raisebox{\if@baselineincreased{2ex}\else{1ex}\fi}{%
+    {% block for containing the color change
+      \color{repetitionsigncolor}%
+      \@reporig{#1}:%
+    }%
+  }%
+}
 
 % This rewrite is required for newer LaTeX distributions. Ubuntu 22.04 with
 % lualatex 1.14 worked without this, but 23.04 with lualatex 1.15 requires
