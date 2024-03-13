@@ -1,0 +1,50 @@
+ %% unilaiva-astral-mestre
+ %% ======================
+ %%
+ %% Collection of Santo Daime hymns
+ %% "Mestre Irineu: O Cruzeiro"
+ %%
+
+% Setup the book name (the subtitle), and include common settings
+\newcommand{\subbooktitle}{Mestre}
+\input{tex/setup_astral-A5-fullmusic_include.tex}
+
+\renewcommand{\bookbytext}{%
+  Recebido por:\par\vspace{0.618034ex}\textbf{\Large Mestre Raimundo Irineu Serra}%
+}%
+
+\setcovericonsvar[unilaiva-tag-icon-music_512x512px]%
+                 [unilaiva-tag-icon-sheetmusic_512x512px]%
+                 [unilaiva-tag-icon-guitar_512x512px]
+
+\begin{document}
+
+  % Cover page (recto), by larva (photo + edit):
+  \ulcoverpage{unilaiva-astral-mestre_COVER.pdf}%
+
+  % The second page (verso):
+  \imprintpage
+
+  % TOC:
+  \toc
+
+  % Sets chapter number; will be incremented by one at each \mainchapter,
+  % \songchapter or \chapter:
+  \setcounter{chapter}{0}
+
+  \mainchapter{Mestre Irineu: O Cruzeiro}{mestrecolor}[Mestre_Irineu_with_stick__CC0_1636x1736px.jpg]
+    \scleardpage
+    \begin{songs}{}
+      \input{content/songs_astral_mestre.tex}
+    \end{songs}{}
+
+  % Here start appendices: chapter numbering resets and switches to alphabetic
+  \appendix
+  \usechaptercolorsfalse
+
+  \ifchorded
+    \chapter{Técnico}
+      \input{content/section_technical_information.tex}
+  \fi
+
+\end{document}

@@ -1,0 +1,143 @@
+% Santo Daime: O Cruzeiro (Mestre Irineu)
+% =======================================
+%
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+
+\beginsong{Lua Branca}[by={Mestre Irineu Serra},tags={valsa},key={C},gk={C, (B)--(C)}]
+  \audio[key=C]{https://soundcloud.com/user-6451069-977349974/01-lua-branca?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
+  \newchords{chords_lua_branca_a}\newchords{chords_lua_branca_b}\newchords{chords_lua_branca_c}
+  \meter{3}{4}
+  \mnbeginverse\memorize[chords_lua_branca_a]
+    \[^\mn{G}]Deus |\[\mnc{C}C]te \[^\mn{E}]Sal|\[^\mn{G}]ve oh! Lu\[^\mn{A}]a |\[\mncadj{+2ex}{G}Am7]Bran|\[\mnc{B}G]ca, |\[^\mn{G}]Da \[^\mn{B}]luz \[^\mn{D}]tão |\[\mnc{F}F]pra\[^\mn{A}]te|\[\mncadj{+1ex}{G}Am]a|\[\mnc{C}C]da
+    \mnendverse\glueverses\mnbeginchorus\memorize[chords_lua_branca_b]
+    |\[\mnc{C}C]Tu \[^\mn{E}]sois \[^\mn{G}]mi|nha \[^\mn{A}]Pro\[^\mn{C}]te|\[\mnc{B}G]to|\[\mnc{A}Am]ra, |\[\mnc{B}G]De \[^\mn{A}]Deus \[^\mn{G}]tu |\[^\mn{D}]sois \[^\mn{F}]es\[^\mn{B}]ti|\[\mnc{D}G7]ma|\[\mnc{C}C]da
+    \mnendchorus\glueverses\mnbeginverse\memorize[chords_lua_branca_c]
+    |\[\mnc{A}Am]Oh \[^\mn{C}]Mãe \[^\mn{B}]Di|\[^\mn{A}]vina |\[\mnc{G}G]do \[^\mn{C}]co\[^\mn{B}]ra|\[^\mn{G}]ção, |Lá \[^\mn{B}]nas \[^\mn{D}]al|\[\mnc{F}F]turas \[^\mn{G}]on\[^\mn{B}]de es|\[\mnc{A}Am7]tás
+    \[^\mn{G}]Mi\[^\mn{E}]nha |\[\mnc{C}C]Mãe, \[^\mn{A}]lá \[^\mn{C}]no |\[\mnc{B}G]Céu, |\[\mnc{A}Am]Dai-\[^\mn{C}]me o \[^\mn{B}]per|\[^\mn{A}]dão |\[\mnc{G}G] \e
+  \mnendverse
+  \notesoff
+  \beginverse\replay[chords_lua_branca_a]
+    |^Das flores |do meu pa|^ís, |^ |Tu sois a |^mais deli|^ca|^da
+    \endverse\glueverses\beginchorus\replay[chords_lua_branca_b]
+    |^De todo |meu cora|^ção, |^ |^Tu sois de |Deus esti|^ma|^da
+    \endchorus\glueverses\beginverse\replay[chords_lua_branca_c]
+    |^Oh Mãe Di|vina |^do cora|ção, |Lá nas al|^turas onde es|^tás
+    Minha |^Mãe, lá no |^Céu, |^Dai-me o per|dão |^ \e
+  \endverse
+  \beginverse\replay[chords_lua_branca_a]
+    |^Tu sois |a flor mais |^be|^la, |Aonde |^Deus pôs a |^mão |^ \e
+    \endverse\glueverses\beginchorus\replay[chords_lua_branca_b]
+    |^Tu sois mi|nha Advo|^ga|^da, |^Oh! Virgem |da Concei|^ção |^ \e
+    \endchorus\glueverses\beginverse\replay[chords_lua_branca_c]
+    |^Oh Mãe Di|vina |^do cora|ção, |Lá nas al|^turas onde es|^tás
+    Minha |^Mãe, lá no |^Céu, |^Dai-me o per|dão |^ \e
+  \endverse
+  \beginverse\replay[chords_lua_branca_a]
+    |^Estrela |do Uni|^ver|^so, |Que me pa|^rece um jar|^dim |^ \e
+    \endverse\glueverses\beginchorus\replay[chords_lua_branca_b]
+    |^Assim co|mo sois bri|^lhan|^te, |^Quero que |brilhes à |^mim |^ \e
+    \endchorus\glueverses\beginverse\replay[chords_lua_branca_c]
+    |^Oh Mãe Di|vina |^do cora|ção, |Lá nas al|^turas onde es|^tás
+    Minha |^Mãe, lá no |^Céu, |^Dai-me o per|dão |^ \e
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-03
+    \include "tex/lp-include-head.ly"
+    % \header {
+    %   title = "1. Lua Branca"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative g' {
+      \key c \major \slurDashed
+      \set melismaBusyProperties = #'()
+      \time 3/4 \partial 4
+      \parenthesize g4 \posectionmark "A" | c4( c4) e4 | g g a | \once\slurSolid a2( g4)( | b,2.)
+      g4 b4 d4 | \once\slurDown f4( << f4) \single\altcol g4 >> a4 | \once\slurSolid a2( g4)( | c,2.)
+      \repeat volta 2 {
+        | c4 \sectionmark "B" e g | g a c | b2.( a2.) | b4 a g | d f b,
+        d2.( c2.)
+      }
+      a4 \sectionmark "C" c b | a2 a4 | g4 c b | g2. | g4 b d | f8 f g4 b
+      | a g e | c a c | b2. | a4 c b | \once\slurSolid a2.( | g2)
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Deus | te __ _ Sal -- | ve~oh! Lu -- a | Bran _ -- | ca;
+      | Da luz tão | pra -- _ te -- | a -- _ | da.
+      \repeat volta 2 {
+        | Tu sois mi -- | nha Pro -- te -- | to -- | ra;
+        | De Deus tu | sois es -- ti -- | ma -- | da.
+      }
+      | Oh Mãe Di -- | vi -- na | do co -- ra -- | ção;
+      | Lá nas al -- | tu -- ras on -- de~es -- | tás;
+      Mi -- nha | Mãe, lá no | Céu;
+      | Dai -- me~o per -- | dão. __ | _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \skip 1 | Das flo -- res | do meu pa -- | ís; __ _ | _
+      | Tu sois a | mais \altcol de -- li -- | ca -- _ | da.
+      \repeat volta 2 {
+        | De to -- do | meu co -- ra -- | ção; __ | _
+        | Tu sois de | Deus es -- ti -- | ma -- | da.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \skip 1 | Tu __ _ sois | a flor mais | be -- _ | la;
+      | A -- on -- de | Deus \altcol pôs a | mão. __ _ | _
+      \repeat volta 2 {
+        | Tu sois mi -- | nha~A -- d -- vo -- | ga -- | da;
+        | Oh! Vir -- gem | da Con -- cei -- | ção. __ | _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \skip 1 | Es -- tre -- la | do U -- ni -- | ver -- _ | so;
+      | Que me pa -- | re -- \altcol ce~um jar -- | dim; __ _ | _
+      \repeat volta 2 {
+        | As -- sim co -- | mo sois bri -- | lhan -- | te;
+        | Que -- ro que | bri -- lhes à | mim. __ | _
+      }
+    }
+    theChords = \chordmode {
+      s4 | c2. | c | a:m7 | g
+      | g | f | a:m | c
+      \repeat volta 2 {
+        | c | c | g | a:m
+        | g | g | g:7 | c
+      }
+      a:m | a:m | g | g
+      | g | f | a:m7 | c
+      | g | a:m | a:m | g2
+    }
+%    \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}
+    God salutes You, oh! White Moon of such silvery light
+    You are my Protectress, You are esteemed by God
+    \nextverse
+    Oh! Divine Mother of the heart, there in the heights where You are
+    My Mother, there in Heaven, give me forgiveness
+    \nextverse
+    Oh! Amongst the flowers of my country, You are the most delicate
+    With all my heart, You are esteemed by God
+    \nextverse
+    You are the most beautiful flower, where God put His hand
+    You are my Advocate, oh! Virgin of Conception
+    \nextverse
+    Star of the Universe that looks like a garden
+    Being bright as You are, I want You to shine upon me
+  \end{translation}
+\endsong
