@@ -59,13 +59,16 @@
       \key c \major \slurDashed
       \set melismaBusyProperties = #'()
       \time 3/4 \partial 4
-      \parenthesize g4 \posectionmark "A" | c4( c4) e4 | g g a | \once\slurSolid a2( g4)( | b,2.)
+      \sectionLabel "A"
+      \parenthesize g4 \pomark | c4( c4) e4 | g g a | \once\slurSolid a2( g4)( | b,2.)
       g4 b4 d4 | \once\slurDown f4( << f4) \single\altcol g4 >> a4 | \once\slurSolid a2( g4)( | c,2.)
+      \sectionLabel "B"
       \repeat volta 2 {
-        | c4 \sectionmark "B" e g | g a c | b2.( a2.) | b4 a g | d f b,
+        | c4 e g | g a c | b2.( a2.) | b4 a g | d f b,
         d2.( c2.)
       }
-      a4 \sectionmark "C" c b | a2 a4 | g4 c b | g2. | g4 b d | f8 f g4 b
+      \sectionLabel "C"
+      a4 c b | a2 a4 | g4 c b | g2. | g4 b d | f8 f g4 b
       | a g e | c a c | b2. | a4 c b | \once\slurSolid a2.( | g2)
       \fine
     }
