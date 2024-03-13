@@ -141,3 +141,57 @@
     Being bright as You are, I want You to shine upon me
   \end{translation}
 \endsong
+
+
+\beginsong{Tuperci}[by={Mestre Irineu Serra},key={C},gk={D, C--D}]
+  \audio[key=C]{https://soundcloud.com/user-6451069-977349974/02-tuperci-1?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
+  \mnbeginchorus
+    \[\mn{A}]Tu\[\mn{E}]per|\[\mnc{G}G7]ci \[\mn{F}]não \[\mn{E}]me \[\mn{B}]co|\[\mnc{D}C]nhe\[\mn{C}]ce
+    \[\mn{B}]Tu \[\mn{A}]não |\[G7]sa\[\mn{G}]bes \[\mn{F}]me a\[\mn{E}]pre\[\mn{D}]ci|\[\mnc{G}C]ar
+    \[\mn{A}]Tu \[\mn{E}]não |\[\mnc{G}G7]sabes \[\mn{F}]me \[\mn{E}]com\[\mn{B}]preen|\[\mncii{D}{C}C]der
+    A \[\mn{B}]mi\[\mn{A}]nha |\[\mncii{A}{G}G7]flor \[\mn{F}]cor \[\mn{E}]de \[\mn{D}]Ja|\[\mnc{G}C]ci
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-03
+    % \header {
+    %   title = "2. Tuperci"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative b'' {
+      \key c \major \slurSolid
+      \set melismaBusyProperties = #'()
+      \time 4/4 \partial 4
+      \repeat volta 3 {
+        \mark \markup {"3x"}
+        a8 \pomark e | g2~ g8 f e b | d4 c2
+        b8 a | a4 g4. f'8 e d | g2.
+        a8 e | g4 g4. f8 e b | d4( c4.)
+        c8 b a | a4( g4.) f'8 e d | g2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      Tu -- per -- | ci _ não me co -- | nhe -- ce;
+      Tu não | sa -- bes me~a -- pre -- ci -- | ar;
+      Tu não | sa -- bes me com -- preen -- | der; _
+      A mi -- nha | flor _ cor de Ja -- | ci.
+    }
+    theChords = \chordmode {
+      s4
+      | g1:7 | c
+      | g:7 | c
+      | g:7 | c
+      | g:7 | c2.
+    }
+%    \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Tuperci doesn't know me
+    You don't know how to appreciate me
+    You don't know how to understand me
+    My flower, the color of Jaci
+  \end{translation}
+\endsong
+
