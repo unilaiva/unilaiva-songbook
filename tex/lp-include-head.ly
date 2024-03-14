@@ -89,11 +89,11 @@
             .default-staff-staff-spacing.minimum-distance = #5 % default: #10?
           % Setup \sectionLabel style:
           \override SectionLabel
-            .stencil = #(make-stencil-boxer 0.1 0.5 ly:text-interface::print)
+            .stencil = #(make-stencil-boxer 0.2 0.2 ly:text-interface::print)
           \override SectionLabel
             .color = #blue
           \override SectionLabel
-            .font-size = #0
+            .font-size = #-1 % default: +1?
         }
       }
       \context {
