@@ -19,8 +19,8 @@
   \mnendchorus\glueverses\mnbeginchorus
     \meter{4}{4}
     \ind \[\mn{A}]Eu \[\mn{B}]es\[\mn{C#}]tou |\[\mnc{D}D]firme com \[\bm]meu Je|sus \altchords{|D |Bm}
-    \ind \[\mn{F#}]Eu \[\bm]estou |\[\mnc{A}A]fir\[\mn{A}]me \[\bmc E]nes\[\mn{B}]ta |\[\mnc{C#}A]luz \altchords{|A |F\shrp{}m}
-    \ind \[\mn{E}]A\[\bmc\mnc{D}E7]on\[\mn{B}]de es|\[\mnc{A}A]tou \altchords{E7 |A}
+    \ind \[\mn{F#}]Eu \[\bm]estou |\[\mnc{A}A]fir\[\mn{A}]me \[E]nes\[\mn{B}]ta |\[\mnc{C#}A]luz \altchords{|A |F\shrp{}m}
+    \ind \[\mn{E}]A\[\mnc{D}E7]on\[\mn{B}]de es|\[\mnc{A}A]tou \altchords{E7 |A}
   \mnendchorus
   \mnbeginchorus
     \[\mn{C#}]Fir|\[\mnc{E}A]me\[\bmc\mn{C#}]za, \[\mn{A}]fir|\[\mn{E}]me\[\mn{A}]za \[\bmc\mn{B}]no \[\mn{C#}]a|\[\mnc{D}D]mor\[\bm]{} \altchords{|A |A7 |D}
@@ -28,7 +28,7 @@
   \mnendchorus\glueverses\mnbeginchorus
     \meter{4}{4}
     \ind \[\mn{A}]O \[\mn{B}]Mes\[\mn{C#}]tre |\[\mnc{D}D]manda eu \[\bm]traba|lhar \altchords{|D |Bm}
-    \ind \[\mn{F#}]O \[\bm]Mestre |\[\mnc{A}A]man\[\mn{A}]da eu \[\bmc E]me \[\mn{B}]fir|\[\mnc{C#}A]mar \altchords{A |F\shrp{}m}
+    \ind \[\mn{F#}]O \[\bm]Mestre |\[\mnc{A}A]man\[\mn{A}]da eu \[E]me \[\mn{B}]fir|\[\mnc{C#}A]mar \altchords{A |F\shrp{}m}
     \ind \[\bm]No \[\mn{D}]lu|\[\mnc{E}E7]gar \[\mn{D}]on\[\bmc\mn{B}]de E\[\mn{C#}]le es|\[\mnc{A}A]tá \altchords{|E7 A}
   \mnendchorus
   \begin{translation}
@@ -45,14 +45,16 @@
     In the place where he is
   \end{translation}
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, latest update on 2024-03
     theMelody = \relative cis'' {
       \key a \major \time 4/4 \partial 4
       \repeat volta 2 {
-        cis4 \sectionmark "1.A" | e2 cis4 a | e' a, b cis | d2.
+        \sectionLabel "1.A"
+        cis4 | e2 cis4 a | e' a, b cis | d2.
         d4 | gis2 e4 fis4 | gis e fis gis
       } \alternative {
         { | cis,2. }
-        { \time 6/4 | cis2. a4 \sectionmark "1.B" b cis }
+        { \time 6/4 | cis2. \sectionLabel "1.B" a4 b cis }
       }
       \time 4/4
       \repeat volta 2 {
@@ -60,14 +62,14 @@
         | a a, a b | cis e d b
       } \alternative {
         { | a4. a8 b4 cis }
-        { | a2. cis4 \posectionmark "2.A" }
+        { | a2. \sectionLabel "2.A" cis4 \pomark }
       }
       \repeat volta 2 {
         | e2 cis4 a | e' a, b cis | d2. e4
         | gis2 e4 fis | gis e fis gis
       } \alternative {
         { | cis,2. e4 }
-        { \time 6/4 | cis2. a4 \sectionmark "2.B" b cis }
+        { \time 6/4 | cis2. \sectionLabel "2.B" a4 b cis }
       }
       \time 4/4
       \repeat volta 2 {
@@ -180,19 +182,24 @@
     Because there are many who don't know how to love
   \end{translation}
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, latest update on 2024-03
     theMelody = \relative d'' {
       \key d \major \time 4/4 \partial 1*5/8
       \repeat volta 2 {
-         r4 a8\sectionmark "1.A" a a | d4 d8 cis b4 a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
+        \sectionLabel "1.A"
+        r4 a8 a a | d4 d8 cis b4 a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
       }
       \repeat volta 2 {
-        r4. a8\sectionmark "1.B" a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e d fis e | d4.
+        \sectionLabel "1.B"
+        r4. a8 a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e d fis e | d4.
       }
       \repeat volta 2 {
-        a8\posectionmark "2.A" a a a a | d d d cis b a fis a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
+        \sectionLabel "2.A"
+        a8 \pomark a a a a | d d d cis b a fis a | d4. a8 a a d e | fis4 fis8 fis e4 fis | d4.
       }
       \repeat volta 2 {
-        r4. a8\sectionmark "2.B" a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e4 fis | d4.
+        \sectionLabel "2.B"
+        r4. a8 a | d d d cis b a fis a | d4. a8 a a d e | fis fis fis fis e4 fis | d4.
       }
     }
     theLyricsOne = \lyricmode {
@@ -268,18 +275,20 @@
     ^Os en|^si\noteson\[\mnlow{F}]nos \[\mnlow{E}]do\notesoff{} ^profes|^sor^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2023-01
+    % transcribed by larva, latest update on 2024-03
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       #(define afterGraceFraction (cons 1 4))
       \repeat volta 2 {
-         \parenthesize g4 \posectionmark "A" | c << \grace { \altcol\parenthesize c \altmark "1." } g >> c e | g4.( g8 g4 )
-         a | f \grace{\once\stemDown\altcol\parenthesize f8\altmark "2. & 3." } \afterGrace e4 {\once\stemDown\altcol\parenthesize e8} d4 e | c2( c4)
+        \sectionLabel "A"
+        \parenthesize g4 \pomark | c << \grace { \altcol\parenthesize c \altmark "1." } g >> c e | g4.( g8 g4 )
+        a | f \grace{\once\stemDown\altcol\parenthesize f8\altmark "2. & 3." } \afterGrace e4 {\once\stemDown\altcol\parenthesize e8} d4 e | c2( c4)
       } \break
       \repeat volta 2 {
-         g8(\sectionmark "B" g) | c4 g8( g8) c4 e | \once\slurDown g8( g8 g8 \grace { \altcol \parenthesize e8  \altmark "4." } g8 \grace { \altcol \parenthesize a4 } g4 )
-         a | f \grace{\once\stemDown\altcol\parenthesize f8\altmark "5." } \afterGrace e4 {\once\stemDown\altcol\parenthesize e8} d4 e | c2( c4)
+        \sectionLabel "B"
+        g8( g) | c4 g8( g8) c4 e | \once\slurDown g8( g8 g8 \grace { \altcol \parenthesize e8  \altmark "4." } g8 \grace { \altcol \parenthesize a4 } g4 )
+        a | f \grace{\once\stemDown\altcol\parenthesize f8\altmark "5." } \afterGrace e4 {\once\stemDown\altcol\parenthesize e8} d4 e | c2( c4)
       }
     }
     theLyricsOne = \lyricmode {
@@ -399,14 +408,17 @@
     Em nos|^so Pai ^Cria|^dor ^ \altchords{|B7 |Em}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, latest update on 2024-03
     theMelody = \relative b' {
       \key e \minor \time 4/4 \partial 4.
       \repeat volta 2 {
-        r8\posectionmark "A" b8 b8 | b4 b b a | c4( b2)
+        \sectionLabel "A"
+        r8 \pomark b8 b8 | b4 b b a | c4( b2)
         b8 b8 | b4 b b a | c4( b4.)
       }
       \repeat volta 2 {
-        \parenthesize b8\sectionmark "B" b8 b8 | c4 b bes b | g' fis4.
+        \sectionLabel "B"
+        \parenthesize b8 b8 b8 | c4 b bes b | g' fis4.
         \parenthesize e8 e e | dis4 dis b fis' | e2~ e8
       }
     }
@@ -489,19 +501,21 @@
     ^Do que |^meu Pai ^verda|^dei^ro \altchords{|E |A}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2023-01
+    % transcribed by larva, latest update on 2024-03
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        \parenthesize a8 \genmark "(4.)" \posectionmark "A" << cis8 \once\slurUp \parenthesize e8( \genmark "(2.)" >> e)
-        | a4 gis fis e | a4.( << a8) \parenthesize cis,8 \genmark "(3.)" >> cis4 fis
+        \sectionLabel "A"
+        \parenthesize a8 \genmark "(4.)" \pomark << cis8 \once\slurUp \single\altcol e8( \altmark "2." >> e)
+        | a4 gis fis e | a4.( << a8) \single\altcol cis,8 \altmark "3." >> cis4 fis
         | e d b cis | a2( a8)
       }
       \repeat volta 2 {
-         r8\sectionmark "B" << \parenthesize cis8 \genmark "(3., 4.)" \once\slurUp e8( >> e)
-         | b4 \parenthesize d8( d8) cis4 b | a4.( a8) cis4 e4
-         | b d cis b | a2( a8)
+        \sectionLabel "B"
+        r8 << \single\altcol cis8 \altmark "3., 4." \once\slurUp e8( >> e)
+        | b4 \parenthesize d8( d8) cis4 b | a4.( a8) cis4 e4
+        | b d cis b | a2( a8)
       }
     }
     % Lyric repeats are omitted, because they create problems with the
@@ -516,7 +530,7 @@
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2.A"
-      \skip 1 (As) __ _ | Tá -- buas de Moi -- | sés; __ _
+      \skip 1 \altcol As __ _ | Tá -- buas de Moi -- | sés; __ _
       Que o | meu Pai en -- tre -- | gou. __ _
       \set stanza = "2.B"
       Não __ _ | li -- ga -- _ ram~im -- por -- | tân -- cia;
@@ -524,18 +538,18 @@
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3.A"
-      \skip 1 Me ve -- | jo con -- tra -- ri -- | a -- (do);
+      \skip 1 Me ve -- | jo con -- tra -- ri -- | a -- \altcol do;
       Com o | po -- vo bra -- si -- | lei -- ro.
       \set stanza = "3.B"
-      (Que) -- rem | que o __ _ meu Pai | fa -- ça
+      \altcol Que -- rem | que o __ _ meu Pai | fa -- ça
       Co -- mo | faz lá no~es -- tran -- | gei -- ro.
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4.A"
-      (Não) sei o | que o po -- vo | pen -- sa
+      Não sei o | que o po -- vo | pen -- sa
       Que de | tu -- do~se es -- que -- | ceu; __ _
       \set stanza = "4.B"
-      (A) -- mam | mais a __ _ i -- lu -- | são; __ _
+      \altcol A -- mam | mais a __ _ i -- lu -- | são; __ _
       Do que | meu Pai ver -- da -- | dei -- ro.
     }
     theChords = \chordmode {
@@ -605,17 +619,19 @@
     E ^te pro|^meto ^ser fi|^el ^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2023-01
+    % transcribed by larva, latest update on 2024-03
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        r8 \posectionmark "A" g8( g) | c4 e8( e8) d4 e | c2( c8)( c8)
-        << \parenthesize c8 \genmark "(3., 5.)" \once\slurUp e8( >> e8)
+        \sectionLabel  "A"
+        r8 \pomark g8( g) | c4 e8( e8) d4 e | c2( c8)( c8)
+        << \single\altcol c8 \altmark "3., 5." \once\slurUp e8( >> e8)
         | g4( g8) e8 a4. c,8 | e2( e8)
       } \break
       \repeat volta 2 {
-        \parenthesize d8\sectionmark "B" d e | f4 f8( f8) d4 e4 | c4.( c8) b4 a4
+        \sectionLabel "B"
+        \parenthesize d8 d e | f4 f8( f8) d4 e4 | c4.( c8) b4 a4
         | g4( g8) g8 e'4. d8 | c2( c8)
       }
     }
@@ -624,7 +640,7 @@
       O va -- | lor que o Mes -- tre | tem; __ _ _
       Eu __ _ | vou __ _ es -- cla -- re -- | cer. __ _
       \set stanza = "1.B"
-      (Se) ti -- ver | al -- guém __ _ que du -- | vi -- de;
+      Se ti -- ver | al -- guém __ _ que du -- | vi -- de;
       To -- me | Dai -- _ me pa -- ra | ver. __ _
     }
     theLyricsTwo = \lyricmode {
@@ -638,7 +654,7 @@
     theLyricsThree = \lyricmode {
       \set stanza = "3.A"
       Meu __ _ | Mes -- tre __ _ é for -- | mo -- so; __ _
-      (É) pre -- | ci -- so a -- cre -- di -- | tar. __ _
+      \altcol É pre -- | ci -- so a -- cre -- di -- | tar. __ _
       \set stanza = "3.B"
       \skip 1 Eu con -- | vi -- do os meus ir -- | mãos; __ _
       Va -- mos | to -- dos a -- com -- pa -- | nhar. __ _
@@ -654,7 +670,7 @@
     theLyricsFive = \lyricmode {
       \set stanza = "5.A"
       Meu __ _ | Mes -- tre a ti eu | pe -- ço;
-      Fa -- (ça) de | mim __ _ o que qui -- | ser; __ _
+      Fa -- \altcol ça de | mim __ _ o que qui -- | ser; __ _
       \set stanza = "5.B"
       \skip 1 Me -- u | Mes -- tre es -- tou a -- | qui; E
       te pro -- | me -- _ to ser fi -- | el. __ _
