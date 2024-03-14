@@ -198,3 +198,67 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Ripi}[by={Mestre Irineu Serra},tags={3x},key={Dm},gk={Dm, Cm--Em}]
+  \audio[key=Dm]{https://soundcloud.com/user-6451069-977349974/03-ripi-1?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
+  \mnbeginchorus
+    \prep{3}
+    \[\mn{D}]Ri|\[\mnc{E}A]pi, \[\mn{C#}]Ri\[\bmc\mn{D}]pi, \[\mn{E}]Ri|\[\mnc{F}Dm]pi \[\bm] \altchords{\id[4]{alt. (Dm)}|A |Dm}
+    \[\mn{A}]Ri|\[\mnc{G}Gm]pi, \[\mn{E}]Ri\[\bmc\mn{F}]pi, \[\mn{G}]Ya|\[\mnc{A}A]yá \[\bm] \altchords{|A7 |Dm}
+    Se |\[\mnc{G}Gm]vo\[\mn{F}]cê \[\bmc\mn{E}]não \[\mn{D}]que|\[\mnc{F}Dm]ri\[\mn{A}]a \[\bm] \altchords{|A7 |Dm}
+    Para |\[A]que \[\mn{C#}]veio \[\mnc{E}A7]me en\[\mn{C#}]ga|\[\mnc{D}Dm]nar? \[\bm] \altchords{|A7 |Dm}
+  \mnendchorus
+  \ifchorded\ifshowaltchords
+    \beginverse
+      \altchords{\id[5]{alt. (Dm)}|A Dm |F}
+      \altchords{|Gm Gm7 |A}
+      \altchords{|Gm Gm6 |F}
+      \altchords{|A A7 |Dm}
+    \endverse
+  \fi\fi
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-03
+    % \header {
+    %   title = "3. Ripi"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative d'' {
+      \key d \minor \slurSolid
+      \set melismaBusyProperties = #'()
+      \time 4/4 \partial 4
+      \repeat volta 3 {
+        \mark \markup {"3x"}
+        d4 \pomark | e cis d e | f2.
+        a4 | g e f g | a2.
+        a4 | g f e d | f a,2
+        a8 a8 | a4 cis e cis | d2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 3 {
+        Ri -- | pi, Ri -- pi, Ri -- | pi;
+        Ri -- | pi, Ri -- pi, Ya -- | yá;
+        Se | vo -- cê não que -- | ri -- a;
+        Pa -- ra | que veio me~en -- ga -- | nar?
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 3 {
+        s4
+        | a1 | d:m
+        | g:m | a
+        | g:m | d:m
+        | a2 a2:7 | d2.:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+   Ripi, Ripi, Ripi, Ripi, Ripi, Yayá
+   If you did not want to, why did you come to deceive me?
+  \end{translation}
+\endsong
+
