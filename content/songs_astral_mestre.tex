@@ -372,3 +372,82 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
+\chapcornermarkdashedtrue
+\beginsong{Refeição}[by={Mestre Irineu Serra},key={A},gk={A, (A) -- (B\flt{})}]
+  \audio[key=G]{https://www.youtube.com/watch?v=KTK-h0rBWTg}
+  \textnotefornext{Este hino não é cantado durante os trabalhos. Em vez disso, é cantado antes (ou depois, com letras alteradas) de uma refeição.}*
+  \textnotefornext{This hino is not sung in the works. Instead, it is sung before (or after with altered lyrics) a meal.}*
+  \vspace{2ex}
+  \mnbeginverse\memorize
+    \[^\mn{E}]Pa\[^\mn{F#}]pai \[^\mn{G#}]do |\[\mnc{A}A]céu \[\mnc{G#}E] \[^\mn{B}]do \[^\mn{G#}]co\[^\mn{E}]ra|\[\mnc{D}D]ção
+    Que \[\mnc{C#}A/C#]hoje \[^\mn{E}]neste |\[\mnc{A}A]dia
+    É \[^\mn{G#}]quem \[\mnc{F#}F#m]{dá o} \[^\mn{C#}]nos\[^\mn{C}]so |\[\mnc{B}Bm]pão \altlyr{Foi qem deu o nosso |pão}
+    \[\mnc{E}A/E]Graças \[^\mn{A}]{a Ma}|\[\mnc{E}E]mãe \[\bm]
+  \mnendverse
+  \notesoff
+  \beginverse
+    Mamãe do |^céu ^ do cora|^ção
+    Que ^hoje neste |^dia
+    É quem ^{dá o} nosso |^pão \altlyr{Foi qem deu o nosso |pão}
+    Lou^vado seja |^Deus ^
+  \endverse
+  \begin{translation}
+    Papa of heaven of the heart
+    Who, today on this day
+    Is who gives us our bread \altlyr{{\scriptsize was who gave us}}
+    Thanks to Mama
+    \nextverse
+    Mama of heaven of the heart
+    Who, today on this day \altlyr{{\scriptsize was who gave us}}
+    Is who gives us our bread
+    Praised be God
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % latest update on 2024-03
+    % \header {
+    %   title = "5. Refeição"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody =  \relative c'' {
+      \key a \major \slurDashed
+      \set melismaBusyProperties = #'()
+      \time 4/4 \partial 4.
+      e8 fis gis | \once\slurSolid a2( gis8)
+      b gis e | d4.
+      d8 cis cis e e | a, a
+      a gis fis fis cis' bis | b4.( \parenthesize b8)
+      e8 e a a | e2~8
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      Pa -- pai do | céu _ do co -- ra -- | ção;
+      Que ho -- je nes -- te | di -- a;
+      << { É quem dá } \new Lyrics { \set associatedVoice = "theMelody" \override LyricText.color = #grey (Foi quem deu) } >>
+        o nos -- so | pão; __ _
+      Gra -- ças a Ma -- | mãe. _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      Ma -- mãe do | céu _ do co -- ra -- | ção;
+      Que ho -- je nes -- te | di -- a;
+      É quem dá o nos -- so | pão;
+      Lou -- va -- do se -- ja | Deus. _
+    }
+    theChords = \chordmode {
+      s4.
+      | a2 e | d a:/cis
+      | a fis:m
+      | b:m a:/e
+      | e2~8
+    }
+%    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
+\chapcornermarkdashedfalse
+
