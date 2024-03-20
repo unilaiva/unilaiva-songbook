@@ -1529,7 +1529,7 @@
 % Display alternate lyrics, but without any vertical or horizontal space. Is called
 % from \altlyr
 \newcommand{\altlyrnospace}[2][*]{%
-  {\small\up{#1}\emph{#2}}%
+  {\if@intranslation\else\small\fi\up{#1}\emph{#2}}%
 }
 
 % Display alternate lyrics. If inside a verse or chorus, show them on the same line
@@ -1915,6 +1915,8 @@
 % each time in the beginning of the translation block, within it.)
 \providecommand{\translationfont}{}
 
+\newif\if@intranslation\@intranslationfalse%
+
 % Environment for song translation, to be used only inside a song
 \NewDocumentEnvironment{translation}{o}{% pre env
   % Check if this environment needs hiding
@@ -1924,7 +1926,8 @@
   % If hiding is needed, hide the rest using verbatim's \comment
   \ifhide\expandafter\comment\fi%
   % The following, including the environment body, is only expanded and
-  % processed, if no hiding is needed:
+  % processed, if no hiding is needed.
+  \@intranslationtrue%
   \yesendsongvfill%
   \newcommand{\nextverse}{\brkpenalty=\translationvvpenalty\brk\vspace{.5em}}% some vertical space between verses
   \IfValueTF{#1}{% optional lang id (must be upcase) signifying translation
