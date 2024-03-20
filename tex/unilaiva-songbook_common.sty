@@ -1913,10 +1913,10 @@
 % Setup the style for the translation. Renew this macro in the beginning of
 % your document to set custom style for translations. (This will be called
 % each time in the beginning of the translation block, within it.)
-\providecommand{\translationstyle}{}
+\providecommand{\translationfont}{}
 
 % Environment for song translation, to be used only inside a song
-\newenvironment{translation}{%
+\NewDocumentEnvironment{translation}{o}{% pre env
   % Check if this environment needs hiding
   \newif\ifhide\hidefalse%
   \ifshowtranslation\else\hidetrue\fi%
@@ -1927,16 +1927,42 @@
   % processed, if no hiding is needed:
   \yesendsongvfill%
   \newcommand{\nextverse}{\brkpenalty=\translationvvpenalty\brk\vspace{.5em}}% some vertical space between verses
+  \IfValueTF{#1}{% optional lang id (must be upcase) signifying translation
+    \def\langsectlang{#1}%
+    \IfStrEq{\langsectlang}{PT}{%
+      \color{langportuguesecolor}%
+      \begin{portuguese}%
+    }{}%
+    \IfStrEq{\langsectlang}{EN}{%
+      \color{langenglishcolor}%
+      \begin{english}%
+    }{}%
+    \IfStrEq{\langsectlang}{FI}{%
+      \color{langfinnishcolor}%
+      \begin{finnish}%
+    }{}%
+  }{% no lang id given
+    \def\langsectlang{}%
+  }%
   \beginverse*%
   \vspace{-\versesep}% remove the vertical space created by \beginverse
   \@blockstart%
   \chordsoff%
-  \small\translationstyle%
-}{%
+  \small\translationfont%
+}{% post env
   \ifhide% End hidden section (\endcomment from verbatim package):
     \expandafter\endcomment%
   \else% Execute the post command(s):
     \endverse%
+    \IfStrEq{\langsectlang}{PT}{%
+      \end{portuguese}%
+    }{}%
+    \IfStrEq{\langsectlang}{EN}{%
+      \end{english}%
+    }{}%
+    \IfStrEq{\langsectlang}{FI}{%
+      \end{finnish}%
+    }{}%
   \fi%
 }
 
