@@ -303,6 +303,9 @@
 % Toggle for showing Lilypond music scores
 \newif\ifshowlilypond\showlilypondtrue
 
+% Toggle for showing passages
+\newif\ifshowpassage\showpassagetrue
+
 % Toggle for showing explanations
 \newif\ifshowexplanation\showexplanationtrue
 
@@ -342,8 +345,6 @@
 % Toggle the use of alternate melody note color (use for e.g. 2nd voice)
 \newif\ifusealtmncolor\usealtmncolorfalse
 
-% Toggle uppercasing the titles in passage environment
-\newif\ifupcasepassagetitle\upcasepassagetitlefalse
 
 % END Toggles
 
@@ -572,13 +573,12 @@
 \definecolor{internallinkcolor}{rgb}{0,0,0.3} % internal links
 \definecolor{urllinkcolor}{rgb}{0.3,0,0.3} % external links
 \definecolor{linkboxcolor}{rgb}{0.5,0.9,0.6} % boxed links (view), not used now
-% passage environment: the color for \pup marks
-\definecolor{passagemarkcolor}{rgb}{0,0,0}%
-\colorlet{passagemarkcolor}{chordcolor}%
-% Colors used for different languages (at least) in the passage environment
-\definecolor{portuguesecolor}{rgb}{0,0,0}%
-\definecolor{englishcolor}{rgb}{0,0.26,0.26}%
-\definecolor{finnishcolor}{rgb}{0,0.05,0.38}%
+% @langsect-derived environments: the color for \up marks
+\colorlet{langsectmarkcolor}{chordcolor}%
+% @langsect-derived environments: colors used for different languages
+\definecolor{langenglishcolor}{rgb}{0,0,0}%
+\definecolor{langportuguesecolor}{rgb}{0,0.26,0.26}%
+\definecolor{langfinnishcolor}{rgb}{0,0.05,0.38}%
 
 % hyperref: setup
 \hypersetup{linkbordercolor=linkboxcolor,%
@@ -1573,10 +1573,263 @@
 % END lyrics related
 
 
-% BEGIN ENDSONG VFILL
+% BEGIN @langsect ENVIRONMENT
+
+% The amount content is to be indented; used at least in passage environment
+\newlength\contentindentwidth%
+\setlength\contentindentwidth{\z@}
+\ifdim\cbarwidth>\z@%
+  \advance\contentindentwidth\cbarwidth%
+  \advance\contentindentwidth5\p@\relax%
+\fi%
+
+% BEGIN @langsect / rewritable defaults
+% NOTE: These are meant to be locally renewed in environments using the
+% @langsect environment. Be sure to renew locally only, as other environments
+% might depend on these defaults.
+\newif\if@upcaselangsecttitle\@upcaselangsecttitlefalse%
+\newcommand{\@langsectfont}{}% style for the default text
+\newcommand{\@langsecttitlefont}{}% style for the title text
+% Amount of indentation for default text inside langsect environment
+\newlength\@langsectleftskipadd\setlength\@langsectleftskipadd{0pt}%
+\newlength\@langsectrightskip\setlength\@langsectrightskip{0pt}%
+\newcommand{\@langsectbaselinemultiplier}{1}%
+\newcommand{\@langsectbeginextra}{}%
+\newcommand{\@langsectendextra}{}%
+% Omit the displaying of the language codes in the title line for the languages
+% listed in this comma separated list. Only the *codes* are omitted, the rest
+% of the possible title nor the content is affected.
+\newcommand{\@langsectomitlangcodes}{}%
+
+% Starts a new subsubsection and prints it's title given as the only parameter.
+% Used in the definition of passage environment.
+\newcommand\@langsectstart{\@startsection{subsubsection}{3}{\contentindentwidth}%\z@
+                                 {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                 {1.3ex \@plus .2ex}%
+                                 {\@langsecttitlefont}}
+% END @langsect / rewritable defaults
+
+% Returns the formatted version of a language code given as an argument, plus
+% a small horizontal space after it. If the code is in the omit list, nothing
+% is returned.
+\NewDocumentCommand{\@langcodeformatted}{m}{%
+  \IfValueT{#1}{% must not be empty for string check to work
+    \IfSubStr{\@langsectomitlangcodes}{#1}{% is in the omit list, return nothing
+    }{% current langcode is not in the omit list
+      {%
+        \normalfont\bfseries\setlength{\fboxsep}{1pt}\setlength{\fboxrule}{.8pt}%
+        \fbox{#1}\hspace{.618034em}%
+      }%
+    }%
+  }%
+}
+
+\newcommand{\@langcodewithtitle}[2]{%
+  \@langcodeformatted{#1}#2%
+}
+
+% Environment for text that can be put inside a song environment and elsewhere,
+% with support for languages. Supports colouring and hyphenation of language
+% texts. Intended for use within this package.
+% Requires packages: xstring, xparse, xcolor
+% Usage: \begin{langsect}*[LANGCODE]{<title>}*
+%   - 1st star: language code is displayed (and section started) even if title
+%     is empty
+%   - If LANGCODE is present, it is displayed before the title in brackets.
+%     If it is one of the supported ones: PT, EN, or FI (must be uppercase),
+%     the langsect text is coloured and hyphenation for that language is used.
+%   - 2nd star: obey lines
+%   - If <title> is empty and 1st star is present, no title is displayed
+\NewDocumentEnvironment{@langsect}{s o m s}{% pre env
+  \bgroup%
+  \let\@oldobeylines\obeylines%
+  \let\@olddisobeylines\disobeylines%
+  \renewcommand{\obeylines}{\@oldobeylines\parskip=0pt}%
+  \renewcommand{\disobeylines}{%
+    \@olddisobeylines%
+    \justifying% ragged2e package: force justifying
+    \parskip=.381966\baselineskip%
+  }%
+  \newcommand{\polpar}{\par\vspace{.618034\baselineskip}}%
+  \renewcommand{\up}[1]{\textsuperscript{\color{langsectmarkcolor}##1}}%
+  \def\langsecttitle{#3}%
+  \IfValueTF{#2}{% optional lang id (must be upcase) signifying translation
+    \def\langsectlang{#2}%
+    \def\langsectfulltitle{\@langcodewithtitle{\langsectlang}{\langsecttitle}}%
+    \IfBooleanF{#1}{% if title is empty and there is no star, display no title
+      \ifx\langsecttitle\empty%
+        \def\langsectfulltitle{}%
+      \fi%
+    }%
+    \IfStrEq{\langsectlang}{PT}{%
+      \color{langportuguesecolor}%
+      \begin{portuguese}%
+    }{}%
+    \IfStrEq{\langsectlang}{EN}{%
+      \color{langenglishcolor}%
+      \begin{english}%
+    }{}%
+    \IfStrEq{\langsectlang}{FI}{%
+      \color{langfinnishcolor}%
+      \begin{finnish}%
+    }{}%
+  }{% there was no lang set
+    \def\langsectlang{}%
+    \ifx\langsecttitle\empty%
+      \def\langsectfulltitle{}%
+    \else%
+      \def\langsectfulltitle{\langsecttitle}%
+    \fi%
+  }%
+  \@langsectfont%
+  \ifchorded%
+    \chordsoff%
+    \chordedtrue% must be here to be able to use \ifchorded within the env.
+  \fi%
+  \ifhmode\par\fi%
+  \ifx\langsectfulltitle\empty\else%
+    \if@upcaselangsecttitle%
+      \@langsectstart{\protect\MakeUppercase{\expandafter\langsectfulltitle}}% Create section
+    \else%
+      \@langsectstart{\langsectfulltitle}% Create section
+    \fi%
+  \fi%
+  \baselineskip=\@langsectbaselinemultiplier\baselineskip plus 0pt minus 0pt%
+  \IfBooleanTF{#4}{% 2nd star: obey lines
+    \vspace{.25cm}%
+    \obeylines%
+  }{% no star: do not obey lines
+    \disobeylines% use the renewed version above to set up parskip etc
+  }%
+  \advance\leftskip\@langsectleftskipadd%
+  \rightskip=\@langsectrightskip%
+  \parindent=0pt\relax%
+  \noindent%
+  \@langsectbeginextra%
+  \ignorespaces%
+}{% post env
+  \par%
+  \IfStrEq{\langsectlang}{PT}{%
+    \end{portuguese}%
+  }{}%
+  \IfStrEq{\langsectlang}{EN}{%
+    \end{english}%
+  }{}%
+  \IfStrEq{\langsectlang}{FI}{%
+    \end{finnish}%
+  }{}%
+  \@langsectendextra%
+  \egroup%
+}
+
+% END @langsect ENVIRONMENT
+
+
+% BEGIN PASSAGE ENVIRONMENT
+
+% A boxed text note pushed to line's end. Intended for use within passage
+% environment.
+%
+% Usage: \passagenote*{Note text}
+%
+% If the star is present, there will be less vertical space above it. It is good
+% to use, if the note is put just after beginning a passage environment.
+\NewDocumentCommand{\passagenote}{s m}{%
+  {%
+    \ifhmode\par\fi%
+    \IfBooleanT{#1}{%
+      \vspace{-2ex}%
+    }%
+    \rightskip=\passagerightskip%
+    \hfill\SB@colorbox\notebgcolor{\SB@boxup{\sffamily\itshape #2}}%
+    \par%
+  }%
+}%
+
+% BEGIN passage settings
+\providecommand{\passagefont}{\lyricfont}%
+% Style for the default text for alt. passage env (starred):
+\providecommand{\altpassagefont}{\lyricfont\normalsize\sffamily\itshape}%
+\providecommand{\passagetitlefont}{\stitlefont}%
+% Baseline multiplier, must be a number:
+\providecommand{\passagebaselinemultiplier}{1.1}%
+% Amount of indentation for default text:
+\newlength\passageleftskipadd\setlength\passageleftskipadd{2em}\relax%
+\newlength\passagerightskip\setlength\passagerightskip{2em}\relax%
+% The content in languages that have their code in in this comma separated
+% list are not shown at all:
+\providecommand{\passagelanguagestoskip}{}%
+% The language *codes* held in this comma separated list are not displayed:
+\providecommand{\passageomitlangcodes}{}%
+% END passage settings
+
+% Starts a new subsubsection and prints it's title given as the only parameter.
+% Used in the definition of passage environment.
+\newcommand\@passagestart{\@startsection{subsubsection}{3}{\contentindentwidth}%\z@
+                          {-3.25ex\@plus -1ex \@minus -.2ex}%
+                          {1.3ex \@plus .2ex}%
+                          {\passagetitlefont}}
+
+% Environment for a passage of text that can be put inside a song environment
+% and elsewhere. Supports colouring and hyphenation of language texts.
+% Uses @langsect environment.
+% Requires packages: xstring, xparse, xcolor
+% Usage: \begin{passage}*[LANGCODE]{<title>}
+%   - If star is present, another version of the environment is used, meant
+%     for notes.
+%   - If LANGCODE is present, it is displayed before the title in brackets.
+%     If it is one of the supported ones, the passage text is coloured and
+%     hyphenation for that language is used.
+%   - If <title> is empty, no title is displayed. To display it in such a
+%     case, make the title a whitespace: { }
+%   - \obeylines and \disobeylines (the default) macros are supported within
+\NewDocumentEnvironment{passage}{s o m}{% pre env
+  % Check if this environment needs hiding:
+  \newif\ifhide\hidefalse%
+  \ifshowpassage\else\hidetrue\fi%
+  % Test for skipped languages:
+  \IfValueT{#2}{%
+    \IfSubStr{\passagelanguagestoskip}{#2}{%
+      \global\hidetrue% % mark to hide, as the lang is in the skip list
+    }{}%
+  }%
+  % If hiding is needed, hide the rest using verbatim's \comment:
+  \ifhide\expandafter\comment\fi%
+  \bgroup%
+  \renewcommand{\@langsectstart}{\@passagestart}%
+  \renewcommand{\@langsectfont}{\passagefont}%
+  \renewcommand{\@langsecttitlefont}{\passagetitlefont}%
+  \renewcommand{\@langsectbaselinemultiplier}{\passagebaselinemultiplier}%
+  \renewcommand{\@langsectbeginextra}{}%
+  \renewcommand{\@langsectendextra}{\vfil}%
+  \renewcommand{\@langsectomitlangcodes}{\passageomitlangcodes}%
+  \@langsectleftskipadd=\passageleftskipadd%
+  \@langsectrightskip=\passagerightskip%
+  \IfBooleanT{#1}{% starred version
+    \renewcommand{\@langsectfont}{\altpassagefont}%
+    \renewcommand{\@langsectbeginextra}{\vspace{1cm}\vfil}%
+  }
+  \IfValueTF{#2}{%
+    \begin{@langsect}[#2]{#3}
+  }{% no lang
+    \begin{@langsect}{#3}
+  }%
+}{% post env
+  \ifhide% End hidden section (\endcomment from verbatim package):
+    \expandafter\endcomment%
+  \else% Execute the post command(s):
+    \end{@langsect}
+    \egroup%
+  \fi%
+}
+
+% END PASSAGE ENVIRONMENT
+
+
+% BEGIN IN-SONG BLOCKS
 
 \newcounter{@endsongvfillneeded}% counter to hold info about needing vfill at end
-\newcounter{@aftersongblocks}\setcounter{@aftersongblocks}{0}
+\newcounter{@aftersongblocks}\setcounter{@aftersongblocks}{0}% reset to 0 in endsong
 
 % Call this to request no vfill at song end. The last call within a song to
 % \noendsongvfill or \yesendsongvfill will be the one acted on.
@@ -1594,107 +1847,8 @@
   \fi%
 }
 
-\yesendsongvfill% Start with this default
+\yesendsongvfill% Start with this default, will be reset in endsong
 
-% Zero this, because we don't use postlude and there is other vspace in
-% the end of the song:
-\beforepostludeskip=0pt plus 0pt minus 0pt
-
-% songs: rewrite this macro to support two things:
-%   1) adding a \vfill to song's end conditionally. Also reset alternate
-%      chord colors.
-%   2) support for adding 'song end mark' to just above the horizontal
-%      line ending a song, if \songendmark is defined. The mark is positioned
-%      touching the right margin of the page, and does not take vertical space,
-%      so it might overlap on song content in some cases.
-\renewcommand\SB@endsong{%
-  % BEGIN modification by larva, for song end vfill (1)
-  \ifnum\value{@endsongvfillneeded}>0%
-    \ifnum\SB@numcols=1% only do a vfill in 1-column situation
-      \vspace{0pt plus 1fill minus 0pt}%
-    \fi%
-  \fi%
-  \yesendsongvfill% default to being needed in the next song
-  \setcounter{@aftersongblocks}{0}% reset counter for next song
-  \@setaltchordscolor{1}%
-  % END modification by larva, for song end vfill (1)
-  \ifSB@insong%
-      \ifSB@inverse\SB@erreov\endverse\fi%
-      \ifSB@inchorus\SB@erreoc\endchorus\fi%
-      \global\SB@skip\versesep%
-      \unskip%
-      \ifrepchorus\ifvoid\SB@chorusbox\else%
-        \ifSB@prevverse\ifvnumbered%
-          \marks\SB@cmarkclass{\SB@lastcmark}%
-        \fi\fi%
-      \fi\fi%
-    \endgroup\egroup%
-    \begingroup%
-      \ifnum\SB@numcols>\z@%
-        \hsize\ifpagepreludes\textwidth\else\SB@colwidth\fi%
-      \fi%
-      \leftskip\z@skip\rightskip\z@skip%
-      \parfillskip\@flushglue\parskip\z@skip\parindent\z@%
-      \global\setbox\SB@envbox\vbox{%
-        \songmark%
-        \unvbox\SB@songwrites%
-        \ifpagepreludes\else\ifdim\sbarheight>\z@%
-          \hrule\@height\sbarheight\@width\hsize%
-          \nobreak\vskip5\p@\relax%
-        \fi\fi%
-        \resettitles%
-        \begingroup%
-          \songtarget{\ifnum\c@section=\z@1\else2\fi}%
-                     {song\theSB@songsnum-\thesongnum}%
-        \endgroup%
-        \vbox{\makeprelude}%
-        \nobreak\vskip\SB@skip%
-        \vskip\afterpreludeskip\relax%
-      }%
-      \ifnum\SB@numcols>\z@\hsize\SB@colwidth\fi%
-      \global\setbox\SB@songbox\vbox{%
-        \ifpagepreludes\else\unvbox\SB@envbox\fi%
-        \unvbox\SB@songbox%
-        \nobreak\vskip\SB@skip%
-        \vskip\beforepostludeskip\relax%
-        \nointerlineskip%
-        \vbox{\makepostlude}%
-        \ifdim\sbarheight>\z@%
-          \nobreak\vskip2\p@\@plus\p@%
-          \nointerlineskip%
-          \hbox{%
-            \vrule\@height\sbarheight\@width\hsize%
-            % BEGIN modification by larva, for song end mark (2)
-            \ifdefined\songendmark%
-              {%
-                \normalsize%
-                \newdimen\@songendmarkwidth%
-                \settowidth{\@songendmarkwidth}{\songendmark}%
-                \hspace{-\@songendmarkwidth}%
-                \raisebox{.618034ex}[0pt][0pt]{\songendmark}%
-              }%
-            \fi%
-            % END modification by larva, for song end mark (2)
-          }%
-        \fi%
-      }%
-    \endgroup%
-    \SB@insongfalse%
-    \edef\SB@sgroup{\thesongnum}%
-    \global\SB@groupcnt\z@%
-    \ifpagepreludes\SB@submitenv\fi%
-    \SB@submitsong%
-    \ifnum\SB@grouplvl=\z@\let\SB@sgroup\@empty\fi%
-    \stepcounter{songnum}%
-  \else%
-    \ifSB@intersong\SB@erreor\SB@closeall%
-    \else\SB@erreot\fi%
-  \fi%
-}
-
-% END ENDSONG VFILL
-
-% BEGIN IN-SONG BLOCKS
 
 % This is called in the beginning of each insong-block: translation, showmantra,
 % feeler, explanation and lilywrap.
@@ -1759,7 +1913,7 @@
 % Setup the style for the translation. Renew this macro in the beginning of
 % your document to set custom style for translations. (This will be called
 % each time in the beginning of the translation block, within it.)
-\newcommand{\translationstyle}{}
+\providecommand{\translationstyle}{}
 
 % Environment for song translation, to be used only inside a song
 \newenvironment{translation}{%
@@ -1779,32 +1933,79 @@
   \chordsoff%
   \small\translationstyle%
 }{%
-  % Check if this environment needs hiding, which means it IS hidden
-  \newif\ifhide\hidefalse%
-  \ifshowtranslation\else\hidetrue\fi%
-  \ifdefined\@translationdisabled\hidetrue\fi%
   \ifhide% End hidden section (\endcomment from verbatim package):
     \expandafter\endcomment%
-  \else% Run the post command(s):
+  \else% Execute the post command(s):
     \endverse%
   \fi%
 }
 
-% environment for 'song explanation'
-\NewEnviron{explanation}{%
-  \ifshowexplanation%
-    \noendsongvfill% so far explanation is last: no vfill needed at song end
+% BEGIN explanation settings
+\providecommand{\explanationfont}{\rmfamily\footnotesize}%
+\providecommand{\explanationtitlefont}{\bfseries}%
+% Baseline multiplier, must be a number:
+\providecommand{\explanationbaselinemultiplier}{1.15}%
+% The content in languages that have their code in in this comma separated
+% list are not shown at all:
+\providecommand{\explanationlanguagestoskip}{}%
+% The language *codes* held in this comma separated list are not displayed:
+\providecommand{\explanationomitlangcodes}{}%
+% END explanation settings
+
+\newcounter{@explcounter}\setcounter{@explcounter}{0} % reset to 0 in endsong
+
+% Environment for 'song explanation'
+% Uses @langsect environment
+% Requires packages: xstring, xparse, xcolor
+% Usage: \begin{explanation}[LANGCODE]
+%   - If LANGCODE is present, it is displayed before the title in brackets.
+%     If it is one of the supported ones, the passage text is coloured and
+%     hyphenation for that language is used.
+\NewDocumentEnvironment{explanation}{o}{% pre env
+  % Check if this environment needs hiding:
+  \newif\ifhide\hidefalse%
+  \ifshowexplanation\else\hidetrue\fi%
+  % Test for skipped languages:
+  \IfValueT{#1}{%
+    \IfSubStr{\explanationlanguagestoskip}{#1}{%
+      \global\hidetrue% % mark to hide, as the lang is in the skip list
+    }{}%
+  }%
+  % If hiding is needed, hide the rest using verbatim's \comment:
+  \ifhide\expandafter\comment\fi%
+  \bgroup%
+  \ifnum\value{@explcounter}<1%
     \@blockstart%
-    \setlist[description]{% modify description list (enumitem package)
-      %topsep=30pt,%      % space before start / after end of list
-      %itemsep=5pt,%      % space between items
-      font={\rmfamily}%   % set the label font
-    }%
-    \justifying% ragged2e package: force justifying
-    \rmfamily\footnotesize%
-    \par\noindent\ignorespaces%
-    \BODY%
-    \par\noindent\ignorespacesafterend%
+  \else%
+    \vspace{1ex}%
+  \fi%
+  \addtocounter{@explcounter}{1}%
+  \noendsongvfill% so far explanation is last block, no vfill needed at song end
+  \setlist[description]{% modify description list (enumitem package)
+    %topsep=30pt,%      % space before start / after end of list
+    %itemsep=5pt,%      % space between items
+    leftmargin=3em%     % left margin
+    %font={\rmfamily}%   % set the label font
+  }%
+  \@langsectleftskipadd=0pt\relax%
+  \@langsectrightskip=0pt\relax%
+  \renewcommand{\@langsectbaselinemultiplier}{\explanationbaselinemultiplier}%
+  \renewcommand{\@langsectfont}{\explanationfont}%
+  \renewcommand{\@langsecttitlefont}{\explanationtitlefont}%
+  \renewcommand{\@langsectendextra}{}%
+  \renewcommand{\@langsectomitlangcodes}{\explanationomitlangcodes}%
+  \IfValueTF{#1}{% language code is given
+    \renewcommand\@langsectstart[1]{\noindent{\@langcodeformatted{#1}}}%
+    \begin{@langsect}*[#1]{}%
+  }{% no language code
+    \begin{@langsect}{}%
+  }%
+}{% post env
+  \ifhide% End hidden section (\endcomment from verbatim package):
+    \expandafter\endcomment%
+  \else% Execute the post command(s):
+    \end{@langsect}%
+    \egroup%
   \fi%
 }
 
@@ -1818,6 +2019,111 @@
 }
 
 % END IN-SONG BLOCKS
+
+
+% BEGIN ENDSONG
+
+% Zero this, because we don't use postlude and there is other vspace in
+% the end of the song:
+\beforepostludeskip=0pt plus 0pt minus 0pt
+
+% songs: rewrite this macro to support the following:
+%   1) add a \vfill to song's end conditionally
+%   2) reset counters etc for the next song
+%   3) support for adding 'song end mark' to just above the horizontal
+%      line ending a song, if \songendmark is defined. The mark is positioned
+%      touching the right margin of the page, and does not take vertical space,
+%      so it might overlap on song content in some cases.
+\renewcommand\SB@endsong{%
+  % BEGIN modification by larva: song end vfill (1)
+  \ifnum\value{@endsongvfillneeded}>0%
+    \ifnum\SB@numcols=1% only do a vfill in 1-column situation
+      \vspace{0pt plus 1fill minus 0pt}%
+    \fi%
+  \fi%
+  % END modifictaion by larva: song end vfill (1)
+  % BEGIN modification by larva: resets (2)
+  \yesendsongvfill% back to the default for the next song
+  \setcounter{@aftersongblocks}{0}% reset block counter for next song
+  \setcounter{@explcounter}{0}% reset explanation counter for next song
+  \@setaltchordscolor{1}% back to default alt chords color
+  % END modification by larva: resets (2)
+  \ifSB@insong%
+      \ifSB@inverse\SB@erreov\endverse\fi%
+      \ifSB@inchorus\SB@erreoc\endchorus\fi%
+      \global\SB@skip\versesep%
+      \unskip%
+      \ifrepchorus\ifvoid\SB@chorusbox\else%
+        \ifSB@prevverse\ifvnumbered%
+          \marks\SB@cmarkclass{\SB@lastcmark}%
+        \fi\fi%
+      \fi\fi%
+    \endgroup\egroup%
+    \begingroup%
+      \ifnum\SB@numcols>\z@%
+        \hsize\ifpagepreludes\textwidth\else\SB@colwidth\fi%
+      \fi%
+      \leftskip\z@skip\rightskip\z@skip%
+      \parfillskip\@flushglue\parskip\z@skip\parindent\z@%
+      \global\setbox\SB@envbox\vbox{%
+        \songmark%
+        \unvbox\SB@songwrites%
+        \ifpagepreludes\else\ifdim\sbarheight>\z@%
+          \hrule\@height\sbarheight\@width\hsize%
+          \nobreak\vskip5\p@\relax%
+        \fi\fi%
+        \resettitles%
+        \begingroup%
+          \songtarget{\ifnum\c@section=\z@1\else2\fi}%
+                     {song\theSB@songsnum-\thesongnum}%
+        \endgroup%
+        \vbox{\makeprelude}%
+        \nobreak\vskip\SB@skip%
+        \vskip\afterpreludeskip\relax%
+      }%
+      \ifnum\SB@numcols>\z@\hsize\SB@colwidth\fi%
+      \global\setbox\SB@songbox\vbox{%
+        \ifpagepreludes\else\unvbox\SB@envbox\fi%
+        \unvbox\SB@songbox%
+        \nobreak\vskip\SB@skip%
+        \vskip\beforepostludeskip\relax%
+        \nointerlineskip%
+        \vbox{\makepostlude}%
+        \ifdim\sbarheight>\z@%
+          \nobreak\vskip2\p@\@plus\p@%
+          \nointerlineskip%
+          \hbox{%
+            \vrule\@height\sbarheight\@width\hsize%
+            % BEGIN modification by larva: song end mark (3)
+            \ifdefined\songendmark%
+              {%
+                \normalsize%
+                \newdimen\@songendmarkwidth%
+                \settowidth{\@songendmarkwidth}{\songendmark}%
+                \hspace{-\@songendmarkwidth}%
+                \raisebox{.618034ex}[0pt][0pt]{\songendmark}%
+              }%
+            \fi%
+            % END modification by larva: song end mark (3)
+          }%
+        \fi%
+      }%
+    \endgroup%
+    \SB@insongfalse%
+    \edef\SB@sgroup{\thesongnum}%
+    \global\SB@groupcnt\z@%
+    \ifpagepreludes\SB@submitenv\fi%
+    \SB@submitsong%
+    \ifnum\SB@grouplvl=\z@\let\SB@sgroup\@empty\fi%
+    \stepcounter{songnum}%
+  \else%
+    \ifSB@intersong\SB@erreor\SB@closeall%
+    \else\SB@erreot\fi%
+  \fi%
+}
+
+% END ENDSONG
+
 
 % BEGIN IMAGES (IN-SONG AND OUT)
 
@@ -1913,139 +2219,6 @@
 
 % END IMAGES (IN-SONG AND OUT)
 
-% BEGIN PASSAGE ENVIRONMENT
-
-% passage environment: style for the title, default: same as song title
-\providecommand{\passagetitlestyle}{\stitlefont}%
-% passage environment: style for the default text
-\providecommand{\passagefontstyle}{\lyricfont}
-
-% The amount content is to be indented; used at least in passage environment
-\newlength\contentindentwidth%
-\setlength\contentindentwidth{\z@}
-\ifdim\cbarwidth>\z@%
-  \advance\contentindentwidth\cbarwidth%
-  \advance\contentindentwidth5\p@\relax%
-\fi%
-
-% Amount of indentation for default text inside passage environment
-\newlength\passageleftskip\setlength\passageleftskip{2em}%
-\newlength\passagerightskip\setlength\passagerightskip{2em}%
-
-% A boxed text note pushed to line's end. Intended for use within passage
-% environment.
-%
-% Usage: \passagenote*{Note text}
-%
-% If the star is present, there will be a bit less space above it. It is good
-% to use, if the note is put just after beginning a passage environment.
-\NewDocumentCommand{\passagenote}{s m}{%
-  {%
-    \ifhmode\par\fi%
-    \IfBooleanT{#1}{%
-      \vspace{-1.5ex}%
-    }%
-    \rightskip=\passagerightskip%
-    \hfill\SB@colorbox\notebgcolor{\SB@boxup{\sffamily\itshape #2}}%
-    \par%
-  }%
-}%
-
-% Starts a new subsubsection and prints it's title given as the only parameter.
-% Used in the definition of passage environment.
-\newcommand\@passagesection{\@startsection{subsubsection}{3}{\contentindentwidth}%\z@
-                              {-3.25ex\@plus -1ex \@minus -.2ex}%
-                              {1.3ex \@plus .2ex}%
-                              {\passagetitlestyle}}
-
-
-% Passage of text that can be put inside a song environment and elsewhere.
-% Supports colouring and hyphenation of language texts.
-% Requires packages: xstring, xparse, xcolor
-% Usage: \begin{passage}*[LANGCODE]{<title>}*
-%   - 1st star: language code is displayed (and section started) even if title
-%     is empty
-%   - If LANGCODE is present, it is displayed before the title in brackets.
-%     If it is one of the supported ones: PT, EN, or FI (must be uppercase),
-%     the passage text is coloured and hyphenation for that language is used.
-%   - 2nd star: obey lines
-%   - If <title> is empty and 1st star is present, no title is displayed
-\NewDocumentEnvironment{passage}{s o m s}{% pre env
-  \bgroup%
-  \newcommand{\pobeylines}{\obeylines\parskip=0pt}%
-  \newcommand{\polpar}{\par\vspace{.618034\baselineskip}}%
-  \newcommand{\pup}[1]{\textsuperscript{\color{passagemarkcolor}##1}}%
-  \sffamily%
-  \large%
-  \IfValueTF{#2}{% optional lang id (must be upcase) signifying translation
-    \def\passagelang{#2}%
-    \def\passagetitle{#3}%
-    \def\passagefulltitle{{\normalfont\textbf{[\passagelang]}}\hspace{.618034em}\passagetitle}%
-    \IfBooleanF{#1}{% if title is empty and there is no star, display no title
-      \ifx\passagetitle\empty%
-        \def\passagefulltitle{}%
-      \fi%
-    }%
-    \IfStrEq{\passagelang}{PT}{%
-      \color{portuguesecolor}%
-      \begin{portuguese}%
-    }{}%
-    \IfStrEq{\passagelang}{EN}{%
-      \color{englishcolor}%
-      \begin{english}%
-    }{}%
-    \IfStrEq{\passagelang}{FI}{%
-      \color{finnishcolor}%
-      \begin{finnish}%
-    }{}%
-    \IfStrEq{\passagelang}{NOTE}{%
-      \def\passagefulltitle{\passagetitle}
-      \vspace{.25cm}\vfil\normalsize\sffamily\itshape%
-    }{}%
-  }{% there was no lang set
-    \def\passagelang{}%
-    \def\passagefulltitle{\passagetitle}
-  }%
-  \ifx\passagefulltitle\empty\else%
-    \ifupcasepassagetitle%
-      \@passagesection{\protect\MakeUppercase{\expandafter\passagefulltitle}}% Create section
-    \else%
-      \@passagesection{\passagefulltitle}% Create section
-    \fi
-  \fi%
-  \IfBooleanTF{#4}{% 2nd star
-    \vspace{.25cm}%
-    \pobeylines%
-  }{% no star
-    \disobeylines%
-    \justifying%
-    %\parskip=.618034\baselineskip%
-    \parskip=.381966\baselineskip%
-  }%
-  \chordsoff%
-  \baselineskip=1.1\baselineskip%
-  \parindent=0pt%
-  \advance\leftskip\passageleftskip%
-  \rightskip=\passagerightskip%
-}{% post env
-  \par%
-  \IfStrEq{\passagelang}{PT}{%
-    \end{portuguese}%
-  }{}%
-  \IfStrEq{\passagelang}{EN}{%
-    \end{english}%
-  }{}%
-  \IfStrEq{\passagelang}{FI}{%
-    \end{finnish}%
-  }{}%
-  \IfStrEq{\passagelang}{NOTE}{%
-  }{%
-    \vfil%
-  }%
-  \egroup%
-}
-
-% END PASSAGE ENVIRONMENT
 
 % BEGIN MELODY NOTES
 

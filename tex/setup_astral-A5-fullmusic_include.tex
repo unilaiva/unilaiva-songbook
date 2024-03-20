@@ -118,36 +118,43 @@
 \showfeelertrue
 \showaltchordstrue
 
+\renewcommand{\passageomitlangcodes}{PT} % do not display language *code* for PT
+\renewcommand{\explanationomitlangcodes}{PT} % do not display language *code* for PT
 \renewcommand\translationstyle{\footnotesize} % make translated text smaller
 \renewcommand\mncirclestyle{\small} % make melody note's circle larger
 \renewcommand\mnsymbolstyle{\scriptsize} % make the melody note name text larger
 % larger chord font:
 \renewcommand{\printchord}[1]{\sffamily\bfseries\normalsize\color{chordcolor}#1}
+% smaller explanation font:
+\renewcommand{\explanationfont}{\rmfamily\scriptsize}
 
 % Setup chapter colors
-\definecolor{precescolor}{rgb}{.196,.5176,.749} % from the image
-\definecolor{oracaocolor}{rgb}{.749,.749,.749}
-\definecolor{concentracaocolor}{rgb}{.2078,.4156,.3725}
-\definecolor{concentracaodiversoscolor}{rgb}{.3803,.7607,.6784}
-\definecolor{daimecolor}{rgb}{0,.5,0}
-\definecolor{santamariacolor}{rgb}{0,0,.5}
-\definecolor{curaicolor}{rgb}{.1725,.5686,.0039}
-\definecolor{curaiicolor}{rgb}{.2627,.8627,.0078}
-\definecolor{curadiversoscolor}{rgb}{.6627,.8627,0}
-\definecolor{saomiguelcolor}{rgb}{.5490,0,1}
-\definecolor{diversoscolor}{rgb}{.7843,.7843,.5490}
-\definecolor{cruzeirinhocolor}{rgb}{.9529,.7843,0}
-\definecolor{encerramentocolor}{rgb}{0,.7647,1}
-\definecolor{defumacaocolor}{rgb}{.8475,.3019,.848}
-\definecolor{aniversariocolor}{rgb}{1,.5,0}
-\definecolor{mestrecolor}{rgb}{.1450,.1176,.0784}
-\definecolor{mestrediversoescolor}{rgb}{1,.9921,.7058}
-\definecolor{novadimensaocolor}{rgb}{.9,.5,0}
-\definecolor{ochaveiraocolor}{rgb}{.3529,.98,.4078}
-\definecolor{revelacaocolor}{rgb}{1,1,1} % = white = invisible
-\definecolor{ultioscolor}{rgb}{0,.4039,.933}
-\definecolor{uldiversoscolor}{rgb}{.4313,0,.49}
-\definecolor{ultransparenciacolor}{rgb}{.98,.7722,.2067}
+\definecolor{chapprecescolor}{rgb}{.196,.5176,.749} % from the image
+\definecolor{chaporacaocolor}{rgb}{.749,.749,.749}
+\definecolor{chapconcentracaocolor}{rgb}{.2078,.4156,.3725}
+\definecolor{chapconcentracaodiversoscolor}{rgb}{.3803,.7607,.6784}
+\definecolor{chapdaimecolor}{rgb}{0,.5,0}
+\definecolor{chapsantamariacolor}{rgb}{0,0,.5}
+\definecolor{chapcuraicolor}{rgb}{.1725,.5686,.0039}
+\definecolor{chapcuraiicolor}{rgb}{.2627,.8627,.0078}
+\definecolor{chapcuradiversoscolor}{rgb}{.6627,.8627,0}
+\definecolor{chapsaomiguelcolor}{rgb}{.5490,0,1}
+\definecolor{chapdiversoscolor}{rgb}{.7843,.7843,.5490}
+\definecolor{chapcruzeirinhocolor}{rgb}{.9529,.7843,0}
+\definecolor{chapencerramentocolor}{rgb}{0,.7647,1}
+\definecolor{chapdefumacaocolor}{rgb}{.8475,.3019,.848}
+\definecolor{chapaniversariocolor}{rgb}{1,.5,0}
+\definecolor{chapmestrecolor}{rgb}{.1450,.1176,.0784}
+\definecolor{chapmestrediversoescolor}{rgb}{1,.9921,.7058}
+\definecolor{chapnovadimensaocolor}{rgb}{.9,.5,0}
+\definecolor{chapochaveiraocolor}{rgb}{.3529,.98,.4078}
+\definecolor{chaprevelacaocolor}{rgb}{1,1,1} % = white = invisible
+\definecolor{chapultioscolor}{rgb}{0,.4039,.933}
+\definecolor{chapuldiversoscolor}{rgb}{.4313,0,.49}
+\definecolor{chapultransparenciacolor}{rgb}{.98,.7722,.2067}
+% Setup language colors
+\definecolor{langportuguesecolor}{rgb}{0,0,0}%
+\definecolor{langenglishcolor}{rgb}{0,0.26,0.26}%
 
 % Setup the mark at song end, just above the horizontal line that ends a song;
 % if this macro is not defined (the default), only the line is displayed.
