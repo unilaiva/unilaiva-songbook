@@ -153,6 +153,7 @@
 \usepackage{verbatim}%
 \usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
 \usepackage{xparse}% Used in \mainchapter
+\usepackage{tcolorbox}% for creating colored boxes, used in language code display
 
 % The most important 'songs' package, use the version in the project tree.
 % The \songbooktype macro contains by default 'chorded', but it can be defined
@@ -1609,6 +1610,20 @@
                                  {\@langsecttitlefont}}
 % END @langsect / rewritable defaults
 
+% Coloured box for language code. The optional parameter sets the base color
+% for the box, default being the current color (.).
+% Note that the text within the box seems to change to black by default.
+% Usage examples:
+%   - \@langcodebox[red]{EN} % red box, black text
+%   - \colorlet{curcol}{.}\@langcodebox{\color{curcol}EN} % current color for box and text
+\newtcbox{\@langcodebox}[1][.]{%
+  on line,arc=1pt,outer arc=1pt,%
+  colback=#1!6!white,colframe=#1!80!black,
+  boxsep=0pt,%
+  left=0.809017pt,right=0.809017pt,top=0.809017pt,bottom=0.809017pt,%
+  boxrule=0.5pt%
+}
+
 % Returns the formatted version of a language code given as an argument, plus
 % a small horizontal space after it. If the code is in the omit list, nothing
 % is returned.
@@ -1617,12 +1632,15 @@
     \IfSubStr{\@langsectomitlangcodes}{#1}{% is in the omit list, return nothing
     }{% current langcode is not in the omit list
       {%
-        \normalfont\bfseries\setlength{\fboxsep}{1pt}\setlength{\fboxrule}{.8pt}%
-        \fbox{#1}\hspace{.618034em}%
+        \colorlet{currcolor}{.}%
+        \@langcodebox{\color{currcolor}\normalfont\bfseries #1}%
+        \hspace{.618034em}%
       }%
     }%
   }%
 }
+
+
 
 \newcommand{\@langcodewithtitle}[2]{%
   \@langcodeformatted{#1}#2%
