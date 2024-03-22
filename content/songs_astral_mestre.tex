@@ -627,3 +627,151 @@
     When this day arrives, I just have to go
   \end{translation}
 \endsong
+
+
+\sclearpage\chapcornermarkdashedtrue
+\beginsong{Dois de Novembro}[by={Mestre Irineu Serra},key={Gm},gk={Gm, (Gm)--(G\shrp{}m)}]
+  \audio{https://nossairmandade.com/hymn/166/DoisDeNovembro}
+  \textnotefornext{Este hino não é cantado durante os bailados. / This hymn is not sung in the dance works.}*
+  \mnbeginchorus\memorize
+    \[^\mn{D}]A tua |\[\mnc{G}Gm]al\[^\mn{F#}]{ma en}|\[^\mn{G}]tre\[^\mn{A}]ga à |\[\mnc{B&}B&]Deus | \e
+    E o \[^\mn{A}]teu |\[\mnc{G}Gm]cor\[^\mn{F#}]{po à} |\[\mnc{G}G7]ter\[^\mn{D}]ra |\[\mnc{C}Cm]fri|a
+    |\[\mnc{A}D]Jesus |\[\mnc{B&}B&]te a\[^\mn{C}]com|\[\mnc{D}D]panhe
+    |\[\mnc{C}Cm]Junto |\[\mnc{B&}B&]com a \[^\mn{A}]Vir|\[\mnc{G}Gm]gem \[^\mn{F#}]Ma|\[^\mn{G}]ri|a
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Tu |^pedes aos |teus a|^mi|gos
+    Pelo |^nome |^de Je|^sus | \e
+    Que \noteson\[\mnlow{B&}]te \notesoff|^rezem |^umas |^preces
+    |^Lá no |^pé da |^Santa |Cruz | \e
+  \endchorus
+  \beginchorus
+    Tantos |^anos |que vi|^ves|tes
+    Agora |^vais se |^reti|^rar
+    |Vai a\noteson\[\mnlow{B&}]ten\notesoff|^der ao |^nosso |^Pai
+    |^Foi quem |^mandou |^te cha|mar \up{1}(| \e)
+  \endchorus
+  \beginchorus
+    |\[Gm]Aqui a|^chou, a|qui dei|^xou | \e
+    Levas |^conti|^go o a|^mor | \e
+    As \noteson\[\mnlow{B&}]por\notesoff|^tas do |^céu se |^abrem
+    Pa|^ra quem |^for me|^rece|dor
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-03
+    % \header {
+    %   title = "7. Dois de Novembro"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative d'' {
+      \key g \minor \slurDashed % = a major = b dorian
+      \set melismaBusyProperties = #'()
+      \time 3/4 \partial 2
+      \sectionLabel "1. - 2."
+      \repeat volta 4 { \mark \markup {"4x"}
+        \parenthesize d4 d
+        | g2 fis4 | g2 a4 | bes2.( | bes8)( bes) bes4 a4
+        | g2 fis4 | g2 d4 | c2.( | c4)( c4) \altcol \parenthesize bes4 \altmark "2."
+        a2 a4 | bes2 c4 | d2 d4
+        | c2 c4 | bes4( bes) a | g2 fis4 | g2.( | g4)
+      }
+      \section
+      \sectionLabel "3."
+      \repeat volta 2 {
+        d'4 d
+        | g2 fis4 | g2 a4 | bes2. | bes8 bes bes4 a4
+        | g2 fis4 | g2 d4 | c2. | c4 c4 \altcol bes4
+        a2 a4 | bes2 c4 | d2.
+        | c2 c4 | bes2 a4 | g2 fis4
+      } \alternative {
+        { | g2.~ | g4 }
+        { | g2. }
+      }
+      \section
+      \sectionLabel "4."
+      \repeat volta 2 {
+        d'4 \pomark d d
+        | g2 fis4 | g2 a4 | bes2.~ | bes4 bes4 a4
+        | g2 fis4 | g2 d4 | c2.~ | c4 c4 \altcol bes4
+        a2 a4 | bes2 c4 | d4 d d
+        | c2 c4 | bes2 a4 | g2 fis4 | g2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        A tua | al -- ma~en -- | tre -- ga~à | Deus; __ | _
+        E o teu | cor -- po~à | ter -- ra | fri -- | a; __ _ \skip 1
+        | Je -- sus | te~a -- com -- | pa -- nhe;
+        | Jun -- to | com a Vir -- | gem Ma -- | ri -- | a.
+      }
+      \set stanza = "3."
+      \repeat volta 2 {
+        Tan -- tos | a -- nos | que vi -- | ves -- | tes;
+        A -- go -- ra | vais se | re -- ti -- | rar;
+        | Vai a -- \altcol ten -- | der ao | nos -- so | Pai;
+        | Foi quem | man -- dou | te cha --
+      } \alternative {
+        { | mar. | _ }
+        { | mar. }
+      }
+      \break
+      \set stanza = "4."
+      \repeat volta 2 {
+        | A -- qui a -- | chou, a -- | qui dei -- | xou;
+        | _ Le -- vas | con -- ti -- | go~o a -- | mor;
+        | _ As \altcol por -- | tas do | céu se | a -- brem;
+        Pa -- | ra quem | for me -- | re -- ce -- | dor.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        \skip 1 Tu | pe -- des~aos | teus a -- | mi -- | gos; __ _
+        Pe -- lo | no -- me | de Je -- | sus; __ | _
+        Que \altcol te | re -- zem | u -- mas | pre -- ces;
+        | Lá no | pé __ _ da | San -- ta | Cruz. __ | _
+      }
+    }
+    chordSequence = \chordmode {
+      | g2.:m | g2.:m | bes | bes
+      | g:m | g:7 | c:m | c:m
+      | d | bes | d | c:m | bes
+      | g:m
+    }
+    theChords = \chordmode {
+      \repeat volta 4 {
+        s2 \chordSequence | g2.:m | g4:m
+      }
+      \repeat volta 2 {
+        s2 \chordSequence
+      } \alternative {
+        { | g2.:m | g4:m }
+        { | g2.:m }
+      }
+      \repeat volta 2 {
+        | g2.:m \chordSequence | g2.:m
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}[EN]
+    Your soul is delivered to God, and your body to the cold earth
+    Jesus accompanies you together with Virgen Mary
+    \nextverse
+    You ask your friends in the name of Jesus
+    To say some prayers for you at the foot of the Holy Cross
+    \nextverse
+    You have lived so many years, now you are going to leave
+    You're going to attend to our Father, it was He who had you called
+    \nextverse
+    Here you found it, here you left it, you take the love with you
+    The doors of heaven open themselves for whomever is worthy
+  \end{translation}
+\endsong
+\sclearpage\chapcornermarkdashedfalse
