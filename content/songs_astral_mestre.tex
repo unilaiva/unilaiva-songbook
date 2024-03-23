@@ -778,6 +778,7 @@
 
 
 \beginsong{A Rainha Me Mandou}[by={Mestre Irineu Serra},tags={valsa},key={C},gk={C, G--E}]
+  \audio[key=C]{https://soundcloud.com/user-6451069-977349974/08-a-rainha-me-mandou?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
   \newchords{chords_arainhamemandou_a}\newchords{chords_arainhamemandou_b}
   \meter{3}{4}
   \mnbeginchorus\memorize[chords_arainhamemandou_a]
@@ -813,16 +814,16 @@
     \include "tex/lp-include-head.ly"
     % % transcribed by larva, latest update on 2024-03
     % \header {
-    %   title = "78. A Rainha Me Mandou"
+    %   title = "8. A Rainha Me Mandou"
     %   composer = "Mestre Raimundo Irineu Serra"
     % }
     theMelody = \relative d'' {
-      \key c \major \slurDashed % = a major = b dorian
+      \key c \major \slurDashed
       \set melismaBusyProperties = #'()
       \time 3/4 \partial 2
       \sectionLabel "A"
       \repeat volta 2 {
-        c4 e | g2 e4 | a2 e4 | g2.~ | g4
+        c4 \pomark e | g2 e4 | a2 e4 | g2.~ | g4
         c, d | e2 e8( e) | d2 c4 | c2.( | c4)
       }
       \break
@@ -859,19 +860,27 @@
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3.A"
+      \repeat volta 2 {
         A Ra -- | i -- nha | me man -- | dou; | _
         Eu re -- | zar pa -- ra~os | i -- no -- | cen -- | tes.
+      }
       \set stanza = "3.B"
+      \repeat volta 2 {
         Pa -- ra | E -- la | lá no | céu; | _
         \skip 1 Ro -- gar | ao O -- | ni -- po -- | ten -- | te.
+      }
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4.A"
+      \repeat volta 2 {
         A Ra -- | i -- nha | me man -- | dou; | _
         San -- ta | paz e __ _ | a -- le -- | gri -- | a.
+      }
       \set stanza = "4.B"
+      \repeat volta 2 {
         Pa -- ra | E -- la | lá no | céu; | _
         Man -- dar o | pão de | ca -- da | di -- | a.
+      }
     }
     theChords = \chordmode {
       \repeat volta 2 {
@@ -900,6 +909,109 @@
     \nextverse
     The Queen sent holy peace and joy
     So that She, there in heaven, can give the daily bread
+  \end{translation}
+\endsong
+
+
+\beginsong{Oh Mãe Celestial}[by={Mestre Irineu Serra},key={G mix.},gk={G mix., F mix. -- A mix.}]
+  \audio[key=G mix.]{https://soundcloud.com/user-6451069-977349974/09-oh-mae-celestial?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
+  \mnbeginchorus\memorize\prep{3}
+    \[^\mn{E}]Eu |\[\mnc{G}C]pe\[\bmadj{-1ex}]{}\[^\mn{E}]ço e |\[^\mn{G}]ro\[\bm]go \altchords{\id[1]{(A mix.)}|D | \e}
+    Oh |Mãe \[^\mn{E}]Ce\[\bmc\mn{A}]les\[^\mn{F}]ti|\[\mnc{E}Am]al \[\bm] \altchords{| - |Bm}
+    \[^\mn{C}]Que |\[^\mn{E}]tu\[^\mn{C}]{do en}\[\bmc\mn{E}]quan\[^\mn{C}]{to eu} |\[\mnc{A}F]te\[\bm]nho \altchords{| - |G}
+    É |Vós é \[\bmc\mn{B}]quem \[^\mn{C}]me |\[\mnc{D}Dm]dá \[\bm] \altchords{| - |Em}
+    Oh |Mãe Ce\[\bmc\mn{E}]les\[^\mn{F}]ti|\[\mnc{G}G]al! \[\bm] \altchords{| - |A}
+  \mnendchorus
+  \notesoff
+  \beginchorus\prep{3}
+    Eu |^pe^{}ço e |ro^go
+    Oh |Pai Ce^lesti|^al ^
+    Que |tudo en^quanto eu |^te^nho
+    É |Vós é ^quem me |^dá ^
+    Oh |Pai Ce^lesti|^al! ^
+  \endchorus
+  \beginchorus\prep{3}
+    Eu |^pe^{}ço e |ro^go
+    Oh |Mãe Ce^lesti|^al ^
+    Que me |dê a ^salva|^ção
+    ^E me |bote em ^bom lu|^gar ^
+    Oh |Mãe Ce^lesti|^al! ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-03
+    % \header {
+    %   title = "9. Oh Mãe Celestial"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative d'' {
+      \key g \mixolydian \slurDashed % c major = g mixolydian
+      \set melismaBusyProperties = #'()
+      \time 4/4 \partial 4
+      \repeat volta 3 {
+        \mark \markup "3x"
+        e4 \pomark | g2. e4 | g2 g4
+        g4 | g4. e8 a4. f8 | e2.
+        c8( c8) | e4 c e c | a2 a4
+        a4 | a a b c | d2.
+        d4 | d4. d8 e4. f8 | g2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 3 {
+        Eu | pe -- ço~e | ro -- go;
+        Oh | Mãe Ce -- les -- ti -- | al;
+        Que __ _ | tu -- do~en -- quan -- to~eu | te -- nho;
+        É | Vós é quem me | dá;
+        Oh | Mãe Ce -- les -- ti -- | al!
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 3 {
+        Eu | pe -- ço~e | ro -- go;
+        Oh | Pai Ce -- les -- ti -- | al;
+        Que __ _ | tu -- do~en -- quan -- to~eu | te -- nho;
+        É | Vós é quem me | dá;
+        Oh | Pai Ce -- les -- ti -- | al!
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 3 {
+        Eu | pe -- ço~e | ro -- go;
+        Oh | Mãe Ce -- les -- ti -- | al;
+        Que me | dê a sal -- va -- | ção;
+        E me | bo -- te~em bom lu -- | gar;
+        Oh | Mãe Ce -- les -- ti -- | al!
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 3 {
+        s4 | c1 | c
+        | c | a:m
+        | a:m | f
+        | f | d:m
+        | d:m | g2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I ask and implore, oh Celestial Mother
+    Because everything that I have, it's You who gives it to me
+    Oh Celestial Mother!
+    \nextverse
+    I ask and implore, oh Celestial Father
+    Because everything that I have, it's You who gives it to me
+    Oh Celestial Father!
+    \nextverse
+    I ask and implore, ohg Celestial Mother
+    That gives me salvation, and puts me in a good place
+    Oh Celestial Mother!
   \end{translation}
 \endsong
 
