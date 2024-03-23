@@ -775,3 +775,133 @@
   \end{translation}
 \endsong
 \sclearpage\chapcornermarkdashedfalse
+
+
+\beginsong{A Rainha Me Mandou}[by={Mestre Irineu Serra},tags={valsa},key={C},gk={C, G--E}]
+  \newchords{chords_arainhamemandou_a}\newchords{chords_arainhamemandou_b}
+  \meter{3}{4}
+  \mnbeginchorus\memorize[chords_arainhamemandou_a]
+    \[^\mn{C}]A \[^\mn{E}]Ra|\[\mnc{G}C]i\[^\mn{E}]nha |\[\mnc{A}Am]me \[^\mn{E}]man|\[\mnc{G}G]dou | \e \altchords{\id[1]{(A)}|A |F\shrp{}m |E | \e}
+    \[^\mn{C}]Eu \[^\mn{D}]re|\[\mnc{E}Am]zar para os |\[\mnc{D}G]meus \[^\mn{C}]ir|\[C]mãos | \e \altchords{|F\shrp{}m |E |A | \e}
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_arainhamemandou_b]
+    \[^\mn{C}]Pa\[^\mn{E}]ra |\[\mnc{G}C]E\[^\mn{E}]la |\[\mnc{A}Am]lá \[^\mn{E}]no |\[\mnc{G}G]céu | \e \altchords{|A |F\shrp{}m |E | \e}
+    \[^\mn{C}]A\[^\mn{D}]lim|\[\mnc{E}Am]par meu |\[\mnc{D}G7]co\[^\mn{C}]ra|\[C]ção | \e \altchords{|F\shrp{}m |E7 |A | \e}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_arainhamemandou_a]
+    A Ra|^inha |^me man|^dou | \e
+    Eu re|^zar para a hu|^mani|^da|de
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_arainhamemandou_b]
+    Para |^Ela |^lá no |^céu | \e
+    Fazer |^as vos|^sas von|^ta|des
+  \endchorus
+  \beginchorus\replay[chords_arainhamemandou_a]
+    A Ra|^inha |^me man|^dou | \e \altchords{\id[2]{(D)}|D |Bm |A | \e}
+    Eu re|^zar para os |^ino|^cen|tes \altchords{|Bm |A |D | \e}
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_arainhamemandou_b]
+    Para |^Ela |^lá no |^céu | \e \altchords{|D |Bm |A | \e}
+    Rogar |^ao O|^nipo|^ten|te \altchords{|Bm |A7 |D | \e}
+  \endchorus
+  \beginchorus\replay[chords_arainhamemandou_a]
+    A Ra|^inha |^me man|^dou | \e
+    Santa |^paz e |^ale|^gri|a
+    \mnendchorus\glueverses\mnbeginchorus\replay[chords_arainhamemandou_b]
+    Para |^Ela |^lá no |^céu | \e
+    Mandar o |^pão de |^cada |^di|a
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-03
+    % \header {
+    %   title = "78. A Rainha Me Mandou"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative d'' {
+      \key c \major \slurDashed % = a major = b dorian
+      \set melismaBusyProperties = #'()
+      \time 3/4 \partial 2
+      \sectionLabel "A"
+      \repeat volta 2 {
+        c4 e | g2 e4 | a2 e4 | g2.~ | g4
+        c, d | e2 e8( e) | d2 c4 | c2.( | c4)
+      }
+      \break
+      \sectionLabel "B"
+      \repeat volta 2 {
+        c4 e | g2 e4 | a2 e4 | g2.~ | g8 \parenthesize c,8
+        c4 d | e2 e4 | d2 c4 | c2.( | c4)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        A Ra -- | i -- nha | me man -- | dou; | _
+        Eu re -- | zar pa -- ra~os | meus ir -- | mãos. __ | _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Pa -- ra | E -- la | lá no | céu; | _
+        \skip 1 A -- lim -- | par meu | co -- ra -- | ção. __ | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        A Ra -- | i -- nha | me man -- | dou; | _
+        Eu re -- | zar pa -- ra~a~hu -- | ma -- ni -- | da -- | de.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Pa -- ra | E -- la | lá no | céu; | _
+        \skip 1 Fa -- zer | as vos -- | sas von -- | ta -- | des.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+        A Ra -- | i -- nha | me man -- | dou; | _
+        Eu re -- | zar pa -- ra~os | i -- no -- | cen -- | tes.
+      \set stanza = "3.B"
+        Pa -- ra | E -- la | lá no | céu; | _
+        \skip 1 Ro -- gar | ao O -- | ni -- po -- | ten -- | te.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+        A Ra -- | i -- nha | me man -- | dou; | _
+        San -- ta | paz e __ _ | a -- le -- | gri -- | a.
+      \set stanza = "4.B"
+        Pa -- ra | E -- la | lá no | céu; | _
+        Man -- dar o | pão de | ca -- da | di -- | a.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2
+        | c2. | a:m | g | g
+        | a:m | g | c | c4
+      }
+      \repeat volta 2 {
+        s2
+        | c2. | a:m | g | g
+        | a:m | g:7 | c | c4
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    The Queen ordered me to pray for my brothers and sisters
+    So that She, there in heaven, can cleanse my heart
+    \nextverse
+    The Queen ordered me to pray for humanity
+    So that She, there in heaven, can carry out your wishes
+    \nextverse
+    The Queen ordered me to pray for the innocents
+    So that She, there in heaven, can implore the Omnipotent
+    \nextverse
+    The Queen sent holy peace and joy
+    So that She, there in heaven, can give the daily bread
+  \end{translation}
+\endsong
+
+
+
