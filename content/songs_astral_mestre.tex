@@ -1016,4 +1016,179 @@
 \endsong
 
 
+\beginsong{Eu Devo Pedir}[by={Mestre Irineu Serra},key={C},gk={C, C--D}]
+  \audio[key=C]{https://soundcloud.com/user-6451069-977349974/10-eu-devo-pedir-1?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
+  \audio{https://nossairmandade.com/hymn/200/EuDevoPedir}
+  \meter{2}{4}
+  \mnbeginchorus
+    |\[\mnc{C}C]Eu de|vo \[\mn{E}]pe|\[\mn{G}]dir, | a |quem po|\[\mnc{F#}D]de \[\mn{A}]me |\[\mnc{E}Am]dar | \e
+    Pa|\[\mnc{C}F]pai \[\mn{A}]me |\[\mnc{E}C]deu, |\[\mn{C}]{} \[\mn{E}]sou |\[\mnc{C}Am]eu, |\[\mnc{A}G] \[\mn{D}]sou |\[\mnc{C}C]eu | \e
+  \mnendchorus
+  \mnbeginchorus
+    \[\mn{G}]Ma|\[\mnc{C}C]mãe \[\mn{E}]{me en}|\[\mn{G}]si|na, |eu de|\[\mnc{F#}D]{vo a} \[\mn{A}]pren|\[\mnc{E}Am]der | \e
+    \[\mn{C}]Que na \[\mn{E}]e|\[\mnc{C}F]ter\[\mn{A}]ni|\[\mnc{E}C]da|\[\mn{C}]{de, é} \[\mn{E}]quem |\[\mnc{C}Am]po\[\mn{A}]de |\[\mnc{D}G]me va|\[\mnc{C}C]ler | \e
+  \mnendchorus
+  \mnbeginchorus
+    \[\mn{G}]Dos |\[\mnc{C}C]raios \[\mn{E}]do |\[\mn{G}]sol, | é |que me |\[\mnc{F#}D]vem \[\mn{A}]a |\[\mnc{E}Am]luz | \e
+    \[\mn{C}]{Eu não} \[\mn{E}]de|\[\mnc{C}F]{vo es}\[\mn{A}]que|\[\mnc{E}C]cer |\[\mn{C}]me, \[\mn{E}]do |\[\mnc{C}Am]no\[\mn{A}]me |\[\mnc{D}G]de Je|\[\mnc{C}C]sus | \e
+  \mnendchorus
+  \mnbeginchorus
+    \[\mn{G}]{As es}|\[\mnc{C}C]trelas |pe\[\mn{E}]que|\[\mn{G}]ninas, |sua |luz in|\[\mnc{F#}D]can\[\mn{A}]des|\[\mnc{E}Am]cen|te
+    Só |\[\mnc{C}F]Deus, \[\mn{A}]só |\[\mnc{E}C]Deus, |\[\mn{C}] \[\mn{E}]só |\[\mnc{C}Am]Deus \[\mn{A}]O|\[\mnc{D}G]nipo|\[\mnc{C}C]ten|te
+  \mnendchorus
+  \mnbeginchorus
+    \[\mn{G}]Vejo a |\[\mnc{C}C]lua |nas \[\mn{E}]al|\[\mn{G}]turas, |sua |luz, seu |\[\mnc{F#}D]res\[\mn{A}]plen|\[\mnc{E}Am]dor | \e
+    \[\mn{C}]{O meu} \[\mn{E}]a|\[\mnc{C}F]mor \[\mn{A}]{eu em}|pre\[\mn{C}]{go em} |\[\mnc{E}C]ti,
+    \[\mn{C}]em |Je\[\mn{E}]sus |\[\mnc{C}Am]Cris\[\mn{A}]to |\[\mnc{D}G7]Salva|\[\mnc{C}C]dor | \e
+  \mnendchorus
+  \begin{translation}[EN]\ifshowlilypond\tiny\fi % to fit on same page
+    I must ask, to who can give me
+    Papa gave me, I am, I am
+    \nextverse
+    Mama teaches me, I should learn
+    For in eternity, is who can help me
+    \nextverse
+    From the Sun's rays, is what brings the light to me
+    I should not forget, the name of Jesus
+    \nextverse
+    The tiny little stars, their incandescent light
+    Only God, only God, only God Omnipotent
+    \nextverse
+    I see the Moon in the heights, her light, her resplendence
+    My love, I dedicate to You, to Jesus Christ the Savior
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-03
+    % \header {
+    %   title = "10. Eu Devo Pedir"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative d'' {
+      \key c \major % C lydian
+      \set melismaBusyProperties = #'()
+      \time 2/4
+      \slurSolid
+      \sectionLabel "1."
+      \repeat volta 2 {
+        | c4 c4 | c4 e | g2~ | g4 g
+        | g g | fis a | e2~ | e4
+        e4 | c4. a8 | e'2( | c4)
+        e | c2( | a4) d | c2~
+      } \alternative {
+        { | c2 }
+        { | c4 \repeatTie }
+      }
+      \slurDashed
+      \sectionLabel "2., 3."
+      \repeat volta 4 {
+        \mark \markup "4x"
+        g4 | c4 e | g2( | g4)( g4)
+        | g4 g | fis a | e2~ | e8
+        c8 c8 e8 | c4. a8 | e'2 | c4
+        e | c4. a8 | d4 d | c2~ | c4
+      }
+      \sectionLabel "4."
+      \repeat volta 2 {
+        g8 g8 | c4 c | c e | g4. g8
+        | g4 g | g g | fis a | e2 | e4
+        e4 | c4. a8 | e'2( | c4)
+        e | c4. a8 | d4 d | c2 | c4
+      }
+      \sectionLabel "5."
+      \repeat volta 2 {
+        g8 \pomark g8 | c4 c | c e | g4. g8
+        | g4 g | g g | fis a | e2~ | e8
+        c8 c8 e8 | c4 a8 a8 | a4 c | e4.
+        c8 | c4 e | c4. a8 | d4 d | c2~ | c4
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        | Eu de -- | vo pe -- | dir, | _
+        a | quem po -- | de me | dar; | _
+        Pa -- | pai me | deu, | _
+        sou | eu, | _ sou | eu.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+      <<
+        {
+          \set stanza = "2."
+          \repeat volta 2 {
+            Ma -- | mãe me~en -- | si -- | na, __ _
+            | eu de -- | vo~a pren -- | der; | _
+            Que na e -- | ter -- ni -- | da -- | de,~é
+            quem | po -- de | me va -- | ler. | _
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "3."
+          \repeat volta 2 {
+            Dos | raios do | sol, __ | _
+            é | que me | vem a | luz; | _
+            Eu não de -- | vo~es -- que -- | cer | me,
+            do | no -- me | de Je -- | sus. | _
+          }
+        }
+      >>
+      \set stanza = "4."
+      \repeat volta 2 {
+        As es -- | tre -- las | pe -- que -- | ni -- nas,
+        | su -- a | luz in -- | can -- des -- | cen -- | te;
+        Só | Deus, só | Deus, | _
+        só | Deus O -- | ni -- po -- | ten -- | te.
+      }
+      \set stanza = "5."
+      \repeat volta 2 {
+        Ve -- jo~a | lu -- a | nas al -- | tu -- ras,
+        | su -- a | luz, seu | res -- plen -- | dor; | _
+        O meu a -- | mor eu em -- | pre -- go~em | ti,
+        em | Je -- sus | Cris -- to | Sal -- va -- | dor. | _
+      }
+    }
+    commonChordSequence = \chordmode {
+      | c2 | c
+      | c | c | d | a:m
+      | a:m | f | c
+      | c | a:m | g | c
+    }
+    theChords = \chordmode {
+      % v1
+      \repeat volta 2 {
+        | c2
+        \commonChordSequence
+      } \alternative {
+        { | c }
+        { | c4 }
+      }
+      % v2, v3
+      \repeat volta 4 {
+        s4
+        \commonChordSequence
+        | c4
+      }
+      % v4
+      \repeat volta 2 {
+        s4 | c2
+        \commonChordSequence
+        | c4
+      }
+      % v5
+      \repeat volta 2 {
+        s4 | c2
+        | c2 | c
+        | c | c | d | a:m
+        | a:m | f | f | c % added a bar with f major on this line
+        | c | a:m | g:7 | c
+        | c4
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
 
