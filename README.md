@@ -467,7 +467,8 @@ the following string replacements ought to be done in the following order:
  7. "__ " -> ""
  8. "|_" -> "|"
  9. "\skip 1 " -> ""
-10. "~" -> " "
+10. "\"\" " -> ""
+11. "~" -> " "
 
 Be careful with the whitespaces!
 
