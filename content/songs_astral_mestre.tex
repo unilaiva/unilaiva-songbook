@@ -1192,3 +1192,103 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
+\beginsong{Unaqui}[by={Mestre Irineu Serra},key={A},gk={B\flt{}, B\flt{}--B}]
+  \audio[key=A]{https://soundcloud.com/user-6451069-977349974/11-unaqui?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
+  \audio{https://nossairmandade.com/hymn/201/Unaqui}
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Es|\[\mnc{A}A]tou\[\bmc]{} \[^\mn{G#}]a|\[^\mn{E}\mn{C#}]qui \[A7] \altchords{\id[1]{(B\flt{})}|B\flt{} | - B\flt{}7}
+    \[^\mn{G}]Foi Deus do |Céu quem \[\bmc\mn{F#}]me \[^\mn{A}]man|\[\mnc{F#}D]dou\[\bm] \altchords{| - |E\flt{}}
+    \[^\mn{D}]Sou |\[^\mn{F#}]fi\[^\mn{D}]lho da \[\bmc\mn{F#}]Vir\[^\mn{D}]gem |\[\mnc{C#}A]Mãe \altchords{| - |B\flt{}}
+    \[\bmc\mn{A}]Lá \[^\mn{G#}]no |\[\mnc{F#}F#m]céu \[\bm]Jesus |\[\mnc{B}Bm]Cristo \[\bmc\mn{E}]Salva|\[E]dor\[\bm] \altchords{|Gm |Cm |F}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    So|^freu^ na |cruz ^
+    Foi pre|so e foi ^amar|^ra^do
+    Quem o ma|tou foram ^os ju|^deus
+    ^Na Ju|^déia ^foram |^todos ^perdo|^a^dos
+  \endchorus
+  \beginchorus
+    Es|^tou^ a|qui^ \altchords{\id[2]{(B)}|B | - B7}
+    Neste |mundo ^{de i}lu|^são ^ \altchords{| - |E}
+    Eu fa|ço por a^gradar |^todos \altchords{| - |B}
+    ^Neste |^mundo ^só me |^dão in^grati|^dão^ \altchords{|G\shrp{}m |C\shrp{}m |F\shrp{}}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-03
+    % \header {
+    %   title = "11. Unaqui"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \major % e \mixolydian
+      \time 4/4 \partial 4
+      \repeat volta 2 {
+        e4 \pomark | a2. gis4 | \once\slurSolid e4( cis4.)
+        \parenthesize g'8 g g | g4 g fis a | fis2( fis8)
+        \parenthesize d8 d8( d8) | fis4 d8 d fis4 d | cis4.( cis8)
+        a4. gis8 | fis4.( fis8) fis4 fis | b4. b8 e4. e8 | e2( e4)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Es -- | tou a -- | qui; _
+        Foi Deus do | Céu quem me man -- | dou; __ _ ""
+        Sou __ _ | fi -- lho da Vir -- gem | Mãe; __ _
+        Lá no | céu __ _ Je -- sus | Cris -- to Sal -- va -- | dor. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        So -- | freu na | cruz; _
+        \skip 1 Foi pre -- | so~e foi a -- mar -- | ra -- do;
+        Quem o ma -- | tou fo -- ram os ju -- | deus; __ _
+        Na Ju -- | déi -- a fo -- ram | to -- dos per -- do -- | a -- dos.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Es -- | tou a -- | qui; _
+        \skip 1 Nes -- te | mun -- do de~i -- lu -- | são; __ _ ""
+        Eu fa -- | ço por a -- gra -- dar | to -- dos;
+        Nes -- te | mun -- do só me | dão in -- gra -- ti -- | dão. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4
+        | a1 | a2 a2:7
+        | a1:7 | d
+        | d | a
+        | fis:m | b:m | e2.
+      }
+    }
+    % \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I am here
+    It was God of Heaven who sent me
+    I am Son of the Virgin Mother
+    There in heaven, Jesus Christ the Savior
+    \nextverse
+    He suffered on the cross
+    He was arrested and was bound
+    Who killed were the Jews
+    In Judea, everyone was forgiven
+    \nextverse
+    I am here
+    In this world of illusion
+    I try to please everyone
+    In this world, they only give me ingratitude
+  \end{translation}
+\endsong
+
+
