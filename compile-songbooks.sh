@@ -110,8 +110,10 @@ COVERIMAGE_AUTOWIDE_WIDTH="976" # Width of the optionally extended cover image f
 
 INITIAL_DIR="${PWD}" # Store the initial directory (absolute path)
 
-TOO_MANY_WARNINGS_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/too_many_warnings"
-RESULT_FILES_LIST="${INITIAL_DIR}/${TEMP_DIRNAME}/result_files_list"
+TOO_MANY_WARNINGS_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/last_compilation_too_many_warnings"
+RESULTLIST_FILE="${INITIAL_DIR}/${TEMP_DIRNAME}/last_compilation_results"
+RESULTLIST_FILE_IN_RESULTDIR="${INITIAL_DIR}/${RESULT_DIRNAME}/last_compilation_results"
+RESULT_TYPE_INFO="INFO"
 RESULT_TYPE_MAIN_PDF="MAINPDF"
 RESULT_TYPE_PRINTOUT_PDF="PRINTOUTPDF"
 RESULT_TYPE_LYRICONLY_PDF="LYRICONLYPDF"
@@ -143,7 +145,7 @@ print_usage_and_exit() {
   echo "Options:"
   echo ""
   echo "  --deploy-last    : only deploy the files created by the last compile; "
-  echo "                     do nothing else. Requires --no-cleantemp on last run."
+  echo "                     do nothing else"
   echo "  --deploy-common  : only deploy common files (icons, metadata);"
   echo "                     do nothing else"
   echo "  --docker-rebuild : force rebuilding of Docker image. Not normally needed."
@@ -529,7 +531,7 @@ compile_document() {
     cp "${currentdoc_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/" \
        || die $? "Error copying ${currentdoc_basename}.pdf from temporary directory!"
     echo "${RESULT_TYPE_MAIN_PDF}${RESULT_SEPARATOR}${currentdoc_basename}.pdf" \
-         >>${RESULT_FILES_LIST}
+         >>${RESULTLIST_FILE}
 
     # Create printouts, if filename contains ${PAPERA5_FNAMEPART} and printouts are not disabled
     # by a command line argument:
@@ -559,7 +561,7 @@ compile_document() {
           cp "${printout_dsf_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
              || die $? "Error copying printout PDF from temporary directory!"
           echo "${RESULT_TYPE_PRINTOUT_PDF}${RESULT_SEPARATOR}${printout_dsf_basename}.pdf" \
-               >>${RESULT_FILES_LIST}
+               >>${RESULTLIST_FILE}
 
           # A5 on A4, a A5+A5 spread on single A4 surface: Use 'awk' to create a
           # copy of the printout template file with changed input PDF file name
@@ -574,7 +576,7 @@ compile_document() {
           cp "${printout_sss_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
              || die $? "Error copying printout PDF from temporary directory!"
           echo "${RESULT_TYPE_PRINTOUT_PDF}${RESULT_SEPARATOR}${printout_sss_basename}.pdf" \
-               >>${RESULT_FILES_LIST}
+               >>${RESULTLIST_FILE}
         fi
       fi
     fi
@@ -595,7 +597,7 @@ compile_document() {
         cp "${currentdoc_basename}.png" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
            || die $? "Error copying ${currentdoc_basename}.png from temporary directory!"
         echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}.png" \
-            >>${RESULT_FILES_LIST}
+            >>${RESULTLIST_FILE}
         which "convert" >"/dev/null"
         if [ $? -ne 0 ]; then
           echo -e "${PRETXT_NOEXEC}${txt_docbase}: Widened tagless cover image not created; no 'convert'"
@@ -621,7 +623,7 @@ compile_document() {
           cp "${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
             || die $? "Error copying ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png from temporary directory!"
           echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" \
-              >>${RESULT_FILES_LIST}
+              >>${RESULTLIST_FILE}
         fi
       fi
     fi
@@ -722,7 +724,7 @@ compile_document() {
       || die_log $? "Error copying midi files to result directory" "${log11file}"
     cp "${INITIAL_DIR}/metadata/audio-dirs-Readme.md" "${INITIAL_DIR}/${cur_res_midi_subdirname}/Readme.md"
     echo "${RESULT_TYPE_MIDIDIR}${RESULT_SEPARATOR}${document_basename}" \
-         >>${RESULT_FILES_LIST}
+         >>${RESULTLIST_FILE}
   fi
   if [ ${audiofiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (encode audio)"
@@ -738,7 +740,7 @@ compile_document() {
       || die_log $? "Error encoding audio files!" "${log12file}"
     cp "${INITIAL_DIR}/metadata/audio-dirs-Readme.md" "${INITIAL_DIR}/${cur_res_audio_subdirname}/Readme.md"
     echo "${RESULT_TYPE_AUDIODIR}${RESULT_SEPARATOR}${document_basename}" \
-         >>${RESULT_FILES_LIST}
+         >>${RESULTLIST_FILE}
   fi
 
   # Create lyrics-only books, if so wanted
@@ -778,13 +780,13 @@ compile_document() {
 #   - not inside Docker container
 #   - deploy is not forbidden by command line argument
 #   - deploy directory exists
-#   - ${RESULT_FILES_LIST} exists and contains data
+#   - ${RESULTLIST_FILE_IN_RESULTDIR} exists and contains data
 #   - result file's filename does not contain ${NODEPLOY_FNAMEPART}
 deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
 
-  if [ -f ${RESULT_FILES_LIST} ]; then
+  if [ -f ${RESULTLIST_FILE_IN_RESULTDIR} ]; then
     # Result file exists, there is something to deploy; add common files
     # to the file if they don't already exist there
 
@@ -793,8 +795,8 @@ deploy_results() {
     cd "${INITIAL_DIR}"
     for icon in "${tagicons[@]}"; do
       local resultline="${RESULT_TYPE_COMMONICON}${RESULT_SEPARATOR}${icon}"
-      grep "${resultline}" "${RESULT_FILES_LIST}" >"/dev/null"
-      [ ${?} -ne 0 ] && echo "${resultline}" >>${RESULT_FILES_LIST}
+      grep "${resultline}" "${RESULTLIST_FILE_IN_RESULTDIR}" >"/dev/null"
+      [ ${?} -ne 0 ] && echo "${resultline}" >>${RESULTLIST_FILE_IN_RESULTDIR}
     done
 
     cd "${COMMONICON_DIRNAME}"
@@ -802,8 +804,8 @@ deploy_results() {
     cd "${INITIAL_DIR}"
     for icon in "${chapicons[@]}"; do
       local resultline="${RESULT_TYPE_COMMONICON}${RESULT_SEPARATOR}${icon}"
-      grep "${resultline}" "${RESULT_FILES_LIST}" >"/dev/null"
-      [ ${?} -ne 0 ] && echo "${resultline}" >>${RESULT_FILES_LIST}
+      grep "${resultline}" "${RESULTLIST_FILE_IN_RESULTDIR}" >"/dev/null"
+      [ ${?} -ne 0 ] && echo "${resultline}" >>${RESULTLIST_FILE_IN_RESULTDIR}
     done
 
     cd "${COMMONMETADATA_DIRNAME}"
@@ -811,8 +813,8 @@ deploy_results() {
     cd "${INITIAL_DIR}"
     for mdfile in "${metadatafiles[@]}"; do
       local resultline="${RESULT_TYPE_COMMONMETADATA}${RESULT_SEPARATOR}${mdfile}"
-      grep "${resultline}" "${RESULT_FILES_LIST}" >"/dev/null"
-      [ ${?} -ne 0 ] && echo "${resultline}" >>${RESULT_FILES_LIST}
+      grep "${resultline}" "${RESULTLIST_FILE_IN_RESULTDIR}" >"/dev/null"
+      [ ${?} -ne 0 ] && echo "${resultline}" >>${RESULTLIST_FILE_IN_RESULTDIR}
     done
 
   else
@@ -868,10 +870,14 @@ deploy_results() {
         deploydir="./${DEPLOY_DIRNAME}/${DEPLOY_COMMONMETADATA_SUBDIRNAME}"
         resultdir="${COMMONMETADATA_DIRNAME}"
         ;;
+      "${RESULT_TYPE_INFO}")
+        # Do nothing for info type
+        continue
+        ;;
       *)
         echo -e "${PRETXT_NODEPLOY}${fname} not deployed due to ${C_RED}internal error${C_RESET}"
         continue
-      ;;
+        ;;
     esac
 
     mkdir -p "${deploydir}" 2>"/dev/null"
@@ -908,7 +914,10 @@ deploy_results() {
 
     echo -e "${PRETXT_DEPLOY}${deploydir}/${fname}"
 
-  done < "${RESULT_FILES_LIST}"
+  done < "${RESULTLIST_FILE_IN_RESULTDIR}"
+
+  echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Deployed at: $(date)" \
+     >>${RESULTLIST_FILE_IN_RESULTDIR}
 
   if [ ${idcontent_skippedcount} -gt 0 ]; then
     echo -e "${PRETXT_NODEPLOY}Files skipped due to identical existing content: ${idcontent_skippedcount}"
@@ -990,10 +999,10 @@ while [ $# -gt 0 ]; do
       ;;
     "--deploy-common") # only deploy the common files, do nothing else
       deployfinal="true"
-      rm ${RESULT_FILES_LIST} 2>"/dev/null"; touch ${RESULT_FILES_LIST}
+      rm ${RESULTLIST_FILE} 2>"/dev/null"; touch ${RESULTLIST_FILE}
       deploy_results
       code=${?}
-      rm ${RESULT_FILES_LIST}
+      rm ${RESULTLIST_FILE}
       exit ${code}
       ;;
     "--no-lyric")
@@ -1140,6 +1149,9 @@ else # we are in the container
   fi
 fi
 
+### Everything below this point is run only once: if Docker is used, it is
+### run within the container, otherwise on the host. Not both.
+
 # Test executable availability:
 which "lualatex" >"/dev/null" || die 1 "'lualatex' binary not found in path!"
 which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path!"
@@ -1150,7 +1162,10 @@ which "sed" >"/dev/null" || die 1 "'sed' binary not found in path!"
 # Remove the files signifying the last compilation had problems,
 # if they exist:
 rm "${TOO_MANY_WARNINGS_FILE}" >"/dev/null" 2>&1
-rm "${RESULT_FILES_LIST}" >"/dev/null" 2>&1
+rm "${RESULTLIST_FILE}" >"/dev/null" 2>&1
+
+echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation started at: $(date)" \
+     >>${RESULTLIST_FILE}
 
 # Trap interruption (Ctrl-C):
 trap 'die 130 Interrupted.' INT
@@ -1263,7 +1278,11 @@ done
 
 wait # wait for all jobs to end, returns always 0
 
-deploy_results
+echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation ended succesfully at: $(date)" \
+     >>${RESULTLIST_FILE}
+cp "${RESULTLIST_FILE}" "${RESULTLIST_FILE_IN_RESULTDIR}"
+
+deploy_results # does nothing, if within Docker container
 
 cleanup
 
