@@ -36,16 +36,30 @@
 # regardless of this setting.
 USE_COLORS=1
 
+# Get settings from ENV variables, and set defaults if they do not exist
+
 # Maximum number of parallel compilation jobs. Each job takes quite a bit
 # of memory, so this should be limited.
-MAX_PARALLEL=6
-# Maximum total memory use for Docker container. 6g should be enough for 6
-# parallel jobs. This is passed to docker with --memory option.
-MAX_DOCKER_MEMORY="6g"
+if [ -n "${ULSBS_MAX_PARALLEL}" ]; then
+  MAX_PARALLEL="${ULSBS_MAX_PARALLEL}"
+else
+  MAX_PARALLEL="6" # default
+fi
+
+# Maximum total memory use for Docker container. Note to use small letter g
+# to signify a gigabyte. 6g should be enough for 6 parallel jobs.
+# This is passed to docker with --memory option. See Docker documentation
+# at https://docs.docker.com/config/containers/resource_constraints/
+if [ -n "${ULSBS_MAX_DOCKER_MEMORY}" ]; then
+  MAX_DOCKER_MEMORY="${ULSBS_MAX_DOCKER_MEMORY}"
+else
+  MAX_DOCKER_MEMORY="6g" # default
+fi
+
 # Maximum total memory and swap (together) use for Docker container. If set
 # to same as MAX_DOCKER_MEMORY, swap is disabled. This is passed to docker with
 # # --memory-swap option.
-MAX_DOCKER_MEMORY_PLUS_SWAP="6g"
+MAX_DOCKER_MEMORY_PLUS_SWAP="${MAX_DOCKER_MEMORY}"
 
 
 MAIN_FILENAME_BASE="unilaiva-songbook_A5" # filename base for the main document (without .tex suffix)
@@ -388,8 +402,10 @@ compile_in_docker() {
 
   echo -e "${PRETXT_DOCKER}Start compiler container"
 
-  # Run the container with current user's ID and bind mount current directory
+  # Run the container with current user's ID and bind mount current directory.
   docker run -it --rm --read-only \
+    -e ULSBS_MAX_PARALLEL="${ULSBS_MAX_PARALLEL}" \
+    -e ULSBS_MAX_DOCKER_MEMORY="${ULSBS_MAX_DOCKER_MEMORY}" \
     --memory="${MAX_DOCKER_MEMORY}" \
     --memory-swap="${MAX_DOCKER_MEMORY_PLUS_SWAP}" \
     --user $(id -u):$(id -g) \
@@ -943,6 +959,7 @@ if [ "${BASH_VERSINFO:-0}" -lt 4 ]; then
   die 9 "Your BASH is too old; version 4 or later required."
 fi
 
+[ -f "./compile-songbooks.sh" ] || die 1 "Not currently in the project's root directory!"
 
 # Test program arguments:
 while [ $# -gt 0 ]; do
@@ -1042,8 +1059,6 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-[ -f "./compile-songbooks.sh" ] || die 1 "Not currently in the project's root directory!"
-
 if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
   # Locking
   if [ -f "${LOCKFILE}" ]; then
@@ -1135,7 +1150,7 @@ fi
 
 [ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ] \
   && dockerized_text="NO ${C_YELLOW}(this is not recommended!)" \
-  || dockerized_text="YES"
+  || dockerized_text="YES ${C_RESET}(max memory: ${MAX_DOCKER_MEMORY})"
 [ ${parallel} = "true" ] \
   && parallel_text="YES ${C_RESET}(max concurrency: ${MAX_PARALLEL})" \
   || parallel_text="NO"
