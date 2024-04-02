@@ -19,6 +19,12 @@
  %%   \input{tex/setup_astral-A5-fullmusic_include.tex}
  %%
 
+%% Use PDF version 1.7
+\ExplSyntaxOn             % Switch on expl3 syntax
+\sys_ensure_backend:      % load the backend code
+\pdf_version_gset:n{1.7}  % Use provided expl3 function
+\ExplSyntaxOff            % Switch off expl3 syntax
+
 % These \providecommands can be set differently before including this file,
 % in the main document.
 
