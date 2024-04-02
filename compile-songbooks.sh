@@ -38,6 +38,16 @@ USE_COLORS=1
 
 # Get settings from ENV variables, and set defaults if they do not exist
 
+# If "true", make the temporary compilation directory a symlink pointing to
+# a location under /tmp. Otherwise, and by default, the temporary directory
+# is a normal subdirectory under project root. Set this to true only if you
+# know the implications (is your /tmp using tmpfs?).
+if [ -n "${ULSBS_USE_SYSTEM_TMP_FOR_TEMP}" ] && [ "${ULSBS_USE_SYSTEM_TMP_FOR_TEMP}" = "true" ]; then
+  USE_SYSTEM_TMP_FOR_TEMP="true"
+else
+  USE_SYSTEM_TMP_FOR_TEMP="false" # default
+fi
+
 # Maximum number of parallel compilation jobs. Each job takes quite a bit
 # of memory, so this should be limited.
 if [ -n "${ULSBS_MAX_PARALLEL}" ]; then
@@ -133,13 +143,14 @@ print_usage_and_exit() {
   echo "Options:"
   echo ""
   echo "  --deploy-last    : only deploy the files created by the last compile; "
-  echo "                     do nothing else"
+  echo "                     do nothing else. Requires --no-cleantemp on last run."
   echo "  --deploy-common  : only deploy common files (icons, metadata);"
   echo "                     do nothing else"
   echo "  --docker-rebuild : force rebuilding of Docker image. Not normally needed."
   echo "  --help           : print this usage information"
   echo "  --no-audio       : do not create audio (mp3) files from Lilypond sources"
   echo "  --no-astral      : do not compile unilaiva-astral* books"
+  echo "  --no-cleantemp   : do not clean temp dir after succesful compile"
   echo "  --no-coverimage  : do not extract cover page as image"
   echo "  --no-deploy      : do not copy PDF files to ./${DEPLOY_DIRNAME}/"
   echo "  --no-docker      : do not use the Docker container for compiling"
@@ -157,8 +168,8 @@ print_usage_and_exit() {
   echo "                     does not compile anything."
   echo "  -q               : use for quick development build of the main document;"
   echo "                     equals to --no-partial --no-selections --no-astral"
-  echo "                     --no-printouts --no-coverimage --no-deploy --no-midi"
-  echo "                     --no-audio --no-lyric"
+  echo "                     --no-printouts --no-cleantemp --no-coverimage --no-deploy"
+  echo "                     --no-midi --no-audio --no-lyric"
   echo ""
   echo "In addition to the full version of tha main Unilaiva Songbook, also"
   echo "two-booklet version of it is created, with parts 1 and 2 in separate PDFs."
@@ -403,13 +414,16 @@ compile_in_docker() {
   echo -e "${PRETXT_DOCKER}Start compiler container"
 
   # Run the container with current user's ID and bind mount current directory.
+  # Temp dir is mounted separately, as if it is a symlink, this is required.
   docker run -it --rm --read-only \
     -e ULSBS_MAX_PARALLEL="${ULSBS_MAX_PARALLEL}" \
     -e ULSBS_MAX_DOCKER_MEMORY="${ULSBS_MAX_DOCKER_MEMORY}" \
+    -e ULSBS_USE_SYSTEM_TMP_FOR_TEMP="${ULSBS_USE_SYSTEM_TMP_FOR_TEMP}" \
     --memory="${MAX_DOCKER_MEMORY}" \
     --memory-swap="${MAX_DOCKER_MEMORY_PLUS_SWAP}" \
     --user $(id -u):$(id -g) \
     --mount type=bind,src="$(realpath .)",dst="/unilaiva-songbook" \
+    --mount type=bind,src="$(realpath .)/${TEMP_DIRNAME}",dst="/unilaiva-songbook/${TEMP_DIRNAME}" \
     --mount type=volume,src="unilaiva-compiler_homecache",dst="/home/unilaiva" \
     --mount type=tmpfs,tmpfs-size=128m,dst="/tmp" \
     --mount type=tmpfs,tmpfs-size=16m,dst="/run" \
@@ -512,7 +526,7 @@ compile_document() {
              1>"${log07file}" 2>&1 \
              || die_log $? "Compilation error running lualatex (3rd time)!" "${log07file}"
 
-    cp "${currentdoc_basename}.pdf" "../../${RESULT_DIRNAME}/" \
+    cp "${currentdoc_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/" \
        || die $? "Error copying ${currentdoc_basename}.pdf from temporary directory!"
     echo "${RESULT_TYPE_MAIN_PDF}${RESULT_SEPARATOR}${currentdoc_basename}.pdf" \
          >>${RESULT_FILES_LIST}
@@ -531,18 +545,18 @@ compile_document() {
           echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created; no 'context'"
         else
           echo -e "${PRETXT_EXEC}${txt_docbase}: context (create printouts)"
-          mkdir "../../${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}" 2>"/dev/null"
+          mkdir "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}" 2>"/dev/null"
           # A5 on A4, double sided, must cut: Use 'awk' to create a copy of the
           # printout template file with changed input PDF file name and then
           # execute 'context' on the new file.
           printout_dsf_basename="printout-BOOKLET_${currentdoc_basename}-on-A4-doublesided-needs-cutting"
-          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context" >"${printout_dsf_basename}.context" \
+          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "tex/printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context" >"${printout_dsf_basename}.context" \
               || die $? "[${currentdoc_basename}]: Error with 'awk' when creating dsf printout!"
           local log08file="${logfileprefix}log-08_printout-dsf.log"
           context "${printout_dsf_basename}.context" \
                   1>"${log08file}" 2>&1 \
                   || die_log $? "Error creating dsf printout!" "${log08file}"
-          cp "${printout_dsf_basename}.pdf" "../../${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
+          cp "${printout_dsf_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
              || die $? "Error copying printout PDF from temporary directory!"
           echo "${RESULT_TYPE_PRINTOUT_PDF}${RESULT_SEPARATOR}${printout_dsf_basename}.pdf" \
                >>${RESULT_FILES_LIST}
@@ -551,13 +565,13 @@ compile_document() {
           # copy of the printout template file with changed input PDF file name
           # and then execute 'context' on the new file.
           printout_sss_basename="printout-EASY_${currentdoc_basename}-on-A4-sidebyside-simple"
-          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "../../tex/printout-template_EASY-A5-on-A4-sidebyside-simple.context" >"${printout_sss_basename}.context" \
+          awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "tex/printout-template_EASY-A5-on-A4-sidebyside-simple.context" >"${printout_sss_basename}.context" \
               || die $? "[${currentdoc_basename}]: Error with 'awk' when creating sss printout!"
           local log09file="${logfileprefix}log-09_printout-sss.log"
           context "${printout_sss_basename}.context" \
                   1>"${log09file}" 2>&1 \
                   || die_log $? "Error creating sss printout!" "${log09file}"
-          cp "${printout_sss_basename}.pdf" "../../${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
+          cp "${printout_sss_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
              || die $? "Error copying printout PDF from temporary directory!"
           echo "${RESULT_TYPE_PRINTOUT_PDF}${RESULT_SEPARATOR}${printout_sss_basename}.pdf" \
                >>${RESULT_FILES_LIST}
@@ -572,13 +586,13 @@ compile_document() {
         echo -e "${PRETXT_NOEXEC}${txt_docbase}: Cover not extracted as image; no 'pdftoppm'"
       else
         echo -e "${PRETXT_EXEC}${txt_docbase}: pdftoppm (extract cover as image)"
-        mkdir "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}" 2>"/dev/null"
+        mkdir "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}" 2>"/dev/null"
         local log10file="${logfileprefix}log-10_coverimage-extract.log"
         pdftoppm -f 1 -singlefile -png -scale-to-x -1 -scale-to-y "${COVERIMAGE_HEIGHT}" \
                  "${currentdoc_basename}.pdf" "${currentdoc_basename}" \
                  1>"${log10file}" 2>&1 \
                  || die_log $? "Error extracting cover image!" "${log10file}"
-        cp "${currentdoc_basename}.png" "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
+        cp "${currentdoc_basename}.png" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
            || die $? "Error copying ${currentdoc_basename}.png from temporary directory!"
         echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}.png" \
             >>${RESULT_FILES_LIST}
@@ -604,7 +618,7 @@ compile_document() {
                     1>>"${log10file}" 2>&1 \
                     || die_log $? "Error modifying cover image!" "${log10file}"
           fi
-          cp "${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" "../../${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
+          cp "${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
             || die $? "Error copying ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png from temporary directory!"
           echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" \
               >>${RESULT_FILES_LIST}
@@ -626,7 +640,7 @@ compile_document() {
     local overfull_count=$(grep -i "overfull" "${log07file}" | wc -l)
     local underfull_count=$(grep -i "underfull" "${log07file}" | wc -l)
     if [ "${allwarning_count}" -gt "0" ]; then
-      echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - all: ${allwarning_count}, font: ${fontwarning_count}"
+      echo -e "${PRETXT_DEBUG}${txt_docbase}: TeX warnings - all: ${allwarning_count} (font: ${fontwarning_count})"
     fi
     if [ "${fontwarning_count}" -gt "20" ]; then
       echo -e "${PRETXT_DEBUG}${txt_docbase}: ${C_RED}Too many font warnings! CHECK THE LOG!!${C_RESET}"
@@ -667,7 +681,7 @@ compile_document() {
   cp -R "tex" "${temp_dirname_twolevels}/"
   cp "tags.can" "${temp_dirname_twolevels}/"
   # images are big (and not all of them are needed), so link instead of copy:
-  ln -s "../../../content/img" "${temp_dirname_twolevels}/content/img"
+  ln -s "${INITIAL_DIR}/content/img" "${temp_dirname_twolevels}/content/img"
 
   echo -e "${PRETXT_EXEC}${txt_docbase}: lilypond-book"
 
@@ -697,32 +711,32 @@ compile_document() {
   if [ ${midifiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (copy midi files)"
     local cur_res_midi_subdirname="${RESULT_DIRNAME}/${RESULT_MIDI_SUBDIRNAME}/${document_basename}"
-    rm -R "../../${cur_res_midi_subdirname}"/* 2>"/dev/null"
-    mkdir -p "../../${cur_res_midi_subdirname}" 2>"/dev/null"
-    [ -d "../../${cur_res_midi_subdirname}" ] || die $? "Could not create the midi result directory ./${cur_res_midi_subdirname}."
+    rm -R "${INITIAL_DIR}/${cur_res_midi_subdirname}"/* 2>"/dev/null"
+    mkdir -p "${INITIAL_DIR}/${cur_res_midi_subdirname}" 2>"/dev/null"
+    [ -d "${INITIAL_DIR}/${cur_res_midi_subdirname}" ] || die $? "Could not create the midi result directory ./${cur_res_midi_subdirname}."
     local log11file="log-11_copy-midi.log"
     # Execute the audio copy tool for midi files
-    ../../tools/unilaiva-copy-audio.py3 --midi \
-      "${document_basename}.dep" "../../${cur_res_midi_subdirname}" \
+    ${INITIAL_DIR}/tools/unilaiva-copy-audio.py3 --midi \
+      "${document_basename}.dep" "${INITIAL_DIR}/${cur_res_midi_subdirname}" \
       1>"${log11file}" 2>&1 \
       || die_log $? "Error copying midi files to result directory" "${log11file}"
-    cp "../../metadata/audio-dirs-Readme.md" "../../${cur_res_midi_subdirname}/Readme.md"
+    cp "${INITIAL_DIR}/metadata/audio-dirs-Readme.md" "${INITIAL_DIR}/${cur_res_midi_subdirname}/Readme.md"
     echo "${RESULT_TYPE_MIDIDIR}${RESULT_SEPARATOR}${document_basename}" \
          >>${RESULT_FILES_LIST}
   fi
   if [ ${audiofiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (encode audio)"
     local cur_res_audio_subdirname="${RESULT_DIRNAME}/${RESULT_AUDIO_SUBDIRNAME}/${document_basename}"
-    rm -R "../../${cur_res_audio_subdirname}"/* 2>"/dev/null"
-    mkdir -p "../../${cur_res_audio_subdirname}" 2>"/dev/null"
-    [ -d "../../${cur_res_audio_subdirname}" ] || die $? "Could not create the audio result directory ./${cur_res_audio_subdirname}."
+    rm -R "${INITIAL_DIR}/${cur_res_audio_subdirname}"/* 2>"/dev/null"
+    mkdir -p "${INITIAL_DIR}/${cur_res_audio_subdirname}" 2>"/dev/null"
+    [ -d "${INITIAL_DIR}/${cur_res_audio_subdirname}" ] || die $? "Could not create the audio result directory ./${cur_res_audio_subdirname}."
     local log12file="log-12_encode-audio.log"
     # Execute the audio copy tool for encoding audio files
-    ../../tools/unilaiva-copy-audio.py3 --audio \
-      "${document_basename}.dep" "../../${cur_res_audio_subdirname}" \
+    ${INITIAL_DIR}/tools/unilaiva-copy-audio.py3 --audio \
+      "${document_basename}.dep" "${INITIAL_DIR}/${cur_res_audio_subdirname}" \
       1>"${log12file}" 2>&1 \
       || die_log $? "Error encoding audio files!" "${log12file}"
-    cp "../../metadata/audio-dirs-Readme.md" "../../${cur_res_audio_subdirname}/Readme.md"
+    cp "${INITIAL_DIR}/metadata/audio-dirs-Readme.md" "${INITIAL_DIR}/${cur_res_audio_subdirname}/Readme.md"
     echo "${RESULT_TYPE_AUDIODIR}${RESULT_SEPARATOR}${document_basename}" \
          >>${RESULT_FILES_LIST}
   fi
@@ -911,6 +925,7 @@ dockerrebuild="false"
 deployfinal="true"
 createprintouts="true"
 coverimage="true"
+cleantemp="true"
 mainbook="true"
 astralbooks="true"
 partialbooks="true"
@@ -996,6 +1011,9 @@ while [ $# -gt 0 ]; do
     "--no-docker")
       usedocker="false"
       shift;;
+    "--no-cleantemp")
+      cleantemp="false"
+      shift;;
     "--no-deploy")
       deployfinal="false"
       shift;;
@@ -1024,6 +1042,7 @@ while [ $# -gt 0 ]; do
       deployfinal="false"
       createprintouts="false"
       coverimage="false"
+      cleantemp="false"
       astralbooks="false"
       partialbooks="false"
       selections="false"
@@ -1060,7 +1079,7 @@ while [ $# -gt 0 ]; do
 done
 
 if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
-  # Locking
+  # Locking: abort if locked
   if [ -f "${LOCKFILE}" ]; then
     # do not change this error code, as die() recognizes it and does not
     # remove the lock file
@@ -1068,7 +1087,30 @@ if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
     ps aux | grep "compile-songbooks.sh" >"/dev/null" 2>&1
     [ ${?} -eq 0 ] && die 255 "Compilation process already running, only one allowed! (or remove ${LOCKFILE})"
   fi
-  touch "${LOCKFILE}"
+  # Handle creating of temporary directory
+  if [ "${USE_SYSTEM_TMP_FOR_TEMP}" = "true" ]; then # Use of /tmp is requested
+    tmppath="/tmp/ulsbs_${USER}"
+    mkdir "${tmppath}" 2>"/dev/null"
+    if [ -L "./${TEMP_DIRNAME}" ]; then
+      # Old temp is a symlink: only remove link and leave content intact
+      rm "./${TEMP_DIRNAME}"
+    else
+      # if old temp exists, it is a directory: empty and remove it, as we'll use symlink
+      rm -R "./${TEMP_DIRNAME}" 2>"/dev/null"
+    fi
+    ln -s "${tmppath}" "./${TEMP_DIRNAME}"
+  else # Use normal subdirectory
+    if [ -L "${TEMP_DIRNAME}" ]; then
+      # Old temp is a symlink, and we'll be using a subdir, so delete everything
+      # from the old location
+      rm -R "${TEMP_DIRNAME}"/{*,.*} 2>"/dev/null"
+      rm "${TEMP_DIRNAME}" # remove the symlink
+    fi
+    # Create the 1st level temporary directory in case it doesn't exist.
+    mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
+  fi
+  [ -d "./${TEMP_DIRNAME}" ] || die 1 "Could not create temporary directory ${TEMP_DIRNAME}."
+  touch "${LOCKFILE}" # Locking: create lock file now that temp dir is setup
   # Run git pull only if not in docker container, and if so requested
   if [ ${gitpull} = "true" ]; then
     which "git" >"/dev/null" || die 1 "'git' binary not found in path, but pull requested!"
@@ -1080,6 +1122,7 @@ if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
   if [ ${usedocker} = "true" ]; then
     compile_in_docker ${all_args}
     retcode=$?
+    cleanup
     [ ${retcode} -eq 0 ] || exit ${retcode}
     deploy_results
     echo ""
@@ -1103,10 +1146,6 @@ which "texlua" >"/dev/null" || die 1 "'texlua' binary not found in path!"
 which "lilypond-book" >"/dev/null" || die 1 "'lilypond-book' binary not found in path!"
 which "awk" >"/dev/null" || die 1 "'awk' binary not found in path!"
 which "sed" >"/dev/null" || die 1 "'sed' binary not found in path!"
-
-# Create the 1st level temporary directory in case it doesn't exist.
-mkdir "${TEMP_DIRNAME}" 2>"/dev/null"
-[ -d "./${TEMP_DIRNAME}" ] || die 1 "Could not create temporary directory ${TEMP_DIRNAME}."
 
 # Remove the files signifying the last compilation had problems,
 # if they exist:
@@ -1154,6 +1193,12 @@ fi
 [ ${parallel} = "true" ] \
   && parallel_text="YES ${C_RESET}(max concurrency: ${MAX_PARALLEL})" \
   || parallel_text="NO"
+[ ${USE_SYSTEM_TMP_FOR_TEMP} = "true" ] \
+  && systemtmp_text="${C_YELLOW}YES" \
+  || systemtmp_text="NO"
+[ ${cleantemp} = "true" ] \
+  && cleantmp_text="YES" \
+  || cleantmp_text="NO"
 [ ${doc_count} = 1 ] && parallel_text="NO ${C_RESET}(1 document only)"
 [ ${createprintouts} = "true" ] \
   && createprintouts_text="YES" \
@@ -1180,6 +1225,8 @@ echo ""
 echo -e "  - Main documents to compile: ${C_WHITE}${doc_count}${C_RESET}"
 echo -e "  - Using Docker: ${C_WHITE}${dockerized_text}${C_RESET}"
 echo -e "  - Parallel compilation: ${C_WHITE}${parallel_text}${C_RESET}"
+echo -e "  - Using system's /tmp for ${TEMP_DIRNAME}: ${C_WHITE}${systemtmp_text}${C_RESET}"
+echo -e "  - Clean up ${TEMP_DIRNAME} after succesful compilation: ${C_WHITE}${cleantmp_text}${C_RESET}"
 echo -e "  - Additional lyrics only versions: ${C_WHITE}${lyricbooks_text}${C_RESET}"
 echo -e "  - Printouts: ${C_WHITE}${createprintouts_text}${C_RESET}"
 echo -e "  - Cover image extraction: ${C_WHITE}${coverimage_text}${C_RESET}"
@@ -1231,6 +1278,10 @@ if [ -e "${TOO_MANY_WARNINGS_FILE}" ]; then
     echo "Please run the script without --no-docker option to compile the"
     echo "songbook within a fully working environment to ensure perfect"
     echo "results. For that, Docker installation is required. See README.md"
+  fi
+else
+  if [ "${cleantemp}" = "true" ]; then
+    rm -R "./${TEMP_DIRNAME}/"{*,.*} 2>"/dev/null"
   fi
 fi
 
