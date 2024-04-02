@@ -1427,6 +1427,20 @@
 
 % BEGIN ALTCHORDS
 
+% Coloured box for the alternate chords id (title). The optional parameter
+% sets the base color for the box, default being the current color (.).
+% Note that the text within the box seems to change to black by default.
+% Usage examples:
+%   - \@altchordidbox[red]{(Am)} % red box, black text
+%   - \colorlet{curcol}{.}\@altchordidbox{\color{curcol}(Am)} % current color for box and text
+\newtcbox{\@altchordidbox}[1][.]{%
+  on line,arc=1pt,outer arc=1pt,%
+  colback=#1!8!white,colframe=#1!80!black,%
+  boxsep=0pt,%
+  left=1.309017pt,right=1.309017pt,top=1.309017pt,bottom=1.309017pt,%
+  boxrule=0.5pt%
+}
+
 % Initialize the color variable.
 \definecolor{currentaltchordcolor}{rgb}{0,0,0}%
 % Set default color to altchordcolor_a, will also be reset to this at each
@@ -1468,7 +1482,8 @@
         {\normalfont (capo ##1)}%
       }%
       \makebox[0pt][r]{\raisebox{4.25ex}[0pt][0pt]{%
-        \tiny\colorbox{notebgcolor}{\normalfont \textbf{#2:}}%
+        \tiny%
+        \@altchordidbox{\color{currentaltchordcolor}\normalfont\textbf{#2:}}%
       }}%
     \fi%
   \fi\fi%
