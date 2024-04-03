@@ -916,7 +916,7 @@ deploy_results() {
 
   done < "${RESULTLIST_FILE_IN_RESULTDIR}"
 
-  echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Deployed at: $(date)" \
+  echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Deployed at: $(date --rfc-3339=seconds)" \
      >>${RESULTLIST_FILE_IN_RESULTDIR}
 
   if [ ${idcontent_skippedcount} -gt 0 ]; then
@@ -1164,7 +1164,7 @@ which "sed" >"/dev/null" || die 1 "'sed' binary not found in path!"
 rm "${TOO_MANY_WARNINGS_FILE}" >"/dev/null" 2>&1
 rm "${RESULTLIST_FILE}" >"/dev/null" 2>&1
 
-echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation started at: $(date)" \
+echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation started at: $(date --rfc-3339=seconds)" \
      >>${RESULTLIST_FILE}
 
 # Trap interruption (Ctrl-C):
@@ -1278,7 +1278,7 @@ done
 
 wait # wait for all jobs to end, returns always 0
 
-echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation ended succesfully at: $(date)" \
+echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation ended succesfully at: $(date --rfc-3339=seconds)" \
      >>${RESULTLIST_FILE}
 cp "${RESULTLIST_FILE}" "${RESULTLIST_FILE_IN_RESULTDIR}"
 
