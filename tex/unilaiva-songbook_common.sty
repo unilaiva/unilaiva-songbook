@@ -220,6 +220,12 @@
 % Repeal the effects of \obeylines
 \newcommand\disobeylines{\catcode`\^^M=5 }%
 
+% Produces an invisible box with the vertical size (height and depth) of
+% text with highest and lowest reaching characters used in the books in the
+% current font style, but having zero width. Use this to make boxes same size,
+% etc.
+\newcommand{\vphantommaxtext}{\vphantom{Êg(\flt\shrp}}
+
 % If the currently active languages name (polyglossia) is the same as the
 % first argument, the second argument is expanded; otherwise the third.
 % Example \IfLangTF{portuguese}{Círculos}{Circles}
@@ -865,6 +871,77 @@
 
 % END Setup headers using fancyhdr
 
+% BEGIN Setup boxes
+
+% These boxes use tcolorbox package. https://ctan.org/pkg/tcolorbox
+% They are used by giving color of the box as optional parameter, and the
+% content as the mandatory one. If the color is omitted, current color is
+% used by default. Note that the current color seems to be reset to black
+% within the box, so to use it there, it needs to be saved and reset.
+%
+% Usage examples:
+%   - \@altchordidbox[red]{(Am)} % red box, black text
+%   - \colorlet{curcol}{.}\@altchordidbox{\color{curcol}(Am)} % current color for box and text
+
+% Coloured box for language code.
+\newtcbox{\@langcodebox}[1][.]{%
+  on line,arc=1pt,outer arc=.618pt,%
+  colback=#1!6!white,colframe=#1!80!black,
+  boxsep=0pt,%
+  left=0.8pt,right=0.8pt,top=0.8pt,bottom=0.8pt,%
+  boxrule=0.5pt%
+}
+
+% Coloured box for the alternate chords id (title).
+\newtcbox{\@altchordidbox}[1][.]{%
+  on line,%
+  valign=bottom,%
+  arc=3pt,%outer arc=3pt,%
+  colback=#1!5!white,colframe=#1!94!black,%
+  boxsep=0pt,%
+  left=1.4pt,right=1.4pt,top=0.1pt,bottom=0.1pt,%
+  boxrule=0.3pt%
+}
+
+% Coloured box for the "Key: XX" text on the keyline of song prelude
+\newtcbox{\@mainkeybox}[1][.]{%
+  on line,%
+  valign=bottom,%
+  arc=3pt,%outer arc=3pt,%
+  colback=#1!8!white,colframe=#1!92!black,%
+  boxsep=0pt,%
+  left=1.4pt,right=1.4pt,top=0.1pt,bottom=0.1pt,%
+  boxrule=0.5pt,%
+  %equal height group=preludekeyheightgroup%
+}
+
+% Coloured box for the good keys, "Good: Am (Am--Bm)", text on the keyline
+% of song prelude
+\newtcbox{\@goodkeysbox}[1][.]{%
+  on line,%
+  valign=bottom,%
+  arc=3pt,%outer arc=3pt,%
+  colback=#1!5!white,colframe=#1!94!black,%
+  boxsep=0pt,%
+  left=1.4pt,right=1.4pt,top=0.1pt,bottom=0.1pt,%
+  boxrule=0.5pt,%
+  %equal height group=preludekeyheightgroup%
+}
+
+% Coloured box for tags in the song prelude
+\newtcbox{\@tagsbox}[1][.]{%
+  on line,%
+  valign=bottom,%
+  arc=1pt,%outer arc=2pt,%
+  colback=#1!5!white,colframe=#1!94!black,%
+  boxsep=0pt,%
+  left=1.3pt,right=1.3pt,top=0.1pt,bottom=0.1pt,%
+  boxrule=0.5pt,%
+  %equal height group=preludekeyheightgroup%
+}
+
+% END Setup boxes
+
 % BEGIN Setup column break penalties
 
 % Force a column break
@@ -1427,20 +1504,6 @@
 
 % BEGIN ALTCHORDS
 
-% Coloured box for the alternate chords id (title). The optional parameter
-% sets the base color for the box, default being the current color (.).
-% Note that the text within the box seems to change to black by default.
-% Usage examples:
-%   - \@altchordidbox[red]{(Am)} % red box, black text
-%   - \colorlet{curcol}{.}\@altchordidbox{\color{curcol}(Am)} % current color for box and text
-\newtcbox{\@altchordidbox}[1][.]{%
-  on line,arc=1pt,outer arc=1pt,%
-  colback=#1!8!white,colframe=#1!80!black,%
-  boxsep=0pt,%
-  left=1.309017pt,right=1.309017pt,top=1.309017pt,bottom=1.309017pt,%
-  boxrule=0.5pt%
-}
-
 % Initialize the color variable.
 \definecolor{currentaltchordcolor}{rgb}{0,0,0}%
 % Set default color to altchordcolor_a, will also be reset to this at each
@@ -1483,7 +1546,7 @@
       }%
       \makebox[0pt][r]{\raisebox{4.25ex}[0pt][0pt]{%
         \tiny%
-        \@altchordidbox{\color{currentaltchordcolor}\normalfont\textbf{#2:}}%
+        \@altchordidbox{\color{currentaltchordcolor}\normalfont\textbf{#2}:\vphantommaxtext}%
       }}%
     \fi%
   \fi\fi%
@@ -1625,19 +1688,7 @@
                                  {\@langsecttitlefont}}
 % END @langsect / rewritable defaults
 
-% Coloured box for language code. The optional parameter sets the base color
-% for the box, default being the current color (.).
-% Note that the text within the box seems to change to black by default.
-% Usage examples:
-%   - \@langcodebox[red]{EN} % red box, black text
-%   - \colorlet{curcol}{.}\@langcodebox{\color{curcol}EN} % current color for box and text
-\newtcbox{\@langcodebox}[1][.]{%
-  on line,arc=1pt,outer arc=1pt,%
-  colback=#1!6!white,colframe=#1!80!black,
-  boxsep=0pt,%
-  left=0.809017pt,right=0.809017pt,top=0.809017pt,bottom=0.809017pt,%
-  boxrule=0.5pt%
-}
+
 
 % Returns the formatted version of a language code given as an argument, plus
 % a small horizontal space after it. If the code is in the omit list, nothing
@@ -2676,6 +2727,18 @@
 
 % BEGIN PRELUDE
 
+% Setup the style for the taglist in the prelude, empty by default. Set before
+% including this file. (This will be called each time in the beginning of the
+% taglist block in the prelude, within it.)
+\providecommand{\preludetagstyle}{\iflyriconly\color{gray}\fi}
+
+% Text style for the key line in the prelude, meant for changing the font
+% and size -- colors, italics and bolds are set implicitly. Can be set before
+% including this file.
+\providecommand{\preludekeylinestyle}{\iflyriconly\color{gray}\fi}
+
+\providecommand{\preludephasestyle}{\iflyriconly\color{gray}\fi}
+
 % Support for "offered to" information, used in astral books. This is displayed
 % after the by field in the song prelude, prepended with "offered to:" text and
 % parenthesized.
@@ -2708,14 +2771,9 @@
 \newsongkey{key}{\def\key{}}
                 {\def\key{#1}}
 
-
-% Text style for the key line in the prelude, meant for changing the font
-% and size -- colors, italics and bolds are set implicitly. Can be set before
-% including this file.
-\providecommand{\preludekeylinestyle}{}
 % Texts for key info in prelude. Can be set before including this file.
 \providecommand{\preludetextkey}{\IfLangTF{portuguese}{Tom:}{Key:}}
-\providecommand{\preludetextgood}{\IfLangTF{portuguese}{boas:}{good:}} % ", " is prepended before this
+\providecommand{\preludetextgood}{\IfLangTF{portuguese}{Boas:}{Good:}} % ", " is prepended before this
 \providecommand{\preludetextgoodkeysalone}{\IfLangTF{portuguese}{Boas tons:}{Good keys:}}
 
 % Support for a list of good keys (range) for a song. This keyval is supposed
@@ -2753,11 +2811,6 @@
 % To set these for a song, use the optional tags={} parameter for \beginsong.
 % An example: \beginsong{Songname}[tags={fire, water}]. Valid tags are defined
 % in file 'tags.can'.
-
-% Setup the style for the taglist in the prelude, empty by default. Set before
-% including this file. (This will be called each time in the beginning of the
-% taglist block in the prelude, within it.)
-\providecommand{\preludetagstyle}{}
 
 \newcommand{\taglist}{}% defined below for each song
 
@@ -2830,12 +2883,14 @@
 
 % Set the amount to rise or lower the position of the items in the RT
 % box in the song prelude, relative to the baseline of the main title
-% (the ex comes from the title font, too).
-\newdimen{\@preludeRTfirstraise}\setlength{\@preludeRTfirstraise}{1.618034ex}%
+% (em and ex come from the title font, too).
+\newdimen{\@preludeRTfirstraise}\setlength{\@preludeRTfirstraise}{1.03em}%
 \newdimen{\@preludeRTsecondraise}\setlength{\@preludeRTsecondraise}{0pt}%
-\newdimen{\@preludeRTthirdraise}\setlength{\@preludeRTthirdraise}{-1.618034ex}%
-\newdimen{\@preludeRTfourthraise}\setlength{\@preludeRTfourthraise}{-3.236068ex}%
+\newdimen{\@preludeRTthirdraise}\setlength{\@preludeRTthirdraise}{-1.03em}%
+\newdimen{\@preludeRTfourthraise}\setlength{\@preludeRTfourthraise}{-2.06em}%
 \newdimen{\@preludeRTraise} % set later
+
+
 
 \newcounter{@preludeRTrowscreatedcount}
 % sets the \@preludeRTraise dimension on basis of @preludeRTrowscreatedcount, ie how
@@ -2888,49 +2943,59 @@
       \ifpagepreludes\centering\else\SB@raggedright\fi%
       \offinterlineskip\lineskip\p@%
       {\stitlefont\relax%
-       \songtitle%
-       {% larva: begin modifications for RT area: ph, tags and keys display
-         \setcounter{@preludeRTrowscreatedcount}{0}%
-         \@setpreludeRTraise%
-         \hfill%
-         \ifshowph\ifnowidth{\phaselist}{}{% % Show phase
-           \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
-             \tiny\normalfont\rmfamily\phaselist%
-           }}%
-           \stepcounter{@preludeRTrowscreatedcount}%
-           \@setpreludeRTraise%
-         }\fi%
-         \ifshowtags\ifnowidth{\taglist}{}{% % Show tags
-           \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
-             \tiny\textit{\preludetagstyle\taglist}%
-           }}%
-           \stepcounter{@preludeRTrowscreatedcount}%
-           \@setpreludeRTraise%
-         }\fi%
-         \ifchorded% % Show key + good keys (if in chorded mode)
-           \def\keylinetext{\normalfont}%
-           \ifshowkey\ifx\key\empty\else%
-             \g@addto@macro\keylinetext{\textit{\preludetextkey} \textbf{\color{chordcolor}\key}}%
-           \fi\fi%
-           \ifshowgoodkeys\ifx\goodkeys\empty\else%
-             \ifx\keylinetext\empty%
-               \g@addto@macro\keylinetext{\textit{\preludetextgoodkeysalone} \textbf{\goodkeys}}%
-             \else%
-               \g@addto@macro\keylinetext{\textit{, \preludetextgood} \textbf{\goodkeys}}%
-             \fi%
-           \fi\fi%
-           \ifx\keylinetext\empty\else%
-             \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
-               \tiny\preludekeylinestyle\keylinetext%
-             }}%
-             \stepcounter{@preludeRTrowscreatedcount}%
-             \@setpreludeRTraise%
-           \fi
-         \fi
-       }% larva: end modifications for RT area: ph, tags and keys display
-       \par%
-       \nexttitle%
-       \foreachtitle{(\songtitle)\par}}%
+        \raisebox{0pt}[\heightof{Th}]{%
+          % \raisebox added by larva to ensure the top of highest non-accented
+          % letters is on the same vertical level as the song number's top.
+          % Accents over capital letters can go above taking no vertical space.
+          \songtitle%
+        }%
+        {% larva: begin modifications for RT area: ph, tags and keys display
+          \setcounter{@preludeRTrowscreatedcount}{0}%
+          \@setpreludeRTraise%
+          \hfill%
+          % tag line (tags, phase)
+          \def\taglinetext{}%
+          \ifshowtags\ifnowidth{\taglist}{}{% Add tags
+            \g@addto@macro\taglinetext{\itshape\preludetagstyle\@tagsbox{\taglist\vphantommaxtext}}%
+          }\fi%
+          \ifshowph\ifnowidth{\phaselist}{}{% Add phase
+            \ifnowidth{\taglinetext}{}{\g@addto@macro{\taglinetext}{ }}% Add whitespace if needed
+            \g@addto@macro\taglinetext{\normalfont\rmfamily\preludephasestyle\@tagsbox{\phaselist\vphantommaxtext}}%
+          }\fi%
+          \ifnowidth{\taglinetext}{}{% Tag line not empty: show it
+            \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+              \iflyriconly\tiny\else\scriptsize\fi%
+              \normalfont\taglinetext%
+            }}%
+            \stepcounter{@preludeRTrowscreatedcount}%
+            \@setpreludeRTraise%
+          }%
+          % key line (song key, good keys)
+          \ifchorded% % Show key + good keys (if in chorded mode)
+            \def\keylinetext{}%
+            \ifshowkey\ifx\key\empty\else%
+              \g@addto@macro\keylinetext{\@mainkeybox[chordcolor]{\textit{\preludetextkey} \textbf{\color{chordcolor}\key\vphantommaxtext}}}%
+            \fi\fi%
+            \ifshowgoodkeys\ifx\goodkeys\empty\else%
+              \ifnowidth{\keylinetext}{% keyline so far empty
+                \g@addto@macro\keylinetext{\@goodkeysbox{\textit{\preludetextgoodkeysalone} \textbf{\goodkeys\vphantommaxtext}}}%
+              }{% keyline so far not empty
+                \g@addto@macro\keylinetext{ \@goodkeysbox{\textit{\preludetextgood} \textbf{\goodkeys\vphantommaxtext}}}%
+              }%
+            \fi\fi%
+            \ifnowidth{\keylinetext}{}{% Key line not empty: show it
+              \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+                \iflyriconly\tiny\else\scriptsize\fi%
+                \normalfont\preludekeylinestyle\keylinetext%
+              }}%
+              \stepcounter{@preludeRTrowscreatedcount}%
+              \@setpreludeRTraise%
+            }%
+          \fi
+        }% larva: end modifications for RT area: ph, tags and keys display
+        \par%
+        \nexttitle%
+        \foreachtitle{(\songtitle)\par}}%
       \ifdim\prevdepth=\z@\kern\p@\fi%
       \parskip\p@\relax\tiny%
       \extendprelude%
