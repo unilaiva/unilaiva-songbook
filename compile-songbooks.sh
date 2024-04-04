@@ -78,6 +78,7 @@ PART2_FILENAME_BASE="unilaiva-songbook_part2_A5" # filename base for the 2-part 
 ASTRAL_FNAME_PREFIX="unilaiva-astral" # filename prefix for unilaiva astral books
 SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
 LYRICSONLY_FNAMEPART="_LYRICS-ONLY" # added to filenames for lyrics-only books
+CHARANGO_FNAMEPART="_CHARANGO" # added to filenames for charango books
 NODEPLOY_FNAMEPART="_NODEPLOY" # files having this in their name are not deployed
 PAPERA5_FNAMEPART="_A5" # files having this in their name are treated as having A5 size pages
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
@@ -156,6 +157,7 @@ print_usage_and_exit() {
   echo "  --no-coverimage  : do not extract cover page as image"
   echo "  --no-deploy      : do not copy PDF files to ./${DEPLOY_DIRNAME}/"
   echo "  --no-docker      : do not use the Docker container for compiling"
+  echo "  --no-extrainstr  : do not generate additional variants for extra instruments"
   echo "  --no-lyric       : do not generate additional lyrics-only books"
   echo "  --no-midi        : do not copy MIDI files created by Lilypond to the result"
   echo "                     directory"
@@ -694,6 +696,7 @@ compile_document() {
   # the path for the log file, as we are not in the subdirectory yet.
   local log01file="log-01_lilypond.log"
   lilypond-book -f latex --latex-program=lualatex --output="${temp_dirname_twolevels}" \
+                --use-source-file-names \
                 "${document_basename}.tex" \
                 1>"${temp_dirname_twolevels}/${log01file}" 2>&1 \
                 || die_log $? "Error running lilypond-book!" "${temp_dirname_twolevels}/${log01file}"
@@ -762,6 +765,39 @@ compile_document() {
       compile_document_sub "${lyricdoc_basename}" "$2" "lyric-"
     fi
   fi
+
+  # Create books for extra instruments, if so wanted. This is only done for
+  # books that have certain code words in their main document.
+#   if [ ${extrainstrumentbooks} == "true" ]; then
+#     grep '%%%CREATE_VERSION_CHARANGO%%%' "${document_basename}.tex" >"/dev/null"
+#     cp "tex/lp-internal-common-head.ly" "tex/lp-internal-common-head_original.ly"
+#     if [ $? -eq 0 ]; then
+#       local chadoc_bname_pre=$(echo "${document_basename}" \
+#             | awk '{ split($0, arr, "_A[0-9]"); print arr[1] }')
+#       local chadoc_bname_post=$(echo "${document_basename}" "${chadoc_bname_pre}" \
+#             | awk '{ split($1, arr, $2); print arr[2] }')
+#       local charangodoc_basename="${chadoc_bname_pre}${CHARANGO_FNAMEPART}${chadoc_bname_post}"
+#       cat "${INITIAL_DIR}/${document_basename}.tex" \
+#         | sed -e 's/\(\\input{.*setup_.*\.tex}\)/\\input{tex\/internal-charangobook-presetup.tex}\1\\input{tex\/internal-charangobook-postsetup.tex}/g' \
+#         >>"${charangodoc_basename}.tex"
+#       cat "tex/lp-internal-common-head_original.ly" \
+#         | sed -e 's/ul-chosen-tuning = #ul-guitar-tuning/ul-chosen-tuning = #ul-charango-tuning/g' \
+#         >"tex/lp-internal-common-head.ly"
+#       # TODO: Make better copy that copies everything but the img folder,
+#       # so that other subfolders will be included too
+#       cp "${INITIAL_DIR}/content"/*.tex "content/"
+#       rm ./tmp* ./idx_*.sxd ./idx_*.sbx 2>"/dev/null"
+#       local log01file="charango-log-01_lilypond.log"
+#       local txt_docbasecharango="${C_DGRAY}[${2}${charangodoc_basename}${C_DGRAY}]${C_RESET}"
+#       echo -e "${PRETXT_EXEC}${txt_docbasecharango}: lilypond-book"
+#       lilypond-book -f latex --latex-program=lualatex --output="lp_charango_output" \
+#                     "${charangodoc_basename}.tex" \
+#                     1>"${log01file}" 2>&1 \
+#                     || die_log $? "Error running lilypond-book!" "${log01file}"
+#       cp -R "lp_charango_output"/* ./ && rm -R "lp_charango_output"
+#       compile_document_sub "${charangodoc_basename}" "$2" "charango-"
+#     fi
+#   fi
 
   # Clean up the compile directory: remove some temporary files.
   rm ./tmp*.out ./tmp*.sxc 2>"/dev/null"
@@ -940,6 +976,7 @@ astralbooks="true"
 partialbooks="true"
 selections="true"
 lyricbooks="true"
+extrainstrumentbooks="true"
 midifiles="true"
 audiofiles="true"
 gitpull="false"
@@ -1008,6 +1045,9 @@ while [ $# -gt 0 ]; do
     "--no-lyric")
       lyricbooks="false"
       shift;;
+    "--no-extrainstr")
+      extrainstrumentbooks="false"
+      shift;;
     "--no-midi")
       midifiles="false"
       shift;;
@@ -1055,6 +1095,7 @@ while [ $# -gt 0 ]; do
       astralbooks="false"
       partialbooks="false"
       selections="false"
+      extrainstrumentbooks="false"
       lyricbooks="false"
       midifiles="false"
       audiofiles="false"
@@ -1218,6 +1259,9 @@ fi
 [ ${createprintouts} = "true" ] \
   && createprintouts_text="YES" \
   || createprintouts_text="NO"
+[ ${extrainstrumentbooks} = "true" ] \
+  && extrainstrumentbooks_text="YES" \
+  || extrainstrumentbooks_text="NO"
 [ ${lyricbooks} = "true" ] \
   && lyricbooks_text="YES" \
   || lyricbooks_text="NO"
@@ -1242,7 +1286,8 @@ echo -e "  - Using Docker: ${C_WHITE}${dockerized_text}${C_RESET}"
 echo -e "  - Parallel compilation: ${C_WHITE}${parallel_text}${C_RESET}"
 echo -e "  - Using system's /tmp for ${TEMP_DIRNAME}: ${C_WHITE}${systemtmp_text}${C_RESET}"
 echo -e "  - Clean up ${TEMP_DIRNAME} after succesful compilation: ${C_WHITE}${cleantmp_text}${C_RESET}"
-echo -e "  - Additional lyrics only versions: ${C_WHITE}${lyricbooks_text}${C_RESET}"
+echo -e "  - Additional lyrics only variants: ${C_WHITE}${lyricbooks_text}${C_RESET}"
+echo -e "  - Additional extra instrument variants: ${C_WHITE}${extrainstrumentbooks_text}${C_RESET}"
 echo -e "  - Printouts: ${C_WHITE}${createprintouts_text}${C_RESET}"
 echo -e "  - Cover image extraction: ${C_WHITE}${coverimage_text}${C_RESET}"
 echo -e "  - Midi: ${C_WHITE}${midifiles_text}${C_RESET}"

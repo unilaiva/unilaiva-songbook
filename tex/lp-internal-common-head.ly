@@ -16,6 +16,9 @@
     ul-charango-skipmiddle-tuning = \stringTuning \transpose c'' c <g' c'' e'''' a' e''>
     % This is the tuning used:
     ul-chosen-tuning = #ul-guitar-tuning
+    % Do not change the following line; it is searched and replaced by the
+    % compilation script when creating books for extra instruments.
+    %%%PLACEHOLDER_FOR_AUTOMATIC_EXTRA_INSTRUMENT_CREATION%%%
 
     \layout {
       \context {

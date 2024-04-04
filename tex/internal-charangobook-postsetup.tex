@@ -1,0 +1,21 @@
+%% internal-charangobook-presetup.tex
+%% ==================================
+%%
+%% Part of the system for automatically creating charango version of a book.
+%%
+%% This file contains instructions for after loading the main .sty file,
+%% and is automatically appended before \input{tex/setup_<...>.tex}
+%% instruction in the main document.
+%%
+%% That \input instruction must exist in the main document, for being able to
+%% automatically create lyrics-only books, and within the included setup_<...>
+%% file must the main package unilaiva-songbook_common.sty be loaded.
+%%
+%% See internal-charangobook-presetup.tex file also.
+%%
+
+\charangobooktrue
+
+\showlilypondtrue
+
+\hypersetup{pdftitle={\thisbooktitle { (\variantcharangotext)}}}
