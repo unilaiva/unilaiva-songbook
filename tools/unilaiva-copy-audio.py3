@@ -24,7 +24,8 @@ import pathlib
 import re
 import unicodedata
 
-defaultsffile = '/usr/share/sounds/sf2/FluidR3_GM.sf2'
+defaultsffile = '/usr/share/sounds/sf2/FluidR3_GM.sf2' # in e.g. Ubuntu
+defaultsffilealt = '/usr/share/soundfonts/FluidR3_GM.sf2' # in e.g. Arch Linux
 
 
 def strip_accents(text):
@@ -290,6 +291,9 @@ def execute():
 
 
 # Main program start
+
+if not os.path.exists(defaultsffile) and os.path.exists(defaultsffilealt):
+  defaultsffile = defaultsffilealt
 
 # Parse arguments and check for their validity.
 
