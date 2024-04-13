@@ -63,6 +63,16 @@ commands:
   5. `cd unilaiva-songbook`
   6. `./compile-songbooks.sh`
 
+##### Example: on Arch Linux, using Docker #####
+
+  1. `sudo pacman -Sy docker`
+  2. `sudo gpasswd -a <USERNAME> docker` # replace <USERNAME> with your username
+  3. `sudo sytemctl enable docker.socket`
+  3. `su <USERNAME>` # relogin for the group setting to become active (or reboot)
+  4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
+  5. `cd unilaiva-songbook`
+  6. `./compile-songbooks.sh`
+
 ##### Example: on MacOS, using Docker #####
 
 This is tested with MacOS Ventura 13.2.1 on an Intel system, but should work
@@ -119,7 +129,8 @@ the host system only if compiling without using the Docker image.
   * Locale 'fi_FI.utf8'
   * `bash` (installed by default on most systems)
   * `git` (recommended for retrieving and updating the songbook source)
-  * *Optionally* `context` for creating versions for printing A5 size on A4 paper
+  * *Optionally* `context` or `contextjit` for creating versions for printing
+    A5 size on A4 paper
   * *Optionally* `ffmpeg` and `fluidsynth` for encoding mp3 audio from Lilypond
     sources
   * *Optionally* `pdftoppm` from poppler-utils and `convert` from imagemagick
@@ -141,9 +152,9 @@ version: the package is used heavily and some of its macros are redefined.
 Note that earlier Ubuntu versions than 23.04 require a change in the songbook
 system's source. See the Requirements section above.
 
-On Ubuntu 23.04 (lunar), to install the dependencies, download the project's
-source and compile the songbook without Docker, you need to run the following
-commands:
+On Ubuntu 23.04 (lunar), to install the dependencies, to download the
+project's source and to compile the songbook without Docker, you need to run
+the following commands:
 
   1. `sudo apt update && sudo apt install bash locales git context
      context-modules ffmpeg fluidsynth fluid-soundfont-gm fonts-noto-core
@@ -157,7 +168,28 @@ commands:
   4. `cd unilaiva-songbook`
   5. `./compile-songbooks.sh --no-docker`
 
-Some of these packages are already installed by default.
+Some of the dependency packages are already installed by default.
+
+##### Example: on Arch Linux, without Docker #####
+
+On Arch Linux (on 2024-04-14), to install the dependencies, to download the
+project's source and to compile the songbook without Docker, you need to run
+the following commands:
+  1. 'sudo pacman -Sy bash ffmpeg fluidsynth git imagemagick lilypond
+     noto-fonts noto-fonts-extra poppler python soundfont-fluid texlive-context
+     texlive-fontsextra texlive-fontsrecommended texlive-fontutils
+     texlive-langarabic texlive-langenglish texlive-langeuropean
+     texlive-langportuguese texlive-langspanish texlive-latex texlive-latexextra
+     texlive-latexextra texlive-latexrecommended texlive-luatex texlive-music
+     texlive-plaingeneric'
+  2. Edit `/etc/locale.gen` and uncomment (or add) this line: `fi_FI.UTF-8 UTF-8`,
+     and run `sudo locale-gen`
+  3. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
+  4. `cd unilaiva-songbook`
+  5. `./compile-songbooks.sh --no-docker`
+
+Some of the dependency packages are already installed by default.
+
 
 ### Option THREE, compile manually ###
 
@@ -236,10 +268,10 @@ There are also special printing options, like printing multiple A5 sized pages
 on an A4 sized paper. They are defined in files named
 `printout-template_*.context` and are to be inputted to *ConTeXt*
 program, which needs to be installed on the system. They operate on a previously
-compiled `unilaiva-songbook_A5.pdf` file. See comments in the beginning of each such
-file. If the compilation script finds the `context` binary, it will by default
-process these too, and use them as templates to create similar printouts of the
-two-booklet version of the songbook as well.
+compiled `unilaiva-songbook_A5.pdf` file. See comments in the beginning of each
+such file. If the compilation script finds the `context` or `contextjit`binary,
+it will by default process these too, and use them as templates to create
+similar printouts of the two-booklet version of the songbook as well.
 
 #### Printing double sided on a single sided printer ####
 
