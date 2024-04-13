@@ -16,7 +16,7 @@
 #
 # Optional binaries in PATH if not using Docker:
 #   - docker: for default compilation mode inside container
-#   - context: used to create printout versions
+#   - context or contextjit: used to create printout versions
 #   - pdftoppm, convert: for extracting cover images from result PDFs
 #   - python3, fluidsynth, ffmpeg: for extracting midi and encoding audio
 #   - sha256 to compare file contents in order to not deploy unless needed
@@ -201,8 +201,8 @@ print_usage_and_exit() {
   echo "respectively, unless --no-midi or --no-audio options are present."
   echo ""
   echo "For documents containing ${PAPERA5_FNAMEPART} in their filename, special versions for"
-  echo "printing on A4 sized paper are created, if 'context' binary is available"
-  echo "and --no-printouts option is not given."
+  echo "printing on A4 sized paper are created, if 'context' or 'contextjit' binary"
+  echo "is available and --no-printouts option is not given."
   echo ""
   echo "The resulting PDF files will also be copied to ./${DEPLOY_DIRNAME}/ directory (if"
   echo "it exists), unless they have ${NODEPLOY_FNAMEPART} in their filename or --no-deploy"
@@ -544,20 +544,29 @@ compile_document() {
       if [ ${createprintouts} != "true" ]; then
         echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created as per request"
       else
+        local contextbinary=""
         which "context" >"/dev/null" 2>&1
-        if [ $? -ne 0 ]; then
-          echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created; no 'context'"
+        if [ $? -eq 0 ]; then
+          contextbinary="context"
+        else
+          which "contextjit" >"/dev/null" 2>&1
+          if [ $? -eq 0 ]; then
+            contextbinary="contextjit"
+          fi
+        fi
+        if [ "${contextbinary}" = "" ]; then
+          echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created; no 'context/contextjit'"
         else
           echo -e "${PRETXT_EXEC}${txt_docbase}: context (create printouts)"
           mkdir "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}" 2>"/dev/null"
           # A5 on A4, double sided, must cut: Use 'awk' to create a copy of the
           # printout template file with changed input PDF file name and then
-          # execute 'context' on the new file.
+          # execute 'context' or 'contextjit' on the new file.
           printout_dsf_basename="printout-BOOKLET_${currentdoc_basename}-on-A4-doublesided-needs-cutting"
           awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "tex/printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context" >"${printout_dsf_basename}.context" \
               || die $? "[${currentdoc_basename}]: Error with 'awk' when creating dsf printout!"
           local log08file="${logfileprefix}log-08_printout-dsf.log"
-          context "${printout_dsf_basename}.context" \
+          ${contextbinary} "${printout_dsf_basename}.context" \
                   1>"${log08file}" 2>&1 \
                   || die_log $? "Error creating dsf printout!" "${log08file}"
           cp "${printout_dsf_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
@@ -567,12 +576,12 @@ compile_document() {
 
           # A5 on A4, a A5+A5 spread on single A4 surface: Use 'awk' to create a
           # copy of the printout template file with changed input PDF file name
-          # and then execute 'context' on the new file.
+          # and then execute 'context' or 'contextjit' on the new file.
           printout_sss_basename="printout-EASY_${currentdoc_basename}-on-A4-sidebyside-simple"
           awk "/replace-this-filename.pdf/"' { gsub( "'"replace-this-filename.pdf"'", "'"${currentdoc_basename}.pdf"'" ); t=1 } 1; END{ exit( !t )}' "tex/printout-template_EASY-A5-on-A4-sidebyside-simple.context" >"${printout_sss_basename}.context" \
               || die $? "[${currentdoc_basename}]: Error with 'awk' when creating sss printout!"
           local log09file="${logfileprefix}log-09_printout-sss.log"
-          context "${printout_sss_basename}.context" \
+          ${contextbinary} "${printout_sss_basename}.context" \
                   1>"${log09file}" 2>&1 \
                   || die_log $? "Error creating sss printout!" "${log09file}"
           cp "${printout_sss_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
