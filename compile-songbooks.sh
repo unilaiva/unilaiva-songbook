@@ -365,7 +365,7 @@ compile_in_docker() {
 
   echo ""
 
-  which "docker" >"/dev/null"
+  which "docker" >"/dev/null" 2>&1
   if [ $? -ne 0 ]; then
     echo "Docker executable not found. Please install Docker to compile the"
     echo "songbook in the 'official' environment. To compile without Docker,"
@@ -544,7 +544,7 @@ compile_document() {
       if [ ${createprintouts} != "true" ]; then
         echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created as per request"
       else
-        which "context" >"/dev/null"
+        which "context" >"/dev/null" 2>&1
         if [ $? -ne 0 ]; then
           echo -e "${PRETXT_NOEXEC}${txt_docbase}: Extra printout PDFs not created; no 'context'"
         else
@@ -585,7 +585,7 @@ compile_document() {
 
     # Extract cover page as a raster image file(s)
     if [ ${coverimage} == "true" ]; then
-      which "pdftoppm" >"/dev/null"
+      which "pdftoppm" >"/dev/null" 2>&1
       if [ $? -ne 0 ]; then
         echo -e "${PRETXT_NOEXEC}${txt_docbase}: Cover not extracted as image; no 'pdftoppm'"
       else
@@ -600,7 +600,7 @@ compile_document() {
            || die $? "Error copying ${currentdoc_basename}.png from temporary directory!"
         echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}.png" \
             >>${RESULTLIST_FILE}
-        which "convert" >"/dev/null"
+        which "convert" >"/dev/null" 2>&1
         if [ $? -ne 0 ]; then
           echo -e "${PRETXT_NOEXEC}${txt_docbase}: Widened tagless cover image not created; no 'convert'"
         else # create extended (closer to square) and tagless version of the image, too:
@@ -711,7 +711,7 @@ compile_document() {
   # Handle midi & mp3
 
   if [ ${midifiles} == "true" ] || [ ${audiofiles} == "true" ]; then
-    which "python3" >"/dev/null" || die 1 "'python3' binary not found in path"
+    which "python3" >"/dev/null" 2>&1 || die 1 "'python3' binary not found in path"
   fi
   if [ ${midifiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (copy midi files)"
@@ -933,7 +933,7 @@ deploy_results() {
       # as the new file in the result dir. This way we don't invalidate caches,
       # if the deploy dir is synced somewhere and/or served with a web server.
       if [ -f "${deploydir}/${fname}" ]; then
-        which "sha256sum" >"/dev/null"
+        which "sha256sum" >"/dev/null" 2>&1
         [ ${?} -eq 0 ] || echo -e "${PRETXT_WARNING}'sha256sum' not found in path: file deployed even if no change"
         local newhash="$(sha256sum -b ${resultdir}/${fname} | cut -d' ' -f1)"
         local oldhash="$(sha256sum -b ${deploydir}/${fname} | cut -d' ' -f1)"
