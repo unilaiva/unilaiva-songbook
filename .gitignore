@@ -16,18 +16,19 @@
 *.sbx
 *.sxc
 
-# temporary directory used when compiling
+# temporary directory used when compiling (also symlink)
 temp/
+temp
 
-# deployment directory (also a symlink)
+# deployment directory (also symlink)
 deploy/
 deploy
 
-# result directory (also a symlink)
+# result directory (also symlink)
 result/
 result
 
-# unilaiva VM's shared deploy directory
+# unilaiva VM's shared deploy directory (also symlink)
 deploy_from_vm/
 deploy_from_vm
 
