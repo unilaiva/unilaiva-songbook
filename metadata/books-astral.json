@@ -361,7 +361,7 @@
       "enabled": true,
       "file": "unilaiva-astral-completa_CHARANGO_A5.pdf",
       "image": "unilaiva-astral-completa_CHARANGO_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "complete.comp", "charango" ],
+      "tag_ids": [ "complete.comp", "chords", "sheetmusic", "charango" ],
       "title_i18n": {
         "pt": "A compilação completa"
       },
