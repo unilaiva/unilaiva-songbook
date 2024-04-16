@@ -356,6 +356,34 @@
           }
         }
       ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-astral-completa_CHARANGO_A5.pdf",
+      "image": "unilaiva-astral-completa_CHARANGO_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "complete.comp", "charango" ],
+      "title_i18n": {
+        "pt": "A compilação completa"
+      },
+      "subtitle_i18n": {
+        "en": "For Charango",
+        "pt": "Por charango",
+        "fi": "Charangolle"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/cetMPdSJDEgqt8q",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/gL9bDmeECBp6ZxB",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
     }
   ]
 }
