@@ -248,3 +248,87 @@
 \endsong
 
 
+\beginsong{O Espírito de Tudo}[by={larva}, key={Gm}, gk={Gm}, tags={2x}]
+  \newchords{chords_o_espirito_de_tudo_a}\newchords{chords_o_espirito_de_tudo_b}
+  \textnotefornext{Tocar 2 vezes. / Sing twice.}
+  \mnbeginchorus\memorize[chords_o_espirito_de_tudo_a]
+    \[\bmc\mn{D}]O \[^\mn{E&}\mn{F#}]es|\[\mnc{G}Gm]pírito \[\bm]de \[^\mn{B&}]tu\[^\mn{A}]do \[^\mn{G}]{se en}|\[\mnc{F#}D]con\[^\mn{D}]tra
+    \[\bmc\mn{E&}]quan\[^\mn{D}]do \[^\mn{C#}]es\[^\mn{D}]que|\[\mnc{B&}B&]cemos de \[\bm]ser \[^\mn{A}]es\[^\mn{B&}]piri\[^\mn{C#}]tu|\[\mnc{D}D]al
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_o_espirito_de_tudo_b]
+    \[\bmc\mn{D}]O \[^\mn{E&}]a|\[\mnc{C#}F\shrp{}m/C\shrp{}]{mor en} \[\bm]toda \[^\mn{E&}]cria|\[\mnc{D}Gm]ção
+    na \[\bm]vul\[^\mn{C#}]nera\[^\mn{B&}]bi\[^\mn{C#}]li|\[\mnc{A}D]da de \[\bm]se \[^\mn{D}]re|\[\mnc{G}Gm]vela
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_o_espirito_de_tudo_a]
+    ^Sagrados es|^tamos ^quando exis|^timos
+    ^sem esconder |^nossos a^bismos nem vergo|^nhas
+    \endchorus\glueverses\beginchorus\replay[chords_o_espirito_de_tudo_b]
+    ^Apren|^demos aos ^poucos a ver|^dade ver
+    ^ser mais reais |^é o que há ^de vi|^ver
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-01
+    \include "tex/lp-include-head.ly"
+    % \header {
+    %   title = "O Espírito de Tudo"
+    %   composer = "Lari Natri"
+    % }
+    theMelody = \relative d'' {
+      \key g \minor \slurDashed
+      \set melismaBusyProperties = #'()
+      \tempo 4 = 108
+      \time 4/4 \partial 2
+      \repeat segno 2 {
+        \sectionLabel "A"
+        \repeat volta 2 {
+          d8( \pomark d8) es8( fis8)
+          | g4( g8) g8 g8 bes a g | fis4. d8 es8 d cis d
+          | bes4 bes8 bes8 bes a16( a) bes16( bes) cis8 | d2
+        }
+        \sectionLabel "B"
+        \repeat volta 2 {
+          d4 es4
+          | cis4( cis8) cis8 cis8 cis8 es8 es8 | d4( d8) d8 d8 cis16( cis16) bes8 cis
+          | a8( \parenthesize a8 \parenthesize a8) a8 a4 d | g,4( g4)
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      O __ _ es -- _ | pí -- ri -- to de tu -- do se~en -- | con -- tra,
+      quan -- do es -- que -- | ce -- mos de ser es -- _ pi -- ri -- tu -- | al.
+      \set stanza = "1.B"
+      O a --  | mor __ _ en to -- da cri -- a -- | ção, __ _
+      na vul -- ne -- ra -- bi -- li -- | da -- _ _ de se re -- | ve -- la.
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Sa -- gra -- dos es -- | ta -- _ mos quan -- do e -- xis -- | ti -- mos
+      sem es -- con -- der | nos -- sos a -- bis -- mos nem ver -- _ go -- | nhas.
+      \set stanza = "2.B"
+      A -- pren -- | de -- mos aos pou -- cos a ver -- | da -- de ver,
+      ser mais __ _ re -- ais | é o que há de vi -- | ver. __ _
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s2 | g1:m | d | bes | d2
+        }
+        \repeat volta 2 {
+          s2 | fis1:m/cis | g:m | d | g2:m
+        }
+      }
+    }
+%     \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    The spirit of everything is found when we forget to be spiritual.
+    Love in all creation, in vulnerability it is revealed.
+    \nextverse
+    We are sacred when we exist without hiding our abysses or shames.
+    We gradually learn to see the truth, being more real is what there is to live.
+  \end{translation}
+\endsong
+
