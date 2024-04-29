@@ -5,8 +5,8 @@
 # setup the *required* bind mount and use correct user id.
 #
 
-# Use Ubuntu 23.10:
-FROM ubuntu:mantic-20231011
+# Use Ubuntu 24.04 LTS:
+FROM ubuntu:noble-20240423
 
 # Installs everything needed for compiling the songbook, plus qrencode and
 # pdftk utilities. Also generates the required locale fi_FI.utf8.
@@ -58,6 +58,7 @@ COPY 99-tex-max-memory.cnf /etc/texmf/texmf.d/
 #    ~/.texlive20?? when compiling.
 RUN locale-gen fi_FI.utf8 \
   && update-texmf \
+  && mtxrun --generate \
   && texhash \
   && luaotfload-tool --update \
   && useradd --create-home --shell /bin/bash unilaiva \

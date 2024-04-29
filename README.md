@@ -22,7 +22,7 @@ For information about its usage, run: `compile-songbooks.sh --help`
 Otherwise you must do the compilation steps manually, see **Option THREE**.
 
 
-### Option ONE: use the script with Docker (preferred) ###
+### Option ONE: use the script with Docker (recommended) ###
 
 This works on Linux and MacOS, or Windows with WSL. Using Linux is
 recommended, as it is the most tested of the operating systems.
@@ -34,7 +34,7 @@ container that has all the correct packages installed and configured correctly.
 
 Note that the first run will take a long time, as the Docker image is built
 and all the required software downloaded (about 1100 MiB) and installed into it.
-When built, the image requires about 2,3 GiB of disk space. Subsequent runs
+When built, the image requires about 2,5 GiB of disk space. Subsequent runs
 will be fast as they use the already built image.
 
 By default the compile script uses a maximum of 6 GiB of memory when running
@@ -63,15 +63,20 @@ commands:
   5. `cd unilaiva-songbook`
   6. `./compile-songbooks.sh`
 
+This procedure was tested on Ubuntu versions 23.03, 23.10 and 24.04.
+
 ##### Example: on Arch Linux, using Docker #####
 
-  1. `sudo pacman -Sy docker`
+  1. `sudo pacman -Suy docker`
   2. `sudo gpasswd -a <USERNAME> docker` # replace <USERNAME> with your username
   3. `sudo sytemctl enable docker.socket`
   3. `su <USERNAME>` # relogin for the group setting to become active (or reboot)
   4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
   6. `./compile-songbooks.sh`
+
+This procedure was tested on up-to-date Arch Linux, a rolling release, on
+2024-04-30.
 
 ##### Example: on MacOS, using Docker #####
 
@@ -89,11 +94,12 @@ included in MacOS by default is too old):
 ```
 
 **Optional:** To enable automatic building of the Docker image in case it is
-later updated, you also need GNU's version of `date`. To get it,
-run `brew install coreutils`, and edit the compile script to use `gdate`
-command instead of `date`. On first run of the compile script, the Docker
-image is built regardless of this, and later, if the image is updated, you can
-alternatively manually trigger a rebuild by using Docker commands.
+later updated, you also need GNU's version of `date`. To get it, run
+`brew install coreutils`. The GNU version will be installed as `gdate`, and the
+compiler script will use it if it exists. On first run of the compile script,
+the Docker image is built regardless of this, and later, if the image is
+updated, you can alternatively trigger a rebuild manually by invoking
+`./compile-songbooks.sh --docker-rebuild`.
 
 Then start the command prompt and run the following commands:
   1. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
@@ -118,19 +124,20 @@ execute the compilation script with `--no-docker` option.
 These dependencies are included in the Docker image, and need be installed on
 the host system only if compiling without using the Docker image.
 
-  * Newish LaTeX 2e distribution (TeX Live 2022 is recommended) with some fairly
+  * Newish LaTeX 2e distribution (TeX Live 2023 is recommended) with some fairly
     standard packages and the binaries `lualatex` and `texlua`. If you use an
     older LaTeX distribution, you might have a problem with incorrect line
     breaking within songs, which can be corrected by deleting the rewrite
     of \SB@obeylines macro in the unilaiva-songbook-common.sty file.
-  * Lilypond installation version 2.24.1 (or probably any later one) with the
+  * Lilypond installation version 2.24.3 (or probably any later one) with the
     binary `lilypond-book`
   * Fonts 'Noto Sans' and 'Noto Serif', with medium and extrabold weights
   * Locale 'fi_FI.utf8'
   * `bash` (installed by default on most systems)
   * `git` (recommended for retrieving and updating the songbook source)
   * *Optionally* `context` or `contextjit` for creating versions for printing
-    A5 size on A4 paper
+    A5 size on A4 paper; (Using this might require executing `mtxrun --generate`
+    before running the compile script.)
   * *Optionally* `ffmpeg` and `fluidsynth` for encoding mp3 audio from Lilypond
     sources
   * *Optionally* `pdftoppm` from poppler-utils and `convert` from imagemagick
@@ -147,12 +154,12 @@ included in the project tree and used instead of a one possibly installed on
 the system. This is because of compatibility reasons to ensure a specific
 version: the package is used heavily and some of its macros are redefined.
 
-##### Example: on Ubuntu 23.04, without Docker #####
+##### Example: on Ubuntu 24.04, without Docker #####
 
 Note that earlier Ubuntu versions than 23.04 require a change in the songbook
 system's source. See the Requirements section above.
 
-On Ubuntu 23.04 (lunar), to install the dependencies, to download the
+On Ubuntu 24.04 (noble), to install the dependencies, to download the
 project's source and to compile the songbook without Docker, you need to run
 the following commands:
 
@@ -164,15 +171,16 @@ the following commands:
      texlive-latex-base texlive-latex-extra texlive-luatex texlive-music
      texlive-plain-generic`
   2. `sudo locale-gen fi_FI.utf8`
-  3. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
-  4. `cd unilaiva-songbook`
-  5. `./compile-songbooks.sh --no-docker`
+  3. `sudo mtxgen --generate`
+  4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
+  5. `cd unilaiva-songbook`
+  6. `./compile-songbooks.sh --no-docker`
 
 Some of the dependency packages are already installed by default.
 
 ##### Example: on Arch Linux, without Docker #####
 
-On Arch Linux (on 2024-04-14), to install the dependencies, to download the
+On Arch Linux (on 2024-04-30), to install the dependencies, to download the
 project's source and to compile the songbook without Docker, you need to run
 the following commands:
   1. 'sudo pacman -Sy bash ffmpeg fluidsynth git imagemagick lilypond
