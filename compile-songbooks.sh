@@ -385,10 +385,10 @@ compile_in_docker() {
     if [ ! -z $(docker image ls -q unilaiva-compiler) ]; then
       # image exists, compare dates...
       # NOTE: Date comparison does not work with date -d on MacOS.
-      dockerimage_ts="$(date -d $(docker inspect -f '{{ .Created }}' unilaiva-compiler) +%s)"
+      dockerimage_ts="$(${datecmd} -d $(docker inspect -f '{{ .Created }}' unilaiva-compiler) +%s)"
       if [ $? -eq 0 ]; then
         # first date command worked, do the rest of the comparison
-        dockerfile_ts="$(date -r docker/unilaiva-compiler/Dockerfile +%s)"
+        dockerfile_ts="$(${datecmd} -r docker/unilaiva-compiler/Dockerfile +%s)"
         [ ${dockerfile_ts} -gt ${dockerimage_ts} ] && docker_build_needed="true"
       else
       echo -e "${PRETXT_ERROR}Can not test the version of docker image. Use --docker-rebuild option if needed."
@@ -962,7 +962,7 @@ deploy_results() {
 
   done < "${RESULTLIST_FILE_IN_RESULTDIR}"
 
-  echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Deployed at: $(date --rfc-3339=seconds)" \
+  echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Deployed at: $(${datecmd} --rfc-3339=seconds)" \
      >>${RESULTLIST_FILE_IN_RESULTDIR}
 
   if [ ${idcontent_skippedcount} -gt 0 ]; then
@@ -1012,22 +1012,28 @@ if [ "${BASH_VERSINFO:-0}" -lt 4 ]; then
     echo "running theese commands should take care of installing a newer Bash:"
     echo ""
     echo '  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-    echo "  brew install bash"
+    echo "  brew install bash coreutils"
     echo ""
     echo "Follow the instructions given by the command before for setting PATH,"
     echo "and restart your shell application afterwards."
     echo ""
-    echo "Note also that the 'date' command in MacOS is not compatible with"
-    echo "the way 'date' is used in this script to check whether the Docker"
-    echo "image configuration has been updated and needs a rebuild. This can"
-    echo "be remedied by using --docker-rebuild option to force rebuilding"
-    echo "the compiler image whenever the Dockerfile is changed in a later"
-    echo "revision of this package. (Or one could install 'coreutils' with"
-    echo "Homebrew and changing this script to use 'gdate' command instead"
-    echo "of 'date'.) But for now, don't worry about it. Just update BASH!"
-    echo ""
+    echo "Note that the coreutils package is needed for 'gdate' command, as"
+    echo "MacOS's 'date' command is not compatible with the way 'date' is used"
+    echo "in this script to check whether the Docker image configuration has"
+    echo "been updated and needs a rebuild. If on MacOS and 'gdate' is available,"
+    echo "it is used. Else, if not willing to install coreutils from Homebrew,"
+    echo "the recompilation of the docker image can be forced by using"
+    echo "--docker-rebuild option of this script whenever the Dockerfile is"
+    echo "changed in a later revision of this package."
   fi
   die 9 "Your BASH is too old; version 4 or later required."
+fi
+
+datecmd='date' # the default
+# Use gdate (from Homebrew:coreutils) instead of date if on MacOS and
+# gdate binary exists
+if [ ${OSTYPE} == 'darwin' ]; then
+  which "gdate" >"/dev/null" && datecmd='gdate'
 fi
 
 [ -f "./compile-songbooks.sh" ] || die 1 "Not currently in the project's root directory!"
@@ -1215,7 +1221,7 @@ which "sed" >"/dev/null" || die 1 "'sed' binary not found in path!"
 rm "${TOO_MANY_WARNINGS_FILE}" >"/dev/null" 2>&1
 rm "${RESULTLIST_FILE}" >"/dev/null" 2>&1
 
-echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation started at: $(date --rfc-3339=seconds)" \
+echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation started at: $(${datecmd} --rfc-3339=seconds)" \
      >>${RESULTLIST_FILE}
 
 # Trap interruption (Ctrl-C):
@@ -1333,7 +1339,7 @@ done
 
 wait # wait for all jobs to end, returns always 0
 
-echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation ended succesfully at: $(date --rfc-3339=seconds)" \
+echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation ended succesfully at: $(${datecmd} --rfc-3339=seconds)" \
      >>${RESULTLIST_FILE}
 cp "${RESULTLIST_FILE}" "${RESULTLIST_FILE_IN_RESULTDIR}"
 
