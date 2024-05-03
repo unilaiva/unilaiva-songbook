@@ -1248,3 +1248,221 @@
   \end{explanation}
 \endsong
 
+
+\beginsong{Mensageiro das Estrelas}[by={Vitor Vitti}, key={Dm}, gk={Dm, Cm--E\flt{}m}]
+  \audio[key=Dm]{https://soundcloud.com/c-u-de-oxal/3-mensageiro-das-estrelas}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Vou se|\[\mnc{D}Dm]guindo no \[^\mn{E}]ca\[\bmc\mn{F}]minho das es|\[^\mn{E}]tre\[^\mn{D}]las \[\bm]
+    \[^\mn{A}]No ga|\[^\mn{D}]lope do \[^\mn{E}]meu \[\bmc\mn{F}]cava\[^\mn{E}]lo \[^\mn{D}]ma|\[\mnc{G}Gm]ri\[\bm]nho
+    |Sal\[^\mn{A}]ve \[\bmc\mn{B&}]meu pai \[^\mn{A}]O\[^\mn{G}]xa|\[\mncii{F}{D}Dm]lá \[\bm]
+    \[^\mn{F}]{E a} minha |\[\mnc{E}A]mãe \[\mnc{G}A7]I\[^\mn{F}]e\[^\mn{E}]man|\[\mnc{D}Dm]já \[\bm]
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    No co|^mando de meu ^São Miguel Ar|canjo ^
+    Do e|xército de O^gum da Beira-|^mar ^
+    Com |todos os ^seres di|^vinos ^
+    Da flo|^resta do ^céu e do |^mar ^
+  \endchorus
+  \beginchorus
+    Eu sa|^údo ^meu Senhor do |tempo ^
+    E o Guardi|ão do Impé^rio do Beija-|^Flor ^
+    Gira |mundo, ^sopra o |^vento ^
+    O mar le|^vanta e só se ^firma com a|^mor ^
+  \endchorus
+  \beginchorus
+    Eu |^chamo as ^Tribos da |Paz ^
+    De |todas ^as dire|^ções ^
+    \meter{2}{4}|Para \meter{4}{4}|vir e re^zar nesse |^fogo ^
+    No |^círculo do tam^bor dos cora|^ções ^
+  \endchorus
+  \beginchorus
+    Eu |^chamo ^todos os guer|reiros ^
+    Os ca|boclos das es^trelas e as prin|^ce^sas
+    |Para vir bri^lhar nesse ter|^reiro ^
+    Ilumi|^nando o ^mundo in|\noteson\[\mncii{E}{D}Dm]teiro \[\bm]\notesoff
+  \endchorus
+  \beginchorus
+    Eu sa|^údo a ^Águia e o |Condor ^
+    Eu sa|údo a Pan^tera e o Ja|^guar ^
+    Eu sa|údo o Par^dal e o Beija-|^Flor ^
+    Eu sa|^údo o Che^fe desse Con|^gar ^
+  \endchorus
+  \beginchorus
+    Eu sa|^údo meu ^povo de Aru|anda ^
+    Eu sa|údo meu ^povo do Ori|^en^te
+    Eu sa|údo meu po^vo de Santo An|^tônio ^
+    Eu sa|^údo meu po^vo dessa cor|^rente ^
+  \endchorus
+  \beginchorus
+    Eu sa|^údo ^todos cura|dores ^
+    Eu sa|údo ^todas medi|^ci^nas
+    Eu sa|údo os pa^jés e os dou|^tores ^
+    Eu sa|^údo a Deusa ^Terra Mãe Di|^vina ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-05
+    % \header {
+    %   title = "Mensageiro das Estrelas"
+    %   % Hinario Mensageiro das Estrelas #3
+    %   composer = "Vitor Vitti"
+    % }
+    theMelody = \relative d'' {
+      \slurDashed \set melismaBusyProperties = #'()
+      \key d \minor
+      \time 4/4 \partial 4
+      \repeat volta 16 {
+        a8( \pomark a) | d( d)( d) e f( f) f f | e d~ d4.( d8)
+        a8( a) | d( d)( d) e f( f) e d | g2( g4)( g8)( g)
+        \alternative {
+          \volta 8,9 {
+            \once \override Staff.BarLine.color = #color-alt
+            \once \override Staff.TimeSignature.color = #color-alt
+            \time 2/4 | \altcol g4. \altmark "4." \altcol g8 \time 4/4
+          }
+        }
+        | g8( g8)( g8) a8 bes( bes) a g | f( d~) d4. \parenthesize f8 f f
+        | e8( e8)( e8 e8) g8( g8)( f8) e | << \single\altcol e8 \altmark "5." \slurDown d8( >> \tieDown d8)~ d2
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Vou se -- | guin -- do no ca -- mi -- nho das es -- | tre -- las; __ _ _
+        No ga -- | lo -- pe do meu ca -- va -- lo -- ma -- | ri -- nho; __ _ _
+        | "" "" % the 2/4 bar in 4th verse only
+        | Sal _ _ -- ve meu pai O -- xa -- | lá; _ _
+        E~a mi -- nha | mãe __ _ _ _ I _ -- e -- man -- | já. __ _ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        No co -- | man -- do de meu São Mi -- guel Ar -- | can -- jo; __ _ _
+        Do e --  | xér -- ci -- to de~O -- gum da Bei -- ra -- | mar; __ _ _ Com
+        | "" "" % the 2/4 bar in 4th verse only
+        | to _ -- dos os se _ -- res di -- | vi -- nos; _
+        \skip 1 Da flo -- | res _ -- ta do céu __ _ e do | mar. __ _ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Eu sa -- | ú _ _ -- do meu Se -- nhor do | tem -- po; __ _
+        E~o Guar -- di -- | ão __ _ do~Im -- pé -- rio do Bei -- ja -- | Flor; __ _ Gi -- ra
+        | "" "" % the 2/4 bar in 4th verse only
+        | mun _ _ -- do, so _ -- pra o | ven -- to; _
+        O mar le -- | van -- ta~e só se fir -- ma com a -- | mor. __ _ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Eu __ _ | cha _ _ -- mo~as Tri _ -- bos da | Paz; __ _ _ _
+        De __ _ | to _ _ -- das as __ _ di -- re -- | ções; __ _ _ _
+        | \altcol Pa -- \altcol ra | vir __ _ e re -- zar __ _ nes -- se | fo -- go; _
+        \skip 1 \skip 1 No | cír -- culo do tam -- bor dos co -- ra -- | ções. __ _ _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        Eu __ _ | cha _ _ -- mo to -- dos os guer -- | rei -- ros; __ _ _
+        Os ca -- | bo -- clos das es -- tre -- las e~as prin -- | ce -- sas; __ _ _
+        | "" "" % the 2/4 bar in 4th verse only
+        | Pa -- ra vir bri -- lhar nes -- se ter -- | rei -- ro; _
+        I -- lu -- mi -- | nan _ _ -- do~o mun _ _ -- do~in -- | \altcol tei -- ro. __ _
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      \repeat volta 2 {
+        Eu sa -- | ú _ _ -- do~a Á _ -- guia e~o | Con -- dor; __ _ _
+        Eu sa -- | ú -- do a Pan -- te -- ra e~o Ja -- | guar; __ _ Eu sa --
+        | "" "" % the 2/4 bar in 4th verse only
+        | ú -- do o Par -- dal e~o Bei -- ja -- | Flor; _ _
+        \skip 1 Eu sa -- | ú -- do o Che -- fe des -- se Con -- | gar. __ _ _
+      }
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7."
+      \repeat volta 2 {
+        Eu sa -- | ú _ -- do meu po -- vo de~A -- ru -- | an -- da; __ _ _
+        Eu sa -- | ú _ -- do meu po -- vo do~O -- ri -- | en -- te; Eu sa --
+        | "" "" % the 2/4 bar in 4th verse only
+        | ú -- do meu po -- vo de San -- to~An -- | tô -- nio; _
+        \skip 1 Eu sa -- | ú -- do meu po -- vo des -- sa cor -- | ren _ -- te.
+      }
+    }
+    theLyricsEight = \lyricmode {
+      \set stanza = "8."
+      \repeat volta 2 {
+        Eu sa -- | ú _ _ -- do to -- dos cu -- ra -- | do -- res; __ _ _  % todos (os) cura...
+        Eu sa -- | ú _ _ -- do to -- das me -- di -- | ci -- nas; Eu sa -- % todas (as) medi...
+        | "" "" % the 2/4 bar in 4th verse only
+        | ú -- do os pa -- jés e os dou -- | to -- res; _
+        \skip 1 Eu sa -- | ú -- do~a Deu -- sa Ter -- ra Mãe Di -- | vi _ -- na.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 16 {
+        s4 | d1:m | d:m
+        | d:m | g:m
+        \alternative {
+          \volta 8,9 {
+            | g2:m
+          }
+        }
+        | g1:m | d:m
+        | a2 a2:7 | d2.:m
+      }
+    }
+    \layout { #(layout-set-staff-size 12.5) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\vfill\end{lilywrap}
+  \begin{translation}[EN]
+    I'll follow the path of the stars
+    On the gallop of my sea horse
+    Hail to my father Oxalá
+    And my mother Iemanjá
+    \nextverse
+    Under the command of my Archangel Saint Michael
+    Of Ogum's army from Beira-mar
+    With all divine beings
+    From the forest of heaven and sea
+    \nextverse
+    I greet my Lord of time
+    And the Guardian of the Empire of Hummingbird
+    The world turns, blown by the wind
+    The sea rises and only stabilizes with love
+    \nextverse
+    I call upon the Tribes of Peace
+    From all directions
+    To come and pray in this fire
+    In the circle of the drum of hearts
+    \nextverse
+    I call upon all warriors
+    The star caboclos and princesses
+    To come shine in this terreiro
+    Illuminating the entire world
+    \nextverse
+    I greet the Eagle and the Condor
+    I greet the Panther and the Jaguar
+    I greet the Sparrow and the Hummingbird
+    I greet the Chief of this Congar \emph{(congregation)}
+    \nextverse
+    I greet my people of Aruanda
+    I greet my people of the East
+    I greet my people of Santo Antônio
+    I greet my people from this current
+    \nextverse
+    I greet all healers
+    I greet all medicines
+    I greet the shamans and doctors
+    I greet the Goddes Earth, Divine Mother
+  \end{translation}
+\endsong
+
+
