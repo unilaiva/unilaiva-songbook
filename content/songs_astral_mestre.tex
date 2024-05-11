@@ -1198,7 +1198,7 @@
   \audio[key=A]{https://soundcloud.com/user-6451069-977349974/11-unaqui?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
   \audio{https://nossairmandade.com/hymn/201/Unaqui}
   \mnbeginchorus\memorize
-    \[^\mn{E}]Es|\[\mnc{A}A]tou\[\bmadj{-.5ex}] \[^\mn{G#}]a|\[^\mn{E}\mn{C#}]qui \[A7] \altchords{\id[1]{(B\flt{})}|B\flt{} | - B\flt{}7}
+    \[^\mn{E}]Es|\[\mnc{A}A]tou\[\bmadj{-.5ex}]{} \[^\mn{G#}]a|\[^\mn{E}\mn{C#}]qui \[A7] \altchords{\id[1]{(B\flt{})}|B\flt{} | - B\flt{}7}
     \[^\mn{G}]Foi Deus do |Céu quem \[\mnc{F#}A]me \[^\mn{A}]man|\[\mnc{F#}D]dou\[\bm] \altchords{| - B\flt{} |E\flt{}}
     \[^\mn{D}]Sou |\[^\mn{F#}]fi\[^\mn{D}]lho da \[\bmc\mn{F#}]Vir\[^\mn{D}]gem |\[\mnc{C#}A]Mãe \altchords{| - |B\flt{}}
     \[\bmc\mn{A}]Lá \[^\mn{G#}]no |\[\mnc{F#}F#m]céu \[\bm]Jesus |\[\mnc{B}Bm]Cristo \[\bmc\mn{E}]Salva|\[E]dor\[\bm] \altchords{|Gm |Cm |F}
@@ -1293,3 +1293,130 @@
 \endsong
 
 
+\beginsong{Meu Divino Pai}[by={Mestre Irineu Serra},key={D},gk={D, C--F\shrp{}}]
+  \audio[key=D]{https://soundcloud.com/user-6451069-977349974/12-meu-divino-pai?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
+  \audio{https://nossairmandade.com/hymn/202/MeuDivinoPai}
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Oh |\[\mnc{D}D]Meu \[^\mn{C#}]Di\[\bmc\mn{B}]vi\[^\mn{D}]no |Pai \[\bm]
+    Só por |\[\mnc{G}G]Vós \[^\mn{F#}]de\[\mnc{E}A7]vo \[^\mn{G}]cha|\[\mnc{F#}D]mar \[\bm]
+    \[^\mn{D}]Tantas |\[\mnc{G}G]vez(es) \[^\mn{F#}]Vós \[\mnc{E}A]o\[^\mn{D}]fen|\[D]di \[\bm]
+    \[^\mn{A}]{E vós} me |\[^\mn{D}]quei\[^\mn{C#}]ra \[\mnc{B}Bm]per\[^\mn{D}]do|\[D]ar \[\bm]
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Vós me |^queira ^perdo|ar ^
+    Que eu pe|^quei por ^ino|^cen^te
+    Porque |^não ti^nha cer|^te^za
+    Do nosso |Deus O^nipo|^ten^te
+  \endchorus
+  \beginchorus
+    Oh |^Meu Di^vino |Pai ^
+    É vós |^quem me ^dá a |^luz ^
+    Eu nunca |^mais hei ^de esque|^cer ^
+    Do Santo |Nome ^de Je|^sus ^
+  \endchorus
+  \beginchorus
+    O povo |^estão ^ilu|di^dos
+    Por com|^pleta ^ilu|^são ^
+    Porque não |^querem a^credi|^tar ^
+    Na mãe de |Deus da ^cria|^ção ^
+  \endchorus
+  \beginchorus
+    A la|^ranja é ^uma |fru^ta
+    Re|^donda por ^Vossas |^mãos ^
+    Vós me en|^trega ^com cer|^te^za
+    E eu dei|xar ca^{ir no} |^chão ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-05
+    % \header {
+    %   title = "12. Meu Divino Pai"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative c'' {
+      \slurDashed \set melismaBusyProperties = #'()
+      \key d \major
+      \time 4/4 \partial 4.
+        \repeat volta 2 {
+          \parenthesize a8 a8( \pomark a8) | d4 \altcol \grace d8 \afterGrace 1/8 cis4 \altmark "5." { \altcol cis8 } b4 d | d2( d8)( d8)
+          d8( d8) | g4 \altcol \grace g8 \afterGrace 1/8 fis4 \altmark "5." { \altcol fis8 } e4 g | fis2( fis8)
+          \parenthesize d8 d8 d8 | g4 \altcol \grace g8 \afterGrace 1/8 fis4 \altmark "4." { \altcol fis8 } e4 d | d2( d8)
+          a a a | d4 cis b d | d2( d8)
+        }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 { \set includeGraceNotes = ##f
+        "" Oh __ _ | Meu Di -- vi -- no | Pai; __ _ _
+        Só por | Vós de -- vo cha -- | mar; __ _
+        "" Tan -- tas | vez(es) Vós o -- fen -- | di; __ _
+        E vós me | quei -- ra per -- do -- | ar. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 { \set includeGraceNotes = ##f
+        "" Vós me | quei -- ra per -- do -- | ar; __ _
+        Que eu pe -- | quei por i -- no -- | cen -- te;
+        "" Por -- que | não ti -- nha cer -- | te -- za;
+        Do nos -- so | Deus O -- ni -- po -- | ten -- te.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 { \set includeGraceNotes = ##f
+        "" Oh __ _ | Meu Di -- vi -- no | Pai; __ _ _
+        É vós | quem me dá a | luz; __ _
+        Eu nun -- ca | mais hei de~es -- que -- | cer; __ _
+        Do San -- to | No -- me de Je -- | sus. __ _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 { \set includeGraceNotes = ##f
+        O po -- vo | es -- tão i -- lu -- | di -- dos; __ _
+        Por com -- | ple -- ta i -- lu -- | são; __ _ \set includeGraceNotes = ##t
+        Por -- que não | que -- \altcol rem "" \altcol a -- cre -- di -- | tar; __ _
+        Na mãe de | Deus da cri -- a -- | ção. __ _
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 { \set includeGraceNotes = ##t
+        "" A la -- | ran -- \altcol ja "" \altcol é u -- ma | fru -- ta; __ _
+        Re _ -- | don -- \altcol da "" \altcol por Vos -- sas | mãos; __ _ \set includeGraceNotes = ##f
+        Vós me en -- | tre -- ga com cer -- | te -- za;
+        E eu dei -- | xar ca -- ir no | chão. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | d1 | d1
+        | g2 a2:7 | d1
+        | g2 a2 | d1
+        | d2 b2:m | d2~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}[EN]\scriptsize % to fit whole song on one page
+    Oh! My Divine Father, only for You should I call
+    So many times I offended You, and may You forgive me
+    \nextverse
+    May You forgive me, for I sinned due to innocence
+    Because I was not certain of our Omnipotent God
+    \nextverse
+    Oh! My Divine Father, it is You who gives me the light
+    Never again shall I forget the Holy Name of Jesus
+    \nextverse
+    People are deluded in total illusion
+    Because they don't want to believe in the Mother of God of Creation
+    \nextverse
+    The orange is a fruit rounded by Your hands
+    You give it to me with certainty, and I let it fall to the ground
+  \end{translation}
+\endsong
