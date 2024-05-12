@@ -1420,3 +1420,117 @@
     You give it to me with certainty, and I let it fall to the ground
   \end{translation}
 \endsong
+
+
+\beginsong{Estrela D'alva}[by={Mestre Irineu Serra},key={Bm},gk={Cm, (Bm)--(Cm)},tags={valsa}]
+  \audio[key=Cm]{https://soundcloud.com/user-6451069-977349974/13-estrela-dalva-1?in=user-6451069-977349974/sets/o-cruzeiro-universal-mestre-irineu}
+  \audio{https://nossairmandade.com/hymn/203/EstrelaDalva}
+  \meter{3}{4}
+  \mnbeginchorus
+    \[\mn{B}]Estrela |\[\mnc{C#}F#]D'al\[\mn{A#}]va |\[\mnc{F#}F#7]Vós \[\mn{E}]me |\[\mnc{D}Bm]dá | \e \altchords{\id[1]{(Cm)}|G |G7 |Cm | \e}
+    Sois \[\mn{F#}]di|\[\mnc{E}Em]vi|\[\mnc{C#}A]na, \[\mn{G}]sois \[\mn{B}]di|\[\mnc{G}G]vi|\[\mnc{F#}F#]na \altchords{|Fm |B\flt{} |A\flt{} |G}
+    \[\mn{E}]Sois di|\[\mnc{D}D]vina \[\mn{F#}]em |\[\mnc{C#}F#]meu \[\mn{A#}]o|\[\mnc{B}Bm]lhar | \e \altchords{|E\flt{} |G7 |Cm | \e}
+  \mnendchorus
+  \beginchorus\memorize
+    \ind \[^\mn{A#}]São \[^\mn{B}]fe|\[\mnc{C#}F#]lizes \[^\mn{A#}]os |\[\mnc{F#}F#7]pas\[^\mn{E}]sos |\[\mnc{D}Bm]meus | \e \altchords{|G |G7 |Cm | \e}
+    \ind Com \[^\mn{F#}]cer|\[\mnc{E}Em]te\[^\mn{C#}]{za eu} |\[^\mn{E}]en\[^\mn{G}]con|\[\mnc{F#}Bm]trar | \e \altchords{|Fm | - |Cm | \e}
+    \ind Um di|\[\mnc{G}Em]a, \[^\mn{E}]seu |\[^\mn{G}]res\[^\mn{B}]plen|\[\mnc{F#}Bm]dor | \e \altchords{|Fm | - |Cm | \e}
+    \ind \[^\mn{E}]É só |\[\mnc{D}D]quem \[^\mn{F#}]eu |\[\mnc{C#}F#7]de\[^\mn{A#}]{vo a}|\[\mnc{B}Bm]mar | \e \altchords{|E\flt{} |G7 |Cm | \e}
+  \endchorus
+  \notesoff
+  \beginchorus
+    \ind A minha |^Mãe que |^me ensi|^nou | \e \altchords{|G |G7 |Cm | \e}
+    \ind No mun|^do dos |peca|^do|res \altchords{|Fm | - |Cm | \e}
+    \ind Tirai-|^me da |ilu|^são | \e \altchords{|Fm | - |Cm | \e}
+    \ind Para eu |^ter ou|^tro va|^lor | \e \altchords{|E\flt{} |G7 |Cm | \e}
+  \endchorus
+  \begin{translation}[EN]
+    Morning Star, you give me
+    You are divine, you are divine
+    You are divine in my sight
+    \nextverse
+    Happy are my footsteps
+    With the certainty of finding
+    One day, Your resplendence
+    It's only this I must love
+    \nextverse
+    My Mother who taught me
+    In the world of sinners
+    Remove me from illusion
+    So I can have another worth
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-05
+    % \header {
+    %   title = "13. Estrela D'alva"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative b' {
+      \slurDashed \set melismaBusyProperties = #'()
+      \key b \minor
+      \time 3/4 \partial 1*5/8
+      % v1
+      \repeat volta 2 {
+        \sectionLabel "1."
+        b8 b4  b4
+        | cis2 ais4 | fis2 e'4 | d2.~ | d4
+        d fis | e2. | cis4 g' b | g2. | fis4
+        e e | d d fis | cis2 ais4 | b2.~ | b8
+      }
+      % v2-3
+      \repeat volta 4 {
+        \sectionLabel "2. - 3." \mark \markup {"4x"}
+        \parenthesize b8 \pomark ais4 b4
+        | cis4( cis4) ais4 | fis4( fis4) e'4 | d2.~ | d4
+        d fis | e2 cis4 | e2 g4 | fis2.( | fis4)
+        fis fis | g2 e4 | g2 b4 | fis2.~ | fis4
+        fis4 e4 | d2 fis4 | cis2 ais4 | b2.~ | b8
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Es -- tre -- la | D'al -- va | Vós me | dá; | _
+        Sois di -- | vi -- | na, sois di -- | vi -- | na;
+        Sois di -- | vi -- na em | meu o -- | lhar. | _
+      }
+      <<
+        {
+          \set stanza = "2."
+          \repeat volta 2 {
+            "" São fe -- | li -- zes os | pas _ -- sos | meus; | _
+            Com cer -- | te -- za~eu | en -- con -- | trar; __ | _
+            Um di -- | a, seu | res -- plen -- | dor; | _
+            É só | quem eu | de -- vo~a -- | mar. | _
+          }
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "3."
+          \repeat volta 2 {
+            A mi -- nha | Mãe __ _ que | me en -- si -- | nou; | _
+            No mun -- | do dos | pe -- ca -- | do -- | res;
+            Ti -- rai -- | me da | i -- lu -- | são; | _
+            Pa -- ra~eu | ter ou -- | tro va -- | lor. | _
+          }
+        }
+      >>
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s8 s2 | fis2. | fis:7 | b:m | b:m
+        | e:m | a | g | fis
+        | d | fis:7 | b:m | b8:m
+      }
+      \repeat volta 4 {
+        s8 s2 | fis2. | fis:7 | b:m | b:m
+        | e:m | e:m | b:m | b:m
+        | e:m | e:m | b:m | b:m
+        | d | fis:7 | b:m | b8:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
