@@ -1534,3 +1534,219 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
+
+
+\sclearpage\chapcornermarkdashedtrue
+\beginsong{Rogativo aos Mortos}[by={Mestre Irineu Serra},key={G},gk={G, G--B},tags={Santa Missa, valsa}]
+  \renewcommand{\goto}[1]{%
+    \chordsoff\textit{\bfseries{{\symboliifont➞ }#1\ldots}}%
+  }
+  \audio{https://nossairmandade.com/hymn/167/RogativoDosMortos}
+  \audio[key=B]{https://www.youtube.com/watch?v=kSmawrgQ5k0}
+  \meter{3}{4}
+  \mnbeginverse
+    \[^\mn{B}]São \[^\mn{E}]do|\[\mnc{D}D]ze \[^\mn{C}]ho|\[^\mn{A}]ras \[^\mn{B}]da |\[\mnc{G}G]noi|te; \[^\mn{G}]meu |\[\mnc{E}C]ir\[^\mn{C}]mão| \[^\mn{E}]se \[^\mn{G}]mu|\[\mnc{D}G]dou | \e
+    \bfseries \[^\mn{G}]O |\[\mnc{E}C]so\[^\mn{C}]no |da e\[^\mn{E}]ter\[^\mn{G}]ni|\[\mnc{D}G]da\[^\mn{B}]de; |\[\mnc{G}Em]Deus \[^\mn{E}]do |\[\mnc{D}D]Céu \[^\mn{C}]quem |\[^\mn{A}]te \[^\mn{B}]cha|\[\mnc{G}G]mou | \e
+  \mnendverse
+  \notesoff
+  \beginverse
+    Uma |^hora da |madru|^ga|da; meu |^irmão| se mu|^dou | \e
+    \goto{O sono}
+  \endverse\ifshowlilypond\glueverses\fi
+  \beginverse
+    Duas |^horas da |madru|^ga|da; meu |^irmão| se mu|^dou | \e
+    \goto{O sono}
+  \endverse\ifshowlilypond\glueverses\fi
+  \beginverse
+    São três |^horas da |madru|^ga|da; meu |^irmão| se mu|^dou | \e
+    \goto{O sono}
+  \endverse\ifshowlilypond\glueverses\fi
+  \beginverse
+    Quatro |^horas da |madru|^ga|da; meu |^irmão| se mu|^dou | \e
+    \goto{O sono}
+  \endverse\ifshowlilypond\glueverses\fi
+  \beginverse
+    Cinco |^horas |da ma|^nhã; |{ }{ }{ } | meu |^irmão| se mu|^dou | \e
+    \goto{O sono}
+  \endverse\ifshowlilypond\glueverses\fi
+  \beginverse
+    São seis |^horas |da ma|^nhã; |{ }{ }{ } | meu |^irmão| se mu|^dou | \e
+    \goto{O sono}
+  \endverse\ifshowlilypond\glueverses\fi
+  \beginverse
+    São se|^te ho|ras do |^di|a; meu |^irmão| se mu|^dou | \e
+    \goto{O sono}
+  \endverse\ifshowlilypond\glueverses\fi
+  \beginverse
+    São oi|^to ho|ras do |^di|a; meu |^irmão| se mu|^dou | \e
+    \goto{O sono}
+  \endverse\ifshowlilypond\glueverses\fi
+  \beginverse
+    São no|^ve ho|ras do |^di|a; meu |^irmão| se mu|^dou | \e
+    \goto{O sono}
+  \endverse
+  \beginchorus
+    Tantos |^anos |que vi|^ves|tes; no |^mundo |da ilu|^são | \e
+    Eu |^rogo |à Deus do |^Céu; |que te |dê o San|to Per|dão | \e
+  \endchorus
+  \beginchorus
+    A Di|^vina Es|trela |^vem; | para |^ir te |alumi|^ar | \e
+    Eu |^rogo |à Deus do |^Céu; |^que te |^bote em |bom lu|^gar | \e
+  \endchorus
+  \beginchorus
+    A Vir|^gem Se|nhora |^vem; | para |^ir te |acompa|^nhar | \e
+    Eu |^rogo |à Virgem |^Mãe; |^que te |^bote em |bom lu|^gar | \e
+  \endchorus
+  \beginverse % for alt. chords
+    \altchords{\id[1]{(A)}|E | - |A | - |D | - |A | \e}
+    \altchords{|D | - |A |F\shrp{}m |E | - |A | \e}
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    \include "tex/lp-include-head.ly"
+    % % transcribed by larva, latest update on 2024-05
+    % \header {
+    %   title = "14. Rogativo aos Mortos"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    theMelody = \relative b' {
+      \slurDashed \set melismaBusyProperties = #'()
+      \key g \major
+      \time 3/4 \partial 2
+      % v1-v10
+      \repeat segno 10 {
+        b4 \sectionmark "1.-10." e | d4( d4) c4 | a2 b4 | g2.( | g2)
+        g'4 | e2 c4~ | c4 e4 g4 | d2.~ | d2
+        g4 | e2 c4 | c4 e g | d2 b4
+        | g2 e'4 | d2 c4 | a2 b4 | g2.~ | g4
+      }
+      %\break
+      % v11-v13, the melody is same as in v1-v10
+      \repeat segno 3 {
+        \repeat volta 2 { % Must use sectionmark here instead of sectionLabel, as it conflicts with segno
+          b4 \posectionmark "11.-13." e | d4( d4) c4 | a2 b4 | g2.(  | g4)
+          \parenthesize g'4 g4 | e2 c4 | c4 e4 g4 | d2.~ | d2
+          g4 | e2 c4 | c4 e g | \once\slurSolid d2( b4)
+          | g2 e'4 | d2 c4 | a2 b4 | g2.~ | g4
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      <<
+        {
+          \set stanza = "1."
+          São do -- | ze __ _ ho -- | ras da | noi -- | te;
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "2."
+          U -- ma | ho -- ra da | ma -- dru -- | ga -- | da;
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "3."
+          Du -- as | ho -- ras da | ma -- dru -- | ga -- | da;
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "4."
+          São três | ho -- ras da | ma -- dru -- | ga -- | da;
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "5."
+          Qua -- tro | ho -- ras da | ma -- dru -- | ga -- | da;
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "6."
+          Cin -- co | ho _ -- ras | da ma -- | nhã; __ | _
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "7."
+          São seis | ho _ -- ras | da ma -- | nhã; __ | _
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "8."
+          São se -- | te __ _ ho -- | ras do | di -- | a;
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "9."
+          São oi -- | to __ _ ho -- | ras do | di -- | a;
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "10."
+          São no -- | ve __ _ ho -- | ras do | di -- | a;
+        }
+      >>
+      \set stanza = "1.-10."
+      Meu | ir -- mão | _ se mu -- | dou; | _
+      O | so -- no | da~e -- ter -- ni -- | da -- de;
+      | Deus do | Céu quem | te cha -- | mou. | _
+      <<
+        {
+          \set stanza = "11."
+          Tan -- tos | a _ -- nos | que vi -- | ves -- | tes;
+          "" No | mun -- do | da i -- lu -- | são; | _
+          Eu | ro -- go | à Deus do | Céu; __ _
+          | Que te | dê~o San -- | to Per -- | dão. | _
+        }
+        \new Lyrics {  \set associatedVoice = "theMelody"
+          \set stanza = "12."
+          A Di -- | vi -- na Es -- | tre -- la | vem; __ | _
+          Pa -- ra | ir te | a -- lu -- mi -- | ar; | _
+          Eu | ro -- go | à Deus do | Céu; __ _
+          | Que te | bo -- te~em | bom lu -- | gar. | _
+        }
+        \new Lyrics {  \set associatedVoice = "theMelody"
+          \set stanza = "13."
+          A Vir -- | gem __ _ Se -- | nho -- ra | vem; __ | _
+          Pa -- ra | ir te | a -- com -- pa -- | nhar; | _
+          Eu | ro -- go | à Vir -- gem | Mãe; __ _
+          | Que te | bo -- te~em | bom lu -- | gar. | _
+        }
+      >>
+    }
+    chordSequence = \chordmode {
+      s2 | d2. | d | g | g
+      | c | c | g | g
+      | c | c | g | e:m
+      | d | d | g | g4
+    }
+    theChords = \chordmode {
+      % v1-v3
+      \repeat segno 10 {
+        \chordSequence
+      }
+      % v11-v13
+      \repeat segno 3 {
+        \repeat volta 2 {
+          \chordSequence
+        }
+      }
+    }
+    \layout { #(layout-set-staff-size 12) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}[EN]
+    It's twelve o'clock at night; my brother moved on
+    The eternal sleep; God in Heaven called you
+    \nextverse
+    It's one o'clock in the (early) morning\ldots
+    It's two o'clock in the (early) morning\ldots
+    It's three o'clock in the (early) morning\ldots
+    It's four o'clock in the (early) morning\ldots
+    It's five o'clock in the morning\ldots
+    It's six o'clock in the morning\ldots
+    It's seven o'clock in the (late) morning\ldots
+    It's eight o'clock in the (late) morning\ldots
+    It's nine o'clock in the (late) morning\ldots
+    \nextverse
+    You have lived so many years in the world of illusion
+    I pray to God in Heaven to give you the Holy Forgiveness
+    \nextverse
+    The Divine Star comes to illuminate you
+    I pray to God in Heaven to put you in a good place
+    \nextverse
+    The Virgin Lady comes to accompany you to go
+    I pray to the Virgin Mother to put you in a good place
+  \end{translation}
+\endsong
+\sclearpage\chapcornermarkdashedfalse
+
