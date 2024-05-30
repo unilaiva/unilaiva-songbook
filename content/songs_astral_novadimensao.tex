@@ -182,7 +182,7 @@
   \mnendchorus
   \mnbeginchorus\memorize[chords_cirandadoamor_b]
     \[^\mn{A}]Gira, |\[Am]gira, \[^\mn{E}]crian\[\bmc\mn{C}]ci\[^\mn{A}]nha, |\[^\mn{C}]gi\[^\mn{A}]ra \altchords{|Bm | \e}
-    \[\bm]Na ci|\[\mnc{E}E]randa \[\bmc\mn{A}]do \[^\mn{B}]a|\[\mnc{C}C]mor \[\bm]{} \altchords{|F\shrp{} |D}
+    \[\bm]Na ci|\[\mnc{E}E]randa \[\bmc\mn{A}]do a|\[\mnc{C}C]mor \[\bm]{} \altchords{|F\shrp{} |D}
     \[^\mn{A}]Gira, |\[Am]gira, \[^\mn{E}]crian\[\bmc\mn{C}]ci\[^\mn{A}]nha, |\[^\mn{C}]gi\[^\mn{A}]ra \altchords{|Bm | \e}
     \[\bm]Que a |\[\mnc{E}E]Virgem \[\bmc\mn{C}]Mãe \[^\mn{B}]man|\[\mnc{A}Am]dou \[\bm]{} \altchords{|F\shrp{} |Bm}
   \mnendchorus
@@ -208,7 +208,7 @@
     ^E um |^novo ^profes|^sor ^ \altchords{|F\shrp{}7 D |Bm}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2023-04
+    % transcribed by larva, updated on 2024-05
     theMelody = \relative a'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4
@@ -216,9 +216,10 @@
         e4 \posectionmark "A" | a a a b | a2( g4)( g) | g fis g a | e2.
       }
       \repeat volta 2 {
-        a8 \sectionmark "B" a | a a e e c8( c8) a8( a8) | c4 a4 a4 a4 | e4 e a b | c2.
+        a8 \sectionmark "B" a | a a e e c8( c8) a8( a8) | c4 a4 a4 a4 | e4 e a a | c2.
         a'8 a | a a e e c8( c8) a8( a8) | c4 a4 a4 a4 | e4 e c' b | a2.
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
