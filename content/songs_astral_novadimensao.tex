@@ -1051,7 +1051,7 @@
     Fa|^zer a lim|peza
     No |meu cora|^ção
     Dou |^{viva a} Je|^sus
-    Dou vi|^{va a} São Jo|^ão
+    Dou |^{viva a} São Jo|^ão
   \endchorus
   \beginchorus\replay[chords_eusouflordasaguas_b]
     \ind E |Nossa Se|^nhora
@@ -1060,26 +1060,28 @@
     \ind Nos |^dá a ben|^ção
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-05
+    % transcribed by larva, latest update on 2024-05
     \include "tex/lp-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 3/4 \partial 4
       \repeat volta 2 {
-        e4 \posectionmark "A"
+        \sectionLabel "A"
+        e4 \pomark
         | e f e | c a a | c a c | b2 d4
-        | d e d | b gis b | d e f
+        | d e d | b( gis) b | d e f8( f8)
       } \alternative {
         { | e2 }
-        { | e2 \parenthesize e4 \sectionmark "B" | e f e }
+        { | e2 \sectionLabel "B" \parenthesize e4 | e f e }
       }
-      \repeat volta 2 {
+      \repeat volta 2 { 
         | d2 d4 | f f a | e2 e4
         | e f e | d b c8( c8) | d4 gis, b
       } \alternative {
         { | a2 \parenthesize e'4 | e f e  }
-        { | a2 \bar "|." }
+        { | a2 }
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
@@ -1087,7 +1089,7 @@
         Eu | sou flor das | á -- guas;
         E | te -- nho po -- | der;
         Eu | sa -- cio a | se -- de;
-        De | quem me -- re --
+        De | quem me -- re _ --
       } \alternative {
         { | cer. }
         { | cer. \set stanza = "1.B" \skip 1 | Da on -- de  }
@@ -1107,8 +1109,8 @@
       \repeat volta 2 {
         Fa -- | zer a lim -- | pe -- za;
         No | meu co -- ra -- | ção;
-        Dou | vi -- va~a Je -- | sus;
-        Dou vi -- | va~a São Jo --
+        Dou | vi -- va~a Je -- | sus; __ _
+        Dou | vi -- va~a São Jo --
       } \alternative {
         { | ão. }
         { | ão. \set stanza = "2.B" E | Nos -- sa Se -- }
