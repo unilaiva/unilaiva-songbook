@@ -1618,9 +1618,10 @@
 %  \altchords{\id[1]{Peter (C)}|C | |G |C}
 %
 \newcommand{\altchords}[1]{%
-  \providecommand{\id}[2][1]{\@altchordsid[##1]{##2}}%
-  \renewcommand{\meterfont}{\color{chordcolor}\normalfont\tiny\sffamily\upshape}
   \ifchorded\ifshowaltchords%
+    \providecommand{\id}[2][1]{\@altchordsid[##1]{##2}}%
+    \renewcommand{\meterfont}{\color{chordcolor}\normalfont\tiny\sffamily\upshape}%
+    \renewcommand{\e}{\ifmeasures-\fi}% % shorter dash for altchords
     \vspaceifnotinverse{.618034\baselineskip}%
     \hfill%
     {\printchord{\raisebox{.5ex}{\altchordstyle\color{currentaltchordcolor}#1}}}%
