@@ -2928,6 +2928,13 @@
   % \fi%
 }
 
+% Song number & title heights when containing 'default' letters only, ie no
+% capitals with accents. Used in \makeprelude.
+\newlength\songnumdefaultheight
+\settoheight\songnumdefaultheight{\printsongnum{1}}
+\newlength\songtitledefaultheight
+\settoheight\songtitledefaultheight{\stitlefont\relax Tih}
+
 % Set the amount to rise or lower the position of the items in the RT
 % box in the song prelude, relative to the baseline of the main title
 % (em and ex come from the title font, too).
@@ -2936,8 +2943,6 @@
 \newdimen{\@preludeRTthirdraise}\setlength{\@preludeRTthirdraise}{-1.03em}%
 \newdimen{\@preludeRTfourthraise}\setlength{\@preludeRTfourthraise}{-2.06em}%
 \newdimen{\@preludeRTraise} % set later
-
-
 
 \newcounter{@preludeRTrowscreatedcount}
 % sets the \@preludeRTraise dimension on basis of @preludeRTrowscreatedcount, ie how
@@ -2990,7 +2995,7 @@
       \ifpagepreludes\centering\else\SB@raggedright\fi%
       \offinterlineskip\lineskip\p@%
       {\stitlefont\relax%
-        \raisebox{0pt}[\heightof{Th}]{%
+        \raisebox{0pt}[\songtitledefaultheight]{%
           % \raisebox added by larva to ensure the top of highest non-accented
           % letters is on the same vertical level as the song number's top.
           % Accents over capital letters can go above taking no vertical space.
@@ -3050,11 +3055,14 @@
     }%
     \ifdim\songnumwidth>\z@%
       \hbox{%
-        \ifdim\ht\SB@boxii>\ht\SB@box%
-          \box\SB@boxii%
-          \kern3\p@%
-          \vtop{\box\SB@box}%
-        \else%
+        %% The following if commented out by larva to ensure same output
+        %% regardless of whether song number has more height than the song
+        %% titles or not. Never align tops.
+        %\ifdim\ht\SB@boxii>\ht\SB@box%
+        %  \box\SB@boxii%
+        %  \kern3\p@%
+        %  \vtop{\box\SB@box}%
+        %\else%
           \SB@colorbox\snumbgcolor{\vbox to\ht\SB@box{{%
             \hbox to\songnumwidth{%
               \printsongnum{\thesongnum}\hfil%
@@ -3062,7 +3070,7 @@
           }}}%
           \kern3\p@%
           \box\SB@box%
-        \fi%
+        %\fi% % commented out by larva
       }%
     \else%
       \unvbox\SB@box%
