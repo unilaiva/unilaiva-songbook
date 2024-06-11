@@ -1619,12 +1619,14 @@
 %
 \newcommand{\altchords}[1]{%
   \ifchorded\ifshowaltchords%
-    \providecommand{\id}[2][1]{\@altchordsid[##1]{##2}}%
-    \renewcommand{\meterfont}{\color{chordcolor}\normalfont\tiny\sffamily\upshape}%
-    \renewcommand{\e}{\ifmeasures-\fi}% % shorter dash for altchords
-    \vspaceifnotinverse{.618034\baselineskip}%
-    \hfill%
-    {\printchord{\raisebox{.5ex}{\altchordstyle\color{currentaltchordcolor}#1}}}%
+    {%
+      \providecommand{\id}[2][1]{\@altchordsid[##1]{##2}}%
+      \renewcommand{\meterfont}{\color{chordcolor}\normalfont\tiny\sffamily\upshape}%
+      \renewcommand{\e}{\ifmeasures-\fi}% % shorter dash for altchords
+      \vspaceifnotinverse{.618034\baselineskip}%
+      \hfill%
+      {\printchord{\raisebox{.5ex}{\altchordstyle\color{currentaltchordcolor}#1}}}%
+    }%
   \fi\fi%
 }
 
