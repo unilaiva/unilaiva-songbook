@@ -4482,3 +4482,156 @@
     The color of the sacred Ganges, that is always blessing
   \end{translation}
 \endsong
+
+
+\beginsong{Oh Lua}[by={Carioca Chandra Edgar},ph={III},tags={moon, sun, stars, wind}, key={Gm}, gk={Gm, Gm--G\shrp{}m}]
+  \audio[key=Gm]{https://www.youtube.com/watch?v=efH8H1X-x2k&list=OLAK5uy_lCmRdOh_fo6lKRBz5_kGNVEn9Vb3L-yoU&index=3}
+  \newchords{chords_ohluaedgar_a}\newchords{chords_ohluaedgar_b}
+  \meter{3}{4}
+  \textnotefornext{intro:}
+  \beginverse
+    |\[Gm] |\[F] |\[Gm] |\[F]
+  \endverse
+  \mnbeginchorus\memorize[chords_ohluaedgar_a]
+    \[^\mn{D}]Oh! |\[\mnc{G}Gm]Lua, \[^\mn{B&}]eu |\[\mnc{A}F]vos \[^\mn{F}]a\[^\mn{A}]gra|\[\mnc{G}Gm]de\[^\mn{D}]ço
+    Por |\[\mnc{C}Cm]este \[^\mn{B&}]lu|\[^\mn{G}]ar cri\[^\mn{B&}]a|\[\mnc{D}Gm]dor |\[\up{2}(G7)]
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_ohluaedgar_b]
+    \[^\mn{D}]Em |\[\mnc{C}Cm]tro\[^\mn{D}]ca |\[\mnc{E&}Dm]vos \[^\mn{D}]o\[^\mn{C}]fe|\[\mnc{G}Gm]reço
+    |\[\mnc{D}Dm]Es\[^\mn{E&}]ta \[^\mn{D}]can|\[\mnc{C}D7]ção \[^\mn{B&}]com \[^\mn{A}]a|\[\mnc{G}Gm]mor |\[\up{1}(G7)]
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_ohluaedgar_a]
+    Vós |^mais o |^meu Sol dou|^rado
+    Que |^embe|leza o |^Céu |^
+    \endchorus\glueverses\beginchorus\replay[chords_ohluaedgar_b]
+    São |^que nos dá |^este con|^forto
+    A|^qui, do|^ce como |^mel |^
+  \endchorus
+  \beginchorus\replay[chords_ohluaedgar_a]
+    Dou |^viva ao |^Sol e a |^Lua
+    E |^as Es|trelas tam|^bém |^
+    \endchorus\glueverses\beginchorus\replay[chords_ohluaedgar_b]
+    A |^Terra, a Flo|^resta e o |^Mar
+    O |^Vento e a |^todo a|^lém |^
+  \endchorus
+  \begin{translation}
+    Oh! Moon, I thank you for this creative moonlight
+    In return, I offer this song with love
+    \nextverse
+    You and my Golden Sun that embellishes the Sky
+    Are what give us this comfort here, sweet like honey
+    \nextverse
+    I live for the Sun, the Moon, and the Stars as well
+    The Earth, the Forest, and the Sea, the Wind and all beyond
+  \end{translation}
+  \showlilypondfalse % to save space
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Oh Lua"
+    %   composer = "Carioca Chandra Edgar"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \set minimumFret = #2 \set restrainOpenStrings = ##t
+      \key g \minor \time 3/4 \partial 4
+        \sectionLabel "intro"
+        r4 | r2. | r2. | r2. | r2
+        \sectionLabel "A"
+        \repeat volta 2 {
+          d4 | g( g) bes | a f a | g d
+          d | c( c) bes | g g bes | d2.~
+        } \alternative {
+          { | d2 }
+          { | d2\repeatTie }
+        }
+        \sectionLabel "B"
+        \repeat volta 2 {
+          d4 | c( c) d | es d c | g'2
+          g4 | \once\slurDown d \single\altcol ( < \single\altcol d es > ) \altmark "2." d | c bes a | g2.~
+        } \alternative {
+          { | g2 }
+          { | g2\repeatTie }
+        }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Oh! | Lu -- a, eu | vos a -- gra -- | de -- ço;
+        Por | es -- te lu -- | ar cri -- a -- | dor.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Em | tro _ -- ca | vos o -- fe -- | re -- ço;
+        | Es -- ta can -- | ção com a -- | mor.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Vós | mais __ _ o | meu Sol dou -- | ra -- do;
+        Que | em _ -- be -- | le -- za o | Céu.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        São | que nos dá | es -- te con -- | for -- to;~A --
+        | qui, __ _ do -- | ce co -- mo | mel.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Dou | vi -- va ao | Sol e a | Lu -- a;
+        E | as __ _ Es -- | tre -- las tam -- | bém.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        A | Ter -- ra,~a Flo -- | res -- ta~e o | Mar;
+        O | Ven -- to~e a | to -- do a -- | lém.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+    }
+    theChords = \chordmode {
+      s4 | g2.:m | f | g:m | f2
+      \repeat volta 2 {
+        s4
+        | g2.:m f | g:m
+        | c:m | c:m | g:m
+      } \alternative {
+        { | g2:m }
+        { | g2:7 }
+      }
+      \repeat volta 2 {
+        s4
+        | c2.:m | d:m | g:m
+        | d:m | d:7 | g:m
+      } \alternative {
+        { | g2:7 }
+        { | g2:m }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
