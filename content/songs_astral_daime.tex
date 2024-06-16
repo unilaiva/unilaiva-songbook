@@ -1505,60 +1505,72 @@
 
 \beginsong{Balanço de São João}[by={Odemir Raulino Da Silva},off={Geraldine},key={C},gk={C, A-F}]
   \audio{https://www.nossairmandade.com/hymn/1548/Balan\%C3\%A7oDeS\%C3\%A3oJo\%C3\%A3o}
+  \audio[key=D]{https://www.youtube.com/watch?v=YJmvSXsU5cQ}
   \mnbeginchorus
-    \lrep \[\mn{G}]Eu es|\[C]tando \[\mn{E}]com o \[\bmc\mn{C}]Daime, eu |\[Am]nun\[\mn{E}]ca \[\mn{C}]me \[\mnc{D}G]can\[\mn{G}]so
-    Eu es|tando com \[\bm]e\[\mn{F}]le
+    \lrep \[\mn{G}]Eu es|\[C]tando \[\mn{E}]com o \[\bmc\mn{C}]Daime, eu |\[Am]nun\[\mn{E}]ca \[\mn{C}]me \[\mnc{D}G]canso
+    \[\mn{G}]Eu es|tando com \[\bm]e\[\mn{F}]le
     Eu \[\mn{E}]en\up{1}(|\[\mnc{D}G7]tro \[\mn{E}]no \[\mn{D}]ba\[\mnc{C}C]lanço) \up{2}(|\[\mnc{D}G7]tro \[\mn{E}]no \[\mn{D}]ba\[\mnc{C}C]lan|ço)\rrep
     \lrep \[\mn{E}]E eu \[\mn{D}]ba\[\bmc\mn{C}]lan|ço \[\mn{G}]e eu ba\[G]lanço
-    Nesta |força Di\[\bm]vi\[\mn{F}]na
+    \[\mn{D}]Nesta |força Di\[\bm]vi\[\mn{F}]na
     \[\mn{E}]Eu \up{1}(|\[\mnc{D}G7]nun\[\mn{E}]ca \[\mn{D}]me \[\mnc{C}C]can|so) \up{2}(|\[\mnc{D}G7]nun\[\mn{E}]ca \[\mn{D}]me \[\mnc{C}C]canso) \rrep
   \mnendchorus
   \mnbeginchorus
     \ind \lrep \[\mn{G}]Venho |\[C]dizer a \[\mn{E}]meu \[\bmc\mn{C}]Mestre, que eu es|\[Am]tou \[\mn{E}]sa\[\mn{C}]tis\[\mnc{D}G]feito
-    \ind \[\mn{G}]Pelo |meu cora\[\bm]ção há |quarenta \[\bm]a\[\mn{F}]nos
+    \ind \[\mn{G}]Pelo |meu cora\[\bm]ção \[\mn{D}]há |\[\mn{G}]quarenta \[\bm]a\[\mn{F}]nos
     \ind \[\mn{E}]Ba\up{1}(|\[\mnc{D}G7]ten\[\mn{E}]do em \[\mn{D}]meu \[\mnc{C}C]peito) \up{2}(|\[\mnc{D}G7]ten\[\mn{E}]do em \[\mn{D}]meu \[\mnc{C}C]pei|to) \rrep
-    \ind \lrep \[\mn{E}]E eu \[\mn{D}]ba\[\bmc\mn{C}]lanço, cora|ção \[\mn{G}]segue ba\[G]tendo
-    \ind Com |meu São Jo\[\bm]ão
+    \ind \lrep \[\mn{E}]E eu \[\mn{D}]ba\[\bmc\mn{C}]lanço, cora|ção \[\mn{G}]segue ba\[G]ten\[\mn{D}]do
+    \ind Com |\[\mn{G}]meu São Jo\[\bm]ão
     \ind \[\mn{F}]Vou \[\mn{E}]a\up{1}(|\[\mnc{D}G7]le\[\mn{E}]gre \[\mn{D}]vi\[\mnc{C}C]ven|do) \up{2}(|\[\mnc{D}G7]le\[\mn{E}]gre \[\mn{D}]vi\[\mnc{C}C]vendo) \rrep
   \mnendchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Balanço de São João"
+    %   composer = "Odemir Raulino da Silva"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative g'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
-      \repeat volta 2 {
-        g8\sectionmark "1.A" g8 | g4 g8 e8 c4 c8 c8 | c4 e8 c8 d4 g8 g8
-        | g4 g8 g8 g4 f8 e8
-      } \alternative {
-        { | d4 e8 d8 c8. c16 }
-        { | d4 e8 d8 c2 | c8 }
+      \repeat segno 2 {
+        \repeat volta 2 {
+          g8 \sectionmark "1.A" g8 | g4 g8 e8 c4 c8 c8 | c4 e8 c8 d8. d16 g8 g8
+          | g4 g8 g8 g4 f8 e8
+        } \alternative {
+          { | d4 e8 d8 c8. c16 }
+          { | d4 e8 d8 c2 | c8 }
+        }
+        \repeat volta 2 {
+          e8 \sectionmark "1.B" e8 d8 c2 | c8 g'8 g8 g8 g8. g16 d8 d8 | g4 g8 g8
+          g4 f8 e8
+        } \alternative {
+          { | d4 e8 d8 c2 | c8 }
+          { | d4 e8 d8 c8. c16 }
+        }
+      } \break
+      \repeat segno 2 {
+        \repeat volta 2 {
+          g'8 \posectionmark "2.A" g8 | g8 g8 g8 e8 c8. c16 c8 c8 | c4 e8 c8 d8. d16 g8 g8
+          | g4 g8 g8 g4. d8 | g4 g8 g8 g4 f8 e8
+        } \alternative {
+          { | d4 e8 d8 c8. c16 }
+          { | d4 e8 d8 c2 | c8 }
+        }
+        \repeat volta 2 {
+          e8 \sectionmark "2.B" e8 d8 c8 c8 c8 c8 | c8 g'8 g8 g8 g4 d8 d8 | g4 g8 g8 g4 f8 e8
+        } \alternative {
+          { | d4 e8 d8 c2 c8 }
+          { | d4 e8 d8 c8. c16 }
+        }
       }
-      \repeat volta 2 {
-        e8\sectionmark "1.B" e8 d8 c2 | c8 g'8 g8 g8 g4 g8 g8 | g4 g8 g8
-        g4 f8 e8
-      } \alternative {
-        { | d4 e8 d8 c2 | c8 }
-        { | d4 e8 d8 c8. c16 ^\dacapo \break }
-      }
-      \repeat volta 2 {
-        g'8\segno g8\posectionmark "2.A" | g8 g8 g8 e8 c4 c8 c8 | c4 e8 c8 d4 g8 g8
-        | g4 g8 g8 g4. g8 | g4 g8 g8 g4 f8 e8
-      } \alternative {
-        { | d4 e8 d8 c8. c16 }
-        { | d4 e8 d8 c2 | c8 }
-      }
-      \repeat volta 2 {
-        e8\sectionmark "2.B" e8 d8 c8 c8 c8 c8 | c8 g'8 g8 g8 g4 g8 g8 | g4 g8 g8 g4 f8 e8
-      } \alternative {
-        { | d4 e8 d8 c2 c8 }
-        { | d4 e8 d8 c8. c16 ^\dalsegno \bar "|." }
-      }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
       \repeat volta 2 {
         Eu es -- | tan -- do com~o Dai -- me,
-        eu | nun -- ca me can -- so;~Eu
-        es -- | tan -- do com e -- le;~Eu en --
+        eu | nun -- ca me can -- so;
+        Eu es -- | tan -- do com e -- le;~Eu en --
       } \alternative {
         { | tro no ba -- lan -- ço. }
         { | tro no ba -- lan -- | ço. }
@@ -1566,7 +1578,7 @@
       \set stanza = "1.B"
       \repeat volta 2 {
         E eu ba -- lan -- | ço,
-        e eu ba -- lanço;
+        e eu ba -- lan -- ço;
         Nes -- ta | for -- ça Di -- vi -- na; Eu
       } \alternative {
         { | nun -- ca me can -- | so. }
@@ -1574,8 +1586,8 @@
       }
       \set stanza = "2.A"
       \repeat volta 2 {
-        Ve -- nho | di -- zer a meu Mestre,
-        que~eu es -- | tou sa -- tis -- feito;
+        Ve -- nho | di -- zer a meu Mes -- tre,
+        que~eu es -- | tou sa -- tis -- fei -- to;
         Pe -- lo | meu co -- ra -- ção há | qua -- ren -- ta a -- nos; Ba --
       } \alternative {
         { | ten -- do~em meu pei -- to. }
@@ -1592,33 +1604,37 @@
       }
     }
     theChords = \chordmode {
-      \repeat volta 2 {
-        s4 | c1 | a2:m g | g1
-      } \alternative {
-        { | g2:7 c4 }
-        { | g2:7 c2 | c8~ }
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4 | c1 | a2:m g | g1
+        } \alternative {
+          { | g2:7 c4 }
+          { | g2:7 c2 | c8~ }
+        }
+        \repeat volta 2 {
+          c4.~ c2 | c2 g2 | g1
+        } \alternative {
+          { | g2:7 c2 | s8 }
+          { | g2:7 c4 }
+        }
       }
-      \repeat volta 2 {
-        c4.~ c2 | c2 g2 | g1
-      } \alternative {
-        { | g2:7 c2 | s8 }
-        { | g2:7 c4 }
-      }
-      \repeat volta 2 {
-        s4 | c1 | a2:m g2 | g1 g1
-      } \alternative {
-        { | g2:7 c4 }
-        { | g2:7 c2 | c8~ }
-      }
-      \repeat volta 2 {
-        c4.~ c2 | c2 g2 | g1
-      } \alternative {
-        { | g2:7 c2 | s8 }
-        { | g2:7 c4 }
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4 | c1 | a2:m g2 | g1 g1
+        } \alternative {
+          { | g2:7 c4 }
+          { | g2:7 c2 | c8~ }
+        }
+        \repeat volta 2 {
+          c4.~ c2 | c2 g2 | g1
+        } \alternative {
+          { | g2:7 c2 | s8 }
+          { | g2:7 c4 }
+        }
       }
     }
-    \layout { #(layout-set-staff-size 13) } % for better fit
-    \include "tex/lp-include-tail.ly"
+    \layout { #(layout-set-staff-size 13.5) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
