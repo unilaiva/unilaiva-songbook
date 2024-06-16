@@ -1408,10 +1408,10 @@
 \endsong
 
 
-\beginsong{Ser Divino}[by={Odemir Raulino Da Silva},key={A},gk={A, B, C, G}]
+\beginsong{Ser Divino}[by={Odemir Raulino Da Silva},key={A},gk={A, G--B}]
   \audio{https://www.nossairmandade.com/hymn/1540/SerDivino}
   \mnbeginchorus\memorize
-    \[^\mn{A}]Quem \[\bm]não \[^\mn{C#}]pro|\[\mnc{E}A]vou \[\bm]{} | \e \altchords{\id[1]{(G)}|G | \e}
+    \[^\mn{A}]Quem \[\bm]não \[^\mn{C#}]pro|\[\mnc{E}A]vou \[\bm]{} | \e \altchords{\id[1]{(G) \capo{2}}|G | \e}
     \[^\mn{C#}]Ve\[\bmc\mn{A}]nha \[^\mn{C#}]pro|\[\mnc{B}Bm]var \[\bm]{} | \e \altchords{|Am | \e}
     \[^\mn{D}]Des\[\bmc\mn{F#}]ta \[^\mn{D}]be|\[\mnc{F#}D]bi\[\bm]da | \e \altchords{|C | \e}
     \[^\mn{/}]Que a\[\up{2}(E7)]qui es|\[\up{1}E\up{2}(A)]tá \[\bm]{} |\[\up{1}E7\up{2}(A)]{} \e \altchords{\up{2}(D7) |\up{1}D\up{2}(G) |\up{1}D7\up{2}(G)}
@@ -1439,7 +1439,13 @@
     If it's agreed, we can see
     The Master teaches, let's learn
   \end{translation}
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Ser Divino"
+    %   composer = "Odemir Raulino da Silva"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \major \time 4/4 \partial 2.
@@ -1449,7 +1455,8 @@
       % repeat (different melody in the last three bars)
       a,4\sectionmark "II" a4 cis4 | e2( e2)~ | e4 cis8( cis8) a4 cis4 | b4.( b8 b2)~
       | b4 d4 fis4 d8( d8) | fis2( fis2)~
-      | fis4 a8( a8) gis4 e8( e8) | a4.( a8 a2)~ | a4 \bar "|."
+      | fis4 a8( a8) gis4 e8( e8) | a4.( a8 a2)~ | a4
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
