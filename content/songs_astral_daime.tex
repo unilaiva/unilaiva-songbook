@@ -1217,11 +1217,11 @@
 \endsong
 
 
-\beginsong{Eu Tomo Daime}[by={Vera Gall},key={Bm},gk={Cm, Bm, Am, Dm}]
+\beginsong{Eu Tomo Daime}[by={Vera Gall},key={Bm},gk={Bm, Am--Fm}]
   \audio{https://www.youtube.com/watch?v=yZR3eKULn_M}
   \audio{https://www.youtube.com/watch?v=bUR-OVaVTto}
   \mnbeginchorus\memorize
-    \lrep \[^\mn{B}]Eu \[^\mn{D}]to\[^\mn{B}]mo |\[\mnc{D}Bm]Daime \altchords{\id[1]{(Am)}|Am}
+    \lrep \[^\mn{B}]Eu \[^\mn{D}]to\[^\mn{B}]mo |\[\mnc{D}Bm]Daime \altchords{\id[1]{(Am) \capo{2}}|Am}
     \[^\mn{B}]Que é \[\bmc\mn{D}]pa\[^\mn{B}]ra \[^\mn{D}]co\[^\mn{B}]nhe|\[\mnc{C#}F#m]cer \[\bm]{} \rrep \altchords{|Em}
     \lrep \[^\mn{A}]Conhe|\[\mnc{B&}Gm]cer a be\[\bmc\mnc{D}]leza de \[^\mn{E}]vi|\[\mncii{F}{D}Dm]ver \altchords{|Fm |Cm}
     \[\bmc\mn{A}]Dentro \[^\mn{B&}]desta |\[\mnc{A}A7]luz \altchords{|G7}
@@ -1242,62 +1242,96 @@
     Para ^encontrar a |^paz
     Vos me ^livre dos en|^ganos ^ \rrep
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    theMelody = \transpose a b \relative a' {
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Eu Tomo Daime"
+    %   composer = "Vera Gall"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
-      \key a \minor \time 4/4 \partial 4.
-      \repeat volta 2 {
-        a8 \posectionmark "A" c8 a8 | c4 c8 a8 c8 a8 c8 a8 | b2~ b8
-      } \break
-      \repeat volta 2 {
-        \key c \minor
-        r8 \sectionmark "B" g8 g8 | aes8( aes8) aes8 aes8 c8 c8 c8 d8 | \once\slurSolid es8( c8)( c8) \altcol \parenthesize g8 \altmark "2., 3." g8 g8 aes8 aes8
-        | g4 g8 g8 es'8 es8 d8 es8
-      } \alternative {
-        { | \once\slurSolid d8( c8)~ c4.}
-        { | \once\slurSolid d8( c8)~ c4. ^\dacapo }
+      \key b \minor \time 4/4 \partial 4.
+      \repeat segno 2 {
+        \sectionLabel "A"
+        \repeat volta 2 {
+          b8 \pomark d8 b8 | d4 d8 b8 d8 b8 d8 b8 | cis2~ cis8
+        } \break
+        \sectionLabel "B"
+        \key d \minor
+        \repeat volta 2 {
+          r8 a8 a8 | bes8( bes8) bes8 bes8 d8 d8 d8 e8 | \once\slurSolid f8( d8)( d8) \altcol \parenthesize a8 \altmark "2., 3." a8 a8 bes8 bes8
+          | a4 a8 a8 f'8 f8 e8 f8
+        } \alternative {
+          { | \once\slurSolid e8( d8)( d4.) }
+          { | \once\slurSolid e8( d8)( d4.) }
+        }
       }
-      \bar "|."
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
-      Eu to -- mo | Dai -- me;
-      Que~é pa -- ra co -- nhe -- | cer. __ _
+      \repeat volta 2 {
+        Eu to -- mo | Dai -- me;
+        Que~é pa -- ra co -- nhe -- | cer. _
+      }
       \set stanza = "1.B"
-      Co -- nhe -- | cer __ _ a be -- le -- za de vi -- | ver; __ _ _
-      \skip 1 Den -- tro des -- ta | luz;
-      Do meu eu su -- pe -- ri -- | or. __ _ _ | or. __ _ _
+      \repeat volta 2 {
+        Co -- nhe -- | cer __ _ a be -- le -- za de vi -- | ver; __ _ _
+        "" Den -- tro des -- ta | luz;
+        Do meu eu su -- pe -- ri --
+      } \alternative {
+        { | or. __ _ _ }
+        { | or. __ _ _ }
+      }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2.A"
-      Eu to -- mo | Dai -- me;
-      Que~é pa -- ra a -- pren -- | der. __ _
+      \repeat volta 2 {
+        Eu to -- mo | Dai -- me;
+        Que~é pa -- ra a -- pren -- | der. _
+      }
       \set stanza = "2.B"
-      A -- pren -- | der a ter a -- mor no co -- ra -- | ção;
-      An -- dar \altcol pe -- la~es -- tra -- da da | vi -- da;
-      Com to -- da~a li -- ber -- | da -- _ de. | da -- _ de.
+      \repeat volta 2 {
+        A -- pren -- | der a ter a -- mor no co -- ra -- | ção;
+        An -- dar \altcol pe -- la~es -- tra -- da da | vi -- da;
+        Com to -- da~a li -- ber --
+      } \alternative {
+        { | da -- _ de. }
+        { | da -- _ de. }
+      }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3.A"
-      Eu to -- mo | Dai -- me;
-      É pa -- ra re -- nas -- | cer. __ _
+      \repeat volta 2 {
+        Eu to -- mo | Dai -- me;
+        É pa -- ra re -- nas -- | cer. _
+      }
       \set stanza = "3.B"
-      Re -- nas -- | cer __ _ no ca -- mi -- nho da ver -- | da -- de; 
-      Pa -- \altcol ra en -- con -- trar a | paz;
-      Vos me li -- vre dos en -- | ga -- _ nos. | ga -- _ nos.
-    }
-    theChords = \transpose a b \chordmode {
       \repeat volta 2 {
-        s4. | a1:m | e2:m~ e8:m
-      }
-      \repeat volta 2 {
-        s4. | f1:m | c:m | g:7 
+        Re -- nas -- | cer __ _ no ca -- mi -- nho da ver -- | da -- de;
+        Pa -- \altcol ra en -- con -- trar a | paz;
+        Vos me li -- vre dos en --
       } \alternative {
-        { | c2:m~ c8:m }
-        { | c2:m~ c8:m }
+        { | ga -- _ nos. }
+        { | ga -- _ nos. }
       }
     }
-    \include "tex/lp-include-tail.ly"
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4. | b1:m | fis2:m~ fis8:m
+        }
+        \repeat volta 2 {
+          s4. | g1:m | d:m | a:7
+        } \alternative {
+          { | d2:m~ d8:m }
+          { | d2:m~ d8:m }
+        }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     I drink Daime to get to know
