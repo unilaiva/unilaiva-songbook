@@ -2014,6 +2014,109 @@
 \noteulspecific\sclearpage\chapcornermarkdashedtrue
 
 
+\beginsong{O Daime É}[by={Baixinha}, off={Iara}, key={Dm}, gk={Dm, Cm--Em}]
+  \audio{https://nossairmandade.com/hymn/2508/ODaime\%C3\%89}
+  \mnbeginchorus\memorize
+    \[^\mn{D}]O \[^\mn{A}]Dai\[^\mn{F}]me |\[\mnc{D}Dm]é \[\bm] \altchords{\id[1]{(Em)}|Em}
+    O Dai\[^\mn{E}]{me é} |\[\mncii{F}{E}F]luz \altchords{|G}
+    \[^\mn{D}]Pa\[^\mn{F}]ra \[\mnc{E}A]quem \[^\mn{D}]quer \[^\mn{C#}]{se en}\[^\mn{E}]xer|\[\mnc{D}Dm]gar \[\bm] \altchords{B |Em}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    O Daime |^é ^ \altchords{|Em}
+    Daime é a|^mor \altchords{|G}
+    Pa^ra quem sabe a|^mar ^
+  \endchorus
+  \beginchorus
+    O Daime |^é ^ \altchords{|Em}
+    Um Ser de |^cura \altchords{|G}
+    Para ^quem quer se cu|^rar ^ \altchords{B |Em}
+  \endchorus
+  \noteson
+  \mnbeginchorus
+    \ind \[\mn{D}]O \[\mn{A}]Dai\[\mn{F}]me |\[\mnc{D}Dm]é \[\bm] \altchords{|Em}
+    \ind \[\mn{A}]For\[\mn{D}]ça \[\mn{F}]do |\[\mn{D}]Sol, \[\bm] clarão \[\mn{E}]da |\[\mnc{F}F]Lu\[\mn{E}]a \altchords{| - |G}
+    \ind \[\mn{D}]{É o} \[\mn{F}]a\[\mnc{E}A7]ma\[\mn{D}]nhe\[\mn{C#}]cer \[\mn{E}]do |\[\mnc{D}Dm]di\[\bm]a \altchords{B7 |Em}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "O Daime É"
+    %   composer = "Baixinha"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 4/4 \partial 4.
+      \sectionLabel "1.-3."
+      \repeat volta 6 { \mark \markup {"6x"}
+        d8 a' f | d2~8 d8 d e
+        | f( e)( d) f e d cis e | d2~8
+      }
+      \sectionLabel "4."
+      \repeat volta 2 {
+        d8 \pomark a' f | d2~8 a8 d f | d2~8  d8 d e
+        | f e d f e d cis e | d2 d8
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        O Dai -- me | é; _
+        O Dai -- me~é | luz; __ _
+        Pa -- ra quem quer se~en -- xer -- | gar. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        O Dai -- me | é; _
+        Dai -- me~é a -- | mor; __ _ _
+        Pa -- ra quem sa -- be~a -- | mar. _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        O Dai -- me | é; _
+        Um Ser de | cu -- ra;
+        Pa -- ra quem quer se cu -- | rar. _
+      }
+      \set stanza = "4."
+      \repeat volta 2 {
+        O Dai -- me | é; _
+        For -- ça do | Sol, _ cla -- rão da | Lu -- a;
+        É~o a -- ma -- nhe -- cer do | di -- a.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 6 {
+        s4. | d1:m | f2 a | d2:m~8
+      }
+      \repeat volta 2 {
+        s4. | d1:m | d1:m | f2 a:7 | d2:m~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    The Daime is, the Daime is light
+    For those who want to see
+    \nextverse
+    The Daime is, the Daime is love
+    For those who know how to love
+    \nextverse
+    The Daime is a Being of healing
+    For those who want to heal
+    \nextverse
+    The Daime is Strength of the Sun, Gleam of the Moon
+    It's the dawn of day
+  \end{translation}
+\endsong
+
+
 \beginsong{Quando o Daime Chega}[by={Baixinha}, off={Jonathan Goldman}, key={C}, gk={C, G--D}]
   \audio[key=C]{https://soundcloud.com/user-682281070/quando-daime-chega-baixinha-jose-rosa-work-feb-2017}
   \audio[key=D]{https://soundcloud.com/flor-da-montanha/estrela-dagua-5-quando-o-daime?in=flor-da-montanha/sets/hinario-estrela-d-agua-baixinha}
