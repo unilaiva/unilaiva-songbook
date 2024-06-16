@@ -43,7 +43,7 @@
     Para ^nosso |^Pai nos ^perdo|^ar ^
   \endchorus
   \beginchorus
-    Quem qui|^ser que se ^agu|^ente \altchords{\id[6]{simple (C)} |C G |C}
+    Quem qui|^ser que se ^agu|^ente \altchords{\id[6]{simples (C)} |C G |C}
     ^Não tem |^{a quem} ^se quei|^xar^ \altchords{| - G |C}
     Eu |^bem que ^avi|^sei \altchords{| - G |C}
     ^Que ha|^via ^de che|^gar^ \altchords{| - G |C}
@@ -54,8 +54,8 @@
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        g8( \pomark << \parenthesize g) c >> | e4 e8( e8) d4 c4 | g4.( g8)( g4) c
-        | e4 e8( e8) d4 c | g'2( g4) \once\slurUp << \parenthesize g,8( c >> c8)
+        g8( \pomark << g) \single\altcol c \altmark "1., 3., 5." >> | e4 e8( e8) d4 c4 | g4.( g8)( g4) c
+        | e4 e8( e8) d4 c | g'2( g4) \once\slurUp << \single\altcol g,8( \altmark "3." c >> c8)
         | e4. e8 d4 c | g4( g8)( g8) g4 c
         | e4 e d e | c2( c4)
       }
@@ -63,7 +63,7 @@
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       \repeat volta 2 {
-        E -- xa -- | mi -- ne a con -- ci -- | ên -- cia;
+        E -- \altcol xa -- | mi -- ne a con -- ci -- | ên -- cia;
         E -- xa -- | mi -- ne __ _ di -- rei -- | ti -- nho;
         Sou __ _ | Pai e não sou | fil -- _ ho;
         Mas eu | não fa -- ço as -- | sim. __ _
@@ -81,9 +81,9 @@
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       \repeat volta 2 {
-        To -- dos | po -- dem __ _ se lem -- | brar; __ _ _
+        To -- \altcol dos | po -- dem __ _ se lem -- | brar; __ _ _
         Do | tem -- po __ _ de No -- | é; __ _
-        (A) dou -- | tri -- na do meu | Pai; __ _ _
+        \altcol A dou -- | tri -- na do meu | Pai; __ _ _
         Eu en -- | si -- no co -- mo | é. __ _
       }
     }
@@ -99,7 +99,7 @@
     theLyricsFive = \lyricmode {
       \set stanza = "5."
       \repeat volta 2 {
-        Quem qui -- | ser que se a -- gu -- | en -- te;
+        Quem \altcol qui -- | ser que se a -- gu -- | en -- te;
         Não tem | a quem __ _ se quei -- | xar; __ _
         Eu __ _ | bem que a -- vi -- | sei; __ _ _
         Que ha -- | vi -- a de che -- | gar. __ _
@@ -144,7 +144,7 @@
     E não |\[\mnlow{E}]saia \[\mnlow{C}]da \[\bmc\mnlow{A}\mnlow{G}]min\[\mnlow{C}]ha |men\[\bm]te
   \endchorus\glueverses\beginchorus
     \[\mnlow{C}]Dou en|\[\mnlow{E}]sino \[\mnlow{C}]a \[\bmc\mnlow{A}]quem \[\mnlow{G}]não |s\[\bm]abe
-    \[\mnlow{C}]E a\[\mnlow{D}]con|selho \[\mnlow{C}]os \[\bmc\mnlow{A}]i\[\mnlow{C}]no|cen\[\bm]tes
+    \[\mnlow{C}]E a\[\mnlow{D}]con|se\[\mnlow{C}]{lho os} \[\bmc\mnlow{A}]i\[\mnlow{C}]no|cen\[\bm]tes
   \endchorus
   \notesoff\chordsoff\measureson
   \beginchorus
@@ -194,14 +194,17 @@
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
-        g8( \posectionmark "A" g) | c8( c8 c8) c8 c4. e8 | g2~ g8 \parenthesize c,8 c8( c8)
+        g8( \pomark g) | c8( c8 c8) c8 c4. e8 | g2~ g8 \parenthesize c,8 c8( c8)
         | e4( e8) c8 \once\slurSolid a8( g4) c8 | c2( c4)
       } \break
+      \sectionLabel "B"
       \repeat volta 2 {
         c8( \sectionmark "B" c8) | e4( e8) c8 a4. g8 | g2~ g8 \parenthesize c8 c8 d8
         | d4( d8) c8 a4. c8 | c2( c4)
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
@@ -355,36 +358,51 @@
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        r8 \posectionmark "A" \parenthesize g4 | c4 c4 a4 c4 | g2( \altcol\grace c8 \altmark "2." g4) \altcol\grace c8 c8( c8) | e4 c8( c8) a4 c4 | c2~8
+        r8 \pomark \parenthesize g4 | c4 c4 a4 c4 | g2( \altcol\grace c8 \altmark "2." g4) \altcol\grace c8 c8( c8) | e4 c8( c8) a4 c4 | c2~8
       } \break
+      \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize c8 \sectionmark "B" c8( c8) | f8( f8) f8 e8 d4 e4 | c8( c8) c8 b8 a4 b4 | g8( g8) g8 g8 c4 e4 | c2~8
+        \parenthesize c8 c8( c8) | f8( f8) f8 e8 d4 e4 | c8( c8) c8 b8 a4 b4 | g8( g8) g8 g8 c4 e4 | c2~8
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
-      Eu | vi -- vo com meu | Mes -- tre;
-      Eu __ _ | vi -- vo com meus ir -- | mãos. __ _
+      \repeat volta 2 {
+        Eu | vi -- vo com meu | Mes -- tre;
+        Eu __ _ | vi -- vo com meus ir -- | mãos. _
+      }
       \set stanza = "1.B"
-      \skip 1 Eu __ _ | vi -- _ vo na san -- ta | luz;
-      Es -- tou no pé da | cruz __ _ com Ju -- ra -- mi -- | dam. __ _
+      \repeat volta 2 {
+        \skip 1 Eu __ _ | vi -- _ vo na san -- ta | luz;
+        Es -- tou no pé da | cruz __ _ com Ju -- ra -- mi -- | dam. _
+      }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2.A"
-      \skip 1 | Eu pe -- ço~a meu | Pai;
-      \altcol O_que eu pe -- | dir E -- _ le me | dá. __ _
+      \repeat volta 2 {
+        \skip 1 | Eu pe -- ço~a meu | Pai;
+        \altcol O_que eu pe -- | dir E -- _ le me | dá. _
+      }
       \set stanza = "2.B"
-      Os i -- ni -- | mi -- gos que vi -- e -- rem  | con -- _ tra;
-      Eu pe -- ço | for -- ça pa -- ra der -- ri -- | bar. __ _
+      \repeat volta 2 {
+        Os i -- ni -- | mi -- gos que vi -- e -- rem  | con -- _ tra;
+        Eu pe -- ço | for -- ça pa -- ra der -- ri -- | bar. _
+      }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3.A"
-      Oh! | Mi -- nha Vir -- gem | Mãe; __ _
-      Oh! __ _ | Vir -- gem da Con -- cei -- | ção. __ _
+      \repeat volta 2 {
+        Oh! | Mi -- nha Vir -- gem | Mãe; __ _
+        Oh! __ _ | Vir -- gem da Con -- cei -- | ção. _
+      }
       \set stanza = "3.B"
-      \skip 1 Eu __ _ | pe -- _ ço a Je -- sus | Cris -- _ to;
-      Pa -- ra dar | for -- _ ça~a -- qui na ses -- | são. __ _
+      \repeat volta 2 {
+        \skip 1 Eu __ _ | pe -- _ ço a Je -- sus | Cris -- _ to;
+        Pa -- ra dar | for -- _ ça~a -- qui na ses -- | são. _
+      }
     }
     theChords = \chordmode {
       \repeat volta 2 {
@@ -449,46 +467,65 @@
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        \parenthesize g8\posectionmark "A" g8( g8) | c4 c4 c4 e4 | g2~ g8 f8 e8 d8
+        \parenthesize g8\pomark g8( g8) | c4 c4 c4 e4 | g2~ g8 f8 e8 d8
         | c4 c8( c8) g4 d'4 | c2~8
       } \break
+      \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize c8\sectionmark "B" c8 c8 | g4 c4 c4 c4 | e2~ e8 \parenthesize c8 c8( c8) |
+        \parenthesize c8 c8 c8 | g4 c4 c4 c4 | e2~ e8 \parenthesize c8 c8( c8) |
         | g4 g4 c4 e4 | c2~8
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
+      \repeat volta 2 {
         \skip 1 É pe -- | din -- do e~é ro -- | gan -- _ do;
-        Que po -- | de -- mos __ _ al -- can -- | çar. __ _
+        Que po -- | de -- mos __ _ al -- can -- | çar. _
+      }
       \set stanza = "1.B"
-        \skip 1 Não é | fa -- lar um do | out -- _ ro;
-        Que -- ren -- | do ca -- lu -- ni -- | ar. __ _
+      \repeat volta 2 {
+        "" Não é | fa -- lar um do | out -- _ ro;
+        Que -- ren -- | do ca -- lu -- ni -- | ar. _
+      }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2.A"
-        Me a -- pre -- | sen -- to a meu | Pai; __ _
-        E mi -- nha~his | tó -- ria eu sei con -- | tar. __ _
+      \repeat volta 2 {
+        Me a -- pre -- | sen -- to a meu | Pai; _
+        E mi -- nha~his | tó -- ria eu sei con -- | tar. _
+      }
       \set stanza = "2.B"
-        \skip 1 Pe -- ço | que to -- dos se | u -- _ nam;
-        E a -- | pren -- dam~a res -- pei -- | tar. __ _
+      \repeat volta 2 {
+        "" Pe -- ço | que to -- dos se | u -- _ nam;
+        E a -- | pren -- dam~a res -- pei -- | tar. _
+      }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3.A"
+      \repeat volta 2 {
         \skip 1 É __ _ | no céu e na | ter -- _ ra;
-        E~é bei -- | ran -- do a bei -- ra | mar. __ _
+        E~é bei -- | ran -- do a bei -- ra | mar. _
+      }
       \set stanza = "3.B"
-        O meu en -- | con -- tro com Je -- | sus; __ _
-        \skip 1 Só __ _ | eu sei des -- trin -- | char. __ _
+      \repeat volta 2 {
+        O meu en -- | con -- tro com Je -- | sus; _
+        "" 1 Só __ _ | eu sei des -- trin -- | char. _
+      }
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4.A"
+      \repeat volta 2 {
         \skip 1 Foi __ _ | a -- í nes -- te | di -- _ a;~E
-        foi nas | á -- guas __ _ de Jor -- | dão. __ _
+        foi nas | á -- guas __ _ de Jor -- | dão. _
+      }
       \set stanza = "4.B"
+      \repeat volta 2 {
         Que am -- bos | fo -- ram ba -- ti -- | za -- _ dos;~E
-        co -- me -- | çou su -- a mis -- | são. __ _
+        co -- me -- | çou su -- a mis -- | são. _
+      }
     }
     theChords = \chordmode {
       \repeat volta 2 {
@@ -503,25 +540,17 @@
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
-    It's by asking and praying
-    That we're able to attain
-    It's not by talking about each other
-    Wanting to slander
+    It's by asking and praying, that we're able to attain
+    It's not by talking about each other, wanting to slander
     \nextverse
-    I present myself to my Father
-    And know how to tell my story
-    I ask that all unite
-    And learn to be respectful
+    I present myself to my Father, and know how to tell my story
+    I ask that all unite, and learn to be respectful
     \nextverse
-    It's in heaven and on the earth
-    And long the sea
-    My meeting with Jesus
-    Only I know how to unravel it
+    It's in heaven and on the earth, and long the sea
+    My meeting with Jesus, only I know how to unravel it
     \nextverse
-    It was there on this day
-    And in the waters of the Jordan
-    That both were baptized
-    And began their mission
+    It was there on this day, and in the waters of the Jordan
+    That both were baptized, and began their mission
   \end{translation}
 \endsong
 
