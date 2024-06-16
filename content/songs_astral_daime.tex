@@ -2427,6 +2427,95 @@
 \endsong
 
 
+\beginsong{Beija-Flor}[by={Paulo Roberto}, key={Em}, gk={Em, Cm--G\shrp{}m}]
+  \audio[key=Em]{https://soundcloud.com/user-561613355/99-beija-flor-padrinho-paulo}
+  \audio{https://nossairmandade.com/hymn/46/Beija-Flor}
+  \mnbeginchorus\memorize
+    \[^\mn{B}]Vei|\[Em/B]{o da flo}\[\bm]resta co|mo um Beija-\[\mnc{E}Em]Flor \altchords{\id[1]{(Dm)}|Dm/A | - Dm}
+    Pou|sou na beira-\[\bm]mar e explan|\[^\mn{G}]diu \[^\mn{E}]o \[^\mn{F#}]seu \[^\mn{E}]a\[\bm]mor \altchords{| - | \e}
+    Mos|trando para \[\bm]todos o ca|minho \[^\mn{G}]do \[^\mn{E}]Se\[\mnc{F#}B7]nhor \altchords{| - | - A7}
+    \[^\mn{D#}]Ajun|tando os seus \[\bm]filhos na \[^\mn{E}]es|\[^\mn{F#}]trada do \[^\mn{E}]a\[Em]mor \altchords{| - | - Dm}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Esta |^força é o ^Daime e o |Daime é ^luz
+    E|le é o mensa^geiro do ca|minho de Je^sus
+    Que |deu por nós a ^vida e mor|reu por nós na ^cruz
+    Nossa |Santa Estrela ^Guia ele |é quem nos con^duz
+  \endchorus
+  \beginchorus
+    A esta |^Força eu en^trego o |meu cora^ção \altchords{\id[2]{(Gm)}|Gm/D | - Gm}
+    Gui|ai bem os meus ^passos neste |mundo de ilu^são \altchords{| - | \e}
+    Estar |no caminho ^reto apren|dendo a uni^ão \altchords{| - | - D7}
+    Sou |filho desta ^terra, meu Pa|drinho é São Jo^ão \altchords{| - | - Gm}
+  \endchorus
+  \begin{translation}
+    He came from the forest like a Hummingbird, stopped by the seaside and spread his love
+    Showing everyone the path of God, gathering his children on the road of love
+    \nextverse
+    This force is the Daime and the Daime is light, he is the messenger of Jesus' way
+    Who gave us life and died for us on the cross, our Holy Star Guide He is who leads us
+    \nextverse
+    I entrust my heart to this Force, guide me well in my steps in this world of illusion
+    Being on the straight path learning unity, I am a child of this land, my godfather is Saint John.
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Beija-Flor"
+    %   composer = "Paulo Roberto"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key e \minor \time 4/4 \partial 4
+      \repeat volta 2 {
+        \parenthesize b8 \pomark b8 | b4 b8 b b4 b8 b | b4 b8 b e4.
+        e8 | e8 e e e e e e e | g e fis e e4
+        \parenthesize e8 e | e e e e e e e e | e e g e fis4
+        \parenthesize dis8 dis | dis dis dis dis dis dis dis e | fis fis fis e e4
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        \skip 1 Vei -- | o da flo -- res -- ta co -- | mo~um Bei -- ja -- Flor;
+        Pou -- | sou na bei -- ra -- mar e ex -- plan -- | diu o seu a -- mor;
+        \skip 1 Mos -- | tran -- do pa -- ra to -- dos o ca -- | mi -- nho do Se -- nhor;
+        A -- jun -- | tan -- do os seus fi -- lhos na es -- | tra -- da do a -- mor.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Es -- ta | for -- ça é~o Dai -- me~e o | Dai -- me é luz;
+        E -- | le~é o men -- sa -- gei -- ro do ca -- | mi -- nho de Je -- sus;
+        \skip 1 Que | deu por nós a vi -- da e mor -- | reu por nós na cruz;
+        Nos -- sa | San -- ta~Es -- tre -- la Gui -- a e -- le | é quem nos con -- duz.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        A~es -- ta | For -- ça~eu en -- tre -- go o | meu co -- ra -- ção;
+        Gui -- | ai bem os meus pas -- sos nes -- te | mun -- do de~i -- lu -- são;
+        Es -- tar | no ca -- mi -- nho re -- to a -- pren -- | den -- do~a u -- ni -- ão;
+        \skip 1 Sou | fi -- lho des -- ta ter -- ra, meu Pa -- | dri -- nho~é São Jo -- ão.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | e1:m/b | e2:m/b e:m | e1:m | e:m
+        | e:m | e2:m b:7 | b1:7 | b2:7 e4:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 \beginsong{Sou o Daime}[by={Neiva}, off={Padr. Manoel Corrente [Caboclo Guerreiro \#20]}, key={C}, gk={C, C--D}]
   \audio[key=C]{https://soundcloud.com/luizpfer/20-sou-o-daime?in=luizpfer/sets/caboclo-guerreiro-manoel-corrente}
   \newchords{chords_souodaime_a}\newchords{chords_souodaime_b}
