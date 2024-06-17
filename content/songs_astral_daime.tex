@@ -10,29 +10,29 @@
 % end of each songs_ file.)
 \setcounter{songnum}{1}
 
-\beginsong{Aqui eu Recebi}[by={Padr. Sebastião},key={A},gk={A, G--B--(C)}]
-  \audio[key=C]{https://www.nossairmandade.com/hymn/35/AquiEuRecebi}
+\beginsong{Aqui Eu Recebi}[by={Padr. Sebastião},key={A},gk={A, G--B--(C)}]
+  \audio{https://www.nossairmandade.com/hymn/35/AquiEuRecebi}
   \transpose{-3}
   \mnbeginchorus\memorize
-    \[^\mn{G}]A|\[\mnc{E}C]qui eu \[\mncii{D}{C}(G7)]rece|\[\mnc{G}C]bi\[\bm], \[^\mn{E}]pa\[^\mn{G}]ra |\[^\mn{E}]mim dis\[\mnc{D}C7]tri\[^\mn{C}]bu|\[\mnc{A}F]ir \[\bm]{} \altchords{\id[1]{(C)}|C (G7) |C | - |F}
-    |\[^\mn{A}]É \[^\mn{B}]o \[\bmc\mn{C}]San\[^\mn{A}]to |\[\mnc{G}C]Daime, \[\bmc\mn{E}]pa\[^\mn{C}]ra |\[^\mn{E}]com meu \[\mnc{D}G7]Pai se|\[\mnc{C}C]guir\[\bm]{} \altchords{| - |C | - G7 |C}
+    \[^\mn{G}]A|\[\mnc{E}C]qui eu \[\bmc\mn{D}]re\[^\mn{C}]ce|\[^\mn{G}]bi, \[\bm] \[^\mn{E}]pa\[^\mn{G}]ra |\[^\mn{E}]mim dis\[\mnc{D}C7]tri\[^\mn{C}]bu|\[\mnc{A}F]ir \[\bm]{} \altchords{\id[1]{(C)}|C | - | - C7 |F}
+    |É \[^\mn{B}]o \[\bmc\mn{C}]San\[^\mn{A}]to |\[\mnc{G}C]Daime, \[\bmc\mn{E}]pa\[^\mn{C}]ra |\[^\mn{E}]com meu \[\mnc{D}G7]Pai se|\[\mnc{C}C]guir\[\bm]{} \altchords{| - |C | - G7 |C}
   \mnendchorus
   \notesoff
   \beginchorus
-    Se |^meus ir^mãos sou|^bes^sem, o que |é que ^vem fa|^zer ^
+    Se |^meus ir^mãos sou|bes^sem, o que |é que ^vem fa|^zer ^
     Sa|íam ^bem lim|^pinhos, ^pois o |meu Pai ^tem po|^der ^
   \endchorus
   \beginchorus
-    Es|^te é ^{o po}|^der^, es|ta é ^{a ver}|^da^de
+    Es|^te é ^{o po}|der^, es|ta é ^{a ver}|^da^de
     Quem não |ama ^com fir|^meza, ^sempre |carre^{ga a} mal|^da^de
   \endchorus
   \beginchorus
-    Eu |^gosto ^{de di}|^zer^, também |gosto ^de mos|^trar ^
-    \noteson |\[\mnlow{A}]Tá\[\bm]{} \[\mnlow{F}] |\[C\mnlow{E}]tum\[\bm], |veja aon\[G7]de es|\[C]tá \notesoff
+    Eu |^gosto ^{de di}|zer^, também |gosto ^de mos|^trar ^
+    \noteson |\[\mnlow{A}]Tá\[\bm]{} \[\mnlow{F}] |\[C\mnlow{E}]tum\[\bm], |veja a \[G7]onde es|\[C]tá \notesoff
   \endchorus
   \notesoff
   \beginchorus
-    Quem não |^souber ^{o que} |^é,^ puxe |pela ^consci|^ên^cia
+    Quem não |^souber ^{o que} |é,^ puxe |pela ^consci|^ên^cia
     Quem |ama com ^leal|^dade, ^sempre |rende o^bedi|^ên^cia
   \endchorus
   \begin{translation}[EN]
@@ -51,23 +51,34 @@
     Whoever doesn't know what it is, pull on your conscience
     Whoever loves with loyalty always renders obedience
   \end{translation}
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Aqui Eu Recebi"
+    %   composer = "Padr. Sebastião"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \transpose c' a \relative c''' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
-      \mark \markup {"6x"} \bar ".|:" \repeat volta 6 {
-        g4\sectionmark "1.-3." | e4 e d c | g'2( g4) e8 g8 | e4 e d c | a'2( a4 a8 a8)
+      \sectionLabel "1.-3."
+      \mark \markup {"6x"} \bar ".|:"
+       \repeat volta 6 {
+        g4 | e4 e d c | g'2( g4) e8 g8 | e4 e d c | a'2( a4)( a8)( a8)
         | a4 b c a | g4. g8 e4 c4 | e e d d | c2( c4)
-      }
+      } \break
+      \sectionLabel "4."
       \slurSolid
       \repeat volta 2 {
-        g'4\sectionmark "4." | e4 e d c | g'2. e8 g8 | e4 e d c | a'1
+        g'4 | e4 e d c | g'2. e8 g8 | e4 e d c | a'1
         | a2.( f4) | e1  | e4 e d d | c2.
-      }
+      } \break
+      \sectionLabel "5."
       \repeat volta 2 {
-        g'8\posectionmark "5." g8 | e4 e d c | g'2. e8 g8 | e4 e d c | a'2 a4 a4
+        g'8 \pomark g8 | e4 e d c | g'2. e8 g8 | e4 e d c | a'2 a4 a4
         | a4 b8 b8 c4 a | g4. g8 e4 c4 | e e d d | c2 c4
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
@@ -102,25 +113,26 @@
     }
     theChords = \transpose c' a \chordmode {
       \repeat volta 6 {
-        s4 | c2 \parenthesize g:7 | c1
-        | c2 \parenthesize c:7 | f1
+        s4 | c1 | c
+        | c2 c:7 | f1
         | f | c
         | c2 g:7 | c2.
       }
       \repeat volta 2 {
-        s4 | c2 \parenthesize g:7 | c1
-        | c2 \parenthesize c:7 | f1
+        s4 | c1 | c
+        | c2 c:7 | f1
         | f | c
         | c2 g:7 | c2.
       }
       \repeat volta 2 {
-        s4 | c2 \parenthesize g:7 | c1
-        | c2 \parenthesize c:7 | f1
+        s4 | c1 | c
+        | c2 c:7 | f1
         | f | c
         | c2 g:7 | c2.
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
 
