@@ -1987,66 +1987,74 @@
     Se |^não ti^ver fir|^meza
     ^Daqui |^da ter^ra não |^sai ^
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, 2021-08
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "O Santo Daime Está Aí"
+    %   composer = "Francisco Grangeiro"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        \parenthesize e8\posectionmark "A" e e | e4 e8 e8 e4 e | c'4. 8 c4 a
+        \parenthesize e8 \pomark e e | e4 e8 e8 e4 e | c'4. 8 c4 a
         | e4 e c b | a2~ 8
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize a8\sectionmark "B" a( c) | e4 e8( e) d4 c | b4.( b8) b4 f'4
+        \parenthesize a8 a( c) | e4 e8( e) d4 c | b4.( b8) b4 f'4
         | e d c b | a2~ 8
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
       \repeat volta 2 {
         O San -- to | Dai -- me es -- tá a -- | í;
-        É pa -- ra | to -- dos nós to -- | mar. __ _
+        É pa -- ra | to -- dos nós to -- | mar. _
       }
       \set stanza = "1.B"
       \repeat volta 2 {
         O San -- to | Dai -- me é um pri -- | mor;
-        Pa -- ra quem | sa -- be~a -- pre -- ci -- | ar. __ _
+        Pa -- ra quem | sa -- be~a -- pre -- ci -- | ar. _
       }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2.A"
       \repeat volta 2 {
         \skip 1 Não sa -- | ben -- do a -- pre -- ci -- | ar;
-        Qua -- se não~a -- | di -- an -- ta to -- | mar. __ _
+        Qua -- se não~a -- | di -- an -- ta to -- | mar. _
       }
       \set stanza = "2.B"
       \repeat volta 2 {
-        \skip 1 Pas -- sa | por ci -- _ ma de | tu -- do;
-        E na -- | da po -- de~al -- can -- | çar. __ _
+        "" Pas -- sa | por ci -- _ ma de | tu -- do;
+        E na -- | da po -- de~al -- can -- | çar. _
       }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3.A"
       \repeat volta 2 {
         An -- ti -- gui -- | da -- de não é ri -- | que -- za~An --
-        ti -- gui -- | da -- de~não é sa -- | ber. __ _
+        ti -- gui -- | da -- de~não é sa -- | ber. _
       }
       \set stanza = "3.B"
       \repeat volta 2 {
-        \skip 1 De que | ser -- ve a~an -- ti -- gui -- | da -- _ de;
-        Não | sa -- ber com -- preen -- | der. __ _
+        "" De que | ser -- ve a~an -- ti -- gui -- | da -- _ de;
+        Não | sa -- ber com -- preen -- | der. _
       }
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4.A"
       \repeat volta 2 {
         \skip 1 A fir -- | me -- za é mui -- to | bo -- a;
-        Sem fir -- | me -- za não se | vai. __ _
+        Sem fir -- | me -- za não se | vai. _
       }
       \set stanza = "4.B"
       \repeat volta 2 {
-        \skip 1 Se __ _ | não ti -- _ ver fir -- | me -- za;
-        Da -- qui | da ter -- ra não | sai. __ _
+        "" Se __ _ | não ti -- _ ver fir -- | me -- za;
+        Da -- qui | da ter -- ra não | sai. _
       }
     }
     theChords = \chordmode {
