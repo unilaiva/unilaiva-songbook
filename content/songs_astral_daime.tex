@@ -1752,55 +1752,69 @@
 
 
 \beginsong{Em Minha Memória}[by={Padr. Valdete},key={Am},gk={Bm, Gm--Em}]
+  \audio[key=Bm]{https://www.youtube.com/watch?v=cQUKTSvCfn0}
   \audio{https://www.nossairmandade.com/hymn/141/EmMinhaMem\%C3\%B3ria}
   \mnbeginchorus
-    \[\mn{A}]Eu to\[\mn{C}]mo |\[\mnc{E}Am]Daime para \[\bmc\mn{C}]ver os \[\mn{B}]meus de|\[\mn{A}]feitos\[\bm]{} \altchords{\id[1]{(Cm)}|Cm | \e }
-    \[\mn{A}]Eu to\[\mn{C}]mo |\[\mn{E}]Daime para \[\bmc\mn{C}]eu \[\mn{A}]me cor\[\mn{C}]ri|\[\mnc{E}E]gir \[\bm]{} \altchords{| - |G}
+    \[\mn{A}]Eu to\[\mn{C}]mo |\[\mnc{E}Am]Daime para \[\bmc\mn{C}]ver os \[\mn{B}]meus de|f\[\mn{A}]eitos\[\bm]{} \altchords{\id[1]{(Bm)}|Bm | \e }
+    Eu to\[\mn{C}]mo |\[\mn{E}]Daime para \[\bmc\mn{C}]eu \[\mn{A}]me cor\[\mn{C}]ri|\[\mnc{E}E]gir \[\bm]{} \altchords{| - |F\shrp{}}
     \mnendchorus\glueverses\mnbeginchorus
-    \[\mn{A}]Não to\[\mn{C}]mo |\[\mnc{E}Am]Daime para \[\bmc\mn{C}]me en\[\mn{B}]grande|\[\mn{A}]cer\[\bm]{} \altchords{|Cm | \e}
-    Porque \[\mn{B}]o |\[\mnc{C}F]grande é Je\[\mnc{B}E7]sus, es\[\mn{E}]tá a|\[\mnc{A}Am]quí \[\bm]{} \altchords{|A\flt{} G7 |Cm}
+    \[\mn{A}]Não to\[\mn{C}]mo |\[\mnc{E}Am]Daime para \[\bmc\mn{C}]me en\[\mn{B}]grande|\[\mn{A}]cer\[\bm]{} \altchords{|Bm | \e}
+    Porque \[\mn{B}]o |\[\mnc{C}F]grande é Je\[\mnc{B}E7]sus, es\[\mn{E}]tá a|\[\mnc{A}Am]quí \[\bm]{} \altchords{|G F\shrp{}7 |Bm}
   \mnendchorus
   \mnbeginchorus
     \[\mn{A}]Eu to\[\mn{C}]mo |\[\mnc{E}Am]Daime é para a\[\bmc\mn{C}]cender \[\mn{B}]minha |\[\mn{A}]Luz\[\bm]
     E es\[\mn{B}]ta |\[\mn{C}]Luz meu Je\[\bmc\mn{B}]sus \[\mn{A}]é quem \[\mn{C}]me |\[\mnc{E}E]dá \[\bm]
     \mnendchorus\glueverses\mnbeginchorus
     \[\mn{A}]Por is\[\mn{C}]so eu |\[\mnc{E}Am]devo consa\[\bmc\mn{C}]grar no \[\mn{B}]cora|\[\mn{A}]ção\[\bm]
-    \[\mn{A}]Que tam\[\mn{B}]bém |\[\mnc{C}F]é da Vir\[\mnc{B}E7]gem da \[\mn{E}]Concei|\[\mnc{A}Am]ção \[\bm]
+    Que tam\[\mn{B}]bém |\[\mnc{C}F]é da Vir\[\mnc{B}E7]gem da \[\mn{E}]Concei|\[\mnc{A}Am]ção \[\bm]
   \mnendchorus
   \mnbeginchorus
-    \[\mn{A}]Eu to\[\mn{C}]mo |\[\mnc{E}Am]Daime e consi\[\bmc\mn{C}]dero \[\mn{B}]este |\[\mn{A}]vinho\[\bm]
+    \[\mn{A}]Eu to\[\mn{C}]mo |\[\mnc{E}Am]Daime e consi\[\bmc\mn{C}]dero \[\mn{B}]este |v\[\mn{A}]inho\[\bm]
     O mes\[\mn{B}]mo |\[\mn{C}]vinho que Je\[\bmc\mn{B}]sus \[\mn{A}]deu pra \[\mn{C}]to|\[\mnc{E}E]mar \[\bm]
     \mnendchorus\glueverses\mnbeginchorus
-    \[\mn{A}]Aos Seus \[\mn{C}]a|\[\mnc{E}Am]póstoles dis\[\bm]se: em \[\mn{C}]minha \[\mn{B}]me|mó\[\mn{A}]ria\[\bm]
-    \[\mn{A}]Que é pa\[\mn{B}]ra |\[\mnc{C}F]sempre esta \[\mnc{B}E7]Luz nun\[\mn{E}]ca fal|\[\mnc{A}Am]tar \[\bm]
+    \[\mn{A}]Aos Seus \[\mn{C}]a|\[\mnc{E}Am]póstoles disse: \[\bmc\mn{C}]em mi\[\mn{B}]nha me|m\[\mncadj{-.25ex}{A}]ória\[\bm]
+    Que é pa\[\mn{B}]ra |\[\mnc{C}F]sempre esta \[\mnc{B}E7]Luz nun\[\mn{E}]ca fal|\[\mnc{A}Am]tar \[\bm]
   \mnendchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Em Minha Memória"
+    %   composer = "Padr. Valdete"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \key a \minor \time 4/4 \partial 4.
+      \sectionLabel "1.A"
       \repeat volta 2 {
-        a8\sectionmark "1.A" a c | e e e e c c b b | a4 a4. a8 a8 c8
+        a8 a c | e e e e c c b b | b8( a8) a4. a8 a8 c8
         | e8 e e e c a a c | e2~ e8
       } \break
+      \sectionLabel "1.B"
       \repeat volta 2 {
-        a,8\sectionmark "1.B" a c | e e e e c c b b | a2~ a8 a a b
+        a,8 a c | e e e e c c b b | a2~ a8 a a b
         | c8. c16 c8 c8 b8 b8 e8 e8 | a,2~ a8
       } \break
+      \sectionLabel "2.A"
       \repeat volta 2 {
-        a8\sectionmark "2.A" a c | e e e e c c b b | a2~ a8 a a b
+        a8 a c | e e e e c c b b | a2~ a8 a a b
         | c4 c8 c b a a c | e2~ e8
       } \break
+      \sectionLabel "2.B"
       \repeat volta 2 {
-        a,8\sectionmark "2.B" a c | e e e e c c b b | a2~ a8 a a b
+        a,8 a c | e e e e c c b b | a2~ a8 a a b
         | c4 c8 c b b e e | a,2~ a8
       } \break
+      \sectionLabel "3.A"
       \repeat volta 2 {
-        a8\posectionmark "3.A" a c | e e e e c c b b | a4 a4. a8 a b
+        a8\pomark a c | e e e e c c b b | b8( a8) a4. a8 a b
         | c c c c b a a c | e2~ e8
       } \break
+      \sectionLabel "3.B"
       \repeat volta 2 {
-        a,8\sectionmark "3.B" a c | e e e e e c c b | b4 a4. a8 a b
+        a,8 a c | e e16 e16 e8 e c c b b | b8( a8) a4. a8 a b
         | c8. c16 c8 c b b e e | a,2~ a8
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
@@ -1819,7 +1833,7 @@
       Eu to -- mo | Dai -- me~e con -- si -- de -- ro es -- te | vi -- nho;
       O mes -- mo | vi -- nho que Je -- sus deu pra to -- | mar.
       \set stanza = "3.B"
-      Aos Seus a -- | pós -- to -- les dis -- se:~em mi -- nha me -- | mó -- ria;
+      Aos Seus a -- | pós -- to -- les dis -- se: em mi -- nha me -- | mó -- ria;
       Que~é pa -- ra | sem -- pre es -- ta Luz nun -- ca fal -- | tar.
     }
     theChords = \chordmode {
@@ -1842,25 +1856,19 @@
         s4. | a1:m | a1:m | f2 e2:7 | a2:m~ 8
       }
     }
-    \layout { #(layout-set-staff-size 11) } % for better fit
-    \include "tex/lp-include-tail.ly"
+    \layout { #(layout-set-staff-size 11.5) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  %\ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
-    I drink Daime to see my flaws
-    I drink Daime to correct myself
-    I don't drink Daime to exalt myself
-    Because the Great is Jesus and He's here
+    I drink Daime to see my flaws, I drink Daime to correct myself
+    I don't drink Daime to exalt myself, because the Great is Jesus and He's here
     \nextverse
-    I drink Daime to light my flame
-    And this light, Jesus gives it to me
-    I must consecrate in my heart
-    For it belongs to the Virgin of Conception
+    I drink Daime to light my flame, and this light: Jesus gives it to me
+    I must consecrate in my heart, for it belongs to the Virgin of Conception
     \nextverse
-    I drink Daime and consider this wine
-    The same wine Jesus offered his apostle4s
-    To His apostles he said: ''in my memory''
-    So that forever you will have this light
+    I drink Daime and consider this wine the same wine Jesus offered his apostles
+    To His apostles he said: ''in my memory'', so that forever you will have this light
   \end{translation}
 \endsong
 
