@@ -1347,17 +1347,17 @@
 \endsong
 
 
-\beginsong{O Daime, é o Daime}[by={Padr. Alfredo}, off={José Teixeira}, tags={mazurka}, key={C}, gk={C, (B)--(C)}]
+\beginsong{O Daime, É o Daime}[by={Padr. Alfredo}, off={José Teixeira}, tags={mazurka}, key={C}, gk={C, (B)--(C)}]
   % Also in Hinos do Daime (#2)
   \audio{https://www.nossairmandade.com/hymn/536/ODaime\%C3\%89ODaime}
   \newchords{chords_cura_odaime_a}\newchords{chords_cura_odaime_b}
   \meter{6}{4}
   \mnbeginchorus\memorize[chords_cura_odaime_a]
-    \[^\mn{E}]O |\[\mnc{G}C]Daime \[^\mn{E}]é \[^\mn{F}]o \[\bmc\mn{G}]Daime
-    Eu |\[^\mn{C}]es\[^\mn{G}]tou \[^\mn{E}\mn{G}]afir\[(G)]mando
+    \[^\mn{E}]O |\[\mnc{G}C]Daime \[^\mn{E}]é \[^\mn{F}]o \[\bmc\mn{G}]Daime \altchords{\id[1]{(B)}|B}
+    Eu |\[^\mn{C}]es\[^\mn{G}]tou \[^\mn{E}\mn{G}]afir\[G]mando \altchords{| - F\shrp{}}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_cura_odaime_b]
-    \[^\mn{C}]É o Di|\[C]vi\[^\mn{G}]no \[^\mn{C}]Pai \[^\mn{E}]E\[(Am/E)]terno
-    \[^\mn{C}]E a Ra|\[G]in\[^\mn{G}]ha \[^\mn{B}]So\[^\mn{D}]be\[\mnc{C}C]rana
+    \[^\mn{C}]{É o} Di|\[C]vi\[^\mn{G}]no \[^\mn{C}]Pai \[^\mn{E}]E\[(Am/E)]terno \altchords{|B (G\shrp{}m/D\shrp{})}
+    \[^\mn{C}]{E a} Ra|\[G7]in\[^\mn{G}]ha \[^\mn{B}]So\[^\mn{D}]be\[\mnc{C}C]rana \altchords{|F\shrp{}7 B}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_cura_odaime_a]
@@ -1382,22 +1382,35 @@
     E revi|^gora o meu a^mor
   \endchorus\brk
   \beginchorus\replay[chords_cura_odaime_a]
-    Agra|^deço ao Santo ^Daime
+    \noteson\[\mnlow{E}\mnlow{F}]Agra\notesoff|^deço ao Santo ^Daime
     Agrade|cendo a todos ^seres
   \endchorus\glueverses\beginchorus\replay[chords_cura_odaime_b]
     E quem me |^manda agrade^cer
     É o |^meu Pai verda^deiro
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "O Daime, É o Daime"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 6/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        r8\posectionmark "A" e4 | g g e8 f8 g4 g8( g) g( g) | c4 g e8 g8 g4 g8
+        r8 \pomark \afterGrace e4 \single\altcol f8 \altmark "5."
+        | g4 g e8 f8 g4 g8( g) g( g)
+        | c4 g e8 g8 g4( g8)
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        c,8\sectionmark "B" c c | c4 g c8 e8 e4 e8 c c c | c4 g4 b8 d8 c4( c8)
+        c,8 c c
+        | c4 g c8 e8 e4( e8) \parenthesize c c c
+        | c4 g4 b8 d8 c4( c8)
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
@@ -1412,16 +1425,16 @@
         O | Dai -- me é o Dai -- me;
         O pro -- fes -- | sor dos pro -- fes -- so -- res;
         \set stanza = "2.B"
-        É o Di -- | vi -- no Pai E -- ter -- no; __ _
-        E seu | Fi -- lho Re -- den -- tor. __ _
+        É o Di -- | vi -- no Pai E -- ter -- no;
+        "" E seu | Fi -- lho Re -- den -- tor. __ _
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       O | Dai -- me é o Dai -- me;
       O Mes -- tre | de to -- dos en -- si -- nos;
       \set stanza = "3.B"
-      É o Di -- | vi -- no Pai E -- ter -- no; __ _
-      E to -- | dos se -- res di -- vi -- nos.
+      É o Di -- | vi -- no Pai E -- ter -- no;
+      "" E to -- | dos se -- res di -- vi -- nos.
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
@@ -1433,20 +1446,22 @@
     }
     theLyricsFive = \lyricmode {
       \set stanza = "5."
-      Agra | de -- ço~ao San -- to Dai -- me;
+      \set includeGraceNotes = ##t
+      A -- \altcol gra | de -- ço~ao San -- to Dai -- me;
       A -- gra -- de -- | cen -- do~a to -- dos se -- res;
       \set stanza = "5.B"
       E quem me | man -- da~a -- gra -- de -- cer; __ _
-      \skip 1 É o | meu Pai ver -- da -- dei -- ro.
+      "" É o | meu Pai ver -- da -- dei -- ro.
     }
     theChords = \chordmode {
       \repeat volta 2 {
-        s4. | c2. c | c \parenthesize g4~ g8
+        s4. | c2. c | c g4~ g8
       }
       \repeat volta 2 {
-        s4. | c2. \parenthesize a:m/e | g c4~ c8
+        s4. | c2. \parenthesize a:m/e | g:7 c4~ c8
       }
     }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
