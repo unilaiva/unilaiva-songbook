@@ -2480,24 +2480,21 @@
 % Lowered sharp symbol to fit better inside the melody note circle:
 \newcommand{\@lowsharpsymbol}{\raise-.25ex\hbox{\textsuperscript{{\symbolfont♯}}}}%
 
-% Will hold the width of the melody note circle:
+% Will hold the width of the melody note circle. DEPRECATED
 \newdimen{\@mncirclewidth}
 
-% Calculates the width encircled melody note. Note that if the style in
-% \@note changes, so must it here.
+% Calculates the width encircled melody note. DEPRECATED
 \newcommand{\@calcmncirclewidth}{%
   \settowidth{\@mncirclewidth}{\@mncirclestyle\textcircled{}}%
 }
 
-% If true, negative space will be applied after displaying the note:
-\newif\if@mnnegspace\@mnnegspacefalse
-
 % Outputs an encircled melody note, internal
 %   - optional parameter: rise the note above text (chord line) by this amount,
 %                         defaults to 1em
-%   - mandatory parameter: the note, must be in upper case
+%   - mandatory parameter: the note, must be in UPPER CASE for transposing to
+%     work
 %   * Example usage: \@note[0.5em]{C#}
-%   * Note that if the style here changes, so must it in @calcmncirclewidth
+%   * To take no horizontal space, call this macro within \makebox[0pt][l]{}
 \newcommand{\@note}[2][1em]{%
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
@@ -2510,10 +2507,6 @@
         \textcircled{% % Show the note transposed and encircled
           \@mnsymbolstyle\transposehere{#2}%
         }%
-        \if@mnnegspace%
-          \@calcmncirclewidth% % Calculate the width...
-          \hspace{-\@mncirclewidth}% % ...to go left
-        \fi%
       }%
     \fi%
   \fi%
@@ -2522,20 +2515,20 @@
 % Displays a melody note, to be used on the first line of lyrics.
 % See above for usage information.
 \newcommand{\mn}[1]{%
-  \@mnnegspacefalse\@note{#1}%
+  \@note{#1}%
 }
 
 % Displays a melody note above a chord, to be used on the first line of lyrics.
 % See above for usage information.
 \newcommand{\mnc}[1]{%
-  \@mnnegspacetrue\@note{#1}%
+  \makebox[0pt][l]{\@note{#1}}%
 }
 
 % Displays a melody note above a chord, with its position adjusted horizontally,
 % to be used on the first line of lyrics. See above for usage information.
 \newcommand{\mncadj}[2]{%
   \hspace{#1}%
-  \@mnnegspacetrue\@note{#2}%
+  \makebox[0pt][l]{@note{#2}}%
   \hspace{-#1}%
 }
 
@@ -2545,10 +2538,7 @@
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
-      \@mnnegspacefalse%
-      \@note{#1}\@note{#2}%
-      \@calcmncirclewidth%
-      \hspace{-2\@mncirclewidth}%
+      \makebox[0pt][l]{\@note{#1}\@note{#2}}%
     \fi%
   \fi%
 }
@@ -2559,10 +2549,7 @@
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
-      \@mnnegspacefalse%
-      \@note{#1}\@note{#2}\@note{#3}%
-      \@calcmncirclewidth%
-      \hspace{-3\@mncirclewidth}%
+      \makebox[0pt][l]{\@note{#1}\@note{#2}\@note{#3}}%
     \fi%
   \fi%
 }
@@ -2573,10 +2560,7 @@
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
-      \@mnnegspacefalse%
-      \@note{#1}\@note{#2}\@note{#3}\@note{#4}%
-      \@calcmncirclewidth%
-      \hspace{-4\@mncirclewidth}%
+      \makebox[0pt][l]{\@note{#1}\@note{#2}\@note{#3}\@note{#4}}%
     \fi%
   \fi%
 }
@@ -2587,10 +2571,7 @@
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
-      \@mnnegspacefalse%
-      \@note{#1}\@note{#2}\@note{#3}\@note{#4}\@note{#5}%
-      \@calcmncirclewidth%
-      \hspace{-5\@mncirclewidth}%
+      \makebox[0pt][l]{\@note{#1}\@note{#2}\@note{#3}\@note{#4}\@note{#5}}%
     \fi%
   \fi%
 }
@@ -2598,7 +2579,7 @@
 % Displays a melody note, to be used on other than the first line of lyrics.
 % See above for usage information.
 \newcommand{\mnlow}[1]{%
-  \@mnnegspacefalse\@note[0.4em]{#1}%
+  \@note[0.4em]{#1}%
 }
 
 % \noteson and \notesoff commands can be used inside a block to turn displaying
