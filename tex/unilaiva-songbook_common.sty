@@ -2406,16 +2406,22 @@
 %
 % Choose the correct command:
 %
-%   \mn{<note>}                     : on verse's first line
-%   \mnc{<note>}                    : on verse's first line, above a chord
-%   \mncii{<note>}{<note>}          : on first line, 2 notes, above a chord
-%   \mnciii{<note>}{<note>}{<note>} : on first line, 3 notes, above a chord
+%   \mn{<note>}                     : normal note, not above a chord
+%   \mnc{<note>}                    : above a chord
+%   \mncii{<note>}{<note>}          : 2 notes horizontally, above a chord
+%   \mnciii{<note>}{<note>}{<note>} : 3 notes horizontally, above a chord
 %   \mnciv{<note>}{<note>}{<note>}{<note>}
-%                                   : on first line, 4 notes, above a chord
+%                                   : 4 notes horizontally, above a chord
 %   \mncv{<note>}{<note>}{<note>}{<note>}{<note}
-%                                   : on first line, 4 notes, above a chord
+%                                   : 5 notes horizontally, above a chord
 %   \mncadj{<hadj>}{<note>}         : on first line, above a chord, with
 %                                     adjusted horizontal position
+%   \mnvii{<note>}{<note>}          : 2 notes vertically, the second one
+%                                     in different color.
+%   \mnvcii{<note>}{<note>}         : 2 notes vertically, the second one
+%                                     in different color, above a chord; use
+%                                     this on every note pair of a line, if
+%                                     any of them are above a chord.
 %   \mnlow{<notename>}              : on other lines of a verse
 %
 % Use \mn, \mnc, \mncii or \mnciii to display notes on the first line of lyrics
@@ -2430,6 +2436,10 @@
 % them one can put two or three notes on top of one chord. They are also meant
 % to be used only on the first line of lyrics in a verse or verses defined with
 % \mn* macros.
+%
+% Any of the above commands with 'c' in them does not take any horizontal
+% space, thus they can be placed above chords. All the others take horizontal
+% space.
 %
 % \mnlow doesn't put the note so high above the chord line, so use it on other
 % than the first line of lyrics with the caveat, that chords and notes are put
@@ -2510,6 +2520,22 @@
       }%
     \fi%
   \fi%
+}
+
+\newcommand{\mnvcii}[2]{%
+  \makebox[0pt][l]{\@note[1.85em]{#1}}%
+  {% the second note below, in different color
+    \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
+    \makebox[0pt][l]{\@note{#2}}%
+  }%
+}
+
+\newcommand{\mnvii}[2]{%
+  \makebox[0pt][l]{\@note{#1}}%
+  {% the second note below, in different color
+    \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
+    \@note[0.15em]{#2}%
+  }%
 }
 
 % Displays a melody note, to be used on the first line of lyrics.
