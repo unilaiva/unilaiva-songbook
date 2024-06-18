@@ -800,7 +800,7 @@
   \audio{https://www.nossairmandade.com/hymn/1081/MesaDeCentro}
   \newchords{chords_mesadecentro_a}\newchords{chords_mesadecentro_b}
   \mnbeginchorus\memorize[chords_mesadecentro_a]
-    \[^\mn{A}]Eu \[^\mn{D}]to\[^\mn{F#}]mei |\[\mnc{A}D]Dai\[^\mn{F#}]me \[^\mn{A}]com \[\mnc{B}(Bm)]meu \[^\mn{A}]Pre\[^\mn{F#}]si|\[\mnc{D}D]den\[\bmc\mn{B}]te \altchords{\id[1]{(C)}|C (Am) |C}
+    \[^\mn{A}]Eu \[^\mn{D}]to\[^\mn{F#}]mei |\[\mnc{A}D]Dai\[^\mn{F#}]me \[^\mn{A}]com \[\mnc{B}(Bm)]meu \[^\mn{A}]Pre\[^\mn{F#}]si|\[\mnc{D}D]de\[\bmc]n\[^\mn{B}]te \altchords{\id[1]{(C)}|C (Am) |C}
     |\[\mnc{D}Bm]Den\[^\mn{C#}]tro \[^\mn{D}]de um \[\mnc{E}Em]lin\[^\mn{C#}]do \[^\mn{B}]sa|\[\mnc{A}A7]lão\[\bm]{} \altchords{|Am Dm |G7}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_mesadecentro_b]
     \[^\mn{A}]Em |\[\mnc{D}D]u\[^\mn{C#}]ma \[\mnc{E}Em]Me\[^\mn{C#}]sa \[^\mn{B}]de |\[\mnc{A}A]Cen\[\bm]tro \altchords{|C Dm |G}
@@ -828,39 +828,58 @@
     Que o |^tempo ^está fin|^da^do
     E pra de|^pois ^não tem mais |^jei^to
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Mesa de Centro"
+    %   composer = "Tetéo"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       % Note that the \breaks are where they are to fit on one page and
       % to have clear fist and last verse.
       \key d \major \time 4/4 \partial 4.
-      % verse 1
+      \sectionLabel "1.A"
       \repeat volta 2 {
-        a8\sectionmark "1.A" d8 fis8 | a4 fis8 a8 b4 a8 fis8 | d2. b4 | d4 cis8 d8 e4 cis8 b8 | a2~ a8
+        a8 d8 fis8 | a4 fis8 a8 b4 a8 fis8 | d2. b4
+        | d4 cis8 d8 e4 cis8 b8 | a2~ a8
       }
+      \sectionLabel "1.B"
       \repeat volta 2 {
-        r8\sectionmark "1.B" a4 | d4. cis8 e4 cis8 b8 | a2 a4 a4 | d4. cis8 e4 d8 cis8 | d2~ d8
+        r8 a4 | d4. cis8 e4 cis8 b8 | a2
+        a4 a4 | d4. cis8 e4 d8 cis8 | d2~ d8
       } \break
-      % verse 2
+      \sectionLabel "2.A"
       \repeat volta 2 {
-        r8\sectionmark "2.A" d8 fis8 | a4. fis8 b4 a8 fis8 | d2 d4 b4 | d4( cis8) d8 e4 cis8 b8 | a2 a8
+        r8 d8 fis8 | a4. fis8 b4 a8 fis8 | d2
+        d4 b4 | d4( cis8) d8 e4 cis8 b8 | a2 a8
       }
+      \sectionLabel "2.B"
       \repeat volta 2 {
-        r8\sectionmark "2.B" a4 | d4. cis8 e4 cis8 b8 | a2 a8 a8 fis8 a8 | d4. cis8 e4 d8 cis8 | d2~ d8
+        r8 a4 | d4. cis8 e4 cis8 b8 | a2 a8
+        a8 fis8 a8 | d4. cis8 e4 d8 cis8 | d2~ d8
       }
-      % verse 3
+      \sectionLabel "3.A"
       \repeat volta 2 {
-        a8\sectionmark "3.A" d8 fis8 | a4. fis8 b4 a8 fis8 | d2. b8 b8 | d4.( cis8) e4 cis8 b8 | a2~ a8
+        a8 d8 fis8 | a4. fis8 b4 a8 fis8 | d2.
+        b8 b8 | d4.( cis8) e4 cis8 b8 | a2~ a8
       }
+      \sectionLabel "3.B"
       \repeat volta 2 {
-        r8\sectionmark "3.B" a4 | d4. cis8 e4 cis8 b8 | a2~a8 a8 fis8 a8 | d4. cis8 e4 d8 cis8 | d2 d8
+        r8 a4 | d4. cis8 e4 cis8 b8 | a2~a8
+        a8 fis8 a8 | d4. cis8 e4 d8 cis8 | d2 d8
       } \break
-      % verse 4
+      \sectionLabel "4.A"
       \repeat volta 2 {
-        r8\posectionmark "4.A" d8 fis8 | a4. fis8 b4 a8 fis8 | d2 d4 b4 | d4 cis8 d8 e4 cis8 b8 | a2 a8
+        r8 \pomark d8 fis8 | a4. fis8 b4 a8 fis8 | d2 d4
+        b4 | d4 cis8 d8 e4 cis8 b8 | a2 a8
       }
+      \sectionLabel "4.B"
       \repeat volta 2 {
-        r8\sectionmark "4.B" a4 | d4. cis8 e4 cis8 b8 | a2 a8 a8 fis8 a8 | d4.( cis8) e4 d8 cis8 | d2 d8
+        r8 a4 | d4. cis8 e4 cis8 b8 | a2 a8
+        a8 fis8 a8 | d4.( cis8) e4 d8 cis8 | d2 d8
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
@@ -888,34 +907,21 @@
       Que~o | tem -- po es -- tá fin -- | da -- do;
       E pra de -- | pois não tem mais | jei -- to.
     }
+    verseChords = \chordmode {
+      \repeat volta 2 { % part A
+        s4. | \once \set chordChanges = ##f d2 \parenthesize b:m | d1
+        | b2:m e2:m | a2:7~ a8:7
+      }
+      \repeat volta 2 { % part B
+        s4. | d2 e2:m | a1
+        | d2 a:7 | d2~ d8
+      }
+    }
     theChords = \chordmode {
-      \repeat volta 2 {
-        s4. | \once \set chordChanges = ##f d2 \parenthesize b:m | d1 | b2:m e2:m | a2:7~ a8:7
-      }
-      \repeat volta 2 {
-        s4. | d2 e2:m | a1 | d2 a:7 | d2~ d8
-      }
-      % verse 2, copied from verse 1
-      \repeat volta 2 {
-        s4. | \once \set chordChanges = ##f d2 \parenthesize b:m | d1 | b2:m e2:m | a2:7~ a8:7
-      }
-      \repeat volta 2 {
-        s4. | d2 e2:m | a1 | d2 a:7 | d2~ d8
-      }
-      % verse 3, copied from verse 1
-      \repeat volta 2 {
-        s4. | \once \set chordChanges = ##f d2 \parenthesize b:m | d1 | b2:m e2:m | a2:7~ a8:7
-      }
-      \repeat volta 2 {
-        s4. | d2 e2:m | a1 | d2 a:7 | d2~ d8
-      }
-      % verse 4, copied from verse 1
-      \repeat volta 2 {
-        s4. | \once \set chordChanges = ##f d2 \parenthesize b:m | d1 | b2:m e2:m | a2:7~ a8:7
-      }
-      \repeat volta 2 {
-        s4. | d2 e2:m | a1 | d2 a:7 | d2~ d8
-      }
+      \verseChords % v1
+      \verseChords % v2
+      \verseChords % v3
+      \verseChords % v4
     }
     \layout { #(layout-set-staff-size 11) } % for better fit
     \include "tex/lp-include-tail.ly"
