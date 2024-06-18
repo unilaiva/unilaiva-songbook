@@ -532,146 +532,117 @@
   \audio[key=D]{https://www.nossairmandade.com/hymn/1065/TomoDaime}
   \newchords{chords_tomodaime_a}\newchords{chords_tomodaime_b}
   \mnbeginchorus\memorize[chords_tomodaime_a]
-    \[^\mn{/}]Eu |\[\mnc{C}C]tomo \[\bm]Dai\[^\mn{A}]me eu |\[^\mn{C}]tomo \[\bm]Daime \altchords{\id[1]{D}|D | \e}
-    |\[\mnc{E}Am]Não tenho \[\bm]me\[^\mn{D}]do |\[\mnc{F}F]de \[^\mn{D}]to\[\bmc\mnc{B}G]mar \altchords{|Bm |G A}
+    \[^\mnvii{A}{B}]Eu |\[\mnc{C}C]tomo \[\bm]Dai\[^\mn{A}]me eu |\[^\mn{C}]tomo \[\bm]Daime \altchords{\id[1]{D}|D | \e}
+    |\[\mnc{E}Am]Não tenho \[\bm]me\[^\mn{D}]do |\[\mnc{F}F]de \[^\mn{D}]to\[\mnc{B}G]mar \altchords{|Bm |G A}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_tomodaime_b]
     |\[\mnc{E}C]Eu es\[\bm]tan\[^\mn{D}]do |\[\mnc{F}F]com \[^\mn{D}]meu \[\mnc{B}G]Mestre \altchords{|D |G A}
     |\[\mnc{A}Am]Ne\[^\mn{C}]le eu \[\bm]pos\[^\mn{A}]so |\[\mnc{C}C]me fir\[\bm]mar \altchords{|Bm |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_tomodaime_a]
-    Eu |^tomo ^Daime eu |tomo ^Daime
+    \noteson\[\mnvii{A}{B}]Eu\notesoff{} |^tomo ^Daime eu |tomo ^Daime
     |^Tomo ^para |^via^jar
-  \endchorus\glueverses\beginchorus\replay[chords_tomodaime_b]
+    \endchorus\glueverses\beginchorus\replay[chords_tomodaime_b]
     |^Ouvir ^muito e |^falar ^pouco
     |^Pra co^nhecer |^meus ca^boclos
   \endchorus
   \beginchorus\replay[chords_tomodaime_a]
-    Eu |^tomo ^Daime eu |tomo ^Daime \altchords{\id[2]{MK (C/Am)}|Am | \e}
+    \noteson\[\mnvii{A}{B}]Eu\notesoff{} |^tomo ^Daime eu |tomo ^Daime \altchords{\id[2]{MK (C/Am)}|Am | \e}
     |^Porque ^acho |^bom to^mar \altchords{|C |Dm E}
-  \endchorus\glueverses\beginchorus\replay[chords_tomodaime_b]
-    Não |^exis^te na|^da di^fícil \altchords{|Am |Dm E}
+    \endchorus\glueverses\beginchorus\replay[chords_tomodaime_b]
+    \noteson\[\mnvii{B}{C}]Não\notesoff{} |^exis^te na|^da di^fícil \altchords{|Am |Dm E}
     |^Se com o ^Mestre |^se fir^mar \altchords{|Am | \e}
   \endchorus
   \beginchorus\replay[chords_tomodaime_a]
     |^Eu a^qui vou |via^jando
     |^Por a^qui tenho |^que se^guir
-  \endchorus\glueverses\beginchorus\replay[chords_tomodaime_b]
-    Es|^tou con^vidan|^do sor^rindo
+    \endchorus\glueverses\beginchorus\replay[chords_tomodaime_b]
+    \noteson\[\mnvii{B}{C}]Es\notesoff{}|^tou con^vidan|^do sor^rindo
     E |^comi^go nin|^guém quer ^ir \tonextsongmark
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Tomo Daime"
+    %   composer = "Tetéo"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 8
-      a8\posectionmark "A"
+      \sectionLabel "A"
       \repeat volta 2 {
+        << \parenthesize a8 \pomark \once\set minimumFret = #5 \parenthesize \single\altcol b8 \altmark "ii" >>
         | c4 c c4. a8 | c4 c c4. c8
-        | e4 e8( e8) e4 d8( d8)
-      } \alternative {
-        { | f4 d4 b4. \parenthesize b8 }
-        { | f'4 d4 b4. \parenthesize b8 \sectionmark "B" }
+        | e4 e8( e8) e4 d8( d8) | f4 d4 b4.
       }
+      \sectionLabel "B"
       \repeat volta 2 {
+        << \parenthesize b8 \parenthesize \single\altcol c8 \altmark "ii" >>
         | e4 e e d | f d b4. b8
-        | a4 c c a
-      } \alternative {
-        { | c4 c c4. \parenthesize c8 }
-        { | c4 c c4. \parenthesize a8 }
+        | a4 c c a | c4 c c4.
       }
-      \bar "|."
+      \fine
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
-      Eu
+      \set stanza = "1.A"
       \repeat volta 2 {
-        | to -- mo Dai -- me~eu | to -- mo Dai -- me;
-        | Não te -- nho me -- do __ _
-      } \alternative {
-        { | de to -- mar. Eu}
-        { | de to -- mar. \skip 1 }
+        Eu | to -- mo Dai -- me~eu | to -- mo Dai -- me;
+        | Não te -- nho me -- do __ _ | de to -- mar.
       }
       \repeat volta 2 {
         \set stanza = "1.B"
-        | Eu es -- tan -- do | com meu Mes -- tre;
-        | Ne -- le~eu pos -- so
-      } \alternative {
-        { | me fir -- mar. \skip 1  }
-        { | me fir -- mar. \set stanza = "2." Eu }
+        "" | Eu es -- tan -- do | com meu Mes -- tre;
+        | Ne -- le~eu pos -- so | me fir -- mar.
       }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
-      \skip 1
+      \set stanza = "2.A"
       \repeat volta 2 {
-        | to -- mo Dai -- me~eu | to -- mo Dai -- me;
-        | To -- mo __ _ pa -- ra __ _
-      } \alternative {
-        { | vi -- a -- jar. Eu }
-        { | vi -- a -- jar. \skip 1 }
+        Eu | to -- mo Dai -- me~eu | to -- mo Dai -- me;
+        | To -- mo __ _ pa -- ra __ _ | vi -- a -- jar.
       }
       \repeat volta 2 {
         \set stanza = "2.B"
-        | Ou -- vir mui -- to~e | fa -- lar pou -- co;
-        | Pra co -- nhe -- cer
-      } \alternative {
-        { | meus ca -- boclos. \skip 1 }
-        { | meus ca -- boclos. \set stanza = "3." Eu}
+        "" | Ou -- vir mui -- to~e | fa -- lar pou -- co;
+        | Pra co -- nhe -- cer | meus ca -- boclos.
       }
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
-      \skip 1
+      \set stanza = "3.A"
       \repeat volta 2 {
-        | to -- mo Dai -- me~eu | to -- mo Dai -- me;
-        | Por -- que __ _ a -- cho __ _
-      } \alternative {
-        { | bom to -- mar. Eu }
-        { | bom to -- mar. \set stanza = "3.B" Não }
+        Eu | to -- mo Dai -- me~eu | to -- mo Dai -- me;
+        | Por -- que __ _ a -- cho __ _ | bom to -- mar.
       }
+      \set stanza = "3.B"
       \repeat volta 2 {
-        | e -- xis -- te na -- | da di -- fí -- cil
-        | Se com~o Mes -- tre
-      } \alternative {
-        { | se fir -- mar. Não}
-        { | se fir -- mar. \skip 1 }
+        Não | e -- xis -- te na -- | da di -- fí -- cil
+        | Se com~o Mes -- tre | se fir -- mar.
       }
     }
     theLyricsFour = \lyricmode {
-      \set stanza = "4."
-      \skip 1
+      \set stanza = "4.A"
       \repeat volta 2 {
-        | Eu a -- qui vou | vi -- a -- jan -- do;
-        | Por a -- _ qui te -- nho
-      } \alternative {
-        { | que se -- guir. \skip 1 }
-        { | que se -- guir. \set stanza = "4.B" Es -- }
+        "" | Eu a -- qui vou | vi -- a -- jan -- do;
+        | Por a -- _ qui te -- nho | que se -- guir.
       }
+      \set stanza = "4.B"
       \repeat volta 2 {
-        | tou con -- vi -- dan -- | do sor -- rin -- do;~E
-        | co -- mi -- go nin --
-      } \alternative {
-        { | guém quer ir. Es}
-        { | guém quer ir. }
+        Es -- | tou con -- vi -- dan -- | do sor -- rin -- do;~E
+        | co -- mi -- go nin -- | guém quer ir.
       }
     }
     theChords = \chordmode {
-      s8
       \repeat volta 2 {
-        | c1 | c1
-        | a1:m
-      } \alternative {
-        { | f2 g2 }
-        { | f2 g2 }
+        s8 | c1 | c1
+        | a1:m | f2 g4.
       }
       \repeat volta 2 {
-        | c1 | f2 g2
-        | a1:m
-      } \alternative {
-        { | c1 }
-        { | c1 }
+        s8 | c1 | f2 g2
+        | a1:m | c2~4.
       }
     }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
@@ -687,6 +658,10 @@
     Through this way I go traveling, through here I must follow
     I am inviting smiling, and with me no one wants to go
   \end{translation}
+  \vfill
+  \beginverse \noteson % first line of the next hino
+    \hfill\tonextsongmark \hfill |\[\mnc{G}C]O Dai\[\bmc\mn{C}]me \[^\mn{G}]me |ba\[^\mn{E}]lan\[\bmc\mn{G}]çou
+  \endverse
 \endsong
 
 
