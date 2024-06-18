@@ -697,23 +697,32 @@
     |^Para ^mim po|^der che^gar \altchords{|C |Am G}
     |^No lu^gar a|^onde es^tou \altchords{|C |G7 C}
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "O Daime Me Balançou"
+    %   composer = "Tetéo"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative g'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 8
+      \sectionLabel "A"
       \repeat volta 2 {
-        \parenthesize g8\sectionmark "A"
-        | g4_\pomark g c g | g e g4. \parenthesize c,8
+        \parenthesize g8 \pomark
+        | g4 g c g | g e g4. \parenthesize \single\altcol c,8 \altmark "3., 4."
         | c4 c e c | a g g4.
       } \break
+      \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize c8 \sectionmark "B"
+        \parenthesize c8
         | c4 c4 e4 c4 | a4 g g4. \parenthesize c8
         | c4 c4 e4 c4 | d4 b c4.
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1."
+      \set stanza = "1.A"
       \repeat volta 2 {
         \skip 1 | O Dai -- me me | ba -- lan -- çou;
         \skip 1 | O Dai -- me me | se -- gu -- rou.
@@ -725,7 +734,7 @@
       }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2."
+      \set stanza = "2.A"
       \repeat volta 2 {
         Me | con -- cen -- trei no | Pre -- si -- den -- \skip 1 | te;~E
         lo -- go E -- | le che -- gou.
@@ -737,9 +746,9 @@
       }
     }
     theLyricsThree = \lyricmode {
-      \set stanza = "3."
+      \set stanza = "3.A"
       \repeat volta 2 {
-        Fi -- | quei a -- le -- gre~e | sa -- tis -- fei -- to;~Em
+        Fi -- | quei a -- le -- gre~e | sa -- tis -- fei -- \altcol to;~Em
         | co -- nhe -- cer o | seu va -- lor.
       }
       \set stanza = "3.B"
@@ -749,9 +758,9 @@
       }
     }
     theLyricsFour = \lyricmode {
-      \set stanza = "4."
+      \set stanza = "4.A"
       \repeat volta 2 {
-        \skip 1 | Pe -- di con -- for -- | to~a meu Mes -- tre;~E
+        \skip 1 | Pe -- di con -- for -- | to~a meu Mes -- \altcol tre;~E
         | a Vir -- gem que | me le -- vou.
       }
       \set stanza = "4.B"
@@ -768,6 +777,7 @@
         s8 | c1 | f2 g | c1 | g2:7 c4.
       }
     }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
