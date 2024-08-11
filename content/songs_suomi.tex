@@ -2151,6 +2151,116 @@
 \endsong
 
 
+\beginsong{Käy neitoa kaksi}[by={trad.}, ex={Åland}, key={Am}, gk={Am, Gm--Bm}]
+  \newchords{chords_kayneitoakaksi_a}\newchords{chords_kayneitoakaksi_b}
+  \ifchorded%
+    \beginverse
+      \musicnotefornext{intro:}*
+      {\nolyrics
+        |\[Am] \[\bm] |\[G/A] \[\bm] |\[Am] \[\bm] |\[G/A] \[\bm]
+      }
+    \endverse
+  \fi%
+  \mnbeginverse\memorize[chords_kayneitoakaksi_a]
+    \[^\mn{A}]Käy |\[Am]nei\[\bmc\mn{C}]to\[^\mn{D}]a |\[^\mn{E}]kak\[\bmc\mn{C}]si nyt |\[\mnc{D}Dm]ruu\[^\mn{F}]su\[\mnc{E}Am]laak\[^\mn{C}]so|\[\mnc{D}Dm]hon,\[\bm]
+    he |po\[^\mn{E}]i\[\bmc\mn{F}]mi\[^\mn{G}]vat |\[^\mn{A}]kuk\[\bmc\mn{G}]ki\[^\mn{F}]a |\[\mncii{C}{E}Am]leh\[\bm]don. |{ }{ } \[\bm] \e
+    \mnendverse\glueverses\mnbeginchorus\memorize[chords_kayneitoakaksi_b]
+    \[^\mn{E}]Se |\[\mnc{A}F]toinen \[\bmc\mn{F}]on \[^\mn{E}]niin |\[\mnc{D}G\mn{E}]sy\[\bmc\mn{F}\mn{A}]dä|\[\mnc{G}Cmaj7]mes\[^\mn{F}]tä \[\bmc\mnc{E}]{i-loi}|\[\mnc{C}Am]nen,\[\bm]
+    \[^\mn{E}]se |\[\mnc{A}F]toinen \[\bmc\mn{C}]on \[^\mn{D}]niin |\[\mnc{E}Am]surui\[\bmc\mn{C}]nen ja |\[\mnc{B}E]huo\[\mnc{A}Am]kaa. |{ }{ } \[\bm] \e
+  \mnendchorus
+  \notesoff
+  \beginverse\replay[chords_kayneitoakaksi_a]
+    Se |^ri^kas nyt |köy^hälle |^lau^suvi |^näin:^
+    nyt |mik^si sä |mur^heisna |^huo^kaat? |{ }{ } ^ \e
+    \endverse\glueverses\mnbeginchorus\replay[chords_kayneitoakaksi_b]
+    Oi, |^mureh^ditko |^isää^si vai |^äiti^äsi |^noin,^
+    vai |^kado^titko |^syöm^mesi |^hel^län? |{ }{ } ^ \e
+  \endchorus
+  \beginverse\replay[chords_kayneitoakaksi_a]
+    En |^i^sää, en |äi^tiä |^mu^rehdi |^näin,^
+    en |täh^tensä |mur^heisna |^huo^kaa, |{ }{ } ^ \e
+    \endverse\glueverses\mnbeginchorus\replay[chords_kayneitoakaksi_b]
+    vaan |^mu^rehdin |^kauno^kaista |^nuo^rukais|^ta, ^
+    ken |^molem^mille |^meil^le on |^rak^kain. |{ }{ } ^ \e
+    \endchorus\glueverses\beginverse\noteson
+    \[\mn{A}]Se |\[\mnc{B}E]rak\[\mnc{A}Am]kain. |{ }{ }\[\bm] \ifchorded |{ }{ }\[\bm] |\[G/A]\[\bm] |\[Am]\[\bm] |\[G/A]\[\bm] |\[Am]\[\bm] \fi
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-08
+    % \header {
+    %   title = "Käy neitoa kaksi"
+    %   composer = "trad."
+    % }
+    %% https://nossairmandade.com/hymn/2496
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      %#(for-each (lambda (x) (ly:expect-warning "No string for pitch")) (iota 3))
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4
+      | r1 | r1 | r1 | r2.
+      \repeat segno 3 {
+        a4 | a2 c4 d | e2 c4 c | d( f) e c | d2. \slurSolid
+        d4 | d( e) f g | a2 g4 f | c( e) e2 | r2.
+        \repeat volta 2 { \slurDashed
+          e4 | a( a) f e | d( e) f( a) | g4. f8 e4 e | c2.
+          b4 | a a c d | e( e) c c | b2 a2 | r2.
+        }
+      } \slurSolid
+      a4 | b2 a2( | a1) | r1 | r | r | r | r
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 3 {
+        \set stanza = "1.A"
+        Käy | nei -- to -- a | kak -- si nyt | ruu -- su -- laak -- so -- | hon,
+        he | poi _ -- mi -- vat | kuk -- ki -- a | leh _ -- don. % |
+        \set stanza = "1.B"
+        \repeat volta 2 {
+          Se | toi -- nen on niin | sy _ -- dä _ -- | mes -- tä i -- loi -- | nen,
+          se | toi -- nen on niin | su -- rui -- nen ja | huo -- kaa. % |
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \repeat segno 3 {
+        \set stanza = "2.A"
+        Se | ri -- kas nyt | köy -- häl -- le | la -- u -- su -- vi | näin:
+        nyt | mik _ -- si sä | mur -- heis -- na | huo _ -- kaat? % |
+        \set stanza = "2.B"
+        \repeat volta 2 {
+          Oi, | mu -- reh -- dit -- ko | i -- sää -- si vai | äi -- ti -- ä -- si | noin,
+          vai | ka -- do -- tit -- ko | sy -- öm -- me -- si | hel -- län? % |
+        }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \repeat segno 3 {
+        \set stanza = "3.A"
+        En | i -- sää, en | äi -- ti -- ä | mu _ -- reh -- di | näin,
+        en | täh _ -- ten -- sä | mur -- heis -- na | huo _ -- kaa, % |
+        \set stanza = "3.B"
+        \repeat volta 2 {
+          vaan | mu _ -- reh -- din | kau -- no -- kais -- ta | nu -- o -- ru -- kais -- | ta,
+          ken | mo -- lem -- mil -- le | meil _ -- le on | rak -- kain. % |
+        }
+      }
+      Se | rak -- kain. | _
+    }
+    theChords = \chordmode {
+      | a1:m | g/a | a:m | g2./a~
+      \repeat segno 3 {
+        4 | a1:m | a:m | d2:m a:m | d1:m | d:m | d:m | a:m | a2.:m~
+        \repeat volta 2 {
+          4 | f1 | g | c:maj7 | a:m | f | a:m | e2 a:m~ | a2.:m~
+        }
+      }
+      4 | e2 a2:m | a1:m | a:m | g/a | a:m | g/a | a2:m
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}
