@@ -2076,6 +2076,81 @@
 \endsong
 
 
+\beginsong{Yksi ruusu on kasvanut laaksossa}[by={trad. (lyr. Kaarle Krohn)}, key={Dm}, gk={C\shrp{}m, Cm--C\shrp{}m}]
+  \newchords{chords_yksiruusu_a}\newchords{chords_yksiruusu_b}
+  \mnbeginverse\memorize[chords_yksiruusu_a]
+    \[^\mn{A}]Yksi |\[\mnc{F}Dm]ruusu \[^\mn{E}]on \[\mnc{D}Gm]kas\[^\mn{E}]va\[^\mn{F}]nut |\[\mnc{D}Dm]laak\[^\mn{A}]sos\[\bm]sa \altchords{\id[1]{(C\shrp{}m)}|C\shrp{}m F\shrp{}m |C\shrp{}m}
+    \[^\mn{A}]ja se |\[F]kau\[^\mn{C}]niisti \[\mnc{G}C7]ku\[^\mn{B&}]kois|\[\mnc{A}F]taa. \[A7] \altchords{|E B7 |E G\shrp{}7}
+    \mnendverse\glueverses\mnbeginchorus\memorize[chords_yksiruusu_b]
+    \[^\mn{A}]Yksi |\[Dm \up{2}(F)]kulkija\[\mncii{C}{B&}C]poi\[^\mn{G}]ka \[^\mn{B&}]on |\[\mnc{A}F]näh\[^\mn{D}]nyt \[B&]sen \altchords{|C\shrp{}m \up{2}/(E) B |E A}
+    \[^\mn{A}]eikä |\[\mnc{G}Gm]voi \[^\mn{F}]si\[^\mn{E}]tä \[\mnc{A}A7]un\[^\mn{C#}]hoit|\[\mnc{D}Dm]taa. \[\bm] \altchords{|F\shrp{}m G\shrp{}7 |C\shrp{}m}
+  \mnendchorus
+  \notesoff
+  \beginverse\replay[chords_yksiruusu_a]
+    Ja sen |^olisi ^kyllä hän |^poimi^nut \altchords{\id[2]{(Bm)}|Bm Em |Bm}
+    ja sen |^painanut ^povel|^leen, ^ \altchords{|D A7 |D F\shrp{}7}
+  \endverse\glueverses\beginchorus\replay[chords_yksiruusu_b]
+    mutta |^köyhänä ^ei ole |^tohti^nut, \altchords{|Bm \up{2}(D) A |D G}
+    vaan on |^jättänyt ^paikoil|^leen. ^ \altchords{|Em F\shrp{}7 |Bm}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-08
+    % \header {
+    %   title = "Yksi ruusu on kasvanut laaksossa"
+    %   composer = "trad."
+    %   poet = "Kaarle Krohn"
+    % }
+    %% https://nossairmandade.com/hymn/2496
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'()
+      \slurSolid
+      \key d \minor \time 4/4 \partial 4
+      \sectionLabel "A"
+      a8 a | f'4 f8 e d4 e8 f8 | d4. a8 a4 a'8 a
+      | a4 c8 c g4 bes | a2.
+      \sectionLabel "B"
+      \repeat volta 2 {
+        a8 a8
+        | a4 a8 a8 c8( bes) g bes
+        | a4. d,8 d4 a'8 a | g4 f8 e8 a,4 cis4 | d2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Yk -- si | ruu -- su on kas -- va -- nut | laak -- sos -- sa
+      ja se | kau -- niis -- ti ku -- kois -- | taa.
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Yk -- si | kul -- ki -- ja -- poi _ -- ka on | näh -- nyt sen
+        ei -- kä | voi si -- tä un -- hoit -- | taa.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Ja sen | o -- li -- si kyl -- lä hän | poi -- mi -- nut
+      ja sen | pai -- na -- nut po -- vel -- | leen,
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        mut -- ta | köy -- hä -- nä ei __ _ o -- le | toh -- ti -- nut,
+        vaan on | jät -- tä -- nyt pai -- koil -- | leen.
+      }
+    }
+    theChords = \chordmode {
+      s4 | d2:m g:m | d1:m
+      | f2 c:7 | f a4:7
+      \repeat volta 2 {
+        s4 | d2:m/f c | f bes
+        | g:m a:7 | d2.:m
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 % \beginsong{O Kriste, kunnian kuningas}
 %   \audio[key=Am]{https://www.youtube.com/watch?v=P_elenZRgAA}
 %   \newchords{chords_okriste_a}\newchords{chords_okriste_b}
