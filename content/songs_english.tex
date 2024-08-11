@@ -636,6 +636,11 @@
 \endsong
 
 
+\begin{intersong}
+  \imagecc[2]{heart_by_larva__789px.png}
+\end{intersong}
+
+
 \scleardpage
 \beginsong{The Heart's Song}[by={Minna Pyhälä}, ph={III}, tags={heart}, key={G}, gk={A, G\shrp{}--D}]
   \audio[key={F\shrp{m}m},pitch={432}]{https://soundcloud.com/spirit-sings-minna/a-hearts-song-minna}
@@ -747,9 +752,69 @@
 \endsong
 
 
-\begin{intersong}
-  \imagecc[1]{heart_by_larva__789px.png}
-\end{intersong}
+\beginsong{Healing Song}[by={Kailash Kokopelli},tags={health}, ph={III}, key={G}, gk={G, G--D}]
+  \mnbeginchorus
+    \[\mn{G}]My \[\bm]Body \[\mn{A}]is |\[\mnc{B}G]hea\[\mn{A}]ling it|\[\mn{G}]self, my \[\mn{A}]Body is |\[\mn{G}]strong | \e
+    \mnendchorus\glueverses\mnbeginverse
+    |\[\mnc{C}C]Healing, |\[\mn{E}]my Body \[\mn{D}]is |\[\mnc{B}G]heali\[\mn{A}\mn{G}\mn{B}]ng | \e
+    \[\mn{G}]My Body \[\mn{A}]is |\[\mnc{B}]hea\[\mn{A}]ling it|\[\mn{G}]self, my \[\mn{A}]Body is |\[\mn{G}]strong | \e
+  \mnendverse
+  \beginchorus
+    \textbf{My Spirit} is |\[G]healing my |body, \textbf{my Spirit} is |strong | \e
+    \endchorus\glueverses\beginverse
+    |\[C]Healing, |\textbf{my Spirit} is |\[G]healing | \e
+    \textbf{My Spirit} is |healing my |body, \textbf{my Spirit} is |strong | \e
+  \endverse
+  \vspace{1ex}
+  \beginverse\chordsoff\bfseries
+    My Soul\ldots
+    My Love\ldots
+    The Sun\ldots
+    The Moon\ldots
+    The Stars\ldots
+    The Earth\ldots
+    The Water\ldots
+    The Air\ldots
+    The Fire\ldots
+    You\ldots
+    I\ldots
+    This song\ldots
+  \endverse
+  \showlilypondfalse % to save space
+  % Present the melody on a staff using Lilypond
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-06
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 2.
+      \repeat volta 2 {
+        g4 g8( g) a4 | b2 a4 a4 | g8( g8) g4 a8( a8) a4 | g1~ | g4
+      } \break
+      r2. | c2 c2~ | c4 c4 c8( c8) c4 | b2 \once\slurSolid b8( a g b8~) | b4
+      g4 g8( g) a4 | b2 a4 a4 | g8( g8) g4 a8( a8) a4 | g1~ | g4 \bar "|."
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      %\repeat volta 2 { % skip repeat here as it creates a problem with some lp versions
+        My Bo -- dy is | hea -- ling it -- | self, __ _
+        my Bo -- dy is | strong. | _
+      %}
+      | Hea -- ling, | _
+      my Bo -- dy is | hea -- ling; _ _ _ | _
+      My Bo -- dy is | hea -- ling it -- | self, __ _
+      my Bo -- dy is | strong. | _
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2. | g1 | g | g | g4
+      }
+      s2. | c1 | c1 | g1 | g | g | g | g4
+    }
+    %\layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
 
 
 \beginsong{Celestial Heart}[by={Nick Barber},ph={III},key=Am,gk={Bm, Gm--C\shrp{}m}]
@@ -2022,69 +2087,4 @@
 %%% Please try to not change the song numbers above this point. %%%
 %%% Add new songs only after this point.                        %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\beginsong{Healing Song}[by={Kailash Kokopelli},tags={health}, ph={III}, key={G}, gk={G, G--D}]
-  \mnbeginchorus
-    \[\mn{G}]My \[\bm]Body \[\mn{A}]is |\[\mnc{B}G]hea\[\mn{A}]ling it|\[\mn{G}]self, my \[\mn{A}]Body is |\[\mn{G}]strong | \e
-    \mnendchorus\glueverses\mnbeginverse
-    |\[\mnc{C}C]Healing, |\[\mn{E}]my Body \[\mn{D}]is |\[\mnc{B}G]heali\[\mn{A}\mn{G}\mn{B}]ng | \e
-    \[\mn{G}]My Body \[\mn{A}]is |\[\mnc{B}]hea\[\mn{A}]ling it|\[\mn{G}]self, my \[\mn{A}]Body is |\[\mn{G}]strong | \e
-  \mnendverse
-  \beginchorus
-    \textbf{My Spirit} is |\[G]healing my |body, \textbf{my Spirit} is |strong | \e
-    \endchorus\glueverses\beginverse
-    |\[C]Healing, |\textbf{my Spirit} is |\[G]healing | \e
-    \textbf{My Spirit} is |healing my |body, \textbf{my Spirit} is |strong | \e
-  \endverse
-  \vspace{1ex}
-  \beginverse\chordsoff\bfseries
-    My Soul\ldots
-    My Love\ldots
-    The Sun\ldots
-    The Moon\ldots
-    The Stars\ldots
-    The Earth\ldots
-    The Water\ldots
-    The Air\ldots
-    The Fire\ldots
-    You\ldots
-    I\ldots
-    This song\ldots
-  \endverse
-  \showlilypondfalse % to save space
-  % Present the melody on a staff using Lilypond
-  \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-06
-    \include "tex/lp-include-head.ly"
-    theMelody = \relative g' {
-      \set melismaBusyProperties = #'() \slurDashed
-      \key g \major \time 4/4 \partial 2.
-      \repeat volta 2 {
-        g4 g8( g) a4 | b2 a4 a4 | g8( g8) g4 a8( a8) a4 | g1~ | g4
-      } \break
-      r2. | c2 c2~ | c4 c4 c8( c8) c4 | b2 \once\slurSolid b8( a g b8~) | b4
-      g4 g8( g) a4 | b2 a4 a4 | g8( g8) g4 a8( a8) a4 | g1~ | g4 \bar "|."
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "1."
-      %\repeat volta 2 { % skip repeat here as it creates a problem with some lp versions
-        My Bo -- dy is | hea -- ling it -- | self, __ _
-        my Bo -- dy is | strong. | _
-      %}
-      | Hea -- ling, | _
-      my Bo -- dy is | hea -- ling; _ _ _ | _
-      My Bo -- dy is | hea -- ling it -- | self, __ _
-      my Bo -- dy is | strong. | _
-    }
-    theChords = \chordmode {
-      \repeat volta 2 {
-        s2. | g1 | g | g | g4
-      }
-      s2. | c1 | c1 | g1 | g | g | g | g4
-    }
-    %\layout { #(layout-set-staff-size 14) } % for better fit
-    \include "tex/lp-include-tail-notab.ly"
-  \end{lilypond}\end{lilywrap}
-\endsong
 
