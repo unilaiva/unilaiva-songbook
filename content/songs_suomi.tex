@@ -130,6 +130,83 @@
 \endsong
 
 
+\beginsong{Kalevalainen vieraan tervehdys}[index={Kamanat kohottukohot}, by={Ilmari Hannikainen}, ex={Kalevala 21: 137--144}, ph={I}, key={C}, gk={D, C--D}]
+  \meter{2}{4}
+  \mnbeginverse
+    |\[\mnc{G}C]Kama|\[^\mn{C}]nat \[^\mn{D}]ko|\[^\mn{E}]hot\[^\mn{G}]tu|\[\mnc{D}G]ko|hot \altchords{\id[1]{(D)}|D | - | - |A | \e}
+    |\[\mnc{F}F]lakin |\[\mnc{E}C]pääs\[^\mn{C}]tä |\[\mnc{D}G]las\[^\mn{E}]ke|\[\mnc{C}C]mat|ta, \altchords{|G |D |A |D | \e}
+    |\[^\mn{G}]kynnyk|\[^\mn{C}]set \[^\mn{D}]a|\[^\mn{E}]len\[^\mn{C}]tu|\[\mnc{D}G]ko|hot \altchords{| - | - | - |A | \e}
+    |\[\mnc{F}F]kengän |\[\mnc{E}C]kan\[^\mn{C}]nan |\[\mnc{D}G]kos\[^\mn{E}]ke|\[\mnc{C}C]mat|ta, \altchords{|G |D |A |D | \e}
+    |\[\mnc{A}F]pihti|puolet |\[^\mn{F}\mn{G}]vält\[^\mn{A}]ty|\[\mnc{G}G]kö|höt, \altchords{|G | - | - |A | \e}
+    |\[\mnc{F}F]ovet |\[\mnc{E}C]il\[^\mn{C}]man |\[^\mn{E}]au\[^\mn{G}]et|\[\mnc{D}G]ko|hot \altchords{|G |D | - |A | \e}
+    |\[\mnc{C}C]vieraan |\[\mnc{D}G]tulles|\[\mnc{E}C]sa \[^\mn{G}]tu|\[\mnc{D}Dm]pa|\[^\mn{E}\mn{F}]han, \altchords{|D |A |D |Em | \e}
+    |\[\mnc{G}G]as\[^\mn{A}]tu|\[^\mn{G}]es\[^\mn{E}]sa |\[\mnc{D}G7]ai\[^\mn{E}]mo |\[\mnc{C}C]mie|hen! \altchords{|A | - |A7 |D | \e}
+  \mnendverse
+  \notesoff
+  \beginverse
+    |^Harvoin |yhte|hen y|^hym|me,
+    |^saamme |^toinen |^toisi|^him|me
+    |näillä |Väinö|län a|^hoil|la,
+    |^Kale|^valan |^kanka|^hil|la.
+    |^Terve |tänne |tultu|^an|ne,
+    |^suuri |^valta|viera|^ham|me,
+    |^juhla|^hetkem|^me i|^lok|si,
+    |^päivän |kuulun |^kunni|^ak|si!
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-11
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \key c \major \time 2/4
+      \set melismaBusyProperties = #'() \slurSolid
+      | g4 g | c d | e g | d2 | d2
+      | f4 f | e c | d e | c2 | c2
+      | g4 g | c d | e c | d2 | d2
+      | f4 f | e c | d e | c2 | c2
+      | a'4 a | a a | f8( g) a4 | g2 | g2
+      | f4 f | e c | e g | d2 | d2
+      | c4 c | d d | e g | d2
+      | e4( f) | g a | g e | d e | c2 | c2
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Ka -- ma -- | nat ko -- | hot -- tu -- | ko -- | hot
+      | la -- kin | pääs -- tä | las -- ke -- | mat -- | ta,
+      | kyn -- nyk -- | set a -- | len -- tu -- | ko -- | hot
+      | ken -- gän | kan -- nan | kos -- ke -- | mat -- | ta,
+      | pih -- ti -- | puo -- let | vält -- _ ty -- | kö -- | höt,
+      | o -- vet | il -- man | au -- et -- | ko -- | hot
+      | vie -- raan | tul -- les -- | sa tu -- | pa -- | han, _
+      | as -- tu -- | es -- sa | ai -- mo | mie -- | hen!
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Har -- voin | yh -- te -- | hen y -- | hym -- | me,
+      | saam -- me | toi -- nen | toi -- si -- | him -- | me
+      | näil -- lä | Väi -- nö -- | län a -- | hoil -- | la,
+      | Ka -- le -- | va -- lan | kan -- ka -- | hil -- | la.
+      | Ter -- ve | tän -- ne | tul -- _ tu -- | an -- | ne,
+      | suu -- ri | val -- ta -- | vie -- ra -- | ham -- | me,
+      | juh -- la -- | het -- kem -- | me i -- | lok -- | si, _
+      | päi -- vän | kuu -- lun | kun -- ni -- | ak -- | si!
+    }
+    theChords = \chordmode {
+      | c2 | c | c | g | g
+      | f | c | g | c | c
+      | c | c | c | g | g
+      | f | c | g | c | c
+      | f | f | f | g | g
+      | f | c | c | g | g
+      | c | g | c | d:m | d:m
+      | g | g | g:7 | c | c
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 \beginsong{Laulu oravasta}[by={Otto Kotilainen, Aleksis Kivi}, key={Dm}, gk={Dm, Dm--Em}]
   % NOTE: this is based on the version by Aapo Similä
   \transpose{5} % transpose to Dm: then lowest note is G, the highest A
@@ -850,6 +927,95 @@
 \endsong
 
 
+\beginsong{Tuuditan tulisoroista}[by={trad.}, key={Am}, gk={Am, Gm--Bm}, tags={uni}]
+  \audio[key=B\flt{}m]{https://www.youtube.com/watch?v=mpHEc8SjfZc}
+  \newchords{chords_tulisoroinen_a}\newchords{chords_tulisoroinen_b}
+  \transpose{5} % from Em to Am
+  \mnbeginverse\memorize[chords_tulisoroinen_a]
+    |\[\mnc{B}Em]Tuuditan \[^\mn{G}]tu|\[\mnc{F#}B]li\[^\mn{B}]so\[\mnc{E}Em]rois\[^\mn{F#}]ta, |\[^\mn{G}]kipunaista \[\mnc{A}D]kiikut|\[\mnc{B}G]te\[\bm]len
+    \mnendverse\glueverses\mnbeginchorus\memorize[chords_tulisoroinen_b]
+    |\[\mnc{B}G]Vaa\[^\mn{E}]lin \[\mn{B}\bm]pien\[^\mn{A}]tä |\[\mnc{G}Em/B]val\[^\mn{B}]ke\[\mnc{E}Em]ais\[^\mn{F#}]ta, |\[^\mn{G}]luojan lasta \[\mnc{F#}B7]liikut|\[\mnc{E}Em]te\[\bm]len
+  \mnendchorus
+  \usealtmncolortrue% use alternate melody note color
+  \beginverse% notes (\mn) in this verse signify the 2nd voice
+    |\[\mnc{B}Em]Tai\[\mn{A}]va\[\mn{G}]hast' \[\mn{E}]on |\[B]lah\[\mn{D#}]ja \[\mnc{E}Em]tul\[\mn{B}]lut, |\[\mn{E}]taivahan tu\[\mnc{D}D]len ki|\[\mnc{G}G]sois\[\bm]ta
+    \endverse\glueverses\beginchorus
+    |\[\mnc{G}G]Luojan \[\bm]lem\[\mn{F#}]men |\[\mnc{E}Em/B]lei\[\mn{B}]kin\[\mnc{E}Em]nöis\[\mn{D#}]tä, |\[\mn{E}]ei vahingon \[\mnc{F#}B7]val\[\mn{D#}]ke|\[\mnc{E}Em]ois\[\bm]ta
+  \endchorus
+  \notesoff
+  \beginverse\replay[chords_tulisoroinen_a]
+    |^Tuudin lasta |^maan va^loksi, |en vahingon ^valke|^ak^si
+    \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
+    |^Tuudin ^toivo|^{jen tu}^leksi, |työn jaloisen ^jatka|^jak^si
+  \endchorus
+  \beginverse\replay[chords_tulisoroinen_a]
+    |^Senpä tuudin |^tuikke^heksi, |tähdeksi tä^hän ta|^lo^hon
+    \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
+    |^Maan hy^väksi |^maine^heksi, |suurionnis^ten i|^lo^hon
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-02
+    \include "tex/lp-include-head.ly"
+    theMelody = \transpose e a \relative b' {
+      \key e \minor \time 4/4 \voiceOne
+      \set melismaBusyProperties = #'() \slurDashed
+      | b4 b b g | fis b e,4. fis8 | g8 g g g a4 a | b2 b2
+      \repeat volta 2 {
+        | b4 e b4. a8 | g4 b e,4. fis8 | g8 g g g fis4 fis | e2 e2
+      }
+    }
+    theMelodyTwo = \transpose e a \relative b' {
+      \key e \minor \time 4/4 \voiceTwo
+      | b4 a g e | e dis e4. b8 | e8 e e e d4 d | g2 g2
+      \repeat volta 2 {
+        | g4 g g4. fis8 | e4 b e4. dis8 | e8 e e e fis4 dis | e2 e2
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      | Tuu -- di -- tan tu -- | li -- so -- rois -- ta, | ki -- pu -- nais -- ta kii -- kut -- | te -- len;
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        | Vaa -- lin pien -- tä | val -- ke -- ais -- ta, | luo -- jan las -- ta lii -- kut -- | te -- len.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      | Tai -- va -- hast' on | lah -- ja tul -- lut, | tai -- va -- han tu -- len ki -- | sois -- ta;
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        | Luo -- jan lem -- men | lei -- kin -- nöis -- tä, | ei va -- hin -- gon val -- ke -- | ois -- ta.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      | Tuu -- din las -- ta | maan va -- lok -- si, | en va -- hin -- gon val -- ke -- | ak -- si;
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        | Tuu -- din toi -- vo -- | jen tu -- lek -- si, | työn ja -- loi -- sen jat -- ka -- | jak -- si.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      | Sen -- pä tuu -- din | tuik -- ke -- hek -- si, | täh -- dek -- si tä -- hän ta -- | lo -- hon;
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        | Maan hy -- väk -- si | mai -- ne -- hek -- si, | suu -- ri -- on -- nis -- ten i -- | lo -- hon.
+      }
+    }
+    theChords = \transpose e a \chordmode {
+      | e1:m | b2 e2:m | e2:m d | g1
+      \repeat volta 2 {
+        | g1 | e2:m/b e2:m | e2:m b:7 | e1:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-multivoice-notab.ly"
+  \end{lilypond}\end{lilywrap}
+  \noendsongvfill % align lp to the bottom
+\endsong
+
+
 \beginsong{Tuuin yössä muukalaista}[by={Neilikka},tags={uni},key={Bm},gk={Cm, Cm--D\shrp{}m}]
   \audio[key=Cm]{https://www.youtube.com/watch?v=OR7YYnrGvPg}
   \meter{3}{4}
@@ -943,6 +1109,109 @@
     Sua |^halajan, sua |^odotan, sä |^Herra maan ja |^taivahan.
     Nyt |^köy^hän ^niin^kuin |^rikkaan ^luo su|^loinen ^joulus |^tuo!
   \endverse
+\endsong
+
+
+\beginsong{Varpunen jouluaamuna}[by={Otto Kotilainen, Z. Topelius}, key={Am}, gk={Am, Gm--Bm}]
+  \meter{3}{4}
+  \mnbeginverse
+    |\[\mnc{A}Am]Lumi \[^\mn{B}]on \[^\mn{C}]jo |\[\mnc{D}Dm]peit\[^\mn{C}]tä\[^\mn{B}]nyt |\[\mnc{C}Am]ku\[^\mn{D}]kat \[^\mn{E}]laak\[^\mn{D}]so|\[\mnc{E}Em]sessa,
+    |\[\mnc{C}Am]järven \[^\mn{D}]aal\[^\mn{E}]to |\[\mnc{F}Dm]jää\[^\mn{E}]ty\[^\mn{D}]nyt |\[\mnc{E}G]tal\[^\mn{F}]vi\[^\mn{G}]pak\[^\mn{D}]ka|\[\mnc{E}C]sessa.
+    |\[\mnc{A}Am]Varpunen |\[\mnc{G}Em]pie\[^\mn{F#}]noi\[^\mn{E}]nen |\[\mnc{G}C]syönyt kesä|\[\mnc{F#}B7]ei\[^\mn{E}]ne\[^\mn{D#}]hen.
+    |\[\mnc{E}Am]Järven \[^\mn{C}]aal\[^\mn{D}]to |\[\mnc{E}E7]jää\[^\mn{D}]ty\[^\mn{E}]nyt |\[\mnc{F}Dm]tal\[^\mn{D}]vi\[^\mn{B}]pak\[^\mn{D}]ka|\[\mnc{A}Am]sessa.
+  \mnendverse
+  \notesoff
+  \beginverse
+    |^Pienen pirtin |^portailla |^{oli tyttö}|^kulta: \altchords{\id[1]{(Bm)}|Bm |Em |Bm |F\shrp{}m}
+    |^tule, varpu, |^riemulla |^ota siemen |^multa! \altchords{|Bm |Em |A |D}
+    |^Joulu on, |^koditon |^varpuseni |^onneton, \altchords{|Bm |F\shrp{}m |D |C\shrp{}7}
+    |^tule tänne, |^riemulla |^ota siemen |^multa! \altchords{|Bm |F\shrp{}7 |Em |Bm}
+  \endverse
+  \beginverse
+    |^Tytön luo nyt |^riemuiten |^riensi varpu|^kulta:
+    |^kiitollisna |^siemenen |^otan kyllä |^sulta.
+    |^Palkita |^Jumala |^kerran tahtoo |^sinua.
+    |^Kiitollisna |^siemenen |^otan kyllä |^sulta.
+  \endverse
+  \beginverse
+    |^En ma ole, |^lapseni, |^lintu tästä |^maasta,
+    |^olen pieni |^veljesi, |^tulin taiva|^hasta.
+    \endverse\glueverses\beginchorus
+    |\[Am]Siemenen |\[Em]pienoisen, |\[C]jonka annoit |\[B7]köyhällen,
+    |\[Am]pieni sai sun |\[E7]veljesi |\[Dm]enkeleitten |\[Am]maasta.
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-01
+    \include "tex/lp-include-head.ly"
+    % \header {
+    %   title = "Varpunen jouluaamuna"
+    %   composer = "Otto Kotilainen"
+    %   poet = "Z. Topelius"
+    % }
+    theMelody = \relative a' {
+      \key a \minor %\slurDashed
+      % \set melismaBusyProperties = #'()
+      \tempo 4 = 86
+      \time 3/4
+      \repeat volta 3 {
+        | \mark \markup {"3x"} a8 a8 b4 c4 | d4. c8 b4 | c8 d8 e4. d8 | e4 e4 r4
+        | c8 c8 d4 e4 | f4. e8 d4 | e8 f8 g4. d8 | e4 e4 r4
+        | a4. a8 a4 | g4 fis4 e4 | g4 g4 g8 g8 | fis4. e8 dis4
+        | e8 e8 c4 d4 | e4. d8 e4 | f8 d8 b4. d8 | a4 a4 r4
+      }
+      | a8. a16 b4 c4 | d4. c8 b4 | c8. d16 e4. d8 | e4 e4 r4
+      | c8 c8 d4 e4 | f4. e8 d4 | e8 f8 g4. d8 | e4 e4 r4
+      \repeat volta 2 {
+        | a4. a8 a4 | g4 fis4 e4 | g8. g16 g4 g4 | fis4 e4 dis4
+        | e8. e16 c4 d4 | e4. d8 e4 | f8. d16 b4. d8 | a4 a4 r4
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | Lu -- mi on jo | peit -- tä -- nyt | ku -- kat laak -- so -- | ses -- sa,
+      | jär -- ven aal -- to | jää -- ty -- nyt | tal -- vi -- pak -- ka -- | ses -- sa.
+      | Var -- pu -- nen | pie -- noi -- nen | syö -- nyt ke -- sä -- | ei -- ne -- hen.
+      | Jär -- ven aal -- to | jää -- ty -- nyt | tal -- vi -- pak -- ka -- | ses -- sa.
+      \set stanza = "4."
+      | En ma o -- le, | lap -- se -- ni, | lin -- tu täs -- tä | maas -- ta,
+      | o -- len pie -- ni | vel -- je -- si, | tu -- lin tai -- va -- | has -- ta.
+      \repeat volta 2 {
+        | Sie -- me -- nen | pie -- noi -- sen, | jon -- ka an -- noit | köy -- häl -- len,
+        | pie -- ni sai sun | vel -- je -- si | en -- ke -- leit -- ten  | maas -- ta.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | Pie -- nen pir -- tin | por -- tail -- la | o -- li tyt -- tö -- | kul -- ta:
+      | tu -- le, var -- pu, | rie -- mul -- la | o -- ta sie -- men | mul -- ta!
+      | Jou -- lu on, | ko -- di -- ton | var -- pu -- se -- ni | on -- ne -- ton,
+      | tu -- le tän -- ne, | rie -- mul -- la | o -- ta sie -- men | mul -- ta!
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      | Ty -- tön luo nyt | rie -- mui -- ten | rien -- si var -- pu -- | kul -- ta:
+      | kii -- tol -- lis -- na | sie -- me -- nen | o -- tan kyl -- lä | sul -- ta.
+      | Pal -- ki -- ta | Ju -- ma -- la | ker -- ran tah -- too | si -- nu -- a.
+      | Kii -- tol -- lis -- na | sie -- me -- nen | o -- tan kyl -- lä | sul -- ta.
+    }
+    theChords = \chordmode {
+      \repeat volta 3 {
+        | a2.:m | d:m | a:m | e:m
+        | a:m | d:m | g | c
+        | a:m | e:m | c | b:7
+        | a:m | e:7 | d:m | a:m
+      }
+      | a2.:m | d:m | a:m | e:m
+      | a:m | d:m | g | c
+      \repeat volta 2 {
+        | a:m | e:m | c | b:7
+        | a:m | e:7 | d:m | a:m
+      }
+    }
+%     \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
@@ -1353,181 +1622,6 @@
 \endsong
 
 
-\beginsong{Tuuditan tulisoroista}[by={trad.}, key={Am}, gk={Am, Gm--Bm}, tags={uni}]
-  \audio[key=B\flt{}m]{https://www.youtube.com/watch?v=mpHEc8SjfZc}
-  \newchords{chords_tulisoroinen_a}\newchords{chords_tulisoroinen_b}
-  \transpose{5} % from Em to Am
-  \mnbeginverse\memorize[chords_tulisoroinen_a]
-    |\[\mnc{B}Em]Tuuditan \[^\mn{G}]tu|\[\mnc{F#}B]li\[^\mn{B}]so\[\mnc{E}Em]rois\[^\mn{F#}]ta, |\[^\mn{G}]kipunaista \[\mnc{A}D]kiikut|\[\mnc{B}G]te\[\bm]len
-    \mnendverse\glueverses\mnbeginchorus\memorize[chords_tulisoroinen_b]
-    |\[\mnc{B}G]Vaa\[^\mn{E}]lin \[\mn{B}\bm]pien\[^\mn{A}]tä |\[\mnc{G}Em/B]val\[^\mn{B}]ke\[\mnc{E}Em]ais\[^\mn{F#}]ta, |\[^\mn{G}]luojan lasta \[\mnc{F#}B7]liikut|\[\mnc{E}Em]te\[\bm]len
-  \mnendchorus
-  \usealtmncolortrue% use alternate melody note color
-  \beginverse% notes (\mn) in this verse signify the 2nd voice
-    |\[\mnc{B}Em]Tai\[\mn{A}]va\[\mn{G}]hast' \[\mn{E}]on |\[B]lah\[\mn{D#}]ja \[\mnc{E}Em]tul\[\mn{B}]lut, |\[\mn{E}]taivahan tu\[\mnc{D}D]len ki|\[\mnc{G}G]sois\[\bm]ta
-    \endverse\glueverses\beginchorus
-    |\[\mnc{G}G]Luojan \[\bm]lem\[\mn{F#}]men |\[\mnc{E}Em/B]lei\[\mn{B}]kin\[\mnc{E}Em]nöis\[\mn{D#}]tä, |\[\mn{E}]ei vahingon \[\mnc{F#}B7]val\[\mn{D#}]ke|\[\mnc{E}Em]ois\[\bm]ta
-  \endchorus
-  \notesoff
-  \beginverse\replay[chords_tulisoroinen_a]
-    |^Tuudin lasta |^maan va^loksi, |en vahingon ^valke|^ak^si
-    \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
-    |^Tuudin ^toivo|^{jen tu}^leksi, |työn jaloisen ^jatka|^jak^si
-  \endchorus
-  \beginverse\replay[chords_tulisoroinen_a]
-    |^Senpä tuudin |^tuikke^heksi, |tähdeksi tä^hän ta|^lo^hon
-    \endverse\glueverses\beginchorus\replay[chords_tulisoroinen_b]
-    |^Maan hy^väksi |^maine^heksi, |suurionnis^ten i|^lo^hon
-  \endchorus
-  \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2024-02
-    \include "tex/lp-include-head.ly"
-    theMelody = \transpose e a \relative b' {
-      \key e \minor \time 4/4 \voiceOne
-      \set melismaBusyProperties = #'() \slurDashed
-      | b4 b b g | fis b e,4. fis8 | g8 g g g a4 a | b2 b2
-      \repeat volta 2 {
-        | b4 e b4. a8 | g4 b e,4. fis8 | g8 g g g fis4 fis | e2 e2
-      }
-    }
-    theMelodyTwo = \transpose e a \relative b' {
-      \key e \minor \time 4/4 \voiceTwo
-      | b4 a g e | e dis e4. b8 | e8 e e e d4 d | g2 g2
-      \repeat volta 2 {
-        | g4 g g4. fis8 | e4 b e4. dis8 | e8 e e e fis4 dis | e2 e2
-      }
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "1.A"
-      | Tuu -- di -- tan tu -- | li -- so -- rois -- ta, | ki -- pu -- nais -- ta kii -- kut -- | te -- len;
-      \set stanza = "1.B"
-      \repeat volta 2 {
-        | Vaa -- lin pien -- tä | val -- ke -- ais -- ta, | luo -- jan las -- ta lii -- kut -- | te -- len.
-      }
-    }
-    theLyricsTwo = \lyricmode {
-      \set stanza = "2.A"
-      | Tai -- va -- hast' on | lah -- ja tul -- lut, | tai -- va -- han tu -- len ki -- | sois -- ta;
-      \set stanza = "2.B"
-      \repeat volta 2 {
-        | Luo -- jan lem -- men | lei -- kin -- nöis -- tä, | ei va -- hin -- gon val -- ke -- | ois -- ta.
-      }
-    }
-    theLyricsThree = \lyricmode {
-      \set stanza = "3.A"
-      | Tuu -- din las -- ta | maan va -- lok -- si, | en va -- hin -- gon val -- ke -- | ak -- si;
-      \set stanza = "3.B"
-      \repeat volta 2 {
-        | Tuu -- din toi -- vo -- | jen tu -- lek -- si, | työn ja -- loi -- sen jat -- ka -- | jak -- si.
-      }
-    }
-    theLyricsFour = \lyricmode {
-      \set stanza = "4.A"
-      | Sen -- pä tuu -- din | tuik -- ke -- hek -- si, | täh -- dek -- si tä -- hän ta -- | lo -- hon;
-      \set stanza = "4.B"
-      \repeat volta 2 {
-        | Maan hy -- väk -- si | mai -- ne -- hek -- si, | suu -- ri -- on -- nis -- ten i -- | lo -- hon.
-      }
-    }
-    theChords = \transpose e a \chordmode {
-      | e1:m | b2 e2:m | e2:m d | g1
-      \repeat volta 2 {
-        | g1 | e2:m/b e2:m | e2:m b:7 | e1:m
-      }
-    }
-    %\layout { #(layout-set-staff-size 15) } % for better fit
-    \include "tex/lp-include-tail-multivoice-notab.ly"
-  \end{lilypond}\end{lilywrap}
-  \noendsongvfill % align lp to the bottom
-\endsong
-
-
-\beginsong{Katselin taivahan tähtiä}[by={trad.}, key={Em}, gk={Gm, Gm--Am}]
-  \audio[key=Gm]{https://www.youtube.com/watch?v=efchOgWBFtI}
-  \capo{3}
-  \newchords{chords_katselintaivahan_a}\newchords{chords_katselintaivahan_b}
-  \mnbeginchorus\memorize[chords_katselintaivahan_a]
-    |\[\mnc{B}Em]Kat\[^\mn{E}]selin \[\bm]tai\[^\mn{D}]va\[^\mn{E}]han |\[\mnc{F#}D]tähti\[\bmc\mn{D}]ä, ja |\[\mnc{C}Am]tuli mi\[^\mn{B}]nun \[\bmc\mn{C}]i\[^\mn{A}]kä|\[\mnc{B}B]vä\[\bm]ni
-    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_katselintaivahan_b]
-    \[^\mn{B}]Kun |\[\mnc{C}Am]heit' o\[^\mn{B}]li \[\bmc\mn{A}]aina |\[\mnc{B}Em]kaksi \[^\mn{A}]ja \[\bmc\mn{G}]kaksi, \[^\mn{F#}]ja |\[\mnc{A}Am]minä o\[^\mn{F#}]lin \[\mnc{B}B7]yk\[^\mn{F#}]si|\[\mnc{E}Em]nä\[\bm]ni
-  \mnendchorus
-  \notesoff
-  \beginchorus\replay[chords_katselintaivahan_a]
-    |^Oi jos ^saisin sen |^omak^seni, jok' on |^keskellä ^sydän|^tä^ni
-    \endchorus\glueverses\beginchorus\replay[chords_katselintaivahan_b]
-    En |^surisi mä ^köyhää |^koti^ani, enkä |^orjan ^päivi|^ä^ni
-  \endchorus
-  \beginchorus\replay[chords_katselintaivahan_a]
-    |^Niin minä ^olen |^yksi^näni, kuin |^kataja ^muista |^puis^ta
-    \endchorus\glueverses\beginchorus\replay[chords_katselintaivahan_b]
-    |^Ei ole ^uutta |^ei ole ^vanhaa, |^ei ole ^omi|^tuis^ta
-  \endchorus
-  \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-07
-    \include "tex/lp-include-head.ly"
-    theMelody = \relative b' {
-      \key e \minor \time 4/4 \partial 8
-      \set melismaBusyProperties = #'() \slurDashed
-      \repeat volta 2 {
-        r8 | b4 e8( e8) e4 d8( e8) | fis4 fis d8( d8)
-        d8( d8) | c8( c) c( b) c4 a | b2 b4.
-      }
-      \repeat volta 2 {
-        \parenthesize b8 | c8( c8) c8 b a4 a | b4 b8( a8) g8( g8)
-        g8( fis8) | a8( a) a( fis) b4 fis4 | e2 e4.
-      }
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "1.A"
-      \repeat volta 2 {
-        | Kat -- se -- lin tai -- va -- han | täh -- ti -- ä __ _
-        ja __ _ | tu -- li mi -- nun i -- kä -- | vä -- ni.
-      }
-      \set stanza = "1.B"
-      \repeat volta 2 {
-        Kun | heit' __ _ o -- li ai -- na | kak -- si ja kak -- _ si
-        ja | mi -- nä o -- lin yk -- si -- | nä -- ni.
-      }
-    }
-    theLyricsTwo = \lyricmode {
-      \set stanza = "2.A"
-      \repeat volta 2 {
-        | Oi jos __ _ sai -- sin sen | o -- mak -- se -- ni
-        jok' on | kes -- _ kel -- lä sy -- dän -- | tä -- ni.
-      }
-      \set stanza = "2.B"
-      \repeat volta 2 {
-        En | su -- ri -- si mä köy -- hää | ko -- ti -- _ a -- ni
-        en -- kä | or -- _ jan __ _ päi -- vi -- | ä -- ni.
-      }
-    }
-    theLyricsThree = \lyricmode {
-      \set stanza = "3.A"
-      \repeat volta 2 {
-        | Niin mi -- nä o -- len __ _ | yk -- si -- nä -- ni
-        kuin __ _ | ka -- ta -- ja __ _ muis -- ta | puis -- ta.
-      }
-      \set stanza = "3.B"
-      \repeat volta 2 {
-        \skip 1 | Ei __ _ o -- le uut -- ta | ei o -- le van -- _ haa __ _
-        | Ei __ _ o -- le o -- mi -- | tuis -- ta.
-      }
-    }
-    theChords = \chordmode {
-      \repeat volta 2 {
-        s8 | e1:m | d | a:m | b,2.~8
-      }
-      \repeat volta 2 {
-        s8 | a1:m | e:m | a2:m b,:7 | e2.:m~8
-      }
-    }
-    %\layout { #(layout-set-staff-size 15) } % for better fit
-    \include "tex/lp-include-tail-notab.ly"
-  \end{lilypond}\end{lilywrap}
-  \noendsongvfill % align lp to the bottom
-\endsong
-
-
 \beginsong{Kettu itki poikiansa}[by={trad.}, key={Am}, gk={Am, Gm--Em}]
   \audio[key=Dm]{https://www.youtube.com/watch?v=rWARJsJewC8}
   \meter{5}{4}
@@ -1652,6 +1746,92 @@
     theChords = \chordmode {
       s4 | d1:m | a:m | g:m | a
       | f | c | d2:m a2:7 | d2.:m
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+  \noendsongvfill % align lp to the bottom
+\endsong
+
+
+\beginsong{Katselin taivahan tähtiä}[by={trad.}, key={Em}, gk={Gm, Gm--Am}]
+  \audio[key=Gm]{https://www.youtube.com/watch?v=efchOgWBFtI}
+  \capo{3}
+  \newchords{chords_katselintaivahan_a}\newchords{chords_katselintaivahan_b}
+  \mnbeginchorus\memorize[chords_katselintaivahan_a]
+    |\[\mnc{B}Em]Kat\[^\mn{E}]selin \[\bm]tai\[^\mn{D}]va\[^\mn{E}]han |\[\mnc{F#}D]tähti\[\bmc\mn{D}]ä, ja |\[\mnc{C}Am]tuli mi\[^\mn{B}]nun \[\bmc\mn{C}]i\[^\mn{A}]kä|\[\mnc{B}B]vä\[\bm]ni
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_katselintaivahan_b]
+    \[^\mn{B}]Kun |\[\mnc{C}Am]heit' o\[^\mn{B}]li \[\bmc\mn{A}]aina |\[\mnc{B}Em]kaksi \[^\mn{A}]ja \[\bmc\mn{G}]kaksi, \[^\mn{F#}]ja |\[\mnc{A}Am]minä o\[^\mn{F#}]lin \[\mnc{B}B7]yk\[^\mn{F#}]si|\[\mnc{E}Em]nä\[\bm]ni
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_katselintaivahan_a]
+    |^Oi jos ^saisin sen |^omak^seni, jok' on |^keskellä ^sydän|^tä^ni
+    \endchorus\glueverses\beginchorus\replay[chords_katselintaivahan_b]
+    En |^surisi mä ^köyhää |^koti^ani, enkä |^orjan ^päivi|^ä^ni
+  \endchorus
+  \beginchorus\replay[chords_katselintaivahan_a]
+    |^Niin minä ^olen |^yksi^näni, kuin |^kataja ^muista |^puis^ta
+    \endchorus\glueverses\beginchorus\replay[chords_katselintaivahan_b]
+    |^Ei ole ^uutta |^ei ole ^vanhaa, |^ei ole ^omi|^tuis^ta
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \key e \minor \time 4/4 \partial 8
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat volta 2 {
+        r8 | b4 e8( e8) e4 d8( e8) | fis4 fis d8( d8)
+        d8( d8) | c8( c) c( b) c4 a | b2 b4.
+      }
+      \repeat volta 2 {
+        \parenthesize b8 | c8( c8) c8 b a4 a | b4 b8( a8) g8( g8)
+        g8( fis8) | a8( a) a( fis) b4 fis4 | e2 e4.
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        | Kat -- se -- lin tai -- va -- han | täh -- ti -- ä __ _
+        ja __ _ | tu -- li mi -- nun i -- kä -- | vä -- ni.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Kun | heit' __ _ o -- li ai -- na | kak -- si ja kak -- _ si
+        ja | mi -- nä o -- lin yk -- si -- | nä -- ni.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        | Oi jos __ _ sai -- sin sen | o -- mak -- se -- ni
+        jok' on | kes -- _ kel -- lä sy -- dän -- | tä -- ni.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        En | su -- ri -- si mä köy -- hää | ko -- ti -- _ a -- ni
+        en -- kä | or -- _ jan __ _ päi -- vi -- | ä -- ni.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        | Niin mi -- nä o -- len __ _ | yk -- si -- nä -- ni
+        kuin __ _ | ka -- ta -- ja __ _ muis -- ta | puis -- ta.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        \skip 1 | Ei __ _ o -- le uut -- ta | ei o -- le van -- _ haa __ _
+        | Ei __ _ o -- le o -- mi -- | tuis -- ta.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s8 | e1:m | d | a:m | b,2.~8
+      }
+      \repeat volta 2 {
+        s8 | a1:m | e:m | a2:m b,:7 | e2.:m~8
+      }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-notab.ly"
@@ -1808,188 +1988,6 @@
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-notab.ly"
-  \end{lilypond}\end{lilywrap}
-\endsong
-
-
-\beginsong{Kalevalainen vieraan tervehdys}[index={Kamanat kohottukohot}, by={Ilmari Hannikainen}, ex={Kalevala 21: 137--144}, ph={I}, key={C}, gk={D, C--D}]
-  \meter{2}{4}
-  \mnbeginverse
-    |\[\mnc{G}C]Kama|\[^\mn{C}]nat \[^\mn{D}]ko|\[^\mn{E}]hot\[^\mn{G}]tu|\[\mnc{D}G]ko|hot \altchords{\id[1]{(D)}|D | - | - |A | \e}
-    |\[\mnc{F}F]lakin |\[\mnc{E}C]pääs\[^\mn{C}]tä |\[\mnc{D}G]las\[^\mn{E}]ke|\[\mnc{C}C]mat|ta, \altchords{|G |D |A |D | \e}
-    |\[^\mn{G}]kynnyk|\[^\mn{C}]set \[^\mn{D}]a|\[^\mn{E}]len\[^\mn{C}]tu|\[\mnc{D}G]ko|hot \altchords{| - | - | - |A | \e}
-    |\[\mnc{F}F]kengän |\[\mnc{E}C]kan\[^\mn{C}]nan |\[\mnc{D}G]kos\[^\mn{E}]ke|\[\mnc{C}C]mat|ta, \altchords{|G |D |A |D | \e}
-    |\[\mnc{A}F]pihti|puolet |\[^\mn{F}\mn{G}]vält\[^\mn{A}]ty|\[\mnc{G}G]kö|höt, \altchords{|G | - | - |A | \e}
-    |\[\mnc{F}F]ovet |\[\mnc{E}C]il\[^\mn{C}]man |\[^\mn{E}]au\[^\mn{G}]et|\[\mnc{D}G]ko|hot \altchords{|G |D | - |A | \e}
-    |\[\mnc{C}C]vieraan |\[\mnc{D}G]tulles|\[\mnc{E}C]sa \[^\mn{G}]tu|\[\mnc{D}Dm]pa|\[^\mn{E}\mn{F}]han, \altchords{|D |A |D |Em | \e}
-    |\[\mnc{G}G]as\[^\mn{A}]tu|\[^\mn{G}]es\[^\mn{E}]sa |\[\mnc{D}G7]ai\[^\mn{E}]mo |\[\mnc{C}C]mie|hen! \altchords{|A | - |A7 |D | \e}
-  \mnendverse
-  \notesoff
-  \beginverse
-    |^Harvoin |yhte|hen y|^hym|me,
-    |^saamme |^toinen |^toisi|^him|me
-    |näillä |Väinö|län a|^hoil|la,
-    |^Kale|^valan |^kanka|^hil|la.
-    |^Terve |tänne |tultu|^an|ne,
-    |^suuri |^valta|viera|^ham|me,
-    |^juhla|^hetkem|^me i|^lok|si,
-    |^päivän |kuulun |^kunni|^ak|si!
-  \endverse
-  \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-11
-    \include "tex/lp-include-head.ly"
-    theMelody = \relative a' {
-      \key c \major \time 2/4
-      \set melismaBusyProperties = #'() \slurSolid
-      | g4 g | c d | e g | d2 | d2
-      | f4 f | e c | d e | c2 | c2
-      | g4 g | c d | e c | d2 | d2
-      | f4 f | e c | d e | c2 | c2
-      | a'4 a | a a | f8( g) a4 | g2 | g2
-      | f4 f | e c | e g | d2 | d2
-      | c4 c | d d | e g | d2
-      | e4( f) | g a | g e | d e | c2 | c2
-      \fine
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "1."
-      | Ka -- ma -- | nat ko -- | hot -- tu -- | ko -- | hot
-      | la -- kin | pääs -- tä | las -- ke -- | mat -- | ta,
-      | kyn -- nyk -- | set a -- | len -- tu -- | ko -- | hot
-      | ken -- gän | kan -- nan | kos -- ke -- | mat -- | ta,
-      | pih -- ti -- | puo -- let | vält -- _ ty -- | kö -- | höt,
-      | o -- vet | il -- man | au -- et -- | ko -- | hot
-      | vie -- raan | tul -- les -- | sa tu -- | pa -- | han, _
-      | as -- tu -- | es -- sa | ai -- mo | mie -- | hen!
-
-    }
-    theLyricsTwo = \lyricmode {
-      \set stanza = "2."
-      | Har -- voin | yh -- te -- | hen y -- | hym -- | me,
-      | saam -- me | toi -- nen | toi -- si -- | him -- | me
-      | näil -- lä | Väi -- nö -- | län a -- | hoil -- | la,
-      | Ka -- le -- | va -- lan | kan -- ka -- | hil -- | la.
-      | Ter -- ve | tän -- ne | tul -- _ tu -- | an -- | ne,
-      | suu -- ri | val -- ta -- | vie -- ra -- | ham -- | me,
-      | juh -- la -- | het -- kem -- | me i -- | lok -- | si, _
-      | päi -- vän | kuu -- lun | kun -- ni -- | ak -- | si!
-    }
-
-    theChords = \chordmode {
-      | c2 | c | c | g | g
-      | f | c | g | c | c
-      | c | c | c | g | g
-      | f | c | g | c | c
-      | f | f | f | g | g
-      | f | c | c | g | g
-      | c | g | c | d:m | d:m
-      | g | g | g:7 | c | c
-    }
-    %\layout { #(layout-set-staff-size 15) } % for better fit
-    \include "tex/lp-include-tail-notab.ly"
-  \end{lilypond}\end{lilywrap}
-\endsong
-
-
-\beginsong{Varpunen jouluaamuna}[by={Otto Kotilainen, Z. Topelius}, key={Am}, gk={Am, Gm--Bm}]
-  \meter{3}{4}
-  \mnbeginverse
-    |\[\mnc{A}Am]Lumi \[^\mn{B}]on \[^\mn{C}]jo |\[\mnc{D}Dm]peit\[^\mn{C}]tä\[^\mn{B}]nyt |\[\mnc{C}Am]ku\[^\mn{D}]kat \[^\mn{E}]laak\[^\mn{D}]so|\[\mnc{E}Em]sessa,
-    |\[\mnc{C}Am]järven \[^\mn{D}]aal\[^\mn{E}]to |\[\mnc{F}Dm]jää\[^\mn{E}]ty\[^\mn{D}]nyt |\[\mnc{E}G]tal\[^\mn{F}]vi\[^\mn{G}]pak\[^\mn{D}]ka|\[\mnc{E}C]sessa.
-    |\[\mnc{A}Am]Varpunen |\[\mnc{G}Em]pie\[^\mn{F#}]noi\[^\mn{E}]nen |\[\mnc{G}C]syönyt kesä|\[\mnc{F#}B7]ei\[^\mn{E}]ne\[^\mn{D#}]hen.
-    |\[\mnc{E}Am]Järven \[^\mn{C}]aal\[^\mn{D}]to |\[\mnc{E}E7]jää\[^\mn{D}]ty\[^\mn{E}]nyt |\[\mnc{F}Dm]tal\[^\mn{D}]vi\[^\mn{B}]pak\[^\mn{D}]ka|\[\mnc{A}Am]sessa.
-  \mnendverse
-  \notesoff
-  \beginverse
-    |^Pienen pirtin |^portailla |^{oli tyttö}|^kulta: \altchords{\id[1]{(Bm)}|Bm |Em |Bm |F\shrp{}m}
-    |^tule, varpu, |^riemulla |^ota siemen |^multa! \altchords{|Bm |Em |A |D}
-    |^Joulu on, |^koditon |^varpuseni |^onneton, \altchords{|Bm |F\shrp{}m |D |C\shrp{}7}
-    |^tule tänne, |^riemulla |^ota siemen |^multa! \altchords{|Bm |F\shrp{}7 |Em |Bm}
-  \endverse
-  \beginverse
-    |^Tytön luo nyt |^riemuiten |^riensi varpu|^kulta:
-    |^kiitollisna |^siemenen |^otan kyllä |^sulta.
-    |^Palkita |^Jumala |^kerran tahtoo |^sinua.
-    |^Kiitollisna |^siemenen |^otan kyllä |^sulta.
-  \endverse
-  \beginverse
-    |^En ma ole, |^lapseni, |^lintu tästä |^maasta,
-    |^olen pieni |^veljesi, |^tulin taiva|^hasta.
-    \endverse\glueverses\beginchorus
-    |\[Am]Siemenen |\[Em]pienoisen, |\[C]jonka annoit |\[B7]köyhällen,
-    |\[Am]pieni sai sun |\[E7]veljesi |\[Dm]enkeleitten |\[Am]maasta.
-  \endchorus
-  \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2024-01
-    \include "tex/lp-include-head.ly"
-    % \header {
-    %   title = "Varpunen jouluaamuna"
-    %   composer = "Otto Kotilainen"
-    %   poet = "Z. Topelius"
-    % }
-    theMelody = \relative a' {
-      \key a \minor %\slurDashed
-      % \set melismaBusyProperties = #'()
-      \tempo 4 = 86
-      \time 3/4
-      \repeat volta 3 {
-        | \mark \markup {"3x"} a8 a8 b4 c4 | d4. c8 b4 | c8 d8 e4. d8 | e4 e4 r4
-        | c8 c8 d4 e4 | f4. e8 d4 | e8 f8 g4. d8 | e4 e4 r4
-        | a4. a8 a4 | g4 fis4 e4 | g4 g4 g8 g8 | fis4. e8 dis4
-        | e8 e8 c4 d4 | e4. d8 e4 | f8 d8 b4. d8 | a4 a4 r4
-      }
-      | a8. a16 b4 c4 | d4. c8 b4 | c8. d16 e4. d8 | e4 e4 r4
-      | c8 c8 d4 e4 | f4. e8 d4 | e8 f8 g4. d8 | e4 e4 r4
-      \repeat volta 2 {
-        | a4. a8 a4 | g4 fis4 e4 | g8. g16 g4 g4 | fis4 e4 dis4
-        | e8. e16 c4 d4 | e4. d8 e4 | f8. d16 b4. d8 | a4 a4 r4
-      }
-      \fine
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "1."
-      | Lu -- mi on jo | peit -- tä -- nyt | ku -- kat laak -- so -- | ses -- sa,
-      | jär -- ven aal -- to | jää -- ty -- nyt | tal -- vi -- pak -- ka -- | ses -- sa.
-      | Var -- pu -- nen | pie -- noi -- nen | syö -- nyt ke -- sä -- | ei -- ne -- hen.
-      | Jär -- ven aal -- to | jää -- ty -- nyt | tal -- vi -- pak -- ka -- | ses -- sa.
-      \set stanza = "4."
-      | En ma o -- le, | lap -- se -- ni, | lin -- tu täs -- tä | maas -- ta,
-      | o -- len pie -- ni | vel -- je -- si, | tu -- lin tai -- va -- | has -- ta.
-      \repeat volta 2 {
-        | Sie -- me -- nen | pie -- noi -- sen, | jon -- ka an -- noit | köy -- häl -- len,
-        | pie -- ni sai sun | vel -- je -- si | en -- ke -- leit -- ten  | maas -- ta.
-      }
-    }
-    theLyricsTwo = \lyricmode {
-      \set stanza = "2."
-      | Pie -- nen pir -- tin | por -- tail -- la | o -- li tyt -- tö -- | kul -- ta:
-      | tu -- le, var -- pu, | rie -- mul -- la | o -- ta sie -- men | mul -- ta!
-      | Jou -- lu on, | ko -- di -- ton | var -- pu -- se -- ni | on -- ne -- ton,
-      | tu -- le tän -- ne, | rie -- mul -- la | o -- ta sie -- men | mul -- ta!
-    }
-    theLyricsThree = \lyricmode {
-      \set stanza = "3."
-      | Ty -- tön luo nyt | rie -- mui -- ten | rien -- si var -- pu -- | kul -- ta:
-      | kii -- tol -- lis -- na | sie -- me -- nen | o -- tan kyl -- lä | sul -- ta.
-      | Pal -- ki -- ta | Ju -- ma -- la | ker -- ran tah -- too | si -- nu -- a.
-      | Kii -- tol -- lis -- na | sie -- me -- nen | o -- tan kyl -- lä | sul -- ta.
-    }
-    theChords = \chordmode {
-      \repeat volta 3 {
-        | a2.:m | d:m | a:m | e:m
-        | a:m | d:m | g | c
-        | a:m | e:m | c | b:7
-        | a:m | e:7 | d:m | a:m
-      }
-      | a2.:m | d:m | a:m | e:m
-      | a:m | d:m | g | c
-      \repeat volta 2 {
-        | a:m | e:m | c | b:7
-        | a:m | e:7 | d:m | a:m
-      }
-    }
-%     \layout { #(layout-set-staff-size 15) } % for better fit
-   \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
 
