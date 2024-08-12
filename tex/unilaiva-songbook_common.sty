@@ -3031,26 +3031,48 @@
           }%
           % key line (song key, good keys)
           \ifchorded% % Show key + good keys (if in chorded mode)
-            \def\keylinetext{}%
             \ifshowkey\ifx\key\empty\else%
-              \g@addto@macro\keylinetext{\@mainkeybox[chordcolor]{\textit{\preludetextkey} \textbf{\color{chordcolor}\key\vphantommaxtext}}}%
-            \fi\fi%
-            \ifshowgoodkeys\ifx\goodkeys\empty\else%
-              \ifnowidth{\keylinetext}{% keyline so far empty
-                \g@addto@macro\keylinetext{\@goodkeysbox{\textit{\preludetextgoodkeysalone} \textbf{\goodkeys\vphantommaxtext}}}%
-              }{% keyline so far not empty
-                \g@addto@macro\keylinetext{ \@goodkeysbox{\textit{\preludetextgood} \textbf{\goodkeys\vphantommaxtext}}}%
-              }%
-            \fi\fi%
-            \ifnowidth{\keylinetext}{}{% Key line not empty: show it
               \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
                 \iflyriconly\tiny\else\scriptsize\fi%
-                \normalfont\preludekeylinestyle\keylinetext%
+                \normalfont\preludekeylinestyle%
+                \@mainkeybox[chordcolor]{\textit{\preludetextkey} \textbf{\color{chordcolor}\key\vphantommaxtext}}%
               }}%
               \stepcounter{@preludeRTrowscreatedcount}%
               \@setpreludeRTraise%
-            }%
+            \fi\fi%
+            \ifshowgoodkeys\ifx\goodkeys\empty\else%
+              \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+                \iflyriconly\tiny\else\scriptsize\fi%
+                \normalfont\preludekeylinestyle%
+                \@goodkeysbox{\textit{\preludetextgoodkeysalone} \textbf{\goodkeys\vphantommaxtext}}%
+              }}%
+              \stepcounter{@preludeRTrowscreatedcount}%
+              \@setpreludeRTraise%
+            \fi\fi%
           \fi%
+% This commented out version shows key and good keys on same line
+%           \ifchorded% % Show key + good keys (if in chorded mode)
+%             \def\keylinetext{}
+%             \ifshowkey\ifx\key\empty\else%
+%               \g@addto@macro\keylinetext{\@mainkeybox[chordcolor]{\textit{\preludetextkey} \textbf{\color{chordcolor}\key\vphantommaxtext}}}%
+%             \fi\fi%
+%             \ifshowgoodkeys\ifx\goodkeys\empty\else%
+%               \ifnowidth{\keylinetext}{% keyline so far empty
+%                 \g@addto@macro\keylinetext{\@goodkeysbox{\textit{\preludetextgoodkeysalone} \textbf{\goodkeys\vphantommaxtext}}}%
+%               }{% keyline so far not empty
+%                 \g@addto@macro\keylinetext{ \@goodkeysbox{\textit{\preludetextgood} \textbf{\goodkeys\vphantommaxtext}}}%
+%               }%
+%             \fi\fi%
+%             \ifnowidth{\keylinetext}{}{% Key line not empty: show it
+%               \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+%                 \iflyriconly\tiny\else\scriptsize\fi%
+%                 \normalfont\preludekeylinestyle\keylinetext%
+%               }}%
+%               \stepcounter{@preludeRTrowscreatedcount}%
+%               \@setpreludeRTraise%
+%             }%
+%           \fi%
+
         }% larva: end modifications for RT area: ph, tags and keys display
         \par%
         \nexttitle%
