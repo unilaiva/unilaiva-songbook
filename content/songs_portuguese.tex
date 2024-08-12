@@ -844,6 +844,39 @@
 \endsong
 
 
+\beginsong{Nanã \\ Ê de Noite ê}[by={Rainer Scheurenbrand}, key={D}, gk={D, C--G}, ph={II}]
+  \audio[key=D]{https://rainerscheurenbrand.bandcamp.com/track/nana}
+  \audio[key=E]{https://soundcloud.com/shiramekudeshet/e-de-noite-e-yonatan-meir-josii-yakecan-paul-mitchell-simple}
+  \transpose{2} % in C the notes range from G to E, in transposed D from A to F#
+  \mnbeginchorus
+    |\[\mnc{E}C]Ê, \[\bm]{} \[\mn{D}]de \[\mn{E}]noi\[\mn{D}]te|\[\mnc{A}Am]{' ê} \[\bm]{} \altchords{\id[1]{(C) \capo{2}}|C |Am}
+    \[\mn{D}]de \[\mn{E}]noi\[\mn{D}]te a|\[\mnc{A}Dm]té \[\mn{D}]de manhã \[\bm]{} \altchords{|Dm}
+    |\[G7]Ê, \[\bm]{} \[\mn{C}]ou\[\mn{D}]vi \[\mn{C}]can|\[\mnc{G}C]tar \[\mn{C}]pra Nanã \[\bm]{} \altchords{|G7 |C}
+  \mnendchorus
+  \begin{translation}[EN]
+    Oh, it is night
+    from night until morning
+    Oh, I heard someone singing to Nanã
+  \end{translation}
+  \begin{explanation}[EN]
+    \textbf{Nanã} (in Yoruba language \emph{Nanan Buruku}) is considered the
+    grandmother of all \emph{Orixás}. She took part in creating the world and
+    first humans. \emph{Oxalá}, who was tasked by \emph{Olorum} to create the
+    world, was first unable to create people from different materials, but Nanã
+    offered him mud, with which he was succesful. Nanã proposed that if humans
+    come from her mud, they must also return to it, and thus she became
+    responsible for death and taking care of the dead ones.\par
+    Nanã and Oxalá got married, and together they symbolize creation and
+    death, the beginning and the end. They have many children.\par
+    Nanã is a calm and wise woman, who does things slowly, paying great
+    attention to the details of what she is doing. She is known for mastering
+    spells, potions and witchcraft.\par
+    Nanã is portrayed as an old woman, who wears purple and white clothes. She
+    holds an \emph{Ibirí}, a staff.
+  \end{explanation}
+\endsong
+
+
 \beginsong{Seres Vivos da Floresta}[by={Giti Bond?}, ph={II, III}, key={Am}, gk={Bm, Gm--Em}]
   \audio[key=Em]{https://www.youtube.com/watch?v=gXMoVIK7BMg}
   \audio[]{https://www.youtube.com/watch?v=uNv1ez7qlrk}
@@ -923,6 +956,157 @@
     Sing this song to sow life
     Lovely flower bloom, beautiful flower bloom; flower of love, kiss a flower
   \end{translation}
+\endsong
+
+
+\beginsong{Oh Lua}[by={Carioca Chandra Edgar},ph={III},tags={moon, sun, stars, wind}, key={Gm}, gk={Gm, Gm--G\shrp{}m}]
+  \audio[key=Gm]{https://www.youtube.com/watch?v=efH8H1X-x2k&list=OLAK5uy_lCmRdOh_fo6lKRBz5_kGNVEn9Vb3L-yoU&index=3}
+  \newchords{chords_ohluaedgar_a}\newchords{chords_ohluaedgar_b}
+  \meter{3}{4}
+  \textnotefornext{intro:}
+  \beginverse
+    |\[Gm] |\[F] |\[Gm] |\[F]
+  \endverse
+  \mnbeginchorus\memorize[chords_ohluaedgar_a]
+    \[^\mn{D}]Oh! |\[\mnc{G}Gm]Lua, \[^\mn{B&}]eu |\[\mnc{A}F]vos \[^\mn{F}]a\[^\mn{A}]gra|\[\mnc{G}Gm]de\[^\mn{D}]ço
+    Por |\[\mnc{C}Cm]este \[^\mn{B&}]lu|\[^\mn{G}]ar cri\[^\mn{B&}]a|\[\mnc{D}Gm]dor |\[\up{2}(G7)]
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_ohluaedgar_b]
+    \[^\mn{D}]Em |\[\mnc{C}Cm]tro\[^\mn{D}]ca |\[\mnc{E&}Dm]vos \[^\mn{D}]o\[^\mn{C}]fe|\[\mnc{G}Gm]reço
+    |\[\mnc{D}Dm]Es\[^\mn{E&}]ta \[^\mn{D}]can|\[\mnc{C}D7]ção \[^\mn{B&}]com \[^\mn{A}]a|\[\mnc{G}Gm]mor |\[\up{1}(G7)]
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_ohluaedgar_a]
+    Vós |^mais o |^meu Sol dou|^rado
+    Que |^embe|leza o |^Céu |^
+    \endchorus\glueverses\beginchorus\replay[chords_ohluaedgar_b]
+    São |^que nos dá |^este con|^forto
+    A|^qui, do|^ce como |^mel |^
+  \endchorus
+  \beginchorus\replay[chords_ohluaedgar_a]
+    Dou |^viva ao |^Sol e a |^Lua
+    E |^as Es|trelas tam|^bém |^
+    \endchorus\glueverses\beginchorus\replay[chords_ohluaedgar_b]
+    A |^Terra, a Flo|^resta e o |^Mar
+    O |^Vento e a |^todo a|^lém |^
+  \endchorus
+  \begin{translation}
+    Oh! Moon, I thank you for this creative moonlight
+    In return, I offer this song with love
+    \nextverse
+    You and my Golden Sun that embellishes the Sky
+    Are what give us this comfort here, sweet like honey
+    \nextverse
+    I live for the Sun, the Moon, and the Stars as well
+    The Earth, the Forest, and the Sea, the Wind and all beyond
+  \end{translation}
+  \showlilypondfalse % to save space
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-06
+    % \header {
+    %   title = "Oh Lua"
+    %   composer = "Carioca Chandra Edgar"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \set minimumFret = #2 \set restrainOpenStrings = ##t
+      \key g \minor \time 3/4 \partial 4
+        \sectionLabel "intro"
+        r4 | r2. | r2. | r2. | r2
+        \sectionLabel "A"
+        \repeat volta 2 {
+          d4 | g( g) bes | a f a | g d
+          d | c( c) bes | g g bes | d2.~
+        } \alternative {
+          { | d2 }
+          { | d2\repeatTie }
+        }
+        \sectionLabel "B"
+        \repeat volta 2 {
+          d4 | c( c) d | es d c | g'2
+          g4 | \once\slurDown d \single\altcol ( < \single\altcol d es > ) \altmark "2." d | c bes a | g2.~
+        } \alternative {
+          { | g2 }
+          { | g2\repeatTie }
+        }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Oh! | Lu -- a, eu | vos a -- gra -- | de -- ço;
+        Por | es -- te lu -- | ar cri -- a -- | dor.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Em | tro _ -- ca | vos o -- fe -- | re -- ço;
+        | Es -- ta can -- | ção com a -- | mor.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Vós | mais __ _ o | meu Sol dou -- | ra -- do;
+        Que | em _ -- be -- | le -- za o | Céu.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        São | que nos dá | es -- te con -- | for -- to;~A --
+        | qui, __ _ do -- | ce co -- mo | mel.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Dou | vi -- va ao | Sol e a | Lu -- a;
+        E | as __ _ Es -- | tre -- las tam -- | bém.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        A | Ter -- ra,~a Flo -- | res -- ta~e o | Mar;
+        O | Ven -- to~e a | to -- do a -- | lém.
+      } \alternative {
+        { | _ }
+        { | _ }
+      }
+    }
+    theChords = \chordmode {
+      s4 | g2.:m | f | g:m | f2
+      \repeat volta 2 {
+        s4
+        | g2.:m f | g:m
+        | c:m | c:m | g:m
+      } \alternative {
+        { | g2:m }
+        { | g2:7 }
+      }
+      \repeat volta 2 {
+        s4
+        | c2.:m | d:m | g:m
+        | d:m | d:7 | g:m
+      } \alternative {
+        { | g2:7 }
+        { | g2:m }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
@@ -2517,6 +2701,116 @@
 \endsong
 
 
+\beginsong{Oração de São Francisco}[by={Pe. Irala, SJ}, key={Am}, gk={Am, Gm--Am}, ph={III}]
+  \audio[key=Am]{https://www.youtube.com/watch?v=LuKriSHRpCY}
+  \audio[key=Dm]{https://www.youtube.com/watch?v=99_GuzIkiUM}
+  \audio[key=Em]{https://www.youtube.com/watch?v=PT6awZl905o}
+  \audio[key=Dm]{https://soundcloud.com/vivadaime/oracao-de-sao-francisco-de-assis-maria-bethania}
+  \meter{2}{4}
+  \beginverse
+  \endverse
+  \mnbeginverse
+    \[\mn{A}]Se|\[\mnc{E}Am]nhor, | \e
+    Fa|\[\mnc{G}G]zei-me ins\[\mn{E}]tru|\[\mnc{D}Dm]mento de |\[\mnc{A}Am]vossa \[\mn{E}]P|az:
+    | \[\mn{A}]onde houver |\[\mnc{D}Dm]ódio, que eu |\[\mn{F}]le\[\mn{D}]ve o \[\mn{F}]A|\[\mnc{A}Am]mor;
+    |\[\mn{A}]onde houver o|\[\mnc{D}Dm]fensa, que eu |\[\mn{F}]le\[\mn{D}]ve o \[\mn{F}]Per|\[\mnc{A}Am]dão;
+    |onde houver \[\mn{G}]dis|\[\mnc{E}C]córdia, que eu |\[\mnc{G}G]le\[\mn{E}]ve a U\[\mn{D}]ni|\[\mnc{C}Am]ão;
+    | \[\mn{A}]onde hou\[\mn{G}]ver |\[\mnc{E}C]dúvida, que eu |\[\mnc{D}G]leve a |\[\mnc{A}Am]Fé;
+    | onde houver |\[\mnc{D}Dm]erro, que eu |\[\mn{F}]le\[\mn{D}]ve a \[\mn{F}]Ver|\[\mnc{A}Am]dade;
+    \[\mn{A}]on|de houver deses|\[\mnc{D}Dm]pero, que eu |\[\mn{F}]le\[\mn{D}]ve a Es\[\mn{F}]pe|\[\mnc{A}Am]rança;
+    |onde houver \[\mn{G}]tris|\[\mnc{E}C]teza, que eu |\[\mnc{G}G]le\[\mn{E}]ve a A\[\mn{D}]le|\[\mnc{C}Am]gria;
+    | \[\mn{A}]onde hou\[\mn{G}]ver |\[\mnc{E}C]trevas, que eu |\[\mnc{D}G/B]leve a |\[\mnc{A}Am]Luz. | \e
+  \mnendverse
+  \mnbeginverse
+    \[\mn{C}]Ó |\[\mnc{E}C]Mes|tre,
+    fa|\[\mn{G}]zei que eu pro|\[\mn{E}]cure |\[\mnc{D}Dm]mais: | \e
+    \[\mn{C}]con\[\mn{D}]so|\[\mnc{E}Am]lar, que |\[\mnc{D}E7]ser \[\mn{C}]con\[\mn{B}]so|\[\mnc{A}Am]lado;
+    | \[\mn{C}]com\[\mn{D}]pre\[\mn{E}]en|\[\mnc{F}Dm]der, que |\[\mn{E}]ser \[\mn{D}]com\[\mn{C}]preen|\[\mnc{B}G]dido; | \e
+    \[\mn{E}]a|\[\mnc{G}C]mar, |\[E7]{} \[\mn{F}]que \[\mn{E}]ser \[\mn{D}]a|\[\mnc{C}Am]mado. | \e
+    Pois \[\mn{D}]é |\[\mnc{E}E]dando, | \[\mn{D}]que \[\mn{C}]se \[\mn{B}]re|\[\mnc{A}Am]cebe,
+    | \[\mn{D}]é per\[\mn{E}]do|\[\mnc{F}Dm]ando, que se |\[\mn{E}]é \[\mn{D}]per\[\mn{C}]do|\[\mnc{B}G]ado,
+    | \[\mn{D}]e \[\mn{E}]é \[\mn{F}]mor|\[\mnc{G}C]rendo, |\[\mnc{A}E7]que \[\mn{B}]se \[\mn{C}]v|\[Am]i\[\mn{A}]ve |\[\mn{E}]pa\[\mn{A}]ra a |\[\mnc{E}C]vi\[\mn{D}]da e|\[\mnc{C}E7]ter|\[\mn{E}]- { } |\[\mnc{A}Am]na. | \e
+  \mnendverse
+  \begin{translation}[EN]
+    Lord,
+    make me an instrument of your Peace:
+    where there is hatred, let me sow Love;
+    where there is injury, Pardon;
+    where there is doubt, Faith;
+    where there is despair, Hope;
+    where there is sadness, Joy;
+    where there is darkness, Light.
+    \nextverse
+    O divine Master,
+    grant that I may not so much seek:
+    to be consoled as to console;
+    to be understood as to understand;
+    to be loved as to love.
+    For it is in giving that we receive,
+    it is in pardoning that we are pardoned,
+    and it is in dying that we are born to eternal life.
+  \end{translation}
+  \showlilypondfalse% to save space
+  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    % transcribed by larva, updated on 2023-04
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurSolid
+      \key a \minor \time 2/4 \partial 4
+      % stanza 1
+      a4 \sectionmark "1." | e'2~ | e4 r8 e8 | g g g e d4 d8 d | a8 a4 e'8~2 | r8 a, a a d4 d8 d
+      | f4 d8 f8 a4 r4 | a,8 a a a d4 d8 d | f4 d8 f a4 r4 | a8 a a g e4 e8 e
+      | g4 e8 d c4 r4 | r8 a' a g e e e e | d4 d4 a4 r4 | r8 a8 a a d4 d8 d
+      | f4 d8 f a a r a, | a a a a d d r d | f4 d8 f a4 a | a8 a a g e4 e8 e
+      | g4 e8 d c c r4 | r8 a'8 a g e4 e8 e | d4 d8 d a2~ | a4
+      % stanza 2
+      \sectionmark "2." c4 | e2 | e4 r8 e8 | g8. g16 g8 g8 | e4 e4 | d2 | r4 c8 d | e4. e8
+      | d4 c8 b | a4 a | r8 c4 d16 e | f4. f8 | e4 d8 c8 | b4 b4 | r4 e4 | g2~
+      | g8 f4 e16 d | c4 c | r4 c8 d | e4 e4~ | e8 d4 c16 b | a8 a4 r8 | r8 d4 d16 e | f8 f f f
+      % | e4 d8 c8 | b8. b16~ b4 | r8 d4 e16 f | g4 g4 | f4 f8. e16~ | e4 e8 r8 | e4 a4 | e4 d8 d
+      | e4 d8 c8 | b8. b16~ b4 | r8 d4 e16 f | g4 g4 | a4 b8. c16~ | c4 a8 r8 | e4 a4 | e4 d8 d
+      | c2( | e2) | a,2~ | a4
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      % Note that bar checks are missing when a bar starts with a rest
+      \set stanza = "1."
+      Se -- | nhor, | _
+      Fa -- | zei -- -me ins -- tru -- | men -- to de | vos -- sa Paz: | _
+      on -- de~hou -- ver | ó -- dio, que~eu | le -- ve~o A -- | mor;
+      | on -- de~hou -- ver o -- | fen -- sa, que~eu | le -- ve~o Per -- | dão;
+      | on -- de~hou -- ver dis -- | cór -- dia, que~eu | le -- ve~a~U -- ni -- | ão;
+      on -- de~hou -- ver | dú -- vi -- da, que~eu | le -- ve~a | Fé;
+      on -- de~hou -- ver | er -- ro, que~eu | le -- ve~a Ver -- | da -- de;
+      on -- | de~hou -- ver de -- ses -- | pe -- ro, que~eu | le -- ve~a~Es -- pe -- | ran -- ça;
+      | on -- de~hou -- ver tris -- | te -- za, que~eu | le -- ve~a~A -- le -- | gri -- a;
+      on -- de~hou -- ver | tre -- vas, que~eu | le -- ve a | Luz. | _
+      \set stanza = "2."
+      Ó | Mes -- | tre,
+      fa -- | zei que eu pro -- | cu -- re | mais:
+      con -- so -- | lar, que | ser con -- so -- | la -- do;
+      com -- pre -- en -- | der, que | ser com -- preen -- | di -- do;
+      a -- | mar, | _ que ser a -- | ma -- do.
+      Pois é | dan -- do, | _ que se re -- | ce -- be,
+      é per -- do -- | an -- do, que se | é per -- do -- | a -- do, _
+      e é mor -- | ren -- do, | que se vi -- | _ ve | pa -- ra~a | vi -- da e -- | ter -- | _ | na. | _
+    }
+    theChords = \chordmode {
+      % stanza 1
+      s4 | a2:m | a:m | g | d:m | a:m | a:m | a:m | d:m | d:m | a:m | a:m
+      | d:m | d:m | a:m | a:m | c | g | a:m | a:m | c | g | a:m | a:m
+      | d:m | d:m | a:m | a:m | d:m | d:m | a:m | a:m | c | g | a:m | a:m
+      | c | g:/b | a:m | a4:m
+      % stanza 2
+      a4:m | c2 | c | c | c | d:m | d:m | a:m | e:7 | a:m | a:m
+      | d:m | d:m | g | g | c | e:7 | a:m | a:m | e | e | a:m | a:m
+      | d:m | d:m | g | g | c | e:7 | a:m | a:m | c | e:7 | e:7 | a:m | a4:m
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 \beginsong{O Bálsamo do Céu}[by={Baixinha}, tags={Santo Daime}, ph={III}, key={Dm}, gk={Dm, Cm--D\shrp{}m}]
   % Also in songs_astral_unilaiva_diversos.tex (with lilypond notation)
   % Could this hymn be received by Isabel Barsé instead, as stated in nossairmandade.com?
@@ -2583,7 +2877,7 @@
 \endsong
 
 
-\beginsong{Mamãe dos Ventos}[by={Madr. Maria Alice},ph={III},tags={Santo Daime},key={Em},gk={Gm, Gm--G\shrp{}m}]
+\beginsong{Mamãe dos Ventos}[by={Madr. Maria Alice},ph={III},tags={Santo Daime, wind},key={Em},gk={Gm, Gm--G\shrp{}m}]
   \audio[key=Gm]{https://www.nossairmandade.com/hymn/1291/MamãeDosVentos}
   \audio[key=Gm]{https://www.youtube.com/watch?v=PBpoenC25FE}
   \newchords{chords_mamaedosventos_a}\newchords{chords_mamaedosventos_b}
@@ -2837,6 +3131,125 @@
 \endsong
 
 
+\scleardpage
+\beginsong{Manto de Maria}[by={Pedro Gonçalves}, ph={III, IV}, key={Dm}, gk={Dm, Cm--Em}]
+  \audio[key=Em]{https://www.youtube.com/watch?v=2gSJCtpN5do}
+  \audio[key=Em]{https://www.youtube.com/watch?v=q6W5Dbub6Qs}
+  \audio[key=Em]{https://www.youtube.com/watch?v=OEp8_jMn4nw}
+  \audio[key=Em]{https://soundcloud.com/dois-sois/manto-de-maria}
+  \transpose{-2} % in Em the notes range from B to B', in Dm from A to A'
+%   \beginverse*\footnotesize% smaller verse text
+%     % songs: make chords smaller in this verse
+%     \renewcommand{\printchord}[1]{\sffamily\bfseries\tiny\color{chordcolor}#1}%
+%     % songs: make space between chord and lyric line smaller:
+%     \renewcommand{\clineparams}{%
+%       \baselineskip=6pt%
+%       \lineskiplimit=1pt%
+%       \lineskip=1pt%
+%     }
+%     \ind[2]|\[Em]Respi|ra, |concen|tra, |respi|ra, |concen|tra,
+%     \ind[2]Aya-yahuas|ca, Aya-yahuas|ca, Aya-yahuas|ca, Aya-yahuas|ca,
+%     \ind[2]Ayahuas|ca | | | \e
+%   \endverse
+  \beginverse*
+    \ind[2]|\[\mnc{E}Em]Res\[\bmc\mn{D}]pi|\[\mn{B}]ra, \[\bmc\mn{E}]con|\[\mn{D}]cen\[\bmc\mn{B}]tra, |{ } { }\[\bmc\mn{E}]res|\[\mn{D}]pi\[\bmc\mn{B}]ra, |\[\mn{E}]con\[\bmc\mn{D}]cen|\[\mn{B}]tra
+    \ind[2]|Res\[\bm]pi|ra, \[\bm]con|cen\[\bm]tra, |{ } { }\[\bm]Aya-yahuas|ca, \[\bm]Aya-yahuas|ca,
+    \ind[2]\[\bm]Aya-yahuas|ca, \[\bm]Aya-yahuas|ca, \[\bm]Ayahuas|ca |{ }\[\bm]{ } |{ }\[\bm]{ } |{ }\[\bm]{ } \e
+  \endverse
+  \segno
+  \beginverse
+    |\[Em]{} \[\bm]{} \[\mn{E}]Todos os |dias a flo\[\bmc\mn{B}]resta \[\mn{A}]vem \[\mn{G}]cha|\[\mn{E}]mar
+    \[\bm]Só quem a en|\[D]xerga é que \[\bm]vai aproxi|\[Em]mar \[\bm]
+    Todos os |dias as li\[\bm]ções vêm nos gui|ar
+    \[\bm]Só quem a en|\[D]xerga é que \[\bm]vai aproxi|\[Em]mar \[\bm]
+    E o Daime |\[D]leva \[\bm]pra transforma|\[Em]ção
+    Rom\[\bm]pendo esse |\[D]véu desse \[\bm]mundo de ilu|\[Em]são \[\bm]
+    E é a |\[D]cura dessa \[\bm]manifesta|\[Em]ção
+    \[\bm]De luz e a|\[D]mor, presença e \[\bm]pura comu|\[Em]nhão \[\bm]
+  \endverse
+  \beginverse
+    \ind[1]\[\mn{E}]Ave Ma|\[Em]ria vossa \[\bm]proteção di|vina
+    \ind[1]Eu con\[\bm]cebo essa |cura e me per\[\bm]mito ao a|mor \[\bm]
+    \ind[1]Todos os |seres dessa \[\bm]cura inten|siva
+    \ind[1]Eu per\[\bm]mito total|mente a en\[\bm]trada da sa|bedo\[\bm]ria
+    \ind[1]Ave Ma|ria vossa \[\bm]proteção di|vina
+    \ind[1]Eu me en\[\bm]trego total|mente e me per\[\bm]mito a essa |luz \[\bm]
+    \ind[1]Ave Ma|ri\[\bm]a e |\[C]todos os \[\bmc B]guardi|\[Em]õ\[\bm]{}|{ - }es
+    \ind[1]\[\bm]Mani|\[C]fes\[\bm]ta|\[B7]ções \[\bm]de |\[Em]luz \[\bm]
+  \endverse
+  \brk
+  \beginverse
+    |\[Em]{} \[\bm]{} Eu me per|\[D]mito total\[\bm]mente a essa |\[Em]força\[\bm]
+    Eu me per|\[D]mito porque eu \[\bm]quero me cu|\[Em]rar \[\bm]
+    Eu me per|\[D]mito pra aca\[\bm]bar com meu sof|\[Em]rer
+    Porque eu \[\bm]sou filho a de |\[D]Deus a apren\[\bm]diz do seu po|\[Em]der
+    Porque \[\bm]a era da |\[D]luz vem che\[\bm]gando pra vi|\[Em]ver
+    Aya\[\bm]huasca é tão di|\[D]vina profes\[\bm]sora do meu |\[Em]ser
+    É a \[\bm]força pode|\[D]rosa que me \[\bm]leva a renas-
+    \up{1}(|\[Em]cer\sublyrpush{hey-}\sublyr{aa}\[\bm]{} \sublyrpush{hey-}|\sublyrpush{aa,}\[\bm]\sublyrpush{oo-hey-oo-}|\sublyrpush{hey-}\[\bm]{} |\sublyrpush{aa,}\[\bm]\sublyrpush{oo-hey-oo-}|\sublyrpush{hey}\[\bm]{} |{ }{ }\[\bm]\sublyrpush{oo-hey-oo-}|\sublyrpush{hey\ldots}\[\bm]{} \e)
+  \endverse
+  \dalsegno
+  \beginverse
+    \ind[3]|\sublyr{cer}\[\mnc{E}C]Cu\[\mn{F#}]ra \[\mn{G}]nas \[\bmc\mn{E}]gra\[\mn{F#}]ças \[\mn{G}]de |\[\mnc{F#}D]A\[\mn{G}]ve \[\mn{A}]Ma\[\bmc\mn{G}]ri\[\mn{F#}]a
+    \ind[3]Ca|\[Em]minho a \[\bm]continui|dade do \[\bm]meu cora-
+    \ind[3]|\sublyr{ção}\[C]Cura no \[\bm]manto de n|\[D]ossa Se\[\bm]nhora
+    \ind[3]Sen|\[Em]tindo a \[\bm]benção da |imensi\[\bm]dão
+    \ind[3]Do |\[C]ser\[\bm], sen|\[D]tir\[\bm]{} e a|\[Em]mar\[\bm]{} |{ }\[\bm]{ } |{ }\[\bm]{ } |{ }\[\bm]{ } \e
+  \endverse
+  \beginchorus
+    \ind[1]|\[\mn{B}]Saia do mar, \[\bmc\mn{A}]linda sereia
+    \ind[1]|Saia do mar, vem \[\bm]brincar na areia
+    \ind[1]|Saia do mar, \[\bm]sereia bela
+    \ind[1]|Saia do mar, vem \[\bm]brincar com ela
+  \endchorus
+  \beginchorus
+    \ind[1]\[\mn{E}]Eu |\[\mn{A}]vim \[\mn{G}]eu \[\mn{F#}]vim \[\mn{E}]can\[\bmc\mn{G}]ta\[\mn{E}]r, se|\[\mn{G}]reia do \[\bmc\mn{E}]mar
+  \endchorus
+  \begin{translation}[EN]
+    Breath, concentrate\ldots
+    \nextverse
+    Every day the forest comes to call
+    Only those who see it will approach
+    Every day the lessons come to guide us
+    Only those who see it will approach
+    And Daime leads to transformation
+    Breaking this veil of this world of illusion
+    And it is the cure of this manifestation
+    Of light and love, presence and pure communion
+    \nextverse
+    Ave Maria your divine protection
+    I conceive this cure and allow myself to love
+    All beings of this intensive healing
+    I totally allow wisdom to enter
+    Ave Maria your divine protection
+    I give myself totally and allow myself to this light
+    Ave Maria and all the guardians
+    Light manifestations
+    \nextverse
+    I totally allow myself to this force
+    I allow myself because I want to heal
+    I allow myself to end my suffering
+    Because I am a child of God, an apprentice of his power
+    Because the age of light is coming to life
+    Ayahuasca is such a divine teacher of my being
+    It is the powerful force that leads me to be reborn
+    \nextverse
+    Healing in the graces of Ave Maria
+    I walk the continuity of my heart
+    Healing in the cloak of our Lady
+    Feeling the blessing of immensity
+    Of being, feeling and loving
+    \nextverse
+    Exit the sea, beautiful mermaid
+    Exit the sea, come play in the sand
+    Exit the sea, beautiful mermaid
+    Exit the sea, come play with her
+    \nextverse
+    I came to sing, mermaid of the sea
+  \end{translation}
+\endsong
+
+
 \beginsong{Santa Maria}[by={Yatra}, ph={III, IV}, key={C}, gk={C, C--C\shrp{}}]
   \audio[key=C]{https://soundcloud.com/sound-of-light/santa-maria-266-florestral}
   \newchords{chords_santamaria_a}\newchords{chords_santamaria_b}
@@ -2890,6 +3303,253 @@
     Santa Maria with her Divine Strength
     Is the Morning Star
     That illuminates this session
+  \end{translation}
+\endsong
+
+
+\scleardpage
+\beginsong{Santa Cura}[by={Marie Gabriella}, key={Bm}, gk={Bm, (Bm)--Cm}, ph={III}]
+  \audio[key=Bm]{https://www.youtube.com/watch?v=ryTDgrUhD1g}
+  \audio[key=Bm]{https://soundcloud.com/victor-coelho-428056579/santa-cura-marie-gabriella-mp3}
+  \meter{3}{4}
+  \textnotefornext{intro:}*
+  \mnbeginchorus
+    \ind[2] \[\mn{B}]Cura |\[\mnc{D}Bm]vem\[\mn{B}], |\[\mn{D}]vem \[\mn{B}]cu|\[\mnc{F#}F#m]rar | \e \altchords{\id[1]{Am \capo{2}}\meter{3}{4}|Am |  |Em | \e}
+    \ind[2] \[\mn{B}]Vem cu|\[Bm]rar to|\[\mn{D}]das \[\mn{B}]do|\[\mnc{F#}D]enças \altchords{|Am |  |C}
+    \ind[2] |\[\mnc{E}Em]Santa |\[\mnc{D}D]cu\[\mn{B}]ra |\[\mnc{D}F#m]vem \[\mn{C#}]cu|\[\mnc{B}Bm]rar \altchords{|Dm |C |Em |Am}
+  \mnendchorus
+  \meter{4}{4}
+  \mnbeginchorus
+    \[\bmc\mn{D}]Os \[\mn{C#}]pon|\[\mnc{B}Bm]tos são \[\bmc\mn{D}]tão \[\mn{B}]es|\[\mnc{F#}F#m]curos \altchords{\meter{4}{4}|Am |Em}
+    \[\bmc\mn{E}]Quem pe|\[\mnc{D}Bm]de \[\mn{B}]ja \[\mnc{G}Em]me \[\mn{F#}]faz |\[\mn{E}]ver \altchords{|Am Dm | \e}
+    \[\bmc\mn{G}]Que é \[\mn{F#}]pe|\[\mn{E}]din\[\mn{D}]do \[\bmc\mn{C#}]e \[\mn{B}]ro|\[\mnc{F#}Bm]gando \altchords{|  |Am}
+    \[\bmc\mn{B}]Que co|\[\mnc{F#}F#m]meça a \[\mn{B}]se \[\bmc\mn{D}]com\[\mn{C#}]preen|\[\mnc{B}Bm]der \altchords{|Em |Am}
+  \mnendchorus
+  \mnbeginchorus\memorize
+    \ind \[\bmc\mn{D}]Co\[^\mn{B}]mo |\[\mnc{D}Bm]tu \[^\mn{B}]és \[\bmc\mn{D}]com\[^\mn{B}]pai|\[\mnc{F#}F#m]xão
+    \ind \[\bmc\mn{B}]E o a|\[Bm]mor su\[\mnc{G}Em]a \[^\mn{F#}]pre|\[^\mn{E}]sença
+    \ind \[\bmc\mn{G}]Te\[^\mn{F#}]nha |\[^\mn{E}]pi\[^\mn{D}]e\[\bmc\mn{C#}]da\[^\mn{B}]de |\[\mnc{F#}Bm]mãe
+    \ind \[\bmc\mn{B}]De tan|\[\mnc{F#}F#m]ta \[^\mn{B}]in\[\bmc\mn{D}]cons\[^\mn{C#}]ci|\[\mnc{B}Bm]ência
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    ^Nos de |^força pa^ra se|^guir
+    ^Não nos |^deixa es^more|cer
+    ^Santa |cura ^vem a|^qui
+    Pa^ra sa|^úde esta^bele|^cer
+  \endchorus
+  \beginchorus
+    \ind ^Nos de |^força pa^ra se|^guir
+    \ind For^ça da |^Terra ^vem sa|nar
+    \ind Sa^úde e |vens para ^prosse|^guir
+    \ind Er^vas e |^plantas a ^nos \up{1}sal|^var \altlyr[2]{sau|dar}
+  \endchorus
+  \beginchorus
+    ^Verde |^vem, verde ^vem vem |^mais
+    ^Verde |^vem vem es^verde|ar
+    ^Vem mos|trar a ^sua |^força
+    ^Força |^das á^guas do |^mar
+  \endchorus
+  \beginchorus
+    \ind ^Verde |^vem com ^seu a|^mor
+    \ind ^Verde |^vem pu^rifi|car
+    \ind ^Verde |vem cu^rando a |^dor
+    \ind Cu^rando |^vem a^livi|^ar
+  \endchorus
+  \beginchorus
+    Ver^de é a|^mor, ver^de é espe|^rança
+    ^Verde |^{é e sem}^pre se|rá
+    ^A cor |da sa^grada |^Ganga
+    ^Que está |^sempre a a^benço|^ar
+  \endchorus
+  \showlilypondfalse % to save space
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-12
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative b' {
+      \key b \minor
+      \set melismaBusyProperties = #'()
+      \slurSolid
+      \time 3/4 \partial 2
+      \tempo "Andante moderato" 4 = 100
+      \repeat volta 2 { % intro
+        b4 \sectionmark "intro" b | d2( b4) | d2 b4 | fis2.~ | fis4 b b | b2 b4 | d2 b4 | fis'2 fis4
+        | e2 e4 | d2 b4 | d2 cis4 | b2.~ \fermata | b4
+      }
+      \slurDashed
+      \time 4/4 \partial 2
+      \tempo "Moderato" 4 = 120
+      \repeat segno 3 {
+        \repeat volta 2 { % odd verses
+          d4 \sectionmark "1., 3., 5." cis | b b8( b) d4 b | fis'4.( fis8) e4 e | d b g'4. fis8 | e2
+          g4 fis | e d cis b | fis4( fis8) fis8 b4 b | fis'4 << fis8 \once\slurDown \single\altcol b,8 \single\altcol ( >> b8) d4 cis4 | b2
+        }
+        \repeat volta 2 { % even verses
+          d4 \sectionmark "2., 4., 6." b | d << \single\altcol d8 \once\slurDown b8( >> b) d4 b | fis4( << fis) \single\altcol b4 >> b4 b | b b g' \single\altcol ( << \single\altcol g8) \once\slurDown fis8( >> fis8) | e4( e8)( e8) g4 fis | e << \single\altcol e8 \once\slurDown d8( >> d8) cis4 b | fis4.( fis8)
+          b4 b | fis'<< \single\altcol fis8 \once\slurDown b,8( >> b8) d4 cis | b4( b4) \genmark "(6.ii)"
+        }
+      }
+      \repeat volta 2 { % final verse (odd style)
+        d4 \sectionmark "7." cis | b b4 d4 b | fis'4. fis8 e4 e | d b g'4. fis8 | e2
+        g4 fis | e d cis b | fis4 fis4 b4 b | fis'4 << fis8 \once\slurDown \single\altcol b,8 \single\altcol ( >> b8) d4 cis4 | b4( b4) \genmark "(i)"
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "[intro]"
+      \repeat volta 2 {
+        Cu -- ra | vem, _ | vem cu -- | rar;
+        | _ Vem cu -- | rar to -- | das do -- | en -- ças;
+        | San -- ta | cu -- ra | vem cu -- | rar. _
+      }
+      \repeat segno 3 {
+        <<
+          {
+            \set stanza = "1."
+            \repeat volta 2 {
+              Os pon -- | tos são __ _ tão es -- | cu -- ros;
+              Quem pe -- | de ja me faz | ver;
+              Que~é pe -- | din -- do e ro -- | gan -- do; __ _
+              Que co -- | me -- ça~a se com -- preen -- | der.
+            }
+            \set stanza = "2."
+            \repeat volta 2 {
+              Co -- mo | tu és __ _ com -- pai -- | xão; __ _
+              E~o a -- | mor su -- a pre -- _ | sen -- ça; __ _
+              Te -- nha | pi -- e -- _ da -- de | mãe; __ _
+              De tan -- | ta in -- _ cons -- ci -- | ên -- cia.
+            }
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "3."
+            \repeat volta 2 {
+              Nos de | for -- ça pa -- ra se -- | guir; __ _
+              Não nos | dei -- xa~es -- mo -- re -- | cer;
+              San -- ta | cu -- ra vem a -- | qui; __ _
+              Pa -- ra sa -- | ú -- de~es -- ta -- be -- le -- | cer.
+            }
+            \set stanza = "4."
+            \repeat volta 2 {
+              Nos de | for -- \altcol ça pa -- ra se -- | guir;
+              \altcol For -- ça da | Ter -- ra \altcol vem __ _ sa -- | nar; __ _
+              Sa -- ú -- de~e | vens \altcol pa -- ra pros -- se -- | guir;
+              Er -- vas e | plan -- \altcol tas a nos sal -- | var. _ % 2nd repeat: sau | dar. _
+            }
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "5."
+            \repeat volta 2 {
+              Ver -- de | vem, ver -- de vem vem | mais; __ _
+              Ver -- de | vem vem~es -- ver -- de -- | ar;
+              Vem mos -- | trar a su -- a | for -- ça; __ _
+              For -- ça | das \altcol á -- _ guas do | mar.
+            }
+            \set stanza = "6."
+            \repeat volta 2 {
+              Ver -- de | vem com __ _ seu a -- | mor; __ _
+              Ver -- de | vem pu -- ri -- fi -- _ | car; __ _ _
+              Ver -- de | vem cu -- _ ran -- do~a | dor;
+              Cu -- ran -- do | vem a -- _ li -- vi -- | ar. \set stanza = "7." \parenthesize Ver--
+            }
+          }
+        >>
+      }
+      \set stanza = "7."
+      \repeat volta 2 {
+        de~é a -- | mor, ver -- de~é~es -- pe -- | ran -- ça;
+        Ver -- de | é~e sem -- pre se -- | rá;
+        A cor | da sa -- gra -- da | Gan -- ga;
+        Que~es -- tá | sem -- pre a~a -- ben -- ço -- | ar. \parenthesize Ver--
+      }
+    }
+    theChords = \chordmode {
+      %\time 3/4 \partial 2
+      \repeat volta 2 {
+        s2 | b2.:m | b2.:m | fis2.:m | fis2.:m
+        | b2.:m | b2.:m | d2. | e2.:m | d2. | fis2.:m | b2.:m | b4:m
+      }
+      %\time 4/4 \partial 2
+      \repeat segno 3 {
+        \repeat volta 2 {
+          s2 | b1:m | fis1:m | b2:m e2:m
+          | e1:m | e1:m | b1:m | fis1:m | b2:m
+        }
+        \repeat volta 2 {
+          s2 | b1:m | fis1:m | b2:m e2:m
+          | e1:m | e1:m | b1:m | fis1:m | b2:m
+        }
+      }
+      \repeat volta 2 {
+        s2 | b1:m | fis1:m | b2:m e2:m
+        | e1:m | e1:m | b1:m | fis1:m | b2:m
+      }
+    }
+%     \layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    Healing comes, come to heal
+    Come to heal all diseases
+    Holy healing come to heal
+    \nextverse
+    The points are so dark, whoever asks makes me see
+    It is by asking and pleading that understanding begins
+    \nextverse
+    How compassionate you are, and love is your presence
+    Have mercy, mother, on so much unconsciousness
+    \nextverse
+    Give us strength to go on, don't let us weaken
+    Holy healing come here to establish health
+    \nextverse
+    Give us strength to go on; strength of the Earth, come heal
+    Health and come to continue; herbs and plants to \up{1}save us \up{2}(salute us)
+    \nextverse
+    Green comes, green comes, come more, green comes, come verdant
+    Come show your strength, strength of the waters of the sea
+    \nextverse
+    Green comes with your love, green comes to purify
+    Green comes healing the pain, healing comes to relieve
+    \nextverse
+    Green is love, green is hope; Green is and always will be
+    The color of the sacred Ganges, that is always blessing
+  \end{translation}
+\endsong
+
+
+\beginsong{Venho lá da Floresta}[by={Mapu Huni Kuin, Ixã Huni Kuin}, key={Am}, gk={Am, Am--Em}, ph={IV}]
+  \audio[key=Gm]{https://www.youtube.com/watch?v=DCQ3J8J3RRc}
+  \audio[key=Gm]{https://soundcloud.com/josecastillosolis/venho-la-da-floresta-mapu-e-ixa-canto-huni-kuin}
+  \audio[key=F\#m]{https://soundcloud.com/audeia-pachamama/08-eu-venho-la-da-floresta}
+  % in Em the notes range from D to B, in transposed Am they range from A to F#
+  \transpose{5}
+  \beginchorus\memorize
+    |\[Em]{} \[^\mn{B}]Venho \[\bm]lá da flo|\[\mnc{A}D]resta, com \[^\mn{G}]meu \[\bmc\mn{A}]can\[^\mn{G}]tar \[^\mn{A}]de \[^\mn{G}]A|\[\mnc{A}Am]mor
+    Sou um \[\bm]índio mensa|\[C]geiro, mensa\[\bm]geiro do A|\[Em]mor\[\bm]{} | \[\bm]\e
+  \endchorus
+  \beginchorus
+    \ind \[\mn{E}]E\[\mn{F#}]he|\[\mnc{G}G]heh \[\bmc\mn{D}]e\[\mn{B}]he|\[\mnc{A}D]heh \[\mn{G}]a-\[\bmc\mn{A}]eh-\[\mn{G}]a-\[\mn{A}]eh-\[\mn{G}]a-|\[\mnc{A}Am]eh
+    \ind a-\[\bm]eh-a-eh-a-|\[C]eh a-eh-a-\[\bm]eh-a-eh-a-|\[Em]eh \[\bm]{} | \[\bm]\e
+  \endchorus
+  \notesoff
+  \beginchorus
+    |^ Peço ^à mãe Ra|^inha, toda ^hora todo |^dia
+    Para ^trazer a |^cura, e a nos ^dar muita ale|^gria^ | ^\e
+  \endchorus
+  \goto{Eheheh}
+  \beginchorus
+    |^ No ^meio da flo|^resta, junto ^com os meus ir|^mãos
+    Vou fa^lar com o cora|^ção, essa é a ^minha tradi|^ção^ | ^\e
+  \endchorus
+  \goto{Eheheh}
+  \begin{translation}[EN]
+    I come from the forest with my singing of Love
+    I am an Indian messenger, messenger of Love
+    \nextverse
+    I ask the mother Queen, every hour every day
+    To bring the cure, and to give us much joy
+    \nextverse
+    In the middle of the forest, together with my brothers
+    I will speak from the heart, this is my tradition
   \end{translation}
 \endsong
 
@@ -3057,125 +3717,6 @@
     consciousness and the Orixá's unconsciousness. The word \emph{erê} means
     ``to play games'' in the \emph{Yoruba} language.
   \end{explanation}
-\endsong
-
-
-\scleardpage
-\beginsong{Manto de Maria}[by={Pedro Gonçalves}, ph={III, IV}, key={Dm}, gk={Dm, Cm--Em}]
-  \audio[key=Em]{https://www.youtube.com/watch?v=2gSJCtpN5do}
-  \audio[key=Em]{https://www.youtube.com/watch?v=q6W5Dbub6Qs}
-  \audio[key=Em]{https://www.youtube.com/watch?v=OEp8_jMn4nw}
-  \audio[key=Em]{https://soundcloud.com/dois-sois/manto-de-maria}
-  \transpose{-2} % in Em the notes range from B to B', in Dm from A to A'
-%   \beginverse*\footnotesize% smaller verse text
-%     % songs: make chords smaller in this verse
-%     \renewcommand{\printchord}[1]{\sffamily\bfseries\tiny\color{chordcolor}#1}%
-%     % songs: make space between chord and lyric line smaller:
-%     \renewcommand{\clineparams}{%
-%       \baselineskip=6pt%
-%       \lineskiplimit=1pt%
-%       \lineskip=1pt%
-%     }
-%     \ind[2]|\[Em]Respi|ra, |concen|tra, |respi|ra, |concen|tra,
-%     \ind[2]Aya-yahuas|ca, Aya-yahuas|ca, Aya-yahuas|ca, Aya-yahuas|ca,
-%     \ind[2]Ayahuas|ca | | | \e
-%   \endverse
-  \beginverse*
-    \ind[2]|\[\mnc{E}Em]Res\[\bmc\mn{D}]pi|\[\mn{B}]ra, \[\bmc\mn{E}]con|\[\mn{D}]cen\[\bmc\mn{B}]tra, |{ } { }\[\bmc\mn{E}]res|\[\mn{D}]pi\[\bmc\mn{B}]ra, |\[\mn{E}]con\[\bmc\mn{D}]cen|\[\mn{B}]tra
-    \ind[2]|Res\[\bm]pi|ra, \[\bm]con|cen\[\bm]tra, |{ } { }\[\bm]Aya-yahuas|ca, \[\bm]Aya-yahuas|ca,
-    \ind[2]\[\bm]Aya-yahuas|ca, \[\bm]Aya-yahuas|ca, \[\bm]Ayahuas|ca |{ }\[\bm]{ } |{ }\[\bm]{ } |{ }\[\bm]{ } \e
-  \endverse
-  \segno
-  \beginverse
-    |\[Em]{} \[\bm]{} \[\mn{E}]Todos os |dias a flo\[\bmc\mn{B}]resta \[\mn{A}]vem \[\mn{G}]cha|\[\mn{E}]mar
-    \[\bm]Só quem a en|\[D]xerga é que \[\bm]vai aproxi|\[Em]mar \[\bm]
-    Todos os |dias as li\[\bm]ções vêm nos gui|ar
-    \[\bm]Só quem a en|\[D]xerga é que \[\bm]vai aproxi|\[Em]mar \[\bm]
-    E o Daime |\[D]leva \[\bm]pra transforma|\[Em]ção
-    Rom\[\bm]pendo esse |\[D]véu desse \[\bm]mundo de ilu|\[Em]são \[\bm]
-    E é a |\[D]cura dessa \[\bm]manifesta|\[Em]ção
-    \[\bm]De luz e a|\[D]mor, presença e \[\bm]pura comu|\[Em]nhão \[\bm]
-  \endverse
-  \beginverse
-    \ind[1]\[\mn{E}]Ave Ma|\[Em]ria vossa \[\bm]proteção di|vina
-    \ind[1]Eu con\[\bm]cebo essa |cura e me per\[\bm]mito ao a|mor \[\bm]
-    \ind[1]Todos os |seres dessa \[\bm]cura inten|siva
-    \ind[1]Eu per\[\bm]mito total|mente a en\[\bm]trada da sa|bedo\[\bm]ria
-    \ind[1]Ave Ma|ria vossa \[\bm]proteção di|vina
-    \ind[1]Eu me en\[\bm]trego total|mente e me per\[\bm]mito a essa |luz \[\bm]
-    \ind[1]Ave Ma|ri\[\bm]a e |\[C]todos os \[\bmc B]guardi|\[Em]õ\[\bm]{}|{ - }es
-    \ind[1]\[\bm]Mani|\[C]fes\[\bm]ta|\[B7]ções \[\bm]de |\[Em]luz \[\bm]
-  \endverse
-  \brk
-  \beginverse
-    |\[Em]{} \[\bm]{} Eu me per|\[D]mito total\[\bm]mente a essa |\[Em]força\[\bm]
-    Eu me per|\[D]mito porque eu \[\bm]quero me cu|\[Em]rar \[\bm]
-    Eu me per|\[D]mito pra aca\[\bm]bar com meu sof|\[Em]rer
-    Porque eu \[\bm]sou filho a de |\[D]Deus a apren\[\bm]diz do seu po|\[Em]der
-    Porque \[\bm]a era da |\[D]luz vem che\[\bm]gando pra vi|\[Em]ver
-    Aya\[\bm]huasca é tão di|\[D]vina profes\[\bm]sora do meu |\[Em]ser
-    É a \[\bm]força pode|\[D]rosa que me \[\bm]leva a renas-
-    \up{1}(|\[Em]cer\sublyrpush{hey-}\sublyr{aa}\[\bm]{} \sublyrpush{hey-}|\sublyrpush{aa,}\[\bm]\sublyrpush{oo-hey-oo-}|\sublyrpush{hey-}\[\bm]{} |\sublyrpush{aa,}\[\bm]\sublyrpush{oo-hey-oo-}|\sublyrpush{hey}\[\bm]{} |{ }{ }\[\bm]\sublyrpush{oo-hey-oo-}|\sublyrpush{hey\ldots}\[\bm]{} \e)
-  \endverse
-  \dalsegno
-  \beginverse
-    \ind[3]|\sublyr{cer}\[\mnc{E}C]Cu\[\mn{F#}]ra \[\mn{G}]nas \[\bmc\mn{E}]gra\[\mn{F#}]ças \[\mn{G}]de |\[\mnc{F#}D]A\[\mn{G}]ve \[\mn{A}]Ma\[\bmc\mn{G}]ri\[\mn{F#}]a
-    \ind[3]Ca|\[Em]minho a \[\bm]continui|dade do \[\bm]meu cora-
-    \ind[3]|\sublyr{ção}\[C]Cura no \[\bm]manto de n|\[D]ossa Se\[\bm]nhora
-    \ind[3]Sen|\[Em]tindo a \[\bm]benção da |imensi\[\bm]dão
-    \ind[3]Do |\[C]ser\[\bm], sen|\[D]tir\[\bm]{} e a|\[Em]mar\[\bm]{} |{ }\[\bm]{ } |{ }\[\bm]{ } |{ }\[\bm]{ } \e
-  \endverse
-  \beginchorus
-    \ind[1]|\[\mn{B}]Saia do mar, \[\bmc\mn{A}]linda sereia
-    \ind[1]|Saia do mar, vem \[\bm]brincar na areia
-    \ind[1]|Saia do mar, \[\bm]sereia bela
-    \ind[1]|Saia do mar, vem \[\bm]brincar com ela
-  \endchorus
-  \beginchorus
-    \ind[1]\[\mn{E}]Eu |\[\mn{A}]vim \[\mn{G}]eu \[\mn{F#}]vim \[\mn{E}]can\[\bmc\mn{G}]ta\[\mn{E}]r, se|\[\mn{G}]reia do \[\bmc\mn{E}]mar
-  \endchorus
-  \begin{translation}[EN]
-    Breath, concentrate\ldots
-    \nextverse
-    Every day the forest comes to call
-    Only those who see it will approach
-    Every day the lessons come to guide us
-    Only those who see it will approach
-    And Daime leads to transformation
-    Breaking this veil of this world of illusion
-    And it is the cure of this manifestation
-    Of light and love, presence and pure communion
-    \nextverse
-    Ave Maria your divine protection
-    I conceive this cure and allow myself to love
-    All beings of this intensive healing
-    I totally allow wisdom to enter
-    Ave Maria your divine protection
-    I give myself totally and allow myself to this light
-    Ave Maria and all the guardians
-    Light manifestations
-    \nextverse
-    I totally allow myself to this force
-    I allow myself because I want to heal
-    I allow myself to end my suffering
-    Because I am a child of God, an apprentice of his power
-    Because the age of light is coming to life
-    Ayahuasca is such a divine teacher of my being
-    It is the powerful force that leads me to be reborn
-    \nextverse
-    Healing in the graces of Ave Maria
-    I walk the continuity of my heart
-    Healing in the cloak of our Lady
-    Feeling the blessing of immensity
-    Of being, feeling and loving
-    \nextverse
-    Exit the sea, beautiful mermaid
-    Exit the sea, come play in the sand
-    Exit the sea, beautiful mermaid
-    Exit the sea, come play with her
-    \nextverse
-    I came to sing, mermaid of the sea
-  \end{translation}
 \endsong
 
 
@@ -4093,545 +4634,5 @@
 %%% Please try to not change the song numbers above this point. %%%
 %%% Add new songs only after this point.                        %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\beginsong{Oração de São Francisco}[by={Pe. Irala, SJ}, key={Am}, gk={Am, Gm--Am}, ph={III}]
-  \audio[key=Am]{https://www.youtube.com/watch?v=LuKriSHRpCY}
-  \audio[key=Dm]{https://www.youtube.com/watch?v=99_GuzIkiUM}
-  \audio[key=Em]{https://www.youtube.com/watch?v=PT6awZl905o}
-  \audio[key=Dm]{https://soundcloud.com/vivadaime/oracao-de-sao-francisco-de-assis-maria-bethania}
-  \meter{2}{4}
-  \beginverse
-  \endverse
-  \mnbeginverse
-    \[\mn{A}]Se|\[\mnc{E}Am]nhor, | \e
-    Fa|\[\mnc{G}G]zei-me ins\[\mn{E}]tru|\[\mnc{D}Dm]mento de |\[\mnc{A}Am]vossa \[\mn{E}]P|az:
-    | \[\mn{A}]onde houver |\[\mnc{D}Dm]ódio, que eu |\[\mn{F}]le\[\mn{D}]ve o \[\mn{F}]A|\[\mnc{A}Am]mor;
-    |\[\mn{A}]onde houver o|\[\mnc{D}Dm]fensa, que eu |\[\mn{F}]le\[\mn{D}]ve o \[\mn{F}]Per|\[\mnc{A}Am]dão;
-    |onde houver \[\mn{G}]dis|\[\mnc{E}C]córdia, que eu |\[\mnc{G}G]le\[\mn{E}]ve a U\[\mn{D}]ni|\[\mnc{C}Am]ão;
-    | \[\mn{A}]onde hou\[\mn{G}]ver |\[\mnc{E}C]dúvida, que eu |\[\mnc{D}G]leve a |\[\mnc{A}Am]Fé;
-    | onde houver |\[\mnc{D}Dm]erro, que eu |\[\mn{F}]le\[\mn{D}]ve a \[\mn{F}]Ver|\[\mnc{A}Am]dade;
-    \[\mn{A}]on|de houver deses|\[\mnc{D}Dm]pero, que eu |\[\mn{F}]le\[\mn{D}]ve a Es\[\mn{F}]pe|\[\mnc{A}Am]rança;
-    |onde houver \[\mn{G}]tris|\[\mnc{E}C]teza, que eu |\[\mnc{G}G]le\[\mn{E}]ve a A\[\mn{D}]le|\[\mnc{C}Am]gria;
-    | \[\mn{A}]onde hou\[\mn{G}]ver |\[\mnc{E}C]trevas, que eu |\[\mnc{D}G/B]leve a |\[\mnc{A}Am]Luz. | \e
-  \mnendverse
-  \mnbeginverse
-    \[\mn{C}]Ó |\[\mnc{E}C]Mes|tre,
-    fa|\[\mn{G}]zei que eu pro|\[\mn{E}]cure |\[\mnc{D}Dm]mais: | \e
-    \[\mn{C}]con\[\mn{D}]so|\[\mnc{E}Am]lar, que |\[\mnc{D}E7]ser \[\mn{C}]con\[\mn{B}]so|\[\mnc{A}Am]lado;
-    | \[\mn{C}]com\[\mn{D}]pre\[\mn{E}]en|\[\mnc{F}Dm]der, que |\[\mn{E}]ser \[\mn{D}]com\[\mn{C}]preen|\[\mnc{B}G]dido; | \e
-    \[\mn{E}]a|\[\mnc{G}C]mar, |\[E7]{} \[\mn{F}]que \[\mn{E}]ser \[\mn{D}]a|\[\mnc{C}Am]mado. | \e
-    Pois \[\mn{D}]é |\[\mnc{E}E]dando, | \[\mn{D}]que \[\mn{C}]se \[\mn{B}]re|\[\mnc{A}Am]cebe,
-    | \[\mn{D}]é per\[\mn{E}]do|\[\mnc{F}Dm]ando, que se |\[\mn{E}]é \[\mn{D}]per\[\mn{C}]do|\[\mnc{B}G]ado,
-    | \[\mn{D}]e \[\mn{E}]é \[\mn{F}]mor|\[\mnc{G}C]rendo, |\[\mnc{A}E7]que \[\mn{B}]se \[\mn{C}]v|\[Am]i\[\mn{A}]ve |\[\mn{E}]pa\[\mn{A}]ra a |\[\mnc{E}C]vi\[\mn{D}]da e|\[\mnc{C}E7]ter|\[\mn{E}]- { } |\[\mnc{A}Am]na. | \e
-  \mnendverse
-  \begin{translation}[EN]
-    Lord,
-    make me an instrument of your Peace:
-    where there is hatred, let me sow Love;
-    where there is injury, Pardon;
-    where there is doubt, Faith;
-    where there is despair, Hope;
-    where there is sadness, Joy;
-    where there is darkness, Light.
-    \nextverse
-    O divine Master,
-    grant that I may not so much seek:
-    to be consoled as to console;
-    to be understood as to understand;
-    to be loved as to love.
-    For it is in giving that we receive,
-    it is in pardoning that we are pardoned,
-    and it is in dying that we are born to eternal life.
-  \end{translation}
-  %% Full notation commented out
-  % %   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-  %     % transcribed by larva, updated on 2023-04
-  %     theMelody = \relative a' {
-  %       \set melismaBusyProperties = #'() \slurSolid
-  %       \key a \minor \time 2/4 \partial 4
-  %       % stanza 1
-  %       a4 \sectionmark "1." | e'2~ | e4 r8 e8 | g g g e d4 d8 d | a8 a4 e'8~2 | r8 a, a a d4 d8 d
-  %       | f4 d8 f8 a4 r4 | a,8 a a a d4 d8 d | f4 d8 f a4 r4 | a8 a a g e4 e8 e
-  %       | g4 e8 d c4 r4 | r8 a' a g e e e e | d4 d4 a4 r4 | r8 a8 a a d4 d8 d
-  %       | f4 d8 f a a r a, | a a a a d d r d | f4 d8 f a4 a | a8 a a g e4 e8 e
-  %       | g4 e8 d c c r4 | r8 a'8 a g e4 e8 e | d4 d8 d a2~ | a4
-  %       % stanza 2
-  %       \sectionmark "2." c4 | e2 | e4 r8 e8 | g8. g16 g8 g8 | e4 e4 | d2 | r4 c8 d | e4. e8
-  %       | d4 c8 b | a4 a | r8 c4 d16 e | f4. f8 | e4 d8 c8 | b4 b4 | r4 e4 | g2~
-  %       | g8 f4 e16 d | c4 c | r4 c8 d | e4 e4~ | e8 d4 c16 b | a8 a4 r8 | r8 d4 d16 e | f8 f f f
-  %       % | e4 d8 c8 | b8. b16~ b4 | r8 d4 e16 f | g4 g4 | f4 f8. e16~ | e4 e8 r8 | e4 a4 | e4 d8 d
-  %       | e4 d8 c8 | b8. b16~ b4 | r8 d4 e16 f | g4 g4 | a4 b8. c16~ | c4 a8 r8 | e4 a4 | e4 d8 d
-  %       | c2( | e2) | a,2~ | a4
-  %     }
-  %     theLyricsOne = \lyricmode {
-  %       % Note that bar checks are missing when a bar starts with a rest
-  %       \set stanza = "1."
-  %       Se -- | nhor, | _
-  %       Fa -- | zei -- -me ins -- tru -- | men -- to de | vos -- sa Paz: | _
-  %       on -- de~hou -- ver | ó -- dio, que~eu | le -- ve~o A -- | mor;
-  %       | on -- de~hou -- ver o -- | fen -- sa, que~eu | le -- ve~o Per -- | dão;
-  %       | on -- de~hou -- ver dis -- | cór -- dia, que~eu | le -- ve~a~U -- ni -- | ão;
-  %       on -- de~hou -- ver | dú -- vi -- da, que~eu | le -- ve~a | Fé;
-  %       on -- de~hou -- ver | er -- ro, que~eu | le -- ve~a Ver -- | da -- de;
-  %       on -- | de~hou -- ver de -- ses -- | pe -- ro, que~eu | le -- ve~a~Es -- pe -- | ran -- ça;
-  %       | on -- de~hou -- ver tris -- | te -- za, que~eu | le -- ve~a~A -- le -- | gri -- a;
-  %       on -- de~hou -- ver | tre -- vas, que~eu | le -- ve a | Luz. | _
-  %       \set stanza = "2."
-  %       Ó | Mes -- | tre,
-  %       fa -- | zei que eu pro -- | cu -- re | mais:
-  %       con -- so -- | lar, que | ser con -- so -- | la -- do;
-  %       com -- pre -- en -- | der, que | ser com -- preen -- | di -- do;
-  %       a -- | mar, | _ que ser a -- | ma -- do.
-  %       Pois é | dan -- do, | _ que se re -- | ce -- be,
-  %       é per -- do -- | an -- do, que se | é per -- do -- | a -- do, _
-  %       e é mor -- | ren -- do, | que se vi -- | _ ve | pa -- ra~a | vi -- da e -- | ter -- | _ | na. | _
-  %     }
-  %     theChords = \chordmode {
-  %       % stanza 1
-  %       s4 | a2:m | a:m | g | d:m | a:m | a:m | a:m | d:m | d:m | a:m | a:m
-  %       | d:m | d:m | a:m | a:m | c | g | a:m | a:m | c | g | a:m | a:m
-  %       | d:m | d:m | a:m | a:m | d:m | d:m | a:m | a:m | c | g | a:m | a:m
-  %       | c | g:/b | a:m | a4:m
-  %       % stanza 2
-  %       a4:m | c2 | c | c | c | d:m | d:m | a:m | e:7 | a:m | a:m
-  %       | d:m | d:m | g | g | c | e:7 | a:m | a:m | e | e | a:m | a:m
-  %       | d:m | d:m | g | g | c | e:7 | a:m | a:m | c | e:7 | e:7 | a:m | a4:m
-  %     }
-  %     \layout { #(layout-set-staff-size 10.5) } % for better fit
-  % %     \include "tex/lp-include-tail-lyricsbelow.ly"
-  % %   \end{lilypond}\end{lilywrap}
-\endsong
-
-
-\beginsong{Venho lá da Floresta}[by={Mapu Huni Kuin, Ixã Huni Kuin}, key={Am}, gk={Am, Am--Em}, ph={IV}]
-  \audio[key=Gm]{https://www.youtube.com/watch?v=DCQ3J8J3RRc}
-  \audio[key=Gm]{https://soundcloud.com/josecastillosolis/venho-la-da-floresta-mapu-e-ixa-canto-huni-kuin}
-  \audio[key=F\#m]{https://soundcloud.com/audeia-pachamama/08-eu-venho-la-da-floresta}
-  % in Em the notes range from D to B, in transposed Am they range from A to F#
-  \transpose{5}
-  \beginchorus\memorize
-    |\[Em]{} \[^\mn{B}]Venho \[\bm]lá da flo|\[\mnc{A}D]resta, com \[^\mn{G}]meu \[\bmc\mn{A}]can\[^\mn{G}]tar \[^\mn{A}]de \[^\mn{G}]A|\[\mnc{A}Am]mor
-    Sou um \[\bm]índio mensa|\[C]geiro, mensa\[\bm]geiro do A|\[Em]mor\[\bm]{} | \[\bm]\e
-  \endchorus
-  \beginchorus
-    \ind \[\mn{E}]E\[\mn{F#}]he|\[\mnc{G}G]heh \[\bmc\mn{D}]e\[\mn{B}]he|\[\mnc{A}D]heh \[\mn{G}]a-\[\bmc\mn{A}]eh-\[\mn{G}]a-\[\mn{A}]eh-\[\mn{G}]a-|\[\mnc{A}Am]eh
-    \ind a-\[\bm]eh-a-eh-a-|\[C]eh a-eh-a-\[\bm]eh-a-eh-a-|\[Em]eh \[\bm]{} | \[\bm]\e
-  \endchorus
-  \notesoff
-  \beginchorus
-    |^ Peço ^à mãe Ra|^inha, toda ^hora todo |^dia
-    Para ^trazer a |^cura, e a nos ^dar muita ale|^gria^ | ^\e
-  \endchorus
-  \goto{Eheheh}
-  \beginchorus
-    |^ No ^meio da flo|^resta, junto ^com os meus ir|^mãos
-    Vou fa^lar com o cora|^ção, essa é a ^minha tradi|^ção^ | ^\e
-  \endchorus
-  \goto{Eheheh}
-  \begin{translation}[EN]
-    I come from the forest with my singing of Love
-    I am an Indian messenger, messenger of Love
-    \nextverse
-    I ask the mother Queen, every hour every day
-    To bring the cure, and to give us much joy
-    \nextverse
-    In the middle of the forest, together with my brothers
-    I will speak from the heart, this is my tradition
-  \end{translation}
-\endsong
-
-
-\beginsong{Nanã \\ Ê de Noite ê}[by={Rainer Scheurenbrand}, key={D}, gk={D, C--G}, ph={II}]
-  \audio[key=D]{https://rainerscheurenbrand.bandcamp.com/track/nana}
-  \audio[key=E]{https://soundcloud.com/shiramekudeshet/e-de-noite-e-yonatan-meir-josii-yakecan-paul-mitchell-simple}
-  \transpose{2} % in C the notes range from G to E, in transposed D from A to F#
-  \mnbeginchorus
-    |\[\mnc{E}C]Ê, \[\bm]{} \[\mn{D}]de \[\mn{E}]noi\[\mn{D}]te|\[\mnc{A}Am]{' ê} \[\bm]{} \altchords{\id[1]{(C) \capo{2}}|C |Am}
-    \[\mn{D}]de \[\mn{E}]noi\[\mn{D}]te a|\[\mnc{A}Dm]té \[\mn{D}]de manhã \[\bm]{} \altchords{|Dm}
-    |\[G7]Ê, \[\bm]{} \[\mn{C}]ou\[\mn{D}]vi \[\mn{C}]can|\[\mnc{G}C]tar \[\mn{C}]pra Nanã \[\bm]{} \altchords{|G7 |C}
-  \mnendchorus
-  \begin{translation}[EN]
-    Oh, it is night
-    from night until morning
-    Oh, I heard someone singing to Nanã
-  \end{translation}
-  \begin{explanation}[EN]
-    \textbf{Nanã} (in Yoruba language \emph{Nanan Buruku}) is considered the
-    grandmother of all \emph{Orixás}. She took part in creating the world and
-    first humans. \emph{Oxalá}, who was tasked by \emph{Olorum} to create the
-    world, was first unable to create people from different materials, but Nanã
-    offered him mud, with which he was succesful. Nanã proposed that if humans
-    come from her mud, they must also return to it, and thus she became
-    responsible for death and taking care of the dead ones.\par
-    Nanã and Oxalá got married, and together they symbolize creation and
-    death, the beginning and the end. They have many children.\par
-    Nanã is a calm and wise woman, who does things slowly, paying great
-    attention to the details of what she is doing. She is known for mastering
-    spells, potions and witchcraft.\par
-    Nanã is portrayed as an old woman, who wears purple and white clothes. She
-    holds an \emph{Ibirí}, a staff.
-  \end{explanation}
-\endsong
-
-
-\scleardpage
-\beginsong{Santa Cura}[by={Marie Gabriella}, key={Bm}, gk={Bm, (Bm)--Cm}, ph={III}]
-  \audio[key=Bm]{https://www.youtube.com/watch?v=ryTDgrUhD1g}
-  \audio[key=Bm]{https://soundcloud.com/victor-coelho-428056579/santa-cura-marie-gabriella-mp3}
-  \meter{3}{4}
-  \textnotefornext{intro:}*
-  \mnbeginchorus
-    \ind[2] \[\mn{B}]Cura |\[\mnc{D}Bm]vem\[\mn{B}], |\[\mn{D}]vem \[\mn{B}]cu|\[\mnc{F#}F#m]rar | \e \altchords{\id[1]{Am \capo{2}}\meter{3}{4}|Am |  |Em | \e}
-    \ind[2] \[\mn{B}]Vem cu|\[Bm]rar to|\[\mn{D}]das \[\mn{B}]do|\[\mnc{F#}D]enças \altchords{|Am |  |C}
-    \ind[2] |\[\mnc{E}Em]Santa |\[\mnc{D}D]cu\[\mn{B}]ra |\[\mnc{D}F#m]vem \[\mn{C#}]cu|\[\mnc{B}Bm]rar \altchords{|Dm |C |Em |Am}
-  \mnendchorus
-  \meter{4}{4}
-  \mnbeginchorus
-    \[\bmc\mn{D}]Os \[\mn{C#}]pon|\[\mnc{B}Bm]tos são \[\bmc\mn{D}]tão \[\mn{B}]es|\[\mnc{F#}F#m]curos \altchords{\meter{4}{4}|Am |Em}
-    \[\bmc\mn{E}]Quem pe|\[\mnc{D}Bm]de \[\mn{B}]ja \[\mnc{G}Em]me \[\mn{F#}]faz |\[\mn{E}]ver \altchords{|Am Dm | \e}
-    \[\bmc\mn{G}]Que é \[\mn{F#}]pe|\[\mn{E}]din\[\mn{D}]do \[\bmc\mn{C#}]e \[\mn{B}]ro|\[\mnc{F#}Bm]gando \altchords{|  |Am}
-    \[\bmc\mn{B}]Que co|\[\mnc{F#}F#m]meça a \[\mn{B}]se \[\bmc\mn{D}]com\[\mn{C#}]preen|\[\mnc{B}Bm]der \altchords{|Em |Am}
-  \mnendchorus
-  \mnbeginchorus\memorize
-    \ind \[\bmc\mn{D}]Co\[^\mn{B}]mo |\[\mnc{D}Bm]tu \[^\mn{B}]és \[\bmc\mn{D}]com\[^\mn{B}]pai|\[\mnc{F#}F#m]xão
-    \ind \[\bmc\mn{B}]E o a|\[Bm]mor su\[\mnc{G}Em]a \[^\mn{F#}]pre|\[^\mn{E}]sença
-    \ind \[\bmc\mn{G}]Te\[^\mn{F#}]nha |\[^\mn{E}]pi\[^\mn{D}]e\[\bmc\mn{C#}]da\[^\mn{B}]de |\[\mnc{F#}Bm]mãe
-    \ind \[\bmc\mn{B}]De tan|\[\mnc{F#}F#m]ta \[^\mn{B}]in\[\bmc\mn{D}]cons\[^\mn{C#}]ci|\[\mnc{B}Bm]ência
-  \mnendchorus
-  \notesoff
-  \beginchorus
-    ^Nos de |^força pa^ra se|^guir
-    ^Não nos |^deixa es^more|cer
-    ^Santa |cura ^vem a|^qui
-    Pa^ra sa|^úde esta^bele|^cer
-  \endchorus
-  \beginchorus
-    \ind ^Nos de |^força pa^ra se|^guir
-    \ind For^ça da |^Terra ^vem sa|nar
-    \ind Sa^úde e |vens para ^prosse|^guir
-    \ind Er^vas e |^plantas a ^nos \up{1}sal|^var \altlyr[2]{sau|dar}
-  \endchorus
-  \beginchorus
-    ^Verde |^vem, verde ^vem vem |^mais
-    ^Verde |^vem vem es^verde|ar
-    ^Vem mos|trar a ^sua |^força
-    ^Força |^das á^guas do |^mar
-  \endchorus
-  \beginchorus
-    \ind ^Verde |^vem com ^seu a|^mor
-    \ind ^Verde |^vem pu^rifi|car
-    \ind ^Verde |vem cu^rando a |^dor
-    \ind Cu^rando |^vem a^livi|^ar
-  \endchorus
-  \beginchorus
-    Ver^de é a|^mor, ver^de é espe|^rança
-    ^Verde |^{é e sem}^pre se|rá
-    ^A cor |da sa^grada |^Ganga
-    ^Que está |^sempre a a^benço|^ar
-  \endchorus
-  \showlilypondfalse % to save space
-  \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-12
-    \include "tex/lp-include-head.ly"
-    theMelody = \relative b' {
-      \key b \minor
-      \set melismaBusyProperties = #'()
-      \slurSolid
-      \time 3/4 \partial 2
-      \tempo "Andante moderato" 4 = 100
-      \repeat volta 2 { % intro
-        b4 \sectionmark "intro" b | d2( b4) | d2 b4 | fis2.~ | fis4 b b | b2 b4 | d2 b4 | fis'2 fis4
-        | e2 e4 | d2 b4 | d2 cis4 | b2.~ \fermata | b4
-      }
-      \slurDashed
-      \time 4/4 \partial 2
-      \tempo "Moderato" 4 = 120
-      \repeat segno 3 {
-        \repeat volta 2 { % odd verses
-          d4 \sectionmark "1., 3., 5." cis | b b8( b) d4 b | fis'4.( fis8) e4 e | d b g'4. fis8 | e2
-          g4 fis | e d cis b | fis4( fis8) fis8 b4 b | fis'4 << fis8 \once\slurDown \single\altcol b,8 \single\altcol ( >> b8) d4 cis4 | b2
-        }
-        \repeat volta 2 { % even verses
-          d4 \sectionmark "2., 4., 6." b | d << \single\altcol d8 \once\slurDown b8( >> b) d4 b | fis4( << fis) \single\altcol b4 >> b4 b | b b g' \single\altcol ( << \single\altcol g8) \once\slurDown fis8( >> fis8) | e4( e8)( e8) g4 fis | e << \single\altcol e8 \once\slurDown d8( >> d8) cis4 b | fis4.( fis8)
-          b4 b | fis'<< \single\altcol fis8 \once\slurDown b,8( >> b8) d4 cis | b4( b4) \genmark "(6.ii)"
-        }
-      }
-      \repeat volta 2 { % final verse (odd style)
-        d4 \sectionmark "7." cis | b b4 d4 b | fis'4. fis8 e4 e | d b g'4. fis8 | e2
-        g4 fis | e d cis b | fis4 fis4 b4 b | fis'4 << fis8 \once\slurDown \single\altcol b,8 \single\altcol ( >> b8) d4 cis4 | b4( b4) \genmark "(i)"
-      }
-      \fine
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "[intro]"
-      \repeat volta 2 {
-        Cu -- ra | vem, _ | vem cu -- | rar;
-        | _ Vem cu -- | rar to -- | das do -- | en -- ças;
-        | San -- ta | cu -- ra | vem cu -- | rar. _
-      }
-      \repeat segno 3 {
-        <<
-          {
-            \set stanza = "1."
-            \repeat volta 2 {
-              Os pon -- | tos são __ _ tão es -- | cu -- ros;
-              Quem pe -- | de ja me faz | ver;
-              Que~é pe -- | din -- do e ro -- | gan -- do; __ _
-              Que co -- | me -- ça~a se com -- preen -- | der.
-            }
-            \set stanza = "2."
-            \repeat volta 2 {
-              Co -- mo | tu és __ _ com -- pai -- | xão; __ _
-              E~o a -- | mor su -- a pre -- _ | sen -- ça; __ _
-              Te -- nha | pi -- e -- _ da -- de | mãe; __ _
-              De tan -- | ta in -- _ cons -- ci -- | ên -- cia.
-            }
-          }
-          \new Lyrics { \set associatedVoice = "theMelody"
-            \set stanza = "3."
-            \repeat volta 2 {
-              Nos de | for -- ça pa -- ra se -- | guir; __ _
-              Não nos | dei -- xa~es -- mo -- re -- | cer;
-              San -- ta | cu -- ra vem a -- | qui; __ _
-              Pa -- ra sa -- | ú -- de~es -- ta -- be -- le -- | cer.
-            }
-            \set stanza = "4."
-            \repeat volta 2 {
-              Nos de | for -- \altcol ça pa -- ra se -- | guir;
-              \altcol For -- ça da | Ter -- ra \altcol vem __ _ sa -- | nar; __ _
-              Sa -- ú -- de~e | vens \altcol pa -- ra pros -- se -- | guir;
-              Er -- vas e | plan -- \altcol tas a nos sal -- | var. _ % 2nd repeat: sau | dar. _
-            }
-          }
-          \new Lyrics { \set associatedVoice = "theMelody"
-            \set stanza = "5."
-            \repeat volta 2 {
-              Ver -- de | vem, ver -- de vem vem | mais; __ _
-              Ver -- de | vem vem~es -- ver -- de -- | ar;
-              Vem mos -- | trar a su -- a | for -- ça; __ _
-              For -- ça | das \altcol á -- _ guas do | mar.
-            }
-            \set stanza = "6."
-            \repeat volta 2 {
-              Ver -- de | vem com __ _ seu a -- | mor; __ _
-              Ver -- de | vem pu -- ri -- fi -- _ | car; __ _ _
-              Ver -- de | vem cu -- _ ran -- do~a | dor;
-              Cu -- ran -- do | vem a -- _ li -- vi -- | ar. \set stanza = "7." \parenthesize Ver--
-            }
-          }
-        >>
-      }
-      \set stanza = "7."
-      \repeat volta 2 {
-        de~é a -- | mor, ver -- de~é~es -- pe -- | ran -- ça;
-        Ver -- de | é~e sem -- pre se -- | rá;
-        A cor | da sa -- gra -- da | Gan -- ga;
-        Que~es -- tá | sem -- pre a~a -- ben -- ço -- | ar. \parenthesize Ver--
-      }
-    }
-    theChords = \chordmode {
-      %\time 3/4 \partial 2
-      \repeat volta 2 {
-        s2 | b2.:m | b2.:m | fis2.:m | fis2.:m
-        | b2.:m | b2.:m | d2. | e2.:m | d2. | fis2.:m | b2.:m | b4:m
-      }
-      %\time 4/4 \partial 2
-      \repeat segno 3 {
-        \repeat volta 2 {
-          s2 | b1:m | fis1:m | b2:m e2:m
-          | e1:m | e1:m | b1:m | fis1:m | b2:m
-        }
-        \repeat volta 2 {
-          s2 | b1:m | fis1:m | b2:m e2:m
-          | e1:m | e1:m | b1:m | fis1:m | b2:m
-        }
-      }
-      \repeat volta 2 {
-        s2 | b1:m | fis1:m | b2:m e2:m
-        | e1:m | e1:m | b1:m | fis1:m | b2:m
-      }
-    }
-%     \layout { #(layout-set-staff-size 15) } % for better fit
-   \include "tex/lp-include-tail-lyricsbelow.ly"
-  \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]
-    Healing comes, come to heal
-    Come to heal all diseases
-    Holy healing come to heal
-    \nextverse
-    The points are so dark, whoever asks makes me see
-    It is by asking and pleading that understanding begins
-    \nextverse
-    How compassionate you are, and love is your presence
-    Have mercy, mother, on so much unconsciousness
-    \nextverse
-    Give us strength to go on, don't let us weaken
-    Holy healing come here to establish health
-    \nextverse
-    Give us strength to go on; strength of the Earth, come heal
-    Health and come to continue; herbs and plants to \up{1}save us \up{2}(salute us)
-    \nextverse
-    Green comes, green comes, come more, green comes, come verdant
-    Come show your strength, strength of the waters of the sea
-    \nextverse
-    Green comes with your love, green comes to purify
-    Green comes healing the pain, healing comes to relieve
-    \nextverse
-    Green is love, green is hope; Green is and always will be
-    The color of the sacred Ganges, that is always blessing
-  \end{translation}
-\endsong
-
-
-\beginsong{Oh Lua}[by={Carioca Chandra Edgar},ph={III},tags={moon, sun, stars, wind}, key={Gm}, gk={Gm, Gm--G\shrp{}m}]
-  \audio[key=Gm]{https://www.youtube.com/watch?v=efH8H1X-x2k&list=OLAK5uy_lCmRdOh_fo6lKRBz5_kGNVEn9Vb3L-yoU&index=3}
-  \newchords{chords_ohluaedgar_a}\newchords{chords_ohluaedgar_b}
-  \meter{3}{4}
-  \textnotefornext{intro:}
-  \beginverse
-    |\[Gm] |\[F] |\[Gm] |\[F]
-  \endverse
-  \mnbeginchorus\memorize[chords_ohluaedgar_a]
-    \[^\mn{D}]Oh! |\[\mnc{G}Gm]Lua, \[^\mn{B&}]eu |\[\mnc{A}F]vos \[^\mn{F}]a\[^\mn{A}]gra|\[\mnc{G}Gm]de\[^\mn{D}]ço
-    Por |\[\mnc{C}Cm]este \[^\mn{B&}]lu|\[^\mn{G}]ar cri\[^\mn{B&}]a|\[\mnc{D}Gm]dor |\[\up{2}(G7)]
-    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_ohluaedgar_b]
-    \[^\mn{D}]Em |\[\mnc{C}Cm]tro\[^\mn{D}]ca |\[\mnc{E&}Dm]vos \[^\mn{D}]o\[^\mn{C}]fe|\[\mnc{G}Gm]reço
-    |\[\mnc{D}Dm]Es\[^\mn{E&}]ta \[^\mn{D}]can|\[\mnc{C}D7]ção \[^\mn{B&}]com \[^\mn{A}]a|\[\mnc{G}Gm]mor |\[\up{1}(G7)]
-  \mnendchorus
-  \notesoff
-  \beginchorus\replay[chords_ohluaedgar_a]
-    Vós |^mais o |^meu Sol dou|^rado
-    Que |^embe|leza o |^Céu |^
-    \endchorus\glueverses\beginchorus\replay[chords_ohluaedgar_b]
-    São |^que nos dá |^este con|^forto
-    A|^qui, do|^ce como |^mel |^
-  \endchorus
-  \beginchorus\replay[chords_ohluaedgar_a]
-    Dou |^viva ao |^Sol e a |^Lua
-    E |^as Es|trelas tam|^bém |^
-    \endchorus\glueverses\beginchorus\replay[chords_ohluaedgar_b]
-    A |^Terra, a Flo|^resta e o |^Mar
-    O |^Vento e a |^todo a|^lém |^
-  \endchorus
-  \begin{translation}
-    Oh! Moon, I thank you for this creative moonlight
-    In return, I offer this song with love
-    \nextverse
-    You and my Golden Sun that embellishes the Sky
-    Are what give us this comfort here, sweet like honey
-    \nextverse
-    I live for the Sun, the Moon, and the Stars as well
-    The Earth, the Forest, and the Sea, the Wind and all beyond
-  \end{translation}
-  \showlilypondfalse % to save space
-  \begin{lilywrap}\begin{lilypond}[]
-    %% transcribed by larva, latest update on 2024-06
-    % \header {
-    %   title = "Oh Lua"
-    %   composer = "Carioca Chandra Edgar"
-    % }
-    \include "tex/lp-include-head.ly"
-    theMelody = \relative g'' {
-      \set melismaBusyProperties = #'() \slurDashed
-      \set minimumFret = #2 \set restrainOpenStrings = ##t
-      \key g \minor \time 3/4 \partial 4
-        \sectionLabel "intro"
-        r4 | r2. | r2. | r2. | r2
-        \sectionLabel "A"
-        \repeat volta 2 {
-          d4 | g( g) bes | a f a | g d
-          d | c( c) bes | g g bes | d2.~
-        } \alternative {
-          { | d2 }
-          { | d2\repeatTie }
-        }
-        \sectionLabel "B"
-        \repeat volta 2 {
-          d4 | c( c) d | es d c | g'2
-          g4 | \once\slurDown d \single\altcol ( < \single\altcol d es > ) \altmark "2." d | c bes a | g2.~
-        } \alternative {
-          { | g2 }
-          { | g2\repeatTie }
-        }
-      \fine
-    }
-    theLyricsOne = \lyricmode {
-      \set stanza = "1.A"
-      \repeat volta 2 {
-        Oh! | Lu -- a, eu | vos a -- gra -- | de -- ço;
-        Por | es -- te lu -- | ar cri -- a -- | dor.
-      } \alternative {
-        { | _ }
-        { | _ }
-      }
-      \set stanza = "1.B"
-      \repeat volta 2 {
-        Em | tro _ -- ca | vos o -- fe -- | re -- ço;
-        | Es -- ta can -- | ção com a -- | mor.
-      } \alternative {
-        { | _ }
-        { | _ }
-      }
-    }
-    theLyricsTwo = \lyricmode {
-      \set stanza = "2.A"
-      \repeat volta 2 {
-        Vós | mais __ _ o | meu Sol dou -- | ra -- do;
-        Que | em _ -- be -- | le -- za o | Céu.
-      } \alternative {
-        { | _ }
-        { | _ }
-      }
-      \set stanza = "2.B"
-      \repeat volta 2 {
-        São | que nos dá | es -- te con -- | for -- to;~A --
-        | qui, __ _ do -- | ce co -- mo | mel.
-      } \alternative {
-        { | _ }
-        { | _ }
-      }
-    }
-    theLyricsThree = \lyricmode {
-      \set stanza = "3.A"
-      \repeat volta 2 {
-        Dou | vi -- va ao | Sol e a | Lu -- a;
-        E | as __ _ Es -- | tre -- las tam -- | bém.
-      } \alternative {
-        { | _ }
-        { | _ }
-      }
-      \set stanza = "3.B"
-      \repeat volta 2 {
-        A | Ter -- ra,~a Flo -- | res -- ta~e o | Mar;
-        O | Ven -- to~e a | to -- do a -- | lém.
-      } \alternative {
-        { | _ }
-        { | _ }
-      }
-    }
-    theChords = \chordmode {
-      s4 | g2.:m | f | g:m | f2
-      \repeat volta 2 {
-        s4
-        | g2.:m f | g:m
-        | c:m | c:m | g:m
-      } \alternative {
-        { | g2:m }
-        { | g2:7 }
-      }
-      \repeat volta 2 {
-        s4
-        | c2.:m | d:m | g:m
-        | d:m | d:7 | g:m
-      } \alternative {
-        { | g2:7 }
-        { | g2:m }
-      }
-    }
-    %\layout { #(layout-set-staff-size 15) } % for better fit
-    \include "tex/lp-include-tail-notab.ly"
-  \end{lilypond}\end{lilywrap}
-\endsong
 
 
