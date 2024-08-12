@@ -624,11 +624,12 @@
     That |^holds to|^gether the |^atoms and |^stars as
     |^well as |^me and |^you | \e  \goto{Ó daime \rep{3}}
   \endverse
-  \iflyriconly\forcebrk\fi
-  \begin{translation}[EN]
-    Oh give me, give me love, daime my beloved.
-    Daime, give me light, I am with You... eternal life.
-  \end{translation}
+  \iflyriconly\else{ % Skip on lyric-only books to fit on one page
+    \begin{translation}[EN]
+      Oh give me, give me love, daime my beloved.
+      Daime, give me light, I am with You... eternal life.
+    \end{translation}
+  }\fi
   \begin{explanation}[EN]
     \textbf{Dai-me} is Portuguese for ``give me''. The Ayahuasca drink is also called
     \textbf{Daime} in some circles.
@@ -636,9 +637,11 @@
 \endsong
 
 
-\begin{intersong}
-  \imagecc[2]{heart_by_larva__789px.png}
-\end{intersong}
+\iflyriconly\else{ % Show this here for chorded books, elsewhere on lyric only
+  \begin{intersong}
+    \imagecc[2]{heart_by_larva__789px.png}
+  \end{intersong}
+}\fi
 
 
 \scleardpage
@@ -848,6 +851,13 @@
 \endsong
 
 
+\iflyriconly{ % Show this here for lyric books, elsewhere on chorded
+  \begin{intersong}
+    \imagecc[2]{heart_by_larva__789px.png}
+  \end{intersong}
+}\fi
+
+
 \beginsong{Heart's Mystery}[by={Nick Barber},tags={heart},ph={III},key={C},gk={C, G--D}]
   % in C the notes range from C to A
   \meter{3}{4}
@@ -931,7 +941,6 @@
 \endsong
 
 
-\iflyriconly\forcebrk\fi
 \beginsong{Ho'oponopono}[ph={III}, key={Am}, gk={Am, Gm--Bm}]
   \musicnotefornext{\tiny melody from Loreena Mckennitt's ``Tango to Evora''}
   \transpose{5} % in Am the melody ranges from A to A'
@@ -961,7 +970,7 @@
     |^Olen pahoil^lani | Annathan ^anteeksi
     |^Rakastan ^sinua | Minä kii^tän sinua \up{2}(|^ ^ | ^\e)
   \endchorus
-  \begin{explanation}[EN]
+  \begin{explanation}[EN]\iflyriconly\scriptsize\fi % to fit on one page in lyrics-only book
     Ho'oponopono practice belongs to an old Hawaiian system of knowledge and wisdom, \emph{Huna}.
     Ho'oponopono translates as ``to make rightly right''.
     The four sentences are a prayer through which one gains inner peace, harmony and moves

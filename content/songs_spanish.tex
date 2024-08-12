@@ -180,7 +180,7 @@
   \endchorus\glueverses\beginchorus
     \ind[2]En tu |\[G]luz siempre fe|\[Am]liz
   \endchorus
-  \imagecc[3]{moon_bw_transparent_bg_939x939px.png}%
+  \ifchorded\imagecc[3]{moon_bw_transparent_bg_939x939px.png}\fi%
   \begin{translation}[EN]
     Moon, queen of night
     Moon, sister of my soul
@@ -198,6 +198,7 @@
     To dance with the universe and in your always happy light,
     in your always happy light
   \end{translation}
+  \ifchorded\else\imagecc[3]{moon_bw_transparent_bg_939x939px.png}\fi
 \endsong
 
 
@@ -2578,8 +2579,7 @@
     \ind |\[C]{} \[F]Bienve|nida \[E]vida bu|\[Am]ena, |\[E7]bienvenida |\[Am]tu canción | \e
   \endchorus
   \vspace{1em}\goto{Lailaralai}
-  \iflyriconly\hardbrk\else\brk\fi
-  \imagecc[2]{sunrise_mountain__ed_by_larva__transbg_CC0_1280x1141px.png}%
+  \iflyriconly\else\imagecc[2]{sunrise_mountain__ed_by_larva__transbg_CC0_1280x1141px.png}\fi%
   \begin{translation}[EN]
     The day is already blossoming, joy is awakening.
     Pachamama lift us up. Mother Earth, I sing of love.
@@ -2594,6 +2594,7 @@
     \nextverse
     Welcome siblings, welcome this day. Welcome good life, welcome your song.
   \end{translation}
+  \iflyriconly\hardbrk\imagecc[2]{sunrise_mountain__ed_by_larva__transbg_CC0_1280x1141px.png}\fi%
 \endsong
 
 
