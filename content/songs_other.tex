@@ -800,10 +800,10 @@
 \endsong
 
 \sclearpage % to put on the same page with the next song (yawanawa, too)
-\beginsong{Pahuene}[ex={yawanawa},ph={II, III}]
+\beginsong{Pahuene}[ex={yawanawa},ph={II, III}, key={C}, gk={C, B\flt{}--E}]
   \audio[]{https://www.youtube.com/watch?v=mjGxJkavh0k}
   \beginchorus
-    |\[\mnc{E}C]Cura y no\[\mn{D}]ron|\[\mn{E}]dé |\[\mn{E}]cura y no\[\mn{G}]ron|\[\mn{E}]dé
+    |\[\mnc{E}C]Cura y no\[\mn{D}]ron|\[\mn{E}]dé |cura y no\[\mn{G}]ron|\[\mn{E}]dé
     |\[\mnc{D}Dm]Cura y \[\mn{E}]to\[\mn{D}]to|\[\mnc{C}C]to |\[\mnc{D}Dm]cura y \[\mn{E}]to\[\mn{D}]to|\[\mnc{C}C]to
   \endchorus
   \beginchorus
@@ -815,24 +815,23 @@
 \endsong
 
 
-\beginsong{Te Nande}[ex={yawanawa},ph={III, IV}]
+\beginsong{Te Nande}[ex={yawanawa},ph={III, IV}, key={Em}, gk={Em, Cm--G\shrp{}m}]
   \audio[]{https://www.youtube.com/watch?v=MhXOAJ1UGxw}
   \audio[]{https://www.youtube.com/watch?v=89hzAlPXJAQ}
-  \beginchorus\memorize
-    \[^\mn{B}]Ta|\[\mnc{E}Em]raouaca um|bari \[^\mn{F#}\mn{D}]kara|\[^\mn{E}]nê | \e
-    Mo|rouane um|bari sara|\[C]nê | \e
-    Ka|\[D]ho anze um|bari te nan|\[Em]de | | | \e
-  \endchorus
-  \notesoff
-  \beginchorus
-    \ind |^Te nan|de te nan|^de | \e
-    \ind |^Te nan|de te nan|^de | \up{2}(| |) \e
-  \endchorus
-  \beginchorus
-    Kapa |^xô mina ha|ro | \e
-    Keho |ande te ne|^dê | \e
-    |^Yo rain|de yo rain|^dê | | | \e
-  \endchorus
+  \mnbeginchorus
+    \[\mn{B}]Ta|\[\mnc{E}Em]raoua\[\bm]ca um|bari \[\bm]ka\[\mn{D}]ran|\[\mn{B}]ê \[\bm] | \[\bm] \e
+    Mo|\[\mn{E}]roua\[\bm]ne um|bari \[\bmc\mn{F#}]sa\[\mn{D}]ran|\[\mnc{C}C]ê \[\bm] | \[\bm] \e
+    \[\mn{D}]Ka|\[D]ho an\[\bm]ze um|\[\mau{G}]ba\[\mauiic{F#}{A}]ri \[\bmc\mau{E}]te \[\mauiic{D}{B}]nan|\[\mauc{E}Em]de \[\bmc\mau{G}\mau{F#}] |\[\mau{E}]\[\bm]{} \up{2}(| \[\bm] |) \[\bm]\e
+  \mnendchorus
+  \mnbeginchorus
+    \ind |\[\mnc{E}Em]Te \[\bm] nan|de te \[\bm]nan|\[\mnc{G}C]de \[\bm] | \[\bm] \e
+    \ind |\[\mnc{F#}D]Te \[\bm] nan|de \[\mn{D}]te \[\bmc\mncadj{1.5ex}{E}]nan|\[Em]de \[\bmc\ma{G}\ma{F#}]{} |\[\ma{E}]\[\bm]{} \up{2}(| \[\bm] |) \e
+  \mnendchorus
+  \mnbeginchorus
+    \[\bmc\mn{B}]Ka\[\mn{E}]pa |\[Em]xô mi\[\bm]na \[\mn{D}]ha|r\[\mn{B}]o \[\bm] | \e
+    \[\bm]Ke\[\mn{E}]ho |an\[\mn{F#}]de \[\bm]te \[\mn{D}]ne|\[\mnc{E}C]dê \[\bm\mn{D}\mn{C}]{} |\[\mn{D}\mn{C}]{} \e
+    |\[\mnc{F#}D]Yo \[\bm] rain|de \[\mn{D}]yo \[\bm]ra\[\mn{E}]in|\[Em]dê \[\bmc\mn{G}\mn{F#}]{} |\[\mn{E}]\[\bm]{} \up{2}(| \[\bm] |) \e
+  \mnendchorus
   \goto{Te nande}
 \endsong
 
@@ -951,7 +950,7 @@
   \mnendchorus
   \notesoff
   \textnotefornext{in English:}
-  \beginchorus
+  \beginchorus\iflyriconly\normalsize\fi % to fit with next song
     Ancient |^Mother, |^ I hear you |^calling |^
     Ancient |^Mother, |^ I hear your |^song | \e
     \vspace{1em}
@@ -959,7 +958,7 @@
     Ancient |^Mother, |^ I taste your |^tears | \e
   \endchorus
   % This second verse is a more unknown addon by somebody:
-  \beginchorus
+  \beginchorus\iflyriconly\normalsize\fi % to fit with next song
     Ancient |^Mother, |^ I feel you |^calling |^
     Ancient |^Mother, |^ I sing your |^song | \e
     \vspace{1em}
@@ -1079,7 +1078,7 @@
   \end{lilypond}\end{lilywrap}
   \musicnote{The original order: A B A B A [instrumental] A A(+sublyrics) A B(+sublyrics) A}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
-  \begin{translation}[EN]
+  \begin{translation}[EN]\iflyriconly\scriptsize\fi % to fit with previous song
     \sublyr{Oh these children,}Oh mother, \sublyr{what are you doing?}if you can hear me
     \nextverse
     \sublyr{The rain is coming,}The rain is coming, \sublyr{bring the cattle home}bring the cattle home
