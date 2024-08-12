@@ -1055,72 +1055,72 @@
     ja |^elää^{ } elä|^määnsä^{ } ja |^elää^{ } elä|^määnsä.^
   \endverse
   \goto{Maailma on kaunis}
-%   %% Lilypond commented out for space saving reasons in the main songbook
-% %   \begin{lilywrap}\begin{lilypond}[]
-%     % transcribed by larva, latest update on 2023-07
-%     \include "tex/lp-include-head.ly"
-%     theMelody = \relative c'' {
-%       \key a \minor \time 4/4
-%       \set melismaBusyProperties = #'() \slurDashed
-%       \repeat volta 2 {
-%         % chorus
-%         | a8 a c e g4 f8 c8 | b8 c d f e4 c4 | a4 c8 e8 g4 f8 c8
-%         | b8 b c d e4 e8 e | e8 d a b c4. e,8 \time 2/4 | c'8 b d c | \time 4/4 | a1 | r2.
-%         % verse
-%         e'4
-%         | e8 f e d b4 b8 d8 | e8 f e c a4 c8 e8 | f4 f8 c b4 c8 d8
-%         | e8 f e c a4 a8 c8 | b8 b8~ b2 e8 d8 | d4 c2 r8 a8 | b8 b8~ b2 d8 c8 | b4 a2
-%         r8 e'8
-%         | e8 f e d b4 b8 d8 | e8 f e c a4 c8 e8 | f4 f8 c b4 c8 d8
-%         | e8 f e c a4 a8 c8 | b8 b8~ b2 e8 d8 | d4 c2 r8 a8 | b8 b8~ b2 d8 c8 | b4 a2.
-%       }
-%       % chorus
-%       | a8 a c e g4 f8 c8 | b8 c d f e4 c4 | a4 c8 e8 g4 f8 c8
-%       | b8 b c d e4 e8 e | e8 d a b c4. e,8 \time 2/4 | c'8 b d c | \time 4/4 | a1 | r1 \bar "|."
-%     }
-%     chorusLyrics = \lyricmode {
-%       | Maa -- il -- ma on kau -- nis ja | hy -- vä e -- lää sil -- le, | jol -- la on ai -- kaa ja
-%       | ti -- laa u -- nel -- mil -- le ja | mie -- len va -- pa -- us ja | mie -- len va -- pa -- | us.
-%     }
-%     theLyricsOne = \lyricmode {
-%       \chorusLyrics
-%       % verses
-%       <<
-%         {
-%           \set stanza = "1."
-%           On | va -- pa -- ut -- ta kuun -- nel -- la | met -- sän hu -- mi -- noi -- ta, kun | aa -- mui -- nen au -- rin -- ko
-%           | kul -- taa kal -- li -- oi -- ta, ja | e -- lää _ e -- lä -- | mään -- sä ja | e -- lää _ e -- lä -- | mään -- sä.
-%           On | va -- pa -- ut -- ta val -- vo -- a | ke -- säi -- si -- ä öi -- tä ja | kat -- sel -- la hil -- jai -- sen
-%           | haa -- van vä -- ri -- nöi -- tä, ja | e -- lää _ e -- lä -- | mään -- sä ja | e -- lää _ e -- lä -- | mään -- sä.
-%         }
-%         \new Lyrics { \set associatedVoice = "theMelody"
-%           \set stanza = "2."
-%           On | va -- pa -- ut -- ta is -- tu -- a | il -- taa yk -- si -- nän -- sä, ja | tun -- te -- a, tut -- ki -- a
-%           | o -- maa si -- sin -- tän -- sä, ja | e -- lää _ e -- lä -- | mään -- sä ja | e -- lää _ e -- lä -- | mään -- sä.
-%           On | va -- pa -- ut -- ta vais -- to -- ta | vies -- ti suu -- rem -- mas -- ta ja | ol -- la kuin kai -- ku -- na
-%           | ai -- na jat -- ku -- vas -- ta, ja | e -- lää _ e -- lä -- | mään -- sä ja | e -- lää _ e -- lä -- | mään -- sä.
-%         }
-%       >>
-%       \chorusLyrics
-%     }
-%     theChords = \chordmode {
-%       \repeat volta 2 {
-%         % chorus
-%         | a2:m f:7.9 | e:7 a:m | a:m d:m7
-%         | g:7 c | d:m6 a:m/e | e:7 | a1:m | a:m
-%         % verse
-%         | e'1:7/b | a':m/c | d2:m7 g:7
-%         | c f:1.3.5.9 | e1:7 | a:m | b2:7 e2:7 | a1:m
-%         | e'1:7/b | a':m/c | d2:m7 g:7
-%         | c f:1.3.5.9 | e1:7 | a:m | b2:7 e2:7 | a1:m
-%       }
-%       % chorus
-%       | a2:m f:7.9 | e:7 a:m | a:m d:m7
-%       | g:7 c | d:m6 a:m/e | e:7 | a1:m | a:m
-%     }
-%     \layout { #(layout-set-staff-size 12) } % for better fit
-% %     \include "tex/lp-include-tail-lyricsbelow.ly"
-% %   \end{lilypond}\end{lilywrap}
+  \showlilypondfalse% to save space
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-07
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \key a \minor \time 4/4
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat volta 2 {
+        % chorus
+        | a8 a c e g4 f8 c8 | b8 c d f e4 c4 | a4 c8 e8 g4 f8 c8
+        | b8 b c d e4 e8 e | e8 d a b c4. e,8 \time 2/4 | c'8 b d c | \time 4/4 | a1 | r2.
+        % verse
+        e'4
+        | e8 f e d b4 b8 d8 | e8 f e c a4 c8 e8 | f4 f8 c b4 c8 d8
+        | e8 f e c a4 a8 c8 | b8 b8~ b2 e8 d8 | d4 c2 r8 a8 | b8 b8~ b2 d8 c8 | b4 a2
+        r8 e'8
+        | e8 f e d b4 b8 d8 | e8 f e c a4 c8 e8 | f4 f8 c b4 c8 d8
+        | e8 f e c a4 a8 c8 | b8 b8~ b2 e8 d8 | d4 c2 r8 a8 | b8 b8~ b2 d8 c8 | b4 a2.
+      }
+      % chorus
+      | a8 a c e g4 f8 c8 | b8 c d f e4 c4 | a4 c8 e8 g4 f8 c8
+      | b8 b c d e4 e8 e | e8 d a b c4. e,8 \time 2/4 | c'8 b d c | \time 4/4 | a1 | r1 \bar "|."
+    }
+    chorusLyrics = \lyricmode {
+      | Maa -- il -- ma on kau -- nis ja | hy -- vä e -- lää sil -- le, | jol -- la on ai -- kaa ja
+      | ti -- laa u -- nel -- mil -- le ja | mie -- len va -- pa -- us ja | mie -- len va -- pa -- | us.
+    }
+    theLyricsOne = \lyricmode {
+      \chorusLyrics
+      % verses
+      <<
+        {
+          \set stanza = "1."
+          On | va -- pa -- ut -- ta kuun -- nel -- la | met -- sän hu -- mi -- noi -- ta, kun | aa -- mui -- nen au -- rin -- ko
+          | kul -- taa kal -- li -- oi -- ta, ja | e -- lää _ e -- lä -- | mään -- sä ja | e -- lää _ e -- lä -- | mään -- sä.
+          On | va -- pa -- ut -- ta val -- vo -- a | ke -- säi -- si -- ä öi -- tä ja | kat -- sel -- la hil -- jai -- sen
+          | haa -- van vä -- ri -- nöi -- tä, ja | e -- lää _ e -- lä -- | mään -- sä ja | e -- lää _ e -- lä -- | mään -- sä.
+        }
+        \new Lyrics { \set associatedVoice = "theMelody"
+          \set stanza = "2."
+          On | va -- pa -- ut -- ta is -- tu -- a | il -- taa yk -- si -- nän -- sä, ja | tun -- te -- a, tut -- ki -- a
+          | o -- maa si -- sin -- tän -- sä, ja | e -- lää _ e -- lä -- | mään -- sä ja | e -- lää _ e -- lä -- | mään -- sä.
+          On | va -- pa -- ut -- ta vais -- to -- ta | vies -- ti suu -- rem -- mas -- ta ja | ol -- la kuin kai -- ku -- na
+          | ai -- na jat -- ku -- vas -- ta, ja | e -- lää _ e -- lä -- | mään -- sä ja | e -- lää _ e -- lä -- | mään -- sä.
+        }
+      >>
+      \chorusLyrics
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        % chorus
+        | a2:m f:7.9 | e:7 a:m | a:m d:m7
+        | g:7 c | d:m6 a:m/e | e:7 | a1:m | a:m
+        % verse
+        | e'1:7/b | a':m/c | d2:m7 g:7
+        | c f:1.3.5.9 | e1:7 | a:m | b2:7 e2:7 | a1:m
+        | e'1:7/b | a':m/c | d2:m7 g:7
+        | c f:1.3.5.9 | e1:7 | a:m | b2:7 e2:7 | a1:m
+      }
+      % chorus
+      | a2:m f:7.9 | e:7 a:m | a:m d:m7
+      | g:7 c | d:m6 a:m/e | e:7 | a1:m | a:m
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
   \translationoff % off for space reasons
   \begin{translation}[EN]
   \ind The world is beautiful and good to live for those
@@ -1173,77 +1173,77 @@
     Rakas|^tan ^ elä|^mää, ^{} sille |^lempeni ^tahdon mä |^antaa.^
     Rakas|^tan ^ elä|^mää, ^{} joka |^muistojen ^hetkiä |^kantaa.^
   \endverse
-%   %% Lilypond commented out for space saving reasons in the main songbook
-%   \begin{lilywrap}\begin{lilypond}[]
-%     % transcribed by larva, latest update on 2023-06
-%     \include "tex/lp-include-head.ly"
-%     theMelody = \relative c' {
-%       \key a \minor \time 4/4 \partial 4
-%       \set melismaBusyProperties = #'() \slurDashed
-%       e8. \sectionmark "A" e16
-%       | a2. c8. a16 | f'2. 8. 16 | e4 d8. c16 b4 a8. b16 | c4 a4 r4
-%       e8. e16
-%       | a2. c8. a16 | a'2. 8. 16 | g4 f8. e16 d4 c8. d16 | f4 e4 r4 \break
-%       \repeat volta 2 {
-%         e8 \sectionmark "B" e8
-%         | b'2. a8 gis8 | a2. e8 f8 | g4 8. a16 g4 f8. e16 | a4 d,4 r4
-%         e8 d8
-%         | f2. e8 d8 | c2. d8 b8
-%         | e4 c8 a8 e4 c'8. b16 | c4 a4 r4
-%       }
-%     }
-%     theLyricsOne = \lyricmode {
-%       \set stanza = "1.A"
-%       Päät -- tyy | yö, aa -- mu | saa, uu -- si | päi -- vä kun kirk -- kaa -- na | lois -- taa.
-%       Sul -- le | oi, ko -- ti -- | maa, sä -- vel | kau -- ne -- hin tuu -- les -- sa | soit -- taa.
-%       \repeat volta 2 {
-%         \set stanza = "1.B"
-%         Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | uu -- te -- na aa -- mus -- sa | au -- kee.
-%         Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | uu -- pu -- en il -- las -- sa | rau -- kee.
-%       }
-%     }
-%     theLyricsTwo = \lyricmode {
-%       \set stanza = "2.A"
-%       Kirk -- ka -- | hin päi -- vä | ei, ai -- na | par -- hain -- ta lois -- tet -- ta | suo -- ne.
-%       U -- nel -- | man u -- sein | vei, ei -- kä | ys -- tä -- vä loh -- tu -- a | tuo -- ne.
-%       \repeat volta 2 {
-%         \set stanza = "2.B"
-%         Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | kyy -- nel -- ten hel -- mi -- nä | hoh -- taa.
-%         Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | myrs -- kyi -- hin tie -- tä -- ni | joh -- taa.
-%       }
-%     }
-%     theLyricsThree = \lyricmode {
-%       \set stanza = "3.A"
-%       Jää -- nyt | on päi -- vän | työ, il -- ta | var -- jo -- ja tiel -- le -- ni | siir -- tää.
-%       Kau -- pun -- | gin sy -- dän | lyö, va -- lot | lai -- neil -- le sil -- to -- ja | piir -- tää.
-%       \repeat volta 2 {
-%         <<
-%           {
-%             \set stanza = "3.B:i"
-%             Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | nuo -- ruu -- den haa -- vei -- ta | kan -- taa.
-%             Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | muis -- to -- jen het -- ki -- ä | an -- taa.
-%           }
-%           \new Lyrics { \set associatedVoice = "theMelody"
-%             \set stanza = "3.B:ii"
-%             \override LyricText.color = #grey Ra -- kas -- | tan e -- lä -- | mää, \override LyricText.color = #black sil -- le | lem -- pe -- ni tah -- don mä | an -- taa.
-%             \override LyricText.color = #grey Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | muis -- to -- jen het -- ki -- ä \override LyricText.color = #black | kan -- taa.
-%           }
-%         >>
-%       }
-%     }
-%     theChords = \chordmode {
-%       s4
-%       | a1:m | d:m | e:7 | a:m
-%       | a:m | f | g:7 | c2.
-%       \repeat volta 2 {
-%         s4
-%         | e1:7 | f2 a2:m | g2:m6 a2:7 | d1:m
-%         | d2:m6 e2:7 | a2:m7 d2:7 | a2:m e2:7 | a2.:m
-%       }
-%     }
-%     %\layout { #(layout-set-staff-size 15) } % for better fit
-%     \include "tex/lp-include-tail-lyricsbelow.ly"
-%   \end{lilypond}\end{lilywrap}
+  \showlilypondfalse% To save space
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2023-06
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c' {
+      \key a \minor \time 4/4 \partial 4
+      \set melismaBusyProperties = #'() \slurDashed
+      e8. \sectionmark "A" e16
+      | a2. c8. a16 | f'2. 8. 16 | e4 d8. c16 b4 a8. b16 | c4 a4 r4
+      e8. e16
+      | a2. c8. a16 | a'2. 8. 16 | g4 f8. e16 d4 c8. d16 | f4 e4 r4 \break
+      \repeat volta 2 {
+        e8 \sectionmark "B" e8
+        | b'2. a8 gis8 | a2. e8 f8 | g4 8. a16 g4 f8. e16 | a4 d,4 r4
+        e8 d8
+        | f2. e8 d8 | c2. d8 b8
+        | e4 c8 a8 e4 c'8. b16 | c4 a4 r4
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Päät -- tyy | yö, aa -- mu | saa, uu -- si | päi -- vä kun kirk -- kaa -- na | lois -- taa.
+      Sul -- le | oi, ko -- ti -- | maa, sä -- vel | kau -- ne -- hin tuu -- les -- sa | soit -- taa.
+      \repeat volta 2 {
+        \set stanza = "1.B"
+        Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | uu -- te -- na aa -- mus -- sa | au -- kee.
+        Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | uu -- pu -- en il -- las -- sa | rau -- kee.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Kirk -- ka -- | hin päi -- vä | ei, ai -- na | par -- hain -- ta lois -- tet -- ta | suo -- ne.
+      U -- nel -- | man u -- sein | vei, ei -- kä | ys -- tä -- vä loh -- tu -- a | tuo -- ne.
+      \repeat volta 2 {
+        \set stanza = "2.B"
+        Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | kyy -- nel -- ten hel -- mi -- nä | hoh -- taa.
+        Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | myrs -- kyi -- hin tie -- tä -- ni | joh -- taa.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      Jää -- nyt | on päi -- vän | työ, il -- ta | var -- jo -- ja tiel -- le -- ni | siir -- tää.
+      Kau -- pun -- | gin sy -- dän | lyö, va -- lot | lai -- neil -- le sil -- to -- ja | piir -- tää.
+      \repeat volta 2 {
+        <<
+          {
+            \set stanza = "3.B:i"
+            Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | nuo -- ruu -- den haa -- vei -- ta | kan -- taa.
+            Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | muis -- to -- jen het -- ki -- ä | an -- taa.
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "3.B:ii"
+            \override LyricText.color = #grey Ra -- kas -- | tan e -- lä -- | mää, \override LyricText.color = #black sil -- le | lem -- pe -- ni tah -- don mä | an -- taa.
+            \override LyricText.color = #grey Ra -- kas -- | tan e -- lä -- | mää, jo -- ka | muis -- to -- jen het -- ki -- ä \override LyricText.color = #black | kan -- taa.
+          }
+        >>
+      }
+    }
+    theChords = \chordmode {
+      s4
+      | a1:m | d:m | e:7 | a:m
+      | a:m | f | g:7 | c2.
+      \repeat volta 2 {
+        s4
+        | e1:7 | f2 a2:m | g2:m6 a2:7 | d1:m
+        | d2:m6 e2:7 | a2:m7 d2:7 | a2:m e2:7 | a2.:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
 \endsong
 
 
