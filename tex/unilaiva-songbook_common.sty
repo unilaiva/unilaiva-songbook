@@ -2522,7 +2522,53 @@
   \fi%
 }
 
-\newcommand{\mnvcii}[2]{%
+% Alternatively colored note on normal note line, takes horiz. space.
+\newcommand{\ma}[1]{%
+  {% alternate color note above normal note line, takes horizontal space
+    \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
+    \@note{#1}%
+  }%
+}
+
+% Alternatively colored note on normal note line, takes no horiz. space.
+% Use with chords.
+\newcommand{\mac}[1]{%
+  \makebox[0pt][l]{\ma{#1}}% boxed to take no h. space
+}
+
+% Alternatively colored note above normal note line, takes horiz. space.
+\newcommand{\mau}[1]{%
+  {%
+    \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
+    \@note[1.85em]{#1}%
+  }%
+}
+
+% Alternatively colored note above normal note line, takes no horiz. space.
+% Use with chords.
+\newcommand{\mauc}[1]{%
+  \makebox[0pt][l]{\mau{#1}}% boxed to take no h. space
+}
+
+% Alternatively colored note (#1) above normal note line, normal note (#2)
+% at normal note line. Takes horiz. space.
+\newcommand{\mauii}[2]{%
+  % alternate color note above normal note line
+  \mauc{#1}%
+  % normal note at normal note line
+  \@note{#2}%
+}
+
+% Alternatively colored note (#1) above normal note line, normal note (#2)
+% at normal note line. Takes no horiz. space. Use with chords.
+\newcommand{\mauiic}[2]{%
+  % alternate color note above normal note line
+  \mauc{#1}%
+  % normal note at normal note line, boxed to take no h. space
+  \makebox[0pt][l]{\@note{#2}}%
+}
+
+\newcommand{\mnvcii}[2]{% DEPRECATED, alt. note below normal
   \makebox[0pt][l]{\@note[1.85em]{#1}}%
   {% the second note below, in different color
     \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
@@ -2530,7 +2576,7 @@
   }%
 }
 
-\newcommand{\mnvii}[2]{%
+\newcommand{\mnvii}[2]{% DEPRECATED, alt. note below normal
   \makebox[0pt][l]{\@note{#1}}%
   {% the second note below, in different color
     \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
