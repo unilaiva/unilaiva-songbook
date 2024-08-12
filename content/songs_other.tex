@@ -735,24 +735,36 @@
 \endsong
 
 
-\beginsong{Eskawatã kayawey}[by={pajé Agostinho Inkamuru},ex={hancha kuin},ph={III, IV}]
+\beginsong{Eskawatã kayawey}[by={pajé Agostinho Inkamuru}, ex={hancha kuin}, key={Am}, gk={Am, Am--C\shrp{}m}, ph={III, IV}]
+  \newchords{chords_eskawata_a}\newchords{chords_eskawata_b}
   \transpose{7}
-  \beginchorus\memorize
-    |\[Dm]{} \[^\mn{A}]Nukun |mãnã Yu\[^\mn{C}]xi|\[^\mn{A}]bu bu \[^\mn{G}]be\[\mnc{F}F]tã
-    |Eskawatã kaya|\[Am]wey ki|\[Dm]ki | \e
-  \endchorus\glueverses
+  \mnbeginchorus\memorize[chords_eskawata_a]
+    \[\bmc\mnc{A}Dm]Nukun |mã\[^\mn{C}]nã \[\bmc\mn{A}]Yuxi|bu bu \[^\mn{G}]be\[\mnc{F}F]tã
+    |Es\[^\mn{G}]ka\[\bmcadj{1.25ex}\mn{A}]watã \[^\mn{C}]ka\[^\mn{A}]ya|\[\mnc{G}Am7]wey \[\bmc\mn{E}]ki|\[\mnc{D}Dm]ki \[\bm] |{ }{ }\[\bm]{ } | \e
+    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_eskawata_b]
+    \[\mnc{D}Dm]Eska\[\bm]watã ka|\[\mnc{C}F]ya, \[\bmc\mn{F}]ka\[^\mn{G}]ya|\[^\mn{A}]wey \[\bmc\mn{F}]ka\[^\mn{G}]ya|\[\mnc{A}Am]wey,\[\bm] | \e
+    \[^\mn{C}]ka\[^\mn{A}]ya\[\mnc{G}Am7]wey \[^\mn{A}]ki|\[\mnc{D}Dm]ki \[\bm] |{ }{ }\[\bm]{ } | \e
+  \mnendchorus
   \notesoff
-  \beginchorus
-    |^ Eskawatã ka|^ya, kaya|wey kaya|^wey, | kayawey ki|^ki | \e
+  \beginchorus\replay[chords_eskawata_a]
+    ^Nukun |\textbf{niwe} ^Yuxi|bu bu be^tã
+    |Eska^watã kaya|^wey ^ki|^ki ^ |{ }{ }^{ } | \e
+    \endchorus\glueverses\beginchorus\replay[chords_eskawata_b]
+    Eska^watã ka|^ya, ^kaya|wey ^kaya|^wey,^ | \e
+    kaya^wey ki|^ki ^ |{ }{ }^{ } | \e
   \endchorus
-  \beginchorus
-    |^ Nukun |\up{*}niwe Yuxi|bu bu be^tã
-    |Eskawatã kaya|^wey ki|^ki | \e
-  \endchorus\glueverses
-  \beginchorus
-    |^ Eskawatã ka|^ya, kaya|wey kaya|^wey, | kayawey ki|^ki | \e
-  \endchorus
-  \altlyr{shina, kãna, bari, ushe, vixi, yamã, shava, yura, muká\ldots}
+  \beginverse\chordsoff
+    Nukun |\textbf{shina}\ldots
+    Nukun |\textbf{kãna}\ldots
+    Nukun |\textbf{bari}\ldots
+    Nukun |\textbf{ushe}\ldots
+    Nukun |\textbf{vixi}\ldots
+    Nukun |\textbf{yamã}\ldots
+    Nukun |\textbf{shava}\ldots
+    Nukun |\textbf{yura}\ldots
+    Nukun |\textbf{muká}\ldots
+  \endverse
+  %\altlyr{shina, kãna, bari, ushe, vixi, yamã, shava, yura, muká\ldots}
   \begin{explanation}[EN]
     This song from the \textit{Huni Kuin (Kaxinawá)} tribe calls the spirits of nature, the elements, the sun, the moon, the stars, and \textit{Yuxibu} to bring transformation.
     \begin{description}
