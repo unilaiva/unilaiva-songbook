@@ -1189,3 +1189,128 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\beginsong{Ave Maria}[by={Franz Schubert}, ex={latina}, ph={III}, key={C}, gk={D, C--E}]
+  \meter{4}{4}
+  \iflyriconly\else
+    \musicnotefornext{intro:}*
+    \beginverse
+      |\[C] \[\bm]{ } |{ }{ } \[C7]{} |\[F]{} \[Fm]{} |\[C]{} \[\bm]{}{} \e
+    \endverse
+  \fi
+  \mnbeginverse\memorize
+    |\[\mnc{C}C]A{ } \[Am]-\[^\mn{B}]ve \[^\mn{C}]Ma|\[\mnc{E}C]ri \[\mncadj{1.5ex}{D}G7]-|\[\mnc{C}Am]a, \[\bm]{ }{ } |\[\mnc{D}Dm7]gra\[\mncii{C}{B}G7]tia \[^\mn{A}\mnc{B}]ple|\[\mnc{C}C]na! \[\bm]
+    \[^\mn{E}]Ma|ri\[^\mn{D}\mn{C}]a, \[\mncii{B}{A}Am]gra\[^\mn{E}\mn{F#}]tia |\[\mnc{E}Am6]ple\[\mnc{D#}B7]na, \[^\mn{B}]Ma|\[\mnc{D}Dm]ri\[^\mn{C}]a, \[\bmc\mn{B}]gra\[^\mn{D}\mn{E}]tia \[^\mn{F}\mn{D}\mnc{B}]ple|\[\mnc{C}Am]na. \[Am6]
+    \[^\mn{E}\mn{D}]A|\[G]ve\[^\mn{B}], \[\mncii{A}{C#}A7]A\[^\mn{E}]ve \[^\mn{G}\mn{E}]Do\[^\mn{C}]mi|\[\mnc{D}G]nus! \[\mncadj{1ex}{A}D7]{\hspace{.75ex}}Do\[^\mn{B}]mi\[^\mn{C}\mn{B}]nus \[^\mn{A}]te|\[\mnc{G}G]cum. \[\bm]
+    Bene|\[\mnc{D}G7]dicta \[\bm]tu \[^\mn{C#}]in \[^\mn{D}]mu\[^\mn{E}\mnc{D}]lie|\[\mncadj{.75ex}{E}C]{-ri}\[^\mn{C}]bus\[\bm], et |\[\mnc{D}G7]bene\[\bmc\mn{D}\mn{C#}\mn{D}\mn{F}\mn{E}\mnc{D}]dic|\[\mnc{C}Am]tus, \[\bm]
+    Et |\[\mnc{D}G]bene\[\mnc{E}E]dictus fr\[^\mn{D}]uc\[^\mn{E}]tus |\[\mnc{G}Dm]ven\[^\mn{F}]tris,\[\bm] \[^\mn{A}]ventris |\[\mncii{E}{D}Dm7]tui, \[\mncii{C}{B}A\textdegree7\mn{C}\mn{E&}\mn{D}\mnc{C}]Je|\[\mnc{D}G]sus. \[G7]
+    |\[\mnc{C}C]A{ } \[Am]-\[^\mn{B}]ve \[^\mn{C}]Ma|\[\mnc{E}C]ri \[\mncadj{1.5ex}{D}G7]-|\[\mnc{C}C]a! \[\bm]{ }{ } |{ }{ } \[C7]{} |\[F]{} \[Fm]{} |\[C]{} \[\bm]{}{} \e
+  \mnendverse
+  \notesoff
+  \beginverse
+    |^A{ } ^-ve Ma|^ri ^-|^a, ^ |^ma^{\hspace{1.5ex}ter} |^Dei! ^
+    O|ra pro ^nobis pecca|^tori^bus, o|^ra, o^ra pro no|^bis; ^
+    O|^ra, o^ra pro no|^bis ^{\hspace{.75ex}}peccatori|^bus, ^
+    Nunc |^et in ^hora mor|^{-tis}, ^ in |^hora ^mortis no|^strae, ^
+    In |^hora ^mortis, mortis |^nostrae, ^ in |^hora ^mortis no|^strae. ^
+    |^A{ } ^-ve Ma|^ri ^-|^a! ^{ }{ } |^{} ^{} |^{} ^{} |{ }{ } ^{} \e
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-10
+    % \header {
+    %   title = "Ave Maria"
+    %   composer = "Franz Schubert"
+    %   poet = "[these lyrics are from the Ave Maria prayer]"
+    % }
+    %% NOTE:
+    %%  - the original is notated in double time compared to this
+    %%  - the accompaniment plays triplets
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \mark \markup \with-color #darkgreen \italic "Accompaniment plays sextuplets."
+      \tempo 4 = 64
+      \key a \minor \time 4/4
+      \set melismaBusyProperties = #'() \slurSolid
+      \sectionLabel "intro"
+      | r1 | r1
+      | r1 | r1
+      \sectionLabel "verse"
+      \repeat volta 2 {
+        | c2. b8 c | e2..( d8)
+        | c2 r2 | \once\slurDown d2( \grace e16 \grace d16) c8 b a( b)
+        | c2 r4 e4 | e4. d16( c16) \once\slurDashed b8( a) e' fis
+        | \once\slurDashed e4.( e8) dis4. b8 | d4. c8 \tuplet 3/2 { b8( d) e } \tuplet 3/2 { f( d) b }
+        | c2. e8( d) | \once\slurDashed d4.( b8) \tuplet 3/2 { a8( cis) e } \tuplet 3/2 { g( e) cis }
+        | d2~ \tuplet 3/2 { d8 a b } \tuplet 3/2 { \once\slurDown c( \grace d16 \grace c16 b8) a } | g2 r4 \once\slurDashed g8( g)
+        | d'4. d8 \slurDashed d8.( cis16) d8( e16) d16~ | d8( e16) \slurSolid c4 r16 r4 c4
+        | d4. d8 \tuplet 3/2 { d8( cis d } \tuplet 3/2 { f e d) } | c2 r4 c4
+        | d4. d8 e8. e16 \tuplet 3/2 { e8( d) e } | g4 f r4 \once\slurDashed a,8( a)
+        | e'4 d4 \tuplet 3/2 { c8( b c } \tuplet 3/2 { es8 d c) } | d2. r4
+        | c2. b8 c | e2..( d8)
+        | c2 r2 | r1
+        | r1 | r1
+      }
+      \sectionLabel "outro"
+      | r1 | r1 | r1
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      | A -- ve Ma -- | ri _ -- | a, | gra -- ti --  a ple _ -- | na!
+      Ma -- | ri -- a, __ _ gra _ -- ti -- a | ple _ -- na,
+      Ma -- | ri -- a, gra -- ti -- a ple _ _ -- | na,
+      A _ -- | ve, __ _ A _ -- ve Do _ -- mi -- | nus! __ _
+      Do -- mi -- nus __ _ te -- | cum.
+      Be -- ne -- | dic -- ta tu in mu -- li -- e | _ -- ri -- bus,
+      et | be -- ne -- dic _ _ _ _ _ -- | tus,
+      et | be -- ne -- dic -- tus fruc _ -- tus | ven -- tris,
+      ven -- tris | tu -- i, Je _ _ _ _ _ -- | sus.
+      | A -- ve Ma | ri _ -- | a! | | |
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      | A -- ve Ma -- | ri _ -- | a, | ma _ _ -- ter __ _ | Dei!
+      O -- | ra pro __ _ no -- bis pec -- ca -- | to -- ri -- bus,
+      o -- | ra, o -- ra __ _ pro no _ _ -- | bis;
+      o _ -- | ra, o -- ra __ _ pro no _ _ -- | bis __ _
+      pec -- ca -- to _ -- ri -- | bus,
+      nunc __ _ | et in ho _ -- ra __ _ mor | _ _ -- tis,
+      in | ho -- ra mor _ -- tis no _ _ -- | strae,
+      in | ho -- ra mor -- tis, mor _ -- tis | no -- strae,
+      in __ _ | ho -- ra mor _ -- tis no _ _ -- | strae.
+      | A -- ve Ma -- | ri _ -- | a! | | |
+    }
+    theChords = \chordmode {
+      | c2 c2 | c2 c2:7
+      | f2/c f:m/c | c1
+      \repeat volta 2 {
+        | c2 a:m6 | c/g g:7
+        | a1:m | d2:m7 g:7
+        | c1 | c2 a:m/c
+        | a:m6/b b:7 | d1:m
+        | a2:m a:m6 | g a:7/e
+        | g/d d:7 | g1
+        | g1:7 | c/g
+        | g:7 | a:m
+        | g2 e | d1:m
+        | d2:m7 a:dim7 | g g:7
+        | c a:m6 | c/g g:7
+        | c1 | c2 c2:7
+        | f2/c f:m/c | c1
+      }
+      | c1 | c1 | r1
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    Hail Mary, full of grace! Mary, full of grace, Mary, full of grace.
+    Hail, Hail, the Lord! The Lord is with thee.
+    Blessed art thou among women, and blessed,
+    And blessed is the fruit of thy womb, thy womb, Jesus. Hail Mary!
+    \nextverse
+    Hail Mary, Mother of God! Pray for us sinners, pray, pray for us;
+    Pray, pray for us sinners,
+    Now and at the hour of our death, the hour of our death,
+    In the hour of death, our death, the hour of our death. Hail Mary!
+  \end{translation}
+\endsong
