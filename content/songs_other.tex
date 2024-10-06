@@ -1199,7 +1199,7 @@
   \fi
   \mnbeginverse\memorize
     |\[\mnc{C}C]A{ } \[Am]-\[^\mn{B}]ve \[^\mn{C}]Ma|\[\mnc{E}C]ri \[\mncadj{1.5ex}{D}G7]-|\[\mnc{C}Am]a, \[\bm]{ }{ } |\[\mnc{D}Dm7]gra\[\mncii{C}{B}G7]tia \[^\mn{A}\mnc{B}]ple|\[\mnc{C}C]na! \[\bm]
-    \[^\mn{E}]Ma|ri\[^\mn{D}\mn{C}]a, \[\mncii{B}{A}Am]gra\[^\mn{E}\mn{F#}]tia |\[\mnc{E}Am6]ple\[\mnc{D#}B7]na, \[^\mn{B}]Ma|\[\mnc{D}Dm]ri\[^\mn{C}]a, \[\bmc\mn{B}]gra\[^\mn{D}\mn{E}]tia \[^\mn{F}\mn{D}\mnc{B}]ple|\[\mnc{C}Am]na. \[Am6]
+    \[^\mn{E}]Ma|ri\[^\mn{D}\mn{C}]a, \[\mncii{B}{A}Am]gra\[^\mn{E}\mn{F#}]tia |\[\mnc{E}Am6]ple\[\mnc{D#}B7]na, \[^\mn{B}]Ma|\[\mnc{D}Dm]ri\[^\mn{C}]a, \[\bmc\mn{B}\mn{D}]gra\[^\mnc{E}]ti\[^\mn{F}\mn{D}]a \[^\mnc{B}]ple|\[\mnc{C}Am]na. \[Am6]
     \[^\mn{E}\mn{D}]A|\[G]ve\[^\mn{B}], \[\mncii{A}{C#}A7]A\[^\mn{E}]ve \[^\mn{G}\mn{E}]Do\[^\mn{C#}]mi|\[\mnc{D}G]nus! \[\mncadj{1ex}{A}D7]{\hspace{.75ex}}Do\[^\mn{B}]mi\[^\mn{C}\mn{B}]nus \[^\mn{A}]te|\[\mnc{G}G]cum. \[\bm]
     Bene|\[\mnc{D}G7]dicta \[\bm]tu \[^\mn{C#}]in \[^\mn{D}]mu\[^\mn{E}\mnc{D}]lie|\[\mncadj{.75ex}{E}C]{-ri}\[^\mn{C}]bus\[\bm], et |\[\mnc{D}G7]bene\[\bmc\mn{D}\mn{C#}\mn{D}\mn{F}\mn{E}\mnc{D}]dic|\[\mnc{C}Am]tus, \[\bm]
     Et |\[\mnc{D}G]bene\[\mnc{E}E]dictus fr\[^\mn{D}]uc\[^\mn{E}]tus |\[\mnc{G}Dm]ven\[^\mn{F}]tris,\[\bm] \[^\mn{A}]ventris |\[\mncii{E}{D}Dm7]tui, \[\mncii{C}{B}A\textdegree7\mn{C}\mn{E&}\mn{D}\mnc{C}]Je|\[\mnc{D}G]sus. \[G7]
@@ -1210,24 +1210,30 @@
     |^A{ } ^-ve Ma|^ri ^-|^a, ^ |^ma^{\hspace{1.5ex}ter} |^Dei! ^
     O|ra pro ^nobis pecca|^tori^bus, o|^ra, o^ra pro no|^bis; ^
     O|^ra, o^ra pro no|^bis ^{\hspace{.75ex}}peccatori|^bus, ^
-    Nunc |^et in ^hora mor|^{-tis}, ^ in |^hora ^mortis no|^strae, ^
+    Nunc |^et in ^hora m|^ortis, ^ in |^hora ^mortis no|^strae, ^
     In |^hora ^mortis, mortis |^nostrae, ^ in |^hora ^mortis no|^strae. ^
     |^A{ } ^-ve Ma|^ri ^-|^a! ^{ }{ } |{ }{ } ^{} |^{} ^{} |^{ }{ } ^{} \e
   \endverse
+  \begin{explanation}[EN]
+    These lyrics are the Latin \emph{Ave Maria} prayer adapted to this melody.
+    The original lyrics were from Walter Scott's narrative poem
+    \emph{The Lady of the Lake}, as translated to German by Adam Storck.
+    In the poem, the Ave Maria prayer is only mentioned.
+  \end{explanation}
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2024-10
     % \header {
     %   title = "Ave Maria"
     %   composer = "Franz Schubert"
-    %   poet = "[these lyrics are from the Ave Maria prayer]"
+    %   poet = "[these lyrics are from the Ave Maria prayer, original lyrics are different]"
     % }
     %% NOTE:
-    %%  - the original is notated in double time compared to this
-    %%  - the accompaniment plays triplets
+    %%  - the original is written in double time compared to this
+    %%  - the accompaniment plays arpeggios as sextuplets
     \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
-      \mark \markup \with-color #darkgreen \italic "Accompaniment plays chords arpeggiated as sextuplets."
-      \tempo 4 = 64
+      \mark \markup \with-color #darkgreen \italic "Accompany with chords arpeggiated as sextuplets."
+      \tempo 4 = 60
       \key a \minor \time 4/4
       \set melismaBusyProperties = #'() \slurSolid
       \sectionLabel "intro"
@@ -1257,7 +1263,7 @@
       \set stanza = "1."
       | A -- ve Ma -- | ri _ -- | a, | gra -- ti --  a ple _ -- | na!
       Ma -- | ri -- a, __ _ gra _ -- ti -- a | ple _ -- na,
-      Ma -- | ri -- a, gra -- ti -- a ple _ _ -- | na,
+      Ma -- | ri -- a, gra _ -- ti -- a __ _ ple -- | na,
       A _ -- | ve, __ _ A _ -- ve Do _ -- mi -- | nus! __ _
       Do -- mi -- nus __ _ te -- | cum.
       Be -- ne -- | dic -- ta tu in mu -- li -- e | _ -- ri -- bus,
