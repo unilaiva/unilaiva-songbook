@@ -332,3 +332,163 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Junto?}[by={larva}, key={Am}, gk={Am, Gm--G\shrp{}m--(Am)}, tags={valsa}]
+  \meter{3}{4}
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Nave|\[\mnc{A}Am]gando em \[^\mn{B}]meu \[^\mn{C}]bar\[^\mn{B}]co|\[^\mn{A}]zi\[^\mn{E}]nho,
+    batendo |\[\mnc{D}Dm]gentilm\[^\mncadj{.25ex}{C}]en\[^\mn{D}]te \[^\mn{E}]com |\[E]outros;
+    \lrep \[^\mn{C}]Per\[^\mn{B}]gun|\[\mnc{A}Am]tando: po\[^\mn{B}]de\[^\mn{C}]mos |\[\mnc{D}Dm]flutuar
+    Da \[^\mn{E}]mes\[^\mn{F}]ma |\[\mnc{E}E]form\[^\mn{D}]a \[^\mn{C}]por \[^\mn{B}]um |\[\mnc{C}C \up{2}(Am)]tem\[^\mn{/}]po? \rrep
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Assim |^como eu, assim |vós,
+    Os mesmos |^ventos nos levam a |^todos.
+    \lrep Vamos cri|^ar algo |^juntos
+    Agora |^que estamos aqui um |^tempo. \rrep
+  \endchorus
+  \beginchorus
+    Nave|^gando com minha alma a|berta,
+    Encontrando |^harmonia com as es|^trelas;
+    \lrep Pergun|^tando: podemos |^caminhar
+    Na mesma |^direção por um |^tempo? \rrep
+  \endchorus
+  \beginchorus
+    Assim |^como eu, assim |vós,
+    Os mesmos |^rios nos levam para |^frente.
+    \lrep Vamos be|^ber do mesmo |^fonte
+    Agora e |^sentir paz por um |^tempo. \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-10
+    \include "tex/lp-include-head.ly"
+    % \header {
+    %   title = "Junto?"
+    %   composer = "Lari Natri"
+    % }
+    %
+    % Navegando em meu barcozinho,
+    % Batendo gentilmente com outros;
+    % Perguntando: podemos flutuar
+    % Da mesma forma por um tempo?
+    %
+    % Assim como eu, assim vós,
+    % Os mesmos ventos nos levam a todos.
+    % Vamos criar algo juntos
+    % Agora que estamos aqui um tempo.
+    %
+    % Navegando com minha alma aberta,
+    % Encontrando harmonia com as estrelas;
+    % Perguntando: podemos caminhar
+    % Na mesma direção por um tempo?
+    %
+    % Assim como eu, assim vós,
+    % Os mesmos rios nos levam para frente.
+    % Vamos beber do mesmo fonte
+    % Agora e sentir paz por um tempo.
+    %
+    theMelody = \relative d'' {
+      \slurDashed \set melismaBusyProperties = #'()
+      \key a \minor
+      \tempo 4 = 102
+      \time 3/4 \partial 4.
+        \repeat segno 2 {
+          \sectionLabel "A"
+          r8 \pomark e8 e8 | a8. 16 a8 b c( b) | a4( e8)
+          e e e | d8 d8 d8( c8) d8 e16( e16) | e4 e8
+          \sectionLabel "B"
+          \repeat volta 2 {
+            \parenthesize c8 c8 b | a4( a8) \parenthesize a b c | d8( d8) d8
+            d8 e8 f | e8( e8) e8( d8) c8 b
+          } \alternative {
+            { | c4 c8 }
+            { | c4 a8 }
+          }
+        }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat segno 2 {
+        Na -- ve -- | gan -- do em meu bar -- co -- | zi -- nho;
+        ba -- ten -- do | gen -- til -- men _ -- te com __ _ | ou -- tros;
+        \repeat volta 2 {
+          "" Per -- gun -- | tan -- do: po -- de -- mos | flu -- tu -- ar;
+          Da mes -- ma | for _ -- ma __ _ por um
+        } \alternative {
+          { | tem -- po? }
+          { | tem -- po? }
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+        \repeat segno 2 {
+        As -- sim | co -- mo eu, as -- sim __ _ | vós; __ _
+        Os mes -- mos | ven -- tos nos le -- vam a __ _ | to -- dos.
+        \repeat volta 2 {
+          Va -- mos cri -- | ar __ _ "" al -- go | jun _ -- tos;
+          A -- go -- ra | que~es -- ta -- mos a -- qui um
+        } \alternative {
+          { | tem -- po. }
+          { | tem -- po. }
+        }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat segno 2 {
+        Na -- ve -- | gan -- do com mi -- nha~al -- ma~a -- | ber -- ta;~En --
+        con -- tran -- do | har -- mo -- ni -- a com~as es _ -- | tre -- las;
+        \repeat volta 2 {
+          "" Per -- gun -- | tan -- do: po -- de -- mos | ca -- mi -- nhar;
+          Na mes -- ma | di -- re -- ção __ _ por um
+        } \alternative {
+          { | tem -- po? }
+          { | tem -- po? }
+        }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat segno 2 {
+        As -- sim | co -- mo eu, as -- sim __ _ | vós; __ _
+        Os mes -- mos | ri -- os nos le -- vam pa -- ra | fren -- te.
+        \repeat volta 2 {
+        Va -- mos be -- | ber __ _ do mes -- mo | fon _ -- te;
+        A -- go -- ra~e | sen -- tir paz __ _ por um
+        } \alternative {
+          { | tem -- po. }
+          { | tem -- po. }
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        s4. | a2.:m | a:m | d:m | e4.
+        \repeat volta 2 {
+          s4. | a2.:m | d:m | e
+        } \alternative {
+          { | c4. }
+          { | a4.:m }
+        }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+   \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    Sailing in my little boat, gently bumping against others;
+    Asking: can we float the same way for a while?
+    \nextverse
+    Just as I, just as you, the same winds carry us all.
+    Let's create something together now that we're here for a while.
+    \nextverse
+    Sailing with my open soul, finding harmony with the stars;
+    Asking: can we walk in the same direction for a while?
+    \nextverse
+    Just as I, just as you, the same rivers carry us forward.
+    Let's drink from the same source now and feel peace for a while.
+  \end{translation}
+\endsong
