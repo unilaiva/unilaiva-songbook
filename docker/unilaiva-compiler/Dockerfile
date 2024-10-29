@@ -6,7 +6,7 @@
 #
 
 # Use Ubuntu 24.04 LTS:
-FROM ubuntu:noble-20240423
+FROM ubuntu:noble-20241011
 
 # Installs everything needed for compiling the songbook, plus qrencode and
 # pdftk utilities. Also generates the required locale fi_FI.utf8.
