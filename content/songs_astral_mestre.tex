@@ -1597,10 +1597,12 @@
     A Vir|^gem Se|nhora |^vem; | para |^ir te |acompa|^nhar | \e
     Eu |^rogo |à Virgem |^Mãe; |^que te |^bote em |bom lu|^gar | \e
   \endchorus
-  \beginverse % for alt. chords
-    \altchords{\id[1]{(A)}|E | - |A | - |D | - |A | \e}
-    \altchords{|D | - |A |F\shrp{}m |E | - |A | \e}
-  \endverse
+  \ifchorded\ifshowaltchords
+    \beginverse\small % for alt key chords only (A)
+      \altchords{\id[1]{(A)}|E | - |A | - |D | - |A | \e}
+      \altchords{|D | - |A |F\shrp{}m |E | - |A | \e}
+    \endverse
+  \fi\fi
   \begin{lilywrap}\begin{lilypond}[]
     \include "tex/lp-include-head.ly"
     % % transcribed by larva, latest update on 2024-05

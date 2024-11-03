@@ -347,10 +347,12 @@
     On |^syvään sun ^kuvasi |^painu^nut ja |^sitä ^ikä|^vöin. ^
     Olen |^villi^sorsaa |^kuunnel^lut  mä |^siellä ^monin |^öin. ^
   \endverse
-  \beginverse % for alt key (Em) chords only
-    \altchords{\id[1]{(Em)}|Em |Bm |Am |B}
-    \altchords{|G |D |Em B7 |Em}
-  \endverse
+  \ifchorded\ifshowaltchords
+    \beginverse % for alt key (Em) chords only
+      \altchords{\id[1]{(Em)}|Em |Bm |Am |B}
+      \altchords{|G |D |Em B7 |Em}
+    \endverse
+  \fi\fi
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-07
     \include "tex/lp-include-head.ly"
@@ -1836,10 +1838,12 @@
     |^Kosketa |^minua, |^Hen|ki! |^Herätä |^kiittä|^mään, |^
     |^sinun |^lähel|^lä|^si |^armosta |^elä|^mään. | \e
   \endverse
-  \beginverse % for alt key (F) chords only
-    \altchords{\id[1]{(F)}|F |Am |Dm | - |Gm7 |Am |B\flt{} |D7/A}
-    \altchords{|Gm |C7 |Fmaj7 |D |Gm7 |C7 |F | \e}
-  \endverse
+  \ifchorded\ifshowaltchords
+    \beginverse\small % for alt key (F) chords only
+      \altchords{\id[1]{(F)}|F |Am |Dm | - |Gm7 |Am |B\flt{} |D7/A}
+      \altchords{|Gm |C7 |Fmaj7 |D |Gm7 |C7 |F | \e}
+    \endverse
+  \fi\fi
 \endsong
 
 
@@ -1905,10 +1909,12 @@
     |^Nuku |nuku |nurmi|^lin|tu, \brk|^väsy |^väsy |^västä|^räk|ki,
     |nuku |kun mi|^nä nu|^ku|tan, \brk|^väsy |^kun mi|^nä vä|^sy|tän.
   \endverse
-  \beginverse\small % for alt key chords only
-    \altchords{\id[1]{(Am)}|Am | - | - |E | - |Dm |Am |E7 |Am | \e}
-    \altchords{| - | - |Dm7 |E | - |E7 |Am |E7 |Am | \e}
-  \endverse
+  \ifchorded\ifshowaltchords
+    \beginverse\small % for alt key chords only
+      \altchords{\id[1]{(Am)}|Am | - | - |E | - |Dm |Am |E7 |Am | \e}
+      \altchords{| - | - |Dm7 |E | - |E7 |Am |E7 |Am | \e}
+    \endverse
+  \fi\fi
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-07
@@ -1956,10 +1962,12 @@
     |^Laula, ^laula, |^uni^lintu, |^tuoksu, ^tuomen|^tert^tu.
     |Nuku, ^puna|^paitu^lainen, |^pikku ^leppä|^kert^tu.
   \endverse
-  \beginverse\small % for alt key chords only
-    \altchords{\id[1]{(Am)}|Am |E |Dm Am |E7 Am}
-    \altchords{|Am |Dm7 E |E7 |Am}
-  \endverse
+  \ifchorded\ifshowaltchords
+    \beginverse\small % for alt key chords only (Am)
+      \altchords{\id[1]{(Am)}|Am |E |Dm Am |E7 Am}
+      \altchords{|Am |Dm7 E |E7 |Am}
+    \endverse
+  \fi\fi
   \imagerb[5]{leppakerttu_transparent_bg_353x279px.png}
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[]
