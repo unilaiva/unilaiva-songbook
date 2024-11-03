@@ -498,3 +498,162 @@
     Let's drink from the same source now and feel peace for a while.
   \end{translation}
 \endsong
+
+
+\beginsong{Força da Cura}[by={larva}, key={Am}, gk={Am, (Em)--(Gm)}, tags={valsa}]
+  \meter{3}{4}
+  % in original Am, the notes range from A to E'
+  \mnbeginchorus\memorize
+    \lrep |\[\mnc{E}Am]Oh! |\[\mnc{D}G]For\[^\mn{C}]ça \[^\mn{B}]da |\[\mnc{A}Am]Cu\[^\mn{E}]{ra, e}|\[\mncii{F}{E}Dm]leva \[^\mn{D}]meu |\[\mnc{E}Am]can\[^\mn{A}]to |\[\mnc{B}E7]às \[^\mn{C}\mn{D}]{\emph{al}}|\[\mnc{E}Am]tu|ras! \rrep
+    |\[\mnc{D}Dm]Estou \[^\mn{E}]can|\[^\mn{F}]tando, \[^\mn{G}]can|\[\mnc{A}Am]tan\[^\mn{E}]do |\[^\mn{C}]mi\[^\mn{A}]nha |\[\mnc{B}G]al\[^\mn{C}]ma \[^\mn{D}]ao |\[\mnc{F}G7]Céu al|\[\mnc{E}Am]to. | \e
+    |\[\mnc{D}Dm]Estou \[^\mn{E}]can|\[^\mn{F}]tando, \[^\mn{G}]can|\[\mnc{A}Am]tan\[^\mn{E}]do |\[^\mn{C}]mi\[^\mn{A}]nha |\[\mnc{F}F]alma ao |\[\mnc{G#}E7]Céu al|\[\mnc{A}Am]to. | \e
+    | | \e
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    \lrep |^Oh! |^Força da |^Cura, |^abra meu |^cora|^ção para a|^mor! | \e \rrep
+    |^Estou a|brindo, a|^brindo |meu cora|^{\emph{ção}} pa|^ra a|^mor. | \e
+    |^Estou a|brindo, a|^brindo |meu cora|^ção pa|^ra a|^mor. | \e
+    | | \e
+  \endchorus
+  \beginchorus
+    \lrep |^Oh! |^Força da |^Cura, |^esclare|^ce mi|^nhas pensa|^men|tos! \rrep
+    |^Estou me |concen|^trando |minha a|^tenção no es|^senti|^al. | \e
+    |^Estou me |concen|^trando |minha a|^tenção no es|^senti|^al. | \e
+    | | \e
+  \endchorus
+  \beginchorus
+    \lrep |^Oh! |^Força da |^Cura, |^sensibi|^lize |^meu cora|^ção! | \e \rrep
+    |^Estou escu|tando, escu|^tando as ne|cessi|^{\emph{da}des} |^do ou|^tro. | \e
+    |^Estou escu|tando, escu|^tando as ne|cessi|^dades |^do ou|^tro. | \e
+    | | \e
+  \endchorus
+  \ifchorded\ifshowaltchords
+    \brk
+    \beginverse % for alt key (Em) chords only
+      \small
+      \altchords{\id[1]{(Em)}|Em |D |Em |Am |Em |B7 |Em | \e}
+      \altchords{|Am | - |Em | - |D |D7 |Em | \e}
+      \altchords{|Am | - |Em | - |C |B7 |Em | \e}
+      \altchords{| - | \e}
+    \endverse
+  \fi\fi
+  \begin{lilywrap}\begin{lilypond}[]
+    % transcribed by larva, latest update on 2024-11
+    % \header {
+    %   title = "Força da Cura"
+    %   subtitle = "À Transparência #5"
+    %   composer = "Lari Natri (2024-10)"
+    %   copyright = "CC BY-NC-SA 4.0"
+    % }
+    %
+    % Lyrics:
+    % Oh! Força da Cura, eleva meu canto às alturas!
+    % Estou cantando, cantando minha alma ao Céu alto.
+    % Estou cantando, cantando minha alma ao Céu alto.
+    %
+    % Oh! Força da Cura, abra meu coração para amor!
+    % Estou abrindo, abrindo meu coração para amor.
+    % Estou abrindo, abrindo meu coração para amor.
+    %
+    % Oh! Força da Cura, esclarece minhas pensamentos!
+    % Estou me concentrando minha atenção no essential.
+    % Estou me concentrando minha atenção no essential.
+    % %%%(ALT)%%% Estou me concentrando naquilo que é importante.
+    % %%%(ALT)%%% Estou me concentrando naquilo que é importante.
+    %
+    % Oh! Força da Cura, sensibilize meu coração!
+    % Estou escutando, escutando as necessidades do outro.
+    % Estou escutando, escutando as necessidades do outro.
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e''' {
+      \slurDashed \set melismaBusyProperties = #'()
+      \key a \minor
+      \tempo 4 = 180
+      \time 3/4
+      \repeat segno 2 {
+        \sectionLabel "A"
+        \repeat volta 2 {
+          | e2. \pomark | d4 c b | a2 e4 | f e d
+          | e2 a,4 | b c( d) | e2.( | e2.)
+        }
+        \sectionLabel "B:i"
+        | d4 d4 e8( e8) | f4.( f8) g8( g8) | a4.( a8) e8( e8) | c4( c4) a4
+        | b4( c) d | f2( f4) | e2.~ | e2. \break
+        \sectionLabel "B:ii"
+        | d4 d4 e8( e8) | f4.( f8) g8( g8) | a4.( a8) e8( e8) | c4( c4) a4
+        | f'4( f) f | gis2( gis4) | a2.~ | a2. | r2. | r2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "1."
+        \repeat volta 2 {
+          | Oh! | For -- ça da | Cu -- ra,~e -- | le -- va meu | can -- to | às al _ -- | tu -- | ras!
+        }
+        | Es -- tou can _ -- | tan -- do, can _ -- | tan _ -- do __ _ | mi _ -- nha | al -- ma ao | Céu al -- | to. | _
+        | Es -- tou can _ -- | tan -- do, can _ -- | tan _ -- do __ _ | mi _ -- nha | al -- ma ao | Céu al -- | to. | _ | |
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "2."
+        \repeat volta 2 {
+          | Oh! | For -- ça da | Cu -- ra, | a -- bra meu | co -- ra -- | ção pa -- ra~a -- | mor! __ | _
+        }
+        | Es -- tou a _ -- | brin -- do, a _ -- | brin _ -- do __ _ | meu co -- ra -- | ção __ _ pa -- | ra a -- | mor. | _
+        | Es -- tou a _ -- | brin -- do, a _ -- | brin _ -- do __ _ | meu co -- ra -- | ção __ _ pa -- | ra a -- | mor. | _ | |
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "3."
+        \repeat volta 2 {
+          | Oh! | For -- ça da | Cu -- ra, | es -- cla -- re -- | ce mi -- | nhas pen -- sa -- | men -- | tos!
+        }
+        | Es -- tou me __ _ | con _ -- cen _ -- | tran _ -- do __ _ | mi -- nha a -- | ten -- ção no~es -- | sen -- ti -- | al. | _
+        | Es -- tou me __ _ | con _ -- cen _ -- | tran _ -- do __ _ | mi -- nha a -- | ten -- ção no~es -- | sen -- ti -- | al. | _ | |
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        | Oh! | For -- ça da | Cu -- ra, | sen -- si -- bi -- | li -- ze | meu co -- ra -- | ção! __ | _
+      }
+      | Es -- tou es -- cu -- | tan -- do, es -- cu -- | tan -- do as ne -- | ces _ -- si -- | da _ -- des | do ou -- | tro. | _
+      | Es -- tou es -- cu -- | tan -- do, es -- cu -- | tan -- do as ne -- | ces _ -- si -- | da _ -- des | do ou -- | tro. | _ | |
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | a2.:m | g | a:m | d:m
+          | a:m | e:7 | a:m | a:m
+        }
+        d:m | d:m | a:m | a:m
+        | g | g:7 | a:m | a:m
+        | d:m | d:m | a:m | a:m
+        | f | e:7 | a:m | a:m | a:m | a:m
+      }
+    }
+    \layout { #(layout-set-staff-size 13.8) } % for better fit
+   \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    Oh! Power of Cura, lift my song to the heights!
+    I am singing, singing my soul to the high Heaven.
+    %I am singing, singing my soul to the high Heaven.
+    \nextverse
+    Oh! Power of Cura, open my heart to love!
+    I am opening, opening my heart to love.
+    %I am opening, opening my heart to love.
+    \nextverse
+    Oh! Power of Cura, clarify my thoughts!
+    I am concentrating my attention on the essential.
+    %I am concentrating my attention on the essential.
+    \nextverse
+    Oh! Power of Cura, awaken my heart!
+    I am listening, listening to the needs of others.
+    %I am listening, listening to the needs of others.
+  \end{translation}
+\endsong
