@@ -51,7 +51,10 @@
     % }
     \include "tex/lp-include-head.ly"
     theMelody = \relative c'' {
-      \key a \minor \time 4/4 \partial 4.
+      \key a \minor
+      \tempo 4 = 118
+      \time 4/4
+      \partial 4.
       \set melismaBusyProperties = #'() \slurDashed
       \repeat volta 2 {
         \parenthesize e8 \pomark e8( e8) | a2(
