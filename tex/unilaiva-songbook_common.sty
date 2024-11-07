@@ -560,6 +560,7 @@
 \newunicodechar{❹}{{\symbolfont ❹}}\newcommand\symfour{❹}
 \newunicodechar{✝}{{\symbolfont ✝}}\newcommand\symcross{✝}
 \newunicodechar{☨}{{\symbolfont ☨}}\newcommand\symsdcross{☨}
+\newunicodechar{⌣}{{\symbolfont ⌣}}\newcommand\symsmilearc{⌣}
 \newunicodechar{⭠}{{\symboliifont ⭠}}\newcommand\symlarrow{⭠}
 \newunicodechar{⭢}{{\symboliifont ⭢}}\newcommand\symrarrow{⭢}
 \newunicodechar{⮀}{{\symboliifont ⮀}}\newcommand\symlrarrow{⮀}
@@ -1328,6 +1329,12 @@
 }
 
 % END front matter
+
+% Creates a small arc glyph just below baseline. Use this to join two words
+% in lyrics together with an arc instead of a whitespace. The width of the
+% arc is a bit less than an ordinary whitespace. Uses \scalebox from graphicx
+% package. Usage: alma\jw ao
+\newcommand\jw{\raisebox{-.135ex}{\scalebox{.22}{\textbf{\symsmilearc}}}}
 
 % Returns the chapter symbol as a text symbol. Renew to change.
 \providecommand\chaptersymbol{%
