@@ -619,15 +619,27 @@ compile_document() {
           echo -e "${PRETXT_NOEXEC}${txt_docbase}: Widened tagless cover image not created; no 'convert'"
         else # create extended (closer to square) and tagless version of the image, too:
           echo -e "${PRETXT_EXEC}${txt_docbase}: convert (create widened tagless cover image)"
-          if [[ ${currentdoc_basename} == "${ASTRAL_FNAME_PREFIX}"* ]]; then
+          if [[ ${currentdoc_basename} == "unilaiva-astral-transparencia"* ]]; then
+            # Transparencia booklets: cut out vertical tag area from top left,
+            # but less tall to not to overwrite the photo in the cover
             convert "${currentdoc_basename}.png" \
-                    -fill white -draw "rectangle 0,0 200,400" \
+                    -fill white -draw "rectangle 0,0 185,260" \
+                    -gravity center \
+                    -extent "${COVERIMAGE_AUTOWIDE_WIDTH}x${COVERIMAGE_HEIGHT}" \
+                    ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png \
+                    1>>"${log10file}" 2>&1 \
+                    || die_log $? "Error modifying cover image!" "${log10file}"
+          elif [[ ${currentdoc_basename} == "${ASTRAL_FNAME_PREFIX}"* ]]; then
+            # Other Astral booklets: cut out vertical tag area from top left
+            convert "${currentdoc_basename}.png" \
+                    -fill white -draw "rectangle 0,0 195,400" \
                     -gravity center \
                     -extent "${COVERIMAGE_AUTOWIDE_WIDTH}x${COVERIMAGE_HEIGHT}" \
                     ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png \
                     1>>"${log10file}" 2>&1 \
                     || die_log $? "Error modifying cover image!" "${log10file}"
           else
+            # Non-Astral booklets: cut out horizontal tag area from top
             convert "${currentdoc_basename}.png"\
                     -fill white -draw "rectangle 0,0 1024,100" \
                     -gravity center \
