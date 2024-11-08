@@ -303,6 +303,80 @@
     },
     {
       "enabled": true,
+      "file": "unilaiva-astral-transparencia_A5.pdf",
+      "image": "unilaiva-astral-transparencia_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "chords", "sheetmusic", "guitar" ],
+      "title_i18n": {
+        "pt": "à Transparência"
+      },
+      "subtitle_i18n": {
+        "en": "With musical information",
+        "pt": "Com informação musical",
+        "fi": "Musiikillisin tiedoin"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/Z8MyDT8CNsCwGKe",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/unilarva/sets/transparencia-hinario",
+          "title_i18n": {
+            "en": "Official recording",
+            "pt": "Gravação oficial",
+            "fi": "'Virallinen' äänite"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/QCNzMj4r98q7gXo",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "file": "unilaiva-astral-transparencia_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-astral-transparencia_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "tag_ids": [ "lyricsonly" ],
+      "title_i18n": {
+        "pt": "à Transparência"
+      },
+      "subtitle_i18n": {
+        "en": "Lyrics Only",
+        "pt": "Somente letras",
+        "fi": "Vain sanoitukset"
+      },
+      "altview_url": "https://pilvi.aavalla.net/s/TFBGNEye4m5GNac",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/unilarva/sets/transparencia-hinario",
+          "title_i18n": {
+            "en": "Official recording",
+            "pt": "Gravação oficial",
+            "fi": "'Virallinen' äänite"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/QCNzMj4r98q7gXo",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ]
+    },
+    {
+      "enabled": true,
       "file": "unilaiva-astral-completa_A5.pdf",
       "image": "unilaiva-astral-completa_A5_AUTOWIDENOTAGS.png",
       "tag_ids": [ "complete.comp", "chords", "sheetmusic", "guitar" ],
