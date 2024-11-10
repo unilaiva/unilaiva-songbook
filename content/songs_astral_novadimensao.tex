@@ -1947,3 +1947,115 @@
 \endsong
 
 
+\beginsong{Renascer}[by={Padr. Alfredo},key={C},gk={C, G\shrp{}--B--(C)}]
+  \audio[key=C]{https://www.youtube.com/watch?v=XyyjCz_9CII}
+  \newchords{chords_renascer_a}\newchords{chords_renascer_b}
+  \mnbeginverse\memorize[chords_renascer_a]
+    \[^\mn{E}]Fa|\[C]la\[\bmc\mn{C}]ram, \[^\mn{E}]dis|se\[^\mn{C}]ram, \[\bm]en\[^\mn{E}]si|\[\mnc{F}Fmaj7]na\[^\mn{E}]ram \[\bmc\mn{D}]com \[^\mn{C}]a|\[\mnc{B}G]mor \[\bm]
+    No |Rio \[\bm]de \[^\mn{C}]Jor|\[\mnc{D}Dm]dão o \[\bm]Bati|\[G]zado \[\bmc\mn{E}]se \[^\mn{F}]Tra|\[\mnc{E}C]çou
+    \mnendverse\glueverses\mnbeginchorus\memorize[chords_renascer_b]
+    \[^\bmc\mnvii{E}{C}]Aqui |\[\mnc{C}C]na nos\[\bm]sa mis|\[\mnc{F}F]são o \[\bm]nosso |\[\mnc{A}Am]Mestre \[\bm]Re\[^\mn{G}]plan|\[\mnc{C}C]tou
+    \[\bmc\mn{G}]Doutri|\[\mnc{A}G]na \[^\mn{G}]de \[\bm]Jesus |\[\mnc{D}Dm]Cristo \[\bm]do nos|\[\mnc{G}G]so Pai \[\bmc\mn{D}]Cri\[^\mn{E}]a|\[\mnc{C}C]dor.
+  \mnendchorus
+  \notesoff
+  \beginverse\replay[chords_renascer_a]
+    É |^nos^sa Es|cola, ^é o |^nosso ^Profes|^sor ^
+    O |nosso ^Tempo\jw é |^este, ^vamos |^todos ^dar lou|^vor \[\bm]
+    \endverse\glueverses\beginchorus\replay[chords_renascer_b]
+    Pe|^dir a ^nossa |^Mãe, a ^vossa |^Chama ^do a|^mor
+    I^lumi|^nar\jw o nos^so per|^dão e ^se fir|^mar no ^Cria|^dor. \[\bm]
+  \endchorus
+  \beginverse\replay[chords_renascer_a]
+    Con|^fi^a, con|fi^a, con|^fia ^no po|^der ^ \altchords{\id[1]{(A)}|A | |Dmaj7 |E}
+    O |nosso ^Mestre |^diz:^ con|^fia ^no sa|^ber \[\bm] \altchords{| |Bm |E |A}
+    \endverse\glueverses\beginchorus\replay[chords_renascer_b]
+    Lem|^brar Ju^rami|^dam, ^vê o |^{dia\jw A}^manhe|^cer ^ \altchords{|A |D |F\shrp{}m |A}
+    Na |^luz do ^Santo |^Daime, ^vamos |^todos ^Renas|^cer. \[\bm] \altchords{|E |Bm |E |A}
+  \endchorus
+  \begin{translation}[EN]
+    They spoke, they said, they taught with love
+    In the Jordan River the Baptism was drawn out
+    Here in our mission our Master replanted
+    Doctrine of Jesus Christ from our Creator Father
+    \nextverse
+    It is our School, it is our Teacher
+    This is our Time, let us all give praise
+    Ask for our Mother, your flame of love
+    To illuminate our pardon and be established on the Creator
+    \nextverse
+    Trust, trust, trust in power
+    Our Master says: trust in knowledge
+    Remember Juramidam, see the dawn breaking
+    In the light of Santo Daime, let us all Reborn
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-11
+    % \header {
+    %   title = "Renascer (Nova Dimensão #18)"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \tempo 4 = 155
+      \key a \minor \time 4/4 \partial 2
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat segno 2 {
+        \slurUp
+        \sectionLabel "A"
+        r4 \pomark e4 | e2 c4 e4 | e4. \altmark "3." \single\altcol ( << \single\altcol e8 ) \parenthesize c8 >> c4 e4 | f e d c | b2. \slurNeutral
+        b4 | b b b c | d4.( d8 d4) d | d d e f | e2
+        \repeat volta 2 {
+          \sectionLabel "B"
+          \parenthesize << \parenthesize e4 \parenthesize \single\altcol c \altmark "ii" >> << e \single\altcol c >> | c c c c | f4.( f8) f4 f | a a a g | c4.( c8)
+          g4 g | a g g g | d4. d8 d4 d | g g d e | c2
+        }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat segno 2 {
+        Fa -- | la -- ram, dis -- | se -- ram, en -- si -- | na -- ram com a -- | mor;
+        No | Ri -- o de Jor -- | dão o Ba -- ti -- | za -- do se Tra -- | çou;
+        \repeat volta 2 {
+          A -- qui | na nos -- sa mis -- | são o nos -- so | Mes -- tre Re -- plan -- | tou; __ _
+          Dou -- tri -- | na de Je -- sus | Cris -- to do nos -- | so Pai Cri -- a -- | dor.
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat segno 2 {
+        É | nos -- sa Es -- | co -- la é o | nos -- so Pro -- fes -- | sor;
+        O | nos -- so Tem -- po~é | es -- te, va -- mos | to -- dos dar lou -- | vor;
+        \repeat volta 2 {
+          "" Pe -- | dir a nos -- sa | Mãe, a vos -- sa | Cha -- ma do a -- | mor;
+          I -- lu -- mi -- | nar~o nos -- so per -- | dão e se fir -- | mar no Cri -- a -- | dor.
+        }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat segno 2 {
+        Con -- | fi -- a, con -- | \altcol fi _ -- a, con -- | fi -- a no po -- | der;
+        O | nos -- so Mes -- tre | diz: __ _ _ con -- | fi -- a no sa -- | ber;
+        \repeat volta 2 {
+          "" Lem -- | brar Ju -- ra -- mi -- | dam, __ _ vê o | di -- a~A -- ma -- nhe -- | cer; __ _
+          "" Na | luz do San -- to | Dai -- me, va -- mos | to -- dos Re -- nas -- | cer.
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        s2 | c1 | c | f:maj7 | g
+        | g | d:m | g | c2 % original sounds like e2:m here
+        \repeat volta 2 {
+          s2 | c1 | f | a:m | c
+          | g1 | d:m | g | c2
+        }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
