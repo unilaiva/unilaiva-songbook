@@ -108,6 +108,7 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
+      "tabname": "verde-musical",
       "altview_url": "https://pilvi.aavalla.net/s/SSXm7fwPzMMStDL",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -138,6 +139,7 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
+      "tabname": "verde-lyricsonly",
       "altview_url": "https://pilvi.aavalla.net/s/8dGgmXw5npfdSgr",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -166,6 +168,7 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
+      "tabname": "cura-musical",
       "altview_url": "https://pilvi.aavalla.net/s/mAJyTbC9gJi8nRX",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -212,6 +215,7 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
+      "tabname": "cura-lyricsonly",
       "altview_url": "https://pilvi.aavalla.net/s/xS4EStLEQp5CR8R",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -258,6 +262,7 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
+      "tabname": "alfredo-musical",
       "altview_url": "https://pilvi.aavalla.net/s/NsDt4gPsqsRaz6i",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -286,6 +291,7 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
+      "tabname": "alfredo-lyricsonly",
       "altview_url": "https://pilvi.aavalla.net/s/NQtWix23Sn7S4wN",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -314,6 +320,7 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
+      "tabname": "transparencia-musical",
       "altview_url": "https://pilvi.aavalla.net/s/Z8MyDT8CNsCwGKe",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -351,6 +358,7 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
+      "tabname": "transparencia-lyricsonly",
       "altview_url": "https://pilvi.aavalla.net/s/TFBGNEye4m5GNac",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -388,6 +396,7 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
+      "tabname": "completa-musical",
       "altview_url": "https://pilvi.aavalla.net/s/CnwqzrMx8CwmCGS",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -416,6 +425,7 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
+      "tabname": "completa-lyricsonly",
       "altview_url": "https://pilvi.aavalla.net/s/ZJeydsrSew45MzC",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -444,6 +454,7 @@
         "pt": "Por charango",
         "fi": "Charangolle"
       },
+      "tabname": "completa-charango",
       "altview_url": "https://pilvi.aavalla.net/s/cetMPdSJDEgqt8q",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,

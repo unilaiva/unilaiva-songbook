@@ -172,6 +172,7 @@
         "pt": "Edição completa, com acordes",
         "fi": "Täysi editio, soinnuilla"
       },
+      "tabname": "complete-musical",
       "altview_url": "https://pilvi.aavalla.net/s/kMSRkbdD9BdjtpW",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -219,6 +220,7 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
+      "tabname": "complete-lyricsonly",
       "altview_url": "https://pilvi.aavalla.net/s/ir8rdkXd8mKzFip",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
