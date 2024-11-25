@@ -508,7 +508,7 @@ the following string replacements ought to be done in the following order:
  8. "|_" -> "|"
  9. "\skip 1 " -> ""
 10. "\"\" " -> ""
-11. "~" -> " "
+11. "~" -> "\jw "
 
 Be careful with the whitespaces!
 
