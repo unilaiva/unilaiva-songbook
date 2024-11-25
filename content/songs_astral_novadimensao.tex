@@ -2059,3 +2059,128 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
+\beginsong{Infinitum}[by={Padr. Alfredo},key={C},gk={C, (B)--(C)}]
+  \audio[key=C]{https://www.youtube.com/watch?v=W_n68txBRiM}
+  \audio[key=C]{https://soundcloud.com/hinos-santo-daime/19-infinitum}
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Infi\[^\mnc{C}]ni|\[\mnc{G}C]tum, \[\bmc\mn{E}]estou \[^\mn{D}]na \[^\mn{E}]flo|\[^\mn{D}]res\[^\mn{C}]ta \[Am]
+    \[^\mn{A}]{E nesta} |\[\mnc{D}Dm]festa \[G] eu sou \[^\mn{E}]mais |\[\mnc{C}C]um \[\bm]
+    \lrep \[^\mn{C}]Toda\jw a flo|\[\mnc{A}Am]res\[^\mn{G}]ta,\[\bm] \[^\mn{C}]está em |\[\mnc{E}C]festa \[G7]
+    \[^\mn{D}]Infini|\[\mnc{C}C]tum \[\bm] \rrep
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay
+    E nesta |^casa^ da Virgem |Mãe
+    ^Para nós can|^tar, ^ com todo\jw a|^mor ^
+    \lrep O nosso |^Mestre^ é Jesus |^Cristo^
+    Nosso Se|^nhor ^ \rrep
+  \endchorus
+  \beginchorus\replay
+    Essa es|^cola^ é da Ra|inha^
+    E Jesus |^Cristo^ Renden|^tor ^
+    \lrep Para lou|^var,^ o Pai E|^terno^
+    Rei Cria|^dor ^ \rrep
+  \endchorus
+  \beginchorus\replay
+    Cante|^mos,^ manos can|temos^
+    Nossa Dou|^trina,^ é só lou|^var ^
+    \lrep A Divin|^dade,^ desta flo|^resta^
+    Deste Lu|^gar ^ \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2024-11
+    % \header {
+    %   title = "Infinitum (Nova Dimensão #19)"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g'' {
+      \tempo 4 = 119
+      \key c \major \time 4/4 \partial 4.
+      \set melismaBusyProperties = #'() \slurDashed
+      \repeat segno 2 {
+        \sectionLabel "A"
+        g8 \pomark g8 c8 | g4( g4) \parenthesize e8 e d e | d4( c4)
+        \parenthesize a8 a a a | d4( d4.) \parenthesize d8 d e | c2~8
+        \repeat volta 2 {
+          \sectionLabel "B"
+          c8 c c | a4( g4.) c8 c c | e4 e4.
+          d8 d d | c2~8
+        }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat segno 2 {
+        In -- fi -- ni -- | tum, __ _ es -- tou na flo -- | res -- ta;
+        "" E nes -- ta | fes -- ta eu sou mais | um. _
+        \repeat volta 2 {
+          \set stanza = "1.B"
+          To -- da~a flo -- | res -- ta, es -- tá em | fes -- ta;
+          In -- fi -- ni -- | tum. _
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat segno 2 {
+        E nes -- ta | ca -- sa "" da Vir -- gem | Mãe; __ _
+        Pa -- ra nós can -- | tar, __ _ com to -- do~a -- | mor. _
+        \repeat volta 2 {
+          \set stanza = "2.B"
+          O nos -- so | Mes -- tre é Je -- sus | Cris -- to;
+          Nos -- so Se -- | nhor. _
+        }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat segno 2 {
+        Es -- sa es -- | co -- la "" é da Ra -- | i -- nha;
+        "" E Je -- sus | Cris -- to "" Ren -- den -- | tor. _
+        \repeat volta 2 {
+          \set stanza = "3.B"
+          Pa -- ra lou -- | var, __ _ o Pai E -- | ter -- no;
+          Rei Cri -- a -- | dor. _
+        }
+      }
+    }
+    theLyricsFour  = \lyricmode {
+      \set stanza = "4."
+      \repeat segno 2 {
+        "" Can -- te -- | mos, __ _ "" ma -- nos can -- | te -- mos;
+        "" Nos -- sa Dou -- | tri -- na, é só lou -- | var. _
+        \repeat volta 2 {
+          \set stanza = "4.B"
+          A Di -- vin -- | da -- de, des -- ta flo -- | res -- ta;
+          Des -- te Lu -- | gar. _
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        s4. | c1 | c2 a:m
+        | d2:m g | c2~8
+        \repeat volta 2 {
+          s4. | a1:m | c2 g:7 | c2~8
+        }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    \emph{Infinitum}, I'm in the forest; and at this party, I'm just another one
+    The whole forest is celebrating, \emph{Infinitum}
+    \nextverse
+    And in the Virgin Mother's house we sing with all our love
+    Our Master is Jesus Christ, our Lord
+    \nextverse
+    This school is of the Queen and Jesus Christ, the Redeemer
+    To praise the Eternal Father, Creator King
+    \nextverse
+    Let's sing, let's sing, our Doctrine is only to praise
+    The Divinity of this forest, of this place
+  \end{translation}
+\endsong
