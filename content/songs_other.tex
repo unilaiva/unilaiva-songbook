@@ -1193,7 +1193,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\beginsong{Ave Maria}[by={Franz Schubert}, ex={latina}, ph={III}, key={C}, gk={D, C--E}]
+\iflyriconly\else\scleardpage\fi
+\beginsong{Ave Maria}[by={Franz Schubert}, ex={latina, suomi}, ph={III}, key={C}, gk={D, C--E}]
   \meter{4}{4}
   \iflyriconly\else
     \musicnotefornext{intro:}*
@@ -1221,12 +1222,41 @@
   \ifchorded\hfill%
     \gtab{Am6}{X02212:002314} \gtab{A\textdegree7}{X01212:001324}%
   \fi
-  \begin{explanation}[EN]
-    These lyrics are the Latin \emph{Ave Maria} prayer adapted to this melody.
-    The original lyrics were from Walter Scott's narrative poem
-    \emph{The Lady of the Lake}, as translated to German by Adam Storck.
-    In the poem, the Ave Maria prayer is only mentioned.
-  \end{explanation}
+  \brk
+  \textnotefornext{suomeksi:}
+  \beginverse
+    |^A{ } ^-ve Ma|^ri ^-|^a, ^ |^lem^{\hspace{1.5ex}pe}|^hin! ^
+    Sun |luokses ^taivaaseen |^saak^ka
+    nyt |^pyyntö ^nousee pala|^vin: ^
+    pois |^sielun ^pyyhi synti|^taak^-|^ka. ^
+    Niin |^huole^tonna uinahd|^amme, ^
+    vaikk' |^syylli^nenkin tunto |^ois. ^
+    Oi |^äiti, ^katso tuski|^amme, ^
+    sä |^ällös ^käänny meistä |^pois. ^
+    |^A{ } ^-ve Ma|^ri ^-|^a! ^{ }{ } |{ }{ } ^{} |^{} ^{} |^{ }{ } ^{} \e
+  \endverse
+  \beginverse
+    |^A{ } ^-ve Ma|^ri ^-|^a, ^ |^tah^{\hspace{1.5ex}ra}|^ton! ^
+    Jos |suoje^luksessasi |^ai^na
+    me |^käymme ^täällä lepo|^hon, ^
+    niin |^miel^tämme ei murhe |^pai^-|^na. ^
+    Sun |^hymyil^lessäs ruusut a|^ukee ^
+    maan |^päällä ^kylmän, kolkon |^tään. ^
+    Oi |^äiti, ^lapses tuskaan |^raukee, ^
+    sun |^armos ^huomaan yksin |^jään. ^
+    |^A{ } ^-ve Ma|^ri ^-|^a! ^{ }{ } |{ }{ } ^{} |^{} ^{} |^{ }{ } ^{} \e
+  \endverse
+  \begin{translation}[EN]\iflyriconly\else\tiny\fi
+    Hail Mary, full of grace! Mary, full of grace, Mary, full of grace.
+    Hail, Hail, the Lord! The Lord is with thee.
+    Blessed art thou among women, and blessed,
+    And blessed is the fruit of thy womb, thy womb, Jesus. Hail Mary!
+    \nextverse
+    Hail Mary, Mother of God! Pray for us sinners, pray, pray for us;
+    Pray, pray for us sinners,
+    Now and at the hour of our death, the hour of our death,
+    In the hour of death, our death, the hour of our death. Hail Mary!
+  \end{translation}
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2024-10
     % \header {
@@ -1292,6 +1322,30 @@
       in __ _ | ho -- ra mor _ -- tis no _ _ -- | strae.
       | A -- ve Ma -- | ri _ -- | a! | | |
     }
+    theLyricsThree = \lyricmode {
+      \set stanza = "FI-1."
+      | A -- ve Ma -- | ri _ -- | a, | lem _ _ -- pe _ -- | hin!
+      Sun | luok -- ses __ _ tai _ -- vaa -- seen | saak _ -- ka
+      nyt | pyyn -- tö nou _ -- see pa _ -- la -- | vin:
+      pois _ | sie -- lun pyy _ -- hi syn _ -- ti -- | taak _ _ _ _ _ _ -- | ka.
+      Niin __ _ | huo -- le -- ton -- na ui -- nah -- dam | _ _ -- me,
+      vaikk' | syyl -- li -- nen _ -- kin tun _ -- to | ois.
+      Oi | äi -- ti, kat -- so tus _ -- ki -- | am -- me,
+      sä __ _ | äl -- lös kään _ -- ny meis _ -- tä | pois.
+      | A -- ve Ma | ri _ -- | a! | | |
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "FI-2."
+      | A -- ve Ma -- | ri _ -- | a, | tah _ _ -- ra _ -- | ton!
+      Jos | suo -- je _ -- luk -- ses -- sa -- si | ai _ -- na
+      me | käym -- me tääl _ -- lä le _ -- po -- | hon,
+      niin _ | mi -- el -- täm _ -- me ei mur -- he | pai _ _ _ _ _ _ -- | na.
+      Sun __ _ | hy -- myil -- les -- säs ruu -- sut au | _ _ -- kee
+      maan | pääl -- lä kyl _ -- män, kol _ -- kon | tään.
+      Oi | äi -- ti, lap -- ses tus _ -- kaan | rau -- kee,
+      sun __ _ | ar -- mos huo _ -- maan yk _ -- sin | jään.
+      | A -- ve Ma | ri _ -- | a! | | |
+    }
     theChords = \chordmode {
       | c2 c2 | c2 c2:7
       | f2/c f:m/c | c1
@@ -1312,18 +1366,13 @@
       }
       | c1 | c1 | r1
     }
-    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]
-    Hail Mary, full of grace! Mary, full of grace, Mary, full of grace.
-    Hail, Hail, the Lord! The Lord is with thee.
-    Blessed art thou among women, and blessed,
-    And blessed is the fruit of thy womb, thy womb, Jesus. Hail Mary!
-    \nextverse
-    Hail Mary, Mother of God! Pray for us sinners, pray, pray for us;
-    Pray, pray for us sinners,
-    Now and at the hour of our death, the hour of our death,
-    In the hour of death, our death, the hour of our death. Hail Mary!
-  \end{translation}
+  \begin{explanation}[EN]\iflyriconly\else\tiny\fi
+    These lyrics are the Latin \emph{Ave Maria} prayer adapted to this melody.
+    The original lyrics were from Walter Scott's narrative poem
+    \emph{The Lady of the Lake}, as translated to German by Adam Storck.
+    In the poem, the Ave Maria prayer is only mentioned.
+  \end{explanation}
 \endsong
