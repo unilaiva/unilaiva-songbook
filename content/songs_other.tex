@@ -913,28 +913,31 @@
 \endsong
 
 
-\beginsong{Emamaa \\ Moder Jord}[by={trad., Tane Mahuta},ex={eesti, suomi, svenska; based on a Swedish folk song},tags={Mother Earth},ph={III}]
+\beginsong{Emamaa \\ Moder Jord}[by={trad., Tane Mahuta},ex={eesti, suomi, svenska; based on a Swedish folk song},tags={Mother Earth},ph={III},key={Dm}, gk={Dm, Dm--F\shrp{}m}]
   % TODO: check song origin, find out the full swedish lyrics,
   %       and perhaps better finnish ones as well; ting?
+  \audio[key=Dm]{https://tanemahuta.bandcamp.com/track/emamaa}
+  \audio[key=Dm]{https://www.youtube.com/watch?v=RgxFOHzB0aU}
   \textnotefornext{eesti keeles:}
-  \beginchorus\memorize
-    \lrep \[^\mn{A}]Ema |\[\mnc{D}Dm]Maa, ema \[C]Maa, Maa|\[Dm]e\[Am]ma \rrep
-    Su |\[F]sees elab \[C]ürgne |\[Dm]vägi mis |toob mul \[Am]lohu|\[Dm]tust
-  \endchorus
+  \mnbeginchorus\memorize
+    \lrep \[^\mn{A}]Ema |\[\mnc{D}Dm]Maa, ema \[\mnc{C}C]Maa, \[^\mn{E}]Maa|\[\mnc{D}Dm]e\[\mnc{A}Am]ma \rrep \altchords{\id[1]{(Em)}|Em D |Em Bm}
+    Su |\[\mnc{F}F]sees \[^\mn{E}\mn{F}]elab \[\mnc{G}C]ürg\[^\mn{E}]ne |\[\mncii{F}{D}Dm]vägi mis |toob mul \[\mnc{C}\mnc{E}Am]lohu|\[\mnc{D}Dm]tust \altchords{|G D |Em | - Bm |Em}
+  \mnendchorus\glueverses
+  \mnbeginchorus
+    |\[\mnc{D}Dm]Kummar\[\mnc{A}Am]dan su |\[\mnc{D}Dm]ees kallis \[\mnc{A}Am]ema \altchords{|Em Bm |Em Bm|}
+    Et |\[\mnc{C}F]südames \[C]mind \[\mn{A}]ik\[\mn{G}]ka |\[\mncii{A}{D}Dm]kannad \altchords{|G D|Em}
+  \mnendchorus
   \notesoff
-  \beginchorus
-    |\[Dm]Kummar\[Am]dan su |\[Dm]ees kallis \[Am]ema
-    Et |\[F]südames \[C]mind ikka |\[Dm]kannad
-  \endchorus
   \textnotefornext{suomeksi:}
   \beginchorus
     \lrep Äiti |^Maa, äiti ^Maa, Maa|^äi^ti \rrep
     Sun |^sisälläs on ^väkevä |^voima, se |minua ^lohdut|^taa
-  \endchorus
+  \endchorus\glueverses
   \beginchorus
     |\[Dm]Kumar\[Am]ran edes|\[Dm]säsi rakas \[Am]äiti
     Sua |\[F]sydämes\[C]säin aina |\[Dm]kannan
   \endchorus
+  \dacapo
   \textnotefornext{på svenska:}
   \beginchorus
     \lrep Moder |^Jord, moder ^Jord, Jord|^mo^der \rrep
