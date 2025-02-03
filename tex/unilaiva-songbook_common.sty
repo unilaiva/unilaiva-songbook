@@ -611,8 +611,13 @@
             linkcolor=internallinkcolor,%
             urlcolor=urllinkcolor,%
             unicode=true,%
-            pdfpagelayout=TwoPageRight, % display two pages side-by-side, odd on the right
-            pdfprintscaling=None, %
+            % TwoPageRight: display two pages side-by-side with flipping pages,
+            %               odd pages on the right
+            % TwoColumnRight: display two pages side-by-side with continuous
+            %                 scrolling, odd pageson the right
+            pdfpagelayout=TwoColumnRight,%
+            pdfpagemode=UseNone,% alt. UseThumbs or UseOutlines (bookmarks)
+            pdfprintscaling=None,%
             pdftitle={\thisbooktitle},%
             pdfauthor={\pdfauthor},%
             pdfsubject={\pdfsubject},%
