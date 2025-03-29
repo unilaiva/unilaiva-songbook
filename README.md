@@ -69,7 +69,7 @@ This procedure was tested on Ubuntu versions 23.03, 23.10 and 24.04.
 
   1. `sudo pacman -Suy docker`
   2. `sudo gpasswd -a <USERNAME> docker` # replace <USERNAME> with your username
-  3. `sudo sytemctl enable docker.socket`
+  3. `sudo systemctl enable docker.socket`
   3. `su <USERNAME>` # relogin for the group setting to become active (or reboot)
   4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
