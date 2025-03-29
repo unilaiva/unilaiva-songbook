@@ -5,8 +5,8 @@ Unilaiva-songbook is a collection of song lyrics, musical information, etc.,
 and a system to create songbooks out of this data, for the contributors'
 private use. The system is written [LaTeX](https://www.latex-project.org/).
 
-The PDFs compiled from these sources are available at
-[https://unilaiva.aavalla.net/](https://unilaiva.aavalla.net/)
+**The PDFs compiled from these sources are available at
+[https://unilaiva.aavalla.net/](https://unilaiva.aavalla.net/)**
 
 
 
