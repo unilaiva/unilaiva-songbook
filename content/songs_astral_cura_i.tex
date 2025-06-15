@@ -13,15 +13,15 @@
 \setcounter{songnum}{1}
 
 
-\beginsong{Pai Nosso}[by={Padr. Sebastião}, key={Am}, gk={Bm, Gm--Dm}]
+\beginsong{Pai Nosso}[by={Padr. Sebastião}, key={C}, gk={D, B\flt{}--G}]
   \audio{https://www.nossairmandade.com/hymn/53/PaiNosso}
   \newchords{chords_painosso_a}\newchords{chords_painosso_b}
   \mnbeginchorus\memorize[chords_painosso_a]
-    \[^\mn{A}]Pai |\[\mnc{C}C]Nosso que es\[\bmc\mn{D}]tá \[^\mn{C}]no |\[\mnc{A}Am]céu \altchords{\id[1]{(Bm)}|D |Bm}
-    San\[\bmc\mn{C}]ti\[^\mn{E}]fi|\[\mnc{C}C]cado é \[^\mn{B}]nos\[\mnc{A}Am]so \[^\mn{C}]Se|\[\mnc{E}Em]nhor\[\bm]{} \altchords{|D Bm |F\shrp{}m}
+    \[^\mn{A}]Pai |\[\mnc{C}C]Nosso que\jw es\[\bmc\mn{D}]tá \[^\mn{C}]no |\[\mnc{A}Am]céu \altchords{\id[1]{(D)}|D |Bm}
+    San\[\bmc\mn{C}]ti\[^\mn{E}]fi|\[\mnc{C}C]cado\jw é \[^\mn{B}]nos\[\mnc{A}Am]so \[^\mn{C}]Se|\[\mnc{E}Em]nhor\[\bm]{} \altchords{|D Bm |F\shrp{}m}
   \mnendchorus\glueverses\mnbeginchorus\memorize[chords_painosso_b]
-    \[^\mn{D}]Aprovei|\[Dm]tando a o\[\bm]ca\[^\mn{C}]si|\[\mnc{A}Am]ão \altchords{|Em |Bm}
-    Meu \[\bmc\mn{C}]Mes\[^\mn{E}]tre é |\[\mnc{C}C]Rei s\[^\mn{B}]u\[\mnc{A}Am]pe\[^\mn{C}]ri|\[C]or \[\bm]{} \altchords{|D Bm |D}
+    \[^\mn{D}]Aprovei|\[Dm]tando\jw a o\[\bm]ca\[^\mn{C}]si|\[\mnc{A}Am]ão \altchords{|Em |Bm}
+    Meu \[\bmc\mn{C}]Mes\[^\mn{E}]tre\jw é |\[\mnc{C}C]Rei s\[^\mn{B}]u\[\mnc{A}Am]pe\[^\mn{C}]ri|\[C]or \[\bm]{} \altchords{|D Bm |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_painosso_a]
@@ -33,22 +33,28 @@
   \endchorus
   \beginchorus\replay[chords_painosso_a]
     Meu |^Mestre es^tá co|^migo
-    E^le é |^Mestre en^sina|^dor ^
+    ^Ele\jw é |^Mestre en^sina|^dor ^
   \mnendchorus\glueverses\mnbeginchorus\replay[chords_painosso_b]
     Jun|^{to com} a ^Virgem |^Mãe
     O ^nosso |^Pai foi ^quem man|^dou ^
   \endchorus
   \beginchorus\replay[chords_painosso_a]
-    Nin|^guém sa^be o que |^diz
-    E ^nem sa|^bem o que es^tão di|^zen^do
+    Nin|^guém sa^be\jw o que |^diz
+    E ^nem sa|^bem o que\jw es^tão di|^zen^do
   \mnendchorus\glueverses\mnbeginchorus\replay[chords_painosso_b]
     Com o po|^der do ^nosso |^Pai
-    O ^relho a|^gora es^{tá co}|^men^do
+    O ^relho\jw a|^gora es^{tá co}|^men^do
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-06
+    % \header {
+    %   title = "Pai Nosso"
+    %   composer = "Padr. Sebastião"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
-      \key a \minor \time 4/4 \partial 4.
+      \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
         r8\posectionmark "A" a4 | c4 c8( c8) d4 c | a4. a8 c4 e | c c8 b a4 c | e2~ e8
       }
@@ -75,7 +81,7 @@
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       Meu | Mes -- tre es -- tá co -- | mi -- go;
-      Ele é | Mes -- tre en -- si -- na -- | dor. __ _
+      E -- le~é | Mes -- tre en -- si -- na -- | dor. __ _
       \set stanza = "3.B"
       \skip 1 Jun -- _ | to com a Vir -- gem | Mãe;
       O nos -- so | Pai foi __ _ quem man -- | dou. __ _
