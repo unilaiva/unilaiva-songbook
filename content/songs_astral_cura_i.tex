@@ -309,20 +309,20 @@
 \beginsong{Chamei o Mestre Juramidam}[by={Padr. Sebastião}, key={C}, gk={D, C--E}]
   \audio{https://www.nossairmandade.com/hymn/55/ChameiOMestreJuramidam}
   \mnbeginchorus\memorize
-    \[^\mn{G}]Chamei o |\[\mnc{C}C]Mes\[\bmc\mn{G}]tre \[^\mn{C}]Jurami|\[\mnc{E}Am]dam\[\bm]{} \altchords{\id[1]{(D)}|D |Bm}
-    \[^\mn{C}]Pa\[^\mn{E}]ra o |\[\mnc{G}G]meu \[^\mn{C}]Mes\[\bmc\mnc{E}Em]tre \[^\mn{G}]vir |\[\mnc{C}C]cá \[\bm]{} \altchords{|A F\shrp{}m |D}
+    \[^\mn{G}]Chamei o |\[\mnc{C}C]Mes\[\bmc\mn{G}]tre \[^\mn{C}]Jurami|\[\mnc{E}Am]dam\[\bmc]{} \altchords{\id[1]{(D)}|D |Bm}
+    \[^\mn{C}]Pa\[^\mn{E}]ra\jw o |\[\mnc{G}G]meu \[^\mn{C}]Mes\[\mnc{E}Em]tre \[^\mn{G}]vir |\[\mnc{C}C]cá \[\bm]{} \altchords{|A F\shrp{}m |D}
   \mnendchorus
   \notesoff
   \beginchorus
-    Com su|^a ^ força di|^vi^na
+    Com su|^a ^ força di|^{vi -} ^ na
     Para |^vir me ^liber|^tar^
   \endchorus
   \beginchorus
-    Dai-me |^for^ça, dai-me a|^mor^ \altchords{\id[2]{(D)}|E |C\shrp{}m}
-    Para eu |^poder ^domi|^nar^ \altchords{|B G\shrp{}m |E}
+    Dai-me |^for^ça, dai-me\jw a|^mor^ \altchords{\id[2]{(E)}|E |C\shrp{}m}
+    Para\jw eu |^poder ^domi|^nar^ \altchords{|B G\shrp{}m |E}
   \endchorus
   \beginchorus
-    Meu |^Mes^tre em sua |^cor^te
+    Meu |^Mes^tre em sua |^{cor -} ^ te
     Em seu |^trono ^divi|^nal^
   \endchorus
   \beginchorus
@@ -330,8 +330,8 @@
     Com su|^a luz ^de cris|^tal^
   \endchorus
   \beginchorus
-    Sou pe|^que^no, sou pe|^que^no
-    É a |^quem eu de^vo pe|^dir^
+    Sou pe|^que^no, sou pe|^{que -} ^ no
+    É a |^quem\jw eu de^vo pe|^dir^
   \endchorus
   \beginchorus
     Todos |^têm^, todos |^têm^
@@ -342,103 +342,108 @@
     A quem o |^Mestre ^entre|^gou^
   \endchorus
   \beginchorus
-    Quem |^a^ma e sabe a|^mar^
-    Segue |^na estrada ^do a|^mor^
+    Quem |^a^ma e sabe\jw a|^mar^
+    Segue |^na\jw estrada ^do a|^mor^
   \endchorus
   \beginchorus
-    Meu |^Mes^tre me de|^cla^re
+    Meu |^Mes^tre me de|^{cla -} ^ re
     Como |^é que ^vai fi|^car^
   \endchorus
   \beginchorus
-    Preste aten|^ção ^no que eu já |^dis^se
-    Quem ven|^cer é que ^vai bri|^lhar^
+    Preste\jw aten|^ção ^ no que\jw eu já |^{dis -} ^ se
+    Quem ven|^cer\jw é que ^vai bri|^lhar^
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2023-01
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-06
+    % \header {
+    %   title = "Chamei o Mestre Juramidam"
+    %   composer = "Padr. Sebastião"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        \parenthesize g8\pomark g g | c2 \parenthesize g8 c c c | e2( e4) \altcol\grace \parenthesize c8\altmark "8." c8 e | g4. c,8 e4. g,8 | c2~ c8
+        \parenthesize g8\pomark g g | c2( g8) \parenthesize c c c | \once\slurSolid e2( e8) \parenthesize c8 c8 e8 | g4. c,8 e4. g,8 | c2~ c8
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       \repeat volta 2 {
-        Cha -- mei o | Mes -- tre Ju -- ra -- mi -- | dam; __ _
-        Pa -- ra~o | meu Mes -- tre vir | cá. __ _
+        Cha -- mei o | Mes -- tre Ju -- ra -- mi -- | dam; _
+        "" Pa -- ra~o | meu Mes -- tre vir | cá. _
       }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \repeat volta 2 {
-        \skip 1 Com su -- | a \skip 1 for -- ça di -- | vi -- na;
-        Pa -- ra | vir me li -- ber -- | tar. __ _
+        \skip 1 Com su -- | a __ _ for -- ça di -- | vi _ -- na;
+        Pa -- ra | vir me li -- ber -- | tar. _
       }
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       \repeat volta 2 {
-        \skip 1 Dai -- me | for -- ça, \skip 1 dai -- me~a -- | mor; __ _
-        Pa -- ra~eu | po -- der do -- mi -- | nar. __ _
+        \skip 1 Dai -- me | for -- ça, \skip 1 dai -- me~a -- | mor; _
+        "" Pa -- ra~eu | po -- der do -- mi -- | nar. _
       }
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
       \repeat volta 2 {
-        \skip 1 Meu __ _ | Mes -- tre em su -- a | cor -- te;
-        Em seu | tro -- no di -- vi -- | nal. __ _
+        \skip 1 Meu __ _ | Mes -- tre em su -- a | cor _ -- te;
+        Em seu | tro -- no di -- vi -- | nal. _
       }
     }
     theLyricsFive = \lyricmode {
       \set stanza = "5."
       \repeat volta 2 {
-        \skip 1 Tu -- do | tem, \skip 1 \skip 1 tu -- do | dá; __ _
-        Com su -- | a luz de cris -- | tal. __ _
+        \skip 1 Tu -- do | tem, __ _ "" tu -- do | dá; _
+        "" Com su -- | a luz de cris -- | tal. _
       }
     }
     theLyricsSix = \lyricmode {
       \set stanza = "6."
       \repeat volta 2 {
-        \skip 1 Sou pe -- | que -- no, \skip 1 sou pe -- | que -- no;
-        É a | quem~eu de -- vo pe -- | dir. __ _
+        \skip 1 Sou pe -- | que -- no, \skip 1 sou pe -- | que _ -- no;
+        É a | quem~eu de -- vo pe -- | dir. _
       }
     }
     theLyricsSeven = \lyricmode {
       \set stanza = "7."
       \repeat volta 2 {
-        \skip 1 To -- dos | têm, \skip 1 \skip 1 to -- dos | têm; __ _
-        To -- dos | têm, po -- dem se -- | guir. __ _
+        \skip 1 To -- dos | têm, __ _ "" to -- dos | têm; _
+        "" To -- dos | têm, po -- dem se -- | guir. _
       }
     }
     theLyricsEight = \lyricmode {
       \set stanza = "8."
       \set includeGraceNotes = ##t
       \repeat volta 2 {
-        \skip 1 A -- qui | eu \skip 1 vou de -- cla -- | rar; __ _
-        \altcol (A) quem o | Mes -- tre en -- tre -- | gou. __ _
+        \skip 1 A -- qui | eu __ _ vou de -- cla -- | rar; _
+        A quem o | Mes -- tre en -- tre -- | gou. _
       }
       \set includeGraceNotes = ##f
     }
     theLyricsNine = \lyricmode {
       \set stanza = "9."
       \repeat volta 2 {
-        \skip 1 Quem __ _ | a -- ma e sa -- be~a -- | mar; __ _
-        Se -- gue | na~estra -- da do a -- | mor. __ _
+        \skip 1 Quem __ _ | a -- ma e sa -- be~a -- | mar; _
+        "" Se -- gue | na~estra -- da do a -- | mor. _
       }
     }
     theLyricsTen = \lyricmode {
       \set stanza = "10."
       \repeat volta 2 {
-        \skip 1 Meu __ _ | Mes -- tre \skip 1 me de -- | cla -- re;
-        Co -- mo | é que vai fi -- | car. __ _
+        \skip 1 Meu __ _ | Mes -- tre \skip 1 me de -- | cla _ -- re;
+        Co -- mo | é que vai fi -- | car. _
       }
     }
     theLyricsEleven = \lyricmode {
       \set stanza = "11."
       \repeat volta 2 {
-        Pres -- te~a -- ten -- | ção no que eu já | dis -- se;
-        Quem ven -- | cer é~que vai bri -- | lhar. __ _
+        Pres -- te~a -- ten -- | ção __ _ no que~eu já | dis _ -- se;
+        Quem ven -- | cer~é que vai bri -- | lhar. _
       }
     }
     theChords = \chordmode {
