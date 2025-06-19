@@ -807,11 +807,11 @@
   \audio[key={C}]{https://www.youtube.com/watch?v=6L4aBI5EWzo}
   \newchords{chords_linhadoarroxim_a}\newchords{chords_linhadoarroxim_b}
   \mnbeginchorus\memorize[chords_linhadoarroxim_a]
-    \[^\mn{G}]Harmo|\[\mnc{C}C]nia, Ver\[\bm]dade e \[^\mn{E}]Per|\[\mnc{G}(G)]dão \[\bm]{} \altchords{\id[1]{(D)}|D |(A)}
-    São \[^\mn{A}]os \[^\mn{G}]três |\[\mnc{E}C]pon\[^\mn{C}]tos que se\[\mnc{A}Am]gu\[^\mn{B}]ram es\[^\mn{C}]ta u\[^\mn{A}]ni|\[\mnc{G}G]ão \[\bm]{} \altchords{|D Bm |A}
+    \[^\mn{G}]Harmo|\[\mnc{C}C]nia, Ver\[\bm]dade\jw e \[^\mn{E}]Per|\[\mnc{G}(G)]dão \[\bm]{} \altchords{\id[1]{(D)}|D |(A)}
+    São \[^\mn{A}]os \[^\mn{G}]três |\[\mnc{E}C]pon\[^\mn{C}]tos que se\[\mnc{A}Am]gu\[^\mn{B}]ram\jw es\[^\mn{C}]ta\jw u\[^\mn{A}]ni|\[\mnc{G}G]ão \[\bm]{} \altchords{|D Bm |A}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_linhadoarroxim_b]
     \[^\mn{C}]Eu |\[\mnc{A}Am]peço \[^\mn{C}]meus ir\[C]mãos: prestem aten|\[\mnc{G}G]ção \altchords{|Bm D |A}
-    Que o \[\mnc{C}C]Mestre do \[^\mn{D}]as|\[\mnc{E}(Em)]tral está \[^\mn{C}]ol\[\mnc{D}G]hando a \[^\mn{B}]ses|\[\mnc{C}C]são \[\bm]{} \altchords{D |(F\shrp{}m) A |D}
+    Que o \[\mnc{C}C]Mestre do \[^\mn{D}]as|\[\mnc{E}(Em)]tral está \[^\mn{C}]o\[\mnc{D}G]lhando a \[^\mn{B}]ses|\[\mnc{C}C]são \[\bm]{} \altchords{D |(F\shrp{}m) A |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_linhadoarroxim_a]
@@ -819,10 +819,10 @@
     É disci|^plina pra quem ^faz por mere|^cer ^
     \endchorus\glueverses\beginchorus\replay[chords_linhadoarroxim_b]
     Pe|^dir aos es^píritos cura|^dores
-    da li^nha de Arro|^xim a Jesus ^Cristo Reden|^tor ^
+    da ^linha de\jw Arro|^xim a Jesus ^Cristo Reden|^tor ^
   \endchorus
   \beginchorus\replay[chords_linhadoarroxim_a]
-    Ter |^fé e espe^rança no pe|^di^do
+    Ter |^fé\jw e espe^rança no pe|^di^do
     Pensar em |^Deus e na ^nossa Virgem |^Mãe ^
     \endchorus\glueverses\beginchorus\replay[chords_linhadoarroxim_b]
     Não |^ter ^medo de mor|^rer
@@ -830,50 +830,56 @@
   \endchorus
   \beginchorus\replay[chords_linhadoarroxim_a]
     Com |^calma ^e tranqüili|^da^de
-    O seu ca|^minho ^vai se ilumi|^nar ^
+    O seu ca|^minho ^vai se\jw ilumi|^nar ^
     \endchorus\glueverses\beginchorus\replay[chords_linhadoarroxim_b]
     Te |^lembra do ve^lho Jurami|^dam
-    Ele es^tá sempre pre|^sente e se^gura a tua |^mão
+    Ele\jw es^tá sempre pre|^sente e se^gura\jw a tua |^mão
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-06
+    % \header {
+    %   title = "Linha do Arroxim"
+    %   composer = "Vera Fróes"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \sectionLabel "A"
       \repeat volta 2 {
-        g8(\pomark g8) | c4( c8) c c c c e | g2( g8) g a g
-        | e( c8 c) c a b c a | g2.
+        g8(\pomark g8) | c4( c8) c c( c) c e | g2( g8) g a g
+        | \once\slurUp e( << \once\slurUp e8)( \single\altcol c \altmark "1-2." >> << e \single\altcol c \altmark "1-3.") >> c a b c a | g2.
       } \break
       \sectionLabel "B"
       \repeat volta 2 {
-        c4 | a8( a)( c8 c) c c16( c16) c8 c | g4( g8 g8) c c c d
+        c4 | a8( a) \parenthesize c8 \parenthesize c c16( c16) c8 c8 c | g8( g8) \parenthesize g8 g8 c c c d
         | e e e c d d d b | c2.
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
       \repeat volta 2 {
-        Har -- mo -- | ni -- a, Ver -- da -- de e Per -- | dão; __ _
-        São os três | pon -- tos que se -- gu -- ram~es -- ta~u -- ni -- | ão.
+        Har -- mo -- | ni -- a, Ver -- da _ -- de~e Per -- | dão; __ _
+        São os três | pon -- \altcol tos \altcol que se -- gu -- ram~es -- ta~u -- ni -- | ão.
       }
       \set stanza = "1.B"
       \repeat volta 2 {
-        Eu | pe -- ço meus ir -- mãos:
-        pres -- tem a -- ten -- | ção;
+        Eu | pe -- ço meus ir -- mãos: __ _
+        prestem a -- ten -- | ção; __ _
         Que o Mes -- tre do as -- | tral
-        es -- tá ol -- han -- do a ses -- | são.
+        es -- tá o -- lhan -- do a ses -- | são.
       }
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \repeat volta 2 {
         As do -- | en -- _ ças que a -- pa -- re -- | cer; __ _
-        É dis -- ci -- | pli -- na Pra quem faz por me -- re -- | cer.
+        É dis -- ci -- | pli -- \altcol na \altcol Pra quem faz por me -- re -- | cer.
       }
       \set stanza = "2.B"
       \repeat volta 2 {
-        Pe -- | dir __ _ aos es -- pí -- ri -- tos cu -- ra -- | dores;
-        da li -- nha de Ar -- ro -- | xim
+        Pe -- | dir __ _ aos es -- pí -- ri -- tos cu -- ra -- | do _ -- res;
+        Da li -- nha de~Ar -- ro -- | xim
         A Je -- sus Cris -- to Re -- den -- | tor.
       }
     }
@@ -881,12 +887,12 @@
       \set stanza = "3."
       \repeat volta 2 {
         Ter __ _ | fé~e es -- pe -- ran -- ça no pe -- | di -- do;
-        Pen -- sar em | Deus __ _ e na nos -- sa Vir -- gem | Mãe.
+        Pen -- sar em | Deus __ _ \altcol e na nos -- sa Vir -- gem | Mãe.
       }
       \set stanza = "3.B"
       \repeat volta 2 {
-        Não | ter __ _ _ _ me -- do __ _ de mor -- | rer; __ _ _
-        E se sair cor -- | ren -- do é pi -- or pa -- ra vo -- | cê.
+        Não | ter __ _ "" "" me _ -- do de mor -- | rer; __ _
+        "" E se sa -- ir cor -- | ren -- do é pi -- or pa -- ra vo -- | cê.
       }
     }
     theLyricsFour = \lyricmode {
@@ -897,8 +903,8 @@
       }
       \set stanza = "4.B"
       \repeat volta 2 {
-        Te | lem -- bra do ve -- lho Ju -- _ ra -- mi -- | dam;
-        Ele es -- tá sem -- pre pre -- | sen -- te e se -- gu -- ra~a tu -- a | mão.
+        Te | lem -- bra do ve -- lho __ _ Ju -- ra -- mi -- | dam; __ _
+        E -- le~es -- tá sem -- pre pre -- | sen -- te e se -- gu -- ra~a tu -- a | mão.
       }
     }
     theChords = \chordmode {
