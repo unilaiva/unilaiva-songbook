@@ -511,19 +511,19 @@
   \notesoff
   \beginchorus
     As es|^trelas ^me le|varam
-    ^Para cor|^rer o ^mundo in|^tei^ro
+    ^Para cor|^rer o ^mundo\jw in|^tei^ro
     \noteson\[\mnlow{C#}]Pra co\[\mnlow{E}]nhe\notesoff|^cer es^ta ver|^dade
     ^Para po|^der ser ^verda|^dei^ro
   \endchorus
   \beginchorus
     Eu su|^bi ser^ra de es|pinhos \altchords{\id[2]{(B)}|B | \e}
-    ^Pisan|^do em pon^tas a|^gu^das \altchords{|G\shrp{}m (B) |F\shrp{}}
+    ^Pisan|^{do\jw em} pon^tas a|^gu^das \altchords{|G\shrp{}m (B) |F\shrp{}}
     \noteson\[\mnlow{C#}]As \[\mnlow{E}]es\notesoff|^trelas ^me dis|^seram \altchords{|B |(F\shrp{})}
     ^No mun|^do se ^cura |^tu^do \altchords{B |G\shrp{}m F\shrp{} |E}
   \endchorus
   \beginchorus
     As es|^trelas ^me dis|seram
-    ^Ouve |^muito e ^fala |^pou^co
+    ^Ouve |^muito\jw e ^fala |^pou^co
     \noteson\[\mnlow{C#}]Pa\[\mnlow{E}]ra \notesoff|^poder ^compreen|^der
     E ^conver|^sar com ^meus ca|^bo^clos
   \endchorus
@@ -534,12 +534,18 @@
     ^Para |^curar ^os cris|^tã^os
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+    %% transcribed by larva, latest update on 2025-06
+    % \header {
+    %   title = "As Estrelas"
+    %   composer = "Mestre Irineu Serra"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \major \time 4/4 \partial 4
       \repeat volta 2 {
-        cis8\pomark e | a,4 a cis e | a, a a'4( a8) gis8
-        | fis4. e8 e4. cis8 | e2( e8) \parenthesize cis8 \parenthesize cis8 \altcol\grace e4\altmark "1." e8
+        cis8\pomark e | a,4 a cis e | a, a8( a) a'4( a8) gis8
+        | fis4. e8 e4. cis8 | e2( e8) \parenthesize cis8 << \parenthesize cis8 \once\slurUp \single\altcol e8 \single\altcol ( >>  e8)
         | a,4 a8( a8) cis4 e | e4.( e8) a4( a8) gis8
         | fis4. e8 e4. cis8 | d2( d4)
       }
@@ -548,8 +554,8 @@
       \set stanza = "1."
       \repeat volta 2 {
         \set includeGraceNotes = ##t
-        As es -- | tre -- las já che -- | ga -- ram;
-        Pa -- ra di -- | zer o no -- me | seu; __ _ \skip 1 \skip 1
+        As es -- | tre -- las já che -- | ga -- ram; __ _
+        Pa -- ra di -- | zer o no -- me | seu; __ _ ""
         \altcol Sou __ _  | eu, sou __ _ eu, sou | eu; __ _
         Sou __ _ eu | um fi -- lho de | Deus. __ _
       }
@@ -557,7 +563,7 @@
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
       \repeat volta 2 {
-        As es -- | tre -- las me le -- | va -- ram;
+        As es -- | tre -- las me le -- | va -- ram; __ _
         Pa -- ra cor -- | rer o mun -- do~in -- | tei -- ro;
         Pra co -- nhe -- | cer es -- _ ta ver -- | da -- de;
         Pa -- ra po -- | der ser ver -- da -- | dei -- ro.
@@ -566,8 +572,8 @@
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       \repeat volta 2 {
-        Eu su -- | bi ser -- ra de~es -- | pi -- nhos;
-        Pi -- _ san -- | do~em pon -- tas a -- | gu -- das; \skip 1
+        Eu su -- | bi ser -- ra de~es -- | pi -- nhos; __ _
+        Pi -- _ san -- | do~em pon -- tas a -- | gu -- das; ""
         As es -- | tre -- las __ _ me dis -- | se -- ram;
         No __ _ mun -- | do se cu -- ra | tu -- do.
       }
@@ -575,8 +581,8 @@
     theLyricsFour = \lyricmode {
       \set stanza = "4."
       \repeat volta 2 {
-        As es -- | tre -- las me dis -- | se -- ram;
-        Ou -- _ ve | mui -- to~e fa -- la | pou -- co; \skip 1
+        As es -- | tre -- las me dis -- | se -- ram; __ _
+        Ou -- _ ve | mui -- to~e fa -- la | pou -- co; ""
         Pa -- ra | po -- der __ _ com -- preen -- | der;
         E con -- _ ver -- | sar com meus ca -- | bo -- clos.
       }
@@ -584,8 +590,8 @@
     theLyricsFive = \lyricmode {
       \set stanza = "5."
       \repeat volta 2 {
-        Os ca -- | bo -- clos já che -- | ga -- ram;~De
-        bra -- _ ços | nus e pés no | chão; __ \skip 1 \skip 1
+        Os ca -- | bo -- clos já che -- | ga -- ram; De
+        bra -- _ ços | nus e pés no | chão; __ _ ""
         E -- les | tra -- zem re -- mé -- dios | bons; __ _
         Pa -- _ ra | cu -- rar os cris -- | tã -- os.
       }
@@ -596,7 +602,7 @@
         | a | \parenthesize e2 a2 | fis2:m e2 | d2.
       }
     }
-    \layout { #(layout-set-staff-size 13) } % to fit translation, too
+    \layout { #(layout-set-staff-size 14) } % to fit translation, too
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \iflyriconly\forcebrk\fi
