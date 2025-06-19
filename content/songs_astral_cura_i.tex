@@ -451,7 +451,7 @@
         s4. | c1 | a:m | g2 e:m | c2~ c8
       }
     }
-    \layout { #(layout-set-staff-size 13) } % to fit on one staff
+    \layout { #(layout-set-staff-size 13.5) } % to fit on one staff
     \score { % custom score to show all the 11 verses
       <<
         \new ChordNames { \theChords }
@@ -533,7 +533,7 @@
     \noteson\[\mnlow{C#}]E\[\mnlow{E}]les \notesoff|^trazem re^médios |^bons
     ^Para |^curar ^os cris|^tã^os
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2025-06
     % \header {
     %   title = "As Estrelas"
@@ -630,15 +630,15 @@
   \newchords{chords_osespiritosestao_a}\newchords{chords_osespiritosestao_b}
   \meter{6}{4}
   \mnbeginchorus\memorize[chords_osespiritosestao_a]
-    \[^\mn{C}]Pe|\[C]rante este mo\[\bmc\mnc{G}G]mento \[^\mn{A}]eu |\[^\mn{G}]que\[^\mn{E}]ro \[^\mn{C}]de\[^\mn{A}]cla\[\bmc\mnc{C}C]rar \altchords{\id[1]{(D)}|D A | - D}
+    \[^\mn{C}]Pe|\[C]rante este mo\[\mnc{G}G]mento \[^\mn{A}]eu |\[^\mn{G}]que\[^\mn{E}]ro \[^\mn{C}]de\[^\mn{A}]cla\[\mnc{C}C]rar \altchords{\id[1]{(D)}|D A | - D}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_osespiritosestao_b]
-    \[^\mn{G}]U|\[\mnc{C}C]mas pou\[^\mn{E}]cas \[^\mn{D}]pa\[\bmc\mn{C}]lavras \[^\mn{G}]que |\[\mnc{B}G]eu ouvi \[^\mn{A}]pub\[^\mn{B}]li\[\bmc\mnc{C}C]car \altchords{|D |A D}
+    \[^\mn{G}]U|\[\mnc{C}C]mas pou\[^\mn{E}]cas \[^\mn{D}]pa\[\bmc\mn{C}]lavras \[^\mn{G}]que |\[\mnc{B}G]eu ouvi \[^\mn{A}]pub\[^\mn{B}]li\[\mnc{C}C]car \altchords{|D |A D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_osespiritosestao_a]
     Os es|^píritos estão che^gando pela |linha deva^gar
     \endchorus\glueverses\beginchorus\replay[chords_osespiritosestao_b]
-    Se pre|^parem apa^relhos para ou|^vir e ensi^nar
+    Se pre|^parem apa^relhos para\jw ou|^vir e ensi^nar
   \endchorus
   \beginchorus\replay[chords_osespiritosestao_a]
     Eles es|^tão vin do do ^Céu, tam|bém virão do ^Mar
@@ -648,12 +648,12 @@
   \beginchorus\replay[chords_osespiritosestao_a]
     Esta es|^trada é do ^Mestre, foi |ele quem a^briu
     \endchorus\glueverses\beginchorus\replay[chords_osespiritosestao_b]
-    Replan|^tando a Santa Dou^trina para a|^quele que se^guir
+    Replan|^tando\jw a Santa Dou^trina para\jw a|^quele que se^guir
   \endchorus
   \beginchorus\replay[chords_osespiritosestao_a]
     Santo |^Daime, Santa Ma^ria, con|sola e dá a^lívio
     \endchorus\glueverses\beginchorus\replay[chords_osespiritosestao_b]
-    Eu |^digo aos meus ca^boclos que a|^qui o centro é ^livre
+    Eu |^digo aos meus ca^boclos que a|^qui o centro\jw é ^livre
   \endchorus
   \beginchorus\replay[chords_osespiritosestao_a]
     Todos |^são filhos de ^Deus, só |basta ele que^rer
@@ -671,82 +671,90 @@
     \endchorus\glueverses\beginchorus\replay[chords_osespiritosestao_b]
     Basta |^ser sempre fi^el que |^tudo eu posso ^ser
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-06
+    % \header {
+    %   title = "Os Espíritos Estão Chegando"
+    %   composer = "Alex Polari"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative c''' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 6/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        \parenthesize c8\posectionmark "A" c8( c8) | c8( c8) c8( c8) c c  g4( g) a8( a8)
-        | g4 e c8 a8  c4( c8)
+        \parenthesize c8\pomark c8( c8) | c8( c8) c8( c8) c c  g4( g8)( g8) a8( a8)
+        | g4 e8( e8) c8 a8  c4( c8)
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        r8\sectionmark "B" g8( g8) | c4( c8)( c8) e8 d8  c4( c) g8( g8)
-        | b4 b8( b8) a8 b8  c4( c8)
+        r8 g8( g8) | c4( c8)( c8) e8 d8  c4( c8)( c8) g8( g8)
+        | b8( b8) b8( b8) a8 b8  c4( c8)
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-        \skip 1 Pe -- _ | ran -- _ te es -- te mo -- men -- to
-        Eu __ _ | que -- ro de -- cla -- rar. __ _
+        \skip 1 Pe -- _ | ran -- _ te es -- te mo -- men -- to __ _
+        Eu __ _ | que -- ro __ _ de -- cla -- rar. __ _
       \set stanza = "1.B"
-        U -- _ | mas pou -- _ cas pa -- la -- vras
-        Que __ _ | eu ou -- vi pu -- bli -- car. __ _
+        U -- _ | mas pou -- _ cas pa -- la -- vras __ _
+        Que __ _ | eu __ _ ou -- vi pu -- bli -- car. __ _
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
-        \skip 1 Os es -- | pí -- ri -- tos es -- tão che -- gan -- do
-        Pe -- la | li -- nha de -- va -- gar. __ _
+        \skip 1 Os es -- | pí -- ri -- tos es -- tão che -- gan -- do __ _
+        Pe -- la | li -- nha __ _ de -- va -- gar. __ _
       \set stanza = "2.B"
-        Se pre -- | pa -- rem __ _ a -- pa -- re -- lhos
-        Pa -- ra~ou -- | vir e __ _ en -- si -- nar. __ _
+        Se pre -- | pa -- rem __ _ a -- pa -- re -- lhos __ _
+        Pa -- ra~ou -- | vir __ _ e __ _ en -- si -- nar. __ _
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
-        E -- les es -- | tão __ _ vin -- _ do do Céu __ _
-        Tam -- _ | bém vi -- rão do Mar. __ _
+        E -- les es -- | tão __ _ vin -- _ do do Céu __ _ _
+        Tam -- _ | bém vi _ -- rão do Mar. __ _
       \set stanza = "3.B"
-        Da __ _ | Ter -- ra e das Mon -- ta -- nhas
-        Pa -- ra | to -- dos __ _ dou -- tri -- nar. __ _
+        Da __ _ | Ter -- ra e das Mon -- ta -- nhas __ _
+        Pa -- ra | to _ -- dos __ _ dou -- tri -- nar. __ _
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
-        Es -- ta es -- | tra -- _ da __ _ é do Mes -- tre
-        Foi __ _ | e -- le quem a -- bri -- u.
+        Es -- ta es -- | tra -- _ da __ _ é do Mes -- tre __ _
+        Foi __ _ | e -- le __ _ quem a -- bri -- u.
       \set stanza = "4.B"
-        Re -- plan | tan -- do~a San -- ta Dou -- tri -- na
-        Pa -- ra~a -- | que -- le __ _ que se -- guir. __ _
+        Re -- plan | tan -- do~a San -- ta Dou -- tri -- na __ _
+        Pa -- ra~a -- | que _ -- le __ _ que se -- guir. __ _
     }
     theLyricsFive = \lyricmode {
       \set stanza = "5."
-        \skip 1 San -- to | Dai -- _ me, San -- ta Ma -- ri -- a
-        Con -- _ | so -- la~e dá a -- lí -- vio.
+        \skip 1 San -- to | Dai -- _ me, San -- ta Ma -- ri -- a __ _
+        Con -- _ | so -- la e dá a -- lí -- vio.
       \set stanza = "5.B"
-        Eu __ _ | di -- go aos meus ca -- bo -- clos
-        Que a -- | qui o __ _ cen -- tro~é li -- vre.
+        Eu __ _ | di -- go aos meus ca -- bo -- clos __ _
+        Que a -- | qui __ _ o __ _ cen -- tro~é li -- vre.
     }
     theLyricsSix = \lyricmode {
       \set stanza = "6."
-        \skip 1 To -- dos | são __ _ fi -- _ lhos de Deus __ _
-        Só __ _ | bas -- ta~e -- le que -- rer. __ _
+        \skip 1 To -- dos | são __ _ fi -- _ lhos de Deus __ _ _
+        Só __ _ | bas -- ta e -- le que -- rer. __ _
       \set stanza = "6.B"
-        Sa -- _ | ú -- do a pro -- te -- ção __ _
-        Do  Vo -- | vô O -- _ mun -- gue -- lê. __ _
+        Sa -- _ | ú -- do a pro -- te -- ção __ _ _
+        Do  Vo -- | vô __ _ O -- _ mun -- gue -- lê. __ _
     }
     theLyricsSeven = \lyricmode {
       \set stanza = "7."
-        \skip 1 No __ _ | mei -- o da mi -- nha vi -- a -- gem~e --
-        le co -- | mi -- go vei -- o ter. __ _
+        \skip 1 No __ _ | mei -- o da mi -- nha vi -- a -- gem e --
+        le co -- | mi -- go __ _ vei -- o ter. __ _
       \set stanza = "7.B"
-        Dis -- se | que já fo -- ra es -- cra -- vo~E
-        cul -- tu -- | ava o mes -- mo po -- der. __ _
+        Dis -- se | que já fo -- ra es -- cra -- vo
+        E cul -- tu -- | a -- va o mes -- mo po -- der. __ _
     }
     theLyricsEight = \lyricmode {
       \set stanza = "8."
-        \skip 1 Meu Im -- | pé -- _ rio Ju -- ra -- mi -- dam __ _
-        Que __ _ | gló -- ria~vos per -- ten -- cer. __ _
+        \skip 1 Meu Im -- | pé -- _ rio Ju -- ra -- mi -- dam __ _ _
+        Que __ _ | gló -- ria vos per -- ten -- cer. __ _
       \set stanza = "8.B"
-        Bas -- ta | ser __ _ sem -- pre fi -- el __ _
-        Que __ _ | tu -- do eu pos -- so ser. __ _
+        Bas -- ta | ser __ _ sem -- pre fi -- el __ _ _
+        Que __ _ | tu _ -- do eu pos -- so ser. __ _
     }
     theChords = \chordmode {
       \repeat volta 2 {
@@ -758,7 +766,7 @@
         | g c4.
       }
     }
-    \layout { #(layout-set-staff-size 15) } % for better division
+    \layout { #(layout-set-staff-size 15.5) } % for better division
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
