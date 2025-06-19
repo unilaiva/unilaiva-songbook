@@ -55,11 +55,13 @@
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        r8\posectionmark "A" a4 | c4 c8( c8) d4 c | a4. a8 c4 e | c c8 b a4 c | e2~ e8
+        r8\pomark a4 | c4 c8( c8) d4 c | a4. a8 c4 e | c c8 b a4 c | e2~ e8
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize d8\sectionmark "B" d( d) | d4 d8( d8) d4 c4 | a4. a8 c4 e | c4 c8( b8) a4 c4 | c2~ c8
+        \parenthesize d8 d( d) | d4 d8( d8) d4 c4 | a4. a8 c4 e | c4 c8( b8) a4 c4 | c2~ c8
       }
     }
     theLyricsOne = \lyricmode {
@@ -75,7 +77,7 @@
       Oh | mi -- nha __ _ Vir -- gem | Mãe;
       As su -- as | lá -- gri -- mas der -- ra -- | mou. __ _
       \set stanza = "2.B"
-      \skip 1 A -- _ | que -- les __ _ que não | a -- mam;
+      "" A -- _ | que -- les __ _ que não | a -- mam;
       Vão sen -- | tir a __ _ mes -- ma | dor. __ _
     }
     theLyricsThree = \lyricmode {
@@ -83,7 +85,7 @@
       Meu | Mes -- tre es -- tá co -- | mi -- go;
       E -- le~é | Mes -- tre en -- si -- na -- | dor. __ _
       \set stanza = "3.B"
-      \skip 1 Jun -- _ | to com a Vir -- gem | Mãe;
+      "" Jun -- _ | to com a Vir -- gem | Mãe;
       O nos -- so | Pai foi __ _ quem man -- | dou. __ _
     }
     theLyricsFour = \lyricmode {
@@ -170,11 +172,13 @@
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
-        \parenthesize e8( \posectionmark "A" \parenthesize e8) | c8( c c) a8 d4. c8 | c2( c4) g'8( g) | e8( c4) e8 d4. c8 | e2( e4)
+        \parenthesize e8( \pomark \parenthesize e8) | c8( c c) a8 d4. c8 | c2( c4) g'8( g) | e8( c4) e8 d4. c8 | e2( e4)
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        \grace{\altcol\parenthesize g8\altmark "5." } g8( \sectionmark "B" g) | e8( e e) c d4. c8 | g2( g4) e'8( e) | c4( c8) a8 d4. c8 | c2( c4)
+        \grace{\altcol\parenthesize g8\altmark "5." } g8( g) | e8( e e) c d4. c8 | g2( g4) e'8( e) | c4( c8) a8 d4. c8 | c2( c4)
       }
     }
     theLyricsOne = \lyricmode {
@@ -835,12 +839,14 @@
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
-        g8(\posectionmark "A" g8) | c4( c8) c c c c e | g2( g8) g a g
+        g8(\pomark g8) | c4( c8) c c c c e | g2( g8) g a g
         | e( c8 c) c a b c a | g2.
       } \break
+      \sectionLabel "B"
       \repeat volta 2 {
-        c4\sectionmark "B" | a8( a)( c8 c) c c16( c16) c8 c | g4( g8 g8) c c c d
+        c4 | a8( a)( c8 c) c c16( c16) c8 c | g4( g8 g8) c c c d
         | e e e c d d d b | c2.
       }
     }
@@ -966,19 +972,24 @@
     theMelody = \relative b' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \minor \time 4/4 \partial 4.
+      \sectionLabel "1.A"
       \repeat volta 2 {
-        r8\sectionmark "1.A" a4 | d4 d8 cis8 d4 e | f d2 d8 f8
+        r8 a4 | d4 d8 cis8 d4 e | f d2 d8 f8
         | e4 d4 cis4 e4 | d2~ d8
       } \break
+      \sectionLabel "1.B"
       \repeat volta 2 {
-        r8\sectionmark "1.B" a8 c8 | c4 c2 bes8 a8 | bes4 a2 a8 a8 | a4 a2 a8 a8 | d4 d4.
+        r8 a8 c8 | c4 c2 bes8 a8 | bes4 a2 a8 a8 | a4 a2 a8 a8 | d4 d4.
       } \break
+      \sectionLabel "2-4.A"
+      \segno
       \repeat volta 2 {
-        a8\posectionmark "2-4.A"\segno a8 a8 | d4 cis4 d4 e | f( d2) d8 f8
+        a8\pomark a8 a8 | d4 cis4 d4 e | f( d2) d8 f8
         | e4 d4 cis4 e4 | d2( d8)
       } \break
+      \sectionLabel "2-4.B"
       \repeat volta 2 {
-        a8\sectionmark "2-4.B" a8 c8 | c4 c4.( bes8) bes8 a8 | bes4 a4.( a8) a8 a8 | a4 a8 a8 cis4 e4 | d2( d8)
+        a8 a8 c8 | c4 c4.( bes8) bes8 a8 | bes4 a4.( a8) a8 a8 | a4 a8 a8 cis4 e4 | d2( d8)
         \dalsegno
       }
     }
@@ -1101,11 +1112,13 @@
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
-        e8\posectionmark "A" e | a4 a a b | c a e g | g d d a' | a2 a4
+        e8\pomark e | a4 a a b | c a e g | g d d a' | a2 a4
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        a,8\sectionmark "B" b | c4 c b b | a4. \parenthesize a8 c4 a | e'4 e8( e8) b4 c | a2 a4
+        a,8 b | c4 c b b | a4. \parenthesize a8 c4 a | e'4 e8( e8) b4 c | a2 a4
       }
     }
     theLyricsOne = \lyricmode {
@@ -1380,12 +1393,14 @@
     theMelody = \relative d'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \major \time 4/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        r8 a8 \posectionmark "A" a8 | d4 d4 d4 fis4 | a4. fis8 fis4 d4
+        r8 a8 \pomark a8 | d4 d4 d4 fis4 | a4. fis8 fis4 d4
         | d4 d8( d8) b4 d4 | a2( a8)
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize a8 \sectionmark "B" fis8 g8 | a4 b8( b8) fis4 a4 | a4. a8 a4 cis4
+        \parenthesize a8 fis8 g8 | a4 b8( b8) fis4 a4 | a4. a8 a4 cis4
         | e4 e4 b4 d4 | d2( d8)
       }
     }
@@ -1594,15 +1609,17 @@
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 2.
+      \sectionLabel "A"
       \repeat volta 2 {
-         g8\posectionmark "A" g c4 e | g8( g) g e a4 g
+         g8\pomark g c4 e | g8( g) g e a4 g
          | e8( c) c a c4 e | d8( d) d c a4 c
       } \alternative {
         { | c4 }
         { | c2. }
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-         c4\sectionmark "B" | d d8 c a4 c | e4( e8) a,8 c4 e4
+         c4 | d d8 c a4 c | e4( e8) a,8 c4 e4
          | d8 d d c a4 c4
       } \alternative {
         { | c2. }
@@ -1709,12 +1726,14 @@
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 3/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
-        g4\posectionmark "A" | c4 f4 e4 | d4 f4 e4 | c2.( | c2)( c4)
+        g4\pomark | c4 f4 e4 | d4 f4 e4 | c2.( | c2)( c4)
         | a'4 a4 a4 | g4 c,4 e4 | g2.~ | g2
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        c,4\sectionmark "B" | a'4 a4 a4 | g4 f4 e4 | c2.(
+        c,4 | a'4 a4 a4 | g4 f4 e4 | c2.(
         | c4) a4 c4
         \set melismaBusyProperties = #'() \slurDown
         | e4( << e4) \single\altcol g4\altmark "(3.)" >> << g4 \single\altcol f4 >> | d4 f4 e4 | c2.~ | c2
