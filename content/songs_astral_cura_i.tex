@@ -1080,11 +1080,11 @@
   \audio[key=Am]{https://www.nossairmandade.com/hymn/475/OlhoParaOFirmamento}
   \newchords{chords_olhopara_a}\newchords{chords_olhopara_b}
   \mnbeginchorus\memorize[chords_olhopara_a]
-    \[^\mn{E}]Olho |\[\mnc{A}Am]para o \[\bm]fir\[^\mn{B}]ma|\[^\mn{C}]men\[^\mn{A}]to \altchords{\id[1]{(Gm)}|Gm | \e}
+    \[^\mn{E}]Olho |\[\mnc{A}Am]para\jw o \[\bm]fir\[^\mn{B}]ma|\[^\mn{C}]men\[^\mn{A}]to\jw \altchords{\id[1]{(Gm)}|Gm | \e}
     E \[\bmc\mn{E}]ve\[^\mn{G}]jo |\[G]to\[^\mn{D}]do \[(E7/D)]U\[^\mn{A}]ni|\[Am]ver\[\bm]so \altchords{|F (D7/C) |Gm}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_olhopara_b]
     \[^\mn{A}]Es\[^\mn{B}]ta |\[\mnc{C}C]força \[\mnc{B}E]que re|\[\mnc{A}Am]cebo \altchords{|B\flt{} D |Gm}
-    \[\bmc\mn{C}]Sem\[^\mn{A}]pre |\[\mnc{E}E]canto e \[\bmc\mn{B}]sem\[^\mn{C}]pre |\[\mnc{A}Am]pe\[\bm]ço \altchords{|D |Gm}
+    \[\bmc\mn{C}]Sem\[^\mn{A}]pre |\[\mnc{E}E]canto\jw e \[\bmc\mn{B}]sem\[^\mn{C}]pre |\[\mnc{A}Am]pe\[\bm]ço \altchords{|D |Gm}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_olhopara_a]
@@ -1092,7 +1092,7 @@
     ^E a |^Ele ^{me hu}|^mi^lho
     \endchorus\glueverses\beginchorus\replay[chords_olhopara_b]
     Para |^nunca ^me fal|^tar
-    ^Vossa |^luz com o ^santo |^bri^lho
+    ^Vossa |^luz com\jw o ^santo |^bri^lho
   \endchorus
   \beginchorus\replay[chords_olhopara_a]
     Me se|^guro ^no As|tral \altchords{\id[2]{(Em)}|Em | \e}
@@ -1110,20 +1110,26 @@
   \endchorus
   \brk
   \beginchorus\replay[chords_olhopara_a]
-    Digo |^tudo ^humi|lhado \altchords{\id[3]{MK (Am)}|Am |C}
+    Digo |^tudo ^humi|lhado\jw \altchords{\id[3]{MK (Am)}|Am |C}
     E ^conti|^nuo ^{a jor}|^na^da \altchords{|G Dm |Am}
     \endchorus\glueverses\beginchorus\replay[chords_olhopara_b]
     Com meu |^Pai em ^minha |^frente \altchords{|Am E7 |Am}
     ^E mi|^nha Mãe ^a meu |^la^do \altchords{|- E7 |Am}
   \endchorus
   \beginchorus\replay[chords_olhopara_a]
-    Vou se|^guindo e ^vou pe|dindo
+    Vou se|^guindo\jw e ^vou pe|dindo
     ^Para |^todos ^ino|^cen^tes
     \endchorus\glueverses\beginchorus\replay[chords_olhopara_b]
     Peço |^força ^nos tra|^balhos
     ^Aos três |^Reis do ^Ori|^en^te
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-06
+    % \header {
+    %   title = "Olho Para o Firmamento"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4
@@ -1133,7 +1139,7 @@
       }
       \sectionLabel "B"
       \repeat volta 2 {
-        a,8 b | c4 c b b | a4. \parenthesize a8 c4 a | e'4 e8( e8) b4 c | a2 a4
+        a,8 b | c4 c b b | a4. \parenthesize a8 c4 a | e'4 e4 b4 c | a2 a4
       }
     }
     theLyricsOne = \lyricmode {
@@ -1145,7 +1151,7 @@
       \set stanza = "1.B"
       \repeat volta 2 {
         Es -- ta | for -- ça que re -- | ce -- bo;
-        Sem -- pre | can -- to e sem -- pre | pe -- ço.
+        Sem -- pre | can -- to~e sem -- pre | pe -- ço.
       }
     }
     theLyricsTwo = \lyricmode {
@@ -1156,8 +1162,8 @@
       }
       \set stanza = "2.B"
       \repeat volta 2 {
-        Pa -- ra | nun -- ca me fal -- | tar; __ _
-        Vos -- sa | luz com o san -- to | bri -- lho.
+        Pa -- ra | nun -- ca me fal -- | tar; _
+        Vos -- sa | luz com~o san -- to | bri -- lho.
       }
     }
     theLyricsThree = \lyricmode {
@@ -1169,7 +1175,7 @@
       \set stanza = "3.B"
       \repeat volta 2 {
         Me lem -- | bro de mi -- nha | Mãe;
-        E de meu | Pai O -- _ ni -- po -- | ten -- te.
+        E de meu | Pai O -- ni -- po -- | ten -- te.
       }
     }
     theLyricsFour = \lyricmode {
@@ -1181,7 +1187,7 @@
       \set stanza = "4.B"
       \repeat volta 2 {
         Mas quem | vi -- ve nes -- te | mun -- do;
-        Pou -- co | vê e __ _ pou -- co | sen -- te.
+        Pou -- co | vê e pou -- co | sen -- te.
       }
     }
     theLyricsFive = \lyricmode {
@@ -1193,7 +1199,7 @@
       \set stanza = "5.B"
       \repeat volta 2 {
         Com meu | Pai em mi -- nha | fren -- te;
-        E mi -- | nha Mãe __ _ a meu | la -- do.
+        E mi -- | nha Mãe a meu | la -- do.
       }
     }
     theLyricsSix = \lyricmode {
@@ -1205,7 +1211,7 @@
       \set stanza = "6.B"
       \repeat volta 2 {
         Pe -- ço | for -- ça nos tra -- | ba -- lhos;
-        Aos três | Reis do __ _ O -- ri -- | en -- te.
+        Aos três | Reis do O -- ri -- | en -- te.
       }
     }
     theChords = \chordmode {
