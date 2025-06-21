@@ -961,20 +961,26 @@
     Para |^sempre eu \noteson\[\bmc\mnlow{C#}]ser \[\mnlow{E}]ir\notesoff|^mão ^
   \mnendchorus
   \beginchorus\replay[chords_linhadotucum_a]
-    Enxo|^tando os ^malfa|zejos ^
+    Enxo|^tando\jw os ^malfa|zejos ^
     Que não |^querem ^me ou|^vir ^
     \endchorus\glueverses\beginchorus\replay[chords_linhadotucum_b]
     Que escu|^recem^ o pensa|^mento^
     E nunca |^podem \noteson\[\bmc\mnlow{C#}]ser \[\mnlow{E}]fe\notesoff|^liz ^
   \mnendchorus
   \beginchorus\replay[chords_linhadotucum_a]
-    Esta é a |^Linha ^do Tu|cum ^
+    Esta\jw é a |^linha ^do Tu|cum ^
     Que traz |^toda ^leal|^da^de
     \endchorus\glueverses\beginchorus\replay[chords_linhadotucum_b]
     Casti|^gando^ os menti|^rosos^
     Aqui den|^tro des\noteson\[\bmc\mnlow{C#}]ta \[\mnlow{E}]ver\notesoff|^da^de
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-06
+    % \header {
+    %   title = "Linha do Tucum"
+    %   composer = "Mestre Irineu Serra"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative b' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \minor \time 4/4 \partial 4.
@@ -988,21 +994,24 @@
         r8 a8 c8 | c4 c2 bes8 a8 | bes4 a2 a8 a8 | a4 a2 a8 a8 | d4 d4.
       } \break
       \sectionLabel "2-4.A"
-      \segno
-      \repeat volta 2 {
-        a8\pomark a8 a8 | d4 cis4 d4 e | f( d2) d8 f8
-        | e4 d4 cis4 e4 | d2( d8)
-      } \break
-      \sectionLabel "2-4.B"
-      \repeat volta 2 {
-        a8 a8 c8 | c4 c4.( bes8) bes8 a8 | bes4 a4.( a8) a8 a8 | a4 a8 a8 cis4 e4 | d2( d8)
-        \dalsegno
+      % Can't use "\repeat segno" construct here, as it conflicts with
+      % the section label, thus using \segno and \dalsegno macros.
+      \repeat volta 3 {
+        \repeat volta 2 {
+          \parenthesize a8\pomark\segno a8 a8 | d4 cis4 d4 e | f( d2) d8 f8
+          | e4 d4 cis4 e4 | d2( d8)
+        } \break
+        \sectionLabel "2-4.B"
+        \repeat volta 2 {
+          \parenthesize a8 a8 c8 | c4 c4. \parenthesize bes8 bes8 a8 | bes4 a4. \parenthesize a8 a8 a8 | a4 a8( a8) cis4 e4 | d2( d8)
+          \dalsegno
+        }
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
         Eu | can -- to a -- qui na | ter -- ra;
-        O a -- | mor que Deus me | dá. __ _
+        O a -- | mor que Deus me | dá. _
       \set stanza = "1.B"
         Pa -- ra | sem -- pre pa -- ra | sem -- pre;
         Pa -- ra | sem -- pre pa -- ra | sem -- pre.
@@ -1013,23 +1022,23 @@
             A mi -- nha | Mãe que vem co -- | mi -- go;
             Que me | deu es -- ta li -- | ção. _
           \set stanza = "2.B"
-            _ Pa -- ra | sem -- pre __ _ pa -- ra | sem -- pre; __ _
+            "" Pa -- ra | sem -- pre "" pa -- ra | sem -- pre; ""
             Pa -- ra | sem -- pre eu ser ir -- | mão. _
         }
         \new Lyrics {
           \set stanza = "3.A"
-            _ En -- xo -- | tan -- do~os mal -- fa -- | ze -- jos;
-            Que não | que -- rem me ou -- | vir. __ _
+            "" En -- xo -- | tan -- do~os mal -- fa -- | ze -- jos;
+            Que não | que -- rem me ou -- | vir. _
           \set stanza = "3.B"
             Que es -- cu -- | re -- cem o pen -- sa -- | men -- to;
             E nun -- ca | po -- dem __ _ ser fe -- | liz. _
         }
         \new Lyrics {
           \set stanza = "4.A"
-            Es -- ta é~a | Li -- nha do Tu -- | cum __ _
-            Que traz | to -- da le -- al -- | da -- de
+            Es -- ta~é a | li -- nha do Tu -- | cum; __ _
+            Que traz | to -- da le -- al -- | da -- de.
           \set stanza = "4.B"
-            _ Cas -- ti -- | gan -- do os men -- ti -- | ro -- sos;
+            "" Cas -- ti -- | gan -- do os men -- ti -- | ro -- sos;
             A -- qui den -- | tro des -- _ ta ver -- | da -- de.
         }
       >>
@@ -1048,7 +1057,7 @@
         s4. | c1 | f1 | a:7 | d2:m~ d8:m
       }
     }
-    \layout { #(layout-set-staff-size 14) } % for better fit
+    \layout { #(layout-set-staff-size 14.5) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
