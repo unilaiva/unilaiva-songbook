@@ -1252,16 +1252,16 @@
   \audio{https://www.nossairmandade.com/hymn/512/Sol,Lua,Estrela}
   \mnbeginchorus\memorize
     |\[\mnc{D}D]Sol, \[\bm]Lua, Es|tre\[\mnc{A}A]la \altchords{\id[1]{(E)}|E | - B}
-    \[^\mn{C#}]A |\[\mnc{E}Em]Terra, o \[\bm]Ven\[^\mn{F#}]to e o |\[^\mn{E}]Mar \[A7]{} \altchords{|F\shrp{}m | - B7}
-    \[^\mn{A}]A Flo|\[\mnc{D}D]resta e \[\bm]seus mis|térios \altchords{|E | \e}
+    \[^\mn{C#}]A |\[\mnc{E}Em]Terra, o \[\bm]Ven\[^\mn{F#}]to\jw e o |\[^\mn{E}]Mar \[A7]{} \altchords{|F\shrp{}m | - B7}
+    \[^\mnc{A}]A Flo|\[\mnc{D}D]resta e \[\bm]seus mis|térios \altchords{|E | \e}
     \[\bmc\mn{A}]Para |\[\mncii{F}{E}Fmaj7]todos \[\mncii{C#}{E}A7]estu|\[\mnc{D}D]dar \[\bm]{} \altchords{|Gmaj7 B7 |E}
   \mnendchorus
   \notesoff
   \beginchorus
-    |^Sol, ^Lua, Es|tre^la \altchords{\id[3]{O (D)}|D | \e}
-    A |^Terra, o ^Vento e o |Mar ^ \altchords{|Em |A7 \e}
-    É a |^Luz do ^firma|mento \altchords{|D | \e}
-    É ^só a |^quem eu ^devo a|^mar ^ \altchords{|Em A7 |D}
+    |^Sol, ^Lua, Es|tre^la \altchords{\id[2]{(F)}|F | - C}
+    A |^Terra, o ^Vento\jw e o |Mar ^ \altchords{|Gm | - C7}
+    É a |^Luz do ^firma|mento\jw \altchords{|F | \e}
+    É ^só a |^quem eu ^devo a|^mar ^ \altchords{|A\flt{}maj7 C7 |F}
   \endchorus
   \beginchorus
     É só a |^quem eu ^devo a|mar
@@ -1270,7 +1270,7 @@
     Com ^o di|^{vino Es}^pírito |^San^to
   \endchorus
   \beginchorus
-    O di|^vino Es^pírito |Santo
+    O di|^vino Es^pírito |Santo\jw
     Em ^todos |^três num ^só se en|cer^ra
     É o |^tempo ^do a|puro
     ^Pouca |^{paz e} ^muita |^guer^ra
@@ -1282,61 +1282,67 @@
     ^Meus ir|^mãos, o ^tempo é |^es^te
   \endchorus
   \beginchorus
-    Meus ir|^mãos, o ^tempo é |este
-    ^Das lem|^branças ^de No|é ^
-    Peço |^força a ^todos |seres
-    ^Firmo |^{em Ma}^rachim|^bé ^
+    Meus ir|^mãos, o ^tempo é |este \altchords{\id[3]{O (D)}|D | \e}
+    ^Das lem|^branças ^de No|é ^ \altchords{|Em |A7 \e}
+    Peço |^força a ^todos |seres \altchords{|D | \e}
+    ^Firmo |^{em Ma}^rachim|^bé ^ \altchords{|Em A7 |D}
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-06
+    % \header {
+    %   title = "Marachimbé"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative d'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \major \time 4/4 \partial 4.
       \repeat volta 2 {
-        \parenthesize a8 \parenthesize a8\pomark \parenthesize a8 | d4( d4) d4 d8( d8) | d4.( d8) a4 cis | e4 e8( e8) e4 fis4 | e2( e4) a,8( a8)
-        | d4 d8( d8) d4 d4 | d4. d8 a4 a4 | f'4 e4 cis4 e4 | d2( d8)
+        \parenthesize a8 \parenthesize a8\pomark \parenthesize a8 | d4( d8)( d8) d8( d8) d8( d8) | d4.( d8) a4 cis | e4 e8( e8) e4 fis8( fis8) | e2( e4) a,8( a8)
+        | d4 d8( d8) d4 d4 | d4. d8 a4 a4 | f'4 e8( e8) cis8( cis8) e8( e8) | d2( d8)
       }
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1."
-      \skip 1 \skip 1 \skip 1 | Sol, __ _ Lu -- a, Es -- | tre -- _ la;
-      A | Ter -- ra, o Ven -- to~e~o | Mar; __ _
+      \skip 1 \skip 1 \skip 1 | Sol, __ _ _ Lu _ -- a, Es -- | tre -- _ la;
+      A | Ter -- ra, o Ven -- to~e o | Mar; __ _
       A Flo -- | res -- ta e seus mis -- | té -- rios;
-      Pa -- ra | to -- dos es -- tu -- | dar. __ _
+      Pa -- ra | to -- dos __ _ es _ -- tu _ -- | dar. __ _
     }
     theLyricsTwo = \lyricmode {
       \set stanza = "2."
-      \skip 1 \skip 1 \skip 1 | Sol, __ _ Lu -- a, Es -- | tre -- _ la;
-      A | Ter -- ra, o Ven -- to~e~o | Mar; __ _
+      \skip 1 \skip 1 \skip 1 | Sol, __ _ _ Lu _ -- a, Es -- | tre -- _ la;
+      A | Ter -- ra, o Ven -- to~e o | Mar; __ _
       É a | Luz do __ _ fir -- ma -- | men -- to;~É
-      só a | quem eu de -- vo~a -- | mar. __ _
+      só a | quem eu __ _ de _ -- vo a -- | mar. __ _
     }
     theLyricsThree = \lyricmode {
       \set stanza = "3."
-      É só a | quem eu de -- vo a -- | mar;
-      E me se -- | gu -- ra __ _ em meu | can -- to;
+      É só a | quem eu __ _ de _ -- vo a -- | mar;
+      E me se -- | gu -- ra __ _ em meu __ _ | can -- to;
       Pai, __ _ | Fi -- lho e Vir -- gem | Mãe;
-      Com o di -- | vi -- no~Es -- píri -- to | San -- to.
+      Com o di -- | vi -- no Es -- pí -- ri -- to __ _ | San -- to.
     }
     theLyricsFour = \lyricmode {
       \set stanza = "4."
-      \skip 1 O di -- | vi -- no~Es -- píri -- to __ _ | San -- to;~Em
-      to -- dos | três num __ _ só se~en -- | cer -- ra;
+      \skip 1 O di -- | vi -- no Es -- pí -- ri -- to __ _ | San -- to;~Em
+      to -- dos | três num __ _ só se en -- | cer -- ra;
       É o | tem -- po __ _ do a -- | pu -- ro;
-      Pou -- ca | paz e mui -- ta | guer -- ra.
+      Pou -- ca | paz e __ _ mui _ -- ta __ _ | guer -- ra.
     }
     theLyricsFive = \lyricmode {
       \set stanza = "5."
-      \skip 1 Es -- ta | paz é da Ra -- _ | i -- nha;
-      Da Flo -- | res -- ta __ _ e do | Mes -- tre;
+      \skip 1 Es -- ta | paz é __ _ da __ _ Ra -- _ | i -- nha;
+      Da Flo -- | res -- ta __ _ e do __ _ | Mes -- tre;
       É o | prin -- cí -- _ pio das | do -- res;
-      Meus ir -- | mãos, o tem -- po~é | es -- te.
+      Meus ir -- | mãos, o __ _ tem _ -- po é | es -- te.
     }
     theLyricsSix = \lyricmode {
       \set stanza = "6."
-      \skip 1 Meus ir -- | mãos, o tem -- po é | es -- te;
-      Das lem -- | bran -- ças __ _ de No -- | é; __ _
+      \skip 1 Meus ir -- | mãos, o __ _ tem _ -- po é | es -- te;
+      Das lem -- | bran -- ças __ _ de No _ -- | é; __ _
       Pe -- ço | for -- ça a to -- dos | se -- res;
-      Fir -- mo em Ma -- ra -- chim -- bé. __ _
+      Fir -- mo em Ma _ -- ra _ -- chim _ -- | bé. __ _
     }
     theChords = \chordmode {
       \repeat volta 2 {
