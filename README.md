@@ -509,6 +509,7 @@ the following string replacements ought to be done in the following order:
  9. "\skip 1 " -> ""
 10. "\"\" " -> ""
 11. "~" -> "\jw "
+12. "\altcol " -> ""
 
 Be careful with the whitespaces!
 

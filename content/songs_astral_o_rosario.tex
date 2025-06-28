@@ -1,0 +1,157 @@
+% Santo Daime: O Rosário (Maria Alice Campos Freire)
+% ==================================================
+%
+\audio[title={estudofino.org}]{https://estudofino.org/o-rosario}
+\audio[title={Nossa Irmandade}]{https://nossairmandade.com/hinario/40/ORos\%C3\%A1rio}
+
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+\beginsong{O Rosário}[by={Maria Alice}, tags={perfilado}, key={C}, gk={C, B\flt{}--D}]
+  \audio{https://nossairmandade.com/hymn/1286/ORos\%C3\%A1rio}
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Oh! Mi\[^\mn{A}]nha |\[\mnc{G}C]Mãe \[^\mn{C}]Vós \[^\mn{B}]lim\[\mnc{A}F]pai \[^\mn{C}]meu pensa|\[\mnc{E}C]men\[^\mn{C}]to \altchords{\id[1]{(D)}|D G |D G}
+    Pa\[^\mn{B}]ra \[\mnc{A}F]eu \[^\mn{C}]poder se|\[\mnc{E}Am]guir \[^\mn{C}]jun\[^\mn{B}]to \[\mnc{A}G]com \[^\mnc{C}]Ju\[^\mn{E}]ra\[^\mn{D}]mi|\[\mnc{C}C]dam \[\bm{}] \altchords{|Bm A |D}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Na pie|^dade\jw quero fir^mar meu cora|^ção
+    Para\jw eu ^poder liber|^tar o a^mor dos meus ir|^mãos ^
+  \endchorus
+  \beginchorus
+    Jurami|^dam hoje\jw a ^Vós vos reco|^nheço
+    E vos ^sigo sem tro|^peço porque ^sei aonde\jw es|^tás ^
+  \endchorus
+  \beginchorus
+    Estrela |^viva dentro ^do meu cora|^ção
+    Cada ^raio do seu |^brilho\jw É uma ^manifesta|^ção ^
+  \endchorus
+  \beginchorus
+    Pai Oxa|^lá, Xangô, ^Obalu(a)|^ê
+    Pai O^gum e Rei O|^xóssi, Vós ^venha nos va|^ler ^
+  \endchorus
+  \beginchorus
+    Mamãe O|^xum e Ma^mãe Ieman|^já
+    Ian^sã, Nanã, Ju|^rema, Vós ^venha nos sal|^var ^
+  \endchorus
+  \beginchorus
+    Eu venho\jw a|^qui, meu Ro^sário\jw apresen|^tar
+    Fazer ^os meus roga|^tiv{\small(os)} pra meus ir^mãos vos enxer|^gar ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-06
+    % \header {
+    %   title = "O Rosário"
+    %   composer = "Maria Alice Campos Freire"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4.
+      \repeat volta 2 {
+        e8 \pomark e a | \afterGrace 1/1 g8( g8) \parenthesize \single\altcol c,16 \altmark "2., 4." \single\altcol ( \parenthesize \single\altcol c16) c8 b a c c c | e8. \parenthesize \altcol c16 \altmark "1., 3." c8 b a c c c
+        | e8( << e) \single\altcol c \altmark "3., 4., 7." >> c b a c e8 d8 | c2~8
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Oh! Mi -- nha | Mãe "" ""
+        Vós lim -- pai meu pen -- sa -- | men -- \altcol to;
+        Pa -- ra eu po -- der se -- | guir __ _
+        Jun -- to com Ju -- ra -- mi -- | dam.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Na pi -- e -- | da -- \altcol de
+        \altcol Que -- ro fir -- mar meu co -- ra -- | ção; ""
+        Pa -- ra~eu po -- der li -- ber -- | tar __ _
+        O a -- mor dos meus ir -- | mãos.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Ju -- ra -- mi -- | dam "" ""
+        Ho -- je~a Vós vos re -- co -- | nhe -- \altcol ço;
+        E vos si -- go sem tro -- | pe -- \altcol ço
+        Por -- que sei a -- on -- de~es -- | tás.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Es -- tre -- la | vi -- \altcol va __ _
+        Den -- tro do meu co -- ra -- | ção; ""
+        Ca -- da rai -- o do seu | bri -- \altcol lho~É
+        u -- ma ma -- ni -- fes -- ta -- | ção.
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        Pai O -- xa -- | lá "" ""
+        Xan -- gô, O -- ba -- lu -- (a) -- | ê; ""
+        Pai O -- gum e Rei O -- | xós _ -- si
+        Vós ve -- nha nos va -- | ler.
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      \repeat volta 2 {
+        Ma -- mãe O -- | xum "" ""
+        E Ma -- mãe I -- e -- man -- | já; ""
+        I -- an -- sã, Na -- nã, Ju -- | re _ -- ma
+        Vós ve -- nha nos sal -- | var.
+      }
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7."
+      \repeat volta 2 {
+        Eu ve -- nho~a -- | qui "" ""
+        Meu Ro -- sá -- rio~a -- pre -- sen -- | tar; ""
+        Fa -- zer os meus ro -- ga -- | tiv(os)
+        \altcol Pra meus ir -- mãos vos en -- xer -- | gar.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4.
+        | c2 f | c f
+        | a:m g | c2~8
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}
+    Oh, My Mother, You cleansed my thoughts
+    So I can follow along with Juramidam
+    \nextverse
+    In devotion I want to seal my heart
+    So I can liberate the love of my brothers
+    \nextverse
+    Juramidam, today I recognize you
+    And I'll follow without stumbling because I know where you are
+    \nextverse
+    Living Star, Inside my heart
+    Each ray of your brilliance is a manifestation
+    \nextverse
+    Father Oxalá, Xangô, Obaluê
+    Father Ogum and King Oxóssi, come to our aid
+    \nextverse
+    Mother Oxum and Mother Iemanjá
+    Iansã, Nanã, Jurema, come to save us
+    \nextverse
+    I come here to present my rosary
+    To make my petitions so my brothers can see you
+  \end{translation}
+\endsong

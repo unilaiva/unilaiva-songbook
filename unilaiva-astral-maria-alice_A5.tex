@@ -1,0 +1,52 @@
+ %% unilaiva-astral-maria-alice
+ %% ===========================
+ %%
+ %% Collection of Santo Daime hymns by Maria Alice Campos Freire
+ %%
+
+% The following line signifies for the compiler that an additional charango
+% version will be generated for this book.
+%%%CREATE_VERSION_CHARANGO%%%
+
+% Setup the book name (the subtitle), and include common settings
+\newcommand{\subbooktitle}{Maria Alice}
+\input{tex/setup_astral-A5-fullmusic_include.tex}
+
+\renewcommand{\bookbytext}{%
+  Recebido por:\par\vspace{0.618034ex}\textbf{\Large Maria Alice Campos Freire}%
+}%
+
+\setcovericonsvar[unilaiva-tag-icon-music_512x512px]%
+                 [unilaiva-tag-icon-sheetmusic_512x512px]%
+                 [unilaiva-tag-icon-guitar_512x512px]
+
+\begin{document}
+
+  % Cover page (recto), by larva (photo + edit):
+  \ulcoverpage{unilaiva-WIP_COVER.pdf}%
+
+  % The second page (verso):
+  \imprintpage
+
+  % TOC:
+  \toc
+
+  % Sets chapter number; will be incremented by one at each \mainchapter,
+  % \songchapter or \chapter:
+  \setcounter{chapter}{0}
+
+  \mainchapter{Maria Alice: O Rosário}{chaprosariocolor}
+    \begin{songs}{}
+      \input{content/songs_astral_o_rosario.tex}
+    \end{songs}
+
+  % Here start appendices: chapter numbering resets and switches to alphabetic
+  \appendix
+  \usechaptercolorsfalse
+
+  \ifchorded
+    \chapter{Técnico}
+      \input{content/section_technical_information.tex}
+  \fi
+
+\end{document}
