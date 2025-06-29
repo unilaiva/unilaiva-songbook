@@ -101,9 +101,12 @@ class SongbookGenerator:
 
                 if optional_args_str:
                     optional_args = optional_args_str[1:-1]
-                    kv_pairs = re.findall(r'([a-zA-Z0-9_\\-]+)\s*=\s*([^,]+)', optional_args)
-                    for key, value in kv_pairs:
-                        link_data[key.strip()] = value.strip()
+                    kv_pairs = re.findall(r'([a-zA-Z0-9_\-]+)\s*=\s*([^,]*)(?:,|$)', optional_args)
+                    for key, value_raw in kv_pairs:
+                        value = value_raw.strip()
+                        if value.startswith('{') and value.endswith('}'):
+                            value = value[1:-1].strip()
+                        link_data[key.strip()] = self._clean_latex_macros(value)
                 audio_links.append(link_data)
         return audio_links
 
