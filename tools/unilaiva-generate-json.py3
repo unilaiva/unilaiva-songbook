@@ -81,7 +81,7 @@ class SongbookGenerator:
         """
         Parses audio links from a given content string.
 
-        Looks for \audio[key=value]{url} LaTeX commands and extracts
+        Looks for \\audio[key=value]{url} LaTeX commands and extracts
         the URL and any optional key-value pairs.
 
         Args:
@@ -117,7 +117,7 @@ class SongbookGenerator:
 
         Args:
             song_chunk (str): A string containing the LaTeX code for a single song,
-                              typically starting with \beginsong.
+                              typically starting with \\beginsong.
 
         Returns:
             dict or None: A dictionary containing the parsed song data if successful,
