@@ -40,6 +40,10 @@ class SongbookGenerator:
         self.visited_paths = set()
         self.song_counter = 1
         self.chapters = [self._new_chapter()]
+        self.new_main_titles = []
+        self.provide_main_titles = []
+        self.new_sub_titles = []
+        self.provide_sub_titles = []
 
     def _new_chapter(self, name=""):
         """
@@ -52,6 +56,14 @@ class SongbookGenerator:
             dict: A dictionary representing a new chapter.
         """
         return {"chapter_title": name, "chapter_audio_links": [], "songs": []}
+
+    def _remove_commented_lines(self, content):
+        """
+        Removes lines that start with a '%' character (LaTeX comments).
+        """
+        lines = content.splitlines()
+        uncommented_lines = [line for line in lines if not line.strip().startswith('%')]
+        return '\n'.join(uncommented_lines)
 
     def _clean_latex_macros(self, text):
         """
@@ -76,6 +88,32 @@ class SongbookGenerator:
         # Replace escaped ampersand (\&) with unescaped ampersand (&)
         text = text.replace(r'\&', '&')
         return text
+
+    def _extract_book_titles(self, content):
+        """
+        Extracts mainbooktitle and subbooktitle from LaTeX content.
+
+        Prioritizes \\newcommand over \\providecommand.
+        """
+        content = self._remove_commented_lines(content)
+        new_titles = {"main": None, "sub": None}
+        provide_titles = {"main": None, "sub": None}
+
+        pattern = r'\\(new|provide)command{\\(main|sub)booktitle}(?:\s*\[.*?\])?{(.*?)}'
+        
+        for match in re.finditer(pattern, content):
+            cmd_type = match.group(1)
+            title_type = match.group(2) # 'main' or 'sub'
+            title_value = self._clean_latex_macros(match.group(3).strip())
+
+            if cmd_type == "new":
+                new_titles[title_type] = title_value
+            elif cmd_type == "provide":
+                # Only set provide_titles if not already set by a newcommand in the same content block
+                if provide_titles[title_type] is None and new_titles[title_type] is None:
+                    provide_titles[title_type] = title_value
+        
+        return new_titles, provide_titles
 
     def _parse_audio_links(self, content):
         """
@@ -197,9 +235,20 @@ class SongbookGenerator:
         try:
             with open(filepath, 'r', encoding='utf-8') as f:
                 content = f.read()
+            content = self._remove_commented_lines(content)
         except Exception as e:
             print(f"Warning: could not read file {filepath}: {e}")
             return
+
+        new_titles, provide_titles = self._extract_book_titles(content)
+        if new_titles["main"]:
+            self.new_main_titles.append(new_titles["main"])
+        if provide_titles["main"]:
+            self.provide_main_titles.append(provide_titles["main"])
+        if new_titles["sub"]:
+            self.new_sub_titles.append(new_titles["sub"])
+        if provide_titles["sub"]:
+            self.provide_sub_titles.append(provide_titles["sub"])
 
         current_dir = os.path.dirname(filepath)
         
@@ -302,11 +351,27 @@ main_songbook.tex file, with a .json extension (e.g., main_songbook.json).
     output_filename = os.path.splitext(os.path.basename(main_songbook_file))[0] + '.json'
     output_path = os.path.join(os.path.dirname(main_songbook_file), output_filename)
     
+    final_main_title = None
+    if generator.new_main_titles:
+        final_main_title = generator.new_main_titles[-1]
+    elif generator.provide_main_titles:
+        final_main_title = generator.provide_main_titles[-1]
+
+    final_sub_title = None
+    if generator.new_sub_titles:
+        final_sub_title = generator.new_sub_titles[-1]
+    elif generator.provide_sub_titles:
+        final_sub_title = generator.provide_sub_titles[-1]
+
     output_data = {
         "songbook_main_file": os.path.basename(main_songbook_file),
-        "generated_time": datetime.now().isoformat(),
-        "chapters": generator.chapters
     }
+    if final_main_title:
+        output_data["songbook_title"] = final_main_title
+    if final_sub_title:
+        output_data["songbook_subtitle"] = final_sub_title
+    output_data["generated_time"] = datetime.now().isoformat()
+    output_data["chapters"] = generator.chapters
 
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
