@@ -557,11 +557,11 @@
         %\transpose{-2}
         \mnbeginchorus\memorize
           \lrep \[^\mn{A}]Eu |\[\mnc{D}D]sou \[^\mn{F#}]bri\[^\mn{E}]lho \[^\mn{D}]do \[\bm]sol, |sou \[^\mn{F#}]bri\[^\mn{E}]lho \[^\mn{D}]da \[\mnc{F#}Bm/F#]lua \rrep
-          \lrep \[^\mn{F#}]Dou |\[\mnc{G}G]bri\[^\mn{F#}]lho \[^\mn{E}]as \[^\mn{D}]es\[\mnc{F#}D]trelas, \[^\mn{D}]por\[^\mn{F#}]que |\[\mnc{E}A7]todas \[^\mn{B}]me a\[^\mn{C#}]com\[\mnc{D}D]panham \rrep
+          \lrep \[^\mn{F#}]Dou |\[\mnc{G}G]bri\[^\mn{F#}]lho \[^\mn{E}]as \[^\mn{D}]es\[\mnc{F#}D]trelas, \[^\mn{D}]por\[^\mn{F#}]que |\[\mnc{E}A7]todas \[^\mn{B}]me\jw a\[^\mn{C#}]com\[\mnc{D}D]panham \rrep
         \mnendchorus
         \notesoff
         \beginchorus
-          \lrep Eu |^sou brilho do ^mar eu |vivo no ven^to \rrep
+          \lrep Eu |^sou brilho do ^mar |eu vivo no ^vento \rrep
           \lrep Eu |^brilho na flo^resta porque |^ela me per^tence \rrep
         \endchorus
         \textnotefornext{suomeksi:}
@@ -582,50 +582,68 @@
 %           \lrep I |^am the shine of ^sea, |I live in the ^wind \rrep
 %           \lrep I |^shine in the ^forest, because |^she belongs to ^me \rrep
 %         \endchorus
-        \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-          theMelody = \relative a' {
+        \begin{lilywrap}\begin{lilypond}[]
+          %% transcribed by larva, latest update on 2025-07
+          % \header {
+          %   title = "Sou Brilho do Sol"
+          %   composer = "Padr. Sebastião"
+          % }
+          \include "tex/lp-include-head.ly"
+          theMelody = \transpose d c \relative a' {
             \set melismaBusyProperties = #'() \slurDashed
             \key d \major \time 4/4 \partial 8
-            \repeat volta 2 {
-              a8\posectionmark "A" | d8 fis e d d2 | d8 fis8 e d fis4 fis8
-            } \break
-            \repeat volta 2 {
-              fis8\sectionmark "B" | g fis e d fis fis d fis | e e8 b8 cis d4 d8 ^\dacapo
+            \repeat segno 2 {
+              \sectionLabel "A"
+              \repeat volta 2 {
+                a8\pomark | d8 fis e d d2 | d8 fis8 e d fis4 fis8
+              } \break
+              \sectionLabel "B"
+              \repeat volta 2 {
+                fis8 | g8. fis16 e8 d fis8. fis16 d8 fis | e8. e16 b8 cis d4 d8
+              }
             }
+            \fine
           }
           theLyricsOne = \lyricmode {
-            \repeat volta 2 {
-              \set stanza = "1.A"
-              Eu sou bri -- lho do sol,
-              sou bri -- lho da lu -- a.
-            }
-            \repeat volta 2 {
-              \set stanza = "1.B"
-              Dou bri -- lho as es -- tre -- las,
-              por -- que to -- das me~a -- com -- pa -- nham.
+            \repeat segno 2 {
+              \repeat volta 2 {
+                \set stanza = "1.A"
+                Eu | sou bri -- lho do sol,
+                | sou bri -- lho da lu -- a.
+              }
+              \repeat volta 2 {
+                \set stanza = "1.B"
+                Dou | bri -- lho as es -- tre -- las,
+                por -- que | to -- das me~a -- com -- pa -- nham.
+              }
             }
           }
           theLyricsTwo = \lyricmode {
-            \repeat volta 2 {
-              \set stanza = "2.A"
-              Eu sou bri -- lho do mar,
-              eu vi -- vo no ven -- to.
-            }
-            \repeat volta 2 {
-              \set stanza = "2.B"
-              Eu bri -- lho na flo -- res -- ta
-              Por -- que e -- la me per -- ten -- ce.
-            }
-          }
-          theChords = \chordmode {
-            \repeat volta 2 {
-              s8 | d1 | d2 b4.:m
-            }
-            \repeat volta 2 {
-              s8 | g2 d | a:7 d4.
+            \repeat segno 2 {
+              \repeat volta 2 {
+                \set stanza = "2.A"
+                Eu | sou bri -- lho do mar,
+                | eu vi -- vo no ven -- to.
+              }
+              \repeat volta 2 {
+                \set stanza = "2.B"
+                Eu | bri -- lho na flo -- res -- ta
+                Por -- que | e -- la me per -- ten -- ce.
+              }
             }
           }
-          \include "tex/lp-include-tail-notab.ly"
+          theChords = \transpose d c \chordmode {
+            \repeat segno 2 {
+              \repeat volta 2 {
+                s8 | d1 | d2 b4.:m/fis
+              }
+              \repeat volta 2 {
+                s8 | g2 d | a:7 d4.
+              }
+            }
+          }
+          \layout { #(layout-set-staff-size 14) } % for better fit
+          \include "tex/lp-include-tail-lyricsbelow.ly"
         \end{lilypond}\end{lilywrap}
 %         \ifchorded%
 %           \vfill
