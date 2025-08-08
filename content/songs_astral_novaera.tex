@@ -146,3 +146,158 @@
     Every source of wealth is Nature and so much more
   \end{translation}
 \endsong
+
+
+\beginsong{Demonstração}[by={Padr. Alfredo}, key={A}, gk={A, G\shrp{}--A}, off={Aucineide}]
+  \audio{https://nossairmandade.com/hymn/104/Demonstra\%C3\%A7\%C3\%A3o}
+  \audio[key=G]{https://soundcloud.com/canaljagube/02-demonstracao?in=canaljagube/sets/hinario-nova-era_oficial}
+  \newchords{chords_demonstracao_a}
+  \newchords{chords_demonstracao_b}
+  \newchords{chords_demonstracao_c}
+  % verse 1
+  \mnbeginchorus\memorize[chords_demonstracao_a]
+    \[^\mn{E}]Eu \[^\mn{D}]a|\[\mnc{C#}A]pren\[^\mn{B}]di \[\mnc{D}E7]nes\[^\mn{C#}]te |\[\mnc{A}A]mundo \[\bmc\mn{C#}]não \[^\mn{E}]fa|\[\mnc{A}F#m]zer \[^\mn{F#}]mal \[\bmc\mnc{B}]a nin|\[\mnc{F#}D]guém\[\bm]
+    \[^\mnc{D}]E de|\[\mnc{B}Bm]sejo \[\bm]de\[^\mn{A}]mons|\[\mnc{G#}E]trar \[\bmc\mn{E}]be\[^\mn{G#}]le|zas \[^\mn{F#}]que \[\mnc{A}E7]meu \[^\mn{G#}]Pai |\[\mnc{E}A]tem \[\bm]
+  \mnendchorus\glueverses\mnbeginverse\memorize[chords_demonstracao_b]
+    \[^\mn{E}]Es\[^\mn{D}]te |\[\mnc{C#}A]San\[^\mn{B}]to \[\mnc{D}E7]So\[^\mn{C#}]be|\[\mnc{A}A]rano \[\bmc\mn{C#}]de \[^\mn{E}]Po|\[\mnc{A}F#m]der \[^\mn{F#}]U\[\bmc\mn{B}]niver|\[\mnc{F#}D]sal \[\bm]
+  \mnendverse\glueverses\mnbeginchorus\memorize[chords_demonstracao_c]
+    \[^\mnvii{D}{E}]Quem des|\[\mnc{D}Bm]troi \[^\mn{F#}]a \[\bmc\mn{B}]na\[^\mn{A}]tu|\[A]re\[^\mn{E}]za\jw es\[\bmc\mn{C#}]tá \[^\mn{E}]fe|\[\mnc{D}Bm]din\[^\mn{B}]do\jw o \[\mnc{G#}E7]nos\[^\mn{B}]so |\[\mnc{A}A]Pai \[\bm]
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_demonstracao_a]
+    O nosso |^Pai e ^nossa |^Mãe ^nos o|^lha to^do mo|^men^to
+    Nos dá |^tudo\jw em ^abun|^dância ^a sa|úde\jw e\jw o ^ali|^men^to
+    \endchorus\glueverses\beginverse\replay[chords_demonstracao_b]
+    Quem não |^reco^nhece\jw a |^força ^do Di|^vino\jw O^nipo|^ten^te
+    \endverse\glueverses\beginchorus\replay[chords_demonstracao_c]
+    Está vi|^vendo ^no es|^curo\jw e ^cami|^nhando\jw in^consci|^en^te
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_demonstracao_a]
+    Se a|^lertem ^toda |^gente ^que ha|^bita\jw a^qui na |^ter^ra
+    Olhem\jw o |^sol e ^os pla|^netas: ^neles |não e^xiste |^guer^ra
+    \endchorus\glueverses\beginverse\replay[chords_demonstracao_b]
+    Quem tra|^balha ^neste |^mundo ^sem ao |^Mestre ^respei|^tar ^
+    \endverse\glueverses\beginchorus\replay[chords_demonstracao_c]
+    Ele |^dá a ^disci|^plina\jw e ^muda |^pra ou^tro lu|^gar ^
+  \endchorus
+  \ifchorded\ifshowaltchords\small % for altchords (G)
+    \beginverse % put all glued verses into one env.
+      \altchords{\id[1]{(G)}|G D7 |G |Em |C}
+      \altchords{|Am |D | - D7 |G}
+      \altchords{|G D7 |G |Em |C}
+      \altchords{|Am |G |Am D7 |G}
+    \endverse
+  \fi\fi
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "Demonstração"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \major \time 4/4 \partial 4.
+      \mark \markup \with-color #darkgreen \italic "Final: toque tudo"
+      \sectionLabel "A"
+      \repeat volta 2 {
+        \parenthesize e8 \pomark e d
+        | cis4 b d cis | a4.( a8) cis4 e
+        | a fis b b | fis2( 4)
+        d8 d
+        | b4 b b a | gis4.( 8) e'4 gis
+        | gis fis a gis | e2( 8)
+      }
+      \break
+      \sectionLabel "B"
+      r8 e8 d
+      | cis4 b d cis | a4. a8 cis4 e
+      | a fis b b | fis2( 8)
+      \break
+      \sectionLabel "C"
+      \repeat volta 2 {
+        << \parenthesize d8 \altmark "ii" \single\altcol \parenthesize e >> << d \single\altcol e >> << d \single\altcol e >>
+        | d4 fis b a | a e8 e cis4 e
+        | d b gis b | a2( 8)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        "" Eu a -- | pren -- di nes -- te | mun -- do Não fa -- | zer mal a nin -- | guém; __ _
+        E de -- | se -- jo de -- mons -- | trar __ _ Be -- le -- | zas que meu Pai | tem. __ _
+      }
+      \set stanza = "1.B"
+      Es -- te | San -- to So -- be -- | ra -- no De Po -- | der U -- ni -- ver -- | sal. __ _
+      \set stanza = "1.C"
+      \repeat volta 2 {
+        "" Quem des -- | troi a na -- tu -- | re -- za Es -- tá fe -- | din -- do~o nos -- so | Pai. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        O nos -- so | Pai e nos -- sa | Mãe __ _ Nos o -- | lha to -- do mo -- | men -- to;
+        Nos dá | tu -- do~em a -- bun -- | dân -- cia: A sa -- | ú -- de~e~o a -- li -- | men -- to.
+      }
+      \set stanza = "2.B"
+      Quem não | re -- co -- nhe -- ce~a | for -- ça Do Di -- | vi -- no~O -- ni -- po -- | ten -- te.
+      \set stanza = "2.C"
+      \repeat volta 2 {
+        Es -- tá vi -- | ven -- do no es -- | cu -- ro E ca -- mi -- | nhan -- do~in -- con -- sci -- | en -- te.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        "" Se a -- | ler -- tem to -- da | gen -- te Que ha -- | bi -- ta~a -- qui na | ter -- ra;
+        O -- lhem~o | sol e os pla -- | ne -- tas: Ne -- les | não e -- xis -- te | guer -- ra.
+      }
+      \set stanza = "3.B"
+      Quem tra -- | ba -- lha nes -- te | mun -- do Sem ao | Mes -- tre res -- pei -- | tar; __ _
+      \set stanza = "3.C"
+      \repeat volta 2 {
+        "" E -- le | dá a dis -- ci -- | pli -- na E mu -- da | pra ou -- tro lu -- | gar. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4.
+        | a2 e2:7 | a1
+        | fis:m | d
+        | b:m | e
+        | e2 e2:7 | a2~8
+      }
+      s4.
+      | a2 e2:7 | a1
+      | fis:m | d2~8
+      \repeat volta 2 {
+        s4.
+        | b1:m | a
+        | b2:m e:7 | a2~8
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}[EN]
+    I learned in this world not to harm anyone
+    And I wish to demonstrate beauties that my Father has
+    This Sovereign Saint of Universal Power
+    Those who destroy nature are hurting our Father
+    \nextverse
+    Our Father and our Mother watch us every moment
+    Give us everything in abundance: health and sustenance
+    Whoever doesn't recognize the force of the Divine Omnipotent
+    Is living in darkness and walking unconsciously
+    \nextverse
+    Awaken everybody who dwells here on earth
+    Look at the sun and the planets: in them war doesn't exist
+    Whoever works in this world without respecting the Master
+    He gives them discipline and moves them to another place
+  \end{translation}
+\endsong
