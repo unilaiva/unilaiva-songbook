@@ -113,13 +113,15 @@
 \endsong
 
 
-\beginsong{A Cura \\ Eu Venho Acrescentar}[by={Padr. Alfredo}, key={A}, gk={A, A\flt{}--A}]
+\beginsong{A Cura \\ Eu Venho Acrescentar}[by={Padr. Alfredo}, off={Liza}, key={A}, gk={A, A\flt{}--A}]
+  % Also in songs_astral_novaera.tex
   \audio{https://www.nossairmandade.com/hymn/105/EuVenhoAcrescentar}
+  \audio[key=A]{https://soundcloud.com/canaljagube/03-eu-venho-acrescentar?in=canaljagube/sets/hinario-nova-era_oficial}
   \mnbeginchorus\memorize
-    \[^\mn{E}]Eu |\[\mnciii{C#}{B}{C#}A]venho \[\mnc{D}E7]a\[^\mn{G#}]cres\[^\mn{B}]cen|\[\mnc{A}A]tar\[\bm]{} \altchords{\id[1]{(C)}|C G7 |C}
-    \[^\mn{C#}]A\[^\mn{E}]qui |\[\mnc{A}(F#m)]dentro \[\mnc{B}(Bm)]des\[^\mn{F#}]te po|\[D]der\[\bm]{} \altchords{|(Am) (Dm) |F}
-    A |\[\mnc{D}(Bm)]cu\[^\mn{F#}]ra \[\mnc{A}D]Deus é quem |\[\mnc{E}A]dá\[\bmc\mn{C#}]{} \altchords{|(Dm) F |C}
-    \[^\mn{E}]E |\[\mncii{C#}{B}(F#m)]é \[^\mn{C#}]se \[\mnc{D}E7]bem \[^\mn{G#}]me\[^\mn{B}]re|\[\mnc{A}A]cer\[\bm]{} \altchords{|(Am) G7 |C}
+    \[^\mn{E}]Eu |\[\mnciii{C#}{B}{C#}A]venho \[\mnc{D}E7]a\[^\mn{G#}]cres\[^\mn{B}]cen|\[\mnc{A}A]tar\[\bm]{} \altchords{\id[1]{(B)}|B F\shrp{}7 |B}
+    \[^\mn{C#}]A\[^\mn{E}]qui |\[\mnc{A}(F#m)]dentro \[\mnc{B}(Bm)]des\[^\mn{F#}]te po|\[D]der\[\bm]{} \altchords{|(G\shrp{}m) (C\shrp{}m) |E}
+    A |\[\mnc{D}(Bm)]cu\[^\mn{F#}]ra \[\mnc{A}D]Deus é quem |\[\mnc{E}A]dá\[\bmc\mn{C#}]{} \altchords{|(C\shrp{}m) E |B}
+    \[^\mn{E}]E |\[\mncii{C#}{B}(F#m)]é \[^\mn{C#}]se \[\mnc{D}E7]bem \[^\mn{G#}]me\[^\mn{B}]re|\[\mnc{A}A]cer\[\bm]{} \altchords{|(G\shrp{}m) F\shrp{}7 |B}
   \mnendchorus
   \notesoff
   \beginchorus
@@ -129,12 +131,18 @@
     E |^Je^sus Reden|^tor^
   \endchorus
   \beginchorus
-    Patri|^ar^ca São Jo|^sé^
-    E |^todos ^seres di|^vi^nos
-    Nos |^dão a ^graça da |^vi^da
-    São |^João é o ^nosso ca|^mi^nho
+    Patri|^ar^ca São Jo|^sé^ \altchords{\id[2]{(C)}|C G7 |C}
+    E |^todos ^seres di|^vi^nos \altchords{|(Am) (Dm) |F}
+    Nos |^dão a ^graça da |^vi^da \altchords{|(Dm) F |C}
+    São |^João é o ^nosso ca|^mi^nho \altchords{|(Am) G7 |C}
   \endchorus
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "A Cura"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
     theMelody = \relative e' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \major \time 4/4 \partial 4
@@ -178,6 +186,7 @@
         | \parenthesize b2:m d2 | a1 | \parenthesize fis2:m e:7 | a2.
       }
     }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
     \include "tex/lp-include-tail-lyricsbelow.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
@@ -195,6 +204,7 @@
 
 \beginsong{Peço a Vós Minha Firmeza \\ Meu Deus}[by={Padr. Valdete},key={Am},gk={Am, Am--(Bm)},tags={2x}]
   \audio{https://www.nossairmandade.com/hymn/154/MeuDeus}
+  \audio[key=A]{https://soundcloud.com/canaljagube/03-eu-venho-acrescentar?in=canaljagube/sets/hinario-nova-era_oficial}
   \newchords{chords_pecoavos_a}\newchords{chords_pecoavos_b}
   \mnbeginchorus\memorize[chords_pecoavos_a]
     \[^\mn{E}]Meu |\[\mnc{A}Am]Deus,\[\bm]{} \[^\mn{B}]meu |\[\mncii{G#}{E}E]Pai,\[\bm]{} minha |\[\mncii{D}{B}E7/D]Mãe \[\bm]{} \altchords{\id[1]{(Bm)}|Bm |F\shrp{} |F\shrp{}7/E}
