@@ -301,3 +301,93 @@
     He gives them discipline and moves them to another place
   \end{translation}
 \endsong
+
+
+\beginsong{A Cura \\ Eu Venho Acrescentar}[by={Padr. Alfredo}, off={Liza}, key={A}, gk={A, A\flt{}--A}]
+  % Also in songs_cura_diversos.tex
+  \audio{https://www.nossairmandade.com/hymn/105/EuVenhoAcrescentar}
+  \audio[key=A]{https://soundcloud.com/canaljagube/03-eu-venho-acrescentar?in=canaljagube/sets/hinario-nova-era_oficial}
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Eu |\[\mnciii{C#}{B}{C#}A]venho \[\mnc{D}E7]a\[^\mn{G#}]cres\[^\mn{B}]cen|\[\mnc{A}A]tar\[\bm]{} \altchords{\id[1]{(B)}|B F\shrp{}7 |B}
+    \[^\mn{C#}]A\[^\mn{E}]qui |\[\mnc{A}(F#m)]dentro \[\mnc{B}(Bm)]des\[^\mn{F#}]te po|\[D]der\[\bm]{} \altchords{|(G\shrp{}m) (C\shrp{}m) |E}
+    A |\[\mnc{D}(Bm)]cu\[^\mn{F#}]ra \[\mnc{A}D]Deus é quem |\[\mnc{E}A]dá\[\bmc\mn{C#}]{} \altchords{|(C\shrp{}m) E |B}
+    \[^\mn{E}]E |\[\mncii{C#}{B}(F#m)]é \[^\mn{C#}]se \[\mnc{D}E7]bem \[^\mn{G#}]me\[^\mn{B}]re|\[\mnc{A}A]cer\[\bm]{} \altchords{|(G\shrp{}m) F\shrp{}7 |B}
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    E |^é se ^bem mere|^cer^
+    Da ver|^dade ^{e do a}|^mor^
+    |^Deus e ^a Virgem |^Mãe^
+    E |^Je^sus Reden|^tor^
+  \endchorus
+  \beginchorus
+    Patri|^ar^ca São Jo|^sé^ \altchords{\id[2]{(C)}|C G7 |C}
+    E |^todos ^seres di|^vi^nos \altchords{|(Am) (Dm) |F}
+    Nos |^dão a ^graça da |^vi^da \altchords{|(Dm) F |C}
+    São |^João é o ^nosso ca|^mi^nho \altchords{|(Am) G7 |C}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "A Cura"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        e8(\pomark e8) | \once\slurSolid cis'4( b8)( cis8) d4 gis,8 b8 | a2. cis8 e8
+        | a4. a8 b4 fis8 fis8 | fis2( fis4)( fis4)
+        | d4. fis8 a4 a8 a8 | e2( cis4) e4
+        | cis4( b8)( cis8) d4 gis,8 b8 | a2( a4)
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Eu __ _ | ve -- _ nho a -- cres -- cen -- | tar;
+        A -- qui | den -- tro des -- te po -- | der; __ _
+        A | cu -- ra Deus é quem | dá; __ _
+        E | é __ _ se bem me -- re -- | cer. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        E  __ _ | é __ _ se bem me -- re -- | cer;
+        Da ver -- | da -- de e do a -- | mor; __ _ _
+        | Deus e a Vir -- gem | Mãe; __ _
+        E | Je -- _ _ sus Re -- den -- | tor. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Pa -- tri -- | ar -- _ _ ca São Jo -- | sé;
+        E __ _ | to -- dos se -- res di -- | vi -- nos;
+        Nos | dão a gra -- ça da | vi -- da;
+        São | Jo -- ão é~o nos -- so ca -- | mi -- nho.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a2 e2:7 | a1 | \parenthesize fis2:m \parenthesize b2:m | d1
+        | \parenthesize b2:m d2 | a1 | \parenthesize fis2:m e:7 | a2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I come to add here within this power
+    Healing, God is who gives it and if one really deserves it
+    \nextverse
+    And if one really deserves it, of truth and of love
+    God and the Virgin Mother and Jesus the Redeemer
+    \nextverse
+    The Patriarch Saint Joseph and all divine beings
+    Give us the grace of life, Saint John is our path
+  \end{translation}
+\endsong
+
