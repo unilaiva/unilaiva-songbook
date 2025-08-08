@@ -1,0 +1,148 @@
+% Santo Daime: Nova Era (Padr. Alfredo)
+% =====================================
+%
+\audio[title={santodaime.org}]{https://hinos.santodaime.org/acervo/padrinho-alfredo/nova-era}
+\audio[title={Estudo Fino}]{https://estudofino.org/nova-era}
+\audio[title={Nossa Irmandade}]{https://nossairmandade.com/hinario/8/NovaEra}
+\audio[title={SoundCloud}]{https://soundcloud.com/canaljagube/sets/hinario-nova-era_oficial}
+
+% The following sets the song number for the first song in this file.
+% The number will automatically be incremented by one for each song.
+% Please do not change this! Changing would make different versions of
+% the songbook to have different numbers for the same songs, and it
+% would totally mess up the selection booklets causing them to have
+% wrong songs in them. (For the same reason, add new songs only to the
+% end of each songs_ file.)
+\setcounter{songnum}{1}
+
+\beginsong{Nova Era}[by={Padr. Alfredo}, key={C}, gk={C, C--D}, off={Nena}]
+  \audio[key=Am]{https://soundcloud.com/canaljagube/01-nova-era?in=canaljagube/sets/hinario-nova-era_oficial}
+  \audio[]{https://nossairmandade.com/hymn/103/NovaEra}
+  \mnbeginchorus\memorize
+    \[^\mn{C}]Quem \[^\mn{B}]be|\[\mnc{A}Am]leza \[^\mn{G}]no \[\bmc\mn{C}]u\[^\mn{E}]ni|\[\mnc{G}C]ver\[^\mn{E}]so
+    \[\mnc{A}(Am)]Meu \[^\mn{E}]Pai |\[\mnc{G}G]es\[^\mn{E}]tá \[\mnc{A}F]me \[^\mn{G}]gui|\[\mnc{C}C]an\[\bm]do
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    E quanto |^mais eu ^me en|^trego \altchords{\id[1]{(D)}|Bm |D}
+    ^Mais E|^le vai ^me lim|^pan^do \altchords{(Bm) |A G |D}
+  \endchorus
+  \beginchorus
+    Eu vou se|^guindo, ^ensi|^nando\jw
+    O ^{que meu} |^Pai dei^xou na |^Ter^ra
+  \endchorus
+  \beginchorus
+    Na co|^lheita ^de ir|^mãos
+    Quem ^vem com|^por a ^Nova |^E^ra
+  \endchorus
+  \beginchorus
+    Eu con|^vido\jw os ^meus ir|^mãos
+    Se ^ale|^grar na ^nossa |^fes^ta
+  \endchorus
+  \beginchorus
+    Esque|^cer a ^ilu|^são
+    E ^{se fir}|^mar bem ^na flo|^res^ta
+  \endchorus
+  \beginchorus
+    Na flo|^resta ^temos |^tudo
+    ^Ela, |^Mamãe ^e Pa|^pai ^
+  \endchorus
+  \beginchorus
+    Toda |^fonte ^de ri|^queza;\jw
+    A ^Natu|^reza\jw e ^muito |^mais ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "Nova Era"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \repeat volta 2 {
+        \parenthesize c8 c \pomark b | a4( a8) g c4. e8 | g4. e8 a4. e8
+        | g4. e8 a4. g8 | c,2( c8)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        "" Quem be -- | le -- za no u -- ni -- | ver -- so;
+        Meu Pai | es -- tá me gui -- | an -- do.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        E quan -- to | mais "" eu me en -- | tre -- go;
+        Mais E -- | le vai me lim -- | pan -- do.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Eu vou se -- | guin _ -- do, en -- si -- | nan -- do;~O
+        que meu | Pai dei -- xou na | Ter -- ra.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        "" Na co -- | lhei _ -- ta de ir -- | mãos;
+        Quem vem com -- | por a No -- va | E -- ra.
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        "" Eu con -- | vi _ -- do~os meus ir -- | mãos;
+        Se a -- le -- | grar na nos -- sa | fes -- ta.
+      }
+    }
+    theLyricsSix = \lyricmode {
+      \set stanza = "6."
+      \repeat volta 2 {
+        "" Es -- que -- | cer __ _ a i -- lu -- | são;
+        E se fir -- | mar bem na flo -- | res -- ta.
+      }
+    }
+    theLyricsSeven = \lyricmode {
+      \set stanza = "7."
+      \repeat volta 2 {
+        "" Na flo -- | res _ -- ta te -- mos | tu -- do;
+        E -- la, | Ma -- mãe e Pa -- | pai. __ _
+      }
+    }
+    theLyricsEight = \lyricmode {
+      \set stanza = "8."
+      \repeat volta 2 {
+        "" To -- da | fon _ -- te de ri -- | que -- za;~A % This is seen with and without 'a', but apparently with 'a' is more correct grammatically
+        Na -- tu -- | re -- za~e mui -- to | mais. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a1:m | c2 \parenthesize a:m
+        | g2 f | c2~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail-lyricsbelow.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    What beauty in the universe; my Father is guiding me
+    And the more I surrender myself, the more He keeps cleansing me
+    \nextverse
+    I keep following and teaching what my Father left on Earth
+    In the gathering of the brothers and sisters, who come to compose the New Age
+    \nextverse
+    I invite my brothers and sisters to be joyful in our celebration
+    To forget the illusion and firm yourselves well in the forest
+    \nextverse
+    In the forest we have everything: Her, Mother and Father
+    Every source of wealth is Nature and so much more
+  \end{translation}
+\endsong
