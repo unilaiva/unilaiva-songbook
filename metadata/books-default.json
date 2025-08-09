@@ -83,14 +83,29 @@
       }
     },
     {
-      "id": "chords",
-      "iconfile_i18n": { 
+      "id": "music.generic",
+      "iconfile_i18n": {
         "*": "unilaiva-tag-icon-music-generic_512x512px.png"
       },
       "text_i18n": {
-        "en": "chords"
+        "en": "with musical information",
+        "fi": "musiikillisin tiedoin",
+        "pt": "com informação musical"
       }
     },
+    {
+      "id": "chords",
+      "iconfile_i18n": {
+        "en": "unilaiva-tag-icon-chords_EN_512x512px.png",
+        "pt": "unilaiva-tag-icon-chords_PT_512x512px.png",
+        "fi": "unilaiva-tag-icon-chords_FI_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "with chords",
+        "pt": "com acordes",
+        "fi": "soinnuilla"
+      }
+    }
     {
       "id": "chapter1",
       "iconfile_i18n": { 
@@ -163,7 +178,7 @@
       "enabled": true,
       "file": "unilaiva-songbook_A5.pdf",
       "image": "unilaiva-songbook_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "complete.ed", "chords" ],
+      "tag_ids": [ "complete.ed", "music.generic", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook"
       },
@@ -249,7 +264,7 @@
       "enabled": false,
       "file": "unilaiva-songbook_part1_A5.pdf",
       "image": "unilaiva-songbook_part1_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "partial.ed", "chapter1", "chapter2", "chords" ],
+      "tag_ids": [ "partial.ed", "chapter1", "chapter2", "music.generic", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 1"
       },
@@ -323,7 +338,7 @@
       "enabled": false,
       "file": "unilaiva-songbook_part2_A5.pdf",
       "image": "unilaiva-songbook_part2_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "chords" ],
+      "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "music.generic", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 2"
       },
