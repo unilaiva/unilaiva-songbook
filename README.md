@@ -513,6 +513,10 @@ the following string replacements ought to be done in the following order:
 
 Be careful with the whitespaces!
 
+If you are using Unilaiva-specific Lilypond style with `theLyricsOne` etc. to
+present lyrics in your Lilypond, you can use `tools/unilaiva-lyrics-lp2tex.py3`
+script to do the conversion. Run it without arguments for usage information.
+
 #### Melody hints on the chord line ####
 
 The `\mn???` commands display an encircled note name hint above the chord
