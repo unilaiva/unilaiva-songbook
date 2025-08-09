@@ -191,7 +191,7 @@
       "enabled": true,
       "file": "unilaiva-songbook_A5.pdf",
       "image": "unilaiva-songbook_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "complete.ed", "music.generic", "chords" ],
+      "tag_ids": [ "complete.ed", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook"
       },
@@ -277,7 +277,7 @@
       "enabled": false,
       "file": "unilaiva-songbook_part1_A5.pdf",
       "image": "unilaiva-songbook_part1_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "partial.ed", "chapter1", "chapter2", "music.generic", "chords" ],
+      "tag_ids": [ "partial.ed", "chapter1", "chapter2", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 1"
       },
@@ -351,7 +351,7 @@
       "enabled": false,
       "file": "unilaiva-songbook_part2_A5.pdf",
       "image": "unilaiva-songbook_part2_A5_AUTOWIDENOTAGS.png",
-      "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "music.generic", "chords" ],
+      "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 2"
       },
