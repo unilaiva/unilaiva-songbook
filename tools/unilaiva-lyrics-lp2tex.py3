@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# lyrics-from-lp-to-tex.py3
+# unilaiva-lyrics-lp2tex.py3
 #
 # Part of Unilaiva songbook system.
 #
