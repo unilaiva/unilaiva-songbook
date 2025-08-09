@@ -1069,10 +1069,14 @@ while [ $# -gt 0 ]; do
       ;;
     "--deploy-common") # only deploy the common files, do nothing else
       deployfinal="true"
-      rm "${RESULTLIST_FILE}" 2>"/dev/null"; touch "${RESULTLIST_FILE}"
+      # Ensure the result directory exists:
+      mkdir -p "./${RESULT_DIRNAME}" 2>"/dev/null"
+      [ -d "./${RESULT_DIRNAME}" ] || die $? "Could not create the result directory ./${RESULT_DIRNAME}."
+      rm "${RESULTLIST_FILE_IN_RESULTDIR}" 2>"/dev/null";
+      touch "${RESULTLIST_FILE_IN_RESULTDIR}"
       deploy_results
       code=${?}
-      rm "${RESULTLIST_FILE}"
+      rm "${RESULTLIST_FILE_IN_RESULTDIR}"
       exit ${code}
       ;;
     "--no-lyric")
