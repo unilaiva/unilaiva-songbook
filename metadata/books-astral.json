@@ -62,11 +62,24 @@
     },
     {
       "id": "sheetmusic",
-      "iconfile_i18n": {
+      "iconfile_i18n": { 
         "*": "unilaiva-tag-icon-sheetmusic_512x512px.png"
       },
       "text_i18n": {
-        "en": "with sheet music"
+        "en": "with sheet music, treble clef",
+        "pt": "com partitura, clave de sol",
+        "fi": "nuoteilla, G-avain"
+      }
+    },
+    {
+      "id": "sheetmusic.bass",
+      "iconfile_i18n": {
+        "*": "unilaiva-tag-icon-sheetmusic-bass_512x512px.png"
+      },
+      "text_i18n": {
+        "en": "with sheet music, bass clef",
+        "pt": "com partitura, clave de fá",
+        "fi": "nuoteilla, F-avain"
       }
     },
     {
