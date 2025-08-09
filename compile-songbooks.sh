@@ -358,7 +358,7 @@ setup_ui() {
 
 # Returns 0 if directory given as argument exists and is not empty, 1 otherwise.
 dir_notempty() {
-  if [ -d ${1} ]; then
+  if [ -d "${1}" ]; then
     [ "$(ls -A ${1})" ] && return 0
   fi
   return 1
@@ -577,7 +577,7 @@ compile_document() {
           cp "${printout_dsf_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
              || die $? "Error copying printout PDF from temporary directory!"
           echo "${RESULT_TYPE_PRINTOUT_PDF}${RESULT_SEPARATOR}${printout_dsf_basename}.pdf" \
-               >>${RESULTLIST_FILE}
+               >>"${RESULTLIST_FILE}"
 
           # A5 on A4, a A5+A5 spread on single A4 surface: Use 'awk' to create a
           # copy of the printout template file with changed input PDF file name
@@ -592,7 +592,7 @@ compile_document() {
           cp "${printout_sss_basename}.pdf" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_PRINTOUT_SUBDIRNAME}/" \
              || die $? "Error copying printout PDF from temporary directory!"
           echo "${RESULT_TYPE_PRINTOUT_PDF}${RESULT_SEPARATOR}${printout_sss_basename}.pdf" \
-               >>${RESULTLIST_FILE}
+               >>"${RESULTLIST_FILE}"
         fi
       fi
     fi
@@ -613,7 +613,7 @@ compile_document() {
         cp "${currentdoc_basename}.png" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
            || die $? "Error copying ${currentdoc_basename}.png from temporary directory!"
         echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}.png" \
-            >>${RESULTLIST_FILE}
+            >>"${RESULTLIST_FILE}"
         which "convert" >"/dev/null" 2>&1
         if [ $? -ne 0 ]; then
           echo -e "${PRETXT_NOEXEC}${txt_docbase}: Widened tagless cover image not created; no 'convert'"
@@ -626,7 +626,7 @@ compile_document() {
                     -fill white -draw "rectangle 0,0 185,260" \
                     -gravity center \
                     -extent "${COVERIMAGE_AUTOWIDE_WIDTH}x${COVERIMAGE_HEIGHT}" \
-                    ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png \
+                    "${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" \
                     1>>"${log10file}" 2>&1 \
                     || die_log $? "Error modifying cover image!" "${log10file}"
           elif [[ ${currentdoc_basename} == "${ASTRAL_FNAME_PREFIX}"* ]]; then
@@ -635,7 +635,7 @@ compile_document() {
                     -fill white -draw "rectangle 0,0 195,400" \
                     -gravity center \
                     -extent "${COVERIMAGE_AUTOWIDE_WIDTH}x${COVERIMAGE_HEIGHT}" \
-                    ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png \
+                    "${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" \
                     1>>"${log10file}" 2>&1 \
                     || die_log $? "Error modifying cover image!" "${log10file}"
           else
@@ -644,14 +644,14 @@ compile_document() {
                     -fill white -draw "rectangle 0,0 1024,100" \
                     -gravity center \
                     -extent "${COVERIMAGE_AUTOWIDE_WIDTH}x${COVERIMAGE_HEIGHT}" \
-                    ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png \
+                    "${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" \
                     1>>"${log10file}" 2>&1 \
                     || die_log $? "Error modifying cover image!" "${log10file}"
           fi
           cp "${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" "${INITIAL_DIR}/${RESULT_DIRNAME}/${RESULT_IMAGE_SUBDIRNAME}/" \
             || die $? "Error copying ${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png from temporary directory!"
           echo "${RESULT_TYPE_IMAGE}${RESULT_SEPARATOR}${currentdoc_basename}${IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png" \
-              >>${RESULTLIST_FILE}
+              >>"${RESULTLIST_FILE}"
         fi
       fi
     fi
@@ -700,7 +700,7 @@ compile_document() {
   [ -d "./${RESULT_DIRNAME}" ] || die $? "Could not create the result directory ./${RESULT_DIRNAME}."
 
   # Clean old build:
-  [ -d "${temp_dirname_twolevels}" ] && rm -R "${temp_dirname_twolevels}"/* 2>"/dev/null"
+  [ -d "${temp_dirname_twolevels}" ] && rm -R "${temp_dirname_twolevels:?}"/* 2>"/dev/null"
   # Ensure the build directory exists:
   mkdir -p "${temp_dirname_twolevels}" 2>"/dev/null"
   [ -d "${temp_dirname_twolevels}" ] || die $? "Could not create the build directory ${temp_dirname_twolevels}."
@@ -742,7 +742,7 @@ compile_document() {
   if [ ${midifiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (copy midi files)"
     local cur_res_midi_subdirname="${RESULT_DIRNAME}/${RESULT_MIDI_SUBDIRNAME}/${document_basename}"
-    rm -R "${INITIAL_DIR}/${cur_res_midi_subdirname}"/* 2>"/dev/null"
+    rm -R "${INITIAL_DIR:?}/${cur_res_midi_subdirname}"/* 2>"/dev/null"
     mkdir -p "${INITIAL_DIR}/${cur_res_midi_subdirname}" 2>"/dev/null"
     [ -d "${INITIAL_DIR}/${cur_res_midi_subdirname}" ] || die $? "Could not create the midi result directory ./${cur_res_midi_subdirname}."
     local log11file="log-11_copy-midi.log"
@@ -753,23 +753,23 @@ compile_document() {
       || die_log $? "Error copying midi files to result directory" "${log11file}"
     cp "${INITIAL_DIR}/metadata/audio-dirs-Readme.md" "${INITIAL_DIR}/${cur_res_midi_subdirname}/Readme.md"
     echo "${RESULT_TYPE_MIDIDIR}${RESULT_SEPARATOR}${document_basename}" \
-         >>${RESULTLIST_FILE}
+         >>"${RESULTLIST_FILE}"
   fi
   if [ ${audiofiles} == "true" ]; then
     echo -e "${PRETXT_EXEC}${txt_docbase}: unilaiva-copy-audio (encode audio)"
     local cur_res_audio_subdirname="${RESULT_DIRNAME}/${RESULT_AUDIO_SUBDIRNAME}/${document_basename}"
-    rm -R "${INITIAL_DIR}/${cur_res_audio_subdirname}"/* 2>"/dev/null"
+    rm -R "${INITIAL_DIR:?}/${cur_res_audio_subdirname}"/* 2>"/dev/null"
     mkdir -p "${INITIAL_DIR}/${cur_res_audio_subdirname}" 2>"/dev/null"
     [ -d "${INITIAL_DIR}/${cur_res_audio_subdirname}" ] || die $? "Could not create the audio result directory ./${cur_res_audio_subdirname}."
     local log12file="log-12_encode-audio.log"
     # Execute the audio copy tool for encoding audio files
-    ${INITIAL_DIR}/tools/unilaiva-copy-audio.py3 --audio \
+    "${INITIAL_DIR}/tools/unilaiva-copy-audio.py3" --audio \
       "${document_basename}.dep" "${INITIAL_DIR}/${cur_res_audio_subdirname}" \
       1>"${log12file}" 2>&1 \
       || die_log $? "Error encoding audio files!" "${log12file}"
     cp "${INITIAL_DIR}/metadata/audio-dirs-Readme.md" "${INITIAL_DIR}/${cur_res_audio_subdirname}/Readme.md"
     echo "${RESULT_TYPE_AUDIODIR}${RESULT_SEPARATOR}${document_basename}" \
-         >>${RESULTLIST_FILE}
+         >>"${RESULTLIST_FILE}"
   fi
 
   # Create lyrics-only books, if so wanted
@@ -849,7 +849,7 @@ deploy_results() {
   [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] || return
   [ "${deployfinal}" = "true" ] || return
 
-  if [ -f ${RESULTLIST_FILE_IN_RESULTDIR} ]; then
+  if [ -f "${RESULTLIST_FILE_IN_RESULTDIR}" ]; then
     # Result file exists, there is something to deploy; add common files
     # to the file if they don't already exist there
 
@@ -948,7 +948,7 @@ deploy_results() {
       [ -d "${resultdir}/${fname}" ] || die 21 "Could not access directory ${fname} for deployment"
       if dir_notempty "${resultdir}/${fname}"; then
         # do not rm the root dir for possible shares to persist
-        rm -R "${deploydir}/${fname}"/* >"/dev/null" 2>&1
+        rm -R "${deploydir:?}/${fname}"/* >"/dev/null" 2>&1
         mkdir "${deploydir}/${fname}" 2>"/dev/null"
         cp -R "${resultdir}/${fname}"/* "${deploydir}/${fname}/" >"/dev/null" 2>&1
         [ $? -eq 0 ] || die 22 "Could not deploy directory ${deploydir}/${fname}"
@@ -964,7 +964,7 @@ deploy_results() {
         [ ${?} -eq 0 ] || echo -e "${PRETXT_WARNING}'sha256sum' not found in path: file deployed even if no change"
         local newhash="$(sha256sum -b ${resultdir}/${fname} | cut -d' ' -f1)"
         local oldhash="$(sha256sum -b ${deploydir}/${fname} | cut -d' ' -f1)"
-        if [ ${newhash} = ${oldhash} ]; then # files identical
+        if [ "${newhash}" = "${oldhash}" ]; then # files identical
           ((idcontent_skippedcount++))
           continue
         fi
@@ -980,7 +980,7 @@ deploy_results() {
   done < "${RESULTLIST_FILE_IN_RESULTDIR}"
 
   echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Deployed at: $(${datecmd} --rfc-3339=seconds)" \
-     >>${RESULTLIST_FILE_IN_RESULTDIR}
+     >>"${RESULTLIST_FILE_IN_RESULTDIR}"
 
   if [ ${idcontent_skippedcount} -gt 0 ]; then
     echo -e "${PRETXT_NODEPLOY}Files skipped due to identical existing content: ${idcontent_skippedcount}"
@@ -1020,7 +1020,7 @@ setup_ui
 # Bash version 4 or later is required for this script. Test for it and abort
 # if version is lower.
 if [ "${BASH_VERSINFO:-0}" -lt 4 ]; then
-  if [ ${OSTYPE} == 'darwin' ]; then
+  if [ "${OSTYPE}" == 'darwin' ]; then
     echo "You seem to be running MacOS, which by default has a BASH version 3,"
     echo "and this script requires a minimum of version 4."
     echo ""
@@ -1049,7 +1049,7 @@ fi
 datecmd='date' # the default
 # Use gdate (from Homebrew:coreutils) instead of date if on MacOS and
 # gdate binary exists
-if [ ${OSTYPE} == 'darwin' ]; then
+if [ "${OSTYPE}" == 'darwin' ]; then
   which "gdate" >"/dev/null" && datecmd='gdate'
 fi
 
@@ -1069,10 +1069,10 @@ while [ $# -gt 0 ]; do
       ;;
     "--deploy-common") # only deploy the common files, do nothing else
       deployfinal="true"
-      rm ${RESULTLIST_FILE} 2>"/dev/null"; touch ${RESULTLIST_FILE}
+      rm "${RESULTLIST_FILE}" 2>"/dev/null"; touch "${RESULTLIST_FILE}"
       deploy_results
       code=${?}
-      rm ${RESULTLIST_FILE}
+      rm "${RESULTLIST_FILE}"
       exit ${code}
       ;;
     "--no-lyric")
@@ -1186,7 +1186,9 @@ if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then # not in container (yet)
     if [ -L "${TEMP_DIRNAME}" ]; then
       # Old temp is a symlink, and we'll be using a subdir, so delete everything
       # from the old location
-      rm -R "${TEMP_DIRNAME}"/{*,.*} 2>"/dev/null"
+      rm -Rf -- "${TEMP_DIRNAME:?}"/* 2>"/dev/null"
+      rm -Rf -- "${TEMP_DIRNAME:?}"/.[!.]* 2>"/dev/null"
+      rm -Rf -- "${TEMP_DIRNAME:?}"/..?* 2>"/dev/null"
       rm "${TEMP_DIRNAME}" # remove the symlink
     fi
     # Create the 1st level temporary directory in case it doesn't exist.
@@ -1258,7 +1260,7 @@ if [ ${partialbooks} = "true" ]; then  # add partial books
 fi
 if [ ${astralbooks} = "true" ]; then
   i=0
-  for f in ${ASTRAL_FNAME_PREFIX}*.tex
+  for f in "${ASTRAL_FNAME_PREFIX}"*.tex
   do
     if [ -f "${f}" ]; then  # if normal file
       docs[doc_count]="${f%.tex}" ; ((doc_count++))
@@ -1267,7 +1269,7 @@ if [ ${astralbooks} = "true" ]; then
 fi
 if [ ${selections} = "true" ]; then  # add selecion booklets
   i=0
-  for f in ${SELECTION_FNAME_PREFIX}*.tex
+  for f in "${SELECTION_FNAME_PREFIX}"*.tex
   do
     if [ -f "${f}" ]; then  # if normal file
       docs[doc_count]="${f%.tex}" ; ((doc_count++))
@@ -1276,7 +1278,7 @@ if [ ${selections} = "true" ]; then  # add selecion booklets
 fi
 
 
-[ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ] \
+[ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ] \
   && dockerized_text="NO ${C_YELLOW}(this is not recommended!)" \
   || dockerized_text="YES ${C_RESET}(max memory: ${MAX_DOCKER_MEMORY})"
 [ ${parallel} = "true" ] \
@@ -1357,7 +1359,7 @@ done
 wait # wait for all jobs to end, returns always 0
 
 echo "${RESULT_TYPE_INFO}${RESULT_SEPARATOR}Compilation ended succesfully at: $(${datecmd} --rfc-3339=seconds)" \
-     >>${RESULTLIST_FILE}
+     >>"${RESULTLIST_FILE}"
 cp "${RESULTLIST_FILE}" "${RESULTLIST_FILE_IN_RESULTDIR}"
 
 deploy_results # does nothing, if within Docker container
@@ -1382,7 +1384,7 @@ else
   fi
 fi
 
-if [ -z ${IN_UNILAIVA_DOCKER_CONTAINER} ]; then
+if [ -z "${IN_UNILAIVA_DOCKER_CONTAINER}" ]; then
   echo ""
   echo -e "${TXT_DONE}"
   echo ""
