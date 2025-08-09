@@ -85,7 +85,7 @@
     {
       "id": "chords",
       "iconfile_i18n": {
-        "*": "unilaiva-tag-icon-music_512x512px.png"
+        "*": "unilaiva-tag-icon-music-generic_512x512px.png"
       },
       "text_i18n": {
         "en": "chords"
