@@ -1,9 +1,9 @@
-    %% lp-include-tail-lyricsbelow.ly
-    %% ==============================
+    %% lp-include-tail-lyricsbetween.ly
+    %% ================================
     %%
     %% This file should be included as the last thing within 'lilypond'
-    %% environment, and creates a score with chord names, notes, guitar
-    %% tabulature and lyrics, in that order, if they have been defined.
+    %% environment, and creates a score with chord names, notes, lyrics
+    %% and guitar tabulature, in that order, if they have been defined.
     %%
     %% Requires that 'lp-include-head.ly' has been included before.
     %%
@@ -20,7 +20,6 @@
           \clef "treble"
           \new Voice = "theVoice" { \theMelody }
         }
-        \include "tex/lp-internal-tabstaff.ly"
         \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
         \new Lyrics \lyricsto "theVoice" { \theLyricsThree }
@@ -31,6 +30,7 @@
         \new Lyrics \lyricsto "theVoice" { \theLyricsEight }
         \new Lyrics \lyricsto "theVoice" { \theLyricsNine }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTen }
+        \include "tex/lp-internal-tabstaff.ly"
       >>
       \layout { }
     }

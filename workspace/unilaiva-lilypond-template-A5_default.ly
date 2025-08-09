@@ -55,18 +55,18 @@
 
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
-    %\include "tex/lp-include-tail-lyricsbelow.ly"
+    %\include "tex/lp-include-tail.ly"
 %   \end{lilypond}\end{lilywrap}
 
 % END SONG DATA
 
 
 
-% The following is grabbed from tex/lp-include-tail-lyricsbelow.ly and its child
+% The following is grabbed from tex/lp-include-tail.ly and its child
 % includes. They are here for easy changes, and for including the chords in the
 % MIDI output when transcribing.
 
-% BEGIN lp-include-tail-lyricsbelow.ly without the include
+% BEGIN lp-include-tail.ly without the include
 
     \score {
       <<
@@ -94,7 +94,7 @@
       >>
     }
 
-% END lp-include-tail-lyricsbelow.ly
+% END lp-include-tail.ly
 
 % BEGIN lp-internal-midi.ly (with chords uncommented)
 
