@@ -1,4 +1,5 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
 # unilaiva-copy-audio.py3
 #
@@ -11,6 +12,10 @@
 # file are required.
 #
 # Run with '-h' argument for usage info.
+#
+# Author: Lari Natri
+#
+# License: GPLv3
 #
 
 
