@@ -1145,7 +1145,7 @@
 \providecommand{\insertcovericons}{\insertcovericonshbc}%
 
 % The icon (in default image path) used to signify a lyrics-only book.
-\providecommand{\nolyricsicon}{unilaiva-tag-icon-lyrics-only_EN_512x512px.png}%
+\providecommand{\lyricsonlyicon}{unilaiva-tag-icon-lyrics-only_EN_512x512px.png}%
 
 % The icon (in default image path) used to signify a charango book.
 \providecommand{\charangobookicon}{unilaiva-tag-icon-charango_512x512px}%
@@ -1201,8 +1201,8 @@
   \iflyriconly% skip given set ii icons in lyric-only books
     \IfBooleanTF{#1}{% true, yes star --> set variant icon set empty
       \setcovericonsvar%
-    }{% false, no star --> replace variant icon set with nolyricsicon
-      \setcovericonsvar[\nolyricsicon]%
+    }{% false, no star --> replace variant icon set with lyricsonlyicon
+      \setcovericonsvar[\lyricsonlyicon]%
     }%
   \else%
     \ifcharangobook% skip given set ii icons in charango books
