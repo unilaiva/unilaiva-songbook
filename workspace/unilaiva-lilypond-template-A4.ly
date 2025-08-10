@@ -66,7 +66,7 @@
 % includes. They are here for easy changes, and for including the chords in the
 % MIDI output when transcribing.
 
-% BEGIN lp-include-tail.ly without the include
+% BEGIN lp-include-tail.ly (and its includes) without the include
 
     \score {
       <<
@@ -91,6 +91,8 @@
         \new Lyrics \lyricsto "theVoice" { \theLyricsEight }
         \new Lyrics \lyricsto "theVoice" { \theLyricsNine }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTen }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsEleven }
+        \new Lyrics \lyricsto "theVoice" { \theLyricsTwelve }
       >>
     }
 
