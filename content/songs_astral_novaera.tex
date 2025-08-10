@@ -537,3 +537,135 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Pai dos Pais}[by={Padr. Alfredo}, off={Alvino}, key={C}, gk={D, C--E}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/05-cuidado-do-padrinho?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio[]{https://nossairmandade.com/hymn/107/PaiDosPais}
+  \newchords{chords_paidospais_a}\newchords{chords_paidospais_b}
+  \transpose{-2}
+  % verse 1
+  \beginchorus\memorize[chords_paidospais_a]
+    \[^\mn{D}]Quan\[^\mn{E}]to |\[\mnc{F#}D]mais \[^\mn{A}]an\[\mnc{E}A]do \[^\mn{D}]mais |\[\mnc{B}Bm]ve\[^\mn{A}]jo
+    \[\bmc\mn{D}]E a|viso aos \[\bmc\mn{E}]meus \[^\mn{D}]ir|\[\mnc{F#}D]mãos \[\bm]
+  \endchorus\glueverses\beginchorus\memorize[chords_paidospais_b]
+    \[^\mn{D}]Cui|\[\mnc{B}Bm]da\[\bmc\mn{A}]do, \[^\mn{D}]cui|\[\mnc{F#}D]da\[\bm]do
+    \[^\mn{D}]Do \[^\mn{E}]Pa|\[^\mn{F#}]drinho \[^\mn{A}]Se\[\mnc{E}A]bas\[^\mn{F#}]ti|\[\mnc{D}D]ão \[\bm]
+  \endchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_paidospais_a]
+    O cui|^dado ^do Pa|^drinho\jw \altchords{\id[1]{(D)}|D A |Bm}
+    É ^um a|viso ^de ir|^mão ^ \altchords{| - |D}
+  \endchorus\glueverses\beginchorus\replay[chords_paidospais_b]
+    Um, |^um, ^um, hum, |^hum ^ \altchords{|Bm |D}
+    Se a|\noteson{}cor\[\mnlow{A}]dem\notesoff{} ^meus ir|^mãos ^ \altchords{| - A |C}
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_paidospais_a]
+    Salve\jw o |^grande ^Pai dos |^Pais
+    ^Viva\jw a |Nossa ^Virgem |^Mãe ^
+  \endchorus\glueverses\beginchorus\noteson
+    Viva |\[Bm]nós \[\mnlow{A}]co\[\bmc\mnlow{D}]mo seus |\[D]fi\[\bm]lhos
+    Viva |nos\[\mnlow{A}]sa \[A]salva|\[D]ção \[\bm]
+  \endchorus
+  % verse 4
+  \beginchorus\replay[chords_paidospais_a]
+    Para |^ser fi^lho de |^Deus \altchords{\id[2]{(E)}|E B |C\shrp{}m}
+    ^É pre|ciso ^todo\jw a|^mor ^ \altchords{| - |E}
+  \endchorus\glueverses\beginchorus\noteson
+    Ser fi|\[Bm]el \[\mnlow{A}]{e\jw o}\[\bmc\mnlow{D}]bedi|\[D]en\[\bm]te \altchords{|C\shrp{}m |E}
+    A Jesus |Cris\[\mnlow{A}]to \[A]Reden|\[D]tor \[\bm] \altchords{| - B |E}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "Pai dos Pais"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \transpose d c \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 4
+      \sectionLabel "A"
+      \repeat volta 2 {
+        d8 e | fis4 a e d | b( a) d d | d d8 \parenthesize d e4 d | fis2.
+      } \break
+      \sectionLabel "B"
+      \repeat volta 2 {
+        d8( d8) | b4. \altcol \parenthesize a8 \altmark "3. & 4." << a4 \single\altcol d >> d | fis2( fis8) \parenthesize d d e | fis4 << fis8 \single\altcol a \altmark "2., 3., 4." \single\altcol ( >> a) e4 fis | d2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Quan -- to | mais an -- do mais | ve -- jo;
+        E a -- | vi -- so aos meus ir -- | mãos.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Cui _ -- | da _ -- do, cui -- | da -- do;
+        "" Do Pa -- | dri -- nho Se -- bas -- ti -- | ão.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        O cui -- | da -- do do Pa -- | dri -- nho;~É
+        um a -- | vi -- so "" de ir -- | mão.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Um, __ _ | um, "" um, hum, | hum; __ _
+        "" Se a -- | cor -- \altcol dem __ _ meus ir -- | mãos.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Sal -- ve~o | gran -- de Pai dos | Pais; __ _
+        Vi -- va~a | Nos -- sa "" Vir -- gem | Mãe.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Vi -- va | nós \altcol co -- \altcol mo seus | fi -- lhos;
+        "" Vi -- va | nos -- \altcol sa __ _ sal -- va -- | ção.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Pa -- ra | ser fi -- lho de | Deus; __ _
+        É pre -- | ci -- so "" to -- do~a -- | mor.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Ser fi -- | el \altcol e~o -- \altcol be -- di -- | en -- te;
+        A Je -- sus | Cris -- \altcol to __ _ Re -- den -- | tor.
+      }
+    }
+    theChords = \transpose d c \chordmode {
+      \repeat volta 2 {
+        s4 | d2 a2 | b1:m | b:m | d2.
+      }
+      \repeat volta 2 {
+        s4 | b1:m | d | d2 a | d2.
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    The more I walk the more I see, and I warn my brothers and sisters
+    The warning, the warning, of Padrinho Sebastião
+    \nextverse
+    The warning of Padrinho is a warning from a brother
+    Um, um, um, hum, hum, wake up my brothers and sisters
+    \nextverse
+    Hail the great Father of fathers, viva our Virgin Mother
+    Viva us as Your children, viva our salvation
+    \nextverse
+    To be a child of God one needs complete love
+    To be faithful and obedient to Jesus Christ the Redeemer
+  \end{translation}
+\endsong
