@@ -391,3 +391,149 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Calma \\ Sou Filho do Meu Pai}[by={Padr. Alfredo}, off={Akira}, key={A}, gk={A, A\flt{}--A}]
+  \audio[key=G]{https://soundcloud.com/canaljagube/04-a-verdade-e-uma-so?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio[]{https://nossairmandade.com/hymn/106/SouFilhoDoMeuPai}
+  \newchords{chords_calma_a}\newchords{chords_calma_b}
+  % verse 1
+  \mnbeginchorus\memorize[chords_calma_a]
+    \[^\mn{E}]Sou |\[\mnc{A}A]filho \[^\mn{C#}]do \[^\mn{E}]meu \[\bmc\mn{A}]Pai, e \[^\mn{G#}]meu |\[\mnc{B}Bm]Pai é \[^\mn{F#}]quem me \[\mnc{E}E]dá
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_calma_b]
+    \[^\mn{C#}]Para |\[\mnc{F#}F#m]Deus tu\[^\mn{E}]{do\jw está} \[\mnc{B}Bm]feito, \[^\mn{G#}]não \[^\mn{B}]pre|\[\mnc{E}E]cisa \[^\mn{B}]{se\jw a}\[^\mn{C#}]ve\[\mnc{A}A]xar
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_calma_a]
+    Va|^mos seguir com ^calma, que com |^calma Deus es^tá
+  \endchorus\glueverses\beginchorus\replay[chords_calma_b]
+    |^No céu e nos ^astros, na flo|^resta, vento\jw e ^mar
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_calma_a]
+    No |^homem na mu^lher, e em |^toda cria^ção \altchords{\id[1]{(G)}|G |Am D}
+  \endchorus\glueverses\beginchorus\replay[chords_calma_b]
+    Deixa |^tudo\jw aconte^cer no po|^der de São Jo^ão \altchords{|Em Am |D G}
+  \endchorus
+  % verse 4
+  \beginchorus\replay[chords_calma_a]
+    Deste |^lado e do ^outro, a ver|^dade\jw é uma ^só
+  \endchorus\glueverses\beginchorus\replay[chords_calma_b]
+    O meu |^Mestre\jw está se^guro, junto |^com\jw a força mai^or
+  \endchorus
+  % verse 5
+  \beginchorus\replay[chords_calma_a]
+    Esta |^é uma cla^reza que me |^veio do as^tral \altchords{\id[2]{(B)}|B |C\shrp{}m F\shrp{}}
+  \endchorus\glueverses\beginchorus\replay[chords_calma_b]
+    |^Andar direi^tinho na dou|^trina do meu ^Pai \altchords{|G\shrp{}m C\shrp{}m |F\shrp{} B}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "Calma"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \major \time 4/4 \partial 4
+      \mark \markup \with-color #darkgreen \italic "Final: toque tudo"
+      \sectionLabel "A"
+      \repeat volta 2 {
+        \parenthesize e8 \pomark e | a,8 a cis e a8( a) a gis | b b fis fis e4
+      }
+      \sectionLabel "B"
+      \repeat volta 2 {
+        \parenthesize cis8 \parenthesize cis | fis fis e e b( b) gis b | e e b cis a4
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        "" Sou | fi -- lho do meu Pai, __ _
+        E meu | Pai é quem me dá.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Pa -- ra | Deus tu -- do~es -- tá fei -- to,
+        Não pre -- | ci -- sa se~a -- ve -- xar.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        "" Va -- | mos se -- guir com cal -- ma,
+        Que com | cal -- ma Deus es -- tá
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        "" "" | No céu e nos as -- tros,
+        Na flo -- | res -- ta, ven -- to~e mar.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        "" No | ho -- mem na mu -- lher, __ _
+        E em | to -- da cri -- a -- ção.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Dei -- xa | tu -- do~a -- con -- te -- cer, __ _
+        No po -- | der de São Jo -- ão.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Des -- te | la -- do e do ou -- tro,
+        A ver -- | da -- de~é u -- ma só.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        O meu | Mes -- tre~es -- tá se -- gu -- ro,
+        Jun -- to | com~a for -- ça mai -- or.
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        Es -- ta | é u -- ma cla -- re -- za,
+        Que me | vei -- o do as -- tral.
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        "" "" | An -- dar di -- rei -- ti -- nho,
+        Na dou -- | tri -- na do meu Pai.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | a1 | b2:m e4
+      }
+      \repeat volta 2 {
+        s4 | fis2:m b:m | e:7 a4
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I am a son of my Father, and my Father is who gives to me
+    For God all is done, there is no need to hurry
+    \nextverse
+    Let's follow with calmness, because with calmness God is
+    In the sky and in the astral bodies, in the forest, wind and sea
+    \nextverse
+    In man in woman, and in all of creation
+    He lets let everything happen in the power of St. John
+    \nextverse
+    On this side and the other, the truth is just one
+    My Master is secure, together with the higher force
+    \nextverse
+    This is a clarity that came to me from the astral
+    To walk straight and narrow in the doctrine of my Father
+  \end{translation}
+\endsong
+
