@@ -231,19 +231,22 @@
     Quem |^é |{ } vo|cê, |{ } meu ir|^mão? |{ }{ }{ } |^{ } | \e
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, updated on 2022-10
+    % transcribed by larva, updated on 2025-08
     theMelody = \transpose e b, \relative b'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key e \minor \time 3/4 \partial 2
-      b4 _\posectionmark "A" g4 | e2.~ | e4 e4 e4 | e e e | e g e | fis2 dis4 | b2.~ | b2.~ | b4
+      \sectionLabel "A"
+      b4 \pomark g4 | e2.~ | e4 e4 e4 | e e e | e g e | fis2 dis4 | b2.~ | b2.~ | b4
       b'4 g4 | e2.~ | e4 e4 e4 | e e e | e g e | fis2.~ | fis2.~ | fis2.~ | fis4
+      \sectionLabel "B"
       \repeat volta 2 {
-        fis4 \sectionmark "B" g | a2.~ | a4 a4 b4 | c2.( | c2) e4 | b2.~ | b2 g4 | e2.~ | e2
+        fis4 g | a2.~ | a4 a4 b4 | c2.( | c2) e4 | b2.~ | b2 g4 | e2.~ | e2
         g4 | fis2.~ | fis2 dis4 | b2.~ | b4 g'4 fis4 | e2.~ | e2.~
       } \alternative {
         { | e2.~ | e4 }
-        { | e2.~ \repeatTie | e4 \bar "|." }
+        { | e2.~ \repeatTie | e4 }
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
@@ -286,7 +289,7 @@
       }
     }
     theChords = \transpose e b, \chordmode {
-      r2 | e2.:m | e:m | e:m | e:m
+      s2 | e2.:m | e:m | e:m | e:m
       | b2.:7 | b:7 | b:7 | b:7
       | e2.:m | e2.:m | e:m | e:m
       | b2.:7 | b:7 | b:7 | b4:7
