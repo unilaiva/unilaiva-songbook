@@ -669,3 +669,149 @@
     To be faithful and obedient to Jesus Christ the Redeemer
   \end{translation}
 \endsong
+
+
+\beginsong{O Barquinho}[by={Padr. Alfredo}, off={Artur}, key={Bm}, gk={Cm, (Bm)--(Cm)}]
+  \audio[]{https://nossairmandade.com/hymn/108/OBarquinho}
+  \audio[key=Am]{https://soundcloud.com/canaljagube/06-barquinho?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \transpose{2}
+  \newchords{chords_barquinho_a}\newchords{chords_barquinho_b}
+  % verse 1
+  \beginchorus\memorize[chords_barquinho_a]
+    \[^\mn{E}]Meu |\[\mnc{A}Am]Pai \[^\mn{C}]é \[\bmc\mn{B}]tu\[^\mn{C}]{do\jw e} |\[^\mn{A}]to\[\bm]do, \[^\mn{C}]meu |\[^\mn{A}]Pai \[^\mn{C}]não \[\bmc\mn{A}]é \[^\mn{C}]ru|\[\mnc{E}E]im \[\bm]
+  \endchorus\glueverses
+  \beginchorus\memorize[chords_barquinho_b]
+    \[^\mn{E}]Eu a|\[\mnc{A}Am]cre\[^\mn{E}]di\[\bmc\mn{C}]{to\jw em} \[^\mn{B}]meu |\[^\mn{A}]Pai \[\bm]e \[^\mn{C}]a|\[^\mn{A}]cre\[^\mn{C}]di\[\bmc\mn{A}]to \[^\mn{C}]em |\[\mnc{E}E]mim \[\bm]
+    Sou |\[\mnc{A}Am]fi\[^\mn{E}]lho \[\bmc\mn{C}]da \[^\mn{B}]Ra|\[^\mn{A}]inha \[\bmc\mn{E}]e \[^\mn{C}]vi|\[\mnc{B}E]vo \[^\mn{D}]nes\[\mnc{C}E7]te \[^\mn{B}]jar|\[\mnc{A}Am]dim \[\bm]
+  \endchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_barquinho_a]
+    Na|^vego ^nesta |força ^do su|premo ^Cria|^dor ^ \altchords{\id[1]{(Am)}|Am | - | - |E}
+  \endchorus\glueverses\beginchorus\replay[chords_barquinho_b]
+    No bar|^quinho ^da fir|meza, ^da jus|tiça\jw e ^do a|^mor ^ \altchords{|Am | - | - |E}
+    Com |^mamãe ^natu|reza, ^mãe do |^nosso ^Salva|^dor ^ \altchords{|Am | - |E E7 |Am}
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_barquinho_a]
+    No |^meio ^destas |ondas ^me le|vas a ^conhe|^cer ^ \altchords{\id[2]{(Cm)}|Cm | - | - |G}
+  \endchorus\glueverses\beginchorus\replay[chords_barquinho_b]
+    O |^poder ^destas |ilhas ^no seu |divi^no po|^der ^ \altchords{|Cm | - | - |G}
+    Terre|^motos ^e vul|cões ^ faz |^tudo\jw es^treme|^cer ^ \altchords{|Cm | - |G G7 |Cm}
+  \endchorus
+  % verse 4
+  \beginchorus\replay[chords_barquinho_a]
+    Só a |^força ^do meu |Pai é ^quem faz |tudo ^renas|^cer ^ \altchords{\id[3]{(Dm)}|Dm | - | - |A}
+  \endchorus\glueverses\beginchorus\replay[chords_barquinho_b]
+    O |^Santo Po^der da |vida ^se trans|forma\jw e ^faz cres|^cer ^ \altchords{|Dm | - | - |A}
+    Viva |^terra, ^viva\jw o |mar, e ^viva |^o a^manhe|^cer \altchords{|Dm | - |A A7 |Dm}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "O Barquinho"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \transpose a b \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 4/4 \partial 4
+      \sectionLabel "A"
+      \repeat volta 2 {
+        e8( e) | a4 c b c | a4.( a8) a4 c | a c a c | e2.
+      }
+      \sectionLabel "B"
+      \repeat volta 2 {
+        e8( e) | a4 e8( e) c4 b | a4.( a8) a4 c | a c a c | e2.
+        e8( e) | a4 e c b | a4.( a8) \parenthesize e4 c' | b d c b | a2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Meu __ _ | Pai é tu -- do~e | to _ -- do
+        Meu | Pai não é ru -- | im.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Eu a -- | cre -- di _ -- to~em meu | Pai __ _
+        E a -- | cre -- di -- to em | mim;
+        Sou __ _ | fi -- lho da Ra -- | i -- nha
+        E vi -- | vo nes -- te jar -- | dim.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Na _ -- | ve -- go nes -- ta | for -- ça
+        Do su -- | pre -- mo Cri -- a -- | dor.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        No bar -- | qui -- nho __ _ da fir -- | me -- za
+        Da jus -- | ti -- ça~e do a -- | mor;
+        Com __ _ | ma -- mãe na -- tu -- | re -- za
+        Mãe do | nos -- so Sal -- va -- | dor.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        No __ _ | mei -- o des -- tas | on -- das
+        Me le -- | vas a co -- nhe -- | cer.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        O __ _ | po -- der __ _ des -- tas | i -- lhas 
+        No seu | di -- vi -- no po -- | der;
+        Ter -- re -- | mo -- tos e vul -- | cões __ _
+        "" Faz | tu -- do~es -- tre -- me -- | cer.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Só a | for -- ça do meu | Pai
+        É quem faz | tu -- do re -- nas -- | cer.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        O __ _ | San -- to Po -- der da | vi -- da
+        Se trans -- | for -- ma~e faz cres -- | cer;
+        Vi -- va | ter -- ra, vi -- va~o | mar
+        E vi -- va | o a -- ma -- nhe -- | cer.
+      }
+    }
+    theChords = \transpose a b \chordmode {
+      \repeat volta 2 {
+        s4 | a1:m | a:m | a:m | e2.
+      }
+      \repeat volta 2 {
+        s4 | a1:m | a:m | a:m | e
+        | a1:m | a:m | e2 e:7 | a2.:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    My Father is everything and all, my Father is not bad
+    I believe in my Father and I believe in me
+    I am son of the Queen and I live in this garden
+    \nextverse
+    I navigate in this force of the supreme Creator
+    In the little boat of firmness, of justice and love
+    With Mother nature, the Mother of our Savior
+    \nextverse
+    In the midst of these waves You take me to understand
+    The power of these islands in their divine power
+    Earthquakes and volcanoes make everything shake
+    \nextverse
+    Only the force of my Father is what makes everything be reborn
+    The Holy Power of life that transforms and makes grow
+    Viva the Earth, viva the Sea, and viva the dawn
+  \end{translation}
+\endsong
+
+
