@@ -1,5 +1,7 @@
-    %% lp-include-tail-multivoice-notab.ly
-    %% ===================================
+    %% lp-include-tail-multivoice-notab_bassclef.ly
+    %% ============================================
+    %%
+    %% Bass clef version.
     %%
     %% This file should be included as the last thing within 'lilypond'
     %% environment, and creates a score with chord names, notes with
@@ -20,9 +22,9 @@
           \theChords
         }
         \new Staff <<
-          \clef "treble"
-          \new Voice = "theVoice" { \theMelody }
-          \new Voice = "theVoiceTwo" { \theMelodyTwo }
+          \clef "bass"
+          \new Voice = "theVoice" { \transpose c c,, \theMelody }
+          \new Voice = "theVoiceTwo" { \transpose c c,, \theMelodyTwo }
         >>
         \include "tex/lp-internal-scorepart-lyrics.ly"
       >>

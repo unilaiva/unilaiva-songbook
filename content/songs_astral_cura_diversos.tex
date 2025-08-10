@@ -592,14 +592,14 @@
         \new ChordNames { \theChords }
         \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
         \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
-        \include "tex/lp-internal-tabstaff.ly"
+        \include "tex/lp-internal-scorepart-tabstaff.ly"
         \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
         \new Lyrics \lyricsto "theVoice" { \theLyricsFour }
         \new Lyrics \lyricsto "theVoice" { \theLyricsSix }
       >>
       \layout { }
     }
-    \include "tex/lp-internal-midi-score.ly"
+    \include "tex/lp-internal-score-midi.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]\iflyriconly\scriptsize\fi% to fit on one page in lyrics-only book
     If you relax the Daime cures, if you relax the Daime helps

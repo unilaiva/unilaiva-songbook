@@ -79,6 +79,7 @@ ASTRAL_FNAME_PREFIX="unilaiva-astral" # filename prefix for unilaiva astral book
 SELECTION_FNAME_PREFIX="ul-selection" # filename prefix for selections
 LYRICSONLY_FNAMEPART="_LYRICS-ONLY" # added to filenames for lyrics-only books
 CHARANGO_FNAMEPART="_CHARANGO" # added to filenames for charango books
+BASSCLEF_FNAMEPART="_BASSCLEF" # added to filenames for bass clef books
 NODEPLOY_FNAMEPART="_NODEPLOY" # files having this in their name are not deployed
 PAPERA5_FNAMEPART="_A5" # files having this in their name are treated as having A5 size pages
 TEMP_DIRNAME="temp" # just the name of a subdirectory, not an absolute path
@@ -797,7 +798,6 @@ compile_document() {
   if [ ${extrainstrumentbooks} == "true" ]; then
     grep '%%%CREATE_VERSION_CHARANGO%%%' "${document_basename}.tex" >"/dev/null"
     if [ $? -eq 0 ]; then
-      cp "tex/lp-internal-common-head.ly" "tex/lp-internal-common-head_original.ly"
       local chadoc_bname_pre=$(echo "${document_basename}" \
             | awk '{ split($0, arr, "_A[0-9]"); print arr[1] }')
       local chadoc_bname_post=$(echo "${document_basename}" "${chadoc_bname_pre}" \
@@ -806,7 +806,7 @@ compile_document() {
       cat "${INITIAL_DIR}/${document_basename}.tex" \
         | sed -e 's/\(\\input{.*setup_.*\.tex}\)/\\input{tex\/internal-charangobook-presetup.tex}\1\\input{tex\/internal-charangobook-postsetup.tex}/g' \
         >>"${charangodoc_basename}.tex"
-      cat "tex/lp-internal-common-head_original.ly" \
+      cat "${INITIAL_DIR}/tex/lp-internal-common-head.ly" \
         | sed -e 's/ul-chosen-tuning = #ul-guitar-tuning/ul-chosen-tuning = #ul-charango-tuning/g' \
         >"tex/lp-internal-common-head.ly"
       # TODO: Make better copy that copies everything but the img folder,
@@ -823,6 +823,41 @@ compile_document() {
                     || die_log $? "Error running lilypond-book!" "${log01file}"
       cp -R "lp_charango_output"/* ./ && rm -R "lp_charango_output"
       compile_document_sub "${charangodoc_basename}" "$2" "charango-"
+      # Restore original config files
+      cp "${INITIAL_DIR}/tex/lp-internal-common-head.ly" "tex/lp-internal-common-head.ly"
+    fi
+    grep '%%%CREATE_VERSION_BASSCLEF%%%' "${document_basename}.tex" >"/dev/null"
+    if [ $? -eq 0 ]; then
+      local bassdoc_bname_pre=$(echo "${document_basename}" \
+            | awk '{ split($0, arr, "_A[0-9]"); print arr[1] }')
+      local bassdoc_bname_post=$(echo "${document_basename}" "${bassdoc_bname_pre}" \
+            | awk '{ split($1, arr, $2); print arr[2] }')
+      local bassdoc_basename="${bassdoc_bname_pre}${BASSCLEF_FNAMEPART}${bassdoc_bname_post}"
+      cat "${INITIAL_DIR}/${document_basename}.tex" \
+        | sed -e 's/\(\\input{.*setup_.*\.tex}\)/\\input{tex\/internal-bassclefbook-presetup.tex}\1\\input{tex\/internal-bassclefbook-postsetup.tex}/g' \
+        >>"${bassdoc_basename}.tex"
+      # Replace lilypond tail includes with bass clef variants
+      for f in "${INITIAL_DIR}/tex/"/lp-include-tail*_bassclef.ly; do
+        # Remove "_bassclef" from the filename
+        local newname=$(basename "$f" | sed 's/_bassclef//')
+        cp "$f" "tex/$newname"
+      done
+      # TODO: Make better copy that copies everything but the img folder,
+      # so that other subfolders will be included too
+      cp "${INITIAL_DIR}/content"/*.tex "content/"
+      rm ./tmp* ./idx_*.sxd ./idx_*.sbx 2>"/dev/null"
+      rm ??/* 2>"/dev/null" # Remove earlier lp generated files, as otherwise .pdfs won't be replaced
+      local log01file="bassclef-log-01_lilypond.log"
+      local txt_docbasebassclef="${C_DGRAY}[${2}${bassdoc_basename}${C_DGRAY}]${C_RESET}"
+      echo -e "${PRETXT_EXEC}${txt_docbasebassclef}: lilypond-book"
+      lilypond-book -f latex --latex-program=lualatex --output="lp_bassclef_output" \
+                    "${bassdoc_basename}.tex" \
+                    1>"${log01file}" 2>&1 \
+                    || die_log $? "Error running lilypond-book!" "${log01file}"
+      cp -R "lp_bassclef_output"/* ./ && rm -R "lp_bassclef_output"
+      compile_document_sub "${bassdoc_basename}" "$2" "bassclef-"
+      # Restore original config files
+      cp "${INITIAL_DIR}/tex"/lp-include-tail*.ly "tex/"
     fi
   fi
 

@@ -25,7 +25,7 @@
   \section{About Chords}
 }
 
-\ifcharangobook\else% % do not show guitar chords for charango books
+\ifcharangobook\else\ifbassclefbook\else% % do not show guitar chords for special variants
   \IfLangTF{portuguese}{%
     \subsection*{Acordes para Violão}
   }{%
@@ -60,7 +60,7 @@
       \gtab{G7sus4}{330011:340011} \gtab{G6}{XX5430:003210} \gtab{Gm6}{312030:312040} \\
   \gtab{A&7}{464544:131222} \\
   \vfill
-\fi%
+\fi\fi%
 
 \IfLangTF{portuguese}{%
   \subsection*{Modos e Acordes}

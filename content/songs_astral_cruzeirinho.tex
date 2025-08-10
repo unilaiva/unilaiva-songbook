@@ -1190,7 +1190,7 @@
             \override StaffGrouper.staffgroup-staff-spacing.padding = #5
           } <<
             \new Staff { \clef "treble" \transpose c' c \new Voice = "theVoice" { \theMelody } }
-            \include "tex/lp-internal-tabstaff.ly" % the normal tabstaff
+            \include "tex/lp-internal-scorepart-tabstaff.ly" % the normal tabstaff
             \new TabStaff { % transposed only one octave down
               \tabFullNotation \stemDown
               \clef "moderntab" \set minimumFret = #10  \transpose c' c \theMelody
@@ -1199,7 +1199,7 @@
         >>
         \layout { }
       }
-      \include "tex/lp-internal-midi-score.ly"
+      \include "tex/lp-internal-score-midi.ly"
     \end{lilypond}\end{lilywrap}
     \vspace*{\fill}\vspace{6em}\brk % to push the rest onto the next page (or column)
     \musicnotefornext{(C):}
@@ -1241,7 +1241,7 @@
             \override StaffGrouper.staffgroup-staff-spacing.padding = #5
           } <<
             \new Staff { \clef "treble" \transpose c' c \new Voice = "theVoice" { \theMelody } }
-            \include "tex/lp-internal-tabstaff.ly" % the normal tabstaff
+            \include "tex/lp-internal-scorepart-tabstaff.ly" % the normal tabstaff
             \new TabStaff { % transposed only one octave down
               \tabFullNotation \stemDown
               \clef "moderntab" \set minimumFret = #8  \transpose c' c \theMelody
@@ -1250,7 +1250,7 @@
         >>
         \layout { }
       }
-      \include "tex/lp-internal-midi-score.ly"
+      \include "tex/lp-internal-score-midi.ly"
     \end{lilypond}\end{lilywrap}
   \else % not chorded: to not to break non-chorded booklets
     \textnotemiddle{Este hino é instrumental. / This hymn is instrumental.}

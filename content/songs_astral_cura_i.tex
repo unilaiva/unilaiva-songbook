@@ -460,7 +460,7 @@
       <<
         \new ChordNames { \theChords }
         \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \include "tex/lp-internal-tabstaff.ly"
+        \include "tex/lp-internal-scorepart-tabstaff.ly"
         \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
         \new Lyrics \lyricsto "theVoice" { \theLyricsThree }
@@ -475,7 +475,7 @@
       >>
       \layout { }
     }
-    \include "tex/lp-internal-midi-score.ly"
+    \include "tex/lp-internal-score-midi.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]

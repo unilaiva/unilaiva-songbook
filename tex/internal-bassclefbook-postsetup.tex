@@ -1,7 +1,7 @@
-%% internal-charangobook-presetup.tex
+%% internal-bassclefbook-presetup.tex
 %% ==================================
 %%
-%% Part of the system for automatically creating a charango variant of a book.
+%% Part of the system for automatically creating bass clef variant of a book.
 %%
 %% This file contains instructions for after loading the main .sty file,
 %% and is automatically appended before \input{tex/setup_<...>.tex}
@@ -11,11 +11,16 @@
 %% automatically create variants, and within the included setup_<...>
 %% file must the main package unilaiva-songbook_common.sty be loaded.
 %%
-%% See internal-charangobook-presetup.tex file also.
+%% See internal-bassclefbook-presetup.tex file also.
 %%
 
-\charangobooktrue
+\bassclefbooktrue
+
+\chordsoff
+\measureson
 
 \showlilypondtrue
+\shownotesfalse
+\showaltchordsfalse
 
-\hypersetup{pdftitle={\thisbooktitle { (\variantcharangotext)}}}
+\hypersetup{pdftitle={\thisbooktitle { (\variantbasscleftext)}}}

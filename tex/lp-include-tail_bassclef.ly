@@ -1,9 +1,11 @@
-    %% lp-include-tail-lyricsbetween.ly
-    %% ================================
+    %% lp-include-tail_bassclef.ly
+    %% ===========================
+    %%
+    %% Bass clef version.
     %%
     %% This file should be included as the last thing within 'lilypond'
-    %% environment, and creates a score with chord names, notes, lyrics
-    %% and guitar tabulature, in that order, if they have been defined.
+    %% environment, and creates a score with chord names, notes, guitar
+    %% tabulature and lyrics, in that order, if they have been defined.
     %%
     %% Requires that 'lp-include-head.ly' has been included before.
     %%
@@ -17,11 +19,11 @@
           \theChords
         }
         \new Staff {
-          \clef "treble"
-          \new Voice = "theVoice" { \theMelody }
+          \clef "bass"
+          \new Voice = "theVoice" { \transpose c c,, \theMelody }
         }
+        %\include "tex/lp-internal-scorepart-tabstaff.ly"
         \include "tex/lp-internal-scorepart-lyrics.ly"
-        \include "tex/lp-internal-scorepart-tabstaff.ly"
       >>
       \layout { }
     }

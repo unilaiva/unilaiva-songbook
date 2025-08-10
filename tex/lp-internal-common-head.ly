@@ -202,3 +202,5 @@
     theLyricsEight = \lyricmode {}
     theLyricsNine = \lyricmode {}
     theLyricsTen = \lyricmode {}
+    theLyricsEleven = \lyricmode {}
+    theLyricsTwelve = \lyricmode {}

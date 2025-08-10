@@ -20,18 +20,9 @@
           \clef "treble"
           \new Voice = "theVoice" { \theMelody }
         }
-        \include "tex/lp-internal-tabstaff.ly"
-        \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsThree }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsFour }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsFive }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsSix }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsSeven }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsEight }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsNine }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsTen }
+        \include "tex/lp-internal-scorepart-tabstaff.ly"
+        \include "tex/lp-internal-scorepart-lyrics.ly"
       >>
       \layout { }
     }
-    \include "tex/lp-internal-midi-score.ly"
+    \include "tex/lp-internal-score-midi.ly"

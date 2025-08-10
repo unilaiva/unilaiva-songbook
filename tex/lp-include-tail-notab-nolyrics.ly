@@ -23,4 +23,4 @@
       >>
       \layout { }
     }
-    \include "tex/lp-internal-midi-score.ly"
+    \include "tex/lp-internal-score-midi.ly"
