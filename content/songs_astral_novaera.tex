@@ -815,3 +815,115 @@
 \endsong
 
 
+\beginsong{Dia das Mães}[by={Padr. Alfredo}, off={Madr. Rita}, key={C}, gk={C, (B)--(C)}]
+  \audio[key=A]{https://soundcloud.com/canaljagube/07-dia-das-maes?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/109/M\%C3\%A3eDasM\%C3\%A3es}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{G}]Fir|\[\mnc{C}C]mei-\[^\mn{E}]me \[\mnc{G}G7]na \[^\mn{F}]lu\[^\mn{E}]a |\[\mnc{D}C]chei\[^\mn{C}]a \[\bm]
+    \[^\mn{G}]No |\[^\mn{C}]gran\[^\mn{E}]de \[\bmc\mnc{G}]di\[^\mn{F}]a \[^\mn{E}]das |\[\mncadj{3ex}{D}Dm]Mães \[\bm]
+    Pe|\[\mnc{G}G]dindo con\[\bmc\mn{B}]forto\jw a \[^\mn{D}]meu |\[\mnc{G}G]Pai \[\bm]
+    \[^\mnc{D}]E pe|\[^\mn{G}]dindo \[\mnc{F}G7]bên\[^\mn{E}]ção, Ma|\[\mncii{D}{C}C]mãe \[\bm]
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    A |^bênção ^para vi|^ver ^ \altchords{\id[1]{(B)}|B F\shrp{}7 |B}
+    E co|lher esta ^grande fa|^mília ^ \altchords{| - |C\shrp{}m}
+    Para\jw um |^dia ^apresen|^tar ^ \altchords{|F\shrp{} | \e }
+    No |Reino da ^Sobera|^nia ^ \altchords{| - F\shrp{}7 |B}
+  \endchorus
+  % verse 3
+  \beginchorus
+    Oh! |^Santa ^Mãe das |^Mães ^
+    Em |todo\jw o\jw uni^verso im|^pera ^
+    Prote|^gei a ^nossa fa|^mília ^
+    Com minha |Mãe que me ^trouxe\jw em ma|^téria ^
+  \endchorus
+  % verse 4
+  \beginchorus
+    A Dou|^trina ^{é verda}|^deira ^ \altchords{\id[2]{(A)}|A E7 |A}
+    O Santo |Daime em ^tudo se |^soma ^ \altchords{| - |Bm}
+    O |^Mestre\jw é o ^de Naza|^ré ^ \altchords{|E | \e}
+    E\jw o mis|tério é ^da Ama|^zônia ^ \altchords{| - E7 |A}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "Dia das Mães"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        g8( \pomark g8) | c4.( e,8) g4 f8 e | d4( c4.) \parenthesize g'8 g8( g8)
+        | c4( c8) e,8 g4 f8 e | e4( d2) d8( d8)
+        | g,4( g8) g8 b4 b8 d8 | g2( g8) \parenthesize d8 d8( d)
+        | g4( g8) g8 f4 e8 e | d4( c2)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Fir _ -- | mei- me na lu -- a | chei -- a;
+        "" No __ _ | gran _ -- de di -- a das | Mães; __ _
+        Pe _ -- | din -- do con -- for -- to~a meu | Pai; __ _
+        "" E pe -- | din _ -- do bên -- ção, Ma -- | mãe. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        A __ _ | bên -- ção pa -- ra vi -- | ver; __ _
+        "" E co -- | lher es -- ta gran -- de fa -- | mí -- lia;
+        Pa -- ra~um | di _ -- a a -- pre -- sen -- | tar; __ _
+        "" No __ _ | Rei -- no da So -- be -- ra -- | ni -- a.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Oh! __ _ | San _ -- ta Mãe das | Mães; __ _
+        "" Em __ _ | to -- do~o~u -- ni -- ver -- so im -- | pe -- ra;
+        Pro -- te -- | gei __ _ a nos -- sa fa -- | mí -- lia;
+        Com mi -- nha | Mãe que me trou -- xe~em ma -- | té -- ria.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        A Dou -- | tri -- na é ver -- da -- | dei -- ra;
+        O San -- to | Dai -- me em tu -- do se | so -- ma;
+        O __ _ | Mes -- tre~é o de Na -- za -- | ré; __ _
+        "" E~o mis -- | té -- rio é da A -- ma -- | zô -- nia.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2 g:7 | c1
+        | c1 | d1:m
+        | g1 | g1
+        | g2 g:7 | c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I firmed myself in the full moon on this great Mother's Day
+    Asking for comfort from my Father and asking for a blessing, Mother
+    \nextverse
+    The blessing to live and gather this great family
+    To one day present in the Kingdom of Sovereignty
+    \nextverse
+    Oh! Holy Mother of Mothers reigns over the entire universe
+    Protect our family with my mother who brought me into the world
+    \nextverse
+    The Doctrine is true, the Holy Daime is the sum of all things
+    The Master is the one of Nazareth and the mystery is of the Amazon
+  \end{translation}
+\endsong
+
