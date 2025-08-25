@@ -283,14 +283,14 @@
       "image": "unilaiva-astral-alfredo_A5_AUTOWIDENOTAGS.png",
       "tag_ids": [ "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
-        "pt": "Padr. Alfredo: Nova Dimensão"
+        "pt": "Novas de Alfredo"
       },
       "subtitle_i18n": {
         "en": "With musical information",
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
-      "tabname": "alfredo-musical",
+      "tabname": "alfredo-novas-musical",
       "altview_url": "https://pilvi.aavalla.net/s/NsDt4gPsqsRaz6i",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -303,6 +303,15 @@
             "pt": "Melodias geradas a partir de notação",
             "fi": "Nuoteista generoidut melodiat"
           }
+        },
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/ivo-nei/sets/nova-era-padrinho-alfredo",
+          "title_i18n": {
+            "en": "Nova Era (official)",
+            "pt": "Nova Era (oficial)",
+            "fi": "Nova Era (virallinen)"
+          }
         }
       ]
     },
@@ -312,14 +321,14 @@
       "image": "unilaiva-astral-alfredo_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
       "tag_ids": [ "lyricsonly" ],
       "title_i18n": {
-        "pt": "Padr. Alfredo: Nova Dimensão"
+        "pt": "Novas de Alfredo"
       },
       "subtitle_i18n": {
         "en": "Lyrics Only",
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
-      "tabname": "alfredo-lyricsonly",
+      "tabname": "alfredo-novas-lyricsonly",
       "altview_url": "https://pilvi.aavalla.net/s/NQtWix23Sn7S4wN",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -331,6 +340,15 @@
             "en": "Melodies generated from notation",
             "pt": "Melodias geradas a partir de notação",
             "fi": "Nuoteista generoidut melodiat"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/ivo-nei/sets/nova-era-padrinho-alfredo",
+          "title_i18n": {
+            "en": "Nova Era (official)",
+            "pt": "Nova Era (oficial)",
+            "fi": "Nova Era (virallinen)"
           }
         }
       ]
