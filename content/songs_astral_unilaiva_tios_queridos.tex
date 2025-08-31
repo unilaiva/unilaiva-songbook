@@ -886,3 +886,104 @@
     And viva all Divine Beings, that are here to illuminate
   \end{translation}
 \endsong
+
+
+\beginsong{Eu Sou Filha do Mestre}[by={Malla}, key={A}, gk={A, G--B}, tags={2x}]
+  \newchords{chords_eu_sou_filha_do_mestre_a}\newchords{chords_eu_sou_filha_do_mestre_b}
+  \textnotefornext{Tocar 2 vezes. / Sing twice.}
+  \mnbeginchorus\memorize[chords_eu_sou_filha_do_mestre_a]
+    \[^\mn{A}]Eu |\[\mnc{E}A]sou \[^\mn{C#}]fi\[\bmc\mn{A}]lha \[^\mn{C#}]do |\[^\mn{E}]Mes\[\bm]tre \altchords{\id[1]{(B)}|B | \e}
+    E|\[\mnc{F#}D]le \[^\mn{D}]tem \[\bm]gran\[^\mn{E}]{de\jw A}|\[^\mn{F#}]mor \[\bm] \altchords{|E | \e}
+  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_eu_sou_filha_do_mestre_b]
+    \[^\mn{A}]Vamos can|\[A]tar, \[^\mn{E}]va\[\bmc\mn{C#}]mos \[^\mn{A}]can|\[^\mn{E}]tar \[\bm] \altchords{|B | \e}
+    Com |\[\mnc{F#}D]to\[^\mn{D}]{do\jw o} \[\bm]co\[^\mn{E}]ra|\[^\mn{F#}]ção \[\bm] \altchords{|E | \e}
+  \mnendchorus
+  \notesoff
+  \beginchorus\replay[chords_eu_sou_filha_do_mestre_a]
+    E o |^Lúcio ^é meu |Ti^o \altchords{\id[2]{(G)}|G | \e}
+    Ele |^{é\jw um} gran^de A|mi^go \altchords{|C | \e}
+  \endchorus\glueverses\beginchorus\replay[chords_eu_sou_filha_do_mestre_b]
+    Vamos can|^tar, va^mos can|tar ^ \altchords{|G | \e}
+    Com |^todos\jw os ^meus ir|mãos ^ \altchords{|C | \e}
+  \endchorus
+  \begin{translation}[EN]
+    I am the Master's daughter
+    He has great Love
+    \nextverse
+    Let's sing, let's sing
+    With all the heart
+    \nextverse
+    And Lúcio is my Uncle
+    He is a great Friend
+    \nextverse
+    Let's sing, let's sing
+    With all my brothers and sisters
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "Eu Sou Filha do Mestre"
+    %   composer = "Malla"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \slurDashed \set melismaBusyProperties = #'()
+      \key a \major
+      \tempo 4 = 126
+      \time 4/4 \partial 4.
+      \repeat segno 2 {
+        \sectionLabel "A"
+        \repeat volta 2 {
+          r8 a8( a8) \pomark | e'4 cis a cis | e2 e4
+          e8( 8) | fis4 d d e | fis2( fis8)
+        }
+        \sectionLabel "B"
+        \repeat volta 2 {
+          a8 a8 a8 | a4 e cis a | e'2.
+          e4 | fis d d e | fis2~8
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "1.A"
+        \repeat volta 2 {
+          Eu __ _ | sou fi -- lha do | Mes -- tre;
+          E _ -- | le tem gran -- de~A -- | mor. __ _
+        }
+        \set stanza = "1.B"
+        \repeat volta 2 {
+          Va -- mos can -- | tar, va -- mos can -- | tar;
+          Com | to -- do~o co -- ra -- | ção.
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "2.A"
+        \repeat volta 2 {
+          E o | Lú -- cio é meu | Ti -- o;
+          E -- le | é~um gran -- de A -- | mi -- go.
+        }
+        \set stanza = "2.B"
+        \repeat volta 2 {
+          Va -- mos can -- | tar, va -- mos can -- | tar;
+          Com | to -- dos~os meus ir -- | mãos.
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4. | a1 | a1 | d | d2~8
+        }
+        \repeat volta 2 {
+          s4. | a1 | a1 | d | d2~8
+        }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
