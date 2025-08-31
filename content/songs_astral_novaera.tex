@@ -927,3 +927,135 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Parabéns}[by={Padr. Alfredo}, off={Daniélle e Paula}, key={C}, gk={C, B\flt{}--D}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/08-parabens?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/110/Parab\%C3\%A9ns}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{C}]Salve |\[\mnc{F}F]todos fes\[\bm]tejos \[^\mn{G}]de |\[\mnc{A}Am]mai\[\bm]o \altchords{\id[1]{(D)}|G |Bm}
+    Lin\[^\mn{G}]da |\[\mnc{F}F]festa da \[\bm]Virgem \[^\mn{E}]Ma|\[\mnc{G}G]ri\[\bm]a \altchords{|G |A}
+    Sal\[^\mn{E}]{ve\jw a} |\[\mnc{C}C]Mãe, \[^\mn{A}]o \[\bmc\mn{C}]Filho\jw e \[^\mn{F}]as |\[\mnc{E}Am]flo\[\bm]res \altchords{|D |Bm}
+    \[^\mn{G}]Sal\[^\mn{E}]{ve\jw o} |\[\mnc{C}C]Pai \[^\mn{A}]em \[\bmc\mn{C}]nossa\jw har\[^\mn{E}]mo|\[^\mn{C}]ni\[\up{1}C7]a \altchords{|D | \up{1}D7}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    Salve |^os ani^versari|^an^tes
+    Que agra|^decem a ^Deus neste |^di^a
+    Só can|^tando\jw o can^tar com a|^mor ^
+    Espa|^lhando paz ^e ale|gri^a
+  \endchorus
+  % verse 3
+  \beginchorus
+    Nova|^mente gi^rando\jw os fes|^te^jos
+    Nesta |^roda que ^vai e que |^vem ^
+    Viva |^os ani^versari|^an^tes
+    Para|^béns, para^béns, para|béns ^
+  \endchorus
+  % verse 4
+  \beginchorus
+    Para|^béns, para^béns, para|^béns ^
+    Nesta |^roda não ^falta nin|^guém ^
+    Viva |^todos os ^aniver|^sá^rios
+    Para|^béns, para^béns, para|béns \up{1}para^béns
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "Parabens"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        c8 \pomark c | f4 f8 f f4 f8 g8 | a2( \parenthesize a8)( \parenthesize a8) a8 g8
+        | f4 f8 f8 f4 f8 e8 | g2( g4) g8 e8
+        | c4( c8) a8 c4 c8 f8 | e2( e4) g8 e8
+        | c4( c8) a8 c4 c8 e8
+      } \alternative {
+        { | c4( c8 c8) \parenthesize c4 }
+        { | c4( c8 c8) \parenthesize c4 }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Sal -- ve | to -- dos fes -- te -- jos de | mai -- o; __ _
+        Lin -- da | fes -- ta da Vir -- gem Ma -- | ri -- a;
+        Sal -- ve~a | Mãe, __ _ o Fi -- lho~e as | flo -- res;
+        Sal -- ve~o | Pai __ _ em nos -- sa~har -- mo --
+      } \alternative {
+        { | ni _ _ -- a. }
+        { | ni _ _ -- a. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Sal -- ve | os a -- ni -- ver -- sa -- ri -- | an -- tes;
+        Que a -- gra -- | de -- cem a Deus nes -- te | di -- a;
+        Só can -- | tan -- do~o can -- tar com a -- | mor; __ _
+        Es -- pa -- | lhan -- do paz e a -- le --
+      } \alternative {
+        { | gri _ _ -- a. }
+        { | gri _ _ -- a. }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        No -- va -- | men -- te gi -- ran -- do~os fes -- | te -- jos; __ _
+        Nes -- ta | ro -- da que vai e que | vem; __ _
+        Vi -- va | os a -- ni -- ver -- sa -- ri -- | an -- tes;
+        Pa -- ra -- | béns, pa -- ra -- béns, pa -- ra --
+      } \alternative {
+        { | béns. __ _ _ "" }
+        { | béns. __ _ _ "" }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Pa -- ra -- | béns, pa -- ra -- béns, pa -- ra -- | béns; __ _ _
+        Nes -- ta | ro -- da não fal -- ta nin -- | guém; __ _
+        Vi -- va | to -- dos os a -- ni -- ver -- | sá -- rios
+        Pa -- ra -- | béns, pa -- ra -- béns, pa -- ra --
+      } \alternative {
+        { | béns, pa -- ra -- béns }
+        { | béns. __ _ _ "" }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+      s4 | f1 | a:m
+      | f | g
+      | c | a:m
+      | c
+      } \alternative {
+        { | c2 c4:7 }
+        { | c2. }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    Hail all the May festivities, the beautiful feast of the Virgin Mary
+    Hail the Mother, the Son and the flowers, hail the Father in our harmony
+    \nextverse
+    Hail all celebrating birthdays who are grateful to God on this day
+    Only singing the songs with love, and spreading peace and joy
+    \nextverse
+    Once again the festivities turn in this wheel that comes and goes
+    Viva all celebrating birthdays, happy birthday\ldots
+    \nextverse
+    Happy birthday\ldots In this circle no one is missing
+    Viva all celebrating birthdays, happy birthday, happy birthday\ldots
+  \end{translation}
+\endsong
+
+
