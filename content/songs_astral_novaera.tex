@@ -1053,9 +1053,174 @@
     Once again the festivities turn in this wheel that comes and goes
     Viva all celebrating birthdays, happy birthday\ldots
     \nextverse
-    Happy birthday\ldots In this circle no one is missing
+    Happy birthday\ldots{} In this circle no one is missing
     Viva all celebrating birthdays, happy birthday, happy birthday\ldots
   \end{translation}
 \endsong
+
+
+\beginsong{Me Abençoa}[by={Padr. Alfredo}, off={Aucinete}, key={Dm}, gk={Dm, Cm--E\flt{}m}, tags={valsa}]
+  \audio[key=Cm]{https://soundcloud.com/canaljagube/09-me-abencoa?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/111/MeAben\%C3\%A7oaDivinoPapai}
+  \newchords{chords_me_abencoa_a}\newchords{chords_me_abencoa_b}
+  \meter{3}{4}
+  % verse 1
+  \mnbeginchorus\memorize[chords_me_abencoa_a]
+    \[^\mn{A}]Me |\[Dm]aben|çoa \[^\mn{G}]Di|\[\mncii{B&}{G}Em7&5]vino \[^\mn{E}]Pa|\[\mnc{C#}A]pai, \[^\mn{G}]e |\[Gm]a\[^\mn{F}]ben|\[\mnc{A}Dm]ço\[^\mn{F}]a \[^\mn{D}]Ma|\[^\mn{A}]mãe
+    \[^\mn{D}]Pa\[^\mn{F}]ra |\[\mnc{E}Em7&5]sem\[^\mn{D}]pre |\[\mnc{C#}A7]eu Vos \[^\mn{B&}]a|\[\mnc{A}Dm]mar | \e
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_me_abencoa_b]
+    \[^\mn{A}]Me |\[Dm]aben|çoa \[^\mn{G}]Di|\[\mncii{B&}{G}Em7&5]vino \[^\mn{E}]Pa|\[\mnc{C#}A]pai, \[^\mn{G}]e |\[Gm]a\[^\mn{F}]ben|\[\mnc{A}Dm]ço\[^\mn{F}]a \[^\mn{D}]Ma|\[^\mn{A}]mãe
+    \[^\mn{D}]Pa\[^\mn{F}]ra |\[\mnc{E}Em7&5]sem\[^\mn{D}]pre |\[\mnc{C#}A]eu Vos \[^\mn{E}]lou|\[\mnc{D}Dm]var | \e
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_me_abencoa_a]
+    Me |^aben|çoa Di|^{vina Ma}|^mãe, e |^aben|^çoa Pa|pai
+    Para |^sempre |^eu enxer|^gar | \e
+  \endchorus\glueverses
+  \beginchorus\replay[chords_me_abencoa_b]
+    Me |^aben|çoa Di|^{vina Ma}|^mãe, e |^aben|^çoa Pa|pai
+    Para |^sempre |^acompa|^nhar | \e
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_me_abencoa_a]
+    Jo|^guei a |minha tar|^{rafa no} |^meio, e |^com espe|^rança me |veio
+    A |^praia |^da beira-mar | \e
+  \endchorus\glueverses
+  \beginchorus\replay[chords_me_abencoa_b]
+    Os |^peixes |que eu pe|^{guei nela} |^veio, e |^com cer|^teza\jw ensi|nei
+    Para |^sempre |^saber na|^dar | \e
+  \endchorus
+  % verse 4
+  \beginchorus\replay[chords_me_abencoa_a]
+    A|^gora |vamos can|^{tar com a}|^mor e |^vamos bai|^{lar meus} ir|mãos
+    Para |^sempre |^nós feste|^jar | \e
+  \endchorus\glueverses
+  \beginchorus\replay[chords_me_abencoa_b]
+    A |^Deus e a |Virgem Ma|^{ria no} |^Céu, com |^a do|^çura do |mel
+    Na |^terra, no |^vento\jw e no |^mar | \e
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-08
+    % \header {
+    %   title = "Me Abençoa"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 3/4 \partial 4
+      \sectionLabel "A"
+      \repeat volta 2 {
+        a4 \pomark | a2 a4 | a4 a4 g4 | bes4 g4 e4 | cis2 g'4
+        | g4( g4) f4 | a4 f d | a << d \altmark "3." \single\altcol a >> f'
+        | e2 d4 | cis4 cis4 bes'4 | a2.~ | a2
+      }
+      \sectionLabel "B"
+      \repeat volta 2 {
+        a4 | a4( a4) a4 | a4 a4 g4 | bes4 g4 e4 | cis2 g'4
+        | g2 f4 | a4 f d | a \parenthesize d f
+        | e4( e4) d4 | cis4 cis4 e4 | d2.~| d2
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Me | a -- ben -- | ço -- a Di -- | vi -- no Pa -- | pai,
+        E | a _ -- ben -- | ço -- a Ma -- | mãe;
+        Pa -- ra | sem -- pre | eu Vos a -- | mar. | _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Me | a _ -- ben -- | ço -- a Di -- | vi -- no Pa -- | pai,
+        E | a -- ben -- | ço -- a Ma -- | mãe;
+        Pa -- ra | sem _ -- pre | eu Vos lou -- | var. | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Me | a -- ben -- | ço -- a Di -- | vi -- na Ma -- | mãe,
+        E | a _ -- ben -- | ço -- a Pa -- | pai;
+        Pa -- ra | sem -- pre | eu en -- xer -- | gar. | _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Me | a _ -- ben -- | ço -- a Di -- | vi -- na Ma -- | mãe,
+        E  | a -- ben -- | ço -- a Pa -- | pai;
+        Pa -- ra | sem _ -- pre | a -- com -- pa -- | nhar. | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Jo -- | guei a | mi -- nha tar -- | ra -- fa no | meio,
+        E | com es -- pe -- | ran -- ça me | vei -- \altcol o;
+        A | prai -- a | da bei -- ra- mar. | _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Os | pei _ -- xes | que eu pe -- | guei ne -- la | veio,
+        E | com cer -- | te -- za~en -- si -- | nei;
+        Pa -- ra | sem _ -- pre | sa -- ber na -- | dar. | _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        A -- | go -- ra | va -- mos can -- | tar com a -- | mor,
+        E | va -- mos bai -- | lar meus ir -- | mãos;
+        Pa -- ra | sem -- pre | nós fes -- te -- | jar. | _
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        A | Deus e a | Vir -- gem Ma -- | ri -- a no | Céu,
+        Com | a do -- | çu -- ra do | mel; ""
+        Na | ter -- ra, no | ven -- to~e no | mar. | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4
+        | d2.:m | d:m | e:m7.5- | a
+        | g:m | d:m | d:m
+        | e:m7.5- | a:7 | d:m | d2:m
+      }
+      \repeat volta 2 {
+        s4
+        | d2.:m | d:m | e:m7.5- | a
+        | g:m | d:m | d:m
+        | e:m7.5- | a | d:m | d2:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]\ifshowlilypond\scriptsize\fi % to fit on same page
+    Bless me Divine Daddy and bless me Mama
+    So I may always love you
+    Bless me Divine Daddy and bless me dear Mama
+    To praise you forever
+    \nextverse
+    Bless me Divine Mama and bless me Daddy
+    So that I can always see
+    Bless me Divine Mama and bless Daddy
+    To always accompany You
+    \nextverse
+    I cast my net in the midst of the sea and with hope it came to me
+    To the beach of the seaside
+    The fish that I caught came into the net and with certainty I taught them
+    To always know how to swim
+    \nextverse
+    Now let us sing with love and let's dance my brothers and sisters
+    To celebrate forever
+    God and the Virgin Mary in heaven with the sweetness of honey
+    On the Earth, the wind and sea
+  \end{translation}
+\endsong
+
+
 
 
