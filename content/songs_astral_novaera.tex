@@ -1222,5 +1222,163 @@
 \endsong
 
 
+\beginsong{Mensagem}[by={Padr. Alfredo}, off={Ricardo Tadeu}, key={G}, gk={G, G--G}, tags={mazurca}]
+  \audio[key=G]{https://soundcloud.com/canaljagube/10-mensagem?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/112/VouCantarEstaMensagem}
+  \meter{6}{4}
+  \mnbeginchorus\memorize
+    \[^\mn{B}]Vou \[^\mn{D}]can|\[\mnc{G}G]tar \[^\mn{F#}]es\[^\mn{E}]ta \[^\mn{D}]men\[\bmc\mn{G}]sagem
+    \[^\mn{E}]Que \[^\mn{D}]meu |\[^\mn{G}]Mestre \[^\mn{E}]me man\[\mnc{A}Am]dou
+    \lrep \[^\mn{E}]Doutri|\[\mnc{A}Am]nar o mun\[^\mn{B}]{do\jw in}\[\mnc{G}G]teiro
+    \[^\mn{B}]Na |\[\mnc{D}D7]ordem do Pai \[^\mn{A}]Cri\[^\mn{B}]a\[\mnc{G}G]dor \rrep
+  \mnendchorus
+  \notesoff
+  \beginchorus
+    Com |^ordem da Mãe Di^vina \altchords{\id[1]{(A)}|A}
+    Ao guer|reiro\jw Arcanjo São Mi^guel \altchords{| - Bm}
+    \lrep Aí |^tem a disci^plina \altchords{|Bm A}
+    Para |^nossa\jw educação no ^céu \rrep \altchords{|E7 A}
+  \endchorus
+  \beginchorus
+    Sem a|^mor não tem cari^dade
+    Sem a |força não tem uni^ão
+    \lrep Vai do|^er a disci^plina
+    Do guer|^reiro São Sebasti^ão \rrep
+  \endchorus
+  \beginchorus
+    Quem man|^dou foi a Ra^inha
+    Quem cas|tiga é São Iri^neu
+    \lrep Depen|^dendo da igno^rância
+    Cada |^um se destrói por si ^mesmo \rrep
+  \endchorus
+  \beginchorus
+    Estou fa|^zendo\jw o que Ele ^disse
+    Se cum|prindo a sua jus^tiça
+    \lrep E as do|^enças vão se transfor^mando
+    Do cor|^reio da má no^tícia \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-09
+    % \header {
+    %   title = "Mensagem"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 6/4 \partial 4.
+      \sectionLabel "A"
+      \repeat segno 2 {
+        \parenthesize b8 \pomark << b \altmark "2." \once\slurUp \single\altcol d \single\altcol ( >> d) | g4 fis8( fis8) e8 d8  g4 g4 e8 d8
+        | g8( g8) g8( g8) e8 e8  a4( a8)
+        \sectionLabel "B"
+        \repeat volta 2 {
+          \parenthesize e8 e8( e8) | a8( a8) a8( a8) a8 b8  g4 g4 b,8( b8)
+          | d8( d8) d8 d8 a8 b8  g4( g8)
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat segno 2 {
+        "" Vou can -- | tar es _ -- ta men -- sa -- gem
+        Que meu | Mes _ -- tre __ _ me man -- dou. __ _
+        \set stanza = "1.B"
+        \repeat volta 2 {
+          "" Dou -- tri -- | nar __ _ o __ _ mun -- do~in -- tei -- ro
+          Na __ _ | or -- dem do Pai Cri -- a -- dor. __ _
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat segno 2 {
+        "" \altcol Com __ _ | or -- dem da Mãe Di -- vi -- na
+        Ao guer -- | rei -- ro~Ar -- can -- jo São Mi -- guel. __ _
 
+        \set stanza = "2.B"
+        \repeat volta 2 {
+          "" Aí __ _ | tem __ _ a __ _ dis -- ci -- pli -- na
+          Pa -- ra | nos -- sa~e -- du -- ca -- ção no céu. __ _
+        }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat segno 2 {
+        "" Sem a -- | mor não tem ca -- ri -- da -- de
+        Sem a | for -- ça não tem u -- ni -- ão. __ _
+        \set stanza = "3.B"
+        \repeat volta 2 {
+          "" Vai do -- | er __ _ a __ _ dis -- ci -- pli -- na
+          Do guer -- | rei -- ro São Se -- bas -- ti -- ão. __ _
+        }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "4.A"
+        "" Quem man -- | dou foi __ _ a Ra -- i -- nha
+        Quem cas -- | ti -- ga é São I -- ri -- neu __ _
+        \set stanza = "4.B"
+        \repeat volta 2 {
+          "" De -- pen -- | den -- do da i -- g -- no -- rân -- cia
+          Ca -- da | um se des -- trói por si mes -- mo.
+        }
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat segno 2 {
+        Es -- tou fa -- | zen -- do~o que E -- le dis -- se
+        Se cum -- | prin -- do a su -- a jus -- ti -- ça.
+        \set stanza = "5.B"
+        \repeat volta 2 {
+          E as do -- | en -- ças vão se trans -- for -- man -- do
+           Do cor -- | rei _ -- o da má no -- tí -- cia.
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        s4. | g2. g2.
+        | g2. a4.:m
+        \repeat volta 2 {
+          s4. | a2.:m g2.
+          | d2.:7 g4.
+        }
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}[EN]
+    I am going to sing this message
+    Because my Master ordered me
+    To indoctrinate the whole world
+    In the order of the Father Creator
+    \nextverse
+    With the order of the Divine Mother
+    Of the warrior Archangel St. Michael
+    Within is the discipline
+    For our education in heaven
+    \nextverse
+    Without love there is no charity
+    Without strength there is no union
+    The discipline of warrior St. Sebastião
+    Is going to be painful
+    \nextverse
+    Who ordered was the Queen
+    Who punishes is Saint Irineu
+    And depending on the (degree of) ignorance
+    Each one destroys his/herself
+    \nextverse
+    I am doing what He said
+    His justice is being fulfilled
+    And the illnesses will transform themselves
+    From the mail of bad news
+  \end{translation}
+\endsong
 
