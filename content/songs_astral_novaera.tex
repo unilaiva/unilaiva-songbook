@@ -1382,3 +1382,177 @@
   \end{translation}
 \endsong
 
+
+\beginsong{A Deus Eu Agradeço}[by={Padr. Alfredo}, off={Carlos Raulino}, key={F}, gk={G, F--G}]
+  \audio[key=F]{https://soundcloud.com/canaljagube/11-a-deus-eu-agradeco?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/113/ADeusEuAgrade\%C3\%A7o}
+  % verse 1
+  \beginchorus\memorize
+    \[^\mn{C}]A |\[\mnc{F}F]Deus eu agra\[\bmc\mn{A}]de\[^\mn{F}]ço e a |\[\mnc{E}C]to\[^\mn{C}]da na\[^\mn{E}]tu\[\bmc\mn{G}]reza \altchords{\id[1]{(G)}|G |D}
+  \endchorus\glueverses
+  \beginchorus
+    |\[\mnc{D}F]Pelo céu a\[\bm]zul, \[\mn{G}]{o\jw so,} a |\[\mnc{C}C]lua\jw e as es\[\bmc\mn{E}]trelas \altchords{|G |D}
+  \endchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    Oh! |^Minha Mãe Di^vina eu tam|^bém Vos agra^deco
+  \endchorus\glueverses
+  \beginchorus
+    |^Pelo que co^nheço\jw o que o{\ifchorded-\fi}b{\ifchorded-\fi}|^tenho\jw e que re^cebo
+  \endchorus
+  % verse 3
+  \beginchorus
+    An|^dar na paz dos ^santos prote|^ção dos anjos ^vem
+  \endchorus\glueverses
+  \beginchorus
+    Pres|^tar bem aten^ção que no |^mundo tudo ^tem
+  \endchorus
+  % verse 4
+  \beginchorus
+    A|^lerta para\jw o ^tempo que o |^mesmo\jw está che^gado
+  \endchorus\glueverses
+  \beginchorus
+    Quem |^falou do meu ^Mestre com cer|^teza vai fi^cando
+  \endchorus
+  % verse 5
+  \beginchorus
+    |^Anjos e ar^canjos deste |^dia de na^tal \altchords{\id[2]{(A)}|A |E}
+  \endchorus\glueverses
+  \beginchorus
+    São Jo|^sé, São Zarca^rias e o |^príncipe\jw Imperi^al \altchords{|A |E}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-09
+    % \header {
+    %   title = "A Deus Eu Agradeço"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key f \major \time 4/4 \partial 8
+      \sectionLabel "1-4.A"
+      \repeat segno 4 {
+        \repeat volta 2 {
+          c8 | f8 f f f a f f f | e c c e g4 \parenthesize g8
+        } \break
+        \sectionLabel "1-4.B"
+        \repeat volta 2 {
+          \parenthesize c,8 | d8 d d d d8 \parenthesize g,16( \parenthesize g16) g8 g8 | c8 c16( c16) c8 c8 e4 \parenthesize e8
+        }
+      }
+      \sectionLabel "5.A"
+      \repeat volta 2 {
+        r8 \pomark | f8 f f f a f f f | e c c e g4
+      } \alternative {
+        { r8 }
+        { }
+      }
+      \sectionLabel "5.B"
+      \repeat volta 2 {
+        c,8 c8 | d8 d d d d8 g,8 g8 g8 | c8 c16 c16 c8 c8 e4
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        A | Deus eu a -- gra -- de -- ço,
+        e a | to -- da na -- tu -- re -- za.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        "" | Pe -- lo céu a -- zul, ""
+        o so, a | lu -- a e as es -- tre -- las.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Oh! | Mi -- nha Mãe Di -- vi -- na,
+        eu tam -- | bém Vos a -- gra -- de -- co.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        "" | Pe -- lo que co -- nhe -- ço,~o
+        que o -- b -- | te -- nho e que re -- ce -- bo.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        An -- | dar na paz dos san -- tos,
+        pro -- te -- | ção dos an -- jos vem. ""
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Pres -- | tar bem a -- ten -- ção, "" ""
+        que no | mun -- do __ _ tu -- do tem. ""
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        A -- | ler -- ta pa -- ra~o tem -- po,
+        que o | mes -- mo~es -- tá che -- ga -- do.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Quem | fa -- lou do meu Mes -- tre, __ _
+        com cer -- | te -- za __ _ vai fi -- can -- do.
+      }
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        | An -- jos e ar -- can -- jos,
+        des -- te | di -- a de na -- tal.
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        São Jo -- | sé, São Zar -- ca -- ri -- as,
+        e o | prín -- ci -- pe~Im -- pe -- ri -- al.
+      }
+    }
+    theChords = \chordmode {
+      % v 1-4
+      \repeat segno 4 {
+        \repeat volta 2 {
+          s8 | f1 | c2.~8
+        }
+        \repeat volta 2 {
+          s8 | f1 | c2.~8
+        }
+      }
+      % v 5
+      \repeat volta 2 {
+        s8 | f1 | c2.
+      } \alternative {
+        { s8 }
+        { }
+      }
+      \repeat volta 2 {
+        s4 | f1 | c2.
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN] \ifshowlilypond\scriptsize\fi
+    To God I give thanks, and to all of nature
+    For the blue sky, the sun, the moon and the stars
+    \nextverse
+    Oh! My Divine Mother, I also thank you
+    For what I know, what I obtain and what I receive
+    \nextverse
+    To walk in the peace of saints, protection of the angels comes
+    To pay close attention, for the world has everything
+    \nextverse
+    Be alert for the times, for the time is arriving
+    Who spoke against my Master will surely stay behind
+    \nextverse
+    Angels and archangelks, of this Christmas day
+    Saint Joseph, Saint Zacariah and the Imperial Prince
+  \end{translation}
+\endsong
+
+
