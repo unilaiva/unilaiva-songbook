@@ -2630,6 +2630,123 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\beginsong{Eterno Sol}[by={Balwant Kaur \& Gurinder Singh}, tags={love, light, Sun, Kundalini}, ph={III, V}, key={Am}, gk={Am, Gm--Am}]
+\audio[key=Am]{https://www.youtube.com/watch?v=1zU2Dq8itV8}
+  % verse 1
+  \mnbeginchorus
+    |\[\mnc{C}Am]{Que\jw el} \[\mn{B}]e\[\bmc\mn{C}]ter\[\mn{E}]no |\[C]sol \[\bm] |\[\mnc{A}F]te \[\bmc\mn{G}]ilu|\[\mnc{E}C]mi\[\bm]ne \altchords{\id[1]{(Gm)}|Gm |B\flt{} |E\flt{} |B\flt{}}
+    |\[E]Y \[\bmc\mn{D}]{el a}|\[\mnc{E}Am]mor \[\bm] |\[E]{} \[\mnc{C}]te\[\bmc\mn{B}]{} ro|\[\mnc{A}Am]dee \[\bm] \altchords{|D |Gm |D |Gm}
+  \mnendchorus
+  % verse 2
+  \mnbeginchorus
+    |\[\mnc{A}F]Y \[\bmc\mn{G}]la |\[\mnc{E}C]luz \[\bm] |\[\mnc{A}F]pura \[\bmc\mn{G}]inte|\[\mnc{E}C]rior \[\bm] \altchords{|E\flt{} |B\flt{} |E\flt{} |B\flt{}}
+    |\[E]Guie \[\bmc\mn{D}]{tu ca}|\[\mnc{E}Am]mi\[\bm]no, |\[E]{} \[\mn{C}]guie \[\bm]tu \[\mn{B}]ca|\[\mnc{A}Am]mi\[\bm]no \altchords{|D |Gm |D |Gm}
+  \mnendchorus
+  \dacapo
+  % outro
+  \mnbeginchorus
+    |\[\mnc{A}F]Sat\[\bmc\mn{G}] |\[\mnc{E}C]Nam, \[\bm] |\[\mnc{A}F]Sat\[\bmc\mn{B}] |\[\mnc{E}C]Nam \[\bm] \altchords{|E\flt{} |B\flt{} |E\flt{} |B\flt{}}
+    |\[E]Sat\[\bmc\mn{D}\mn{E}] |\[Am]Nam, \[\bm] |\[E]{} \[\mn{B}]Siri \[\bm]Wa\[\mn{C}]{he Gu}|\[\mnc{A}Am]ru \[\bm] \altchords{|D |Gm |D |Gm}
+  \mnendchorus\glueverses\mnbeginchorus
+    |\[E]{} \[\mn{B}]Siri \[\bm]Wa\[\mn{C}]{he Gu}|\[\mnc{A}Am]ru \[\bm] \altchords{|D |Gm}
+  \mnendchorus
+  \begin{translation}[EN]
+    May the eternal sun shine upon you
+    And love surround you
+    \nextverse
+    And the pure inner light
+    Guide your way, guide your way
+    \nextverse
+    Sat Nam, Sat Nam
+    Sat Nam, Siri Wahe Guru
+    Siri Wahe Guru
+  \end{translation}
+  \begin{explanation}[EN]
+    The Spanish verses are a translation of a (closing) blessing used in
+    Kundalini Yoga communities. The mantras are from Kundalini Yoga and
+    the Sikh/Gurmukhi mantra tradition:
+    \begin{description}
+      \item[Sat Nam:] ``I am Truth.''
+      \item[Siri Wahe Guru:] ``Great is the ecstatic wisdom that takes us from darkness to light.''
+    \end{description}
+  \end{explanation}
+  %\showlilypondfalse % to save space
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-09
+    %\header {
+    %  title = "Eterno Sol"
+    %  composer = "Balwant Kaur & Gurinder Singh"
+    %}
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurSolid
+      \tempo 4 = 128
+      \key a \minor \time 4/4
+      \repeat segno 2 {
+        \sectionLabel "A"
+        \repeat volta 2 {
+          | c4 b4 c e | e1 | a2 g4 g4 | e2 e2
+          | e2 d4 d4 | e1 | r4 c4( b4) b4 | a1
+        }
+        \sectionLabel "B"
+        \repeat volta 2 {
+          | a'2 g2 | e1 | a4 a4 g4 g4 | e1
+          | e4 e4 d4 d4 | e2 e2 | r4 c4 c4 b4 | a2 a2
+        }
+      }
+      \sectionLabel "outro"
+      \repeat volta 2 {
+        a'2( g) | e1 a2( b) | e,1
+        e2( d4 e4) | e1 | r4 b8 b b c4 c8 | a1
+      }
+      \repeat volta 2 {
+        | r4 b8 b b c4 c8 | a1
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | Que~el e -- ter -- no | sol | te i -- lu -- | mi -- ne;
+          | Y el a -- | mor  te _ ro -- | dee.
+        }
+        \repeat volta 2 {
+          | Y la | luz | pu -- ra in -- te -- | rior;
+          | Gui -- e tu ca -- | mi -- no,  guie tu ca -- | mi -- no.
+        }
+      }
+      \repeat volta 2 {
+        | Sat _ | Nam, | Sat _ | Nam;
+        | Sat _ _ | Nam,  Si -- ri Wa -- he Gu -- | ru.
+      }
+      \repeat volta 2 {
+        Si -- ri Wa -- he Gu -- | ru.
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | a1:m | c | f | c
+          | e | a:m | e | a:m
+        }
+        \repeat volta 2 {
+          | f | c | f | c
+          | e | a:m | e | a:m
+        }
+      }
+      \repeat volta 2 {
+        | f | c | f | c
+        | e | a:m | e | a:m
+      }
+      \repeat volta 2 {
+        | e | a:m
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
 % % TODO: this is not done, needs work!
 % \beginsong{Arbolito Divino}[by={Nick Barbachano},ph={II, III}]
 %   \audio[key=Am]{https://soundcloud.com/nickbarbachano/arbolito-divino-feat-danit}
