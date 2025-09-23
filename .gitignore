@@ -36,11 +36,21 @@ deploy_from_vm
 old_versions/
 old_versions
 
+# audio files 
+
 # result documents
 *.pdf
 !content/img/*.pdf
 !miscellaneous/ext_package_songs_distribution/songs.pdf
 !miscellaneous/*.pdf
+
+# midi/audio files in workspace directory
+workspace/*.midi
+workspace/*.mid
+workspace/*.mp3
+workspace/*.flac
+workspace/*.wav
+workspace/*.ogg
 
 # Temporary transcribing work files
 WIP_*
