@@ -1,0 +1,52 @@
+ %% unilaiva-astral-rita
+ %% ===========================
+ %%
+ %% Collection of Santo Daime hymns by Rita Gregório de Melo (Lua Branca)
+ %%
+
+% The existence of the following lines signify for the compiler script
+% that additional extra versions are requested for this book:
+%%% REMOVED %%%
+
+% Setup the book name (the subtitle), and include common settings
+\newcommand{\subbooktitle}{Madrinha Rita}
+\input{tex/setup_astral-A5-fullmusic_include.tex}
+
+\renewcommand{\bookbytext}{%
+  Recebido por:\par\vspace{0.618034ex}\textbf{\Large Rita Gregório de Melo}%
+}%
+
+\setcovericonsvar[unilaiva-tag-icon-chords_PT_512x512px]%
+                 [unilaiva-tag-icon-sheetmusic_512x512px]%
+                 [unilaiva-tag-icon-guitar_512x512px]
+
+\begin{document}
+
+  % Cover page (recto), by larva (photo + edit):
+  \ulcoverpage{unilaiva-astral-rita_COVER.pdf}%
+
+  % The second page (verso):
+  \imprintpage
+
+  % TOC:
+  \toc
+
+  % Sets chapter number; will be incremented by one at each \mainchapter,
+  % \songchapter or \chapter:
+  \setcounter{chapter}{0}
+
+  \mainchapter{Madr. Rita Gregório de Melo: Lua Branca}{chapluabrancacolor}
+    \begin{songs}{}
+      \input{content/songs_astral_rita_lua_branca.tex}
+    \end{songs}
+
+  % Here start appendices: chapter numbering resets and switches to alphabetic
+  \appendix
+  \usechaptercolorsfalse
+
+  \ifchorded
+    \chapter{Técnico}
+      \input{content/section_technical_information.tex}
+  \fi
+
+\end{document}
