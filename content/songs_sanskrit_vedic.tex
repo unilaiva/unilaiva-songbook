@@ -841,6 +841,91 @@
 \endsong
 
 
+\beginsong{Ek Ong Kar Sat Gur Prasad}[key={A}, gk={A, G--B}, ph={III}]
+  % part A
+  \mnbeginchorus
+    |\[\mnc{E}A]Ek \[\bmc\mn{C#}]Ong |\[\mnc{D}D\hspace{1ex}\mn{E}\mn{D}\bmc\mn{C#}\mn{B}]Kar |\[A] \[\mn{A}]Sa\[\mnc{C#}]t \[\bm]Gu\[\mnc{B}]r \[\mn{A}]Pra\[\mnc{B}]s|\[E]ad \[\bm]
+    \[\mn{C#}]Sa\[\mnc{D}]t |\[\mnc{E}A]Gu\[\bmcadj{.618ex}\mn{A}\mn{E}]r Pras|\[\mnc{F#}D\hspace{1ex}\mn{G#}\mn{F#}\bmc\mn{E}\mn{D}]ad
+    |\[\mnc{E}A]Ek \[\bmc\mn{C#}]On\[\mncadj{.5ex}{E}]g |\[E] Kar \[\bm]
+  \mnendchorus
+  % part B
+  \mnbeginverse
+    |\[D] \[\bmc\mn{D}]Ek Ong K|\[\mnc{E}E]ar \[\bmc\mn{G#}]Sat \[\mnc{A}]G|\[A\mn{E}]u\[\bmcadj{.618ex}]r \[\mn{D}]Pras|a\[\mn{E}\mn{D}\mn{C#}]d \[\bmcadj{-.5ex}]
+    \[\mn{A}]Sa\[\mn{E}]t |\[D\mn{F#}\mn{E}]Gu\[\bmcadj{0.618ex}]r \[\mn{D}]Pras|\[\mnc{E}A\hspace{1ex}\mn{D}]ad
+    \[\bmc\mn{C#}]Ek On|\[E]g \[\mn{D}\mn{C#}\mn{B}]Kar \[\bm]{ } |{ }{ }{ }\[E7]\e
+  \mnendverse
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-09
+    %\header {
+    %  title = "Ek Ong Kar Sat Gur Prasad"
+    %  composer = "?"
+    %}
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurSolid
+      \tempo 4 = 80
+      \key a \major \time 4/4
+      \sectionLabel "A"
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | e2 cis2 | d4.( e16 d16 cis8 b4)~ b16 r16 | r4 a8 cis cis b a b8~ | b2~8 r8 cis8 d8
+          | e4. a4( e8) e8 e8( | fis4. gis16 fis16 e8 d4)~ d16 r16 | e2 cis4.( e8)~ | e8 e2. r8
+        }
+        \sectionLabel "B"
+        | r2 d8 d4 d8( | e2) gis4 gis8 a8~ | a4( e8) e4 d4 d8~ | d8( e16 d16 cis4.) r8 a8 e'8
+        | e8( fis8 e8) e4. d8 d8( | e4. d8) cis8 cis4.~ | cis8 d16( cis16 b4)~2
+        | r1
+      }
+      \break
+      \sectionLabel "outro"
+      \repeat volta 2 {
+        | e2 cis2 | d4.( e16 d16 cis8 b4)~ b16 r16 | r4 a8 cis cis b a b8~ | b2~8 r8 cis8 d8
+        | e4. a4( e8) e8 e8( | fis4. gis16 fis16 e8 d4)~ d16 r16 | e2 cis4.( e8)~ | e8 e2. r8
+      }
+      | r1
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "A:"
+        \repeat volta 2 {
+          | Ek Ong | Kar _ _ _ _ _ Sa -- t Gu -- r Pra -- sad | _ _
+          Sa -- t | Gu -- r _ Pra -- sad | _ _ _ _ _ _
+          | Ek Ong _ | _ Kar
+        }
+        Ek Ong Kar | _ Sa -- t Gu -- | _ _ r Pra -- sad | _ _ _ _
+        Sa -- t | Gu _ _ -- r Pra -- sad | _ _
+        Ek Ong | _ Kar _ _ _
+      }
+      \set stanza = "B:"
+      \repeat volta 2 {
+        | Ek Ong | Kar _ _ _ _ _ Sa -- t Gu -- r Pra -- sad | _ _
+        Sa -- t | Gu -- r _ Pra -- sad | _ _ _ _ _ _
+        | Ek Ong _ | _ Kar
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          | a1 | d | a | e
+          | a | d | a | e
+        }
+        | d1 | e | a | a | d | a | e
+        | e2 e2:7
+      }
+      % outro
+      \repeat volta 2 {
+        | a1 | d | a | e
+        | a | d | a | e
+      }
+      | a
+    }
+    \layout { #(layout-set-staff-size 14.2) } % for better fit
+    \include "tex/lp-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 % Image to show on the empty recto page (remove if no longer empty!)
 \begin{intersong}%
   \subsection*{Chakras}
