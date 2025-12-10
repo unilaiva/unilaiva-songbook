@@ -1383,47 +1383,48 @@
 \endsong
 
 
-\beginsong{A Deus Eu Agradeço}[by={Padr. Alfredo}, off={Carlos Raulino}, key={F}, gk={G, F--G}]
+\beginsong{A Deus Eu Agradeço}[by={Padr. Alfredo}, off={Carlos Raulino}, key={C}, gk={D, C--D}]
   \audio[key=F]{https://soundcloud.com/canaljagube/11-a-deus-eu-agradeco?in=ivo-nei/sets/nova-era-padrinho-alfredo}
   \audio{https://nossairmandade.com/hymn/113/ADeusEuAgrade\%C3\%A7o}
+  \newchords{chords_deuseuagradeco_a}\newchords{chords_deuseuagradeco_b}
   % verse 1
-  \beginchorus\memorize
-    \[^\mn{C}]A |\[\mnc{F}F]Deus eu agra\[\bmc\mn{A}]de\[^\mn{F}]ço e a |\[\mnc{E}C]to\[^\mn{C}]da na\[^\mn{E}]tu\[\bmc\mn{G}]reza \altchords{\id[1]{(G)}|G |D}
+  \beginchorus\memorize[chords_deuseuagradeco_a]
+    \[^\mn{C}]A |\[\mnc{F}F]Deus eu agra\[\bmc\mn{A}]de\[^\mn{F}]ço e a |\[\mnc{E}C]to\[^\mn{C}]da na\[^\mn{E}]tu\[\bmc\mn{G}]reza \altchords{\id[1]{(D)}|G |D}
   \endchorus\glueverses
-  \beginchorus
-    |\[\mnc{D}F]Pelo céu a\[\bm]zul, \[\mn{G}]{o\jw so,} a |\[\mnc{C}C]lua\jw e as es\[\bmc\mn{E}]trelas \altchords{|G |D}
+  \beginchorus\memorize[chords_deuseuagradeco_b]
+    |\[\mnc{D}G]Pelo céu a\[\bm]zul, \[\mn{G}]{o\jw so,} a |\[\mnc{C}C]lua\jw e as es\[\bmc\mn{E}]trelas \altchords{|A |D}
   \endchorus
   \notesoff
   % verse 2
-  \beginchorus
+  \beginchorus\replay[chords_deuseuagradeco_a]
     Oh! |^Minha Mãe Di^vina eu tam|^bém Vos agra^deco
   \endchorus\glueverses
-  \beginchorus
+  \beginchorus\replay[chords_deuseuagradeco_b]
     |^Pelo que co^nheço\jw o que o{\ifchorded-\fi}b{\ifchorded-\fi}|^tenho\jw e que re^cebo
   \endchorus
   % verse 3
-  \beginchorus
+  \beginchorus\replay[chords_deuseuagradeco_a]
     An|^dar na paz dos ^santos prote|^ção dos anjos ^vem
   \endchorus\glueverses
-  \beginchorus
+  \beginchorus\replay[chords_deuseuagradeco_b]
     Pres|^tar bem aten^ção que no |^mundo tudo ^tem
   \endchorus
   % verse 4
-  \beginchorus
+  \beginchorus\replay[chords_deuseuagradeco_a]
     A|^lerta para\jw o ^tempo que o |^mesmo\jw está che^gado
   \endchorus\glueverses
-  \beginchorus
+  \beginchorus\replay[chords_deuseuagradeco_b]
     Quem |^falou do meu ^Mestre com cer|^teza vai fi^cando
   \endchorus
   % verse 5
-  \beginchorus
-    |^Anjos e ar^canjos deste |^dia de na^tal \altchords{\id[2]{(A)}|A |E}
+  \beginchorus\replay[chords_deuseuagradeco_a]
+    |^Anjos e ar^canjos deste |^dia de na^tal \altchords{\id[2]{(E)}|A |E}
   \endchorus\glueverses
-  \beginchorus
-    São Jo|^sé, São Zarca^rias e o |^príncipe\jw Imperi^al \altchords{|A |E}
+  \beginchorus\replay[chords_deuseuagradeco_b]
+    São Jo|^sé, São Zarca^rias e o |^príncipe\jw Imperi^al \altchords{|B |E}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
-    %% transcribed by larva, latest update on 2025-09
+    %% transcribed by larva, latest update on 2025-12
     % \header {
     %   title = "A Deus Eu Agradeço"
     %   composer = "Padr. Alfredo"
@@ -1431,7 +1432,7 @@
     \include "tex/lp-include-head.ly"
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
-      \key f \major \time 4/4 \partial 8
+      \key c \major \time 4/4 \partial 8
       \sectionLabel "1-4.A"
       \repeat segno 4 {
         \repeat volta 2 {
@@ -1520,7 +1521,7 @@
           s8 | f1 | c2.~8
         }
         \repeat volta 2 {
-          s8 | f1 | c2.~8
+          s8 | g1 | c2.~8
         }
       }
       % v 5
@@ -1531,7 +1532,7 @@
         { }
       }
       \repeat volta 2 {
-        s4 | f1 | c2.
+        s4 | g1 | c2.
       }
     }
     \layout { #(layout-set-staff-size 15) } % for better fit
