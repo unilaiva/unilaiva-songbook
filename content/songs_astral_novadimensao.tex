@@ -2180,3 +2180,135 @@
     The Divinity of this forest, of this place
   \end{translation}
 \endsong
+
+
+\beginsong{Centenário Integração}[by={Padr. Alfredo},key={G},gk={G, G--A}]
+  \audio[key=G]{https://nossairmandade.com/hymn/4798/Centen\%C3\%A1rioIntegra\%C3\%A7\%C3\%A30}
+  \audio[key=G]{https://www.youtube.com/watch?v=sYeyJCaThsA}
+  \audio[key=G]{https://www.youtube.com/watch?v=7OjNdTDPVo0}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{G}]A\[^\mn{B}]qui \[^\mn{D}]eu |\[\mnc{G}G]volto a lem\[\bm]brar \[^\mn{F#}]os \[^\mn{A}]meus \[^\mn{E}]ir|\[C]mãos \[\bm] \altchords{|A |D}
+    \[^\mn{C}]De \[^\mn{D}]Je\[^\mn{E}]sus |\[\mnc{F#}D]Cristo\jw e do meu \[\bm]Se\[^\mn{E}]nhor \[^\mn{G}]São \[^\mn{F#}]Jo|\[\mnc{D}G]ão \[\bm] \altchords{|E |A}
+    \lrep \[^\mn{D}]Bati|\[\mnc{C}C]zando lá no \[\mnc{D}D]Rio de Jor|\[\mnc{B}Bm]dão \[\bm] \altchords{|D E |Am}
+    \[^\mn{D}]Ilumi|\[\mnc{A}Am]nando com a \[\mnc{B}Bm]cura do per|\[\mnc{G}G]dão \[\bm] \rrep \altchords{|Bm |C\shrp{}m |A}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    Aqui na |^mata feste^jamos São Jo|^ão ^
+    Todos |^Santos e\jw a Vir^gem da Concei|^ção ^
+    \lrep O cente|^nário da nos^sa Senhora |^Mãe ^
+    Eterna |^força, dessa ^grande\jw integra|^ção ^ \rrep
+  \endchorus
+  % verse 3
+  \beginchorus
+    Toda\jw irman|^dade dessa ^nossa expan|^são ^
+    Rogar a |^Deus com a^mor no cora|^ção ^
+    \lrep Ter nossa |^Mãe, fé e ^considera|^ção ^
+    O Pai e|^terno é Rei ^da integra|^ção ^ \rrep
+  \endchorus
+  % verse 4
+  \beginchorus
+    Sabedo|^ria\jw é do Se^nhor Rei Salo|^mão ^
+    Força\jw e Po|^der ele traz ^na palma da |^mão ^
+    \lrep O nosso |^Mestre ensi^nando\jw os seus ir|^mãos ^
+    Cantando\jw hi|^nário, afir^mando\jw a uni|^ão ^ \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Centenário Integração (Nova Dimensão #20)"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \key g \major \slurDashed
+      \set melismaBusyProperties = #'()
+      \time 4/4 \partial 4.
+      \sectionLabel "A"
+      \repeat segno 2 {
+        g8 \pomark b d | g g g g g fis a e | e2~8
+        \parenthesize c8 d e | fis( fis) fis fis fis e g fis | d2~8
+        \break
+        \sectionLabel "B"
+        \repeat volta 2 {
+          \parenthesize d8 d d | c( c) c c d d d d | b2~8
+          d8 d d | a a a a b b b b | g2~8
+        }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat segno 2 {
+        A -- qui eu | vol -- to a lem -- brar os meus ir -- | mãos; _
+        De Je -- sus | Cris -- to~e do meu Se -- nhor São Jo -- | ão. _
+        \repeat volta 2 {
+          \set stanza = "1.B"
+          "" Ba -- ti -- | zan -- do lá no Ri -- o de Jor -- | dão; _
+          I -- lu -- mi -- | nan -- do com a cu -- ra do per -- | dão. _
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat segno 2 {
+        A -- qui na | ma -- ta fes -- te -- ja -- mos São Jo -- | ão; _
+        "" To -- dos | San -- tos e~a Vir -- gem da Con -- cei -- | ção. _
+        \repeat volta 2 {
+          \set stanza = "2.B"
+          O cen -- te -- | ná -- rio da nos -- sa Se -- nho -- ra | Mãe; _
+          E -- ter -- na | for -- ça, des -- sa gran -- de~in -- te -- gra -- | ção. _
+        }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat segno 2 {
+        To -- da~ir -- man -- | da -- de des -- sa nos -- sa ex -- pan -- | são; _
+        Ro -- gar a | Deus __ _ com a -- mor no co -- ra -- | ção. _
+        \repeat volta 2 {
+          \set stanza = "3.B"
+          Ter nos -- sa | Mãe, __ _ fé e con -- si -- de -- ra -- | ção; _
+          O Pai e -- | ter -- no é Rei da in -- te -- gra -- | ção. _
+        }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat segno 2 {
+        Sa -- be -- do -- | ri -- a~é do Se -- nhor Rei Sa -- lo -- | mão; _
+        For -- ça~e Po -- | der e -- le traz na pal -- ma da | mão. _
+        \repeat volta 2 {
+          \set stanza = "4.B"
+          O nos -- so | Mes -- tre en -- si -- nan -- do~os seus ir -- | mãos; _
+          Can -- tan -- do~hi -- | ná -- rio, a -- fir -- man -- do~a u -- ni -- | ão. _
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        s4. | g1 | c | d | g2~8
+        \repeat volta 2 {
+          s4. | c2 d2 | b,1:m | a2:m b,:m | g,2~8
+        }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}[EN]
+    Here I return to remind my brothers and sisters of Jesus Christ and of my Lord Saint John
+    Baptizing there in the River Jordan, illuminating with the healing of forgiveness
+    \nextverse
+    Here in the forest we celebrate Saint John, all the Saints and the Virgin of the Conception
+    The Centenary of Our Lady Mother, eternal strength of this great integration
+    \nextverse
+    All the brotherhood of this our expansion prays to God with love in the heart
+    To have our Mother, faith and consideration; the eternal Father is King of integration
+    \nextverse
+    Wisdom belongs to the Lord King Solomon; strength and Power he carries in the palm of his hand
+    Our Master teaching his brothers and sisters, singing the hymnal, affirming the union
+  \end{translation}
+\endsong
