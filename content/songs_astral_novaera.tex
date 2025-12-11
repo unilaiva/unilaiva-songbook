@@ -1389,12 +1389,12 @@
   \audio{https://nossairmandade.com/hymn/113/ADeusEuAgrade\%C3\%A7o}
   \newchords{chords_deuseuagradeco_a}\newchords{chords_deuseuagradeco_b}
   % verse 1
-  \beginchorus\memorize[chords_deuseuagradeco_a]
+  \mnbeginchorus\memorize[chords_deuseuagradeco_a]
     \[^\mn{C}]A |\[\mnc{F}F]Deus eu agra\[\bmc\mn{A}]de\[^\mn{F}]ço e a |\[\mnc{E}C]to\[^\mn{C}]da na\[^\mn{E}]tu\[\bmc\mn{G}]reza \altchords{\id[1]{(D)}|G |D}
-  \endchorus\glueverses
-  \beginchorus\memorize[chords_deuseuagradeco_b]
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_deuseuagradeco_b]
     |\[\mnc{D}G]Pelo céu a\[\bm]zul, \[^\mn{G}]{o\jw so,} a |\[\mnc{C}C]lua\jw e as es\[\bmc\mn{E}]trelas \altchords{|A |D}
-  \endchorus
+  \mnendchorus
   \notesoff
   % verse 2
   \beginchorus\replay[chords_deuseuagradeco_a]
@@ -1537,7 +1537,7 @@
         s4 | g1 | c2.
       }
     }
-    \layout { #(layout-set-staff-size 15) } % for better fit
+    \layout { #(layout-set-staff-size 14.6) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN] \ifshowlilypond\scriptsize\fi
@@ -1559,3 +1559,174 @@
 \endsong
 
 
+\beginsong{Senhor Juramidam}[by={Padr. Alfredo}, off={Elizabeth Mendes}, key={C}, gk={C, B--D}]
+  \audio[key=C]{https://nossairmandade.com/hymn/114/OSenhorJuramidam}
+  \audio[key=C]{https://soundcloud.com/canaljagube/12-juramidam?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \newchords{chords_senhorjuramidam_a}\newchords{chords_senhorjuramidam_b}
+  % verse 1
+  \mnbeginchorus\memorize[chords_senhorjuramidam_a]
+    \[^\mn{C}]O \[^\mn{E}]Se|\[\mnc{G}C]nhor Ju\[^\mn{F#}]ra\[^\mn{E}]mi\[\bmc\mn{G}]dam \[^\mnc{C}]é \[^\mn{E}]quem |\[\mnc{G}G]vem me \[^\mn{F#}]en\[^\mn{A}]si\[\mnc{E}C]nar
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_senhorjuramidam_b]
+    \[^\mn{G}]É \[^\mn{E}]pre|\[\mnc{C}Am]ci\[^\mn{A}]so \[^\mn{C}]ter a\[\mnc{E}C]mor \[^\mnc{G}]e \[^\mn{E}]é |\[\mnc{C}Am]pre\[^\mn{A}]ci\[^\mn{C}]so re\[\mnc{E}C]zar
+    \[^\mn{G}]Pa\[^\mn{E}]ra |\[\mnc{C}Am]po\[^\mn{A}]der \[^\mn{C}]mere\[\mnc{E}C]cer \[^\mn{G}]{e\jw é} \[^\mn{E}]pre|\[\mnc{C}F]ci\[^\mn{A}]so \[^\mn{C}]se ca\[C]lar
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_senhorjuramidam_a]
+    Quem |^não ouve os ^hinos não de|^vem mais procu^rar
+  \endchorus\glueverses
+  \beginchorus\replay[chords_senhorjuramidam_b]
+    Não vai |^ouvir a meu ^Pai, O Mes|^tre que sempre\jw es^ta
+    Não ou|^ve a natu^reza\jw e não po|^de partici^par
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_senhorjuramidam_a]
+    Eu o|^lhando para\jw oi ^céu, vejo |^estrelas bri^lhar \altchords{\id[1]{(B)}|B |F\shrp{} B}
+  \endchorus\glueverses
+  \beginchorus\replay[chords_senhorjuramidam_b]
+    É um |^grande livro\jw a^ceso, que po|^demos se fir^mar \altchords{|G\shrp{}m B |G\shrp{}m B}
+    O lei|^a quem mere^cer e quem |^souber respei^tar \altchords{|G\shrp{}m B |E B}
+  \endchorus
+  % verse 4
+  \beginchorus\replay[chords_senhorjuramidam_a]
+    Neste |^livro se en^contra nossa |^Mãe e nosso ^Pai \altchords{\id[2]{(D)}|D |A D}
+  \endchorus\glueverses
+  \beginchorus\replay[chords_senhorjuramidam_b]
+    E to|^dos seres di^vinos que to|^dos brilham i^guais \altchords{|Bm D |Bm D}
+    Aonde\jw es|^tá a divin^dade não e|^xiste Sata^nás \altchords{|Bm D |G D}
+  \endchorus
+  % verse 5
+  \beginchorus\replay[chords_senhorjuramidam_a]
+    Para |^ser filho de ^Deus é pre|^ciso mais a^mar
+  \endchorus\glueverses
+  \beginchorus\replay[chords_senhorjuramidam_b]
+    Não que|^rer ser tão a^mado e nem |^tão conside^rado
+    Neste |^mundo deser^dado sem an|^tes conside^rar
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Senhor Juramidam"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \mark \markup \with-color #darkgreen \italic "Final: toque tudo"
+      \sectionLabel "A"
+      \repeat volta 2 {
+        \parenthesize c8 \pomark e | g g fis e g8( g8) c,8 e | g g fis a e4
+      }
+      \sectionLabel "B"
+      \repeat volta 2 {
+        g8 e | c a c c e8( e8) g8 e | c8 a c c e8( e8)
+        g8 e | c a c c e8( e8) g8 e | c8 a c c c4
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        O Se -- | nhor Ju -- ra -- mi -- dam __ _
+        É quem | vem me en -- si -- nar.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        É pre -- | ci -- so ter a -- mor __ _
+        E é | pre -- ci -- so re -- zar; __ _
+        Pa -- ra | po -- der me -- re -- cer __ _
+        E~é pre -- | ci -- so se ca -- lar.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        "" Quem | não ou -- ve os hi -- nos
+        Não de -- | vem mais pro -- cu -- rar.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Não vai | ou -- vir a meu Pai __ _
+        O Mes -- | tre que sem -- pre~es -- ta; __ _
+        Não ou -- | ve a na -- tu -- re -- za~E
+        não po -- | de par -- ti -- ci -- par.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Eu o -- | lhan -- do pa -- ra~oi céu __ _
+        Ve -- jo | es -- tre -- las bri -- lhar.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        É um | gran -- de li -- vro~a -- ce -- so
+        Que po -- | de -- mos se fir -- mar; __ _
+        O lei -- | a quem me -- re -- cer __ _
+        E quem | sou -- ber res -- pei -- tar.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Nes -- te | li -- vro se en -- con -- tra
+        Nos -- sa | Mãe e nos -- so Pai.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        E to -- | dos se -- res di -- vi -- nos
+        Que to -- | dos bri -- lham i -- guais;
+        A -- on -- de~es -- | tá a di -- vin -- da -- de
+        Não e -- | xis -- te Sa -- ta -- nás.
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5.A"
+      \repeat volta 2 {
+        Pa -- ra | ser fi -- lho de Deus __ _
+        É pre -- | ci -- so mais a -- mar.
+      }
+      \set stanza = "5.B"
+      \repeat volta 2 {
+        Não que -- | rer ser tão a -- ma -- do
+        E nem | tão con -- si -- de -- ra -- do;
+        Nes -- te | mun -- do de -- ser -- da -- do
+        Sem an -- | tes con -- si -- de -- rar.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c1 | g2 c4
+      }
+      \repeat volta 2 {
+        s4 | a2:m c | a2:m c
+        | a2:m c | f2 c4
+      }
+    }
+    \layout { #(layout-set-staff-size 14.6) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN] \ifshowlilypond\scriptsize\fi
+    The Lord Juramidam is who comes to teach me.
+    One needs to love and one needs to pray.
+    In order to deserve and one needs to be quiet
+    \nextverse
+    Those who don't hear the hymns no longer seek.
+    They will not hear my Father, the Master who is ever present.
+    They will not hear nature and they will not be able to participate.
+    \nextverse
+    When I look to the sky, I see the stars shining.
+    It is a great book that is accessible, in which we can firm ourselves.
+    It is read by those who are deserving and those who show respect.
+    \nextverse
+    In this book we find our Mother and our Father.
+    And all the divine beings, they all shine equally.
+    Where there is divinity Satan does not exist.
+    \nextverse
+    To be a son of God one must love more.
+    Not to want to be so loved, and neither to be so considered.
+    In this forsaken world without considering others first.
+  \end{translation}
+\endsong
