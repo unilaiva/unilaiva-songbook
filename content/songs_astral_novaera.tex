@@ -1730,3 +1730,134 @@
     In this forsaken world without considering others first.
   \end{translation}
 \endsong
+
+
+\beginsong{Dimensão Espiritual}[by={Padr. Alfredo}, off={Lúcia Arruda}, tags={valsa}, key={Bm}, gk={Bm, B\flt{}m--C\shrp{}m}]
+  \audio[key=Bm]{https://soundcloud.com/canaljagube/13-dimensao-espiritual?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio[]{https://nossairmandade.com/hymn/115/Dimens\%C3\%A3oEspiritual}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Eu |\[\mnc{A}A]amo a |\[^\mn{C#}]Deus \[^\mn{D}]nas \[^\mn{C#}]al|\[^\mn{E}]tu|ras \altchords{\id[1]{C\shrp{}m}|B | - | - | \e}
+    Di|mensão es|\[A7]piritu|\[\mnc{F#}D]al | \e \altchords{| - |B7 |E | \e}
+    \lrep \[^\mnvii{F#}{B}]E |\[\mnc{B}E]amo a |minha Mãe|\[\mnc{E}A]zi\[^\mn{C#}]nha \[^\mn{B}]do |\[^\mn{A}]Céu \altchords{|F\shrp{} | - |B | \e}
+    Na |terra |\[F#m]e \[^\mn{G#}]no \[^\mn{A}]as|\[\mnc{B}Bm]tral | \e \rrep \altchords{| - |G\shrp{}m |C\shrp{}m | - }
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    A|^doro\jw a San|ta\jw Estrela |Sol | \e
+    Com |Vossa luz |^do me vi|^ver | \e
+    \lrep Ve|^nero as |noites de |^luar Ma|mãe
+    Que\jw é |para\jw a Se|^nhora\jw eu lhe |^ver | \e \rrep
+  \endchorus
+  % verse 3
+  \beginchorus
+    Es|^trelas |bem peque|ni|nas
+    Gra|vitam |^no firma|^men|to
+    \lrep Fir|^meza |no cora|^ção do meu |Pai
+    E |firmeza |^no pensa|^men|to \e \rrep
+  \endchorus
+  % verse 4
+  \beginchorus
+    Pe|^netro |na natu|re|za
+    Na |sua |^imensi|^dão. | \e
+    \lrep Pe|^dindo con|forto da |^vida\jw a meu |Pai
+    Se|nhor, Meu |^Jurami|^dam | \e \rrep
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Dimensão Espiritual"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative f'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key b \minor \time 3/4 \partial 4
+      \sectionLabel "A"
+      \repeat segno 2 {
+        e4 \pomark | a( a) a | cis, d cis | e2.( | e2) e4 | e( e) e | e e e | fis2.( | fis2)
+        \sectionLabel "B"
+        \repeat volta 2 {
+          << fis4 \single\altcol b,4 \altmark "ii" >> | b( b) b | b b b | e cis b | a2 a4 | a4( a4) a4 | a4 gis a | b2.( | b2)
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat segno 2 {
+        Eu | a -- mo a | Deus nas al -- | tu -- | ras;
+        Di -- | men -- são es -- | pi -- ri -- tu -- | al. __ | _
+        \set stanza = "1.B"
+        \repeat volta 2 {
+          E | a -- mo a | mi -- nha Mãe -- | zi -- nha do | Céu;
+          Na | ter -- _ ra | e no as -- | tral. __ | _
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat segno 2 {
+        A -- | do -- ro~a San -- | ta~Es -- tre -- la | Sol; __ | _
+        Com | Vos -- sa luz | do me vi -- | ver. __ | _
+        \set stanza = "2.B"
+        \repeat volta 2 {
+          Ve -- | ne -- ro as | noi -- tes de | lu -- ar Ma -- | mãe;
+          Que~é | pa -- ra~a Se -- | nho -- ra~eu lhe | ver. __ | _
+        }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat segno 2 {
+        Es -- | tre _ -- las | bem pe -- que -- | ni -- | nas;
+        Gra -- | vi _ -- tam | no fir -- ma -- | men -- | to.
+        \set stanza = "3.B"
+        \repeat volta 2 {
+          Fir -- | me _ -- za | no co -- ra -- | ção do meu | Pai;
+          E | fir -- me -- za | no pen -- sa -- | men -- | to.
+        }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat segno 2 {
+        Pe -- | ne _ -- tro | na na -- tu -- | re -- | za;
+        Na | su _ -- a | i -- men -- si -- | dão. __ | _
+        \set stanza = "4.B"
+        \repeat volta 2 {
+          Pe -- | din -- do con -- | for -- to da | vi -- da~a meu | Pai;
+          Se -- | nhor, __ _ Meu | Ju -- ra -- mi -- | dam. __ | _
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        s4 | a2. | a | a | a | a a:7 | d | d2
+        \repeat volta 2 {
+          s4 | e2. | e | a | a | a | fis:m | b:m | b2:m
+        }
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I love God in the heights, spiritual dimension
+    And I love my dear Mother of Heaven
+    On the Earth and in the astral
+    \nextverse
+    I adore the Holy Star Sun, with Your light of well-being
+    I venerate the nights of moonlight Mamãe
+    That are for me to see You
+    \nextverse
+    Tiny little stars gravitate in the firmament
+    Firmness in the heart of my Father
+    And firmness in thought
+    \nextverse
+    I penetrate nature in its immensity
+    Asking comfort of life from my Father,
+    My Lord Juramidam
+  \end{translation}
+\endsong
