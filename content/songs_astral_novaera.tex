@@ -1861,3 +1861,112 @@
     My Lord Juramidam
   \end{translation}
 \endsong
+
+
+\beginsong{Valorizar}[ititle={Convite}, by={Padr. Alfredo}, off={Sebastião Raulino}, key={G}, gk={G, (G\flt{})--(G)}]
+  \audio{https://nossairmandade.com/hymn/116/OMestreFezOConvite}
+  \audio[key=F]{https://soundcloud.com/canaljagube/14-convite?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{D}]O |\[G]Mestre fez \[\bmc\mnc{E}]o \[^\mn{D}]con|\[^\mn{G}]vi\[\bm]te
+    \[^\mn{B}]Pa\[^\mn{D}]ra |todos \[\bmc\mn{E}]tra\[^\mn{D}]ba|\[\mnc{F#}D]lhar \[\bm]
+    \[^\mn{D}]{E va}|lori\[\bmc\mn{E}]zar \[^\mn{D}]a |\[\mnc{C}C]vida\jw
+    O \[\mnc{A}(Am6)]nos\[^\mn{F#}]so |\[\mnc{D}D]Mestre a\[\mnc{A}D7]on\[^\mn{B}]de\jw es|\[\mnc{G}G]ta \[\bm]
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    Dar va|^lor ao ^Cria|dor ^ \altchords{\id[1]{(G\flt{})}|G\flt{}| \e}
+    Dar va|lor à ^Cria|^ção ^ \altchords{| - |D\flt{} }
+    Dar va|lor ao ^Pai Di|^vino \altchords{| - |C\flt{}}
+    ^{E a} |^Virgem da ^Concei|^ção ^ \altchords{(A\flt{}m6) |D\flt{} D\flt{}7 |G\flt{}}
+  \endchorus
+  % verse 3
+  \beginchorus
+    A Ra|^inha ^da Flo|res^ta
+    Cria |tudo har^moni|^za^do
+    Toda |cor e ^toda |^flor
+    ^Dentro |^do jar^dim dou|^ra^do
+  \endchorus
+  % verse 4
+  \beginchorus
+    Salve\jw a |^luz e ^salve\jw a |for^ça
+    O po|der e ^o sa|^ber ^
+    Salve, |salve\jw o ^nosso |^Mestre\jw
+    A ^{força\jw a}|^onde ^pode |^ser ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Valorizar"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative f'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key g \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        d8( \pomark d8) | d4 d8( d) e4 d | g2( g4) b,8 d | d4 d8( d) e4 d | fis2( fis4)
+        d8 d | d4 d e d | c'4.( c8) a4 fis | d4 d8( d) a4 b | g2( g4)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        O __ _ | Mes -- tre fez o con -- | vi -- te;
+        Pa -- ra | to -- dos __ _ tra -- ba -- | lhar; __ _
+        E va -- | lo -- ri -- zar a | vi -- da;~O
+        nos -- so | Mes -- tre a -- on -- de~es -- | ta. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Dar va -- | lor ao __ _ Cri -- a -- | dor; __ _
+        Dar va -- | lor à __ _ Cri -- a -- | ção; __ _
+        Dar va -- | lor ao Pai Di -- | vi -- no;
+        E a | Vir -- gem da Con -- cei -- | ção. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        A Ra -- | i -- nha __ _ da Flo -- | res -- ta;
+        Cri -- a | tu -- do har -- mo -- ni -- | za -- do;
+        To -- da | cor e to -- da | flor; __ _
+        Den -- tro | do jar -- _ dim dou -- | ra -- do.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Sal -- ve~a | luz e __ _ sal -- ve~a | for -- ça;
+        O po -- | der e __ _ o sa -- | ber; __ _
+        Sal -- ve, | sal -- ve~o nos -- so | Mes -- tre;~A
+        for -- ça~a -- | on -- de __ _ po -- de | ser. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | g1 | g | g | d
+        | d | c2 \parenthesize a:m6 | d d:7 | g2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    The Master invited everyone to work
+    And to value life, our Master where He is
+    \nextverse
+    To value the Creator, to value Creation
+    To value the Divine Father and the Virgin of Conception
+    \nextverse
+    The Queen of the Forest creates everything in harmony
+    Every color and every flower within the golden garden
+    \nextverse
+    Hail the light and hail the force, the power and the knowledge
+    Hail, hail our Master, the force wherever it may be
+  \end{translation}
+\endsong
