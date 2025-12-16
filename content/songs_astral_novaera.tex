@@ -1722,6 +1722,7 @@
 \beginsong{Dimensão Espiritual}[by={Padr. Alfredo}, off={Lúcia Arruda}, tags={valsa}, key={Bm}, gk={Bm, B\flt{}m--C\shrp{}m}]
   \audio[key=Bm]{https://soundcloud.com/canaljagube/13-dimensao-espiritual?in=ivo-nei/sets/nova-era-padrinho-alfredo}
   \audio[]{https://nossairmandade.com/hymn/115/Dimens\%C3\%A3oEspiritual}
+  \meter{3}{4}
   % verse 1
   \mnbeginchorus\memorize
     \[^\mn{E}]Eu |\[\mnc{A}A]amo a |\[^\mn{C#}]Deus \[^\mn{D}]nas \[^\mn{C#}]al|\[^\mn{E}]tu|ras \altchords{\id[1]{C\shrp{}m}|B | - | - | \e}
@@ -1955,5 +1956,115 @@
     \nextverse
     Hail the light and hail the force, the power and the knowledge
     Hail, hail our Master, the force wherever it may be
+  \end{translation}
+\endsong
+
+
+\beginsong{Rota}[by={Padr. Alfredo}, off={Sid Matos}, key={C}, gk={D, C--E}, tags={valsa}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/15-vamos-conhecer?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/117/Rota}
+  \meter{3}{4}
+  % verse 1
+  \beginchorus\memorize
+    \[^\mn{G}]Vi|\[\mnc{C}C]sando\jw es\[^\mn{E}]te |\[^\mn{C}]rumo
+    Va|\[Cmaj7]mos \[^\mn{B}]co\[^\mn{D}]nhe|\[\mnc{G}G]cer
+    O tra|ba\[^\mn{B}]lho \[^\mn{D}]do |\[\mnc{G}G7]Mes\[^\mn{F}]{tre\jw}
+    E \[^\mn{D}]Seu |\[^\mn{B}]grande \[^\mn{G}]po|\[\mnc{C}C]der
+  \endchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    Se|^guindo\jw esta |rota \altchords{\id[1]{(D)}|D | \e}
+    Nós |^vamos che|^gar \altchords{|Dmaj7 |A }
+    No cen|tral da Dou|^trina\jw \altchords{| - |A7}
+    A on|de\jw o Mestre\jw es|^ta \altchords{| - |D}
+  \endchorus
+  % verse 3
+  \beginchorus
+    É |^grande fes|tejo\jw
+    E gran|^{de disci}|^plina
+    Acom|panhar o |^Mestre
+    Nesta |Santa Dou|^trina
+  \endchorus
+  % verse 4
+  \beginchorus
+    Aten|^ção na jor|nada \altchords{\id[2]{(E)}|E | \e}
+    Vamos |ver como |^é \altchords{|Emaj7 |B}
+    O tra|balho do |^Mestre \altchords{| - |B7}
+    Je|sus nossa |^fé \altchords{| - |E}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Rota"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 3/4 \partial 4
+      \repeat volta 2 {
+        g8( \pomark g) | c4 c e | c c c8( c) | c4 b d | g,4( g)
+        g8 g | g4 b d | g f d8( d) | b4 b g | c4( c4)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Vi _ -- | san -- do~es -- te | ru -- mo;
+        Va _ -- | mos co -- nhe -- | cer; __ _
+        O tra -- | ba -- lho do | Mes -- tre;~E
+        Seu __ _ | gran -- de po -- | der. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Se _ -- | guin -- do~es -- ta | ro -- ta;
+        Nós __ _ | va -- mos che -- | gar; __ _
+        No cen -- | tral da Dou -- | tri -- na;~A --
+        on _ -- | de~o Mes -- tre~es -- | ta. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        É __ _ | gran -- de fes -- | te -- jo;~E
+        gran _ -- | de dis -- ci -- | pli -- na;
+        A -- com -- | pa -- nhar o | Mes -- tre;
+        Nes -- ta | San -- ta Dou -- | tri -- na.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        A -- ten -- | ção na jor -- | na -- da;
+        Va -- mos | ver co -- mo | é; __ _
+        O tra -- | ba -- lho do | Mes -- tre;
+        Je _ -- | sus nos -- sa | fé. __ _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c2. | c | c:maj7 | g
+        | g | g:7 | g:7 | c2
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    Observing this direction, let us discover
+    The work of the Master, and His great power
+    \nextverse
+    Following this route we will arrive
+    To the center of the Doctrine, where the Master is
+    \nextverse
+    It's a great celebration and great discipline
+    To accompany the Master in this Holy Doctrine
+    \nextverse
+    Attention in the journey, let us see how it is
+    The work of our Master, Jesus, our faith
   \end{translation}
 \endsong
