@@ -1965,12 +1965,12 @@
   \audio{https://nossairmandade.com/hymn/117/Rota}
   \meter{3}{4}
   % verse 1
-  \beginchorus\memorize
+  \mnbeginchorus\memorize
     \[^\mn{G}]Vi|\[\mnc{C}C]sando\jw es\[^\mn{E}]te |\[^\mn{C}]rumo
     Va|\[Cmaj7]mos \[^\mn{B}]co\[^\mn{D}]nhe|\[\mnc{G}G]cer
     O tra|ba\[^\mn{B}]lho \[^\mn{D}]do |\[\mnc{G}G7]Mes\[^\mn{F}]{tre\jw}
     E \[^\mn{D}]Seu |\[^\mn{B}]grande \[^\mn{G}]po|\[\mnc{C}C]der
-  \endchorus
+  \mnendchorus
   \notesoff
   % verse 2
   \beginchorus
@@ -2066,5 +2066,121 @@
     \nextverse
     Attention in the journey, let us see how it is
     The work of our Master, Jesus, our faith
+  \end{translation}
+\endsong
+
+
+\beginsong{História}[by={Padr. Alfredo}, off={Glauco Vilas Boas}, key={Bm}, gk={Cm, (Bm)--(Cm)}, tags={mazurca}]
+  \audio[key=Bm]{https://soundcloud.com/canaljagube/16-com-certeza-a-minha?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/118/Hist\%C3\%B3ria}
+  \meter{6}{4}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{F#}]Com cer|\[\mnc{B}Bm]teza a \[^\mn{B}]mi\[^\mn{C#}]{nha\jw his}\[\mnc{D}D]tória \altchords{\id[1]{(Am) \capo{2}}|Am C}
+    \[^\mn{B}]Por |\[Bm]onde eu \[^\mn{A#}]já \[^\mn{C#}]pas\[\mnc{F#}F#]sei \altchords{|Am E}
+    Mos|trando a San\[^\mn{A#}]ta \[^\mn{C#}]Dou\[\mnc{F#}F#7]tri\[^\mn{C#}]na \altchords{| - E7}
+    \[^\mn{E}]A |\[^\mn{D}]to\[^\mn{C#}]dos eu \[^\mn{A#}]en\[^\mn{C#}]si\[\mnc{B}Bm]nei \altchords{| - Am}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    Com fir|^meza\jw a nossa Dou^trina
+    Por |^onde esta pas^sando
+    Mostra |Vossa disci^plina
+    E a |todos está ensi^nando
+  \endchorus
+  % verse 3
+  \beginchorus
+    Viva\jw os |^mestres desta ^força \altchords{\id[2]{(Cm)}|Cm E\flt{}}
+    Que |^é quem nos traz o re^médio \altchords{|Cm G}
+    Con|tido no Santo ^Daime \altchords{| - G7}
+    Ele vai |dando a quem lhe ^pede \altchords{| - Cm}
+  \endchorus
+  % verse 4
+  \beginchorus
+    Rece|^bemos com a^mor
+    Enquanto\jw o |^nosso mundo\jw está gi^rando
+    Como\jw é |bom cantar em ^roda
+    Com nosso |Mestre nos ensi^nando
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "História"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key b \minor \time 6/4 \partial 4
+      \repeat volta 2 {
+        fis8 \pomark fis8
+        | b4 b8( b) b,8 cis  d4( d8)( << d8) \single\altcol\parenthesize b8 \altmark "4." >> \altcol\parenthesize b8 b
+        | b8( b) b8( b) ais8 cis  fis,4( fis) fis8( fis)
+        | fis8( fis) fis( fis) ais cis  fis4 cis8( cis8) e8( e)
+        | d8( d) cis8 cis ais cis  b4( b)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Com cer -- | te -- za a mi -- nha~his -- tó -- ria; __ _
+        "" Por | on _ -- de eu já pas -- sei; __ _
+        Mos _ -- | tran -- do a San -- ta Dou -- tri -- na; __ _
+        A __ _ | to _ -- dos eu en -- si -- nei. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Com fir -- | me -- za~a nos -- sa Dou -- tri -- na; __ _
+        "" Por | on _ -- de es -- ta pas -- san -- do;
+        Mos -- tra | Vos _ -- sa __ _ dis -- ci -- pli -- na; __ _
+        E a | to -- dos es -- tá en -- si -- nan -- do.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Vi -- va~os | mes -- tres __ _ des -- ta for -- ça; __ _
+        "" Que | é quem nos traz o re -- mé -- dio;
+        Con _ -- | ti _ -- do no San -- to Dai -- me;
+        E -- le vai | dan _ -- do a quem lhe pe -- de.
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Re -- ce -- | be -- mos __ _ com a -- mor; __ _
+        \altcol En -- \altcol quan -- to~o | nos -- so mun -- do~es -- tá gi -- ran -- do;
+        Co -- mo~é | bom __ _ can _ -- tar em ro -- da;
+        Com nos -- so | Mes _ -- tre nos en -- si -- nan -- do.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4
+        | b2.:m d
+        | b:m fis
+        | fis fis:7
+        | fis:7 b2:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    With certainty, my history, where I have already been
+    Showing the Holy Doctrine I taught for everyone
+    \nextverse
+    With firmness, our Doctrine, wherever it is passing
+    It shows Your discipline and is teaching everyone
+    \nextverse
+    Viva the masters of this force, who are who bring us the remedy
+    Contained in the Holy Daime, He gives to those who ask Him
+    \nextverse
+    We receive with love while our world is turning
+    How good it is to sing in a circle with our Master teaching us
   \end{translation}
 \endsong
