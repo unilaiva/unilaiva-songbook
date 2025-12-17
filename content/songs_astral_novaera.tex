@@ -2184,3 +2184,142 @@
     How good it is to sing in a circle with our Master teaching us
   \end{translation}
 \endsong
+
+
+\beginsong{Relógio do Tempo}[by={Padr. Alfredo}, off={Josiana Mota}, key={C}, gk={D, C--D}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/17-relogio-do-tempo?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/119/Rel\%C3\%B3gioDoTempo}
+  \newchords{chords_relogio_a}\newchords{chords_relogio_b}
+  % verse 1
+  \mnbeginchorus\memorize[chords_relogio_a]
+    \[^\mn{G}]Quan\[^\mn{E}]do |\[\mncii{C}{A}Am]{é de manhã}\[\bmc\mn{C}]zinha para |\[\mncii{B}{G}G]mim \[\bm]
+    Já é |\[\mnc{C}Am]meio-di\[^\mn{B}]{a\jw em} \[\bmc\mn{D}]ponto \[^\mn{A}]para\jw al|\[\mnc{G}G]guém \[\bm]
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_relogio_b]
+    \[^\mnvcii{G}{C}]Pa\[^\mnvcii{G}{B}]ra |\[\mnvcii{C}{A}\up{1}C \up{2}(Am)]{muitos es}\[^\mnvcii{C}{B}]sa \[\bmc\mn{C}]hora já \[^\mnc{D}]é |\[\mnc{E}C]tar\[^\mn{G}]de \[\bm]
+    E \[^\mn{A}]outro |\[^\mn{E}]tanto\jw a\jw i\[^\mnc{C}]lu\[^\mn{E}]mi\[\mnc{D}\up{1}G \up{2}(G7)]nária \[^\mnc{B}]lo\[^\mn{D}]go |\[\mnc{C}C]vem \[\bm]
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_relogio_a]
+    Bem ce|^dinho é i^dade da cri|^ança ^ \altchords{\id[1]{(D)}|Bm |A}
+    Logo |^mais vem vindo ^a maturi|^da^de \altchords{|Bm |A}
+  \endchorus\glueverses
+  \beginchorus\replay[chords_relogio_b]
+    Prepa|^{rando para\jw a} ^hora da co|^lheita ^ \altchords{|\up{1}D \up{2}(Bm) |D}
+    Colher de |tudo que plan^{tou nesta} ver|^da^de \altchords{| - \up{1}A \up{2}(A7) |D}
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_relogio_a]
+    Neste |^mundo boas ^árvore dá bom |^fruto ^
+    Depen|^dendo da ^sua\jw utili|^da^de
+  \endchorus\glueverses
+  \beginchorus\replay[chords_relogio_b]
+    O nosso |^{Mestre nos} fa^lou da laran|^jeira ^
+    Carre|gada de la^{ranja\jw em} seu hi|^ná^rio
+  \endchorus
+  % verse 4
+  \beginchorus\replay[chords_relogio_a]
+    Finda\jw o |^dia, vem a ^noite, é des|^canso ^
+    Para |^quem cuida da ^sua\jw ativi|^da^de
+  \endchorus\glueverses
+  \beginchorus\replay[chords_relogio_b]
+    Passa\jw a |^sombra, já nos ^vem o novo |^dia ^
+    Pleno de |luz, o Sol com ^{sua clari}|^da^de
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Relógio do Tempo"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \sectionLabel "A"
+      \repeat volta 2 {
+        r8 \pomark g8 e | c8 a a a c c16( c16) c8 c | b4( g2) g8 g8 | c8( c) c b d d a a | g2( g8)
+      }
+      \sectionLabel "B:i"
+      \parenthesize g8 g g   | c8 c c c   c c c d | e4 g4. \parenthesize g8 a a | e e c e d d b d | c2( c8)
+      \sectionLabel "B:ii"
+      \parenthesize c8 c b | a8 a a b c c c d | e4 g4. \parenthesize g8 a a | e e c e d d b d | c2 (c8)
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Quan -- do | é de ma -- nhã -- zi -- nha __ _ pa -- ra | mim; __ _
+        Já é | mei -- o -- di -- a~em pon -- to pa -- ra~al -- | guém. __ _
+      }
+      \set stanza = "1.B:i"
+      "" Pa -- ra | mui -- tos es -- sa ho -- ra já é | tar -- de;
+      E ou -- tro | tan -- to~a~i -- lu -- mi -- ná -- ria lo -- go | vem. __ _
+      \set stanza = "1.B:ii"
+      "" Pa -- ra | mui -- tos es -- sa ho -- ra já é | tar -- de;
+      E ou -- tro | tan -- to~a~i -- lu -- mi -- ná -- ria lo -- go | vem. __ _
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Bem ce -- | di -- nho é i -- da -- de __ _ da cri -- | an -- ça;
+        Lo -- go | mais vem vin -- do a ma -- tu -- ri -- | da -- de.
+      }
+      \set stanza = "2.B:i"
+      "" Pre -- pa -- | ran -- do pa -- ra~a ho -- ra da co -- | lhei -- ta;
+      Co -- lher de | tu -- do que plan -- tou nes -- ta ver -- | da -- de.
+      \set stanza = "2.B:ii"
+      "" Pre -- pa -- | ran -- do pa -- ra~a ho -- ra da co -- | lhei -- ta;
+      Co -- lher de | tu -- do que plan -- tou nes -- ta ver -- | da -- de.
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Nes -- te | mun -- do bo -- as ár -- vo -- re dá bom | fru -- to;
+        De -- pen -- | den _ -- do da su -- a~u -- ti -- li -- | da -- de.
+      }
+      \set stanza = "3.B:i"
+      O nos -- so | Mes -- tre nos fa -- lou da la -- ran -- | jei -- ra;
+      "" Car -- re -- | ga -- da de la -- ran -- ja~em seu hi -- | ná -- rio.
+      \set stanza = "3.B:ii"
+      O nos -- so | Mes -- tre nos fa -- lou da la -- ran -- | jei -- ra;
+      "" Car -- re -- | ga -- da de la -- ran -- ja~em seu hi -- | ná -- rio.
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Fin -- da~o | di -- a, vem a noi -- te, __ _ é des -- | can -- so;
+        Pa -- ra | quem cui -- da da su -- a~a -- ti -- vi -- | da -- de.
+      }
+      \set stanza = "4.B:i"
+      "" Pas -- sa~a | som -- bra, já nos vem o no -- vo | di -- a;
+      Ple -- no de | luz, o Sol com su -- a cla -- ri -- | da -- de.
+      \set stanza = "4.B:ii"
+      "" Pas -- sa~a | som -- bra, já nos vem o no -- vo | di -- a;
+      Ple -- no de | luz, o Sol com su -- a cla -- ri -- | da -- de.
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a1:m | g | a:m | g2~8
+      }
+      s4. | c1 | c | c2 g2 | c2~8
+      s4. | a1:m | c | c2 g2:7 | c2~8
+    }
+    \layout { #(layout-set-staff-size 13.4) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN] \ifshowlilypond\scriptsize\fi
+    When it is early morning for me, it's already midday for someone else
+    For many it is already late, and for others the first light is about to come
+    \nextverse
+    Very early is the age of the child, soon enough comes maturity
+    Preparing for the hour of the harvest, to harvest everything you planted in this truth
+    \nextverse
+    In this world a good tree gives good fruit, depending on its usefulness
+    Our Master told us of the orange tree, laden with oranges in His hinário
+    \nextverse
+    The day ends, the night comes and it is rest, for those who carry out their activity
+    The dark passes, the new day comes, full of light, the sun with its clarity
+  \end{translation}
+\endsong
