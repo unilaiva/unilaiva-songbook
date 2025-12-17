@@ -179,6 +179,10 @@
 
 % BEGIN GENERIC UTILITY MACROS
 
+% Very small font size. Be careful if changing, as this is used at least in
+% positioning media note superscript notes.
+\newcommand{\micro}{\fontsize{3.5pt}{4.5pt}\selectfont}
+
 % Testing if the argument has no width when put in a box i.e. it is empty.
 % If so, the first token will be expanded, otherwise the second.
 % Example:
@@ -364,8 +368,8 @@
 % Toggle the use of alternate melody note color (use for e.g. 2nd voice)
 \newif\ifusealtmncolor\usealtmncolorfalse
 
-
 % END Toggles
+
 
 % BEGIN Book titles etc
 
@@ -2469,23 +2473,33 @@
 %
 % Choose the correct command:
 %
-%   \mn{<note>}                     : normal note, not above a chord
-%   \mnc{<note>}                    : above a chord
-%   \mncii{<note>}{<note>}          : 2 notes horizontally, above a chord
-%   \mnciii{<note>}{<note>}{<note>} : 3 notes horizontally, above a chord
+%   \mn{<note>}                     : normal note, don't use with a chord
+%   \mnlow{<notename>}              : note positioned low, lower than chords
+%   \mnc{<note>}                    : can be used with a chord
+%   \mncii{<note>}{<note>}          : 2 notes horizontally, can be used with a
+%                                     chord
+%   \mnciii{<note>}{<note>}{<note>} : 3 notes horizontally, can be used with a
+%                                     chord
 %   \mnciv{<note>}{<note>}{<note>}{<note>}
-%                                   : 4 notes horizontally, above a chord
+%                                   : 4 notes horizontally, can be used with a
+%                                     chord
 %   \mncv{<note>}{<note>}{<note>}{<note>}{<note}
-%                                   : 5 notes horizontally, above a chord
-%   \mncadj{<hadj>}{<note>}         : on first line, above a chord, with
-%                                     adjusted horizontal position
-%   \mnvii{<note>}{<note>}          : 2 notes vertically, the second one
-%                                     in different color.
-%   \mnvcii{<note>}{<note>}         : 2 notes vertically, the second one
-%                                     in different color, above a chord; use
-%                                     this on every note pair of a line, if
-%                                     any of them are above a chord.
-%   \mnlow{<notename>}              : on other lines of a verse
+%                                   : 5 notes horizontally, can be used with a
+%                                     chord
+%   \mncadj{<hadj>}{<note>}         : normal note with adjusted horiz. position,
+%                                     can be used with a chord
+%   \ma{<note}                      : alternatively colored note, don't use with
+%                                     a chord
+%   \mac{<note}                     : alternatively colored note, can be used
+%                                     with a chord
+%   \mau{<note}                     : alternatively colored note above the
+%                                     normal note line, don't use with a chord
+%   \mauc{<note}                    : alternatively colored note above the
+%                                     normal note line, can be used with a chord
+%   \mauii{<note}{<note}            : two notes vertically, the first one in alt
+%                                     color, don't use with a chord
+%   \mauiic{<note}{<note}           : two notes vertically, the first one in alt
+%                                     color, can be used with a chord
 %
 % Use \mn, \mnc, \mncii or \mnciii to display notes on the first line of lyrics
 % or in verses or choruses defined with \mn<begin|end><verse|chorus> pair rather
@@ -2508,7 +2522,10 @@
 % than the first line of lyrics with the caveat, that chords and notes are put
 % beside each other.
 %
-% If one whishes to use 
+% Set \usealtmncolortrue to use alternate color on all normal notes and normal
+% color on alternate notes set with \ma* commands.
+%
+% If one whishes to use
 %
 % Example usage:
 %
@@ -2521,13 +2538,29 @@
 % beginning of your document to set custom style. This will be called each
 % time the melody note circle is drawn. This can be set for individual notes,
 % too.
-\newcommand{\mncirclestyle}{}
+\providecommand{\mncirclestyle}{}
 
 % Setup the style for the melody note name "text". Renew this macro in the
 % beginning of your document to set custom style. This will be called each
 % time the melody note circle is drawn. This can be set for individual notes,
 % too.
-\newcommand{\mnsymbolstyle}{}
+\providecommand{\mnsymbolstyle}{}
+
+% Superscript note text for normal melody notes. Will be put to the top
+% left above normal note circles. Does not take space.
+\providecommand{\mnsuptext}{}
+
+% Superscript note text for alternative melody notes. Will be put to the top
+% left above alternate note circles. Does not take space.
+\providecommand{\mnaltsuptext}{}
+
+% Length that melody note superscript note is pushed towards the right to be
+% closer to the melody note circle.
+\newlength{\mnsuphadjlen}\setlength{\mnsuphadjlen}{.135ex}
+
+% Height of the upper melody note from chord line for \mauii and \mauiic macros.
+\newlength{\mnauheightlen}\setlength{\mnauheightlen}{1.85em}
+
 
 % Base style for the melody note circle, appended with \mncirclestyle:
 \newcommand{\@mncirclestyle}{%
@@ -2577,6 +2610,8 @@
         % Use lowered sharp symbol to better fit inside the circle
         \renewcommand{\sharpsymbol}{\@lowsharpsymbol}%
         \@mncirclestyle%
+        % Make the superscript note on the left of the note, if it exists
+        \makebox[0pt][l]{\hspace{\mnsuphadjlen}\textsuperscript{\micro\llap{\ifusealtmncolor\mnaltsuptext\else\mnsuptext\fi}}}%
         \textcircled{% % Show the note transposed and encircled
           \@mnsymbolstyle\transposehere{#2}%
         }%
@@ -2603,7 +2638,7 @@
 \newcommand{\mau}[1]{%
   {%
     \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
-    \@note[1.85em]{#1}%
+    \@note[\mnauheightlen]{#1}%
   }%
 }
 
@@ -2632,7 +2667,7 @@
 }
 
 \newcommand{\mnvcii}[2]{% DEPRECATED, alt. note below normal
-  \makebox[0pt][l]{\@note[1.85em]{#1}}%
+  \makebox[0pt][l]{\@note[\mnauheightlen]{#1}}%
   {% the second note below, in different color
     \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
     \makebox[0pt][l]{\@note{#2}}%
