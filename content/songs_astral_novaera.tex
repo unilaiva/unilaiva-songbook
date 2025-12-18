@@ -2323,3 +2323,120 @@
     The dark passes, the new day comes, full of light, the sun with its clarity
   \end{translation}
 \endsong
+
+
+\beginsong{A Justiça É Reta}[by={Padr. Alfredo}, off={Júlia}, key={Dm}, gk={Dm, Cm--E\flt{}m}, tags={valsa}]
+  \audio[key=Cm]{https://soundcloud.com/canaljagube/18-a-justica-e-reta?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/120/AJusti\%C3\%A7a\%C3\%89Reta}
+  \newchords{chords_justicareta_a}\newchords{chords_justicareta_b}
+  \meter{3}{4}
+  % verse 1
+  \mnbeginchorus\memorize[chords_justicareta_a]
+    \[^\mn{D}]Eu |\[\mnc{A}Dm]a\[^\mn{D}]mo |\[\mnc{B&}Em7&5]{bem es}\[^\mn{A}]sas |\[\mnc{G}A]for\[^\mn{E}]ças | \e
+    \[^\mn{G}]Com |\[Gm]e\[^\mn{E}]las |\[\mnc{A}A]sigo can|\[\mnc{F}Dm]tan\[^\mn{D}]do | \e
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_justicareta_b]
+    \[^\mn{A}]Bo\[^\mn{D}]ni|\[\mnc{F}Dm/F]císsi\[^\mn{D}]mo Je|\[\mnc{A}Dm]sus \[^\mn{D}]e \[^\mn{F}]Ma|\[A]ri\[^\mn{E}]a | \e
+    \[^\mn{C#}]Com\jw o \[^\mn{E}]Di|\[^\mn{A}]vi\[^\mn{E}]no |\[\mnc{G}A7]Es\[^\mn{F}]píri\[^\mn{E}]to |\[\mnc{D}Dm]San|to
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_justicareta_a]
+    Can|^tar amor |^{e ale}|^gria | \e
+    Bus|^cando es|^tar com o |^Pai | \e
+  \endchorus\glueverses
+  \beginchorus\replay[chords_justicareta_b]
+    Já |^disse to|^dos se pre|^parem | \e
+    Ninguém |sabe |^aonde |^vai | \e
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_justicareta_a]
+    Se|^guir real|^mente\jw a dou|^trina | \e
+    E |^não alte|^rar nem um |^til | \e
+  \endchorus\glueverses
+  \beginchorus\replay[chords_justicareta_b]
+    A jus|^{tiça é} |^reta e |^justa | \e
+    E\jw a ma|téria vi|^ve por um |^fio | \e
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "A Justiça É Reta"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 3/4 \partial 2
+      \sectionLabel "A"
+      \repeat volta 2 {
+        r4 \pomark d4 | a'4( a4) d,4 | bes'4 bes a | g4 e2~ | e2 g4
+        | g4( g) e | a4 a a | f4( d2)~ | d4
+      } \break
+      \sectionLabel "B"
+      \repeat volta 2 {
+        \parenthesize a4 d | f8( f8) d4 d | a d f | f4 e2~ | e4 cis e
+        | a4( a) e | g4 f8( f8) e4 | d2.( | d4)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Eu | a _ -- mo | bem es -- sas | for -- ças; | _
+        Com | e _ -- las | si -- go can -- | tan -- do. | _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Bo -- ni -- | cís -- si -- mo Je -- | sus e Ma -- | ri -- a; | _
+        Com~o Di -- | vi _ -- no | Es -- pí -- ri -- to | San -- | to.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Can -- | tar a -- mor | e a -- le -- | gri -- a; | _
+        Bus -- | can -- do es -- | tar com o | Pai. __ _ | _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        "" Já | dis _ -- se to -- | dos se pre -- | pa -- rem; | _
+        Nin -- guém | sa _ -- be | a -- on _ -- de | vai. __ | _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Se -- | guir re -- al -- | men -- te~a dou -- | tri -- na; | _
+        E | não al -- te -- | rar nem um | til. __ _ | _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        A jus -- | ti _ -- ça é | re -- ta e | jus -- ta; | _
+        E~a ma -- | té -- ria vi -- | ve por __ _ um | fio. __ | _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s2 | d2.:m | e:m7.5- | a | a
+        | g:m | a | d:m | d4:m
+      }
+      \repeat volta 2 {
+        s2 | d2.:m/f | d:m | a | a
+        | a | a:7 | d:m | d4:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I truly love these forces, with them I follow singing
+    Most benevolent Jesus and Mary with the Divine Holy Spirit
+    \nextverse
+    To sing love and joy, seeking to be with the Father
+    I already said all should prepare themselves, no on knows where they go
+    \nextverse
+    To truly follow the doctrine, and not alter even a tilde
+    The justice is correct and fair, and the body hangs by a thread
+  \end{translation}
+\endsong
