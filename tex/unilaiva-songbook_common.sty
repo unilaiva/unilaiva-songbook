@@ -2474,7 +2474,7 @@
 % Choose the correct command:
 %
 %   \mn{<note>}                     : normal note, don't use with a chord
-%   \mnlow{<notename>}              : note positioned low, lower than chords
+%   \mnd{<notename>}                : note positioned low, lower than chords
 %   \mnc{<note>}                    : can be used with a chord
 %   \mncii{<note>}{<note>}          : 2 notes horizontally, can be used with a
 %                                     chord
@@ -2518,7 +2518,7 @@
 % space, thus they can be placed above chords. All the others take horizontal
 % space.
 %
-% \mnlow doesn't put the note so high above the chord line, so use it on other
+% \mnd doesn't put the note so high above the chord line, so use it on other
 % than the first line of lyrics with the caveat, that chords and notes are put
 % beside each other.
 %
@@ -2530,7 +2530,7 @@
 % Example usage:
 %
 %   \[\mnc{A}Am]Love is \[\mn{E}]great
-%   and \[\mnlow{D#}]food tastes \[\mnlow{A}]good
+%   and \[\mnd{D#}]food tastes \[\mnd{A}]good
 %
 %   \[\mnciii{C}{A}{F}Fmaj7]Tralalaa
 
@@ -2759,7 +2759,7 @@
 
 % Displays a melody note, to be used on other than the first line of lyrics.
 % See above for usage information.
-\newcommand{\mnlow}[1]{%
+\newcommand{\mnd}[1]{%
   \@note[0.4em]{#1}%
 }
 
@@ -2815,7 +2815,7 @@
 
 % \mnbegin<verse|chorus> macros are replacements for the ordinary
 % \begin<verse|chorus>, with increased line spacing to accomodate notes
-% also in other than the first line of lyrics without resorting to \mnlow macro
+% also in other than the first line of lyrics without resorting to \mnd macro
 % and it's caveats. For non-chorded books or if melody notes are disabled,
 % spacing is not increased.
 \newcommand{\mnbeginverse}{\@mnincreasebaselineadj\@beginverseorig}

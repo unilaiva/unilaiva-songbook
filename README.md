@@ -545,7 +545,7 @@ Choose the correct variant:
   * `\mnc{<note>}`                    : on verse's first line, above a chord
   * `\mncii{<note>}{<note>}`          : on first line, 2 notes, above a chord
   * `\mnciii{<note>}{<note>}{<note>}` : on first line, 3 notes, above a chord
-  * `\mnlow{<notename>}`              : on other lines of a verse
+  * `\mnd{<notename>}`                : on other lines of a verse
 
 Use `\mn`, `\mnc`, `\mncii` or `\mnciii` to display notes on the first line of
 lyrics (elsewhere they would overlap the lyrics on the line above)). Use `\mn`
@@ -558,7 +558,7 @@ the same chord definition brackets.
 one can put two or three notes on top of one chord. They are also meant to be
 used only on the first line of lyrics in a verse.
 
-`\mnlow` doesn't put the note so high above the chord line, so use it on other
+`\mnd` doesn't put the note so high above the chord line, so use it on other
 than the first line of lyrics with the caveat, that chords and notes are put
 beside each other.
 
@@ -566,7 +566,7 @@ Example usage:
 
 ```
   \[\mnc{A}Am]Love is \[\mn{E}]great
-  and \[\mnlow{D#}]food tastes \[\mnlow{A}]good
+  and \[\mnd{D#}]food tastes \[\mnd{A}]good
 
   \[\mnciii{C}{A}{F}Fmaj7]Tralalaa
 ```
