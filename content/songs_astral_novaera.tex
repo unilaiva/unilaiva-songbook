@@ -2440,3 +2440,132 @@
     The justice is correct and fair, and the body hangs by a thread
   \end{translation}
 \endsong
+
+
+\beginsong{Contato}[by={Padr. Alfredo}, off={Bia}, key={C}, gk={D, C--D}]
+  \audio[key=G]{https://soundcloud.com/canaljagube/19-contato?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/121/Contato}
+  \newchords{chords_contato_a}\newchords{chords_contato_b}
+  % verse 1
+  \beginchorus\memorize[chords_contato_a]
+    \[^\mn{C}]Meu |\[\mnc{G}G]Pai, eu \[^\mn{B}]es\[\bmc\mn{D}]tou em \[^\mn{A}]seu \[^\mn{B}]con|\[\mnc{C}Am]ta\[^\mn{A}]to \[\bm]
+    Meu |\[\mnc{G}G]Pai, con\[^\mnc{B}]ti\[\bmc\mn{D}]nuo a\jw o\[^\mnc{A}]b\[^\mn{B}]ser|\[\mnc{C}C]var \[\bm]
+  \endchorus\glueverses
+  \beginchorus\memorize[chords_contato_b]
+    \[^\mnc{C}]E pe\[^\mn{B}]lo |\[\mnc{A}F]giro que \[^\mnc{B}]o \[\bmc\mn{C}]tem\[^\mn{B}]{po\jw es}\[^\mn{C}]tá \[^\mn{D}]mos|\[\mnc{E}C]tran\[^\mn{G}]do \[\bm]
+    \[^\mn{A}]É |\[^\mn{E}]tempo \[^\mn{C}]de \[^\mn{E}]vi\[\mnc{D}G7]ver e \[^\mn{C}]de \[^\mn{B}]a|\[\mnc{C}C]mar \[\bm]
+  \endchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_contato_a]
+    Meu |^Pai, em Vos^sa Santa Bon|^dade ^ \altchords{\id[1]{(D)}|A |Bm}
+    Meu |^Pai, o que pu^der vou ensi|^nar ^ \altchords{|A |D}
+  \endchorus\glueverses
+  \beginchorus\replay[chords_contato_b]
+    Filhos da |^Terra conti^nuam duvi|^dando ^ \altchords{|G |D}
+    É |hora de vi^ver e de re|^zar ^ \altchords{| - A7 |D}
+  \endchorus
+  % verse 3
+  \beginverse\replay[chords_contato_a]
+    Meu |^Pai, Vos en^contro sobre |^tudo ^
+    E sobre |^tudo nós de^vemos Lhe\jw ado|^rar ^
+  \endverse\glueverses
+  \beginverse\replay[chords_contato_a]
+    Mãe Di|^vina\jw eterna^mente com\jw o Di|^vino ^
+    Eterna|^mente\jw a vida\jw e^terna vigo|^rar ^
+  \endverse\glueverses
+  \beginchorus\replay[chords_contato_b]
+    E mesmo |^que os tempos ^estejam fin|^dando ^
+    Meu |pai e minha ^Mãe vamos lou|^var ^
+  \endchorus
+  \begin{translation}[EN]
+    My Father, I am in contact with You; my Father, I continue to observe
+    And by the turn that the time is showing, it's the time to live and to love
+    \nextverse
+    My Father, in Your Holy Goodness; my Father, I will teach what I am able to
+    The children of earth continue to doubt; It is the time to live and to pray
+    \nextverse
+    My Father, I meet You above all things and above all things we must adore You
+    Divine Mother, eternally with the Divine, eternally invigorating eternal life
+    And even if the times are nearing the end, let's praise my Father and my Mother
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Contato"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \sectionLabel "A"
+      \repeat volta 2 {
+        r8 \pomark c8( c8) | g8( g8) g8 b d d a b | c4 a4. \parenthesize a8 a8( a8)
+        | g8( g8) g8 b d d a b | c2~8
+      }
+      \sectionLabel "B"
+      \repeat volta 2 {
+        c8 c b | a a a b c b c d | e4 g2 a4
+        | e8 e c e d d c b | c2~8
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Meu __ _ | Pai, __ _ eu es -- tou em seu con -- | ta -- to;
+        "" Meu __ _ | Pai, __ _ con -- ti -- nuo a~o -- b -- ser -- | var. _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        E pe -- lo | gi -- ro que o tem -- po~es -- tá mos -- | tran -- do;
+        É | tem -- po de vi -- ver e de a -- | mar. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Meu __ _ | Pai, __ _ em Vos -- sa San -- ta Bon -- | da -- de;
+        "" Meu __ _ | Pai, o que pu -- der vou en -- si -- | nar. _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Fi -- lhos da | Ter -- ra con -- ti -- nu -- am du -- vi -- | dan -- do;
+        É | ho -- ra de vi -- ver e de re -- | zar. _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \repeat volta 2 {
+        <<
+          {
+            \set stanza = "3.A:i"
+            Meu __ _ | Pai, __ _ Vos en -- con -- tro so -- bre | tu -- do;
+            E so -- bre | tu -- do nós de -- ve -- mos Lhe~a -- do -- | rar; _
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "3.A:ii"
+            Mãe Di -- | vi -- na~e -- ter -- na -- men -- te com~o Di -- | vi -- no;
+            E -- ter -- na -- | men -- te~a vi -- da~e -- ter -- na vi -- go -- | rar. _
+          }
+        >>
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        E mes -- mo | que os tem -- pos es -- te -- jam fin -- | dan -- do;
+        Meu | pai e mi -- nha Mãe va -- mos lou -- | var. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | g1 | a:m | g | c2~8
+      }
+      \repeat volta 2 {
+        s4. | f1 | c | c2 g:7 | c2~8
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
