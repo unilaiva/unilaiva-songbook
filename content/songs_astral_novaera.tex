@@ -2747,3 +2747,117 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Criancinha}[by={Padr. Alfredo}, off={Meire}, key={C}, gk={B, C--E}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/22-criancinha?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/124/Criancinha}
+  \newchords{chords_criancinha_a}\newchords{chords_criancinha_b}
+  % verse 1
+  \mnbeginchorus\memorize[chords_criancinha_a]
+    |\[\mnc{G}G]Mais u\[^\mn{B}]ma \[\bmc\mn{D}]vez eu \[^\mn{A}]vou \[^\mnc{B}]di|\[\mnc{C}C]zer \[\bm] \altchords{\id[1]{(D)}|A |D}
+    |\[\mnc{G}G]Que Je\[^\mn{B}]sus \[\bmc\mn{D}]Cristo \[^\mn{A}]es\[^\mn{B}]tá |\[\mnc{C}C]cer\[\bm]to \altchords{|A |D}
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_criancinha_b]
+    \[^\mn{C}]O \[^\mn{E}]es|\[\mnc{C}C]pírito \[^\mn{E}]é \[\bmc\mn{C}]forte Vós \[^\mn{E}]meu |\[\mnc{G}G]Pai\[\mnc{F}G7] \altchords{|D |A A7}
+    Mas a |\[\mnc{G}G]car\[^\mn{B}]ne \[\mnc{D}G7]também \[^\mn{A}]é \[^\mn{B}]a |\[\mnc{C}C]Terra \[\bm] \altchords{|A A7 |D}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_criancinha_a]
+    \noteson\[\mnd{C}]Da\notesoff{}|^í só ^o Santo per|^dão ^
+    |^Para total^mente ficar |^per^to
+  \endchorus\glueverses
+  \beginchorus\replay[chords_criancinha_b]
+    |^Para total^mente ter fir|^me^za
+    É pre|^ciso total^mente ficar |^cer^to
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_criancinha_a]
+    |^Como\jw um santo ^filho de Ma|^ri^a \altchords{\id[2]{(E)}|B |E}
+    Ino|^cência de ^uma crian|^ci^nha \altchords{|B |E}
+  \endchorus\glueverses
+  \beginchorus\replay[chords_criancinha_b]
+    Sois bon|^dade, sois be^leza, Vós meu |^Pai^ \altchords{|E |B B7}
+    Minha |^Mãe, Vós sois pu^reza\jw e sois Ra|^i^nha \altchords{|B B7 |E}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Criancinha"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative d'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \sectionLabel "A"
+      \repeat volta 2 {
+        \parenthesize c4 \pomark | g8( g8) \parenthesize g8 b d d a b | c2( c4) \parenthesize c8 \parenthesize c8
+        | g8( g) g8 b d d a b | c2 c4
+      } \break
+      \sectionLabel "B"
+      \repeat volta 2 {
+        \parenthesize c8 \parenthesize e | c8. c16 c8 e8 c8. c16 c8 e8 | g2( f4) f8 f
+        | g,8( g8 g8) b8 d d a b | c2 c4
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        "" | Mais __ _ u -- ma vez eu vou di -- | zer; __ _
+        "" "" | Que __ _ Je -- sus Cris -- to es -- tá | cer -- to.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        O es -- | pí -- ri -- to é for -- te Vós meu | Pai; __ _
+        Mas a | car _ _ -- ne tam -- bém é a | Ter -- ra.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Da -- | í __ _ "" só o San -- to per -- | dão; __ _
+        "" "" | Pa -- ra to -- tal -- men -- te fi -- car | per -- to.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        "" "" | Pa -- ra to -- tal -- men -- te ter fir -- | me -- za;
+        É pre -- | ci -- so to -- tal -- men -- te fi -- car | cer -- to.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        "" | Co -- mo~um san -- to fi -- lho de Ma -- | ri -- a;
+        I -- no -- | cên _ -- cia de u -- ma cri -- an -- | ci -- nha.
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Sois bon -- | da -- de, sois be -- le -- za, Vós meu | Pai; __ _
+        Mi -- nha | Mãe, Vós sois pu -- re -- za~e sois Ra -- | i -- nha.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | g1 | c | g | c2.
+      }
+      \repeat volta 2 {
+        s4 | c1 | g2 g:7 | g2 g:7 | c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    One more time I'm going to say that Jesus Christ is correct
+    The spirit is strong, You my Father; but the flesh also is the Earth
+    \nextverse
+    From here, only Holy Forgiveness; to totally stay close
+    To totally have firmness, one needs to become completely correct
+    \nextverse
+    Like a Holy child of Mary, innocence of a little child
+    You are goodness, are beauty, You my Father; My Mother, You are purity and are Queen
+  \end{translation}
+\endsong
+
