@@ -21,22 +21,22 @@
   \mnbeginchorus\memorize[chords_brilhantes_pedras_a]
     \[^\mn{A}]Ao pai e\meter{4}{4}|\[A]ter\[^\mn{E}]no nunca \[\bmc\mn{F#}]dei\[^\mn{E}]xo de pe|\[^\mn{A}]dir\[\bm]
     \[^\mn{A}]Na minha |\[A7]mãe \[^\mn{E}]eu nunca \[\bm]pa\[^\mn{C#}]ro \[^\mn{D}]de \[^\mn{E}]fa|\[\mnc{F#}D]lar\[\bm]
-    \[^\mn{B}]Je\[^\mn{C#}]sus |\[^\mn{D}]Cristo nos\[^\mn{F#}]so \[\bmc\mn{B}]gui\[^\mn{A}]a eterna|\[\mnc{E}A]men\[^\mn{C#}]te\[\bm]
-    \[^\mn{E}]E me dá |\[E]forças \[^\mn{B}]pa\[^\mn{C#}]ra \[\bmc\mn{D}]eu e\[^\mn{A}]xe\[^\mn{B}]cu|\[\mnc{C#}A]tar\[A7]
+    \[^\mn{B}]Je\[^\mn{C#}]sus |\[^\mn{D}]Cristo nos\[^\mn{F#}]so \[\bmc\mn{B}]gui\[^\mn{A}]{a\jw e}terna|\[\mnc{E}A]men\[^\mn{C#}]te\[\bm]
+    \[^\mnc{E}]E me dá |\[E]forças \[^\mn{B}]pa\[^\mn{C#}]ra \[\bmc\mn{D}]eu e\[^\mn{A}]xe\[^\mn{B}]cu|\[\mnc{C#}A]tar\[A7]
     \[^\mn{A}]Es\[^\mn{B}]ta \[^\mn{C#}]mis|\[\mnc{D}D]são edu\[^\mn{F#}]ca\[\bmc\mn{B}]ção \[^\mn{A}]em nossa |\[\mnc{E}A]men\[^\mn{C#}]te\[\bm]
     \[^\mn{E}]Eterna|\[E]mente \[^\mn{B}]pa\[^\mn{C#}]ra \[\bmc\mn{D}]todos \[^\mn{C#}]nós \[^\mn{B}]can\up{1}(|\[\mnc{A}A]tar\[\bm]{} ) \up{2}(\meter{3}{4}|\[\mnc{A}A]tar)
   \mnendchorus
   \mnbeginchorus\memorize[chords_brilhantes_pedras_b]
-    \ind \[^\mn{A}]Se\meter{3}{4}|\[A7]guin\[^\mn{B}]do es\[^\mn{C#}]ta |\[\mnc{D}D]rosa \[^\mn{F#}]de |\[^\mn{B}]luz \[^\mn{A}]e \[^\mn{C#}]ca|\[\mnc{E}E]lor
+    \ind \[^\mn{A}]Se\meter{3}{4}|\[A7]guin\[^\mn{B}]{do\jw es}\[^\mn{C#}]ta |\[\mnc{D}D]rosa \[^\mn{F#}]de |\[^\mn{B}]luz \[^\mn{A}]e \[^\mn{C#}]ca|\[\mnc{E}E]lor
     \ind \[^\mn{F#}]Que |\[^\mn{E}]no \[^\mn{C#}]meu \[^\mn{A}]jar|\[^\mn{B}]dim fez nas|cer \[^\mn{A}]es\[^\mn{C#}]ta |\[A]flor
-    \ind Es|\[\mnc{A}A7]ta \[^\mn{B}]flor \[^\mn{C#}]me|\[\mnc{D}D]nina, \[^\mn{F#}]di|\[^\mn{B}]vi\[^\mn{A}]na es\[^\mn{C#}]ta |\[\mnc{E}E]flor
+    \ind Es|\[\mnc{A}A7]ta \[^\mn{B}]flor \[^\mn{C#}]me|\[\mnc{D}D]nina, \[^\mn{F#}]di|\[^\mn{B}]vi\[^\mn{A}]{na\jw es}\[^\mn{C#}]ta |\[\mnc{E}E]flor
     \ind \[^\mn{F#}]Jar|\[^\mn{E}]dim \[^\mn{C#}]da \[^\mn{A}]in|\[^\mn{B}]fância \[^\mn{A}]Jar|\[^\mn{C#}]dim \[^\mn{A}]do \[^\mn{F#}]a\up{1}(|\[\mnc{A}A]mor) \up{2}(\meter{4}{4}|\[\mnc{A}A]mor\[\bm]{} )
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_brilhantes_pedras_a]
     Vem das es\meter{4}{4}|^trelas o vi^gor desta mis|são^
     São nossos |^guias que vem ^para nos cu|^rar^
-    Passando o |visto o ser di^vino Santo |^Daime^
+    Passando\jw o |visto\jw o ser di^vino Santo |^Daime^
     Nos traz o |^dom e o po^der de transfor|^mar^
     Aqui na |^terra de bri^lhantes pedras |^finas^
     O nosso |^mestre tem po^der de nos sal\up{1}(|^var^ ) \up{2}(\meter{3}{4}|^var)
@@ -44,16 +44,17 @@
   \beginchorus\replay[chords_brilhantes_pedras_b]
     \ind No \meter{3}{4}|^jardim lou|^vando a |nossa mãe|^zinha
     \ind Que |foi quem nos |deu es|ta pedra |^fina
-    \ind Es|^te dia|^mante de i|lumina|^ção
-    \ind E|leva o es|tudo No|va Dimen\up{1}(|^são) \up{2}(\meter{4}{4}|^são^ )
+    \ind Es|^te dia|^mante de\jw i|lumina|^ção
+    \ind E|leva\jw o es|tudo No|va Dimen\up{1}(|^são) \up{2}(\meter{4}{4}|^são^ )
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva, updated on 2023-04
     theMelody = \relative a'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \major \time 4/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        a8 \posectionmark "A" a a | a e e e fis e e e | a,2~8 a' a a
+        a8 \pomark a a | a e e e fis e e e | a,2~8 a' a a
         | a e e e e cis d e | fis2~8 \parenthesize b,8 b cis
         | d d d fis b a a a | e4 cis4. e8 e e
         | e e b cis d d a b | cis2~8 a b cis
@@ -63,8 +64,9 @@
         { | a2~8 }
         { \time 3/4 | a2 \once \override Score.TimeSignature.stencil = ##f }
       } \break
+      \sectionLabel "B"
       \repeat volta 2 { \time 3/4 \partial 4
-        a4 \sectionmark "B" | a b cis | d d fis | b a cis, | e( e) fis
+        a4 | a b cis | d d fis | b a cis, | e( e) fis
         | e cis a | b( b) b | b a cis | cis( cis) cis
         | a b cis | d d fis | b a cis, | e2 fis4
         | e cis a | b b a | cis a fis
@@ -183,7 +185,7 @@
   \endchorus
   \beginchorus\replay[chords_cirandadoamor_b]
     Gira, |^gira, cabo^clinha, |gira \altchords{|Am C | - Am}
-    ^Gira |^na gi^ra do a|^mor ^ \altchords{|E7 Am |C}
+    ^Gira |^na gi^ra do\jw a|^mor ^ \altchords{|E7 Am |C}
     Gira, |^gira, cabo^clinha, |gira \altchords{|Am C | - Am}
     ^Na gi|^ra que ^Deus man|^dou ^ \altchords{|E7 C |Am}
   \endchorus
@@ -202,11 +204,13 @@
     theMelody = \relative a'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
-        e4 \posectionmark "A" | a a a b | a2( g4)( g) | g fis g a | e2.
-      }
+        e4 \pomark | a a a b | a2( g4)( g) | g fis g a | e2.
+      } \break
+      \sectionLabel "B"
       \repeat volta 2 {
-        a8 \sectionmark "B" a | a a e e c8( c8) a8( a8) | c4 a4 a4 a4 | e4 e a a | c2.
+        a8 a | a a e e c8( c8) a8( a8) | c4 a4 a4 a4 | e4 e a a | c2.
         a'8 a | a a e e c8( c8) a8( a8) | c4 a4 a4 a4 | e4 e c' b | a2.
       }
       \fine
@@ -288,14 +292,14 @@
   \newchords{chords_luzeirodomeuhinario_a}\newchords{chords_luzeirodomeuhinario_b}
   \mnbeginchorus\memorize[chords_luzeirodomeuhinario_a]
     \[^\mn{F}]A\[^\mn{D}]com|\[\mnc{A}A]panho \[\bm]es\[^\mn{F}]ta |\[^\mn{E}]Luz \[\bm]{} \altchords{\id[1]{(Am) \capo{5}}|E | \e}
-    Cla\[^\mn{C#}]re|\[^\mn{A}]ando o \[\bm]nos\[^\mn{E}]so |\[\mnc{D}Dm]chão \[\bm]{} \altchords{| - | Am}
+    Cla\[^\mn{C#}]re|\[^\mn{A}]ando\jw o \[\bm]nos\[^\mn{E}]so |\[\mnc{D}Dm]chão \[\bm]{} \altchords{| - | Am}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_luzeirodomeuhinario_b]
     \[^\mn{F}]Da mi\[^\mn{E}]nha |\[\mnc{D}Dm]Mãe lá \[\mnc{F}(F)]no \[^\mn{D}]As|\[\mnc{G}Gm]tral \[\bmadj{-.5ex}] \altchords{|Am (C) |Dm }
     \[^\mn{E}]{É que} me |\[\mnc{A}A]vem \[^\mn{G}]es\[\mnc{C#}A7]te \[^\mn{E}]cla|\[\mnc{D}Dm]rão \[\bm]{} \altchords{|E E7 |Am}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_luzeirodomeuhinario_a]
-    Oh! Luz |^que cla^reia a |noi^te
+    Oh! Luz |^que cla^reia\jw a |noi^te
     Lu|zeiro do ^meu hi|^ná^rio
     \endchorus\glueverses\beginchorus\replay[chords_luzeirodomeuhinario_b]
     Sua |^força es^tá em |^tu^{'do}
@@ -305,7 +309,7 @@
     Está na |^grande^za dos |as^tros \altchords{\id[2]{(Em)}|B | \e}
     O re|médio ^para |^tu^do \altchords{| - |Em}
     \endchorus\glueverses\beginchorus\replay[chords_luzeirodomeuhinario_b]
-    Na Dou|^trina ^eu a|^pren^{'do} \altchords{|Em (G) |Am}
+    Na Dou|^trina ^eu a|^pren^{'do\jw} \altchords{|Em (G) |Am}
     E na Dou|^trina ^eu me |^cu^ro \altchords{|B B7 |Em}
   \endchorus
   \beginchorus\replay[chords_luzeirodomeuhinario_a]
@@ -321,11 +325,13 @@
     theMelody = \relative d'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \minor \time 4/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        \parenthesize f8 \posectionmark "A" f8 d | a4. a8 a4. f'8 | e2( e4) \once\slurUp e8 \single\altcol ( << \single\altcol e) \altmark "2." cis >> | a4( a8) a8 a4. e'8 | d2( 8)
+        \parenthesize f8 \pomark f8 d | a4. a8 a4. f'8 | e2( e4) \once\slurUp e8 \single\altcol ( << \single\altcol e) \altmark "2." cis >> | a4( a8) a8 a4. e'8 | d2( 8)
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize f8 \sectionmark "B" f e | d4 ( d8 ) d8 f4. d8 | g2~ g8 \parenthesize e e e | a4. g8 cis,4. e8 | d2( 8)
+        \parenthesize f8 f e | d4 ( d8 ) d8 f4. d8 | g2~ g8 \parenthesize e e e | a4. g8 cis,4. e8 | d2( 8)
       }
     }
     theLyricsOne = \lyricmode {
@@ -412,10 +418,10 @@
     \[^\mn{A}]Eu |\[\mnc{D}Dm]vou \[^\mn{E}]re|\[\mnc{D}A]zan\[^\mn{C#}]do, \[^\mn{A}]pa|\[\mnc{D}Dm]pai \[^\mn{E}]do |\[\mncii{D}{C#}A]Céu
     \[^\mn{A}]ma|\[\mnc{C#}A7]mãe \[^\mn{E}]do |\[\mnc{D}Dm]Céu, ma|\[\mnc{C#}A7]mãe \[^\mn{E}]do |\[\mnc{D}Dm]Céu |\[\up{2}(D7)]\e
     \mnendchorus\glueverses\mnbeginverse\memorize[chords_salmo_b]
-    \[^\mn{D}]Eu |\[\mnc{G}Gm]vou can|\[\mnc{B&}(B&)]tan\[^\mn{A}]do, e este |\[\mnc{F}Dm]sal\[^\mn{D}]mo bai|\[\mnc{F}(F)]lan\[^\mn{E}]do
+    \[^\mn{D}]Eu |\[\mnc{G}Gm]vou can|\[\mnc{B&}(B&)]tan\[^\mn{A}]{do,\jw e} este |\[\mnc{F}Dm]sal\[^\mn{D}]mo bai|\[\mnc{F}(F)]lan\[^\mn{E}]do
     \[^\mn{A}]es|\[\mnc{B&}B&]te \[^\mn{G}]do\[^\mn{B&}]ce |\[\mnc{A}A]mel |\[A7]{} \e
     \mnendverse\glueverses\mnbeginchorus\memorize[chords_salmo_c]
-    \[^\mn{D}]Vou |\[\mnc{G}Gm]implo|\[\mnc{B&}(B&)]ran\[^\mn{A}]do, pe|\[\mnc{F}Dm]din\[^\mn{D}]do e ro|\[\mnc{F}(F)]gan\[^\mn{E}]do
+    \[^\mn{D}]Vou |\[\mnc{G}Gm]implo|\[\mnc{B&}(B&)]ran\[^\mn{A}]do, pe|\[\mnc{F}Dm]din\[^\mn{D}]{do\jw e} ro|\[\mnc{F}(F)]gan\[^\mn{E}]do
     \[^\mn{D}]Ao |\[\mnc{C#}A7]meu São \[^\mn{E}]Mi|\[\mnc{D}Dm]guel, |\[\mnc{C#}A7]meu São \[^\mn{E}]Mi|\[\mnc{D}Dm]guel |\[\up{1}D7]\e
   \mnendchorus
   \notesoff
@@ -424,11 +430,11 @@
     Vou |^medi|^tando, na |^minha dou|^trina
     a |^cami|^nhar, |^cami|^nhar |^ \e
     \endchorus\glueverses\beginverse\replay[chords_salmo_b]
-    Fir|^mando os en|^sinos, do cri|^ador di|^vino
+    Fir|^mando\jw os en|^sinos, do cri|^ador di|^vino
     nos |^faz enxer|^gar |^ \e
     \endverse\glueverses\beginchorus\replay[chords_salmo_c]
     O |^nosso sis|^tema: Sol, |^Lua, es|^trelas
-    ter|^ra, vento e |^mar, ter|^ra, vento e |^mar |^ \e
+    ter|^ra, vento\jw e |^mar, ter|^ra, vento\jw e |^mar |^ \e
   \endchorus
   \begin{translation}[EN]
     I am praying, father of Heaven, mother of Heaven, mother of Heaven
@@ -445,22 +451,26 @@
     theMelody = \relative d'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \minor \time 3/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
         \mark \markup \with-color #darkgreen \italic "Final: toque tudo, mas parte A sem repetição"
-        a4 \posectionmark "A" | d2 e4 | d cis a | d4( d4) e4 | d( cis) a | cis2 e4
+        a4 \pomark | d2 e4 | d cis a | d4( d4) e4 | d( cis) a | cis2 e4
         | d2 d4 | cis2 e4
       } \alternative {
         { | d2.~ | d2 }
         { | d2.~ | d2 }
       }
-      d4 \sectionmark "B" | g4 (g4) g4 | bes4 a4 a8 a8 | f4 d d | f e a, | bes g bes | a2.~ | a2
+      \sectionLabel "B"
+      d4 | g4 (g4) g4 | bes4 a4 a8 a8 | f4 d d | f e a, | bes g bes | a2.~ | a2
       \repeat volta 2 {
-        d4 \sectionmark "C" | g4( g4) g4 | bes a a | f d d | f e d | cis cis e
+        \sectionLabel "C"
+        d4 | g4( g4) g4 | bes a a | f d d | f e d | cis cis e
         | d2( d4) | cis4 cis e
       } \alternative {
         { | d2.~ | d2 }
-        { | d2.~ | d2 \bar "|." }
+        { | d2.~ | d2 }
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
@@ -554,7 +564,7 @@
     Estu|^dando a Mãe da ^Vida
     O pla|neta do A^mor
     \endchorus\glueverses\beginchorus\replay[chords_reidaciencia_b]
-    Salve as |^águas e salve a ^Terra
+    Salve\jw as |^águas e salve\jw a ^Terra
     Onde Je|^sus Cristo pi^sou
   \endchorus
   \beginchorus\replay[chords_reidaciencia_a]
@@ -572,10 +582,10 @@
     O dono |^Rei Jurami^dam
   \endchorus
   \beginchorus\replay[chords_reidaciencia_a]
-    Feito a|^qui este con^vite
+    Feito\jw a|^qui este con^vite
     Em ple|no dois mil e ^doze
     \endchorus\glueverses\beginchorus\replay[chords_reidaciencia_b]
-    Lembran|^do o Rei da Ci^ência
+    Lembran|^do\jw o Rei da Ci^ência
     Mais ma|^duro e mais i^doso
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
@@ -584,13 +594,15 @@
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 6/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
-        a8 \posectionmark "A" a8
+        a8 \pomark a8
         | c4 a8( a) c e  a4( a) a8 b
         | c4 a e8 d  c4( c)
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        a8 \sectionmark "B" c8
+        a8 c8
         | e4 << e8 \once\slurUp \single\altcol f \altmark "3., 4., 5." \single\altcol ( >> f) e d  \once\slurUp c4( a8)( a) a b
         | c8( c) << c8 \once\slurUp \single\altcol d \altmark "2., 4." \single\altcol ( >> d) b c  a4( a)
       }
@@ -690,8 +702,8 @@
   \audio[key=D]{https://soundcloud.com/violeiro-daime/in-agradecimento?in=violeiro-daime/sets/hinario-nova-dimensao}
   \newchords{chords_inin_a}\newchords{chords_inin_b}
   \mnbeginchorus\memorize[chords_inin_a]
-    \[^\mn{E}]Meu |\[\mnc{D}Dm]Pai, \[^\mn{A}]Vos \[\mnc{C}Fmaj7]a\[^\mn{E}]gra|\[\mnc{C}C]de\[\bmc\mn{A}]ço \altchords{\id[1]{(D)}|Em Gmaj7 |D}
-    O \[^\mn{E}]que o Se|\[\mnc{D}Dm]nhor \[^\mn{A}]con\[\mnc{C}Fmaj7]ce\[^\mn{E}]de a |\[\mnc{C}C]mim \[\bm]{} \altchords{|Em Gmaj7 |D}
+    \[^\mn{E}]Meu |\[\mnc{D}Dm]Pai, \[^\mn{A}]Vos \[\mnc{C}Fmaj7]a\[^\mn{E}]gra|\[\mnc{C}C]de\[\bmc\mn{A}]ço\jw \altchords{\id[1]{(D)}|Em Gmaj7 |D}
+    O \[^\mn{E}]que\jw o Se|\[\mnc{D}Dm]nhor \[^\mn{A}]con\[\mnc{C}Fmaj7]ce\[^\mn{E}]{de\jw a} |\[\mnc{C}C]mim \[\bm]{} \altchords{|Em Gmaj7 |D}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_inin_b]
     \[^\mn{C}]Com \[^\mn{B}]pa|\[\mnc{A}F]lavras, Vos \[\bmc\mn{C}]a\[^\mn{E}]gra|\[\mnc{G}C]de\[^\mn{E}]ço \[\bm]{} \altchords{|G |D}
     Santís\[^\mn{G}]si|\[^\mn{E}]ma \[^\mn{C}]flor \[\mnc{A}F]de \[^\mn{C}]Jas|\[C]mim \[\bm]{} \altchords{| - G |D}
@@ -699,14 +711,14 @@
   \notesoff
   \beginchorus\replay[chords_inin_a]
     \noteson\[\mn{C}]Mamãe \[\mn{E}]Di\notesoff|^vina ^Natu|^re^za
-    Para |^sempre a^grade|^cer ^
+    Para |^sempre\jw a^grade|^cer ^
     \endchorus\glueverses\beginchorus\replay[chords_inin_b]
     O ali|^mento ^do es|^pírito^
     E na ma|téria, ^conhe|^cer ^
   \endchorus
   \beginchorus\replay[chords_inin_a]
     \noteson\[\mn{C}]Jura\[\mn{E}]mi\notesoff|^dam, Vos ^agra|^de^ço
-    Me ensi|^nou can^{tar as}|^sim ^
+    Me\jw ensi|^nou can^{tar as}|^sim ^
     \endchorus\glueverses\beginchorus\replay[chords_inin_b]
     Sem pa|^lavras, Vos ^agra|^deço^
     In, |in, in, ^in, in, |^in ^
@@ -717,13 +729,15 @@
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        \parenthesize c8 \posectionmark "A" << c \once\slurUp \single\altcol e \altmark "1." \single\altcol ( >> e )
+        \parenthesize c8 \pomark << c \once\slurUp \single\altcol e \altmark "1." \single\altcol ( >> e )
         | d4. a8 c4. e8 | c2 a4 e'8 e
         | d4. a8 c4. e8 | c2~ 8
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize c8 \sectionmark "B" c8 b
+        \parenthesize c8 c8 b
         | a4( a8) a8 c4. e8 | g8( g8) e4. \parenthesize e8 \parenthesize e8 g8
         | e4. c8 a4. c8 | c2~ 8
       }
@@ -796,7 +810,7 @@
     \[^\mn{C#}]Meu |\[\mnc{E}A]Deus\[\bm]{} | \e \altchords{\id[1]{(G)}|G | \e}
     Desde \[\bmc\mn{A}]o infi|ni\[^\mn{E}]to\[\bm]{} | \e \altchords{| - | \e}
     \[^\mn{C#}]Escu\[\bmc\mn{E}]tai o meu |\[E]gri\[^\mn{B}]to\[\bm]{} | \e \altchords{|D | \e}
-    Minha o\[\bm]ra\[^\mn{A}]ção \[^\mn{C#}]de a|\[A]mor\[\bm]{} |\[\up{2}(A7)] \[\bm]{} \altchords{|G |\up{2}(G7)}
+    Minha\jw o\[\bm]ra\[^\mn{A}]ção \[^\mn{C#}]{de\jw a}|\[A]mor\[\bm]{} |\[\up{2}(A7)] \[\bm]{} \altchords{|G |\up{2}(G7)}
   \mnendchorus
   \mnbeginchorus\memorize[chords_portoseguro_b]
     \ind \[^\mn{A}]Por|\[\mnc{D}D]que\[\bm]{} | \e \altchords{|C | \e}
@@ -807,7 +821,7 @@
   \notesoff
   \beginchorus\replay[chords_portoseguro_a]
     Sois |^luz^ | \e
-    Brilha em ^todo uni|verso^ | \e
+    Brilha\jw em ^todo\jw uni|verso^ | \e
     Meu Pai, ^a Vós eu |^peço^ | \e
     O ^Vosso vi|^gor^ |^ ^
   \endchorus
@@ -823,29 +837,32 @@
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \major \time 4/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
-        cis4 \posectionmark "A"
+        cis4 \pomark
         | e1~ | e4 e8 e a4 a8 a | a4 e2.~ | e4 cis8 cis e4 e8 e
         | e4 b2.~ | b4 \parenthesize b8 b b4 a8 cis
       } \alternative {
         { | cis1~ | cis2. }
         { | cis1~ | cis2. }
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        a4 \sectionmark "B"
+        a4
         | d1~ | d4 d8 fis a4 a8 a | a4 e2.~ | e4 cis8 cis e4 e8 e
         | e4 b2.~ | b4 b8 b b4 a8 cis
       } \alternative {
         { | a1~ | a2. }
-        { | a1~ | a2. \bar "|." }
+        { | a1~ | a2. }
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
       \set stanza = "1.A"
       \repeat volta 2 {
-        Meu | Deus | _
-        Des -- de o in -- fi -- | ni -- to | _
-        Es -- cu -- tai o meu | gri -- to | _
+        Meu | Deus; | _
+        Des -- de o in -- fi -- | ni -- to; | _
+        Es -- cu -- tai o meu | gri -- to; | _
         Mi -- nha~o -- ra -- ção de~a --
       } \alternative {
         { | mor. | _ }
@@ -853,9 +870,9 @@
       }
       \set stanza = "1.B"
       \repeat volta 2 {
-        Por -- | que | _
-        Sois meu por -- to se -- | gu -- ro | _
-        Só com Vós eu me | cu -- ro | _
+        Por -- | que; | _
+        Sois meu por -- to se -- | gu -- ro; | _
+        Só com Vós eu me | cu -- ro; | _
         E só com Vós, eu
       } \alternative {
         { | sou. | _ }
@@ -917,13 +934,13 @@
 \endsong
 
 
-\beginsong{Mamãe Maria}[by={Padr. Alfredo}, key={C}, gk={C, (B\flt{})--(C)}, off={Gabriela Shore}]
+\beginsong{Mamãe Maria}[by={Padr. Alfredo}, key={C}, gk={C, (B)--(C)}, off={Gabriela Shore}]
   \mnbeginchorus\memorize
-    \[^\mn{G}]Firmo |\[\mnc{C}C]lá na al\[\bm]tu\[^\mn{G}]ra
+    \[^\mn{G}]Firmo |\[\mnc{C}C]lá na al\[\bm]tu\[^\mn{G}]ra\jw
     E no |\[^\mn{E}]fundo \[^\mn{D}]do \[\bmc\mn{C}]mar
-    Vem |\[\mnc{D}Dm]Mamãe Ma\[\bm]ria \[^\mn{A}]e Ma|\[\mnc{C}C]mãe Ieman\[\bm]já
-    \[^\mn{A}]Vem |\[Am]Mamãe Ma\[\bm]ria \[^\mn{G}]e Ma|\[\mnc{C}C]mãe Ieman\[\bm]já
-    \[^\mn{A}]Vem |\[Am]Mamãe Ma\[\bm]ria \[^\mn{G}]e Ma|\[\mnc{C}C]mãe Ieman\[\bm]já
+    Vem |\[\mnc{D}Dm]Mamãe Ma\[\bm]ria \[^\mnc{A}]e Ma|\[\mnc{C}C]mãe Ieman\[\bm]já
+    \[^\mn{A}]Vem |\[Am]Mamãe Ma\[\bm]ria \[^\mnc{G}]e Ma|\[\mnc{C}C]mãe Ieman\[\bm]já
+    \[^\mn{A}]Vem |\[Am]Mamãe Ma\[\bm]ria \[^\mnc{G}]e Ma|\[\mnc{C}C]mãe Ieman\[\bm]já
   \mnendchorus
   \notesoff
   \beginchorus
@@ -935,12 +952,12 @@
     |^Neste ter^reiro |^ilumi^nar
   \endchorus
   \beginchorus
-    Viva a |^força das ^mães
+    Viva\jw a |^força das ^mães
     E as prin|cesas do ^mar
     Os pri|^mores das ^águas
     No |^seu balan^çar
-    |^Salve o en^canto dos |^seres do ^mar
-    |^Salve o en^canto dos |^seres do ^mar
+    |^Salve\jw o en^canto dos |^seres do ^mar
+    |^Salve\jw o en^canto dos |^seres do ^mar
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-05
@@ -1041,8 +1058,8 @@
   \beginchorus\replay[chords_eusouflordasaguas_a]
     Fa|^zer a lim|peza
     No |meu cora|^ção
-    Dou |^{viva a} Je|^sus
-    Dou |^{viva a} São Jo|^ão
+    Dou |^{viva\jw a} Je|^sus
+    Dou |^{viva\jw a} São Jo|^ão
   \endchorus
   \beginchorus\replay[chords_eusouflordasaguas_b]
     \ind E |Nossa Se|^nhora
@@ -1155,16 +1172,16 @@
 \beginsong{Excelência}[by={Padr. Alfredo}, key={Am}, gk={Am, Gm--Bm}, off={Kelly Cristina}, tags={3x}]
   \mnbeginchorus\memorize
     \[^\mn{A}]Meu São \[^\mn{B}]Jo|\[\mnc{C}C]ão,\[\bm]{} meu São \[^\mn{B}]Jo|\[\mnc{A}Am]ão \[\bm]
-    Vos\[^\mn{C}]sa ex\[^\mn{E}]ce|\[^\mn{A}]lência e Jesus \[\bm]Cristo Reden|\[\mnc{D}Dm]tor \[\bm]
-    São quem \[^\mn{C}]me en|\[\mnc{B}E]sinam nesta es\[\bm]cola \[^\mn{C}]do \[^\mn{D}]a|\[\mnc{E}Am]mor \[\bm]
-    \[^\mn{A}]A Vir\[^\mn{C}]gem |\[\mnc{E}E]Mãe e o \[^\mn{D}]nosso \[\bmc\mn{C}]Mestre En\[^\mn{B}]sina|\[\mnc{A}Am]dor \[\bm]
+    Vos\[^\mn{C}]{sa\jw ex}\[^\mn{E}]ce|\[^\mn{A}]lência\jw e Jesus \[\bm]Cristo Reden|\[\mnc{D}Dm]tor \[\bm]
+    São quem \[^\mn{C}]{me\jw en}|\[\mnc{B}E]sinam nesta\jw es\[\bm]cola \[^\mn{C}]do \[^\mn{D}]a|\[\mnc{E}Am]mor \[\bm]
+    \[^\mnc{A}]A Vir\[^\mn{C}]gem |\[\mnc{E}E]{Mãe\jw e} o \[^\mn{D}]nosso \[\bmc\mn{C}]Mestre\jw En\[^\mn{B}]sina|\[\mnc{A}Am]dor \[\bm]
   \mnendchorus
   \notesoff
   \beginchorus
-    Santo Cru|^zei^ro, Santa Dou|^tri^na
-    O Santo |Daime, esta ^luz que nos en|^si^na
-    Para |^sempre só nos ^resta agrade|^cer ^
-    Para |^sempre com a^mor hei de ven|^cer ^
+    Santo Cru|^zei^ro, Santa Dou|^tri^na \altchords{\id[1]{(Bm)}|D |Bm}
+    O Santo |Daime, esta ^luz que nos en|^si^na \altchords{| - |Em}
+    Para |^sempre só nos ^resta\jw agrade|^cer ^ \altchords{|F\shrp{} |Bm}
+    Para |^sempre com a^mor hei de ven|^cer ^ \altchords{|F\shrp{} |Bm}
   \endchorus
   \begin{translation}[EN]
     My Saint John, my Saint John
@@ -1178,7 +1195,7 @@
     Forever with love I will overcome
   \end{translation}
   \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-05
+    % transcribed by larva, latest update on 2025-12
     \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -1195,7 +1212,7 @@
         Meu São Jo -- | ão, __ _ meu São Jo -- | ão; __ _
         Vos -- sa~ex -- ce -- | lên -- cia~e Je -- sus Cris -- to Re -- den -- | tor; __ _
         São quem me~en -- | si -- nam nes -- ta~es -- co -- la do a -- | mor; _
-        A Vir -- gem | Mãe e~o nos -- so Mes -- tre~En -- si -- na -- | dor. _
+        A Vir -- gem | Mãe~e o nos -- so Mes -- tre~En -- si -- na -- | dor. _
       }
     }
     theLyricsTwo = \lyricmode {
@@ -1227,8 +1244,8 @@
     \[^\mn{D}]Lou|\[G]var \[^\mn{C}]o \[\mnc{A}F]Cri\[^\mn{C}]a|\[C]dor \[\bm]{} \altchords{|E D |A}
   \mnendchorus
   \mnbeginchorus\memorize[chords_louvarocriador_b]
-    \ind \[^\mn{C}]Por tu\[^\mn{B}]do o |\[\mnc{A}F]que já \[\bmc\mn{C}]es\[^\mn{E}]tá |\[\mnc{G}C]fei\[\mnc{E}(Am)]to \altchords{|D |A (F\shrp{}m)}
-    \ind \[^\mn{A}]E tudo o |\[\mnc{E}C]que \[^\mn{C}]nos \[\mnc{A}F]en\[^\mn{C}]si|\[C]nou \[\bm]{} \altchords{|A D |A}
+    \ind \[^\mn{C}]Por tu\[^\mn{B}]{do\jw o} |\[\mnc{A}F]que já \[\bmc\mn{C}]es\[^\mn{E}]tá |\[\mnc{G}C]fei\[\mnc{E}(Am)]to \altchords{|D |A (F\shrp{}m)}
+    \ind \[^\mn{A}]E tudo\jw o |\[\mnc{E}C]que \[^\mn{C}]nos \[\mnc{A}F]en\[^\mn{C}]si|\[C]nou \[\bm]{} \altchords{|A D |A}
   \mnendchorus
   \mnbeginchorus\memorize[chords_louvarocriador_c]
     \ind[2] \[^\mn{A}]Lou|\[\mnc{D}G]var, \[^\mn{A}]lou\[\mnc{C}F]var lou|\[C]van\[\mnc{A}(Am)]do \altchords{|E D |A (F\shrp{}m)}
@@ -1238,15 +1255,15 @@
   % verse two
   \beginchorus\replay[chords_louvarocriador_a]
     Di|^vi^no san|tíssi^mo
-    Cora|^ção do ^Santo A|^mor ^
+    Cora|^ção do ^Santo\jw A|^mor ^
   \endchorus
   \beginchorus\replay[chords_louvarocriador_b]
     \ind A Ra|^inha ^da flo|^res^ta
-    \ind Mãe do |^mestre en^sina|^dor ^
+    \ind Mãe do |^mestre\jw en^sina|^dor ^
   \endchorus
   \beginchorus\replay[chords_louvarocriador_c]
     \ind[2] Pa|^pai, Ma^mãe tam|^bém
-    \ind[2] ^Filho Es|^pírito ^Santo a|^mém ^
+    \ind[2] ^Filho\jw Es|^pírito ^Santo\jw a|^mém ^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-05
@@ -1254,19 +1271,22 @@
     theMelody = \relative c''' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
-        \mark \markup \with-color #darkgreen \italic "Final: toque tudo, mas parte A sem repetição"
+      \mark \markup \with-color #darkgreen \italic "Final: toque tudo, mas parte A sem repetição"
+      \sectionLabel "A"
       \repeat volta 2 {
-        r8 \posectionmark "A" c4
+        r8 \pomark c4
         | g2( e4) a4 | e4.( e8) c4 d8( d)
         | d4 c4 a4 c4 | c2~ 8
       }
+      \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize c8 \sectionmark "B" c b
+        \parenthesize c8 c b
         | a4 a c e | g2 e8 \parenthesize a a a
         | e4 c a c | c2~ 8
       }
+      \sectionLabel "C"
       \repeat volta 2 {
-        r8 \sectionmark "C" a4
+        r8 a4
         | d4. a8 c4 c4 | c2 a4 a4
         | d4( d8) a8 c4 c4 | c2~ 8
       }
@@ -1341,14 +1361,14 @@
   \mnbeginchorus\memorize
     \[^\mn{G}]Eu |\[\mnc{C}C]me \[^\mn{G}]santi\[\bmc\mn{E}]fi\[^\mn{C}]co e |\[\mnc{D}G]minhas \[^\mn{E}]pa\[\mnc{C}C]la\[^\mn{A}]vras
     E |\[Am]guardo a \[\mnc{D}G]fé em |\[\mnc{E}C]mi\[^\mn{C}]nha me\[\bm]mória
-    \lrep \[^\mn{C}]E |\[C]quando eu or\[\mnc{A}(Am7)]de\[^\mn{G}]no esse |\[\mnc{C}C]mal vai em\[\bmc\mn{E}]bora
-    É em |\[^\mn{C}]nome \[^\mn{E}]de \[\mnc{G}G]Deus \[^\mn{D}]e de |\[G7]Nos\[^\mn{C}]sa Se\[C]nhora
-    É em |nome \[^\mn{E}]de \[\mnc{G}G]Deus \[^\mn{D}]e de |\[G7]Nos\[^\mn{C}]sa Se\[C]nhora \rrep
+    \lrep \[^\mn{C}]E |\[C]quando\jw eu or\[\mnc{A}(Am7)]de\[^\mn{G}]{no\jw esse} |\[\mnc{C}C]mal vai em\[\bmc\mn{E}]bora
+    É\jw em |\[^\mn{C}]nome \[^\mn{E}]de \[\mnc{G}G]Deus \[^\mnc{D}]e de |\[G7]Nos\[^\mn{C}]sa Se\[C]nhora
+    É\jw em |nome \[^\mn{E}]de \[\mnc{G}G]Deus \[^\mnc{D}]e de |\[G7]Nos\[^\mn{C}]sa Se\[C]nhora \rrep
   \mnendchorus
   \notesoff
   \beginchorus
-    E |^na minha ^linha ver|^dadeira e ^reta
-    Li|^nha do Tu^cum A|^mor da Flo^resta
+    E |^na minha ^linha ver|^dadeira\jw e ^reta
+    Li|^nha do Tu^cum A|^mor da Flo^resta\jw
     \lrep Enxo|^tando os ^maus que não |^querem ou^vir
     A Jus|tiça do ^Mestre pa|^ra ser fe^liz
     A Jus|tiça do ^Mestre pa|^ra ser fe^liz \rrep
@@ -1367,59 +1387,70 @@
     The Justice of the Master, in order to be happy
   \end{translation}
   \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-05
+    % transcribed by larva, latest update on 2025-12
     \include "tex/lp-include-head.ly"
     theMelody = \relative g'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 8
-        g8 \posectionmark "A"
-        | c4 g8 g8 e4 c8 c8 | d4 d8 e8 c4 a8 a8
-        | a4 a8 a8 d4. d8 | e4 c8 c8 c4 c8
-      \repeat volta 2 {
-        c8 \sectionmark "B"
-        | c4 c8 c8 a4 g8 g8 | c4 c8 c8 e4 e8 e8
-        | c4 c8 e8 g4 d8 d8 | d4 c8 c8 c4 c8 c8
-        | c4 c8 e8 g4 d8 d8
-      } \alternative {
-        { | d4 c8 c8 c4 c8 }
-        { | d4 c8 c8 c4( c8) \dacapo \bar "|." }
+      \repeat segno 2 {
+        \sectionLabel "A"
+          g8 \pomark
+          | c4 g8 g8 e4 c8 c8 | d4 d8 e8 c4 a8 a8
+          | a4 a8 a8 d4. d8 | e4 c8 c8 c4 c8
+        \sectionLabel "B"
+        \repeat volta 2 {
+          c8
+          | c4 c8 c8 a4 g8 g8 | c4 c8 c8 e4 e8 e8
+          | c4 c8 e8 g4 d8 d8 | d4 c8 c8 c4 c8 c8
+          | c4 c8 e8 g4 d8 d8
+        } \alternative {
+          { | d4 c8 c8 c4 c8 }
+          { | d4 c8 c8 c4( c8) }
+        }
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1.A"
-      Eu | me san -- ti -- fi -- co e | mi -- nhas pa -- la -- vras;
-      E | guar -- do a fé em | mi -- nha me -- mó -- ria.
-      \set stanza = "1.B"
-      \repeat volta 2 {
-        E | quan -- do~eu or -- de -- no~es -- se | mal vai em -- bo -- ra;
-        É~em | no -- me de Deus e de | Nos -- sa Se -- nho -- ra;
-        É~em | no -- me de Deus e de
-      } \alternative {
-        { | Nos -- sa Se -- nho -- ra. }
-        { | Nos -- sa Se -- nho -- ra. }
+      \repeat segno 2 {
+        \set stanza = "1.A"
+        Eu | me san -- ti -- fi -- co e | mi -- nhas pa -- la -- vras;
+        E | guar -- do a fé em | mi -- nha me -- mó -- ria.
+        \set stanza = "1.B"
+        \repeat volta 2 {
+          E | quan -- do~eu or -- de -- no~es -- se | mal vai em -- bo -- ra;
+          É~em | no -- me de Deus e de | Nos -- sa Se -- nho -- ra;
+          É~em | no -- me de Deus e de
+        } \alternative {
+          { | Nos -- sa Se -- nho -- ra. }
+          { | Nos -- sa Se -- nho -- ra. }
+        }
       }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2.A"
-      E | na mi -- nha li -- nha ver -- | da -- dei -- ra~e re -- ta;
-      Li -- | nha do Tu -- cum A -- | mor da Flo -- res -- ta.~En
-      \set stanza = "2.B"
-      \repeat volta 2 {
-        xo -- | tan -- do os maus que não | que -- rem ou -- vir;
-        A Jus -- | ti -- ça do Mes -- tre pa -- | ra ser fe -- liz;
-        A Jus -- | ti -- ça do Mes -- tre pa --
-      } \alternative {
-        { | ra ser fe -- liz. En }
-        { | ra ser fe -- liz. __ _ }
+      \repeat segno 2 {
+        \set stanza = "2.A"
+        E | na mi -- nha li -- nha ver -- | da -- dei -- ra~e re -- ta;
+        Li -- | nha do Tu -- cum A -- | mor da Flo -- res -- ta.~En
+        \set stanza = "2.B"
+        \repeat volta 2 {
+          xo -- | tan -- do os maus que não | que -- rem ou -- vir;
+          A Jus -- | ti -- ça do Mes -- tre pa -- | ra ser fe -- liz;
+          A Jus -- | ti -- ça do Mes -- tre pa --
+        } \alternative {
+          { | ra ser fe -- liz. En }
+          { | ra ser fe -- liz. __ _ }
+        }
       }
     }
     theChords = \chordmode {
-      s8 | c1 | g2 c2 | a2:m g2 | c2.~8
-      \repeat volta 2 {
-        s8 | c2 \parenthesize a2:m7 | c1 | c2 g2 | g2:7 c2 | c2 g2
-      } \alternative {
-        { | g2:7 c4. }
-        { | g2:7 c4. }
+      \repeat segno 2 {
+        s8 | c1 | g2 c2 | a2:m g2 | c2.~8
+        \repeat volta 2 {
+          s8 | c2 \parenthesize a2:m7 | c1 | c2 g2 | g2:7 c2 | c2 g2
+        } \alternative {
+          { | g2:7 c4. }
+          { | g2:7 c4. }
+        }
       }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
@@ -1436,8 +1467,8 @@
   \meter{2}{4}
     \mnbeginchorus\memorize[chords_soporamor_a]
       |\[\mnc{C}C]Só \[^\mn{A}]por \[^\mn{B}]a|\[^\mn{G}]mor|\[^\mn{E}]{ } \e
-      \[^\mn{A}]Mui\[^\mn{G}]to a|\[^\mn{C}]mor | \e
-      É |\[\mnc{D}Dm]que es|\[\mnc{E}Am/E]pando esta |\[\mnc{C}C]luz | \e
+      \[^\mn{A}]Mui\[^\mn{G}]{to\jw a}|\[^\mn{C}]mor | \e
+      É |\[\mnc{D}Dm]que es|\[\mnc{E}Am/E]{pando\jw esta} |\[\mnc{C}C]luz | \e
     \mnendchorus
     \mnbeginchorus\memorize[chords_soporamor_b]
       \ind \[^\mn{C}]Essa |\[\mnc{F}F]trilha que |estou \[^\mn{G}]an|\[^\mn{A}]dan|do
@@ -1447,13 +1478,13 @@
     \mnendchorus
     \notesoff
     \beginchorus\replay[chords_soporamor_a]
-      |^Fitando a |lu|a
+      |^Fitando\jw a |lu|a
       Ao lu|ar | \e
       Domi|^nando |^{em harmo}|^ni|a
     \endchorus
     \beginchorus\replay[chords_soporamor_b]
       \ind O a|^mor de |Deus coman|dan|do
-      \ind O as|^tral com |toda ale|^gri|a
+      \ind O as|^tral com |toda\jw ale|^gri|a
       \ind \lrep Viva |^nós e o |nosso pla|^neta | \e
       \ind Dando |^viva a |^Virgem Ma|^ri|a \rrep
     \endchorus
@@ -1463,18 +1494,22 @@
     theMelody = \relative c''' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 2/4 \partial 4
+      \sectionLabel "A"
       \repeat volta 2 {
-        r4 \posectionmark "A"
+        r4 \pomark
         | c4 a8 b8 | g2( | e4) a8 g | c,2~ | c4 c8( c)
         | d4. d8 | e4 e8 e | c2( | c4)
       }
+      \sectionLabel "B:a"
       \repeat volta 2 {
-        c8 \sectionmark "B:a" c | f4 \parenthesize f8 f8 | f4 f8 g8 | a2 | a4 a8 g8
+        c8 c | f4 \parenthesize f8 f8 | f4 f8 g8 | a2 | a4 a8 g8
         | e4 \parenthesize e8 e8 | e4 g8 g8 | g2~ | g4 \break
-        b,8 \sectionmark "B:b:i" c8
+        \sectionLabel "B:b:i"
+        b,8 c8
         | d4 c8 b8 | d4 c8 b8 | a4 g4~ | g4 c8 d8
         | e4 e8 g8 | d4 d8 e8 | c2~ | c4 \break
-        b8 \sectionmark "B:b:ii" c8
+        \sectionLabel "B:b:ii"
+        b8 c8
         | d4 c8 b8 | d4 c8 b8 | a4 g4~ | g4 c8 d8
         | e4 e8 g8 | d4 d8 e8 | c2~ | c4
       }
@@ -1550,14 +1585,14 @@
   \audio{https://nossairmandade.com/hymn/4417/Bast\%C3\%A3o}
   \mnbeginchorus\memorize
     \[^\mn{C}]É se|\[\mnc{D}Dm]guir o \[^\mn{A}]nos\[^\mn{B}]so \[\mnc{C}C]mestre \altchords{\id[1]{(D)}|Em D}
-    Den\[^\mn{E}]tro |\[^\mn{G}]da vossa ins\[^\mn{E}]tru\[\bmc\mn{G}]ção \altchords{| \e}
+    Den\[^\mn{E}]tro |\[^\mn{G}]da vossa\jw ins\[^\mn{E}]tru\[\bmc\mn{G}]ção \altchords{| \e}
     E po|\[\mnc{A}Dm]der \[^\mn{G}]se \[^\mn{F}]le\[^\mn{E}]van\[\mnc{C}F]tar \altchords{|Em G}
     Com a \[^\mn{E}]su|\[\mnc{D}G7]a ca\[^\mn{A}]du\[^\mn{B}]ca\[\mnc{C}C]ção \altchords{|A7 D}
   \mnendchorus
   \notesoff
   \beginchorus
-    É se|^guindo a instru^ção
-    Papai |velho e mamãe ^velha
+    É se|^guindo\jw a instru^ção
+    Papai |velho\jw e mamãe ^velha
     Mamãe |^velha sempre ^dá
     E pa|^pai acari^nhar
   \endchorus
@@ -1568,9 +1603,9 @@
     Com a mi|^nha caduca^ção
   \endchorus
   \beginchorus
-    Viva os |^mestres desta es^cola
+    Viva\jw os |^mestres desta\jw es^cola
     Atra|vés dos nossos ^hinos
-    Viva o |^nosso Cria^dor
+    Viva\jw o |^nosso Cria^dor
     E to|^dos Seres Di^vinos
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
@@ -1646,36 +1681,38 @@
 \endsong
 
 
-\beginsong{Vida}[by={Padr. Alfredo},key={Am},gk={Am},off={Ramaiam, Ana Rita, Igor}]
+\beginsong{Vida}[by={Padr. Alfredo},key={Am},gk={Am, Gm--Am},off={Ramaiam, Ana Rita, Igor}]
   \audio[key={Am}]{https://www.youtube.com/watch?v=Xboe1-JfM_Y}
   \mnbeginchorus\memorize
     \[^\mn{A}]Vida \[^\mn{C}]São |\[\mnc{E}Am]João, vida \[\mnc{D}(E7/D)]meu \[^\mn{E}]Je|\[\mnc{A}Am]sus \[^\bm]
     A \[^\mn{C}]lu\[^\mn{E}]a |\[^\mn{A}]cheia, seu bri\[\mnc{G}{A7}]lho \[^\mn{A}]re|\[\mnc{D}Dm]luz \[^\bm]
-    \lrep \[^\mn{A}]É tão bo|\[\mnc{B}Bm7&5]ni\[^\mn{A}]to, o poder \[\mnc{F}(Dm/F)]da \[^\mn{D}]fo\[^\mn{F}]gue|\[Am]i\[^\mn{E}]ra
-    Queima a \[\mnc{C}(C)]noit\[^\mn{A}]e in\[^\mn{E}]te|\[E7]i\[^\mn{D}]ra, mis\[^\mn{C}]té\[^\bm\mn{B}]rio \[^\mn{C}]da |\[\mnc{A}Am]Cruz \[^\bm]{} \rrep
+    \lrep \[^\mn{A}]É tão bo|\[\mnc{B}Bm7&5]ni\[^\mn{A}]to,\jw o poder \[\mnc{F}(Dm/F)]da \[^\mn{D}]fo\[^\mn{F}]gue|\[Am]i\[^\mn{E}]ra
+    Queima a \[\mnc{C}(C)]noi\[^\mn{A}]{te\jw in}\[^\mn{E}]te|\[E7]i\[^\mn{D}]ra, mis\[^\mn{C}]té\[^\bm\mn{B}]rio \[^\mn{C}]da |\[\mnc{A}Am]Cruz \[^\bm]{} \rrep
   \mnendchorus
   \notesoff
   \beginchorus
-    Esta lem|^brança é da e^terni|^da\[\bm]de
-    Esta ver|dade nos e^leva as|^sim \[\bm]
-    \lrep Lembrando |^sempre a Luz ^deste di|^{'a}
+    Esta lem|^brança\jw é da e^terni|^da\[\bm]de
+    Esta ver|dade nos e^leva\jw as|^sim \[\bm]
+    \lrep Lembrando |^sempre a Luz ^deste di|^{-a}
     Oh Vir^gem Mari|^{'a}, vós lem\[\bm]brai de |^mim \[\bm]{} \rrep
   \endchorus
   \beginchorus
-    Aqui na |^Terra a vida é ^como |^é
-    Domina|dor da vida é ^São Jo|^sé \[\bm]
-    \lrep Oh Patri|^arca, nos as^cenda Lu|^z
-    Vida ^meu Jesu|^s, Espe\[\bm]rança e |^Fé \[\bm]{} \rrep
+    Aqui na |^Terra\jw a vida\jw é ^como |^é \altchords{\id[1]{(Gm)}|Gm (D7/C) |Gm}
+    Domina|dor da vida\jw é ^São Jo|^sé \[\bm] \altchords{| - G7 |Cm}
+    \lrep Oh Patri|^arca, nos as^cenda Lu|^z \altchords{|Am7\flt{}5 (Cm/E\flt{}) |Gm}
+    Vida ^meu Jesu|^s, Espe\[\bm]rança\jw e |^Fé \[\bm]{} \rrep \altchords{(B\flt{}) |D7 |Gm}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    % transcribed by larva, 2021-08
+    % transcribed by larva, latest update on 2025-12
     theMelody = \relative a' {
             \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4.
-      a8\posectionmark "A" a c | e8 e8 e8 e8 d4 e | a,2( a8) a8 c e
+      \sectionLabel "A"
+      a8 \pomark a c | e8 e8 e8 e8 d4 e | a,2( a8) a8 c e
       | a8 a8 a8 a8 g4 a4 | d,2~ d8
+      \sectionLabel "B"
       \repeat volta 2 {
-        a'8\sectionmark "B" a a | b a a a f4 d8 f8~ | f8 e8 e8 e8 c4 a8 e'8~
+        a'8 a a | b a a a f4 d8 f8~ | f8 e8 e8 e8 c4 a8 e'8~
         | e8 d( d) c8 b4 c4 | a2~ a8
       }
     }
@@ -1748,82 +1785,94 @@
 \beginsong{O Rigor das Profecias}[by={Padr. Alfredo},key={C},gk={C, B\flt{}--B--(C)},off={Vinícius Antonelli e Família}]
   \audio[key=C]{https://www.youtube.com/watch?v=ChkGIAhjlEs}
   \mnbeginchorus\memorize
-    \[^\mn{G}]Todo |\[\mnc{C}C]di\[^\mn{G}]a eu \[^\mn{F}]ob\[\bmc\mn{E}]ser\[^\mn{C}]vo
+    \[^\mn{G}]Todo |\[\mnc{C}C]di\[^\mn{G}]{a\jw eu} o\[^\mn{F}]b\[\bmc\mn{E}]ser\[^\mn{C}]vo
     O \[^\mn{E}]rig|\[\mnc{D}G]or \[^\mn{E}]das \[^\mn{D}]pro\[^\mn{C}]fe\[\mnc{E}C]ci\[^\mn{C}]as
     Oh \[^\mn{E}]mi|\[\mnc{G}Am]nhas \[^\mn{A}]Santas Ma\[\mnc{E}C]ri\[^\mn{G}]as
-    Nos es|\[\mnc{D}G]tendam as vos\[^\mn{C}]sas \[\mnc{E}C]mãos
+    Nos es|\[\mnc{D}G]tendam\jw as vos\[^\mn{C}]sas \[\mnc{E}C]mãos
     \lrep | \[^\mn{C}]Nos \[^\mn{D}]dê \[^\mn{C}]a \[\mnc{A}Am]cura
     \[^\mn{C}]Cura |\[\mnc{D}Dm]da \[^\mn{C}]nos\[^\mn{D}]sa \[^\mn{C}]Dou\[\mnc{E}C]tri\[^\mn{C}]na
     De \[^\mn{E}]bri|\[\mnc{G}Am]lhan\[^\mn{A}]tes pedras \[\bmc\mn{E}]finas
-    \[^\mn{G}]Jesus |\[\mnc{D}G7]Cristo e \[^\mn{E}]São \[^\mn{C}]Jo\[C]ão \rrep
+    \[^\mn{G}]Jesus |\[\mnc{D}G7]Cristo\jw e \[^\mn{E}]São \[^\mn{C}]Jo\[C]ão \rrep
   \mnendchorus
   \notesoff
   \beginchorus
-    Novo |^mundo, novo ^povo
-    Anunci|^ado por Je^sus
-    Que mos|^trou na Santa ^Cruz
-    O Misté|^rio da Salva^ção
-    \lrep | Agrade^cer esta |^escola di^vina
-    E aos Mes|^tres que nos en^sinam
-    Jesus |^Cristo e São Jo^ão \rrep
+    Novo |^mundo, novo ^povo\jw \altchords{\id[1]{(B)}|B}
+    Anunci|^ado por Je^sus \altchords{|F\shrp{} B}
+    Que mos|^trou na Santa ^Cruz \altchords{|G\shrp{}m B}
+    O Misté|^rio da Salva^ção \altchords{|F\shrp{} B}
+    \lrep | Agrade^cer esta \altchords{| - G\shrp{}m}
+    |^Escola di^vina\jw \altchords{|C\shrp{}m B}
+    E aos Mes|^tres que nos en^sinam \altchords{|G\shrp{}m}
+    Jesus |^Cristo\jw e São Jo^ão \rrep \altchords{|F\shrp{}7 B}
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
-    % transcribed by larva, latest update on 2023-05
+    % transcribed by larva, latest update on 2025-12
     \include "tex/lp-include-head.ly"
     theMelody = \relative g'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
-       g8 \posectionmark "A" g8
-       | c8 g8 g8 f8 e8 c8 c8 e8 | d8 e8 d8 c8 \once\slurUp e8( << e8) \single\altcol c8 \altmark "1." >> c8 e8
-       | g8 a8 a8 a8 e8 g8 g8 g8 | d8 d8 d8 c8 e2
-      \repeat volta 2 {
-        | r8 \sectionmark "B" c8 d8 c8 a8( a8) c8 c8 | d8 c8 d8 c8 e8 c8 c8 e8
-        |  g8 a8 a8 a8 e8 e8 g8 g8
-      } \alternative {
-        { | d8 d8 e8 c8 c2 }
-        { | d8 d8 e8 c8 c4 \dacapo \bar "|." }
+      \repeat segno 2 {
+        \sectionLabel "A"
+        g8 \pomark g8
+        | c8 g8 g8 f8 e8 c8 c8 e8 | d8 e8 d8 c8 \once\slurUp e8( << e8) \single\altcol c8 \altmark "1." >> c8 e8
+        | g8 a8 a8 a8 e8 g8 g8 g8 | d8 d8 d8 c8 e2
+        \sectionLabel "B"
+        \repeat volta 2 {
+          | r8 c8 d8 c8 a8( a8) c8 c8 | d8 c8 d8 c8 e8 c8 c8 e8
+          | g8 a8 a8 a8 e8 e8 g8 g8
+        } \alternative {
+          { | d8 d8 e8 c8 c2 }
+          { | d8 d8 e8 c8 c4 }
+        }
       }
+      \fine
     }
     theLyricsOne = \lyricmode {
-      \set stanza = "1.A"
-      To -- do | di -- a eu ob -- ser -- vo;
-      O rig -- | or das pro -- fe -- ci -- as;
-      Oh mi -- | nhas San -- tas Ma -- ri -- as;
-      Nos es -- | ten -- dam~as vos -- sas mãos.
-      \set stanza = "1.B"
-      \repeat volta 2 { %|
-        Nos dê a cu -- ra
-        Cu -- ra | da nos -- sa Dou -- tri -- na;
-        De bri -- | lhan -- tes pe -- dras fi -- nas;
-        Je -- sus
-      } \alternative {
-        { | Cris -- to~e São Jo -- ão. }
-        { | Cris -- to~e São Jo -- ão. }
+      \repeat segno 2 {
+        \set stanza = "1.A"
+        To -- do | di -- a~eu o -- b -- ser -- vo;
+        O rig -- | or das pro -- fe -- ci -- as;
+        Oh mi -- | nhas San -- tas Ma -- ri -- as;
+        Nos es -- | ten -- dam~as vos -- sas mãos.
+        \set stanza = "1.B"
+        \repeat volta 2 { %|
+          Nos dê a cu -- ra
+          Cu -- ra | da nos -- sa Dou -- tri -- na;
+          De bri -- | lhan -- tes pe -- dras fi -- nas;
+          Je -- sus
+        } \alternative {
+          { | Cris -- to~e São Jo -- ão. }
+          { | Cris -- to~e São Jo -- ão. }
+        }
       }
     }
     theLyricsTwo = \lyricmode {
-      \set stanza = "2.A"
-      No -- vo | mun -- do, no -- vo po -- vo;~A
-      nun -- ci -- | a -- do por Je -- sus; __ _
-      Que mos -- | trou na San -- ta Cruz;
-      O Mis -- té -- | rio da Sal -- va -- ção.
-      \set stanza = "2.B"
-      \repeat volta 2 { %|
-        A -- gra -- de -- cer __ _ es -- ta | es -- co -- la di -- vi -- na;~E
-        aos Mes -- | tres que nos en -- si -- nam;
-        Je -- sus
-      } \alternative {
-        { | Cris -- to~e São Jo -- ão. }
-        { | Cris -- to~e São Jo -- ão. }
+      \repeat segno 2 {
+        \set stanza = "2.A"
+        No -- vo | mun -- do, no -- vo po -- vo;~A
+        nun -- ci -- | a -- do por Je -- sus; __ _
+        Que mos -- | trou na San -- ta Cruz;
+        O Mis -- té -- | rio da Sal -- va -- ção.
+        \set stanza = "2.B"
+        \repeat volta 2 { %|
+          A -- gra -- de -- cer __ _ es -- ta | es -- co -- la di -- vi -- na;~E
+          aos Mes -- | tres que nos en -- si -- nam;
+          Je -- sus
+        } \alternative {
+          { | Cris -- to~e São Jo -- ão. }
+          { | Cris -- to~e São Jo -- ão. }
+        }
       }
     }
     theChords = \chordmode {
-      s4 | c1 | g2 c | a:m c | g c
-      \repeat volta 2 {
-        | c2 a2:m | d2:m c | a:m a:m
-      } \alternative {
-        { | g:7 c }
-        { | g:7 c4 }
+      \repeat segno 2 {
+        s4 | c1 | g2 c | a:m c | g c
+        \repeat volta 2 {
+          | c2 a2:m | d2:m c | a:m a:m
+        } \alternative {
+          { | g:7 c }
+          { | g:7 c4 }
+        }
       }
     }
     %\layout { #(layout-set-staff-size 15) } % for better fit
@@ -1849,19 +1898,19 @@
     \[^\mn{G}]Santa |\[\mnc{C}C]cura \[\bm]san\[^\mn{E}]ta |\[^\mn{G}]cura \altchords{\id[1]{(D)}|D | \e}
     \[\bm]San\[^\mn{A}]ta |\[^\mn{E}]cu\[^\mn{G}]ra \[\mnc{D}G]do \[^\mn{C}]a|\[\mnc{E}C]mor \[\bm] \altchords{| - A |D}
     \mnendchorus\glueverses\mnbeginchorus\memorize[chords_santacura_b]
-    \[^\mn{A}]Para |\[F]nun\[^\mn{G}]ca \[Am7]{se es}que|\[\mnc{D}Dm]cer \altchords{|G Bm7 |Em}
+    \[^\mn{A}]Para |\[F]nun\[^\mn{G}]ca \[Am7]{se\jw es}que|\[\mnc{D}Dm]cer \altchords{|G Bm7 |Em}
     \[\bmc\mn{F}]Do \[^\mn{E}]di|\[\mnc{G}Dsus4]vi\[^\mn{F}]no \[\mnc{E}Dsus2]cu\[^\mn{D}]ra|\[\mnc{G}G]dor \[\bm] \altchords{|Esus4 Esus2 |A}
     \[^\mn{A}]Para |\[F]sem\[^\mn{G}]pre \[Am7]{se lem}|\[\mnc{D}Dm]brar \altchords{|G Bm7 |Em}
     \[\bmc\mn{F}]Do \[^\mn{E}]e|\[\mnc{G}G]ter\[^\mn{F}]no \[\mnc{E}G7]cri\[^\mn{D}]a|\[\mnc{C}C]dor \[\bm] \altchords{|A A7 |D}
   \mnendchorus
   \notesoff
   \beginchorus\replay[chords_santacura_a]
-    Estudo |^fino es^tudo |fino
+    Estudo |^fino\jw es^tudo |fino
     ^É pre|ciso ^compreen|^der ^
     \endchorus\glueverses\beginchorus\replay[chords_santacura_b]
-    Disse o |^nosso a^migo |^velho
+    Disse\jw o |^nosso\jw a^migo |^velho
     ^Somos |^somos e ^deve |^ser ^
-    Para |^sempre A^mém Je|^sus
+    Para |^sempre\jw A^mém Je|^sus
     ^Pronto |^para ^nos va|^ler ^
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
@@ -1870,13 +1919,15 @@
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
+      \sectionLabel "A"
       \repeat volta 2 {
-        \parenthesize g8 \posectionmark "A" g8 g
+        \parenthesize g8 \pomark g8 g
         | c4 c c e | g4. g8 g4 a4
         | e g d c | e2~8
       } \break
+      \sectionLabel "B"
       \repeat volta 2 {
-        r8 a8 \sectionmark "B" a
+        r8 a8 a
         | a4 g g g | d4.( d8) f4. e8
         | g4 f8( f8) e4 d | g2. \break
         a8 a
@@ -1982,7 +2033,7 @@
     % }
     \include "tex/lp-include-head.ly"
     theMelody = \relative e'' {
-      \tempo 4 = 155
+      %\tempo 4 = 155
       \key a \minor \time 4/4 \partial 2
       \set melismaBusyProperties = #'() \slurDashed
       \repeat segno 2 {
@@ -2082,7 +2133,7 @@
     % }
     \include "tex/lp-include-head.ly"
     theMelody = \relative g'' {
-      \tempo 4 = 119
+      %\tempo 4 = 119
       \key c \major \time 4/4 \partial 4.
       \set melismaBusyProperties = #'() \slurDashed
       \repeat segno 2 {
