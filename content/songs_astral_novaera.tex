@@ -2642,3 +2642,108 @@
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
+
+
+\beginsong{Mamãe Vosso Brilho É Tão Lindo}[by={Padr. Alfredo}, off={Jonas e Unaqui}, key={Bm}, gk={Bm, (Bm)--(Cm)}, tags={valsa}]
+  \audio[key=Am]{https://soundcloud.com/canaljagube/21-mamae-vosso-brilho-e-tao?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/123/Mam\%C3\%A3eVossoBrilho\%C3\%89T\%C3\%A3oLindo}
+  \meter{3}{4}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{F#}]Ma|\[\mnc{B}Bm]mãe Vos\[^\mn{D}]so |\[^\mn{F#}]bri\[^\mn{D}]{lho\jw é} \[^\mn{C#}]tão |\[^\mn{B}]lin|\[B7]do \altchords{\id[1]{(Cm)}|Cm | - | - |C7}
+    A |\[\mnc{E}Em]sombra \[^\mn{G}]{é\jw a}|\[^\mn{B}]pe\[^\mn{G}]nas \[^\mn{F#}]um |\[^\mn{E}]véu | \e \altchords{|Fm | - | - | \e}
+    Vos\[^\mn{F#}]sa |\[\mnc{C#}F#]face |\[F#7]i\[^\mn{D}]lu\[^\mn{E}]mi|\[\mnc{F#}Bm]nada \altchords{|G |G7 |Cm}
+    Ma|\[\mnc{E}Em]mãe da |\[\mnc{D}Em7/D]ter\[^\mn{C#}]ra, \[^\mn{B}]Ma|\[\mnc{A#}F#]mãe \[^\mn{C#}]do |\[\mnc{B}Bm]céu | \e \altchords{|Fm |Fm7/E\flt{} |G |Cm | \e}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    E |^Sois a |luz, Mãe da |luz |^ \e \altchords{|Cm | - | - |C7}
+    A |^luz que |vem de Je|sus | \e \altchords{|Fm | - | - | \e}
+    E|^terno |^brilho do |^sol \altchords{|G |G7 |Cm}
+    |^Vida, ca|^minho, a |^todos con|^duz | \e \altchords{|Fm |Fm7/E\flt{} |G |Cm | \e}
+  \endchorus
+  \noteson
+  % verse 3
+  \mnbeginchorus
+    \ind \[\mn{F#}]No |\[\mnc{B}Bm]claro,\jw a \[\mn{D}]pre|\[\mn{F#}]sen\[\mn{D}]ça \[\mn{C#}]de |\[\mn{B}]Deus |\[B7]{} \e \altchords{|Cm | - | - |C7}
+    \ind Para |\[\mnc{E}Em]sempre \[\mn{G}]eu |\[\mncii{B}{G}]sou, \[\mn{F#}]sou |\[\mn{E}]eu | \e \altchords{|Fm | - | - | \e}
+    \ind \[\mn{F#}]Cons|\[\mnc{C#}F#]tante sa|\[F#7]ú\[\mn{D}]de \[\mn{E}]em |\[\mnc{F#}Bm]si \altchords{|G |G7 |Cm}
+    \ind \[\mn{F#}]A |\[\mnc{D}Em7/D]vi\[\mn{C#}]da \[\mn{B}]que |\[\mnc{A#}F#7]nunca \[\mn{C#}]mor|\[\mnc{B}Bm]reu \altchords{|Fm7/E\flt{} |G7 |Cm}
+  \mnendchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Mamãe Vosso Brilho É Tão Lindo"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative fis' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key b \minor \time 3/4 \partial 4
+      \sectionLabel "1.-2."
+      \repeat segno 2 {
+        \repeat volta 2 {
+          fis4 | b4( b) d | fis d cis | b2.( | b4)( b) b | e( e) g | b g fis | e2.( | e4)( e) fis
+          | cis2 cis4 | cis d e | fis( fis fis) | e( e) e d cis b | ais( ais) cis | b2.~ | b2
+        }
+      } \break
+      \sectionLabel "3."
+      \repeat volta 2 { \slurSolid
+        fis4 \pomark | b4 b d | fis d cis | b2.~ | b4 b b | e e g | b( g) fis | e2.~ | e2 fis4
+        | cis cis cis | cis d e | fis2 fis,4 | d' cis b | ais ais cis | b2
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+         Ma -- | mãe Vos -- so | bri -- lho~é tão | lin -- | do; __ _
+         A | som -- bra é~a -- | pe -- nas um | véu; __ | _
+         Vos -- sa | fa -- ce | i -- lu -- mi -- | na -- da;
+         Ma -- | mãe __ _ da | ter -- ra, Ma -- | mãe __ _ do | céu. | _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        E | Sois __ _ a | luz, Mãe da | luz; __ | _ _
+        A | luz __ _ que | vem de Je -- | sus; __ | _ _
+        E -- | ter -- no | bri -- lho do | sol; __ _ _
+        | Vi -- da, ca -- | mi -- nho, a | to -- dos con -- | duz. | _
+      }
+      \set stanza = "3."
+      \repeat volta 2 {
+        No | cla -- ro,~a pre -- | sen -- ça de | Deus; | _
+        Pa -- ra | sem -- pre eu | sou, _ sou | eu; | _
+        Cons -- | tan -- te sa -- | ú -- de em | si;
+        A | vi -- da que | nun -- ca mor -- | reu.
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4 | b2.:m | b:m | b:m | b:7 | e:m | e:m | e:m | e:m
+          | fis | fis:7 | b:m | e:m | b:m | fis | b:m | b2:m
+        }
+      }
+      \repeat volta 2 {
+        s4 | b2.:m | b:m | b:m | b:7 | e:m | e:m | e:m | e:m
+        | fis | fis:7 | b:m | e:m7/d | fis:7 | b2:m
+      }
+    }
+    \layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    Mama, Your brilliance is so beautiful; darkness is but a veil
+    Your illuminated face, Mama of the earth, Mama of Heaven
+    \nextverse
+    And You are the light, Mother of light; The light that comes from Jesus
+    Eternal brilliance of the sun, life, path, directs everyone
+    \nextverse
+    In the clarity, the presence of God; forever I am, it is I
+    Constant yearning in You, the life that never died
+  \end{translation}
+\endsong
+
