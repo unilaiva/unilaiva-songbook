@@ -2878,7 +2878,7 @@
   \mnendverse\glueverses
   \mnbeginchorus\memorize[chords_ohvirgem_b]
     \[^\mn{E}]Oh! |\[\mnc{A}Am]Vir\[^\mn{G#}]{}|\[^\mn{A}]gem Mãe \[^\mn{B}]Di|\[\mnc{C}(C)]vi|\[\mnc{A}Am]na
-    \[^\mn{E}]Oh! |\[\mnc{A}\up{1}Fmaj7 \up{2}(Bm7&5)]Vir\[^\mn{E}]gem |\[\mauiic{C}{C}\up{2}(E7)]Nos\[^\mauii{B}{A}]sa \[^\mauii{C}{C}]Se|\[\mauiic{A}{C}\up{1}C \up{2}(Am)]nho|ra
+    \[^\mn{E}]Oh! |\[^\mn{A}]Vir\[^\mn{E}]gem |\[\mauiic{C}{C}\up{1}F \up{2}(E7)]Nos\[^\mauii{B}{A}]sa \[^\mauii{C}{C}]Se|\[\mauiic{A}{C}\up{1}C \up{2}(Am)]nho|ra
   \mnendchorus
   \notesoff
   % verse 2
@@ -2892,7 +2892,7 @@
   \endverse\glueverses
   \beginchorus\replay[chords_ohvirgem_b]
     O |^Mestre |que nos en|^si|^na
-    Para |^{sempre co}|^{nosco vi}|^veu | \e
+    Para |sempre co|^{nosco vi}|^veu | \e
   \endchorus
   % verse 3
   \beginverse\replay[chords_ohvirgem_a]\ifshowlilypond\normalsize\fi % to fit on a spread
@@ -2905,7 +2905,7 @@
   \endverse\glueverses
   \beginchorus\replay[chords_ohvirgem_b]\ifshowlilypond\normalsize\fi % to fit on a spread
     O |^Mestre\jw encan|tado na |^ma|^ta
-    Esta |^{Santa Dou}|^{trina nos} |^deu | \e
+    Esta |Santa Dou|^{trina nos} |^deu | \e
   \endchorus
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2025-12
@@ -2923,10 +2923,10 @@
       | d4( d) d | f d b | a2.( | a4) a c | e e c | a e c' | b2.( | b4)( b)
       \sectionLabel "B"
       \repeat volta 2 {
-        e4 | a( a)( gis) | a a b | c2. | a4 \parenthesize e e
+        e4 | a( a)( gis) | a a b | c2. | a4 \parenthesize e e | a( a) e
       } \alternative {
-        {  | a( a) e | c4 a c | c2.( | c2) }
-        {  | a'4( a) e | c4 b c | a2.( | a2) }
+        { | c4 a c | c2.( | c2) }
+        { | c4 b c | a2.( | a2) }
       }
       \fine
     }
@@ -2941,10 +2941,10 @@
       \set stanza = "1.B"
       \repeat volta 2 {
         Oh! | Vir _ _ -- | gem Mãe Di -- | vi -- | na;
-        "" Oh!
+        "" Oh! | Vir _ -- gem
       } \alternative {
-        { | Vir _ -- gem | Nos -- sa Se -- | nho -- | ra. }
-        { | Vir _ -- gem | Nos -- sa Se -- | nho -- | ra. }
+        { | Nos -- sa Se -- | nho -- | ra. }
+        { | Nos -- sa Se -- | nho -- | ra. }
       }
     }
     theLyricsTwo = \lyricmode {
@@ -2958,10 +2958,10 @@
       \set stanza = "2.B"
       \repeat volta 2 {
         O | Mes _ -- tre | que nos en -- | si -- | na;
-        Pa -- ra
+        Pa -- ra | sem -- pre co --
       } \alternative {
-        { | sem -- pre co -- | nos -- co vi -- | veu. __ | _ }
-        { | sem -- pre co -- | nos -- co vi -- | veu. __ | _ }
+        { | nos -- co vi -- | veu. __ | _ }
+        { | nos -- co vi -- | veu. __ | _ }
       }
     }
     theLyricsThree = \lyricmode {
@@ -2975,10 +2975,10 @@
       \set stanza = "3.B"
       \repeat volta 2 {
         O | Mes -- tre~en -- can -- | ta -- do na | ma -- | ta;
-        Es -- ta
+        Es -- ta | San -- ta Dou --
       } \alternative {
-        { | San -- ta Dou -- | tri -- na nos | deu. __ | _ }
-        { | San -- ta Dou -- | tri -- na nos | deu. __ | _ }
+        { | tri -- na nos | deu. __ | _ }
+        { | tri -- na nos | deu. __ | _ }
       }
     }
     theChords = \chordmode {
@@ -2989,13 +2989,13 @@
        | d:m | d:m | a:m | a:m
        | \parenthesize c | a:m | e | e2
       \repeat volta 2 {
-        s4 | a2.:m | a:m | \parenthesize c | a:m
+        s4 | a2.:m | a:m | \parenthesize c | a:m | a:m
       } \alternative {
-        { | f2.:maj7 | f:maj7 | c | c2 }
-        { | b2.:m7.5- | e2.:7 | a:m | a2:m }
+        { | f | c | c2 }
+        { | e2.:7 | a:m | a2:m }
       }
     }
-    \layout { #(layout-set-staff-size 9.5) } % for better fit
+    \layout { #(layout-set-staff-size 10.2) } % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
