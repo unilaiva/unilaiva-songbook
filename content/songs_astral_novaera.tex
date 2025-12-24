@@ -2748,7 +2748,7 @@
 \endsong
 
 
-\beginsong{Criancinha}[by={Padr. Alfredo}, off={Meire}, key={C}, gk={B, C--E}]
+\beginsong{Criancinha}[by={Padr. Alfredo}, off={Anamélia}, key={C}, gk={B, C--E}]
   \audio[key=C]{https://soundcloud.com/canaljagube/22-criancinha?in=ivo-nei/sets/nova-era-padrinho-alfredo}
   \audio{https://nossairmandade.com/hymn/124/Criancinha}
   \newchords{chords_criancinha_a}\newchords{chords_criancinha_b}
@@ -2861,3 +2861,158 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Oh! Virgem da Conceição}[ititle={O Mestre Encantando na Mata}, by={Padr. Alfredo}, off={Meire}, key={Am}, gk={Am, (G\shrp{}m)--(Cm)}, tags={valsa}]
+  \audio[key=Am]{https://soundcloud.com/canaljagube/23-virgem-da-conceicao?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/125/Oh!VirgemDaConcei\%C3\%A7\%C3\%A3o}
+  \meter{3}{4}
+  \newchords{chords_ohvirgem_a}\newchords{chords_ohvirgem_b}
+  % verse 1
+  \mnbeginverse\memorize[chords_ohvirgem_a]
+    \[^\mn{E}]Oh! |\[\mnc{A}Am]Virgem |da Con\[^\mn{C}]cei|\[^\mn{A}]ção | \e
+    \[^\mn{E}]Oh! |\[^\mn{A}]Minha \[^\mn{E}]San|\[^\mn{C}]tíssi\[^\mn{A}]ma \[^\mn{C}]Se|\[\mnc{E}(C)]nho|\[Am]ra
+    \[^\mn{A}]Habi|\[\mnc{D}Dm]tai o |\[^\mn{F}]meu \[^\mn{D}]pen\[^\mn{B}]sa|\[\mnc{A}Am]men|to
+    Ha\[^\mnc{C}]bi|\[\mnc{E}(C)]{tai\jw o} meu \[^\mn{C}]co|\[\mnc{A}Am]ra\[^\mn{E}]ção \[^\mn{C}]a|\[\mnc{B}E]go|ra
+    Ha\[^\mnc{C}]bi|\[\mnc{D}Dm]tai o |\[^\mn{F}]meu \[^\mn{D}]pen\[^\mn{B}]sa|\[\mnc{A}Am]men|to
+    Ha\[^\mnc{C}]bi|\[\mnc{E}(C)]{tai\jw o} meu \[^\mn{C}]co|\[\mnc{A}Am]ra\[^\mn{E}]ção \[^\mn{C}]Se|\[\mnc{B}E]nho|ra
+  \mnendverse\glueverses
+  \mnbeginchorus\memorize[chords_ohvirgem_b]
+    \[^\mn{E}]Oh! |\[\mnc{A}Am]Vir\[^\mn{G#}]{}|\[^\mn{A}]gem Mãe \[^\mn{B}]Di|\[\mnc{C}(C)]vi|\[\mnc{A}Am]na
+    \[^\mn{E}]Oh! |\[\mnc{A}\up{1}Fmaj7 \up{2}(Bm7&5)]Vir\[^\mn{E}]gem |\[\mauiic{C}{C}\up{2}(E7)]Nos\[^\mauii{B}{A}]sa \[^\mauii{C}{C}]Se|\[\mauiic{A}{C}\up{1}C \up{2}(Am)]nho|ra
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginverse\replay[chords_ohvirgem_a]
+    Pre|^sente de |Aniver|sá|rio
+    Salve, |salve\jw o bom |Mestre\jw Iri|^neu |^ \e
+    Santo |^Daime, |Sabedo|^ri|a
+    Esta |^força\jw o meu |^Mestre me |^deu | \e
+    Nosso |^chefe Se|nhor São Jo|^ão | \e
+    Repas|^sou e meu |^pai rece|^beu | \e
+  \endverse\glueverses
+  \beginchorus\replay[chords_ohvirgem_b]
+    O |^Mestre |que nos en|^si|^na
+    Para |^{sempre co}|^{nosco vi}|^veu | \e
+  \endchorus
+  % verse 3
+  \beginverse\replay[chords_ohvirgem_a]\ifshowlilypond\normalsize\fi % to fit on a spread
+    E |^vive no |meu cora|ção | \e
+    Tão su|blime a |vida de |^Deus |^ \e
+    Eterna|^mente\jw eu Vos |agrade|^cer | \e
+    Esta |^vida nos|^{so Pai} nos |^deu | \e
+    Vosso |^brilho nos |fortale|^ceu | \e
+    Para |^sempre ser |^{um filho} |^Seu | \e
+  \endverse\glueverses
+  \beginchorus\replay[chords_ohvirgem_b]\ifshowlilypond\normalsize\fi % to fit on a spread
+    O |^Mestre\jw encan|tado na |^ma|^ta
+    Esta |^{Santa Dou}|^{trina nos} |^deu | \e
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Oh! Virgem da Conceição"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor \time 3/4 \partial 4
+      \sectionLabel "A"
+      e4 \pomark | a4( a) a | a a c | a2.( | a4) \parenthesize e e | a a e | c a c | \once\slurUp e2.( | \once\slurUp e8)( << e) \parenthesize \single\altcol a, \altmark "3." >> a4 a
+      | d4( d) d | f d b | a2.( | a4) a c | e e c | a e c' | b2.( | b4)( b) c
+      | d4( d) d | f d b | a2.( | a4) a c | e e c | a e c' | b2.( | b4)( b)
+      \sectionLabel "B"
+      \repeat volta 2 {
+        e4 | a( a)( gis) | a a b | c2. | a4 \parenthesize e e
+      } \alternative {
+        {  | a( a) e | c4 a c | c2.( | c2) }
+        {  | a'4( a) e | c4 b c | a2.( | a2) }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      Oh! | Vir _ -- gem | da Con -- cei -- | ção; __ | _
+      "" Oh! | Mi -- nha San -- | tíssi -- ma Se -- | nho -- | ra;
+      "" Ha -- bi -- | tai __ _ o | meu pen -- sa -- | men -- | to;
+      Ha -- bi -- | tai~o meu co -- | ra -- ção a -- | go -- | ra;
+      Ha -- bi -- | tai __ _ o | meu pen -- sa -- | men -- | to;
+      Ha -- bi -- | tai~o meu co -- | ra -- ção Se -- | nho -- | ra. __ _
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Oh! | Vir _ _ -- | gem Mãe Di -- | vi -- | na;
+        "" Oh!
+      } \alternative {
+        { | Vir _ -- gem | Nos -- sa Se -- | nho -- | ra. }
+        { | Vir _ -- gem | Nos -- sa Se -- | nho -- | ra. }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      Pre -- | sen -- te de | A -- ni -- ver -- | sá -- | rio;
+      Sal -- ve, | sal -- ve~o bom | Mes -- tre~I -- ri -- | neu; __ | _
+      "" San -- to | Dai _ -- me, | Sa -- be -- do -- | ri -- | a;
+      Es -- ta | for -- ça~o meu | Mes -- tre me | deu; __ | _
+      Nos -- so | che -- fe Se -- | nhor São Jo -- | ão; __ | _
+      Re -- pas -- | sou e meu | pai re -- ce -- | beu. __ | _ _
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        O | Mes _ -- tre | que nos en -- | si -- | na;
+        Pa -- ra
+      } \alternative {
+        { | sem -- pre co -- | nos -- co vi -- | veu. __ | _ }
+        { | sem -- pre co -- | nos -- co vi -- | veu. __ | _ }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+        E | vi -- ve no | meu co -- ra -- | ção; __ | _
+        Tão su -- | bli -- me a | vi -- da de | Deus; __ | _
+        \altcol E -- ter -- na -- | men -- te~eu Vos | a -- gra -- de -- | cer; __ | _
+        Es -- ta | vi -- da nos -- | so Pai nos | deu; __ | _
+        Vos -- so | bri -- lho nos | for -- ta -- le -- | ceu; __ | _
+        Pa -- ra | sem -- pre ser | um fi -- lho | Seu. __ | _ _
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        O | Mes -- tre~en -- can -- | ta -- do na | ma -- | ta;
+        Es -- ta
+      } \alternative {
+        { | San -- ta Dou -- | tri -- na nos | deu. __ | _ }
+        { | San -- ta Dou -- | tri -- na nos | deu. __ | _ }
+      }
+    }
+    theChords = \chordmode {
+       s4 | a2.:m | a:m | a:m | a:m
+       | a:m | a:m | \parenthesize c | a:m
+       | d:m | d:m | a:m | a:m
+       | \parenthesize c | a:m | e | e
+       | d:m | d:m | a:m | a:m
+       | \parenthesize c | a:m | e | e2
+      \repeat volta 2 {
+        s4 | a2.:m | a:m | \parenthesize c | a:m
+      } \alternative {
+        { | f2.:maj7 | f:maj7 | c | c2 }
+        { | b2.:m7.5- | e2.:7 | a:m | a2:m }
+      }
+    }
+    \layout { #(layout-set-staff-size 9.5) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}[EN]\tiny % to fit on same page
+    Oh! Virgin of the Conception; oh! My Most Holy Lady
+    Inhabit my thoughts; inhabit my heart now
+    Inhabit my thoughts; inhabit my heart, My Lady
+    \ind Oh! Virgin Divine Mother; oh! Virgin Our Lady
+    \nextverse
+    Birthday present; hail, hail the good Master Irineu
+    Santo Daime, Wisdom; this force the Master gave me
+    Our chief, Lord Saint John; passed it on and my father received it
+    \ind The Master who teaches us; he always lived with us
+    \nextverse
+    And lives in my heart; so sublime the life of God
+    Eternally I thank You; this life our Father gave us
+    Your shine strengthened us; forever to be a son of Yours
+    \ind The Enchanted Master in the forest; gave us this Holy Doctrine
+  \end{translation}
+\endsong
