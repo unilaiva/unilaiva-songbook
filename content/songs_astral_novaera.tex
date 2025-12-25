@@ -3267,4 +3267,72 @@
   \end{translation}
 \endsong
 
-
+\beginsong{Navegando}[by={Padr. Alfredo}, off={Adail e Chico Mota}, key={D}, gk={D, C--F\shrp{}}]
+  \audio[key=D]{https://soundcloud.com/canaljagube/26-navegando?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/1154/Navegando}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Eu |\[\mnc{D}D]estou \[\bmc\mn{A}]nave|\[^\mn{D}]gan\[\bm]do
+    \[^\mn{A}]E de|\[^\mn{D}]sejo \[\mnc{B}Bm]chegar |\[\mnc{E}Em]lá \[\bm]
+    Jun\[^\mn{F#}]to |\[\mnc{G}G]a \[^\mn{F#}]Vir\[\bmc\mn{E}]gem \[^\mn{D}]Ma|\[\mnc{C#}A]ria
+    \[\bm]E \[^\mn{B}]o |\[^\mn{A}]meu Pai \[\mnc{B}A7]O\[^\mn{C#}]xa|\[\mnc{D}D]lá \[\bm]
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    Com a|^mor e ^ale|gri^a
+    Para\jw eu |poder ^ensi|^nar ^
+    Esta |^Divi^na Dou|^trina
+    ^Do meu |Mestre ^do meu |^Pai ^
+  \endchorus
+  \begin{translation}[EN]
+    I am navigating and I want to arrive there
+    Together with the Virgin Mary and my Father Oxalá
+    \nextverse
+    With love and joy, so that I can teach
+    This Divine Doctrine of my Master of my Father
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Navegando"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        a8( \pomark a) | d4 d a a | d2 d4 a8 a | d4 d b b | e2. e8 fis8
+        | g4 fis e d | cis4. cis8 cis4 b | a a b cis | d2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Eu __ _ | es -- tou na -- ve -- | gan -- do;
+        E de -- | se -- jo che -- gar | lá;
+        Jun -- to | a Vir -- gem Ma -- | ri -- a;
+        E o | meu Pai O -- xa -- | lá.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Com a -- | mor e a -- le -- | gri -- a;
+        Pa -- ra~eu | po -- der en -- si -- | nar;
+        Es -- ta | Di -- vi -- na Dou -- | tri -- na;
+        Do meu | Mes -- tre do meu | Pai.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d1 | d | d2 b:m | e1:m
+        | g | a | a2 a:7 | d2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
