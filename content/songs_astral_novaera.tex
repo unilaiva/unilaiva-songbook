@@ -3112,3 +3112,159 @@
   \end{translation}
 \endsong
 
+
+\beginsong{A Espada Do Perdão}[by={Padr. Alfredo}, off={Enio}, key={C}, gk={D, C--D}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/25-a-espada-do-perdao?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/127/AEspadaDoPerd\%C3\%A3o}
+  \newchords{chords_espadadoperdao_a}\newchords{chords_espadadoperdao_b}
+  % verse 1
+  \mnbeginchorus\memorize[chords_espadadoperdao_a]
+    \[^\mn{C}]Estou \[^\mn{E}]a|\[\mnc{G}C]qui, \[\mnc{A}F]eu \[^\mn{G}]vi\[^\mn{F}]{vo\jw a}|\[\mnc{E}C]qui \[\bm]
+    \[^\mn{D}]Que o |\[Dm]Meu \[\mnc{E}Am]Pai \[^\mn{C}]me \[^\mn{E}]man|\[\mnc{C}C]dou \[\bm]
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_espadadoperdao_b]
+    \[^\mn{A}]Estou re|\[F]presen\[\bmc\mn{C}]tando |\[\mnc{G}G]e\[\bm]{le\jw}
+    E \[^\mnc{D}]o Nosso |\[Dm]Mestre \[^\mn{C}]En\[\mauiic{A}{E}\up{1}C/E \up{2}(Am)]si\[^\mauii{C}{E}]na|\[\mauiic{C}{C}C]dor \[\up{1}C7]
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_espadadoperdao_a]
+    Vivo\jw a|^qui, ^vou por a|^i ^ \altchords{\id[1]{(D)}|D G |D}
+    Com |^ordem Su^peri|^or ^ \altchords{|Em Bm |D}
+  \endchorus\glueverses
+  \beginchorus\replay[chords_espadadoperdao_b]
+    Sempre |^cantan^do lou|^van^do \altchords{|Bm |A}
+    O Mestre |^que nos ^ensi|^nou ^ \altchords{|Em \up{1}D/F\shrp{} \up{2}(Bm) |D \up{1}D7}
+  \endchorus
+  % verse 3
+  \beginchorus\replay[chords_espadadoperdao_a]
+    Vos en|^si^no com A|^mor ^
+    Vamos bus|^car na ^mira|^ção ^
+  \endchorus\glueverses
+  \beginchorus\replay[chords_espadadoperdao_b]
+    O con|^forto ^Nosso |^Pai ^
+    A fir|^meza ^Nossa |^Mãe ^
+  \endchorus
+  % verse 4
+  \beginchorus\replay[chords_espadadoperdao_a]
+    Ali|^nha^dos com as |^for^ças
+    Somos |^sábio ^bata|^lhão ^
+  \endchorus\glueverses
+  \beginchorus\replay[chords_espadadoperdao_b]
+    Na ba|^talha ^quem mais |^cor^ta
+    É a Es|^pada ^do per|^dão ^
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "A Espada Do Perdão"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4.
+      \sectionLabel "A"
+      \repeat volta 2 {
+        c8 \pomark c e | g2 a4 g8 f | e2 \parenthesize d8( \parenthesize d8) d( d)
+        | d4( d8) \parenthesize d8 \once\slurUp e4( << e8) \single\altcol \parenthesize c8 \altmark "1.:i" >> << c \single\altcol \parenthesize e >> | c2~ c8
+      }
+      \sectionLabel "B"
+      \repeat volta 2 {
+        \parenthesize a8 a a | a4 a c c | g2 g8 d' d d
+      } \alternative {
+        { | d4( d8) c8 e4. e8 | c2~ 8 }
+        { | d4( d8) c8 a4. c8 | c2~ 8 }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Es -- tou a -- | qui, eu vi -- vo~a -- | qui;
+        "" "" Que o | Meu __ _ "" Pai \altcol me \altcol man -- | dou. __ _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Es -- tou re -- | pre -- sen -- tan -- do | e -- le;~E
+        o Nos -- so
+      } \alternative {
+        { | Mes -- tre En -- si -- na -- | dor. _ }
+        { | Mes -- tre En -- si -- na -- | dor. _ }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        "" Vi -- vo~a -- | qui, vou por a -- | i;
+        "" "" Com __ _ | or -- dem Su -- pe _ -- ri -- | or. __ _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        "" Sem -- pre | can -- tan -- do lou -- | van -- do
+        O Mes -- tre
+      } \alternative {
+        { | que __ _ nos en -- si -- | nou. _ }
+        { | que __ _ nos en -- si -- | nou. _ }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        "" Vos en -- | si -- no com A -- | mor;
+        "" Va -- mos bus -- | car __ _ na mi _ -- ra -- | ção. __ _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        "" O con -- | for -- to Nos -- so | Pai;
+        "" "" A fir --
+      } \alternative {
+        { | me _ -- za Nos -- sa | Mãe. _ }
+        { | me _ -- za Nos -- sa | Mãe. _ }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        "" A -- li -- | nha -- dos com as | for -- ças; __ _
+        So -- mos | sá _ -- bio ba _ -- ta -- | lhão. __ _
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        "" Na ba -- | ta -- lha quem mais | cor -- ta;
+        É a Es --
+      } \alternative {
+        { | pa _ -- da do per -- | dão. _ }
+        { | pa _ -- da do per -- | dão. _ }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | c2 f | c1 | d2:m a:m | c2~8
+      }
+      \repeat volta 2 {
+        s4. | f1 | g
+      } \alternative {
+        { | d2:m c/e | c2 c8:7 }
+        { | d2:m a:m | c2~8 }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I am here, I leve here; Because my Father sent me
+    I am representing him, and our Master the Teacher
+    \nextverse
+    I live here, I go there; with the Higher Order
+    Always singing, praising the Master that taught us
+    \nextverse
+    I teach you with Love; let's seek the miração
+    The comfort of Our Father, the firmness of Our Mother
+    \nextverse
+    Aligned with the forces, we are a wise battalion
+    In the battle what is sharpest is the Sword of forgiveness
+  \end{translation}
+\endsong
+
+
