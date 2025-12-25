@@ -3267,6 +3267,7 @@
   \end{translation}
 \endsong
 
+
 \beginsong{Navegando}[by={Padr. Alfredo}, off={Adail e Chico Mota}, key={D}, gk={D, C--F\shrp{}}]
   \audio[key=D]{https://soundcloud.com/canaljagube/26-navegando?in=ivo-nei/sets/nova-era-padrinho-alfredo}
   \audio{https://nossairmandade.com/hymn/1154/Navegando}
@@ -3336,3 +3337,101 @@
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
+
+
+\beginsong{Oh! Meu Divino Pai \\ Guias Curadores}[by={Padr. Alfredo}, off={Terezinha}, key={C}, gk={C, B--D}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/27-guias-curadores?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/1155/Oh!MeuDivinoPai}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{E}]Oh |\[\mnc{G}C]meu\[\bm] \[^\mn{E}]Di\[^\mn{C}]vi\[^\mn{E}]no |\[^\mn{G}]Pai \[\bm] \altchords{\id[1]{(D)}|D | \e}
+    Nos dai |\[\mnc{F#}D]a \[^\mn{G}]Ben\[\bmc\mn{A}]ção Di|\[\mnc{G}C]vi\[\bmc\mn{E}]na \altchords{|E |D}
+    \[^\mn{C}]Do |nosso \[\mnc{D}G]Cria|\[\mnc{A}Am]dor \[\bm] \altchords{| - A |Bm}
+    \[^\mn{C}]Do |\[C]nosso \[\mnc{D}G]Salva|\[\mnc{A}Am]dor \[\bm] \altchords{|D A |Bm}
+    \[^\mnc{C}]E do |\[F]nosso \[\mnc{D}G7]Prote|\[\mnc{C}C]tor \[\bm] \altchords{|G A7 |D}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    Oh |^meu^ Jurami|dam ^
+    Com a |^Santa ^Mãe Di|^vi^na
+    Jesus |Cristo ^Reden|^tor
+    ^E São Jo|^ão nos^so pas|^tor ^
+    Com a |^luz do ^resplen|^dor ^
+  \endchorus
+  % verse 3
+  \beginchorus
+    \noteson\[\mnc{C}]To\[\mnc{E}]dos\notesoff{} |^san^tos e todas |san^tas \altchords{\id[2]{(B)}|B | \e}
+    Rogam\jw a |^Deus com ^todo\jw a|^mor ^ \altchords{|C\shrp{} |B}
+    Nossos |guias ^cura|^do^res \altchords{| - F\shrp{} |G\shrp{}m}
+    Nos |^guiam ^com fer|^vor ^ \altchords{|B F\shrp{} |G\shrp{}m}
+    Ao |^nosso ^Cria|^dor ^ \altchords{|E F\shrp{}7 |B}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Oh! Meu Divino Pai"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat volta 2 {
+        << \single\altcol c8 \altmark "3." \pomark \once\slurUp e8( >> e) | g2~g8 e c e | g2( g4) g8 g8 | fis4 g a a | g2( e4) c8( c) | c4 c d d
+        a2( a4) c8( c) | c4 c d d | a2 \parenthesize c4 c8( c) | c4 c d d | c2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Oh __ _ | meu _ Di -- vi -- no | Pai; __ _
+        Nos dai | a Ben -- ção Di -- | vi -- na;
+        Do __ _ | nos -- so Cri -- a -- | dor; __ _
+        Do __ _ | nos -- so Sal -- va -- | dor;
+        E do __ _ | nos -- so Pro -- te -- | tor.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Oh __ _ | meu _ Ju -- ra -- mi -- | dam; __ _
+        Com a | San -- ta Mãe Di -- | vi -- na;
+        Je -- sus | Cris -- to Re -- den -- | tor;
+        E São Jo -- | ão nos -- so pas -- | tor;
+        "" Com a | luz do res -- plen -- | dor.
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        To -- dos | san -- tos e to -- das | san -- tas;
+        Ro -- gam~a | Deus com to -- do~a -- | mor; __ _
+        Nos -- sos | gui -- as cu -- ra -- | do -- res;
+        Nos __ _ | gui -- am com fer -- | vor;
+        "" Ao __ _ | nos -- so Cri -- a -- | dor.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c1 | c | d | c
+        | c2 g | a1:m | c2 g | a1:m
+        | f2 g:7 | c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    Oh my Divine Father, give us your Divine Blessing
+    Of our Creator, of our Savior, and of our Protector
+    \nextverse
+    Oh my Juramidam, with the Divine Holy Mother
+    Jesus Christ the Redeemer, Saint John our Shepherd, with the light of resplendence
+    \nextverse
+    All of the male and female saints, pray to God with all love
+    Our healer guides, guide us with the fervor of the Creator
+  \end{translation}
+\endsong
+
