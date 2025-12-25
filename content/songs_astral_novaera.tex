@@ -3016,3 +3016,99 @@
     \ind The Enchanted Master in the forest; gave us this Holy Doctrine
   \end{translation}
 \endsong
+
+
+\beginsong{Do Meu Pai Eu Tenho Tudo \\ Mensageiro}[by={Padr. Alfredo}, off={Juliana}, key={Dm}, gk={Dm, Cm--Em}, tags={mazurca}]
+  \audio[key=Dm]{https://soundcloud.com/canaljagube/24-mensageiro?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/126/DoMeuPaiEuTenhoTudo}
+  \meter{6}{4}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{A}]Do \[^\mn{G}]meu |\[\mnc{F}Dm]Pai \[^\mn{D}]eu \[^\mn{A}]te\[^\mn{F}]nho \[\bmc\mn{D}]tudo \altchords{\id[1]{(Cm)}|Cm}
+    \[^\mn{A}]De mi\[^\mn{G}]nha |\[^\mn{F}]Mãe \[^\mn{D}]eu \[^\mn{A}]tam\[^\mn{F}]bém \[\bmc\mnc{E}A]tenho \altchords{| - G}
+    \[^\mn{A}]Força |\[^\mn{B&}]pa\[^\mn{A}]ra \[^\mn{C#}]Vos \[^\mn{E}]lou\[\bmc\mn{A}\mn{E}]var \altchords{| \e}
+    E \[\mnc{G}(A7)]também |\[\mnc{F}A]vou \[^\mn{E}]a\[\mnc{C#}(A7)]gra\[^\mn{E}]de\[\bmc\mnc{D}Dm]cendo \altchords{(G7) |G (G7) Cm}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    Cheguem |^perto, meus a^migos
+    Fiquem |perto, meus ir^mãos
+    Jesus |Cristo é nosso ^Pai
+    ^{E\jw a Ra}|^inha é ^nossa ^Mãe
+  \endchorus
+  % verse 3
+  \beginchorus
+    Este |^{é o Mensa}^geiro \altchords{\id[2]{(Em)}|Em}
+    Dentro |do Jardim Dou^rado \altchords{| - B}
+    O Mestre |disse ``te le^vanta'' \altchords{| \e}
+    ^Levan|^ta quem es^{tá sen}^tado \altchords{(B7) |B (B7) Em}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Do Meu Pai Eu Tenho Tudo"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key d \minor \time 6/4 \partial 4
+      \repeat volta 2 {
+        a8 \pomark g | f4 d a8 f'  d4 d8 \parenthesize a' a g
+        | f4 d a8 f'8  e4( e8) \parenthesize a,8 a8 a
+        | bes4 a8( a) cis e  a4( e8)( e) g g
+        | f4 e8( e) cis e  d4( d4)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Do meu | Pai eu te -- nho tu -- do;
+        De mi -- nha | Mãe eu tam -- bém te -- nho;
+        "" For -- ça | pa -- ra __ _  Vos lou -- var; __ _
+        E tam -- bém | vou a _ -- gra -- de -- cen -- do.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        Che -- guem | per -- to, meus a -- mi -- gos;
+        "" Fi -- quem | per -- to, meus ir -- mãos; __ _
+        "" Je -- sus | Cris -- to é nos -- so Pai; __ _ _
+        E~a Ra -- | i -- nha é nos -- sa Mãe. __ _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Es -- te | é o Men -- sa -- gei -- ro;
+        "" Den -- tro | do Jar -- dim Dou -- ra -- do;
+        O Mes -- tre | dis -- se __ _ ``te le -- van -- ta''; __ _
+        Le -- van -- | ta quem es -- tá sen -- ta -- do.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | d2.:m d:m
+        | d:m a
+        | a a2 \parenthesize a4:7
+        | a2 \parenthesize a4:7 d2:m
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    From my Father I have everything; from my Mother I have as well
+    Strength to praise You, and also to keep giving thanks
+    \nextverse
+    Come close, my friends; stay close, my brothers and sisters
+    Jesus Christ is our Father, and the Queen is our Mother
+    \nextverse
+    This is the Messenger inside the Golden Garden
+    The Master said ``Stand up!''; stand up those who are seated
+  \end{translation}
+\endsong
+
