@@ -3534,3 +3534,99 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Eu Vou Me Firmar \\ Observando}[by={Padr. Alfredo}, off={Rosilene}, key={C}, gk={C, C--D}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/29-eu-vou-me-firmar?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/2095/EuVouMeFirmar}
+  % verse 1
+  \mnbeginchorus\memorize
+    \lrep |\[\mnc{C}C]Eu \[^\mn{D}]vou \[\bmc\mn{A}]me \[^\mn{C}]fir|mar \[\bm] \altchords{\id[1]{(D)}|D | \e}
+    Deus \[^\mn{E}]é |\[\mnc{G}G]que \[^\mn{A}]es\[\bmc\mn{E}]tá \[^\mn{G}]man|\[\mnc{E}Am/E]dan\[\bm]do \rrep \altchords{|A |Bm/F\shrp{}}
+    \lrep \[^\mn{A}]Deus no |\[\mnc{G}C]domí\[\bmc\mn{E}]nio \[^\mn{C}]de |\[\mnc{A}Am]tu\[\bmc\mn{G}]do \altchords{|D |Bm}
+    \[^\mn{C}]E \[^\mn{D}]a |\[\mnc{E}C]tu\[^\mn{G}]{do\jw o}\[\mnc{D}G7]b\[^\mn{E}]ser|\[\mnc{C}C]van\[\bm]do \rrep \altchords{|D A7 |D}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    \lrep\noteson \[\mnd{A}]E \[\mnd{B}]a \notesoff{}|^tudo\jw o^bser|van^do
+    Deus no |^domí^nio de |^tu^do \rrep
+    \lrep Nele |^estou ^me fir|^man^do
+    Moti|^vando\jw o ^meu es|^tu^do \rrep
+  \endchorus
+  \begin{translation}[EN]
+    I will firm myself
+    God is who is ordering
+    God in the dominion of everything
+    And is observing everything
+    \nextverse
+    And is observing everything
+    God in the dominion of everything
+    In Him I am firming myself
+    Motivating my study
+  \end{translation}
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Eu Vou Me Firmar"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \repeat segno 2 {
+        \sectionLabel "A"
+        \repeat volta 2 {
+          \parenthesize a8 \pomark \parenthesize b | c4 d a c | c2( c4) c8 e
+          | g4 a e g | e2 e4
+        }
+        \sectionLabel "B"
+        \repeat volta 2 {
+          a8 a | g4 g e c | a2 g4 c8 d
+          | e4 g d e | c2 c4
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "1.A"
+        \repeat volta 2 {
+          "" "" | Eu vou me fir -- | mar; __ _
+          Deus é | que es -- tá man -- | dan -- do.
+        }
+        \set stanza = "1.B"
+        \repeat volta 2 {
+          Deus no | do -- mí -- nio de | tu -- do;
+          E a | tu -- do~o -- b -- ser -- | van -- do.
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "2.A"
+        \repeat volta 2 {
+          E a | tu -- do~o -- b -- ser -- | van -- do;
+          Deus no | do -- mí -- nio de | tu -- do.
+        }
+        \set stanza = "2.B"
+        \repeat volta 2 {
+          Ne -- le | es -- tou me fir -- | man -- do;
+          Mo -- ti -- | van -- do~o meu es -- | tu -- do.
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4 | c1 c | g | a2.:m/e
+        }
+        \repeat volta 2 {
+          s4 | c1 | a:m | c2 g:7 | c2.
+        }
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
