@@ -3435,3 +3435,102 @@
   \end{translation}
 \endsong
 
+
+\beginsong{Mamãe Eu Agradeço}[by={Padr. Alfredo}, off={Artur}, key={C}, gk={C, C--D}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/28-mamae-eu-agradeco?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/2094/MamaeEuAgradeco}
+  % verse 1
+  \mnbeginchorus\memorize
+    \[^\mn{C}]Ma|\[\mnc{F}F]mãe eu agra\[\bmc\mn{E}]deço \altchords{\id[1]{(D)}|G}
+    \[^\mn{F}]A |\[\mnc{E}C]bênção de Pa\[\bmc\mn{G}]pai \altchords{|D}
+    \[^\mn{E}]Por |\[\mnc{D}Dm]todos Vossos \[\bmc\mn{F}]filhos \altchords{|Em}
+    \[^\mn{C}]Es|\[C]ta luz divi\[\bmc\mn{E}]nal \altchords{|D}
+    \vspace{.8em}
+    \[^\mn{C}]Só |\[\mnc{B}G]Vós com Vos\[^\mn{C}]so \[\bmc\mn{D}]brilho \altchords{|A}
+    No |\[^\mn{B}]reino \[^\mnc{A}]do as\[\bmc\mn{G}]tral \altchords{| \e}
+    \[^\mn{D}]Nos |dai nossa fir\[\bmc\mn{G}]meza \altchords{| \e}
+    Bên|\[^\mn{E}]ção es\[^\mn{D}]piritu\[\mnc{C}C]al \altchords{| - D}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus
+    To|^da nossa fa^mília
+    E a |^toda irman^dade
+    To|^dos filhos de ^Deus
+    Refor|^{-ço} de cari^dade
+    \vspace{.8em}
+    Nossos |^guias na ma^téria
+    E por |toda\jw eterni^dade
+    Damos |viva e lou^vor
+    Obedi|ência\jw e leal^dade
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Mamãe Eu Agradeço"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 8
+      \repeat volta 2 {
+        c8 \pomark | f f f f a( a) a f | e e e e g4( g8) e8
+        | d d d d f4 f8 c \single\altcol( \altmark "2." | c16)( c16) c8 c c e( e e) c
+        | b8 b b c d( d) d d | b b a a g8.( g16) \parenthesize d'8 d
+        | d d d d g( g) g g | e e d16( d16) d8 c4( c8)
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Ma -- | mãe eu a -- gra -- de _ -- ço;
+        A | bên -- ção de Pa -- pai; __ _
+        Por | to -- dos Vos -- sos fi -- lhos;
+        Es -- | ta __ _ luz di -- vi -- nal. __ _ _
+        % 
+        Só | Vós com Vos -- so bri _ -- lho;
+        No | rei -- no do as -- tral; __ _
+        "" Nos | dai nos -- sa fir -- me _ -- za;
+        Bên -- | ção es -- pi -- ri -- tu -- al. __ _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        To -- | da nos -- sa fa -- mí -- lia;
+        E a | to -- da ir -- man -- da -- de;
+        To -- | dos fi -- lhos de Deus;
+        Re -- \altcol for -- | _ ço de ca -- ri -- da -- de.
+        %
+        Nos -- sos | gui -- as na ma -- té -- ria;
+        E por | to -- da~e -- ter -- ni -- da -- de;
+        Da -- mos | vi -- va e lou -- vor;
+        O -- be -- di -- | ên -- cia~e le _ -- al -- da -- de.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s8 | f1 | c | d:m | c
+        | g | g | g | g2 c4.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    Mama I thank you, the blessing of Papa
+    For all of your sons and Daughters, this divine light
+    \nextverse
+    Only You with Your brilliance in the astral kingdom
+    Give us our firmness, the spiritual blessing
+    \nextverse
+    All of our family, and all of the siblinghood
+    All the sons and daughters of God, reinforcing charity
+    \nextverse
+    Our material guides, and for all eternity
+    Give viva and praises, obedience and loyalty
+  \end{translation}
+\endsong
+
