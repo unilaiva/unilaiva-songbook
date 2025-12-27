@@ -3630,3 +3630,132 @@
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
+
+
+\beginsong{Eu Sou o Plantador}[by={Padr. Alfredo}, off={Robervana}, key={C}, gk={D, C--E}]
+  \audio[key=C]{https://soundcloud.com/canaljagube/30-plantador?in=ivo-nei/sets/nova-era-padrinho-alfredo}
+  \audio{https://nossairmandade.com/hymn/2096/OPlantador}
+  \newchords{chords_plantador_a}\newchords{chords_plantador_b}\newchords{chords_plantador_c}
+  % verse 1
+  \mnbeginchorus\memorize[chords_plantador_a]
+    \[^\mn{E}]Eu |\[\mnc{C}C]sou o \[\bmc\mn{G}]plantador de |tu\[^\mn{E}]do \[\bm] \altchords{\id[1]{(D)}|D | \e}
+    \[^\mn{C}]Eu |\[\mnc{G}G]planto \[\bmc\mn{G}]paz e \[^\mn{E}]plan\[^\mn{G}]{to\jw a}|\[\mnc{E}Am/E]mor \[\bm] \altchords{|A |Bm/F\shrp{}}
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_plantador_b]
+    \[^\mn{E}]Eu |\[\mnc{C}C]sou o \[\bmc\mn{G}]colhedor de |tu\[^\mn{E}]do \[\bm] \altchords{|D | \e}
+    \[^\mn{C}]Eu |\[\mnc{G}G7]colho \[\bmc\mn{G}]fru{to\jw e} \[^\mn{E}]co\[^\mn{G}]lho |\[\mnc{C}C]flor \[\bm] \altchords{|A7 |D}
+  \mnendchorus\glueverses
+  \mnbeginchorus\memorize[chords_plantador_c]
+    \ind \[^\mn{C}]Eu |\[\mnc{A}F]sou,\[\bm] \[^\mn{C}]eu |\[\mnc{G}C]sou \[\bm] \altchords{|G |D}
+    \ind \[^\mn{E}]Eu |\[\mnc{D}Dm]sou \[^\mn{F}]e \[\mnc{B}G7]pos\[^\mn{D}]so |\[\mnc{C}C]ver \[\bm] \altchords{|Em A7 |D}
+    \ind \[^\mn{C}]Eu |\[\mnc{A}F]sou,\[\bm] \[^\mn{C}]eu |\[\mnc{G}C]sou \[\bm] \altchords{|G |D}
+    \ind \[^\mn{E}]Eu |\[\mnc{D}Dm]sou \[^\mn{F}]e \[\mnc{B}G7]de\[^\mn{D}]ve |\[\mnc{C}C]ser \[\bm] \altchords{|Em A7 |D}
+  \mnendchorus
+  \notesoff
+  % verse 2
+  \beginchorus\replay[chords_plantador_a]
+    Eu |^sou o ^criador de |tudo ^ \altchords{\id[2]{(E)}|E | \e}
+    De |^tudo ^que meu Deus cri|^ou ^ \altchords{|B |C\shrp{}m/G\shrp{}}
+  \endchorus\glueverses
+  \beginchorus\replay[chords_plantador_b]
+    Eu |^sou, sou ^Eu aqui na |terra ^ \altchords{|E | \e}
+    Eu |^sou, o ^Eu sou, do Eu |^sou ^ \altchords{|B7 |E}
+  \endchorus\glueverses
+  \beginchorus\replay[chords_plantador_c]
+    \ind Eu |^sou,^ eu |^sou ^ \altchords{|A |E}
+    \ind Eu |^sou e ^posso |^ver ^ \altchords{|F\shrp{}m B7 |E}
+    \ind Eu |^sou,^ eu |^sou ^ \altchords{|A |E}
+    \ind Eu |^sou e ^deve |^ser ^ \altchords{|F\shrp{}m B7 |E}
+  \endchorus
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2025-12
+    % \header {
+    %   title = "Eu Sou o Plantador"
+    %   composer = "Padr. Alfredo"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative e'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major \time 4/4 \partial 4
+      \mark \markup \with-color #darkgreen \italic "Final: toque tudo"
+      \sectionLabel "A"
+      \repeat volta 2 {
+        e4 \pomark | c4. c8 g'8 g g g | g4 e2 c4 | g4. g8 g'8 g e g | e2.
+      } \break
+      \sectionLabel "B"
+      \repeat volta 2 {
+        e4 | c4. c8 g'8 g g g | g4 e2 c4 | g4. g8 g'8 g e g | c,2.
+      } \break
+      \sectionLabel "C"
+      \repeat volta 2 {
+        c4 | a2. c4 | g2. e'4 | d f b, d | c2.
+        c4 | a2. c4 | g2. e'4 | d f b, d | c2.
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Eu | sou o plan -- ta -- dor de | tu -- do;
+        Eu | plan -- to paz e plan -- to~a -- | mor.
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Eu | sou o co -- lhe -- dor de | tu -- do;
+        Eu | co -- lho fru -- to~e co -- lho | flor.
+      }
+      \set stanza = "1.C"
+      \repeat volta 2 {
+        Eu | sou, eu | sou;
+        Eu | sou e pos -- so | ver;
+        Eu | sou, eu | sou;
+        Eu | sou e de -- ve | ser.
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Eu | sou o cri -- a -- dor de | tu -- do;
+        De | tu -- do que meu Deus cri -- | ou.
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Eu | sou, sou Eu a -- qui na | ter -- ra;
+        Eu | sou, o Eu sou, do Eu | sou.
+      }
+      \set stanza = "2.C"
+      \repeat volta 2 {
+        Eu | sou, eu | sou;
+        Eu | sou e pos -- so | ver;
+        Eu | sou, eu | sou;
+        Eu | sou e de -- ve | ser.
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4 | c1 | c | g | a2.:m/e
+      }
+      \repeat volta 2 {
+        s4 | c1 | c | g:7 | c2.
+      }
+      \repeat volta 2 {
+        s4 | f1 | c | d2:m g:7 | c2.
+        s4 | f1 | c | d2:m g:7 | c2.
+      }
+    }
+    %\layout { #(layout-set-staff-size 15) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I am the sower of everything; I sow peace and sow love
+    I am a harvester of everything; I harvest fruit and gather flowers
+    \ind I am, I am, I am and I can see
+    \ind I am, I am, I am and must be
+    \nextverse
+    I am the creator of everything, of all that my God created
+    I am, it is here on earth; I am, the I am, of I am
+    \ind I am, I am, I am and I can see
+    \ind I am, I am, I am and must be
+  \end{translation}
+\endsong
+
