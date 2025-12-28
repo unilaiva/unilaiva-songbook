@@ -91,6 +91,33 @@
         )
       )
 
+    % Mark the playout start spot in the music. A symbol will be shown above
+    % the staff. No parameters.
+    pomark =
+    #(define-event-function
+      (parser location)
+      ()
+      "Mark the beginning of the playout"
+      #{
+        ^\markup { \playoutsymbol }
+      #}
+      )
+
+    % Write a text given as parameter in playout hint style above the staff.
+    % Intended to be used before any notes within the melody section.
+    potext =
+    #(define-music-function
+      (text)
+      (markup?)
+      "Write text above staff in playout hint style."
+      #{
+        \mark
+        \markup
+        \with-color #color-pomark
+        \italic
+        #text
+      #})
+
     % Mark a spot in the music with a boxed blue text above the staff.
     % Use this to mark beginnings of musical sections. The text is given
     % as the only input parameter. Example: \sectionmark "2.A"
@@ -102,18 +129,6 @@
       "Mark the beginning of a musical section"
       #{
         ^\markup { \blueboxed{ #marktext } }
-      #}
-      )
-
-    % Mark the playout start spot in the music. A symbol will be shown above
-    % the staff. No parameters.
-    pomark =
-    #(define-event-function
-      (parser location)
-      ()
-      "Mark the beginning of the playout"
-      #{
-        ^\markup { \playoutsymbol }
       #}
       )
 
