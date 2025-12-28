@@ -44,6 +44,9 @@
     color-chordnames = #(rgb-color 0.20 0 0.22)
     % The color used to signify alternative playing
     color-alt = #darkcyan
+    % Playout mark color. This ought to be manually synced with 'pomarkcolor'
+    % defined in file unilaiva-songbook_common.sty:
+    color-pomark = #(rgb-color 0 0.5 0)
 
     \layout {
       \context {
@@ -81,7 +84,7 @@
       (interpret-markup layout props
         #{
           \markup {
-            \with-color #darkgreen
+            \with-color #color-pomark
             \fontsize #4 { \arrow-head #Y #DOWN ##t }
           }
         #}

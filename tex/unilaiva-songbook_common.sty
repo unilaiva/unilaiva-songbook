@@ -253,6 +253,21 @@
   }%
 }
 
+% Creates a mark that takes no space (might overlap) immediately to the left of
+% current position. The mark is given as optional parameter in square brackets.
+% If the mark is not given, a right-pointing arrowhead is used. Does not leak
+% style.
+\newcommand{\marker}[1][\symrarrowhead]{%
+  \makebox[0pt][l]{{\llap{#1}}}%
+}
+
+% Creates a playout mark that takes no space (might overlap) immediately to the
+% left of current position. This similar to \pomark in Lilypond, but points to
+% the right instead of down.
+\newcommand{\pomarkr}{%
+  \marker[\color{pomarkcolor}\symrarrowhead{ }{ }]%
+}
+
 % END GENERIC UTILITY MACROS
 
 
@@ -599,6 +614,7 @@
 \newunicodechar{⭠}{{\symboliifont ⭠}}\newcommand\symlarrow{⭠}
 \newunicodechar{⭢}{{\symboliifont ⭢}}\newcommand\symrarrow{⭢}
 \newunicodechar{⮀}{{\symboliifont ⮀}}\newcommand\symlrarrow{⮀}
+\newunicodechar{⮞}{{\symboliifont ⮞}}\newcommand\symrarrowhead{⮞}
 
 % Allow further emergency stretching to fix some "overfull hbox" situations.
 % See: https://www.tex.ac.uk/FAQ-overfull.html
@@ -626,6 +642,8 @@
 \definecolor{melodynotealtcolor}{rgb}{0.2,0,0}
 % encircled melody notes (alt.), the circle:
 \definecolor{melodynotealtcirclecolor}{rgb}{0.35,0,0}
+% playout mark color
+\definecolor{pomarkcolor}{rgb}{0,0.5,0}
 % color for repetition signs (\lrep \rrep and \rep):
 \definecolor{repetitionsigncolor}{rgb}{0.1,0.1,0.4}
 \definecolor{songnumbgcolor}{rgb}{1,1,1} % song number background
