@@ -3378,7 +3378,7 @@
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
       \repeat volta 2 {
-        << \single\altcol c8 \altmark "3." \pomark \once\slurUp e8( >> e) | g2~g8 e c e | g2( g4) g8 g8 | fis4 g a a | g2( e4) c8( c) | c4 c d d
+        << \once\slurUp e8( \pomark \single\altcol c8 \altmark "3." >> e) | g2~g8 e c e | g2( g4) g8 g8 | fis4 g a a | g2( e4) c8( c) | c4 c d d
         a2( a4) c8( c) | c4 c d d | a2 \parenthesize c4 c8( c) | c4 c d d | c2.
       }
       \fine
@@ -3406,7 +3406,7 @@
     theLyricsThree = \lyricmode {
       \set stanza = "3."
       \repeat volta 2 {
-        To -- dos | san -- tos e to -- das | san -- tas;
+        \altcol To -- dos | san -- tos e to -- das | san -- tas;
         Ro -- gam~a | Deus com to -- do~a -- | mor; __ _
         Nos -- sos | gui -- as cu -- ra -- | do -- res;
         Nos __ _ | gui -- am com fer -- | vor;
