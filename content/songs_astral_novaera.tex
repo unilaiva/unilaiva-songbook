@@ -2870,7 +2870,7 @@
   % verse 1
   \mnbeginverse\memorize[chords_ohvirgem_a]
     \[^\mn{E}]Oh! |\[\mnc{A}Am]Virgem |da Con\[^\mn{C}]cei|\[^\mn{A}]ção | \e
-    \[^\mn{E}]Oh! |\[^\mn{A}]Minha \[^\mn{E}]San|\[^\mn{C}]tíssi\[^\mn{A}]ma \[^\mn{C}]Se|\[\mnc{E}(C)]nho|\[Am]ra
+    \[^\mn{E}]Oh! |\[^\mn{A}]Minha \[^\mn{E}]San|\[^\mn{C}]tíssi\[^\mn{A}]ma \[^\mn{C}]Se|\[^\mn{E}]nho|ra
     \[^\mn{A}]Habi|\[\mnc{D}Dm]tai o |\[^\mn{F}]meu \[^\mn{D}]pen\[^\mn{B}]sa|\[\mnc{A}Am]men|to
     Ha\[^\mnc{C}]bi|\[\mnc{E}(C)]{tai\jw o} meu \[^\mn{C}]co|\[\mnc{A}Am]ra\[^\mn{E}]ção \[^\mn{C}]a|\[\mnc{B}E]go|ra
     Ha\[^\mnc{C}]bi|\[\mnc{D}Dm]tai o |\[^\mn{F}]meu \[^\mn{D}]pen\[^\mn{B}]sa|\[\mnc{A}Am]men|to
@@ -2883,30 +2883,37 @@
   \notesoff
   % verse 2
   \beginverse\replay[chords_ohvirgem_a]
-    Pre|^sente de |Aniver|sá|rio
-    Salve, |salve\jw o bom |Mestre\jw Iri|^neu |^ \e
-    Santo |^Daime, |Sabedo|^ri|a
-    Esta |^força\jw o meu |^Mestre me |^deu | \e
-    Nosso |^chefe Se|nhor São Jo|^ão | \e
-    Repas|^sou e meu |^pai rece|^beu | \e
+    Pre|^sente de |Aniver|sá|rio \altchords{\id[1]{(Bm)}|Bm | - | - | \e}
+    Salve, |salve\jw o bom |Mestre\jw Iri|neu | \e \altchords{| - | - | - | \e}
+    Santo |^Daime, |Sabedo|^ri|a \altchords{|Em | - |Bm | \e}
+    Esta |^força\jw o meu |^Mestre me |^deu | \e \altchords{|(D) |Bm |F\shrp{} | \e}
+    Nosso |^chefe Se|nhor São Jo|^ão | \e \altchords{|Em | - |Bm | \e}
+    Repas|^sou e meu |^pai rece|^beu | \e \altchords{|(D) |Bm |F\shrp{} | \e}
   \endverse\glueverses
   \beginchorus\replay[chords_ohvirgem_b]
-    O |^Mestre |que nos en|^si|^na
-    Para |sempre co|^{nosco vi}|^veu | \e
+    O |^Mestre |que nos en|^si|^na \altchords{|Bm | - |(D) |Bm}
+    Para |sempre co|^{nosco vi}|^veu | \e \altchords{| - |\up{1}G \up{2}(F\shrp{}7) |\up{1}D \up{2}(Bm) | \e}
   \endchorus
+  % NOTE: setup smaller fonts for verse 3 to fit the song on a spread when
+  % Lilypond and chords are shown.
+  \ifchorded\ifshowlilypond%
+    \normalsize%
+    \renewcommand{\printchord}[1]{\sffamily\bfseries\small\color{chordcolor}#1}% to go with the above
+  \fi\fi%
   % verse 3
-  \beginverse\replay[chords_ohvirgem_a]\ifshowlilypond\normalsize\fi % to fit on a spread
+  \beginverse\replay[chords_ohvirgem_a]
     E |^vive no |meu cora|ção | \e
-    Tão su|blime a |vida de |^Deus |^ \e
+    Tão su|blime a |vida de |Deus | \e
     Eterna|^mente\jw eu Vos |agrade|^cer | \e
     Esta |^vida nos|^{so Pai} nos |^deu | \e
     Vosso |^brilho nos |fortale|^ceu | \e
     Para |^sempre ser |^{um filho} |^Seu | \e
   \endverse\glueverses
-  \beginchorus\replay[chords_ohvirgem_b]\ifshowlilypond\normalsize\fi % to fit on a spread
+  \beginchorus\replay[chords_ohvirgem_b]
     O |^Mestre\jw encan|tado na |^ma|^ta
     Esta |Santa Dou|^{trina nos} |^deu | \e
   \endchorus
+  \ifchorded\ifshowlilypond\vspace{-.5em}\fi\fi % to fit on a spread
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2025-12
     % \header {
@@ -2983,7 +2990,7 @@
     }
     theChords = \chordmode {
        s4 | a2.:m | a:m | a:m | a:m
-       | a:m | a:m | \parenthesize c | a:m
+       | a:m | a:m | a:m | a:m
        | d:m | d:m | a:m | a:m
        | \parenthesize c | a:m | e | e
        | d:m | d:m | a:m | a:m
