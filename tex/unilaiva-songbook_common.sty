@@ -179,8 +179,7 @@
 
 % BEGIN GENERIC UTILITY MACROS
 
-% Very small font size. Be careful if changing, as this is used at least in
-% positioning media note superscript notes.
+% Very small font size.
 \newcommand{\micro}{\fontsize{3.5pt}{4.5pt}\selectfont}
 
 % Testing if the argument has no width when put in a box i.e. it is empty.
@@ -380,8 +379,12 @@
 % Toggle use of chapter colors in page corners
 \newif\ifusechaptercolors\usechaptercolorstrue
 
-% Toggle the use of alternate melody note color (use for e.g. 2nd voice)
-\newif\ifusealtmncolor\usealtmncolorfalse
+% Toggle the use of alternate melody note style (color and optional tag).
+% This converts the normal melody notes defined with \mn* to appear in alternate
+% style and the alternate melody notes defined with \mna* to appear in the
+% normal style. Use this only for special cases: normally it is better to use
+% the specific \mn* and \ma* macros for differently styled melody notes.
+\newif\ifusealtmnstyle\usealtmnstylefalse
 
 % END Toggles
 
@@ -2548,7 +2551,7 @@
 % than the first line of lyrics with the caveat, that chords and notes are put
 % beside each other.
 %
-% Set \usealtmncolortrue to use alternate color on all normal notes and normal
+% Set \usealtmnstyletrue to use alternate color on all normal notes and normal
 % color on alternate notes set with \ma* commands.
 %
 % If one whishes to use
@@ -2572,40 +2575,55 @@
 % too.
 \providecommand{\mnsymbolstyle}{}
 
-% Superscript note text for normal melody notes. Will be put to the top
-% left above normal note circles. Does not take space.
-\providecommand{\mnsuptext}{}
+% Setup the style for the small tags put in front of melody note circles. This
+% ought to just set a very small font size.
+\providecommand{\mntagstyle}{\fontsize{3.5pt}{4.5pt}\selectfont}
 
-% Superscript note text for alternative melody notes. Will be put to the top
-% left above alternate note circles. Does not take space.
-\providecommand{\mnaltsuptext}{}
+% Small tag text to be put in front of normal melody note circles. Does not take
+% space.
+\providecommand{\mntagtext}{}
 
-% Height the low melody note variant should be put above the chord baseline,
-% used for \mnd and \mad
+% Small tag text to be put in front of alternatively styled melody note circles.
+% Does not take space.
+\providecommand{\mnalttagtext}{}
+
+% Length that the tag text for melody notes is pushed towards the right to be
+% closer to the melody note circle.
+\newlength{\mntaghadj}\setlength{\mntaghadj}{.135ex}
+
+% Height of the normal melody notes from chord baseline.
+% This should be ~1em to be above the chords.
+\newlength{\mnnormalheight}\setlength{\mnnormalheight}{1em}
+
+% Height of the low melody note variant from chord baseline.
+% Used in \mnd and \mad* macros.
 \newlength{\mnlowheight}\setlength{\mnlowheight}{0.15em}
 
-% Length that melody note superscript note is pushed towards the right to be
-% closer to the melody note circle.
-\newlength{\mnsuphadjlen}\setlength{\mnsuphadjlen}{.135ex}
+% Height of the high melody note variant from chord baseline.
+% Used in \mau* macros.
+\newlength{\mnhighheight}\setlength{\mnhighheight}{1.85em}
 
-% Height of the upper melody note from chord line for \mauii and \mauiic macros.
-\newlength{\mnauheightlen}\setlength{\mnauheightlen}{1.85em}
 
+% Toggles the media note style between normal and alternate
+\newcommand{\@togglemnstyle}{%
+  \ifusealtmnstyle\usealtmnstylefalse\else\usealtmnstyletrue\fi%
+}
 
 % Base style for the melody note circle, appended with \mncirclestyle:
 \newcommand{\@mncirclestyle}{%
   \footnotesize%
-  \ifusealtmncolor%
+  \ifusealtmnstyle%
     \color{melodynotealtcirclecolor}%
   \else%
     \color{melodynotecirclecolor}%
   \fi%
   \mncirclestyle%
 }
+
 % Base style for the melody note name symbol, appended with \mnsymbolstyle:
 \newcommand{\@mnsymbolstyle}{%
   \tiny\mdseries\sansheavyfont%
-  \ifusealtmncolor%
+  \ifusealtmnstyle%
     \color{melodynotealtcolor}%
   \else%
     \color{melodynotecolor}%
@@ -2626,12 +2644,12 @@
 
 % Outputs an encircled melody note, internal
 %   - optional parameter: rise the note above text (chord line) by this amount,
-%                         defaults to 1em
+%                         defaults to \mnnormalheight (1em)
 %   - mandatory parameter: the note, must be in UPPER CASE for transposing to
 %     work
 %   * Example usage: \@note[0.5em]{C#}
 %   * To take no horizontal space, call this macro within \makebox[0pt][l]{}
-\newcommand{\@note}[2][1em]{%
+\newcommand{\@note}[2][\mnnormalheight]{%
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
@@ -2641,7 +2659,7 @@
         \renewcommand{\sharpsymbol}{\@lowsharpsymbol}%
         \@mncirclestyle%
         % Make the superscript note on the left of the note, if it exists
-        \makebox[0pt][l]{\hspace{\mnsuphadjlen}\textsuperscript{\micro\llap{\ifusealtmncolor\mnaltsuptext\else\mnsuptext\fi}}}%
+        \makebox[0pt][l]{\hspace{\mntaghadj}\textsuperscript{\mntagstyle\llap{\ifusealtmnstyle\mnalttagtext\else\mntagtext\fi}}}%
         \textcircled{% % Show the note transposed and encircled
           \@mnsymbolstyle\transposehere{#2}%
         }%
@@ -2734,7 +2752,7 @@
 % Alternatively colored note on normal note line, takes horiz. space.
 \newcommand{\ma}[1]{%
   {% alternate color note on normal note line, takes horizontal space
-    \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
+    \@togglemnstyle%
     \@note{#1}%
   }%
 }
@@ -2748,8 +2766,8 @@
 % Alternatively colored note above normal note line, takes horiz. space.
 \newcommand{\mau}[1]{%
   {%
-    \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
-    \@note[\mnauheightlen]{#1}%
+    \@togglemnstyle%
+    \@note[\mnhighheight]{#1}%
   }%
 }
 
@@ -2781,7 +2799,7 @@
 % chords. Takes horiz. space.
 \newcommand{\mad}[1]{%
   {% alternate color note above normal note line, takes horizontal space
-    \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
+    \@togglemnstyle%
     \@note[\mnlowheight]{#1}%
   }%
 }
