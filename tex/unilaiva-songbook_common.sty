@@ -2505,16 +2505,19 @@
 %   \mncv{<note>}{<note>}{<note>}{<note>}{<note}
 %                                   : 5 notes horizontally, can be used with a
 %                                     chord
-%   \mnd{<notename>}                : note positioned below the normal note
+%   \mnd{<note>}                    : note positioned below the normal note
 %                                     line, on same height with chords, don't
 %                                     use with a chord
 %   \ma{<note}                      : alternatively colored note, don't use with
 %                                     a chord
 %   \mac{<note}                     : alternatively colored note, can be used
 %                                     with a chord
-%   \mad{<notename>}                : alternatively colored note, positioned
+%   \mad{<note>}                    : alternatively colored note, positioned
 %                                     below the normal note line, on same height
 %                                     with chords, don't use with a chord
+%   \madii{<note>}{<note>}          : two notes vertically, the first one in alt
+%                                     color below the normal note line, do not
+%                                     use with a chord
 %   \mau{<note}                     : alternatively colored note above the
 %                                     normal note line, don't use with a chord
 %   \mauc{<note}                    : alternatively colored note above the
@@ -2579,7 +2582,7 @@
 
 % Height the low melody note variant should be put above the chord baseline,
 % used for \mnd and \mad
-\newlength{\mnlowheight}\setlength{\mnlowheight}{0.4em}
+\newlength{\mnlowheight}\setlength{\mnlowheight}{0.15em}
 
 % Length that melody note superscript note is pushed towards the right to be
 % closer to the melody note circle.
@@ -2722,15 +2725,15 @@
   \fi%
 }
 
-% Displays a melody note, to be used on other than the first line of lyrics.
-% See above for usage information.
+% Displays a melody note below the normal note line, at the same height as
+% chords. See above for usage information.
 \newcommand{\mnd}[1]{%
   \@note[\mnlowheight]{#1}%
 }
 
 % Alternatively colored note on normal note line, takes horiz. space.
 \newcommand{\ma}[1]{%
-  {% alternate color note above normal note line, takes horizontal space
+  {% alternate color note on normal note line, takes horizontal space
     \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
     \@note{#1}%
   }%
@@ -2774,7 +2777,8 @@
   \makebox[0pt][l]{\@note{#2}}%
 }
 
-% Alternatively colored note on normal note line, takes horiz. space.
+% Alternatively colored note below the normal note line, at the same height as
+% chords. Takes horiz. space.
 \newcommand{\mad}[1]{%
   {% alternate color note above normal note line, takes horizontal space
     \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
@@ -2782,20 +2786,12 @@
   }%
 }
 
-\newcommand{\mnvcii}[2]{% DEPRECATED, alt. note below normal
-  \makebox[0pt][l]{\@note[\mnauheightlen]{#1}}%
-  {% the second note below, in different color
-    \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
-    \makebox[0pt][l]{\@note{#2}}%
-  }%
-}
-
-\newcommand{\mnvii}[2]{% DEPRECATED, alt. note below normal
-  \makebox[0pt][l]{\@note{#1}}%
-  {% the second note below, in different color
-    \ifusealtmncolor\usealtmncolorfalse\else\usealtmncolortrue\fi%
-    \@note[0.15em]{#2}%
-  }%
+% Alternatively colored note (#1) below the normal note line, normal note (#2)
+% at normal note line. Takes horiz. space.
+\newcommand{\madii}[2]{%
+  % normal note at normal note line, boxed to take no h. space
+  \makebox[0pt][l]{\@note{#2}}%
+  \mad{#1}% takes horiz. space
 }
 
 
