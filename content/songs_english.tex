@@ -2075,4 +2075,130 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%\beginsong{Over the Rainbow}[ititle={Somewhere Over the Rainbow}, by={Harold Arlen, lyrics by: Yip Harburg, version by: Israel Kamakawiwo'ole}]
+\beginsong{Over the Rainbow}[ititle={Somewhere Over the Rainbow}, by={Harold Arlen, lyrics by: Yip Harburg, version by: Israel Kamakawiwo'ole}, key={G}, gk={A, (G)--(B\flt{})}, ph={IV}]
+  \vspace{-1.5ex} % for page fit
+  % intro
+  \mnbeginverse
+    \ind |\[\mnc{G}G]Ooo-\[\mnc{B}]oo-\[\mnc{A}]o-|\[\mnc{F#}Bm]ooo \[\mn{A}]Oo-\[\mn{F#}]oo-\[\mn{A}]oo-|\[\mnc{G}C]ooo Oo-oo-|\[G]oooo
+    \ind |\[C]Oooo |\[\mnc{F#}B7]Ooo-\[\mn{A}]oo-\[\mn{F#}]oo |\[\mnc{E}Em]Oo-\[\mn{G}]oo-ooo |\[C] \[\mn{E}]O-\[\mn{G}]oo-ooo
+  \mnendverse
+  % verse 1
+  \mnbeginverse
+    |\[\mnc{G}G]Somewhere |\[\mnc{F#}Bm]o\[\mn{D}]ver \[\mn{E}]the \[\mn{F#}]rain\[\mn{G}]bow, |\[C]{ }{ } \[\mn{G}]way \[\mn{E}]up |\[\mnc{D}G]high
+    |\[\mnc{E}C]And \[\mn{C}]the |\[\mnc{B}G]dreams \[\mn{G}]that \[\mn{A}]you \[\mn{B}]dream \[\mn{C}]of,
+    |\[\mnc{A}D]once \[\mn{F#}]in \[\mnc{G}]a \[\mn{A}]lulla|\[\mnciii{B}{E}{G}Em]{by{ }{ - }{ }}|\[\mncadj{.5ex}{B}C]{{ }y} \[\mn{A}\mn{G}]
+  \mnendverse
+  % verse 2
+  \mnbeginverse
+    \[\mn{G}]Oh |\[G]some\[\mn{D}]where |\[\mnc{F#}Bm]over the \[\mn{A}]rain\[\mn{F#}]bow, |\[C]{ }{ } \[\mn{G}]blue\[\mn{E}]birds |\[\mnc{D}G]fly
+    |\[\mnc{E}C]And \[\mn{C}]the |\[\mnc{B}G]dreams that you dream of,
+    |\[\mnc{A}D]dreams \[\mn{F#}]real\[\mn{G}]ly \[\mn{A}]do come |\[\mnciii{B}{E}{G}Em]true-|\[\mncadj{.5ex}{B}C]{{ }ue}\[\mn{A}\mn{G}]
+  \mnendverse
+  % bridge + verse 3, repeated
+  \mnbeginchorus
+    \[\mn{G}]Some |\[G]day i wish upon \[\mnc{D}]a star,
+    |\[\mnc{F#}D]wake up where the clouds are far be|\[\mnc{E}Em]hind |\[\mnciii{B}{A}{G}C]me
+    \[\mn{G}]Where |\[G]trouble melts like le\[\mn{D}]mon drops
+    |\[\mnc{F#}D]High a bove the \[\mn{A}]chim\[\mn{F#}]ney tops, that's |\[\mnc{E}Em]where you |\[\mnciii{B}{A}{G}C]find me
+    \[\mn{F#}]Oh |\[\mnc{G}G]some\[\mn{B}]where |\[\mnc{F#}Bm]over the \[\mn{E}]rain\[\mn{F#}]bow, |\[C]{ }{ } \[\mn{G}]{\sublyr{\up{2}way}blue\sublyr{up}birds} |\[G]{\sublyr{high}fly}
+    \vspace{-.5ex}|\[\mnc{E}C]And \[\mn{C}]the |\[\mnc{B}G]dreams that you dare to, oh
+    |\[\mnc{A}D]why, \[\mn{F#}]oh \[\mn{A}]why can't |\[\mnciii{B}{E}{G}Em]{I{ }{ }{ - }{ }{ }{ }}|\[\mncadj{.5ex}{B}C]{{ }i} \[\mn{A}\mn{G}]
+  \mnendchorus
+  \showlilypondfalse % to save space
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2026-01
+    % \header {
+    %   title = "Somewhere Over the Rainbow"
+    %   composer = "Harold Arlen, lyrics by: Yip Harburg, version by: Israel Kamakawiwo'ole"
+    % }
+    \include "tex/lp-include-head.ly"
+    theMelody = \relative g'' {
+      \set melismaBusyProperties = #'() \slurSolid
+      \key g \major \time 4/4
+      \tempo 4 = 82
+      \sectionLabel "intro"
+      | g2 b4.( a8) | fis2 \tuplet 3/2 { a4 fis4 a4 } | g2 r8 g8. g8. | g2. r4
+      | g1 | fis2 a8. fis8. r8 | r8 e8. g8. g2 | r8 e8 g4 g2
+      \section \after 32 \sectionLabel "A.1"
+      \repeat segno 2 {
+        | g2 g2 | fis8. d8. e8 fis8. g8. r8 | r2 g,4 r16 d'16( e8) | d1
+        | e,2 c'2 | b8. g8. a8 b8. c8. r8 | a8. fis8. g8 a4 r8 a8 | b4( e g2) | r8 b8.( a8. g4.) g8
+        \section \sectionLabel "A.2"
+        | g2 d2 | fis8. fis8. fis8 a8. fis8. r8 | r2 g4 r16 d16( e8) | d1
+        | e,2 c'2 | b8. b8. b8 b8. b8. r8 | a8. fis8. g8 a4 r8 a8 | b4( e g2) | r8 b8.( a8. g4)
+        \repeat volta 2 {
+          \section \sectionLabel "B"
+          r8 g8
+          | g8 g16 g16~ g8 g16 g16~ g8 d16 d16~ d4 | fis16 fis8. fis8 fis16 fis16~ fis16 fis8 fis16 r8 fis8 | e1 | b'8.( a8. g2) g8
+          | g16 g8 g16~ g8 g8 g16 d8 d16~d4 | fis16 fis8 fis16~ fis8 fis8 a16 fis8 fis16 r8 fis8
+            | e2. r8 e8 | b'8.( a8. g8) g4. fis8
+          \section \sectionLabel "A.3"
+          | g2 b2 | fis8. fis8. fis8 a8. fis8. r8 | r2 g4 r16 g16~ g8 | g1
+          | e,2 c'2 | b8. b8. b8 b4 b8. b16 | a4 r8 fis8 a4 r8 a8 | b4( e4 g2)
+          \alternative {
+            { | r8 b8.( a8. g4) }
+            { | r8 b8( a4 g2) }
+          }
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      % intro
+      | Ooo -- oo -- o | ooo Oo -- oo -- oo -- | ooo Oo -- oo -- | oooo;
+      | Oooo | Ooo -- oo -- oo    Oo -- oo -- ooo    O -- oo -- ooo.
+      % A
+      \repeat segno 2 {
+        \set stanza = "A.1"
+        | Some -- where | o -- ver the rain -- bow,   way up _ | high;
+        | And the | dreams that you dream of;
+        | once in a lul -- la -- | by _ _ --   y; _ _
+        \set stanza = "A.2"
+        Oh | some -- where | o -- ver the rain -- bow,    blue -- birds _ | fly;
+        | And the | dreams that you dream of;
+        | dreams real -- ly do come | true _ _ --    ue. _ _
+        % B
+        \repeat volta 2 {
+          \set stanza = "B."
+          Some | day i wish _ u -- pon _ a star; _
+          | wake up where the clouds _ are far be -- | hind | me; _ _
+          Where | trou -- ble melts _ like le -- mon drops; _
+          | High a bove _ the chim -- ney tops, that's | where you | find _ _ me.
+          \set stanza = "A.3"
+          Oh | some -- where | o -- ver the rain -- bow,   blue -- birds _ | fly; % way up high
+          | And the | dreams that you dare to, oh;
+          | why, oh why can't | I _ _ --
+          \alternative {
+            {    i. _ _ }
+            {    i. _ _ }
+          }
+        }
+      }
+    }
+    theChords = \chordmode {
+      % intro
+      | g1 | b:m | c | g
+      | c | b:7 | e:m | c
+      % A
+      \repeat segno 2 {
+        | g1 | b:m | c | g
+        | c | g | d | e:m | c
+        | g1 | b:m | c | g
+        | c | g | d | e:m | c2.
+        % B
+        \repeat volta 2 {
+          s4 | g1 | d | e:m | c
+          | g | d | e:m | c
+          | g1 | b:m | c | g
+          | c | g | d | e:m
+          \alternative {
+            { | c2. }
+            { | c1 }
+          }
+        }
+      }
+    }
+    \layout { #(layout-set-staff-size 14) } % for better fit
+    \include "tex/lp-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
