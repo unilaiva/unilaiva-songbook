@@ -854,11 +854,86 @@
 \newdimen\chapcornermarkoffset\chapcornermarkoffset=2.5mm%
 \newdimen\chapcornermarkwidth\chapcornermarkwidth=.954915mm% 2.5 * 0.618034^2 :)
 \newdimen\chapcornermarklength\chapcornermarklength=\dimexpr\headsep+\headheight-\chapcornermarkoffset\relax%
-\newdimen\chapcornermarkdashlength\chapcornermarkdashlength=\dimexpr\chapcornermarklength/5\relax%
+% Gap count (must be >0): 2 gaps -> 5 segments -> gaps are segments 2 and 4
+\newcount\chapcornermarkdashcount\chapcornermarkdashcount=3%
+% Tweak: makes white gaps thicker than the mark:
+\newdimen\chapcornermarkdashoversize\chapcornermarkdashoversize=.2pt%
 
 % Set this to true to have dashed chapter corner marks. Will be reset to false
 % when starting a new chapter.
 \newif\ifchapcornermarkdashed\chapcornermarkdashedfalse
+
+% Corner mark's segment length = marklength / (2*dashcount + 1)
+\newdimen\ccm@segdim\ccm@segdim=\dimexpr
+  \chapcornermarklength / \numexpr 2*\chapcornermarkdashcount + 1\relax
+\relax
+
+\newdimen\ccm@halfw
+
+% Corner mark style
+\tikzset{
+  ccm@mark/.style={
+    draw=\currentchaptercolor,
+    line width=\chapcornermarkwidth,
+    line cap=butt,
+    dash phase=0pt,
+  },
+  ccm@solid/.style={dash pattern=},
+  ccm@dashed/.style={dash pattern=on \ccm@segdim off \ccm@segdim},
+}
+
+% Draws one chapter corner mark.
+% #1 = anchor (north east / north west / south east / south west)
+% #2 = x sign: + or -
+% #3 = y sign: + or -
+% Requires: \usetikzlibrary{calc}
+% Assumes: \chapcornermarkoffset \chapcornermarkwidth \chapcornermarklength
+%          \chapcornermarkdashcount \ifchapcornermarkdashed,
+%          \currentchaptercolor, \newdimen\ccm@segdim, \newdimen\ccm@halfw
+\newcommand*\ChapCornerMark[3]{%
+  % #2 and #3 must be + or -
+  % Opposite signs (for shifting by -sign * halfwidth)
+  \def\ccm@xopp{+}\ifx#2+\def\ccm@xopp{-}\fi
+  \def\ccm@yopp{+}\ifx#3+\def\ccm@yopp{-}\fi
+  \coordinate (ccm@base) at
+    ($ (current page.#1) + (#2\chapcornermarkoffset, #3\chapcornermarkoffset) $);
+  \ifchapcornermarkdashed
+    \def\ccm@dashstyle{ccm@dashed}%
+  \else
+    \def\ccm@dashstyle{ccm@solid}%
+  \fi
+  % Square elbow cap
+  % Shift by (-#2*halfw, -#3*halfw) so the square is centered on the corner.
+  \ccm@halfw=\dimexpr\chapcornermarkwidth/2\relax
+  \fill[\currentchaptercolor]
+    ($ (ccm@base) + (\ccm@xopp\ccm@halfw, \ccm@yopp\ccm@halfw) $)
+    rectangle ++(#2\chapcornermarkwidth,#3\chapcornermarkwidth);
+  %%% Alternative rounded elbow cap:
+  %% \fill[\currentchaptercolor]
+  %%   (ccm@base) circle[radius=.5\chapcornermarkwidth];
+  %%
+  % Two dashed legs (dashes start at the corner on both legs):
+  \draw[ccm@mark,\ccm@dashstyle]
+    (ccm@base) -- ++(#2\chapcornermarklength,0);
+  \draw[ccm@mark,\ccm@dashstyle]
+    (ccm@base) -- ++(0,#3\chapcornermarklength);
+}
+
+% Creates chapter corner marks on the outer corners of the page
+% #1 = which side is outer?  R (odd pages) or L (even pages)
+\newcommand*\ChapCornerMarksOuter[1]{%
+  \ifusechaptercolors
+    \begin{tikzpicture}[overlay,remember picture]
+      \ifx#1R
+        \ChapCornerMark{north east}{-}{-}%
+        \ChapCornerMark{south east}{-}{+}%
+      \else
+        \ChapCornerMark{north west}{+}{-}%
+        \ChapCornerMark{south west}{+}{+}%
+      \fi
+    \end{tikzpicture}%
+  \fi
+}
 
 % Setup main header style
 \fancypagestyle{unilaiva}[fancy]{%
@@ -873,129 +948,12 @@
   \fancyhead[CE]{\headerbooktitle}%    % even center: book title
   \fancyhead[CO]{\headerchapterandsectiontitles} % chapter title --- section title
   \fancyhead[RO]{%
-    \pagenumberstyle\thepage% page nr
-    % NOTE: in tikz coordinate system X increases to the right, Y to up
-    \ifusechaptercolors% draw colored marks in the odd pages outer corners
-      \begin{tikzpicture}[overlay,remember picture]%
-        % top right
-        \fill[color=\currentchaptercolor]%
-            ($ (current page.north east) + (-\chapcornermarkoffset, -\chapcornermarkoffset) $)%
-            rectangle%
-            ++(-\chapcornermarklength,-\chapcornermarkwidth);
-        \fill[color=\currentchaptercolor]%
-            ($ (current page.north east) + (-\chapcornermarkoffset, -\chapcornermarkoffset) $)%
-            rectangle%
-            ++(-\chapcornermarkwidth,-\chapcornermarklength);
-        % bottom right
-        \fill[color=\currentchaptercolor]%
-            ($ (current page.south east) + (-\chapcornermarkoffset, +\chapcornermarkoffset) $)%
-            rectangle%
-            ++(-\chapcornermarklength,+\chapcornermarkwidth);
-        \fill[color=\currentchaptercolor]%
-            ($ (current page.south east) + (-\chapcornermarkoffset, +\chapcornermarkoffset) $)%
-            rectangle%
-            ++(-\chapcornermarkwidth,+\chapcornermarklength);
-        % draw white gaps in the marks if so requested
-        \ifchapcornermarkdashed%
-          % top right
-          \fill[color=white]%
-              ($ (current page.north east) + (-\chapcornermarkoffset-\chapcornermarkdashlength, -\chapcornermarkoffset) $)%
-              rectangle%
-              ++(-\chapcornermarkdashlength,-\chapcornermarkwidth);
-          \fill[color=white]%
-              ($ (current page.north east) + (-\chapcornermarkoffset-3\chapcornermarkdashlength, -\chapcornermarkoffset) $)%
-              rectangle%
-              ++(-\chapcornermarkdashlength,-\chapcornermarkwidth);
-          \fill[color=white]%
-              ($ (current page.north east) + (-\chapcornermarkoffset, -\chapcornermarkoffset-\chapcornermarkdashlength) $)%
-              rectangle%
-              ++(-\chapcornermarkwidth,-\chapcornermarkdashlength);
-          \fill[color=white]%
-              ($ (current page.north east) + (-\chapcornermarkoffset, -\chapcornermarkoffset-3\chapcornermarkdashlength) $)%
-              rectangle%
-              ++(-\chapcornermarkwidth,-\chapcornermarkdashlength);
-          % bottom right
-          \fill[color=white]%
-              ($ (current page.south east) + (-\chapcornermarkoffset-\chapcornermarkdashlength, +\chapcornermarkoffset) $)%
-              rectangle%
-              ++(-\chapcornermarkdashlength,+\chapcornermarkwidth);
-          \fill[color=white]%
-              ($ (current page.south east) + (-\chapcornermarkoffset-3\chapcornermarkdashlength, +\chapcornermarkoffset) $)%
-              rectangle%
-              ++(-\chapcornermarkdashlength,+\chapcornermarkwidth);
-          \fill[color=white]%
-              ($ (current page.south east) + (-\chapcornermarkoffset, \chapcornermarkoffset+\chapcornermarkdashlength) $)%
-              rectangle%
-              ++(-\chapcornermarkwidth,+\chapcornermarkdashlength);
-          \fill[color=white]%
-              ($ (current page.south east) + (-\chapcornermarkoffset, \chapcornermarkoffset+3\chapcornermarkdashlength) $)%
-              rectangle%
-              ++(-\chapcornermarkwidth,+\chapcornermarkdashlength);
-        \fi%
-      \end{tikzpicture}%
-    \fi%
+    \pagenumberstyle\thepage%
+    \ChapCornerMarksOuter{R}%
   }
   \fancyhead[LE]{%
-    \pagenumberstyle\thepage% page nr
-    \ifusechaptercolors% draw colored marks in the even pages' outer corners
-      \begin{tikzpicture}[overlay,remember picture]%
-        % top left
-        \fill[color=\currentchaptercolor]%
-            ($ (current page.north west) + (+\chapcornermarkoffset, -\chapcornermarkoffset) $)%
-            rectangle%
-            ++(+\chapcornermarklength,-\chapcornermarkwidth);%
-        \fill[color=\currentchaptercolor]%
-            ($ (current page.north west) + (+\chapcornermarkoffset, -\chapcornermarkoffset) $)%
-            rectangle%
-            ++(+\chapcornermarkwidth,-\chapcornermarklength);%
-        % bottom left
-        \fill[color=\currentchaptercolor]%
-            ($ (current page.south west) + (+\chapcornermarkoffset, +\chapcornermarkoffset) $)%
-            rectangle%
-            ++(+\chapcornermarklength,+\chapcornermarkwidth);%
-        \fill[color=\currentchaptercolor]%
-            ($ (current page.south west) + (+\chapcornermarkoffset, +\chapcornermarkoffset) $)%
-            rectangle%
-            ++(+\chapcornermarkwidth,+\chapcornermarklength);%
-        % draw white gaps in the marks if so requested
-        \ifchapcornermarkdashed%
-          % top left
-          \fill[color=white]%
-              ($ (current page.north west) + (\chapcornermarkoffset+\chapcornermarkdashlength, -\chapcornermarkoffset) $)%
-              rectangle%
-              ++(+\chapcornermarkdashlength,-\chapcornermarkwidth);%
-          \fill[color=white]%
-              ($ (current page.north west) + (\chapcornermarkoffset+3\chapcornermarkdashlength, -\chapcornermarkoffset) $)%
-              rectangle%
-              ++(+\chapcornermarkdashlength,-\chapcornermarkwidth);%
-          \fill[color=white]%
-              ($ (current page.north west) + (+\chapcornermarkoffset, -\chapcornermarkoffset-\chapcornermarkdashlength) $)%
-              rectangle%
-              ++(+\chapcornermarkwidth,-\chapcornermarkdashlength);%
-          \fill[color=white]%
-              ($ (current page.north west) + (+\chapcornermarkoffset, -\chapcornermarkoffset-3\chapcornermarkdashlength) $)%
-              rectangle%
-              ++(+\chapcornermarkwidth,-\chapcornermarkdashlength);%
-          % bottom left
-          \fill[color=white]%
-              ($ (current page.south west) + (\chapcornermarkoffset+\chapcornermarkdashlength, +\chapcornermarkoffset) $)%
-              rectangle%
-              ++(+\chapcornermarkdashlength,+\chapcornermarkwidth);%
-          \fill[color=white]%
-              ($ (current page.south west) + (\chapcornermarkoffset+3\chapcornermarkdashlength, \chapcornermarkoffset) $)%
-              rectangle%
-              ++(+\chapcornermarkdashlength,+\chapcornermarkwidth);%
-          \fill[color=white]%
-              ($ (current page.south west) + (+\chapcornermarkoffset, \chapcornermarkoffset+\chapcornermarkdashlength) $)%
-              rectangle%
-              ++(+\chapcornermarkwidth,+\chapcornermarkdashlength);%
-          \fill[color=white]%
-              ($ (current page.south west) + (+\chapcornermarkoffset, \chapcornermarkoffset+3\chapcornermarkdashlength) $)%
-              rectangle%
-              ++(+\chapcornermarkwidth,+\chapcornermarkdashlength);%
-        \fi%
-      \end{tikzpicture}%
-    \fi
+    \pagenumberstyle\thepage%
+    \ChapCornerMarksOuter{L}%
   }
 }
 
