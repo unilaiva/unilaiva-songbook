@@ -267,6 +267,71 @@
   \marker[\color{pomarkcolor}\symrarrowhead{ }{ }]%
 }
 
+% Circled. Use with \circled macro. This uses TikZ and is used by media note
+% system.
+
+% Circled: settings. Be careful in changing these globally, as they are used for
+% printing media note hints ()\mn...)
+\newcommand*\circledWidestSymbol{g\@mnsharpsymbol} % widest token in the notation
+\newcommand*\circledHorizontalPadding{0.1ex} % horizontal padding for the circle with contents
+\newcommand*\circledCircleExtraDiameter{0.05em}  % extra diameter for the circle
+\newcommand*\circledCircleVerticalShift{0.15ex} % move ONLY the circle (up = positive)
+\newcommand*\circledCircleLine{0.4pt} % circle line width
+\newcommand*\circledCircleOpacity{0.75} % circle's opacity (1=opaque)
+
+\newsavebox{\@circledCircleBox}
+\newdimen\@circledCircleDiameter
+\newdimen\@circledCircleRadius
+
+% Circled: compute diameter+radius for *current* font, based on
+% \circledWidestSymbol
+\newcommand*\@circledCircleCompute{%
+  \sbox{\@circledCircleBox}{\strut \circledWidestSymbol}%
+  \dimen0=\wd\@circledCircleBox
+  \dimen2=\ht\@circledCircleBox \advance\dimen2 by \dp\@circledCircleBox
+  \ifdim\dimen2>\dimen0 \dimen0=\dimen2\fi
+  \advance\dimen0 by \circledCircleExtraDiameter
+  \global\@circledCircleDiameter=\dimen0
+  \global\@circledCircleRadius=\dimen0 \divide\@circledCircleRadius by 2
+}
+
+% Circled: cache circle size per font size (keyed by \f@size)
+\newcommand*\@circledCircleGetDims{%
+  \edef\NC@key{\f@size}%
+  \@ifundefined{@circledCircleDiameter@\NC@key}{%
+    \@circledCircleCompute
+    \expandafter\xdef\csname @circledCircleDiameter@\NC@key\endcsname{\the\@circledCircleDiameter}%
+    \expandafter\xdef\csname @circledCircleRadius@\NC@key\endcsname{\the\@circledCircleRadius}%
+  }{}%
+  \@circledCircleDiameter=\csname @circledCircleDiameter@\NC@key\endcsname\relax
+  \@circledCircleRadius=\csname @circledCircleRadius@\NC@key\endcsname\relax
+}
+
+% Circled: \circled[<circle color>]{<content>}
+% Draws a circle around the content. Used by media notes.
+% If color is omitted, the circle uses the current color (same as surrounding text).
+\NewDocumentCommand{\circled}{o m}{%
+  \hspace{\circledHorizontalPadding}%
+  \@circledCircleGetDims
+  \tikz[baseline=(T.base)]{%
+    \node[inner sep=0pt, outer sep=0pt] (T) {%
+      \strut\makebox[\the\@circledCircleDiameter][c]{#2}%
+    };
+    % Circle only (overlay so it doesn't affect line spacing)
+    \begin{scope}[overlay]
+      \IfValueT{#1}{\color{#1}}% sets stroke color; does NOT affect the text
+      \draw[line width=\circledCircleLine, opacity=\circledCircleOpacity]
+        ([yshift=\circledCircleVerticalShift]T.center) circle (\the\@circledCircleRadius);
+    \end{scope}
+    %% The following would redraw the content text to make it appear on top of
+    %% the circle if overlapping, but it slows the processing down.
+    %\node[inner sep=0pt, outer sep=0pt] (T) {%
+    %  \strut\makebox[\the\@circledCircleDiameter][c]{#2}%
+    %};
+  }%
+  \hspace{\circledHorizontalPadding}%
+}
+
 % END GENERIC UTILITY MACROS
 
 
@@ -637,15 +702,11 @@
 \definecolor{altchordcolor_e}{rgb}{0.09,0.33,0.34} % cyan, set 5
 \definecolor{altchordcolor_f}{rgb}{0.36,0.15,0.23} % redish, set 6
 \definecolor{mbarcolor}{rgb}{0.36,0,0.48} % measure bar
-% encircled melody notes, the note name inside:
+% encircled melody note color:
 \definecolor{melodynotecolor}{rgb}{0.0,0.1536,0.1824}
-% encircled melody notes, the circle:
-\definecolor{melodynotecirclecolor}{rgb}{0.0,0.3072,0.3648}
-% encircled melody notes (alt.), the note name inside:
+% encircled melody note color (alt.):
 \definecolor{melodynotealtcolor}{rgb}{0.2,0,0}
-% encircled melody notes (alt.), the circle:
-\definecolor{melodynotealtcirclecolor}{rgb}{0.35,0,0}
-% playout mark color
+% playout mark color:
 \definecolor{pomarkcolor}{rgb}{0,0.5,0}
 % color for repetition signs (\lrep \rrep and \rep):
 \definecolor{repetitionsigncolor}{rgb}{0.1,0.1,0.4}
@@ -2563,12 +2624,6 @@
 %
 %   \[\mnciii{C}{A}{F}Fmaj7]Tralalaa
 
-% Setup the style for the circle around a melody note. Renew this macro in the
-% beginning of your document to set custom style. This will be called each
-% time the melody note circle is drawn. This can be set for individual notes,
-% too.
-\providecommand{\mncirclestyle}{}
-
 % Setup the style for the melody note name "text". Renew this macro in the
 % beginning of your document to set custom style. This will be called each
 % time the melody note circle is drawn. This can be set for individual notes,
@@ -2589,7 +2644,7 @@
 
 % Length that the tag text for melody notes is pushed towards the right to be
 % closer to the melody note circle.
-\newlength{\mntaghadj}\setlength{\mntaghadj}{.135ex}
+\newlength{\mntaghadj}\setlength{\mntaghadj}{.05ex}
 
 % Height of the normal melody notes from chord baseline.
 % This should be ~1em to be above the chords.
@@ -2609,20 +2664,17 @@
   \ifusealtmnstyle\usealtmnstylefalse\else\usealtmnstyletrue\fi%
 }
 
-% Base style for the melody note circle, appended with \mncirclestyle:
-\newcommand{\@mncirclestyle}{%
-  \footnotesize%
-  \ifusealtmnstyle%
-    \color{melodynotealtcirclecolor}%
-  \else%
-    \color{melodynotecirclecolor}%
-  \fi%
-  \mncirclestyle%
+% Prints the pretag for melody note circle, if one exists
+\newcommand{\@mntag}{%
+  \begingroup%
+  \hspace{\mntaghadj}%
+  \textsuperscript{\mntagstyle\llap{\ifusealtmnstyle\mnalttagtext\else\mntagtext\fi}}%
+  \endgroup%
 }
 
 % Base style for the melody note name symbol, appended with \mnsymbolstyle:
 \newcommand{\@mnsymbolstyle}{%
-  \tiny\mdseries\sansheavyfont%
+  \scriptsize\mdseries\sansheavyfont%
   \ifusealtmnstyle%
     \color{melodynotealtcolor}%
   \else%
@@ -2631,16 +2683,10 @@
   \mnsymbolstyle%
 }
 
-% Lowered sharp symbol to fit better inside the melody note circle:
-\newcommand{\@lowsharpsymbol}{\raise-.25ex\hbox{\textsuperscript{{\symbolfont♯}}}}%
-
-% Will hold the width of the melody note circle. DEPRECATED
-\newdimen{\@mncirclewidth}
-
-% Calculates the width encircled melody note. DEPRECATED
-\newcommand{\@calcmncirclewidth}{%
-  \settowidth{\@mncirclewidth}{\@mncirclestyle\textcircled{}}%
-}
+% Sharp and flat symbols for note circles: adjust their height and kerning
+% for a better fit within the circle.
+\newcommand{\@mnsharpsymbol}{\raise-.25ex\hbox{\textsuperscript{{\kern-0.05em\symbolfont♯}}}}%
+\newcommand{\@mnflatsymbol}{\raise.4ex\hbox{\SB@flatsize{{\kern-0.05em\symbolfont♭}}}}
 
 % Outputs an encircled melody note, internal
 %   - optional parameter: rise the note above text (chord line) by this amount,
@@ -2653,17 +2699,19 @@
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
+      \begingroup%
       \notenamesout abcdefg%
+      % Use adjusted sharp and flat symbols for better fit
+      \renewcommand{\sharpsymbol}{\@mnsharpsymbol}%
+      \renewcommand{\flatsymbol}{\@mnflatsymbol}%
       \raisebox{#1}{%
-        % Use lowered sharp symbol to better fit inside the circle
-        \renewcommand{\sharpsymbol}{\@lowsharpsymbol}%
-        \@mncirclestyle%
-        % Make the superscript note on the left of the note, if it exists
-        \makebox[0pt][l]{\hspace{\mntaghadj}\textsuperscript{\mntagstyle\llap{\ifusealtmnstyle\mnalttagtext\else\mntagtext\fi}}}%
-        \textcircled{% % Show the note transposed and encircled
-          \@mnsymbolstyle\transposehere{#2}%
-        }%
+        \@mnsymbolstyle% Set the style
+        % Make the tag, if it exists, on the left of the note circle
+        \makebox[0pt][l]{\@mntag}%
+        % Show the note transposed and encircled
+        \circled{\transposehere{#2}}%
       }%
+      \endgroup%
     \fi%
   \fi%
 }
