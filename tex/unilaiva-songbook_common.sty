@@ -855,7 +855,7 @@
 \newdimen\chapcornermarkwidth\chapcornermarkwidth=.954915mm% 2.5 * 0.618034^2 :)
 \newdimen\chapcornermarklength\chapcornermarklength=\dimexpr\headsep+\headheight-\chapcornermarkoffset\relax%
 % Gap count (must be >0): 2 gaps -> 5 segments -> gaps are segments 2 and 4
-\newcount\chapcornermarkdashcount\chapcornermarkdashcount=3%
+\newcount\chapcornermarkdashcount\chapcornermarkdashcount=2%
 % Tweak: makes white gaps thicker than the mark:
 \newdimen\chapcornermarkdashoversize\chapcornermarkdashoversize=.2pt%
 
@@ -876,7 +876,7 @@
     draw=\currentchaptercolor,
     line width=\chapcornermarkwidth,
     line cap=butt,
-    dash phase=0pt,
+    dash phase=0pt, % default: 0pt
   },
   ccm@solid/.style={dash pattern=},
   ccm@dashed/.style={dash pattern=on \ccm@segdim off \ccm@segdim},
@@ -902,16 +902,15 @@
   \else
     \def\ccm@dashstyle{ccm@solid}%
   \fi
-  % Square elbow cap
+  %%% Alternative rounded elbow cap:
+  %%\fill[\currentchaptercolor]
+  %%  (ccm@base) circle[radius=.5\chapcornermarkwidth];
+  % Square elbow cap:
   % Shift by (-#2*halfw, -#3*halfw) so the square is centered on the corner.
   \ccm@halfw=\dimexpr\chapcornermarkwidth/2\relax
   \fill[\currentchaptercolor]
-    ($ (ccm@base) + (\ccm@xopp\ccm@halfw, \ccm@yopp\ccm@halfw) $)
-    rectangle ++(#2\chapcornermarkwidth,#3\chapcornermarkwidth);
-  %%% Alternative rounded elbow cap:
-  %% \fill[\currentchaptercolor]
-  %%   (ccm@base) circle[radius=.5\chapcornermarkwidth];
-  %%
+   ($ (ccm@base) + (\ccm@xopp\ccm@halfw, \ccm@yopp\ccm@halfw) $)
+   rectangle ++(#2\chapcornermarkwidth,#3\chapcornermarkwidth);
   % Two dashed legs (dashes start at the corner on both legs):
   \draw[ccm@mark,\ccm@dashstyle]
     (ccm@base) -- ++(#2\chapcornermarklength,0);
