@@ -749,8 +749,10 @@
 \songcolumns{1} % songs: number of columns per page in songs environment
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
 \renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
-% songs: modify chord font style (add color and make smaller):
-\renewcommand{\printchord}[1]{\sffamily\bfseries\small\color{chordcolor}#1}
+% Set chord font style:
+\providecommand{\chordfont}{\sffamily\bfseries\small\color{chordcolor}}
+% songs: modify chord printing to use our \chordfont
+\renewcommand{\printchord}[1]{\chordfont#1}
 % songs: modify meter class font style (add color):
 \renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
 \renewcommand{\notefont}{\small} % songs: modify \textnote and \musicnote font (make smaller)
@@ -770,8 +772,8 @@
 % songs: change distance of chords to lyrics
 \renewcommand{\clineparams}{%
   \baselineskip=10.6pt%
-  \lineskiplimit=1pt%
-  \lineskip=1pt%
+  \lineskiplimit=.5pt%
+  \lineskip=.5pt%
 }
 % songs: set width of the vertical repetition line used in choruses etc (default: 1pt):
 \setlength{\cbarwidth}{1.2pt}
@@ -2917,67 +2919,66 @@
 %   \[\bmc\mnc{C}C]Trallallaaa
 %
 
+% Configuration (absolute, font-independent)
+\providecommand*{\@bmradius}{1.1pt}    % mark radius
+\providecommand*{\@bmdrop}{1.1pt}      % how far mark's bottom goes below baseline
+\providecommand*{\@bmdepth}{.7pt}      % mark's reported depth
+\providecommand*{\@bmleadspace}{.30ex} % leading space before mark (uses \lyricfont)
 
-% Lay the actual mark
-\newcommand{\@bmmark}{{%
+% Draws the beat mark.
+%
+% NOTE: without raisebox, the TikZ image's bottom would be placed on baseline,
+% and left would be put horizontally at current position.
+% With raisebox{-1.1pt} the bottom of the circle goes 1.1pt below baseline.
+% As we have lineskiplimit=.5 and lineskip=.5 set for clineparams, which
+% ensures there is always a minimum of .5pt space between chord line's bottom
+% and lyric line's top, when we set the beat mark to have .7pt depth (when
+% it really is 1.1pt), so it goes .4 pt deeper than informed, so there is
+% always at least .1pt between lyric top and beat mark bottom.
+% TODO: use saved box (had problems with dynamic color when tried)
+\newcommand*{\@bmdraw}{%
+  \begingroup%
   \color{mbarcolor}%
-  \raisebox{-.65ex}[0pt][.25ex]{%
-    \scriptsize\symboliifont{🞄}%
+  \raisebox{-\@bmdrop}[0pt][\@bmdepth]{%
+    \tikz\fill (0,0) circle [radius=\@bmradius];%
   }%
-}}%
-% Leading space before beat mark (ex comes from chord font):
-\newcommand{\@bmleadspace}{.36ex}
+  \endgroup%
+}
 
-% Will hold the width of the beat mark without leading space:
-\newdimen{\@bmwidth}%
-
-% Displays a beat mark. See above for usage information.
+% Displays a beat mark. See above for usage information. Takes horizontal space.
 \newcommand{\bm}{%
-  \ifshowbeats%
-    \ifdefined\@beatsdisabled%
-    \else%
-      \hspace{\@bmleadspace}%
-      \@bmmark%
-      \settowidth{\@bmwidth}{\@bmmark}%
-    \fi%
-  \fi%
+  \ifshowbeats\ifdefined\@beatsdisabled\else%
+    {\lyricfont\hspace{\@bmleadspace}}%
+    \@bmdraw%
+  \fi\fi%
 }
 
-% Displays a beat mark. See above for usage information.
+% Displays a beat mark. See above for usage information. No horizontal advance.
 \newcommand{\bmc}{%
-  \ifshowbeats%
-    \ifdefined\@beatsdisabled%
-    \else%
-      \bm%
-      \hspace{-\@bmleadspace}%
-      \hspace{-\@bmwidth}%
-    \fi%
-  \fi%
+  \ifshowbeats\ifdefined\@beatsdisabled\else%
+    {\lyricfont\hspace{\@bmleadspace}}%
+    \rlap{\@bmdraw}%
+    {\lyricfont\hspace{-\@bmleadspace}}%
+  \fi\fi%
 }
 
 % Displays a beat mark with horizontal adjustment. See above for usage
-% information.
+% information. Takes horizontal space.
 \newcommand{\bmadj}[1]{%
-  \ifshowbeats%
-    \ifdefined\@beatsdisabled%
-    \else%
-      \hspace{#1}%
-      \bm%
-    \fi%
-  \fi%
+  \ifshowbeats\ifdefined\@beatsdisabled\else%
+    {\lyricfont\hspace{#1}}%
+    \bm%
+  \fi\fi%
 }
 
 % Displays a beat mark with horizontal adjustment. See above for usage
-% information.
+% information. No horizontal advance.
 \newcommand{\bmcadj}[1]{%
-  \ifshowbeats%
-    \ifdefined\@beatsdisabled%
-    \else%
-      \hspace{#1}%
-      \bmc%
-      \hspace{-#1}%
-    \fi%
-  \fi%
+  \ifshowbeats\ifdefined\@beatsdisabled\else%
+    {\lyricfont\hspace{#1}}%
+    \bmc%
+    {\lyricfont\hspace{-#1}}%
+  \fi\fi%
 }
 
 % \beatson and \beatsoff commands can be used between verses to turn displaying

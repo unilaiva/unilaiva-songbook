@@ -2898,7 +2898,7 @@
   % Lilypond and chords are shown.
   \ifchorded\ifshowlilypond%
     \normalsize%
-    \renewcommand{\printchord}[1]{\sffamily\bfseries\small\color{chordcolor}#1}% to go with the above
+    \renewcommand{\chordfont}{\sffamily\bfseries\small\color{chordcolor}}% to go with the above
   \fi\fi%
   % verse 3
   \beginverse\replay[chords_ohvirgem_a]
