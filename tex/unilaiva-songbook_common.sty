@@ -201,6 +201,39 @@
   \fi%
 }
 
+% Disables \lineskiplimit (by setting it to -20pt) for the scope of the given
+% parameter, also for for \clineparams. Use this to surround a section you don't
+% want lineskiplimit to affect, for example to prevent chord line to jump up if
+% there are tall lyrics below it, especially when there is no chord nor beat
+% mark, but only a note hint circle high above. Optional parameter allows
+% setting the limit.
+%
+% Usage:
+%   \ilsl[<lineskiplimit>]{<stuff>}
+%
+% Example:
+%   \ilsl{\[\mn{C#}]Älä} veljeäsi |sure
+%
+\def\ilsl{%
+  \begingroup%
+  % Make # and & \active (catcode 13) to allow them within the argument; this
+  % is how \[] expects them to be.
+  \catcode`\#=\active\relax%
+  \catcode`\&=\active\relax%
+  \ilsl@x
+}
+
+% Helper function for \ilsl to allow for optional parameter for \ilsl while
+% allowing the special characters within it's #2.
+% Note: +m means "long"
+\NewDocumentCommand{\ilsl@x}{O{-20pt} +m}{%
+  \lineskiplimit=#1\relax%
+  \renewcommand{\clineLineskiplimit}{#1}%
+  #2%
+  \endgroup%
+}
+
+
 % Gets a roman uppercase number from the number given as parameter
 \newcommand{\romanupnum}[1]{%
   \expandafter\@slowromancap\romannumeral #1@%
@@ -769,11 +802,14 @@
 % songs: Verse separation +/-; +/- 0 would be best, but in some cases a song can
 % only fitted on a page with smaller separation.
 \versesep=14pt plus 0pt minus 2.7pt% was: 2.9pt%
+\providecommand*{\clineBaselineskip}{10.6pt}%
+\providecommand*{\clineLineskiplimit}{.5pt}%
+\providecommand*{\clineLineskip}{.5pt}%
 % songs: change distance of chords to lyrics
 \renewcommand{\clineparams}{%
-  \baselineskip=10.6pt%
-  \lineskiplimit=.5pt%
-  \lineskip=.5pt%
+  \baselineskip=\clineBaselineskip%
+  \lineskiplimit=\clineLineskiplimit%
+  \lineskip=\clineLineskip%
 }
 % songs: set width of the vertical repetition line used in choruses etc (default: 1pt):
 \setlength{\cbarwidth}{1.2pt}
