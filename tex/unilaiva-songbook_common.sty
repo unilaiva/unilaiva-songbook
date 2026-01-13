@@ -164,6 +164,7 @@
 
 % END PACKAGE IMPORTS
 
+\makeatletter% To allow using and rewriting @-containing macros
 
 % BEGIN MAIN LANGUAGE
 
@@ -179,8 +180,31 @@
 
 % BEGIN GENERIC UTILITY MACROS
 
-% Very small font size.
-\newcommand{\micro}{\fontsize{3.5pt}{4.5pt}\selectfont}
+% Very small font size, smaller than \tiny
+\newcommand{\nanosize}{%
+  \ifcase\@ptsize\relax
+    \@setfontsize\nanosize{3.5pt}{4pt}%   10pt base
+  \or
+    \@setfontsize\nanosize{4.5pt}{5.2pt}% 11pt base
+  \or
+    \@setfontsize\nanosize{5pt}{6pt}%     12pt base
+  \else
+    \@setfontsize\nanosize{3.5pt}{4pt}%   fallback
+  \fi
+}
+
+% Small font size, between \scriptsize and \tiny
+\newcommand{\microsize}{%
+  \ifcase\@ptsize\relax
+    \@setfontsize\microsize{6pt}{7pt}% 10pt base
+  \or
+    \@setfontsize\microsize{6.5pt}{7.5pt}% 11pt base
+  \or
+    \@setfontsize\microsize{7pt}{8pt}% 12pt base
+  \else
+    \@setfontsize\microsize{6pt}{7pt}% fallback
+  \fi
+}
 
 % Testing if the argument has no width when put in a box i.e. it is empty.
 % If so, the first token will be expanded, otherwise the second.
@@ -306,11 +330,11 @@
 % Circled: settings. Be careful in changing these globally, as they are used for
 % printing media note hints ()\mn...)
 \newcommand*\circledWidestSymbol{g\@mnsharpsymbol} % widest token in the notation
-\newcommand*\circledHorizontalPadding{0.1ex} % horizontal padding for the circle with contents
-\newcommand*\circledCircleExtraDiameter{0.05em}  % extra diameter for the circle
-\newcommand*\circledCircleVerticalShift{0.15ex} % move ONLY the circle (up = positive)
-\newcommand*\circledCircleLine{0.4pt} % circle line width
-\newcommand*\circledCircleOpacity{0.75} % circle's opacity (1=opaque)
+\newcommand*\circledHorizontalPadding{.08ex} % horizontal padding for the circle with contents
+\newcommand*\circledCircleExtraDiameter{.05ex} % extra diameter for the circle
+\newcommand*\circledCircleVerticalShift{.1ex} % move ONLY the circle (up = positive)
+\newcommand*\circledCircleLine{.3pt} % circle line width
+\newcommand*\circledCircleOpacity{.7} % circle's opacity (1=opaque)
 
 \newsavebox{\@circledCircleBox}
 \newdimen\@circledCircleDiameter
@@ -1118,8 +1142,6 @@
 
 % BEGIN DEFINITIONS AND REWRITES
 % ==============================
-
-\makeatletter% To allow rewrites of @-containing macros
 
 % BEGIN front matter
 
@@ -2622,7 +2644,7 @@
 % Setup the style for the melody note name "text". Renew this macro in the
 % beginning of your document to set custom style. This will be called each
 % time the melody note circle is drawn. This can be set for individual notes,
-% too.
+% too. If left empty, \scriptsize\mdseries\sansheavyfont will be used.
 \providecommand{\mnsymbolstyle}{}
 
 % Setup the style for the small tags put in front of melody note circles. This
@@ -2637,21 +2659,32 @@
 % Does not take space.
 \providecommand{\mnalttagtext}{}
 
-% Length that the tag text for melody notes is pushed towards the right to be
-% closer to the melody note circle.
-\newlength{\mntaghadj}\setlength{\mntaghadj}{.05ex}
+% Factor for the tag text for melody notes is pushed towards the right to be
+% closer to the melody note circle. This is relative to 1ex of the melody note
+% font, not the font setup in \tagstyle
+\providecommand{\mntaghorizadjfactor}{.1}
 
-% Height of the normal melody notes from chord baseline.
-% This should be ~1em to be above the chords.
-\newlength{\mnnormalheight}\setlength{\mnnormalheight}{1em}
+% Factor for the tag text for melody notes is pushed upwards.
+% This is relative to 1ex of the melody note font, not the font setup
+% in \tagstyle.
+\providecommand{\mntagvertadjfactor}{.8}
 
-% Height of the low melody note variant from chord baseline.
+% Factor for the height of the normal melody notes from chord baseline.
+% This is relative to 1 ex of the current font: \chordfont when called from
+% within chord definition as it is meant to.
+\providecommand{\mnnormalheightfactor}{1.85}
+
+% Factor for the height of the low melody note variant from chord baseline.
+% This is relative to 1 ex of the current font: \chordfont when called from
+% within chord definition as it is meant to.
 % Used in \mnd and \mad* macros.
-\newlength{\mnlowheight}\setlength{\mnlowheight}{0.15em}
+\providecommand{\mnlowheightfactor}{.3}
 
-% Height of the high melody note variant from chord baseline.
+% Factor for the height of the high melody note variant from chord baseline.
+% This is relative to 1 ex of the current font: \chordfont when called from
+% within chord definition as it is meant to.
 % Used in \mau* macros.
-\newlength{\mnhighheight}\setlength{\mnhighheight}{1.85em}
+\providecommand{\mnhighheightfactor}{3.4}
 
 
 % Toggles the media note style between normal and alternate
@@ -2662,8 +2695,10 @@
 % Prints the pretag for melody note circle, if one exists
 \newcommand{\@mntag}{%
   \begingroup%
-  \hspace{\mntaghadj}%
-  \textsuperscript{\mntagstyle\llap{\ifusealtmnstyle\mnalttagtext\else\mntagtext\fi}}%
+    \hspace{\dimexpr\mntaghorizadjfactor ex\relax}%
+    \raisebox{\dimexpr\mntagvertadjfactor ex\relax}{%
+      \llap{\mntagstyle\ifusealtmnstyle\mnalttagtext\else\mntagtext\fi}%
+    }%
   \endgroup%
 }
 
@@ -2690,7 +2725,7 @@
 %     work
 %   * Example usage: \@note[0.5em]{C#}
 %   * To take no horizontal space, call this macro within \makebox[0pt][l]{}
-\newcommand{\@note}[2][\mnnormalheight]{%
+\newcommand*{\@note}[2][\dimexpr\mnnormalheightfactor ex\relax]{%
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
@@ -2713,19 +2748,19 @@
 
 % Displays a melody note, to be used on the first line of lyrics.
 % See above for usage information.
-\newcommand{\mn}[1]{%
+\newcommand*{\mn}[1]{%
   \@note{#1}%
 }
 
 % Displays a melody note above a chord, to be used on the first line of lyrics.
 % See above for usage information.
-\newcommand{\mnc}[1]{%
+\newcommand*{\mnc}[1]{%
   \makebox[0pt][l]{\@note{#1}}%
 }
 
 % Displays a melody note above a chord, with its position adjusted horizontally,
 % to be used on the first line of lyrics. See above for usage information.
-\newcommand{\mncadj}[2]{%
+\newcommand*{\mncadj}[2]{%
   \hspace{#1}%
   \makebox[0pt][l]{\@note{#2}}%
   \hspace{-#1}%
@@ -2733,7 +2768,7 @@
 
 % Displays two melody notes above a chord, to be used on the first line of
 % lyrics. See above for usage information.
-\newcommand{\mncii}[2]{%
+\newcommand*{\mncii}[2]{%
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
@@ -2744,7 +2779,7 @@
 
 % Displays three melody notes above a chord, to be used on the first line of
 % lyrics. See above for usage information.
-\newcommand{\mnciii}[3]{%
+\newcommand*{\mnciii}[3]{%
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
@@ -2755,7 +2790,7 @@
 
 % Displays four melody notes above a chord, to be used on the first line of
 % lyrics. See above for usage information.
-\newcommand{\mnciv}[4]{%
+\newcommand*{\mnciv}[4]{%
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
@@ -2766,7 +2801,7 @@
 
 % Displays five melody notes above a chord, to be used on the first line of
 % lyrics. See above for usage information.
-\newcommand{\mncv}[5]{%
+\newcommand*{\mncv}[5]{%
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
@@ -2777,7 +2812,7 @@
 
 % Displays six melody notes above a chord, to be used on the first line of
 % lyrics. See above for usage information.
-\newcommand{\mncvi}[6]{%
+\newcommand*{\mncvi}[6]{%
   \ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
@@ -2788,12 +2823,12 @@
 
 % Displays a melody note below the normal note line, at the same height as
 % chords. See above for usage information.
-\newcommand{\mnd}[1]{%
-  \@note[\mnlowheight]{#1}%
+\newcommand*{\mnd}[1]{%
+  \@note[\dimexpr\mnlowheightfactor ex\relax]{#1}%
 }
 
 % Alternatively colored note on normal note line, takes horiz. space.
-\newcommand{\ma}[1]{%
+\newcommand*{\ma}[1]{%
   {% alternate color note on normal note line, takes horizontal space
     \@togglemnstyle%
     \@note{#1}%
@@ -2802,27 +2837,27 @@
 
 % Alternatively colored note on normal note line, takes no horiz. space.
 % Use with chords.
-\newcommand{\mac}[1]{%
+\newcommand*{\mac}[1]{%
   \makebox[0pt][l]{\ma{#1}}% boxed to take no h. space
 }
 
 % Alternatively colored note above normal note line, takes horiz. space.
-\newcommand{\mau}[1]{%
+\newcommand*{\mau}[1]{%
   {%
     \@togglemnstyle%
-    \@note[\mnhighheight]{#1}%
+    \@note[\dimexpr\mnhighheightfactor ex\relax]{#1}%
   }%
 }
 
 % Alternatively colored note above normal note line, takes no horiz. space.
 % Use with chords.
-\newcommand{\mauc}[1]{%
+\newcommand*{\mauc}[1]{%
   \makebox[0pt][l]{\mau{#1}}% boxed to take no h. space
 }
 
 % Alternatively colored note (#1) above normal note line, normal note (#2)
 % at normal note line. Takes horiz. space.
-\newcommand{\mauii}[2]{%
+\newcommand*{\mauii}[2]{%
   % alternate color note above normal note line
   \mauc{#1}%
   % normal note at normal note line
@@ -2831,7 +2866,7 @@
 
 % Alternatively colored note (#1) above normal note line, normal note (#2)
 % at normal note line. Takes no horiz. space. Use with chords.
-\newcommand{\mauiic}[2]{%
+\newcommand*{\mauiic}[2]{%
   % alternate color note above normal note line
   \mauc{#1}%
   % normal note at normal note line, boxed to take no h. space
@@ -2840,16 +2875,16 @@
 
 % Alternatively colored note below the normal note line, at the same height as
 % chords. Takes horiz. space.
-\newcommand{\mad}[1]{%
+\newcommand*{\mad}[1]{%
   {% alternate color note above normal note line, takes horizontal space
     \@togglemnstyle%
-    \@note[\mnlowheight]{#1}%
+    \@note[\dimexpr\mnlowheightfactor ex\relax]{#1}%
   }%
 }
 
 % Alternatively colored note (#1) below the normal note line, normal note (#2)
 % at normal note line. Takes horiz. space.
-\newcommand{\madii}[2]{%
+\newcommand*{\madii}[2]{%
   % normal note at normal note line, boxed to take no h. space
   \makebox[0pt][l]{\@note{#2}}%
   \mad{#1}% takes horiz. space
@@ -2959,7 +2994,7 @@
 \providecommand*{\@bmradius}{1.1pt}    % mark radius
 \providecommand*{\@bmdrop}{1.1pt}      % how far mark's bottom goes below baseline
 \providecommand*{\@bmdepth}{.7pt}      % mark's reported depth
-\providecommand*{\@bmleadspace}{.30ex} % leading space before mark (uses \lyricfont)
+\providecommand*{\@bmleadspace}{.30ex} % leading space before mark (rel. to \lyricfont)
 
 % Draws the beat mark.
 %
