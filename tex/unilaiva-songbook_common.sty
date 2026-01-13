@@ -152,6 +152,7 @@
 % environ package's \NewEnviron
 \usepackage{verbatim}%
 \usepackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
+\usepackage{expl3}% Used for some ifs etc
 \usepackage{xparse}% Used in \mainchapter
 \usepackage{tcolorbox}% for creating colored boxes, used in language code display
 
@@ -752,6 +753,7 @@
 
 % color: Color definitions:
 \definecolor{chordcolor}{rgb}{0.20,0,0.22} % chords
+\definecolor{altinlinechordcolor}{rgb}{0.4,0,0.22} % alt. chord coloring used with \ac
 \definecolor{altchordcolor_a}{rgb}{0.10,0.4,0.10} % green, set 1 (default)
 \definecolor{altchordcolor_b}{rgb}{0.35,0.22,0.06} % brown, set 2
 \definecolor{altchordcolor_c}{rgb}{0.17,0.23,0} % dirty green, set 3
@@ -1758,6 +1760,10 @@
   \footnotesize\itshape%
 }
 
+\ExplSyntaxOn
+% True if within \altchords parameter
+\bool_new:N \l__in_altchords_bool
+
 % Meant to be used at the end of a lyric line to specify an alternate set
 % of chords for that line to be displayed floated to the right of the line
 % in question. Do NOT set chords with \[] macro inside this, as it would mess
@@ -1781,6 +1787,7 @@
 \newcommand{\altchords}[1]{%
   \ifchorded\ifshowaltchords%
     {%
+      \bool_set_true:N \l__in_altchords_bool
       \providecommand{\id}[2][1]{\@altchordsid[##1]{##2}}%
       \renewcommand{\meterfont}{\color{chordcolor}\normalfont\tiny\sffamily\upshape}%
       \renewcommand{\e}{\ifmeasures-\fi}% % shorter dash for altchords
@@ -1790,6 +1797,7 @@
     }%
   \fi\fi%
 }
+\ExplSyntaxOff
 
 % END ALTCHORDS
 
@@ -1807,6 +1815,36 @@
 \newcommand{\up}[1]{%
   \textsuperscript{#1}%
 }
+
+\ExplSyntaxOn
+% To be used to print an alternate chord for another repetition
+\NewDocumentCommand{\ac}{s d() m}{%
+  {% local group to keep color changes local
+    \IfValueT{#2}{
+      \str_case:nnF { #2 }
+        { % for [1], use current color:
+          {1}{\colorlet{accolor}{.}}
+        }
+        { % default:
+          % if within \altchords, mix current color with altinlinechordcolor,
+          % otherwise use plain altinlinechordcolor.
+          \bool_if:NTF \l__in_altchords_bool
+          {\colorlet{accolor}{.!50!altinlinechordcolor}}
+          {\colorlet{accolor}{altinlinechordcolor}}
+          \color{accolor}
+        }
+      \textsuperscript{#2}%
+    }%
+    \bool_if:NTF \l__in_altchords_bool
+      { % if in altchords, only change to mixed color, no font change nor transpose
+        \color{accolor}#3
+      }
+      { % for normal verse chords, set chord font, change color and transpose
+        \chordfont\color{accolor}\transposehere{#3}%
+      }
+  }%
+}
+\ExplSyntaxOff
 
 % Display alternate lyrics, but without any vertical or horizontal space. Is called
 % from \altlyr
