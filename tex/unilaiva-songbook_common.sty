@@ -23,7 +23,7 @@
 %%% \newcommand in the main document before loading this package.
 
 % Set up options for the geometry package: paper size and margins.
-% \ultopmargin must be at least 6.35mm (=1/4"), as that is the limit to some
+% \ultopmargin must be at least 6.35mm (=1/4"), as that is the limit of some
 % printers. \ulsidemargin and \ulbottommargin must be somewhat larger, at least
 % 7.7mm, to accomodate for protrusion and still be outside the 6.35mm limit.
 %
@@ -62,9 +62,6 @@
 %       be adjusted here. For too small \footersep, the adjustment must be
 %       done further below in the fancyhdr setup.
 %
-% header size is using the Golden Mean: :)
-% \ultopmargin + \ulheadheight + \ulheadsep = 1.618^2 * \ultopmargin
-%
 
 \providecommand{\papersize}{a5paper}
 \providecommand{\songbooktype}{chorded}
@@ -72,8 +69,8 @@
 \providecommand{\ulsidemargin}{9mm}
 \providecommand{\ulbottommargin}{9mm}
 \providecommand{\ultopmargin}{6.35mm}
-\providecommand{\ulheadheight}{4.33mm}
-\providecommand{\ulheadsep}{5.943mm}
+\providecommand{\ulheadheight}{4mm}
+\providecommand{\ulheadsep}{5mm}
 
 
 % Actual imports
@@ -389,6 +386,18 @@
   }%
   \hspace{\circledHorizontalPadding}%
 }
+
+% Eat an immediately-following \par so marker commands can be on their own line
+% under \SB@obeylines without creating a blank (lyric) line.
+\def\UL@gobblepar{\futurelet\SB@next\UL@gobblepar@i}
+\def\UL@gobblepar@i{%
+  \ifx\SB@next\par
+    \expandafter\UL@gobblepar@ii
+  \else
+    \expandafter\relax
+  \fi
+}
+\def\UL@gobblepar@ii\par{}%
 
 % END GENERIC UTILITY MACROS
 
@@ -768,7 +777,7 @@
 % playout mark color:
 \definecolor{pomarkcolor}{rgb}{0,0.5,0}
 % color for repetition signs (\lrep \rrep and \rep):
-\definecolor{repetitionsigncolor}{rgb}{0.1,0.1,0.4}
+\definecolor{repetitionsigncolor}{rgb}{0,0,0.5}
 \definecolor{songnumbgcolor}{rgb}{1,1,1} % song number background
 \definecolor{notebgcolor}{rgb}{0.9,0.9,0.9} % textnote background
 \definecolor{idxbgcolor}{rgb}{1,1,1} % index alphabet background
@@ -818,8 +827,9 @@
 \renewcommand{\idxtitlefont}{\sffamily} % songs: font used for titles in indices
 \renewcommand{\idxlyricfont}{\sffamily\slshape} % songs: font for alternate (lyric) titles in indices
 \renewcommand{\idxscripfont}{\sffamily\small\slshape} % songs: font used for tag (scripture) index
-% songs: use same text color for music notes as for chords:
-\renewcommand\musicnote[1]{\ifchorded\textnote{\color{chordcolor}#1}\fi}%
+% songs: use same text color for music notes as for chords and do not show
+% at all in lyric-only books
+\renewcommand\musicnote[1]{\iflyriconly\else\textnote{\color{chordcolor}#1}\fi}%
 % songs: use real sharp and flat symbols from Noto Symbol font:
 \renewcommand{\sharpsymbol}{\textsuperscript{{\symbolfont♯}}}%
 \renewcommand{\flatsymbol}{\raise.5ex\hbox{\SB@flatsize{{\symbolfont♭}}}}%
@@ -838,7 +848,10 @@
   \lineskip=\clineLineskip%
 }
 % songs: set width of the vertical repetition line used in choruses etc (default: 1pt):
-\setlength{\cbarwidth}{1.2pt}
+\setlength{\cbarwidth}{1.5pt}
+% songs: skip after prelude and before postlude (which we don't use)
+\beforepostludeskip=0pt plus 0pt minus 12pt % % songs default: 2\p@\@plus4\p@
+\afterpreludeskip=0pt plus 8pt minus 6pt % songs default: 2\p@\@plus4\p@
 
 %\addto\captionsfinnish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: finnish
 \addto\captionsenglish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: english
@@ -917,7 +930,7 @@
 % when printing on home printer to a paper that requires no cutting.
 \newdimen\chapcornermarkoffset\chapcornermarkoffset=2.5mm%
 \newdimen\chapcornermarkwidth\chapcornermarkwidth=.954915mm% 2.5 * 0.618034^2 :)
-\newdimen\chapcornermarklength\chapcornermarklength=\dimexpr\headsep+\headheight-\chapcornermarkoffset\relax%
+\newdimen\chapcornermarklength\chapcornermarklength=\dimexpr\ultopmargin+\ulheadheight-\chapcornermarkoffset\relax%
 % Gap count (must be >0): 2 gaps -> 5 segments -> gaps are segments 2 and 4
 \newcount\chapcornermarkdashcount\chapcornermarkdashcount=2%
 % Tweak: makes white gaps thicker than the mark:
@@ -1905,12 +1918,14 @@
 
 % BEGIN @langsect ENVIRONMENT
 
+\newdimen\content
+
 % The amount content is to be indented; used at least in passage environment
 \newlength\contentindentwidth%
 \setlength\contentindentwidth{\z@}
 \ifdim\cbarwidth>\z@%
   \advance\contentindentwidth\cbarwidth%
-  \advance\contentindentwidth5\p@\relax%
+  \advance\contentindentwidth6\p@\relax%
 \fi%
 
 % BEGIN @langsect / rewritable defaults
@@ -2386,10 +2401,6 @@
 
 
 % BEGIN ENDSONG
-
-% Zero this, because we don't use postlude and there is other vspace in
-% the end of the song:
-\beforepostludeskip=0pt plus 0pt minus 0pt
 
 % songs: rewrite this macro to support the following:
 %   1) add a \vfill to song's end conditionally
@@ -3645,6 +3656,203 @@
 
 % END textual notes
 
+% BEGIN inline repeat
+
+% Colorize the output of macros \lrep, \rrep and \rep
+\let\@lreporig\lrep
+\let\@rreporig\rrep
+\let\@reporig\rep
+\renewcommand{\lrep}{{\color{repetitionsigncolor}\@lreporig}}
+\renewcommand{\rrep}{{\color{repetitionsigncolor}\@rreporig}}
+\renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}
+}
+
+% Use this instead of \rep to signify number of repeats on the first line
+% of a chorus. The parameter is the number of repetitions, as in \rep macro.
+\newcommand{\prep}[1]{%
+  \raisebox{\if@baselineincreased{2ex}\else{1ex}\fi}{%
+    {% block for containing the color change
+      \color{repetitionsigncolor}%
+      \@reporig{#1}:%
+    }%
+  }%
+}
+
+% END inline repeat
+
+% BEGIN line repeat
+
+%  Line repeat bar inside verses and choruses. This prints a vertical repeat
+%  bar for the lyric lines within it's effect, similar to what is printed
+%  in choruses, but this can be for only a part of the lines in a verse,
+%  and is printed adjacent to the chorus repeat bar if it exists.
+%
+%  Usage:
+%     \beginrep
+%       line
+%       line
+%     \endrep
+%
+%  TODO: make this support more nesting levels so that it can be used instead
+%        of chorus verses.
+
+% State: are we inside an extra-repeat block?
+\newif\ifUL@linerepbar
+\UL@linerepbarfalse
+
+% State: should this line connect upward to the previous extra-repeat line?
+\newif\ifUL@linerepbar@cont
+\UL@linerepbar@contfalse
+
+% Define \beginrep and \endrep safely (LaTeX forbids \newcommand\end...)
+\expandafter\def\csname beginrep\endcsname{%
+  \global\UL@linerepbartrue
+  % new block: do NOT connect to any previous bar
+  \global\UL@linerepbar@contfalse
+  \UL@gobblepar
+}
+\expandafter\def\csname endrep\endcsname{%
+  \global\UL@linerepbarfalse
+  % end block: ensure next block doesn't connect
+  \global\UL@linerepbar@contfalse
+  \UL@gobblepar
+}
+
+% Place extra bar just to the right of the main chorus bar,
+% in the 6pt gap used by \SB@cbarshift.
+\newdimen\UL@linerepbarsep
+\UL@linerepbarsep=2.5pt
+
+% Base dimensions
+\newdimen\UL@linerepbar@htbase
+\newdimen\UL@linerepbar@dpbase
+\UL@linerepbar@dpbase=.5pt % with 0pt the bar will not have depth below baseline
+
+% How much extra "upward reach" continuation lines get to bridge interline glue
+\newdimen\UL@linerepbar@overlap
+\UL@linerepbar@overlap=.5\baselineskip
+
+% Draw the extra bar for one lyric line.
+\def\UL@linerepbar{%
+  {% block to contain color
+    \color{repetitionsigncolor}
+    \UL@linerepbar@htbase=\baselineskip
+    \advance\UL@linerepbar@htbase -2pt
+    \ifUL@linerepbar@cont
+      \advance\UL@linerepbar@htbase\UL@linerepbar@overlap
+    \fi
+    \llap{%
+      \kern-\UL@linerepbarsep
+      \ifUL@linerepbar@cont%
+        \smash{% Use smash for taller continuing bar to prevent change in line spacing
+          \vrule\@width\cbarwidth%
+                \@height\UL@linerepbar@htbase%
+                \@depth\UL@linerepbar@dpbase%
+        }%
+      \else% No smash for first line of bar (helps to align with chorusline)
+        \vrule\@width\cbarwidth%
+              \@height\UL@linerepbar@htbase%
+              \@depth\UL@linerepbar@dpbase%
+      \fi%
+      \kern\UL@linerepbarsep
+    }%
+  }%
+}
+
+% Hook called at the start of every chorus line (every paragraph under \SB@obeylines)
+\def\UL@linerepbar@everypar{%
+  \ifUL@linerepbar
+    \UL@linerepbar
+    \global\UL@linerepbar@conttrue
+  \else
+    \global\UL@linerepbar@contfalse
+  \fi
+}
+
+% Patch chorus and verse starts:
+%   - reset repeat status
+%   - keep the package's one-time strut, but don't let it clear \everypar
+%   (so our per-line hook remains).
+\renewcommand\SB@@beginchorus{%
+  % BEGIN modification
+  \global\UL@linerepbarfalse%
+  \global\UL@linerepbar@contfalse%
+  % END modification
+  \ifrepchorus\marks\SB@cmarkclass{}\fi%
+  \setbox\SB@box\vbox\bgroup\begingroup%
+    \ifchorded%
+      \def\SB@everypar{%
+        \vrule\@height\baselineskip\@width\z@\@depth\z@%
+        \gdef\SB@everypar{}%
+      }%
+    % BEGIN modification
+      % Our hook runs every line; the package hook becomes empty after the first.
+      \everypar{\UL@linerepbar@everypar\SB@everypar}%
+    \else%
+      \everypar{\UL@linerepbar@everypar}%
+    \fi%
+    % END modification
+    \chorusfont\relax\SB@setbaselineskip\chorusjustify%
+    \SB@loadactives%
+    \SB@obeylines%
+    \penalty12345 %
+}
+\renewcommand\SB@beginverse{%
+  % BEGIN modification
+  \global\UL@linerepbarfalse%
+  \global\UL@linerepbar@contfalse%
+  % END modification
+  \ifSB@insong%
+    \ifSB@inverse\SB@errbvv\endverse\fi%
+    \ifSB@inchorus\SB@errbvc\endchorus\fi%
+  \else%
+    \SB@errbvt\beginsong{Unknown Song}%
+  \fi%
+  \ifrepchorus\ifvoid\SB@chorusbox\else%
+    \SB@gotchorustrue%
+    \ifSB@prevverse\ifvnumbered%
+      \marks\SB@cmarkclass{\SB@cmark}%
+    \fi\fi%
+  \fi\fi%
+  \SB@inversetrue%
+  \def\SB@closeall{\endverse\endsong}%
+  \SB@stanzabreak%
+  \versemark\nobreak%
+  \global\SB@stanzatrue%
+  \SB@ifempty\SB@cr@\memorize{\replay[]}%
+  \setbox\SB@box\vbox\bgroup\begingroup%
+    \ifvnumbered%
+      \protected@edef\@currentlabel{\p@versenum\theversenum}%
+      \def\SB@everypar{%
+        \setbox\SB@box\hbox{{\printversenum{\theversenum}}}%
+        \ifdim\wd\SB@box<\versenumwidth%
+          \setbox\SB@box%
+          \hbox to\versenumwidth{\unhbox\SB@box\hfil}%
+        \fi%
+        \ifchorded\vrule\@height\baselineskip\@width\z@\@depth\z@\fi%
+        \placeversenum\SB@box%
+        \gdef\SB@everypar{}%
+      }%
+    \else%
+      \def\SB@everypar{%
+        \ifchorded\vrule\@height\baselineskip\@width\z@\@depth\z@\fi%
+        \gdef\SB@everypar{}%
+      }%
+    \fi%
+    % BEGIN modification
+    % Our hook runs every line; the package hook becomes empty after the first.
+    % was: \everypar{\SB@everypar\everypar{}}
+    \everypar{\UL@linerepbar@everypar\SB@everypar}%
+    % END modification
+    \versefont\relax\SB@setbaselineskip\versejustify%
+    \SB@loadactives%
+    \SB@obeylines%
+    \penalty12345 %
+    \everyverse\relax%
+}
+
+% END line repeat
+
 % BEGIN musical markings
 
 % Outputs the Segno mark
@@ -3775,47 +3983,58 @@
   \renewcommand\SB@cbarshift{%
     \ifdim\cbarwidth>\z@% % removed '\ifSB@inchorus' to shift in verses too
       \advance\leftskip\cbarwidth%
-      \advance\leftskip5\p@\relax%
+      \advance\leftskip6\p@\relax%
     \fi%
   }
 \fi%
 
 % The following rewrite shortens the vertical line displayed on the left side of choruses.
-% This is done to accomodate using choruses as repeats with \glueverses. The \ifSB@chorustop
-% blocks commented with 'added by larva' are added, and the \color macro with the surrounding
-% block, too.
+% This is done to accomodate using choruses as repeats with \glueverses. Also
+% the vertical line is colored. Larva's additions are wrapped with
+% "begin larva" ... "end larva" comments.
+% NOTE: SB@chorustop is false only when current chorus started on previous column/page.
 \newlength{\cbstartadj}% larva: will hold chorus line's top y coordinate adjustment value
 \newlength{\cbendadj}% larva: will hold chorus line's bottom y coordinate adjustment value
 \renewcommand\SB@chorusbar[1]{%
   \ifdim\cbarwidth>\z@%
     {% block start added by larva to contain the color,
      % note that the block must be here instead of around leaders line below
-      \color{repetitionsigncolor}% % added by larva, change color
       \SB@dimen\ht#1%
       \SB@dimenii\dp#1%
       \advance\SB@dimen%
         \ifSB@chorustop\ifchorded\else2\fi\fi\SB@dimenii%
-      \ifSB@chorustop% added by larva
-        \setlength{\cbstartadj}{.15em}%  top y, set value to push it down
-        \setlength{\cbendadj}{-.8\SB@dimenii}% bottom y, set value to rise it by a factor of depth
-        \addtolength{\SB@skip}{-\cbstartadj}% top y
+      % begin larva
+      \color{repetitionsigncolor}%
+      \ifSB@chorustop\ifchorded%
+        \setlength{\cbstartadj}{2pt}%  top y, set value to push it down
         \addtolength{\SB@dimen}{-\cbstartadj}% fix bottom y to reflect top y adjustment
-        \addtolength{\SB@dimen}{\cbendadj}% bottom y, adjust
-      \fi%
+      \fi\fi%
+      \setlength{\cbendadj}{-\SB@dimenii}% bottom y, set neg value to rise it by a factor of depth, currently all, was: -.8\SB@dimenii
+      \addtolength{\cbendadj}{.5pt}% add a bit to bottom
+      \addtolength{\SB@dimen}{\cbendadj}% bottom y, adjust
+      % end larva
       \SB@skip\SB@dimen\relax%
       \SB@computess\SB@skip1\@plus#1%
       \SB@computess\SB@skip{-1}\@minus#1%
       \nointerlineskip\null\nobreak%
-      \ifSB@chorustop% added by larva
+      % start larva
+      \ifSB@chorustop\ifchorded%
         \vskip\cbstartadj% top y, push line start down
-      \fi%
-      \leaders\vrule\@width\cbarwidth\vskip\SB@skip%
+      \fi\fi%
       \ifSB@chorustop\ifchorded\else%
         \advance\SB@skip-\SB@dimenii%
       \fi\fi%
-      \ifSB@chorustop% added by larva
+      % end larva
+      \leaders\vrule\@width\cbarwidth\vskip\SB@skip%
+      % commented out by larva:
+      % \ifSB@chorustop\ifchorded\else%
+      %   \advance\SB@skip-\SB@dimenii%
+      % \fi\fi%
+      % begin larva
+      \ifSB@chorustop\ifchorded%
         \addtolength{\SB@skip}{\cbstartadj}% top y, reset \SB@skip to it's earliel value
-      \fi%
+      \fi\fi%
+      % end larva
       \nobreak\vskip-\SB@skip%
     }% % block end added by larva
   \fi%
@@ -3839,25 +4058,6 @@
 }
 
 
-% Colorize the output of macros \lrep, \rrep and \rep
-\let\@lreporig\lrep
-\let\@rreporig\rrep
-\let\@reporig\rep
-\renewcommand{\lrep}{{\color{repetitionsigncolor}\@lreporig}}
-\renewcommand{\rrep}{{\color{repetitionsigncolor}\@rreporig}}
-\renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}
-}
-
-% Use this instead of \rep to signify number of repeats on the first line
-% of a chorus. The parameter is the number of repetitions, as in \rep macro.
-\newcommand{\prep}[1]{%
-  \raisebox{\if@baselineincreased{2ex}\else{1ex}\fi}{%
-    {% block for containing the color change
-      \color{repetitionsigncolor}%
-      \@reporig{#1}:%
-    }%
-  }%
-}
 
 % This rewrite is required for newer LaTeX distributions. Ubuntu 22.04 with
 % lualatex 1.14 worked without this, but 23.04 with lualatex 1.15 requires
@@ -3869,9 +4069,11 @@
   \let\@par\SB@@par%
 }
 
-\makeatother% let @ become something ...tooootally else!
 
 % END DEFINITIONS AND REWRITES
+
+
+\makeatother% let @ become something ...tooootally else!
 
 
 % BEGIN CREATE INDICES
