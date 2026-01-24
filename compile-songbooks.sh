@@ -150,9 +150,9 @@ print_usage_and_exit() {
   echo -e "                     do nothing else"
   echo -e "  ${C_WHITE}--docker-rebuild${C_RESET} : force rebuilding of Docker image. Not normally needed."
   echo -e "  ${C_WHITE}--help${C_RESET}           : print this usage information"
+  echo -e "  ${C_WHITE}--keep-temp${C_RESET}      : do not clean temp dir after succesful compile"
   echo -e "  ${C_WHITE}--no-audio${C_RESET}       : do not create audio (mp3) files from Lilypond sources"
   echo -e "  ${C_WHITE}--no-astral${C_RESET}      : do not compile unilaiva-astral* books"
-  echo -e "  ${C_WHITE}--no-cleantemp${C_RESET}   : do not clean temp dir after succesful compile"
   echo -e "  ${C_WHITE}--no-coverimage${C_RESET}  : do not extract cover page as image"
   echo -e "  ${C_WHITE}--no-deploy${C_RESET}      : do not copy PDF files to ./${DEPLOY_DIRNAME}/"
   echo -e "  ${C_WHITE}--no-docker${C_RESET}      : do not use the Docker container for compiling"
@@ -171,9 +171,8 @@ print_usage_and_exit() {
   echo -e "                     does not compile anything."
   echo -e "  ${C_WHITE}-q${C_RESET}               : use for quick development build of the main document;"
   echo -e "                     equals to ${C_WHITE}--no-partial --no-selections --no-astral"
-  echo -e "                     --no-printouts --no-cleantemp --no-coverimage"
-  echo -e "                     --no-deploy --no-extrainstr --no-midi --no-audio"
-  echo -e "                     --no-lyric${C_RESET}"
+  echo -e "                     --no-printouts --no-coverimage --no-lyric --no-extrainstr"
+  echo -e "                     --no-midi --no-audio --no-deploy --keep-temp${C_RESET}"
   echo -e ""
   echo -e "In addition to the full version of tha main Unilaiva Songbook, also"
   echo -e "two-booklet version of it is created, with parts 1 and 2 in separate PDFs."
@@ -1114,6 +1113,9 @@ while [ $# -gt 0 ]; do
       rm "${RESULTLIST_FILE_IN_RESULTDIR}"
       exit ${code}
       ;;
+    "--keep-temp")
+      cleantemp="false"
+      shift;;
     "--no-lyric")
       lyricbooks="false"
       shift;;
@@ -1131,9 +1133,6 @@ while [ $# -gt 0 ]; do
       shift;;
     "--no-docker")
       usedocker="false"
-      shift;;
-    "--no-cleantemp")
-      cleantemp="false"
       shift;;
     "--no-deploy")
       deployfinal="false"
