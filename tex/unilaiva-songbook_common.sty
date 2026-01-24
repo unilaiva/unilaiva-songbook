@@ -395,17 +395,20 @@
   \global\UL@prevparlines=\prevgraf\relax%
 }
 
-% Eat an immediately-following \par so marker commands can be on their own line
-% under \obeylines without creating a blank (lyric) line.
+% Swallow an immediately-following paragraph/endline token without requiring
+% it to be literally \par.
 \def\UL@gobblepar{\futurelet\SB@next\UL@gobblepar@i}
 \def\UL@gobblepar@i{%
   \ifx\SB@next\par
-    \expandafter\UL@gobblepar@ii
+    % Next token is \par; neutralize it and execute (consumes it, no blank line)
+    {\let\par\relax \par}%
+  \else\ifx\SB@next\SB@par
+    % Next token is \SB@par; neutralize it and execute
+    {\let\SB@par\relax \SB@par}%
   \else
-    \expandafter\relax
-  \fi
+    \relax
+  \fi\fi
 }
-\def\UL@gobblepar@ii\par{}%
 
 % \repeattimes{<count>}{<code>}
 %
