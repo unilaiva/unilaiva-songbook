@@ -387,8 +387,16 @@
   \hspace{\circledHorizontalPadding}%
 }
 
+% Holds the line count of previous paragraph, updated with para/after hook below
+\newcount\UL@prevparlines\UL@prevparlines=0
+
+% Capture line count at end of each paragraph and save it in \UL@prevparlines
+\AddToHook{para/after}{%
+  \global\UL@prevparlines=\prevgraf\relax%
+}
+
 % Eat an immediately-following \par so marker commands can be on their own line
-% under \SB@obeylines without creating a blank (lyric) line.
+% under \obeylines without creating a blank (lyric) line.
 \def\UL@gobblepar{\futurelet\SB@next\UL@gobblepar@i}
 \def\UL@gobblepar@i{%
   \ifx\SB@next\par
@@ -398,6 +406,179 @@
   \fi
 }
 \def\UL@gobblepar@ii\par{}%
+
+% \repeattimes{<count>}{<code>}
+%
+% Repeat <code> exactly <count> times, while also providing the
+% current iteration number to <code> as a single braced argument.
+%
+%  <count> : a TeX count register (e.g. \mycount) or an integer expression
+%            usable by \count@=<count>.
+%            If <count> <= 0, nothing is executed.
+%
+%  <code>  : code to run each iteration. It must accept one argument,
+%            the iteration number, e.g. \foo{<i>}.
+%
+% The iteration number passed to <code> is 1-based.
+%
+% This macro uses the scratch counters \count@ and \@tempcnta.
+% The loop body (<code>) is executed in the current scope.
+%
+% Usage examples:
+%   \newcount\N \N=5
+%   \newcommand{\repeated}[1]{Iteration~#1\par}
+%   \repeattimes{\N}{\repeated}
+%
+% Inline code example (note the doubled ##1):
+%   \repeattimes{3}{\textbf{##1}\space}
+\newcommand{\repeattimes}[2]{% #1 = count register or number, #2 = code using ##1
+  \count@=#1\relax
+  \@tempcnta=1\relax
+  \@whilenum\count@>0\do{%
+    #2{\the\@tempcnta}%
+    \advance\@tempcnta by 1\relax
+    \advance\count@ by -1\relax
+  }%
+}
+
+% % BEGIN Map: key -> boolean
+%
+% These helpers implement an "array"/map from arbitrary keys to boolean values.
+% Internally, the map is an expl3 property list (\prop_new:N ...).
+%
+% Each key maps to the literal token list value: "true" or "false"
+%
+% Keys are token lists and are matched token-by-token. Avoid leading/trailing
+% spaces in keys.
+%
+% Like most TeX assignments, property-list modifications are scoped:
+%   - \prop_put:Nnn, \prop_clear:N are LOCAL (inside TeX groups)
+%   - \prop_gput:Nnn, \prop_gclear:N are GLOBAL (persist outside groups)
+%
+% The helpers below come in local and global variants for setting/resetting.
+%
+% If a key is not present in the map, it is treated as "false".
+%
+% Example:
+%   \prop_new:N \g_seen_prop
+%   \boolmap_gset_true:Nn  \g_seen_prop {7}
+%   \boolmap_if_true:NnTF  \g_seen_prop {7} {YES} {NO}
+%   \boolmap_greset:N      \g_seen_prop
+%
+% Example using with LaTeX2e wrappers:
+%   \ExplSyntaxOn
+%   \prop_new:N \g_seen_prop
+%   \ExplSyntaxOff
+%
+%   \BoolSetTrue{\g_seen_prop}{7}
+%   \IfBoolTF{\g_seen_prop}{7}{YES}{NO}
+%   \BoolReset{\g_seen_prop}
+%
+% NOTE: Use \the in front of the <key> parameter if it is a macro, count etc,
+%       to ensure it expands correctly.
+
+\ExplSyntaxOn
+
+% \boolmap_set_true:Nn <prop> {<key>}
+% \boolmap_set_false:Nn <prop> {<key>}
+%
+% Set the boolean value for <key> in <prop> to true/false.
+%
+% LOCAL assignment: the change is undone automatically at the end of the current
+%                   TeX group.
+\cs_new_protected:Npn \boolmap_set_true:Nn  #1#2 { \prop_put:Nnn  #1 {#2} {true} }
+\cs_new_protected:Npn \boolmap_set_false:Nn #1#2 { \prop_put:Nnn  #1 {#2} {false} }
+
+% \boolmap_gset_true:Nn <prop> {<key>}
+% \boolmap_gset_false:Nn <prop> {<key>}
+%
+% Set the boolean value for <key> in <prop> to true/false.
+%
+% GLOBAL assignment: the change persists outside groups.
+\cs_new_protected:Npn \boolmap_gset_true:Nn  #1#2 { \prop_gput:Nnn #1 {#2} {true} }
+\cs_new_protected:Npn \boolmap_gset_false:Nn #1#2 { \prop_gput:Nnn #1 {#2} {false} }
+
+% \boolmap_reset:N <prop>
+%
+% Remove all key/value pairs from <prop>.
+%
+% LOCAL reset: only affects the current group scope. The previous contents are
+%              restored at the end of the group.
+\cs_new_protected:Npn \boolmap_reset:N  #1 { \prop_clear:N  #1 }
+
+% \boolmap_greset:N <prop>
+%
+% Remove all key/value pairs from <prop>.
+%
+% GLOBAL reset: the map becomes empty globally and all keys will behave as
+%               "false" (the default).
+\cs_new_protected:Npn \boolmap_greset:N #1 { \prop_gclear:N #1 }
+
+% \boolmap_if_true:NnTF <prop> {<key>} {<true-code>} {<false-code>}
+% \boolmap_if_true:NnT  <prop> {<key>} {<true-code>}
+% \boolmap_if_true:NnF  <prop> {<key>} {<false-code>}
+%
+% Conditional test for a boolean stored in <prop> under <key>.
+%
+% Behavior:
+% - If <key> exists and its stored value is exactly "true" -> TRUE branch
+% - Otherwise (value is "false" OR key is missing) -> FALSE branch
+% - Missing keys are treated as false
+\prg_new_conditional:Npnn \boolmap_if_true:Nn #1#2 { T, F, TF }
+  {
+    \prop_get:NnNTF #1 {#2} \l_tmpa_tl
+      {
+        \str_if_eq:VnTF \l_tmpa_tl {true}
+          { \prg_return_true: }
+          { \prg_return_false: }
+      }
+      { \prg_return_false: }
+  }
+
+% LaTeX2e wrappers
+
+% \BoolSetTrue{<prop-name>}{<key>}
+% Set <prop-name>[<key>] = true (GLOBAL).
+\NewDocumentCommand{\BoolSetTrue}{m m}
+  {
+    \tl_set:Nx \l__boolmap_key_tl {#2}
+    \prop_gput:cVn {#1} \l__boolmap_key_tl {true}
+  }
+
+% \BoolSetFalse{<prop-name>}{<key>}
+% Set <prop-name>[<key>] = false (GLOBAL).
+\NewDocumentCommand{\BoolSetFalse}{m m}
+  {
+    \tl_set:Nx \l__boolmap_key_tl {#2}
+    \prop_gput:cVn {#1} \l__boolmap_key_tl {false}
+  }
+
+% \BoolReset{<prop-name>}
+% Clear ALL entries from the boolean map <prop-name> (GLOBAL).
+\NewDocumentCommand{\BoolReset}{m}
+  { \prop_gclear:c {#1} }
+
+% \IfBoolTF{<prop-name>}{<key>}{<true-code>}{<false-code>}
+%
+% Test whether <prop-name>[<key>] is true.
+%
+% Behavior:
+%
+% - If the key exists AND its value is exactly "true" -> <true-code>
+% - Otherwise (missing key OR value "false")          -> <false-code>
+%
+% Missing keys default to FALSE.
+\NewDocumentCommand{\IfBoolTF}{m m m m}
+  {
+    \tl_set:Nx \l__boolmap_key_tl {#2}
+    \prop_get:cVNTF {#1} \l__boolmap_key_tl \l__boolmap_val_tl
+      { \str_if_eq:VnTF \l__boolmap_val_tl {true} {#3} {#4} }
+      { #4 }
+  }
+
+\ExplSyntaxOff
+
+% % END Map: key -> boolean
 
 % END GENERIC UTILITY MACROS
 
@@ -465,9 +646,6 @@
 % authors should definitely be shown in all cases. This option is here for
 % the sake of completeness. :)
 \newif\ifshowauth\showauthtrue
-
-% Toggle for showing verse numbers. Suggestion: keep this as false!
-\newif\ifshowversenumbers\showversenumbersfalse
 
 % Toggle for showing Lilypond music scores
 \newif\ifshowlilypond\showlilypondtrue
@@ -847,8 +1025,6 @@
   \lineskiplimit=\clineLineskiplimit%
   \lineskip=\clineLineskip%
 }
-% songs: set width of the vertical repetition line used in choruses etc (default: 1pt):
-\setlength{\cbarwidth}{1.5pt}
 % songs: skip after prelude and before postlude (which we don't use)
 \beforepostludeskip=0pt plus 0pt minus 12pt % % songs default: 2\p@\@plus4\p@
 \afterpreludeskip=0pt plus 8pt minus 6pt % songs default: 2\p@\@plus4\p@
@@ -1145,6 +1321,9 @@
 \blockpenalty=0 % between (and before the song's first) in-song blocks (default here: 0)
 \newcount\translationvvpenalty%
 \translationvvpenalty=900 % between translation verses (when \nextverse is called)
+
+% Do not use verse numbers
+\noversenumbers
 
 % END Setup column break penalties
 
@@ -1922,11 +2101,7 @@
 
 % The amount content is to be indented; used at least in passage environment
 \newlength\contentindentwidth%
-\setlength\contentindentwidth{\z@}
-\ifdim\cbarwidth>\z@%
-  \advance\contentindentwidth\cbarwidth%
-  \advance\contentindentwidth6\p@\relax%
-\fi%
+\setlength\contentindentwidth{7.33pt}
 
 % BEGIN @langsect / rewritable defaults
 % NOTE: These are meant to be locally renewed in environments using the
@@ -2409,6 +2584,7 @@
 %      line ending a song, if \songendmark is defined. The mark is positioned
 %      touching the right margin of the page, and does not take vertical space,
 %      so it might overlap on song content in some cases.
+%   4) deprecated choruses
 \renewcommand\SB@endsong{%
   % BEGIN modification by larva: song end vfill (1)
   \ifnum\value{@endsongvfillneeded}>0%
@@ -2425,7 +2601,9 @@
   % END modification by larva: resets (2)
   \ifSB@insong%
       \ifSB@inverse\SB@erreov\endverse\fi%
-      \ifSB@inchorus\SB@erreoc\endchorus\fi%
+      % BEGIN modification: always do \endverse, not \endchorus
+      \ifSB@inchorus\SB@erreoc\endverse\fi%
+      % END modification
       \global\SB@skip\versesep%
       \unskip%
       \ifrepchorus\ifvoid\SB@chorusbox\else%
@@ -2977,28 +3155,22 @@
 }
 
 
-% Replace the verse/chorus starting macros with versions that save the baseline
-% adjustment value before calling the originals.
+% Replace the verse starting macro with version that saves the baseline
+% adjustment value before calling the original.
 \let\@beginverseorig\beginverse
-\let\@beginchorusorig\beginchorus
 \renewcommand{\beginverse}{\@mnsavebaselineadj\@beginverseorig}
-\renewcommand{\beginchorus}{\@mnsavebaselineadj\@beginchorusorig}
-% Replace the macros called at the end of each verse/chorus with versions that
-% call the originals and reset the baseline to the last saved one.
+% Replace the macro called at the end of each verse with version that calls
+% the original and resets the baseline to the last saved one.
 \let\@SB@endverseorig\SB@endverse
-\let\@SB@endchorusorig\SB@endchorus
 \renewcommand{\SB@endverse}{\@SB@endverseorig\@mnresetbaselineadj}
-\renewcommand{\SB@endchorus}{\@SB@endchorusorig\@mnresetbaselineadj}
 
-% \mnbegin<verse|chorus> macros are replacements for the ordinary
-% \begin<verse|chorus>, with increased line spacing to accomodate notes
-% also in other than the first line of lyrics without resorting to \mnd macro
-% and it's caveats. For non-chorded books or if melody notes are disabled,
-% spacing is not increased.
+% \mnbeginverse macro is a replacement for the ordinary \beginverse,
+% with increased line spacing to accomodate notes also in other than the
+% first line of lyrics without resorting to \mnd macro and it's caveats.
+% For non-chorded books or if melody notes are disabled, spacing is not
+% increased.
 \newcommand{\mnbeginverse}{\@mnincreasebaselineadj\@beginverseorig}
-\newcommand{\mnbeginchorus}{\@mnincreasebaselineadj\@beginchorusorig}
 \newcommand{\mnendverse}{\endverse} % For backwards compatibility, deprecated
-\newcommand{\mnendchorus}{\endchorus} % For backwards compatibility, deprecated
 
 
 % END MELODY NOTES
@@ -3682,129 +3854,180 @@
 
 % BEGIN line repeat
 
-%  Line repeat bar inside verses and choruses. This prints a vertical repeat
-%  bar for the lyric lines within it's effect, similar to what is printed
-%  in choruses, but this can be for only a part of the lines in a verse,
-%  and is printed adjacent to the chorus repeat bar if it exists.
+%  Line repeat bars inside verses and choruses. This prints vertical repeat
+%  bars for the lyric lines within it's effect. Can be nested. Use only within
+%  verses
 %
-%  Usage:
-%     \beginrep
-%       line
-%       line
-%     \endrep
+%  Usage example:
 %
-%  TODO: make this support more nesting levels so that it can be used instead
-%        of chorus verses.
+%    \beginverse
+%      lyric line without repeat
+%      \beginrep
+%        lyric line with one repeat level
+%        lyric line with one repeat level (2nd line of the same repeat)
+%        \beginrep
+%          lyric line with two repeat levels
+%        \endrep
+%      \endrep
+%    \endverse
+%
 
-% State: are we inside an extra-repeat block?
-\newif\ifUL@linerepbar
-\UL@linerepbarfalse
+% Settings:
 
-% State: should this line connect upward to the previous extra-repeat line?
-\newif\ifUL@linerepbar@cont
-\UL@linerepbar@contfalse
+% Repetition bar width (comes from songs package)
+\setlength{\cbarwidth}{1.4pt}
+% The horizontal gap between line repeat bars, and minimum gap between the
+% last (deepest level) bar and the start of the lyrics
+\newdimen\repbargapdimen\repbargapdimen=2.265pt
+
+% NOTE: Be careful if changing the following settings. Test all situations:
+% with chords, lyric-only, without measure bars. Separate bars following each
+% must leave enough gap between them, and multiline repeat bars ought to have
+% no gaps in between lyric lines.
+
+% The amount the repetition bar reaches below baseline of the last lyric line
+\newdimen\repbardepthdimen\repbardepthdimen=.5pt
+\newdimen\repbarheightadjwithchordsdimen\repbarheightadjwithchordsdimen=-2.5pt
+\newdimen\repbarheightadjnochordsdimen\repbarheightadjnochordsdimen=.5pt
+% How much extra upward reach continuation lines get to bridge interline glue
+% when having multiline repeat bars.
+\newcommand{\UL@rep@drawbars@overlap}{\the\dimexpr .7\baselineskip\relax}
+
+% State: key->boolean map for
+%        <repeat nesting level> -> <repeat started on previous line>
+\ExplSyntaxOn
+\prop_new:N \g_repcont_prop
+\ExplSyntaxOff
+
+% State: Current line repeat bar's nesting depth.
+% Updated by \beginrep and \endrep.
+\newcount\UL@rep@level\UL@rep@level=0\relax%
+
+% Scratch registers:
+\newlength\tmp@UL@rep@allbarswidth
+\newcount\tmp@UL@rep@prevlinestoreach
+\newlength\tmp@UL@rep@maxtextheight
+\newdimen\tmp@UL@rep@barhtbase
 
 % Define \beginrep and \endrep safely (LaTeX forbids \newcommand\end...)
 \expandafter\def\csname beginrep\endcsname{%
-  \global\UL@linerepbartrue
-  % new block: do NOT connect to any previous bar
-  \global\UL@linerepbar@contfalse
-  \UL@gobblepar
+  % Break the line here to always start the repeated part on a new line
+  \par%
+  % Advance the level of nested repeats
+  \global\advance\UL@rep@level 1\relax%
+  \BoolSetFalse{g_repcont_prop}{\the\UL@rep@level}%
+  \SB@inchorustrue% songs: disallows interline column/page break
+  \UL@gobblepar%
 }
 \expandafter\def\csname endrep\endcsname{%
-  \global\UL@linerepbarfalse
+  \ifhmode\par\fi% Ensure we're in vertical mode
+  \ifnum\UL@prevparlines>1\relax%
+    % As this branch is only evaluated when the very last lyric line (par)
+    % before this \endrep was long enough to be wrapped to more than one line,
+    % we need to subtract 
+    \advance\UL@prevparlines by -1\relax%
+    % We are now semantically *after* the last line in vertical mode, so we
+    % need to use \nointerlineskip and \hbox
+    \nointerlineskip%
+    \hbox to 0pt{\UL@rep@drawbars}%
+  \fi%
   % end block: ensure next block doesn't connect
-  \global\UL@linerepbar@contfalse
-  \UL@gobblepar
+  \BoolSetFalse{g_repcont_prop}{\the\UL@rep@level}%
+  \global\advance\UL@rep@level -1\relax%
+  \ifnum\UL@rep@level<1\relax%
+    \SB@inchorusfalse%
+  \fi%
+  \ifnum\UL@rep@level<0\relax%
+    \PackageWarning{unilaiva-songbook_common}{%
+      Unmatched \\endrep: ignored.%
+    }%
+    \UL@rep@level=0\relax%
+  \fi%
+  \UL@gobblepar%
 }
 
-% Place extra bar just to the right of the main chorus bar,
-% in the 6pt gap used by \SB@cbarshift.
-\newdimen\UL@linerepbarsep
-\UL@linerepbarsep=2.5pt
-
-% Base dimensions
-\newdimen\UL@linerepbar@htbase
-\newdimen\UL@linerepbar@dpbase
-\UL@linerepbar@dpbase=.5pt % with 0pt the bar will not have depth below baseline
-
-% How much extra "upward reach" continuation lines get to bridge interline glue
-\newdimen\UL@linerepbar@overlap
-\UL@linerepbar@overlap=.5\baselineskip
-
-% Draw the extra bar for one lyric line.
-\def\UL@linerepbar{%
-  {% block to contain color
-    \color{repetitionsigncolor}
-    \UL@linerepbar@htbase=\baselineskip
-    \advance\UL@linerepbar@htbase -2pt
-    \ifUL@linerepbar@cont
-      \advance\UL@linerepbar@htbase\UL@linerepbar@overlap
-    \fi
-    \llap{%
-      \kern-\UL@linerepbarsep
-      \ifUL@linerepbar@cont%
-        \smash{% Use smash for taller continuing bar to prevent change in line spacing
-          \vrule\@width\cbarwidth%
-                \@height\UL@linerepbar@htbase%
-                \@depth\UL@linerepbar@dpbase%
-        }%
-      \else% No smash for first line of bar (helps to align with chorusline)
-        \vrule\@width\cbarwidth%
-              \@height\UL@linerepbar@htbase%
-              \@depth\UL@linerepbar@dpbase%
+% Draw one line repetition bar (fragment) for current lyric line. Called
+% repetitiously from \UL@rep@drawbars.
+\newcommand{\UL@rep@drawbars@iter}[1]{%
+  \rlap{%
+    \IfBoolTF{g_repcont_prop}{#1}{% for the repeat started on earlier lyric line
+      % If current bar was started on earlier lyric line (par), increase the
+      % current line's repeat bar height to reach through the gap
+      \advance\tmp@UL@rep@barhtbase by \UL@rep@drawbars@overlap\relax
+      % If previous lyric line (par) was (long and) wrapped to more than one
+      % line, make the current line's repeat bar higher to reach through
+      % them all.
+      \ifnum\UL@prevparlines>1\relax%
+        \tmp@UL@rep@prevlinestoreach=\UL@prevparlines%
+        \advance\tmp@UL@rep@prevlinestoreach by -1\relax%
+        \advance\tmp@UL@rep@barhtbase by
+         \dimexpr \baselineskip * \numexpr\tmp@UL@rep@prevlinestoreach\relax\relax%
       \fi%
-      \kern\UL@linerepbarsep
+      % Draw the repeat bar with smash to take no vertical space
+      \smash{%
+        \vrule\@width\cbarwidth%
+              \@height\tmp@UL@rep@barhtbase%
+              \@depth\repbardepthdimen%
+      }%
+    }{%
+      % We are on the first line of the repeat: smash or no?
+      \smash{%
+        \vrule\@width\cbarwidth%
+              \@height\tmp@UL@rep@barhtbase%
+              \@depth\repbardepthdimen%
+      }%
     }%
+    \BoolSetTrue{g_repcont_prop}{#1}% The bar at this nesting level has been started
+  }%
+  \kern\cbarwidth%
+  \kern\repbargapdimen%
+  \addtolength{\tmp@UL@rep@allbarswidth}{\cbarwidth}%
+  \addtolength{\tmp@UL@rep@allbarswidth}{\repbargapdimen}%
+}
+
+% Draw all repetition bars (fragments) for current (one) lyric line.
+\def\UL@rep@drawbars{%
+  {% block to contain color
+    \color{repetitionsigncolor}%
+    \ifchorded%
+      \tmp@UL@rep@barhtbase=\baselineskip%
+      \advance\tmp@UL@rep@barhtbase \repbarheightadjwithchordsdimen\relax%
+    \else%
+      \settoheight{\tmp@UL@rep@barhtbase}{\vphantom{A}}%
+      \advance\tmp@UL@rep@barhtbase \repbarheightadjnochordsdimen\relax%
+    \fi%
+    \setlength{\tmp@UL@rep@allbarswidth}{0pt}%
+    % Call \UL@rep@drawbars@iter for each repeat level
+    \repeattimes{\UL@rep@level}{\UL@rep@drawbars@iter}%
+    \ifdim\tmp@UL@rep@allbarswidth<\contentindentwidth%
+      \kern\dimexpr\contentindentwidth-\tmp@UL@rep@allbarswidth\relax%
+    \fi%
   }%
 }
 
-% Hook called at the start of every chorus line (every paragraph under \SB@obeylines)
-\def\UL@linerepbar@everypar{%
-  \ifUL@linerepbar
-    \UL@linerepbar
-    \global\UL@linerepbar@conttrue
-  \else
-    \global\UL@linerepbar@contfalse
-  \fi
+% Hook called at the start of every lyric line (every paragraph in verse)
+\def\UL@rep@everypar{%
+  \ifnum\UL@rep@level>0\relax%
+    \UL@rep@drawbars%
+  \else%
+    \kern\contentindentwidth%
+  \fi%
 }
 
-% Patch chorus and verse starts:
-%   - reset repeat status
+% Patch verse start:
+%   - reset repeat state
 %   - keep the package's one-time strut, but don't let it clear \everypar
-%   (so our per-line hook remains).
-\renewcommand\SB@@beginchorus{%
-  % BEGIN modification
-  \global\UL@linerepbarfalse%
-  \global\UL@linerepbar@contfalse%
-  % END modification
-  \ifrepchorus\marks\SB@cmarkclass{}\fi%
-  \setbox\SB@box\vbox\bgroup\begingroup%
-    \ifchorded%
-      \def\SB@everypar{%
-        \vrule\@height\baselineskip\@width\z@\@depth\z@%
-        \gdef\SB@everypar{}%
-      }%
-    % BEGIN modification
-      % Our hook runs every line; the package hook becomes empty after the first.
-      \everypar{\UL@linerepbar@everypar\SB@everypar}%
-    \else%
-      \everypar{\UL@linerepbar@everypar}%
-    \fi%
-    % END modification
-    \chorusfont\relax\SB@setbaselineskip\chorusjustify%
-    \SB@loadactives%
-    \SB@obeylines%
-    \penalty12345 %
-}
+%     (so our per-line hook remains).
 \renewcommand\SB@beginverse{%
   % BEGIN modification
-  \global\UL@linerepbarfalse%
-  \global\UL@linerepbar@contfalse%
+  \UL@rep@level=0\relax%
+  %\BoolReset{g_repcont_prop}% Not really necessary, as this is reset in \beginrep
   % END modification
   \ifSB@insong%
     \ifSB@inverse\SB@errbvv\endverse\fi%
-    \ifSB@inchorus\SB@errbvc\endchorus\fi%
+    % BEGIN modification: always do \endverse, not \endchorus
+    \ifSB@inchorus\SB@erreoc\endverse\fi%
+    % END modification
   \else%
     \SB@errbvt\beginsong{Unknown Song}%
   \fi%
@@ -3842,13 +4065,28 @@
     % BEGIN modification
     % Our hook runs every line; the package hook becomes empty after the first.
     % was: \everypar{\SB@everypar\everypar{}}
-    \everypar{\UL@linerepbar@everypar\SB@everypar}%
+    \everypar{\UL@rep@everypar\SB@everypar}%
     % END modification
     \versefont\relax\SB@setbaselineskip\versejustify%
     \SB@loadactives%
     \SB@obeylines%
     \penalty12345 %
     \everyverse\relax%
+}
+
+% Choruses are deprecated, as we use \beginrep...\endrep for line repeats,
+% but rewrite them for backwards compatibility.
+\renewcommand\beginchorus{%
+  \PackageWarning{unilaiva-songbook_common}{%
+    \\beginchorus is deprecated: replacing with \\beginverse\\beginrep.%
+  }%
+  \beginverse\beginrep%
+}
+\renewcommand\endchorus{%
+  \endrep\endverse%
+  \PackageWarning{unilaiva-songbook_common}{%
+    \\endchorus is deprecated: replacing with \\endrep\\endverse.%
+  }%
 }
 
 % END line repeat
@@ -3965,80 +4203,14 @@
 }
 \let\SB@mbar\SB@makembar
 
-% Align choruses and verses if verse numbers are not shown. To show verse
-% numbers instead, set \showversenumberstrue in the main document preamble
-% (after including this package).
-\ifshowversenumbers%
-\else%
-  \noversenumbers%
-  % We renew \@beginverseorig instead of \beginverse to not lose the changes
-  % made to \beginverse above in the melody notes section for saving the
-  % baseline adjustment.
-  \renewcommand\@beginverseorig{%
-    \begingroup%
-      \SB@loadactives%
-      \@ifstar{\endgroup\vnumberedfalse\SB@beginverse}% % keep this to consume the star
-              {\endgroup\vnumberedfalse\SB@beginverse}% % this line was changed
-  }
-  \renewcommand\SB@cbarshift{%
-    \ifdim\cbarwidth>\z@% % removed '\ifSB@inchorus' to shift in verses too
-      \advance\leftskip\cbarwidth%
-      \advance\leftskip6\p@\relax%
-    \fi%
-  }
-\fi%
+% Rewrite this to be empty, as lyric line shifting is now done within the repeat
+% system
+\renewcommand\SB@cbarshift{}%
 
-% The following rewrite shortens the vertical line displayed on the left side of choruses.
-% This is done to accomodate using choruses as repeats with \glueverses. Also
-% the vertical line is colored. Larva's additions are wrapped with
-% "begin larva" ... "end larva" comments.
-% NOTE: SB@chorustop is false only when current chorus started on previous column/page.
-\newlength{\cbstartadj}% larva: will hold chorus line's top y coordinate adjustment value
-\newlength{\cbendadj}% larva: will hold chorus line's bottom y coordinate adjustment value
-\renewcommand\SB@chorusbar[1]{%
-  \ifdim\cbarwidth>\z@%
-    {% block start added by larva to contain the color,
-     % note that the block must be here instead of around leaders line below
-      \SB@dimen\ht#1%
-      \SB@dimenii\dp#1%
-      \advance\SB@dimen%
-        \ifSB@chorustop\ifchorded\else2\fi\fi\SB@dimenii%
-      % begin larva
-      \color{repetitionsigncolor}%
-      \ifSB@chorustop\ifchorded%
-        \setlength{\cbstartadj}{2pt}%  top y, set value to push it down
-        \addtolength{\SB@dimen}{-\cbstartadj}% fix bottom y to reflect top y adjustment
-      \fi\fi%
-      \setlength{\cbendadj}{-\SB@dimenii}% bottom y, set neg value to rise it by a factor of depth, currently all, was: -.8\SB@dimenii
-      \addtolength{\cbendadj}{.5pt}% add a bit to bottom
-      \addtolength{\SB@dimen}{\cbendadj}% bottom y, adjust
-      % end larva
-      \SB@skip\SB@dimen\relax%
-      \SB@computess\SB@skip1\@plus#1%
-      \SB@computess\SB@skip{-1}\@minus#1%
-      \nointerlineskip\null\nobreak%
-      % start larva
-      \ifSB@chorustop\ifchorded%
-        \vskip\cbstartadj% top y, push line start down
-      \fi\fi%
-      \ifSB@chorustop\ifchorded\else%
-        \advance\SB@skip-\SB@dimenii%
-      \fi\fi%
-      % end larva
-      \leaders\vrule\@width\cbarwidth\vskip\SB@skip%
-      % commented out by larva:
-      % \ifSB@chorustop\ifchorded\else%
-      %   \advance\SB@skip-\SB@dimenii%
-      % \fi\fi%
-      % begin larva
-      \ifSB@chorustop\ifchorded%
-        \addtolength{\SB@skip}{\cbstartadj}% top y, reset \SB@skip to it's earliel value
-      \fi\fi%
-      % end larva
-      \nobreak\vskip-\SB@skip%
-    }% % block end added by larva
-  \fi%
-}
+% Rewrite SB@chorusbar to be empty, as vertical bar repeats are now done inside
+% verses with \beginrep ... \endrep. This rewrite is to ensure that vertical bar
+% is not ever used because of "chorusness".
+\renewcommand\SB@chorusbar[1]{}%
 
 % Rewrite this to have the same behaviour in chorded and non-chorded books:
 % insert stretchable glue to the bottom of each column. Without this change
