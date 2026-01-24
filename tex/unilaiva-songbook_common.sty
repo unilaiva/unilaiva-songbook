@@ -395,15 +395,15 @@
   \global\UL@prevparlines=\prevgraf\relax%
 }
 
-% Swallow an immediately-following paragraph/endline token without requiring
-% it to be literally \par.
+% Eat an immediately-following line break token produced by the songs/obeylines
+% machinery, without requiring it to be literally \par.
+% Safe if used mid-line: then the next token isn't \par nor \SB@par, so nothing
+% happens.
 \def\UL@gobblepar{\futurelet\SB@next\UL@gobblepar@i}
 \def\UL@gobblepar@i{%
   \ifx\SB@next\par
-    % Next token is \par; neutralize it and execute (consumes it, no blank line)
     {\let\par\relax \par}%
   \else\ifx\SB@next\SB@par
-    % Next token is \SB@par; neutralize it and execute
     {\let\SB@par\relax \SB@par}%
   \else
     \relax
@@ -3915,7 +3915,9 @@
 % Define \beginrep and \endrep safely (LaTeX forbids \newcommand\end...)
 \expandafter\def\csname beginrep\endcsname{%
   % Break the line here to always start the repeated part on a new line
-  \par%
+  % If used inline, end the current lyric line to start the repeated part on
+  % a new line. If already at line start (vertical mode), do nothing.
+  \ifhmode\par\fi%
   % Advance the level of nested repeats
   \global\advance\UL@rep@level 1\relax%
   \BoolSetFalse{g_repcont_prop}{\the\UL@rep@level}%
