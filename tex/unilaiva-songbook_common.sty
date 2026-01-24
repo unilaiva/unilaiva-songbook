@@ -3944,7 +3944,7 @@
   \fi%
   \ifnum\UL@rep@level<0\relax%
     \PackageWarning{unilaiva-songbook_common}{%
-      Unmatched \\endrep: ignored.%
+      Unmatched \string\endrep: ignored.\MessageBreak%
     }%
     \UL@rep@level=0\relax%
   \fi%
@@ -4083,14 +4083,16 @@
 % but rewrite them for backwards compatibility.
 \renewcommand\beginchorus{%
   \PackageWarning{unilaiva-songbook_common}{%
-    \\beginchorus is deprecated: replacing with \\beginverse\\beginrep.%
+    \string\beginchorus\space is deprecated.\MessageBreak%
+    Replacing with \string\beginverse\string\beginrep.\MessageBreak%
   }%
   \beginverse\beginrep%
 }
 \renewcommand\endchorus{%
   \endrep\endverse%
   \PackageWarning{unilaiva-songbook_common}{%
-    \\endchorus is deprecated: replacing with \\endrep\\endverse.%
+    \string\endchorus\space is deprecated.\MessageBreak%
+    Replacing with \string\endrep\string\endverse.\MessageBreak%
   }%
 }
 
