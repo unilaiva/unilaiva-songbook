@@ -704,6 +704,12 @@
 
 % END Toggles
 
+% Indentation that is optionally added to verses, if started with
+% \beginverse[n], where n is a plain factor number that is multiplied with
+% the \verseindentwidthbase to determine the optional extra indent depth of the
+% verse in question.
+\newdimen\verseindentwidthbase\verseindentwidthbase=2em\relax
+
 
 % BEGIN Book titles etc
 
@@ -2873,6 +2879,9 @@
 %   and \[\mnd{D#}]food tastes \[\mnd{A}]good
 %
 %   \[\mnciii{C}{A}{F}Fmaj7]Tralalaa
+%
+% NOTE: this system requires rewrites of the verse begin / end machinery, that
+%       comes later.
 
 % Setup the style for the melody note name "text". Renew this macro in the
 % beginning of your document to set custom style. This will be called each
@@ -3131,6 +3140,7 @@
 \newcommand{\notesoff}{\def\@melodynotesdisabled{}}
 \newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
 
+
 % Is true, if baseline is increased due to being in mnverse or mnchorus
 \newif\if@baselineincreased\@baselineincreasedfalse
 
@@ -3160,26 +3170,8 @@
   \fi\fi%
 }
 
-
-% Replace the verse starting macro with version that saves the baseline
-% adjustment value before calling the original.
-\let\@beginverseorig\beginverse
-\renewcommand{\beginverse}{\@mnsavebaselineadj\@beginverseorig}
-% Replace the macro called at the end of each verse with version that calls
-% the original and resets the baseline to the last saved one.
-\let\@SB@endverseorig\SB@endverse
-\renewcommand{\SB@endverse}{\@SB@endverseorig\@mnresetbaselineadj}
-
-% \mnbeginverse macro is a replacement for the ordinary \beginverse,
-% with increased line spacing to accomodate notes also in other than the
-% first line of lyrics without resorting to \mnd macro and it's caveats.
-% For non-chorded books or if melody notes are disabled, spacing is not
-% increased.
-\newcommand{\mnbeginverse}{\@mnincreasebaselineadj\@beginverseorig}
-\newcommand{\mnendverse}{\endverse} % For backwards compatibility, deprecated
-
-
 % END MELODY NOTES
+
 
 % BEGIN BEAT MARKS
 
@@ -3837,23 +3829,25 @@
 
 % BEGIN line repeat
 
-%  Line repeat bars inside verses and choruses. This prints vertical repeat
-%  bars for the lyric lines within it's effect. Can be nested. Use only within
-%  verses
+% Line repeat bars inside verses and choruses. This prints vertical repeat
+% bars for the lyric lines within it's effect. Can be nested. Use only within
+% verses
 %
-%  Usage example:
+% Usage example:
 %
-%    \beginverse
-%      lyric line without repeat
-%      \beginrep
-%        lyric line with one repeat level
-%        lyric line with one repeat level (2nd line of the same repeat)
-%        \beginrep
-%          lyric line with two repeat levels
-%        \endrep
-%      \endrep
-%    \endverse
+%   \beginverse
+%     lyric line without repeat
+%     \beginrep
+%       lyric line with one repeat level
+%       lyric line with one repeat level (2nd line of the same repeat)
+%       \beginrep
+%         lyric line with two repeat levels
+%       \endrep
+%     \endrep
+%   \endverse
 %
+% NOTE: this system requires rewrites of the verse begin / end machinery, that
+%       comes later.
 
 % Settings:
 
@@ -3981,7 +3975,8 @@
   \fi%
 }
 
-% Draw all repetition bars (fragments) for current (one) lyric line.
+% Draw all repetition bars (fragments) for current (one) lyric line. Called
+% from \UL@verse@everypar defined in the VERSE BEGIN / END section below.
 \def\UL@rep@drawbars{%
   {% block to contain color
     \color{repetitionsigncolor}%
@@ -3995,93 +3990,8 @@
   }%
 }
 
-% Hook called at the start of every lyric line (every paragraph in verse)
-\def\UL@rep@everypar{%
-  \ifnum\UL@rep@level>0\relax%
-    \UL@rep@drawbars%
-  \else%
-    \kern\contentindentwidth%
-  \fi%
-}
-
-% Patch verse start:
-%   - reset repeat state
-%   - keep the package's one-time strut, but don't let it clear \everypar
-%     (so our per-line hook remains).
-\renewcommand\SB@beginverse{%
-  % BEGIN modification
-  \UL@rep@level=0\relax%
-  %\BoolReset{g_repcont_prop}% Not really necessary, as this is reset in \beginrep
-  % END modification
-  \ifSB@insong%
-    \ifSB@inverse\SB@errbvv\endverse\fi%
-    % BEGIN modification: always do \endverse, not \endchorus
-    \ifSB@inchorus\SB@erreoc\endverse\fi%
-    % END modification
-  \else%
-    \SB@errbvt\beginsong{Unknown Song}%
-  \fi%
-  \ifrepchorus\ifvoid\SB@chorusbox\else%
-    \SB@gotchorustrue%
-    \ifSB@prevverse\ifvnumbered%
-      \marks\SB@cmarkclass{\SB@cmark}%
-    \fi\fi%
-  \fi\fi%
-  \SB@inversetrue%
-  \def\SB@closeall{\endverse\endsong}%
-  \SB@stanzabreak%
-  \versemark\nobreak%
-  \global\SB@stanzatrue%
-  \SB@ifempty\SB@cr@\memorize{\replay[]}%
-  \setbox\SB@box\vbox\bgroup\begingroup%
-    \ifvnumbered%
-      \protected@edef\@currentlabel{\p@versenum\theversenum}%
-      \def\SB@everypar{%
-        \setbox\SB@box\hbox{{\printversenum{\theversenum}}}%
-        \ifdim\wd\SB@box<\versenumwidth%
-          \setbox\SB@box%
-          \hbox to\versenumwidth{\unhbox\SB@box\hfil}%
-        \fi%
-        \ifchorded\vrule\@height\baselineskip\@width\z@\@depth\z@\fi%
-        \placeversenum\SB@box%
-        \gdef\SB@everypar{}%
-      }%
-    \else%
-      \def\SB@everypar{%
-        \ifchorded\vrule\@height\baselineskip\@width\z@\@depth\z@\fi%
-        \gdef\SB@everypar{}%
-      }%
-    \fi%
-    % BEGIN modification
-    % Our hook runs every line; the package hook becomes empty after the first.
-    % was: \everypar{\SB@everypar\everypar{}}
-    \everypar{\UL@rep@everypar\SB@everypar}%
-    % END modification
-    \versefont\relax\SB@setbaselineskip\versejustify%
-    \SB@loadactives%
-    \SB@obeylines%
-    \penalty12345 %
-    \everyverse\relax%
-}
-
-% Choruses are deprecated, as we use \beginrep...\endrep for line repeats,
-% but rewrite them for backwards compatibility.
-\renewcommand\beginchorus{%
-  \PackageWarning{unilaiva-songbook_common}{%
-    \string\beginchorus\space is deprecated.\MessageBreak%
-    Replacing with \string\beginverse\string\beginrep.\MessageBreak%
-  }%
-  \beginverse\beginrep%
-}
-\renewcommand\endchorus{%
-  \endrep\endverse%
-  \PackageWarning{unilaiva-songbook_common}{%
-    \string\endchorus\space is deprecated.\MessageBreak%
-    Replacing with \string\endrep\string\endverse.\MessageBreak%
-  }%
-}
-
 % END line repeat
+
 
 % BEGIN inline repeat
 
@@ -4269,10 +4179,152 @@
   \SB@setbaselineskip%
 }
 
+% BEGIN VERSE BEGIN / END REWRITES
+
+% These rewrites are needed to support line repeat and melody note features.
+
+% Hook called at the start of every lyric line (every paragraph in verse).
+% Supports verse-specific indentation and line repeats.
+\def\UL@verse@everypar{%
+  \kern\tmp@UL@currentverseindentwidth%
+  \ifnum\UL@rep@level>0\relax%
+    \UL@rep@drawbars%
+  \else%
+    \kern\contentindentwidth%
+  \fi%
+}
+
+% Patch verse start:
+%   - reset repeat state
+%   - keep the package's one-time strut, but don't let it clear \everypar
+%     (so our per-line hook remains).
+\renewcommand\SB@beginverse{%
+  % BEGIN modification
+  \UL@rep@level=0\relax%
+  %\BoolReset{g_repcont_prop}% Not really necessary, as this is reset in \beginrep
+  % END modification
+  \ifSB@insong%
+    \ifSB@inverse\SB@errbvv\endverse\fi%
+    % BEGIN modification: always do \endverse, not \endchorus
+    \ifSB@inchorus\SB@erreoc\endverse\fi%
+    % END modification
+  \else%
+    \SB@errbvt\beginsong{Unknown Song}%
+  \fi%
+  \ifrepchorus\ifvoid\SB@chorusbox\else%
+    \SB@gotchorustrue%
+    \ifSB@prevverse\ifvnumbered%
+      \marks\SB@cmarkclass{\SB@cmark}%
+    \fi\fi%
+  \fi\fi%
+  \SB@inversetrue%
+  \def\SB@closeall{\endverse\endsong}%
+  \SB@stanzabreak%
+  \versemark\nobreak%
+  \global\SB@stanzatrue%
+  \SB@ifempty\SB@cr@\memorize{\replay[]}%
+  \setbox\SB@box\vbox\bgroup\begingroup%
+    \ifvnumbered%
+      \protected@edef\@currentlabel{\p@versenum\theversenum}%
+      \def\SB@everypar{%
+        \setbox\SB@box\hbox{{\printversenum{\theversenum}}}%
+        \ifdim\wd\SB@box<\versenumwidth%
+          \setbox\SB@box%
+          \hbox to\versenumwidth{\unhbox\SB@box\hfil}%
+        \fi%
+        \ifchorded\vrule\@height\baselineskip\@width\z@\@depth\z@\fi%
+        \placeversenum\SB@box%
+        \gdef\SB@everypar{}%
+      }%
+    \else%
+      \def\SB@everypar{%
+        \ifchorded\vrule\@height\baselineskip\@width\z@\@depth\z@\fi%
+        \gdef\SB@everypar{}%
+      }%
+    \fi%
+    % BEGIN modification
+    % Our hook runs every line; the package hook becomes empty after the first.
+    % was: \everypar{\SB@everypar\everypar{}}
+    \everypar{\SB@everypar\UL@verse@everypar}%
+    % END modification
+    \versefont\relax\SB@setbaselineskip\versejustify%
+    \SB@loadactives%
+    \SB@obeylines%
+    \penalty12345 %
+    \everyverse\relax%
+}
+
+% Save the original \beginverse
+\let\@beginverseorig\beginverse
+
+% Replace the macro called at the end of each verse with version that calls
+% the original and resets the baseline to the last saved one.
+\let\@SB@endverseorig\SB@endverse
+\renewcommand{\SB@endverse}{\@SB@endverseorig\@mnresetbaselineadj}
+
+\newdimen\tmp@UL@currentverseindentwidth\tmp@UL@currentverseindentwidth=0pt\relax
+
+% Sets optional indentation for the whole verse determined by the optional
+% parameter #2 (which is a factor, a plain number) and calls the original
+% \beginverse from songs package. Optional star #1 is passed to the original
+% macro as is.
+% If the optional parameter #2 is omitted, the verse is not indented. This macro
+% is called from \mnbeginverse and renewed \beginverse.
+\NewDocumentCommand{\UL@beginverse}{s o}{%
+  % set indent factor for this verse (plain number)
+  \IfValueTF{#2}{%
+    \tmp@UL@currentverseindentwidth=\dimexpr #2\verseindentwidthbase\relax%
+  }{%
+    \tmp@UL@currentverseindentwidth=0pt\relax%
+  }%
+  \IfValueTF{#1}{\@beginverseorig*}{\@beginverseorig}%
+}
+
+% \mnbeginverse macro is a replacement for the ordinary \beginverse,
+% with increased line spacing to accomodate notes also in other than the
+% first line of lyrics without resorting to \mnd macro and it's caveats.
+% For non-chorded books or if melody notes are disabled, spacing is not
+% increased.
+% Allows a star (passed to the original \beginverse) and an optional parameter
+% (a plain number factor) to determine whole verse's indentation level.
+\NewDocumentCommand{\mnbeginverse}{s o}{%
+  \@mnincreasebaselineadj%
+  \IfValueTF{#1}{\UL@beginverse*[#2]}{\UL@beginverse[#2]}%
+}
+
+% For backwards compatibility, deprecated; use \endverse instead
+\newcommand{\mnendverse}{\endverse}
+
+% This rewrite saves the default baseline adjustment.
+% Allows a star (passed to the original \beginverse) and an optional parameter
+% (a plain number factor) to determine whole verse's indentation level.
+\RenewDocumentCommand{\beginverse}{s o}{%
+  \@mnsavebaselineadj%
+  \IfValueTF{#1}{\UL@beginverse*[#2]}{\UL@beginverse[#2]}%
+}
+
+% Choruses are deprecated, as we use \beginrep...\endrep within normal verses
+% for line repeats, but rewrite them for backwards compatibility.
+\renewcommand\beginchorus{%
+  \PackageWarning{unilaiva-songbook_common}{%
+    \string\beginchorus\space is deprecated.\MessageBreak%
+    Replacing with \string\beginverse\string\beginrep.\MessageBreak%
+  }%
+  \beginverse\beginrep%
+}
+\renewcommand\endchorus{%
+  \endrep\endverse%
+  \PackageWarning{unilaiva-songbook_common}{%
+    \string\endchorus\space is deprecated.\MessageBreak%
+    Replacing with \string\endrep\string\endverse.\MessageBreak%
+  }%
+}
+
+% END VERSE BEGIN / END REWRITES
 
 
-% This rewrite is required for newer LaTeX distributions. Ubuntu 22.04 with
-% lualatex 1.14 worked without this, but 23.04 with lualatex 1.15 requires
+% NOTE: This rewrite is required for newer LaTeX distributions. Ubuntu 22.04
+% with lualatex 1.14 worked without this, but 23.04 with lualatex 1.15 requires
 % this change. Note that the change is *not* backwards compatible.
 % See: https://tex.stackexchange.com/questions/650106/recent-update-broke-songs-package
 \renewcommand\SB@obeylines{%
