@@ -957,7 +957,7 @@
 \definecolor{melodynotealtcolor}{rgb}{0.2,0,0}
 % playout mark color:
 \definecolor{pomarkcolor}{rgb}{0,0.5,0}
-% color for repetition signs (\lrep \rrep and \rep):
+% color for repetition signs:
 \definecolor{repetitionsigncolor}{rgb}{0,0,0.5}
 \definecolor{songnumbgcolor}{rgb}{1,1,1} % song number background
 \definecolor{notebgcolor}{rgb}{0.9,0.9,0.9} % textnote background
@@ -3894,7 +3894,7 @@
 \newdimen\repbarheightadjnochordsdimen\repbarheightadjnochordsdimen=.5pt
 % How much extra upward reach continuation lines get to bridge interline glue
 % when having multiline repeat bars.
-\newcommand{\UL@rep@drawbars@overlap}{\the\dimexpr .7\baselineskip\relax}
+\newcommand{\repbarcontinuingoverlap}{\the\dimexpr .7\baselineskip\relax}
 
 % State: key->boolean map for
 %        <repeat nesting level> -> <repeat started on previous line>
@@ -3958,7 +3958,7 @@
     \IfBoolTF{g_repcont_prop}{#1}{% for the repeat started on earlier lyric line
       % If current bar was started on earlier lyric line (par), increase the
       % current line's repeat bar height to reach through the gap
-      \advance\tmp@UL@rep@barhtbase by \UL@rep@drawbars@overlap\relax
+      \advance\tmp@UL@rep@barhtbase by \repbarcontinuingoverlap\relax
       % If previous lyric line (par) was (long and) wrapped to more than one
       % line, make the current line's repeat bar higher to reach through
       % them all.
