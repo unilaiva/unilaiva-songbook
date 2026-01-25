@@ -3831,29 +3831,6 @@
 
 % END textual notes
 
-% BEGIN inline repeat
-
-% Colorize the output of macros \lrep, \rrep and \rep
-\let\@lreporig\lrep
-\let\@rreporig\rrep
-\let\@reporig\rep
-\renewcommand{\lrep}{{\color{repetitionsigncolor}\@lreporig}}
-\renewcommand{\rrep}{{\color{repetitionsigncolor}\@rreporig}}
-\renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}
-}
-
-% Use this instead of \rep to signify number of repeats on the first line
-% of a chorus. The parameter is the number of repetitions, as in \rep macro.
-\newcommand{\prep}[1]{%
-  \raisebox{\if@baselineincreased{2ex}\else{1ex}\fi}{%
-    {% block for containing the color change
-      \color{repetitionsigncolor}%
-      \@reporig{#1}:%
-    }%
-  }%
-}
-
-% END inline repeat
 
 % BEGIN line repeat
 
@@ -3990,17 +3967,22 @@
   \addtolength{\tmp@UL@rep@allbarswidth}{\repbargapdimen}%
 }
 
+% Sets \tmp@UL@rep@barhtbase to good height for repeat bars in this spot
+\def\UL@rep@setbarhtbase{%
+  \ifchorded%
+    \global\tmp@UL@rep@barhtbase=\baselineskip%
+    \global\advance\tmp@UL@rep@barhtbase \repbarheightadjwithchordsdimen\relax%
+  \else%
+    \global\settoheight{\tmp@UL@rep@barhtbase}{\vphantom{A}}%
+    \global\advance\tmp@UL@rep@barhtbase \repbarheightadjnochordsdimen\relax%
+  \fi%
+}
+
 % Draw all repetition bars (fragments) for current (one) lyric line.
 \def\UL@rep@drawbars{%
   {% block to contain color
     \color{repetitionsigncolor}%
-    \ifchorded%
-      \tmp@UL@rep@barhtbase=\baselineskip%
-      \advance\tmp@UL@rep@barhtbase \repbarheightadjwithchordsdimen\relax%
-    \else%
-      \settoheight{\tmp@UL@rep@barhtbase}{\vphantom{A}}%
-      \advance\tmp@UL@rep@barhtbase \repbarheightadjnochordsdimen\relax%
-    \fi%
+    \UL@rep@setbarhtbase%
     \setlength{\tmp@UL@rep@allbarswidth}{0pt}%
     % Call \UL@rep@drawbars@iter for each repeat level
     \repeattimes{\UL@rep@level}{\UL@rep@drawbars@iter}%
@@ -4097,6 +4079,54 @@
 }
 
 % END line repeat
+
+% BEGIN inline repeat
+
+% \lrep and \rrep inline repetition mark rewrites:
+% colorize, have only one bar, use same height and depth as line repeats
+\renewcommand{\lrep}{%
+  {%
+    \color{repetitionsigncolor}%
+    \UL@rep@setbarhtbase%
+    \vrule\@width1.618034\cbarwidth%
+          \@height\tmp@UL@rep@barhtbase%
+          \@depth\repbardepthdimen%
+    \ifchorded%
+      \rlap{\raisebox{\clineBaselineskip}{:}}%
+    \fi%
+    :\kern.25ex%
+  }%
+}
+\renewcommand{\rrep}{%
+  {%
+    \color{repetitionsigncolor}%
+    \UL@rep@setbarhtbase%
+    \kern.25ex%
+    \ifchorded%
+      \rlap{\raisebox{\clineBaselineskip}{:}}%
+    \fi%
+    :%
+    \vrule\@width1.618034\cbarwidth%
+          \@height\tmp@UL@rep@barhtbase%
+          \@depth\repbardepthdimen%
+  }%
+}
+% Colorize \rep
+\let\@reporig\rep
+\renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}}
+
+% Use this instead of \rep to signify number of repeats on the first line
+% of a chorus. The parameter is the number of repetitions, as in \rep macro.
+\newcommand{\prep}[1]{%
+  \raisebox{\if@baselineincreased{2ex}\else{1ex}\fi}{%
+    {% block for containing the color change
+      \color{repetitionsigncolor}%
+      \@reporig{#1}:%
+    }%
+  }%
+}
+
+% END inline repeat
 
 % BEGIN musical markings
 
