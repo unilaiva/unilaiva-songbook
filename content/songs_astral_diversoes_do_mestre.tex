@@ -19,20 +19,24 @@
     \[^\mn{D}]Venho da \[\bm]terra do ci|\[\mnc{F#}F#7]gano, \[\bmc\mn{E}]pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{|A7 |Dm}
     \[^\mn{D}]A Ra\[\bm]inha me \[^\mn{F#}]man|\[\mnc{A}A]dou, \[\bmc\mn{F#}]pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{|C |Dm}
     \[^\mn{D}]Eu pas\[\bm]sar aqui can|\[\mnc{F#}F#7]tando, \[\bmc\mn{E}]pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{|A7 |Dm}
-  \mnendverse\glueverses\mnbeginchorus\memorize[chords_prapilar_b]
+  \mnendverse\glueverses\mnbeginverse
+    \beginrep\memorize[chords_prapilar_b]
     \ilsl{\[^\mn{D}]É} pra pi\[\bm]lar \[^\mn{E}]es\[^\mn{F#}]tou \[^\mn{D}]pi|\[\mnc{E}A]lando \altchords{|C}
     Estou \[^\mn{D}]pi\[\bmc\mn{E}]lando é pra \[^\mn{D}]pi|\[\mnc{B}Bm]lar \altchords{|Dm}
-  \mnendchorus
+    \endrep
+  \mnendverse
   \notesoff
   \beginverse\replay[chords_prapilar_a]
     Passan^do por entre as |^flores, ^pra pi|^lar
     Vejo um ^retrato or|^nado, ^pra pi|^lar
     Me pa^rece ser um |^rei, ^pra pi|^lar
     Que esta^rá ali encan|^tado, ^pra pi|^lar
-  \endverse\glueverses\beginchorus\replay[chords_prapilar_b]
+  \endverse\glueverses\beginverse\replay[chords_prapilar_b]
+    \beginrep
     É pra pi^lar estou pi|^lando
     Estou pi^lando é pra pi|^lar
-  \endchorus
+    \endrep
+  \endverse
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative f'' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -105,13 +109,17 @@
 
 \beginsong{Cachiado}[by={Mestre Irineu Serra}, key={Bm}, gk={Bm, G\shrp{}m--Bm}, tags={3x}]
   \musicnotefornext{Tocar 3 vezes}
-  \mnbeginchorus
+  \mnbeginverse
+    \beginrep
     \[\mn{B}]Ca\[\mn{C#}]che|\[\mnc{D}D]a\[\mn{B}]do \[\bmc\mn{D}]ve\[\mn{C#}]nha |\[\mnc{B}Bm]cá \altchords{\id[1]{(Am)}|C |Am}
     \[\bm]Car\[\mn{C#}]ra|\[\mnc{D}D]cá \[\mn{C#}]car\[\mnc{B}F#7]ra \[\mn{A#}]cá |\[\mnc{B}Bm]cá \altchords{|C E7 |Am}
-  \mnendchorus\glueverses\mnbeginchorus
+    \endrep
+  \mnendverse\glueverses\mnbeginverse
+    \beginrep
     \[\bmc\mn{B}]Carra|\[\mnc{E}Em]cá car\[\bmc\mn{G}]ra cá |\[\mnc{B}Bm]cá \altchords{|Dm |Am}
     \[\bmc\mn{F#}]Car\[\mn{G}]ra|\[\mnc{F#}F#7]cá \[\mn{E}]car\[\bmc\mn{D}]ra \[\mn{C#}]cá |\[\mnc{/}Bm]cá \altchords{|E7 |Am}
-  \mnendchorus
+    \endrep
+  \mnendverse
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative b' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -161,19 +169,23 @@
 
 \beginsong{Cantar Me Apareceu}[by={Mestre Irineu Serra}, key={A}, gk={A, G--A}, tags={2x}]
   \musicnotefornext{Tocar 2 vezes}
-  \mnbeginchorus
+  \mnbeginverse
+    \beginrep
     \[\mn{C#}]Can|\[\mnc{E}A]tar \[\mn{C#}]me a\[\mnc{E}E]pa\[\mn{C#}]re|\[\mnc{E}A]ceu \[\bm] \altchords{\id[1]{(G)}|G D |G}
     \[\mn{C#}]{E tu} |\[\mn{E}]não \[\mn{C#}]me \[\mnc{E}E]co\[\mn{C#}]nhe|\[\mnc{E}A]ceu \[\bm] \altchords{| - D |G}
     \beginrep \[\mn{E}]Fe|\[\mnc{F#}D]liz, \[\mn{B}]fe|\[\mncii{A}{C#}A]liz \[\bm] \altchords{|C |G}
     \[\mn{F#}]Fe|\[\mncii{E}{D}E]liz { }\[\bmc\mn{B}] \[\mn{C#}]a|\[\mnc{A}A]deus \[\bm] \altchords{|D |G} \endrep
-  \mnendchorus
+    \endrep
+  \mnendverse
   \vspace{1ex}
-  \mnbeginchorus
+  \mnbeginverse
+    \beginrep
     \[\mn{C#}]Depois tor|\[\mnc{E}A]na\[\mn{C#}]mos a \[\mnc{E}E]se en\[\mn{C#}]con|\[\mnc{E}A]trar \[\bm] \altchords{\id[2]{(B)}|B F\shrp{} |B}
     \[\mn{C#}]{E come}|\[\mn{E}]ça\[\mn{C#}]mos a \[\mnc{E}E]con\[\mn{C#}]ver|\[\mnc{E}A]sar \[\bm] \altchords{| - F\shrp{} |B}
     \beginrep \[\mn{E}]Eu não |\[\mnc{F#}D]te \[\mn{D}]dis\[\bmc\mn{F#}]se \[\mn{B}]quem |\[\mnc{A}A]era \altchords{|E |B}
     \[\bmc\mn{E}]Pa\[\mn{F#}]ra |\[\mnc{E}E]ti \[\mn{D}]me \[\bmc\mn{B}]per\[\mn{C#}]gun|\[\mnc{A}A]tar \[\bm] \altchords{|F\shrp{} |B} \endrep
-  \mnendchorus
+    \endrep
+  \mnendverse
   \begin{translation}[EN]
     Singing you appeared to me, and you did not know me.
     Happy, happy, happy goodbye; happy, happy, happy goodbye.

@@ -15,35 +15,51 @@
   % Offered to Padr. Eduardo
   \audio[key=Am]{https://www.nossairmandade.com/hymn/2249/Hospede}
   \newchords{chords_hospede_a}\newchords{chords_hospede_b}
-  \mnbeginchorus\memorize[chords_hospede_a]
+  \mnbeginverse
+    \beginrep\memorize[chords_hospede_a]
     |\[\mnc{A}Am]Eu convi\[\bm]dei \[^\mn{B}]no \[^\mn{C}]meu |\[\mnc{D}Dm]so\[\bm]nho
     Meu |Mestre va\[\mnc{F}(F)]mos passe|\[\mnc{E}E]ar
-  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_hospede_b]
+    \endrep
+  \mnendverse\glueverses\mnbeginverse
+    \beginrep\memorize[chords_hospede_b]
     \[^\mn{E}]Meu |\[\mnc{D}Dm]mestre \[\bmc\mn{F}]veio co|\[\mncii{E}{C}Am]migo
     \[\bmc\mn{E}]Na minha |\[\mncii{D}{B}E7]casa \[\bmc\mn{D}]me \[^\mn{G#}]visi|\[\mnc{A}Am]tar
-  \mnendchorus
+    \endrep
+  \mnendverse
   \notesoff
-  \beginchorus\replay[chords_hospede_a]
+  \beginverse\replay[chords_hospede_a]
+    \beginrep
     |^Eu abra^çando o meu |^Mes^tre
     |Ai, meu ^Deus como é |^bom
-  \endchorus\glueverses\beginchorus\replay[chords_hospede_b]
+    \endrep
+  \endverse\glueverses\beginverse\replay[chords_hospede_b]
+    \beginrep
     |^Eu abra^çando meu |^Mestre
     Lem^brei do meu |^Pai, lembrei ^de Salo|^mão
-  \endchorus
-  \beginchorus\replay[chords_hospede_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_hospede_a]
+    \beginrep
     |^{O meu} ^Mestre me |^dis^se
     |Filho eu não ^vim passe|^ar
-  \endchorus\glueverses\beginchorus\replay[chords_hospede_b]
+    \endrep
+  \endverse\glueverses\beginverse\replay[chords_hospede_b]
+    \beginrep
     |^Vou estar ^sempre con|^tigo
     ^Bem ao teu |^lado, eu não ^vou te dei|^xar
-  \endchorus
-  \beginchorus\replay[chords_hospede_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_hospede_a]
+    \beginrep
     |^Nesta pas^sagem do |^Mes^tre
     |Vejam o que ^Ele me |^deu
-  \endchorus\glueverses\beginchorus\replay[chords_hospede_b]
+    \endrep
+  \endverse\glueverses\beginverse\replay[chords_hospede_b]
+    \beginrep
     |^Um ga^lhinho de ar|^ruda
     ^Com a |^benção do ^Mestre Iri|^neu
-  \endchorus
+    \endrep
+  \endverse
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva, 2021-08
     theMelody = \relative a'' {
@@ -125,27 +141,33 @@
     \[^\mn{D}]Cabo\[^\mn{F}]clo |\[\mnc{A}Dm]Véio vem a\[^\mn{F}]qui bus\[^\mn{E}]car um |\[^\mn{D}]povo
     Pra nós \[^\mn{F}]can|\[^\mn{A}]tar e vossa \[^\mn{F}]luz bri\[^\mn{D}]lhar de |\[\mnc{E}A]novo
   \mnendverse
-  \mnbeginchorus\memorize[chords_cabocloveio_b]
+  \mnbeginverse
+    \beginrep\memorize[chords_cabocloveio_b]
     Da alta es|\[Gm]fera manda a nossa luz bril|hante
     para nós neste ins|\[A]tante ver quem sois Jurami|\[\ac(2){Dm}]dam
-  \mnendchorus
+    \endrep
+  \mnendverse
   \notesoff
   \beginverse\replay[chords_cabocloveio_a]
     Me apresen|^tar também é o que mais |quero
     Só apa|relho quando tu estiver mais |^sério
   \endverse
-  \beginchorus\replay[chords_cabocloveio_b]
+  \beginverse\replay[chords_cabocloveio_b]
+    \beginrep
     Bem cami|^nhando como filho verda|deiro
     Me apresento por in|^teiro, vou mostrar todo mis|^tério
-  \endchorus
+    \endrep
+  \endverse
   \beginverse\replay[chords_cabocloveio_a]
     Juntando a |^glória do meu Senhor Jesus |Cristo
     Com a fir|meza do meu Santo Iri|^neu
   \endverse
-  \beginchorus\replay[chords_cabocloveio_b]
+  \beginverse\replay[chords_cabocloveio_b]
+    \beginrep
     Todos as es|^trelas do universo se ajun|taram
     Num só verso da Ra|^inha e veja que festa se |^deu
-  \endchorus
+    \endrep
+  \endverse
   \begin{translation}[EN]
     Caboclo Véio comes here to search for a people
     To sing for us and to shine your light anew

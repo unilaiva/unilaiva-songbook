@@ -13,42 +13,62 @@
   \audio{https://www.nossairmandade.com/hymn/551/EmP\%C3\%A9FirmeNaFloresta}
   \newchords{chords_empefirme_a}\newchords{chords_empefirme_b}
   \meter{6}{4}
-  \mnbeginchorus\memorize[chords_empefirme_a]
+  \mnbeginverse
+    \beginrep\memorize[chords_empefirme_a]
     \[^\mn{E}]Em pé |\[\mnc{A}Am]fir\[^\mn{E}]me \[^\mn{C}]na \[^\mn{B}]Flo\[\bmc\mn{A}]res\[^\mn{E}]ta
     \[^\mn{C}]Re\[^\mn{A}]ce|\[\mnc{C}E7]ben\[^\mn{B}]do a \[^\mn{A}]san\[^\mn{G#}]ta \[\mnc{A}Am]Luz
-    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_empefirme_b]
+      \endrep
+  \mnendverse\glueverses\mnbeginverse
+    \beginrep\memorize[chords_empefirme_b]
     \[^\mn{A}]Sou \[^\mn{B}]hu|\[\mnc{C}Am]mil\[^\mn{E}]de, \[^\mn{D}]sou \[^\mn{C}]hu\[Fmaj7]mil\[^\mn{B}]de
     \[^\mn{G#}]Sou \[^\mn{B}]hu|\[\mnc{E}E7]mil\[^\mn{D}]de \[^\mn{C}]de \[^\mn{B}]Je\[\mnc{A}Am]sus
-  \mnendchorus
+    \endrep
+  \mnendverse
   \notesoff
-  \beginchorus\replay[chords_empefirme_a]
+  \beginverse\replay[chords_empefirme_a]
+    \beginrep
     O im|^pério destas ^matas
     Não e|^xiste força mai^or
-    \endchorus\glueverses\beginchorus\replay[chords_empefirme_b]
+      \endrep
+  \endverse\glueverses\beginverse\replay[chords_empefirme_b]
+    \beginrep
     Agora a|^qui peço fir^meza
     As Es|^trelas, a Lua e ao ^Sol
-  \endchorus
-  \beginchorus\replay[chords_empefirme_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_empefirme_a]
+    \beginrep
     To|^quei a minha cor^neta
     Já é a |^última cha^mada
-    \endchorus\glueverses\beginchorus\replay[chords_empefirme_b]
+      \endrep
+  \endverse\glueverses\beginverse\replay[chords_empefirme_b]
+    \beginrep
     Se per|^filem coman^dantes
     Para |^vencer a jor^nada
-  \endchorus
-  \beginchorus\replay[chords_empefirme_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_empefirme_a]
+    \beginrep
     Esta |^força verda^deira
     É o |^reinado do ^Sol
-    \endchorus\glueverses\beginchorus\replay[chords_empefirme_b]
+      \endrep
+  \endverse\glueverses\beginverse\replay[chords_empefirme_b]
+    \beginrep
     Em |^cima vivem os ^astros
     E em|^baixo vivem os ^paus
-  \endchorus
-  \beginchorus\replay[chords_empefirme_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_empefirme_a]
+    \beginrep
     Oh! Meu |^Pai onipo^tente
     Que me dá |^força e me se^gura
-    \endchorus\glueverses\beginchorus\replay[chords_empefirme_b]
+      \endrep
+  \endverse\glueverses\beginverse\replay[chords_empefirme_b]
+    \beginrep
     Para |^eu ser Vosso ^filho
     E me li|^vrar das amar^guras
-  \endchorus
+    \endrep
+  \endverse
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     % transcribed by larva, updated on 2022-12
     theMelody = \relative e'' {

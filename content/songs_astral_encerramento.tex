@@ -15,43 +15,63 @@
   \audio{https://www.nossairmandade.com/hymn/612/MeuDeus,MeuS\%C3\%A3oJo\%C3\%A3o}
   \newchords{chords_meudeusmeusaojoao_a}\newchords{chords_meudeusmeusaojoao_b}
   \meter{3}{4}
-  \mnbeginchorus\memorize[chords_meudeusmeusaojoao_a]
+  \mnbeginverse
+    \beginrep\memorize[chords_meudeusmeusaojoao_a]
     \[^\mn{E}]Meu |\[\mncii{D}{A}Dm]Deus |\[\mnc{C}Fmaj7]{meu São} \[^\mn{E}]Jo|\[\mnc{C}C]ão | \e \altchords{\id[1]{(D)}|Em |Gmaj7 |D | \e}
     \[^\mn{E}]Den|\[^\mn{G}]tro desta |Vos\[^\mn{F#}]sa \[^\mn{A}]mis|\[\mnc{E}Am]são | \e \altchords{| | |Bm | \e}
-    \mnendchorus\glueverses\mnbeginchorus\memorize[chords_meudeusmeusaojoao_b]
+      \endrep
+  \mnendverse\glueverses\mnbeginverse
+    \beginrep\memorize[chords_meudeusmeusaojoao_b]
     \[^\mn{E}]Se |\[\mnc{G}C]passa |mui\[^\mn{F#}]ta a\[^\mn{G}]mar|\[\mnc{A}Am]gu\[^\mn{E}]ra \altchords{|D | |Bm }
     \[^\mn{C}]E |\[\mnc{D}Dm]mui\[^\mn{A}]ta |\[\mnc{C}Fmaj7]ingra\[^\mn{E}]ti|\[\mnc{C}C]dão | \e \altchords{|Em |Gmaj7 |D | \e}
-  \mnendchorus
+    \endrep
+  \mnendverse
   \notesoff
-  \beginchorus\replay[chords_meudeusmeusaojoao_a]
+  \beginverse\replay[chords_meudeusmeusaojoao_a]
+    \beginrep
     Só |^se se|^{gue nesta} |^li|nha
     Dei|xando |a ilu|^são | \e
-    \endchorus\glueverses\beginchorus\replay[chords_meudeusmeusaojoao_b]
+      \endrep
+  \endverse\glueverses\beginverse\replay[chords_meudeusmeusaojoao_b]
+    \beginrep
     Sa|^indo da |i-g-no|^rância
     E |^tendo |^educa|^ção | \e
-  \endchorus
-  \beginchorus\replay[chords_meudeusmeusaojoao_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_meudeusmeusaojoao_a]
+    \beginrep
     Pe|^di fir|^meza a meu |^Mes|tre
     E |a Vos|sa reden|^ção | \e
-    \endchorus\glueverses\beginchorus\replay[chords_meudeusmeusaojoao_b]
+      \endrep
+  \endverse\glueverses\beginverse\replay[chords_meudeusmeusaojoao_b]
+    \beginrep
     Perdo|^ai es|tes sofre|^dores
     Que |^zombam |^neste sa|^lão | \e
-  \endchorus
-  \beginchorus\replay[chords_meudeusmeusaojoao_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_meudeusmeusaojoao_a]
+    \beginrep
     Escla|^reço |^estes en|^si|nos
     Da |Virgem |da Concei|^ção | \e
-    \endchorus\glueverses\beginchorus\replay[chords_meudeusmeusaojoao_b]
+      \endrep
+  \endverse\glueverses\beginverse\replay[chords_meudeusmeusaojoao_b]
+    \beginrep
     Pe|^dindo o |Vosso con|^forto
     E a |^Vossa san|^{ta prote}|^ção | \e
-  \endchorus
+    \endrep
+  \endverse
   \brk
-  \beginchorus\replay[chords_meudeusmeusaojoao_a]
+  \beginverse\replay[chords_meudeusmeusaojoao_a]
+    \beginrep
     Que |^brilho |^{tem este} |^di|a
     |Dentro da |nossa ses|^são | \e
-    \endchorus\glueverses\beginchorus\replay[chords_meudeusmeusaojoao_b]
+      \endrep
+  \endverse\glueverses\beginverse\replay[chords_meudeusmeusaojoao_b]
+    \beginrep
     Fes|^tejos |do nosso |^Pai
     Lou|^vores |^{à São Jo}|^ão | \e
-  \endchorus
+    \endrep
+  \endverse
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -158,25 +178,31 @@
 
 \beginsong{Meu Rei Salomão}[by={Madr. Cristina},key={G},gk={G, (F\shrp{})--(G)},tags={2x}]
   \audio{https://www.nossairmandade.com/hymn/1204/MeuReiSalom\%C3\%A3o}
-  \mnbeginchorus\memorize
+  \mnbeginverse
+    \beginrep\memorize
     |\[\mnc{D}G]Eu como \[\bmc\mnc{E}Cmaj7]fi\[^\mn{D}]lha \[^\mn{B}]de |\[\mnc{G}G]Vós \[\bm]
     |\[^\mn{G}]Dentro \[\bmc\mn{B}]des\[^\mn{G}]te \[^\mn{F#}]sa|\[\mnc{E}C]lão \[\bm]
     Eu |\[\mnc{A}Am]quero \[\bmc\mn{C}]se\[^\mn{A}]guir \[^\mn{F#}]com |\[\mncii{G}{D}G]Vós \[\bm]
     De |\[\mnc{E}C]todo \[\bmc\mnc{F#}D7]meu \[^\mn{E}]co\[^\mn{D}]ra|\[\mnc{G}G]ção \[\bm]
-  \mnendchorus
+    \endrep
+  \mnendverse
   \notesoff
-  \beginchorus
+  \beginverse
+    \beginrep
     |^Eu peço ^{a minha} |^Mãe ^
     |Dentro do ^meu cora|^ção ^
     Para |^sempre ^eu ser fe|^liz ^
     |^Com meu Se^nhor São Jo|^ão ^
-  \endchorus
-  \beginchorus
+    \endrep
+  \endverse
+  \beginverse
+    \beginrep
     \noteson\[\mnd{B}]Cu\notesoff|^rando ^{e ensi}|^nan^do
     |Com to^da perfei|^ção ^
     Se|^guindo ^neste ca|^mi^nho
     |^Com o meu ^Rei Salo|^mão ^
-  \endchorus
+    \endrep
+  \endverse
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative b' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -237,33 +263,45 @@
 \beginsong{Sou Brilho do Sol}[by={Padr. Sebastião}, key={C}, gk={D, C--F\shrp{}m}]
   \audio{https://www.nossairmandade.com/hymn/99/BrilhoDoSol}
   \transpose{-2}
-  \mnbeginchorus\memorize
+  \mnbeginverse
+    \beginrep\memorize
     \beginrep \[^\mn{A}]Eu |\[\mnc{D}D]sou \[^\mn{F#}]bri\[^\mn{E}]lho \[^\mn{D}]do \[\bm]sol, |sou \[^\mn{F#}]bri\[^\mn{E}]lho \[^\mn{D}]da \[\mnc{F#}Bm/F#]lua \endrep
     \beginrep \[^\mn{F#}]Dou |\[\mnc{G}G]bri\[^\mn{F#}]lho \[^\mn{E}]as \[^\mn{D}]es\[\mnc{F#}D]trelas, \[^\mn{D}]por\[^\mn{F#}]que |\[\mnc{E}A7]todas \[^\mn{B}]me\jw a\[^\mn{C#}]com\[\mnc{D}D]panham \endrep
-  \mnendchorus
+    \endrep
+  \mnendverse
   \notesoff
-  \beginchorus
+  \beginverse
+    \beginrep
     \beginrep Eu |^sou brilho do ^mar |eu vivo no ^vento \endrep
     \beginrep Eu |^brilho na flo^resta porque |^ela me per^tence \endrep
-  \endchorus
+    \endrep
+  \endverse
   \textnotefornext{suomeksi:}
-  \beginchorus
+  \beginverse
+    \beginrep
     \beginrep Olen |^paiste aurin^gon, |sekä loiste ^kuun \altchords{\id[1]{(D)}|D | - Bm/F\shrp{}} \endrep
     \beginrep Va|^laisen tähdis^tön, koska se |^on mun seura^nain \altchords{|G D |A7 D} \endrep
-  \endchorus
-  \beginchorus
+    \endrep
+  \endverse
+  \beginverse
+    \beginrep
     \beginrep Olen |^välke meren^pinnan, hen|gitän tuules^sa \endrep
     \beginrep Loistan |^metsän sydä^messä, sillä se |^kuuluu minul^le \endrep
-  \endchorus
+    \endrep
+  \endverse
   \textnotefornext{in English:}
-  \beginchorus
+  \beginverse
+    \beginrep
     \beginrep I |^am the shine of ^sun, I |am the shine of ^moon \endrep
     \beginrep I |^give shine to the ^stars, because they |^all accompany ^me \endrep
-  \endchorus
-  \beginchorus
+    \endrep
+  \endverse
+  \beginverse
+    \beginrep
     \beginrep I |^am the shine of ^sea, |I live in the ^wind \endrep
     \beginrep I |^shine in the ^forest, because |^she belongs to ^me \endrep
-  \endchorus
+    \endrep
+  \endverse
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2025-07
     % \header {
@@ -341,37 +379,61 @@
   \audio{https://soundcloud.com/igreja-mestre-irineu/eu-vivo-na-floresta}
   \audio{https://www.nossairmandade.com/hymn/664/EuVivoNaFloresta}
   \newchords{chords_euvivonafloresta_a}\newchords{chords_euvivonafloresta_b}
-  \mnbeginchorus\memorize[chords_euvivonafloresta_a]
+  \mnbeginverse
+    \beginrep\memorize[chords_euvivonafloresta_a]
     \[^\mn{C}]Eu |\[C]vivo \[^\mn{E}]na \[^\mn{G}]flo\[\mnc{C}Am]res\[^\mn{E}]ta, a\[^\mn{A}]pren|\[\mnc{G}G]dendo a \[^\mn{D}]me \[^\mn{E}]cu\[\mnc{C}C]rar
-  \mnendchorus\glueverses\mnbeginchorus\memorize[chords_euvivonafloresta_b]
+    \endrep
+  \mnendverse\glueverses\mnbeginverse
+    \beginrep\memorize[chords_euvivonafloresta_b]
     \[^\mn{C}]Eu con|\[\mnc{E}Am]vido os \[^\mn{D}]meus \[^\mn{C}]ir\[\mnc{E}C]mãos, \[^\mn{C}]va\[^\mn{E}]mos |\[\mnc{G}G]todos \[^\mn{D}]se \[^\mn{E}]cui\[\mnc{C}C]dar
-  \mnendchorus
+    \endrep
+  \mnendverse
   \notesoff
-  \beginchorus\replay[chords_euvivonafloresta_a]
+  \beginverse\replay[chords_euvivonafloresta_a]
+    \beginrep
     Estou |^dentro da ba^talha, sofren|^do mas sou fe^liz
-  \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \endrep
+  \endverse\glueverses\beginverse\replay[chords_euvivonafloresta_b]
+    \beginrep
     Nela |^estou apren^dendo, o que eu a|^inda não sa^bia
-  \endchorus
-  \beginchorus\replay[chords_euvivonafloresta_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_euvivonafloresta_a]
+    \beginrep
     Eu |^não vou enga^nar, eu |^vim e vou di^zer
-  \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \endrep
+  \endverse\glueverses\beginverse\replay[chords_euvivonafloresta_b]
+    \beginrep
     Quem qui|^ser passar nas ^provas, é come|^çar do AB^C
-  \endchorus
-  \beginchorus\replay[chords_euvivonafloresta_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_euvivonafloresta_a]
+    \beginrep
     Exami|^nar a consci^ência, é a |^primeira li^ção
-  \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \endrep
+  \endverse\glueverses\beginverse\replay[chords_euvivonafloresta_b]
+    \beginrep
     Ter fir|^meza e ter a^mor, e a|^mar os seus ir^mãos
-  \endchorus
-  \beginchorus\replay[chords_euvivonafloresta_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_euvivonafloresta_a]
+    \beginrep
     Isto eu |^digo é porque ^sei, pois es|^tou exami^nando
-  \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \endrep
+  \endverse\glueverses\beginverse\replay[chords_euvivonafloresta_b]
+    \beginrep
     É o |^tempo do a^puro, do meu |^Senhor São Jo^ão
-  \endchorus
-  \beginchorus\replay[chords_euvivonafloresta_a]
+    \endrep
+  \endverse
+  \beginverse\replay[chords_euvivonafloresta_a]
+    \beginrep
     Já foi |^dito e lem^brado, todos |^prestem aten^ção
-  \endchorus\glueverses\beginchorus\replay[chords_euvivonafloresta_b]
+    \endrep
+  \endverse\glueverses\beginverse\replay[chords_euvivonafloresta_b]
+    \beginrep
     O co|^meço da his^tória, vem do |^rio de Jor^dão.
-  \endchorus
+    \endrep
+  \endverse
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
     theMelody = \relative a' {
       \key c \major \time 4/4 \partial 4
