@@ -287,6 +287,9 @@
   \fi%
 }
 
+% Insert an empty line when in obeylines mode, e.g. within a song verse
+\newcommand{\emptyline}{\par\hspace{0pt}\par}
+
 % Repeal the effects of \obeylines
 \newcommand\disobeylines{\catcode`\^^M=5 }%
 
