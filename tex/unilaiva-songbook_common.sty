@@ -708,7 +708,7 @@
 % \beginverse[n], where n is a plain factor number that is multiplied with
 % the \verseindentwidthbase to determine the optional extra indent depth of the
 % verse in question.
-\newdimen\verseindentwidthbase\verseindentwidthbase=2em\relax
+\newdimen\verseindentwidthbase\verseindentwidthbase=1em\relax
 
 
 % BEGIN Book titles etc
@@ -1835,19 +1835,13 @@
 % Used by \goto?? commands:
 \newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{{\symboliifont➞ }#1\ldots}}}}
 
-\newcounter{@indentrepeat}% used by \ind
-
 % This command will make a small horizontal space. Use this in the beginning
-% of each line in a verse you want to make distinct from other verses, for
-% example for a chorus or a verse with a different melody or chord set. The
-% optional parameter specifies the amount of space ie. indent depth; the
-% default is 1.
+% of each line you want to indent. The optional parameter specifies the indent
+% depth factor. The default is 1.
+%
+% To indent complete verses, use \beginverse[<n>] or \mnbeginverse[<n>] instead.
 \newcommand\ind[1][1]{%
-  \setcounter{@indentrepeat}{0}
-  \loop \ifnum\value{@indentrepeat} < #1%
-    \hspace{\verseindentwidthbase}%
-    \stepcounter{@indentrepeat}%
-  \repeat%
+  \leavevmode\kern\dimexpr #1\verseindentwidthbase\relax%
 }
 
 % This command puts an arrow with a text "next song" above it to the end of
@@ -3141,26 +3135,26 @@
 \newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
 
 
-% Is true, if baseline is increased due to being in mnverse or mnchorus
+% Is true, if baseline is increased due to being in mnverse
 \newif\if@baselineincreased\@baselineincreasedfalse
 
-\newlength{\@mnoldbaselineadj} % to save the \baselineadj before change
-%\@mnoldbaselineadj=\baselineadj % Not needed
+% Used to hold the normal baselineadj value, set by \UL@mn@savebaselineadj
+\newlength{\tmp@UL@mn@oldbaselineadj}
 
 % Save baselineadj value to a register
-\newcommand{\@mnsavebaselineadj}{%
-  \@mnoldbaselineadj=\baselineadj%
+\newcommand{\UL@mn@savebaselineadj}{%
+  \tmp@UL@mn@oldbaselineadj=\baselineadj%
 }
 
-% Reset baselineadj to the old value
-\newcommand{\@mnresetbaselineadj}{%
-  \baselineadj=\@mnoldbaselineadj%
+% Reset baselineadj to the saved (normal) value
+\newcommand{\UL@mn@resetbaselineadj}{%
+  \baselineadj=\tmp@UL@mn@oldbaselineadj%
   \@baselineincreasedfalse%
 }
 
 % Increases the spacing between lyric rows, if melody notes are on
-\newcommand{\@mnincreasebaselineadj}{%
-  \@mnsavebaselineadj%
+\newcommand{\UL@mn@increasebaselineadj}{%
+  \UL@mn@savebaselineadj%
   \ifchorded\ifshownotes%
     \ifdefined\@melodynotesdisabled%
     \else%
@@ -3908,7 +3902,11 @@
     % We are now semantically *after* the last line in vertical mode, so we
     % need to use \nointerlineskip and \hbox
     \nointerlineskip%
-    \hbox to 0pt{\UL@rep@drawbars}%
+    \hbox to 0pt{%
+      % handle extra indentation if we have that from \{mn}beginverse[<n>]
+      \kern\tmp@UL@currentverseextraindentwidth%
+      \UL@rep@drawbars%
+    }%
   \fi%
   % end block: ensure next block doesn't connect
   \BoolSetFalse{g_repcont_prop}{\the\UL@rep@level}%
@@ -4029,7 +4027,14 @@
 \renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}}
 
 % Use this instead of \rep to signify number of repeats on the first line
-% of a chorus. The parameter is the number of repetitions, as in \rep macro.
+% of a line repeat. The parameter is the number of repetitions, as in \rep
+% macro.
+% Example:
+%   \beginverse
+%     \beginrep\prep{3}
+%       lyric line
+%     \endrep
+%   \endverse
 \newcommand{\prep}[1]{%
   \raisebox{\if@baselineincreased{2ex}\else{1ex}\fi}{%
     {% block for containing the color change
@@ -4186,7 +4191,7 @@
 % Hook called at the start of every lyric line (every paragraph in verse).
 % Supports verse-specific indentation and line repeats.
 \def\UL@verse@everypar{%
-  \kern\tmp@UL@currentverseindentwidth%
+  \kern\tmp@UL@currentverseextraindentwidth%
   \ifnum\UL@rep@level>0\relax%
     \UL@rep@drawbars%
   \else%
@@ -4254,54 +4259,121 @@
     \everyverse\relax%
 }
 
+% Verse wrappers with optional indentation and safe handling of active chars
+%
+% This code extends the songs package \beginverse macro with optional
+% indentation factor, which applies to the whole verse. Optional star is
+% passed to the original macro as is.
+%
+%   \beginverse[<n>]
+%
+%   where <n> is a plain number and the indentation is:
+%   <n> * \verseindentwidthbase
+%
+%   Examples:
+%        \beginverse        % no extra indentation
+%        \beginverse[2]     % indent whole verse by 2 * \verseindentwidthbase
+%        \beginverse*       % behaves like the original starred form
+%        \beginverse*[2]    % starred + indentation
+%
+% Additionally, a replacement command is provided:
+%
+%   \mnbeginverse
+%
+%      Same interface as \beginverse (supports * and [n]), but also applies
+%      increased line spacing (baseline adjustment) suitable for verses with
+%      melody notes on other than only the first line of lyrics.
+%
+% NOTE:
+%
+% The songs package uses active characters like:
+%   ^  for chord parsing (via \SB@activehat)
+%   |  for measure bars (via \measurebar)
+%
+% When \beginverse is implemented using xparse (NewDocumentCommand),
+% xparse scans the optional star/argument BEFORE the macro body executes.
+% This scanning may peek into the verse text (even across a newline) and
+% prematurely tokenize the first character of the verse.
+%
+% If the verse begins with ^ or | on the next source line, they would normally
+% be tokenized with their default catcodes (superscript / ordinary char),
+% causing errors or literal printing (e.g. "Missing $ inserted").
+%
+% To prevent this, we temporarily make ^ and | active *before xparse scans*,
+% and temporarily bind them to the songs package meanings. After scanning,
+% we restore normal catcodes by closing the temporary group.
+%
+
 % Save the original \beginverse
 \let\@beginverseorig\beginverse
-
-% Replace the macro called at the end of each verse with version that calls
-% the original and resets the baseline to the last saved one.
+% Save the original \@SB@endverse
 \let\@SB@endverseorig\SB@endverse
-\renewcommand{\SB@endverse}{\@SB@endverseorig\@mnresetbaselineadj}
 
-\newdimen\tmp@UL@currentverseindentwidth\tmp@UL@currentverseindentwidth=0pt\relax
-
-% Sets optional indentation for the whole verse determined by the optional
-% parameter #2 (which is a factor, a plain number) and calls the original
-% \beginverse from songs package. Optional star #1 is passed to the original
-% macro as is.
-% If the optional parameter #2 is omitted, the verse is not indented. This macro
-% is called from \mnbeginverse and renewed \beginverse.
-\NewDocumentCommand{\UL@beginverse}{s o}{%
-  % set indent factor for this verse (plain number)
-  \IfValueTF{#2}{%
-    \tmp@UL@currentverseindentwidth=\dimexpr #2\verseindentwidthbase\relax%
-  }{%
-    \tmp@UL@currentverseindentwidth=0pt\relax%
-  }%
-  \IfValueTF{#1}{\@beginverseorig*}{\@beginverseorig}%
-}
-
-% \mnbeginverse macro is a replacement for the ordinary \beginverse,
-% with increased line spacing to accomodate notes also in other than the
-% first line of lyrics without resorting to \mnd macro and it's caveats.
-% For non-chorded books or if melody notes are disabled, spacing is not
-% increased.
-% Allows a star (passed to the original \beginverse) and an optional parameter
-% (a plain number factor) to determine whole verse's indentation level.
-\NewDocumentCommand{\mnbeginverse}{s o}{%
-  \@mnincreasebaselineadj%
-  \IfValueTF{#1}{\UL@beginverse*[#2]}{\UL@beginverse[#2]}%
-}
+\renewcommand{\SB@endverse}{\@SB@endverseorig\UL@mn@resetbaselineadj}
 
 % For backwards compatibility, deprecated; use \endverse instead
 \newcommand{\mnendverse}{\endverse}
 
-% This rewrite saves the default baseline adjustment.
-% Allows a star (passed to the original \beginverse) and an optional parameter
-% (a plain number factor) to determine whole verse's indentation level.
-\RenewDocumentCommand{\beginverse}{s o}{%
-  \@mnsavebaselineadj%
-  \IfValueTF{#1}{\UL@beginverse*[#2]}{\UL@beginverse[#2]}%
+% Stores the computed indentation width for the current verse.
+% This is read by the per-line \everypar hook inside the verse environment
+% and \endrep in a case where a long line is wrapped to several lines.
+\newdimen\tmp@UL@currentverseextraindentwidth
+\tmp@UL@currentverseextraindentwidth=0pt\relax
+
+% Helpers that perform let operations for our active ^ and | tokens
+\begingroup
+  \catcode`\^=\active
+  \gdef\UL@letactivehat{\let^=\SB@activehat}
+  \catcode`\|=\active
+  \gdef\UL@letactivemeasurebar{\let|\measurebar}
+\endgroup
+
+% Internal implementation of the enhanced beginverse
+% Computes the verse extra indentation width and calls the original \beginverse.
+\NewDocumentCommand{\UL@beginverse@impl}{s o}{%
+  \endgroup % close wrapper group AFTER xparse has scanned arguments
+  % set indent factor for this verse (plain number)
+  \IfValueTF{#2}{%
+    \tmp@UL@currentverseextraindentwidth=\dimexpr #2\verseindentwidthbase\relax%
+  }{%
+    \tmp@UL@currentverseextraindentwidth=0pt\relax%
+  }%
+  % forward star to the original
+  \IfBooleanTF{#1}{\@beginverseorig*}{\@beginverseorig}%
 }
+
+% Wrapper: make ^ and | active, and call \UL@beginverse@impl
+\def\UL@beginverse@wrap{%
+  \begingroup%
+    \catcode`\^=\active \UL@letactivehat%
+    \catcode`\|=\active \UL@letactivemeasurebar%
+  \UL@beginverse@impl%
+}
+
+% Drop-in replacement for songs' \beginverse with added optional [<n>]
+% indentation factor, while preserving the optional star.
+% Supports:
+%   \beginverse
+%   \beginverse*
+%   \beginverse[<n>]
+%   \beginverse*[<n>]
+\def\beginverse{%
+  \UL@mn@savebaselineadj%
+  \UL@beginverse@wrap%
+}
+
+% Like \beginverse, but first increases baseline spacing for melody notes
+% Supports:
+%   \mnbeginverse
+%   \mnbeginverse*
+%   \mnbeginverse[<n>]
+%   \mnbeginverse*[<n>]
+\def\mnbeginverse{%
+  \UL@mn@increasebaselineadj%
+  \UL@beginverse@wrap%
+}
+
+% No choruses
 
 % Choruses are deprecated, as we use \beginrep...\endrep within normal verses
 % for line repeats, but rewrite them for backwards compatibility.
