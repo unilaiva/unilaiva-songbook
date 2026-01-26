@@ -433,46 +433,70 @@ a page (or column, if using more than one) brake.
 
 To **force** a page break, use `\sclearpage` or `\scleardpage` between songs;
 the first hops to the next page and the latter jumps to the next spread
-(even page). These (or `\brk`) are sometimes needed right before a song longer
-than a spread, to correctly end the previous song with a horizontal line.
+(even page). These (or `\brk`, `\hardbrk`, `\forcebrk`) are sometimes needed
+right before a song longer than a spread, to correctly end the previous song
+with a horizontal line.
 
 
-### Repeats and choruses ###
+### Repeats ###
 
-By putting a verse between `\beginchorus` and `\endchorus` instead of
-`\beginverse` and `\endverse`, a vertical line will be shown on the left side
-of the verse in question. In this songbook that visual que is used to mark an
-immediate repetition of the verse, though it is not the way these `songs`
-package commands is meant to be used, and nested repeats can't be done this
-way (we use the vertical line only for outmost repeats). Insert command
-`\glueverses` between these verses / choruses, if you want them to appear as
-one verse. To signal repeat of more than two times, add a `\rep{n}` (replacing
-*n* with the actual repeat count) alone on the first line of the 'chorus'.
+There are two ways to signify repeating sections.
 
-When some other phrase (than a verse) is repeated, or you need inner nested
-repeats, the repeated part is to be put between `\lrep` and `\rrep` macros.
-If the repeat count is anything else than two, it will be indicated by putting
-`\rep{n}` after the `\rrep` macro. If the span of the repeat is clear (for
-example exactly one line), `\rep{n}`macro can be used by itself.
+The inline repeat macros `\lrep` (left mark) and `\rrep` (right mark) are marks
+that can be put anywhere, including in the middle of lyric lines. Additionally,
+`\rep{<n>}` can be added e.g. after the right mark to signify the number of
+repeats <n>.
 
-Actual choruses i.e. verses that are jumped to more than once throughout the
-song can be marked with `\beginchorus` or `\beginverse` (depending on their
-repeat behaviour). For clarity each lyrics line within them can to be prefixed
-with `\ind` macro, which indents the line a bit.
+The other way is to use vertical bars on the left of the lyric lines to inform
+that those lines are to be repeated. These bars can span multiple lines and
+support nesting with multiple lines. Put the repeated section between
+`\beginrep` and `\endrep` inside a verse. Example:
 
-Elsewhere in the song, you can mark the spots from where to jump to chorus
-(or any other verse) with `\goto{Beginning words of the verse}`.
+```tex
+\beginsong{My Song}
+  \beginverse
+    \beginrep
+      Here are lyrics for the verse
+      That is completely repeated.
+    \endrep
+  \endverse
+  \beginverse
+    This lyric line has no repeats
+    \beginrep
+      These two lines have
+      one repeat bar sign
+      \beginrep
+        This line has two levels of repeats
+      \endrep
+    \endrep
+  \endverse
+\endsong
+```
+
+One repeat bar is usually used to signify that the part is sung two times. To
+mark a different amount of repetitions, you can e.g. use the previously
+discussed `\rep{<n>}` macro at the last line of the repeated section, or you
+can use `\prep{<n>}` which creates a repeat number on it's own line. This is
+meant to be used right after `\beginrep`.
+
+Also, you can mark spots from where to jump to a different part of the song with
+`\goto{Beginning words of the verse}`.
+
+Please note that \beginchorus...\endchorus of the original `songs` package is
+not supported in this system to signify repeating parts.
 
 
 ### Measure bars ###
 
-Use measure bar lines `|` (the pipe character) to mark only the beginning of a
-measure, never the end. If a line ends on a measure that has no lyrics on the
-same line, use ` \e` macro to highlight that there indeed is a measure there,
-which might or might not continue on the next line. `\e` will be replaced with
-a dash in the final document, if it also has measure bar lines in it, and will
-be ignored in case it hasn't (as is the case with 'lyric' songbooks without
+Use measure bar lines `|` (the pipe character) to mark only the beginning of
+each measure, never the end. If a line ends on a measure that has no lyrics on
+the same line, use ` \e` macro to highlight that there indeed is a measure
+there, which might or might not continue on the next line. `\e` will be replaced
+with a dash in the final document, if it also has measure bar lines in it, and
+will be ignored in case it hasn't (as is the case with 'lyric' songbooks without
 chords). So the policy is this: one bar line per bar!
+
+To turn off measure bars from the final document, use `\measuresoff`.
 
 
 ### Chords ###
@@ -480,7 +504,7 @@ chords). So the policy is this: one bar line per bar!
 Chords are set with `\[x]` commands (replace *x* with the chord), which are
 mixed in with the lyrics. The chord appears above the word of lyrics that is
 immediately after (without space) the chord definition. Melodies and beats
-are also defined within `\[x]` commands, as explained further down.
+are also defined within `\[]` commands, as explained further down.
 
 
 ### Melodies ###
@@ -488,7 +512,7 @@ are also defined within `\[x]` commands, as explained further down.
 #### Full melodies ###
 
 Full melodies are written using `lilypond` syntax. It produces actual sheet
-music. See documentation in
+music and MIDI files. See documentation in
 [http://lilypond.org/](http://lilypond.org/). `lilypond` parts must be put
 outside of verses (but inside of a song), and wrapped within `lilywrap`
 environment. See examples in `content_songs_*.tex`.
@@ -535,8 +559,8 @@ in the main document preamble (after including
 Call `\notesoff` command between verses to disable showing of notes in the
 following verses of that song.
 
-The recommended use for this feature is to display the first sung non-unison
-melody interval of each song. So just specify the first two melody notes and
+The recommended use for this feature is to at least display the first sung
+non-unison melody interval of each song. So just specify the first two melody notes and
 use `\notesoff` after the first verse.
 
 Choose the correct variant:
@@ -558,9 +582,17 @@ the same chord definition brackets.
 one can put two or three notes on top of one chord. They are also meant to be
 used only on the first line of lyrics in a verse.
 
-`\mnd` doesn't put the note so high above the chord line, so use it on other
-than the first line of lyrics with the caveat, that chords and notes are put
-beside each other.
+`\mnd` puts the note at about same height as chords, so it can be used in any
+line in the lyrics with the caveat, that chords and notes are put beside each
+other.
+
+If you wish to have melody hints above the chord line throughout all lines of
+a verse, begin the verse with `\mnbeginverse`. It adjusts line spacing to allow
+for all melody note variants.
+
+There are `\ma*` macros also that are similar to `\mn*` macros, except that
+they print the note in an alternate color. `\mauii` and `\madii` macros allow
+for printing normal and alternate notes on top of each other.
 
 Example usage:
 
@@ -637,8 +669,7 @@ be a song selection booklet and will compile it.
 Tentative TODO
 --------------
 
-*  Add more songs (especially Finnish ones)
-*  Add chords for existing songs with tag `(chords missing)`
+*  Add more songs
 *  Add translations and explanations for existing songs
 *  Improve existing translations and explanations
 *  Improve the introduction for mantras and the Finnish mythology section
