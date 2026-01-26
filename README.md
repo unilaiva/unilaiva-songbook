@@ -149,7 +149,7 @@ included in many LaTeX installations by default, to be installed on the system.
 They are all included with `\usepackage` commands in the beginning of file
 `tex/unilaiva-songbook_common.sty`.
 
-One of the package dependencies, [songs](http://songs.sourceforge.net/), is
+One of the package dependencies, [songs](https://songs.sourceforge.net/), is
 included in the project tree and used instead of a one possibly installed on
 the system. This is because of compatibility reasons to ensure a specific
 version: the package is used heavily and some of its macros are redefined.
@@ -399,7 +399,7 @@ Adding and editing songs
 To begin, see the already existing songs in `content` directory. Also, it is
 a good idea to take a look at `songs` package documentation. It is included as
 a PDF file in `tex/ext_packages/songs/songs.pdf`. It can also be viewed online at
-[http://songs.sourceforge.net/songsdoc/songs.html](http://songs.sourceforge.net/songsdoc/songs.html).
+[https://songs.sourceforge.net/songsdoc/songs.html](https://songs.sourceforge.net/songsdoc/songs.html).
 
 Below we're explaining mostly Unilaiva-specific things, so understanding how
 `songs` package works is beneficial.
@@ -513,7 +513,7 @@ are also defined within `\[]` commands, as explained further down.
 
 Full melodies are written using `lilypond` syntax. It produces actual sheet
 music and MIDI files. See documentation in
-[http://lilypond.org/](http://lilypond.org/). `lilypond` parts must be put
+[https://lilypond.org/](https://lilypond.org/). `lilypond` parts must be put
 outside of verses (but inside of a song), and wrapped within `lilywrap`
 environment. See examples in `content_songs_*.tex`.
 
