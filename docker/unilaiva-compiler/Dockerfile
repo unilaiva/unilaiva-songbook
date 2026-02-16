@@ -52,23 +52,34 @@ COPY 99-tex-max-memory.cnf /etc/texmf/texmf.d/
 # 1. Generate Finnish locale, which is used for sorting indices by default.
 # Finnish alphabet is a superset of English, so this does not need to be changed
 # for English-only books.
-# 2. Create index databases used by TeX
-# 3. Setup a non-root user for everything. Make it's home world-writable so that
+# 2. Setup a non-root user for everything. Make it's home world-writable so that
 #    we can use host machine's user id and still have access to container's
 #    ~/.texlive20?? when compiling.
 RUN locale-gen fi_FI.utf8 \
-  && update-texmf \
+  && useradd --create-home --shell /bin/bash unilaiva \
+  && chmod 777 /home/unilaiva \
+  && chmod g+s /home/unilaiva
+
+# Create index databases and caches used by Tex
+RUN update-texmf \
   && mtxrun --generate \
   && texhash \
-  && luaotfload-tool --update \
-  && useradd --create-home --shell /bin/bash unilaiva \
-  && chmod 777 /home/unilaiva
+  && fc-cache -f \
+  && luaotfload-tool --update
 
 
 USER unilaiva
 
 ENV HOME="/home/unilaiva" \
     IN_UNILAIVA_DOCKER_CONTAINER="true"
+
+# Create user caches and make world-writeable to be used with host machine's
+# user id:
+RUN fc-cache -f \
+  && luaotfload-tool --update \
+  && lilypond -dshow-available-fonts >/dev/null \
+  && find /home/unilaiva -type d -exec chmod 777 {} + \
+  && find /home/unilaiva -type f -exec chmod 666 {} +
 
 # Make "/home/unilaiva" a volume to make texmf cache within it persistent for a
 # slight performance boost. Otherwise it is just generated each time on demand.
