@@ -132,7 +132,7 @@
         { | a2.:m }
       }
     }
-    \layout { #(layout-set-staff-size 14) } % for better fit
+    \setStaffSize #14 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
@@ -262,7 +262,7 @@
         { | c | d | d:7 | g }
       }
     }
-    \layout { #(layout-set-staff-size 15) } % to fit whole song on one spread
+    \setStaffSize #15 % to fit whole song on one spread
     \include "tex/lp-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
@@ -1645,7 +1645,7 @@
     \endrep
   \endverse
   \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
-    \layout { #(layout-set-staff-size 14) } % to fit all on one spread
+    \setStaffSize #14 % to fit all on one spread
     theMelody = \relative c'' {
       \key c \major \time 4/4 \partial 4.
       \repeat volta 2 {

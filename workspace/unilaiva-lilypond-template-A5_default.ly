@@ -25,7 +25,7 @@
 
     % Lilypond version is set in an included file, but must be explicitly
     % stated here in the beginning of the document to avoid an error.
-    \version "2.22.1"
+    \version "2.24.3"
 
     #(set-default-paper-size "a5")
     \paper {
@@ -38,7 +38,9 @@
 
 
 
-% BEGIN SONG DATA
+% BEGIN SONG DATA:
+% (Copy contents of this to the TeX document and uncomment lines starting with
+% "\begin", "\include" and "\end".)
 
 %   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by <person>, latest update on <yyyy-mm>
@@ -54,20 +56,21 @@
     theChords = \chordmode {
 
     }
-    %\layout { #(layout-set-staff-size 15) } % for better fit
-    %\include "tex/lp-include-tail.ly"
+    %\setStaffSize #15 % for better fit
+%     \include "tex/lp-include-tail.ly"
 %   \end{lilypond}\end{lilywrap}
 
 % END SONG DATA
 
 
 
-% The following is grabbed from tex/lp-include-tail.ly and its child
+% The following is grabbed from tex/lp-include-tail.ly and some of its child
 % includes. They are here for easy changes, and for including the chords in the
 % MIDI output when transcribing.
 
-% BEGIN lp-include-tail.ly (and its includes) without the include
+% BEGIN lp-include-tail.ly
 
+    \include "tex/lp-internal-common-tail.ly"
     \score {
       <<
         \new ChordNames {
@@ -96,9 +99,7 @@
       >>
     }
 
-% END lp-include-tail.ly
-
-% BEGIN lp-internal-midi.ly (with chords uncommented)
+  % BEGIN lp-internal-midi.ly (would be included here) with chords uncommented
 
     \score { % for MIDI
       <<
@@ -129,4 +130,6 @@
       }
     }
 
-% END lp-internal-midi.ly
+  % END lp-internal-midi.ly
+
+% END lp-include-tail.ly
