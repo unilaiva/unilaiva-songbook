@@ -311,8 +311,7 @@
     \setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
-  \begin{translation}[EN]
+    \begin{translation}[EN]\ifshowlilypond\scriptsize\fi % to fit whole song on one spread
     I learned in this world not to harm anyone
     And I wish to demonstrate beauties that my Father has
     This Sovereign Saint of Universal Power
@@ -722,7 +721,7 @@
         s4 | b1:m | d | d2 a | d2.
       }
     }
-    \setStaffSize #15 % for better fit
+    %\setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
@@ -1314,7 +1313,7 @@
         | e:m7.5- | a | d:m | d2:m
       }
     }
-    \setStaffSize #15 % for better fit
+    %\setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
@@ -1476,7 +1475,7 @@
         }
       }
     }
-    \setStaffSize #15 % for better fit
+    %\setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
@@ -1672,7 +1671,7 @@
         s4 | g1 | c2.
       }
     }
-    \setStaffSize #14.6 % for better fit
+    %\setStaffSize #14.6 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN] \ifshowlilypond\scriptsize\fi
@@ -1860,7 +1859,7 @@
         | a2:m c | f2 c4
       }
     }
-    \setStaffSize #14.6 % for better fit
+    %\setStaffSize #14.6 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN] \ifshowlilypond\scriptsize\fi
@@ -1940,7 +1939,7 @@
       \key b \minor \time 3/4 \partial 4
       \sectionLabel "A"
       \repeat segno 2 {
-        e4 \pomark | a( a) a | cis, d cis | e2.( | e2) e4 | e( e) e | e e e | fis2.( | fis2)
+        e4 \pomark | a( a) a | cis, d cis | e2.( | e2) e4 | e( e) e | e e e | fis2.( | fis2) \break
         \sectionLabel "B"
         \repeat volta 2 {
           << fis4 \single\altcol b,4 \altmark "ii" >> | b( b) b | b b b | e cis b | a2 a4 | a4( a4) a4 | a4 gis a | b2.( | b2)
@@ -2004,7 +2003,7 @@
         }
       }
     }
-    \setStaffSize #15 % for better fit
+    %\setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
@@ -2367,7 +2366,7 @@
         | fis:7 b2:m
       }
     }
-    \setStaffSize #15 % for better fit
+    %\setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
@@ -2522,7 +2521,7 @@
       s4. | c1 | c | c2 g2 | c2~8
       s4. | a1:m | c | c2 g2:7 | c2~8
     }
-    \setStaffSize #13.4 % for better fit
+    \setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN] \ifshowlilypond\scriptsize\fi
@@ -2654,7 +2653,7 @@
         | a | a:7 | d:m | d4:m
       }
     }
-    \setStaffSize #15 % for better fit
+    %\setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
@@ -2893,30 +2892,30 @@
   % verse 1
   \mnbeginverse\memorize
     \beginrep
-      \[^\mn{F#}]Ma|\[\mnc{B}Bm]mãe Vos\[^\mn{D}]so |\[^\mn{F#}]bri\[^\mn{D}]{lho\jw é} \[^\mn{C#}]tão |\[^\mn{B}]lin|\[B7]do \altchords{\id[1]{(Cm)}|Cm | - | - |C7}
+      \[^\mn{F#}]Ma|\[\mnc{B}Bm]mãe Vos\[^\mn{D}]so |\[^\mn{F#}]bri\[^\mn{D}]{lho\jw é} \[^\mn{C#}]tão |\[\mnc{B}B7]lin|do \altchords{\id[1]{(Cm)}|Cm | - |C7 | \e}
       A |\[\mnc{E}Em]sombra \[^\mn{G}]{é\jw a}|\[^\mn{B}]pe\[^\mn{G}]nas \[^\mn{F#}]um |\[^\mn{E}]véu | \e \altchords{|Fm | - | - | \e}
       Vos\[^\mn{F#}]sa |\[\mnc{C#}F#]face |\[F#7]i\[^\mn{D}]lu\[^\mn{E}]mi|\[\mnc{F#}Bm]nada \altchords{|G |G7 |Cm}
-      Ma|\[\mnc{E}Em]mãe da |\[\mnc{D}Em7/D]ter\[^\mn{C#}]ra, \[^\mn{B}]Ma|\[\mnc{A#}F#]mãe \[^\mn{C#}]do |\[\mnc{B}Bm]céu | \e \altchords{|Fm |Fm7/E\flt{} |G |Cm | \e}
+      Ma|\[\mnc{E}Em]mãe da |\[\mnc{D}G]ter\[^\mn{C#}]ra, \[^\mn{B}]Ma|\[\mnc{A#}F#]mãe \[^\mn{C#}]do |\[\mnc{B}Bm]céu | \e \altchords{|Fm |A\flt{} |G |Cm | \e}
     \endrep
   \mnendverse
   \notesoff
   % verse 2
   \beginverse
     \beginrep
-      E |^Sois a |luz, Mãe da |luz |^ \e \altchords{|Cm | - | - |C7}
+      E |^Sois a |luz, Mãe da |^luz | \e \altchords{|Cm | - |C7 | \e}
       A |^luz que |vem de Je|sus | \e \altchords{|Fm | - | - | \e}
       E|^terno |^brilho do |^sol \altchords{|G |G7 |Cm}
-      |^Vida, ca|^minho, a |^todos con|^duz | \e \altchords{|Fm |Fm7/E\flt{} |G |Cm | \e}
+      |^Vida, ca|^minho, a |^todos con|^duz | \e \altchords{|Fm |A\flt{} |G |Cm | \e}
     \endrep
   \endverse
   \noteson
   % verse 3
   \mnbeginverse[1]
     \beginrep
-      \[\mn{F#}]No |\[\mnc{B}Bm]claro,\jw a \[\mn{D}]pre|\[\mn{F#}]sen\[\mn{D}]ça \[\mn{C#}]de |\[\mn{B}]Deus |\[B7]{} \e \altchords{|Cm | - | - |C7}
+      \[\mn{F#}]No |\[\mnc{B}Bm]claro,\jw a \[\mn{D}]pre|\[\mn{F#}]sen\[\mn{D}]ça \[\mn{C#}]de |\[\mnc{B}B7]Deus | \e \altchords{|Cm | - |C7 | \e}
       Para |\[\mnc{E}Em]sempre \[\mn{G}]eu |\[\mncii{B}{G}]sou, \[\mn{F#}]sou |\[\mn{E}]eu | \e \altchords{|Fm | - | - | \e}
       \[\mn{F#}]Cons|\[\mnc{C#}F#]tante sa|\[F#7]ú\[\mn{D}]de \[\mn{E}]em |\[\mnc{F#}Bm]si \altchords{|G |G7 |Cm}
-      \[\mn{F#}]A |\[\mnc{D}Em7/D]vi\[\mn{C#}]da \[\mn{B}]que |\[\mnc{A#}F#7]nunca \[\mn{C#}]mor|\[\mnc{B}Bm]reu \altchords{|Fm7/E\flt{} |G7 |Cm}
+      \[\mn{F#}]A |\[\mnc{D}G]vi\[\mn{C#}]da \[\mn{B}]que |\[\mnc{A#}F#7]nunca \[\mn{C#}]mor|\[\mnc{B}Bm]reu \altchords{|A\flt{} |G7 |Cm}
     \endrep
   \mnendverse
   \begin{lilywrap}\begin{lilypond}[]
@@ -2971,16 +2970,16 @@
     theChords = \chordmode {
       \repeat segno 2 {
         \repeat volta 2 {
-          s4 | b2.:m | b:m | b:m | b:7 | e:m | e:m | e:m | e:m
+          s4 | b2.:m | b:m | b:7 | b:7 | e:m | e:m | e:m | e:m
           | fis | fis:7 | b:m | e:m | b:m | fis | b:m | b2:m
         }
       }
       \repeat volta 2 {
         s4 | b2.:m | b:m | b:m | b:7 | e:m | e:m | e:m | e:m
-        | fis | fis:7 | b:m | e:m7/d | fis:7 | b2:m
+        | fis | fis:7 | b:m | g | fis:7 | b2:m
       }
     }
-    \setStaffSize #15 % for better fit
+    %\setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
@@ -3179,7 +3178,7 @@
     Esta |Santa Dou|^{trina nos} |^deu | \e
     \endrep
   \endverse
-  \ifchorded\ifshowlilypond\vspace{-.5em}\fi\fi % to fit on a spread
+  \ifchorded\ifshowlilypond\vspace{-1ex}\fi\fi % to fit on a spread
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2025-12
     % \header {
@@ -3268,7 +3267,7 @@
         { | e2.:7 | a:m | a2:m }
       }
     }
-    \setStaffSize #9.8 % for better fit
+    \setStaffSize #12.5 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
@@ -3585,13 +3584,7 @@
     ^Do meu |Mestre ^do meu |^Pai ^ \altchords{| - B7 |E}
     \endrep
   \endverse
-  \begin{translation}[EN]
-    I am navigating and I want to arrive there
-    Together with the Virgin Mary and my Father Oxalá
-    \nextverse
-    With love and joy, so that I can teach
-    This Divine Doctrine of my Master of my Father
-  \end{translation}
+  \ifshowlilypond\forcebrk\fi
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2025-12
     % \header {
@@ -3635,6 +3628,13 @@
     %\setStaffSize #15 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I am navigating and I want to arrive there
+    Together with the Virgin Mary and my Father Oxalá
+    \nextverse
+    With love and joy, so that I can teach
+    This Divine Doctrine of my Master of my Father
+  \end{translation}
 \endsong
 
 
@@ -3798,7 +3798,7 @@
         A | bên -- ção de Pa -- pai; __ _
         Por | to -- dos Vos -- sos fi -- lhos;
         Es -- | ta __ _ luz di -- vi -- nal. __ _ _
-        % 
+        %
         Só | Vós com Vos -- so bri _ -- lho;
         No | rei -- no do as -- tral; __ _
         "" Nos | dai nos -- sa fir -- me _ -- za;
@@ -4240,7 +4240,7 @@
       % 2.D:ii
       s4 | f2. | f | f | f | c | c | a:m | d:m | g:7 | c | c2
     }
-    \setStaffSize #14.5 % for better fit
+    %\setStaffSize #14.5 % for better fit
     \include "tex/lp-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
