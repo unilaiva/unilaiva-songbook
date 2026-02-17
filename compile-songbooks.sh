@@ -721,7 +721,7 @@ compile_document() {
   # (last level only) is created if it doesn't exist. Note the need to include
   # the path for the log file, as we are not in the subdirectory yet.
   local log01file="log-01_lilypond.log"
-  lilypond-book -f latex --latex-program=lualatex --process="lilypond -dno-point-and-click" \
+  lilypond-book -f latex --latex-program=lualatex --pdf --process="lilypond -dno-point-and-click" \
                 --output="${temp_dirname_twolevels}" \
                 --use-source-file-names \
                 "${document_basename}.tex" \
