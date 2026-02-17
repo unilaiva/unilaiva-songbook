@@ -105,7 +105,7 @@ Then start the command prompt and run the following commands:
   1. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   2. `cd unilaiva-songbook`
   3. `./compile-songbooks.sh`
-  
+
 If `git` is not installed, it will be automatically installed by the OS when
 trying to run it for the first time.
 
@@ -124,11 +124,12 @@ execute the compilation script with `--no-docker` option.
 These dependencies are included in the Docker image, and need be installed on
 the host system only if compiling without using the Docker image.
 
-  * Newish LaTeX 2e distribution (TeX Live 2023 is recommended) with some fairly
-    standard packages and the binaries `lualatex` and `texlua`. If you use an
-    older LaTeX distribution, you might have a problem with incorrect line
-    breaking within songs, which can be corrected by deleting the rewrite
-    of \SB@obeylines macro in the unilaiva-songbook-common.sty file.
+  * Newish LaTeX 2e distribution with LaTeX 3 programming layer (TeX Live 2025
+    is recommended) with some fairly standard packages and the binaries
+    `lualatex` and `texlua`. If you use an older LaTeX distribution, you might
+    have a problem with incorrect line breaking within songs, which can be
+    corrected by removing the rewrite of \SB@obeylines macro in the
+    unilaiva-songbook-common.sty file.
   * Lilypond installation version 2.24.3 (or probably any later one) with the
     binary `lilypond-book`
   * Fonts 'Noto Sans' and 'Noto Serif', with medium and extrabold weights
