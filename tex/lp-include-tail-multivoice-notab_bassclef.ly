@@ -14,6 +14,7 @@
     %%
     %% See file 'lp-include-head.ly' for documentation.
     %%
+    \include "tex/lp-internal-common-tail.ly"
     \score {
       <<
         \new ChordNames {

@@ -39,19 +39,6 @@
     #(set-global-staff-size 18)
 
     \paper {
-      %% This sets up custom fonts. They must be loaded in the LaTeX document
-      %% as packages(?). See fonts available to lilypond with command
-      %% 'lilypond -dshow-available-fonts x', though it doesn't show which
-      %% are installed in the document.
-      %% See: https://lilypond.org/doc/v2.22/Documentation/notation/fonts#entire-document-fonts
-      %% Commented out for now as it multiplies compile time, using defaults.
-      %       #(define fonts
-      %         (set-global-fonts
-      %           #:roman "NotoSans-ExtraCondensedMedium"
-      %           #:sans "NotoSans-ExtraCondensedMedium"
-      %           #:factor (/ staff-height pt 20)
-      %                    ))
-
       indent = #0
       ragged-right = ##f
       ragged-last = ##f
@@ -65,7 +52,7 @@
       %system-system-spacing.padding = #1 % default: #1
     }
 
-    % About vertical spacing: https://lilypond.org/doc/v2.22/Documentation/notation/flexible-vertical-spacing-within-systems#spacing-of-non_002dstaff-lines
+    % About vertical spacing: https://lilypond.org/doc/v2.24/Documentation/notation/flexible-vertical-spacing-within-systems#spacing-of-non_002dstaff-lines
     \layout {
       \context {
         \Score {
@@ -76,12 +63,6 @@
             .default-staff-staff-spacing.basic-distance = #10 % default: #10?
           \override VerticalAxisGroup
             .default-staff-staff-spacing.minimum-distance = #10 % default: #10?
-          \override SectionLabel
-            .stencil = #(make-stencil-boxer 0.2 0.2 ly:text-interface::print)
-          \override SectionLabel
-            .color = #blue
-          \override SectionLabel
-          .font-size = #-1 % default: +1?
         }
       }
       \context {
@@ -92,7 +73,7 @@
           \override VerticalAxisGroup
             .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
           \override VerticalAxisGroup
-            .nonstaff-unrelatedstaff-spacing.padding = #0.5 % default: #0.5
+            .nonstaff-unrelatedstaff-spacing.padding = #1.5 % default: #0.5
         }
       }
       \context {
@@ -101,11 +82,13 @@
           \override VerticalAxisGroup
             .staff-affinity = #CENTER
           \override VerticalAxisGroup
-            .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
+            .nonstaff-nonstaff-spacing.basic-distance = #2.1 % default: #2.0
           \override VerticalAxisGroup
+            .nonstaff-nonstaff-spacing.minimum-distance = #2.1 % default: #0.0?
+            \override VerticalAxisGroup
             .nonstaff-nonstaff-spacing.padding = #0.5 % default: #0.5
           \override VerticalAxisGroup
-            .nonstaff-nonstaff-spacing.minimum-distance = #0.5 % default: #0.5
+            .nonstaff-relatedstaff-spacing.padding = #0.5 % default: #0.5
           \override VerticalAxisGroup
             .nonstaff-unrelatedstaff-spacing.padding = #1.5 % default: #1.5
         }

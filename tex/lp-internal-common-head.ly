@@ -1,5 +1,5 @@
     % Lilypond version:
-    \version "2.24.3"
+    \version "2.24.4"
 
     % Note names language; nederlands has: c sharp = cis, b flat = bes, b = b
     \language "nederlands"
@@ -59,7 +59,25 @@
       \context {
         \Voice \consists "Ambitus_engraver" % Shows vocal range
       }
+      \context {
+        \Score {
+          % Setup \sectionLabel style:
+          \override SectionLabel
+          .stencil = #(make-stencil-boxer 0.2 0.2 ly:text-interface::print)
+          \override SectionLabel
+          .color = #blue
+          \override SectionLabel
+          .font-size = #0 % default: +1?
+        }
+      }
     }
+
+    % Optional per-snippet override requested by \setStaffSize
+    #(define myStaffSize #f)
+
+    setStaffSize =
+    #(define-void-function (parser location size) (number?)
+                           (set! myStaffSize size))
 
     % Draw a box around text and color it blue. Used by other functions.
     #(define-markup-command
