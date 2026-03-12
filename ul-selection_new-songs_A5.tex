@@ -12,23 +12,22 @@
  %%
 
 
-%% Set the title of this document:
-\providecommand{\mainbooktitle}{Unilaiva Selection}
-\providecommand{\subbooktitle}{New songs, 2023-03-26 -- \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}
-\providecommand{\bookmotto}{a selection of songs from Unilaiva Songbook}
+\documentclass[
+  title={Unilaiva Selection},
+  subtitle={New songs, 2023-03-26 -- \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day},
+  motto={a selection of songs from Unilaiva Songbook}
+]{ulsbs-songbook-unilaiva-default}
+
 
 %% Uncomment this and set the filename without path (the file must be found
 %% in content/img), to use a single-page PDF as a cover. Otherwise a cover
 %% will be generated.
 % \newcommand{\coverpdf}{my_selection_cover.pdf}
 
-%% Required:
-\input{tex/setup_default-A5-fullmusic_include.tex}
-
 %% Here we set the song numbers included in this selection:
 \includeonlysongs{271,272,273,274,627,628,629,630,631,632,633,634,635,636}
 
 %% Required:
-\input{tex/ul-selection_include.tex}
+\input{ul-selection_include.tex}
 
 %% That's it! Nothing more is needed.

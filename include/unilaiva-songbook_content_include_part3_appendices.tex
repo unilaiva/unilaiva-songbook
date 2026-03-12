@@ -1,0 +1,39 @@
+% SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Content include: Unilaiva Songbook appendices (indices, technical notes).
+% This file is part of the 'ulsbs' package.
+
+%% unilaiva-songbook_content_include_part3_appendices.tex
+%% ======================================================
+%%
+%% This file is a partial .tex file to be included with \input macro
+%% to any Unilaiva songbook main .tex file within \begin{document}
+%% and \end{document} like this:
+%%
+%%   \input{unilaiva-songbook_content_include_part3_appendices.tex}
+%%
+%% This file contains the appendices.
+%%
+
+  % Here start appendices: chapter numbering resets and switches to alphabetic
+  \appendix
+
+  {% in a block for settings not to bleed
+
+    \usechaptercolorsfalse
+
+    \ifchorded%
+      \chapter{Technical}
+        \input{content/section_technical_information.tex}
+    \fi
+
+    \clearpage\scleardpage % both are needed here
+    % to have totally flat right edge of indices (microtype package):
+    \microtypesetup{protrusion=false}
+    \showindex[2]{Song Index}{titleidx} % song title index
+    % \showindex{Author Index}{authidx} % song author index
+    \scleardpage%
+    \showindex[2]{Tag Index}{tagidx} % tags index
+    \microtypesetup{protrusion=true} % back to default (microtype package)
+
+  }

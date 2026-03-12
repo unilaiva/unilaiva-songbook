@@ -67,7 +67,7 @@
     %   title = "Pai Nosso"
     %   composer = "Padr. Sebastião"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
@@ -121,7 +121,7 @@
       }
     }
     \setStaffSize #15 % for better division
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     Our father who art in heaven, hallowed is our Lord
@@ -212,7 +212,7 @@
     %   title = "Eu Chamei Meu Mestre"
     %   composer = "Padr. Sebastião"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
@@ -327,7 +327,7 @@
       }
     }
     \setStaffSize #15 % for better division
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]\iflyriconly\scriptsize\fi% to fit on one page in lyrics-only books
     I called my Master in the name of the truth
@@ -429,7 +429,7 @@
     %   title = "Chamei o Mestre Juramidam"
     %   composer = "Padr. Sebastião"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
@@ -526,7 +526,7 @@
       <<
         \new ChordNames { \theChords }
         \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \include "tex/lp-internal-scorepart-tabstaff.ly"
+        \include "ulsbs-internal-scorepart-tabstaff.ly"
         \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
         \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
         \new Lyrics \lyricsto "theVoice" { \theLyricsThree }
@@ -541,7 +541,7 @@
       >>
       \layout { }
     }
-    \include "tex/lp-internal-score-midi.ly"
+    \include "ulsbs-internal-score-midi.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
@@ -619,7 +619,7 @@
     %   title = "As Estrelas"
     %   composer = "Mestre Irineu Serra"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \major \time 4/4 \partial 4
@@ -683,7 +683,7 @@
       }
     }
     \setStaffSize #14 % to fit translation, too
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \iflyriconly\forcebrk\fi
   \begin{translation}[EN]
@@ -789,7 +789,7 @@
     %   title = "Os Espíritos Estão Chegando"
     %   composer = "Alex Polari"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative c''' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 6/4 \partial 4.
@@ -879,7 +879,7 @@
       }
     }
     \setStaffSize #15.5 % for better division
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
@@ -965,7 +965,7 @@
     %   title = "Linha do Arroxim"
     %   composer = "Vera Fróes"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
@@ -1039,7 +1039,7 @@
         s4 | a2:m c2 | g2 c2 | \parenthesize e2:m g2 | c2.
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
@@ -1120,7 +1120,7 @@
     %   title = "Linha do Tucum"
     %   composer = "Mestre Irineu Serra"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative b' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \minor \time 4/4 \partial 4.
@@ -1198,7 +1198,7 @@
       }
     }
     \setStaffSize #14.5 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     I sing here on earth, the love that God gives me
@@ -1293,7 +1293,7 @@
     %   title = "Olho Para o Firmamento"
     %   composer = "Padr. Alfredo"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4
@@ -1387,7 +1387,7 @@
       }
     }
     \setStaffSize #15 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
@@ -1469,7 +1469,7 @@
     %   title = "Marachimbé"
     %   composer = "Padr. Alfredo"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative d'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \major \time 4/4 \partial 4.
@@ -1527,7 +1527,7 @@
       }
     }
     \setStaffSize #14 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
@@ -1612,7 +1612,7 @@
     E ^no sa|^{lão can}^tar hi|^ná^rio
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative d'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key d \major \time 4/4 \partial 4.
@@ -1679,7 +1679,7 @@
       }
     }
     \setStaffSize #15 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]\iflyriconly\scriptsize\fi% to fit on one page in lyrics-only books
     Now I stop and ask, I ask and pray to the Lord God
@@ -1740,7 +1740,7 @@
     \noteson\[\mnd{E}]Ol\[\mnd{C}]han\notesoff|^do as coi^sas de |^Deus e ^prestan|^do bem ^aten|^ção^
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4
@@ -1797,7 +1797,7 @@
         |a2:m \parenthesize a:7 |d1:m |a:m |c2.
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     I ask my Father, I know that You have the power
@@ -1848,7 +1848,7 @@
     Fel^iz da|^quele que bem ^traba|^lhar \altchords{|G F |C}
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 2.
@@ -1917,7 +1917,7 @@
         { | c4 \bar "|." }
       }
     }
-    \include "tex/lp-include-tail-lyricsbetween.ly"
+    \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     When you hear it said that St. John is on the earth
@@ -1976,7 +1976,7 @@
     Bati|^zou {\noteson\[\mnd{G}]no \[\mnd{F}]ri}|^{o de} Jor|^dão |^ \e \altchords{|C |G7 |C |\ac(1){C7}}
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva, updated on 2023-02
     theMelody = \relative g' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -2041,7 +2041,7 @@
      }
     }
     \setStaffSize #13 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     My Father I ask that You hear me, for me to ask for forgiveness
@@ -2054,4 +2054,3 @@
     The one who baptizes here, is baptized in the Jordan River
   \end{translation}
 \endsong
-

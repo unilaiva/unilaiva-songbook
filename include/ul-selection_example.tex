@@ -1,0 +1,37 @@
+% SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Example selection document (subset of songs) using the ulsbs class.
+% This file is part of the 'ulsbs' package.
+%
+%% Selection of songs from unilaiva-songbook: an example
+%% =====================================================
+%%
+%% To create your own selection, just make a copy of this file in the
+%% project root, and edit the new file with your own \includeonlysongs
+%% list. Then run the compile script for that file.
+%%
+%% To use a custom image as a cover, create a single page PDF of it,
+%% put it in content/img, and uncomment \coverpdf command below (in
+%% your new file) and set the correct file name (without path).
+%%
+
+
+\documentclass[
+  title={Unilaiva Selection},
+  subtitle={Example Set of Songs},
+  motto={a selection of songs from Unilaiva Songbook}
+]{ulsbs-songbook-unilaiva-default}
+
+
+%% Uncomment this and set the filename without path (the file must be found
+%% in content/img), to use a single-page PDF as a cover. Otherwise a cover
+%% will be generated.
+% \newcommand{\coverpdf}{my_selection_cover.pdf}
+
+%% Here we set the song numbers included in this selection:
+\includeonlysongs{107,232,333,334,502,703,105,324}
+
+%% Required:
+\input{ul-selection_include.tex}
+
+%% That's it! Nothing more is needed.

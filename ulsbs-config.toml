@@ -1,0 +1,27 @@
+# Common assets that will be deployed with all songbooks to deploy/images/icons.
+# (supports ?, *, and **; resolved relative to this file)
+common-deploy-icons = [
+  "ulsbs/src/ulsbs/assets/img/ulsbs-tag-icon*",
+  "content/img/ul-default-chapter*"
+]
+
+# Common assets that will be deployed with all songbooks to deploy/metadata.
+# (supports ?, *, and **; resolved relative to this file)
+common-deploy-metadata = [
+  "metadata/*.json",
+]
+
+# README for generated MIDI and audio directories
+mididir_readme_file = "metadata/audio-dirs-Readme.md"
+audiodir_readme_file = "metadata/audio-dirs-Readme.md"
+
+[profiles.default]
+songbooks = [ "*.*tex" ]
+
+[profiles.astral]
+songbooks = [ "unilaiva-astral*.*tex" ]
+
+[profiles.main]
+songbooks = [ "unilaiva-songbook*.*tex" ]
+
+[profiles.dev]

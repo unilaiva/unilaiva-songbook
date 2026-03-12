@@ -36,8 +36,6 @@ deploy_from_vm
 old_versions/
 old_versions
 
-# audio files 
-
 # result documents
 *.pdf
 !content/img/*.pdf
@@ -54,6 +52,9 @@ workspace/*.ogg
 
 # Temporary transcribing work files
 WIP_*
+
+# Python
+__pycache__
 
 # other
 old

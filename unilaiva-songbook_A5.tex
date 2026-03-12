@@ -5,18 +5,16 @@
  %%
  %% This is the full version.
 
+\documentclass[]{ulsbs-songbook-unilaiva-default}
 
-% The following file contains all the imports, style settings etc:
-\input{tex/setup_default-A5-fullmusic_include.tex}
-
-\setcovericonsperm[unilaiva-tag-icon-complete-edition_EN_512x512px.png]%
+\setcovericonsperm[ulsbs-tag-icon-complete-edition_EN_512x512px.png]%
                   [ul-default-chapter-01_huichol_deer_transbg_1042x1098px.png]%
                   [ul-default-chapter-02_caapi_heart_transbg_1000x797px.png]%
                   [ul-default-chapter-03_green_circles_ed_by_larva_CC0_1200px.jpg]%
                   [ul-default-chapter-04_lotus_om_transbg_2000px.png]%
                   [ul-default-chapter-05_Hopi_Navajo_Zuni_circle_ed_by_larva_transbg_CC0_1200px.png]%
                   [ul-default-chapter-06_lintu_muinaissuomalaisilta_asuma-aloilta_perma_1426x1158px.png]
-\setcovericonsvar[unilaiva-tag-icon-chords_EN_512x512px]
+\setcovericonsvar[ulsbs-tag-icon-chords_EN_512x512px]
 
 \begin{document}
 
@@ -30,8 +28,8 @@
   \toc
 
   % Content chapters (comment one out in two-booklet version):
-  \input{tex/unilaiva-songbook_content_include_part1.tex}
-  \input{tex/unilaiva-songbook_content_include_part2.tex}
+  \input{unilaiva-songbook_content_include_part1.tex}
+  \input{unilaiva-songbook_content_include_part2.tex}
 
   % Add a note about the chapters in the other part of the book to TOC.
   % Comment out the line(s) not relevant to this book (part).
@@ -39,6 +37,6 @@
   %\addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}English{\normalfont ,} Other {\normalfont and} Suomi {\normalfont are in} \emph{part 2} {\normalfont of this book}}{}{}}
 
   % Appendices:
-  \input{tex/unilaiva-songbook_content_include_part3_appendices.tex}
+  \input{unilaiva-songbook_content_include_part3_appendices.tex}
 
 \end{document}

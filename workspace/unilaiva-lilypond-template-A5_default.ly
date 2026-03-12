@@ -44,7 +44,7 @@
 
 %   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by <person>, latest update on <yyyy-mm>
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative c'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 %\partial 4
@@ -57,20 +57,20 @@
 
     }
     %\setStaffSize #15 % for better fit
-%     \include "tex/lp-include-tail.ly"
+%     \include "ulsbs-include-tail.ly"
 %   \end{lilypond}\end{lilywrap}
 
 % END SONG DATA
 
 
 
-% The following is grabbed from tex/lp-include-tail.ly and some of its child
+% The following is grabbed from ulsbs-include-tail.ly and some of its child
 % includes. They are here for easy changes, and for including the chords in the
 % MIDI output when transcribing.
 
-% BEGIN lp-include-tail.ly
+% BEGIN ulsbs-include-tail.ly
 
-    \include "tex/lp-internal-common-tail.ly"
+    \include "ulsbs-internal-common-tail.ly"
     \score {
       <<
         \new ChordNames {
@@ -99,7 +99,7 @@
       >>
     }
 
-  % BEGIN lp-internal-midi.ly (would be included here) with chords uncommented
+  % BEGIN ulsbs-internal-midi.ly (would be included here) with chords uncommented
 
     \score { % for MIDI
       <<
@@ -130,6 +130,6 @@
       }
     }
 
-  % END lp-internal-midi.ly
+  % END ulsbs-internal-midi.ly
 
-% END lp-include-tail.ly
+% END ulsbs-include-tail.ly

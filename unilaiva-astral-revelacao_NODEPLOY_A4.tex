@@ -4,36 +4,35 @@
  %% Hinario Revelação by Simja Johannes Lempinen
  %%
 
-% Setup the book name (the subtitle), and include common settings
-\newcommand{\subbooktitle}{Revelação}
-\newcommand{\papersize}{a4paper}
-\newcommand{\basicfontsize}{12pt}
-% The following creates space between Lilypond systems. Use star version
-% of \vspace to avoid page breaks between systems. The default is \linebreak
-% without extra \vspace.
-\newcommand{\betweenLilyPondSystem}[1]{\vspace*{.5ex}\linebreak}
-
-\newcommand{\imprintpagefootnote}{%
-  The hinos in this book are transcribed and made public by larva with\\
-  the permission and help of their author Simja Johannes Lempinen.\\
-  This is a work in progress: the transcriptions still contain mistakes.
-}
-
-% Include common settings for astral books
-\input{tex/setup_astral-A5-fullmusic_include.tex}
+\documentclass[
+  12pt,
+  paper={a4paper},
+  subtitle={Revelação}
+]{ulsbs-songbook-astral-default}
 
 % fancyhdr: setup header (modify the existing unilaiva style)
 \fancypagestyle{unilaiva}{%
   \fancyhead[CE]{\headertitlestyle\MakeUppercase{\mainbooktitle}} % "Unilaiva no Astral"
 }
 
+\renewcommand{\imprintpagefootnote}{%
+  The hinos in this book are transcribed and made public by unilarva with\\
+  the permission and help of their author Simja Johannes Lempinen.\\
+  This is a work in progress: the transcriptions still contain mistakes.
+}
+
 \renewcommand{\bookbytext}{%
   Received by:\par\vspace{0.618034ex}\textbf{\Large Simja Johannes Lempinen}%
 }%
 
-\setcovericonsvar[unilaiva-tag-icon-chords_PT_512x512px]%
-                 [unilaiva-tag-icon-sheetmusic_512x512px]%
-                 [unilaiva-tag-icon-guitar_512x512px]
+\setcovericonsvar[ulsbs-tag-icon-chords_PT_512x512px]%
+                 [ulsbs-tag-icon-sheetmusic_512x512px]%
+                 [ulsbs-tag-icon-guitar_512x512px]
+
+% The following creates space between Lilypond systems. Use star version
+% of \vspace to avoid page breaks between systems. The default is \linebreak
+% without extra \vspace.
+\newcommand{\betweenLilyPondSystem}[1]{\vspace*{.5ex}\linebreak}
 
 \begin{document}
 

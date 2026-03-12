@@ -57,7 +57,7 @@
     I have to love my Mother up in the heights, who teaches me how to leave the sorrows
     I am here, I came to fulfill my mission, with faith in God and in the Virgin of Conception
   \end{translation}
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative g' {
       \key c \major \time 4/4 \partial 4.
         \repeat volta 2 {
@@ -120,7 +120,7 @@
       }
     }
     \setStaffSize #12 % to fit on one spread
-    \include "tex/lp-include-tail-lyricsbetween.ly"
+    \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
 
@@ -160,7 +160,7 @@
     %   title = "A Cura"
     %   composer = "Padr. Alfredo"
     % }
-    \include "tex/lp-include-head.ly"
+    \include "ulsbs-include-head.ly"
     theMelody = \relative e' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \major \time 4/4 \partial 4
@@ -205,7 +205,7 @@
       }
     }
     %\setStaffSize #15 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     I come to add here within this power
@@ -258,7 +258,7 @@
     Para |^sempre eu ^dar va|^lor ^
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
       \key a \minor \time 4/4 \partial 4
@@ -315,7 +315,7 @@
         s4 | a2:m/e \parenthesize b2:m7.5- | e1 | e:7 | a2.:m
       }
     }
-    \include "tex/lp-include-tail-lyricsbetween.ly"
+    \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     My God, My Father, My Mother, I ask that you cure me
@@ -358,7 +358,7 @@
     Agra^dece, nunca es|^que^-|ce \altchords{|Cm | \e}
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva, 2021-09
     theMelody = \relative d'' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -401,7 +401,7 @@
         | a | g:m | a:7 | d:m | d4.:m
       }
     }
-    \include "tex/lp-include-tail-lyricsbetween.ly"
+    \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     On Earth and in the Astral, the enemies attack
@@ -454,7 +454,7 @@
     It's good to always be with God; walk your paths
     With love on the Redeemer's Mission
   \end{translation}
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative e'' {
       \key c \major \time 3/4 \partial 4
       \repeat volta 2 {
@@ -525,7 +525,7 @@
       }
     }
     \setStaffSize #14 % to fit on one spread
-    \include "tex/lp-include-tail-lyricsbetween.ly"
+    \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
 
@@ -584,7 +584,7 @@
     Se afrou|^xa^r o Daime |salva^, se afrou|^xa^{r o} Daime |^toma^
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
       \key c \major \time 4/4 \partial 4.
@@ -648,14 +648,14 @@
         \new ChordNames { \theChords }
         \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
         \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
-        \include "tex/lp-internal-scorepart-tabstaff.ly"
+        \include "ulsbs-internal-scorepart-tabstaff.ly"
         \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
         \new Lyrics \lyricsto "theVoice" { \theLyricsFour }
         \new Lyrics \lyricsto "theVoice" { \theLyricsSix }
       >>
       \layout { }
     }
-    \include "tex/lp-internal-score-midi.ly"
+    \include "ulsbs-internal-score-midi.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]\iflyriconly\scriptsize\fi% to fit on one page in lyrics-only book
     If you relax the Daime cures, if you relax the Daime helps
@@ -713,7 +713,7 @@
     Que a força é de |^cura \endrep
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative c'' {
       \key c \major \time 4/4 \partial 2
       \repeat volta 2 {
@@ -767,7 +767,7 @@
         { | c2 }
       }
     }
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     I called the force, it's a healing force
@@ -815,7 +815,7 @@
     ^Me es|^tende as ^vossas |^mãos^ \endrep
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva, 2022-07
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -876,7 +876,7 @@
       }
     }
     %\setStaffSize #15 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     My mother I'm here, I came to ask for my forgiveness
@@ -935,7 +935,7 @@
     \nextverse
     Tiny, tiny, small to follow on the way
   \end{translation}
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva, updated on 2023-03
     theMelody = \relative b' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -1039,7 +1039,7 @@
       \chordsPequenininho
     }
     \setStaffSize #13 % for better fit
-    \include "tex/lp-include-tail-lyricsbetween.ly"
+    \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
 
@@ -1082,7 +1082,7 @@
     Do Di|vino |^nosso |^Pai | \e
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva on 2022-08
     theMelody = \relative a' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -1130,7 +1130,7 @@
       }
     }
     %\setStaffSize #15 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     Close your door well, watch and watch
@@ -1160,7 +1160,7 @@
       \[\mn{A}]E ao \[\mn{B&}]meu \[\mn{E&}]Je|\[\mnc{D}D7]sus \[\mn{C}]eu \[\mn{B&}]dou \[\mn{A}]lou|\[\mnc{G}Gm]vor \altchords{|E7 |Am}
     \endrep
   \mnendverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva on 2022-08
     theMelody = \relative d'' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -1191,7 +1191,7 @@
       }
     }
     %\setStaffSize #15 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     I have faith in my Jesus, that he will heal me
@@ -1229,7 +1229,7 @@
     Aumen|tando o seu va|^lor \altchords{| - |E}
     \endrep
   \endverse
-  \begin{lilywrap}\begin{lilypond}[] \include "tex/lp-include-head.ly"
+  \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva on 2022-08
     theMelody = \relative d'' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -1280,7 +1280,7 @@
       }
     }
     %\setStaffSize #15 % for better fit
-    \include "tex/lp-include-tail.ly"
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \begin{translation}[EN]
     Here comes Mestre Irineu with his staff in hand

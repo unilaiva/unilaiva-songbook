@@ -1,0 +1,126 @@
+% SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Include for selection booklets (helper macros).
+% This file is part of the 'ulsbs' package.
+%
+%% unilaiva-songbook_selections_include.tex
+%% ========================================
+%%
+%% This file is a partial .tex file to be included with \input macro
+%% to a Unilaiva songbook selection booklet main .tex file.
+%%
+%% See ul_selection_example.tex in the project's root directory for
+%% an example and documentation on how to create these.
+%%
+
+
+\providecommand{\mainbooktitle}{Unilaiva Selection}
+\providecommand{\bookmotto}{a selection of songs from Unilaiva Songbook}
+\providecommand{\fullbookcoverimage}{Unilaiva-songbook_COVER.pdf}
+\providecommand{\linkpretext}{Find the complete songbook at:}
+
+% Disable Lilypond, as it doesn't work in selections for some reason. TODO: fix.
+\showlilypondfalse
+
+\upcasebooktitleinheadertrue
+\upcasesectiontitleinheadertrue
+
+% Do not show chapter nor section in the page headers, as they don't exist.
+% Instead spread the book title and subtitle onto odd and even pages.
+\fancypagestyle{unilaiva}[fancy]{%
+  \fancyhead[CE]{%
+    \headertitlestyle%
+    \ifupcasebooktitleinheader%
+      \protect\MakeUppercase{\expandafter\mainbooktitle}%
+    \else%
+      \mainbooktitle%
+    \fi%
+  }
+  \fancyhead[CO]{%
+    \headertitlestyle%
+    \ifdefempty{\subbooktitle}{}{% not empty
+      \ifupcasesectiontitleinheader%
+        \protect\MakeUppercase{\expandafter\subbooktitle}%
+      \else%
+        \subbooktitle%
+      \fi%
+    }%
+  }
+}
+
+\setcovericonsperm[ulsbs-tag-icon-partial-edition_EN_512x512px.png]%
+\setcovericonsvar[ulsbs-tag-icon-chords_EN_512x512px]
+
+\providecommand{\coverpdf}{}
+
+% This will create the cover page for a selection booklet. If macro \coverpdf
+% is not empty, it's content will be assumed to be a file name of a PDF file in
+% content/img, and will be used as a cover page. Otherwise a cover will be
+% generated from \mainbooktitle, \subbooktitle (optional) and
+% \fullbookcoverimage.
+\newcommand{\coverpageforselection}{%
+  \ifdefempty{\coverpdf}
+    {% \coverpdf is empty
+      {% must be contained within a block for the settings not to bleed
+        \thispagestyle{empty}%
+        \topskip0pt%
+        \vspace*{11.2ex} % align with "Contents" heading on the next page; BAD for any changes
+        \begin{center}
+          {\Huge \mainbooktitle}
+          \ifdefempty{\bookmotto}{}{% not empty
+            {\par\normalsize\textit{\bookmotto}}
+          }%
+          \par\vspace*{6.98ex}
+          \ifdefempty{\subbooktitle}{}{% not empty
+            {\Large \textbf{\subbooktitle}}
+          }%
+          \par\vspace*{\fill}\vspace*{\fill}
+          \imagec[2]{\fullbookcoverimage}
+          \par\vspace*{\fill}
+        \end{center}
+        \iflyriconly% skip given set ii icons in lyric-only books
+          \setcovericonsvar[\tagiconlyricsonly]%
+        \fi%
+        \insertcovericonshbc
+      }
+    }%
+    {% \coverpdf not empty
+      \ulcoverpage{\coverpdf}%
+    }%
+}
+
+\begin{document}
+
+  \coverpageforselection% cover page here
+  \clearpage
+  \imprintpage % the second (title) page here (verso)
+
+  % TOC:
+  \toc
+
+  \clearpage
+
+  \begin{songs}{}
+    \input{content/songs_spanish.tex}
+    \input{content/songs_portuguese.tex}
+    \input{content/songs_sanskrit_vedic.tex}
+    \input{content/songs_sanskrit_buddhist.tex}
+    \input{content/songs_english.tex}
+    \input{content/songs_other.tex}
+    \input{content/songs_suomi.tex}
+    \input{content/songs_suomi_larva.tex}
+    { % for the settings not to bleed, as we are in the same environment
+      \chordsoff % songs: do not show (empty line for non-existing) chords
+      % songs: Increase line spacing for better readability
+      \baselineadj=+1pt plus 0pt minus 0pt%
+      \renewcommand{\lyricfont}{\small} % songs: use smaller font
+      \songcolumns{2} % songs: two columns per page
+      \songpos{1} % songs: avoid ONLY page-turns within songs
+      % songs: make penalty for breaking column/page at any line of lyrics to be the same:
+      % (The default for \interlinepenalty is 1000, and for all the others 200.)
+      \interlinepenalty=200 %
+      \input{content/songs_suomi_runoja_loitsuja.tex}
+    }
+  \end{songs}
+
+\end{document}

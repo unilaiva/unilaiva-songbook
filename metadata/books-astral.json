@@ -6,7 +6,7 @@
     {
       "id": "charango",
       "iconfile_i18n": {
-        "*": "unilaiva-tag-icon-charango_512x512px.png"
+        "*": "ulsbs-tag-icon-charango_512x512px.png"
       },
       "text_i18n": {
         "en": "tabulature for charango"
@@ -15,7 +15,7 @@
     {
       "id": "guitar",
       "iconfile_i18n": {
-        "*": "unilaiva-tag-icon-guitar_512x512px.png"
+        "*": "ulsbs-tag-icon-guitar_512x512px.png"
       },
       "text_i18n": {
         "en": "tabulature for guitar"
@@ -24,9 +24,9 @@
     {
       "id": "partial.ed",
       "iconfile_i18n": {
-        "en": "unilaiva-tag-icon-partial-edition_EN_512x512px.png",
-        "pt": "unilaiva-tag-icon-partial-edition_PT_512x512px.png",
-        "fi": "unilaiva-tag-icon-partial-edition_FI_512x512px.png"
+        "en": "ulsbs-tag-icon-partial-edition_EN_512x512px.png",
+        "pt": "ulsbs-tag-icon-partial-edition_PT_512x512px.png",
+        "fi": "ulsbs-tag-icon-partial-edition_FI_512x512px.png"
       },
       "text_i18n": {
         "en": "partial edition",
@@ -37,9 +37,9 @@
     {
       "id": "complete.ed",
       "iconfile_i18n": {
-        "en": "unilaiva-tag-icon-complete-edition_EN_512x512px.png",
-        "pt": "unilaiva-tag-icon-complete-edition_PT_512x512px.png",
-        "fi": "unilaiva-tag-icon-complete-edition_FI_512x512px.png"
+        "en": "ulsbs-tag-icon-complete-edition_EN_512x512px.png",
+        "pt": "ulsbs-tag-icon-complete-edition_PT_512x512px.png",
+        "fi": "ulsbs-tag-icon-complete-edition_FI_512x512px.png"
       },
       "text_i18n": {
         "en": "complete edition",
@@ -50,9 +50,9 @@
     {
       "id": "lyricsonly",
       "iconfile_i18n": {
-        "en": "unilaiva-tag-icon-lyrics-only_EN_512x512px.png",
-        "pt": "unilaiva-tag-icon-lyrics-only_PT_512x512px.png",
-        "fi": "unilaiva-tag-icon-lyrics-only_FI_512x512px.png"
+        "en": "ulsbs-tag-icon-lyrics-only_EN_512x512px.png",
+        "pt": "ulsbs-tag-icon-lyrics-only_PT_512x512px.png",
+        "fi": "ulsbs-tag-icon-lyrics-only_FI_512x512px.png"
       },
       "text_i18n": {
         "en": "lyrics only",
@@ -62,8 +62,8 @@
     },
     {
       "id": "sheetmusic",
-      "iconfile_i18n": { 
-        "*": "unilaiva-tag-icon-sheetmusic_512x512px.png"
+      "iconfile_i18n": {
+        "*": "ulsbs-tag-icon-sheetmusic_512x512px.png"
       },
       "text_i18n": {
         "en": "with sheet music, treble clef",
@@ -74,7 +74,7 @@
     {
       "id": "sheetmusic.bass",
       "iconfile_i18n": {
-        "*": "unilaiva-tag-icon-sheetmusic-bass_512x512px.png"
+        "*": "ulsbs-tag-icon-sheetmusic-bass_512x512px.png"
       },
       "text_i18n": {
         "en": "with sheet music, bass clef",
@@ -85,9 +85,9 @@
     {
       "id": "complete.comp",
       "iconfile_i18n": {
-        "en": "unilaiva-tag-icon-complete-compilation_EN_512x512px.png",
-        "pt": "unilaiva-tag-icon-complete-compilation_PT_512x512px.png",
-        "fi": "unilaiva-tag-icon-complete-compilation_FI_512x512px.png"
+        "en": "ulsbs-tag-icon-complete-compilation_EN_512x512px.png",
+        "pt": "ulsbs-tag-icon-complete-compilation_PT_512x512px.png",
+        "fi": "ulsbs-tag-icon-complete-compilation_FI_512x512px.png"
       },
       "text_i18n": {
         "en": "complete compilation",
@@ -98,7 +98,7 @@
     {
       "id": "music.generic",
       "iconfile_i18n": {
-        "*": "unilaiva-tag-icon-music-generic_512x512px.png"
+        "*": "ulsbs-tag-icon-music-generic_512x512px.png"
       },
       "text_i18n": {
         "en": "with musical information",
@@ -109,9 +109,9 @@
     {
       "id": "chords",
       "iconfile_i18n": {
-        "en": "unilaiva-tag-icon-chords_EN_512x512px.png",
-        "pt": "unilaiva-tag-icon-chords_PT_512x512px.png",
-        "fi": "unilaiva-tag-icon-chords_FI_512x512px.png"
+        "en": "ulsbs-tag-icon-chords_EN_512x512px.png",
+        "pt": "ulsbs-tag-icon-chords_PT_512x512px.png",
+        "fi": "ulsbs-tag-icon-chords_FI_512x512px.png"
       },
       "text_i18n": {
         "en": "with chords",
@@ -535,4 +535,3 @@
     }
   ]
 }
-

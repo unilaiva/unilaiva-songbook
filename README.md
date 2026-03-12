@@ -2,35 +2,52 @@ unilaiva-songbook
 =================
 
 Unilaiva-songbook is a collection of song lyrics, musical information, etc.,
-and a system to create songbooks out of this data, for the contributors'
-private use. The system is written [LaTeX](https://www.latex-project.org/).
+and a system to create songbooks out of this data (Unilaiva Songbook System,
+ULSBS), for the contributors' private use.
 
-**The PDFs compiled from these sources are available at
-[https://unilaiva.aavalla.net/](https://unilaiva.aavalla.net/)**
+> [!IMPORTANT]
+> The PDFs compiled from these sources are available at:
+>   - [Unilaiva Songbook](https://unilaiva.aavalla.net/)
+>   - [Astral books](https://unilaiva-astral.aavalla.net/)
 
+---
+
+The songbook system (ULSBS) is under active development and its schemas, APIs,
+and processing rules may change between releases. The songbooks in this
+repository are kept in sync with each update; however, if you use ULSBS with
+external or custom songbook sources, you are responsible for reviewing and
+updating those sources whenever you upgrade the system to maintain
+compatibility. A stable 1.0 release is planned, after which
+backward-compatibility guarantees will follow semantic versioning.
+
+The system is written in [LaTeX](https://www.latex-project.org/),
+[Lilypond](https://lilypond.org/) and [Python](https://www.python.org/). It
+uses [songs LaTeX package](https://songs.sourceforge.net/). Song data is entered
+in LaTeX (and optionally Lilypond, if including sheet music) syntax.
+
+---
 
 
 Compiling the songbooks to create PDF documents
 -----------------------------------------------
 
 If you are on a UNIX-compatible system (e.g. Linux, MacOS or Windows WSL),
-you can use the provided `compile-songbooks.sh` shell script to build the
-books. By default, if run without arguments, it builds all the books
-contained in this repository, each with all supported extra formats.
-For information about its usage, run: `compile-songbooks.sh --help`
-
-Otherwise you must do the compilation steps manually, see **Option THREE**.
+you can use the provided `ulsbs-compile` shell script in the project's root
+to build the books. By default, if run without arguments, it builds all the
+books contained in this repository, each with all supported extra formats.
+For information about its usage, run: `./ulsbs-compile --help`
 
 
 ### Option ONE: use the script with Docker (recommended) ###
+
+> [!IMPORTANT]
+> This guarantees the best results, as the actual compiling is done in a Docker
+> container that has all the correct packages installed and configured correctly.
 
 This works on Linux and MacOS, or Windows with WSL. Using Linux is
 recommended, as it is the most tested of the operating systems.
 
 Simply execute the compilation script without arguments.
-
-This guarantees the best results, as the actual compiling is done in a Docker
-container that has all the correct packages installed and configured correctly.
 
 Note that the first run will take a long time, as the Docker image is built
 and all the required software downloaded (about 1100 MiB) and installed into it.
@@ -46,7 +63,8 @@ one document at a time.
 
 This method requires the following software installed on your system:
   * `docker`
-  * `bash` (installed by default on most systems)
+  * `bash` 3.0+ (installed by default on most systems)
+  * `python3` 3.11+
   * `git` (recommended for initially retrieving the songbook source)
   * ...and 2,5 GiB of disk space (for Docker image)
 
@@ -61,7 +79,7 @@ commands:
   3. `su <USERNAME>` # relogin for the group setting to become active (or reboot)
   4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
-  6. `./compile-songbooks.sh`
+  6. `./ulsbs-compile`
 
 This procedure was tested on Ubuntu versions 23.03, 23.10 and 24.04.
 
@@ -73,45 +91,32 @@ This procedure was tested on Ubuntu versions 23.03, 23.10 and 24.04.
   3. `su <USERNAME>` # relogin for the group setting to become active (or reboot)
   4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
-  6. `./compile-songbooks.sh`
+  6. `./ulsbs-compile`
 
 This procedure was tested on up-to-date Arch Linux, a rolling release, on
-2024-04-30.
+2026-03-12.
 
 ##### Example: on MacOS, using Docker #####
 
 This is tested with MacOS Ventura 13.2.1 on an Intel system, but should work
 on other OS versions and also on ARM systems.
 
-First, install Docker Desktop from <https://docs.docker.com/desktop/install/mac-install/>.
+Install:
+  - Docker Desktop from <https://docs.docker.com/desktop/install/mac-install/>.
+  - Python from <https://www.python.org/downloads/macos/>
 
-Next, install [Homebrew](https://brew.sh/) and using it, Bash (the Bash version
-included in MacOS by default is too old):
-```sh
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  # Follow instructions given by this command for setting PATH
-  brew install bash
-```
-
-**Optional:** To enable automatic building of the Docker image in case it is
-later updated, you also need GNU's version of `date`. To get it, run
-`brew install coreutils`. The GNU version will be installed as `gdate`, and the
-compiler script will use it if it exists. On first run of the compile script,
-the Docker image is built regardless of this, and later, if the image is
-updated, you can alternatively trigger a rebuild manually by invoking
-`./compile-songbooks.sh --docker-rebuild`.
-
-Then start the command prompt and run the following commands:
+Start the command prompt and run the following commands:
   1. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   2. `cd unilaiva-songbook`
-  3. `./compile-songbooks.sh`
+  3. `./ulsbs-compile`
 
 If `git` is not installed, it will be automatically installed by the OS when
 trying to run it for the first time.
 
 ##### Example: on Windows, using Docker #####
 
-One must use Windows Subsystem for Linux (WSL). TODO: write instructions.
+Install Ubuntu on Windows using Windows Subsystem for Linux (WSL2) and follow
+the instructions for Ubuntu. This is not tested. TODO: test.
 
 
 ### Option TWO: use the script without Docker ###
@@ -124,7 +129,7 @@ execute the compilation script with `--no-docker` option.
 These dependencies are included in the Docker image, and need be installed on
 the host system only if compiling without using the Docker image.
 
-  * Newish LaTeX 2e distribution with LaTeX 3 programming layer (TeX Live 2025
+  * Newish LaTeX 2e distribution with LaTeX 3 programming layer (TeX Live 2024
     is recommended) with some fairly standard packages and the binaries
     `lualatex` and `texlua`. If you use an older LaTeX distribution, you might
     have a problem with incorrect line breaking within songs, which can be
@@ -135,6 +140,7 @@ the host system only if compiling without using the Docker image.
   * Fonts 'Noto Sans' and 'Noto Serif', with medium and extrabold weights
   * Locale 'fi_FI.utf8'
   * `bash` (installed by default on most systems)
+  * `python` version 3.11+
   * `git` (recommended for retrieving and updating the songbook source)
   * *Optionally* `context` or `contextjit` for creating versions for printing
     A5 size on A4 paper; (Using this might require executing `mtxrun --generate`
@@ -175,7 +181,7 @@ the following commands:
   3. `sudo mtxgen --generate`
   4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
-  6. `./compile-songbooks.sh --no-docker`
+  6. `./ulsbs-compile --no-docker`
 
 Some of the dependency packages are already installed by default.
 
@@ -195,7 +201,7 @@ the following commands:
      and run `sudo locale-gen`
   3. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   4. `cd unilaiva-songbook`
-  5. `./compile-songbooks.sh --no-docker`
+  5. `./ulsbs-compile --no-docker`
 
 Some of the dependency packages are already installed by default.
 
@@ -203,44 +209,8 @@ Some of the dependency packages are already installed by default.
 ### Option THREE, compile manually ###
 
 This option is for compiling manually without using the compile script nor
-Docker. This way is not recommended. 
-
-Here is **only** described how to build the main document of Unilaiva Songbook.
-To build the others, these instructions must be modified. To create also the
-collated printout versions (for printing A5 size on A4 paper), and to create
-audio files from Lilypond sources, see the compile script.
-
-Ensure you have all the dependencies installed (see **option TWO**) and the
-project's source downloaded, and then run the following commands or their
-equivalents in this exact sequence in the project's root directory:
-
-  1. `lilypond-book -f latex --latex-program=lualatex --output=temp
-     unilaiva-songbook_A5.tex`
-  2. `cd temp ; ln -s ../tex ./ ; ln -s ../../content/img ./content/ ;
-     ln -s ../tags.can ./`
-  3. `lualatex unilaiva-songbook_A5.tex` # (1st time)
-  4. `texlua tex/ext_packages/songs/songidx.lua -l fi_FI.utf8
-     idx_title.sxd idx_title.sbx`
-  5. `texlua tex/ext_packages/songs/songidx.lua -l fi_FI.utf8
-     idx_auth.sxd idx_auth.sbx`
-  6. `texlua tex/ext_packages/songs/songidx.lua -l fi_FI.utf8 -b tags.can
-     idx_tag.sxd idx_tag.sbx`
-  7. `lualatex unilaiva-songbook_A5.tex` # (2nd time)
-  8. `lualatex unilaiva-songbook_A5.tex` # (3rd time)
-
-**Explanation:** Lilypond will create a subdirectory called `temp`, create the
-music notation images there, and copy `.tex` files there also (with necessary
-modifications for displaying the notation). Rest of the compilation process
-happens within that directory. Lilypond does not copy all needed files, so we
-need to link them within the `temp` directory, to create directory structure
-equivalent to the one in the project's root. Instead of linking with `ln -s`,
-you can copy the files, but need to remember to do it every time modification
-to the source is made, and new compilation is required. Then `lualatex` is run,
-the indexes created, and finally `lualatex` is executed two more times. You
-actually **do** need all three cycles of `lualatex` to get everything right.
-In the end, you will have the result document, `unilaiva-songbook_A5.pdf` in the
-`temp` directory. Use similar procedure for other `.tex` documents in the
-project's root.
+Docker. This way is not recommended. See `compile_one_job()` method in
+[pipeline.py](./ulsbs/src/ulsbs/pipeline.py) to find out the needed steps.
 
 It is recommended to use `lualatex` engine, but with a little tweaking it is
 also possible to compile with other LaTeX engines.
@@ -310,7 +280,7 @@ of single-sided printing only. Flipping pages, cutting and binding are done by
 hand. The end result is a book consisting of two-sided A5 pages, which is the
 preferred format.
 
-  1. `./compile-songbooks.sh`
+  1. `./ulsbs-compile`
   2. `pdftk printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf cat
      1-endodd output unilaiva-songbook_odd.pdf`
   3. `pdftk printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf cat
@@ -323,86 +293,27 @@ preferred format.
   8. Punch holes and bind the book.
 
 
+
 Project structure and guidelines
 --------------------------------
 
 #### Directory structure ####
 
-```
-├── **content**
-│   └── **img**
-├── **deploy**
-├── **docker**
-│   └── **songs**
-├── **result**
-├── **tex**
-│   ├── **ext_packages**
-│   ├── printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context
-│   ├── printout-template_EASY-A5-on-A4-sidebyside-simple.context
-│   ├── ul-selection_example.tex
-│   ├── ul-selection_include.tex
-│   ├── unilaiva-songbook_common.sty
-│   ├── unilaiva-songbook_content_include_part1.tex
-│   ├── unilaiva-songbook_content_include_part2.tex
-│   └── unilaiva-songbook_content_include_part3_appendices.tex
-├── **workspace**
-├── compile-songbooks.sh
-├── README.md
-├── tags.can
-├── **temp**
-├── ul-selection_*.tex
-├── unilaiva-astral*.tex
-├── unilaiva-songbook_part1.tex
-├── unilaiva-songbook_part2.tex
-└── unilaiva-songbook_A5.tex
-```
-*(All the files are not included in this representation.)*
-
-Project's main file is `unilaiva-songbook_A5.tex`. It is used to create the full
-songbook. There are also `unilaiva-songbook_part1.tex` and
-`unilaiva-songbook_part2.tex`, which together provide such a version of the
-book, where the content is divided into two parts, booklets, for binding
-reasons.
-
-`tex` subdirectory contains partial LaTeX files, which are included in the main
-document(s) with `\input` macros. There resides also the most important
-`unilaiva-songbook_common.sty` package, which contains all the needed imports,
-definitions, settings and style used in the songbook. It is imported to the
-main document(s) with `\import` macro. `context` files used to create special
-printout versions reside there as well. `ul-selection_include.tex` is a file to
-be included in song selection booklets.
-
-Song data and other *content* will be in various files inside `content`
-subdirectory and will be inputed into the main file. Images are put into
-`content/img`.
-
-`ul-selection*.tex` define song selection booklets. They contain only some of
-the songs of the full songbook. All files in the project's root matching this
-filename pattern will be automatically compiled by the compile script. See
-`tex/ul-selection_example.tex` for an example.
-
-There are also various 'Unilaiva no Astral' books, named `unilaiva-astral*.tex`.
-
-External packages are in `tex/ext_packages` subdirectory. This currently
-includes only the `songs` package and it's documentation.
-
-The compilation script will place the final PDF files in the `result` directory.
-
-`workspace` subdirectory contains template files useful for transcribing work.
-
-Code lines in the source ought to be maximum of 100 characters long, but
-exceptions are allowed when needed, especially for song data.
+TODO.
 
 
 Adding and editing songs
 ------------------------
 
-To begin, see the already existing songs in `content` directory. Also, it is
-a good idea to take a look at `songs` package documentation. It is included as
-a PDF file in `tex/ext_packages/songs/songs.pdf`. It can also be viewed online at
-[https://songs.sourceforge.net/songsdoc/songs.html](https://songs.sourceforge.net/songsdoc/songs.html).
+To begin, see the already existing songbook main files in the project's root
+and the songs in [content](./content/) directory. Until the documentation
+catches up, this is the best way to learn. 😄
 
-Below we're explaining mostly Unilaiva-specific things, so understanding how
+Also, it might be a good idea to take a look at
+[songs package documentation](./ulsbs/misc/ext_package_songs_distribution/songs.pdf).
+It can also be viewed online at [sourceforge.net](https://songs.sourceforge.net/songsdoc/songs.html).
+
+Below we're explaining mostly ULSBS-specific things, so understanding how
 `songs` package works is beneficial.
 
 Stuff inside `songs` environment (the files in `content` directory named with
@@ -410,18 +321,22 @@ a prefix `songs_`) ought to contain only individual songs (and data related to
 them) between `\beginsong` and `\endsong` macros plus other data wrapped in
 `intersong` environments.
 
-#### General instructions ####
 
-The main document must have an `\input` instruction for a file named
-`setup_<...>.tex`, and this file must be where `unilaiva-songbook_common.sty`
-package is loaded. This is required for automatically creating a lyrics-only
-version of the document. You can copy the file
-`tex/setup_default-A5-fullmusic_include.tex` and make your own version, but
-the filename must start with `setup_` to allow for automatic creation of
-lyric-only book version.
+### General instructions ###
+
+The main document must be put in the project's root and have a
+`\documentclass[]{ulsbs-songbook}` (or a child class) instruction in it's
+preamble. Then within `\begin{document}` ... `\end{document}` are to be
+included chapters with `\mainchapter` command.
+
+Songs ought to reside within `songs` environment; each song starts with
+`\beginsong` and ends with `\endsong`.
+
+If other files are included, they should be placed in the `content` or `include`
+directories directly under project's root.
 
 
-#### Page and line breaks ####
+### Page and line breaks ###
 
 The `songs` package does a very good job in organising the songs for a nice
 output, but sometimes it needs a little bit of help.
@@ -516,7 +431,7 @@ Full melodies are written using `lilypond` syntax. It produces actual sheet
 music and MIDI files. See documentation in
 [https://lilypond.org/](https://lilypond.org/). `lilypond` parts must be put
 outside of verses (but inside of a song), and wrapped within `lilywrap`
-environment. See examples in `content_songs_*.tex`.
+environment. See examples in existing songs.
 
 ##### Note on converting lyrics from Lilypond to songbook format #####
 
@@ -539,8 +454,9 @@ the following string replacements ought to be done in the following order:
 Be careful with the whitespaces!
 
 If you are using Unilaiva-specific Lilypond style with `theLyricsOne` etc. to
-present lyrics in your Lilypond, you can use `tools/unilaiva-lyrics-lp2tex.py3`
-script to do the conversion. Run it without arguments for usage information.
+present lyrics in your Lilypond, you can use `ulsbs/src/ulsbs/assets/tools/unilaiva-lyrics-lp2tex.py3` script to do the conversion. Run it without
+arguments for usage information. NOTE: the script doesn't yet support the new
+repeat system completely.
 
 #### Melody hints on the chord line ####
 
@@ -604,6 +520,7 @@ Example usage:
   \[\mnciii{C}{A}{F}Fmaj7]Tralalaa
 ```
 
+
 ### Beat marks ###
 
 If neede, spots for beats can be marked with `\bm???` commands within chord
@@ -639,12 +556,13 @@ Example usage:
   \[\bmc\mnc{C}C]Trallallaaa
 ```
 
+
 ### Tags ###
 
 Tags can be attached to songs by defining `tags=` keyval argument for
 `\beginsong` macro. An example: `\beginsong{Song name}[tags={love, smile}]`.
 
-All tags must be listed in file `tags.can` before they can be used.
+All tags must be listed in file `includ/tags.can` before they can be used.
 
 To disable tags totally, put `\showtagsfalse` in the main document preamble
 after package imports.
@@ -652,24 +570,27 @@ after package imports.
 The tag index is found at the end of the result document.
 
 
-#### More information ####
+### More information ###
 
-...can be found in `tex/unilaiva-songbook_common.sty` file. There are special
-hidden undocumented features! ;)
+...can be found in [ulsbs.sty](ulsbs/src/ulsbs/assets/tex/ulsbs.sty) file.
+There are special hidden undocumented features! 😉
+
 
 
 Creating song selections
 ------------------------
 
 It is very easy to create booklets with only specific selected songs. See file
-`ul-selection_example.tex` for an example and documentation. The compile script
-will assume any file with a name `ul-selection_*.tex` in the project's root to
-be a song selection booklet and will compile it.
+[ul-selection_example.tex](include/ul-selection_example.tex) for an example
+and documentation.
+
 
 
 Tentative TODO
 --------------
 
+*  Improve documentation!
+*  Separate ULSBS into it's own package
 *  Add more songs
 *  Add translations and explanations for existing songs
 *  Improve existing translations and explanations

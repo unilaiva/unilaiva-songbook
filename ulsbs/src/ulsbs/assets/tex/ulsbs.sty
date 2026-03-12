@@ -1,0 +1,4481 @@
+% SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Main style package for ULSBS songbooks.
+% This file is part of the 'ulsbs' package.
+
+%% ulsbs.sty
+%% =========
+%%
+%% Preferred engine: lualatex
+%%
+%% To use this package, it is recommended to use the provided ulsbs-songbook.cls
+%% document class (or inherit from it), like this:
+%%
+%% \documentclass{ulsbs-songbook}
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ulsbs}
+
+
+
+% BEGIN PACKAGE IMPORTS
+% =====================
+
+%%% Settings for package imports. These can be changed by setting them using
+%%% \newcommand in the main document before loading this package.
+
+% Set up options for the geometry package: paper size and margins.
+% \ultopmargin must be at least 6.35mm (=1/4"), as that is the limit of some
+% printers. \ulsidemargin and \ulbottommargin must be somewhat larger, at least
+% 7.7mm, to accomodate for protrusion and still be outside the 6.35mm limit.
+%
+% \ulbindingoffset is the extra amount of empty left in the inner sides of pages,
+% and should be set to the amount the binding takes.
+%
+%
+% Set \ulbindingoffset to used binding system's margin (from paper edge to
+% beginning of the hole) + hole's width.
+%
+% For the default 2:1 wire binding machine with a square hole (e.g. RM SUPU
+% CW360T), the hole's width is 3,5 mm and margin is adjustable. The recommended
+% margin sizes for such a machine, when using 80 gsm paper, are:
+%
+%   SHEET COUNT  -  WIRE DIAMETER  -  MARGIN SIZE
+%       2-20     -   6 mm (1/4")   -   2 mm
+%      21-40     -   8 mm (5/16")  -   2 mm
+%      41-55     -  10 mm (3/8")   -   2 mm
+%      56-65     -  12 mm (1/2")   -   2,5 mm
+%      66-100    -  14 mm (9/16")  -   2,5 mm
+%     101-115    -  16 mm (5/8")   -   2,5 mm
+%     116-135    -  19 mm (3/4")   -   3,5 mm
+%     136-180    -  22 mm (7/8")   -   3,5 mm
+%     181-210    -  25 mm (1")     -   3,5 mm
+%     211-240    -  28 mm (1"1/8)  -   4,5 mm
+%     241-280    -  32 mm (1"1/4)  -   4,5 mm
+%     281-310    -  35 mm (1"3/8)  -   4,5 mm
+%     311-340    -  38 mm (1"1/2)  -   5 mm
+%     341-410    -  45 mm (1"3/4)  -   5 mm
+%     411-599    -  51 mm (2")     -   5 mm
+%
+% NOTE: sheet count = page count / 2. Remember to add the hole's width! Take
+%       into account, if you have thicker cover pages.
+%
+% NOTE: If in the logs fancyhdr warns that \headheight is too small, it must
+%       be adjusted here. For too small \footersep, the adjustment must be
+%       done further below in the fancyhdr setup.
+%
+
+\providecommand{\papersize}{a5paper}
+\providecommand{\songbooktype}{chorded}
+\providecommand{\ulbindingoffset}{8mm} % 8 mm for 2:1 wire binding, 32 mm wires
+\providecommand{\ulsidemargin}{9mm}
+\providecommand{\ulbottommargin}{9mm}
+\providecommand{\ultopmargin}{6.35mm}
+\providecommand{\ulheadheight}{5mm}
+\providecommand{\ulheadsep}{4mm}
+
+
+% Actual imports
+
+\RequirePackage[]{polyglossia} % for multiple language support
+\RequirePackage{fontspec} % font loading & handling
+\RequirePackage{newunicodechar} % for defining special behaviour for specific characters
+% Font weight defaults for Noto are regular and bold; here they are made heavier.
+% Do not use font scaling as it messes with line spacing in some cases.
+%\RequirePackage[medium,extrabold]{noto}
+%\RequirePackage[T1]{fontenc}
+% For info on page geometry, see comments above where the \providecommands are set
+\RequirePackage[%showframe, % uncomment showframe for debugging margins etc
+            paper=\papersize,
+            bindingoffset=\ulbindingoffset,
+            inner=\ulsidemargin,
+            outer=\ulsidemargin,
+            bmargin=\ulbottommargin,
+            tmargin=\ultopmargin,
+            headheight=\ulheadheight,
+            headsep=\ulheadsep,
+            nofoot,
+            includehead,
+            includefoot]{geometry} % page size + margins
+% xcolor package for using colors in various elements; dvipsnames option imports
+% some CMYK color names
+\RequirePackage[dvipsnames]{xcolor}%
+\RequirePackage{graphicx} % for importing images
+\RequirePackage{pdfpages} % for cover page
+\RequirePackage{array} % used at least in Technical Information chapter
+% Disable all warnings issued by latex starting with "You have requested package..." to allow
+% warningless loading of packages from subdirectories without setting environment variables
+% (can be omitted, but warnings will appear):
+\RequirePackage{silence}\WarningFilter{latex}{You have requested package}
+\RequirePackage{ragged2e} % used to force text justification in 'explanation' env
+\RequirePackage{enumitem} % used to modify 'description' env within 'explanation' env
+\RequirePackage{xstring} % used for string manipulation (at least in GR macros)
+\RequirePackage{amssymb} % for some math symbols
+\RequirePackage{tikz}\usetikzlibrary{calc}%
+\RequirePackage{fancyhdr} % for customizing headers
+\RequirePackage[bigger]{musicography} % musical symbols (at least \musSegno is used)
+% environ's \NewEnviron is used instead of \newenvironment in in-song blocks,
+% to enable hiding of them
+\RequirePackage{environ}%
+% verbatim's \comment is used in hiding translation environment, as it can't use
+% environ package's \NewEnviron
+\RequirePackage{verbatim}%
+\RequirePackage{etoolbox}% for \ifdefempty etc
+\RequirePackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
+\RequirePackage{expl3}% Used for some ifs etc
+\RequirePackage{xparse}% Used in \mainchapter
+\RequirePackage{tcolorbox}% for creating colored boxes, used in language code display
+% hyperref is used for URL links and by 'songs' package for index links in PDF.
+% Use option 'colorlinks' to colorize the links always, for both print and
+% digital viewing. It is possible to use colors only for digital viewing and
+% black for printing, by using 'ocgcolorlinks' option, which requires PDF
+% version 1.5, instead. That creates different layers for view and print,
+% which creates nicer result for black-and-white prints, but some printing
+% software might ignore both layers thus printing nothing for links -- so we
+% are not using it for now. The actual colors are defined further below.
+% Use 'microtype' package for better appearance (especially for non-song chapters):
+%   final - enable microtype; use "draft" to disable
+%   protrusion=true, activate protrusion
+%   expansion=false, deactivate expansion, doesn't work with lua(la)tex
+%   tracking=true, kerning=true - activate these techniques
+%   spacing=false - no interword spacing for compatibility with ragged2e,
+%                   \nonfrenchspacing etc.
+%   factor=1100 - add 10% to the protrusion amount (default is 1000)
+%   stretch=10, shrink=10 - reduce stretchability/shrinkability (default is 20/20)
+%   Affected fonts are defined later with \DefineMicrotypeSetDefault
+\RequirePackage[final,
+            protrusion=true,
+            expansion=false,
+            tracking=true,
+            kerning=false,
+            spacing=false,
+            factor=1100,
+            stretch=10,
+            shrink=10]{microtype}
+\RequirePackage[bookmarks,
+           unicode,
+           colorlinks]{hyperref} % used by 'songs' package for index links in PDF
+
+% The most important 'songs' package, use the version in the project tree.
+% The \songbooktype macro contains by default 'chorded', but it can be defined
+% to be 'lyric' before including this file to produce lyrics-only songbooks.
+% In such a case it would be a good idea to setup the book with \show* macros
+% after including this file, too.
+\RequirePackage[\songbooktype]{ext_packages/songs/songs}
+
+% END PACKAGE IMPORTS
+
+\makeatletter% To allow using and rewriting @-containing macros
+
+% BEGIN MAIN LANGUAGE
+
+% This macro can be defined in the main document before including this file,
+% to allow for setting some items on imprint page and pdf metadata correctly.
+\providecommand{\preliminarylanguage}{english}
+% Polyglossia: set main language. Other languages are set after font setup
+% below.
+\setmainlanguage{\preliminarylanguage}
+
+% END MAIN LANGUAGE
+
+
+% BEGIN GENERIC UTILITY MACROS
+
+% \ulsbsincludepdf[<pdfpages options>]{<filename>}
+% Wrapper around pdfpages' \includepdf that temporarily augments TeX's input
+% search path so the file can be found under (in order):
+%   1) \ulimagepath (if defined by the document)
+%   2) fallback path:  \ulsbs@content@imagepath
+%   3) fallback path:  \ulsbs@include@imagepath
+%   4) package assets: \ulsbs@package@imagepath
+% Arguments:
+%   [#1] Optional keyval options forwarded verbatim to \includepdf
+%        (e.g. pages=, pagecommand=, fitpaper=true, etc.)
+%   {#2} Required filename (no explicit path needed if it exists in any search dir)
+% Scope:
+%   Localized with a group; \input@path is restored afterwards.
+% Requires:
+%   - pdfpages (for \includepdf)
+%   - etoolbox (for \ifdefempty)
+% Usage examples:
+%   \ulsbsincludepdf[pages={1}]{my-cover.pdf}
+%   \ulsbsincludepdf[pages={-},pagecommand=\thispagestyle{empty}]{appendix.pdf}
+\newcommand{\ulsbsincludepdf}[2][]{%
+  \begingroup
+    % Build \input@path based on whether the document provided a custom image path
+    \ifdefempty{\ulimagepath}
+      {\def\input@path{{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
+      {\def\input@path{{\ulimagepath}{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}%
+    % Delegate to pdfpages with any caller-provided options
+    \includepdf[#1]{#2}%
+  % End local scope; restore previous \input@path
+  \endgroup
+}
+
+% Very small font size, smaller than \tiny
+\newcommand{\nanosize}{%
+  \ifcase\@ptsize\relax
+    \@setfontsize\nanosize{3.5pt}{4pt}%   10pt base
+  \or
+    \@setfontsize\nanosize{4.5pt}{5.2pt}% 11pt base
+  \or
+    \@setfontsize\nanosize{5pt}{6pt}%     12pt base
+  \else
+    \@setfontsize\nanosize{3.5pt}{4pt}%   fallback
+  \fi
+}
+
+% Small font size, between \scriptsize and \tiny
+\newcommand{\microsize}{%
+  \ifcase\@ptsize\relax
+    \@setfontsize\microsize{6pt}{7pt}% 10pt base
+  \or
+    \@setfontsize\microsize{6.5pt}{7.5pt}% 11pt base
+  \or
+    \@setfontsize\microsize{7pt}{8pt}% 12pt base
+  \else
+    \@setfontsize\microsize{6pt}{7pt}% fallback
+  \fi
+}
+
+% Testing if the argument has no width when put in a box i.e. it is empty.
+% If so, the first token will be expanded, otherwise the second.
+% Example:
+%   \ifnowidth{\somemacro}{%
+%     EMPTY
+%   }{%
+%     NOT EMPTY
+%   }
+\newcommand{\ifnowidth}[1]{%
+  \begingroup%
+  \sbox\z@{#1}%
+  \expandafter\endgroup%
+  \ifdim\wd\z@=\z@%
+    \expandafter\@firstoftwo%
+  \else%
+    \expandafter\@secondoftwo%
+  \fi%
+}
+
+% Disables \lineskiplimit (by setting it to -20pt) for the scope of the given
+% parameter, also for for \clineparams. Use this to surround a section you don't
+% want lineskiplimit to affect, for example to prevent chord line to jump up if
+% there are tall lyrics below it, especially when there is no chord nor beat
+% mark, but only a note hint circle high above. Optional parameter allows
+% setting the limit.
+%
+% Usage:
+%   \ilsl[<lineskiplimit>]{<stuff>}
+%
+% Example:
+%   \ilsl{\[\mn{C#}]Älä} veljeäsi |sure
+%
+\def\ilsl{%
+  \begingroup%
+  % Make # and & \active (catcode 13) to allow them within the argument; this
+  % is how \[] expects them to be.
+  \catcode`\#=\active\relax%
+  \catcode`\&=\active\relax%
+  \ilsl@x
+}
+
+% Helper function for \ilsl to allow for optional parameter for \ilsl while
+% allowing the special characters within it's #2.
+% Note: +m means "long"
+\NewDocumentCommand{\ilsl@x}{O{-20pt} +m}{%
+  \lineskiplimit=#1\relax%
+  \renewcommand{\clineLineskiplimit}{#1}%
+  #2%
+  \endgroup%
+}
+
+
+% Gets a roman uppercase number from the number given as parameter
+\newcommand{\romanupnum}[1]{%
+  \expandafter\@slowromancap\romannumeral #1@%
+}
+
+% Set a length register #1 with value #2 in the global scope.
+\gdef\gsetlength#1#2{%
+  \begingroup
+    \setlength\tmp@{#2} % Local assignment to a temporary register
+    \global#1=\tmp@     % Global assignement to #1
+                        % \relax not needed because of the following \endgroup
+  \endgroup             % \tmp@ is restored
+}
+
+% This rewrite ensures that empty pages created with \cleardoublepage, like the
+% empty pages at the end of chapters, do not have headers.
+\renewcommand*{\cleardoublepage}{%
+  \clearpage%
+  \if@twoside%
+    \ifodd\c@page%
+    \else%
+      \hbox{}%
+      \thispagestyle{empty}%
+      \newpage%
+      \if@twocolumn%
+        \hbox{}\newpage%
+      \fi%
+    \fi%
+  \fi%
+}
+
+% Insert an empty line when in obeylines mode, e.g. within a song verse
+\newcommand{\emptyline}{\par\hspace{0pt}\par}
+
+% Repeal the effects of \obeylines
+\newcommand\disobeylines{\catcode`\^^M=5 }%
+
+% Produces an invisible box with the vertical size (height and depth) of
+% text with highest and lowest reaching characters used in the books in the
+% current font style, but having zero width. Use this to make boxes same size,
+% etc.
+\newcommand{\vphantommaxtext}{\vphantom{Êg(\flt\shrp}}
+
+% If the currently active languages name (polyglossia) is the same as the
+% first argument, the second argument is expanded; otherwise the third.
+% Example \IfLangTF{portuguese}{Círculos}{Circles}
+\protect\newcommand\IfLangTF[3]{%
+  \IfStrEq{\languagename}{#1}{% equals
+    #2%
+  }{%
+    #3%
+  }%
+}
+
+% Creates a mark that takes no space (might overlap) immediately to the left of
+% current position. The mark is given as optional parameter in square brackets.
+% If the mark is not given, a right-pointing arrowhead is used. Does not leak
+% style.
+\newcommand{\marker}[1][\symrarrowhead]{%
+  \makebox[0pt][l]{{\llap{#1}}}%
+}
+
+% Creates a playout mark that takes no space (might overlap) immediately to the
+% left of current position. This similar to \pomark in Lilypond, but points to
+% the right instead of down.
+\newcommand{\pomarkr}{%
+  \marker[\color{pomarkcolor}\symrarrowhead{ }{ }]%
+}
+
+% Circled. Use with \circled macro. This uses TikZ and is used by media note
+% system.
+
+% Circled: settings. Be careful in changing these globally, as they are used for
+% printing media note hints ()\mn...)
+\newcommand*\circledWidestSymbol{g\@mnsharpsymbol} % widest token in the notation
+\newcommand*\circledHorizontalPadding{.08ex} % horizontal padding for the circle with contents
+\newcommand*\circledCircleExtraDiameter{.05ex} % extra diameter for the circle
+\newcommand*\circledCircleVerticalShift{.1ex} % move ONLY the circle (up = positive)
+\newcommand*\circledCircleLine{.3pt} % circle line width
+\newcommand*\circledCircleOpacity{.7} % circle's opacity (1=opaque)
+
+\newsavebox{\@circledCircleBox}
+\newdimen\@circledCircleDiameter
+\newdimen\@circledCircleRadius
+
+% Circled: compute diameter+radius for *current* font, based on
+% \circledWidestSymbol
+\newcommand*\@circledCircleCompute{%
+  \sbox{\@circledCircleBox}{\strut \circledWidestSymbol}%
+  \dimen0=\wd\@circledCircleBox
+  \dimen2=\ht\@circledCircleBox \advance\dimen2 by \dp\@circledCircleBox
+  \ifdim\dimen2>\dimen0 \dimen0=\dimen2\fi
+  \advance\dimen0 by \circledCircleExtraDiameter
+  \global\@circledCircleDiameter=\dimen0
+  \global\@circledCircleRadius=\dimen0 \divide\@circledCircleRadius by 2
+}
+
+% Circled: cache circle size per font size (keyed by \f@size)
+\newcommand*\@circledCircleGetDims{%
+  \edef\NC@key{\f@size}%
+  \@ifundefined{@circledCircleDiameter@\NC@key}{%
+    \@circledCircleCompute
+    \expandafter\xdef\csname @circledCircleDiameter@\NC@key\endcsname{\the\@circledCircleDiameter}%
+    \expandafter\xdef\csname @circledCircleRadius@\NC@key\endcsname{\the\@circledCircleRadius}%
+  }{}%
+  \@circledCircleDiameter=\csname @circledCircleDiameter@\NC@key\endcsname\relax
+  \@circledCircleRadius=\csname @circledCircleRadius@\NC@key\endcsname\relax
+}
+
+% Circled: \circled[<circle color>]{<content>}
+% Draws a circle around the content. Used by media notes.
+% If color is omitted, the circle uses the current color (same as surrounding text).
+\NewDocumentCommand{\circled}{o m}{%
+  \hspace{\circledHorizontalPadding}%
+  \@circledCircleGetDims
+  \tikz[baseline=(T.base)]{%
+    \node[inner sep=0pt, outer sep=0pt] (T) {%
+      \strut\makebox[\the\@circledCircleDiameter][c]{#2}%
+    };
+    % Circle only (overlay so it doesn't affect line spacing)
+    \begin{scope}[overlay]
+      \IfValueT{#1}{\color{#1}}% sets stroke color; does NOT affect the text
+      \draw[line width=\circledCircleLine, opacity=\circledCircleOpacity]
+        ([yshift=\circledCircleVerticalShift]T.center) circle (\the\@circledCircleRadius);
+    \end{scope}
+    %% The following would redraw the content text to make it appear on top of
+    %% the circle if overlapping, but it slows the processing down.
+    %\node[inner sep=0pt, outer sep=0pt] (T) {%
+    %  \strut\makebox[\the\@circledCircleDiameter][c]{#2}%
+    %};
+  }%
+  \hspace{\circledHorizontalPadding}%
+}
+
+% Holds the line count of previous paragraph, updated with para/after hook below
+\newcount\UL@prevparlines\UL@prevparlines=0
+
+% Capture line count at end of each paragraph and save it in \UL@prevparlines
+\AddToHook{para/after}{%
+  \global\UL@prevparlines=\prevgraf\relax%
+}
+
+% Eat an immediately-following line break token produced by the songs/obeylines
+% machinery, without requiring it to be literally \par.
+% Safe if used mid-line: then the next token isn't \par nor \SB@par, so nothing
+% happens.
+\def\UL@gobblepar{\futurelet\SB@next\UL@gobblepar@i}
+\def\UL@gobblepar@i{%
+  \ifx\SB@next\par
+    {\let\par\relax \par}%
+  \else\ifx\SB@next\SB@par
+    {\let\SB@par\relax \SB@par}%
+  \else
+    \relax
+  \fi\fi
+}
+
+% \repeattimes{<count>}{<code>}
+%
+% Repeat <code> exactly <count> times, while also providing the
+% current iteration number to <code> as a single braced argument.
+%
+%  <count> : a TeX count register (e.g. \mycount) or an integer expression
+%            usable by \count@=<count>.
+%            If <count> <= 0, nothing is executed.
+%
+%  <code>  : code to run each iteration. It must accept one argument,
+%            the iteration number, e.g. \foo{<i>}.
+%
+% The iteration number passed to <code> is 1-based.
+%
+% This macro uses the scratch counters \count@ and \@tempcnta.
+% The loop body (<code>) is executed in the current scope.
+%
+% Usage examples:
+%   \newcount\N \N=5
+%   \newcommand{\repeated}[1]{Iteration~#1\par}
+%   \repeattimes{\N}{\repeated}
+%
+% Inline code example (note the doubled ##1):
+%   \repeattimes{3}{\textbf{##1}\space}
+\newcommand{\repeattimes}[2]{% #1 = count register or number, #2 = code using ##1
+  \count@=#1\relax
+  \@tempcnta=1\relax
+  \@whilenum\count@>0\do{%
+    #2{\the\@tempcnta}%
+    \advance\@tempcnta by 1\relax
+    \advance\count@ by -1\relax
+  }%
+}
+
+% % BEGIN Map: key -> boolean
+%
+% These helpers implement an "array"/map from arbitrary keys to boolean values.
+% Internally, the map is an expl3 property list (\prop_new:N ...).
+%
+% Each key maps to the literal token list value: "true" or "false"
+%
+% Keys are token lists and are matched token-by-token. Avoid leading/trailing
+% spaces in keys.
+%
+% Like most TeX assignments, property-list modifications are scoped:
+%   - \prop_put:Nnn, \prop_clear:N are LOCAL (inside TeX groups)
+%   - \prop_gput:Nnn, \prop_gclear:N are GLOBAL (persist outside groups)
+%
+% The helpers below come in local and global variants for setting/resetting.
+%
+% If a key is not present in the map, it is treated as "false".
+%
+% Example:
+%   \prop_new:N \g_seen_prop
+%   \boolmap_gset_true:Nn  \g_seen_prop {7}
+%   \boolmap_if_true:NnTF  \g_seen_prop {7} {YES} {NO}
+%   \boolmap_greset:N      \g_seen_prop
+%
+% Example using with LaTeX2e wrappers:
+%   \ExplSyntaxOn
+%   \prop_new:N \g_seen_prop
+%   \ExplSyntaxOff
+%
+%   \BoolSetTrue{\g_seen_prop}{7}
+%   \IfBoolTF{\g_seen_prop}{7}{YES}{NO}
+%   \BoolReset{\g_seen_prop}
+%
+% NOTE: Use \the in front of the <key> parameter if it is a macro, count etc,
+%       to ensure it expands correctly.
+
+\ExplSyntaxOn
+
+% \boolmap_set_true:Nn <prop> {<key>}
+% \boolmap_set_false:Nn <prop> {<key>}
+%
+% Set the boolean value for <key> in <prop> to true/false.
+%
+% LOCAL assignment: the change is undone automatically at the end of the current
+%                   TeX group.
+\cs_new_protected:Npn \boolmap_set_true:Nn  #1#2 { \prop_put:Nnn  #1 {#2} {true} }
+\cs_new_protected:Npn \boolmap_set_false:Nn #1#2 { \prop_put:Nnn  #1 {#2} {false} }
+
+% \boolmap_gset_true:Nn <prop> {<key>}
+% \boolmap_gset_false:Nn <prop> {<key>}
+%
+% Set the boolean value for <key> in <prop> to true/false.
+%
+% GLOBAL assignment: the change persists outside groups.
+\cs_new_protected:Npn \boolmap_gset_true:Nn  #1#2 { \prop_gput:Nnn #1 {#2} {true} }
+\cs_new_protected:Npn \boolmap_gset_false:Nn #1#2 { \prop_gput:Nnn #1 {#2} {false} }
+
+% \boolmap_reset:N <prop>
+%
+% Remove all key/value pairs from <prop>.
+%
+% LOCAL reset: only affects the current group scope. The previous contents are
+%              restored at the end of the group.
+\cs_new_protected:Npn \boolmap_reset:N  #1 { \prop_clear:N  #1 }
+
+% \boolmap_greset:N <prop>
+%
+% Remove all key/value pairs from <prop>.
+%
+% GLOBAL reset: the map becomes empty globally and all keys will behave as
+%               "false" (the default).
+\cs_new_protected:Npn \boolmap_greset:N #1 { \prop_gclear:N #1 }
+
+% \boolmap_if_true:NnTF <prop> {<key>} {<true-code>} {<false-code>}
+% \boolmap_if_true:NnT  <prop> {<key>} {<true-code>}
+% \boolmap_if_true:NnF  <prop> {<key>} {<false-code>}
+%
+% Conditional test for a boolean stored in <prop> under <key>.
+%
+% Behavior:
+% - If <key> exists and its stored value is exactly "true" -> TRUE branch
+% - Otherwise (value is "false" OR key is missing) -> FALSE branch
+% - Missing keys are treated as false
+\prg_new_conditional:Npnn \boolmap_if_true:Nn #1#2 { T, F, TF }
+  {
+    \prop_get:NnNTF #1 {#2} \l_tmpa_tl
+      {
+        \str_if_eq:VnTF \l_tmpa_tl {true}
+          { \prg_return_true: }
+          { \prg_return_false: }
+      }
+      { \prg_return_false: }
+  }
+
+% LaTeX2e wrappers
+
+% \BoolSetTrue{<prop-name>}{<key>}
+% Set <prop-name>[<key>] = true (GLOBAL).
+\NewDocumentCommand{\BoolSetTrue}{m m}
+  {
+    \tl_set:Nx \l__boolmap_key_tl {#2}
+    \prop_gput:cVn {#1} \l__boolmap_key_tl {true}
+  }
+
+% \BoolSetFalse{<prop-name>}{<key>}
+% Set <prop-name>[<key>] = false (GLOBAL).
+\NewDocumentCommand{\BoolSetFalse}{m m}
+  {
+    \tl_set:Nx \l__boolmap_key_tl {#2}
+    \prop_gput:cVn {#1} \l__boolmap_key_tl {false}
+  }
+
+% \BoolReset{<prop-name>}
+% Clear ALL entries from the boolean map <prop-name> (GLOBAL).
+\NewDocumentCommand{\BoolReset}{m}
+  { \prop_gclear:c {#1} }
+
+% \IfBoolTF{<prop-name>}{<key>}{<true-code>}{<false-code>}
+%
+% Test whether <prop-name>[<key>] is true.
+%
+% Behavior:
+%
+% - If the key exists AND its value is exactly "true" -> <true-code>
+% - Otherwise (missing key OR value "false")          -> <false-code>
+%
+% Missing keys default to FALSE.
+\NewDocumentCommand{\IfBoolTF}{m m m m}
+  {
+    \tl_set:Nx \l__boolmap_key_tl {#2}
+    \prop_get:cVNTF {#1} \l__boolmap_key_tl \l__boolmap_val_tl
+      { \str_if_eq:VnTF \l__boolmap_val_tl {true} {#3} {#4} }
+      { #4 }
+  }
+
+\ExplSyntaxOff
+
+% % END Map: key -> boolean
+
+% END GENERIC UTILITY MACROS
+
+
+% *****************************************************************************
+
+
+% BEGIN STYLE & OTHER SETTINGS
+% ============================
+
+% BEGIN Toggles
+
+% Introduce toggles for some global features and set their defaults. If you
+% want a specific feature enabled or disabled, you must set it's toggle to
+% true or false in the main document preamble (after including this package).
+% Example: \showtagsfalse would disable showing tags in song preludes, and
+%          \showtagstrue would enable showing them.
+
+% Toggle for showing extra info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[ex={this song is good}]"
+\newif\ifshowex\showextrue
+
+% Toggle for showing extra info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[off={My Muse}]"
+\newif\ifshowoff\showofftrue
+
+% Toggle for showing key info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[key={Am}]". Make sure that
+% it is correct, that the key set here corresponds to the actual key displayed
+% in the final document (after possible transpose).
+\newif\ifshowkey\showkeytrue
+
+% Toggle for showing good keys in song preludes. To set it/them for a song,
+% define it as \beginsong parameter: "\beginsong[gk={Am, Gm--Bm}]". The first
+% is the preferred one, and then comes the range of keys suitable for singing
+% in such a way that the melody falls within (inlcuding) a G note in the low
+% end, and a B note of the next octave in the high end. If such a range is
+% impossible, put the keys in the range in parenthesis.
+\newif\ifshowgoodkeys\showgoodkeystrue
+
+% Toggle for showing phase info in song preludes. To set it for a song,
+% define it as \beginsong parameter: "\beginsong[ph={I, II}]"
+\newif\ifshowph\showphtrue
+
+% Toggle for showing phase info in the TOC:
+\newif\ifshowphintoc\showphintoctrue
+
+% Toggle for showing tags in song preludes. To set them for a song,
+% define them as \beginsong parameter: "\beginsong[tags={love, light}]"
+% Note the mandatory '1' (that will not be shown) and that the tags must be
+% defined in file 'include/tags.can' to use them.
+\newif\ifshowtags\showtagstrue
+
+% Toggle for showing melody notes in songs. To set them for a song, use the
+% \note??? macros inside chord definitions. To set them temporarily on or
+% off within a (part of a) song, use macros \notesoff and \noteson.
+\newif\ifshownotes\shownotestrue
+
+% Toggle for showing beat marks in songs. To set them for a song, use the
+% \bm??? macros inside chord definitions. To set them temporarily on or
+% off within a (part of a) song, use macros \beatsoff and \beatson.
+\newif\ifshowbeats\showbeatstrue
+
+% Toggle for showing authors in the song preludes. Personal opinion: the
+% authors should definitely be shown in all cases. This option is here for
+% the sake of completeness. :)
+\newif\ifshowauth\showauthtrue
+
+% Toggle for showing Lilypond music scores
+\newif\ifshowlilypond\showlilypondtrue
+
+% Toggle for showing passages
+\newif\ifshowpassage\showpassagetrue
+
+% Toggle for showing explanations
+\newif\ifshowexplanation\showexplanationtrue
+
+% Toggle for showing translations
+\newif\ifshowtranslation\showtranslationtrue
+
+% Toggle for showing feelers
+\newif\ifshowfeeler\showfeelertrue
+
+% Toggle showing of alternate chord sets
+\newif\ifshowaltchords\showaltchordstrue
+
+% Toggle appending the (optional) chapter image or symbol appended to the
+% chapter name wherever it shows up, e.g. in TOC and page headers. The image is
+% never shown in PDF index though, as only characters are supported there.
+\newif\ifshowimageinchaptername\showimageinchapternametrue
+
+% Toggle showing the (optional) chapter image or symbol on the front page of
+% a chapter.
+\newif\ifshowimageonchapterfrontpage\showimageonchapterfrontpagetrue
+
+% Toggle uppercasing the long chapter title shown on chapter front pages
+\newif\ifupcaselongchaptertitle\upcaselongchaptertitlefalse
+
+% Toggle uppercasing the short chapter title shown in TOC and page headers
+\newif\ifupcaseshortchaptertitle\upcaseshortchaptertitletrue
+
+% Toggle uppercasing the book name in page headers
+\newif\ifupcasesectiontitleinheader\upcasesectiontitleinheaderfalse
+
+% Toggle uppercasing the book name in page headers
+\newif\ifupcasebooktitleinheader\upcasebooktitleinheadertrue
+
+% Toggle use of chapter colors in page corners
+\newif\ifusechaptercolors\usechaptercolorstrue
+
+% Toggle the use of alternate melody note style (color and optional tag).
+% This converts the normal melody notes defined with \mn* to appear in alternate
+% style and the alternate melody notes defined with \mna* to appear in the
+% normal style. Use this only for special cases: normally it is better to use
+% the specific \mn* and \ma* macros for differently styled melody notes.
+\newif\ifusealtmnstyle\usealtmnstylefalse
+
+% END Toggles
+
+% Indentation that is optionally added to verses, if started with
+% \beginverse[n], where n is a plain factor number that is multiplied with
+% the \verseindentwidthbase to determine the optional extra indent depth of the
+% verse in question.
+\newdimen\verseindentwidthbase\verseindentwidthbase=1em\relax
+
+\providecommand{\songendmark}{}
+
+% BEGIN Book titles etc
+
+% Set defaults for book titles if they're not yet defined. One should define
+% them in the main file before including this package or renew them after.
+% Only \mainbooktitle is mandatory. The supported macros are:
+%   \mainbooktitle
+%   \subbooktitle
+%   \subsubbooktitle
+%   \thisbooktitle
+%   \bookmotto
+%   \bookbytext
+%   \bookversionpretext
+%   \bookvariantpretext
+%   \variantdefaulttext
+%   \variantlyricsonlytext
+%   \variantcharangotext
+%   \variantbasscleftext
+%   \bookwebsitelink
+%   \bookwebsitelinkqrimage (this is image filename in content/img without path)
+%   \bookcompiledbytext
+%   \imprintpagefootnote
+% All of them are optional, and for some there are defaults defined below.
+
+% Set defaults for PDF metadata, if they are not defined. One should define
+% them in the main file before including this package.
+\providecommand{\pdfauthor}{}
+\providecommand{\pdfsubject}{Songbook}
+\providecommand{\pdfkeywords}{songbook, songs, ulsbs}
+
+\providecommand{\bookmotto}{}
+\providecommand{\subbooktitle}{}
+\providecommand{\subsubbooktitle}{}
+\providecommand{\bookwebsitelinkqrimage}{}
+\providecommand{\bookcompiledbytext}{\ifdefempty{\pdfauthor}{}{Compiled by: \pdfauthor}}
+\providecommand{\imprintpagefootnote}{}
+
+% To have the portuguese version of these default strings, one must define
+% \newcommand{\preliminarylanguage}{portuguese} before including this file.
+\IfLangTF{portuguese}{%
+  \providecommand{\mainbooktitle}{Songbook Sem Nome}
+  \providecommand{\bookbytext}{Por:\par\vspace{0.618034ex}\textbf{\Large humanidade}}
+  \providecommand{\bookversionpretext}{Versão:}
+  \providecommand{\bookvariantpretext}{Variante:}
+  \providecommand{\variantdefaulttext}{padrão}
+  \providecommand{\variantlyricsonlytext}{somente letras}
+  \providecommand{\variantcharangotext}{por charango}
+  \providecommand{\variantbasscleftext}{com clave de fá}
+}{%
+  \providecommand{\mainbooktitle}{Songbook Without Name}
+  \providecommand{\bookbytext}{By:\par\vspace{0.618034ex}\textbf{\Large humankind}}
+  \providecommand{\bookversionpretext}{Version:}
+  \providecommand{\bookvariantpretext}{Variant:}
+  \providecommand{\variantdefaulttext}{default}
+  \providecommand{\variantlyricsonlytext}{lyrics only}
+  \providecommand{\variantcharangotext}{for charango}
+  \providecommand{\variantbasscleftext}{with bass clef}
+}
+
+% The book title to display on top of each verso page (if doesn't exist, it is
+% constructed here from \mainbooktitle and optional \subbooktitle):
+\providecommand{\thisbooktitle}{% main title (+ subtitle, if defined)
+  \mainbooktitle\ifdefempty{\subbooktitle}{}{{: \subbooktitle}}%
+}
+% The default is the current date
+\providecommand{\songbookversion}{%
+  %2024-08-12% for release: change and uncomment this line, and comment the next
+  \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day%
+}
+
+% END Book titles etc
+
+
+% Color profile settings. Use sRGB and create OutputIntent. We won't be able to
+% use CMYK for the whole document anyway without converting the images. For the
+% same reason PDF/A is not possible. To use CMYK, some other things need to be
+% changed too, for example use cmyk option for xcolor.
+% Note that sRGB.icc file should be contained in the TeX installation -- if not,
+% it must be put within the project source and include the relative path to it
+% below. Also, the compile script must be modified to copy the file to the
+% temporary compile directory.
+%
+% To afterwards convert the file to CMYK, the following Ghostscript invocation
+% might do the trick:
+% gs \
+%    -o output-file-cmyk.pdf \
+%    -sDEVICE=pdfwrite \
+%    -sProcessColorModel=DeviceCMYK \
+%    -sColorConversionStrategy=CMYK \
+%    -sColorConversionStrategyForImages=CMYK \
+%    -dEncodeColorImages=false \
+%    source-file.pdf
+%
+% See: https://tex.stackexchange.com/questions/61217/latex-color-and-icc-color-profiles
+% See: https://tex.stackexchange.com/questions/227429/pdf-a-with-cmyk-how/536060#536060
+% See: https://stackoverflow.com/questions/6241282/converting-pdf-to-cmyk-with-identify-recognizing-cmyk
+\immediate\pdfobj stream attr{/N 3} file{sRGB.icc}
+\pdfcatalog{%
+  /OutputIntents [
+    <<
+      /Type /OutputIntent
+      /S /GTS_PDFA1
+      /DestOutputProfile \the\pdflastobj\space 0 R
+      /OutputConditionIdentifier (sRGB)
+      /Info (sRGB)
+    >>
+    <<
+      /Type /OutputIntent
+      /S /GTS_PDFX
+      /DestOutputProfile \the\pdflastobj\space 0 R
+      /OutputConditionIdentifier (sRGB)
+      /Info (sRGB)
+    >>
+  ]
+}
+
+
+% microtype: enable some microtype features for more fonts than in the defaults:
+\DeclareMicrotypeSet{mosttext}{encoding={OT1,T1,T2A,LY1,OT4,QX,T5,TS1,EU1,EU2,TU},
+                               size={scriptsize-Large}}
+\DeclareMicrotypeSetDefault[protrusion,spacing]{mosttext}
+
+% fontspec: setup fonts
+\setmainfont[Ligatures=TeX,
+             UprightFont=*-Medium,
+             BoldFont=*-ExtraBold,
+             ItalicFont = *-MediumItalic,
+             BoldItalicFont = *-ExtraBoldItalic,
+             FontFace = {sl}{\shapedefault}{*-Medium},
+             FontFace = {sl}{it}{*-MediumItalic},
+             FontFace = {b}{\shapedefault}{*-ExtraBold},
+             FontFace = {b}{it}{*-ExtraBoldItalic}]
+            {Noto Serif}
+\setsansfont[Ligatures=TeX,
+             UprightFont=*-Medium,
+             BoldFont=*-ExtraBold,
+             ItalicFont = *-MediumItalic,
+             BoldItalicFont = *-ExtraBoldItalic,
+             FontFace = {sl}{\shapedefault}{*-Medium},
+             FontFace = {sl}{it}{*-MediumItalic},
+             FontFace = {b}{\shapedefault}{*-ExtraBold},
+             FontFace = {b}{it}{*-ExtraBoldItalic}]
+            {Noto Sans}
+\setmonofont[Ligatures=TeX,
+             Scale=MatchLowercase,
+             UprightFont=*-Medium,
+             BoldFont=*-ExtraBold,
+             FontFace = {sl}{\shapedefault}{*-Medium},
+             FontFace = {b}{\shapedefault}{*-ExtraBold}]
+            {Noto Sans Mono} % italic not available for mono
+\newfontfamily{\serifheavyfont}[Ligatures=TeX,
+             UprightFont=*-Bold,
+             BoldFont=*-Black,
+             ItalicFont = *-BoldItalic,
+             BoldItalicFont = *-BlackItalic,
+             FontFace = {sl}{\shapedefault}{*-Bold},
+             FontFace = {sl}{it}{*-BoldItalic},
+             FontFace = {b}{\shapedefault}{*-Black},
+             FontFace = {b}{it}{*-BlackItalic}]
+            {Noto Serif}
+\newfontfamily{\sansheavyfont}[Ligatures=TeX,
+             UprightFont=*-Bold,
+             BoldFont=*-Black,
+             ItalicFont = *-BoldItalic,
+             BoldItalicFont = *-BlackItalic,
+             FontFace = {sl}{\shapedefault}{*-Bold},
+             FontFace = {sl}{it}{*-BoldItalic},
+             FontFace = {b}{\shapedefault}{*-Black},
+             FontFace = {b}{it}{*-BlackItalic}]
+            {Noto Sans}
+% Noto Symbols: https://fonts.google.com/noto/specimen/Noto+Sans+Symbols/glyphs
+\newfontfamily{\symbolfont}[Ligatures=TeX,
+                            UprightFont=*-Medium,
+                            BoldFont=*-ExtraBold,
+                            ItalicFont=*-Medium,
+                            BoldItalicFont=*-ExtraBold,
+                            FontFace = {sl}{\shapedefault}{*-Medium},
+                            FontFace = {b}{\shapedefault}{*-ExtraBold}]
+                           {Noto Sans Symbols} % italic not available
+\newfontfamily{\symbolheavyfont}[Ligatures=TeX,
+                            UprightFont=*-Bold,
+                            BoldFont=*-Black,
+                            ItalicFont=*-Bold,
+                            BoldItalicFont=*-Black,
+                            FontFace = {sl}{\shapedefault}{*-Bold},
+                            FontFace = {b}{\shapedefault}{*-Black}]
+                           {Noto Sans Symbols} % italic not available
+% Noto Symbols 2: https://fonts.google.com/noto/specimen/Noto+Sans+Symbols+2/glyphs
+\newfontfamily{\symboliifont}[Ligatures=TeX,
+                              UprightFont=*-Regular,
+                              BoldFont=*-Regular,
+                              ItalicFont=*-Regular,
+                              BoldItalicFont=*-Regular]
+                             {Noto Sans Symbols2} % weights and italic not available
+\newfontfamily{\persianfont}[Script=Arabic,
+                             Ligatures=TeX,
+                             UprightFont=*-Medium,
+                             BoldFont=*-ExtraBold,
+                             ItalicFont=*-Medium,
+                             BoldItalicFont=*-ExtraBold,
+                             FontFace = {sl}{\shapedefault}{*-Medium},
+                             FontFace = {b}{\shapedefault}{*-ExtraBold}]
+                            {Noto Sans Arabic} % italic not available
+\newfontfamily{\persianfontsf}[Script=Arabic,
+                               Ligatures=TeX,
+                               UprightFont=*-Medium,
+                               BoldFont=*-ExtraBold,
+                               ItalicFont=*-Medium,
+                               BoldItalicFont=*-ExtraBold,
+                               FontFace = {sl}{\shapedefault}{*-Medium},
+                               FontFace = {b}{\shapedefault}{*-ExtraBold}]
+                              {Noto Sans Arabic} % italic not available
+
+% Sets sans-serif as the default font family everywhere:
+\renewcommand{\familydefault}{\sfdefault}
+
+% Language settings: set other languages
+
+\setotherlanguage{finnish}
+
+% Picks automatically up the \persianfont and \persianfontsf defined above.
+% Use the persian language by putting it inbetween of \begin{persian} and
+% \end{persian}.
+\setotherlanguage[numerals=eastern]{persian}
+
+% newunicodechar (symbols):
+\newunicodechar{❶}{{\symbolfont ❶}}\newcommand\symone{❶}
+\newunicodechar{❷}{{\symbolfont ❷}}\newcommand\symtwo{❷}
+\newunicodechar{❸}{{\symbolfont ❸}}\newcommand\symthree{❸}
+\newunicodechar{❹}{{\symbolfont ❹}}\newcommand\symfour{❹}
+\newunicodechar{✝}{{\symbolfont ✝}}\newcommand\symcross{✝}
+\newunicodechar{☨}{{\symbolfont ☨}}\newcommand\symsdcross{☨}
+\newunicodechar{⌣}{{\symbolfont ⌣}}\newcommand\symsmilearc{⌣}
+\newunicodechar{⭠}{{\symboliifont ⭠}}\newcommand\symlarrow{⭠}
+\newunicodechar{⭢}{{\symboliifont ⭢}}\newcommand\symrarrow{⭢}
+\newunicodechar{⮀}{{\symboliifont ⮀}}\newcommand\symlrarrow{⮀}
+\newunicodechar{⮞}{{\symboliifont ⮞}}\newcommand\symrarrowhead{⮞}
+
+% Allow further emergency stretching to fix some "overfull hbox" situations.
+% See: https://www.tex.ac.uk/FAQ-overfull.html
+\setlength{\emergencystretch}{3em}
+
+% Set the default image include path. Also affects ulsbsincludepdf.
+% Must have the trailing slash.
+\providecommand{\ulimagepath}{}
+
+\newcommand{\ulsbs@content@imagepath}{./content/img/}
+\newcommand{\ulsbs@include@imagepath}{./include/img/}
+\newcommand{\ulsbs@package@imagepath}{./ulsbs/assets/img/}
+
+% graphicx: set paths to find images from
+\ifdefempty{\ulimagepath}
+  {\graphicspath{{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
+  {\graphicspath{{\ulimagepath}{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
+
+% color: Color definitions:
+\definecolor{chordcolor}{rgb}{0.20,0,0.22} % chords
+\definecolor{altinlinechordcolor}{rgb}{0.4,0,0.22} % alt. chord coloring used with \ac
+\definecolor{altchordcolor_a}{rgb}{0.10,0.4,0.10} % green, set 1 (default)
+\definecolor{altchordcolor_b}{rgb}{0.35,0.22,0.06} % brown, set 2
+\definecolor{altchordcolor_c}{rgb}{0.17,0.23,0} % dirty green, set 3
+\definecolor{altchordcolor_d}{rgb}{0.13,0,0.42} % bluish, set 4
+\definecolor{altchordcolor_e}{rgb}{0.09,0.33,0.34} % cyan, set 5
+\definecolor{altchordcolor_f}{rgb}{0.36,0.15,0.23} % redish, set 6
+\definecolor{mbarcolor}{rgb}{0.36,0,0.48} % measure bar
+% encircled melody note color:
+\definecolor{melodynotecolor}{rgb}{0.0,0.1536,0.1824}
+% encircled melody note color (alt.):
+\definecolor{melodynotealtcolor}{rgb}{0.2,0,0}
+% playout mark color:
+\definecolor{pomarkcolor}{rgb}{0,0.5,0}
+% color for repetition signs:
+\definecolor{repetitionsigncolor}{rgb}{0,0,0.5}
+\definecolor{songnumbgcolor}{rgb}{1,1,1} % song number background
+\definecolor{notebgcolor}{rgb}{0.9,0.9,0.9} % textnote background
+\definecolor{idxbgcolor}{rgb}{1,1,1} % index alphabet background
+\definecolor{internallinkcolor}{rgb}{0,0,0.3} % internal links
+\definecolor{urllinkcolor}{rgb}{0.3,0,0.3} % external links
+\definecolor{linkboxcolor}{rgb}{0.5,0.9,0.6} % boxed links (view), not used now
+% @langsect-derived environments: the color for \up marks
+\colorlet{langsectmarkcolor}{chordcolor}%
+% @langsect-derived environments: colors used for different languages
+\definecolor{langenglishcolor}{rgb}{0,0,0}%
+\definecolor{langportuguesecolor}{rgb}{0,0.26,0.26}%
+\definecolor{langfinnishcolor}{rgb}{0,0.05,0.38}%
+
+% hyperref: setup
+\hypersetup{linkbordercolor=linkboxcolor,%
+            linkcolor=internallinkcolor,%
+            urlcolor=urllinkcolor,%
+            unicode=true,%
+            % TwoPageRight: display two pages side-by-side with flipping pages,
+            %               odd pages on the right
+            % TwoColumnRight: display two pages side-by-side with continuous
+            %                 scrolling, odd pageson the right
+            pdfpagelayout=TwoColumnRight,%
+            pdfpagemode=UseNone,% alt. UseThumbs or UseOutlines (bookmarks)
+            pdfprintscaling=None,%
+            pdftitle={\thisbooktitle},%
+            pdfauthor={\pdfauthor},%
+            pdfsubject={\pdfsubject},%
+            pdfkeywords={\pdfkeywords},%
+            pdfinfo={DocumentVersion={\songbookversion}}% this is a custom attr
+           }
+
+\renewcommand{\snumbgcolor}{songnumbgcolor} % songs: set song number background color in prelude
+\renewcommand{\notebgcolor}{notebgcolor} % songs: set \musicnote and \textnote background color
+\renewcommand{\idxbgcolor}{idxbgcolor} % songs: set index alphabet section background color
+
+\songcolumns{1} % songs: number of columns per page in songs environment
+\songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
+\renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
+% Set chord font style:
+\providecommand{\chordfont}{\sffamily\bfseries\small\color{chordcolor}}
+% songs: modify chord printing to use our \chordfont
+\renewcommand{\printchord}[1]{\chordfont#1}
+% songs: modify meter class font style (add color):
+\renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
+\renewcommand{\notefont}{\small} % songs: modify \textnote and \musicnote font (make smaller)
+\renewcommand{\idxtitlefont}{\sffamily} % songs: font used for titles in indices
+\renewcommand{\idxlyricfont}{\sffamily\slshape} % songs: font for alternate (lyric) titles in indices
+\renewcommand{\idxscripfont}{\sffamily\small\slshape} % songs: font used for tag (scripture) index
+% songs: use same text color for music notes as for chords and do not show
+% at all in lyric-only books
+\renewcommand\musicnote[1]{\iflyriconly\else\textnote{\color{chordcolor}#1}\fi}%
+% songs: use real sharp and flat symbols from Noto Symbol font:
+\renewcommand{\sharpsymbol}{\textsuperscript{{\symbolfont♯}}}%
+\renewcommand{\flatsymbol}{\raise.5ex\hbox{\SB@flatsize{{\symbolfont♭}}}}%
+% songs: adjust baseline distance within lyric lines to not stretch
+\baselineadj=0pt plus 0pt minus 0pt
+% songs: Verse separation +/-; +/- 0 would be best, but in some cases a song can
+% only fitted on a page with smaller separation.
+\versesep=14pt plus 0pt minus 2.7pt% was: 2.9pt%
+\providecommand*{\clineBaselineskip}{10.6pt}%
+\providecommand*{\clineLineskiplimit}{.5pt}%
+\providecommand*{\clineLineskip}{.5pt}%
+% songs: change distance of chords to lyrics
+\renewcommand{\clineparams}{%
+  \baselineskip=\clineBaselineskip%
+  \lineskiplimit=\clineLineskiplimit%
+  \lineskip=\clineLineskip%
+}
+% songs: skip after prelude and before postlude (which we don't use)
+\beforepostludeskip=0pt plus 0pt minus 12pt % % songs default: 2\p@\@plus4\p@
+\afterpreludeskip=0pt plus 8pt minus 6pt % songs default: 2\p@\@plus4\p@
+
+%\addto\captionsfinnish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: finnish
+\addto\captionsenglish{\renewcommand\chaptername{}} % sets chapter name prefix to nothing when babel: english
+\addto\captionsenglish{\renewcommand\appendixname{}} % sets appendix name prefix to nothing when babel: english
+
+% BEGIN Setup headers using fancyhdr (similar to default "book" style)
+%
+% Note that some pages (the first pages of TOC and chapters etc) automatically
+% use the style 'plain'. If needed, this style can also be modified with
+% \fancypagestyle{plain}
+%
+
+% The style for book, chapter and section titles in page headers
+\providecommand{\headertitlestyle}{%
+  \rmfamily\small\itshape%
+}
+
+% The style for page numbers in page headers
+\providecommand{\pagenumberstyle}{%
+  \rmfamily\small%
+}
+
+% This gets rid of implicit uppercasing, as it creates problems with images
+% in the chapter titles. Upcasing is now done differently and controlled with
+% \upcase...true/false settings. Note that these can't be inside style blocks.
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+% Returns the book's title formatted for headers. Used in fancyhdr style below.
+\newcommand{\headerbooktitle}{%
+  {%
+    \headertitlestyle%
+    \ifupcasebooktitleinheader%
+      \protect\MakeUppercase{\expandafter\thisbooktitle}%
+    \else%
+      \thisbooktitle%
+    \fi%
+  }%
+}
+
+% Returns the sections's title formatted for headers. Used in fancyhdr style
+% below.
+\newcommand{\headersectiontitle}{%
+  {%
+    \headertitlestyle%
+    \ifupcasesectiontitleinheader%
+      \protect\MakeUppercase{\expandafter\rightmark}
+    \else%
+      \rightmark%
+    \fi%
+  }
+}
+
+% Returns the chapter's title formatted for headers. Used in fancyhdr style
+% below.
+\newcommand{\headerchaptertitle}{%
+  % Note that chapter title's optional upcasing is done elsewhere in the
+  % definition of \mainchapter, because it cannot be done here due to possible
+  % chapter images).
+  {\headertitlestyle{\leftmark}}%
+}
+
+\newcommand{\headerchapterandsectiontitles}{%
+  \rmfamily\small%
+  \headerchaptertitle%
+  \ifnowidth{\rightmark}{}{%
+    \hspace{1em}---\hspace{1em}\headersectiontitle%
+  }%
+}
+
+% Setup the colored chapter corner mark for all pages within mainchapters.
+%
+% \chapcornermarkoffset should be at least 2mm to leave room for imprecise
+% cutting of the page. \chapcornermarkoffset + \chapcornermarkwidth should
+% be less than 4 mm, so that the whole mark is left outside of printer margins
+% when printing on home printer to a paper that requires no cutting.
+\newdimen\chapcornermarkoffset\chapcornermarkoffset=2.5mm%
+\newdimen\chapcornermarkwidth\chapcornermarkwidth=.954915mm% 2.5 * 0.618034^2 :)
+\newdimen\chapcornermarklength\chapcornermarklength=\dimexpr\ultopmargin+\ulheadheight-\chapcornermarkoffset\relax%
+% Gap count (must be >0): 2 gaps -> 5 segments -> gaps are segments 2 and 4
+\newcount\chapcornermarkdashcount\chapcornermarkdashcount=2%
+% Tweak: makes white gaps thicker than the mark:
+\newdimen\chapcornermarkdashoversize\chapcornermarkdashoversize=.2pt%
+
+% Set this to true to have dashed chapter corner marks. Will be reset to false
+% when starting a new chapter.
+\newif\ifchapcornermarkdashed\chapcornermarkdashedfalse
+
+% Corner mark's segment length = marklength / (2*dashcount + 1)
+\newdimen\ccm@segdim\ccm@segdim=\dimexpr
+  \chapcornermarklength / \numexpr 2*\chapcornermarkdashcount + 1\relax
+\relax
+
+\newdimen\ccm@halfw
+
+% Corner mark style
+\tikzset{
+  ccm@mark/.style={
+    draw=\currentchaptercolor,
+    line width=\chapcornermarkwidth,
+    line cap=butt,
+    dash phase=0pt, % default: 0pt
+  },
+  ccm@solid/.style={dash pattern=},
+  ccm@dashed/.style={dash pattern=on \ccm@segdim off \ccm@segdim},
+}
+
+% Draws one chapter corner mark.
+% #1 = anchor (north east / north west / south east / south west)
+% #2 = x sign: + or -
+% #3 = y sign: + or -
+% Requires: \usetikzlibrary{calc}
+% Assumes: \chapcornermarkoffset \chapcornermarkwidth \chapcornermarklength
+%          \chapcornermarkdashcount \ifchapcornermarkdashed,
+%          \currentchaptercolor, \newdimen\ccm@segdim, \newdimen\ccm@halfw
+\newcommand*\ChapCornerMark[3]{%
+  % #2 and #3 must be + or -
+  % Opposite signs (for shifting by -sign * halfwidth)
+  \def\ccm@xopp{+}\ifx#2+\def\ccm@xopp{-}\fi
+  \def\ccm@yopp{+}\ifx#3+\def\ccm@yopp{-}\fi
+  \coordinate (ccm@base) at
+    ($ (current page.#1) + (#2\chapcornermarkoffset, #3\chapcornermarkoffset) $);
+  \ifchapcornermarkdashed
+    \def\ccm@dashstyle{ccm@dashed}%
+  \else
+    \def\ccm@dashstyle{ccm@solid}%
+  \fi
+  %%% Alternative rounded elbow cap:
+  %%\fill[\currentchaptercolor]
+  %%  (ccm@base) circle[radius=.5\chapcornermarkwidth];
+  % Square elbow cap:
+  % Shift by (-#2*halfw, -#3*halfw) so the square is centered on the corner.
+  \ccm@halfw=\dimexpr\chapcornermarkwidth/2\relax
+  \fill[\currentchaptercolor]
+   ($ (ccm@base) + (\ccm@xopp\ccm@halfw, \ccm@yopp\ccm@halfw) $)
+   rectangle ++(#2\chapcornermarkwidth,#3\chapcornermarkwidth);
+  % Two dashed legs (dashes start at the corner on both legs):
+  \draw[ccm@mark,\ccm@dashstyle]
+    (ccm@base) -- ++(#2\chapcornermarklength,0);
+  \draw[ccm@mark,\ccm@dashstyle]
+    (ccm@base) -- ++(0,#3\chapcornermarklength);
+}
+
+% Creates chapter corner marks on the outer corners of the page
+% #1 = which side is outer?  R (odd pages) or L (even pages)
+\newcommand*\ChapCornerMarksOuter[1]{%
+  \ifusechaptercolors
+    \begin{tikzpicture}[overlay,remember picture]
+      \ifx#1R
+        \ChapCornerMark{north east}{-}{-}%
+        \ChapCornerMark{south east}{-}{+}%
+      \else
+        \ChapCornerMark{north west}{+}{-}%
+        \ChapCornerMark{south west}{+}{+}%
+      \fi
+    \end{tikzpicture}%
+  \fi
+}
+
+% Setup main header style
+\fancypagestyle{unilaiva}[fancy]{%
+  % NOTE: If fancydr warns that \footskip is too small, adjust the value here,
+  % but for too small \headsep, set it instead when loading geometry package
+  % above.
+  \setlength{\footskip}{3.60004pt} % this value comes from fancyhdr warning
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyhf{}
+  %\fancyhead[LE,RO]{\pagenumberstyle\thepage} % page nr
+  \fancyhead[CE]{\headerbooktitle}%    % even center: book title
+  \fancyhead[CO]{\headerchapterandsectiontitles} % chapter title --- section title
+  \fancyhead[RO]{%
+    \pagenumberstyle\thepage%
+    \ChapCornerMarksOuter{R}%
+  }
+  \fancyhead[LE]{%
+    \pagenumberstyle\thepage%
+    \ChapCornerMarksOuter{L}%
+  }
+}
+
+% Setup style for TOC
+\fancypagestyle{unilaivatoc}[unilaiva]{%
+  \fancyhead[LO]{} % odd left: nothing
+  \fancyhead[LE,RO]{%
+    \pagenumberstyle\thepage%
+  }
+  \fancyhead[CO]{\rmfamily\small\itshape{\leftmark}} % odd center: chapter title: "CONTENTS"
+}
+
+\pagestyle{unilaiva} % set the default page style
+
+% END Setup headers using fancyhdr
+
+% BEGIN Setup boxes
+
+% These boxes use tcolorbox package. https://ctan.org/pkg/tcolorbox
+% They are used by giving color of the box as optional parameter, and the
+% content as the mandatory one. If the color is omitted, current color is
+% used by default. Note that the current color seems to be reset to black
+% within the box, so to use it there, it needs to be saved and reset.
+%
+% Usage examples:
+%   - \@altchordidbox[red]{(Am)} % red box, black text
+%   - \colorlet{curcol}{.}\@altchordidbox{\color{curcol}(Am)} % current color for box and text
+
+% Coloured box for language code.
+\newtcbox{\@langcodebox}[1][.]{%
+  on line,arc=1pt,outer arc=.618pt,%
+  colback=#1!6!white,colframe=#1!80!black,
+  boxsep=0pt,%
+  left=0.8pt,right=0.8pt,top=0.8pt,bottom=0.8pt,%
+  boxrule=0.5pt%
+}
+
+% Coloured box for the alternate chords id (title).
+\newtcbox{\@altchordidbox}[1][.]{%
+  on line,%
+  valign=bottom,%
+  arc=3pt,%outer arc=3pt,%
+  colback=#1!5!white,colframe=#1!94!black,%
+  boxsep=0pt,%
+  left=1.4pt,right=1.4pt,top=0.1pt,bottom=0.1pt,%
+  boxrule=0.3pt%
+}
+
+% Coloured box for the "Key: XX" text on the keyline of song prelude
+\newtcbox{\@mainkeybox}[1][.]{%
+  on line,%
+  valign=bottom,%
+  arc=3pt,%outer arc=3pt,%
+  colback=#1!8!white,colframe=#1!92!black,%
+  boxsep=0pt,%
+  left=1.4pt,right=1.4pt,top=0.1pt,bottom=0.1pt,%
+  boxrule=0.5pt,%
+  %equal height group=preludekeyheightgroup%
+}
+
+% Coloured box for the good keys, "Good: Am (Am--Bm)", text on the keyline
+% of song prelude
+\newtcbox{\@goodkeysbox}[1][.]{%
+  on line,%
+  valign=bottom,%
+  arc=3pt,%outer arc=3pt,%
+  colback=#1!5!white,colframe=#1!94!black,%
+  boxsep=0pt,%
+  left=1.4pt,right=1.4pt,top=0.1pt,bottom=0.1pt,%
+  boxrule=0.5pt,%
+  %equal height group=preludekeyheightgroup%
+}
+
+% Coloured box for tags in the song prelude
+\newtcbox{\@tagsbox}[1][.]{%
+  on line,%
+  valign=bottom,%
+  arc=1pt,%outer arc=2pt,%
+  colback=#1!5!white,colframe=#1!94!black,%
+  boxsep=0pt,%
+  left=1.3pt,right=1.3pt,top=0.1pt,bottom=0.1pt,%
+  boxrule=0.5pt,%
+  %equal height group=preludekeyheightgroup%
+}
+
+% END Setup boxes
+
+% BEGIN Setup column break penalties
+
+% Force a column break
+\newcommand{\forcebrk}{%
+  \brkpenalty=-10000\brk%
+}
+
+% Strongly suggest a column break
+\newcommand{\hardbrk}{%
+  \brkpenalty=-500\brk%
+}
+
+% songs: Set penalties for column (page) breaks (<=-10000: break is forced)
+% NOTE: Be careful changing these. At least check that the page count of the
+%       final PDF is the same as before the change.
+\spenalty=0     % between songs (songs default: 100, here 0)
+\vvpenalty=200  % between verse and verse (songs default: 200, here 200)
+\vcpenalty=200  % between verse and chorus (songs default: 200, here 200)
+\ccpenalty=200  % between chorus and chorus (songs default: 200, here 200)
+\cvpenalty=200  % between chorus and verse (songs default: 200, here 200)
+\brkpenalty=50  % for \brk (songs default: 200, here 50)
+\interlinepenalty=1000 % between in-verse lines (songs default: 1000, here 1000)
+\newcount\gluepenalty%
+\gluepenalty=950 % between verses glued together with \glueverses (default here: 950)
+\newcount\blockpenalty%
+\blockpenalty=0 % between (and before the song's first) in-song blocks (default here: 0)
+\newcount\translationvvpenalty%
+\translationvvpenalty=900 % between translation verses (when \nextverse is called)
+
+% Do not use verse numbers
+\noversenumbers
+
+% END Setup column break penalties
+
+
+% END STYLE & OTHER SETTINGS
+
+
+% *****************************************************************************
+
+
+% BEGIN DEFINITIONS AND REWRITES
+% ==============================
+
+% BEGIN front matter
+
+% Sizes, gaps and positions for mode icons
+
+% The following offsets are required so that the top and left are exactly at
+% the margin positions (used inside the book). See e.g.:
+% https://tex.stackexchange.com/questions/287119/using-headsep-with-the-geometry-and-fanchyhdr-packages
+\newlength\cipermsize\cipermsize=.090169\textwidth% 0.618034^5 = 0.09169
+\newlength\cipermgapsize\cipermgapsize=.021286\textwidth% % 0.618034^8 = 0.021286
+\newlength\civarsize\civarsize=\cipermsize
+\newlength\civargapsize\civargapsize=\cipermgapsize
+\newlength\cileftoffset\cileftoffset=\dimexpr-\parindent\relax%
+%\newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\baselineskip-0.4pt\relax%
+\newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\headheight\relax%
+
+% Alternate implementations for \insertcovericons, placing the icons in
+% alternate corners either horizontally or vertically:
+
+\newcommand{\insertcovericonsvtl}{% top left, vertical
+  \ifdefined\covipermi\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermi}\fi%
+  \ifdefined\covipermii\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermii}\fi%
+  \ifdefined\covipermiii\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermiii}\fi%
+  \ifdefined\covipermiv\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermiv}\fi%
+  \ifdefined\covipermv\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermv}\fi%
+  \ifdefined\covipermvi\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermvi}\fi%
+  \ifdefined\covipermvii\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermvii}\fi%
+  \ifdefined\covipermviii\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermviii}\fi%
+  \ifdefined\covivari\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivari}\fi%
+  \ifdefined\covivarii\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivarii}\fi%
+  \ifdefined\covivariii\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivariii}\fi%
+  \ifdefined\covivariv\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivariv}\fi%
+  \ifdefined\covivarvi\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivarvi}\fi%
+  \ifdefined\covivarvii\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivarvii}\fi%
+  \ifdefined\covivarviii\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivarviii}\fi%
+}
+\newcommand{\insertcovericonsvtr}{% top right, vertical
+  \ifdefined\covipermi\hfill\includegraphics[height=\cipermsize]{\covipermi}\fi%
+  \ifdefined\covipermii\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermii}\fi%
+  \ifdefined\covipermiii\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermiii}\fi%
+  \ifdefined\covipermiv\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermiv}\fi%
+  \ifdefined\covipermv\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermv}\fi%
+  \ifdefined\covipermvi\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermvi}\fi%
+  \ifdefined\covipermvii\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermvii}\fi%
+  \ifdefined\covipermviii\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermviii}\fi%
+  \ifdefined\covivari\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivari}\fi%
+  \ifdefined\covivarii\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivarii}\fi%
+  \ifdefined\covivariii\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivariii}\fi%
+  \ifdefined\covivariv\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivariv}\fi%
+  \ifdefined\covivarv\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivarv}\fi%
+  \ifdefined\covivarvi\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivarvi}\fi%
+  \ifdefined\covivarvii\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivarvii}\fi%
+  \ifdefined\covivarviii\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivarviii}\fi%
+}
+\newcommand{\insertcovericonshtl}{% top left, horizontal
+  \hspace{\cileftoffset}%
+  \ifdefined\covipermi\includegraphics[width=\cipermsize]{\covipermi}\hspace{\cipermgapsize}\fi%
+  \ifdefined\covipermii\includegraphics[width=\cipermsize]{\covipermii}\hspace{\cipermgapsize}\fi%
+  \ifdefined\covipermiii\includegraphics[width=\cipermsize]{\covipermiii}\hspace{\cipermgapsize}\fi%
+  \ifdefined\covipermiv\includegraphics[width=\cipermsize]{\covipermiv}\hspace{\cipermgapsize}\fi%
+  \ifdefined\covipermv\includegraphics[width=\cipermsize]{\covipermv}\hspace{\cipermgapsize}\fi%
+  \ifdefined\covipermvi\includegraphics[width=\cipermsize]{\covipermvi}\hspace{\cipermgapsize}\fi%
+  \ifdefined\covipermvii\includegraphics[width=\cipermsize]{\covipermvii}\hspace{\cipermgapsize}\fi%
+  \ifdefined\covipermviii\includegraphics[width=\cipermsize]{\covipermviii}\hspace{\cipermgapsize}\fi%
+  \ifdefined\covivari\includegraphics[width=\civarsize]{\covivari}\hspace{\civargapsize}\fi%
+  \ifdefined\covivarii\includegraphics[width=\civarsize]{\covivarii}\hspace{\civargapsize}\fi%
+  \ifdefined\covivariii\includegraphics[width=\civarsize]{\covivariii}\hspace{\civargapsize}\fi%
+  \ifdefined\covivariv\includegraphics[width=\civarsize]{\covivariv}\hspace{\civargapsize}\fi%
+  \ifdefined\covivarv\includegraphics[width=\civarsize]{\covivarv}\hspace{\civargapsize}\fi%
+  \ifdefined\covivarvi\includegraphics[width=\civarsize]{\covivarvi}\hspace{\civargapsize}\fi%
+  \ifdefined\covivarvii\includegraphics[width=\civarsize]{\covivarvii}\hspace{\civargapsize}\fi%
+  \ifdefined\covivarviii\includegraphics[width=\civarsize]{\covivarviii}\hspace{\civargapsize}\fi%
+}
+\newcommand{\insertcovericonshtr}{% top right, horizontal}
+  \hspace{\fill}%
+  \ifdefined\covipermi\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermi}\fi%
+  \ifdefined\covipermii\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermii}\fi%
+  \ifdefined\covipermiii\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermiii}\fi%
+  \ifdefined\covipermiv\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermiv}\fi%
+  \ifdefined\covipermv\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermv}\fi%
+  \ifdefined\covipermvi\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermvi}\fi%
+  \ifdefined\covipermvii\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermvii}\fi%
+  \ifdefined\covipermviii\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermviii}\fi%
+  \ifdefined\covivari\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivari}\fi%
+  \ifdefined\covivarii\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivarii}\fi%
+  \ifdefined\covivariii\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivariii}\fi%
+  \ifdefined\covivariv\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivariv}\fi%
+  \ifdefined\covivarv\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivarv}\fi%
+  \ifdefined\covivarvi\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivarvi}\fi%
+  \ifdefined\covivarvii\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivarvii}\fi%
+  \ifdefined\covivarviii\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivarviii}\fi%
+}
+\newcommand{\insertcovericonsvbl}{% bottom left, vertical
+  \vspace*{\fill}%
+  \insertcovericonsvtl%
+}
+\newcommand{\insertcovericonsvbr}{% bottom right, vertical
+  \vspace*{\fill}%
+  \insertcovericonsvtr%
+}
+\newcommand{\insertcovericonshbl}{% bottom left, horizontal
+  \vspace*{\fill}%
+  \insertcovericonshtl%
+}
+\newcommand{\insertcovericonshbr}{% bottom right, horizontal
+  \vspace*{\fill}%
+  \insertcovericonshtr%
+}
+\newcommand{\insertcovericonshtc}{% top center, horizontal
+  \hfill\insertcovericonshtl\hfill%
+}
+\newcommand{\insertcovericonshbc}{% bottom center, horizontal
+  \vspace*{\fill}
+  \insertcovericonshtc%
+}
+
+\newcommand\varianticonstextsize{%
+  \ifdefined\covivari\hspace{1ex}\includegraphics[height=2ex]{\covivari}\fi%
+  \ifdefined\covivarii\hspace{1ex}\includegraphics[height=2ex]{\covivarii}\fi%
+  \ifdefined\covivariii\hspace{1ex}\includegraphics[height=2ex]{\covivariii}\fi%
+  \ifdefined\covivariv\hspace{1ex}\includegraphics[height=2ex]{\covivariv}\fi%
+  \ifdefined\covivarv\hspace{1ex}\includegraphics[height=2ex]{\covivarv}\fi%
+  \ifdefined\covivarvi\hspace{1ex}\includegraphics[height=2ex]{\covivarvi}\fi%
+  \ifdefined\covivarvii\hspace{1ex}\includegraphics[height=2ex]{\covivarvii}\fi%
+  \ifdefined\covivarviii\hspace{1ex}\includegraphics[height=2ex]{\covivarviii}\fi%
+}
+
+
+% Called by \insertcovericons to print the first set of cover icons. Can be
+% renewed. The actual icon file names are in \limgi, \limgii, \limgiii, and
+% \limgiv macros for the permanent ones, and \rimgi, \rimgii, \rimgiii, and
+% \rimgiv for the replacaple ones. The macros are undefined, if icons are
+% missing. You can provide your own implementation, or choose one of the
+% \insertcovericons??? macros.
+\providecommand{\insertcovericons}{\insertcovericonshbc}%
+
+% The icon (in default image path) used to signify a book with chords.
+\providecommand{\tagiconchords}{ulsbs-tag-icon-chords_EN_512x512px}%
+
+% The icon (in default image path) used to signify a book with treble clef sheet music.
+\providecommand{\tagicontrebleclef}{ulsbs-tag-icon-sheetmusic_512x512px}%
+
+% The icon (in default image path) used to signify a book with bass clef sheet music.
+\providecommand{\tagiconbassclef}{ulsbs-tag-icon-sheetmusic-bass_512x512px.png}%
+
+% The icon (in default image path) used to signify a lyrics-only book.
+\providecommand{\tagiconlyricsonly}{ulsbs-tag-icon-lyrics-only_EN_512x512px.png}%
+
+% The icon (in default image path) used to signify a charango book.
+\providecommand{\tagiconcharango}{ulsbs-tag-icon-charango_512x512px.png}%
+
+
+% Inserts the cover icons here. Meant to be called by \ulcoverpage. Calls the
+% public \insertcovericons to do the actual outputing.
+\newcommand{\@insertcovericons}{%
+  \thispagestyle{empty}%
+  \vspace*{\citopoffset}%
+  \insertcovericons%
+}
+
+% Set the cover page icons that are permanent regardless of variant. You can
+% give a maximum of 8 icon file names (without path), each in brackets.
+\NewDocumentCommand{\setcovericonsperm}{o o o o o o o o}{%
+  \IfValueTF{#1}{\def\covipermi{#1}}{\let\covipermi\undefined}%
+  \IfValueTF{#2}{\def\covipermii{#2}}{\let\covipermii\undefined}%
+  \IfValueTF{#3}{\def\covipermiii{#3}}{\let\covipermiii\undefined}%
+  \IfValueTF{#4}{\def\covipermiv{#4}}{\let\covipermiv\undefined}%
+  \IfValueTF{#5}{\def\covipermv{#5}}{\let\covipermv\undefined}%
+  \IfValueTF{#6}{\def\covipermvi{#6}}{\let\covipermvi\undefined}%
+  \IfValueTF{#7}{\def\covipermvii{#7}}{\let\covipermvii\undefined}%
+  \IfValueTF{#8}{\def\covipermviii{#8}}{\let\covipermviii\undefined}%
+}
+
+% Set the cover page variant icons. They will not be shown on the cover pages
+% of auto-generated variants, e.g. no-lyrics variant
+\NewDocumentCommand{\setcovericonsvar}{o o o o o o o o}{%
+  \IfValueTF{#1}{\def\covivari{#1}}{\let\covivari\undefined}%
+  \IfValueTF{#2}{\def\covivarii{#2}}{\let\covivarii\undefined}%
+  \IfValueTF{#3}{\def\covivariii{#3}}{\let\covivariii\undefined}%
+  \IfValueTF{#4}{\def\covivariv{#4}}{\let\covivariv\undefined}%
+  \IfValueTF{#5}{\def\covivarv{#5}}{\let\covivarv\undefined}%
+  \IfValueTF{#6}{\def\covivarvi{#6}}{\let\covivarvi\undefined}%
+  \IfValueTF{#7}{\def\covivarvii{#7}}{\let\covivarvii\undefined}%
+  \IfValueTF{#8}{\def\covivarviii{#8}}{\let\covivarviii\undefined}%
+}
+
+% Creates a cover page here. Ought to be the first command used after
+% \begin{document}.
+% There is one mandatory parameter, which is the cover PDF's file name without
+% path (it should reside in folder defined by \ulimagepath), and it must be in
+% PDF format. Only the first page is displayed and scaled as the cover image.
+%
+% Optionally setup icons to overlay on top of the cover in document preable
+% with \setcovericonsperm and \setcovericonsvar commands.
+%
+% By default, when automatically generating variants of this document, the
+% icons defined by \setcovericonsvar are replaced with the variant specific
+% icons. The starred version of this command just empties the icons defined by
+% \setcovericonsvar when autogerating variants and replaces them with nothing.
+\NewDocumentCommand{\ulcoverpage}{s m}{%
+  \IfBooleanTF{#1}{% starred: clear variant icons for the active book type
+    \iflyriconly
+      \setcovericonsvar%
+    \else\ifcharangobook
+      \setcovericonsvar%
+    \else\ifbassclefbook
+      \setcovericonsvar%
+    \fi\fi\fi
+  }{% unstarred: set variant icons for the active book type
+    \iflyriconly
+      \setcovericonsvar[\tagiconlyricsonly]%
+    \else\ifcharangobook
+      \setcovericonsvar[\tagiconchords][\tagicontrebleclef][\tagiconcharango]%
+    \else\ifbassclefbook
+      \setcovericonsvar[\tagiconbassclef]%
+    \fi\fi\fi
+  }%
+  % include the cover PDF (with path)
+  \ulsbsincludepdf[pages={1},pagecommand=\@insertcovericons]{#2}%
+}
+
+
+% This command creates "the imprint page", usually the "second page", the odd
+% verso page right after the cover. The information on the page is constructed
+% from the macros described in the "Book titles etc" section above.
+\newcommand{\imprintpage}{
+  { % must be contained within a block for the settings to not bleed
+    \thispagestyle{empty}
+    \topskip0pt
+    \normalsize
+    \vspace*{11.2ex} % align with "Contents" heading on the next page; BAD for any changes
+    \begin{center}
+      % Main title
+      {\Huge \mainbooktitle}
+      % Motto
+      \ifdefempty{\bookmotto}{}{% \bookmotto exists
+        \par\textit{\normalsize\bookmotto}
+      }%
+      % Subtitle (e.g. Part I)
+      \ifdefempty{\subbooktitle}{}{% \subbooktitle exists
+        \par\vspace{2ex}
+        {\Large \textbf{\subbooktitle}}
+        \ifdefempty{\subsubbooktitle}{}{% \subsubbooktitle exists
+          \par\vspace{0.618034ex}%
+          {\normalsize \subsubbooktitle}%
+        }%
+      }%
+      \par\vspace*{\fill}
+      % Variant
+      {\large \bookvariantpretext}
+      \par\vspace{0.618034ex}
+      {\Large%
+        \par\large\emph{%
+          \iflyriconly%
+            \variantlyricsonlytext%
+          \else%
+            \ifcharangobook%
+              \variantcharangotext%
+            \else%
+              \ifbassclefbook%
+                \variantbasscleftext%
+              \else%
+                \variantdefaulttext%
+              \fi%
+            \fi%
+          \fi}%
+        \varianticonstextsize%
+      }
+      \par\vspace{2ex}
+      % Version
+      {\large \bookversionpretext}
+      \par\vspace{0.618034ex}
+      {\Large%
+        %vvvv-mm-dd % Use hardcoded date date for tagged printout releases
+        \songbookversion% current date, the default
+      }
+      % By
+      \par\vspace*{\fill}
+      \ifdefempty{\bookbytext}{}{% \bookbytext exists
+        {\large \bookbytext}%
+      }%
+      \par\vspace*{\fill}
+      % Link pretext (used in selections)
+      \def\showlinkpretext{true}%
+      \ifdefempty{\bookwebsitelinkqrimage}{}{% not empty
+        \ifdefempty\bookwebsitelink{}{% not empty
+          \let\showlinkpretext\undefined%
+        }%
+      }%
+      \ifdefined\linkpretext\else\let\showlinkpretext\undefined\fi%
+      \ifdefined\showlinkpretext%
+        {\linkpretext}\par%
+      \fi
+      % website QR image
+      \ifdefempty{\bookwebsitelinkqrimage}{}{% not empty
+        \imagel[3]{\bookwebsitelinkqrimage} % is already centered, so 'l' version ok
+        \par
+      }%
+      % website textual link
+      \ifdefempty{\bookwebsitelink}{}{% not empty
+        {\small\url{\bookwebsitelink}}%
+      }%
+      % Add vspace once, if either \bookwebsitelink or \bookwebsitelinkqrimage,
+      % or both, exist
+      \ifdefempty{\bookwebsitelinkqrimage}%
+        {% qr empty
+          \ifdefempty{\bookwebsitelink}{}{% link not empty
+            \par\vspace*{\fill}%
+          }%
+        }%
+        {% qr not empty
+          \par\vspace*{\fill}
+        }%
+      \ifdefempty{\bookcompiledbytext}{}{% not empty
+        {\footnotesize\bookcompiledbytext}
+        \par\vspace*{\fill}
+      }%
+      \ifdefempty{\imprintpagefootnote}{% not empty
+        {\scriptsize\imprintpagefootnote}%
+      }%
+    \end{center}
+    \vspace{-1.85ex}% workaround to align page bottom with other pages
+  }
+}
+
+% Creates the Table Of Contents here. Use this instead of \tableofcontents macro
+\newcommand{\toc}{
+  \pagestyle{unilaivatoc}% use alternate header style for TOC
+  % to have totally flat right edge of the dots in TOC (microtype package):
+  \microtypesetup{protrusion=false} % To have a flat right side in TOC
+  \tableofcontents % The TOC
+  \microtypesetup{protrusion=true}% back to default (microtype package)
+  % Remove the overlapping page number in the bottom of the first TOC page:
+  \addtocontents{toc}{\protect\thispagestyle{empty}}
+  % Adds text "Page" on top of the TOC:
+  \IfLangTF{portuguese}{%
+    \addtocontents{toc}{~\hfill\textbf{Página}\par}
+  }{%
+    \addtocontents{toc}{~\hfill\textbf{Page}\par}
+  }
+  \newpage\pagestyle{unilaiva}% return to the default header style
+}
+
+% END front matter
+
+% Creates a small arc glyph just below baseline. Use this to join two words
+% in lyrics together with an arc instead of a whitespace. The width of the
+% arc is a bit less than an ordinary whitespace. Uses \scalebox from graphicx
+% package. Usage: alma\jw ao
+\newcommand\jw{\raisebox{-.135ex}{\scalebox{.22}{\textbf{\symsmilearc}}}}
+
+% Returns the chapter symbol as a text symbol. Renew to change.
+\providecommand\chaptersymbol{%
+  {\symboliifont 🟒}%
+}
+
+\def\currentchaptercolor{white}
+
+% Outputs the chapter symbol defined above in color; the mandatory parameter
+% is the color name.
+\newcommand\coloredchaptersymbol[1]{%
+  {\textcolor{#1}\chaptersymbol}%
+}
+
+% This is used to define the main chapters of the book. Indices, instead, use
+% \songchapter (internally).
+%
+% Usage:
+%
+%   \mainchapter*[short title]{long title}*[symbol info]
+%
+%   1st star:    This optional star signifies an unnumbered chapter; the star,
+%                if present, is passed to \chapter macro.
+%   short title: This is used in TOC and page headers -- if omitted, the long
+%                title is used.
+%   long title:  The long title, used on chapter front pages (and elsewhere,
+%                if short title is not given). This is the only mandatory
+%                parameter.
+%   2nd star:    If present, means that 'symbol info' parameter contains an
+%                image file name, otherwise 'symbol info' contains a color name
+%                to color the chapter symbol.
+%   symbol info: if 2nd star is given, this ought to contain an image file name,
+%                otherwise a color (name) to color the chapter symbol. If this
+%                parameter is omitted, no chapter image or symbol is used.
+%
+% NOTE: If optional parameters are omitted, also the empty bracket pair must
+%       be left out! So no "[]".
+%
+% Examples:
+%
+%   \mainchapter{Good songs}
+%   \mainchapter[Nice chapter]{Very very very very nice chapter}[red]
+%   \mainchapter{Bad songs}*[bad_songs_image.png]
+%
+% Note: \NewDocumentCommand, IfValueTF etc. come from xparse package, and allow
+%       nice handling of parameters.
+\NewDocumentCommand{\mainchapter}{s o m m o}{% star, [short title], {long title}, star(means image) [symbol color / image name]
+  \IfValueTF{#2}{% short title is given
+    \def\shorttitletext{#2}%
+  }{ % short title is not given, use the long one as the short title
+    \def\shorttitletext{#3}%
+  }%
+  \def\longtitletext{#3}%
+  \gdef\currentchaptercolor{#4}%
+  \IfValueTF{#5}{% yes, there is image given
+    \def\smallchapterimage{%
+      \includegraphics[height=1em,keepaspectratio=true]{#5}%
+    }%
+    \def\largechapterimage{%
+      \vspace{-1em}%
+      \imagecc[1]{#5}%
+    }%
+  }{% no image given, use symbol instead
+    \def\smallchapterimage{\coloredchaptersymbol{#4}}%
+    \def\largechapterimage{%
+      \vfill\vspace{-1em}%
+      \begin{center}%
+        \fontsize{108pt}{128pt}\coloredchaptersymbol{#4}%
+      \end{center}%
+      \vfill%
+    }%
+  }%
+  \def\shorttitlefull{%
+    % Include the image in the chapter title string, if the image is given and
+    % the feature is turned on.
+    \texorpdfstring{% pdf indexes can't contain images (and \MakeUppercase must be protected)
+      \ifupcaseshortchaptertitle\protect\MakeUppercase{\expandafter\shorttitletext}\else\shorttitletext\fi%
+      \ifshowimageinchaptername\ifdefined\smallchapterimage\hspace{1em}\smallchapterimage\fi\fi%
+    }{\protect\MakeUppercase{\expandafter\shorttitletext}}%
+  }
+  \def\longtitlefull{%
+    \ifupcaselongchaptertitle\protect\MakeUppercase{\expandafter\longtitletext}\else\longtitletext\fi%
+  }
+  \IfBooleanTF{#1}{% \mainchapter with star, call \chapter with star also
+    \chapter*[\shorttitlefull]{\longtitlefull}%
+  }{% \mainchapter without star, call \chapter without it also
+    \chapter[\shorttitlefull]{\longtitlefull}%
+  }
+  % Make chapter corner marks to be non-dashed:
+  \chapcornermarkdashedfalse
+  % The rest setups the chapter's front page
+  \thispagestyle{empty}% to omit the page number in the bottom of the page
+  \ifshowimageonchapterfrontpage\ifdefined\largechapterimage\vspace{-1em}\largechapterimage\fi\fi%
+  \clearpage%
+}
+
+
+% Adds vertical space, if not currently in a verse nor a chorus. The amount
+% of space is given as a length parameter.  Must be called only in vertical
+% mode, as this uses \addvspace command.
+\newcommand{\vspaceifnotinverse}[1]{%
+  \ifSB@inverse{}\else{% not in verse
+    \ifSB@inchorus{}\else{% nor in chorus
+      \addvspace{#1}%
+    }\fi%
+  }\fi%
+}
+
+\newcommand{\@gotochorusvspace}{.618034\baselineskip}
+
+% These commands will display some text followed by three dots, and aligned to
+% the right of the page. The idea is to use it as a signal for the reader to
+% go to a different part of the song, for example the chorus. You can use it
+% on the last line of a verse or between verses (in such a case it will be put
+% on its own line). The only parameter is to be the first words of the lyrics
+% to go to.
+%
+% There are four versions of the command, each taking different number of
+% parameters. It is recommended to use the one-parameter version \goto
+% and if needed, use it on consecutive lines to signal consecutive jumps.
+% But, if for space reasons it is deemed necessary, one can use the other
+% versions to squeeze more than one successive jump on one line.
+\newcommand{\goto}[1]{%
+  %\vspaceifnotinverse{\@gotochorusvspace}%
+  \hfill\@gtctext{#1}\par%
+}%
+\newcommand{\gotoii}[2]{%
+  \vspaceifnotinverse{\@gotochorusvspace}%
+  \hfill\@gtctext{#1} \@gtctext{#2}\par%
+}
+\newcommand{\gotoiii}[3]{%
+  \vspaceifnotinverse{\@gotochorusvspace}%
+  \hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3}\par%
+}
+\newcommand{\gotoiv}[4]{%
+  \vspaceifnotinverse{\@gotochorusvspace}%
+  \hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3} \@gtctext{#4}\par%
+}
+% Used by \goto?? commands:
+\newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{{\symboliifont➞ }#1\ldots}}}}
+
+% This command will make a small horizontal space. Use this in the beginning
+% of each line you want to indent. The optional parameter specifies the indent
+% depth factor. The default is 1.
+%
+% To indent complete verses, use \beginverse[<n>] or \mnbeginverse[<n>] instead.
+\newcommand\ind[1][1]{%
+  \leavevmode\kern\dimexpr #1\verseindentwidthbase\relax%
+}
+
+% This command puts an arrow with a text "next song" above it to the end of
+% the current line. It is meant to be used on the last line of the last
+% verse, to suggest that one can continue playing the next song straight.
+\newcommand{\tonextsongmark}[0]{
+  \hfill%
+  \makebox[0pt][l]{\raisebox{1ex}{%
+    \tiny\textit{\IfLangTF{portuguese}{seguinte}{next song}}%
+  }}%
+  $\Longrightarrow$
+}
+
+
+% BEGIN GLUESTANZAS
+
+% Toggled by \glueverses and \SB@stanzabreak
+\newif\if@stanzasglued\@stanzasgluedfalse
+
+% This rewrite supports \glueverses. If \glueverses is declared before starting
+% a new verse/chorus, vertical space between verses is not inserted, and penalty
+% for breaking column here is set to \gluepenalty (which is high).
+% Only lines marked with 'line added by larva' are inserted.
+\renewcommand\SB@stanzabreak{%
+  \ifhmode\par\fi%
+  \ifSB@stanza%
+    \SB@breakpoint{%
+      \if@stanzasglued% line added by larva
+        \gluepenalty% line added by larva
+      \else% line added by larva
+        \ifSB@inverse%
+          \ifSB@prevverse\vvpenalty\else\cvpenalty\fi%
+        \else%
+          \ifSB@prevverse\vcpenalty\else\ccpenalty\fi%
+        \fi%
+      \fi% line added by larva
+    }%
+    \if@stanzasglued% line added by larva
+      \global\@stanzasgluedfalse% line added by larva
+    \else% line added by larva
+      \vskip\versesep%
+    \fi% line added by larva
+  \fi%
+}
+
+% "Glues" consecutive verses together: removes the vertical space between them
+% and makes penalty for braking column there almost as high as between lines
+% within a verse (see and set penalties above). This is to be used within
+% a song environment, and is valid until the next new verse/chorus beginning
+% within the same song after declaring this, so use it either in between the
+% verses to glue, or within the previous verse. Gluestanzas status is always
+% reset when a new song begins, and (after applying it) when a new verse/chorus
+% begins.
+\newcommand{\glueverses}{%
+  \global\@stanzasgluedtrue%
+}
+
+% END GLUESTANZAS
+
+
+% BEGIN ALTCHORDS
+
+% Initialize the color variable.
+\definecolor{currentaltchordcolor}{rgb}{0,0,0}%
+% Set default color to altchordcolor_a, will also be reset to this at each
+% song's end.
+\colorlet{currentaltchordcolor}{altchordcolor_a}%
+
+% Set the color for displaying alternate chords, given as a number 1..6.
+% The color will be reset to 1 at the beginning of the document, and at the
+% end of each song. Called from \@altchordsid and \SB@endsong
+\newcommand{\@setaltchordscolor}[1]{%
+  \ifnum#1=1%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_a}%
+  \fi%
+  \ifnum#1=2%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_b}%
+  \fi%
+  \ifnum#1=3%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_c}%
+  \fi%
+  \ifnum#1=4%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_d}%
+  \fi%
+  \ifnum#1=5%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_e}%
+  \fi%
+  \ifnum#1=6%
+    \xglobal\colorlet{currentaltchordcolor}{altchordcolor_f}%
+  \fi%
+}
+
+% Shows an id text and optionally changes alternate chords color 1..6, until
+% the song ends or color is changed again.
+\newcommand{\@altchordsid}[2][1]{%
+  \ifchorded\ifshowaltchords%
+    \@setaltchordscolor{#1}%
+    \color{currentaltchordcolor}%
+    \ifx#2\empty\else
+      \renewcommand\capo[1]{% % redefines \capo command inside this command
+        {\normalfont (capo ##1)}%
+      }%
+      \makebox[0pt][r]{\raisebox{4.25ex}[0pt][0pt]{%
+        \tiny%
+        \@altchordidbox{\color{currentaltchordcolor}\normalfont\textbf{#2}:\vphantommaxtext}%
+      }}%
+    \fi%
+  \fi\fi%
+}%
+
+% Set up the style for alternative chords. This is added to the normal chords
+% style.
+\providecommand{\altchordstyle}{%
+  \footnotesize\itshape%
+}
+
+\ExplSyntaxOn
+% True if within \altchords parameter
+\bool_new:N \l__in_altchords_bool
+
+% Meant to be used at the end of a lyric line to specify an alternate set
+% of chords for that line to be displayed floated to the right of the line
+% in question. Do NOT set chords with \[] macro inside this, as it would mess
+% with the chord repeats etc. Instead use plain text for chord names. Also note
+% that these plaintext chord names will not be transposed among 'real' chords,
+% if \transpose is used. Not displayed on books without chords.
+% Only place bar lines, plain text, \id and \e within the parameter. Sharps
+% and flats need to be specified with \shrp and \flt here.
+%
+% To show an ID text, use \id macro within \altchords, preferably as the first
+% thing on the first line of this chord set. The optional parameter of \id sets
+% the color 1..6 for this chord set, which will be held until the end of the
+% song. Numbers 1..3 are meant to be used for different keys with same chords,
+% and numbers 4..6 are for alternate chordings in the default key.
+% See \@altchordsid.
+%
+% Example:
+%
+%  \altchords{\id[1]{Peter (C)}|C | |G |C}
+%
+\newcommand{\altchords}[1]{%
+  \ifchorded\ifshowaltchords%
+    {%
+      \bool_set_true:N \l__in_altchords_bool
+      \providecommand{\id}[2][1]{\@altchordsid[##1]{##2}}%
+      \renewcommand{\meterfont}{\color{chordcolor}\normalfont\tiny\sffamily\upshape}%
+      \renewcommand{\e}{\ifmeasures-\fi}% % shorter dash for altchords
+      \vspaceifnotinverse{.618034\baselineskip}%
+      \hfill%
+      {\printchord{\raisebox{.5ex}{\altchordstyle\color{currentaltchordcolor}#1}}}%
+    }%
+  \fi\fi%
+}
+\ExplSyntaxOff
+
+% END ALTCHORDS
+
+
+% BEGIN lyrics related
+
+% Just prints a dash if measure bar lines are enabled and does nothing otherwise.
+% Use this if a line would end at a new measure starting without any lyrics in that
+% bar on the same line. This signifies that there indeed is a measure here. The
+% measure might or might not continue on the next line. You can think of this as
+% an abbreviation for "Empty" or "End". :)
+\newcommand{\e}{\ifmeasures--\fi}
+
+% Simply a shortened form for \textsuperscript
+\newcommand{\up}[1]{%
+  \textsuperscript{#1}%
+}
+
+\ExplSyntaxOn
+% To be used to print an alternate chord for another repetition
+\NewDocumentCommand{\ac}{s d() m}{%
+  {% local group to keep color changes local
+    \IfValueT{#2}{
+      \str_case:nnF { #2 }
+        { % for [1], use current color:
+          {1}{\colorlet{accolor}{.}}
+        }
+        { % default:
+          % if within \altchords, mix current color with altinlinechordcolor,
+          % otherwise use plain altinlinechordcolor.
+          \bool_if:NTF \l__in_altchords_bool
+          {\colorlet{accolor}{.!50!altinlinechordcolor}}
+          {\colorlet{accolor}{altinlinechordcolor}}
+          \color{accolor}
+        }
+      \textsuperscript{#2}%
+    }%
+    \bool_if:NTF \l__in_altchords_bool
+      { % if in altchords, only change to mixed color, no font change nor transpose
+        \color{accolor}#3
+      }
+      { % for normal verse chords, set chord font, change color and transpose
+        \chordfont\color{accolor}\transposehere{#3}%
+      }
+  }%
+}
+\ExplSyntaxOff
+
+% Display alternate lyrics, but without any vertical or horizontal space. Is called
+% from \altlyr
+\newcommand{\altlyrnospace}[2][*]{%
+  {\if@intranslation\else\small\fi\up{#1}\emph{#2}}%
+}
+
+% Display alternate lyrics. If inside a verse or chorus, show them on the same line
+% (pushed to the right), otherwise include a small vertical space before.
+% Usage \altlyr[<superscript>]{<lyrics>}
+% If the optional argument is omitted, it will be replaced with an asterisk.
+% Example: \altlyr[2]{with love}
+\newcommand{\altlyr}[2][*]{%
+  \vspaceifnotinverse{.618034\baselineskip}%
+  \hfill%
+  \altlyrnospace[#1]{#2}%
+}
+
+% Put tiny sublyrics, given as the parameter, below the main lyrics (could be
+% used for a second voice). This is not very robust; a good idea might be to
+% put each bar's sublyrics as it's own \sublyr command. The sublyrics are
+% left-aligned with whatever comes immediately after the command, which might
+% cause overlapping of \sublyr text with the previous one.
+\newcommand{\sublyr}[1]{%
+  \makebox[0pt][l]{\raisebox{-1ex}[0pt][1ex]{%
+    \tiny #1%
+  }}%
+}
+
+% Same as \sublyr, but this pushes the main lyrics to the right to make room
+% for the sublyrics, instead of aligning. Use carefully.
+\newcommand{\sublyrpush}[1]{%
+  \makebox{\raisebox{-1ex}[0pt][1ex]{%
+    \tiny #1%
+  }}%
+}
+
+% True if this book is an autogenerated lyrics-only book. This is to be set
+% only once in the preamble when setting up autogenerated lyrics-only book,
+% in ulsbs-internal-lyricbook-postsetup.tex. Its state can be queried anywhere.
+% \ifchorded is not enough, as sometimes chords are set off in chorded books,
+% too, e.g. it happens for translation environment.
+\newif\iflyriconly\lyriconlyfalse
+\iflyric\lyriconlytrue\fi
+
+% True if this book is an autogenerated charango book. This is to be set
+% only once in the preamble when setting up autogenerated charango book,
+% in ulsbs-internal-charangobook-postsetup.tex. Its state can be queried anywhere.
+\newif\ifcharangobook\charangobookfalse
+
+% True if this book is an autogenerated bass clef book. This is to be set
+% only once in the preamble when setting up autogenerated bass clef book,
+% in ulsbs-internal-bassclefbook-postsetup.tex. Its state can be queried anywhere.
+\newif\ifbassclefbook\bassclefbookfalse
+
+% END lyrics related
+
+
+% BEGIN @langsect ENVIRONMENT
+
+\newdimen\content
+
+% The amount content is to be indented; used at least in passage environment
+\newlength\contentindentwidth%
+\setlength\contentindentwidth{7.33pt}
+
+% BEGIN @langsect / rewritable defaults
+% NOTE: These are meant to be locally renewed in environments using the
+% @langsect environment. Be sure to renew locally only, as other environments
+% might depend on these defaults.
+\newif\if@upcaselangsecttitle\@upcaselangsecttitlefalse%
+\newcommand{\@langsectfont}{}% style for the default text
+\newcommand{\@langsecttitlefont}{}% style for the title text
+% Amount of indentation for default text inside langsect environment
+\newlength\@langsectleftskipadd\setlength\@langsectleftskipadd{0pt}%
+\newlength\@langsectrightskip\setlength\@langsectrightskip{0pt}%
+\newcommand{\@langsectbaselinemultiplier}{1}%
+\newcommand{\@langsectbeginextra}{}%
+\newcommand{\@langsectendextra}{}%
+% Omit the displaying of the language codes in the title line for the languages
+% listed in this comma separated list. Only the *codes* are omitted, the rest
+% of the possible title nor the content is affected.
+\newcommand{\@langsectomitlangcodes}{}%
+
+% Starts a new subsubsection and prints it's title given as the only parameter.
+% Used in the definition of passage environment.
+\newcommand\@langsectstart{\@startsection{subsubsection}{3}{\contentindentwidth}%\z@
+                                 {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                 {1.3ex \@plus .2ex}%
+                                 {\@langsecttitlefont}}
+% END @langsect / rewritable defaults
+
+
+
+% Returns the formatted version of a language code given as an argument, plus
+% a small horizontal space after it. If the code is in the omit list, nothing
+% is returned.
+\NewDocumentCommand{\@langcodeformatted}{m}{%
+  \IfValueT{#1}{% must not be empty for string check to work
+    \IfSubStr{\@langsectomitlangcodes}{#1}{% is in the omit list, return nothing
+    }{% current langcode is not in the omit list
+      {%
+        \colorlet{currcolor}{.}%
+        \@langcodebox{\color{currcolor}\normalfont\bfseries #1}%
+        \hspace{.618034em}%
+      }%
+    }%
+  }%
+}
+
+
+
+\newcommand{\@langcodewithtitle}[2]{%
+  \@langcodeformatted{#1}#2%
+}
+
+% Environment for text that can be put inside a song environment and elsewhere,
+% with support for languages. Supports colouring and hyphenation of language
+% texts. Intended for use within this package.
+% Requires packages: xstring, xparse, xcolor
+% Usage: \begin{langsect}*[LANGCODE]{<title>}*
+%   - 1st star: language code is displayed (and section started) even if title
+%     is empty
+%   - If LANGCODE is present, it is displayed before the title in brackets.
+%     If it is one of the supported ones: PT, EN, or FI (must be uppercase),
+%     the langsect text is coloured and hyphenation for that language is used.
+%   - 2nd star: obey lines
+%   - If <title> is empty and 1st star is present, no title is displayed
+\NewDocumentEnvironment{@langsect}{s o m s}{% pre env
+  \bgroup%
+  \let\@oldobeylines\obeylines%
+  \let\@olddisobeylines\disobeylines%
+  \renewcommand{\obeylines}{\@oldobeylines\parskip=0pt}%
+  \renewcommand{\disobeylines}{%
+    \@olddisobeylines%
+    \justifying% ragged2e package: force justifying
+    \parskip=.381966\baselineskip%
+  }%
+  \newcommand{\polpar}{\par\vspace{.618034\baselineskip}}%
+  \renewcommand{\up}[1]{\textsuperscript{\color{langsectmarkcolor}##1}}%
+  \def\langsecttitle{#3}%
+  \IfValueTF{#2}{% optional lang id (must be upcase) signifying translation
+    \def\langsectlang{#2}%
+    \def\langsectfulltitle{\@langcodewithtitle{\langsectlang}{\langsecttitle}}%
+    \IfBooleanF{#1}{% if title is empty and there is no star, display no title
+      \ifx\langsecttitle\empty%
+        \def\langsectfulltitle{}%
+      \fi%
+    }%
+    \IfStrEq{\langsectlang}{PT}{%
+      \color{langportuguesecolor}%
+      \begin{portuguese}%
+    }{}%
+    \IfStrEq{\langsectlang}{EN}{%
+      \color{langenglishcolor}%
+      \begin{english}%
+    }{}%
+    \IfStrEq{\langsectlang}{FI}{%
+      \color{langfinnishcolor}%
+      \begin{finnish}%
+    }{}%
+  }{% there was no lang set
+    \def\langsectlang{}%
+    \ifx\langsecttitle\empty%
+      \def\langsectfulltitle{}%
+    \else%
+      \def\langsectfulltitle{\langsecttitle}%
+    \fi%
+  }%
+  \@langsectfont%
+  \ifchorded%
+    \chordsoff%
+    \chordedtrue% must be here to be able to use \ifchorded within the env.
+  \fi%
+  \ifhmode\par\fi%
+  \ifx\langsectfulltitle\empty\else%
+    \if@upcaselangsecttitle%
+      \@langsectstart{\protect\MakeUppercase{\expandafter\langsectfulltitle}}% Create section
+    \else%
+      \@langsectstart{\langsectfulltitle}% Create section
+    \fi%
+  \fi%
+  \baselineskip=\@langsectbaselinemultiplier\baselineskip plus 0pt minus 0pt%
+  \IfBooleanTF{#4}{% 2nd star: obey lines
+    \vspace{.25cm}%
+    \obeylines%
+  }{% no star: do not obey lines
+    \disobeylines% use the renewed version above to set up parskip etc
+  }%
+  \advance\leftskip\@langsectleftskipadd%
+  \rightskip=\@langsectrightskip%
+  \parindent=0pt\relax%
+  \noindent%
+  \@langsectbeginextra%
+  \ignorespaces%
+}{% post env
+  \par%
+  \IfStrEq{\langsectlang}{PT}{%
+    \end{portuguese}%
+  }{}%
+  \IfStrEq{\langsectlang}{EN}{%
+    \end{english}%
+  }{}%
+  \IfStrEq{\langsectlang}{FI}{%
+    \end{finnish}%
+  }{}%
+  \@langsectendextra%
+  \egroup%
+}
+
+% END @langsect ENVIRONMENT
+
+
+% BEGIN PASSAGE ENVIRONMENT
+
+% A boxed text note pushed to line's end. Intended for use within passage
+% environment.
+%
+% Usage: \passagenote*{Note text}
+%
+% If the star is present, there will be less vertical space above it. It is good
+% to use, if the note is put just after beginning a passage environment.
+\NewDocumentCommand{\passagenote}{s m}{%
+  {%
+    \ifhmode\par\fi%
+    \IfBooleanT{#1}{%
+      \vspace{-2ex}%
+    }%
+    \rightskip=\passagerightskip%
+    \hfill\SB@colorbox\notebgcolor{\SB@boxup{\sffamily\itshape #2}}%
+    \par%
+  }%
+}%
+
+% BEGIN passage settings
+\providecommand{\passagefont}{\lyricfont}%
+% Style for the default text for alt. passage env (starred):
+\providecommand{\altpassagefont}{\lyricfont\normalsize\sffamily\itshape}%
+\providecommand{\passagetitlefont}{\stitlefont}%
+% Baseline multiplier, must be a number:
+\providecommand{\passagebaselinemultiplier}{1.1}%
+% Amount of indentation for default text:
+\newlength\passageleftskipadd\setlength\passageleftskipadd{2em}\relax%
+\newlength\passagerightskip\setlength\passagerightskip{2em}\relax%
+% The content in languages that have their code in in this comma separated
+% list are not shown at all:
+\providecommand{\passagelanguagestoskip}{}%
+% The language *codes* held in this comma separated list are not displayed:
+\providecommand{\passageomitlangcodes}{}%
+% END passage settings
+
+% Starts a new subsubsection and prints it's title given as the only parameter.
+% Used in the definition of passage environment.
+\newcommand\@passagestart{\@startsection{subsubsection}{3}{\contentindentwidth}%\z@
+                          {-3.25ex\@plus -1ex \@minus -.2ex}%
+                          {1.3ex \@plus .2ex}%
+                          {\passagetitlefont}}
+
+% Environment for a passage of text that can be put inside a song environment
+% and elsewhere. Supports colouring and hyphenation of language texts.
+% Uses @langsect environment.
+% Requires packages: xstring, xparse, xcolor
+% Usage: \begin{passage}*[LANGCODE]{<title>}
+%   - If star is present, another version of the environment is used, meant
+%     for notes.
+%   - If LANGCODE is present, it is displayed before the title in brackets.
+%     If it is one of the supported ones, the passage text is coloured and
+%     hyphenation for that language is used.
+%   - If <title> is empty, no title is displayed. To display it in such a
+%     case, make the title a whitespace: { }
+%   - \obeylines and \disobeylines (the default) macros are supported within
+\NewDocumentEnvironment{passage}{s o m}{% pre env
+  % Check if this environment needs hiding:
+  \newif\ifhide\hidefalse%
+  \ifshowpassage\else\hidetrue\fi%
+  % Test for skipped languages:
+  \IfValueT{#2}{%
+    \IfSubStr{\passagelanguagestoskip}{#2}{%
+      \global\hidetrue% % mark to hide, as the lang is in the skip list
+    }{}%
+  }%
+  % If hiding is needed, hide the rest using verbatim's \comment:
+  \ifhide\expandafter\comment\fi%
+  \bgroup%
+  \renewcommand{\@langsectstart}{\@passagestart}%
+  \renewcommand{\@langsectfont}{\passagefont}%
+  \renewcommand{\@langsecttitlefont}{\passagetitlefont}%
+  \renewcommand{\@langsectbaselinemultiplier}{\passagebaselinemultiplier}%
+  \renewcommand{\@langsectbeginextra}{}%
+  \renewcommand{\@langsectendextra}{\vfil}%
+  \renewcommand{\@langsectomitlangcodes}{\passageomitlangcodes}%
+  \@langsectleftskipadd=\passageleftskipadd%
+  \@langsectrightskip=\passagerightskip%
+  \IfBooleanT{#1}{% starred version
+    \renewcommand{\@langsectfont}{\altpassagefont}%
+    \renewcommand{\@langsectbeginextra}{\vspace{1cm}\vfil}%
+  }
+  \IfValueTF{#2}{%
+    \begin{@langsect}[#2]{#3}
+  }{% no lang
+    \begin{@langsect}{#3}
+  }%
+}{% post env
+  \ifhide% End hidden section (\endcomment from verbatim package):
+    \expandafter\endcomment%
+  \else% Execute the post command(s):
+    \end{@langsect}
+    \egroup%
+  \fi%
+}
+
+% END PASSAGE ENVIRONMENT
+
+
+% BEGIN IN-SONG BLOCKS
+
+\newcounter{@endsongvfillneeded}% counter to hold info about needing vfill at end
+\newcounter{@aftersongblocks}\setcounter{@aftersongblocks}{0}% reset to 0 in endsong
+
+% Call this to request no vfill at song end. The last call within a song to
+% \noendsongvfill or \yesendsongvfill will be the one acted on.
+\newcommand{\noendsongvfill}{%
+  \ifSB@insong%
+    \setcounter{@endsongvfillneeded}{0}%
+  \fi%
+}
+
+% Call this to request a vfill at song end. The last call within a song to
+% \noendsongvfill or \yesendsongvfill will be the one acted on.
+\newcommand{\yesendsongvfill}{%
+  \ifSB@insong%
+    \setcounter{@endsongvfillneeded}{1}%
+  \fi%
+}
+
+\yesendsongvfill% Start with this default, will be reset in endsong
+
+
+% This is called in the beginning of each insong-block: translation, showmantra,
+% feeler, explanation and lilywrap.
+\newcommand{\@blockstart}{%
+  \newcount\brkpenorg%
+  \brkpenorg\brkpenalty%
+  \ifSB@insong%
+    % The first block after verses needs a bit more vertical space before it:
+    \ifnum\value{@aftersongblocks}=0%
+      \vspace{1.618034em}%
+    \else%
+      \vspace{1em}%
+    \fi%
+    \brkpenalty\blockpenalty%
+    \brk%
+    %\vbox to0pt{}% % This trick is not needed anymore :)
+    \vspace*{\fill}% % with star to not be deleted after page break
+    \addtocounter{@aftersongblocks}{1}%
+  \else%
+    \ifSB@intersong%
+      \vspace{1em}\vspace*{\fill}%
+    \fi%
+  \fi%
+  \brkpenalty\brkpenorg%
+}
+
+% Define \blockstart to be able to use in-song block feature manually also
+% elsewhere than in the environments defined below.
+\newcommand{\blockstart}{\@blockstart}
+
+% Displays the parameter text centered in a large font. Use within songs, but outside
+% verses. Intended to be used for short mantras for recitation.
+\newcommand{\showmantra}[1]{%
+  \yesendsongvfill%
+  % Do not call \@blockstart here, as this is not really an after-song block...
+  \vspace{1.618034em}%
+  \begin{center}%
+    {\Large #1}%
+  \end{center}%
+}
+
+% environment for 'song feeler'
+\NewEnviron{feeler}{%
+  \ifshowfeeler%
+    \yesendsongvfill%
+    \@blockstart%
+    \small%
+    \par\noindent\ignorespaces%
+    \begin{center}\begin{em}%
+      \BODY%
+    \end{em}\end{center}%
+  \fi%
+}
+
+% \translationoff command can be used inside a song (before the translation
+% environment) to turn off displaying of the translation for that song unless
+% \translationon is called. The translations are never displayed, if
+% \showtranslationfalse is set (in the main document).
+\newcommand{\translationoff}{\def\@translationdisabled{}}
+\newcommand{\translationon}{\let\@translationdisabled\undefined}
+
+% Setup the style for the translation. Renew this macro in the beginning of
+% your document to set custom style for translations. (This will be called
+% each time in the beginning of the translation block, within it.)
+\providecommand{\translationfont}{}
+
+\newif\if@intranslation\@intranslationfalse%
+
+% Environment for song translation, to be used only inside a song
+\NewDocumentEnvironment{translation}{o}{% pre env
+  % Check if this environment needs hiding
+  \newif\ifhide\hidefalse%
+  \ifshowtranslation\else\hidetrue\fi%
+  \ifdefined\@translationdisabled\hidetrue\fi%
+  % If hiding is needed, hide the rest using verbatim's \comment
+  \ifhide\expandafter\comment\fi%
+  % The following, including the environment body, is only expanded and
+  % processed, if no hiding is needed.
+  \@intranslationtrue%
+  \yesendsongvfill%
+  \newcommand{\nextverse}{\brkpenalty=\translationvvpenalty\brk\vspace{.5em}}% some vertical space between verses
+  \IfValueTF{#1}{% optional lang id (must be upcase) signifying translation
+    \def\langsectlang{#1}%
+    \IfStrEq{\langsectlang}{PT}{%
+      \color{langportuguesecolor}%
+      \begin{portuguese}%
+    }{}%
+    \IfStrEq{\langsectlang}{EN}{%
+      \color{langenglishcolor}%
+      \begin{english}%
+    }{}%
+    \IfStrEq{\langsectlang}{FI}{%
+      \color{langfinnishcolor}%
+      \begin{finnish}%
+    }{}%
+  }{% no lang id given
+    \def\langsectlang{}%
+  }%
+  \beginverse*%
+  \vspace{-\versesep}% remove the vertical space created by \beginverse
+  \@blockstart%
+  \chordsoff%
+  \small\translationfont%
+}{% post env
+  \ifhide% End hidden section (\endcomment from verbatim package):
+    \expandafter\endcomment%
+  \else% Execute the post command(s):
+    \endverse%
+    \IfStrEq{\langsectlang}{PT}{%
+      \end{portuguese}%
+    }{}%
+    \IfStrEq{\langsectlang}{EN}{%
+      \end{english}%
+    }{}%
+    \IfStrEq{\langsectlang}{FI}{%
+      \end{finnish}%
+    }{}%
+  \fi%
+}
+
+% BEGIN explanation settings
+\providecommand{\explanationfont}{\rmfamily\footnotesize}%
+\providecommand{\explanationtitlefont}{\bfseries}%
+% Baseline multiplier, must be a number:
+\providecommand{\explanationbaselinemultiplier}{1.15}%
+% The content in languages that have their code in in this comma separated
+% list are not shown at all:
+\providecommand{\explanationlanguagestoskip}{}%
+% The language *codes* held in this comma separated list are not displayed:
+\providecommand{\explanationomitlangcodes}{}%
+% END explanation settings
+
+\newcounter{@explcounter}\setcounter{@explcounter}{0} % reset to 0 in endsong
+
+% Environment for 'song explanation'
+% Uses @langsect environment
+% Requires packages: xstring, xparse, xcolor
+% Usage: \begin{explanation}[LANGCODE]
+%   - If LANGCODE is present, it is displayed before the title in brackets.
+%     If it is one of the supported ones, the passage text is coloured and
+%     hyphenation for that language is used.
+\NewDocumentEnvironment{explanation}{o}{% pre env
+  % Check if this environment needs hiding:
+  \newif\ifhide\hidefalse%
+  \ifshowexplanation\else\hidetrue\fi%
+  % Test for skipped languages:
+  \IfValueT{#1}{%
+    \IfSubStr{\explanationlanguagestoskip}{#1}{%
+      \global\hidetrue% % mark to hide, as the lang is in the skip list
+    }{}%
+  }%
+  % If hiding is needed, hide the rest using verbatim's \comment:
+  \ifhide\expandafter\comment\fi%
+  \bgroup%
+  \ifnum\value{@explcounter}<1%
+    \@blockstart%
+  \else%
+    \vspace{1ex}%
+  \fi%
+  \addtocounter{@explcounter}{1}%
+  \noendsongvfill% so far explanation is last block, no vfill needed at song end
+  \setlist[description]{% modify description list (enumitem package)
+    %topsep=30pt,%      % space before start / after end of list
+    %itemsep=5pt,%      % space between items
+    leftmargin=3em%     % left margin
+    %font={\rmfamily}%   % set the label font
+  }%
+  \@langsectleftskipadd=0pt\relax%
+  \@langsectrightskip=0pt\relax%
+  \renewcommand{\@langsectbaselinemultiplier}{\explanationbaselinemultiplier}%
+  \renewcommand{\@langsectfont}{\explanationfont}%
+  \renewcommand{\@langsecttitlefont}{\explanationtitlefont}%
+  \renewcommand{\@langsectendextra}{}%
+  \renewcommand{\@langsectomitlangcodes}{\explanationomitlangcodes}%
+  \IfValueTF{#1}{% language code is given
+    \renewcommand\@langsectstart[1]{\noindent{\@langcodeformatted{#1}}}%
+    \begin{@langsect}*[#1]{}%
+  }{% no language code
+    \begin{@langsect}{}%
+  }%
+}{% post env
+  \ifhide% End hidden section (\endcomment from verbatim package):
+    \expandafter\endcomment%
+  \else% Execute the post command(s):
+    \end{@langsect}%
+    \egroup%
+  \fi%
+}
+
+% Environment for wrapping lilypond.
+\NewEnviron{lilywrap}{%
+  \ifshowlilypond%
+    \yesendsongvfill% if lilypond is last, add vfill at song end
+    \@blockstart%
+    \BODY%
+  \fi%
+}
+
+% END IN-SONG BLOCKS
+
+
+% BEGIN ENDSONG
+
+% songs: rewrite this macro to support the following:
+%   1) add a \vfill to song's end conditionally
+%   2) reset counters etc for the next song
+%   3) support for adding 'song end mark' to just above the horizontal
+%      line ending a song, if \songendmark not empty. The mark is positioned
+%      touching the right margin of the page, and does not take vertical space,
+%      so it might overlap on song content in some cases.
+%   4) deprecated choruses
+\renewcommand\SB@endsong{%
+  % BEGIN modification by larva: song end vfill (1)
+  \ifnum\value{@endsongvfillneeded}>0%
+    \ifnum\SB@numcols=1% only do a vfill in 1-column situation
+      \vspace{0pt plus 1fill minus 0pt}%
+    \fi%
+  \fi%
+  % END modifictaion by larva: song end vfill (1)
+  % BEGIN modification by larva: resets (2)
+  \yesendsongvfill% back to the default for the next song
+  \setcounter{@aftersongblocks}{0}% reset block counter for next song
+  \setcounter{@explcounter}{0}% reset explanation counter for next song
+  \@setaltchordscolor{1}% back to default alt chords color
+  % END modification by larva: resets (2)
+  \ifSB@insong%
+      \ifSB@inverse\SB@erreov\endverse\fi%
+      % BEGIN modification: always do \endverse, not \endchorus
+      \ifSB@inchorus\SB@erreoc\endverse\fi%
+      % END modification
+      \global\SB@skip\versesep%
+      \unskip%
+      \ifrepchorus\ifvoid\SB@chorusbox\else%
+        \ifSB@prevverse\ifvnumbered%
+          \marks\SB@cmarkclass{\SB@lastcmark}%
+        \fi\fi%
+      \fi\fi%
+    \endgroup\egroup%
+    \begingroup%
+      \ifnum\SB@numcols>\z@%
+        \hsize\ifpagepreludes\textwidth\else\SB@colwidth\fi%
+      \fi%
+      \leftskip\z@skip\rightskip\z@skip%
+      \parfillskip\@flushglue\parskip\z@skip\parindent\z@%
+      \global\setbox\SB@envbox\vbox{%
+        \songmark%
+        \unvbox\SB@songwrites%
+        \ifpagepreludes\else\ifdim\sbarheight>\z@%
+          \hrule\@height\sbarheight\@width\hsize%
+          \nobreak\vskip5\p@\relax%
+        \fi\fi%
+        \resettitles%
+        \begingroup%
+          \songtarget{\ifnum\c@section=\z@1\else2\fi}%
+                     {song\theSB@songsnum-\thesongnum}%
+        \endgroup%
+        \vbox{\makeprelude}%
+        \nobreak\vskip\SB@skip%
+        \vskip\afterpreludeskip\relax%
+      }%
+      \ifnum\SB@numcols>\z@\hsize\SB@colwidth\fi%
+      \global\setbox\SB@songbox\vbox{%
+        \ifpagepreludes\else\unvbox\SB@envbox\fi%
+        \unvbox\SB@songbox%
+        \nobreak\vskip\SB@skip%
+        \vskip\beforepostludeskip\relax%
+        \nointerlineskip%
+        \vbox{\makepostlude}%
+        \ifdim\sbarheight>\z@%
+          \nobreak\vskip2\p@\@plus\p@%
+          \nointerlineskip%
+          \hbox{%
+            \vrule\@height\sbarheight\@width\hsize%
+            % BEGIN modification by larva: song end mark (3)
+            \ifdefempty{\songendmark}{}{% song end mark exists
+              {%
+                \normalsize%
+                \newdimen\@songendmarkwidth%
+                \settowidth{\@songendmarkwidth}{\songendmark}%
+                \hspace{-\@songendmarkwidth}%
+                \raisebox{.618034ex}[0pt][0pt]{\songendmark}%
+              }%
+            }%
+            % END modification by larva: song end mark (3)
+          }%
+        \fi%
+      }%
+    \endgroup%
+    \SB@insongfalse%
+    \edef\SB@sgroup{\thesongnum}%
+    \global\SB@groupcnt\z@%
+    \ifpagepreludes\SB@submitenv\fi%
+    \SB@submitsong%
+    \ifnum\SB@grouplvl=\z@\let\SB@sgroup\@empty\fi%
+    \stepcounter{songnum}%
+  \else%
+    \ifSB@intersong\SB@erreor\SB@closeall%
+    \else\SB@erreot\fi%
+  \fi%
+}
+
+% END ENDSONG
+
+
+% BEGIN IMAGES (IN-SONG AND OUT)
+
+% \image?? macros include an image here. It is scaled so that it's width is
+% a power of golden ratio conjugate of \linewidth. The optional parameter is
+% the power [0..7] and if not given, defaults to 1. Value 0 will scale the
+% image to maximum size, so it's width is \linewidth. The mandatory parameter
+% is the image file name without path. Put the image in content/img (or other
+% path specified by \graphicspath above). These commands can be used within and
+% outside of songs.
+%
+%   - \imagel puts the image exactly at the current position
+%   - \imager pushes the image to the right
+%   - \ịmagec centers the image horizontally
+%   - \imagecc centers the image horizontally and vertically
+%   - \imagecb centers the image horizontally and pushes it to the bottom of the page
+%   - \imagelc centers the image vertically
+%   - \imagerc pushes the image to the right and centers it vertically
+%   - \imagerb pushes the image to the right and bottom of page
+%
+% Example: \imagecc[2]{nicepic.png}
+%   This scales the image width to 0.618034^2 * \linewidth and centers it both
+%   horizontally and vertically in the space available.
+
+\newcommand{\imagel}[2][1]{%
+  \@setgrcwidth[#1]%
+  \includegraphics[width=\@grcwidth]{#2}%
+}
+
+\newcommand{\imager}[2][1]{%
+  \hfill\imagel[#1]{#2}%
+}
+
+\newcommand{\imagec}[2][1]{%
+  \begin{center}%
+    \imagel[#1]{#2}%
+  \end{center}%
+}
+
+\newcommand{\imagecc}[2][1]{%
+  \begin{center}%
+    \ifSB@insong\@blockstart\else\vfill\fi%
+    \imagel[#1]{#2}%
+    \ifSB@insong\yesendsongvfill\else\vfill\fi%
+  \end{center}%
+}
+
+\newcommand{\imagecb}[2][1]{%
+  \begin{center}%
+    \ifSB@insong\@blockstart\else\vfill\fi%
+    \imagel[#1]{#2}%
+    \noendsongvfill%
+  \end{center}%
+}
+
+\newcommand{\imagelc}[2][1]{%
+  \ifSB@insong\@blockstart\else\vfill\fi%
+  \imagel[#1]{#2}%
+  \ifSB@insong\yesendsongvfill\else\vfill\fi%
+}
+
+\newcommand{\imagerc}[2][1]{%
+  \begin{center}%
+    \ifSB@insong\@blockstart\else\vfill\fi%
+    \imager[#1]{#2}%
+    \ifSB@insong\yesendsongvfill\else\vfill\fi%
+  \end{center}%
+}
+
+\newcommand{\imagerb}[2][1]{%
+  \ifSB@insong\@blockstart\else\vfill\fi%
+  \imager[#1]{#2}%
+  \noendsongvfill%
+}
+
+\newdimen\@grcwidth% This is set by \setgrcwidth and used in \imagel
+
+% Sets \@grcwidth to hold a power of golden ratio conjugate (0.618034^n)
+% Optional parameter (given within []) is the exponent as integer in
+% [0..7] and if omitted, defaults to 1.
+% Used in \imagel.
+% (I know this is an idiotic way to produce these, but oh well -- LaTeX...)
+\newcommand{\@setgrcwidth}[1][1]{%
+  \IfEq{#1}{0}{\setlength\@grcwidth{1\linewidth}}{}% 1
+  \IfEq{#1}{1}{\setlength\@grcwidth{.618034\linewidth}}{}% 0.618034
+  \IfEq{#1}{2}{\setlength\@grcwidth{.381966\linewidth}}{}% 0.618034^2
+  \IfEq{#1}{3}{\setlength\@grcwidth{.236067\linewidth}}{}% 0.618034^3
+  \IfEq{#1}{4}{\setlength\@grcwidth{.145898\linewidth}}{}% 0.618034^4
+  \IfEq{#1}{5}{\setlength\@grcwidth{.090169\linewidth}}{}% 0.618034^5
+  \IfEq{#1}{6}{\setlength\@grcwidth{.055728\linewidth}}{}% 0.618034^6
+  \IfEq{#1}{7}{\setlength\@grcwidth{.034441\linewidth}}{}% 0.618034^7
+}
+
+% END IMAGES (IN-SONG AND OUT)
+
+
+% BEGIN MELODY NOTES
+
+% MELODY NOTES feature
+%
+% The \mn??? commands display an encircled note name hint above the chord
+% line. They are meant to display (sung) melody notes above the lyrics. The
+% commands must be called from within a chord definition \[]. The note name must
+% be written as upper case for transposing to work, even though the result
+% is actually presented in lower case.
+%
+% To disable showing of the notes for the whole document, set \shownotesfalse
+% in the main document preamble (after including this package).
+%
+% Call \notesoff command between verses to disable showing of notes in the
+% following verses of the song.
+%
+% The recommended use for this feature is to display at least the first sung
+% non-unison melody interval of each song, preferably for the whole first line
+% of lyrics. So just specify the first melody notes and use \notesoff after
+% the first verse. If chord replaying feature is used, it is possible to define
+% notes not paired with a chord with ^ to not include them in the chord
+% memorization, thus negating the need to put ^ for that note in later verses
+% where chords are replayed. Example: \[^\mn{C}]
+%
+% Choose the correct command:
+%
+%   \mn{<note>}                     : normal note, don't use with a chord
+%   \mnc{<note>}                    : can be used with a chord
+%   \mncadj{<hadj>}{<note>}         : normal note with adjusted horiz. position,
+%                                     can be used with a chord
+%   \mncii{<note>}{<note>}          : 2 notes horizontally, can be used with a
+%                                     chord
+%   \mnciii{<note>}{<note>}{<note>} : 3 notes horizontally, can be used with a
+%                                     chord
+%   \mnciv{<note>}{<note>}{<note>}{<note>}
+%                                   : 4 notes horizontally, can be used with a
+%                                     chord
+%   \mncv{<note>}{<note>}{<note>}{<note>}{<note}
+%                                   : 5 notes horizontally, can be used with a
+%                                     chord
+%   \mnd{<note>}                    : note positioned below the normal note
+%                                     line, on same height with chords, don't
+%                                     use with a chord
+%   \ma{<note}                      : alternatively colored note, don't use with
+%                                     a chord
+%   \mac{<note}                     : alternatively colored note, can be used
+%                                     with a chord
+%   \mad{<note>}                    : alternatively colored note, positioned
+%                                     below the normal note line, on same height
+%                                     with chords, don't use with a chord
+%   \madii{<note>}{<note>}          : two notes vertically, the first one in alt
+%                                     color below the normal note line, do not
+%                                     use with a chord
+%   \mau{<note}                     : alternatively colored note above the
+%                                     normal note line, don't use with a chord
+%   \mauc{<note}                    : alternatively colored note above the
+%                                     normal note line, can be used with a chord
+%   \mauii{<note}{<note}            : two notes vertically, the first one in alt
+%                                     color, don't use with a chord
+%   \mauiic{<note}{<note}           : two notes vertically, the first one in alt
+%                                     color, can be used with a chord
+%
+% Use \mn, \mnc, \mncii or \mnciii to display notes on the first line of lyrics
+% or in verses or choruses defined with \mn<begin|end><verse|chorus> pair rather
+% than the ordinary \<begin|end><verse|chorus>. Elsewhere they would overlap
+% the lyrics on the line above. Use \mn if the note is not to be displayed at
+% the exact same horizontal spot as a chord, and use \mnc to display a note and
+% a chord on top of each other: in that case you must put the chord immediately
+% after the \mnc command within the same chord definition brackets.
+%
+% \mncii and \mnciii are really two and three note extensions of \mnc: with
+% them one can put two or three notes on top of one chord. They are also meant
+% to be used only on the first line of lyrics in a verse or verses defined with
+% \mn* macros.
+%
+% Any of the above commands with 'c' in them does not take any horizontal
+% space, thus they can be placed above chords. All the others take horizontal
+% space.
+%
+% \mnd doesn't put the note so high above the chord line, so use it on other
+% than the first line of lyrics with the caveat, that chords and notes are put
+% beside each other.
+%
+% Set \usealtmnstyletrue to use alternate color on all normal notes and normal
+% color on alternate notes set with \ma* commands.
+%
+% If one whishes to use
+%
+% Example usage:
+%
+%   \[\mnc{A}Am]Love is \[\mn{E}]great
+%   and \[\mnd{D#}]food tastes \[\mnd{A}]good
+%
+%   \[\mnciii{C}{A}{F}Fmaj7]Tralalaa
+%
+% NOTE: this system requires rewrites of the verse begin / end machinery, that
+%       comes later.
+
+% Setup the style for the melody note name "text". Renew this macro in the
+% beginning of your document to set custom style. This will be called each
+% time the melody note circle is drawn. This can be set for individual notes,
+% too. If left empty, \scriptsize\mdseries\sansheavyfont will be used.
+\providecommand{\mnsymbolstyle}{}
+
+% Setup the style for the small tags put in front of melody note circles. This
+% ought to just set a very small font size.
+\providecommand{\mntagstyle}{\fontsize{3.5pt}{4.5pt}\selectfont}
+
+% Small tag text to be put in front of normal melody note circles. Does not take
+% space.
+\providecommand{\mntagtext}{}
+
+% Small tag text to be put in front of alternatively styled melody note circles.
+% Does not take space.
+\providecommand{\mnalttagtext}{}
+
+% Factor for the tag text for melody notes is pushed towards the right to be
+% closer to the melody note circle. This is relative to 1ex of the melody note
+% font, not the font setup in \tagstyle
+\providecommand{\mntaghorizadjfactor}{.1}
+
+% Factor for the tag text for melody notes is pushed upwards.
+% This is relative to 1ex of the melody note font, not the font setup
+% in \tagstyle.
+\providecommand{\mntagvertadjfactor}{.8}
+
+% Factor for the height of the normal melody notes from chord baseline.
+% This is relative to 1 ex of the current font: \chordfont when called from
+% within chord definition as it is meant to.
+\providecommand{\mnnormalheightfactor}{1.85}
+
+% Factor for the height of the low melody note variant from chord baseline.
+% This is relative to 1 ex of the current font: \chordfont when called from
+% within chord definition as it is meant to.
+% Used in \mnd and \mad* macros.
+\providecommand{\mnlowheightfactor}{.3}
+
+% Factor for the height of the high melody note variant from chord baseline.
+% This is relative to 1 ex of the current font: \chordfont when called from
+% within chord definition as it is meant to.
+% Used in \mau* macros.
+\providecommand{\mnhighheightfactor}{3.4}
+
+
+% Toggles the media note style between normal and alternate
+\newcommand{\@togglemnstyle}{%
+  \ifusealtmnstyle\usealtmnstylefalse\else\usealtmnstyletrue\fi%
+}
+
+% Prints the pretag for melody note circle, if one exists
+\newcommand{\@mntag}{%
+  \begingroup%
+    \hspace{\dimexpr\mntaghorizadjfactor ex\relax}%
+    \raisebox{\dimexpr\mntagvertadjfactor ex\relax}{%
+      \llap{\mntagstyle\ifusealtmnstyle\mnalttagtext\else\mntagtext\fi}%
+    }%
+  \endgroup%
+}
+
+% Base style for the melody note name symbol, appended with \mnsymbolstyle:
+\newcommand{\@mnsymbolstyle}{%
+  \scriptsize\mdseries\sansheavyfont%
+  \ifusealtmnstyle%
+    \color{melodynotealtcolor}%
+  \else%
+    \color{melodynotecolor}%
+  \fi%
+  \mnsymbolstyle%
+}
+
+% Sharp and flat symbols for note circles: adjust their height and kerning
+% for a better fit within the circle.
+\newcommand{\@mnsharpsymbol}{\raise-.25ex\hbox{\textsuperscript{{\kern-0.05em\symbolfont♯}}}}%
+\newcommand{\@mnflatsymbol}{\raise.4ex\hbox{\SB@flatsize{{\kern-0.05em\symbolfont♭}}}}
+
+% Outputs an encircled melody note, internal
+%   - optional parameter: rise the note above text (chord line) by this amount,
+%                         defaults to \mnnormalheight (1em)
+%   - mandatory parameter: the note, must be in UPPER CASE for transposing to
+%     work
+%   * Example usage: \@note[0.5em]{C#}
+%   * To take no horizontal space, call this macro within \makebox[0pt][l]{}
+\newcommand*{\@note}[2][\dimexpr\mnnormalheightfactor ex\relax]{%
+  \ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \begingroup%
+      \notenamesout abcdefg%
+      % Use adjusted sharp and flat symbols for better fit
+      \renewcommand{\sharpsymbol}{\@mnsharpsymbol}%
+      \renewcommand{\flatsymbol}{\@mnflatsymbol}%
+      \raisebox{#1}{%
+        \@mnsymbolstyle% Set the style
+        % Make the tag, if it exists, on the left of the note circle
+        \makebox[0pt][l]{\@mntag}%
+        % Show the note transposed and encircled
+        \circled{\transposehere{#2}}%
+      }%
+      \endgroup%
+    \fi%
+  \fi%
+}
+
+% Displays a melody note, to be used on the first line of lyrics.
+% See above for usage information.
+\newcommand*{\mn}[1]{%
+  \@note{#1}%
+}
+
+% Displays a melody note above a chord, to be used on the first line of lyrics.
+% See above for usage information.
+\newcommand*{\mnc}[1]{%
+  \makebox[0pt][l]{\@note{#1}}%
+}
+
+% Displays a melody note above a chord, with its position adjusted horizontally,
+% to be used on the first line of lyrics. See above for usage information.
+\newcommand*{\mncadj}[2]{%
+  \hspace{#1}%
+  \makebox[0pt][l]{\@note{#2}}%
+  \hspace{-#1}%
+}
+
+% Displays two melody notes above a chord, to be used on the first line of
+% lyrics. See above for usage information.
+\newcommand*{\mncii}[2]{%
+  \ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \makebox[0pt][l]{\@note{#1}\@note{#2}}%
+    \fi%
+  \fi%
+}
+
+% Displays three melody notes above a chord, to be used on the first line of
+% lyrics. See above for usage information.
+\newcommand*{\mnciii}[3]{%
+  \ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \makebox[0pt][l]{\@note{#1}\@note{#2}\@note{#3}}%
+    \fi%
+  \fi%
+}
+
+% Displays four melody notes above a chord, to be used on the first line of
+% lyrics. See above for usage information.
+\newcommand*{\mnciv}[4]{%
+  \ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \makebox[0pt][l]{\@note{#1}\@note{#2}\@note{#3}\@note{#4}}%
+    \fi%
+  \fi%
+}
+
+% Displays five melody notes above a chord, to be used on the first line of
+% lyrics. See above for usage information.
+\newcommand*{\mncv}[5]{%
+  \ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \makebox[0pt][l]{\@note{#1}\@note{#2}\@note{#3}\@note{#4}\@note{#5}}%
+    \fi%
+  \fi%
+}
+
+% Displays six melody notes above a chord, to be used on the first line of
+% lyrics. See above for usage information.
+\newcommand*{\mncvi}[6]{%
+  \ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \makebox[0pt][l]{\@note{#1}\@note{#2}\@note{#3}\@note{#4}\@note{#5}\@note{#6}}%
+    \fi%
+  \fi%
+}
+
+% Displays a melody note below the normal note line, at the same height as
+% chords. See above for usage information.
+\newcommand*{\mnd}[1]{%
+  \@note[\dimexpr\mnlowheightfactor ex\relax]{#1}%
+}
+
+% Alternatively colored note on normal note line, takes horiz. space.
+\newcommand*{\ma}[1]{%
+  {% alternate color note on normal note line, takes horizontal space
+    \@togglemnstyle%
+    \@note{#1}%
+  }%
+}
+
+% Alternatively colored note on normal note line, takes no horiz. space.
+% Use with chords.
+\newcommand*{\mac}[1]{%
+  \makebox[0pt][l]{\ma{#1}}% boxed to take no h. space
+}
+
+% Alternatively colored note above normal note line, takes horiz. space.
+\newcommand*{\mau}[1]{%
+  {%
+    \@togglemnstyle%
+    \@note[\dimexpr\mnhighheightfactor ex\relax]{#1}%
+  }%
+}
+
+% Alternatively colored note above normal note line, takes no horiz. space.
+% Use with chords.
+\newcommand*{\mauc}[1]{%
+  \makebox[0pt][l]{\mau{#1}}% boxed to take no h. space
+}
+
+% Alternatively colored note (#1) above normal note line, normal note (#2)
+% at normal note line. Takes horiz. space.
+\newcommand*{\mauii}[2]{%
+  % alternate color note above normal note line
+  \mauc{#1}%
+  % normal note at normal note line
+  \@note{#2}%
+}
+
+% Alternatively colored note (#1) above normal note line, normal note (#2)
+% at normal note line. Takes no horiz. space. Use with chords.
+\newcommand*{\mauiic}[2]{%
+  % alternate color note above normal note line
+  \mauc{#1}%
+  % normal note at normal note line, boxed to take no h. space
+  \makebox[0pt][l]{\@note{#2}}%
+}
+
+% Alternatively colored note below the normal note line, at the same height as
+% chords. Takes horiz. space.
+\newcommand*{\mad}[1]{%
+  {% alternate color note above normal note line, takes horizontal space
+    \@togglemnstyle%
+    \@note[\dimexpr\mnlowheightfactor ex\relax]{#1}%
+  }%
+}
+
+% Alternatively colored note (#1) below the normal note line, normal note (#2)
+% at normal note line. Takes horiz. space.
+\newcommand*{\madii}[2]{%
+  % normal note at normal note line, boxed to take no h. space
+  \makebox[0pt][l]{\@note{#2}}%
+  \mad{#1}% takes horiz. space
+}
+
+
+% \noteson and \notesoff commands can be used inside a block to turn displaying
+% the melody notes on or off for the remaining of the block or until another
+% another call to either of the macros. Regardless of this setting, the notes
+% are never displayed if \shownotesfalse is set (in the main document).
+\newcommand{\notesoff}{\def\@melodynotesdisabled{}}
+\newcommand{\noteson}{\let\@melodynotesdisabled\undefined}
+
+
+% Is true, if baseline is increased due to being in mnverse
+\newif\if@baselineincreased\@baselineincreasedfalse
+
+% Used to hold the normal baselineadj value, set by \UL@mn@savebaselineadj
+\newlength{\tmp@UL@mn@oldbaselineadj}
+
+% Save baselineadj value to a register
+\newcommand{\UL@mn@savebaselineadj}{%
+  \tmp@UL@mn@oldbaselineadj=\baselineadj%
+}
+
+% Reset baselineadj to the saved (normal) value
+\newcommand{\UL@mn@resetbaselineadj}{%
+  \baselineadj=\tmp@UL@mn@oldbaselineadj%
+  \@baselineincreasedfalse%
+}
+
+% Increases the spacing between lyric rows, if melody notes are on
+\newcommand{\UL@mn@increasebaselineadj}{%
+  \UL@mn@savebaselineadj%
+  \ifchorded\ifshownotes%
+    \ifdefined\@melodynotesdisabled%
+    \else%
+      \baselineadj=+.5em\relax%
+      \@baselineincreasedtrue%
+    \fi%
+  \fi\fi%
+}
+
+% END MELODY NOTES
+
+
+% BEGIN BEAT MARKS
+
+% BEAT MARKS feature
+%
+% The \bm??? commands are used within chord definitions \[] to mark spots where
+% beats appear. They appear as small dots in chord color just below the
+% baseline of the chords.
+%
+% Use \bm, when the beat mark is by itself (without chord or melody note).
+%
+% Use \bmc when you want to put the mark at the same horizontal space, on top of
+% each other, with a melody note and/or a chord. In such a case \bmc should
+% always be before the chord. and the recommended order is: beat mark, melody
+% note, chord. If \bm or \bmc is followed immediately by a chord, there must be
+% a space in between of them.
+%
+% \bmadj and \bmcadj{} are variations which take one mandatory parameter in
+% curly braces: a horizontal adjustment of the mark position as a dimension.
+% \bmadj{-.5ex} moves the mark about half a character width left from where it
+% would appear without adjustment, and \bmadj{.5ex} moves it to the right.
+%
+% To disable showing of the beats for the whole document, set \showbeatsfalse
+% in the main document preamble (after including this package).
+%
+% Call \beatsoff command between verses to disable showing of notes in the
+% following verses of the song. \beatson puts them back for the next verses
+% (unless \showbeatsfalse is set in the main doc).
+%
+% Example usage:
+%
+%   |\[\bmc Am]Love \[\bm]is |\[\bm]great \[\bm]
+%   and |\[\bm]food \[\bm]tastes |\[\bm]good \[\bm]
+%
+%   \[\bmc\mnc{C}C]Trallallaaa
+%
+
+% Configuration (absolute, font-independent)
+\providecommand*{\@bmradius}{1.1pt}    % mark radius
+\providecommand*{\@bmdrop}{1.1pt}      % how far mark's bottom goes below baseline
+\providecommand*{\@bmdepth}{.7pt}      % mark's reported depth
+\providecommand*{\@bmleadspace}{.30ex} % leading space before mark (rel. to \lyricfont)
+
+% Draws the beat mark.
+%
+% NOTE: without raisebox, the TikZ image's bottom would be placed on baseline,
+% and left would be put horizontally at current position.
+% With raisebox{-1.1pt} the bottom of the circle goes 1.1pt below baseline.
+% As we have lineskiplimit=.5 and lineskip=.5 set for clineparams, which
+% ensures there is always a minimum of .5pt space between chord line's bottom
+% and lyric line's top, when we set the beat mark to have .7pt depth (when
+% it really is 1.1pt), so it goes .4 pt deeper than informed, so there is
+% always at least .1pt between lyric top and beat mark bottom.
+% TODO: use saved box (had problems with dynamic color when tried)
+\newcommand*{\@bmdraw}{%
+  \begingroup%
+  \color{mbarcolor}%
+  \raisebox{-\@bmdrop}[0pt][\@bmdepth]{%
+    \tikz\fill (0,0) circle [radius=\@bmradius];%
+  }%
+  \endgroup%
+}
+
+% Displays a beat mark. See above for usage information. Takes horizontal space.
+\newcommand{\bm}{%
+  \ifshowbeats\ifdefined\@beatsdisabled\else%
+    {\lyricfont\hspace{\@bmleadspace}}%
+    \@bmdraw%
+  \fi\fi%
+}
+
+% Displays a beat mark. See above for usage information. No horizontal advance.
+\newcommand{\bmc}{%
+  \ifshowbeats\ifdefined\@beatsdisabled\else%
+    {\lyricfont\hspace{\@bmleadspace}}%
+    \rlap{\@bmdraw}%
+    {\lyricfont\hspace{-\@bmleadspace}}%
+  \fi\fi%
+}
+
+% Displays a beat mark with horizontal adjustment. See above for usage
+% information. Takes horizontal space.
+\newcommand{\bmadj}[1]{%
+  \ifshowbeats\ifdefined\@beatsdisabled\else%
+    {\lyricfont\hspace{#1}}%
+    \bm%
+  \fi\fi%
+}
+
+% Displays a beat mark with horizontal adjustment. See above for usage
+% information. No horizontal advance.
+\newcommand{\bmcadj}[1]{%
+  \ifshowbeats\ifdefined\@beatsdisabled\else%
+    {\lyricfont\hspace{#1}}%
+    \bmc%
+    {\lyricfont\hspace{-#1}}%
+  \fi\fi%
+}
+
+% \beatson and \beatsoff commands can be used between verses to turn displaying
+% the beat marks on or off for the remaining of the current song or until
+% another call to either of the macros. The notes are never displayed, if
+% \showbeatsfalse is set (in the main document).
+\newcommand{\beatsoff}{\def\@beatsdisabled{}}
+\newcommand{\beatson}{\let\@beatsdisabled\undefined}
+
+% END BEAT MARKS
+
+% BEGIN PRELUDE
+
+% Setup the style for the taglist in the prelude, empty by default. Set before
+% including this file. (This will be called each time in the beginning of the
+% taglist block in the prelude, within it.)
+\providecommand{\preludetagstyle}{\iflyriconly\color{gray}\fi}
+
+% Text style for the key line in the prelude, meant for changing the font
+% and size -- colors, italics and bolds are set implicitly. Can be set before
+% including this file.
+\providecommand{\preludekeylinestyle}{\iflyriconly\color{gray}\fi}
+
+\providecommand{\preludephasestyle}{\iflyriconly\color{gray}\fi}
+
+% Support for "offered to" information, used in astral books. This is displayed
+% after the by field in the song prelude, prepended with "offered to:" text and
+% parenthesized.
+% To disable displaying this extra info in the song preludes for the whole
+% document, set \showofffalse in the main document preamble (after including
+% this package).
+% To set this for a song, use the optional off={} parameter for \beginsong.
+\newcommand{\offeredto}{}
+\newsongkey{off}{\def\offeredto{}}
+                {\def\offeredto{#1}}
+
+% Support for extra song information. The extra information can be used for
+% example to contain information about song origins or language.
+% To disable displaying this extra info in the song preludes for the whole
+% document, set \showexfalse in the main document preamble (after including
+% this package).
+% To set this for a song, use the optional ex={} parameter for \beginsong.
+\newcommand{\extrainfo}{}
+\newsongkey{ex}{\def\extrainfo{}}
+               {\def\extrainfo{#1}}
+
+% Support for key information. This key is supposed to hold the musical key
+% (for example "C" or "Am" without quotes) of the song, after transposing.
+% So remember to change this if you transpose.
+% To enable displaying these keys in the song preludes for the whole
+% document, set \showkeytrue in the main document preamble (after including
+% this package).
+% To set this for a song, use the optional key={} parameter for \beginsong.
+\newcommand{\key}{}
+\newsongkey{key}{\def\key{}}
+                {\def\key{#1}}
+
+% Texts for key info in prelude. Can be set before including this file.
+\providecommand{\preludetextkey}{\IfLangTF{portuguese}{Tom:}{Key:}}
+\providecommand{\preludetextgood}{\IfLangTF{portuguese}{Boas:}{Good:}} % ", " is prepended before this
+\providecommand{\preludetextgoodkeysalone}{\IfLangTF{portuguese}{Boas tons:}{Good keys:}}
+
+% Support for a list of good keys (range) for a song. This keyval is supposed
+% to hold the good (for singing) keys this song to be played in.
+%
+% To set this for a song, use the optional gk={} parameter for \beginsong.
+% The preferred format for this text is {X, Y--Z}, where X is the preferred
+% "best" key, and the Y--Z is the range of keys where the melody stays within
+% a range limited by G note in the low end, and the B note of the next octave
+% in the high end. Example: gk={Bm, Gm--Cm}. If such a range is impossible,
+% put the keys in the range in parenthesis.
+%
+% The good keys list is displayed in the song preamble. To disable displaying
+% this for the whole document, set \showgoodkeysfalse in the main document
+% preamble (after including this package).
+\newcommand{\goodkeys}{}
+\newsongkey{gk}{\def\goodkeys{}}
+               {\def\goodkeys{#1}}
+
+% Support for phase hints for songs.
+% To disable displaying these phases in the song preludes for the whole
+% document, set \showphfalse in the main document preamble (after including
+% this package).
+% To set this for a song, use the optional ph={} parameter for \beginsong.
+\newcommand{\phaselist}{}%
+\newsongkey{ph}{\def\phaselist{}}
+               {\def\phaselist{#1}}
+
+% BEGIN PRELUDE/TAGS
+
+% Support for tags for songs.
+% To disable displaying the tags in the song preludes for the whole
+% document, set \showtagsfalse in the main document preamble (after including
+% this package).
+% To set these for a song, use the optional tags={} parameter for \beginsong.
+% An example: \beginsong{Songname}[tags={fire, water}]. Valid tags are defined
+% in file 'include/tags.can'.
+
+\newcommand{\taglist}{}% defined below for each song
+
+\newsongkey{tags}{\def\taglist{}\def\SB@rawrefs{}\gdef\songrefs{}}%
+                 {\def\taglist{#1\par}%
+                  % add ' 1' to work around the songs' scripture reference
+                  % system's (which we are using here) expectation of bible
+                  % chapter number:
+                  \def\SB@rawrefs{#1 1}\SB@parsesrefs{#1 1}}
+
+\renewcommand\SB@makescripindex{%
+  \renewenvironment{SB@lgidx}[1]{%
+    \gdef\SB@idxcolhead{##1}%
+    % % larva: Following three lines are commented out to skip the line used
+    % % for book name:
+    %\hbox to\hsize{{\idxbook{##1}}\hfil}%
+    %\nobreak%
+    %\SB@idxheadsep\nointerlineskip%
+  }{%
+    \mark{\noexpand\relax}%
+    \penalty-20\vskip3\p@\@plus3\p@\relax%
+  }%
+  \renewenvironment{SB@smidx}[1]
+    {\begin{SB@lgidx}{##1}}{\end{SB@lgidx}}%
+  \renewcommand\idxentry[2]{%
+    \SB@ellipspread{\idxscripfont\relax\SB@idxcolhead}%
+    % ##1 -> SB@idxcolhead to display 'book name' instead of 'chapter number'
+                   {{\idxrefsfont\relax##2}}%
+    \SB@toks\expandafter{\SB@idxcolhead}%
+    \mark{\noexpand\SB@idxcont{\the\SB@toks}}%
+  }%
+  \renewcommand\idxaltentry[2]{\SB@erridx{a scripture}}%
+  \SB@displayindex%
+}
+
+% END PRELUDE/TAGS
+
+
+% Redefine displaying of song prelude extension. This version adds some of the
+% new song keyvals introduced above. \showrefs is removed, because we use the
+% scripture references as tags (they are displayed in the modified \makeprelude
+% below).
+\renewcommand{\extendprelude}{%
+  \setbox\SB@box\hbox{%
+    \ifshowauth%
+      \ifx\songauthors\empty%
+      \else{\bfseries\sfcode`.\@m\songauthors}
+      \fi%
+    \fi%
+    \ifshowoff%
+      \ifx\offeredto\empty%
+      \else{ (\textit{\IfLangTF{portuguese}{ofert. para:}{offered to:}} \offeredto)}%
+      \fi%
+    \fi%
+  }
+  \ifdim\wd\SB@box>\z@\unhbox\SB@box\par\fi%
+  \ifshowex\extrainfo\par\fi%
+  % % The following would show the song's key below author, but it is now
+  % % commented out, because we now show it in the RT area
+  % \ifchorded%
+  %   \ifshowkey%
+  %     \ifx\key\empty%
+  %       % \key is empty, do nothing
+  %     \else%
+  %       Key: \textbf{\color{chordcolor}\key}\par%
+  %     \fi%
+  %   \fi%
+  % \fi%
+}
+
+% Song number & title heights when containing 'default' letters only, ie no
+% capitals with accents. Used in \makeprelude.
+\newlength\songnumdefaultheight
+\settoheight\songnumdefaultheight{\printsongnum{1}}
+\newlength\songtitledefaultheight
+\settoheight\songtitledefaultheight{\stitlefont\relax Tih}
+
+% Set the amount to rise or lower the position of the items in the RT
+% box in the song prelude, relative to the baseline of the main title
+% (em and ex come from the title font, too).
+\newdimen{\@preludeRTfirstraise}\setlength{\@preludeRTfirstraise}{1.03em}%
+\newdimen{\@preludeRTsecondraise}\setlength{\@preludeRTsecondraise}{0pt}%
+\newdimen{\@preludeRTthirdraise}\setlength{\@preludeRTthirdraise}{-1.03em}%
+\newdimen{\@preludeRTfourthraise}\setlength{\@preludeRTfourthraise}{-2.06em}%
+\newdimen{\@preludeRTraise} % set later
+
+\newcounter{@preludeRTrowscreatedcount}
+% sets the \@preludeRTraise dimension on basis of @preludeRTrowscreatedcount, ie how
+% many lines have already been added to the prelude's RT component.
+\newcommand\@setpreludeRTraise{%
+  \ifnum\value{@preludeRTrowscreatedcount}=0%
+    \setlength{\@preludeRTraise}{\@preludeRTfirstraise}%
+  \fi%
+  \ifnum\value{@preludeRTrowscreatedcount}=1%
+    \setlength{\@preludeRTraise}{\@preludeRTsecondraise}%
+  \fi%
+  \ifnum\value{@preludeRTrowscreatedcount}=2%
+    \setlength{\@preludeRTraise}{\@preludeRTthirdraise}%
+  \fi%
+  \ifnum\value{@preludeRTrowscreatedcount}=3%
+    \setlength{\@preludeRTraise}{\@preludeRTfourthraise}%
+  \fi%
+}
+
+% Redefine the song prelude display. Only one line is modified (into a block,
+% see comment) to show the phase, tags and key info.
+\renewcommand\makeprelude{
+  \resettitles%
+  \ifslides%
+    \hbox to\hsize{{\hfil\stitlefont\relax\songtitle\hfil}}%
+    \vskip5\p@%
+    \hbox to\hsize{%
+      \hfil%
+      \vbox{%
+        \divide\hsize\tw@\parskip\p@\relax%
+        \centering\small\extendprelude%
+      }%
+      \hfil%
+    }%
+  \else%
+    \ifdim\songnumwidth>\z@%
+      \setbox\SB@boxii\hbox{{\SB@colorbox\snumbgcolor{%
+        \hbox to\songnumwidth{%
+          \printsongnum{\thesongnum}\hfil%
+        }%
+      }}}%
+    \fi%
+    \setbox\SB@box\vbox{%
+      \ifdim\songnumwidth>\z@%
+        \SB@dimen\wd\SB@boxii%
+        \advance\SB@dimen3\p@%
+        \ifpagepreludes\multiply\SB@dimen\tw@\fi%
+        \advance\hsize-\SB@dimen%
+      \fi%
+      \ifpagepreludes\centering\else\SB@raggedright\fi%
+      \offinterlineskip\lineskip\p@%
+      {\stitlefont\relax%
+        \raisebox{0pt}[\songtitledefaultheight]{%
+          % \raisebox added by larva to ensure the top of highest non-accented
+          % letters is on the same vertical level as the song number's top.
+          % Accents over capital letters can go above taking no vertical space.
+          \songtitle%
+        }%
+        {% larva: begin modifications for RT area: ph, tags and keys display
+          \setcounter{@preludeRTrowscreatedcount}{0}%
+          \@setpreludeRTraise%
+          \hfill%
+          % tag line (tags, phase)
+          \def\taglinetext{}%
+          \ifshowtags\ifnowidth{\taglist}{}{% Add tags
+            \g@addto@macro\taglinetext{\itshape\preludetagstyle\@tagsbox{\taglist\vphantommaxtext}}%
+          }\fi%
+          \ifshowph\ifnowidth{\phaselist}{}{% Add phase
+            \ifnowidth{\taglinetext}{}{\g@addto@macro{\taglinetext}{ }}% Add whitespace if needed
+            \g@addto@macro\taglinetext{\normalfont\rmfamily\preludephasestyle\@tagsbox{\phaselist\vphantommaxtext}}%
+          }\fi%
+          \ifnowidth{\taglinetext}{}{% Tag line not empty: show it
+            \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+              \iflyriconly\tiny\else\scriptsize\fi%
+              \normalfont\taglinetext%
+            }}%
+            \stepcounter{@preludeRTrowscreatedcount}%
+            \@setpreludeRTraise%
+          }%
+          % key line (song key, good keys)
+          \ifchorded% % Show key + good keys (if in chorded mode)
+            \ifshowkey\ifx\key\empty\else%
+              \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+                \iflyriconly\tiny\else\scriptsize\fi%
+                \normalfont\preludekeylinestyle%
+                \@mainkeybox[chordcolor]{\textit{\preludetextkey} \textbf{\color{chordcolor}\key\vphantommaxtext}}%
+              }}%
+              \stepcounter{@preludeRTrowscreatedcount}%
+              \@setpreludeRTraise%
+            \fi\fi%
+            \ifshowgoodkeys\ifx\goodkeys\empty\else%
+              \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+                \iflyriconly\tiny\else\scriptsize\fi%
+                \normalfont\preludekeylinestyle%
+                \@goodkeysbox{\textit{\preludetextgoodkeysalone} \textbf{\goodkeys\vphantommaxtext}}%
+              }}%
+              \stepcounter{@preludeRTrowscreatedcount}%
+              \@setpreludeRTraise%
+            \fi\fi%
+          \fi%
+% This commented out version shows key and good keys on same line
+%           \ifchorded% % Show key + good keys (if in chorded mode)
+%             \def\keylinetext{}
+%             \ifshowkey\ifx\key\empty\else%
+%               \g@addto@macro\keylinetext{\@mainkeybox[chordcolor]{\textit{\preludetextkey} \textbf{\color{chordcolor}\key\vphantommaxtext}}}%
+%             \fi\fi%
+%             \ifshowgoodkeys\ifx\goodkeys\empty\else%
+%               \ifnowidth{\keylinetext}{% keyline so far empty
+%                 \g@addto@macro\keylinetext{\@goodkeysbox{\textit{\preludetextgoodkeysalone} \textbf{\goodkeys\vphantommaxtext}}}%
+%               }{% keyline so far not empty
+%                 \g@addto@macro\keylinetext{ \@goodkeysbox{\textit{\preludetextgood} \textbf{\goodkeys\vphantommaxtext}}}%
+%               }%
+%             \fi\fi%
+%             \ifnowidth{\keylinetext}{}{% Key line not empty: show it
+%               \makebox[0pt][r]{\raisebox{\@preludeRTraise}[0pt][0pt]{%
+%                 \iflyriconly\tiny\else\scriptsize\fi%
+%                 \normalfont\preludekeylinestyle\keylinetext%
+%               }}%
+%               \stepcounter{@preludeRTrowscreatedcount}%
+%               \@setpreludeRTraise%
+%             }%
+%           \fi%
+
+        }% larva: end modifications for RT area: ph, tags and keys display
+        \par%
+        \nexttitle%
+        \foreachtitle{(\songtitle)\par}}%
+      \ifdim\prevdepth=\z@\kern\p@\fi%
+      \parskip\p@\relax\tiny%
+      \extendprelude%
+      \kern\z@%
+    }%
+    \ifdim\songnumwidth>\z@%
+      \hbox{%
+        %% The following if commented out by larva to ensure same output
+        %% regardless of whether song number has more height than the song
+        %% titles or not. Never align tops.
+        %\ifdim\ht\SB@boxii>\ht\SB@box%
+        %  \box\SB@boxii%
+        %  \kern3\p@%
+        %  \vtop{\box\SB@box}%
+        %\else%
+          \SB@colorbox\snumbgcolor{\vbox to\ht\SB@box{{%
+            \hbox to\songnumwidth{%
+              \printsongnum{\thesongnum}\hfil%
+            }\vfil%
+          }}}%
+          \kern3\p@%
+          \box\SB@box%
+        %\fi% % commented out by larva
+      }%
+    \else%
+      \unvbox\SB@box%
+    \fi%
+  \fi%
+}
+
+% END PRELUDE
+
+
+% BEGIN AUDIO
+
+% Audio system is used to set URL's for audio for songs and chapters. These
+% will be utilized in the future.
+
+% keyval: Setup keys to be used as \audio macro's argument:
+\define@key{audio}{title}{\def\audio@title{#1}}%
+\define@key{audio}{key}{\def\audio@key{#1}}%
+\define@key{audio}{pitch}{\def\audio@pitch{#1}}%
+\setkeys{audio}{title={},key={},pitch={440}}%
+
+% Use this command to set a URL link to audio for the current song or chapter.
+% Must be called within a song or a chapter. Multiple \audio definitions can be
+% set for each song/chapter; the first is the primary one. Mandatory argument
+% is the URL, and the preceding optional argument contains keyval pairs,
+% currently supported keys are 'title', 'key' and 'pitch'. Pitch is the
+% frequency of A (default: 440).
+% Note that the following characters must be escaped (with \): & % _
+
+%
+% Example: \audio[title={Good version},key={Am}]{https://link-to-audio.com}
+\newcommand{\audio}[2][]{%
+  \setkeys{audio}{#1}% Set new keys
+  % Access title with: \audio@title,
+  %          key with: \audio@key,
+  %        pitch with: \audio@pitch,
+  %          URL with: #2
+}
+
+% END AUDIO
+
+
+% BEGIN textual notes
+
+% Displays a textual note given as parameter on a new line. This is similar
+% to song.sty's \textnote, but with some additions.
+%
+% If given from within a stanza (verse/chorus), only small vertical space is
+% added before and after the note. Otherwise the vertical space given as
+% optional parameters is used.
+%
+% The note is attached to the material after it (default), or to the matter
+% after it (if first optional star is present). This means that column breaks do
+% not happen between the note and the stuff it is attached to. Attachment is
+% ignored if called from within a stanza.
+%
+% If the note is attached to the material after it, and called from outside of
+% of stanzas, the \glueverses macro is called to remove the \vspace the
+% beginning of the next verse in the current song would give. This might cause
+% a problem if there is material between this note and the next stanza. In such
+% a case one can attach the note to the material before, or add the second star
+% to signify that \glueverses is never called from within this macro.
+%
+% Usage:
+%
+%   \ultextnote*[vspace before][vspace after]{text}*
+%
+%   1st star:      This optional star signifies that the note is attached to the
+%                  stuff before it. If it is omitted, the note is attached to
+%                  the stuff coming after it.
+%   vspace before: The amount of vspace added before the note. This is passed
+%                  to \vspace, and can contain macros, for example:
+%                  "0.5\versesep". Default: 0pt.
+%   vspace after:  The amount of vspace added after the note. This is passed
+%                  to \vspace, and can contain macros, for example:
+%                  "0.5\versesep". Default: 0pt.
+%   text:          The text content of the note.
+%   2nd star:      If present, this star means that \glueverses is not called in
+%                  any case.
+%
+% NOTE: If optional parameters are omitted, also the empty bracket pair must
+%       be left out! So no "[]".
+%
+%
+% Note: \NewDocumentCommand, IfValueTF etc. come from xparse package, and allow
+%       nice handling of parameters.
+\NewDocumentCommand{\ultextnote}{s o o m s}{% star (attach to stuff before), [vspace before], [vspace after] {text}, star (skip glue next verse in all cases)
+  \newif\if@@alwaysskipgluenextstanza%
+  \newif\if@@attachtobefore%
+  \IfBooleanTF{#1}{% star is given: attach to the previous stanza
+    \@@attachtobeforetrue%
+  }{% star is not given: attach to the next stanza
+    \@@attachtobeforefalse%
+  }
+  \IfValueTF{#2}{% vspace for before is given
+    \def\@@vspacebef{#2}%
+  }{ % vspace for before is not given
+    \def\@@vspacebef{0pt}%
+  }%
+  \IfValueTF{#3}{% vspace for after is given
+    \def\@@vspaceaft{#3}%
+  }{ % vspace for after is not given
+    \def\@@vspaceaft{0pt}%
+  }%
+  \def\content{#4}%
+  \IfBooleanTF{#5}{% star is given: skip gluestanzas always
+    \@@alwaysskipgluenextstanzatrue%
+  }{% star is not given: might have gluestanzas if attached to aft
+    \@@alwaysskipgluenextstanzafalse%
+  }%
+  % The following is an adaptation of \textnote in songs.sty
+  \ifhmode\par\fi%
+  \ifSB@insong%
+    \ifnum\lastpenalty=12345\else%
+      \ifSB@inverse%
+        \vskip2\p@\relax%
+      \else\ifSB@inchorus%
+        \vskip2\p@\relax%
+      \else\ifSB@stanza%
+        \if@@attachtobefore\else%
+          \brkpenalty=\vvpenalty\brk%
+        \fi%
+        \vspace{\@@vspacebef}%
+      \fi\fi\fi%
+    \fi%
+  \else%
+    \vspace{\@@vspacebef}%
+  \fi%
+  \begingroup%
+    \everypar{}%
+    \ifchorded\chordedfalse\SB@setbaselineskip\chordedtrue\fi%
+    \placenote{\SB@colorbox\notebgcolor{\SB@boxup{\content}}}%
+  \endgroup%
+  \nobreak%
+  \ifSB@insong%
+    \ifSB@inverse%
+      \vskip2\p@\relax%
+    \else\ifSB@inchorus%
+      \vskip2\p@\relax%
+    \else%
+      \if@@attachtobefore%
+        \ifSB@stanza%
+          \brkpenalty=\vvpenalty\brk%
+        \fi%
+      \else%
+        \nobreak%
+        \if@@alwaysskipgluenextstanza\else\glueverses\fi%
+      \fi%
+      \vspace{\@@vspaceaft}%
+    \fi\fi%
+  \else%
+    \vspace{\@@vspaceaft}%
+  \fi%
+}
+
+% Creates a textual note attached to the material preceding it.
+\newcommand{\textnoteforprev}[1]{%
+  \ultextnote*[0.618034\versesep][\versesep]{#1}%
+}
+
+% Creates a textual note attached to the material coming after it.
+% Starred version omits glueverses. The starred version omits glueverses:
+% use the star if before 1st verse.
+\NewDocumentCommand{\textnotefornext}{m s}{%
+  \IfBooleanTF{#2}{%
+    \ultextnote[\versesep][0.618034\versesep]{#1}*%
+  }{%
+    \ultextnote[\versesep][0.618034\versesep]{#1}%
+  }%
+}%
+
+% Creates a textual note in the middle of preceding and consequent material.
+% It is attached to the material coming after it, but does not call \glueverses.
+\newcommand{\textnotemiddle}[1]{%
+  \ultextnote[\versesep][\versesep]{#1}*%
+}
+
+% Creates a textual note in the middle of preceding and consequent material
+% with smaller vertical space around it.
+% It is attached to the material coming after it, but does not call \glueverses.
+\newcommand{\textnotemiddletight}[1]{%
+  \ultextnote[0.618034\versesep][0.618034\versesep]{#1}*%
+}
+
+% Creates a music note attached to the material preceding it.
+% Music notes are only displayed if chords are enabled, and in the same color
+% as the chords.
+\newcommand{\musicnoteforprev}[1]{%
+  \ifchorded\textnoteforprev{\color{chordcolor}#1}\fi%
+}
+
+% Creates a music note attached to the material coming after it.
+% Music notes are only displayed if chords are enabled, and in the same color
+% as the chords. The starred version omits glueverses: use the star if before
+% 1st verse.
+\NewDocumentCommand{\musicnotefornext}{m s}{%
+  \ifchorded%
+    \IfBooleanTF{#2}{%
+      \textnotefornext{\color{chordcolor}#1}*%
+    }{%
+      \textnotefornext{\color{chordcolor}#1}%
+    }%
+  \fi%
+}
+
+% Creates a textual note in the middle of preceding and consequent material.
+% It is attached to the material coming after it, but does not call \glueverses.
+% Music notes are only displayed if chords are enabled, and in the same color
+% as the chords.
+\newcommand{\musicnotemiddle}[1]{%
+  \ifchorded\textnotemiddle{\color{chordcolor}#1}\fi%
+}
+
+% Rewrite capo presentation to attach to the material coming after it, and to
+% make it smaller than the default. Only shown if chords are enabled.
+\renewcommand\capo[1]{%
+  \iftranscapos\transpose{#1}\else%
+    \ifchorded%
+      \ultextnote[\versesep][0.618034\versesep]{\color{chordcolor}\scriptsize capo #1}*
+    \fi%
+  \fi%
+}
+
+% END textual notes
+
+
+% BEGIN line repeat
+
+% Line repeat bars inside verses and choruses. This prints vertical repeat
+% bars for the lyric lines within it's effect. Can be nested. Use only within
+% verses
+%
+% Usage example:
+%
+%   \beginverse
+%     lyric line without repeat
+%     \beginrep
+%       lyric line with one repeat level
+%       lyric line with one repeat level (2nd line of the same repeat)
+%       \beginrep
+%         lyric line with two repeat levels
+%       \endrep
+%     \endrep
+%   \endverse
+%
+% NOTE: this system requires rewrites of the verse begin / end machinery, that
+%       comes later.
+
+% Settings:
+
+% Repetition bar width (comes from songs package)
+\setlength{\cbarwidth}{1.4pt}
+% The horizontal gap between line repeat bars, and minimum gap between the
+% last (deepest level) bar and the start of the lyrics
+\newdimen\repbargapdimen\repbargapdimen=2.265pt
+
+% NOTE: Be careful if changing the following settings. Test all situations:
+% with chords, lyric-only, without measure bars. Separate bars following each
+% must leave enough gap between them, and multiline repeat bars ought to have
+% no gaps in between lyric lines.
+
+% The amount the repetition bar reaches below baseline of the last lyric line
+\newdimen\repbardepthdimen\repbardepthdimen=.5pt
+\newdimen\repbarheightadjwithchordsdimen\repbarheightadjwithchordsdimen=-2.5pt
+\newdimen\repbarheightadjnochordsdimen\repbarheightadjnochordsdimen=.5pt
+% How much extra upward reach continuation lines get to bridge interline glue
+% when having multiline repeat bars.
+\newcommand{\repbarcontinuingoverlap}{\the\dimexpr .7\baselineskip\relax}
+
+% State: key->boolean map for
+%        <repeat nesting level> -> <repeat started on previous line>
+\ExplSyntaxOn
+\prop_new:N \g_repcont_prop
+\ExplSyntaxOff
+
+% State: Current line repeat bar's nesting depth.
+% Updated by \beginrep and \endrep.
+\newcount\UL@rep@level\UL@rep@level=0\relax%
+
+% Scratch registers:
+\newlength\tmp@UL@rep@allbarswidth
+\newcount\tmp@UL@rep@prevlinestoreach
+\newlength\tmp@UL@rep@maxtextheight
+\newdimen\tmp@UL@rep@barhtbase
+
+% Define \beginrep and \endrep safely (LaTeX forbids \newcommand\end...)
+\expandafter\def\csname beginrep\endcsname{%
+  % Break the line here to always start the repeated part on a new line
+  % If used inline, end the current lyric line to start the repeated part on
+  % a new line. If already at line start (vertical mode), do nothing.
+  \ifhmode\par\fi%
+  % Advance the level of nested repeats
+  \global\advance\UL@rep@level 1\relax%
+  \BoolSetFalse{g_repcont_prop}{\the\UL@rep@level}%
+  \SB@inchorustrue% songs: disallows interline column/page break
+  \UL@gobblepar%
+}
+\expandafter\def\csname endrep\endcsname{%
+  \ifhmode\par\fi% Ensure we're in vertical mode
+  \ifnum\UL@prevparlines>1\relax%
+    % As this branch is only evaluated when the very last lyric line (par)
+    % before this \endrep was long enough to be wrapped to more than one line,
+    % we need to subtract 
+    \advance\UL@prevparlines by -1\relax%
+    % We are now semantically *after* the last line in vertical mode, so we
+    % need to use \nointerlineskip and \hbox
+    \nointerlineskip%
+    \hbox to 0pt{%
+      % handle extra indentation if we have that from \{mn}beginverse[<n>]
+      \kern\tmp@UL@currentverseextraindentwidth%
+      \UL@rep@drawbars%
+    }%
+  \fi%
+  % end block: ensure next block doesn't connect
+  \BoolSetFalse{g_repcont_prop}{\the\UL@rep@level}%
+  \global\advance\UL@rep@level -1\relax%
+  \ifnum\UL@rep@level<1\relax%
+    \SB@inchorusfalse%
+  \fi%
+  \ifnum\UL@rep@level<0\relax%
+    \PackageWarning{unilaiva-songbook_common}{%
+      Unmatched \string\endrep: ignored.\MessageBreak%
+    }%
+    \UL@rep@level=0\relax%
+  \fi%
+  \UL@gobblepar%
+}
+
+% Draw one line repetition bar (fragment) for current lyric line. Called
+% repetitiously from \UL@rep@drawbars.
+\newcommand{\UL@rep@drawbars@iter}[1]{%
+  \rlap{%
+    \IfBoolTF{g_repcont_prop}{#1}{% for the repeat started on earlier lyric line
+      % If current bar was started on earlier lyric line (par), increase the
+      % current line's repeat bar height to reach through the gap
+      \advance\tmp@UL@rep@barhtbase by \repbarcontinuingoverlap\relax
+      % If previous lyric line (par) was (long and) wrapped to more than one
+      % line, make the current line's repeat bar higher to reach through
+      % them all.
+      \ifnum\UL@prevparlines>1\relax%
+        \tmp@UL@rep@prevlinestoreach=\UL@prevparlines%
+        \advance\tmp@UL@rep@prevlinestoreach by -1\relax%
+        \advance\tmp@UL@rep@barhtbase by
+         \dimexpr \baselineskip * \numexpr\tmp@UL@rep@prevlinestoreach\relax\relax%
+      \fi%
+      % Draw the repeat bar with smash to take no vertical space
+      \smash{%
+        \vrule\@width\cbarwidth%
+              \@height\tmp@UL@rep@barhtbase%
+              \@depth\repbardepthdimen%
+      }%
+    }{%
+      % We are on the first line of the repeat: smash or no?
+      \smash{%
+        \vrule\@width\cbarwidth%
+              \@height\tmp@UL@rep@barhtbase%
+              \@depth\repbardepthdimen%
+      }%
+    }%
+    \BoolSetTrue{g_repcont_prop}{#1}% The bar at this nesting level has been started
+  }%
+  \kern\cbarwidth%
+  \kern\repbargapdimen%
+  \addtolength{\tmp@UL@rep@allbarswidth}{\cbarwidth}%
+  \addtolength{\tmp@UL@rep@allbarswidth}{\repbargapdimen}%
+}
+
+% Sets \tmp@UL@rep@barhtbase to good height for repeat bars in this spot
+\def\UL@rep@setbarhtbase{%
+  \ifchorded%
+    \global\tmp@UL@rep@barhtbase=\baselineskip%
+    \global\advance\tmp@UL@rep@barhtbase \repbarheightadjwithchordsdimen\relax%
+  \else%
+    \global\settoheight{\tmp@UL@rep@barhtbase}{\vphantom{A}}%
+    \global\advance\tmp@UL@rep@barhtbase \repbarheightadjnochordsdimen\relax%
+  \fi%
+}
+
+% Draw all repetition bars (fragments) for current (one) lyric line. Called
+% from \UL@verse@everypar defined in the VERSE BEGIN / END section below.
+\def\UL@rep@drawbars{%
+  {% block to contain color
+    \color{repetitionsigncolor}%
+    \UL@rep@setbarhtbase%
+    \setlength{\tmp@UL@rep@allbarswidth}{0pt}%
+    % Call \UL@rep@drawbars@iter for each repeat level
+    \repeattimes{\UL@rep@level}{\UL@rep@drawbars@iter}%
+    \ifdim\tmp@UL@rep@allbarswidth<\contentindentwidth%
+      \kern\dimexpr\contentindentwidth-\tmp@UL@rep@allbarswidth\relax%
+    \fi%
+  }%
+}
+
+% END line repeat
+
+
+% BEGIN inline repeat
+
+% \lrep and \rrep inline repetition mark rewrites:
+% colorize, have only one bar, use same height and depth as line repeats
+\renewcommand{\lrep}{%
+  {%
+    \color{repetitionsigncolor}%
+    \UL@rep@setbarhtbase%
+    \vrule\@width1.618034\cbarwidth%
+          \@height\tmp@UL@rep@barhtbase%
+          \@depth\repbardepthdimen%
+    \ifchorded%
+      \rlap{\raisebox{\clineBaselineskip}{:}}%
+    \fi%
+    :\kern.25ex%
+  }%
+}
+\renewcommand{\rrep}{%
+  {%
+    \color{repetitionsigncolor}%
+    \UL@rep@setbarhtbase%
+    \kern.25ex%
+    \ifchorded%
+      \rlap{\raisebox{\clineBaselineskip}{:}}%
+    \fi%
+    :%
+    \vrule\@width1.618034\cbarwidth%
+          \@height\tmp@UL@rep@barhtbase%
+          \@depth\repbardepthdimen%
+  }%
+}
+% Colorize \rep
+\let\@reporig\rep
+\renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}}
+
+% Use this instead of \rep to signify number of repeats on the first line
+% of a line repeat. The parameter is the number of repetitions, as in \rep
+% macro.
+% Example:
+%   \beginverse
+%     \beginrep\prep{3}
+%       lyric line
+%     \endrep
+%   \endverse
+\newcommand{\prep}[1]{%
+  \raisebox{\if@baselineincreased{2ex}\else{1ex}\fi}{%
+    {% block for containing the color change
+      \color{repetitionsigncolor}%
+      \@reporig{#1}:%
+    }%
+  }%
+}
+
+% END inline repeat
+
+% BEGIN musical markings
+
+% Outputs the Segno mark
+\newcommand{\segno}{%
+  \textnotefornext{\musSegno}%
+}
+
+% Outputs a textual note for "D.C. al fine"
+\newcommand{\dacapo}{%
+  \textnoteforprev{\emph{D.C. al fine}}%
+}
+
+% Outputs a textual note for "D.S. al fine"
+\newcommand{\dalsegno}{%
+  \textnoteforprev{\emph{D.S. al fine}}%
+}
+
+% END musical markings
+
+% Save the original command; will be called.
+\let\@SB@@@beginsongorig\SB@@@beginsong
+
+% This rewrite of a command called always when a new song is started resets
+% the verseglue state to false (no glueing), calls the original command, and
+% adds the song to the basic TOC also (in addition to indices).
+\renewcommand\SB@@@beginsong{%
+  % Reset verseglue state:
+  \global\@stanzasgluedfalse%
+  % Call the original command:
+  \@SB@@@beginsongorig%
+  % Create the TOC line. Note that these belong to a group started in the
+  % original command called above.
+  \hypersetup{bookmarksdepth=0}%
+  \phantomsection%
+  \addcontentsline{toc}{subsection}{%
+    \numberline{\thesongnum}%
+    \songtitle\relax%
+    \ifshowphintoc{% Show phase info if so desired
+      \hspace{0.15em}\scriptsize\textsuperscript{\rmfamily\tiny\phaselist}}\fi%
+    }%
+  \hypersetup{bookmarksdepth=2}%
+}
+
+
+% The following rewrite adds only \color{mbarcolor} command to change the color of the measure bar
+\renewcommand\SB@makembar[2]{%
+  \ifSB@inverse\else%
+    \ifSB@inchorus\else\SB@errmbar\fi%
+  \fi%
+  \ifhmode%
+    \SB@skip\lastskip\unskip%
+    \setbox\SB@box\lastbox%
+    \copy\SB@box%
+    \ifvbox\SB@box%
+      \begingroup%
+        \setbox\SB@boxii\copy\SB@box%
+        \vbadness\@M\vfuzz\maxdimen%
+        \setbox\SB@boxii%
+          \vsplit\SB@boxii to\maxdimen%
+      \endgroup%
+      \long\edef\SB@temp{\splitfirstmark}%
+      \ifx\SB@temp\SB@measuremark%
+        \penalty100\hskip1em%
+      \else%
+        \penalty100\hskip\SB@skip%
+      \fi%
+    \else%
+      \penalty100\hskip\SB@skip%
+    \fi%
+  \fi%
+  \ifvmode\leavevmode\fi%
+  \setbox\SB@box\hbox{{\meterfont\relax#1}}%
+  \setbox\SB@boxii\hbox{{\meterfont\relax#2}}%
+  \SB@dimen\wd\ifdim\wd\SB@box>\wd\SB@boxii\SB@box\else\SB@boxii\fi%
+  \SB@dimenii\baselineskip%
+  \advance\SB@dimenii-2\p@%
+  \advance\SB@dimenii-\ht\SB@box%
+  \advance\SB@dimenii-\dp\SB@box%
+  \advance\SB@dimenii-\ht\SB@boxii%
+  \advance\SB@dimenii-\dp\SB@boxii%
+  \let\SB@temp\relax%
+  \ifdim\SB@dimen>\z@%
+    \advance\SB@dimenii-.75\p@%
+    \def\SB@temp{\kern.75\p@}%
+  \fi%
+  \SB@maxmin\SB@dimen<{.5\p@}%
+  \SB@maxmin\SB@dimenii<\z@%
+  \vbox{%
+    \mark{\SB@measuremark}%
+    \hbox to\SB@dimen{%
+      \hfil%
+      \box\SB@box%
+      \hfil%
+    }%
+    \nointerlineskip%
+    \hbox to\SB@dimen{%
+      \hfil%
+      \box\SB@boxii%
+      \hfil%
+    }%
+    \SB@temp%
+    \nointerlineskip%
+    \hbox to\SB@dimen{%
+      \hfil%
+      \color{mbarcolor}\vrule\@width.5\p@\@height\SB@dimenii%
+      \hfil%
+    }%
+  }%
+  \meter{}{}%
+}
+\let\SB@mbar\SB@makembar
+
+% Rewrite this to be empty, as lyric line shifting is now done within the repeat
+% system
+\renewcommand\SB@cbarshift{}%
+
+% Rewrite SB@chorusbar to be empty, as vertical bar repeats are now done inside
+% verses with \beginrep ... \endrep. This rewrite is to ensure that vertical bar
+% is not ever used because of "chorusness".
+\renewcommand\SB@chorusbar[1]{}%
+
+% Rewrite this to have the same behaviour in chorded and non-chorded books:
+% insert stretchable glue to the bottom of each column. Without this change
+% non-chorded books would increase line spacing to verse lines to fill a column.
+\renewcommand\SB@chordsoff{%
+  \chordedfalse\lyrictrue%
+  \def\SB@bracket##1]{\ignorespaces}%
+  \let\SB@rechord\relax%
+  \let\SB@ch\SB@ch@off%
+  \ifSB@measurespec%
+    \ifmeasures\SB@measureson\else\SB@measuresoff\fi%
+  \else%
+    \SB@measuresoff%
+  \fi%
+  \ifSB@preamble\def\colbotglue{\z@\@plus.5\textheight}\fi% changed line
+  \SB@setbaselineskip%
+}
+
+% BEGIN VERSE BEGIN / END REWRITES
+
+% These rewrites are needed to support line repeat and melody note features.
+
+% Hook called at the start of every lyric line (every paragraph in verse).
+% Supports verse-specific indentation and line repeats.
+\def\UL@verse@everypar{%
+  \kern\tmp@UL@currentverseextraindentwidth%
+  \ifnum\UL@rep@level>0\relax%
+    \UL@rep@drawbars%
+  \else%
+    \kern\contentindentwidth%
+  \fi%
+}
+
+% Patch verse start:
+%   - reset repeat state
+%   - keep the package's one-time strut, but don't let it clear \everypar
+%     (so our per-line hook remains).
+\renewcommand\SB@beginverse{%
+  % BEGIN modification
+  \UL@rep@level=0\relax%
+  %\BoolReset{g_repcont_prop}% Not really necessary, as this is reset in \beginrep
+  % END modification
+  \ifSB@insong%
+    \ifSB@inverse\SB@errbvv\endverse\fi%
+    % BEGIN modification: always do \endverse, not \endchorus
+    \ifSB@inchorus\SB@erreoc\endverse\fi%
+    % END modification
+  \else%
+    \SB@errbvt\beginsong{Unknown Song}%
+  \fi%
+  \ifrepchorus\ifvoid\SB@chorusbox\else%
+    \SB@gotchorustrue%
+    \ifSB@prevverse\ifvnumbered%
+      \marks\SB@cmarkclass{\SB@cmark}%
+    \fi\fi%
+  \fi\fi%
+  \SB@inversetrue%
+  \def\SB@closeall{\endverse\endsong}%
+  \SB@stanzabreak%
+  \versemark\nobreak%
+  \global\SB@stanzatrue%
+  \SB@ifempty\SB@cr@\memorize{\replay[]}%
+  \setbox\SB@box\vbox\bgroup\begingroup%
+    \ifvnumbered%
+      \protected@edef\@currentlabel{\p@versenum\theversenum}%
+      \def\SB@everypar{%
+        \setbox\SB@box\hbox{{\printversenum{\theversenum}}}%
+        \ifdim\wd\SB@box<\versenumwidth%
+          \setbox\SB@box%
+          \hbox to\versenumwidth{\unhbox\SB@box\hfil}%
+        \fi%
+        \ifchorded\vrule\@height\baselineskip\@width\z@\@depth\z@\fi%
+        \placeversenum\SB@box%
+        \gdef\SB@everypar{}%
+      }%
+    \else%
+      \def\SB@everypar{%
+        \ifchorded\vrule\@height\baselineskip\@width\z@\@depth\z@\fi%
+        \gdef\SB@everypar{}%
+      }%
+    \fi%
+    % BEGIN modification
+    % Our hook runs every line; the package hook becomes empty after the first.
+    % was: \everypar{\SB@everypar\everypar{}}
+    \everypar{\SB@everypar\UL@verse@everypar}%
+    % END modification
+    \versefont\relax\SB@setbaselineskip\versejustify%
+    \SB@loadactives%
+    \SB@obeylines%
+    \penalty12345 %
+    \everyverse\relax%
+}
+
+% Verse wrappers with optional indentation and safe handling of active chars
+%
+% This code extends the songs package \beginverse macro with optional
+% indentation factor, which applies to the whole verse. Optional star is
+% passed to the original macro as is.
+%
+%   \beginverse[<n>]
+%
+%   where <n> is a plain number and the indentation is:
+%   <n> * \verseindentwidthbase
+%
+%   Examples:
+%        \beginverse        % no extra indentation
+%        \beginverse[2]     % indent whole verse by 2 * \verseindentwidthbase
+%        \beginverse*       % behaves like the original starred form
+%        \beginverse*[2]    % starred + indentation
+%
+% Additionally, a replacement command is provided:
+%
+%   \mnbeginverse
+%
+%      Same interface as \beginverse (supports * and [n]), but also applies
+%      increased line spacing (baseline adjustment) suitable for verses with
+%      melody notes on other than only the first line of lyrics.
+%
+% NOTE:
+%
+% The songs package uses active characters like:
+%   ^  for chord parsing (via \SB@activehat)
+%   |  for measure bars (via \measurebar)
+%
+% When \beginverse is implemented using xparse (NewDocumentCommand),
+% xparse scans the optional star/argument BEFORE the macro body executes.
+% This scanning may peek into the verse text (even across a newline) and
+% prematurely tokenize the first character of the verse.
+%
+% If the verse begins with ^ or | on the next source line, they would normally
+% be tokenized with their default catcodes (superscript / ordinary char),
+% causing errors or literal printing (e.g. "Missing $ inserted").
+%
+% To prevent this, we temporarily make ^ and | active *before xparse scans*,
+% and temporarily bind them to the songs package meanings. After scanning,
+% we restore normal catcodes by closing the temporary group.
+%
+
+% Save the original \beginverse
+\let\@beginverseorig\beginverse
+% Save the original \@SB@endverse
+\let\@SB@endverseorig\SB@endverse
+
+\renewcommand{\SB@endverse}{\@SB@endverseorig\UL@mn@resetbaselineadj}
+
+% For backwards compatibility, deprecated; use \endverse instead
+\newcommand{\mnendverse}{\endverse}
+
+% Stores the computed indentation width for the current verse.
+% This is read by the per-line \everypar hook inside the verse environment
+% and \endrep in a case where a long line is wrapped to several lines.
+\newdimen\tmp@UL@currentverseextraindentwidth
+\tmp@UL@currentverseextraindentwidth=0pt\relax
+
+% Helpers that perform let operations for our active ^ and | tokens
+\begingroup
+  \catcode`\^=\active
+  \gdef\UL@letactivehat{\let^=\SB@activehat}
+  \catcode`\|=\active
+  \gdef\UL@letactivemeasurebar{\let|\measurebar}
+\endgroup
+
+% Internal implementation of the enhanced beginverse
+% Computes the verse extra indentation width and calls the original \beginverse.
+\NewDocumentCommand{\UL@beginverse@impl}{s o}{%
+  \endgroup % close wrapper group AFTER xparse has scanned arguments
+  % set indent factor for this verse (plain number)
+  \IfValueTF{#2}{%
+    \tmp@UL@currentverseextraindentwidth=\dimexpr #2\verseindentwidthbase\relax%
+  }{%
+    \tmp@UL@currentverseextraindentwidth=0pt\relax%
+  }%
+  % forward star to the original
+  \IfBooleanTF{#1}{\@beginverseorig*}{\@beginverseorig}%
+}
+
+% Wrapper: make ^ and | active, and call \UL@beginverse@impl
+\def\UL@beginverse@wrap{%
+  \begingroup%
+    \catcode`\^=\active \UL@letactivehat%
+    \catcode`\|=\active \UL@letactivemeasurebar%
+  \UL@beginverse@impl%
+}
+
+% Drop-in replacement for songs' \beginverse with added optional [<n>]
+% indentation factor, while preserving the optional star.
+% Supports:
+%   \beginverse
+%   \beginverse*
+%   \beginverse[<n>]
+%   \beginverse*[<n>]
+\def\beginverse{%
+  \UL@mn@savebaselineadj%
+  \UL@beginverse@wrap%
+}
+
+% Like \beginverse, but first increases baseline spacing for melody notes
+% Supports:
+%   \mnbeginverse
+%   \mnbeginverse*
+%   \mnbeginverse[<n>]
+%   \mnbeginverse*[<n>]
+\def\mnbeginverse{%
+  \UL@mn@increasebaselineadj%
+  \UL@beginverse@wrap%
+}
+
+% No choruses
+
+% Choruses are deprecated, as we use \beginrep...\endrep within normal verses
+% for line repeats, but rewrite them for backwards compatibility.
+\renewcommand\beginchorus{%
+  \PackageWarning{unilaiva-songbook_common}{%
+    \string\beginchorus\space is deprecated.\MessageBreak%
+    Replacing with \string\beginverse\string\beginrep.\MessageBreak%
+  }%
+  \beginverse\beginrep%
+}
+\renewcommand\endchorus{%
+  \endrep\endverse%
+  \PackageWarning{unilaiva-songbook_common}{%
+    \string\endchorus\space is deprecated.\MessageBreak%
+    Replacing with \string\endrep\string\endverse.\MessageBreak%
+  }%
+}
+
+% END VERSE BEGIN / END REWRITES
+
+
+% NOTE: This rewrite is required for newer LaTeX distributions. Ubuntu 22.04
+% with lualatex 1.14 worked without this, but 23.04 with lualatex 1.15 requires
+% this change. Note that the change is *not* backwards compatible.
+% See: https://tex.stackexchange.com/questions/650106/recent-update-broke-songs-package
+\renewcommand\SB@obeylines{%
+  \let\obeyedline\SB@par%
+  \obeylines%
+  \let\@par\SB@@par%
+}
+
+
+% END DEFINITIONS AND REWRITES
+
+
+\makeatother% let @ become something ...tooootally else!
+
+
+% BEGIN CREATE INDICES
+
+% songs: create indexes (these must be named exactly like this for compile
+% script to work)
+\newindex{titleidx}{idx_title}
+\newauthorindex{authidx}{idx_auth}
+\newscripindex{tagidx}{idx_tag}
+
+% END CREATE INDICES
+
+
+% *****************************************************************************

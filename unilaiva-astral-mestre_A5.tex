@@ -10,17 +10,17 @@
 %%%CREATE_VERSION_CHARANGO%%%
 %%%CREATE_VERSION_BASSCLEF%%%
 
-% Setup the book name (the subtitle), and include common settings
-\newcommand{\subbooktitle}{Mestre}
-\input{tex/setup_astral-A5-fullmusic_include.tex}
+\documentclass[
+  subtitle={Mestre}
+]{ulsbs-songbook-astral-default}
 
 \renewcommand{\bookbytext}{%
   Recebido por:\par\vspace{0.618034ex}\textbf{\Large Mestre Raimundo Irineu Serra}%
 }%
 
-\setcovericonsvar[unilaiva-tag-icon-chords_PT_512x512px]%
-                 [unilaiva-tag-icon-sheetmusic_512x512px]%
-                 [unilaiva-tag-icon-guitar_512x512px]
+\setcovericonsvar[ulsbs-tag-icon-chords_PT_512x512px]%
+                 [ulsbs-tag-icon-sheetmusic_512x512px]%
+                 [ulsbs-tag-icon-guitar_512x512px]
 
 \begin{document}
 

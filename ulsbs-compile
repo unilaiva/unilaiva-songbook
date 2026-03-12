@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+#
+# SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Compiles songbooks using ULSBS songbook system. This is just a wrapper to
+# start the ULSBS python package.
+#
+# See help with:
+#
+#   ./ulsbs-compile --help
+#
+# Requires:
+#
+#   - bash version 3.0+  (for this script)
+#   - python3 version 3.11+  (for the actual ULSBS package)
+
+set -euo pipefail
+
+# Ensure python3 is available (the version is checked by the ULSBS package)
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "ERROR: python3 is not installed or not found in PATH." >&2
+  echo "" >&2
+  echo "Please install Python 3.11+ and ensure 'python3' is on your PATH." >&2
+  exit 1
+fi
+
+# Preserve the user's args exactly
+ARGS=( "$@" )
+
+# Run 'python3 -m ulsbs' with a given PYTHONPATH.
+# Usage: run_with_pythonpath <colon-separated-paths>
+# Notes: reads args from global ARGS array; exec replaces the current shell.
+run_with_pythonpath() {
+  local pypath="$1"
+  shift
+  export PYTHONPATH="$pypath"
+  exec python3 -m ulsbs "${ARGS[@]}"
+}
+
+# 1) explicit override
+if [[ -n "${ULSBS_ENGINE:-}" ]]; then
+  if [[ -d "$ULSBS_ENGINE/src/ulsbs" ]]; then
+    run_with_pythonpath "$(cd "$ULSBS_ENGINE/src" && pwd)"
+  else
+    echo "ERROR: ULSBS_ENGINE='$ULSBS_ENGINE' does not contain src/ulsbs" >&2
+    exit 1
+  fi
+fi
+
+# 2) vendored engine in ./ulsbs
+if [[ -d "ulsbs/src/ulsbs" ]]; then
+  run_with_pythonpath "$(cd "ulsbs/src" && pwd)"
+fi
+
+# 3) under this script's location (useful when invoked from elsewhere)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -d "$SCRIPT_DIR/ulsbs/src/ulsbs" ]]; then
+  run_with_pythonpath "$(cd "$SCRIPT_DIR/ulsbs/src" && pwd)"
+fi
+
+# 4) pip installed
+if python3 -c "import ulsbs" >/dev/null 2>&1; then
+  # No need to set the PYTHONPATH for pip version.
+  # exec replaces the current shell.
+  exec python3 -m ulsbs "${ARGS[@]}"
+fi
+
+echo "ERROR: Could not find ULSBS engine." >&2
+echo "" >&2
+echo "Please do one of the following:" >&2
+echo "" >&2
+echo "  - Set ULSBS_ENGINE=/path/to/ulsbs" >&2
+echo "  - Place ulsbs at ./ulsbs  (relative to CWD OR this script)" >&2
+echo "  - Install ulsbs with pip" >&2
+echo "" >&2
+exit 1

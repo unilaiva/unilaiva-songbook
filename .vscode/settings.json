@@ -1,0 +1,15 @@
+{
+  // Language server: use JediLSP
+  "python.languageServer": "Jedi",
+  // Pylance: find sources
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/ulsbs/src"
+  ],
+  // Jedi: find source
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/ulsbs/src"
+  ],
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+}

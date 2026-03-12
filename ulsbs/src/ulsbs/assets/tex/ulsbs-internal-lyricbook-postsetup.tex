@@ -1,0 +1,39 @@
+% SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Post-setup for lyrics-only songbook variant.
+% This file is part of the 'ulsbs' package.
+
+%% ulsbs-internal-lyricbook-presetup.tex
+%% ===============================
+%%
+%% Part of the system for automatically creating lyrics-only variant of a book.
+%%
+%% This file contains instructions for after loading the main .sty file,
+%% and is automatically appended before \input{setup_<...>.tex}
+%% instruction in the main document.
+%%
+%% That \input instruction must exist in the main document, for being able to
+%% automatically create variants, and within the included setup_<...>
+%% file must the main package unilaiva-songbook_common.sty be loaded.
+%%
+
+\lyriconlytrue
+
+\chordsoff
+\measureson
+
+\showkeyfalse
+\showgoodkeysfalse
+\shownotesfalse
+\showbeatsfalse
+\showlilypondfalse
+\showaltchordsfalse
+
+% Make the measure bar lighter
+\definecolor{mbarcolor}{rgb}{.68,.44,.82}
+
+% Make numbers in the meter smaller and the same color as mbar:
+\renewcommand{\meterfont}{\color{mbarcolor}\tiny\sffamily\upshape}
+
+\baselineadj=+1.5pt plus 0pt minus 0pt
+\hypersetup{pdftitle={\thisbooktitle { (\variantlyricsonlytext)}}}

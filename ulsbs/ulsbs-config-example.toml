@@ -1,0 +1,177 @@
+# SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# ulsbs-config-example.toml
+#
+# Copy this file into your project as ulsbs-config.toml and edit to your needs.
+# Everything here is TOML; lines starting with # are comments.
+#
+# Key naming:
+# - You can use dashed-keys (use-docker) or snake_case (use_docker); they are equivalent.
+# - You may also use boolean negations like no-deploy = true (only true is meaningful).
+#
+# Precedence (lowest -> highest):
+#   built-ins < flat config (this root table) < profiles (with inherit + merge-keys) < env vars < CLI flags
+#
+# Profiles and inheritance:
+# - The flat config (this root table) acts as the parent of every profile that does not set inherit-from.
+# - If a profile inherits from another profile, its parent already includes flat.
+#
+# Array merging vs replacement:
+# - By default, when a child profile specifies an array key, it REPLACES the parent's array.
+# - To MERGE specific arrays for a child profile, list their names in that profile's merge-keys array.
+#   * For merged arrays: result = parent + (child items not already present) -> order is preserved, no duplicates.
+#   * If a listed key is provided by the child but is not an array (or the parent is not an array), it's an error.
+# - merge-keys affects only parent->child profile merging (where the parent may be flat or another profile).
+#
+# Files and globs:
+# - songbooks/common-* accept file paths or glob patterns (?, *). Relative paths are resolved against this file's directory.
+# - Duplicates are removed; results are absolute, sorted paths.
+# - common-* files don't need to exist when running inside Docker; they are only used for deploying on the host.
+#
+# Special modes:
+# - shell: run only an interactive shell and do nothing else.
+# - deploy-last: perform only the "deploy last" step and do nothing else.
+# - deploy-common: perform only the "deploy common" step and do nothing else.
+# - pull: run "git pull --rebase" in the project root before doing anything else.
+#   See cli.py for more information on CLI behaviors.
+#
+# Quick mode:
+# - quick = true will implicitly set these to false: deploy, create-printouts, coverimage,
+#   extrainstrumentbooks, lyricbooks, midifiles, audiofiles, and also clean-temp = false.
+#
+# Environment overrides (optional):
+# - ULSBS_USE_SYSTEM_TMP_FOR_TEMP=true|false -> sets use-system-tmp
+# - ULSBS_MAX_DOCKER_MEMORY=6g (or similar)  -> sets docker-memory AND docker-memory-plus-swap
+# - ULSBS_MAX_PARALLEL=8                     -> sets max-parallel
+#
+# CLI highlights (override config):
+# - Flags like --no-docker, --docker-rebuild, --shell, --pull, --sequential,
+#   --no-deploy, --no-printouts, --no-coverimage, --no-midi, --no-audio,
+#   --no-extrainstr, --no-lyric, -q/--quick, --deploy-last, --deploy-common, --max-log-lines.
+# - Passing files on the CLI overrides songbook selection.
+
+
+# FLAT (ROOT) SETTINGS
+# ====================
+
+# Execution
+use-docker = true            # default: true
+docker-rebuild = false       # default: false; force rebuild of Docker image
+shell = false                # SPECIAL MODE: only run shell, do nothing else
+pull = false                 # SPECIAL: run 'git pull --rebase' before anything else
+
+# Parallelism and temp handling
+max-parallel = 6             # default: 6 (clamped to [1,64])
+sequential = false           # if true, behaves like max-parallel = 1
+use-system-tmp = false       # if true, use system temp dir instead of project temp
+clean-temp = true            # remove temp data after run (alias: keep-temp = true -> clean-temp = false)
+# keep-temp = true           # optional alias; if set, it inverts clean-temp (do not set both)
+
+# Features and modes
+deploy = true                # default: true
+deploy-last = false          # SPECIAL MODE: only run the "deploy last" action
+deploy-common = false        # SPECIAL MODE: only run the "deploy common" action
+create-printouts = true      # default: true
+coverimage = true            # default: true
+midifiles = true             # default: true
+audiofiles = true            # default: true
+extrainstrumentbooks = true  # default: true
+lyricbooks = true            # default: true
+quick = false                # quick-mode as described above
+
+# Docker resources (strings like "6g", "2g")
+docker-memory = "6g"             # default: "6g"
+docker-memory-plus-swap = "6g"   # default: "6g"; env can override both via ULSBS_MAX_DOCKER_MEMORY
+
+# Files (relative to this TOML file's directory unless absolute). Globs supported (?, *).
+# songbooks are the primary inputs and must exist (unless overridden by CLI files).
+songbooks = [
+  # "songbooks/**/*.toml",
+]
+
+# These are only used for deploying (host-side). They may be outside the project.
+common-deploy-icons = [
+  # "assets/icons/*.png",
+]
+common-deploy-metadata = [
+  # "assets/metadata/*.json",
+]
+common-deploy-other = [
+  # "assets/other/**/*",
+]
+
+# Single-file settings (relative to this file; absolute paths not allowed).
+# Must exist if given.
+mididir_readme_file = "metadata/audio-dirs-Readme.md"
+audiodir_readme_file = "metadata/audio-dirs-Readme.md"
+
+# Misc
+max-log-lines = 20           # default: 20 (clamped to [0,1000])
+
+
+
+# PROFILES
+# ========
+
+
+[profiles]
+
+# The "default" profile always exists implicitly; it inherits from flat.
+# You can override or extend values here if needed.
+[profiles.default]
+# merge-keys = []           # optional; see below
+# Example: turn on sequential just for default profile
+# sequential = true
+
+
+# A base profile that tweaks feature flags; it inherits from flat automatically.
+[profiles.base]
+create-printouts = false
+# Demonstrate negation support (equivalent to deploy = false):
+no-deploy = true
+
+# Demonstrate array replacement: if you set songbooks here and do NOT list it in merge-keys
+# in a child profile, the child profile's songbooks will REPLACE this list.
+songbooks = [
+  # "songbooks/base/*.toml",
+  # "songbooks/shared/*.toml",
+]
+
+
+# A dev profile that inherits from base; flat is already included in base.
+[profiles.dev]
+inherit-from = "base"
+# Merge only common-deploy-icons from parent; other arrays replace by default
+merge-keys = ["common-deploy-icons"]
+
+# Child adds icons; duplicates are ignored, order preserved -> parent + new uniques
+common-deploy-icons = [
+  # "assets/icons/dev-only.png",
+]
+
+# Songbooks here will REPLACE base.songbooks because songbooks is not in merge-keys
+songbooks = [
+  # "songbooks/dev/*.toml",
+]
+
+# Re-enable deploy for dev (overrides base's no-deploy)
+deploy = true
+
+
+# A prod profile that does not inherit from another profile; it inherits from flat.
+[profiles.prod]
+# Demonstrate array merging from flat: merge common-deploy-metadata with flat.common-deploy-metadata
+merge-keys = ["common-deploy-metadata"]
+
+common-deploy-metadata = [
+  # "assets/metadata/prod/*.json",
+]
+
+# Example replacements
+create-printouts = true
+lyricbooks = false
+
+# You can also use dashed or snake_case interchangeably
+# max-parallel = 12
+# max_parallel = 12  # same as above
