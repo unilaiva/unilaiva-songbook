@@ -37,6 +37,7 @@ from .constants import (
 from .engine_assets import EngineAssets
 from .jobs import Job, build_variant_basename
 from .lock import JobLock
+from .songdb import build_song_database
 import ulsbs.resultlist as resultlist
 from .ui import UI
 from .util import ensure_dir, ensure_symlink, read_text, run_cmd, safe_rm_tree, overlay_tree, symlink_tree, which, write_text, regex_documentclass_ulsbs_songbook
@@ -456,38 +457,87 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
     return step
 
 
+def build_song_db(
+    ui: UI,
+    cfg: Config,
+    job: Job,
+    processed_tex: Path,
+    step: int,
+) -> tuple[SongbookData, int]:
+    """Build the song database from the processed TeX tree."""
+    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+
+    if not (cfg.midifiles or cfg.audiofiles):
+        return step
+
+    ui.exec_line(f"{txt_doc}: internal: build song tree")
+
+    search_paths = [
+        job.compile_dir,
+        job.compile_dir / CONTENT_DIRNAME,
+        job.compile_dir / INCLUDE_DIRNAME,
+    ]
+    try:
+        db = build_song_database(processed_tex=processed_tex, include_search_paths=search_paths)
+    except Exception as e:
+        log_path = job.compile_dir / f"log-{step:02d}_songdb.log"
+        write_text(log_path, f"Song database build failed: {e!r}\n")
+        raise CompileError("Failed to build song/chapter data from TeX", log_path)
+    step += 1
+    return db, step
+
+
 def run_midi_audio(
     ui: UI,
     assets: EngineAssets,
     cfg: Config,
     job: Job,
     processed_tex: Path,
+    db: SongbookData,
     step: int,
 ) -> int:
-    """Create MIDI directories and audio encodes based on the .dep file."""
+    """Create MIDI directories and audio encodes based on the TeX tree."""
     if not (cfg.midifiles or cfg.audiofiles):
-        return step
-    dep_file = job.compile_dir / f"{processed_tex.stem}.dep"
-    if not dep_file.exists():
-        ui.noexec_line(f"{job.doc_stem}:{job.variant}: No .dep file found; skipping midi/audio")
         return step
 
     result_dir = cfg.runtime.project_paths.result_dir
-
     txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
 
+    # Flatten songs while keeping document order
+    all_songs = list(db.songs_without_chapter)
+    for chap in db.chapters:
+        all_songs.extend(chap.songs)
+    songs_with_midi = [s for s in all_songs if s.midi_abs_path is not None]
+
+    if not songs_with_midi:
+        ui.noexec_line(f"{job.doc_stem}:{job.variant}: No MIDI files referenced; skipping midi/audio")
+        return step
+
+    # MIDI copies
     if cfg.midifiles:
-        ui.exec_line(f"{txt_doc}: unilaiva-copy-audio (copy midi files)")
+        ui.exec_line(f"{txt_doc}: create MIDI directory")
         cur_res_midi = result_dir / RESULT_MIDI_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_midi)
         ensure_dir(cur_res_midi)
-        log_midi = job.compile_dir / f"log-{step:02d}_copy-midi.log"
-        with assets.tool_script("unilaiva-copy-audio.py3") as tool_path:
+
+        for song in songs_with_midi:
+            parent = cur_res_midi
+            if song.chapter_slug:
+                parent = parent / song.chapter_slug
+            ensure_dir(parent)
+
+            if song.number is not None:
+                num_str = f"{song.number:03d}"
+            else:
+                # Fallback to order index if counter is unavailable
+                num_str = f"{song.order_index:03d}"
+            base = f"{num_str}__{song.title_slug}"
+            dest = parent / f"{base}.midi"
             try:
-                run_cmd(["python3", str(tool_path), "--midi", dep_file.name, str(cur_res_midi)],
-                        cwd=job.compile_dir, stdout_path=log_midi, stderr_to_stdout=True, check=True)
+                shutil.copy2(song.midi_abs_path, dest)  # type: ignore[arg-type]
             except Exception:
-                raise CompileError("unilaiva-copy-audio failed while copying MIDI files", log_midi)
+                ui.warning_line(f"{txt_doc}: Failed to copy MIDI for '{song.title}' from {song.midi_abs_path}")
+
         # Copy midi README, if set in config, into midi result dir
         readme_midi = cfg.mididir_readme_file
         if readme_midi and readme_midi.exists():
@@ -495,18 +545,46 @@ def run_midi_audio(
         resultlist.append_line(RESULT_TYPE_MIDIDIR, cur_res_midi.name)
         step += 1
 
+    # Audio encodes
     if cfg.audiofiles:
-        ui.exec_line(f"{txt_doc}: unilaiva-copy-audio (encode audio)")
+        ui.exec_line(f"{txt_doc}: encode audio (ulsbs-midi2audio)")
         cur_res_audio = result_dir / RESULT_AUDIO_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_audio)
         ensure_dir(cur_res_audio)
         log_audio = job.compile_dir / f"log-{step:02d}_encode-audio.log"
-        with assets.tool_script("unilaiva-copy-audio.py3") as tool_path:
+
+        for song in songs_with_midi:
+            parent = cur_res_audio
+            if song.chapter_slug:
+                parent = parent / song.chapter_slug
+            ensure_dir(parent)
+
+            if song.number is not None:
+                num_str = f"{song.number:03d}"
+            else:
+                num_str = f"{song.order_index:03d}"
+            base = f"{num_str}__{song.title_slug}__from-midi"
+            out_base = parent / base
+
+            args = [
+                "python3",
+                "-m",
+                "ulsbs.tools.midi2audio",
+                "-y",  # overwrite existing files
+                "-m",  # ensure MP3 output
+            ]
+            if cfg.fast_audio_encode:
+                args.append("--fast-mode")
+            args += [
+                "-o",
+                str(out_base),
+                str(song.midi_abs_path),  # type: ignore[arg-type]
+            ]
             try:
-                run_cmd(["python3", str(tool_path), "--audio", dep_file.name, str(cur_res_audio)],
-                        cwd=job.compile_dir, stdout_path=log_audio, stderr_to_stdout=True, check=True)
+                run_cmd(args, cwd=job.compile_dir, stdout_path=log_audio, stderr_to_stdout=True, check=True)
             except Exception:
-                raise CompileError("unilaiva-copy-audio failed while encoding audio", log_audio)
+                raise CompileError("ulsbs-midi2audio failed while encoding audio", log_audio)
+
         # Copy audio README, if set in config, into audio result dir
         readme_audio = cfg.audiodir_readme_file
         if readme_audio and readme_audio.exists():
@@ -658,9 +736,15 @@ def compile_one_job(
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
 
-        # 8) MIDI/audio assets
+        # 8) Build song database
         try:
-            step = run_midi_audio(ui=ui, assets=assets, cfg=cfg, job=job, processed_tex=processed_tex, step=step)
+            song_db, step = build_song_db(ui=ui, cfg=cfg, job=job, processed_tex=processed_tex, step=step)
+        except CompileError as ce:
+            die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
+
+        # 9) MIDI/audio assets
+        try:
+            step = run_midi_audio(ui=ui, assets=assets, cfg=cfg, job=job, processed_tex=processed_tex, db=song_db, step=step)
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
 

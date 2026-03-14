@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Requires:
+#   - bash version 3.0+  (for this wrapper)
+#   - python3 version 3.11+
+#   - ffmpeg and fluidsynth
+
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec python3 "$SCRIPT_DIR/src/ulsbs/tools/midi2audio.py" "$@"

@@ -57,3 +57,6 @@ SORT_LOCALE = "fi_FI.utf8"
 COVERIMAGE_HEIGHT = "1024"
 COVERIMAGE_AUTOWIDE_WIDTH = "976"
 IMG_AUTOWIDENOTAGS_FNAME_POSTFIX = "_AUTOWIDENOTAGS"
+
+# Accepted TeX-like file suffixes when resolving includes
+TEX_SUFFIXES = (".tex", ".latex", ".lytex", ".lylatex")

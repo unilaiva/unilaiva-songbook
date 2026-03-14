@@ -16,6 +16,8 @@ classifiers = [
 
 [project.scripts]
 ulsbs-compile = "ulsbs.cli:main"
+ulsbs-songdb-json = "ulsbs.tools.songdb_json:main"
+ulsbs-midi2audio = "ulsbs.tools.midi2audio:main"
 
 [project.urls]
 Homepage = "https://github.com/unilaiva/unilaiva-songbook"
