@@ -58,9 +58,9 @@ class SongInfo:
     Attributes
     ----------
     - title:
-        Song title as written in \beginsong{...} (unmodified).
+        Primary song title (the first part before any ``\\`` line breaks).
     - title_slug:
-        ASCII filename-friendly stem derived from title.
+        ASCII filename-friendly stem derived from the primary title.
     - number:
         Song number taken from the current songnum counter, if known.
     - options:
@@ -78,6 +78,9 @@ class SongInfo:
         any chapter.
     - chapter_slug:
         Normalized chapter slug, or None.
+    - alt_titles:
+        Alternative titles extracted from subsequent ``\\``-separated parts
+        of the ``\beginsong{...}`` title, if any.
     - audio_links:
         \\audio invocations found inside the song block, in order.
     """
@@ -92,6 +95,7 @@ class SongInfo:
     order_index: int
     chapter_title: str | None
     chapter_slug: str | None
+    alt_titles: List[str] = field(default_factory=list)
     audio_links: List[AudioLink] = field(default_factory=list)
 
 
@@ -206,6 +210,8 @@ _BOOK_OPTION_TO_FIELD: Dict[str, str] = {
     "bindingoffset": "bindingoffset",
 }
 
+_BOOK_TITLE_FIELDS: set[str] = {"maintitle", "subtitle", "subsubtitle", "motto"}
+
 
 @dataclass(slots=True)
 class SongbookData:
@@ -284,6 +290,91 @@ def _slugify(text: str, *, default: str) -> str:
     cleaned = re.sub(r"[^a-z0-9]+", "-", cleaned)
     cleaned = cleaned.strip("-")
     return cleaned or default
+
+
+def _tex_to_plain_text(text: str) -> str:
+    """Replace simple TeX accidentals with Unicode symbols and strip TeX markup.
+
+    - \\flt and \\shrp are converted to ♭ and ♯
+    - TeX comments (%) are removed (but \\% is kept as a literal %)
+    - TeX macros are stripped; their mandatory {...} arguments are kept,
+      except when they contain only a TeX length (e.g. 0.5pt, 2ex)
+    - Optional arguments [...] are discarded
+    - All braces/brackets and control sequences are removed
+    - All newline styles are normalized and whitespace collapses to a single space
+    """
+
+    # 1. Replace music accidentals
+    text = re.sub(r"\\flt(?:\{\})?", "♭", text)
+    text = re.sub(r"\\shrp(?:\{\})?", "♯", text)
+
+    # 2. Remove TeX comments: % to end-of-line, except when escaped as \%
+    text = re.sub(r"(?<!\\)%[^\r\n]*", "", text)
+
+    # 3. Normalize all newline styles to a space
+    text = re.sub(r"[\r\n]+", " ", text)
+
+    # 4. Replace macros with mandatory args by just their arg contents
+    length_re = re.compile(
+        r"""
+        ^\s*
+        [+-]?(
+            (?:\d+(?:\.\d*)?)  # 1, 1., 1.23
+            |
+            (?:\.\d+)          # .5
+        )
+        \s*
+        (?:pt|bp|in|cm|mm|pc|dd|cc|sp|ex|em|mu)
+        \s*$
+        """,
+        re.IGNORECASE | re.VERBOSE,
+    )
+
+    def _macro_with_args_repl(match: re.Match) -> str:
+        braces = match.group("braces")
+        if not braces:
+            return " "
+        contents = re.findall(r"\{([^}]*)\}", braces)
+        # Keep non-empty args that are not pure TeX lengths
+        kept = [
+            c.strip()
+            for c in contents
+            if c.strip() and not length_re.match(c)
+        ]
+        return " ".join(kept) if kept else " "
+
+    macro_with_args_re = re.compile(
+        r"""
+        \\[A-Za-z]+                    # command name
+        (?:\s*\[[^\]]*\])?             # optional argument [ ... ], discarded
+        (?P<braces>(?:\s*\{[^}]*\})+)  # one or more mandatory { ... } args
+        """,
+        re.VERBOSE,
+    )
+    text = macro_with_args_re.sub(_macro_with_args_repl, text)
+
+    # 5. Convert escaped percent to literal percent
+    text = text.replace(r"\%", "%")
+
+    # 6. Drop remaining control sequences without mandatory args (e.g. \foo, \\, \&)
+    text = re.sub(r"\\[A-Za-z]+|\\.", " ", text)
+
+    # 7. Drop any remaining braces/brackets
+    text = re.sub(r"[{}\[\]]", "", text)
+
+    # 8. Collapse all runs of whitespace to a single space
+    text = re.sub(r"\s+", " ", text).strip()
+
+    return text
+
+
+def _unescape_tex_url(text: str) -> str:
+    """Undo simple TeX escaping used inside URLs.
+
+    Currently this only normalises ``\\%`` back to a literal ``%``.
+    """
+
+    return text.replace(r"\%", "%")
 
 
 def _parse_braced_argument(src: str, start: int) -> Tuple[str, int]:
@@ -484,44 +575,106 @@ def _resolve_include(name: str, current_file: Path, search_paths: Sequence[Path]
     return None
 
 
+def _resolve_documentclass(classname: str, current_file: Path, search_paths: Sequence[Path]) -> Path | None:
+    """Resolve a \\documentclass{...} argument to a ``.cls`` file.
+
+    The search order is:
+      1. Path relative to the current file directory
+      2. Each directory in search_paths
+    """
+
+    name = classname.strip()
+    if not name:
+        return None
+
+    explicit = Path(name)
+    candidates: List[Path] = []
+
+    if explicit.suffix:
+        # Name already includes an extension (e.g. .cls)
+        candidates.append((current_file.parent / explicit).resolve())
+        for base in search_paths:
+            candidates.append((base.resolve() / explicit).resolve())
+    else:
+        explicit_cls = explicit.with_suffix(".cls")
+        candidates.append((current_file.parent / explicit_cls).resolve())
+        for base in search_paths:
+            candidates.append((base.resolve() / explicit_cls).resolve())
+
+    for cand in candidates:
+        if cand.is_file():
+            return cand
+    return None
+
+
 def _parse_audio_command(src: str, start: int) -> Tuple[AudioLink | None, int]:
-    r"""
-    Parse \audio{url}[key=X,title=X,pitch=X] starting at start.
+    """
+    Parse \\audio invocations starting at *start*.
 
-    start must point to the \ of \audio.
+    Supported forms are::
 
-    Returns (AudioLink, next_index) on success, or (None, start) on failure.
-    The optional bracket argument may contain key, title and/or pitch in any
-    order.
+        \audio{url}[key=...,title=...,pitch=...]
+        \audio[key=...,title=...,pitch=...]{url}
+
+    *start* must point to the \\ of \\audio.
+
+    Returns (AudioLink, next_index) on success, or (None, start) on
+    failure. The optional bracket argument may contain key, title
+    and/or pitch in any order.
     """
 
     i = start
     assert src.startswith("\\audio", i)
     i += len("\\audio")
 
+    n = len(src)
+
     # Skip whitespace
-    while i < len(src) and src[i].isspace():
+    while i < n and src[i].isspace():
         i += 1
 
-    if i >= len(src) or src[i] != "{":
+    if i >= n or src[i] not in "[{":
         return None, start
-
-    try:
-        url, i = _parse_braced_argument(src, i)
-    except ValueError:
-        return None, start
-
-    # Skip whitespace before optional [...]
-    j = i
-    while j < len(src) and src[j].isspace():
-        j += 1
 
     opts_raw: str | None = None
-    if j < len(src) and src[j] == "[":
+    url: str | None = None
+
+    # Two supported syntaxes: {url}[opts] or [opts]{url}
+    if src[i] == "{":
+        # {url}[opts]
         try:
-            opts_raw, i = _parse_optional_bracket_argument(src, j)
+            url, i = _parse_braced_argument(src, i)
         except ValueError:
-            pass
+            return None, start
+
+        # Skip whitespace before optional [...]
+        j = i
+        while j < n and src[j].isspace():
+            j += 1
+        if j < n and src[j] == "[":
+            try:
+                opts_raw, i = _parse_optional_bracket_argument(src, j)
+            except ValueError:
+                # Treat as if there were no options
+                opts_raw = None
+    else:
+        # [opts]{url}
+        try:
+            opts_raw, i = _parse_optional_bracket_argument(src, i)
+        except ValueError:
+            return None, start
+
+        while i < n and src[i].isspace():
+            i += 1
+        if i >= n or src[i] != "{":
+            return None, start
+        try:
+            url, i = _parse_braced_argument(src, i)
+        except ValueError:
+            return None, start
+
+    if url is None:
+        return None, start
 
     key: str | None = None
     title: str | None = None
@@ -532,7 +685,17 @@ def _parse_audio_command(src: str, start: int) -> Tuple[AudioLink | None, int]:
         title = kv.get("title") or None
         pitch = kv.get("pitch") or None
 
-    return AudioLink(url=url.strip(), key=key, title=title, pitch=pitch), i
+    # Normalise simple TeX constructs in option values
+    if key is not None:
+        key = _tex_to_plain_text(key)
+    if title is not None:
+        title = _tex_to_plain_text(title)
+    if pitch is not None:
+        pitch = _tex_to_plain_text(pitch)
+
+    normalised_url = _unescape_tex_url(url.strip())
+
+    return AudioLink(url=normalised_url, key=key, title=title, pitch=pitch), i
 
 
 def _collect_audio_links_from_block(raw_block: str) -> List[AudioLink]:
@@ -593,8 +756,12 @@ def _find_midi_in_song_block(raw_song: str, doc_root: Path) -> Tuple[Path | None
 
 
 def _apply_book_field(book_info: BookInfo, field_name: str, value: str) -> None:
-    """Set field_name on book_info to value, stripping outer whitespace."""
-    object.__setattr__(book_info, field_name, value.strip())
+    """
+    Set field_name on book_info, normalising simple TeX constructs.
+    """
+
+    cleaned = _tex_to_plain_text(value)
+    object.__setattr__(book_info, field_name, cleaned)
 
 
 def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path]) -> SongbookData:
@@ -617,6 +784,8 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
 
     doc_root = processed_tex.parent
     search_paths = [p.resolve() for p in include_search_paths]
+    for p in include_search_paths:
+        print(str(p.resolve()))
 
     book_info = BookInfo()
     chapters: List[ChapterInfo] = []
@@ -637,22 +806,38 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
     ) -> None:
         nonlocal current_songnum, order_counter
 
-        title_slug = _slugify(title, default="song")
+        raw_title = title.strip()
+        # Split possible alternative titles on explicit TeX line breaks.
+        parts = [p.strip() for p in re.split(r"\\\\", raw_title) if p.strip()]
+        if parts:
+            main_title = _tex_to_plain_text(parts[0])
+            alt_titles = [_tex_to_plain_text(p) for p in parts[1:]]
+        else:
+            main_title = ""
+            alt_titles = []
+
+        title_slug = _slugify(main_title, default="song")
         number = current_songnum
         if current_songnum is None:
             number = None
         else:
             current_songnum += 1
 
+        # Normalise simple TeX constructs in \beginsong options as well.
+        normalised_options: Dict[str, str] = {
+            k: _tex_to_plain_text(v) for k, v in options.items()
+        }
+
         midi_rel, midi_abs = _find_midi_in_song_block(raw_block, doc_root)
         audio_links = _collect_audio_links_from_block(raw_block)
 
         order_counter += 1
         song = SongInfo(
-            title=title,
+            title=main_title,
+            alt_titles=alt_titles,
             title_slug=title_slug,
             number=number,
-            options=options,
+            options=normalised_options,
             tex_file=tex_file,
             midi_rel_path=midi_rel,
             midi_abs_path=midi_abs,
@@ -689,8 +874,36 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
                 i += 1
                 continue
 
-            # \documentclass (root file only)
-            if is_root and src.startswith("\\documentclass", i):
+            # \documentclass
+            # \\PassOptionsToClass{options}{class}
+            if src.startswith("\\PassOptionsToClass", i):
+                i += len("\\PassOptionsToClass")
+                while i < n and src[i].isspace():
+                    i += 1
+                if i >= n or src[i] != "{":
+                    continue
+                try:
+                    opts_raw, i = _parse_braced_argument(src, i)
+                except ValueError:
+                    continue
+                # Skip whitespace before class-name argument and parse it to
+                # advance the cursor, but we don't currently use it.
+                while i < n and src[i].isspace():
+                    i += 1
+                if i < n and src[i] == "{":
+                    try:
+                        _, i = _parse_braced_argument(src, i)
+                    except ValueError:
+                        pass
+                if opts_raw:
+                    for opt_key, opt_val in _parse_keyval_options(opts_raw).items():
+                        field_name = _BOOK_OPTION_TO_FIELD.get(opt_key)
+                        if field_name is not None:
+                            _apply_book_field(book_info, field_name, opt_val)
+                continue
+
+            # \\documentclass
+            if src.startswith("\\documentclass", i):
                 i += len("\\documentclass")
                 while i < n and src[i].isspace():
                     i += 1
@@ -699,12 +912,23 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
                 while i < n and src[i].isspace():
                     i += 1
                 # Required {classname}
+                classname: str | None = None
                 if i < n and src[i] == "{":
                     try:
                         classname, i = _parse_braced_argument(src, i)
-                        book_info.document_class = classname.strip()
                     except ValueError:
-                        pass
+                        classname = None
+                if classname:
+                    classname = classname.strip()
+                    # The first encountered document class is the most specific
+                    # one; keep it.
+                    if book_info.document_class is None:
+                        book_info.document_class = classname
+                    # Also process the corresponding .cls file recursively so
+                    # that any \renewcommand definitions it contains are seen.
+                    cls_path = _resolve_documentclass(classname, path, search_paths)
+                    if cls_path is not None:
+                        process_file(cls_path)
                 if opts_raw:
                     for opt_key, opt_val in _parse_keyval_options(opts_raw).items():
                         field_name = _BOOK_OPTION_TO_FIELD.get(opt_key)
@@ -806,13 +1030,13 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
                 if i >= n or src[i] != "{":
                     continue
                 try:
-                    title, i = _parse_braced_argument(src, i)
+                    raw_title, i = _parse_braced_argument(src, i)
                 except ValueError:
                     continue
 
-                title = title.strip()
-                slug = _slugify(title, default="chapter")
-                chap = ChapterInfo(title=title, slug=slug, tex_file=path)
+                display_title = _tex_to_plain_text(raw_title.strip())
+                slug = _slugify(display_title, default="chapter")
+                chap = ChapterInfo(title=display_title, slug=slug, tex_file=path)
                 chapters.append(chap)
                 current_chapter = chap
                 # Do *not* reset songnum; we follow whatever \setcounter does
