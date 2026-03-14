@@ -12,7 +12,7 @@ import datetime as _dt
 import os
 import subprocess
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 import ulsbs  # for getting version (though we are already inside the package)
 
@@ -36,7 +36,7 @@ def docker_image_exists() -> bool:
         return False
 
 
-def docker_image_created_ts() -> Optional[int]:
+def docker_image_created_ts() -> int | None:
     """Return image creation time (UTC, epoch seconds), or None on error."""
     try:
         created = subprocess.check_output(
@@ -50,7 +50,7 @@ def docker_image_created_ts() -> Optional[int]:
         return None
 
 
-def dockerfile_mtime_ts(dockerfile: Path) -> Optional[int]:
+def dockerfile_mtime_ts(dockerfile: Path) -> int | None:
     """Return Dockerfile mtime (epoch seconds), or None on error."""
     try:
         return int(dockerfile.stat().st_mtime)
