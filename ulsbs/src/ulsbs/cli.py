@@ -191,6 +191,22 @@ def main(argv: List[str] | None = None) -> int:
     if cfg.use_docker and not cfg.runtime.in_docker:
         passthrough = (argv if argv is not None else os.sys.argv[1:])
 
+        # Rebase explicit document arguments to be relative to the project root
+        # so that they resolve correctly inside the Docker container, where the
+        # project root is mounted at a fixed path.
+        if ns.files:
+            rebased_docs: list[str] = []
+            for orig, doc_path in zip(ns.files, explicit_docs):
+                try:
+                    rel = doc_path.resolve().relative_to(proj.project_root)
+                except ValueError:
+                    # If the document is not under the project root, fall back
+                    # to the original argument string.
+                    rel = Path(orig)
+                rebased_docs.append(str(rel))
+            doc_map = {orig: new for orig, new in zip(ns.files, rebased_docs)}
+            passthrough = [doc_map.get(a, a) for a in passthrough]
+
         rc = run_self_in_docker(
             ui=ui,
             assets=assets,

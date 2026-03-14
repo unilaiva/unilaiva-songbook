@@ -56,15 +56,48 @@ class ProjectPaths:
     @staticmethod
     def from_docs(explicit_docs: List[Path] | None = None) -> ProjectPaths:
         """
-        Create ProjectPaths from explicit docs. If none, use the CWD.
+        Create ProjectPaths from a set of main document paths.
+
+        - If explicit_docs is None or empty, the current working directory is
+          treated as the project root, and must contain ulsbs-config.toml.
+        - If explicit_docs is non-empty, the documents may live in different
+          directories, but they must share a common ancestor directory that
+          contains ulsbs-config.toml.  Among all such common ancestors, the
+          closest one is chosen as the project root.
         """
-        project_root = Path.cwd().resolve()
-        if explicit_docs:
-            parents = {p.resolve().parent for p in explicit_docs}
-            if len(parents) != 1:
-                raise SystemExit(
-                    "Documents are not in the same directory: "
-                    f"{sorted(str(x) for x in parents)}"
-                )
-            project_root = next(iter(parents))
-        return ProjectPaths.from_root(project_root)
+        # No explicit docs: assume CWD to be the project root
+        if not explicit_docs:
+            return ProjectPaths.from_root(Path.cwd())
+
+        # Resolve all document paths and collect their parent directories.
+        doc_parents = [p.resolve().parent for p in explicit_docs]
+
+        # Precompute ancestor sets for fast membership tests.  Order is
+        # determined solely by walking upwards from the first document's
+        # directory; sets are used only for membership, not ordering.
+        def _ancestor_chain(start: Path) -> list[Path]:
+            out: list[Path] = []
+            cur = start
+            while True:
+                out.append(cur)
+                if cur.parent == cur:
+                    break
+                cur = cur.parent
+            return out
+
+        parent_anc_sets = [{a for a in _ancestor_chain(parent)} for parent in doc_parents]
+
+        # Walk upwards from the first document's directory towards the root.
+        # The first directory that is a common ancestor of all documents and
+        # contains ulsbs-config.toml is the deepest suitable project root.
+        for candidate in _ancestor_chain(doc_parents[0]):
+            if all(candidate in anc for anc in parent_anc_sets):
+                cfg = candidate / "ulsbs-config.toml"
+                if cfg.is_file():
+                    return ProjectPaths.from_root(candidate)
+
+        raise SystemExit(
+            "No common ancestor directory with 'ulsbs-config.toml' "
+            "found for documents: "
+            f"{sorted(str(p) for p in explicit_docs)}"
+        )

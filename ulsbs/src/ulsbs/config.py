@@ -563,8 +563,8 @@ def build_config(
             if not isinstance(raw, str) or not raw.strip():
                 raise ValueError("CLI file entries must be non-empty strings")
             p = Path(raw)
-            if not p.is_absolute():
-                # Resolve relative to the project root (matches existing CLI semantics)
+            if not p.is_absolute() and not p.is_file():
+                # Resolve relative to the project root
                 p = (Path(getattr(runtime_project_paths, "project_root")) / p).resolve()
             else:
                 p = p.resolve()
