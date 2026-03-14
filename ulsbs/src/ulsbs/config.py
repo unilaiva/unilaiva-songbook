@@ -65,6 +65,7 @@ class Config:
     coverimage: bool = True
     midifiles: bool = True
     audiofiles: bool = True
+    fast_audio_encode: bool = False
 
     # Docker resources
     docker_memory: str = "6g"
@@ -293,7 +294,7 @@ _ALLOWED_FILE_KEYS: Set[str] = {
     "max_parallel", "sequential", "use_system_tmp", "clean_temp", "keep_temp",
     # Deploy modes and features (and their negations via _apply_negations)
     "deploy", "deploy_last", "deploy_common", "create_printouts", "coverimage",
-    "midifiles", "audiofiles",
+    "midifiles", "audiofiles", "fast_audio_encode",
     "extrainstrumentbooks", "lyricbooks", "quick",
     # Docker resources
     "docker_memory", "docker_memory_plus_swap",
@@ -449,6 +450,7 @@ def build_config(
         "docker_memory": env.get("ULSBS_MAX_DOCKER_MEMORY"),
         "docker_memory_plus_swap": env.get("ULSBS_MAX_DOCKER_MEMORY"),
         "max_parallel": _to_int_env(env.get("ULSBS_MAX_PARALLEL")),
+        "fast_audio_encode": _to_bool_env(env.get("ULSBS_FAST_AUDIO_ENCODE")),
     }
     env_over = {k: v for k, v in env_over.items() if v is not None}
 
@@ -474,6 +476,7 @@ def build_config(
         cli_over["extrainstrumentbooks"] = not bool(getattr(args_ns, "no_extrainstr", False))
         cli_over["lyricbooks"] = not bool(getattr(args_ns, "no_lyric", False))
         cli_over["quick"] = bool(getattr(args_ns, "q", False))
+        cli_over["fast_audio_encode"] = bool(getattr(args_ns, "fast_audio_encode", False))
 
         # Deploy modes
         cli_over["deploy_last"] = bool(getattr(args_ns, "deploy_last", False))

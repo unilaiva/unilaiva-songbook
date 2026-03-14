@@ -76,6 +76,7 @@ create-printouts = true      # default: true
 coverimage = true            # default: true
 midifiles = true             # default: true
 audiofiles = true            # default: true
+fast-audio-encode = false    # default: false; if true, use faster audio encoding (no loudnorm/limiter)
 extrainstrumentbooks = true  # default: true
 lyricbooks = true            # default: true
 quick = false                # quick-mode as described above
