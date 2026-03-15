@@ -210,6 +210,7 @@ _BOOK_OPTION_TO_FIELD: Dict[str, str] = {
     "bindingoffset": "bindingoffset",
 }
 
+# NOTE: not used currently
 _BOOK_TITLE_FIELDS: set[str] = {"maintitle", "subtitle", "subsubtitle", "motto"}
 
 
@@ -784,8 +785,6 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
 
     doc_root = processed_tex.parent
     search_paths = [p.resolve() for p in include_search_paths]
-    for p in include_search_paths:
-        print(str(p.resolve()))
 
     book_info = BookInfo()
     chapters: List[ChapterInfo] = []

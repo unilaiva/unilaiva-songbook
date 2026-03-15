@@ -22,6 +22,8 @@ from __future__ import annotations
 from dataclasses import asdict
 import argparse
 import json
+import os
+import sys
 from pathlib import Path
 from typing import Iterable, List
 
@@ -63,41 +65,108 @@ def _build_arg_parser() -> argparse.ArgumentParser:
     return p
 
 
+def _parse_texinputs_env() -> List[Path]:
+    """Return directories from the TEXINPUTS environment variable.
+
+    TEXINPUTS uses ':' as a separator. Empty segments mean "use the default
+    TeX search path"; we ignore those here and only care about explicit
+    directories. A trailing '//' on a segment means "search recursively"
+    for TeX, but this helper just treats it as the same directory.
+    """
+
+    raw = os.environ.get("TEXINPUTS")
+    if not raw:
+        return []
+
+    dirs: List[Path] = []
+    for part in raw.split(":"):
+        part = part.strip()
+        if not part:
+            # Skip empty entries (TeX's "default" path markers)
+            continue
+        if part.endswith("//"):
+            # Ignore TeX's recursive semantics; use the underlying directory
+            part = part[:-2] or "."
+        p = Path(part).expanduser().resolve()
+        dirs.append(p)
+    return dirs
+
+
 def _normalise_include_dirs(main_tex: Path, include_dirs: Iterable[str] | None) -> List[Path]:
-    # Always search in the main document directory first
-    dirs: List[Path] = [main_tex.parent.resolve()]
+    """Build the include search path list.
+
+    Order (from highest to lowest precedence during lookup):
+      1. Directory of the main TeX file
+      2. Directories given explicitly via -I / --include-dir (in CLI order)
+      3. Directories from the TEXINPUTS environment variable (in env order)
+    """
+
+    # 1. Always search in the main document directory first
+    main_dir = main_tex.parent.resolve()
+    dirs: List[Path] = [main_dir]
+
+    # 2. Explicit -I paths
+    cli_dirs: List[Path] = []
     if include_dirs:
         for d in include_dirs:
             if d:
-                dirs.append(Path(d).resolve())
+                cli_dirs.append(Path(d).expanduser().resolve())
+
+    # 3. TEXINPUTS paths
+    env_dirs = _parse_texinputs_env()
+
+    # Deduplicate while preserving order, keeping main_dir first and ensuring
+    # explicitly given -I paths come before TEXINPUTS paths.
+    seen = {main_dir}
+    for group in (cli_dirs, env_dirs):
+        for p in group:
+            if p not in seen:
+                dirs.append(p)
+                seen.add(p)
+
     return dirs
 
 
 def main(argv: list[str] | None = None) -> int:
+
     parser = _build_arg_parser()
     ns = parser.parse_args(argv)
 
-    main_tex = Path(ns.main_tex).expanduser().resolve()
-    include_dirs = _normalise_include_dirs(main_tex, ns.include_dirs)
+    try:
 
-    db = build_song_database(processed_tex=main_tex, include_search_paths=include_dirs)
+        main_tex = Path(ns.main_tex).expanduser().resolve()
 
-    def _default(obj):  # type: ignore[override]
-        if isinstance(obj, Path):
-            return obj.as_posix()
-        raise TypeError(f"Object of type {type(obj).__name__} is not JSON-serialisable")
+        if not main_tex.exists():
+            raise FileNotFoundError(f"File not found: {ns.main_tex}")
+        if not main_tex.is_file():
+            raise RuntimeError(f"Not a regular file: {ns.main_tex}")
 
-    raw = asdict(db)
-    json_text = json.dumps(raw, default=_default, indent=2, ensure_ascii=False)
+        include_dirs = _normalise_include_dirs(main_tex, ns.include_dirs)
 
-    if ns.output:
-        ns.output.write_text(json_text + "\n", encoding="utf-8")
-    else:
-        # Print to stdout
-        print(json_text)
+        # Build the db from TeX tree
+        db = build_song_database(processed_tex=main_tex, include_search_paths=include_dirs)
 
-    return 0
+        def _default(obj):
+            if isinstance(obj, Path):
+                return obj.as_posix()
+            raise TypeError(f"Object of type {type(obj).__name__} is not JSON-serialisable")
+
+        raw = asdict(db)
+        json_text = json.dumps(raw, default=_default, indent=2, ensure_ascii=False)
+
+        if ns.output:
+            ns.output.write_text(json_text + "\n", encoding="utf-8")
+        else:
+            # Print to stdout
+            print(json_text)
+
+        return 0
+
+    except Exception as e:
+
+        print(f"Error: {str(e)}", file=sys.stderr)
+        return 1
 
 
-if __name__ == "__main__":  # pragma: no cover
+if __name__ == "__main__":
     raise SystemExit(main())
