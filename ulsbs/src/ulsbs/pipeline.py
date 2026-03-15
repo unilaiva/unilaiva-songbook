@@ -40,7 +40,19 @@ from .lock import JobLock
 from .songdb import build_song_database
 import ulsbs.resultlist as resultlist
 from .ui import UI
-from .util import ensure_dir, ensure_symlink, read_text, run_cmd, safe_rm_tree, overlay_tree, symlink_tree, which, write_text, regex_documentclass_ulsbs_songbook
+from .util import (
+    ensure_dir,
+    ensure_symlink,
+    read_text,
+    run_cmd,
+    safe_rm_tree,
+    overlay_tree,
+    symlink_tree,
+    which,
+    write_text,
+    append_text,
+    regex_documentclass_ulsbs_songbook,
+)
 
 ABORT_EVENT = threading.Event()
 
@@ -122,15 +134,18 @@ def build_tool_include_paths(job: Job) -> tuple[dict[str, str], list[str]]:
 
     # Compute path roots used by tools.
     job_root = str(job.compile_dir)          # Job's working directory
-    job_tex = str(job.compile_dir / "ulsbs-assets" / "tex")  # ULSBS TeX tree within the job
-    job_lp = str(job.compile_dir / "ulsbs-assets" / "ly")    # LilyPond includes live under ly/
+    job_ulsbs_tex = str(job.compile_dir / "ulsbs-assets" / "tex")  # ULSBS TeX tree within the job
+    job_ulsbs_lp = str(job.compile_dir / "ulsbs-assets" / "ly")    # LilyPond includes live under ly/
+    job_content = str(job.compile_dir / CONTENT_DIRNAME)
+    job_include = str(job.compile_dir / INCLUDE_DIRNAME)
 
     # TeX engine search paths (colon-separated). Trailing ':' keeps defaults.
-    env["TEXINPUTS"] = f"{job_root}:{job_tex}:{job_root}/content:{job_root}/include:" + env.get("TEXINPUTS", "")
-    env["LUAINPUTS"] = f"{job_root}:{job_tex}:{job_root}/content:{job_root}/include:" + env.get("LUAINPUTS", "")
+    tex_path_prefix = f"{job_root}:{job_content}:{job_include}:{job_ulsbs_tex}:"
+    env["TEXINPUTS"] = tex_path_prefix + env.get("TEXINPUTS", "")
+    env["LUAINPUTS"] = tex_path_prefix + env.get("LUAINPUTS", "")
 
     # LilyPond search paths.
-    lp_args = ["-I", job_root, "-I", job_lp]
+    lp_args = ["-I", job_root, "-I", job_ulsbs_lp]
 
     return env, lp_args
 
@@ -466,21 +481,31 @@ def build_song_db(
 ) -> tuple[SongbookData, int]:
     """Build the song database from the processed TeX tree."""
     txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    log_path = job.compile_dir / f"log-{step:02d}_songdb.log"
 
     if not (cfg.midifiles or cfg.audiofiles):
         return step
 
     ui.exec_line(f"{txt_doc}: internal: build song tree")
 
+    # Do not include the project's tex path, as those files are not needed to
+    # be parsed for our songs db.
     search_paths = [
         job.compile_dir,
         job.compile_dir / CONTENT_DIRNAME,
         job.compile_dir / INCLUDE_DIRNAME,
     ]
     try:
-        db = build_song_database(processed_tex=processed_tex, include_search_paths=search_paths)
+        db = build_song_database(processed_tex=processed_tex, include_search_paths=search_paths, variant=job.variant)
+        write_text(
+            log_path,
+            "Internal song database built for this book.\n\n"
+            f"  - Book title: {'<none>' if db.book_info.maintitle == None else db.book_info.maintitle}\n"
+            f"  - Book subtitle: {'<none>' if db.book_info.subtitle == None else db.book_info.subtitle}\n"
+            f"  - Book variant: {'<none>' if db.book_info.variant == None else db.book_info.variant}\n"
+            f"  - Total songs found: {str(db.total_songs)}\n\n"
+        )
     except Exception as e:
-        log_path = job.compile_dir / f"log-{step:02d}_songdb.log"
         write_text(log_path, f"Song database build failed: {e!r}\n")
         raise CompileError("Failed to build song/chapter data from TeX", log_path)
     step += 1
@@ -510,15 +535,17 @@ def run_midi_audio(
     songs_with_midi = [s for s in all_songs if s.midi_abs_path is not None]
 
     if not songs_with_midi:
-        ui.noexec_line(f"{job.doc_stem}:{job.variant}: No MIDI files referenced; skipping midi/audio")
+        ui.noexec_line(f"{txt_doc}: No MIDI files referenced; skipping midi/audio")
         return step
 
     # MIDI copies
     if cfg.midifiles:
-        ui.exec_line(f"{txt_doc}: create MIDI directory")
+        ui.exec_line(f"{txt_doc}: internal: grab MIDI files")
         cur_res_midi = result_dir / RESULT_MIDI_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_midi)
         ensure_dir(cur_res_midi)
+        log_midi = job.compile_dir / f"log-{step:02d}_grab-midi.log"
+        copy_error_count = 0
 
         for song in songs_with_midi:
             parent = cur_res_midi
@@ -534,14 +561,23 @@ def run_midi_audio(
             base = f"{num_str}__{song.title_slug}"
             dest = parent / f"{base}.midi"
             try:
-                shutil.copy2(song.midi_abs_path, dest)  # type: ignore[arg-type]
+                shutil.copy2(song.midi_abs_path, dest)
+                append_text(log_midi, f"Copied MIDI for '{song.title}' from {song.midi_abs_path}\n")
             except Exception:
-                ui.warning_line(f"{txt_doc}: Failed to copy MIDI for '{song.title}' from {song.midi_abs_path}")
+                copy_error_count += 1
+                append_text(log_midi, f"Warning: Failed to copy MIDI for '{song.title}' from {song.midi_abs_path}\n")
+
+        if copy_error_count > 0:
+            ui.warning_line(f"{txt_doc}: Failed to copy {copy_error_count} MIDI files")
 
         # Copy midi README, if set in config, into midi result dir
         readme_midi = cfg.mididir_readme_file
-        if readme_midi and readme_midi.exists():
-            shutil.copy2(readme_midi, cur_res_midi / "Readme.md")
+        if readme_midi:
+            if readme_midi.exists():
+                shutil.copy2(readme_midi, cur_res_midi / "Readme.md")
+            else:
+                append_text(log_midi, f"Warning: Readme for MIDI directories does not exist: {readme_midi}\n")
+                ui.warning_line(f"{txt_doc}: Readme for MIDI dir does not exist: {readme_midi}")
         resultlist.append_line(RESULT_TYPE_MIDIDIR, cur_res_midi.name)
         step += 1
 
@@ -571,6 +607,7 @@ def run_midi_audio(
                 "-m",
                 "ulsbs.tools.midi2audio",
                 "-y",  # overwrite existing files
+                "-v",  # verbose for log output
                 "-m",  # ensure MP3 output
             ]
             if cfg.fast_audio_encode:
@@ -578,17 +615,21 @@ def run_midi_audio(
             args += [
                 "-o",
                 str(out_base),
-                str(song.midi_abs_path),  # type: ignore[arg-type]
+                str(song.midi_abs_path),
             ]
             try:
-                run_cmd(args, cwd=job.compile_dir, stdout_path=log_audio, stderr_to_stdout=True, check=True)
+                run_cmd(args, cwd=job.compile_dir, stdout_path=log_audio, stderr_to_stdout=True, check=True, append=True)
             except Exception:
                 raise CompileError("ulsbs-midi2audio failed while encoding audio", log_audio)
 
         # Copy audio README, if set in config, into audio result dir
         readme_audio = cfg.audiodir_readme_file
-        if readme_audio and readme_audio.exists():
-            shutil.copy2(readme_audio, cur_res_audio / "Readme.md")
+        if readme_audio:
+            if readme_audio.exists():
+                shutil.copy2(readme_audio, cur_res_audio / "Readme.md")
+            else:
+                append_text(log_midi, f"Warning: Readme for audio directories does not exist: {readme_audio}\n")
+                ui.warning_line(f"{txt_doc}: Readme for audio does not exist: {readme_audio}")
         resultlist.append_line(RESULT_TYPE_AUDIODIR, cur_res_audio.name)
         step += 1
 
