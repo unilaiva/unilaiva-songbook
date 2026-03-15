@@ -339,6 +339,12 @@ def write_text(p: Path, data: str) -> None:
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(data, encoding="utf-8")
 
+def append_text(p: Path, data: str) -> None:
+    """Append UTF-8 text to a file, creating parent directories if needed."""
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with p.open("a", encoding="utf-8") as f:
+        f.write(data)
+
 
 def sha256_file(p: Path) -> str:
     """Compute the SHA-256 hex digest of a file, streaming in 1 MiB chunks."""
@@ -357,6 +363,7 @@ def run_cmd(
     stdout_path: Path | None = None,
     stderr_to_stdout: bool = True,
     check: bool = True,
+    append: bool = False,
 ) -> subprocess.CompletedProcess:
     """
     Run a subprocess and optionally capture or tee stdout to a file.
@@ -368,6 +375,7 @@ def run_cmd(
       stdout_path: If provided, write stdout to this file (created with parents).
       stderr_to_stdout: If True, merge stderr into stdout.
       check: If True, raise CalledProcessError on non-zero exit.
+      append: If True, appends the output to the log file instead of replacing it.
 
     Returns:
       The CompletedProcess result from subprocess.run.
@@ -380,7 +388,8 @@ def run_cmd(
     if stdout_path is not None:
         # Ensure destination exists and stream stdout directly to file
         stdout_path.parent.mkdir(parents=True, exist_ok=True)
-        out_file = open(stdout_path, "wb")
+        mode = "ab" if append else "wb"
+        out_file = open(stdout_path, mode)
         stdout = out_file
         # Keep stderr routing consistent with stderr_to_stdout flag
         stderr = subprocess.STDOUT if stderr_to_stdout else subprocess.PIPE
