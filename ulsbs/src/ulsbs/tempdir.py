@@ -16,7 +16,7 @@ from typing import Iterable, List, Tuple
 from .config import Config
 from .lock import find_lock_files, alive_locks
 from .ui import UI
-from .util import ensure_dir, safe_rm_tree, read_text
+from .util import ensure_dir, safe_rm_tree, read_text, symlink_unsupported
 
 
 @dataclass(frozen=True)
@@ -92,20 +92,30 @@ def setup_temp_dir(ui: UI, cfg: Config) -> None:
         # ensure <project>/temp is a symlink to desired_root
         if project_temp_dir.exists() or project_temp_dir.is_symlink():
             safe_rm_tree(project_temp_dir)
-        project_temp_dir.symlink_to(desired_root, target_is_directory=True)
-        # clear actual temp root, unless going for interactive shell
-        if not cfg.shell:
-            _clear_temp_root(desired_root)
-        ui.debug_line(f"Using system temp: {desired_root}")
-    else:
-        # ensure <project>/temp is a real directory
-        if project_temp_dir.is_symlink():
-            project_temp_dir.unlink()
-        ensure_dir(project_temp_dir)
-        # clear actual temp root, unless going for interactive shell
-        if not cfg.shell:
-            _clear_temp_root(project_temp_dir)
-        ui.debug_line(f"Using project temp: {project_temp_dir}")
+        try:
+            project_temp_dir.symlink_to(desired_root, target_is_directory=True)
+            # clear actual temp root, unless going for interactive shell
+            if not cfg.shell:
+                _clear_temp_root(desired_root)
+            ui.debug_line(f"Using system temp: {desired_root}")
+            return
+        except (OSError, NotImplementedError) as e:
+            # Filesystem may not support symlinks (e.g. some network shares or
+            # FAT volumes).Fall back to using a project-local temp directory
+            # instead.
+            if not symlink_unsupported(e):
+                raise
+            ui.warning_line("Symlinks are not supported for the project temp dir;")
+            ui.space_line("falling back to project-local 'temp' directory.")
+
+    # ensure <project>/temp is a real directory
+    if project_temp_dir.is_symlink():
+        project_temp_dir.unlink()
+    ensure_dir(project_temp_dir)
+    # clear actual temp root, unless going for interactive shell
+    if not cfg.shell:
+        _clear_temp_root(project_temp_dir)
+    ui.debug_line(f"Using project temp: {project_temp_dir}")
 
 def clear_temp_dir_if_no_locks(project_temp_dir: Path) -> bool:
     """Clear project temp dir if no live locks remain. Return True if done."""

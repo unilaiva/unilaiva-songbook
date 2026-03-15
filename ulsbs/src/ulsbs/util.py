@@ -70,9 +70,33 @@ def ensure_dir(p: Path) -> None:
     p.mkdir(parents=True, exist_ok=True)
 
 
-def ensure_symlink(dst: Path, target: Path, force_dir: bool = False) -> None:
+def symlink_unsupported(exc: BaseException) -> bool:
+    """Return True if *exc* indicates that symlinks are not supported here.
+
+    This detects common errno values for filesystems or platforms that do not
+    support symlinks (or where creating them is not permitted).
+    """
+    if isinstance(exc, NotImplementedError):
+        return True
+    if isinstance(exc, OSError):
+        unsupported_errnos = {errno.EPERM}
+        eop = getattr(errno, "EOPNOTSUPP", None)
+        if eop is not None:
+            unsupported_errnos.add(eop)
+        enosys = getattr(errno, "ENOSYS", None)
+        if enosys is not None:
+            unsupported_errnos.add(enosys)
+        return exc.errno in unsupported_errnos
+    return False
+
+
+def ensure_symlink(dst: Path, target: Path, force_dir: bool = False, fallback_copy: bool = True) -> None:
     """
     Ensure that 'dst' is a symlink pointing to 'target' (file or directory).
+
+    If creating a symlink is not possible on this filesystem (for example on
+    some network shares or FAT volumes) and fallback_copy is True, a real copy
+    of the target is created instead of failing.
 
     Behavior:
       - If a path already exists at 'dst' (file, directory, or symlink), it is removed.
@@ -93,6 +117,8 @@ def ensure_symlink(dst: Path, target: Path, force_dir: bool = False) -> None:
       dst: Destination path for the symlink to create.
       target: Path to which the symlink should point.
       force_dir: If True, treat target as a directory when creating the symlink.
+      fallback_copy: If True, fall back to copying the target if symlinks are
+        not supported or not permitted.
     """
     # 1) Remove any existing entry at dst (file, directory, or symlink, including broken links)
     if dst.exists() or dst.is_symlink():
@@ -104,11 +130,27 @@ def ensure_symlink(dst: Path, target: Path, force_dir: bool = False) -> None:
     # 3) Determine directory hint for Windows; ignored on POSIX
     is_dir_hint = force_dir or (target.exists() and target.is_dir())
 
-    # 4) Create the symlink
-    dst.symlink_to(target, target_is_directory=is_dir_hint)
+    # 4) Create the symlink, with optional copy fallback
+    try:
+        dst.symlink_to(target, target_is_directory=is_dir_hint)
+        return
+    except (OSError, NotImplementedError) as e:
+        if not (fallback_copy and symlink_unsupported(e)):
+            raise
+        last_error = e
+
+    # Fallback path: copy the target instead of creating a symlink.
+    target_is_dir = is_dir_hint or (target.exists() and target.is_dir())
+    if target.exists() and target_is_dir:
+        shutil.copytree(target, dst, dirs_exist_ok=True)
+    elif target.exists() and target.is_file():
+        shutil.copy2(target, dst)
+    else:
+        # Target does not exist; cannot sensibly copy. Re-raise original error.
+        raise last_error
 
 
-def symlink_tree(src_root: Path, dst_root: Path) -> None:
+def symlink_tree(src_root: Path, dst_root: Path, fallback_copy: bool = True) -> None:
     """
     Replicate the directory hierarchy of src_root into dst_root and create
     a symlink for every non-directory entry found under src_root.
@@ -124,6 +166,12 @@ def symlink_tree(src_root: Path, dst_root: Path) -> None:
     - Replaces dst_root files/symlinks if src has an entry at that path.
     - If src has a file/symlink where dst has a real directory, raises (conflict),
       because deleting a directory could lose resources.
+
+    Parameters:
+      src_root: Source tree to mirror.
+      dst_root: Destination tree root.
+      fallback_copy: If True, when creating a symlink fails because symlinks
+        are unsupported, copy the source entry instead of raising.
     """
     src_root = src_root.resolve()
     dst_root = dst_root.resolve()
@@ -157,13 +205,37 @@ def symlink_tree(src_root: Path, dst_root: Path) -> None:
             # replicate symlink target (best-effort)
             try:
                 target = src.readlink()
-                dst.symlink_to(target, target_is_directory=src.is_dir())
+                try:
+                    dst.symlink_to(target, target_is_directory=src.is_dir())
+                except (OSError, NotImplementedError) as e:
+                    if not (fallback_copy and symlink_unsupported(e)):
+                        raise
+                    # Fallback: copy the resolved target instead of creating a symlink.
+                    resolved = src.resolve()
+                    if resolved.is_dir():
+                        shutil.copytree(resolved, dst, dirs_exist_ok=True)
+                    else:
+                        shutil.copy2(resolved, dst)
             except Exception:
-                # fall back to linking to resolved path
-                dst.symlink_to(src.resolve(), target_is_directory=src.resolve().is_dir())
+                # fall back to linking to resolved path, or copying if symlinks unsupported
+                resolved = src.resolve()
+                try:
+                    dst.symlink_to(resolved, target_is_directory=resolved.is_dir())
+                except (OSError, NotImplementedError) as e:
+                    if not (fallback_copy and symlink_unsupported(e)):
+                        raise
+                    if resolved.is_dir():
+                        shutil.copytree(resolved, dst, dirs_exist_ok=True)
+                    else:
+                        shutil.copy2(resolved, dst)
         else:
             # link to absolute path for robustness (cwd doesn't matter)
-            dst.symlink_to(src, target_is_directory=False)
+            try:
+                dst.symlink_to(src, target_is_directory=False)
+            except (OSError, NotImplementedError) as e:
+                if not (fallback_copy and symlink_unsupported(e)):
+                    raise
+                shutil.copy2(src, dst)
 
 
 def overlay_tree(src_root: Path, dst_root: Path, move: bool = False) -> None:
@@ -252,7 +324,17 @@ def overlay_tree(src_root: Path, dst_root: Path, move: bool = False) -> None:
                 raise RuntimeError(f"overlay_tree conflict: cannot overwrite directory with symlink: {dst}")
             _rm_dst_file_or_link(dst)
         target = src.readlink()
-        dst.symlink_to(target)
+        try:
+            dst.symlink_to(target)
+        except (OSError, NotImplementedError) as e:
+            if not symlink_unsupported(e):
+                raise
+            # Fallback: copy the resolved target instead of creating a symlink.
+            resolved = src.resolve()
+            if resolved.is_dir():
+                shutil.copytree(resolved, dst, dirs_exist_ok=True)
+            else:
+                shutil.copy2(resolved, dst)
 
     def _move_symlink(src: Path, dst: Path) -> None:
         _copy_symlink(src, dst)

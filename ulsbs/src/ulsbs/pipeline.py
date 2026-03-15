@@ -170,20 +170,28 @@ def prepare_compile_dir(ui: UI, assets: EngineAssets, cfg: Config, job: Job) -> 
         shutil.copytree(src_img, job.compile_dir / "ulsbs-assets" / "img", dirs_exist_ok=True)
 
     # Aliases
-    ensure_symlink(job.compile_dir / "ulsbs" / "assets", job.compile_dir / "ulsbs-assets")
-    ensure_symlink(job.compile_dir / "ulsbs" / "src" / "ulsbs" / "assets", job.compile_dir / "ulsbs-assets")
+    ensure_symlink(
+        job.compile_dir / "ulsbs" / "assets",
+        job.compile_dir / "ulsbs-assets",
+        fallback_copy=True,
+    )
+    ensure_symlink(
+        job.compile_dir / "ulsbs" / "src" / "ulsbs" / "assets",
+        job.compile_dir / "ulsbs-assets",
+        fallback_copy=True,
+    )
 
     # content tree (symlink all files)
     dst_content = job.compile_dir / CONTENT_DIRNAME
     if cfg.runtime.project_paths.content_dir.exists():
         ensure_dir(dst_content)
-        symlink_tree(cfg.runtime.project_paths.content_dir, dst_content)
+        symlink_tree(cfg.runtime.project_paths.content_dir, dst_content, fallback_copy=True)
 
     # include tree (symlink all files)
     dst_include = job.compile_dir / INCLUDE_DIRNAME
     if cfg.runtime.project_paths.include_dir.exists():
         ensure_dir(dst_include)
-        symlink_tree(cfg.runtime.project_paths.include_dir, dst_include)
+        symlink_tree(cfg.runtime.project_paths.include_dir, dst_include, fallback_copy=True)
 
 
 def make_variant_tex(job: Job) -> Path:
