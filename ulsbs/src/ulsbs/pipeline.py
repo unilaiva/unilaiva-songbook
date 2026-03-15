@@ -264,7 +264,7 @@ def run_lilypond_book(ui: UI, proj_content_dir: Path, job: Job, input_tex: Path,
     ensure_dir(lp_out)
 
     log_path = job.compile_dir / f"log-{step:02d}_lilypond.log"
-    ui.exec_line(f"{txt_doc}: lilypond-book")
+    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} lilypond-book")
 
     # We run in the job dir, and pass the input file name (must be present there).
     cwd = job.compile_dir
@@ -316,7 +316,7 @@ def run_lualatex_pass(ui: UI, cfg: Config, job: Job, basename: str, env: dict[st
     txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
     log_path = cwd / f"log-{step:02d}_lualatex-pass{pass_no}.log"
     label = f"lualatex (pass {pass_no})"
-    ui.exec_line(f"{txt_doc}: {label}")
+    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} {label}")
     args = [
         "lualatex",
         "-file-line-error",
@@ -352,7 +352,7 @@ def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[s
 
     # Title index
     log_title = cwd / f"log-{step:02d}_titleidx.log"
-    ui.exec_line(f"{txt_doc}: texlua (create title index)")
+    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} texlua (create title index)")
     try:
         run_cmd(["texlua", str(song_idx_script), "-l", SORT_LOCALE, "idx_title.sxd", "idx_title.sbx"],
                 cwd=cwd, stdout_path=log_title, stderr_to_stdout=True, check=True, env=env)
@@ -363,7 +363,7 @@ def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[s
     # Tag index
     if (cwd / INCLUDE_DIRNAME / TAG_DEFINITION_FILENAME).exists():
         log_tag = cwd / f"log-{step:02d}_tagidx.log"
-        ui.exec_line(f"{txt_doc}: texlua (create tag index)")
+        ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} texlua (create tag index)")
         try:
             run_cmd(["texlua", str(song_idx_script), "-l", SORT_LOCALE, "-b", str(INCLUDE_DIRNAME + "/" + TAG_DEFINITION_FILENAME), "idx_tag.sxd", "idx_tag.sbx"],
                     cwd=cwd, stdout_path=log_tag, stderr_to_stdout=True, check=True, env=env)
@@ -389,7 +389,7 @@ def run_context_printouts(ui: UI, cfg: Config, job: Job, basename: str, env: dic
         ui.noexec_line(f"{txt_doc}: Extra printout PDFs not created; no 'context/contextjit'")
         return step
 
-    ui.exec_line(f"{txt_doc}: context (create printouts)")
+    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} context (create printouts)")
     ensure_dir(result_dir / RESULT_PRINTOUT_SUBDIRNAME)
 
     def make_printout(template: Path, out_base: str, step: int) -> int:
@@ -432,7 +432,7 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
     ensure_dir(result_dir / RESULT_IMAGE_SUBDIRNAME)
 
     # Extract cover as PNG
-    ui.exec_line(f"{txt_doc}: pdftoppm (extract cover as image)")
+    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} pdftoppm (extract cover as image)")
     log_extract = cwd / f"log-{step:02d}_coverimage-extract.log"
     try:
         run_cmd(["pdftoppm", "-f", "1", "-singlefile", "-png", "-scale-to-x", "-1", "-scale-to-y", COVERIMAGE_HEIGHT,
@@ -486,7 +486,7 @@ def build_song_db(
     if not (cfg.midifiles or cfg.audiofiles):
         return step
 
-    ui.exec_line(f"{txt_doc}: internal: build song tree")
+    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} internal: build song tree")
 
     # Do not include the project's tex path, as those files are not needed to
     # be parsed for our songs db.
@@ -540,7 +540,7 @@ def run_midi_audio(
 
     # MIDI copies
     if cfg.midifiles:
-        ui.exec_line(f"{txt_doc}: internal: grab MIDI files")
+        ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} internal: grab MIDI files")
         cur_res_midi = result_dir / RESULT_MIDI_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_midi)
         ensure_dir(cur_res_midi)
@@ -583,7 +583,7 @@ def run_midi_audio(
 
     # Audio encodes
     if cfg.audiofiles:
-        ui.exec_line(f"{txt_doc}: encode audio (ulsbs-midi2audio)")
+        ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} encode audio (ulsbs-midi2audio)")
         cur_res_audio = result_dir / RESULT_AUDIO_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_audio)
         ensure_dir(cur_res_audio)

@@ -92,12 +92,16 @@ class UI:
             self.C_RESET = ""
 
     def fmt_doc(self, docname: str, color: str) -> str:
-        """Format a document label in a consistent, colored style."""
+        """Format a document label in a consistent, colored style, and return it."""
         return f"{self.C_DGRAY}[{color}{docname}{self.C_DGRAY}]{self.C_RESET}"
 
     def colorize(self, text: str, color: str) -> str:
-        """Wrap a text in a color code and reset suffix."""
+        """Wrap a text in a color code and reset suffix and return it."""
         return f"{color}{text}{self.C_RESET}"
+
+    def fmt_step(self, step: int) -> str:
+        """Return given compile step number as colorized string"""
+        return self.colorize(f"{str(step)}.", self.C_DGRAY)
 
     def info(self, msg: str = "") -> None:
         """Print a plain info line (no prefix)."""
