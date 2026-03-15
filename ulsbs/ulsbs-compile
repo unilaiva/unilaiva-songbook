@@ -54,7 +54,17 @@ if [[ -d "ulsbs/src/ulsbs" ]]; then
 fi
 
 # 3) under this script's location (useful when invoked from elsewhere)
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+#
+# Use the loop to get the canonical path (in case of symlink) to be compatible
+# with ie MacOS, as readlink's -f argument is a GNU extension to POSIX and not
+# supported on that OS.
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 if [[ -d "$SCRIPT_DIR/ulsbs/src/ulsbs" ]]; then
   run_with_pythonpath "$(cd "$SCRIPT_DIR/ulsbs/src" && pwd)"
 fi

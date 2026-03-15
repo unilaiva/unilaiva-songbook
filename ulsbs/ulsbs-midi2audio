@@ -8,6 +8,15 @@
 #   - python3 version 3.11+
 #   - ffmpeg and fluidsynth
 
-set -euo pipefail
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Use the loop to get the canonical path (in case of symlink) to be compatible
+# with ie MacOS, as readlink's -f argument is a GNU extension to POSIX and not
+# supported on that OS.
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+
 exec python3 "$SCRIPT_DIR/src/ulsbs/tools/midi2audio.py" "$@"
