@@ -153,7 +153,7 @@ class BookInfo:
     - bindingoffset:
         Binding offset dimension (cls option bindingoffset /
         \\ulbindingoffset).
-    bookbytext:
+    - bookbytext:
         "Book by" attribution text (\\bookbytext).
     """
 
@@ -163,6 +163,7 @@ class BookInfo:
     subtitle: str | None = None
     subsubtitle: str | None = None
     motto: str | None = None
+    variant: str | None = "unknown" # not parsed, but given to build_song_database()
     wwwlink: str | None = None
     wwwqr: str | None = None
     imprintnote: str | None = None
@@ -216,11 +217,25 @@ _BOOK_TITLE_FIELDS: set[str] = {"maintitle", "subtitle", "subsubtitle", "motto"}
 
 @dataclass(slots=True)
 class SongbookData:
-    """Container for all chapters and songs discovered in a TeX tree."""
+    """Container for all chapters and songs discovered in a TeX tree.
+
+    Attributes
+    ----------
+    - book_info:
+        Global metadata about the songbook.
+    - chapters:
+        Chapters discovered in the TeX tree, in document order.
+    - songs_without_chapter:
+        Songs that are not inside any chapter.
+    - total_songs:
+        Total number of songs discovered across the entire document tree.
+        This matches the highest order_index assigned to any song.
+    """
 
     book_info: BookInfo
     chapters: List[ChapterInfo]
     songs_without_chapter: List[SongInfo]
+    total_songs: int
 
     def to_json_file(self, dest: Path, *, indent: int = 2) -> None:
         """
@@ -765,7 +780,7 @@ def _apply_book_field(book_info: BookInfo, field_name: str, value: str) -> None:
     object.__setattr__(book_info, field_name, cleaned)
 
 
-def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path]) -> SongbookData:
+def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path], variant: str = "unknown") -> SongbookData:
     """
     Parse processed_tex and all its inputs into a SongbookData class.
 
@@ -787,6 +802,7 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
     search_paths = [p.resolve() for p in include_search_paths]
 
     book_info = BookInfo()
+    book_info.variant = variant
     chapters: List[ChapterInfo] = []
     songs_without_chapter: List[SongInfo] = []
     visited: set[Path] = set()
@@ -1114,4 +1130,9 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
 
     process_file(processed_tex, is_root=True)
 
-    return SongbookData(book_info=book_info, chapters=chapters, songs_without_chapter=songs_without_chapter)
+    return SongbookData(
+        book_info=book_info,
+        chapters=chapters,
+        songs_without_chapter=songs_without_chapter,
+        total_songs=order_counter,
+    )
