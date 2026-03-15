@@ -478,13 +478,13 @@ def build_song_db(
     job: Job,
     processed_tex: Path,
     step: int,
-) -> tuple[SongbookData, int]:
+) -> tuple[SongbookData | None, int]:
     """Build the song database from the processed TeX tree."""
     txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
     log_path = job.compile_dir / f"log-{step:02d}_songdb.log"
 
     if not (cfg.midifiles or cfg.audiofiles):
-        return step
+        return None, step
 
     ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} internal: build song tree")
 
@@ -518,11 +518,15 @@ def run_midi_audio(
     cfg: Config,
     job: Job,
     processed_tex: Path,
-    db: SongbookData,
+    db: SongbookData | None,
     step: int,
 ) -> int:
     """Create MIDI directories and audio encodes based on the TeX tree."""
     if not (cfg.midifiles or cfg.audiofiles):
+        return step
+
+    if db == None:
+        ui.warning_line(f"{txt_doc}: No internal db; skipping midi/audio")
         return step
 
     result_dir = cfg.runtime.project_paths.result_dir
