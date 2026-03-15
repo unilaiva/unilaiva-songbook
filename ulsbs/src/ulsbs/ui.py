@@ -101,7 +101,7 @@ class UI:
 
     def fmt_step(self, step: int) -> str:
         """Return given compile step number as colorized string"""
-        return self.colorize(f"{str(step)}.", self.C_DGRAY)
+        return self.colorize(f"{step:02d}.", self.C_DGRAY)
 
     def info(self, msg: str = "") -> None:
         """Print a plain info line (no prefix)."""
