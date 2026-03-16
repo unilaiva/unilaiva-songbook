@@ -177,7 +177,12 @@ def parse_key_and_time(src: str, debug: bool) -> Tuple[str | None, Tuple[int, in
 # ---------------
 
 
-_STANZA_RE = re.compile(r"\\set\s+stanza\s*=\s*\"[^\"]*\"\s*")
+_STANZA_RE = re.compile(
+    r"\\set\s+stanza\s*=\s*(?:\"[^\"]*\"|'[^']*'|#[^ \t\r\n]+|\S+)\s*"
+)
+_STANZA_ASSIGN_RE = re.compile(
+    r"\bstanza\s*=\s*(?:\"[^\"]*\"|'[^']*'|#[^ \t\r\n]+|\S+)\s*"
+)
 
 
 def clean_lyrics_fragment(raw: str) -> str:
@@ -189,8 +194,10 @@ def clean_lyrics_fragment(raw: str) -> str:
     # LilyPond ignores line breaks for lyrics; treat them as spaces
     text = raw.replace("\r", " ").replace("\n", " ")
 
-    # Remove explicit stanza labels completely
+    # Remove explicit stanza labels completely (e.g. \\set stanza = "1.")
     text = _STANZA_RE.sub(" ", text)
+    # Also catch any leftover 'stanza = ...' fragments if \\set was stripped separately
+    text = _STANZA_ASSIGN_RE.sub(" ", text)
 
     # Normalise tabs
     text = text.replace("\t", " ")
