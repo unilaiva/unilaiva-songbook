@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Requires:
+#   - bash version 3.0+  (for this wrapper)
+#   - python3 version 3.11+
+#   - ffmpeg and fluidsynth
+
+# Use the loop to get the canonical path (in case of symlink) to be compatible
+# with ie MacOS, as readlink's -f argument is a GNU extension to POSIX and not
+# supported on that OS.
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+
+exec python3 "$SCRIPT_DIR/src/ulsbs/tools/ly2tex.py" "$@"
