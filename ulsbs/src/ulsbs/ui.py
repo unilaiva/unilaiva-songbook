@@ -37,22 +37,22 @@ class UI:
             self.C_YELLOW, self.C_LMAGENTA, self.C_LCYAN, self.C_LBLUE
         ]
 
-        self.PRETXT_INFO     = f"{self.C_GRAY}INFO     {self.C_RESET}"
-        self.PRETXT_DOCKER   = f"{self.C_WHITE}DOCKER   {self.C_RESET}"
-        self.PRETXT_GIT      = f"{self.C_WHITE}GIT      {self.C_RESET}"
-        self.PRETXT_START    = f"{self.C_GREEN}START    {self.C_RESET}"
-        self.PRETXT_EXEC     = f"{self.C_WHITE}EXEC     {self.C_RESET}"
-        self.PRETXT_NOEXEC   = f"{self.C_DGRAY}NOEXEC   {self.C_RESET}"
-        self.PRETXT_DEPLOY   = f"{self.C_WHITE}DEPLOY   {self.C_RESET}"
-        self.PRETXT_NODEPLOY = f"{self.C_DGRAY}NODEPLOY {self.C_RESET}"
-        self.PRETXT_DEBUG    = f"{self.C_DGRAY}DEBUG    {self.C_RESET}"
-        self.PRETXT_WARNING  = f"{self.C_YELLOW}WARNING  {self.C_RESET}"
-        self.PRETXT_ERROR    = f"{self.C_RED}ERROR    {self.C_RESET}"
-        self.PRETXT_FAIL     = f"{self.C_LRED}FAIL     {self.C_RESET}"
-        self.PRETXT_ABORT    = f"{self.C_LRED}ABORTED  {self.C_RESET}"
-        self.PRETXT_SUCCESS  = f"{self.C_LGREEN}SUCCESS  {self.C_RESET}"
-        self.PRETXT_SEE      = f"{self.C_DGRAY}SEE      {self.C_RESET}"
-        self.PRETXT_SPACE    = f"{self.C_DGRAY}         {self.C_RESET}"
+        self.PRETXT_INFO      = f"{self.C_GRAY}INFO     {self.C_RESET}"
+        self.PRETXT_CONTAINER = f"{self.C_WHITE}CONTAIN. {self.C_RESET}"
+        self.PRETXT_GIT       = f"{self.C_WHITE}GIT      {self.C_RESET}"
+        self.PRETXT_START     = f"{self.C_GREEN}START    {self.C_RESET}"
+        self.PRETXT_EXEC      = f"{self.C_WHITE}EXEC     {self.C_RESET}"
+        self.PRETXT_NOEXEC    = f"{self.C_DGRAY}NOEXEC   {self.C_RESET}"
+        self.PRETXT_DEPLOY    = f"{self.C_WHITE}DEPLOY   {self.C_RESET}"
+        self.PRETXT_NODEPLOY  = f"{self.C_DGRAY}NODEPLOY {self.C_RESET}"
+        self.PRETXT_DEBUG     = f"{self.C_DGRAY}DEBUG    {self.C_RESET}"
+        self.PRETXT_WARNING   = f"{self.C_YELLOW}WARNING  {self.C_RESET}"
+        self.PRETXT_ERROR     = f"{self.C_RED}ERROR    {self.C_RESET}"
+        self.PRETXT_FAIL      = f"{self.C_LRED}FAIL     {self.C_RESET}"
+        self.PRETXT_ABORT     = f"{self.C_LRED}ABORTED  {self.C_RESET}"
+        self.PRETXT_SUCCESS   = f"{self.C_LGREEN}SUCCESS  {self.C_RESET}"
+        self.PRETXT_SEE       = f"{self.C_DGRAY}SEE      {self.C_RESET}"
+        self.PRETXT_SPACE     = f"{self.C_DGRAY}         {self.C_RESET}"
 
 
     def _terminal_supports_colors(self) -> bool:
@@ -123,9 +123,9 @@ class UI:
         """Print a INFO-prefixed line."""
         print(f"{self.PRETXT_INFO}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def docker_line(self, msg: str, stderr: bool = False) -> None:
-        """Print a DOCKER-prefixed line."""
-        print(f"{self.PRETXT_DOCKER}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
+    def container_line(self, msg: str, stderr: bool = False) -> None:
+        """Print a CONTAINER-prefixed line."""
+        print(f"{self.PRETXT_CONTAINER}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
     def git_line(self, msg: str, stderr: bool = False) -> None:
         """Print a GIT-prefixed line."""

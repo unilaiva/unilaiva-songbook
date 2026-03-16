@@ -35,7 +35,7 @@ def deploy_results(ui: UI, cfg: Config) -> None:
     deploy_dir = cfg.runtime.project_paths.deploy_dir
     project_root = cfg.runtime.project_paths.project_root
 
-    if cfg.runtime.in_docker:
+    if cfg.runtime.in_container:
         return
 
     if not resultlist.exists():

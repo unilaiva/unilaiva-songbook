@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 """
-Access packaged assets (tex, img, docker contexts).
+Access packaged assets (tex, img, container contexts).
 This file is part of the 'ulsbs' package.
 """
 
@@ -54,9 +54,9 @@ class EngineAssets:
             yield p
 
     @contextmanager
-    def docker_context(self, name: str = "ulsbs-compiler") -> Iterator[Path]:
-        """Yield a Docker build context directory by name."""
-        ref = self._root() / "docker" / name
+    def container_context(self, name: str = "ulsbs-compiler") -> Iterator[Path]:
+        """Yield a container build context directory by name."""
+        ref = self._root() / "container" / name
         with resources.as_file(ref) as p:
             yield p
 

@@ -38,11 +38,12 @@ books contained in this repository, each with all supported extra formats.
 For information about its usage, run: `./ulsbs-compile --help`
 
 
-### Option ONE: use the script with Docker (recommended) ###
+### Option ONE: use the script with a container (recommended) ###
 
 > [!IMPORTANT]
-> This guarantees the best results, as the actual compiling is done in a Docker
-> container that has all the correct packages installed and configured correctly.
+> This guarantees the best results, as the actual compiling is done in a container
+> (Docker by default, Podman also supported) that has all the correct packages
+> installed and configured correctly.
 
 This works on Linux and MacOS, or Windows with WSL. Using Linux is
 recommended, as it is the most tested of the operating systems.
@@ -62,7 +63,7 @@ one document at a time.
 ##### Requirements #####
 
 This method requires the following software installed on your system:
-  * `docker`
+  * `docker` (or `podman` if you configure ULSBS to use it)
   * `bash` 3.0+ (installed by default on most systems)
   * `python3` 3.11+
   * `git` (recommended for initially retrieving the songbook source)
@@ -119,10 +120,10 @@ Install Ubuntu on Windows using Windows Subsystem for Linux (WSL2) and follow
 the instructions for Ubuntu. This is not tested. TODO: test.
 
 
-### Option TWO: use the script without Docker ###
+### Option TWO: use the script without a container ###
 
-If you don't want to use Docker, you can install the required packages and
-execute the compilation script with `--no-docker` option.
+If you don't want to use a container, you can install the required packages and
+execute the compilation script with `--no-container` option.
 
 ##### Requirements #####
 
@@ -181,7 +182,7 @@ the following commands:
   3. `sudo mtxgen --generate`
   4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
-  6. `./ulsbs-compile --no-docker`
+  6. `./ulsbs-compile --no-container`
 
 Some of the dependency packages are already installed by default.
 
@@ -201,7 +202,7 @@ the following commands:
      and run `sudo locale-gen`
   3. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   4. `cd unilaiva-songbook`
-  5. `./ulsbs-compile --no-docker`
+  5. `./ulsbs-compile --no-container`
 
 Some of the dependency packages are already installed by default.
 

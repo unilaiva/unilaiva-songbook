@@ -19,7 +19,7 @@ import ulsbs.resultlist as resultlist
 from .config import build_config, Config
 from .constants import CONFIG_FILENAME
 from .deploy import deploy_results
-from .docker import run_self_in_docker
+from .container import run_self_in_container
 from .engine_assets import EngineAssets
 from .jobs import build_job_queue
 from .paths import ProjectPaths
@@ -61,8 +61,16 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
 
     p.add_argument("--profile", default="default", help=f"Choose profile defined in {CONFIG_FILENAME} to use")
 
-    p.add_argument("--docker-rebuild", action="store_true", help="Force rebuilding of Docker image")
-    p.add_argument("--no-docker", action="store_true", help="Compile on host instead of Docker (not recommended)")
+    p.add_argument(
+        "--container-engine",
+        choices=["auto", "docker", "podman"],
+        help=(
+            "Container engine to use: 'auto' (default, prefer Docker then Podman), "
+            "'docker' (require Docker), or 'podman' (require Podman)"
+        ),
+    )
+    p.add_argument("--container-rebuild", action="store_true", help="Force rebuilding of container image")
+    p.add_argument("--no-container", dest="no_container", action="store_true", help="Compile on host instead of using a container (not recommended)")
     p.add_argument("--pull", action="store_true", help="Run 'git pull --rebase' before compiling")
     p.add_argument("--sequential", action="store_true", help="Do not compile in parallel (to conserve memory)")
     p.add_argument("--keep-temp", action="store_true", help="Do not clean temp directory even after successful compilation")
@@ -79,7 +87,7 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
     prestr.add_argument("--fast-audio-encode", dest="fast_audio_encode", action="store_true", help="Use faster audio encoding (limiter instead of loudnorm)")
 
     pmodes = p.add_argument_group("special modes")
-    pmodes.add_argument("--shell", action="store_true", help="Only open an interactive shell in the Docker container; perform no other actions")
+    pmodes.add_argument("--shell", action="store_true", help="Only open an interactive shell in the container; perform no other actions")
     pmodes.add_argument("--deploy-last", action="store_true", help="Only deploy last compilation results; perform no other actions")
     pmodes.add_argument("--deploy-common", action="store_true", help="Only deploy common assets (icons, metadata); perform no other actions")
 
@@ -104,7 +112,8 @@ def print_plan_summary(
     ui.plain(f"  - Project root: {ui.colorize(cfg.runtime.project_paths.host_project_root, ui.C_LBLUE)}")
     ui.plain(f"  - Base profile: {ui.colorize(cfg.profile, ui.C_LBLUE)}")
     ui.plain(f"  - Songbooks to compile: {ui.colorize(f'{songbooks_count}', ui.C_LBLUE)} {ui.colorize(f'({jobs_count} variant jobs)', ui.C_BLUE)}")
-    ui.plain(f"  - Using Docker: {_yn(cfg.use_docker or cfg.runtime.in_docker)}" + ("" if (cfg.use_docker or cfg.runtime.in_docker) else f" {ui.C_YELLOW}(this is not recommended!){ui.C_RESET}"))
+    ui.plain(f"  - Using container: {_yn(cfg.use_container or cfg.runtime.in_container)}" + ("" if (cfg.use_container or cfg.runtime.in_container) else f" {ui.C_YELLOW}(this is not recommended!){ui.C_RESET}"))
+    ui.plain(f"  - Container engine: {ui.colorize(cfg.container_engine, ui.C_LBLUE)}")
     ui.plain(f"  - Parallel compilation: {_yn(cfg.max_parallel > 1)}" + ui.colorize(f" ({cfg.max_parallel} workers)" if cfg.max_parallel > 1 else "", ui.C_BLUE))
     ui.plain(f"  - Using system's /tmp for temp: {_yn(cfg.use_system_tmp)}")
     ui.plain(f"  - Clean up temp after successful compilation: {_yn(cfg.clean_temp)}")
@@ -128,7 +137,7 @@ def main(argv: List[str] | None = None) -> int:
         Does post-compile actions that need to be done on the host:
           - deploy
         """
-        if cfg.runtime.in_docker:
+        if cfg.runtime.in_container:
             return
         # Use resultlist in result location
         resultlist.initialize(proj.result_dir, unique_id)
@@ -190,7 +199,7 @@ def main(argv: List[str] | None = None) -> int:
     else:
         proj = ProjectPaths.from_docs(explicit_docs)
 
-    in_docker = bool(os.environ.get("ULSBS_INTERNAL_RUNNING_IN_CONTAINER"))
+    in_container = bool(os.environ.get("ULSBS_INTERNAL_RUNNING_IN_CONTAINER"))
     unique_id = os.environ.get("ULSBS_INTERNAL_UNIQUE_ID", create_unique_id()) or create_unique_id()
 
     try:
@@ -200,7 +209,7 @@ def main(argv: List[str] | None = None) -> int:
             config_path=proj.config_file,
             env=os.environ,
             runtime_project_paths=proj,
-            runtime_in_docker=in_docker,
+            runtime_in_container=in_container,
             runtime_unique_id=unique_id,
         )
     except Exception as e:
@@ -237,18 +246,18 @@ def main(argv: List[str] | None = None) -> int:
         return 0
 
     # Host-only git pull
-    if cfg.pull and not cfg.in_docker:
+    if cfg.pull and not cfg.in_container:
         if which("git") is None:
             raise SystemExit("'git' binary not found in PATH, but pull requested!")
         ui.git_line("Pulling remote changes (with rebase)...")
         run_cmd(["git", "pull", "--rebase"], cwd=cfg.runtime.project_paths.project_root, check=True)
 
     # Host-only temp dir setup
-    if not cfg.runtime.in_docker:
+    if not cfg.runtime.in_container:
         setup_temp_dir(ui, cfg)
 
-    # Docker (default) unless --no-docker
-    if cfg.use_docker and not cfg.runtime.in_docker:
+    # Container (default) unless --no-container
+    if cfg.use_container and not cfg.runtime.in_container:
         passthrough = (argv if argv is not None else os.sys.argv[1:])
 
         # If a single directory or config file was used to select the project
@@ -273,7 +282,7 @@ def main(argv: List[str] | None = None) -> int:
             doc_map = {orig: new for orig, new in zip(ns.files, rebased_docs)}
             passthrough = [doc_map.get(a, a) for a in passthrough]
 
-        rc = run_self_in_docker(
+        rc = run_self_in_container(
             ui=ui,
             assets=assets,
             cfg=cfg,
@@ -359,7 +368,7 @@ def main(argv: List[str] | None = None) -> int:
         ui.plain("")
         return 1
 
-    if not cfg.runtime.in_docker:
+    if not cfg.runtime.in_container:
          post_compile()
 
     return 0

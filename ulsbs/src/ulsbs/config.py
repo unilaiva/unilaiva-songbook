@@ -30,7 +30,7 @@ except Exception:  # pragma: no cover
 class Runtime:
     """Runtime-only values detected/created by the CLI."""
     project_paths: ProjectPaths
-    in_docker: bool
+    in_container: bool
     unique_id: str
 
 
@@ -43,10 +43,12 @@ class Config:
     config_dir: Path = Path(".").resolve()
 
     # Execution
-    use_docker: bool = True
-    docker_rebuild: bool = False
+    use_container: bool = True
+    container_rebuild: bool = False
     shell: bool = False
     pull: bool = False
+    # Container engine: "auto", "docker" or "podman" (default: "auto"; prefers Docker, falls back to Podman)
+    container_engine: str = "auto"
 
     max_parallel: int = 6
     use_system_tmp: bool = False
@@ -70,8 +72,8 @@ class Config:
     fast_audio_encode: bool = False
 
     # Docker resources
-    docker_memory: str = "6g"
-    docker_memory_plus_swap: str = "6g"
+    container_memory: str = "6g"
+    container_memory_plus_swap: str = "6g"
 
     # Files (absolute paths, validated to exist)
     songbooks: Tuple[Path, ...] = field(default_factory=tuple) # From config, possibly overwritten by CLI
@@ -306,14 +308,15 @@ def _resolve_single_file_setting(
 
 _ALLOWED_FILE_KEYS: Set[str] = {
     # Execution
-    "use_docker", "docker_rebuild", "shell", "pull",
+    "use_container", "container_rebuild", "container_engine", "container",
     "max_parallel", "sequential", "use_system_tmp", "clean_temp", "keep_temp",
+    "shell", "pull",
     # Deploy modes and features (and their negations via _apply_negations)
     "deploy", "deploy_last", "deploy_common", "create_printouts", "coverimage",
     "midifiles", "audiofiles", "fast_audio_encode",
     "extrainstrumentbooks", "lyricbooks", "quick",
-    # Docker resources
-    "docker_memory", "docker_memory_plus_swap",
+    # Container resources
+    "container_memory", "container_memory_plus_swap",
     # Files
     "songbooks", "common_deploy_icons", "common_deploy_metadata", "common_deploy_other",
     # Single-file settings
@@ -419,7 +422,7 @@ def build_config(
     profile: str = "default",
     env: Mapping[str, str] = os.environ,
     runtime_project_paths: ProjectPaths,
-    runtime_in_docker: bool,
+    runtime_in_container: bool,
     runtime_unique_id: str,
 ) -> Config:
     """
@@ -463,8 +466,9 @@ def build_config(
     # Environment overrides
     env_over = {
         "use_system_tmp": _to_bool_env(env.get("ULSBS_USE_SYSTEM_TMP_FOR_TEMP")),
-        "docker_memory": env.get("ULSBS_MAX_DOCKER_MEMORY"),
-        "docker_memory_plus_swap": env.get("ULSBS_MAX_DOCKER_MEMORY"),
+        "container_engine": env.get("ULSBS_CONTAINER_ENGINE"),
+        "container_memory": env.get("ULSBS_MAX_CONTAINER_MEMORY"),
+        "container_memory_plus_swap": env.get("ULSBS_MAX_CONTAINER_MEMORY"),
         "max_parallel": _to_int_env(env.get("ULSBS_MAX_PARALLEL")),
         "verbose": _to_bool_env(env.get("ULSBS_VERBOSE")),
     }
@@ -475,8 +479,10 @@ def build_config(
     cli_files: Iterable[str] = ()
     if args_ns is not None:
         # Execution/runtime
-        cli_over["use_docker"] = not bool(getattr(args_ns, "no_docker", False))
-        cli_over["docker_rebuild"] = bool(getattr(args_ns, "docker_rebuild", False))
+        cli_over["use_container"] = not bool(getattr(args_ns, "no_container", False))
+        if getattr(args_ns, "container_engine", None):
+            cli_over["container_engine"] = getattr(args_ns, "container_engine")
+        cli_over["container_rebuild"] = bool(getattr(args_ns, "container_rebuild", False))
         cli_over["shell"] = bool(getattr(args_ns, "shell", False))
         cli_over["pull"] = bool(getattr(args_ns, "pull", False))
         cli_over["clean_temp"] = not bool(getattr(args_ns, "keep_temp", False))
@@ -512,6 +518,11 @@ def build_config(
 
     # Combine scalar options first (we'll handle files after)
     combined = {**conf.__dict__, **file_over, **env_over, **cli_over}
+
+    # Allow 'container' (from no-container negation) as an alias for use_container
+    if "container" in combined and "use_container" not in combined:
+        combined["use_container"] = bool(combined["container"])
+    combined.pop("container", None)
     # Remove dataclass-only and runtime keys, keep field names only
     combined = {k: v for k, v in combined.items() if hasattr(conf, k) or k in {"_sequential_flag", "songbooks", "common_deploy_icons", "common_deploy_metadata", "common_deploy_other"}}
     conf = replace(conf, **{k: v for k, v in combined.items() if k != "_sequential_flag"})
@@ -536,10 +547,10 @@ def build_config(
             raise ValueError("songbooks must be an array")
         songbooks_cfg = _expand_patterns(file_over["songbooks"], cfg_dir, must_exist=True)
 
-    # If in docker, the common files don't need to exist, as they might be
+    # If in a container, the common files don't need to exist, as they might be
     # located outside the mounted project directory, and they are only used
     # for deploying, which happens always on the host only.
-    common_must_exist = not runtime_in_docker
+    common_must_exist = not runtime_in_container
 
     common_deploy_icons: Tuple[Path, ...] = ()
     if "common_deploy_icons" in file_over:
@@ -601,7 +612,7 @@ def build_config(
         audiodir_readme_file=audiodir_readme_file_path,
         runtime=Runtime(
             project_paths=runtime_project_paths,
-            in_docker=runtime_in_docker,
+            in_container=runtime_in_container,
             unique_id=runtime_unique_id,
         ),
     )
