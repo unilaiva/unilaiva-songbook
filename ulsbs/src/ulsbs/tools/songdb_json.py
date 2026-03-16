@@ -19,6 +19,17 @@ You can also invoke it directly as a module:
 
 from __future__ import annotations
 
+# Test for python version before importing any package modules.
+import sys
+REQUIRED = (3, 11)
+if sys.version_info < REQUIRED:
+    sys.stderr.write(
+        "This script requires Python {}.{}+, but you are running {}.{}.{}\n".format(
+            REQUIRED[0], REQUIRED[1], *sys.version_info[:3]
+        )
+    )
+    raise SystemExit(1)
+
 from dataclasses import asdict
 import argparse
 import json
