@@ -46,7 +46,9 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
 
     p.add_argument("files", nargs="*", help="Main songbook files to compile; takes precedence over songbooks defined in ulsbs-config.toml")
 
-    p.add_argument("-q", action="store_true", help="Quick dev build: default variant only, no extras, no deploy")
+    p.add_argument("-q", "--quick", action="store_true", help="Quick dev build: default variant only, no extras, no deploy")
+    p.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
+
     p.add_argument("--profile", default="default", help="Choose profile defined in ulsbs-config.toml to use")
 
     p.add_argument("--docker-rebuild", action="store_true", help="Force rebuilding of Docker image")

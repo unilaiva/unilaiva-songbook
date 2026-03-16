@@ -82,6 +82,7 @@ class Config:
     audiodir_readme_file: Path | None = None
 
     # Miscellaneous
+    verbose: bool = False
     max_log_lines: int = 20
 
     # Runtime-only section
@@ -303,7 +304,7 @@ _ALLOWED_FILE_KEYS: Set[str] = {
     # Single-file settings
     "mididir_readme_file", "audiodir_readme_file",
     # Miscellaneous:
-    "max_log_lines",
+    "max_log_lines", "verbose",
     # Profile mechanics
     "inherit_from", "merge_keys",
 }
@@ -451,6 +452,7 @@ def build_config(
         "docker_memory_plus_swap": env.get("ULSBS_MAX_DOCKER_MEMORY"),
         "max_parallel": _to_int_env(env.get("ULSBS_MAX_PARALLEL")),
         "fast_audio_encode": _to_bool_env(env.get("ULSBS_FAST_AUDIO_ENCODE")),
+        "verbose": _to_bool_env(env.get("ULSBS_VERBOSE")),
     }
     env_over = {k: v for k, v in env_over.items() if v is not None}
 
@@ -477,6 +479,7 @@ def build_config(
         cli_over["lyricbooks"] = not bool(getattr(args_ns, "no_lyric", False))
         cli_over["quick"] = bool(getattr(args_ns, "q", False))
         cli_over["fast_audio_encode"] = bool(getattr(args_ns, "fast_audio_encode", False))
+        cli_over["verbose"] = bool(getattr(args_ns, "verbose", False))
 
         # Deploy modes
         cli_over["deploy_last"] = bool(getattr(args_ns, "deploy_last", False))
