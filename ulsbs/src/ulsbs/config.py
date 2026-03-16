@@ -451,7 +451,6 @@ def build_config(
         "docker_memory": env.get("ULSBS_MAX_DOCKER_MEMORY"),
         "docker_memory_plus_swap": env.get("ULSBS_MAX_DOCKER_MEMORY"),
         "max_parallel": _to_int_env(env.get("ULSBS_MAX_PARALLEL")),
-        "fast_audio_encode": _to_bool_env(env.get("ULSBS_FAST_AUDIO_ENCODE")),
         "verbose": _to_bool_env(env.get("ULSBS_VERBOSE")),
     }
     env_over = {k: v for k, v in env_over.items() if v is not None}
