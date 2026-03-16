@@ -23,6 +23,7 @@ DEPLOY_DIRNAME = "deploy"
 CONTENT_DIRNAME = "content"
 INCLUDE_DIRNAME = "include"
 TAG_DEFINITION_FILENAME = "tags.can" # under INCLUDE_DIRNAME
+CONFIG_FILENAME = "ulsbs-config.toml"
 
 RESULT_SEPARATOR = "\t"
 RESULTLIST_BASENAME = "ulsbs-results"

@@ -14,7 +14,7 @@ from typing import List
 
 from .constants import (
     TEMP_DIRNAME, RESULT_DIRNAME, DEPLOY_DIRNAME, CONTENT_DIRNAME,
-    INCLUDE_DIRNAME, RESULTLIST_BASENAME,
+    INCLUDE_DIRNAME, CONFIG_FILENAME, RESULTLIST_BASENAME,
 )
 
 
@@ -33,9 +33,12 @@ class ProjectPaths:
     def from_root(project_root: Path) -> ProjectPaths:
         """Create ProjectPaths from an explicit project root."""
         project_root = project_root.resolve()
-        config_file = project_root / "ulsbs-config.toml"
+        config_file = project_root / CONFIG_FILENAME
         if not (config_file.exists() and config_file.is_file()):
-            raise SystemExit(f"Config file not found: {config_file}")
+            raise SystemExit(
+                f"Config file not found: {config_file}."
+                "Please create one; it can be empty."
+            )
         temp_dir = project_root / TEMP_DIRNAME
         result_dir = project_root / RESULT_DIRNAME
         deploy_dir = project_root / DEPLOY_DIRNAME
@@ -59,10 +62,10 @@ class ProjectPaths:
         Create ProjectPaths from a set of main document paths.
 
         - If explicit_docs is None or empty, the current working directory is
-          treated as the project root, and must contain ulsbs-config.toml.
+          treated as the project root, and must contain CONFIG_FILENAME.
         - If explicit_docs is non-empty, the documents may live in different
           directories, but they must share a common ancestor directory that
-          contains ulsbs-config.toml.  Among all such common ancestors, the
+          contains CONFIG_FILENAME.  Among all such common ancestors, the
           closest one is chosen as the project root.
         """
         # No explicit docs: assume CWD to be the project root
@@ -89,15 +92,22 @@ class ProjectPaths:
 
         # Walk upwards from the first document's directory towards the root.
         # The first directory that is a common ancestor of all documents and
-        # contains ulsbs-config.toml is the deepest suitable project root.
+        # contains CONFIG_FILENAME is the deepest suitable project root.
         for candidate in _ancestor_chain(doc_parents[0]):
             if all(candidate in anc for anc in parent_anc_sets):
-                cfg = candidate / "ulsbs-config.toml"
+                cfg = candidate / CONFIG_FILENAME
                 if cfg.is_file():
                     return ProjectPaths.from_root(candidate)
 
-        raise SystemExit(
-            "No common ancestor directory with 'ulsbs-config.toml' "
-            "found for documents: "
-            f"{sorted(str(p) for p in explicit_docs)}"
-        )
+        if len(explicit_docs) == 1:
+            raise SystemExit(
+                f"No {CONFIG_FILENAME} found. Please create one in the project's root; "
+                "it can be empty."
+            )
+        else:
+            raise SystemExit(
+                f"No common ancestor directory with {CONFIG_FILENAME} "
+                "found for documents: "
+                f"{sorted(str(p) for p in explicit_docs)}. "
+                f"Please create {CONFIG_FILENAME} in the project's root; it can be empty."
+            )

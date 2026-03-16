@@ -11,11 +11,13 @@ from __future__ import annotations
 import os
 import re
 import glob
+import tomllib
 from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping, Tuple, Set
 
-import tomllib
+from .constants import CONFIG_FILENAME
+
 
 # NOTE: We only import the type to avoid runtime dependency cycles
 try:
@@ -37,7 +39,7 @@ class Config:
     """Validated, merged configuration."""
     # General
     profile: str = "default"
-    config_path: Path = Path("ulsbs-config.toml")
+    config_path: Path = Path(CONFIG_FILENAME)
     config_dir: Path = Path(".").resolve()
 
     # Execution

@@ -17,6 +17,7 @@ from typing import List
 import ulsbs.resultlist as resultlist
 
 from .config import build_config, Config
+from .constants import CONFIG_FILENAME
 from .deploy import deploy_results
 from .docker import run_self_in_docker
 from .engine_assets import EngineAssets
@@ -44,12 +45,21 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
         formatter_class=ArgFormatter,
     )
 
-    p.add_argument("files", nargs="*", help="Main songbook files to compile; takes precedence over songbooks defined in ulsbs-config.toml")
+    p.add_argument(
+        "files",
+        nargs="*",
+        help=(
+            f"Main songbook files to compile (overrides songbooks defined in {CONFIG_FILENAME}). "
+            f"Alternatively, give a single project directory or a single existing {CONFIG_FILENAME} "
+            "file to select the project root without specifying explicit documents. If none of these "
+            "are given, the current working directory is assumed to be the project directory."
+        ),
+    )
 
     p.add_argument("-q", "--quick", action="store_true", help="Quick dev build: default variant only, no extras, no deploy")
     p.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
 
-    p.add_argument("--profile", default="default", help="Choose profile defined in ulsbs-config.toml to use")
+    p.add_argument("--profile", default="default", help=f"Choose profile defined in {CONFIG_FILENAME} to use")
 
     p.add_argument("--docker-rebuild", action="store_true", help="Force rebuilding of Docker image")
     p.add_argument("--no-docker", action="store_true", help="Compile on host instead of Docker (not recommended)")
@@ -130,8 +140,55 @@ def main(argv: List[str] | None = None) -> int:
     assets = EngineAssets()
     ns = build_arg_parser(ui=ui).parse_args(argv)
 
-    explicit_docs = [Path(x) for x in ns.files]
-    proj = ProjectPaths.from_docs(explicit_docs)
+    # Interpret positional arguments:
+    #   - no args: use CWD as project root (handled by ProjectPaths.from_docs)
+    #   - single directory: treat it as explicit project root
+    #   - single existing CONFIG_FILENAME: its parent is the project root
+    #   - otherwise: treat all arguments as explicit document files and infer
+    #     project root from their common ancestor containing CONFIG_FILENAME.
+    #
+    # Mixing a directory/config with explicit documents is not allowed.
+    raw_paths = [Path(x) for x in ns.files]
+    explicit_docs: list[Path] = []
+    root_override: Path | None = None
+    root_override_arg: str | None = None
+
+    if not raw_paths:
+        explicit_docs = []
+    elif len(raw_paths) == 1:
+        p = raw_paths[0]
+        # Single directory: use as explicit project root
+        if p.is_dir():
+            root_override = p.resolve()
+            root_override_arg = ns.files[0]
+            ns.files = []  # No explicit documents
+        # Single existing config file: use its parent as project root
+        elif p.name == CONFIG_FILENAME and p.is_file():
+            root_override = p.resolve().parent
+            root_override_arg = ns.files[0]
+            ns.files = []  # No explicit documents
+        else:
+            explicit_docs = raw_paths
+    else:
+        # Multiple positional arguments: reject if any is a directory or
+        # an existing config file, since that would mix project-root
+        # selection with explicit documents.
+        def _is_root_selector(path: Path) -> bool:
+            return path.is_dir() or (path.name == CONFIG_FILENAME and path.is_file())
+
+        if any(_is_root_selector(p) for p in raw_paths):
+            ui.plain("")
+            ui.error_line("Invalid arguments: cannot mix a project directory or config file with explicit document files.")
+            ui.space_line("Give either a single directory/config to select the project, or one or more document files.")
+            ui.plain("")
+            return 1
+        explicit_docs = raw_paths
+
+    if root_override is not None:
+        proj = ProjectPaths.from_root(root_override)
+    else:
+        proj = ProjectPaths.from_docs(explicit_docs)
+
     in_docker = bool(os.environ.get("ULSBS_INTERNAL_RUNNING_IN_CONTAINER"))
     unique_id = os.environ.get("ULSBS_INTERNAL_UNIQUE_ID", create_unique_id()) or create_unique_id()
 
@@ -192,6 +249,12 @@ def main(argv: List[str] | None = None) -> int:
     # Docker (default) unless --no-docker
     if cfg.use_docker and not cfg.runtime.in_docker:
         passthrough = (argv if argv is not None else os.sys.argv[1:])
+
+        # If a single directory or config file was used to select the project
+        # root, drop that argument when invoking the inner CLI: inside the
+        # container the project root is already the working directory.
+        if root_override_arg is not None:
+            passthrough = [a for a in passthrough if a != root_override_arg]
 
         # Rebase explicit document arguments to be relative to the project root
         # so that they resolve correctly inside the Docker container, where the
