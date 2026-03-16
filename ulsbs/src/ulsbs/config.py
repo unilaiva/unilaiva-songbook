@@ -89,6 +89,19 @@ class Config:
     runtime: Runtime | None = None
 
 
+# Global config retrieving
+# ========================
+
+_last_built_config: Config | None = None
+
+def get_config() -> Config | None:
+    """
+    Return the most recently built Config or None if build_config() has not
+    been yet called.
+    """
+    return _last_built_config
+
+
 # Utilities and merging
 # =====================
 
@@ -604,5 +617,9 @@ def build_config(
             midifiles=False,
             audiofiles=False,
         )
+
+    # store globally
+    global _last_built_config
+    _last_built_config = conf
 
     return conf
