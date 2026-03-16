@@ -30,6 +30,7 @@ class UI:
             self.C_YELLOW, self.C_LMAGENTA, self.C_LCYAN, self.C_LBLUE
         ]
 
+        self.PRETXT_INFO     = f"{self.C_GRAY}INFO     {self.C_RESET}"
         self.PRETXT_DOCKER   = f"{self.C_WHITE}DOCKER   {self.C_RESET}"
         self.PRETXT_GIT      = f"{self.C_WHITE}GIT      {self.C_RESET}"
         self.PRETXT_START    = f"{self.C_GREEN}START    {self.C_RESET}"
@@ -110,6 +111,10 @@ class UI:
     def line(self, prefix: str, msg: str) -> None:
         """Print a custom-prefixed line."""
         print(f"{prefix}{msg}", flush=True)
+
+    def info_line(self, msg: str) -> None:
+        """Print a INFO-prefixed line."""
+        print(f"{self.PRETXT_INFO}{msg}", flush=True)
 
     def docker_line(self, msg: str) -> None:
         """Print a DOCKER-prefixed line."""
