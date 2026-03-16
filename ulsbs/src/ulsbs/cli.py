@@ -66,7 +66,7 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
     prestr.add_argument("--no-audio", action="store_true", help="Do not produce MP3 audio files")
     prestr.add_argument("--no-lyric", action="store_true", help="Do not produce lyrics-only variant")
     prestr.add_argument("--no-extrainstr", action="store_true", help="Do not produce variants for extra instruments")
-    prestr.add_argument("--fast-audio-encode", dest="fast_audio_encode", action="store_true", help="Use faster audio encoding (no loudness normalization)")
+    prestr.add_argument("--fast-audio-encode", dest="fast_audio_encode", action="store_true", help="Use faster audio encoding (limiter instead of loudnorm)")
 
     pmodes = p.add_argument_group("special modes")
     pmodes.add_argument("--shell", action="store_true", help="Only open an interactive shell in the Docker container; perform no other actions")
@@ -268,13 +268,13 @@ def main(argv: List[str] | None = None) -> int:
     if cfg.clean_temp and not result.failures:
         try:
             if clear_temp_dir_if_no_locks(proj.temp_dir):
-                ui.debug_line("Temp cleared")
+                ui.info_line("Temp cleared")
             else:
-                ui.debug_line("Temp not cleared due to other jobs still running")
+                ui.info_line("Temp not cleared due to other jobs still running")
         except Exception as e:
             ui.warning_line(f"Temp not cleared due to an error: {str(e)}")
     else:
-        ui.debug_line("Temp is kept.")
+        ui.info_line("Temp is kept.")
 
     if result.successes:
         ui.plain("")

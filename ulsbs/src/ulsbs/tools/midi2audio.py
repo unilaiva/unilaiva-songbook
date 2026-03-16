@@ -13,8 +13,9 @@ Key features:
   All requested output formats are produced in a single fluidsynth -> ffmpeg
   run: a filter_complex with asplit fans the decoded audio out to per-format
   chains (loudnorm -> alimiter -> optional aresample), with one -map block per
-  output file. High-quality mode uses EBU R128 loudnorm (optionally two-pass)
-  and a true-peak limiter; fast mode encodes directly without either.
+  output file. By default uses EBU R128 loudnorm (optionally two-pass) and an
+  optional true-peak limiter; loudnorm can be disabled with -L 0 for faster
+  encoding.
 - Supports MP3 / FLAC / WAV outputs and basic metadata tagging, including
   optional embedded cover images for MP3 and FLAC.
 - Sensible configurable defaults
@@ -87,6 +88,7 @@ class Options:
     chorus_depth: float = 4.25
 
     # Loudness (loudnorm)
+    enable_loudnorm: bool = True
     lufs: float = -14.0
     lra: float = 7.0
     tp: float = -0.10
@@ -105,9 +107,6 @@ class Options:
     # Bit depths
     flac_bits: int = 24
     wav_bits: int = 24
-
-    # Fast mode: disable loudnorm and limiter entirely
-    fast_mode: bool = False
 
     # Behaviour
     threads: int = 0
@@ -482,12 +481,12 @@ def _per_kind_filter_chain(kind: str, loudnorm_filter: str | None, opts: Options
     parts: List[str] = []
     if loudnorm_filter is not None:
         parts.append(loudnorm_filter)
-        if opts.clip_guard:
-            parts.append(
-                f"alimiter=limit={opts.guard_tp}"
-                f":attack={opts.lim_attack}"
-                f":release={opts.lim_release}"
-            )
+    if opts.clip_guard:
+        parts.append(
+            f"alimiter=limit={opts.guard_tp}"
+            f":attack={opts.lim_attack}"
+            f":release={opts.lim_release}"
+        )
 
     # MP3 encoders only accept 44.1 kHz or 48 kHz
     if kind == "mp3" and opts.rate not in (44_100, 48_000):
@@ -554,7 +553,7 @@ def _build_multi_output_ffmpeg(
                 filter_parts.append(f"[{split_labels[i]}]{chain}[{pad}]")
                 kind_to_pad[kind] = pad
             else:
-                # raw (or unfiltered fast-mode output): use split pad directly
+                # raw (or unfiltered output): use split pad directly
                 kind_to_pad[kind] = split_labels[i]
 
     ff = _ffmpeg_base_args(opts, overwrite=True)  # overwrites confirmed upfront
@@ -670,10 +669,9 @@ def _process_one_midi(midi: Path, opts: Options, sf2: Path) -> None:
     Render a single MIDI file to all requested formats in one pipeline.
 
     All output formats are encoded by a single fluidsynth -> ffmpeg run.
-    Fast mode (opts.fast_mode) skips loudnorm and the limiter entirely.
-    High-quality mode runs an optional two-pass loudnorm analysis first, then
-    encodes with per-format filter chains (loudnorm -> alimiter) fanned out
-    from a single asplit in filter_complex.
+    When loudnorm is enabled, an optional two-pass loudness analysis is run
+    first, then encoding uses per-format filter chains (loudnorm -> alimiter)
+    fanned out from a single asplit in filter_complex.
     Overwrite confirmations are collected upfront; if the user declines a
     file it is simply removed from the run rather than aborting everything.
     """
@@ -691,9 +689,9 @@ def _process_one_midi(midi: Path, opts: Options, sf2: Path) -> None:
     if not (opts.want_mp3 or opts.want_flac or opts.want_wav or opts.want_raw):
         opts.want_mp3 = True
 
-    # Determine loudnorm filter (None in fast mode)
+    # Determine loudnorm filter (when enabled)
     ln_filter: str | None = None
-    if not opts.fast_mode:
+    if opts.enable_loudnorm:
         analysis: Dict[str, float] | None = None
         if opts.two_pass:
             analysis = _analyze_loudness(midi, opts, sf2)
@@ -743,28 +741,28 @@ def _build_arg_parser() -> argparse.ArgumentParser:
 
     # Output selection
     p_out = p.add_argument_group("Output selection")
-    p_out.add_argument("-m", dest="want_mp3", action="store_true", help="write MP3")
-    p_out.add_argument("-f", dest="want_flac", action="store_true", help="write FLAC")
-    p_out.add_argument("-w", dest="want_wav", action="store_true", help="write WAV")
-    p_out.add_argument("-k", dest="want_raw", action="store_true", help="write pre-filter RAWRENDER.wav")
+    p_out.add_argument("-m", "--mp3", dest="want_mp3", action="store_true", help="write MP3")
+    p_out.add_argument("-f", "--flac", dest="want_flac", action="store_true", help="write FLAC")
+    p_out.add_argument("-w", "--wav", dest="want_wav", action="store_true", help="write WAV")
+    p_out.add_argument("-k", "--raw", dest="want_raw", action="store_true", help="write pre-filter RAWRENDER.wav")
 
     # Output quality
     p_qual = p.add_argument_group("Output quality")
-    p_qual.add_argument("-B", dest="flac_bits", type=int, choices=[16, 24], default=24, help="FLAC bit depth")
-    p_qual.add_argument("-U", dest="wav_bits", type=int, choices=[16, 24], default=24, help="WAV bit depth")
+    p_qual.add_argument("-B", "--flac-bits", dest="flac_bits", type=int, choices=[16, 24], default=24, help="FLAC bit depth")
+    p_qual.add_argument("-U", "--wav-bits", dest="wav_bits", type=int, choices=[16, 24], default=24, help="WAV bit depth")
     p_qual = p.add_argument_group("MP3")
-    p_qual.add_argument("-q", dest="vbr_q", type=int, default=2, metavar="QUALITY", help="MP3 VBR quality 0..9")
-    p_qual.add_argument("-b", dest="cbr_kbps", type=int, default=None, metavar="KBPS", help="MP3 CBR kbps 32..320, takes precedence over -q")
+    p_qual.add_argument("-q", "--mp3-vbr-quality", dest="vbr_q", type=int, default=2, metavar="QUALITY", help="MP3 VBR quality 0..9")
+    p_qual.add_argument("-b", "--mp3-cbr-kbps", dest="cbr_kbps", type=int, default=None, metavar="KBPS", help="MP3 CBR kbps 32..320, takes precedence over -q")
 
     # Rendering
     p_rend = p.add_argument_group("Rendering")
-    p_rend.add_argument("-s", dest="sf2", metavar="FILE", help="SoundFont file")
-    p_rend.add_argument("-r", dest="rate", type=int, default=48_000, help="sample rate (44100/48000/96000/192000)")
-    p_rend.add_argument("-g", dest="gain", type=float, default=0.60, help="master gain 0.01..1.00")
+    p_rend.add_argument("-s", "--soundfont-file", dest="sf2", metavar="FILE", help="SoundFont file")
+    p_rend.add_argument("-r", "--sample-rate", dest="rate", type=int, default=48_000, help="sample rate (44100/48000/96000/192000)")
+    p_rend.add_argument("-g", "--gain", dest="gain", type=float, default=0.60, help="master gain 0.01..1.00")
 
     # Reverb
     p_rev = p.add_argument_group("Reverb")
-    p_rev.add_argument("-R", dest="rev_active", type=int, choices=[0, 1], default=1, help="enable reverb 0/1")
+    p_rev.add_argument("-R", "--enable-reverb", dest="rev_active", type=int, choices=[0, 1], default=1, help="enable reverb 0/1")
     p_rev.add_argument("--reverb-roomsize", dest="rev_room", type=float, default=0.60, metavar="ROOM-SIZE", help="reverb room size (0.0..1.0)")
     p_rev.add_argument("--reverb-damp", dest="rev_damp", type=float, default=0.30, metavar="DAMPENING", help="reverb dampening (0.0..1.0)")
     p_rev.add_argument("--reverb-level", dest="rev_level", type=float, default=0.60, metavar="LEVEL", help="reverb level (0.0..1.0)")
@@ -772,7 +770,7 @@ def _build_arg_parser() -> argparse.ArgumentParser:
 
     # Chorus
     p_chor = p.add_argument_group("Chorus")
-    p_chor.add_argument("-C", dest="chorus_active", type=int, choices=[0, 1], default=0, help="enable chorus 0/1")
+    p_chor.add_argument("-c", "--enable-chorus", dest="chorus_active", type=int, choices=[0, 1], default=0, help="enable chorus 0/1")
     p_chor.add_argument("--chorus-lines", dest="chorus_lines", type=int, default=3, metavar="LINES", help="chorus lines (1..99)")
     p_chor.add_argument("--chorus-level", dest="chorus_level", type=float, default=0.60, metavar="LEVEL", help="chorus level (0.0..10.0)")
     p_chor.add_argument("--chorus-speed", dest="chorus_speed", type=float, default=0.20, metavar="SPEED", help="chorus speed (0.1..5.0)")
@@ -780,18 +778,18 @@ def _build_arg_parser() -> argparse.ArgumentParser:
 
     # Loudness
     p_loud = p.add_argument_group("Loudness")
-    p_loud.add_argument("-I", dest="lufs", type=float, default=-14.0, help="target LUFS -40..-5")
-    p_loud.add_argument("-K", dest="lra", type=float, default=7.0, help="target LRA 1..20")
-    p_loud.add_argument("-T", dest="tp", type=float, default=-0.10, help="true-peak limit -6.0..0.0")
-    p_loud.add_argument("-2", dest="two_pass", action="store_true", help="two-pass loudnorm")
-    p_loud.add_argument("--fast-mode", dest="fast_mode", action="store_true", help="disable loudnorm and limiter (fast mode)")
+    p_loud.add_argument("-L", "--enable-loudnorm", dest="enable_loudnorm", type=int, choices=[0, 1], default=1, help="enable loudnorm 0/1")
+    p_loud.add_argument("-I", "--loudnorm-lufs", dest="lufs", type=float, default=-14.0, help="target LUFS -40..-5")
+    p_loud.add_argument("-K", "--loudnorm-lra", dest="lra", type=float, default=7.0, help="target LRA 1..20")
+    p_loud.add_argument("-T", "--loudnorm-tp", dest="tp", type=float, default=-0.10, help="true-peak limit -6.0..0.0")
+    p_loud.add_argument("-2", "--loudnorm-twopass", dest="two_pass", action="store_true", help="two-pass loudnorm")
 
     # Limiter
     p_lim = p.add_argument_group("Limiter")
-    p_lim.add_argument("-c", dest="clip_guard", action="store_true", help="enable post-limiter")
-    p_lim.add_argument("-P", dest="guard_tp", type=float, default=0.9, metavar="CEILING", help="limiter ceiling 0.1..1.0")
-    p_lim.add_argument("-M", dest="lim_attack", type=float, default=5.0, metavar="ATTACK", help="limiter attack ms")
-    p_lim.add_argument("-N", dest="lim_release", type=float, default=50.0, metavar="RELEASE", help="limiter release ms")
+    p_lim.add_argument("-C", "--enable-limiter", dest="clip_guard", type=int, choices=[0, 1], default=0, help="enable post-limiter 0/1")
+    p_lim.add_argument("-P", "--limiter-ceiling", dest="guard_tp", type=float, default=0.9, metavar="CEILING", help="limiter ceiling 0.1..1.0")
+    p_lim.add_argument("-M", "--limiter-attack", dest="lim_attack", type=float, default=5.0, metavar="ATTACK", help="limiter attack ms")
+    p_lim.add_argument("-N", "--limiter-release", dest="lim_release", type=float, default=50.0, metavar="RELEASE", help="limiter release ms")
 
     # Tags
     p_tags = p.add_argument_group("Tags")
@@ -805,12 +803,12 @@ def _build_arg_parser() -> argparse.ArgumentParser:
 
     # Behaviour
     p_beh = p.add_argument_group("Behaviour")
-    p_beh.add_argument("-t", dest="threads", type=int, default=0, help="ffmpeg threads, 0=auto")
-    p_beh.add_argument("-v", dest="verbose", action="store_true", default=False, help="verbose output")
-    p_beh.add_argument("-Q", dest="quiet", action="store_true", default=False, help="quiet non-error output")
-    p_beh.add_argument("-n", dest="dry_run", action="store_true", default=False, help="dry-run (print commands only)")
-    p_beh.add_argument("-o", dest="out_base", metavar="BASENAME", help="output basename (single input only)")
-    p_beh.add_argument("-y", dest="force", action="store_true", help="overwrite existing files without prompting")
+    p_beh.add_argument("-t", "--threads", dest="threads", type=int, default=0, help="ffmpeg threads, 0=auto")
+    p_beh.add_argument("-v", "--verbose", dest="verbose", action="store_true", default=False, help="verbose output")
+    p_beh.add_argument("-Q", "--quiet", dest="quiet", action="store_true", default=False, help="quiet non-error output")
+    p_beh.add_argument("-n", "--dry-run", dest="dry_run", action="store_true", default=False, help="dry-run (print commands only)")
+    p_beh.add_argument("-o", "--outfile-basename", dest="out_base", metavar="BASENAME", help="output basename (single input only)")
+    p_beh.add_argument("-y", "--force-overwrite", dest="force", action="store_true", help="overwrite existing files without prompting")
 
     # Positionals
     p.add_argument("inputs", metavar="input.mid", nargs="+", help="MIDI file(s) to render")
@@ -846,11 +844,11 @@ def _opts_from_args(ns: argparse.Namespace) -> Options:
     o.chorus_depth = float(ns.chorus_depth)
 
     # Loudness
+    o.enable_loudnorm = bool(ns.enable_loudnorm)
     o.lufs = float(ns.lufs)
     o.lra = float(ns.lra)
     o.tp = float(ns.tp)
     o.two_pass = bool(ns.two_pass)
-    o.fast_mode = bool(ns.fast_mode)
 
     # Limiter
     o.clip_guard = bool(ns.clip_guard)

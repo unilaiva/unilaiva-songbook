@@ -78,13 +78,13 @@ def setup_temp_dir(ui: UI, cfg: Config) -> None:
         # If the user is trying to switch temp root while compiles are running, abort.
         if desired_root.resolve() != current_root.resolve():
             sample = alive[0]
-            ui.error_line("Other compile process is active.")
+            ui.error_line("Another compile process is active for this project.")
             ui.space_line(f"Active lock: {sample}")
             ui.space_line(f"Current temp root: {current_root}")
             ui.space_line(f"Requested temp root: {desired_root}")
-            raise SystemExit("Other compile process is using different temp location.")
+            raise SystemExit("Another compile process is active and using different temp location for the same project.")
         # Same temp root: do NOT clear. Let per-job locks handle contention.
-        ui.debug_line(f"Temp in use; preserving: {current_root}")
+        ui.info_line(f"Temp in use; preserving: {current_root}")
         return
 
     # No live locks -> safe to (re)point and clear
@@ -97,7 +97,8 @@ def setup_temp_dir(ui: UI, cfg: Config) -> None:
             # clear actual temp root, unless going for interactive shell
             if not cfg.shell:
                 _clear_temp_root(desired_root)
-            ui.debug_line(f"Using system temp: {desired_root}")
+            if cfg.verbose:
+                ui.info_line(f"Using system temp: {desired_root}")
             return
         except (OSError, NotImplementedError) as e:
             # Filesystem may not support symlinks (e.g. some network shares or
@@ -115,7 +116,8 @@ def setup_temp_dir(ui: UI, cfg: Config) -> None:
     # clear actual temp root, unless going for interactive shell
     if not cfg.shell:
         _clear_temp_root(project_temp_dir)
-    ui.debug_line(f"Using project temp: {project_temp_dir}")
+    if cfg.verbose:
+        ui.info_line(f"Using project temp: {project_temp_dir}")
 
 def clear_temp_dir_if_no_locks(project_temp_dir: Path) -> bool:
     """Clear project temp dir if no live locks remain. Return True if done."""

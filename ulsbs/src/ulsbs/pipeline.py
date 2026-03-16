@@ -618,14 +618,26 @@ def run_midi_audio(
                 "python3",
                 "-m",
                 "ulsbs.tools.midi2audio",
-                "-y",  # overwrite existing files
-                "-v",  # verbose for log output
-                "-m",  # ensure MP3 output
+                "--force-overwrite",
+                "--verbose",
+                "--mp3",
             ]
             if cfg.fast_audio_encode:
-                args.append("--fast-mode")
+                args += [
+                    "--enable-loudnorm",
+                    "0",
+                    "--enable-limiter",
+                    "1"
+                ]
+            else:
+                args += [
+                    "--enable-loudnorm",
+                    "1",
+                    "--enable-limiter",
+                    "0"
+                ]
             args += [
-                "-o",
+                "--outfile-basename",
                 str(out_base),
                 str(song.midi_abs_path),
             ]
