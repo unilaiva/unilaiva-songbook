@@ -88,25 +88,25 @@ def print_plan_summary(
 
     songbooks_count = len(cfg.songbooks)
 
-    ui.info("")
-    ui.info(ui.colorize(f"{'Compiling a songbook:' if songbooks_count == 1 else 'Compiling songbooks:'}", ui.C_WHITE))
-    ui.info("")
-    ui.info(f"  - Base profile: {ui.colorize(cfg.profile, ui.C_LBLUE)}")
-    ui.info(f"  - Songbooks to compile: {ui.colorize(f'{songbooks_count}', ui.C_LBLUE)} {ui.colorize(f'({jobs_count} variant jobs)', ui.C_BLUE)}")
-    ui.info(f"  - Using Docker: {_yn(cfg.use_docker or cfg.runtime.in_docker)}" + ("" if (cfg.use_docker or cfg.runtime.in_docker) else f" {ui.C_YELLOW}(this is not recommended!){ui.C_RESET}"))
-    ui.info(f"  - Parallel compilation: {_yn(cfg.max_parallel > 1)}" + ui.colorize(f" ({cfg.max_parallel} workers)" if cfg.max_parallel > 1 else "", ui.C_BLUE))
-    ui.info(f"  - Using system's /tmp for temp: {_yn(cfg.use_system_tmp)}")
-    ui.info(f"  - Clean up temp after successful compilation: {_yn(cfg.clean_temp)}")
-    ui.info(f"  - Additional lyrics only variants: {_yn(cfg.lyricbooks)}")
-    ui.info(f"  - Additional extra instrument variants: {_yn(cfg.extrainstrumentbooks)}")
-    ui.info(f"  - Create printouts: {_yn(cfg.create_printouts)}")
-    ui.info(f"  - Extract covers as images: {_yn(cfg.coverimage)}")
-    ui.info(f"  - Create MIDI files: {_yn(cfg.midifiles)}")
-    ui.info(f"  - Create audio files: {_yn(cfg.audiofiles)}")
+    ui.plain("")
+    ui.plain(ui.colorize(f"{'Compiling a songbook:' if songbooks_count == 1 else 'Compiling songbooks:'}", ui.C_WHITE))
+    ui.plain("")
+    ui.plain(f"  - Base profile: {ui.colorize(cfg.profile, ui.C_LBLUE)}")
+    ui.plain(f"  - Songbooks to compile: {ui.colorize(f'{songbooks_count}', ui.C_LBLUE)} {ui.colorize(f'({jobs_count} variant jobs)', ui.C_BLUE)}")
+    ui.plain(f"  - Using Docker: {_yn(cfg.use_docker or cfg.runtime.in_docker)}" + ("" if (cfg.use_docker or cfg.runtime.in_docker) else f" {ui.C_YELLOW}(this is not recommended!){ui.C_RESET}"))
+    ui.plain(f"  - Parallel compilation: {_yn(cfg.max_parallel > 1)}" + ui.colorize(f" ({cfg.max_parallel} workers)" if cfg.max_parallel > 1 else "", ui.C_BLUE))
+    ui.plain(f"  - Using system's /tmp for temp: {_yn(cfg.use_system_tmp)}")
+    ui.plain(f"  - Clean up temp after successful compilation: {_yn(cfg.clean_temp)}")
+    ui.plain(f"  - Additional lyrics only variants: {_yn(cfg.lyricbooks)}")
+    ui.plain(f"  - Additional extra instrument variants: {_yn(cfg.extrainstrumentbooks)}")
+    ui.plain(f"  - Create printouts: {_yn(cfg.create_printouts)}")
+    ui.plain(f"  - Extract covers as images: {_yn(cfg.coverimage)}")
+    ui.plain(f"  - Create MIDI files: {_yn(cfg.midifiles)}")
+    ui.plain(f"  - Create audio files: {_yn(cfg.audiofiles)}")
     if cfg.audiofiles:
-      ui.info(f"    - Fast audio encode (no loudnorm): {_yn(cfg.fast_audio_encode)}")
-    ui.info(f"  - Deploy: {_yn(cfg.deploy)}")
-    ui.info("")
+      ui.plain(f"    - Fast audio encode (no loudnorm): {_yn(cfg.fast_audio_encode)}")
+    ui.plain(f"  - Deploy: {_yn(cfg.deploy)}")
+    ui.plain("")
 
 
 def main(argv: List[str] | None = None) -> int:
@@ -122,9 +122,9 @@ def main(argv: List[str] | None = None) -> int:
         # Use resultlist in result location
         resultlist.initialize(proj.result_dir, unique_id)
         if cfg.deploy and not cfg.shell:
-            ui.info("")
+            ui.plain("")
             deploy_results(ui=ui, cfg=cfg)
-        ui.info("")
+        ui.plain("")
 
     ui = UI(use_colors=True)
     assets = EngineAssets()
@@ -146,22 +146,22 @@ def main(argv: List[str] | None = None) -> int:
             runtime_unique_id=unique_id,
         )
     except Exception as e:
-        ui.info("")
+        ui.plain("")
         ui.error_line(f"Configuration error!")
         ui.space_line(f"Config file: {proj.config_file}")
         ui.space_line(ui.colorize(e, ui.C_YELLOW))
-        ui.info("")
+        ui.plain("")
         return 1
 
     # Deploy-only modes use CWD as project root and are run outside container
     if cfg.deploy_last or cfg.deploy_common:
         mode_text = "Common files only" if cfg.deploy_common else "Latest results"
-        ui.info("")
-        ui.info(ui.colorize(f"Deploying existing files:", ui.C_WHITE))
-        ui.info("")
-        ui.info(f"  - Project root: {ui.colorize(cfg.runtime.project_paths.project_root, ui.C_LBLUE)}")
-        ui.info(f"  - Mode: {ui.colorize(mode_text, ui.C_LBLUE)}")
-        ui.info("")
+        ui.plain("")
+        ui.plain(ui.colorize(f"Deploying existing files:", ui.C_WHITE))
+        ui.plain("")
+        ui.plain(f"  - Project root: {ui.colorize(cfg.runtime.project_paths.project_root, ui.C_LBLUE)}")
+        ui.plain(f"  - Mode: {ui.colorize(mode_text, ui.C_LBLUE)}")
+        ui.plain("")
         ensure_dir(cfg.runtime.project_paths.result_dir)
         if cfg.deploy_common:
             resultlist.initialize(cfg.runtime.project_paths.result_dir)
@@ -175,7 +175,7 @@ def main(argv: List[str] | None = None) -> int:
                     deploy_results(ui=ui, cfg=cfg)
             else:
                 ui.nodeploy_line("Nothing to deploy!")
-        ui.info("")
+        ui.plain("")
         return 0
 
     # Host-only git pull
@@ -257,9 +257,9 @@ def main(argv: List[str] | None = None) -> int:
         except Exception:
             pass
 
-        ui.info("")
+        ui.plain("")
         ui.abort_line(ui.colorize("All unfinished jobs aborted by user intervention.", ui.C_YELLOW))
-        ui.info("")
+        ui.plain("")
 
         return 130
 
@@ -277,7 +277,7 @@ def main(argv: List[str] | None = None) -> int:
         ui.debug_line("Temp is kept.")
 
     if result.successes:
-        ui.info("")
+        ui.plain("")
         ui.success_line(f"{'All' if len(result.successes) == len(jobs) else len(result.successes)} jobs succeeded.")
         if result.total_warnings:
             ui.warning_line(f"There were a total of {result.total_warnings} warnings in all jobs.")
@@ -285,14 +285,14 @@ def main(argv: List[str] | None = None) -> int:
                 ui.space_line("To keep the logs for analyzing warnings, run with --keep-temp")
 
     if result.failures:
-        ui.info("")
+        ui.plain("")
         ui.fail_line(f"{'All' if len(result.failures) == len(jobs) else 'Some'} jobs failed:")
         for f in result.failures:
             ui.fail_line(f"  - {f.job.doc_stem}:{f.job.variant} -> {f.reason}")
         if cfg.deploy:
-            ui.info("")
+            ui.plain("")
             ui.nodeploy_line("Nothing is deployed due to failures.")
-        ui.info("")
+        ui.plain("")
         return 1
 
     if not cfg.runtime.in_docker:

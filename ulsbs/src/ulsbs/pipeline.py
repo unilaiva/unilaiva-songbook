@@ -100,14 +100,14 @@ def die_log(ui: UI, cfg: Config, job: Job, cwd: Path, message: str, log_path: Pa
         except Exception:
             pass
         if cfg.max_log_lines > 0:
-            ui.info("")
+            ui.plain("")
             ui.space_line(ui.colorize(f"Displaying the last {cfg.max_log_lines} lines of log:", ui.C_YELLOW))
-            ui.info("")
+            ui.plain("")
             try:
                 from collections import deque
                 with log_path.open("r", encoding="utf-8", errors="replace") as f:
                     tail = deque(f, maxlen=cfg.max_log_lines)
-                ui.info("".join(tail))
+                ui.plain("".join(tail))
             except Exception:
                 ui.warning("(Could not read log)")
     else:

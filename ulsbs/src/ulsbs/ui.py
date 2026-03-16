@@ -103,7 +103,7 @@ class UI:
         """Return given compile step number as colorized string"""
         return self.colorize(f"{step:02d}.", self.C_DGRAY)
 
-    def info(self, msg: str = "") -> None:
+    def plain(self, msg: str = "") -> None:
         """Print a plain info line (no prefix)."""
         print(msg, flush=True)
 
