@@ -8,6 +8,14 @@
 #   - python3 version 3.11+
 #   - ffmpeg and fluidsynth
 
+# Ensure python3 is available (the version is checked by the python script)
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "ERROR: python3 is not installed or not found in PATH." >&2
+  echo "" >&2
+  echo "Please install Python 3.11+ and ensure 'python3' is on your PATH." >&2
+  exit 1
+fi
+
 # Use the loop to get the canonical path (in case of symlink) to be compatible
 # with ie MacOS, as readlink's -f argument is a GNU extension to POSIX and not
 # supported on that OS.
