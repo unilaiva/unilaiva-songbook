@@ -118,7 +118,8 @@ def run_self_in_docker(
             "-e", f"ULSBS_MAX_DOCKER_MEMORY={os.environ.get('ULSBS_MAX_DOCKER_MEMORY','')}",
             "-e", f"ULSBS_USE_SYSTEM_TMP_FOR_TEMP={os.environ.get('ULSBS_USE_SYSTEM_TMP_FOR_TEMP','')}",
             "-e", "ULSBS_INTERNAL_RUNNING_IN_CONTAINER=true",
-            "-e", f"ULSBS_INTERNAL_UNIQUE_ID={unique_id}"
+            "-e", f"ULSBS_INTERNAL_UNIQUE_ID={unique_id}",
+            "-e", f"ULSBS_INTERNAL_PROJECT_ROOT_ON_HOST={proj.project_root}",
         ]
 
         docker_args = [

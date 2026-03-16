@@ -101,6 +101,7 @@ def print_plan_summary(
     ui.plain("")
     ui.plain(ui.colorize(f"{'Compiling a songbook:' if songbooks_count == 1 else 'Compiling songbooks:'}", ui.C_WHITE))
     ui.plain("")
+    ui.plain(f"  - Project root: {ui.colorize(cfg.runtime.project_paths.host_project_root, ui.C_LBLUE)}")
     ui.plain(f"  - Base profile: {ui.colorize(cfg.profile, ui.C_LBLUE)}")
     ui.plain(f"  - Songbooks to compile: {ui.colorize(f'{songbooks_count}', ui.C_LBLUE)} {ui.colorize(f'({jobs_count} variant jobs)', ui.C_BLUE)}")
     ui.plain(f"  - Using Docker: {_yn(cfg.use_docker or cfg.runtime.in_docker)}" + ("" if (cfg.use_docker or cfg.runtime.in_docker) else f" {ui.C_YELLOW}(this is not recommended!){ui.C_RESET}"))

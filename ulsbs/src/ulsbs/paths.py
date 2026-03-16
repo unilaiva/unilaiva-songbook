@@ -8,6 +8,7 @@ This file is part of the 'ulsbs' package.
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List
@@ -22,6 +23,7 @@ from .constants import (
 class ProjectPaths:
     """Container for key directories and files in a project root."""
     project_root: Path
+    host_project_root: Path
     config_file: Path
     temp_dir: Path
     result_dir: Path
@@ -33,6 +35,11 @@ class ProjectPaths:
     def from_root(project_root: Path) -> ProjectPaths:
         """Create ProjectPaths from an explicit project root."""
         project_root = project_root.resolve()
+        host_project_root_from_env = os.environ.get("ULSBS_INTERNAL_PROJECT_ROOT_ON_HOST", "") or ""
+        if host_project_root_from_env == "":
+            host_project_root = project_root
+        else:
+            host_project_root = Path(host_project_root_from_env)
         config_file = project_root / CONFIG_FILENAME
         if not (config_file.exists() and config_file.is_file()):
             raise SystemExit(
@@ -47,6 +54,7 @@ class ProjectPaths:
 
         return ProjectPaths(
             project_root=project_root,
+            host_project_root=host_project_root,
             config_file=config_file,
             temp_dir=temp_dir,
             result_dir=result_dir,
