@@ -21,8 +21,15 @@ class UI:
     use_colors: bool = True
 
     def __post_init__(self) -> None:
-        """Init ANSI color codes and prefixes if terminal supports colors."""
-        self.use_colors = bool(self.use_colors and self._terminal_supports_colors())
+        """
+        Init ANSI color codes and prefixes if terminal supports colors.
+        Honors the de-facto standard NO_COLOR env var to disable colors.
+        """
+        self.use_colors = bool(
+            self.use_colors
+            and not os.environ.get("NO_COLOR")
+            and self._terminal_supports_colors()
+        )
         self._init_colors()
 
         self.doc_colors = [
@@ -104,74 +111,76 @@ class UI:
         """Return given compile step number as colorized string"""
         return self.colorize(f"{step:02d}.", self.C_DGRAY)
 
-    def plain(self, msg: str = "") -> None:
+    def plain(self, msg: str = "", stderr: bool = False) -> None:
         """Print a plain info line (no prefix)."""
-        print(msg, flush=True)
+        print(msg, flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def line(self, prefix: str, msg: str) -> None:
+    def line(self, prefix: str, msg: str, stderr: bool = False) -> None:
         """Print a custom-prefixed line."""
-        print(f"{prefix}{msg}", flush=True)
+        print(f"{prefix}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def info_line(self, msg: str) -> None:
+    def info_line(self, msg: str, stderr: bool = False) -> None:
         """Print a INFO-prefixed line."""
-        print(f"{self.PRETXT_INFO}{msg}", flush=True)
+        print(f"{self.PRETXT_INFO}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def docker_line(self, msg: str) -> None:
+    def docker_line(self, msg: str, stderr: bool = False) -> None:
         """Print a DOCKER-prefixed line."""
-        print(f"{self.PRETXT_DOCKER}{msg}", flush=True)
+        print(f"{self.PRETXT_DOCKER}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def git_line(self, msg: str) -> None:
+    def git_line(self, msg: str, stderr: bool = False) -> None:
         """Print a GIT-prefixed line."""
-        print(f"{self.PRETXT_GIT}{msg}", flush=True)
+        print(f"{self.PRETXT_GIT}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def start_line(self, msg: str) -> None:
+    def start_line(self, msg: str, stderr: bool = False) -> None:
         """Print a START-prefixed line."""
-        print(f"{self.PRETXT_START}{msg}", flush=True)
+        print(f"{self.PRETXT_START}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def exec_line(self, msg: str) -> None:
+    def exec_line(self, msg: str, stderr: bool = False) -> None:
         """Print an EXEC-prefixed line."""
-        print(f"{self.PRETXT_EXEC}{msg}", flush=True)
+        print(f"{self.PRETXT_EXEC}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def noexec_line(self, msg: str) -> None:
+    def noexec_line(self, msg: str, stderr: bool = False) -> None:
         """Print a NOEXEC-prefixed line."""
-        print(f"{self.PRETXT_NOEXEC}{msg}", flush=True)
+        print(f"{self.PRETXT_NOEXEC}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def deploy_line(self, msg: str) -> None:
+    def deploy_line(self, msg: str, stderr: bool = False) -> None:
         """Print a DEPLOY-prefixed line."""
-        print(f"{self.PRETXT_DEPLOY}{msg}", flush=True)
+        print(f"{self.PRETXT_DEPLOY}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def nodeploy_line(self, msg: str) -> None:
+    def nodeploy_line(self, msg: str, stderr: bool = False) -> None:
         """Print a NODEPLOY-prefixed line."""
-        print(f"{self.PRETXT_NODEPLOY}{msg}", flush=True)
+        print(f"{self.PRETXT_NODEPLOY}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def debug_line(self, msg: str) -> None:
+    def debug_line(self, msg: str, stderr: bool = False) -> None:
         """Print a DEBUG-prefixed line."""
-        print(f"{self.PRETXT_DEBUG}{msg}", flush=True)
+        print(f"{self.PRETXT_DEBUG}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def warning_line(self, msg: str) -> None:
-        """Print a WARNING-prefixed line."""
-        print(f"{self.PRETXT_WARNING}{msg}", flush=True)
-
-    def error_line(self, msg: str) -> None:
-        """Print an ERROR-prefixed line."""
-        print(f"{self.PRETXT_ERROR}{msg}", flush=True)
-
-    def fail_line(self, msg: str) -> None:
-        """Print a FAIL-prefixed line."""
-        print(f"{self.PRETXT_FAIL}{msg}", flush=True)
-
-    def abort_line(self, msg: str) -> None:
-        """Print an ABORTED-prefixed line."""
-        print(f"{self.PRETXT_ABORT}{msg}", flush=True)
-
-    def success_line(self, msg: str) -> None:
-        """Print a SUCCESS-prefixed line."""
-        print(f"{self.PRETXT_SUCCESS}{msg}", flush=True)
-
-    def see_line(self, msg: str) -> None:
+    def see_line(self, msg: str, stderr: bool = False) -> None:
         """Print a SEE-prefixed line with a path or hint."""
-        print(f"{self.PRETXT_SEE}{msg}", flush=True)
+        print(f"{self.PRETXT_SEE}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
 
-    def space_line(self, msg: str) -> None:
+    def warning_line(self, msg: str, stderr: bool = False) -> None:
+        """Print a WARNING-prefixed line."""
+        print(f"{self.PRETXT_WARNING}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
+
+    def success_line(self, msg: str, stderr: bool = False) -> None:
+        """Print a SUCCESS-prefixed line."""
+        print(f"{self.PRETXT_SUCCESS}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
+
+    def space_line(self, msg: str, stderr: bool = False) -> None:
         """Print an indented continuation/space line."""
-        print(f"{self.PRETXT_SPACE}{msg}", flush=True)
+        print(f"{self.PRETXT_SPACE}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
+
+    # The following will be printed to stderr by default
+
+    def error_line(self, msg: str, stderr: bool = True) -> None:
+        """Print an ERROR-prefixed line."""
+        print(f"{self.PRETXT_ERROR}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
+
+    def fail_line(self, msg: str, stderr: bool = True) -> None:
+        """Print a FAIL-prefixed line."""
+        print(f"{self.PRETXT_FAIL}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
+
+    def abort_line(self, msg: str, stderr: bool = True) -> None:
+        """Print an ABORTED-prefixed line."""
+        print(f"{self.PRETXT_ABORT}{msg}", flush=True, file=sys.stderr if stderr else sys.stdout)
