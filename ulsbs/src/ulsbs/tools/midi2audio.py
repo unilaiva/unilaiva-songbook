@@ -647,7 +647,7 @@ def _attach_cover_art(out_paths: Dict[str, Path], opts: Options) -> None:
             "-metadata:s:v", "comment=Cover (front)",
             "-disposition:v", "attached_pic",
         ]
-        tmp = mp3_path.with_suffix(mp3_path.suffix + ".tmp")
+        tmp = mp3_path.with_suffix(".tmp" + mp3_path.suffix)
         ff.append(str(tmp))
         _run_verbose(ff, opts, capture_stderr=not opts.verbose)
         if tmp.exists():
@@ -671,7 +671,7 @@ def _attach_cover_art(out_paths: Dict[str, Path], opts: Options) -> None:
             ff += ["-i", str(flac_path), "-i", str(opts.tag_image)]
             ff += ["-map", "0:a", "-map", "1", "-c", "copy"]
             ff += _metadata_args(opts)
-            tmp = flac_path.with_suffix(flac_path.suffix + ".tmp")
+            tmp = flac_path.with_suffix(".tmp" + flac_path.suffix)
             ff.append(str(tmp))
             _run_verbose(ff, opts, capture_stderr=not opts.verbose)
             if tmp.exists():
