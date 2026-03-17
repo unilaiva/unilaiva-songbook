@@ -54,6 +54,8 @@ from .util import (
     regex_documentclass_ulsbs_songbook,
 )
 
+_JOB_ULSBS_ASSETS_DIRNAME = "ulsbs-assets"
+
 ABORT_EVENT = threading.Event()
 
 
@@ -134,8 +136,8 @@ def build_tool_include_paths(job: Job) -> tuple[dict[str, str], list[str]]:
 
     # Compute path roots used by tools.
     job_root = str(job.compile_dir)          # Job's working directory
-    job_ulsbs_tex = str(job.compile_dir / "ulsbs-assets" / "tex")  # ULSBS TeX tree within the job
-    job_ulsbs_lp = str(job.compile_dir / "ulsbs-assets" / "ly")    # LilyPond includes live under ly/
+    job_ulsbs_tex = str(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex")  # ULSBS TeX tree within the job
+    job_ulsbs_lp = str(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly")    # LilyPond includes live under ly/
     job_content = str(job.compile_dir / CONTENT_DIRNAME)
     job_include = str(job.compile_dir / INCLUDE_DIRNAME)
 
@@ -152,32 +154,32 @@ def build_tool_include_paths(job: Job) -> tuple[dict[str, str], list[str]]:
 
 def prepare_compile_dir(ui: UI, assets: EngineAssets, cfg: Config, job: Job) -> None:
     """Create job workdir and populate assets, aliases, and content links."""
-    ensure_dir(job.compile_dir / "ulsbs-assets")
+    ensure_dir(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME)
 
     # tex tree from ulsbs (copied, because variants modify some files)
-    ensure_dir(job.compile_dir / "ulsbs-assets" / "tex")
+    ensure_dir(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex")
     with assets.tex_dir() as src_tex:
-        shutil.copytree(src_tex, job.compile_dir / "ulsbs-assets" / "tex", dirs_exist_ok=True)
+        shutil.copytree(src_tex, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex", dirs_exist_ok=True)
 
     # ly tree from ulsbs (copied, because variants modify some files)
-    ensure_dir(job.compile_dir / "ulsbs-assets" / "ly")
+    ensure_dir(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly")
     with assets.ly_dir() as src_ly:
-        shutil.copytree(src_ly, job.compile_dir / "ulsbs-assets" / "ly", dirs_exist_ok=True)
+        shutil.copytree(src_ly, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly", dirs_exist_ok=True)
 
     # img tree from ulsbs (copied, because variants modify some files)
-    ensure_dir(job.compile_dir / "ulsbs-assets" / "img")
+    ensure_dir(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "img")
     with assets.img_dir() as src_img:
-        shutil.copytree(src_img, job.compile_dir / "ulsbs-assets" / "img", dirs_exist_ok=True)
+        shutil.copytree(src_img, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "img", dirs_exist_ok=True)
 
     # Aliases
     ensure_symlink(
         job.compile_dir / "ulsbs" / "assets",
-        job.compile_dir / "ulsbs-assets",
+        job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME,
         fallback_copy=True,
     )
     ensure_symlink(
         job.compile_dir / "ulsbs" / "src" / "ulsbs" / "assets",
-        job.compile_dir / "ulsbs-assets",
+        job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME,
         fallback_copy=True,
     )
 
@@ -227,7 +229,7 @@ def make_variant_tex(job: Job) -> Path:
         out_path = job.compile_dir / out_name
         write_text(out_path, injected)
 
-        head = job.compile_dir / "ulsbs-assets" / "ly" / "ulsbs-internal-common-head.ly"
+        head = job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly" / "ulsbs-internal-common-head.ly"
         if head.exists():
             head_txt = read_text(head).replace(
                 "ul-chosen-tuning = #ul-guitar-tuning",
@@ -247,9 +249,9 @@ def make_variant_tex(job: Job) -> Path:
         out_path = job.compile_dir / out_name
         write_text(out_path, injected)
 
-        for f in (job.compile_dir / "ulsbs-assets" / "ly").glob("ulsbs-include-tail*_bassclef.ly"):
+        for f in (job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly").glob("ulsbs-include-tail*_bassclef.ly"):
             newname = f.name.replace("_bassclef", "")
-            shutil.copy2(f, job.compile_dir / "ulsbs-assets" / "ly" / newname)
+            shutil.copy2(f, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly" / newname)
         return out_path
 
     raise SystemExit(f"Unknown variant: {job.variant}")
@@ -351,7 +353,7 @@ def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[s
     # Find script
     song_idx_script = cwd / SONG_IDX_SCRIPT_REL
     if not song_idx_script.exists():
-        song_idx_script = cwd / "ulsbs-assets" / "tex" / "ext_packages" / "songs" / "songidx.lua"
+        song_idx_script = cwd / _JOB_ULSBS_ASSETS_DIRNAME / "tex" / "ext_packages" / "songs" / "songidx.lua"
     if not song_idx_script.exists():
         msg = f"songidx.lua not found at {song_idx_script}"
         logp = cwd / f"log-{step:02d}_indices-error.log"
@@ -419,8 +421,8 @@ def run_context_printouts(ui: UI, cfg: Config, job: Job, basename: str, env: dic
             resultlist.append_line(RESULT_TYPE_PRINTOUT_PDF, pdf_out.name)
         return step + 1
 
-    tpl1 = cwd / "ulsbs-assets" / "tex" / "ulsbs-printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context"
-    tpl2 = cwd / "ulsbs-assets" / "tex" / "ulsbs-printout-template_EASY-A5-on-A4-sidebyside-simple.context"
+    tpl1 = cwd / _JOB_ULSBS_ASSETS_DIRNAME / "tex" / "ulsbs-printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context"
+    tpl2 = cwd / _JOB_ULSBS_ASSETS_DIRNAME / "tex" / "ulsbs-printout-template_EASY-A5-on-A4-sidebyside-simple.context"
 
     step = make_printout(tpl1, f"printout-BOOKLET_{basename}-on-A4-doublesided-needs-cutting", step)
     step = make_printout(tpl2, f"printout-EASY_{basename}-on-A4-sidebyside-simple", step)
