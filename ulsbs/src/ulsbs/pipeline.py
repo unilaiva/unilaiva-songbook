@@ -665,6 +665,8 @@ def run_midi_audio(
             args += [
                 "--tag-albumartist",
                 GENAUDIO_ALBUMTITLE,
+                "--tag-image",
+                str(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "img" / "ulsbs-album-cover-for-generated-audio.png")
             ]
             # input and output file
             args += [
