@@ -37,6 +37,10 @@
 
     \layout {
       \context {
+        \Score
+        \override VoltaBracket.font-name = #fontBold
+      }
+      \context {
         \ChordNames {
           \override ChordName.font-name = #fontBold
           \override ChordName.font-size = #-0.2
