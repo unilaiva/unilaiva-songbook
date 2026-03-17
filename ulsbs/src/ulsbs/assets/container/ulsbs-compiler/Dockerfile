@@ -1,9 +1,16 @@
-# Dockerfile for compiling Unilaiva songbook
-# ==========================================
+# SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
+# SPDX-License-Identifier: GPL-3.0-or-later
 #
-# Run this image with "compile-songbooks.sh", as that script will
-# setup the *required* bind mount and use correct user id.
+# Dockerfile for compiling ULSBS songbooks
+# ========================================
 #
+# Works with docker and podman.
+#
+# Containers created from the image described here is intended to be only run
+# with "ulsbs-compile" script, as that script will setup the *required* bind
+# mounts, use the correct user id from host etc.
+#
+# This file is part of the 'ulsbs' package.
 
 # Use Ubuntu 24.04 LTS:
 FROM ubuntu:questing-20251217
@@ -49,6 +56,11 @@ RUN apt-get update \
 # here for compatibility with other engines.
 COPY 99-tex-max-memory.cnf /etc/texmf/texmf.d/
 
+# Copy a minimal client config for Pipewire, as that will make fluidsynth's
+# logging happy. We are not really using Pipewire.
+RUN mkdir -p /etc/pipewire
+COPY pipewire-client.conf /etc/pipewire/client.conf
+
 # 1. Generate Finnish locale, which is used for sorting indices by default.
 # Finnish alphabet is a superset of English, so this does not need to be changed
 # for English-only books.
@@ -60,7 +72,7 @@ RUN locale-gen fi_FI.utf8 \
   && chmod 777 /home/ulsbs \
   && chmod g+s /home/ulsbs
 
-# Create index databases and caches used by Tex
+# Create index databases and caches used by Tex and Lilypond
 RUN update-texmf \
   && mtxrun --generate \
   && texhash \
