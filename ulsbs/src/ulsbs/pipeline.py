@@ -32,12 +32,13 @@ from .constants import (
     SONG_IDX_SCRIPT_REL, SORT_LOCALE,
     COVERIMAGE_HEIGHT, COVERIMAGE_AUTOWIDE_WIDTH, IMG_AUTOWIDENOTAGS_FNAME_POSTFIX,
     ASTRAL_FNAME_PREFIX, SELECTION_FNAME_PREFIX,
-    TEMP_DIRNAME, CONTENT_DIRNAME, INCLUDE_DIRNAME, TAG_DEFINITION_FILENAME
+    TEMP_DIRNAME, CONTENT_DIRNAME, INCLUDE_DIRNAME, TAG_DEFINITION_FILENAME,
+    GENAUDIO_ALBUMTITLE,
 )
 from .engine_assets import EngineAssets
 from .jobs import Job, build_variant_basename
 from .lock import JobLock
-from .songdb import build_song_database
+from .songdb import build_song_database, SongbookData
 import ulsbs.resultlist as resultlist
 from .ui import UI
 from .util import (
@@ -624,6 +625,7 @@ def run_midi_audio(
                 "--verbose",
                 "--mp3",
             ]
+            # loudnorm (slow) / limiter (fast)
             if cfg.fast_audio_encode:
                 args += [
                     "--enable-loudnorm",
@@ -638,6 +640,32 @@ def run_midi_audio(
                     "--enable-limiter",
                     "0"
                 ]
+            # metadata tags
+            if song.number:
+                args += [
+                    "--tag-tracknr",
+                    str(song.number),
+                ]
+            if song.title:
+                args += [
+                    "--tag-tracktitle",
+                    song.title,
+                ]
+            if song.options and song.options.get("by"):
+                args += [
+                    "--tag-trackartist",
+                    song.options.get("by"),
+                ]
+            if song.chapter_title:
+                args += [
+                    "--tag-albumtitle",
+                    song.chapter_title,
+                ]
+            args += [
+                "--tag-albumartist",
+                GENAUDIO_ALBUMTITLE,
+            ]
+            # input and output file
             args += [
                 "--outfile-basename",
                 str(out_base),

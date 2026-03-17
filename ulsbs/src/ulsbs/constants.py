@@ -6,6 +6,8 @@ Constants shared across the package.
 This file is part of the 'ulsbs' package.
 """
 
+# Accepted TeX-like file suffixes when resolving includes
+TEX_SUFFIXES = (".tex", ".latex", ".lytex", ".lylatex")
 
 ASTRAL_FNAME_PREFIX = "unilaiva-astral"
 SELECTION_FNAME_PREFIX = "ul-selection"
@@ -25,7 +27,7 @@ INCLUDE_DIRNAME = "include"
 TAG_DEFINITION_FILENAME = "tags.can" # under INCLUDE_DIRNAME
 CONFIG_FILENAME = "ulsbs-config.toml"
 
-RESULT_SEPARATOR = "\t"
+RESULTLIST_SEPARATOR = "\t"
 RESULTLIST_BASENAME = "ulsbs-results"
 
 RESULT_TYPE_INFO           = "INFO          "
@@ -55,9 +57,8 @@ DEPLOY_COMMONOTHER_SUBDIRNAME = "other"
 SONG_IDX_SCRIPT_REL = "ulsbs/src/ulsbs/assets/tex/ext_packages/songs/songidx.lua"
 SORT_LOCALE = "fi_FI.utf8"
 
+GENAUDIO_ALBUMTITLE = "ULSBS (audio generated from MIDI)"
+
 COVERIMAGE_HEIGHT = "1024"
 COVERIMAGE_AUTOWIDE_WIDTH = "976"
 IMG_AUTOWIDENOTAGS_FNAME_POSTFIX = "_AUTOWIDENOTAGS"
-
-# Accepted TeX-like file suffixes when resolving includes
-TEX_SUFFIXES = (".tex", ".latex", ".lytex", ".lylatex")

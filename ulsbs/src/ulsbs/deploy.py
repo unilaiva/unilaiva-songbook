@@ -15,7 +15,7 @@ from pathlib import Path
 from .config import Config
 
 from .constants import (
-    RESULT_SEPARATOR,
+    RESULTLIST_SEPARATOR,
     RESULT_TYPE_MAIN_PDF, RESULT_TYPE_PRINTOUT_PDF,
     RESULT_TYPE_IMAGE, RESULT_TYPE_MIDIDIR, RESULT_TYPE_AUDIODIR,
     RESULT_TYPE_COMMONICON, RESULT_TYPE_COMMONMETADATA, RESULT_TYPE_COMMONOTHER,
@@ -60,7 +60,7 @@ def deploy_results(ui: UI, cfg: Config) -> None:
         if not line.strip():
             continue
         try:
-            ftype, fname = line.split(RESULT_SEPARATOR, 1)
+            ftype, fname = line.split(RESULTLIST_SEPARATOR, 1)
         except ValueError:
             ui.warning_line(f"Skipping deformed result list line: {line}")
             continue

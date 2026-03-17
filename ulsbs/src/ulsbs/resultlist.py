@@ -11,7 +11,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .constants import (
-    RESULT_SEPARATOR,
+    RESULTLIST_SEPARATOR,
     RESULT_TYPE_INFO,
     RESULTLIST_BASENAME,
 )
@@ -98,7 +98,7 @@ def append_line(rtype: str, name: str) -> None:
         raise RuntimeError("resultlist not initialized. Call initialize() first.")
 
     with _resultlist_file.open("a", encoding="utf-8") as f:
-        f.write(f"{rtype}{RESULT_SEPARATOR}{name}\n")
+        f.write(f"{rtype}{RESULTLIST_SEPARATOR}{name}\n")
 
 
 def append_line_if_missing(rtype, name) -> None:
@@ -107,7 +107,7 @@ def append_line_if_missing(rtype, name) -> None:
         raise RuntimeError("resultlist not initialized. Call initialize() first.")
 
     data = read_text(_resultlist_file) if exists() else ""
-    line = f"{rtype}{RESULT_SEPARATOR}{name}"
+    line = f"{rtype}{RESULTLIST_SEPARATOR}{name}"
     if line not in data:
         append_line(rtype, name)
 
