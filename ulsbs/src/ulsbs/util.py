@@ -381,15 +381,15 @@ def overlay_tree(src_root: Path, dst_root: Path, move: bool = False) -> None:
 
 
 def sync_tree(src_root: Path, dst_root: Path) -> int:
-    """Synchronize a directory tree from *src_root* into *dst_root*.
+    """Synchronize a directory tree from src_root into dst_root.
 
     Semantics:
-      - *dst_root* itself is never removed, only its contents.
-      - Every file or directory that exists in *src_root* will exist at the
+      - dst_root itself is never removed if it is a dir, only its contents.
+      - Every file or directory that exists in src_root will exist at the
         same relative path under *dst_root* after the operation.
       - Files are copied only when they are new or their contents differ
-        (as determined by :func:`files_are_identical`).
-      - Files/directories that exist in *dst_root* but not in *src_root* are
+        (as determined files_are_identical()).
+      - Files/directories that exist in dst_root but not in src_root are
         removed. Removals are symlink-aware: a symlink is unlinked without
         touching its target.
 
