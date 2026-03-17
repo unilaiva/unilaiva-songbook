@@ -1888,7 +1888,7 @@
   \hfill\@gtctext{#1} \@gtctext{#2} \@gtctext{#3} \@gtctext{#4}\par%
 }
 % Used by \goto?? commands:
-\newcommand{\@gtctext}[1]{{\normalsize\textit{\bfseries{{\symboliifont➞ }#1\ldots}}}}
+\newcommand{\@gtctext}[1]{{\normalsize\bfseries{\symboliifont➞} \textit{#1}\ldots}}
 
 % This command will make a small horizontal space. Use this in the beginning
 % of each line you want to indent. The optional parameter specifies the indent
@@ -3952,7 +3952,7 @@
   \ifnum\UL@prevparlines>1\relax%
     % As this branch is only evaluated when the very last lyric line (par)
     % before this \endrep was long enough to be wrapped to more than one line,
-    % we need to subtract 
+    % we need to subtract
     \advance\UL@prevparlines by -1\relax%
     % We are now semantically *after* the last line in vertical mode, so we
     % need to use \nointerlineskip and \hbox
@@ -4077,9 +4077,10 @@
           \@depth\repbardepthdimen%
   }%
 }
-% Colorize \rep
-\let\@reporig\rep
-\renewcommand{\rep}[1]{{\color{repetitionsigncolor}\@reporig{#1}}}
+% Colorize \rep and use our default font's Unicode × (Noto supports it)
+\renewcommand\rep[1]{%
+  {\color{repetitionsigncolor}(×#1)}%
+}
 
 % Use this instead of \rep to signify number of repeats on the first line
 % of a line repeat. The parameter is the number of repetitions, as in \rep
@@ -4092,10 +4093,7 @@
 %   \endverse
 \newcommand{\prep}[1]{%
   \raisebox{\if@baselineincreased{2ex}\else{1ex}\fi}{%
-    {% block for containing the color change
-      \color{repetitionsigncolor}%
-      \@reporig{#1}:%
-    }%
+    {\color{repetitionsigncolor}\rep{#1}:}%
   }%
 }
 
