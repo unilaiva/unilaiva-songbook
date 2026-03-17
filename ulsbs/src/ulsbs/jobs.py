@@ -37,14 +37,40 @@ def variant_possible_lyrics(doc_tex_abs: Path) -> bool:
     return docclass_re.search(t) is not None
 
 
+def _extra_variant_enabled(doc_tex_abs: Path, target: str) -> bool:
+    """Return True if the given extra variant is enabled via ULSBS-EXTRA-VARIANTS.
+
+    Examples of supported syntax (whitespace/comments flexible):
+
+        % ULSBS-EXTRA-VARIANTS: bassclef % comment
+        %%%ULSBS-EXTRA-VARIANTS:bassclef,somevariant % comment
+        % ... ULSBS-EXTRA-VARIANTS: bassclef, somevariant % comment
+    """
+    text = read_text(doc_tex_abs)
+    pattern = re.compile(r"ULSBS-EXTRA-VARIANTS\s*:(?P<variants>[^%]*)")
+
+    for line in text.splitlines():
+        m = pattern.search(line)
+        if not m:
+            continue
+        raw = m.group("variants")
+        for item in raw.split(","):
+            name = item.strip().lower()
+            if not name:
+                continue
+            if name == target:
+                return True
+    return False
+
+
 def variant_possible_charango(doc_tex_abs: Path) -> bool:
     """Detect marker enabling the charango variant."""
-    return "%%%CREATE_VERSION_CHARANGO%%%" in read_text(doc_tex_abs)
+    return _extra_variant_enabled(doc_tex_abs, "charango")
 
 
 def variant_possible_bassclef(doc_tex_abs: Path) -> bool:
     """Detect marker enabling the bass-clef variant."""
-    return "%%%CREATE_VERSION_BASSCLEF%%%" in read_text(doc_tex_abs)
+    return _extra_variant_enabled(doc_tex_abs, "bassclef")
 
 
 def build_variant_basename(original_base: str, insert: str) -> str:
