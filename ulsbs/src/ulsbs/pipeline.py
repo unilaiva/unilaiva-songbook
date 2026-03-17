@@ -453,15 +453,15 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
         raise CompileError("pdftoppm failed while extracting cover image", log_extract)
     step += 1
 
-    png = cwd / f"{basename}.png"
-    if png.exists():
-        shutil.copy2(png, result_dir / RESULT_IMAGE_SUBDIRNAME / png.name)
-        resultlist.append_line(RESULT_TYPE_IMAGE, png.name)
+    cover_png = cwd / f"{basename}.png"
+    if cover_png.exists():
+        shutil.copy2(cover_png, result_dir / RESULT_IMAGE_SUBDIRNAME / cover_png.name)
+        resultlist.append_line(RESULT_TYPE_IMAGE, cover_png.name)
 
     # Optional: create auto-wide image via ImageMagick convert
     if which("convert"):
         ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} convert (cover image modified)")
-        out_png = cwd / f"{basename}{IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png"
+        cover_modified_png = cwd / f"{basename}{IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png"
         if basename.startswith("unilaiva-astral-transparencia"):
             draw = "rectangle 0,0 185,260"
         elif basename.startswith(ASTRAL_FNAME_PREFIX):
@@ -472,13 +472,13 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
         log_auto = cwd / f"log-{step:02d}_coverimage-autowide.log"
         try:
             run_cmd(["convert", f"{basename}.png", "-fill", "white", "-draw", draw, "-gravity", "center",
-                     "-extent", f"{COVERIMAGE_AUTOWIDE_WIDTH}x{COVERIMAGE_HEIGHT}", out_png.name],
+                     "-extent", f"{COVERIMAGE_AUTOWIDE_WIDTH}x{COVERIMAGE_HEIGHT}", cover_modified_png.name],
                     cwd=cwd, stdout_path=log_auto, stderr_to_stdout=True, check=True, env=env)
         except Exception:
             raise CompileError("convert failed while creating autowide cover image", log_auto)
-        if out_png.exists():
-            shutil.copy2(out_png, result_dir / RESULT_IMAGE_SUBDIRNAME / out_png.name)
-            resultlist.append_line(RESULT_TYPE_IMAGE, out_png.name)
+        if cover_modified_png.exists():
+            shutil.copy2(cover_modified_png, result_dir / RESULT_IMAGE_SUBDIRNAME / cover_modified_png.name)
+            resultlist.append_line(RESULT_TYPE_IMAGE, cover_modified_png.name)
         step += 1
 
     return step
