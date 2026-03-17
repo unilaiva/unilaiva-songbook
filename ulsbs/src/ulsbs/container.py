@@ -23,6 +23,7 @@ from .ui import UI
 from .util import run_cmd, sh_quote, which
 
 _CONTAINER_IMAGE_NAME = "ulsbs-compiler"
+_HOMECACHE_VOLUME_NAME = "ulsbs-compiler-homecache"
 
 
 def _pick_container_engine(cfg: Config) -> str:
@@ -115,22 +116,30 @@ def ensure_container_image(ui: UI, assets: "EngineAssets", engine: str, force_re
                     build_needed = True
         if build_needed:
             ui.container_line("Build compiler image...")
+
+            # Reset compiler home cache volume when rebuilding the image.
+            # Ignore any errors (e.g. volume doesn't exist or engine doesn't support volumes).
+            try:
+                subprocess.run(
+                    [engine, "volume", "rm", _HOMECACHE_VOLUME_NAME],
+                    check=False,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+            except Exception:
+                pass
+
             version = getattr(ulsbs, "__version__", "unknown")
             build_cmd = [
                 engine,
                 "build",
+                "--no-cache",
+                "--build-arg",
+                f"BUILT_BY_ULSBS_VERSION={version}",
+                "-t",
+                _CONTAINER_IMAGE_NAME,
+                str(ctx),
             ]
-            if force_rebuild:  # skip cache if forced to rebuild
-                build_cmd.append("--no-cache")
-            build_cmd.extend(
-                [
-                    "--build-arg",
-                    f"BUILT_BY_ULSBS_VERSION={version}",
-                    "-t",
-                    _CONTAINER_IMAGE_NAME,
-                    str(ctx),
-                ]
-            )
             subprocess.run(build_cmd, check=True)
             ui.container_line("Building image complete.")
 
@@ -187,7 +196,7 @@ def run_self_in_container(
             "--mount", bind_py,
             "--mount", bind_root,
             "--mount", bind_temp,
-            "--mount", "type=volume,src=ulsbs-compiler-homecache,dst=/home/ulsbs",
+            "--mount", f"type=volume,src={_HOMECACHE_VOLUME_NAME},dst=/home/ulsbs",
             "--mount", "type=tmpfs,tmpfs-size=128m,dst=/tmp",
             "--mount", "type=tmpfs,tmpfs-size=16m,dst=/run",
             _CONTAINER_IMAGE_NAME,
