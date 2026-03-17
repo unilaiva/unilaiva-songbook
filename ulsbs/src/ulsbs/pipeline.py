@@ -20,6 +20,7 @@ from pathlib import Path
 import subprocess
 from subprocess import CalledProcessError
 from typing import List, Tuple
+from fnmatch import fnmatch
 
 from .config import Config
 from .constants import (
@@ -30,8 +31,8 @@ from .constants import (
     RESULT_PRINTOUT_SUBDIRNAME, RESULT_IMAGE_SUBDIRNAME,
     RESULT_MIDI_SUBDIRNAME, RESULT_AUDIO_SUBDIRNAME,
     SONG_IDX_SCRIPT_REL, SORT_LOCALE,
-    COVERIMAGE_HEIGHT, COVERIMAGE_AUTOWIDE_WIDTH, IMG_AUTOWIDENOTAGS_FNAME_POSTFIX,
-    ASTRAL_FNAME_PREFIX, SELECTION_FNAME_PREFIX,
+    COVERIMAGE_MODIFIED_FNAME_POSTFIX,
+    SELECTION_FNAME_PREFIX,
     TEMP_DIRNAME, CONTENT_DIRNAME, INCLUDE_DIRNAME, TAG_DEFINITION_FILENAME,
     GENAUDIO_ALBUMTITLE,
 )
@@ -432,7 +433,12 @@ def run_context_printouts(ui: UI, cfg: Config, job: Job, basename: str, env: dic
 
 
 def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env: dict[str, str], step: int) -> int:
-    """Extract cover image(s) from the compiled PDF using pdftoppm/convert."""
+    """Extract cover image(s) from the compiled PDF using pdftoppm/convert.
+
+    The extracted base PNG is always created. Optionally, a modified/widened
+    PNG is created using ImageMagick convert, driven by cfg.modified_cover_png
+    rules that match the original TeX filename (job.doc_tex_abs.name).
+    """
     result_dir = cfg.runtime.project_paths.result_dir
     cwd = job.compile_dir
     txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
@@ -442,13 +448,20 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
 
     ensure_dir(result_dir / RESULT_IMAGE_SUBDIRNAME)
 
-    # Extract cover as PNG
+    # Extract cover as PNG with configurable height
     ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} pdftoppm (extract cover as image)")
     log_extract = cwd / f"log-{step:02d}_coverimage-extract.log"
     try:
-        run_cmd(["pdftoppm", "-f", "1", "-singlefile", "-png", "-scale-to-x", "-1", "-scale-to-y", COVERIMAGE_HEIGHT,
-                 f"{basename}.pdf", basename],
-                cwd=cwd, stdout_path=log_extract, stderr_to_stdout=True, check=True, env=env)
+        run_cmd([
+            "pdftoppm",
+            "-f", "1",
+            "-singlefile",
+            "-png",
+            "-scale-to-x", "-1",
+            "-scale-to-y", str(cfg.cover_image_height),
+            f"{basename}.pdf",
+            basename,
+        ], cwd=cwd, stdout_path=log_extract, stderr_to_stdout=True, check=True, env=env)
     except Exception:
         raise CompileError("pdftoppm failed while extracting cover image", log_extract)
     step += 1
@@ -461,21 +474,86 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
     # Optional: create auto-wide image via ImageMagick convert
     if which("convert"):
         ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} convert (cover image modified)")
-        cover_modified_png = cwd / f"{basename}{IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png"
-        if basename.startswith("unilaiva-astral-transparencia"):
-            draw = "rectangle 0,0 185,260"
-        elif basename.startswith(ASTRAL_FNAME_PREFIX):
-            draw = "rectangle 0,0 195,400"
-        else:
-            draw = "rectangle 0,0 1024,100"
+        cover_modified_png = cwd / f"{basename}{COVERIMAGE_MODIFIED_FNAME_POSTFIX}.png"
+        log_auto = cwd / f"log-{step:02d}_coverimage-modified.log"
 
-        log_auto = cwd / f"log-{step:02d}_coverimage-autowide.log"
+        # Probe image size using ImageMagick so we can interpret fractional rects
         try:
-            run_cmd(["convert", f"{basename}.png", "-fill", "white", "-draw", draw, "-gravity", "center",
-                     "-extent", f"{COVERIMAGE_AUTOWIDE_WIDTH}x{COVERIMAGE_HEIGHT}", cover_modified_png.name],
-                    cwd=cwd, stdout_path=log_auto, stderr_to_stdout=True, check=True, env=env)
+            run_cmd(
+                ["convert", cover_png.name, "-format", "%w %h", "info:"],
+                cwd=cwd,
+                stdout_path=log_auto,
+                stderr_to_stdout=True,
+                check=True,
+                env=env,
+            )
+            tokens = read_text(log_auto).split()
+            if len(tokens) < 2:
+                raise ValueError("Unexpected output from convert -format '%w %h'")
+            img_w = int(tokens[0])
+            img_h = int(tokens[1])
         except Exception:
-            raise CompileError("convert failed while creating autowide cover image", log_auto)
+            raise CompileError("convert failed while probing cover image size", log_auto)
+
+        # Select the last matching rule (if any) based on the original TeX filename
+        src_filename = job.doc_tex_abs.name
+        selected_rule = None
+        for rule in cfg.modified_cover_png:
+            if fnmatch(src_filename, rule.songbook_filenames):
+                selected_rule = rule
+
+        cmd: list[str] = ["convert", cover_png.name]
+
+        if selected_rule is not None:
+            rule = selected_rule
+            # Optional painting on the original image before widening
+            rects = list(rule.paint_area_rects)
+            if rects:
+                cmd += ["-fill", rule.color]
+                for r in rects:
+                    # Bottom-left (0,0) -> ImageMagick's top-left (0,0)
+                    x1 = int(round(r.x1 * img_w))
+                    x2 = int(round(r.x2 * img_w))
+                    y1 = int(round((1.0 - r.y2) * img_h))
+                    y2 = int(round((1.0 - r.y1) * img_h))
+                    cmd += ["-draw", f"rectangle {x1},{y1} {x2},{y2}"]
+
+            # Width relative to original; 0 means "square" (width = height)
+            target_h = img_h
+            if rule.width_multiplier == 0:
+                target_w = target_h
+            else:
+                target_w = int(round(img_w * rule.width_multiplier))
+
+            cmd += [
+                "-background", rule.color,
+                "-gravity", "center",
+                "-extent", f"{target_w}x{target_h}",
+                cover_modified_png.name,
+            ]
+        else:
+            # No specific rule; make the modified image a square and center
+            # the image, without extra painting.
+            target_w = target_h = img_h
+            cmd += [
+                "-gravity", "center",
+                "-extent", f"{target_w}x{target_h}",
+                cover_modified_png.name,
+            ]
+
+        try:
+            run_cmd(
+                cmd,
+                cwd=cwd,
+                stdout_path=log_auto,
+                stderr_to_stdout=True,
+                check=True,
+                env=env,
+                append=True,
+            )
+        except Exception:
+            raise CompileError("convert failed while creating modified cover image", log_auto)
+
         if cover_modified_png.exists():
             shutil.copy2(cover_modified_png, result_dir / RESULT_IMAGE_SUBDIRNAME / cover_modified_png.name)
             resultlist.append_line(RESULT_TYPE_IMAGE, cover_modified_png.name)

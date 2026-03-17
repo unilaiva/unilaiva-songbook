@@ -124,7 +124,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-verde_A5.pdf",
-      "image": "unilaiva-astral-verde_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-verde_A5_MODIFIED.png",
       "tag_ids": [ "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
         "pt": "o Livro Verde",
@@ -154,7 +154,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-verde_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-verde_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-verde_LYRICS-ONLY_A5_MODIFIED.png",
       "tag_ids": [ "lyricsonly" ],
       "title_i18n": {
         "pt": "o Livro Verde",
@@ -184,7 +184,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-cura_A5.pdf",
-      "image": "unilaiva-astral-cura_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-cura_A5_MODIFIED.png",
       "tag_ids": [ "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
         "pt": "Cura"
@@ -230,7 +230,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-cura_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-cura_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-cura_LYRICS-ONLY_A5_MODIFIED.png",
       "tag_ids": [ "lyricsonly" ],
       "title_i18n": {
         "pt": "Cura"
@@ -276,7 +276,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-alfredo_A5.pdf",
-      "image": "unilaiva-astral-alfredo_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-alfredo_A5_MODIFIED.png",
       "tag_ids": [ "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
         "pt": "Novas de Alfredo"
@@ -313,7 +313,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-alfredo_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-alfredo_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-alfredo_LYRICS-ONLY_A5_MODIFIED.png",
       "tag_ids": [ "lyricsonly" ],
       "title_i18n": {
         "pt": "Novas de Alfredo"
@@ -350,7 +350,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-transparencia_A5.pdf",
-      "image": "unilaiva-astral-transparencia_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-transparencia_A5_MODIFIED.png",
       "tag_ids": [ "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
         "pt": "à Transparência"
@@ -387,7 +387,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-transparencia_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-transparencia_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-transparencia_LYRICS-ONLY_A5_MODIFIED.png",
       "tag_ids": [ "lyricsonly" ],
       "title_i18n": {
         "pt": "à Transparência"
@@ -424,7 +424,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-completa_A5.pdf",
-      "image": "unilaiva-astral-completa_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-completa_A5_MODIFIED.png",
       "tag_ids": [ "complete.comp", "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
         "pt": "A compilação completa"
@@ -452,7 +452,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-completa_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-completa_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-completa_LYRICS-ONLY_A5_MODIFIED.png",
       "tag_ids": [ "complete.comp", "lyricsonly" ],
       "title_i18n": {
         "pt": "A compilação completa"
@@ -480,7 +480,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-completa_CHARANGO_A5.pdf",
-      "image": "unilaiva-astral-completa_CHARANGO_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-completa_CHARANGO_A5_MODIFIED.png",
       "tag_ids": [ "complete.comp", "chords", "sheetmusic", "charango" ],
       "title_i18n": {
         "pt": "A compilação completa"
@@ -508,7 +508,7 @@
     {
       "enabled": true,
       "file": "unilaiva-astral-completa_BASSCLEF_A5.pdf",
-      "image": "unilaiva-astral-completa_BASSCLEF_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-astral-completa_BASSCLEF_A5_MODIFIED.png",
       "tag_ids": [ "complete.comp", "sheetmusic.bass" ],
       "title_i18n": {
         "pt": "A compilação completa"

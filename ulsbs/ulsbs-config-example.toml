@@ -85,6 +85,46 @@ extrainstrumentbooks = true  # default: true
 lyricbooks = true            # default: true
 quick = false                # quick-mode as described above
 
+# Cover image extraction and modified PNGs
+cover-image-height = 1024    # default: 1024; height in pixels for pdftoppm -scale-to-y
+
+# Advanced rules for modified cover PNGs (optional).
+# Each [[modified-cover-png]] entry controls how to create a widened PNG for
+# matching songbook TeX filenames. Rules are evaluated in order; if multiple
+# rules match a filename, the LAST matching rule wins.
+#
+# width-multiplier (required):
+#   - Factor applied to the original PNG width to get the widened width.
+#   - 0 means "make the image square": width = original height.
+# songbook-filenames (optional, default "*"):
+#   - Glob matched against the TeX filename only (e.g. "mysongbook*.tex").
+#   - Must not contain path components (no "/" or "\\").
+# color (optional, default "white"):
+#   - ImageMagick color used both for explicit painting and the added border.
+# paint-area-rects / paint-area-rect (optional):
+#   - One or more rectangles, each as [x1, y1, x2, y2].
+#   - Coordinates are floats between 0.0 and 1.0, with bottom-left (0,0)
+#     as origin; e.g. [0, 0, 0.5, 0.5] covers the lower-left quarter.
+#
+# Example rules (commented out by default):
+#
+# [[modified-cover-png]]
+# width-multiplier = 0        # make square default for all songbooks
+# songbook-filenames = "*.tex"
+#
+# [[modified-cover-png]]      # special case for some songbooks
+# width-multiplier = 1.3
+# songbook-filenames = "unilaiva-astral-transparencia*.tex"
+# color = "white"
+# paint-area-rects = [
+#   # Clear a small area at the lower-left corner
+#   [0.0, 0.0, 0.18, 0.25],
+# ]
+#
+# [[modified-cover-png]]
+# width-multiplier = 0        # make square for all other songbooks
+# songbook-filenames = "*.tex"
+
 # Docker resources (strings like "6g", "2g")
 container-memory = "6g"             # default: "6g"
 container-memory-plus-swap = "6g"   # default: "6g"; env can override both via ULSBS_MAX_CONTAINER_MEMORY

@@ -16,7 +16,7 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping, Tuple, Set
 
-from .constants import CONFIG_FILENAME
+from .constants import CONFIG_FILENAME, COVERIMAGE_HEIGHT
 
 
 # NOTE: We only import the type to avoid runtime dependency cycles
@@ -32,6 +32,29 @@ class Runtime:
     project_paths: ProjectPaths
     in_container: bool
     unique_id: str
+
+
+@dataclass(frozen=True)
+class ModifiedCoverPaintRect:
+    """A rectangle to be painted on the original cover image.
+
+    Coordinates are given as fractions of width/height in the range [0.0, 1.0],
+    using a bottom-left origin (0,0). For example, (0, 0, 0.5, 0.5) covers the
+    lower-left quarter of the image.
+    """
+    x1: float
+    y1: float
+    x2: float
+    y2: float
+
+
+@dataclass(frozen=True)
+class ModifiedCoverPngRule:
+    """Configuration for creating a modified/widened cover PNG for a songbook."""
+    width_multiplier: float
+    songbook_filenames: str = "*"
+    color: str = "white"
+    paint_area_rects: Tuple[ModifiedCoverPaintRect, ...] = field(default_factory=tuple)
 
 
 @dataclass(frozen=True)
@@ -86,6 +109,13 @@ class Config:
     # Single-file settings (relative to config dir, must exist)
     mididir_readme_file: Path | None = None
     audiodir_readme_file: Path | None = None
+
+    # Cover image
+    # Height in pixels for pdftoppm -scale-to-y when extracting the cover.
+    # Defaults to constants.COVERIMAGE_HEIGHT.
+    cover_image_height: int = int(COVERIMAGE_HEIGHT)
+    # Rules for creating modified/widened cover PNGs; only configurable via file.
+    modified_cover_png: Tuple[ModifiedCoverPngRule, ...] = field(default_factory=tuple)
 
     # Miscellaneous
     verbose: bool = False
@@ -305,6 +335,88 @@ def _resolve_single_file_setting(
     return p
 
 
+def _parse_modified_cover_png_rules(raw: Any) -> Tuple[ModifiedCoverPngRule, ...]:
+    """Validate and normalize modified_cover_png entries from TOML.
+
+    Expects an array of tables. Each entry must provide:
+      - width_multiplier (float, >= 0; 0 means "square", width = height)
+      - songbook_filenames (optional glob for filenames only, default "*")
+      - color (optional ImageMagick color name, default "white")
+      - paint_area_rects / paint_area_rect (optional): each rect is
+        [x1, y1, x2, y2] with 0.0 <= x1 < x2 <= 1.0 and 0.0 <= y1 < y2 <= 1.0,
+        expressed using a bottom-left origin.
+
+    Both dashed and snake_case keys are accepted via _normalize_keys().
+    """
+    if raw is None:
+        return tuple()
+    if not isinstance(raw, (list, tuple)):
+        raise ValueError("modified-cover-png must be an array of tables/objects")
+
+    rules: list[ModifiedCoverPngRule] = []
+    for idx, item in enumerate(raw):
+        if not isinstance(item, dict):
+            raise ValueError("Each modified-cover-png entry must be a table/object")
+        data = _normalize_keys(item)
+
+        if "width_multiplier" not in data:
+            raise ValueError("modified-cover-png entry is missing required 'width-multiplier'")
+        try:
+            width_multiplier = float(data["width_multiplier"])
+        except Exception:
+            raise ValueError("width-multiplier must be a number")
+        if width_multiplier < 0:
+            raise ValueError("width-multiplier must be >= 0")
+
+        pattern = data.get("songbook_filenames", "*")
+        if not isinstance(pattern, str) or not pattern.strip():
+            raise ValueError("songbook-filenames must be a non-empty string")
+        if "/" in pattern or "\\" in pattern:
+            raise ValueError("songbook-filenames must not contain path separators; only filenames are allowed")
+
+        color = data.get("color", "white")
+        if not isinstance(color, str) or not color.strip():
+            raise ValueError("color must be a non-empty string")
+
+        rects_raw = []
+        if "paint_area_rect" in data and "paint_area_rects" in data:
+            raise ValueError("Use either 'paint-area-rect' or 'paint-area-rects', not both")
+        if "paint_area_rects" in data:
+            rects_raw = data["paint_area_rects"]
+        elif "paint_area_rect" in data:
+            rects_raw = [data["paint_area_rect"]]
+
+        rects: list[ModifiedCoverPaintRect] = []
+        for r in rects_raw or []:
+            if not isinstance(r, (list, tuple)) or len(r) != 4:
+                raise ValueError("paint-area-rect(s) must be arrays of four numbers: [x1, y1, x2, y2]")
+            x1, y1, x2, y2 = r
+            try:
+                fx1 = float(x1)
+                fy1 = float(y1)
+                fx2 = float(x2)
+                fy2 = float(y2)
+            except Exception:
+                raise ValueError("paint-area-rect coordinates must be numbers")
+            for val in (fx1, fy1, fx2, fy2):
+                if not (0.0 <= val <= 1.0):
+                    raise ValueError("paint-area-rect coordinates must be between 0.0 and 1.0")
+            if not (fx1 < fx2 and fy1 < fy2):
+                raise ValueError("paint-area-rect must have x1 < x2 and y1 < y2")
+            rects.append(ModifiedCoverPaintRect(x1=fx1, y1=fy1, x2=fx2, y2=fy2))
+
+        rules.append(
+            ModifiedCoverPngRule(
+                width_multiplier=width_multiplier,
+                songbook_filenames=pattern.strip(),
+                color=color.strip(),
+                paint_area_rects=tuple(rects),
+            )
+        )
+
+    return tuple(rules)
+
+
 # TOML loading and profiles
 # =========================
 
@@ -324,6 +436,8 @@ _ALLOWED_FILE_KEYS: Set[str] = {
     "songbooks", "common_deploy_icons", "common_deploy_metadata", "common_deploy_other",
     # Single-file settings
     "mididir_readme_file", "audiodir_readme_file",
+    # Cover image tuning
+    "cover_image_height", "modified_cover_png",
     # Miscellaneous:
     "max_log_lines", "verbose",
     # Profile mechanics
@@ -453,6 +567,10 @@ def build_config(
     # Merge: defaults -> file (effective profile already includes flat and parents)
     file_over: Dict[str, Any] = dict(prof_eff)
 
+    # Complex/structured settings that exist only in the config file
+    if "modified_cover_png" in file_over:
+        file_over["modified_cover_png"] = _parse_modified_cover_png_rules(file_over["modified_cover_png"])
+
     # Normalize special booleans/aliases from file
     if "keep_temp" in file_over and "clean_temp" not in file_over:
         val = file_over.pop("keep_temp")
@@ -542,6 +660,7 @@ def build_config(
         conf,
         max_parallel=_clamp(conf.max_parallel, 1, 64, "max_parallel"),
         max_log_lines=_clamp(conf.max_log_lines, 0, 1000, "max_log_lines"),
+        cover_image_height=_clamp(conf.cover_image_height, 1, 10000, "cover_image_height"),
     )
 
     # Resolve and validate file patterns from config (relative to config_dir)

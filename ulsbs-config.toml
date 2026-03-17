@@ -11,17 +11,59 @@ common-deploy-metadata = [
   "metadata/*.json",
 ]
 
-# README for generated MIDI and audio directories
-mididir_readme_file = "metadata/audio-dirs-Readme.md"
-audiodir_readme_file = "metadata/audio-dirs-Readme.md"
+[[modified-cover-png]]
+songbook-filenames= "unilaiva-astral-*"
+width-multiplier = 0
+color = "white"
+paint-area-rects = [
+  [0, 0.57, 0.22, 1]
+]
 
+[[modified-cover-png]]
+songbook-filenames= "unilaiva-astral-transparencia*"
+width-multiplier = 0
+color = "white"
+paint-area-rects = [
+  [0, 0.75, 0.22, 1]
+]
+
+[[modified-cover-png]]
+songbook-filenames= "unilaiva-songbook*"
+width-multiplier = 0
+color = "white"
+paint-area-rects = [
+  [0, 0, 1, 0.11]
+]
+
+[[modified-cover-png]]
+songbook-filenames= "unilaiva-songbook_part*"
+width-multiplier = 0
+color = "white"
+paint-area-rects = [
+  [0, 0.91, 1, 1]
+]
+
+# README for generated MIDI and audio directories
+mididir_readme_file = "metadata/audio-dirs-readme.md"
+audiodir_readme_file = "metadata/audio-dirs-readme.md"
+
+
+### PROFILES ###
+
+
+# default profile compiles all documents in the project's root
 [profiles.default]
 songbooks = [ "*.*tex" ]
 
+# astral profile compiles only all Astral books in the project's root
 [profiles.astral]
 songbooks = [ "unilaiva-astral*.*tex" ]
 
+# main profile compiles only the main Unilaiva books
 [profiles.main]
 songbooks = [ "unilaiva-songbook*.*tex" ]
 
+# dev profile is verbose and doesn't deploy anything
 [profiles.dev]
+deploy = false
+verbose = true

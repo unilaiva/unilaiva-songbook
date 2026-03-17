@@ -132,7 +132,7 @@
     },
     {
       "id": "chapter2",
-      "iconfile_i18n": { 
+      "iconfile_i18n": {
         "*": "ul-default-chapter-02_caapi_heart_transbg_1000x797px.png"
       },
       "text_i18n": {
@@ -190,7 +190,7 @@
     {
       "enabled": true,
       "file": "unilaiva-songbook_A5.pdf",
-      "image": "unilaiva-songbook_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-songbook_A5_MODIFIED.png",
       "tag_ids": [ "complete.ed", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook"
@@ -237,7 +237,7 @@
     {
       "enabled": true,
       "file": "unilaiva-songbook_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-songbook_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-songbook_LYRICS-ONLY_A5_MODIFIED.png",
       "tag_ids": [ "complete.ed", "lyricsonly" ],
       "title_i18n": {
         "en": "Unilaiva Songbook"
@@ -274,7 +274,7 @@
     {
       "enabled": false,
       "file": "unilaiva-songbook_part1_A5.pdf",
-      "image": "unilaiva-songbook_part1_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-songbook_part1_A5_MODIFIED.png",
       "tag_ids": [ "partial.ed", "chapter1", "chapter2", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 1"
@@ -310,7 +310,7 @@
     {
       "enabled": false,
       "file": "unilaiva-songbook_part1_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-songbook_part1_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-songbook_part1_LYRICS-ONLY_A5_MODIFIED.png",
       "tag_ids": [ "partial.ed", "chapter1", "chapter2", "lyricsonly" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 1"
@@ -346,7 +346,7 @@
     {
       "enabled": false,
       "file": "unilaiva-songbook_part2_A5.pdf",
-      "image": "unilaiva-songbook_part2_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-songbook_part2_A5_MODIFIED.png",
       "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "chords" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 2"
@@ -382,7 +382,7 @@
     {
       "enabled": false,
       "file": "unilaiva-songbook_part2_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-songbook_part2_LYRICS-ONLY_A5_AUTOWIDENOTAGS.png",
+      "image": "unilaiva-songbook_part2_LYRICS-ONLY_A5_MODIFIED.png",
       "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "lyricsonly" ],
       "title_i18n": {
         "en": "Unilaiva Songbook: part 2"
