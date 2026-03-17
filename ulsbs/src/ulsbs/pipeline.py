@@ -32,7 +32,7 @@ from .constants import (
     SONG_IDX_SCRIPT_REL, SORT_LOCALE,
     COVERIMAGE_HEIGHT, COVERIMAGE_AUTOWIDE_WIDTH, IMG_AUTOWIDENOTAGS_FNAME_POSTFIX,
     ASTRAL_FNAME_PREFIX, SELECTION_FNAME_PREFIX,
-    CONTENT_DIRNAME, INCLUDE_DIRNAME, TAG_DEFINITION_FILENAME
+    TEMP_DIRNAME, CONTENT_DIRNAME, INCLUDE_DIRNAME, TAG_DEFINITION_FILENAME
 )
 from .engine_assets import EngineAssets
 from .jobs import Job, build_variant_basename
@@ -702,11 +702,11 @@ def analyze_warnings(
     except Exception:
         ui.warning_line(f"{txt_doc}: TeX warnings - failed to read the log file")
 
-    if total_warn > 0 and cfg.clean_temp:
+    if total_warn > 0 and not cfg.clean_temp:
         if lp_all_warn:
-            ui.see_line("temp/" + str(lilypond_log.relative_to(lilypond_log.parent.parent.parent)))
+            ui.see_line(TEMP_DIRNAME + '/' + str(lilypond_log.relative_to(lilypond_log.parent.parent.parent)))
         if tex_all_warn:
-            ui.see_line("temp/" + str(last_lualatex_log.relative_to(last_lualatex_log.parent.parent.parent)))
+            ui.see_line(TEMP_DIRNAME + '/' + str(last_lualatex_log.relative_to(last_lualatex_log.parent.parent.parent)))
 
     return total_warn
 
