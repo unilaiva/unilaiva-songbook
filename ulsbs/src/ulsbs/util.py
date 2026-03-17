@@ -528,7 +528,7 @@ def append_text(p: Path, data: str) -> None:
 
 def blake2b_file(p: Path) -> str:
     """Compute the BLAKE2 hex digest of a file, streaming in 1 MiB chunks."""
-    h = hashlib.sha256()
+    h = hashlib.blake2b()
     with p.open("rb") as f:
         # Read and hash in fixed-size chunks to avoid large memory usage
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
