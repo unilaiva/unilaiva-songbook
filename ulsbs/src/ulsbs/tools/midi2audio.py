@@ -256,6 +256,8 @@ def _fluidsynth_cmd(midi: Path, opts: Options, sf2: Path) -> List[str]:
     fs_rate = min(opts.rate, 96_000)  # Fluidsynth supports max 96000 Hz
     return [
         "fluidsynth",
+        "-a",
+        "file",
         "-ni",
         "-F",
         "-",
