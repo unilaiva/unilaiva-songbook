@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import datetime as _dt
 import os
+import secrets
 import subprocess
 from pathlib import Path
 from typing import List
@@ -115,14 +116,22 @@ def ensure_container_image(ui: UI, assets: "EngineAssets", engine: str, force_re
         if build_needed:
             ui.container_line("Build compiler image...")
             version = getattr(ulsbs, "__version__", "unknown")
-            subprocess.run(
+            build_cmd = [
+                engine,
+                "build",
+            ]
+            if force_rebuild:  # skip cache if forced to rebuild
+                build_cmd.append("--no-cache")
+            build_cmd.extend(
                 [
-                    engine, "build", "--no-cache",
-                    "--build-arg", f"BUILT_BY_ULSBS_VERSION={version}",
-                    "-t", _CONTAINER_IMAGE_NAME, str(ctx),
-                ],
-                check=True,
+                    "--build-arg",
+                    f"BUILT_BY_ULSBS_VERSION={version}",
+                    "-t",
+                    _CONTAINER_IMAGE_NAME,
+                    str(ctx),
+                ]
             )
+            subprocess.run(build_cmd, check=True)
             ui.container_line("Building image complete.")
 
 
@@ -168,8 +177,9 @@ def run_self_in_container(
             bind_root += ",Z"
             bind_temp += ",Z"
 
+        container_name = f"{_CONTAINER_IMAGE_NAME}-{secrets.token_hex(4)}"
         container_args = [
-            engine, "run", "-it", "--rm", "--read-only",
+            engine, "run", "--name", container_name, "-it", "--rm", "--read-only",
             *env_args,
             "--memory", container_memory,
             "--memory-swap", container_memory_plus_swap,
