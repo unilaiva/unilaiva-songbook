@@ -85,6 +85,8 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
     prestr.add_argument("--no-lyric", action="store_true", help="Do not produce lyrics-only variant")
     prestr.add_argument("--no-extrainstr", action="store_true", help="Do not produce variants for extra instruments")
     prestr.add_argument("--fast-audio-encode", dest="fast_audio_encode", action="store_true", help="Use faster audio encoding (limiter instead of loudnorm)")
+    prestr.add_argument("--midifiles-allow-for-optional-variants", action="store_true", help="Allow MIDI file generation for optional variants")
+    prestr.add_argument("--audiofiles-allow-for-optional-variants", action="store_true", help="Allow audio file generation for optional variants")
 
     pmodes = p.add_argument_group("special modes")
     pmodes.add_argument("--shell", action="store_true", help="Only open an interactive shell in the container; perform no other actions")
@@ -122,9 +124,12 @@ def print_plan_summary(
     ui.plain(f"  - Create printouts: {_yn(cfg.create_printouts)}")
     ui.plain(f"  - Extract covers as images: {_yn(cfg.coverimage)}")
     ui.plain(f"  - Create MIDI files: {_yn(cfg.midifiles)}")
+    if cfg.midifiles:
+        ui.plain(f"    - Also for optional variants: {_yn(cfg.midifiles_allow_for_optional_variants)}")
     ui.plain(f"  - Create audio files: {_yn(cfg.audiofiles)}")
     if cfg.audiofiles:
-      ui.plain(f"    - Fast audio encode (no loudnorm): {_yn(cfg.fast_audio_encode)}")
+        ui.plain(f"    - Also for optional variants: {_yn(cfg.audiofiles_allow_for_optional_variants)}")
+        ui.plain(f"    - Fast audio encode (no loudnorm): {_yn(cfg.fast_audio_encode)}")
     ui.plain(f"  - Deploy: {_yn(cfg.deploy)}")
     ui.plain("")
 

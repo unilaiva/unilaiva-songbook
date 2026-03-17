@@ -69,6 +69,8 @@ class Config:
     coverimage: bool = True
     midifiles: bool = True
     audiofiles: bool = True
+    midifiles_allow_for_optional_variants: bool = False
+    audiofiles_allow_for_optional_variants: bool = False
     fast_audio_encode: bool = False
 
     # Docker resources
@@ -314,6 +316,7 @@ _ALLOWED_FILE_KEYS: Set[str] = {
     # Deploy modes and features (and their negations via _apply_negations)
     "deploy", "deploy_last", "deploy_common", "create_printouts", "coverimage",
     "midifiles", "audiofiles", "fast_audio_encode",
+    "midifiles_allow_for_optional_variants", "audiofiles_allow_for_optional_variants",
     "extrainstrumentbooks", "lyricbooks", "quick",
     # Container resources
     "container_memory", "container_memory_plus_swap",
@@ -495,6 +498,8 @@ def build_config(
         cli_over["coverimage"] = not bool(getattr(args_ns, "no_coverimage", False))
         cli_over["midifiles"] = not bool(getattr(args_ns, "no_midi", False))
         cli_over["audiofiles"] = not bool(getattr(args_ns, "no_audio", False))
+        cli_over["midifiles_allow_for_optional_variants"] = bool(getattr(args_ns, "midifiles_allow_for_optional_variants", False))
+        cli_over["audiofiles_allow_for_optional_variants"] = bool(getattr(args_ns, "audiofiles_allow_for_optional_variants", False))
         cli_over["extrainstrumentbooks"] = not bool(getattr(args_ns, "no_extrainstr", False))
         cli_over["lyricbooks"] = not bool(getattr(args_ns, "no_lyric", False))
         cli_over["quick"] = bool(getattr(args_ns, "q", False))

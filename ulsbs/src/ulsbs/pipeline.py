@@ -460,6 +460,7 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
 
     # Optional: create auto-wide image via ImageMagick convert
     if which("convert"):
+        ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} convert (cover image modified)")
         out_png = cwd / f"{basename}{IMG_AUTOWIDENOTAGS_FNAME_POSTFIX}.png"
         if basename.startswith("unilaiva-astral-transparencia"):
             draw = "rectangle 0,0 185,260"
@@ -494,7 +495,11 @@ def build_song_db(
     txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
     log_path = job.compile_dir / f"log-{step:02d}_songdb.log"
 
+    # Skip if midi nor audio is requested
     if not (cfg.midifiles or cfg.audiofiles):
+        return None, step
+    # Skip if this is an optional variant and neither audio nor midi is allowed for optional variants
+    if job.variant != "default" and not (cfg.midifiles_allow_for_optional_variants or cfg.audiofiles_allow_for_optional_variants):
         return None, step
 
     ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} internal: build song tree")
@@ -533,8 +538,22 @@ def run_midi_audio(
     step: int,
 ) -> int:
     """Create MIDI directories and audio encodes based on the TeX tree."""
+
+    # Skip if no midi nor audio is requested
     if not (cfg.midifiles or cfg.audiofiles):
         return step
+
+    do_midi: bool = True
+    do_audio: bool = True
+
+    if job.variant != "default":
+        do_midi = cfg.midifiles_allow_for_optional_variants
+        do_audio = cfg.audiofiles_allow_for_optional_variants
+
+    # Skip if no midi nor audio is allowed for this (optional) variant
+    if not (do_midi or do_audio):
+        return step
+
 
     if db == None:
         ui.warning_line(f"{txt_doc}: No internal db; skipping midi/audio")
@@ -554,7 +573,7 @@ def run_midi_audio(
         return step
 
     # MIDI copies
-    if cfg.midifiles:
+    if do_midi:
         ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} internal: grab MIDI files")
         cur_res_midi = result_dir / RESULT_MIDI_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_midi)
@@ -597,7 +616,7 @@ def run_midi_audio(
         step += 1
 
     # Audio encodes
-    if cfg.audiofiles:
+    if do_audio:
         ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} encode audio (ulsbs-midi2audio)")
         cur_res_audio = result_dir / RESULT_AUDIO_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_audio)
