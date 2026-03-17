@@ -765,7 +765,7 @@ def _build_arg_parser() -> argparse.ArgumentParser:
     p_qual.add_argument("-B", "--flac-bits", dest="flac_bits", type=int, choices=[16, 24], default=24, help="FLAC bit depth")
     p_qual.add_argument("-U", "--wav-bits", dest="wav_bits", type=int, choices=[16, 24], default=24, help="WAV bit depth")
     p_qual = p.add_argument_group("MP3")
-    p_qual.add_argument("-q", "--mp3-vbr-quality", dest="vbr_q", type=int, default=2, metavar="QUALITY", help="MP3 VBR quality 0..9")
+    p_qual.add_argument("-q", "--mp3-vbr-quality", dest="vbr_q", type=int, default=2, metavar="QUALITY", help="MP3 VBR quality 0..9 (lower is better)")
     p_qual.add_argument("-b", "--mp3-cbr-kbps", dest="cbr_kbps", type=int, default=None, metavar="KBPS", help="MP3 CBR kbps 32..320, takes precedence over -q")
 
     # Rendering

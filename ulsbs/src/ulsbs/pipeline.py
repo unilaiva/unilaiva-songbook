@@ -623,6 +623,7 @@ def run_midi_audio(
                 "ulsbs.tools.midi2audio",
                 "--force-overwrite",
                 "--verbose",
+                "--mp3-vbr-quality", "6",  # 0-9, lower is better
                 "--mp3",
             ]
             # loudnorm (slow) / limiter (fast)
