@@ -26,7 +26,7 @@ from .constants import (
 )
 import ulsbs.resultlist as resultlist
 from .ui import UI
-from .util import ensure_dir, read_text, files_are_identical, safe_rm_tree
+from .util import ensure_dir, read_text, files_are_identical, sync_tree
 
 
 def deploy_results(ui: UI, cfg: Config) -> None:
@@ -108,12 +108,16 @@ def deploy_results(ui: UI, cfg: Config) -> None:
 
         ensure_dir(dst_dir)
 
+        # dir
         if src.is_dir():
-            safe_rm_tree(dst_dir)
-            shutil.copytree(src, dst_dir, dirs_exist_ok=True)
+            # Synchronize directory contents without overwriting identical files
+            # and remove entries in the destination that no longer exist in the
+            # source tree.
+            skipped += sync_tree(src, dst_dir)
             ui.deploy_line(f"{dst_dir.parent.name}/{dst_dir.name}/")
             continue
 
+        # single file
         dst = dst_dir / src.name
         if dst.exists():
             try:

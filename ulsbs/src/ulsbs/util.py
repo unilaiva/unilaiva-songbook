@@ -380,6 +380,104 @@ def overlay_tree(src_root: Path, dst_root: Path, move: bool = False) -> None:
                 pass
 
 
+def sync_tree(src_root: Path, dst_root: Path) -> int:
+    """Synchronize a directory tree from *src_root* into *dst_root*.
+
+    Semantics:
+      - *dst_root* itself is never removed, only its contents.
+      - Every file or directory that exists in *src_root* will exist at the
+        same relative path under *dst_root* after the operation.
+      - Files are copied only when they are new or their contents differ
+        (as determined by :func:`files_are_identical`).
+      - Files/directories that exist in *dst_root* but not in *src_root* are
+        removed. Removals are symlink-aware: a symlink is unlinked without
+        touching its target.
+
+    Returns:
+      The number of destination files that were left untouched because they
+      were already identical to their source counterparts.
+    """
+    src_root = src_root.resolve()
+    dst_root = dst_root.resolve()
+
+    if not src_root.exists() or not src_root.is_dir():
+        return 0
+
+    # Ensure dst_root is a real directory; if something else is there, remove it.
+    if dst_root.exists() and not dst_root.is_dir():
+        # Only remove the path entry itself; if it is a symlink, do not touch its target.
+        safe_rm_tree(dst_root)
+    dst_root.mkdir(parents=True, exist_ok=True)
+
+    skipped = 0
+    seen_rel_paths: set[Path] = set()
+
+    # First pass: create/update everything present in src_root.
+    for src in src_root.rglob("*"):
+        rel = src.relative_to(src_root)
+        dst = dst_root / rel
+        seen_rel_paths.add(rel)
+
+        if src.is_dir() and not src.is_symlink():
+            # Make sure the destination is a directory.
+            if dst.exists() and (dst.is_file() or dst.is_symlink()):
+                safe_rm_tree(dst)
+            dst.mkdir(parents=True, exist_ok=True)
+            continue
+
+        # src is a file or a symlink
+        # If dst is a real directory here, remove it so the file/symlink can be placed.
+        if dst.exists() and dst.is_dir() and not dst.is_symlink():
+            safe_rm_tree(dst)
+
+        if dst.exists():
+            # If both are regular files, check for identical contents.
+            try:
+                if src.is_file() and dst.is_file() and files_are_identical(src, dst):
+                    skipped += 1
+                    continue
+            except Exception:
+                # On any error, fall back to overwriting below.
+                pass
+            # Replace existing file/symlink with new content.
+            safe_rm_tree(dst)
+
+        dst.parent.mkdir(parents=True, exist_ok=True)
+
+        if src.is_symlink():
+            # Copy the resolved target contents; this mirrors shutil.copytree's
+            # default behaviour of following symlinks for files.
+            try:
+                target = src.resolve(strict=True)
+            except FileNotFoundError:
+                # Broken symlink: best-effort copy of the link entry itself.
+                shutil.copy2(src, dst)
+            else:
+                if target.is_dir():
+                    shutil.copytree(target, dst, dirs_exist_ok=True)
+                else:
+                    shutil.copy2(target, dst)
+        elif src.is_dir():
+            # Defensive fallback; normally handled by the directory branch above.
+            shutil.copytree(src, dst, dirs_exist_ok=True)
+        else:
+            shutil.copy2(src, dst)
+
+    # Second pass: remove anything in dst_root that no longer exists in src_root.
+    # Walk deepest paths first so that children are removed before parents.
+    all_dst_paths = list(dst_root.rglob("*"))
+    all_dst_paths.sort(key=lambda p: (-len(p.relative_to(dst_root).parts), str(p)))
+
+    for dst in all_dst_paths:
+        rel = dst.relative_to(dst_root)
+        if rel in seen_rel_paths:
+            continue
+        # Path does not exist in source; remove it.
+        safe_rm_tree(dst)
+
+    return skipped
+
+
 def regex_documentclass_ulsbs_songbook() -> re.Pattern[str]:
     r"""
     Matches a LaTeX \documentclass whose class starts with 'ulsbs-songbook',
