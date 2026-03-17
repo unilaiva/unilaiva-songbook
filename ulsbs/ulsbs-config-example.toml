@@ -89,7 +89,7 @@ quick = false                # quick-mode as described above
 cover-image-height = 1024    # default: 1024; height in pixels for pdftoppm -scale-to-y
 
 # Advanced rules for modified cover PNGs (optional).
-# Each [[modified-cover-png]] entry controls how to create a widened PNG for
+# Each modified-cover-png rule controls how to create a widened PNG for
 # matching songbook TeX filenames. Rules are evaluated in order; if multiple
 # rules match a filename, the LAST matching rule wins.
 #
@@ -108,22 +108,22 @@ cover-image-height = 1024    # default: 1024; height in pixels for pdftoppm -sca
 #
 # Example rules (commented out by default):
 #
-# [[modified-cover-png]]
-# width-multiplier = 0        # make square default for all songbooks
-# songbook-filenames = "*.tex"
-#
-# [[modified-cover-png]]      # special case for some songbooks
-# width-multiplier = 1.3
-# songbook-filenames = "unilaiva-astral-transparencia*.tex"
-# color = "white"
-# paint-area-rects = [
-#   # Clear a small area at the lower-left corner
-#   [0.0, 0.0, 0.18, 0.25],
+# modified-cover-png = [
+#   { width-multiplier = 0,   # make square default for all songbooks
+#     songbook-filenames = "*.tex",
+#   },
+#   { width-multiplier = 1.3, # special case for some songbooks
+#     songbook-filenames = "unilaiva-astral-transparencia*.tex",
+#     color = "white",
+#     paint-area-rects = [
+#       # Clear a small area at the lower-left corner
+#       [0.0, 0.0, 0.18, 0.25],
+#     ],
+#   },
+#   { width-multiplier = 0,   # make square for all other songbooks
+#     songbook-filenames = "*.tex",
+#   },
 # ]
-#
-# [[modified-cover-png]]
-# width-multiplier = 0        # make square for all other songbooks
-# songbook-filenames = "*.tex"
 
 # Docker resources (strings like "6g", "2g")
 container-memory = "6g"             # default: "6g"
@@ -148,8 +148,8 @@ common-deploy-other = [
 
 # Single-file settings (relative to this file; absolute paths not allowed).
 # Must exist if given.
-mididir_readme_file = "metadata/audio-dirs-Readme.md"
-audiodir_readme_file = "metadata/audio-dirs-Readme.md"
+mididir_readme_file = "metadata/audio-dirs-readme.md"
+audiodir_readme_file = "metadata/audio-dirs-readme.md"
 
 # Misc
 max-log-lines = 20           # default: 20 (clamped to [0,1000])

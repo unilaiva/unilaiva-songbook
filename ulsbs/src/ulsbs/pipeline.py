@@ -617,12 +617,12 @@ def run_midi_audio(
 ) -> int:
     """Create MIDI directories and audio encodes based on the TeX tree."""
 
-    # Skip if no midi nor audio is requested
-    if not (cfg.midifiles or cfg.audiofiles):
-        return step
+    do_midi: bool = cfg.midifiles
+    do_audio: bool = cfg.audiofiles
 
-    do_midi: bool = True
-    do_audio: bool = True
+    # Skip if no midi nor audio is requested
+    if not (do_midi or do_audio):
+        return step
 
     if job.variant != "default":
         do_midi = cfg.midifiles_allow_for_optional_variants
@@ -631,7 +631,6 @@ def run_midi_audio(
     # Skip if no midi nor audio is allowed for this (optional) variant
     if not (do_midi or do_audio):
         return step
-
 
     if db == None:
         ui.warning_line(f"{txt_doc}: No internal db; skipping midi/audio")
@@ -686,7 +685,7 @@ def run_midi_audio(
         readme_midi = cfg.mididir_readme_file
         if readme_midi:
             if readme_midi.exists():
-                shutil.copy2(readme_midi, cur_res_midi / "Readme.md")
+                shutil.copy2(readme_midi, cur_res_midi / "README.md")
             else:
                 append_text(log_midi, f"Warning: Readme for MIDI directories does not exist: {readme_midi}\n")
                 ui.warning_line(f"{txt_doc}: Readme for MIDI dir does not exist: {readme_midi}")
@@ -780,7 +779,7 @@ def run_midi_audio(
         readme_audio = cfg.audiodir_readme_file
         if readme_audio:
             if readme_audio.exists():
-                shutil.copy2(readme_audio, cur_res_audio / "Readme.md")
+                shutil.copy2(readme_audio, cur_res_audio / "README.md")
             else:
                 append_text(log_midi, f"Warning: Readme for audio directories does not exist: {readme_audio}\n")
                 ui.warning_line(f"{txt_doc}: Readme for audio does not exist: {readme_audio}")
