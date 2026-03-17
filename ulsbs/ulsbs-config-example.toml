@@ -148,8 +148,8 @@ common-deploy-other = [
 
 # Single-file settings (relative to this file; absolute paths not allowed).
 # Must exist if given.
-mididir_readme_file = "metadata/audio-dirs-readme.md"
-audiodir_readme_file = "metadata/audio-dirs-readme.md"
+mididir_readme_file = "assets/audio-dirs-readme.md"
+audiodir_readme_file = "assets/audio-dirs-readme.md"
 
 # Misc
 max-log-lines = 20           # default: 20 (clamped to [0,1000])
