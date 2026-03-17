@@ -26,7 +26,7 @@ from .constants import (
 )
 import ulsbs.resultlist as resultlist
 from .ui import UI
-from .util import ensure_dir, read_text, sha256_file, safe_rm_tree
+from .util import ensure_dir, read_text, files_are_identical, safe_rm_tree
 
 
 def deploy_results(ui: UI, cfg: Config) -> None:
@@ -117,7 +117,7 @@ def deploy_results(ui: UI, cfg: Config) -> None:
         dst = dst_dir / src.name
         if dst.exists():
             try:
-                if sha256_file(src) == sha256_file(dst):
+                if files_are_identical(src, dst):
                     skipped += 1
                     continue
             except Exception:

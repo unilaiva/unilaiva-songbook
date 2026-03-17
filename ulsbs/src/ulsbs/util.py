@@ -428,8 +428,8 @@ def append_text(p: Path, data: str) -> None:
         f.write(data)
 
 
-def sha256_file(p: Path) -> str:
-    """Compute the SHA-256 hex digest of a file, streaming in 1 MiB chunks."""
+def blake2b_file(p: Path) -> str:
+    """Compute the BLAKE2 hex digest of a file, streaming in 1 MiB chunks."""
     h = hashlib.sha256()
     with p.open("rb") as f:
         # Read and hash in fixed-size chunks to avoid large memory usage
@@ -437,6 +437,10 @@ def sha256_file(p: Path) -> str:
             h.update(chunk)
     return h.hexdigest()
 
+
+def files_are_identical(p1: Path, p2: Path) -> bool:
+    """Check if two files have identical contents."""
+    return p1.stat().st_size == p2.stat().st_size and blake2b_file(p1) == blake2b_file(p2)
 
 def run_cmd(
     args: List[str],
