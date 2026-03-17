@@ -38,7 +38,7 @@ class UI:
         ]
 
         self.PRETXT_INFO      = f"{self.C_GRAY}INFO     {self.C_RESET}"
-        self.PRETXT_CONTAINER = f"{self.C_WHITE}CONTAIN. {self.C_RESET}"
+        self.PRETXT_CONTAINER = f"{self.C_WHITE}CONT     {self.C_RESET}"
         self.PRETXT_GIT       = f"{self.C_WHITE}GIT      {self.C_RESET}"
         self.PRETXT_START     = f"{self.C_GREEN}START    {self.C_RESET}"
         self.PRETXT_EXEC      = f"{self.C_WHITE}EXEC     {self.C_RESET}"
