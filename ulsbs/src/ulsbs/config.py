@@ -628,7 +628,7 @@ def build_config(
         cli_over["audiofiles_allow_for_optional_variants"] = bool(getattr(args_ns, "audiofiles_allow_for_optional_variants", False))
         cli_over["extrainstrumentbooks"] = not bool(getattr(args_ns, "no_extrainstr", False))
         cli_over["lyricbooks"] = not bool(getattr(args_ns, "no_lyric", False))
-        cli_over["quick"] = bool(getattr(args_ns, "q", False))
+        cli_over["quick"] = bool(getattr(args_ns, "quick", False))
         cli_over["fast_audio_encode"] = bool(getattr(args_ns, "fast_audio_encode", False))
         cli_over["verbose"] = bool(getattr(args_ns, "verbose", False))
 
