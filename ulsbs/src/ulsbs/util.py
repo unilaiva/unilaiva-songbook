@@ -10,15 +10,130 @@ from __future__ import annotations
 
 import errno
 import hashlib
-import time
 import os
+import platform
 import re
 import shlex
 import shutil
 import subprocess
+import sys
+import time
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List
 from uuid import uuid4
+
+
+def run_quiet(args: list[str]) -> str | None:
+    """Run a command and return stripped stdout, or None on any failure."""
+    try:
+        r = subprocess.run(args, capture_output=True, text=True, timeout=4)
+        return r.stdout.strip() if r.returncode == 0 else None
+    except Exception:
+        return None
+
+
+@dataclass(frozen=True)
+class SystemInfo:
+    """Snapshot of the current system environment."""
+    os: str
+    linux_distro: str | None
+    total_mem_gb: int | None
+    free_mem_gb: int | None
+    cpu_threads: int | None
+    python_version: str | None
+
+
+def system_info() -> SystemInfo:
+    """Return a best-effort frozen snapshot of the current system. Never raises."""
+    try:
+        return _collect_system_info()
+    except Exception:
+        return SystemInfo(
+            os="unknown", linux_distro=None, total_mem_gb=None,
+            free_mem_gb=None, cpu_threads=None, python_version=None,
+        )
+
+
+def _collect_system_info() -> SystemInfo:
+    # -- OS --
+    plat = platform.system().lower()
+    os_name = {"linux": "linux", "darwin": "macos", "windows": "windows"}.get(plat, "unknown")
+
+    # -- Linux distro --
+    linux_distro: str | None = None
+    if os_name == "linux":
+        linux_distro = "unknown"
+        try:
+            id_line = Path("/etc/os-release").read_text(errors="replace")
+            for line in id_line.splitlines():
+                if line.startswith("ID="):
+                    distro_id = line.split("=", 1)[1].strip().strip('"').lower()
+                    if distro_id in ("ubuntu", "fedora", "arch"):
+                        linux_distro = distro_id
+                    break
+        except Exception:
+            pass
+
+    # -- Memory --
+    total_mem_gb: int | None = None
+    free_mem_gb: int | None = None
+    if os_name == "linux":
+        try:
+            mi = Path("/proc/meminfo").read_text()
+            for line in mi.splitlines():
+                if line.startswith("MemTotal:"):
+                    total_mem_gb = int(line.split()[1]) // (1024 * 1024)
+                elif line.startswith("MemAvailable:"):
+                    free_mem_gb = int(line.split()[1]) // (1024 * 1024)
+        except Exception:
+            pass
+    elif os_name == "macos":
+        out = run_quiet(["sysctl", "-n", "hw.memsize"])
+        if out:
+            total_mem_gb = int(out) // (1024 ** 3)
+        # vm_stat gives free + inactive pages
+        vm = run_quiet(["vm_stat"])
+        if vm:
+            free_pages = 0
+            for line in vm.splitlines():
+                if "Pages free" in line or "Pages inactive" in line:
+                    m = re.search(r"(\d+)", line.split(":")[1])
+                    if m:
+                        free_pages += int(m.group(1))
+            if free_pages:
+                free_mem_gb = (free_pages * 4096) // (1024 ** 3)
+    elif os_name == "windows":
+        wmic = run_quiet(["wmic", "OS", "get", "TotalVisibleMemorySize,FreePhysicalMemory", "/value"])
+        if wmic:
+            for line in wmic.splitlines():
+                if line.startswith("TotalVisibleMemorySize="):
+                    total_mem_gb = int(line.split("=")[1]) // (1024 * 1024)
+                elif line.startswith("FreePhysicalMemory="):
+                    free_mem_gb = int(line.split("=")[1]) // (1024 * 1024)
+
+    # -- CPU threads --
+    cpu_threads: int | None = None
+    try:
+        cpu_threads = len(os.sched_getaffinity(0))
+    except (AttributeError, OSError):
+        cpu_threads = os.cpu_count()
+
+    # -- Python version --
+    python_version: str | None = None
+    try:
+        python_version = platform.python_version()
+    except Exception:
+        pass
+
+    return SystemInfo(
+        os=os_name,
+        linux_distro=linux_distro,
+        total_mem_gb=total_mem_gb,
+        free_mem_gb=free_mem_gb,
+        cpu_threads=cpu_threads,
+        python_version=python_version,
+    )
 
 
 def create_unique_id(include_time: bool = True) -> str:

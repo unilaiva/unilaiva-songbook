@@ -36,39 +36,28 @@
 # - pull: run "git pull --rebase" in the project root before doing anything else.
 #   See cli.py for more information on CLI behaviors.
 #
-# Quick mode:
-# - quick = true will implicitly set these to false: deploy, create-printouts, coverimage,
-#   extrainstrumentbooks, lyricbooks, midifiles, audiofiles, and also clean-temp = false.
-#
 # Environment overrides (optional):
-# - ULSBS_USE_SYSTEM_TMP_FOR_TEMP=true|false -> sets use-system-tmp
-# - ULSBS_MAX_CONTAINER_MEMORY=6g (or similar)  -> sets container-memory AND container-memory-plus-swap
-# - ULSBS_MAX_PARALLEL=8                     -> sets max-parallel
-# - ULSBS_CONTAINER_ENGINE=auto|docker|podman -> sets container-engine
+# - ULSBS_USE_SYSTEM_TMP_FOR_TEMP=true|false   -> sets use-system-tmp
+# - ULSBS_MAX_CONTAINER_MEM_GB=6               -> container memory limit in GiB (also used when deriving max-parallel)
+# - ULSBS_MAX_PARALLEL=8                       -> upper bound for parallel jobs (0 or unset = auto)
+# - ULSBS_CONTAINER_ENGINE=auto|docker|podman  -> sets container-engine
 #
 # CLI highlights (override config):
-# - Flags like --no-container, --container-rebuild, --shell, --pull, --sequential,
+# - Flags like --no-container, --container-rebuild, --shell, --pull, --sequential, --max-parallel,
 #   --no-deploy, --no-printouts, --no-coverimage, --no-midi, --no-audio,
 #   --no-extrainstr, --no-lyric, -q/--quick, --deploy-last, --deploy-common, --max-log-lines.
 # - Passing files on the CLI overrides songbook selection.
 
 
-# FLAT (ROOT) SETTINGS
-# ====================
+
+# SETTINGS
+# ========
 
 # Execution
-use-container = true            # default: true
-container-engine = "auto"   # default: "auto"; prefer Docker if available, else Podman
-# container-engine = "docker" # alternatively force Docker and error if missing
-# container-engine = "podman" # alternatively force Podman and error if missing
-container-rebuild = false       # default: false; force rebuild of container image
 shell = false                # SPECIAL MODE: only run shell, do nothing else
 pull = false                 # SPECIAL: run 'git pull --rebase' before anything else
 
-# Parallelism and temp handling
-max-parallel = 6             # default: 6 (clamped to [1,64])
 sequential = false           # if true, behaves like max-parallel = 1
-use-system-tmp = false       # if true, use system temp dir instead of project temp
 clean-temp = true            # remove temp data after run (alias: keep-temp = true -> clean-temp = false)
 # keep-temp = true           # optional alias; if set, it inverts clean-temp (do not set both)
 
@@ -80,10 +69,9 @@ create-printouts = true      # default: true
 coverimage = true            # default: true
 midifiles = true             # default: true
 audiofiles = true            # default: true
-fast-audio-encode = false    # default: false; if true, use faster audio encoding (limiter instead of loudnorm)
 extrainstrumentbooks = true  # default: true
 lyricbooks = true            # default: true
-quick = false                # quick-mode as described above
+fast-audio-encode = false    # default: false; if true, use faster audio encoding (limiter instead of loudnorm)
 
 # Cover image extraction and modified PNGs
 cover-image-height = 1024    # default: 1024; height in pixels for pdftoppm -scale-to-y
@@ -125,10 +113,6 @@ cover-image-height = 1024    # default: 1024; height in pixels for pdftoppm -sca
 #   },
 # ]
 
-# Docker resources (strings like "6g", "2g")
-container-memory = "6g"             # default: "6g"
-container-memory-plus-swap = "6g"   # default: "6g"; env can override both via ULSBS_MAX_CONTAINER_MEMORY
-
 # Files (relative to this TOML file's directory unless absolute). Globs supported (?, *).
 # songbooks are the primary inputs and must exist (unless overridden by CLI files).
 songbooks = [
@@ -159,6 +143,8 @@ max-log-lines = 20           # default: 20 (clamped to [0,1000])
 # PROFILES
 # ========
 
+# All profiles will inherit all settings given without a profile (flat).
+# The profile specific settings will overwrite these.
 
 [profiles]
 
@@ -206,7 +192,7 @@ deploy = true
 
 # A prod profile that does not inherit from another profile; it inherits from flat.
 [profiles.prod]
-# Demonstrate array merging from flat: merge common-deploy-metadata with flat.common-deploy-metadata
+# Merge only common-deploy-metadata from parent (flat); other arrays replace by default
 merge-keys = ["common-deploy-metadata"]
 
 common-deploy-metadata = [
@@ -217,6 +203,4 @@ common-deploy-metadata = [
 create-printouts = true
 lyricbooks = false
 
-# You can also use dashed or snake_case interchangeably
-# max-parallel = 12
-# max_parallel = 12  # same as above
+# You can also use dashed or snake_case interchangeably for the supported keys.

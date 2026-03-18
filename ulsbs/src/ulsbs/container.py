@@ -156,9 +156,12 @@ def run_self_in_container(
     unique_id = cfg.runtime.unique_id
     proj = cfg.runtime.project_paths
     container_rebuild = cfg.container_rebuild
-    container_memory = cfg.container_memory
-    container_memory_plus_swap = cfg.container_memory_plus_swap
+    container_memory_gb = cfg.container_memory_gb
+    container_memory_plus_swap_gb = cfg.container_memory_plus_swap_gb
     shell_only = cfg.shell
+
+    memory_arg = f"{container_memory_gb}g"
+    memory_swap_arg = f"{container_memory_plus_swap_gb}g"
 
     engine = _pick_container_engine(cfg)
     ensure_container_image(ui, assets, engine, container_rebuild)
@@ -170,7 +173,7 @@ def run_self_in_container(
     with assets.package_mount_root() as py_root:
         env_args = [
             "-e", f"ULSBS_MAX_PARALLEL={os.environ.get('ULSBS_MAX_PARALLEL','')}",
-            "-e", f"ULSBS_MAX_CONTAINER_MEMORY={os.environ.get('ULSBS_MAX_CONTAINER_MEMORY','')}",
+            "-e", f"ULSBS_MAX_CONTAINER_MEM_GB={os.environ.get('ULSBS_MAX_CONTAINER_MEM_GB','')}",
             "-e", f"ULSBS_USE_SYSTEM_TMP_FOR_TEMP={os.environ.get('ULSBS_USE_SYSTEM_TMP_FOR_TEMP','')}",
             "-e", f"ULSBS_CONTAINER_ENGINE={engine}",
             "-e", "ULSBS_INTERNAL_RUNNING_IN_CONTAINER=true",
@@ -190,8 +193,8 @@ def run_self_in_container(
         container_args = [
             engine, "run", "--name", container_name, "-it", "--rm", "--read-only",
             *env_args,
-            "--memory", container_memory,
-            "--memory-swap", container_memory_plus_swap,
+            "--memory", memory_arg,
+            "--memory-swap", memory_swap_arg,
             "--user", f"{os.getuid()}:{os.getgid()}",
             "--mount", bind_py,
             "--mount", bind_root,

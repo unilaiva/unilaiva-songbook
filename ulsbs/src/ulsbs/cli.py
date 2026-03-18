@@ -56,7 +56,7 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
         ),
     )
 
-    p.add_argument("-q", "--quick", action="store_true", help="Quick dev build: default variant only, no extras, no deploy")
+    p.add_argument("-q", "--quick", action="store_true", help="Quick dev build: default variant only, no extras, no deploy, keep temp")
     p.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
 
     p.add_argument("--profile", default="default", help=f"Choose profile defined in {CONFIG_FILENAME} to use")
@@ -73,6 +73,7 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
     p.add_argument("--no-container", dest="no_container", action="store_true", help="Compile on host instead of using a container (not recommended)")
     p.add_argument("--pull", action="store_true", help="Run 'git pull --rebase' before compiling")
     p.add_argument("--sequential", action="store_true", help="Do not compile in parallel (to conserve memory)")
+    p.add_argument("--max-parallel", type=int, metavar="N", default=0, help="Maximum number of parallel jobs (0 = auto)")
     p.add_argument("--keep-temp", action="store_true", help="Do not clean temp directory even after successful compilation")
     p.add_argument("--max-log-lines", type=int, metavar="N", default=20, help="Maximum error log lines to display (0..1000)")
 
@@ -216,6 +217,7 @@ def main(argv: List[str] | None = None) -> int:
             runtime_project_paths=proj,
             runtime_in_container=in_container,
             runtime_unique_id=unique_id,
+            ui=ui,
         )
     except Exception as e:
         ui.plain("")
@@ -310,6 +312,12 @@ def main(argv: List[str] | None = None) -> int:
         ui.exec_line("Start interactive shell")
         os.execvp("bash", ["bash"])
         return 127
+
+    if cfg.verbose:
+        total_mem = f"{str(cfg.runtime.system_info.total_mem_gb or "?")} GiB"
+        free_mem = f"{str(cfg.runtime.system_info.free_mem_gb or "?")} GiB"
+        threads = str(cfg.runtime.system_info.cpu_threads or "?")
+        ui.info_line(f"SYSTEM - cpu threads: {threads}, free memory: {free_mem}, total memory: {total_mem}")
 
     require_tools()
 

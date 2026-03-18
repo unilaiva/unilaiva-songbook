@@ -11,12 +11,15 @@ from __future__ import annotations
 import os
 import re
 import glob
+import math
 import tomllib
 from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping, Tuple, Set
 
-from .constants import CONFIG_FILENAME, COVERIMAGE_HEIGHT
+from .constants import CONFIG_FILENAME, COVERIMAGE_HEIGHT, ASSUMED_OS_MEM_GB, ASSUMED_JOB_MEM_GB
+from .ui import UI
+from .util import SystemInfo, system_info
 
 
 # NOTE: We only import the type to avoid runtime dependency cycles
@@ -32,6 +35,7 @@ class Runtime:
     project_paths: ProjectPaths
     in_container: bool
     unique_id: str
+    system_info: SystemInfo
 
 
 @dataclass(frozen=True)
@@ -96,9 +100,9 @@ class Config:
     audiofiles_allow_for_optional_variants: bool = False
     fast_audio_encode: bool = False
 
-    # Docker resources
-    container_memory: str = "6g"
-    container_memory_plus_swap: str = "6g"
+    # Container resources (GiB)
+    container_memory_gb: int = 6
+    container_memory_plus_swap_gb: int = 6
 
     # Files (absolute paths, validated to exist)
     songbooks: Tuple[Path, ...] = field(default_factory=tuple) # From config, possibly overwritten by CLI
@@ -422,16 +426,13 @@ def _parse_modified_cover_png_rules(raw: Any) -> Tuple[ModifiedCoverPngRule, ...
 
 _ALLOWED_FILE_KEYS: Set[str] = {
     # Execution
-    "use_container", "container_rebuild", "container_engine", "container",
-    "max_parallel", "sequential", "use_system_tmp", "clean_temp", "keep_temp",
+    "sequential", "clean_temp", "keep_temp",
     "shell", "pull",
     # Deploy modes and features (and their negations via _apply_negations)
     "deploy", "deploy_last", "deploy_common", "create_printouts", "coverimage",
     "midifiles", "audiofiles", "fast_audio_encode",
     "midifiles_allow_for_optional_variants", "audiofiles_allow_for_optional_variants",
-    "extrainstrumentbooks", "lyricbooks", "quick",
-    # Container resources
-    "container_memory", "container_memory_plus_swap",
+    "extrainstrumentbooks", "lyricbooks",
     # Files
     "songbooks", "common_deploy_icons", "common_deploy_metadata", "common_deploy_other",
     # Single-file settings
@@ -541,6 +542,7 @@ def build_config(
     runtime_project_paths: ProjectPaths,
     runtime_in_container: bool,
     runtime_unique_id: str,
+    ui: UI | None = None,
 ) -> Config:
     """
     Build a validated Config by merging defaults, file, profiles, env, and
@@ -584,13 +586,13 @@ def build_config(
         # Apply after we know max_parallel, but record intent here
         file_over["_sequential_flag"] = val
 
-    # Environment overrides
+    # Environment overrides (simple scalars only; concurrency/memory handled separately below)
+    env_max_parallel = _to_int_env(env.get("ULSBS_MAX_PARALLEL"))
+    env_container_mem_gb = _to_int_env(env.get("ULSBS_MAX_CONTAINER_MEM_GB"))
+
     env_over = {
         "use_system_tmp": _to_bool_env(env.get("ULSBS_USE_SYSTEM_TMP_FOR_TEMP")),
         "container_engine": env.get("ULSBS_CONTAINER_ENGINE"),
-        "container_memory": env.get("ULSBS_MAX_CONTAINER_MEMORY"),
-        "container_memory_plus_swap": env.get("ULSBS_MAX_CONTAINER_MEMORY"),
-        "max_parallel": _to_int_env(env.get("ULSBS_MAX_PARALLEL")),
         "verbose": _to_bool_env(env.get("ULSBS_VERBOSE")),
     }
     env_over = {k: v for k, v in env_over.items() if v is not None}
@@ -598,6 +600,7 @@ def build_config(
     # CLI overrides (if provided)
     cli_over: Dict[str, Any] = {}
     cli_files: Iterable[str] = ()
+    cli_max_parallel: int | None = None
     if args_ns is not None:
         # Execution/runtime
         cli_over["use_container"] = not bool(getattr(args_ns, "no_container", False))
@@ -609,6 +612,11 @@ def build_config(
         cli_over["clean_temp"] = not bool(getattr(args_ns, "keep_temp", False))
         if bool(getattr(args_ns, "sequential", False)):
             cli_over["_sequential_flag"] = True  # internal flag; applied later
+
+        # Explicit max_parallel from CLI (0 means "auto")
+        mp_val = int(getattr(args_ns, "max_parallel", 0) or 0)
+        if mp_val > 0:
+            cli_max_parallel = mp_val
 
         # Modes/features
         cli_over["deploy"] = not bool(getattr(args_ns, "no_deploy", False))
@@ -650,18 +658,103 @@ def build_config(
     combined = {k: v for k, v in combined.items() if hasattr(conf, k) or k in {"_sequential_flag", "songbooks", "common_deploy_icons", "common_deploy_metadata", "common_deploy_other"}}
     conf = replace(conf, **{k: v for k, v in combined.items() if k != "_sequential_flag"})
 
-    # Apply sequential flag to max_parallel if set anywhere
+    # Apply sequential flag (processed after concurrency/memory heuristics below)
     sequential_flag = bool(combined.get("_sequential_flag", False))
-    if sequential_flag:
-        conf = replace(conf, max_parallel=1)
 
-    # Clamp integer ranges
+    # Clamp integer ranges for non-concurrency fields
     conf = replace(
         conf,
-        max_parallel=_clamp(conf.max_parallel, 1, 64, "max_parallel"),
         max_log_lines=_clamp(conf.max_log_lines, 0, 1000, "max_log_lines"),
         cover_image_height=_clamp(conf.cover_image_height, 1, 10000, "cover_image_height"),
     )
+
+    # Derive container memory + max_parallel from system info, env, and CLI
+
+    sys_info = system_info()
+
+    # Determine available memory in GiB
+    if sys_info.free_mem_gb is not None:
+        memory_available = float(sys_info.free_mem_gb)
+    elif sys_info.total_mem_gb is not None:
+        memory_available = float(sys_info.total_mem_gb) - float(ASSUMED_OS_MEM_GB)
+    else:
+        memory_available = 6.0
+    if memory_available <= 0:
+        memory_available = 6.0
+
+    explicit_env_parallel = env_max_parallel if env_max_parallel is not None else None
+    explicit_cli_parallel = cli_max_parallel
+    explicit_parallel = explicit_cli_parallel if explicit_cli_parallel is not None else explicit_env_parallel
+    explicit_mem_gb = env_container_mem_gb if env_container_mem_gb is not None else None
+
+    # CPU-based upper bound for workers
+    if sys_info.cpu_threads is not None and sys_info.cpu_threads > 1:
+        cpu_limit = sys_info.cpu_threads - 1
+    else:
+        cpu_limit = 32
+
+    used_explicit_parallel = False
+    used_explicit_mem = False
+
+    if explicit_parallel is not None and explicit_mem_gb is not None:
+        # 1) Both max_parallel and container memory explicitly provided
+        max_parallel_val = explicit_parallel
+        container_mem_val = float(explicit_mem_gb)
+        used_explicit_parallel = True
+        used_explicit_mem = True
+    elif explicit_parallel is not None and explicit_mem_gb is None:
+        # 2) Explicit max_parallel only -> derive memory from assumed per-job usage
+        max_parallel_val = explicit_parallel
+        container_mem_val = float(math.ceil(max_parallel_val * float(ASSUMED_JOB_MEM_GB)))
+        used_explicit_parallel = True
+    elif explicit_parallel is None and explicit_mem_gb is not None:
+        # 3) Explicit container memory only -> derive max_parallel from memory and CPU
+        container_mem_val = float(explicit_mem_gb)
+        jobs_by_mem = int(memory_available // float(ASSUMED_JOB_MEM_GB)) if ASSUMED_JOB_MEM_GB > 0 else int(memory_available)
+        if jobs_by_mem < 1:
+            jobs_by_mem = 1
+        max_parallel_val = min(jobs_by_mem, cpu_limit)
+        used_explicit_mem = True
+    else:
+        # 4) Neither provided -> automatic defaults from available resources
+        container_mem_val = float(memory_available)
+        jobs_by_mem = int(memory_available // float(ASSUMED_JOB_MEM_GB)) if ASSUMED_JOB_MEM_GB > 0 else int(memory_available)
+        if jobs_by_mem < 1:
+            jobs_by_mem = 1
+        max_parallel_val = min(jobs_by_mem, cpu_limit)
+
+    # Apply sequential override last
+    if sequential_flag:
+        max_parallel_val = 1
+
+    # Final clamps
+    max_parallel_val = _clamp(max_parallel_val, 1, 128, "max_parallel")
+    container_mem_gb_int = int(math.ceil(container_mem_val))
+    if container_mem_gb_int < 2:
+        container_mem_gb_int = 2
+
+    # Warnings when overrides were explicitly provided
+    if (used_explicit_parallel or used_explicit_mem) and ui is not None and not runtime_in_container:
+        if container_mem_gb_int >= memory_available:
+            if used_explicit_mem and conf.use_container:
+                ui.warning_line(f"Configured container memory ({container_mem_gb_int} GiB) is >= estimated available")
+            else:
+                ui.warning_line(f"Estimated maximum memory use ({container_mem_gb_int} GiB) is >= estimated available")
+            ui.space_line(f"memory ({memory_available:.1f} GiB). This may cause swapping or OOM kills.")
+        if sys_info.cpu_threads is not None and max_parallel_val >= sys_info.cpu_threads:
+            ui.warning_line(f"Configured max_parallel ({max_parallel_val}) is >= available CPU threads ({sys_info.cpu_threads}).")
+            ui.space_line(f"This may overload the system.")
+        if container_mem_gb_int <= math.ceil(max_parallel_val * ASSUMED_JOB_MEM_GB) and conf.use_container:
+            if used_explicit_mem:
+                ui.warning_line(f"Configured container memory ({container_mem_gb_int} GiB) is too small for {max_parallel_val} threads.")
+
+    conf = replace(
+        conf,
+        max_parallel=max_parallel_val,
+        container_memory_gb=container_mem_gb_int,
+        container_memory_plus_swap_gb=container_mem_gb_int,
+    )
+
 
     # Resolve and validate file patterns from config (relative to config_dir)
     cfg_dir = conf.config_dir
@@ -738,6 +831,7 @@ def build_config(
             project_paths=runtime_project_paths,
             in_container=runtime_in_container,
             unique_id=runtime_unique_id,
+            system_info=sys_info,
         ),
     )
 
