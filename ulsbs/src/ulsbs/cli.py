@@ -362,9 +362,9 @@ def main(argv: List[str] | None = None) -> int:
         ui.plain("")
         ui.success_line(f"{'All' if len(result.successes) == len(jobs) else len(result.successes)} jobs succeeded.")
         if result.total_warnings:
-            ui.warning_line(f"There were a total of {result.total_warnings} warnings in all jobs.")
+            ui.warning_line(f"Tools' output logs contained a total of {result.total_warnings} warnings for all jobs together.")
             if cfg.clean_temp:
-                ui.space_line("To keep the logs for analyzing warnings, run with --keep-temp")
+                ui.space_line("To keep the logs for analyzing them, run with --keep-temp")
 
     if result.failures:
         ui.plain("")
