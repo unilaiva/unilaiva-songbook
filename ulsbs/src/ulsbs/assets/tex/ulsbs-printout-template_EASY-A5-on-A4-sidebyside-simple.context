@@ -1,5 +1,6 @@
 % SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
 % SPDX-License-Identifier: GPL-3.0-or-later
+%
 % Easy side-by-side printout from existing PDF.
 
 % This is a ConTeXt source file to create a PDF printout from an existing

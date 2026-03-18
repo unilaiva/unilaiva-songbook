@@ -30,11 +30,11 @@ class Job:
 
 def variant_possible_lyrics(doc_tex_abs: Path) -> bool:
     """Return True if doc uses ulsbs-songbook class (lyrics variant ok)."""
-    t = read_text(doc_tex_abs)
+    text = read_text(doc_tex_abs)
 
     # Use shared matcher for \\documentclass[...]{ulsbs-songbook*}
     docclass_re = regex_documentclass_ulsbs_songbook()
-    return docclass_re.search(t) is not None
+    return docclass_re.search(text) is not None
 
 
 def _extra_variant_enabled(doc_tex_abs: Path, target: str) -> bool:
@@ -47,6 +47,12 @@ def _extra_variant_enabled(doc_tex_abs: Path, target: str) -> bool:
         % ... ULSBS-EXTRA-VARIANTS: bassclef, somevariant % comment
     """
     text = read_text(doc_tex_abs)
+
+    # Use shared matcher for \\documentclass[...]{ulsbs-songbook*}
+    docclass_re = regex_documentclass_ulsbs_songbook()
+    if docclass_re.search(text) is None:
+        return false
+
     pattern = re.compile(r"ULSBS-EXTRA-VARIANTS\s*:(?P<variants>[^%]*)")
 
     for line in text.splitlines():

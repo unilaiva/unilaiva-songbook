@@ -1,10 +1,11 @@
     % SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
     % SPDX-License-Identifier: GPL-3.0-or-later
+    %
     % LilyPond tail include: no TAB.
     % This file is part of the 'ulsbs' package.
 
     %% ulsbs-include-tail-notab.ly
-    %% ========================
+    %% ===========================
     %%
     %% This file should be included as the last thing within 'lilypond'
     %% environment, and creates a score with chord names, notes and

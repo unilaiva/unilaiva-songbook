@@ -1,10 +1,11 @@
     % SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
     % SPDX-License-Identifier: GPL-3.0-or-later
+    %
     % LilyPond include: compact header settings for A5.
     % This file is part of the 'ulsbs' package.
 
     %% ulsbs-include-head.ly
-    %% ==================
+    %% =====================
     %%
     %% This file contains generic Lilypond settings and should be included
     %% as the first thing within the 'lilypond' environment.
@@ -18,7 +19,7 @@
     %% finally, as the last thing in the 'lilypond' environment, include
     %% the file 'ulsbs-include-tail.ly'.
     %%
-    %% Here is a full example on how to embed lilypond in Unilaiva songbooks:
+    %% Here is a full example on how to embed lilypond in ULSBS songbooks:
     %%
     %% \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     %%   theMelody = \relative c'' { | c4 e4 d4 f4 | c1 }

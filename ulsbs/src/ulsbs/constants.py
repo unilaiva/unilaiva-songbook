@@ -9,7 +9,6 @@ This file is part of the 'ulsbs' package.
 # Accepted TeX-like file suffixes when resolving includes
 TEX_SUFFIXES = (".tex", ".latex", ".lytex", ".lylatex")
 
-ASTRAL_FNAME_PREFIX = "unilaiva-astral"
 SELECTION_FNAME_PREFIX = "ul-selection"
 
 LYRICSONLY_FNAMEPART = "_LYRICS-ONLY"

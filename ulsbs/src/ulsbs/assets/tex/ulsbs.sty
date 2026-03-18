@@ -1,5 +1,6 @@
 % SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
 % SPDX-License-Identifier: GPL-3.0-or-later
+%
 % Main style package for ULSBS songbooks.
 % This file is part of the 'ulsbs' package.
 
@@ -1251,7 +1252,7 @@
 }
 
 % Setup main header style
-\fancypagestyle{unilaiva}[fancy]{%
+\fancypagestyle{ulsbs}[fancy]{%
   % NOTE: If fancydr warns that \footskip is too small, adjust the value here,
   % but for too small \headsep, set it instead when loading geometry package
   % above.
@@ -1273,7 +1274,7 @@
 }
 
 % Setup style for TOC
-\fancypagestyle{unilaivatoc}[unilaiva]{%
+\fancypagestyle{ulsbstoc}[ulsbs]{%
   \fancyhead[LO]{} % odd left: nothing
   \fancyhead[LE,RO]{%
     \pagenumberstyle\thepage%
@@ -1281,7 +1282,7 @@
   \fancyhead[CO]{\rmfamily\small\itshape{\leftmark}} % odd center: chapter title: "CONTENTS"
 }
 
-\pagestyle{unilaiva} % set the default page style
+\pagestyle{ulsbs} % set the default page style
 
 % END Setup headers using fancyhdr
 
@@ -1726,7 +1727,7 @@
 
 % Creates the Table Of Contents here. Use this instead of \tableofcontents macro
 \newcommand{\toc}{
-  \pagestyle{unilaivatoc}% use alternate header style for TOC
+  \pagestyle{ulsbstoc}% use alternate header style for TOC
   % to have totally flat right edge of the dots in TOC (microtype package):
   \microtypesetup{protrusion=false} % To have a flat right side in TOC
   \tableofcontents % The TOC
@@ -1739,7 +1740,7 @@
   }{%
     \addtocontents{toc}{~\hfill\textbf{Page}\par}
   }
-  \newpage\pagestyle{unilaiva}% return to the default header style
+  \newpage\pagestyle{ulsbs}% return to the default header style
 }
 
 % END front matter
@@ -3970,7 +3971,7 @@
     \SB@inchorusfalse%
   \fi%
   \ifnum\UL@rep@level<0\relax%
-    \PackageWarning{unilaiva-songbook_common}{%
+    \PackageWarning{ulsbs}{%
       Unmatched \string\endrep: ignored.\MessageBreak%
     }%
     \UL@rep@level=0\relax%
@@ -4431,7 +4432,7 @@
 % Choruses are deprecated, as we use \beginrep...\endrep within normal verses
 % for line repeats, but rewrite them for backwards compatibility.
 \renewcommand\beginchorus{%
-  \PackageWarning{unilaiva-songbook_common}{%
+  \PackageWarning{ulsbs}{%
     \string\beginchorus\space is deprecated.\MessageBreak%
     Replacing with \string\beginverse\string\beginrep.\MessageBreak%
   }%
@@ -4439,7 +4440,7 @@
 }
 \renewcommand\endchorus{%
   \endrep\endverse%
-  \PackageWarning{unilaiva-songbook_common}{%
+  \PackageWarning{ulsbs}{%
     \string\endchorus\space is deprecated.\MessageBreak%
     Replacing with \string\endrep\string\endverse.\MessageBreak%
   }%

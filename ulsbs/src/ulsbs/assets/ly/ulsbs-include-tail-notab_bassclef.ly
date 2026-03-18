@@ -1,10 +1,11 @@
     % SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
     % SPDX-License-Identifier: GPL-3.0-or-later
+    %
     % LilyPond tail include: no TAB, bass clef.
     % This file is part of the 'ulsbs' package.
 
     %% ulsbs-include-tail-notab_bassclef.ly
-    %% =================================
+    %% ====================================
     %%
     %% Bass clef version.
     %%

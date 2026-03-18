@@ -1,5 +1,6 @@
     % SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
     % SPDX-License-Identifier: GPL-3.0-or-later
+    %
     % Internal common LilyPond header and helpers.
     % This file is part of the 'ulsbs' package.
 
@@ -45,12 +46,12 @@
       ignatzekExceptions)
 
     % Chord name color. This ought to be manually synced with 'chordcolor'
-    % defined in file unilaiva-songbook_common.sty:
+    % defined in file ulsbs.sty:
     color-chordnames = #(rgb-color 0.20 0 0.22)
     % The color used to signify alternative playing
     color-alt = #darkcyan
     % Playout mark color. This ought to be manually synced with 'pomarkcolor'
-    % defined in file unilaiva-songbook_common.sty:
+    % defined in file ulsbs.sty:
     color-pomark = #(rgb-color 0 0.5 0)
 
     \layout {
@@ -222,7 +223,7 @@
       \once\override Stem.color = #color-alt
       \once\override Accidental.color = #color-alt
       \once\override Flag.color = #color-alt
-      \once\override Dots.color = #color-alt 
+      \once\override Dots.color = #color-alt
       \once\override TabNoteHead.color = #color-alt
       \once\override Slur.color = #color-alt
       \once\override LyricText.color = #color-alt
