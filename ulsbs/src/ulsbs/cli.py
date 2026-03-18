@@ -59,7 +59,7 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
     p.add_argument("-q", "--quick", action="store_true", help="Quick dev build: default variant only, no extras, no deploy, keep temp")
     p.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
 
-    p.add_argument("--profile", default="default", help=f"Choose profile defined in {CONFIG_FILENAME} to use")
+    p.add_argument("-p", "--profile", default="default", help=f"Choose profile defined in {CONFIG_FILENAME} to use")
 
     p.add_argument(
         "--container-engine",
