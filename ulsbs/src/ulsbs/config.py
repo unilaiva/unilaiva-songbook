@@ -650,10 +650,6 @@ def build_config(
     # Combine scalar options first (we'll handle files after)
     combined = {**conf.__dict__, **file_over, **env_over, **cli_over}
 
-    # Allow 'container' (from no-container negation) as an alias for use_container
-    if "container" in combined and "use_container" not in combined:
-        combined["use_container"] = bool(combined["container"])
-    combined.pop("container", None)
     # Remove dataclass-only and runtime keys, keep field names only
     combined = {k: v for k, v in combined.items() if hasattr(conf, k) or k in {"_sequential_flag", "songbooks", "common_deploy_icons", "common_deploy_metadata", "common_deploy_other"}}
     conf = replace(conf, **{k: v for k, v in combined.items() if k != "_sequential_flag"})
