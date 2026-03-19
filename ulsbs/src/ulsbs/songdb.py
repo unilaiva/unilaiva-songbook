@@ -125,36 +125,36 @@ class BookInfo:
     - document_class:
         The class name given to \\documentclass{...}.
     - paper:
-        Paper size identifier (cls option paper / \\papersize).
+        Paper size identifier (cls option paper / \\ulPapersize).
     - maintitle:
-        Main book title (cls option maintitle / \\mainbooktitle).
+        Main book title (cls option maintitle / \\ulMainBookTitle).
     - subtitle:
-        Book subtitle (cls option subtitle / \\subbooktitle).
+        Book subtitle (cls option subtitle / \\ulSubBookTitle).
     - subsubtitle:
-        Secondary subtitle (cls option subsubtitle / \\subsubbooktitle).
+        Secondary subtitle (cls option subsubtitle / \\ulSubSubBookTitle).
     - motto:
-        Book motto (cls option motto / \\bookmotto).
+        Book motto (cls option motto / \\ulBookMotto).
     - wwwlink:
-        Website URL (cls option wwwlink / \\bookwebsitelink).
+        Website URL (cls option wwwlink / \\ulBookWebsiteLink).
     - wwwqr:
         QR-code image name for website (cls option wwwqr /
-        \\bookwebsitelinkqrimage).
+        \\ulBookWebsiteLinkQrImage).
     - imprintnote:
         Imprint page footnote (cls option imprintnote /
-        \\imprintpagefootnote).
+        \\ulImprintPageFootnote).
     - author:
-        Author/PDF metadata (cls option author / \\pdfauthor).
+        Author/PDF metadata (cls option author / \\ulBookAuthor).
     - subject:
-        Subject/PDF metadata (cls option subject / \\pdfsubject).
+        Subject/PDF metadata (cls option subject / \\ulBookSubject).
     - keywords:
-        Keywords/PDF metadata (cls option keywords / \\pdfkeywords).
+        Keywords/PDF metadata (cls option keywords / \\ulBookKeywords).
     - language:
-        Document language (cls option language / \\preliminarylanguage).
+        Document language (cls option language / \\ulPreliminaryLanguage).
     - bindingoffset:
         Binding offset dimension (cls option bindingoffset /
-        \\ulbindingoffset).
-    - bookbytext:
-        "Book by" attribution text (\\bookbytext).
+        \\ulBindingOffset).
+    - bookbynote:
+        "Book by" attribution text (\\ulBookByText).
     """
 
     document_class: str | None = None
@@ -172,26 +172,26 @@ class BookInfo:
     keywords: str | None = None
     language: str | None = None
     bindingoffset: str | None = None
-    bookbytext: str | None = None
+    bookbynote: str | None = None
     audio_links: List[AudioLink] = field(default_factory=list)
 
 
 # Map from LaTeX command name (without leading backslash) to BookInfo field name.
 _BOOK_COMMAND_TO_FIELD: Dict[str, str] = {
-    "papersize": "paper",
-    "mainbooktitle": "maintitle",
-    "subbooktitle": "subtitle",
-    "subsubbooktitle": "subsubtitle",
-    "bookmotto": "motto",
-    "bookwebsitelink": "wwwlink",
-    "bookwebsitelinkqrimage": "wwwqr",
-    "imprintpagefootnote": "imprintnote",
-    "pdfauthor": "author",
-    "pdfsubject": "subject",
-    "pdfkeywords": "keywords",
-    "preliminarylanguage": "language",
-    "ulbindingoffset": "bindingoffset",
-    "bookbytext": "bookbytext",
+    "ulPapersize": "paper",
+    "ulMainBookTitle": "maintitle",
+    "ulSubBookTitle": "subtitle",
+    "ulSubSubBookTitle": "subsubtitle",
+    "ulBookMotto": "motto",
+    "ulBookWebsiteLink": "wwwlink",
+    "ulBookWebsiteLinkQrImage": "wwwqr",
+    "ulImprintPageFootnote": "imprintnote",
+    "ulBookAuthor": "author",
+    "ulBookSubject": "subject",
+    "ulBookKeywords": "keywords",
+    "ulPreliminaryLanguage": "language",
+    "ulBindingOffset": "bindingoffset",
+    "ulBookByText": "bookbynote",
 }
 
 # Map from \documentclass key=value option name to BookInfo field name.
@@ -266,7 +266,7 @@ class SongbookData:
 
 
 _INPUT_MACROS = ("\\input", "\\include")
-_CHAPTER_MACROS = ("\\mainchapter", "\\chapter", "\\songchapter")
+_CHAPTER_MACROS = ("\\ulMainChapter", "\\chapter", "\\songchapter")
 
 
 def _strip_tex_commands(text: str) -> str:
@@ -1022,16 +1022,16 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
 
             # Chapters
             if any(src.startswith(m, i) for m in _CHAPTER_MACROS):
-                if src.startswith("\\mainchapter", i):
-                    macro = "\\mainchapter"
+                if src.startswith("\\ulMainChapter", i):
+                    macro = "\\ulMainChapter"
                 elif src.startswith("\\songchapter", i):
                     macro = "\\songchapter"
                 else:
                     macro = "\\chapter"
                 i += len(macro)
 
-                # For mainchapter, the syntax is
-                #   \mainchapter[short]{long}{colorname}
+                # For ulMainChapter, the syntax is
+                #   \ulMainChapter[short]{long}{colorname}
                 # For chapter/songchapter we only care about the first {title}.
 
                 # Optional [..]

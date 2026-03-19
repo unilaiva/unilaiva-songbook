@@ -14,35 +14,35 @@
   subtitle={Novas de Alfredo}
 ]{ulsbs-songbook-astral-default}
 
-\renewcommand{\bookbytext}{%
+\renewcommand{\ulBookByText}{%
   Recebido por:\par\vspace{0.618034ex}\textbf{\Large Padrinho Alfredo}%
 }%
 
-\setcovericonsvar[ulsbs-tag-icon-chords_PT_512x512px]%
+\ulSetVariableCoverIcons[ulsbs-tag-icon-chords_PT_512x512px]%
                  [ulsbs-tag-icon-sheetmusic_512x512px]%
                  [ulsbs-tag-icon-guitar_512x512px]
 
 \begin{document}
 
   % Cover page (recto), by larva (photo + edit):
-  \ulcoverpage{unilaiva-astral-alfredo_COVER.pdf}%
+  \ulCoverPage{unilaiva-astral-alfredo_COVER.pdf}%
 
   % The second page (verso):
-  \imprintpage
+  \ulImprintPage
 
   % TOC:
-  \toc
+  \ulTOC
 
-  % Sets chapter number; will be incremented by one at each \mainchapter,
+  % Sets chapter number; will be incremented by one at each \ulMainChapter,
   % \songchapter or \chapter:
   \setcounter{chapter}{0}
 
-  \mainchapter[Padr. Alfredo: Nova Era]{Padr. Alfredo: \\Nova Era}{chapnovaeracolor}
+  \ulMainChapter[Padr. Alfredo: Nova Era]{Padr. Alfredo: \\Nova Era}{chapnovaeracolor}
     \begin{songs}{}
       \input{content/songs_astral_novaera.tex}
     \end{songs}
 
-  \mainchapter[Padr. Alfredo: Nova Dimensão]{Padr. Alfredo: \\Nova Dimensão}{chapnovadimensaocolor}
+  \ulMainChapter[Padr. Alfredo: Nova Dimensão]{Padr. Alfredo: \\Nova Dimensão}{chapnovadimensaocolor}
     \begin{songs}{}
       \input{content/songs_astral_novadimensao.tex}
     \end{songs}

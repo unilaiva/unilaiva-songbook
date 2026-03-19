@@ -11,27 +11,27 @@
   subsubtitle={Saṃskṛtam, English, Other, Suomi}
 ]{ulsbs-songbook-unilaiva-default}
 
-\renewcommand{\subbooktitle}{part \romanupnum{2}}
+\renewcommand{\ulSubBookTitle}{part \romanupnum{2}}
 
-\renewcommand{\insertcovericons}{\insertcovericonshtl}%
+\renewcommand{\ulInsertCoverIcons}{\ulInsertCoverIconsHTL}%
 
-\setcovericonsperm[ulsbs-tag-icon-partial-edition_EN_512x512px.png]%
+\ulSetPermanentCoverIcons[ulsbs-tag-icon-partial-edition_EN_512x512px.png]%
                   [ul-default-chapter-03_green_circles_ed_by_larva_CC0_1200px.jpg]%
                   [ul-default-chapter-04_lotus_om_transbg_2000px.png]%
                   [ul-default-chapter-05_Hopi_Navajo_Zuni_circle_ed_by_larva_transbg_CC0_1200px.png]%
                   [ul-default-chapter-06_lintu_muinaissuomalaisilta_asuma-aloilta_perma_1426x1158px.png]
-\setcovericonsvar[ulsbs-tag-icon-chords_EN_512x512px]
+\ulSetVariableCoverIcons[ulsbs-tag-icon-chords_EN_512x512px]
 
 \begin{document}
 
   % Cover page (recto), by larva (photo + edit):
-  \ulcoverpage{unilaiva-songbook_part2_COVER.pdf}%
+  \ulCoverPage{unilaiva-songbook_part2_COVER.pdf}%
 
   % The second page (verso):
-  \imprintpage
+  \ulImprintPage
 
   % TOC:
-  \toc
+  \ulTOC
 
   % Content chapters (comment one out in two-booklet version):
   %\input{unilaiva-songbook_content_include_part1.tex}

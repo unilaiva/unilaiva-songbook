@@ -17,7 +17,7 @@
 
 % Set child defaults for parent's kvoptions keys (user options will override)
 % IMPORTANT: avoid passing comma-containing values (like keywords) via class options;
-% instead set such values after loading the parent (e.g., redefine \pdfkeywords).
+% instead set such values after loading the parent (e.g., redefine \ulBookKeywords).
 \PassOptionsToClass{
   paper={a5paper},
   maintitle={Unilaiva no Astral},
@@ -34,10 +34,25 @@
 %       qrencode -s 32 -l Q -o content/img/QR_https_unilaiva-astral_aavalla_net.png "https://unilaiva-astral.aavalla.net/"
 %       --> then added the Unilaiva no Astral icon in the middle as 320x320 image with borders
 
-% Handle size/side: force 10pt,twoside; accept them silently; ignore conflicts
-\DeclareOption{10pt}{}
-\DeclareOption{11pt}{\ClassWarning{ulsbs-songbook-astral-default}{Ignoring 11pt; forcing 10pt}}
-\DeclareOption{12pt}{\ClassWarning{ulsbs-songbook-astral-default}{Ignoring 12pt; forcing 10pt}}
+% Allow setting font size, but warn if other than 10pt
+\newif\ifastral@fontsizespecified
+\astral@fontsizespecifiedfalse
+\DeclareOption{10pt}{%
+  \PassOptionsToClass{10pt}{ulsbs-songbook}%
+  \astral@fontsizespecifiedtrue%
+}
+\DeclareOption{11pt}{%
+  \PassOptionsToClass{11pt}{ulsbs-songbook}%
+  \astral@fontsizespecifiedtrue%
+  \ClassWarning{ulsbs-songbook-astral-default}{Font size 10pt is recommended, but 11pt is used}%
+}
+\DeclareOption{12pt}{%
+  \PassOptionsToClass{12pt}{ulsbs-songbook}%
+  \astral@fontsizespecifiedtrue%
+  \ClassWarning{ulsbs-songbook-astral-default}{Font size 10pt is recommended, but 12pt is used}%
+}
+
+% Handle side: twoside; accept it silently; ignore conflicts
 \DeclareOption{oneside}{\ClassWarning{ulsbs-songbook-astral-default}{Ignoring oneside; forcing twoside}}
 \DeclareOption{twoside}{}
 
@@ -47,21 +62,25 @@
 
 
 % LOAD THE PARENT CLASS
-\LoadClass[10pt,twoside,openright,onecolumn]{ulsbs-songbook}
+\ifastral@fontsizespecified
+  \LoadClass[twoside,openright,onecolumn]{ulsbs-songbook}
+\else % default to 10pt
+  \LoadClass[10pt,twoside,openright,onecolumn]{ulsbs-songbook}
+\fi
 
 
 % ULSBS setup:
 
 % Set things shown on the second page:
-\renewcommand{\bookmotto}{\ifchorded{com informação musical}\fi}
-\renewcommand{\bookbytext}{%
+\renewcommand{\ulBookMotto}{\ifchorded{com informação musical}\fi}
+\renewcommand{\ulBookByText}{%
   Recebido por:\par\vspace{0.618034ex}\textbf{\Large humanidade}%
 }%
-\renewcommand{\bookcompiledbytext}{%
+\renewcommand{\ulBookCompiledByText}{%
   Compilado por: unilarva (\href{mailto:lari.natri@iki.fi}{lari.natri@iki.fi})%
   \imagec[5]{larva_avatar.png}%
 }%
-\renewcommand{\imprintpagefootnote}{%
+\renewcommand{\ulImprintPageFootnote}{%
   Unilaiva no Astral é um projeto que tem como objetivo transcrever hinários
   comumente cantados em um formato que contenha todas as informações musicais,
   incluindo partituras, mas que seja fácil e conveniente de usar para praticar e no
@@ -72,13 +91,13 @@
   e ao incrível \mbox{Mistério do Universo}.
 }
 
-\renewcommand\chaptersymbol{%
+\renewcommand\ulChapterSymbol{%
   {\symboliifont 🟌}%
 }
 
 % Setup the mark at song end, just above the horizontal line that ends a song;
 % if this macro is empty (the default), only the line is displayed.
-\renewcommand{\songendmark}{%
+\renewcommand{\ulSongEndMark}{%
   \symboliifont 🌣 \symbolfont ☾ \symboliifont 🟋%
 }
 
@@ -87,14 +106,14 @@
 \renewcommand\preludetagstyle{\bfseries}
 
 % Setup the icons displayed on the front cover
-\renewcommand{\tagiconchords}{ulsbs-tag-icon-chords_PT_512x512px.png}
-\renewcommand{\tagiconlyricsonly}{ulsbs-tag-icon-lyrics-only_PT_512x512px.png}
-\renewcommand{\insertcovericons}{\insertcovericonsvtl}%
+\renewcommand{\ulChordsTagIcon}{ulsbs-tag-icon-chords_PT_512x512px.png}
+\renewcommand{\ulLyricsOnlyTagIcon}{ulsbs-tag-icon-lyrics-only_PT_512x512px.png}
+\renewcommand{\ulInsertCoverIcons}{\ulInsertCoverIconsVTL}%
 
 \renewcommand{\translationfont}{\footnotesize} % make translated text smaller
 \renewcommand\mnalttagtext{2} % put "2" as tag for alternate melody notes
 % larger chord font:
-\renewcommand{\chordfont}{\sffamily\bfseries\normalsize\color{chordcolor}}
+\renewcommand{\ulChordFont}{\sffamily\bfseries\normalsize\color{chordcolor}}
 % smaller explanation font:
 \renewcommand{\explanationfont}{\rmfamily\scriptsize}
 
@@ -145,7 +164,7 @@
 \definecolor{chapnovaeracolor}{rgb}{.7,.26,0}
 \definecolor{chapnovadimensaocolor}{rgb}{.9,.5,0}
 \definecolor{chapochaveiraocolor}{rgb}{.3529,.98,.4078}
-\definecolor{chaprevelacaocolor}{rgb}{1,1,1} % = white = invisible
+\definecolor{chaprevelacaocolor}{rgb}{1,0,1} % = white = invisible
 \definecolor{chaprosariocolor}{rgb}{.15,.7,.15}
 \definecolor{chapluabrancacolor}{rgb}{.8133,.1752,.7921}
 \definecolor{chapultioscolor}{rgb}{0,.4039,.933}

@@ -81,43 +81,43 @@
 % Define macros only if options were given; else leave undefined
 % for ulsbs.sty defaults
 \ifdefempty{\ulsbs@paper}{}{% not empty
-  \newcommand{\papersize}{\ulsbs@paper}
+  \newcommand{\ulPapersize}{\ulsbs@paper}
 }
 \ifdefempty{\ulsbs@maintitle}{}{% not empty
-  \newcommand{\mainbooktitle}{\ulsbs@maintitle}
+  \newcommand{\ulMainBookTitle}{\ulsbs@maintitle}
 }
 \ifdefempty{\ulsbs@subtitle}{}{% not empty
-  \newcommand{\subbooktitle}{\ulsbs@subtitle}
+  \newcommand{\ulSubBookTitle}{\ulsbs@subtitle}
 }
 \ifdefempty{\ulsbs@subsubtitle}{}{% not empty
-  \newcommand{\subsubbooktitle}{\ulsbs@subsubtitle}
+  \newcommand{\ulSubSubBookTitle}{\ulsbs@subsubtitle}
 }
 \ifdefempty{\ulsbs@motto}{}{% not empty
-  \newcommand{\bookmotto}{\ulsbs@motto}
+  \newcommand{\ulBookMotto}{\ulsbs@motto}
 }
 \ifdefempty{\ulsbs@wwwlink}{}{% not empty
-  \newcommand{\bookwebsitelink}{\ulsbs@wwwlink}
+  \newcommand{\ulBookWebsiteLink}{\ulsbs@wwwlink}
 }
 \ifdefempty{\ulsbs@wwwqr}{}{% not empty
-  \newcommand{\bookwebsitelinkqrimage}{\ulsbs@wwwqr}
+  \newcommand{\ulBookWebsiteLinkQrImage}{\ulsbs@wwwqr}
 }
 \ifdefempty{\ulsbs@imprintnote}{}{% not empty
-  \newcommand{\imprintpagefootnote}{\ulsbs@imprintnote}
+  \newcommand{\ulImprintPageFootnote}{\ulsbs@imprintnote}
 }
 \ifdefempty{\ulsbs@author}{}{% not empty
-  \newcommand{\pdfauthor}{\ulsbs@author}
+  \newcommand{\ulBookAuthor}{\ulsbs@author}
 }
 \ifdefempty{\ulsbs@subject}{}{% not empty
-  \newcommand{\pdfsubject}{\ulsbs@subject}
+  \newcommand{\ulBookSubject}{\ulsbs@subject}
 }
 \ifdefempty{\ulsbs@keywords}{}{% not empty
-  \newcommand{\pdfkeywords}{\ulsbs@keywords}
+  \newcommand{\ulBookKeywords}{\ulsbs@keywords}
 }
 \ifdefempty{\ulsbs@language}{}{% not empty
-  \newcommand{\preliminarylanguage}{\ulsbs@language}
+  \newcommand{\ulPreliminaryLanguage}{\ulsbs@language}
 }
 \ifdefempty{\ulsbs@bindingoffset}{}{% not empty
-  \newcommand{\ulbindingoffset}{\ulsbs@bindingoffset}
+  \newcommand{\ulBindingOffset}{\ulsbs@bindingoffset}
 }
 
 

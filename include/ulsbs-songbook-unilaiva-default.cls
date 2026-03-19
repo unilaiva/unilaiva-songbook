@@ -17,7 +17,7 @@
 
 % Set child defaults for parent's kvoptions keys (user options will override)
 % IMPORTANT: avoid passing comma-containing values (like keywords) via class options;
-% instead set such values after loading the parent (e.g., redefine \pdfkeywords).
+% instead set such values after loading the parent (e.g., redefine \ulBookKeywords).
 \PassOptionsToClass{
   paper={a5paper},
   maintitle={Unilaiva Songbook},
@@ -38,6 +38,26 @@
 \DeclareOption{10pt}{}
 \DeclareOption{11pt}{\ClassWarning{ulsbs-songbook-unilaiva-default}{Ignoring 11pt; forcing 10pt}}
 \DeclareOption{12pt}{\ClassWarning{ulsbs-songbook-unilaiva-default}{Ignoring 12pt; forcing 10pt}}
+
+% Allow setting font size, but warn if other than 10pt
+\newif\iful@fontsizespecified
+\ul@fontsizespecifiedfalse
+\DeclareOption{10pt}{%
+  \PassOptionsToClass{10pt}{ulsbs-songbook}%
+  \ul@fontsizespecifiedtrue%
+}
+\DeclareOption{11pt}{%
+  \PassOptionsToClass{11pt}{ulsbs-songbook}%
+  \ul@fontsizespecifiedtrue%
+  \ClassWarning{ulsbs-songbook-unilaiva-default}{Font size 10pt is recommended, but 11pt is used}%
+}
+\DeclareOption{12pt}{%
+  \PassOptionsToClass{12pt}{ulsbs-songbook}%
+  \ul@fontsizespecifiedtrue%
+  \ClassWarning{ulsbs-songbook-unilaiva-default}{Font size 10pt is recommended, but 12pt is used}%
+}
+
+% Handle side: twoside; accept it silently; ignore conflicts
 \DeclareOption{oneside}{\ClassWarning{ulsbs-songbook-unilaiva-default}{Ignoring oneside; forcing twoside}}
 \DeclareOption{twoside}{}
 
@@ -47,10 +67,15 @@
 
 
 % LOAD THE PARENT CLASS
-\LoadClass[10pt,twoside,openright,onecolumn]{ulsbs-songbook}
+
+\iful@fontsizespecified
+  \LoadClass[twoside,openright,onecolumn]{ulsbs-songbook}
+\else % default to 10pt
+  \LoadClass[10pt,twoside,openright,onecolumn]{ulsbs-songbook}
+\fi
 
 
-\renewcommand{\imprintpagefootnote}{%
+\renewcommand{\ulImprintPageFootnote}{%
   The material in this book is collected and transcribed, with help from a
   multitude of people, from various audio and text sources --- and through
   singing, playing, dancing, sharing, listening, studying and learning.
@@ -61,7 +86,7 @@
 
 % Setup the mark at song end, just above the horizontal line that ends a song;
 % if this macro is empty (the default), only the line is displayed.
-\renewcommand{\songendmark}{%
+\renewcommand{\ulSongEndMark}{%
   \color{gray}\symboliifont ◼%
 }
 

@@ -328,7 +328,7 @@ them) between `\beginsong` and `\endsong` macros plus other data wrapped in
 The main document must be put in the project's root and have a
 `\documentclass[]{ulsbs-songbook}` (or a child class) instruction in it's
 preamble. Then within `\begin{document}` ... `\end{document}` are to be
-included chapters with `\mainchapter` command.
+included chapters with `\ulMainChapter` command.
 
 Songs ought to reside within `songs` environment; each song starts with
 `\beginsong` and ends with `\endsong`.

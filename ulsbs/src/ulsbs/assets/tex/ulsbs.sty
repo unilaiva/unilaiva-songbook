@@ -18,8 +18,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{ulsbs}
 
-
-
 % BEGIN PACKAGE IMPORTS
 % =====================
 
@@ -27,15 +25,15 @@
 %%% \newcommand in the main document before loading this package.
 
 % Set up options for the geometry package: paper size and margins.
-% \ultopmargin must be at least 6.35mm (=1/4"), as that is the limit of some
-% printers. \ulsidemargin and \ulbottommargin must be somewhat larger, at least
+% \ulTopMargin must be at least 6.35mm (=1/4"), as that is the limit of some
+% printers. \ulSideMargin and \ulBottomMargin must be somewhat larger, at least
 % 7.7mm, to accomodate for protrusion and still be outside the 6.35mm limit.
 %
-% \ulbindingoffset is the extra amount of empty left in the inner sides of pages,
+% \ulBindingOffset is the extra amount of empty left in the inner sides of pages,
 % and should be set to the amount the binding takes.
 %
 %
-% Set \ulbindingoffset to used binding system's margin (from paper edge to
+% Set \ulBindingOffset to used binding system's margin (from paper edge to
 % beginning of the hole) + hole's width.
 %
 % For the default 2:1 wire binding machine with a square hole (e.g. RM SUPU
@@ -62,20 +60,57 @@
 % NOTE: sheet count = page count / 2. Remember to add the hole's width! Take
 %       into account, if you have thicker cover pages.
 %
-% NOTE: If in the logs fancyhdr warns that \headheight is too small, it must
-%       be adjusted here. For too small \footersep, the adjustment must be
-%       done further below in the fancyhdr setup.
-%
+% NOTE: If in the logs fancyhdr warns that \headheight, \headsep, or \footskip
+%       is too low, set \ulHeadHeight, \ulHeadSep or \ulFootSkip to the correct
+%       value with \newcommand before loading this package.
 
-\providecommand{\papersize}{a5paper}
-\providecommand{\songbooktype}{chorded}
-\providecommand{\ulbindingoffset}{8mm} % 8 mm for 2:1 wire binding, 32 mm wires
-\providecommand{\ulsidemargin}{9mm}
-\providecommand{\ulbottommargin}{9mm}
-\providecommand{\ultopmargin}{6.35mm}
-\providecommand{\ulheadheight}{5mm}
-\providecommand{\ulheadsep}{4mm}
+\typeout{Using ulsbs package (Unilaiva Songbook System).}
+\typeout{Recommendation: use ulsbs-compile python script to compile the doc.}
 
+
+\RequirePackage{etoolbox}% for \ifdefempty, \ifstrequal etc
+
+% Provide defaults
+
+\providecommand*{\ulPapersize}{a5paper}
+\providecommand*{\ulSongbookType}{chorded}
+\providecommand*{\ulBindingOffset}{8mm} % 8 mm for 2:1 wire binding, 32 mm wires
+
+\ifcase\@ptsize\relax % 10 pt:
+  % This is the default, set further down
+\or % 11 pt:
+  \providecommand*{\ulFootSkip}{4.5pt}
+  \providecommand*{\ulHeadHeight}{6mm}
+  \providecommand*{\ulHeadSep}{7mm}
+  \providecommand*{\ulChordLineBaselineSkip}{11pt}%
+  \providecommand*{\ulChordLineLineskipLimit}{.8pt}%
+  \providecommand*{\ulChordLineLineskip}{.8pt}%
+\or % 12 pt:
+  \providecommand*{\ulFootSkip}{5.5pt}
+  \providecommand*{\ulHeadHeight}{7mm}
+  \providecommand*{\ulHeadSep}{8mm}
+  \providecommand*{\ulChordLineBaselineSkip}{12pt}%
+  \providecommand*{\ulChordLineLineskipLimit}{1pt}%
+  \providecommand*{\ulChordLineLineskip}{1pt}%
+\fi
+
+\ifstrequal{\ulPapersize}{a4paper}{%
+  \providecommand*{\ulSideMargin}{12mm}
+  \providecommand*{\ulTopMargin}{9mm}
+  \providecommand*{\ulBottomMargin}{12mm}
+}{}
+
+% Provide default defaults :)  .. for a5paper and 10pt
+
+\providecommand*{\ulSideMargin}{9mm}
+\providecommand*{\ulTopMargin}{6.35mm}
+\providecommand*{\ulBottomMargin}{9mm}
+\providecommand*{\ulFootSkip}{3.60004pt}% default
+\providecommand*{\ulHeadHeight}{5mm}
+\providecommand*{\ulHeadSep}{4mm}
+\providecommand*{\ulChordLineBaselineSkip}{10.6pt}%
+\providecommand*{\ulChordLineLineskipLimit}{.5pt}%
+\providecommand*{\ulChordLineLineskip}{.5pt}%
 
 % Actual imports
 
@@ -87,15 +122,15 @@
 %\RequirePackage[medium,extrabold]{noto}
 %\RequirePackage[T1]{fontenc}
 % For info on page geometry, see comments above where the \providecommands are set
-\RequirePackage[%showframe, % uncomment showframe for debugging margins etc
-            paper=\papersize,
-            bindingoffset=\ulbindingoffset,
-            inner=\ulsidemargin,
-            outer=\ulsidemargin,
-            bmargin=\ulbottommargin,
-            tmargin=\ultopmargin,
-            headheight=\ulheadheight,
-            headsep=\ulheadsep,
+\RequirePackage[% uncomment showframe, % for debugging margins etc
+            paper=\ulPapersize,
+            bindingoffset=\ulBindingOffset,
+            inner=\ulSideMargin,
+            outer=\ulSideMargin,
+            bmargin=\ulBottomMargin,
+            tmargin=\ulTopMargin,
+            headheight=\ulHeadHeight,
+            headsep=\ulHeadSep,
             nofoot,
             includehead,
             includefoot]{geometry} % page size + margins
@@ -122,10 +157,9 @@
 % verbatim's \comment is used in hiding translation environment, as it can't use
 % environ package's \NewEnviron
 \RequirePackage{verbatim}%
-\RequirePackage{etoolbox}% for \ifdefempty etc
 \RequirePackage{keyval}% Used in \audio, https://ctan.org/pkg/keyval
 \RequirePackage{expl3}% Used for some ifs etc
-\RequirePackage{xparse}% Used in \mainchapter
+\RequirePackage{xparse}% Used in \ulMainChapter
 \RequirePackage{tcolorbox}% for creating colored boxes, used in language code display
 % hyperref is used for URL links and by 'songs' package for index links in PDF.
 % Use option 'colorlinks' to colorize the links always, for both print and
@@ -159,11 +193,11 @@
            colorlinks]{hyperref} % used by 'songs' package for index links in PDF
 
 % The most important 'songs' package, use the version in the project tree.
-% The \songbooktype macro contains by default 'chorded', but it can be defined
+% The \ulSongbookType macro contains by default 'chorded', but it can be defined
 % to be 'lyric' before including this file to produce lyrics-only songbooks.
 % In such a case it would be a good idea to setup the book with \show* macros
 % after including this file, too.
-\RequirePackage[\songbooktype]{ext_packages/songs/songs}
+\RequirePackage[\ulSongbookType]{ext_packages/songs/songs}
 
 % END PACKAGE IMPORTS
 
@@ -173,10 +207,10 @@
 
 % This macro can be defined in the main document before including this file,
 % to allow for setting some items on imprint page and pdf metadata correctly.
-\providecommand{\preliminarylanguage}{english}
+\providecommand{\ulPreliminaryLanguage}{english}
 % Polyglossia: set main language. Other languages are set after font setup
 % below.
-\setmainlanguage{\preliminarylanguage}
+\setmainlanguage{\ulPreliminaryLanguage}
 
 % END MAIN LANGUAGE
 
@@ -186,7 +220,7 @@
 % \ulsbsincludepdf[<pdfpages options>]{<filename>}
 % Wrapper around pdfpages' \includepdf that temporarily augments TeX's input
 % search path so the file can be found under (in order):
-%   1) \ulimagepath (if defined by the document)
+%   1) \ulImagePath (if defined by the document)
 %   2) fallback path:  \ulsbs@content@imagepath
 %   3) fallback path:  \ulsbs@include@imagepath
 %   4) package assets: \ulsbs@package@imagepath
@@ -205,9 +239,9 @@
 \newcommand{\ulsbsincludepdf}[2][]{%
   \begingroup
     % Build \input@path based on whether the document provided a custom image path
-    \ifdefempty{\ulimagepath}
+    \ifdefempty{\ulImagePath}
       {\def\input@path{{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
-      {\def\input@path{{\ulimagepath}{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}%
+      {\def\input@path{{\ulImagePath}{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}%
     % Delegate to pdfpages with any caller-provided options
     \includepdf[#1]{#2}%
   % End local scope; restore previous \input@path
@@ -230,13 +264,13 @@
 % Small font size, between \scriptsize and \tiny
 \newcommand{\microsize}{%
   \ifcase\@ptsize\relax
-    \@setfontsize\microsize{6pt}{7pt}% 10pt base
+    \@setfontsize\microsize{6pt}{7pt}%     10pt base
   \or
     \@setfontsize\microsize{6.5pt}{7.5pt}% 11pt base
   \or
-    \@setfontsize\microsize{7pt}{8pt}% 12pt base
+    \@setfontsize\microsize{7pt}{8pt}%     12pt base
   \else
-    \@setfontsize\microsize{6pt}{7pt}% fallback
+    \@setfontsize\microsize{6pt}{7pt}%     fallback
   \fi
 }
 
@@ -286,7 +320,7 @@
 % Note: +m means "long"
 \NewDocumentCommand{\ilsl@x}{O{-20pt} +m}{%
   \lineskiplimit=#1\relax%
-  \renewcommand{\clineLineskiplimit}{#1}%
+  \renewcommand{\ulChordLineLineskipLimit}{#1}%
   #2%
   \endgroup%
 }
@@ -746,73 +780,73 @@
 % verse in question.
 \newdimen\verseindentwidthbase\verseindentwidthbase=1em\relax
 
-\providecommand{\songendmark}{}
+\providecommand{\ulSongEndMark}{}
 
 % BEGIN Book titles etc
 
 % Set defaults for book titles if they're not yet defined. One should define
 % them in the main file before including this package or renew them after.
-% Only \mainbooktitle is mandatory. The supported macros are:
-%   \mainbooktitle
-%   \subbooktitle
-%   \subsubbooktitle
-%   \thisbooktitle
-%   \bookmotto
-%   \bookbytext
-%   \bookversionpretext
-%   \bookvariantpretext
-%   \variantdefaulttext
-%   \variantlyricsonlytext
-%   \variantcharangotext
-%   \variantbasscleftext
-%   \bookwebsitelink
-%   \bookwebsitelinkqrimage (this is image filename in content/img without path)
-%   \bookcompiledbytext
-%   \imprintpagefootnote
+% Only \ulMainBookTitle is mandatory. The supported macros are:
+%   \ulMainBookTitle
+%   \ulSubBookTitle
+%   \ulSubSubBookTitle
+%   \ulThisBookTitle
+%   \ulBookMotto
+%   \ulBookByText
+%   \ulBookVersionPreText
+%   \ulBookVariantPreText
+%   \ulBookDefaultVariantText
+%   \ulBookLyricVariantText
+%   \ulBookCharangoVariantText
+%   \ulBookBassclefVariantText
+%   \ulBookWebsiteLink
+%   \ulBookWebsiteLinkQrImage (this is image filename in content/img without path)
+%   \ulBookCompiledByText
+%   \ulImprintPageFootnote
 % All of them are optional, and for some there are defaults defined below.
 
 % Set defaults for PDF metadata, if they are not defined. One should define
 % them in the main file before including this package.
-\providecommand{\pdfauthor}{}
-\providecommand{\pdfsubject}{Songbook}
-\providecommand{\pdfkeywords}{songbook, songs, ulsbs}
+\providecommand*{\ulBookAuthor}{}
+\providecommand*{\ulBookSubject}{Songbook}
+\providecommand*{\ulBookKeywords}{songbook, songs, ulsbs}
 
-\providecommand{\bookmotto}{}
-\providecommand{\subbooktitle}{}
-\providecommand{\subsubbooktitle}{}
-\providecommand{\bookwebsitelinkqrimage}{}
-\providecommand{\bookcompiledbytext}{\ifdefempty{\pdfauthor}{}{Compiled by: \pdfauthor}}
-\providecommand{\imprintpagefootnote}{}
+\providecommand{\ulBookMotto}{}
+\providecommand{\ulSubBookTitle}{}
+\providecommand{\ulSubSubBookTitle}{}
+\providecommand{\ulBookWebsiteLinkQrImage}{}
+\providecommand{\ulBookCompiledByText}{\ifdefempty{\ulBookAuthor}{}{Compiled by: \ulBookAuthor}}
+\providecommand{\ulImprintPageFootnote}{}
 
 % To have the portuguese version of these default strings, one must define
-% \newcommand{\preliminarylanguage}{portuguese} before including this file.
+% \newcommand{\ulPreliminaryLanguage}{portuguese} before including this file.
 \IfLangTF{portuguese}{%
-  \providecommand{\mainbooktitle}{Songbook Sem Nome}
-  \providecommand{\bookbytext}{Por:\par\vspace{0.618034ex}\textbf{\Large humanidade}}
-  \providecommand{\bookversionpretext}{Versão:}
-  \providecommand{\bookvariantpretext}{Variante:}
-  \providecommand{\variantdefaulttext}{padrão}
-  \providecommand{\variantlyricsonlytext}{somente letras}
-  \providecommand{\variantcharangotext}{por charango}
-  \providecommand{\variantbasscleftext}{com clave de fá}
+  \providecommand{\ulMainBookTitle}{Songbook Sem Nome}
+  \providecommand{\ulBookByText}{Por:\par\vspace{0.618034ex}\textbf{\Large humanidade}}
+  \providecommand{\ulBookVersionPreText}{Versão:}
+  \providecommand{\ulBookVariantPreText}{Variante:}
+  \providecommand{\ulBookDefaultVariantText}{padrão}
+  \providecommand{\ulBookLyricVariantText}{somente letras}
+  \providecommand{\ulBookCharangoVariantText}{por charango}
+  \providecommand{\ulBookBassclefVariantText}{com clave de fá}
 }{%
-  \providecommand{\mainbooktitle}{Songbook Without Name}
-  \providecommand{\bookbytext}{By:\par\vspace{0.618034ex}\textbf{\Large humankind}}
-  \providecommand{\bookversionpretext}{Version:}
-  \providecommand{\bookvariantpretext}{Variant:}
-  \providecommand{\variantdefaulttext}{default}
-  \providecommand{\variantlyricsonlytext}{lyrics only}
-  \providecommand{\variantcharangotext}{for charango}
-  \providecommand{\variantbasscleftext}{with bass clef}
+  \providecommand{\ulMainBookTitle}{Songbook Without Name}
+  \providecommand{\ulBookByText}{By:\par\vspace{0.618034ex}\textbf{\Large humankind}}
+  \providecommand{\ulBookVersionPreText}{Version:}
+  \providecommand{\ulBookVariantPreText}{Variant:}
+  \providecommand{\ulBookDefaultVariantText}{default}
+  \providecommand{\ulBookLyricVariantText}{lyrics only}
+  \providecommand{\ulBookCharangoVariantText}{for charango}
+  \providecommand{\ulBookBassclefVariantText}{with bass clef}
 }
 
 % The book title to display on top of each verso page (if doesn't exist, it is
-% constructed here from \mainbooktitle and optional \subbooktitle):
-\providecommand{\thisbooktitle}{% main title (+ subtitle, if defined)
-  \mainbooktitle\ifdefempty{\subbooktitle}{}{{: \subbooktitle}}%
+% constructed here from \ulMainBookTitle and optional \ulSubBookTitle):
+\providecommand{\ulThisBookTitle}{% main title (+ subtitle, if defined)
+  \ulMainBookTitle\ifdefempty{\ulSubBookTitle}{}{{: \ulSubBookTitle}}%
 }
 % The default is the current date
-\providecommand{\songbookversion}{%
+\providecommand{\ulBookVersion}{%
   %2024-08-12% for release: change and uncomment this line, and comment the next
   \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day%
 }
@@ -991,16 +1025,16 @@
 
 % Set the default image include path. Also affects ulsbsincludepdf.
 % Must have the trailing slash.
-\providecommand{\ulimagepath}{}
+\providecommand{\ulImagePath}{}
 
 \newcommand{\ulsbs@content@imagepath}{./content/img/}
 \newcommand{\ulsbs@include@imagepath}{./include/img/}
 \newcommand{\ulsbs@package@imagepath}{./ulsbs/assets/img/}
 
 % graphicx: set paths to find images from
-\ifdefempty{\ulimagepath}
+\ifdefempty{\ulImagePath}
   {\graphicspath{{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
-  {\graphicspath{{\ulimagepath}{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
+  {\graphicspath{{\ulImagePath}{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
 
 % color: Color definitions:
 \definecolor{chordcolor}{rgb}{0.20,0,0.22} % chords
@@ -1045,11 +1079,11 @@
             pdfpagelayout=TwoColumnRight,%
             pdfpagemode=UseNone,% alt. UseThumbs or UseOutlines (bookmarks)
             pdfprintscaling=None,%
-            pdftitle={\thisbooktitle},%
-            pdfauthor={\pdfauthor},%
-            pdfsubject={\pdfsubject},%
-            pdfkeywords={\pdfkeywords},%
-            pdfinfo={DocumentVersion={\songbookversion}}% this is a custom attr
+            pdftitle={\ulThisBookTitle},%
+            pdfauthor={\ulBookAuthor},%
+            pdfsubject={\ulBookSubject},%
+            pdfkeywords={\ulBookKeywords},%
+            pdfinfo={DocumentVersion={\ulBookVersion}}% this is a custom attr
            }
 
 \renewcommand{\snumbgcolor}{songnumbgcolor} % songs: set song number background color in prelude
@@ -1058,11 +1092,14 @@
 
 \songcolumns{1} % songs: number of columns per page in songs environment
 \songpos{3} % songs: song same column-page-doublepage positioning aggressiveness 0-3
-\renewcommand{\lyricfont}{\sffamily\large} % songs: modify lyrics font style
+% Set lyric font style:
+\providecommand{\ulLyricFont}{\sffamily\large}
+% songs: modify lyric font to use our \ulLyricFont
+\renewcommand{\lyricfont}{\ulLyricFont} % songs: modify lyrics font style
 % Set chord font style:
-\providecommand{\chordfont}{\sffamily\bfseries\small\color{chordcolor}}
-% songs: modify chord printing to use our \chordfont
-\renewcommand{\printchord}[1]{\chordfont#1}
+\providecommand{\ulChordFont}{\sffamily\bfseries\small\color{chordcolor}}
+% songs: modify chord printing to use our \ulChordFont
+\renewcommand{\printchord}[1]{\ulChordFont#1}
 % songs: modify meter class font style (add color):
 \renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
 \renewcommand{\notefont}{\small} % songs: modify \textnote and \musicnote font (make smaller)
@@ -1080,14 +1117,11 @@
 % songs: Verse separation +/-; +/- 0 would be best, but in some cases a song can
 % only fitted on a page with smaller separation.
 \versesep=14pt plus 0pt minus 2.7pt% was: 2.9pt%
-\providecommand*{\clineBaselineskip}{10.6pt}%
-\providecommand*{\clineLineskiplimit}{.5pt}%
-\providecommand*{\clineLineskip}{.5pt}%
 % songs: change distance of chords to lyrics
 \renewcommand{\clineparams}{%
-  \baselineskip=\clineBaselineskip%
-  \lineskiplimit=\clineLineskiplimit%
-  \lineskip=\clineLineskip%
+  \baselineskip=\ulChordLineBaselineSkip%
+  \lineskiplimit=\ulChordLineLineskipLimit%
+  \lineskip=\ulChordLineLineskip%
 }
 % songs: skip after prelude and before postlude (which we don't use)
 \beforepostludeskip=0pt plus 0pt minus 12pt % % songs default: 2\p@\@plus4\p@
@@ -1125,9 +1159,9 @@
   {%
     \headertitlestyle%
     \ifupcasebooktitleinheader%
-      \protect\MakeUppercase{\expandafter\thisbooktitle}%
+      \protect\MakeUppercase{\expandafter\ulThisBookTitle}%
     \else%
-      \thisbooktitle%
+      \ulThisBookTitle%
     \fi%
   }%
 }
@@ -1149,7 +1183,7 @@
 % below.
 \newcommand{\headerchaptertitle}{%
   % Note that chapter title's optional upcasing is done elsewhere in the
-  % definition of \mainchapter, because it cannot be done here due to possible
+  % definition of \ulMainChapter, because it cannot be done here due to possible
   % chapter images).
   {\headertitlestyle{\leftmark}}%
 }
@@ -1162,7 +1196,7 @@
   }%
 }
 
-% Setup the colored chapter corner mark for all pages within mainchapters.
+% Setup the colored chapter corner mark for all pages within ulMainChapters.
 %
 % \chapcornermarkoffset should be at least 2mm to leave room for imprecise
 % cutting of the page. \chapcornermarkoffset + \chapcornermarkwidth should
@@ -1170,7 +1204,7 @@
 % when printing on home printer to a paper that requires no cutting.
 \newdimen\chapcornermarkoffset\chapcornermarkoffset=2.5mm%
 \newdimen\chapcornermarkwidth\chapcornermarkwidth=.954915mm% 2.5 * 0.618034^2 :)
-\newdimen\chapcornermarklength\chapcornermarklength=\dimexpr\ultopmargin+\ulheadheight-\chapcornermarkoffset\relax%
+\newdimen\chapcornermarklength\chapcornermarklength=\dimexpr\ulTopMargin+\ulHeadHeight-\chapcornermarkoffset\relax%
 % Gap count (must be >0): 2 gaps -> 5 segments -> gaps are segments 2 and 4
 \newcount\chapcornermarkdashcount\chapcornermarkdashcount=2%
 % Tweak: makes white gaps thicker than the mark:
@@ -1253,10 +1287,10 @@
 
 % Setup main header style
 \fancypagestyle{ulsbs}[fancy]{%
-  % NOTE: If fancydr warns that \footskip is too small, adjust the value here,
-  % but for too small \headsep, set it instead when loading geometry package
-  % above.
-  \setlength{\footskip}{3.60004pt} % this value comes from fancyhdr warning
+  % NOTE: If fancydr warns that \headheight, \headsep or \footskip is too small,
+  % adjust the value by defining \ulHeadHeight, \ulHeadSep or \ulFootSkip
+  % commands before loading this package.
+  \setlength{\footskip}{\ulFootSkip}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
   \fancyhf{}
@@ -1416,10 +1450,10 @@
 %\newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\baselineskip-0.4pt\relax%
 \newlength\citopoffset\citopoffset=\dimexpr-\topskip-\headsep-\headheight\relax%
 
-% Alternate implementations for \insertcovericons, placing the icons in
+% Alternate implementations for \ulInsertCoverIcons, placing the icons in
 % alternate corners either horizontally or vertically:
 
-\newcommand{\insertcovericonsvtl}{% top left, vertical
+\newcommand{\ulInsertCoverIconsVTL}{% top left, vertical
   \ifdefined\covipermi\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermi}\fi%
   \ifdefined\covipermii\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermii}\fi%
   \ifdefined\covipermiii\par\vspace{\cipermgapsize}\hspace{\cileftoffset}\includegraphics[height=\cipermsize]{\covipermiii}\fi%
@@ -1436,7 +1470,7 @@
   \ifdefined\covivarvii\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivarvii}\fi%
   \ifdefined\covivarviii\par\vspace{\civargapsize}\hspace{\cileftoffset}\includegraphics[height=\civarsize]{\covivarviii}\fi%
 }
-\newcommand{\insertcovericonsvtr}{% top right, vertical
+\newcommand{\ulInsertCoverIconsVTR}{% top right, vertical
   \ifdefined\covipermi\hfill\includegraphics[height=\cipermsize]{\covipermi}\fi%
   \ifdefined\covipermii\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermii}\fi%
   \ifdefined\covipermiii\par\vspace{\cipermgapsize}\hfill\includegraphics[height=\cipermsize]{\covipermiii}\fi%
@@ -1454,7 +1488,7 @@
   \ifdefined\covivarvii\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivarvii}\fi%
   \ifdefined\covivarviii\par\vspace{\civargapsize}\hfill\includegraphics[height=\civarsize]{\covivarviii}\fi%
 }
-\newcommand{\insertcovericonshtl}{% top left, horizontal
+\newcommand{\ulInsertCoverIconsHTL}{% top left, horizontal
   \hspace{\cileftoffset}%
   \ifdefined\covipermi\includegraphics[width=\cipermsize]{\covipermi}\hspace{\cipermgapsize}\fi%
   \ifdefined\covipermii\includegraphics[width=\cipermsize]{\covipermii}\hspace{\cipermgapsize}\fi%
@@ -1473,7 +1507,7 @@
   \ifdefined\covivarvii\includegraphics[width=\civarsize]{\covivarvii}\hspace{\civargapsize}\fi%
   \ifdefined\covivarviii\includegraphics[width=\civarsize]{\covivarviii}\hspace{\civargapsize}\fi%
 }
-\newcommand{\insertcovericonshtr}{% top right, horizontal}
+\newcommand{\ulInsertCoverIconsHTR}{% top right, horizontal}
   \hspace{\fill}%
   \ifdefined\covipermi\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermi}\fi%
   \ifdefined\covipermii\hspace{\cipermgapsize}\includegraphics[width=\cipermsize]{\covipermii}\fi%
@@ -1492,28 +1526,28 @@
   \ifdefined\covivarvii\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivarvii}\fi%
   \ifdefined\covivarviii\hspace{\civargapsize}\includegraphics[width=\civarsize]{\covivarviii}\fi%
 }
-\newcommand{\insertcovericonsvbl}{% bottom left, vertical
+\newcommand{\ulInsertCoverIconsVBL}{% bottom left, vertical
   \vspace*{\fill}%
-  \insertcovericonsvtl%
+  \ulInsertCoverIconsVTL%
 }
-\newcommand{\insertcovericonsvbr}{% bottom right, vertical
+\newcommand{\ulInsertCoverIconsVBR}{% bottom right, vertical
   \vspace*{\fill}%
-  \insertcovericonsvtr%
+  \ulInsertCoverIconsVTR%
 }
-\newcommand{\insertcovericonshbl}{% bottom left, horizontal
+\newcommand{\ulInsertCoverIconsHBL}{% bottom left, horizontal
   \vspace*{\fill}%
-  \insertcovericonshtl%
+  \ulInsertCoverIconsHTL%
 }
-\newcommand{\insertcovericonshbr}{% bottom right, horizontal
+\newcommand{\ulInsertCoverIconsHBR}{% bottom right, horizontal
   \vspace*{\fill}%
-  \insertcovericonshtr%
+  \ulInsertCoverIconsHTR%
 }
-\newcommand{\insertcovericonshtc}{% top center, horizontal
-  \hfill\insertcovericonshtl\hfill%
+\newcommand{\ulInsertCoverIconsHTC}{% top center, horizontal
+  \hfill\ulInsertCoverIconsHTL\hfill%
 }
-\newcommand{\insertcovericonshbc}{% bottom center, horizontal
+\newcommand{\ulInsertCoverIconsHBC}{% bottom center, horizontal
   \vspace*{\fill}
-  \insertcovericonshtc%
+  \ulInsertCoverIconsHTC%
 }
 
 \newcommand\varianticonstextsize{%
@@ -1528,41 +1562,41 @@
 }
 
 
-% Called by \insertcovericons to print the first set of cover icons. Can be
+% Called by \ulInsertCoverIcons to print the first set of cover icons. Can be
 % renewed. The actual icon file names are in \limgi, \limgii, \limgiii, and
 % \limgiv macros for the permanent ones, and \rimgi, \rimgii, \rimgiii, and
 % \rimgiv for the replacaple ones. The macros are undefined, if icons are
 % missing. You can provide your own implementation, or choose one of the
-% \insertcovericons??? macros.
-\providecommand{\insertcovericons}{\insertcovericonshbc}%
+% \ulInsertCoverIcons??? macros.
+\providecommand{\ulInsertCoverIcons}{\ulInsertCoverIconsHBC}%
 
 % The icon (in default image path) used to signify a book with chords.
-\providecommand{\tagiconchords}{ulsbs-tag-icon-chords_EN_512x512px}%
+\providecommand{\ulChordsTagIcon}{ulsbs-tag-icon-chords_EN_512x512px}%
 
 % The icon (in default image path) used to signify a book with treble clef sheet music.
-\providecommand{\tagicontrebleclef}{ulsbs-tag-icon-sheetmusic_512x512px}%
+\providecommand{\ulTrebleclefTagIcon}{ulsbs-tag-icon-sheetmusic_512x512px}%
 
 % The icon (in default image path) used to signify a book with bass clef sheet music.
-\providecommand{\tagiconbassclef}{ulsbs-tag-icon-sheetmusic-bass_512x512px.png}%
+\providecommand{\ulBassclefTagIcon}{ulsbs-tag-icon-sheetmusic-bass_512x512px.png}%
 
 % The icon (in default image path) used to signify a lyrics-only book.
-\providecommand{\tagiconlyricsonly}{ulsbs-tag-icon-lyrics-only_EN_512x512px.png}%
+\providecommand{\ulLyricsOnlyTagIcon}{ulsbs-tag-icon-lyrics-only_EN_512x512px.png}%
 
 % The icon (in default image path) used to signify a charango book.
-\providecommand{\tagiconcharango}{ulsbs-tag-icon-charango_512x512px.png}%
+\providecommand{\ulCharangoTagIcon}{ulsbs-tag-icon-charango_512x512px.png}%
 
 
-% Inserts the cover icons here. Meant to be called by \ulcoverpage. Calls the
-% public \insertcovericons to do the actual outputing.
-\newcommand{\@insertcovericons}{%
+% Inserts the cover icons here. Meant to be called by \ulCoverPage. Calls the
+% public \ulInsertCoverIcons to do the actual outputing.
+\newcommand{\@ulInsertCoverIcons}{%
   \thispagestyle{empty}%
   \vspace*{\citopoffset}%
-  \insertcovericons%
+  \ulInsertCoverIcons%
 }
 
 % Set the cover page icons that are permanent regardless of variant. You can
 % give a maximum of 8 icon file names (without path), each in brackets.
-\NewDocumentCommand{\setcovericonsperm}{o o o o o o o o}{%
+\NewDocumentCommand{\ulSetPermanentCoverIcons}{o o o o o o o o}{%
   \IfValueTF{#1}{\def\covipermi{#1}}{\let\covipermi\undefined}%
   \IfValueTF{#2}{\def\covipermii{#2}}{\let\covipermii\undefined}%
   \IfValueTF{#3}{\def\covipermiii{#3}}{\let\covipermiii\undefined}%
@@ -1575,7 +1609,7 @@
 
 % Set the cover page variant icons. They will not be shown on the cover pages
 % of auto-generated variants, e.g. no-lyrics variant
-\NewDocumentCommand{\setcovericonsvar}{o o o o o o o o}{%
+\NewDocumentCommand{\ulSetVariableCoverIcons}{o o o o o o o o}{%
   \IfValueTF{#1}{\def\covivari{#1}}{\let\covivari\undefined}%
   \IfValueTF{#2}{\def\covivarii{#2}}{\let\covivarii\undefined}%
   \IfValueTF{#3}{\def\covivariii{#3}}{\let\covivariii\undefined}%
@@ -1589,43 +1623,43 @@
 % Creates a cover page here. Ought to be the first command used after
 % \begin{document}.
 % There is one mandatory parameter, which is the cover PDF's file name without
-% path (it should reside in folder defined by \ulimagepath), and it must be in
+% path (it should reside in folder defined by \ulImagePath), and it must be in
 % PDF format. Only the first page is displayed and scaled as the cover image.
 %
 % Optionally setup icons to overlay on top of the cover in document preable
-% with \setcovericonsperm and \setcovericonsvar commands.
+% with \ulSetPermanentCoverIcons and \ulSetVariableCoverIcons commands.
 %
 % By default, when automatically generating variants of this document, the
-% icons defined by \setcovericonsvar are replaced with the variant specific
+% icons defined by \ulSetVariableCoverIcons are replaced with the variant specific
 % icons. The starred version of this command just empties the icons defined by
-% \setcovericonsvar when autogerating variants and replaces them with nothing.
-\NewDocumentCommand{\ulcoverpage}{s m}{%
+% \ulSetVariableCoverIcons when autogerating variants and replaces them with nothing.
+\NewDocumentCommand{\ulCoverPage}{s m}{%
   \IfBooleanTF{#1}{% starred: clear variant icons for the active book type
     \iflyriconly
-      \setcovericonsvar%
+      \ulSetVariableCoverIcons%
     \else\ifcharangobook
-      \setcovericonsvar%
+      \ulSetVariableCoverIcons%
     \else\ifbassclefbook
-      \setcovericonsvar%
+      \ulSetVariableCoverIcons%
     \fi\fi\fi
   }{% unstarred: set variant icons for the active book type
     \iflyriconly
-      \setcovericonsvar[\tagiconlyricsonly]%
+      \ulSetVariableCoverIcons[\ulLyricsOnlyTagIcon]%
     \else\ifcharangobook
-      \setcovericonsvar[\tagiconchords][\tagicontrebleclef][\tagiconcharango]%
+      \ulSetVariableCoverIcons[\ulChordsTagIcon][\ulTrebleclefTagIcon][\ulCharangoTagIcon]%
     \else\ifbassclefbook
-      \setcovericonsvar[\tagiconbassclef]%
+      \ulSetVariableCoverIcons[\ulBassclefTagIcon]%
     \fi\fi\fi
   }%
   % include the cover PDF (with path)
-  \ulsbsincludepdf[pages={1},pagecommand=\@insertcovericons]{#2}%
+  \ulsbsincludepdf[pages={1},pagecommand=\@ulInsertCoverIcons]{#2}%
 }
 
 
 % This command creates "the imprint page", usually the "second page", the odd
 % verso page right after the cover. The information on the page is constructed
 % from the macros described in the "Book titles etc" section above.
-\newcommand{\imprintpage}{
+\newcommand{\ulImprintPage}{
   { % must be contained within a block for the settings to not bleed
     \thispagestyle{empty}
     \topskip0pt
@@ -1633,36 +1667,36 @@
     \vspace*{11.2ex} % align with "Contents" heading on the next page; BAD for any changes
     \begin{center}
       % Main title
-      {\Huge \mainbooktitle}
+      {\Huge \ulMainBookTitle}
       % Motto
-      \ifdefempty{\bookmotto}{}{% \bookmotto exists
-        \par\textit{\normalsize\bookmotto}
+      \ifdefempty{\ulBookMotto}{}{% \ulBookMotto exists
+        \par\textit{\normalsize\ulBookMotto}
       }%
       % Subtitle (e.g. Part I)
-      \ifdefempty{\subbooktitle}{}{% \subbooktitle exists
+      \ifdefempty{\ulSubBookTitle}{}{% \ulSubBookTitle exists
         \par\vspace{2ex}
-        {\Large \textbf{\subbooktitle}}
-        \ifdefempty{\subsubbooktitle}{}{% \subsubbooktitle exists
+        {\Large \textbf{\ulSubBookTitle}}
+        \ifdefempty{\ulSubSubBookTitle}{}{% \ulSubSubBookTitle exists
           \par\vspace{0.618034ex}%
-          {\normalsize \subsubbooktitle}%
+          {\normalsize \ulSubSubBookTitle}%
         }%
       }%
       \par\vspace*{\fill}
       % Variant
-      {\large \bookvariantpretext}
+      {\large \ulBookVariantPreText}
       \par\vspace{0.618034ex}
       {\Large%
         \par\large\emph{%
           \iflyriconly%
-            \variantlyricsonlytext%
+            \ulBookLyricVariantText%
           \else%
             \ifcharangobook%
-              \variantcharangotext%
+              \ulBookCharangoVariantText%
             \else%
               \ifbassclefbook%
-                \variantbasscleftext%
+                \ulBookBassclefVariantText%
               \else%
-                \variantdefaulttext%
+                \ulBookDefaultVariantText%
               \fi%
             \fi%
           \fi}%
@@ -1670,55 +1704,55 @@
       }
       \par\vspace{2ex}
       % Version
-      {\large \bookversionpretext}
+      {\large \ulBookVersionPreText}
       \par\vspace{0.618034ex}
       {\Large%
         %vvvv-mm-dd % Use hardcoded date date for tagged printout releases
-        \songbookversion% current date, the default
+        \ulBookVersion% current date, the default
       }
       % By
       \par\vspace*{\fill}
-      \ifdefempty{\bookbytext}{}{% \bookbytext exists
-        {\large \bookbytext}%
+      \ifdefempty{\ulBookByText}{}{% \ulBookByText exists
+        {\large \ulBookByText}%
       }%
       \par\vspace*{\fill}
       % Link pretext (used in selections)
-      \def\showlinkpretext{true}%
-      \ifdefempty{\bookwebsitelinkqrimage}{}{% not empty
-        \ifdefempty\bookwebsitelink{}{% not empty
-          \let\showlinkpretext\undefined%
+      \def\showulBookWebsiteLinkPreText{true}%
+      \ifdefempty{\ulBookWebsiteLinkQrImage}{}{% not empty
+        \ifdefempty\ulBookWebsiteLink{}{% not empty
+          \let\showulBookWebsiteLinkPreText\undefined%
         }%
       }%
-      \ifdefined\linkpretext\else\let\showlinkpretext\undefined\fi%
-      \ifdefined\showlinkpretext%
-        {\linkpretext}\par%
+      \ifdefined\ulBookWebsiteLinkPreText\else\let\showulBookWebsiteLinkPreText\undefined\fi%
+      \ifdefined\showulBookWebsiteLinkPreText%
+        {\ulBookWebsiteLinkPreText}\par%
       \fi
       % website QR image
-      \ifdefempty{\bookwebsitelinkqrimage}{}{% not empty
-        \imagel[3]{\bookwebsitelinkqrimage} % is already centered, so 'l' version ok
+      \ifdefempty{\ulBookWebsiteLinkQrImage}{}{% not empty
+        \imagel[3]{\ulBookWebsiteLinkQrImage} % is already centered, so 'l' version ok
         \par
       }%
       % website textual link
-      \ifdefempty{\bookwebsitelink}{}{% not empty
-        {\small\url{\bookwebsitelink}}%
+      \ifdefempty{\ulBookWebsiteLink}{}{% not empty
+        {\small\url{\ulBookWebsiteLink}}%
       }%
-      % Add vspace once, if either \bookwebsitelink or \bookwebsitelinkqrimage,
+      % Add vspace once, if either \ulBookWebsiteLink or \ulBookWebsiteLinkQrImage,
       % or both, exist
-      \ifdefempty{\bookwebsitelinkqrimage}%
+      \ifdefempty{\ulBookWebsiteLinkQrImage}%
         {% qr empty
-          \ifdefempty{\bookwebsitelink}{}{% link not empty
+          \ifdefempty{\ulBookWebsiteLink}{}{% link not empty
             \par\vspace*{\fill}%
           }%
         }%
         {% qr not empty
           \par\vspace*{\fill}
         }%
-      \ifdefempty{\bookcompiledbytext}{}{% not empty
-        {\footnotesize\bookcompiledbytext}
+      \ifdefempty{\ulBookCompiledByText}{}{% not empty
+        {\footnotesize\ulBookCompiledByText}
         \par\vspace*{\fill}
       }%
-      \ifdefempty{\imprintpagefootnote}{% not empty
-        {\scriptsize\imprintpagefootnote}%
+      \ifdefempty{\ulImprintPageFootnote}{% not empty
+        {\scriptsize\ulImprintPageFootnote}%
       }%
     \end{center}
     \vspace{-1.85ex}% workaround to align page bottom with other pages
@@ -1726,7 +1760,7 @@
 }
 
 % Creates the Table Of Contents here. Use this instead of \tableofcontents macro
-\newcommand{\toc}{
+\newcommand{\ulTOC}{
   \pagestyle{ulsbstoc}% use alternate header style for TOC
   % to have totally flat right edge of the dots in TOC (microtype package):
   \microtypesetup{protrusion=false} % To have a flat right side in TOC
@@ -1752,7 +1786,7 @@
 \newcommand\jw{\raisebox{-.135ex}{\scalebox{.22}{\textbf{\symsmilearc}}}}
 
 % Returns the chapter symbol as a text symbol. Renew to change.
-\providecommand\chaptersymbol{%
+\providecommand\ulChapterSymbol{%
   {\symboliifont 🟒}%
 }
 
@@ -1760,8 +1794,8 @@
 
 % Outputs the chapter symbol defined above in color; the mandatory parameter
 % is the color name.
-\newcommand\coloredchaptersymbol[1]{%
-  {\textcolor{#1}\chaptersymbol}%
+\newcommand\ul@coloredchaptersymbol[1]{%
+  {\textcolor{#1}\ulChapterSymbol}%
 }
 
 % This is used to define the main chapters of the book. Indices, instead, use
@@ -1769,7 +1803,7 @@
 %
 % Usage:
 %
-%   \mainchapter*[short title]{long title}*[symbol info]
+%   \ulMainChapter*[short title]{long title}*[symbol info]
 %
 %   1st star:    This optional star signifies an unnumbered chapter; the star,
 %                if present, is passed to \chapter macro.
@@ -1790,13 +1824,13 @@
 %
 % Examples:
 %
-%   \mainchapter{Good songs}
-%   \mainchapter[Nice chapter]{Very very very very nice chapter}[red]
-%   \mainchapter{Bad songs}*[bad_songs_image.png]
+%   \ulMainChapter{Good songs}
+%   \ulMainChapter[Nice chapter]{Very very very very nice chapter}[red]
+%   \ulMainChapter{Bad songs}*[bad_songs_image.png]
 %
 % Note: \NewDocumentCommand, IfValueTF etc. come from xparse package, and allow
 %       nice handling of parameters.
-\NewDocumentCommand{\mainchapter}{s o m m o}{% star, [short title], {long title}, star(means image) [symbol color / image name]
+\NewDocumentCommand{\ulMainChapter}{s o m m o}{% star, [short title], {long title}, star(means image) [symbol color / image name]
   \IfValueTF{#2}{% short title is given
     \def\shorttitletext{#2}%
   }{ % short title is not given, use the long one as the short title
@@ -1813,11 +1847,11 @@
       \imagecc[1]{#5}%
     }%
   }{% no image given, use symbol instead
-    \def\smallchapterimage{\coloredchaptersymbol{#4}}%
+    \def\smallchapterimage{\ul@coloredchaptersymbol{#4}}%
     \def\largechapterimage{%
       \vfill\vspace{-1em}%
       \begin{center}%
-        \fontsize{108pt}{128pt}\coloredchaptersymbol{#4}%
+        \fontsize{108pt}{128pt}\ul@coloredchaptersymbol{#4}%
       \end{center}%
       \vfill%
     }%
@@ -1833,9 +1867,9 @@
   \def\longtitlefull{%
     \ifupcaselongchaptertitle\protect\MakeUppercase{\expandafter\longtitletext}\else\longtitletext\fi%
   }
-  \IfBooleanTF{#1}{% \mainchapter with star, call \chapter with star also
+  \IfBooleanTF{#1}{% \ulMainChapter with star, call \chapter with star also
     \chapter*[\shorttitlefull]{\longtitlefull}%
-  }{% \mainchapter without star, call \chapter without it also
+  }{% \ulMainChapter without star, call \chapter without it also
     \chapter[\shorttitlefull]{\longtitlefull}%
   }
   % Make chapter corner marks to be non-dashed:
@@ -2010,7 +2044,7 @@
 
 % Set up the style for alternative chords. This is added to the normal chords
 % style.
-\providecommand{\altchordstyle}{%
+\providecommand{\ulAltChordsStyle}{%
   \footnotesize\itshape%
 }
 
@@ -2047,7 +2081,7 @@
       \renewcommand{\e}{\ifmeasures-\fi}% % shorter dash for altchords
       \vspaceifnotinverse{.618034\baselineskip}%
       \hfill%
-      {\printchord{\raisebox{.5ex}{\altchordstyle\color{currentaltchordcolor}#1}}}%
+      {\printchord{\raisebox{.5ex}{\ulAltChordsStyle\color{currentaltchordcolor}#1}}}%
     }%
   \fi\fi%
 }
@@ -2094,7 +2128,7 @@
         \color{accolor}#3
       }
       { % for normal verse chords, set chord font, change color and transpose
-        \chordfont\color{accolor}\transposehere{#3}%
+        \ulChordFont\color{accolor}\transposehere{#3}%
       }
   }%
 }
@@ -2643,7 +2677,7 @@
 %   1) add a \vfill to song's end conditionally
 %   2) reset counters etc for the next song
 %   3) support for adding 'song end mark' to just above the horizontal
-%      line ending a song, if \songendmark not empty. The mark is positioned
+%      line ending a song, if \ulSongEndMark not empty. The mark is positioned
 %      touching the right margin of the page, and does not take vertical space,
 %      so it might overlap on song content in some cases.
 %   4) deprecated choruses
@@ -2710,13 +2744,13 @@
           \hbox{%
             \vrule\@height\sbarheight\@width\hsize%
             % BEGIN modification by larva: song end mark (3)
-            \ifdefempty{\songendmark}{}{% song end mark exists
+            \ifdefempty{\ulSongEndMark}{}{% song end mark exists
               {%
                 \normalsize%
-                \newdimen\@songendmarkwidth%
-                \settowidth{\@songendmarkwidth}{\songendmark}%
-                \hspace{-\@songendmarkwidth}%
-                \raisebox{.618034ex}[0pt][0pt]{\songendmark}%
+                \newdimen\@ulSongEndMarkwidth%
+                \settowidth{\@ulSongEndMarkwidth}{\ulSongEndMark}%
+                \hspace{-\@ulSongEndMarkwidth}%
+                \raisebox{.618034ex}[0pt][0pt]{\ulSongEndMark}%
               }%
             }%
             % END modification by larva: song end mark (3)
@@ -2962,18 +2996,18 @@
 \providecommand{\mntagvertadjfactor}{.8}
 
 % Factor for the height of the normal melody notes from chord baseline.
-% This is relative to 1 ex of the current font: \chordfont when called from
+% This is relative to 1 ex of the current font: \ulChordFont when called from
 % within chord definition as it is meant to.
 \providecommand{\mnnormalheightfactor}{1.85}
 
 % Factor for the height of the low melody note variant from chord baseline.
-% This is relative to 1 ex of the current font: \chordfont when called from
+% This is relative to 1 ex of the current font: \ulChordFont when called from
 % within chord definition as it is meant to.
 % Used in \mnd and \mad* macros.
 \providecommand{\mnlowheightfactor}{.3}
 
 % Factor for the height of the high melody note variant from chord baseline.
-% This is relative to 1 ex of the current font: \chordfont when called from
+% This is relative to 1 ex of the current font: \ulChordFont when called from
 % within chord definition as it is meant to.
 % Used in \mau* macros.
 \providecommand{\mnhighheightfactor}{3.4}
@@ -4059,7 +4093,7 @@
           \@height\tmp@UL@rep@barhtbase%
           \@depth\repbardepthdimen%
     \ifchorded%
-      \rlap{\raisebox{\clineBaselineskip}{:}}%
+      \rlap{\raisebox{\ulChordLineBaselineSkip}{:}}%
     \fi%
     :\kern.25ex%
   }%
@@ -4070,7 +4104,7 @@
     \UL@rep@setbarhtbase%
     \kern.25ex%
     \ifchorded%
-      \rlap{\raisebox{\clineBaselineskip}{:}}%
+      \rlap{\raisebox{\ulChordLineBaselineSkip}{:}}%
     \fi%
     :%
     \vrule\@width1.618034\cbarwidth%

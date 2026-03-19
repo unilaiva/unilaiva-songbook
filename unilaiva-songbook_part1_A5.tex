@@ -11,25 +11,25 @@
   subsubtitle={Español, Português}
 ]{ulsbs-songbook-unilaiva-default}
 
-\renewcommand{\subbooktitle}{part \romanupnum{1}}
+\renewcommand{\ulSubBookTitle}{part \romanupnum{1}}
 
-\renewcommand{\insertcovericons}{\insertcovericonshtl}%
+\renewcommand{\ulInsertCoverIcons}{\ulInsertCoverIconsHTL}%
 
-\setcovericonsperm[ulsbs-tag-icon-partial-edition_EN_512x512px.png]%
+\ulSetPermanentCoverIcons[ulsbs-tag-icon-partial-edition_EN_512x512px.png]%
                   [ul-default-chapter-01_huichol_deer_transbg_1042x1098px.png]%
                   [ul-default-chapter-02_caapi_heart_transbg_1000x797px.png]
-\setcovericonsvar[ulsbs-tag-icon-chords_EN_512x512px]
+\ulSetVariableCoverIcons[ulsbs-tag-icon-chords_EN_512x512px]
 
 \begin{document}
 
   % Cover page (recto), by larva (photo + edit):
-  \ulcoverpage{unilaiva-songbook_part1_COVER.pdf}%
+  \ulCoverPage{unilaiva-songbook_part1_COVER.pdf}%
 
   % The second page (verso):
-  \imprintpage
+  \ulImprintPage
 
   % TOC:
-  \toc
+  \ulTOC
 
   % Content chapters (comment one out in two-booklet version):
   \input{unilaiva-songbook_content_include_part1.tex}

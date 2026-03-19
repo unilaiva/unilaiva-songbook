@@ -18,20 +18,20 @@
 
 % fancyhdr: setup header (modify the existing unilaiva style)
 \fancypagestyle{unilaiva}{%
-  \fancyhead[CE]{\headertitlestyle\MakeUppercase{\mainbooktitle}} % "Unilaiva no Astral"
+  \fancyhead[CE]{\headertitlestyle\MakeUppercase{\ulMainBookTitle}} % "Unilaiva no Astral"
 }
 
-\renewcommand{\imprintpagefootnote}{%
+\renewcommand{\ulImprintPageFootnote}{%
   The hinos in this book are transcribed and made public by unilarva with\\
   the permission and help of their author Simja Johannes Lempinen.\\
   This is a work in progress: the transcriptions still contain mistakes.
 }
 
-\renewcommand{\bookbytext}{%
+\renewcommand{\ulBookByText}{%
   Received by:\par\vspace{0.618034ex}\textbf{\Large Simja Johannes Lempinen}%
 }%
 
-\setcovericonsvar[ulsbs-tag-icon-chords_PT_512x512px]%
+\ulSetVariableCoverIcons[ulsbs-tag-icon-chords_PT_512x512px]%
                  [ulsbs-tag-icon-sheetmusic_512x512px]%
                  [ulsbs-tag-icon-guitar_512x512px]
 
@@ -43,19 +43,19 @@
 \begin{document}
 
   % Cover page (recto)
-  \ulcoverpage{unilaiva-astral-revelacao_COVER.pdf}%
+  \ulCoverPage{unilaiva-astral-revelacao_COVER.pdf}%
 
   % The second page (verso):
-  \imprintpage
+  \ulImprintPage
 
   % TOC:
-  \toc
+  \ulTOC
 
-  % Sets chapter number; will be incremented by one at each \mainchapter,
+  % Sets chapter number; will be incremented by one at each \ulMainChapter,
   % \songchapter or \chapter:
   \setcounter{chapter}{0}
 
-  \mainchapter[Simja Johannes Lempinen: Revelação]{Simja Johannes Lempinen: \\Revelação}{chaprevelacaocolor}
+  \ulMainChapter[Simja Johannes Lempinen: Revelação]{Simja Johannes Lempinen: \\Revelação}{chaprevelacaocolor}
     \begin{songs}{}
       \input{content/songs_astral_revelacao.tex}
     \end{songs}

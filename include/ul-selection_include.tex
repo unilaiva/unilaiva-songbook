@@ -14,10 +14,10 @@
 %%
 
 
-\providecommand{\mainbooktitle}{Unilaiva Selection}
-\providecommand{\bookmotto}{a selection of songs from Unilaiva Songbook}
+\providecommand{\ulMainBookTitle}{Unilaiva Selection}
+\providecommand{\ulBookMotto}{a selection of songs from Unilaiva Songbook}
 \providecommand{\fullbookcoverimage}{Unilaiva-songbook_COVER.pdf}
-\providecommand{\linkpretext}{Find the complete songbook at:}
+\providecommand{\ulBookWebsiteLinkPreText}{Find the complete songbook at:}
 
 % Disable Lilypond, as it doesn't work in selections for some reason. TODO: fix.
 \showlilypondfalse
@@ -31,32 +31,32 @@
   \fancyhead[CE]{%
     \headertitlestyle%
     \ifupcasebooktitleinheader%
-      \protect\MakeUppercase{\expandafter\mainbooktitle}%
+      \protect\MakeUppercase{\expandafter\ulMainBookTitle}%
     \else%
-      \mainbooktitle%
+      \ulMainBookTitle%
     \fi%
   }
   \fancyhead[CO]{%
     \headertitlestyle%
-    \ifdefempty{\subbooktitle}{}{% not empty
+    \ifdefempty{\ulSubBookTitle}{}{% not empty
       \ifupcasesectiontitleinheader%
-        \protect\MakeUppercase{\expandafter\subbooktitle}%
+        \protect\MakeUppercase{\expandafter\ulSubBookTitle}%
       \else%
-        \subbooktitle%
+        \ulSubBookTitle%
       \fi%
     }%
   }
 }
 
-\setcovericonsperm[ulsbs-tag-icon-partial-edition_EN_512x512px.png]%
-\setcovericonsvar[ulsbs-tag-icon-chords_EN_512x512px]
+\ulSetPermanentCoverIcons[ulsbs-tag-icon-partial-edition_EN_512x512px.png]%
+\ulSetVariableCoverIcons[ulsbs-tag-icon-chords_EN_512x512px]
 
 \providecommand{\coverpdf}{}
 
 % This will create the cover page for a selection booklet. If macro \coverpdf
 % is not empty, it's content will be assumed to be a file name of a PDF file in
 % content/img, and will be used as a cover page. Otherwise a cover will be
-% generated from \mainbooktitle, \subbooktitle (optional) and
+% generated from \ulMainBookTitle, \ulSubBookTitle (optional) and
 % \fullbookcoverimage.
 \newcommand{\coverpageforselection}{%
   \ifdefempty{\coverpdf}
@@ -66,26 +66,26 @@
         \topskip0pt%
         \vspace*{11.2ex} % align with "Contents" heading on the next page; BAD for any changes
         \begin{center}
-          {\Huge \mainbooktitle}
-          \ifdefempty{\bookmotto}{}{% not empty
-            {\par\normalsize\textit{\bookmotto}}
+          {\Huge \ulMainBookTitle}
+          \ifdefempty{\ulBookMotto}{}{% not empty
+            {\par\normalsize\textit{\ulBookMotto}}
           }%
           \par\vspace*{6.98ex}
-          \ifdefempty{\subbooktitle}{}{% not empty
-            {\Large \textbf{\subbooktitle}}
+          \ifdefempty{\ulSubBookTitle}{}{% not empty
+            {\Large \textbf{\ulSubBookTitle}}
           }%
           \par\vspace*{\fill}\vspace*{\fill}
           \imagec[2]{\fullbookcoverimage}
           \par\vspace*{\fill}
         \end{center}
         \iflyriconly% skip given set ii icons in lyric-only books
-          \setcovericonsvar[\tagiconlyricsonly]%
+          \ulSetVariableCoverIcons[\ulLyricsOnlyTagIcon]%
         \fi%
-        \insertcovericonshbc
+        \ulInsertCoverIconsHBC
       }
     }%
     {% \coverpdf not empty
-      \ulcoverpage{\coverpdf}%
+      \ulCoverPage{\coverpdf}%
     }%
 }
 
@@ -93,10 +93,10 @@
 
   \coverpageforselection% cover page here
   \clearpage
-  \imprintpage % the second (title) page here (verso)
+  \ulImprintPage % the second (title) page here (verso)
 
   % TOC:
-  \toc
+  \ulTOC
 
   \clearpage
 
@@ -113,7 +113,7 @@
       \chordsoff % songs: do not show (empty line for non-existing) chords
       % songs: Increase line spacing for better readability
       \baselineadj=+1pt plus 0pt minus 0pt%
-      \renewcommand{\lyricfont}{\small} % songs: use smaller font
+      \renewcommand{\ulLyricFont}{\small} % use smaller font for lyrics
       \songcolumns{2} % songs: two columns per page
       \songpos{1} % songs: avoid ONLY page-turns within songs
       % songs: make penalty for breaking column/page at any line of lyrics to be the same:
