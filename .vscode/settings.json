@@ -16,5 +16,6 @@
   "python.linting.pylintEnabled": false,
   "python.linting.enabled": false,
   "ruff.enable": true,
-
+  "texlab.chktex.onOpenAndSave": false,
+  "texlab.chktex.onEdit": false
 }
