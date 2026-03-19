@@ -296,8 +296,8 @@ def run_lilypond_book(ui: UI, proj_content_dir: Path, job: Job, input_tex: Path,
         run_cmd(args, cwd=cwd, stdout_path=log_path, stderr_to_stdout=True, check=True, env=env)
     except Exception:
         if ABORT_EVENT.is_set():
-            raise KeyboardInterrupt()
-        raise CompileError("lilypond-book failed", log_path)
+            raise KeyboardInterrupt() from None
+        raise CompileError("lilypond-book failed", log_path) from None
 
     # lilypond-book produces a processed TeX file into lp_out, typically with the same basename
     produced = lp_out / input_tex.name
@@ -340,7 +340,7 @@ def run_lualatex_pass(ui: UI, cfg: Config, job: Job, basename: str, env: dict[st
     try:
         run_cmd(args, cwd=cwd, stdout_path=log_path, stderr_to_stdout=True, check=True, env=env)
     except Exception:
-        raise CompileError(f"Compilation error running {label}!", log_path)
+        raise CompileError(f"Compilation error running {label}!", log_path) from None
 
     return log_path, step + 1
 
@@ -367,7 +367,7 @@ def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[s
         run_cmd(["texlua", str(song_idx_script), "-l", SORT_LOCALE, "idx_title.sxd", "idx_title.sbx"],
                 cwd=cwd, stdout_path=log_title, stderr_to_stdout=True, check=True, env=env)
     except Exception:
-        raise CompileError("Error creating song title indices!", log_title)
+        raise CompileError("Error creating song title indices!", log_title) from None
     step += 1
 
     # Tag index
@@ -378,7 +378,7 @@ def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[s
             run_cmd(["texlua", str(song_idx_script), "-l", SORT_LOCALE, "-b", str(INCLUDE_DIRNAME + "/" + TAG_DEFINITION_FILENAME), "idx_tag.sxd", "idx_tag.sbx"],
                     cwd=cwd, stdout_path=log_tag, stderr_to_stdout=True, check=True, env=env)
         except Exception:
-            raise CompileError("Error creating tag indices!", log_tag)
+            raise CompileError("Error creating tag indices!", log_tag) from None
         step += 1
     else:
         ui.warning_line("Skipping creating tag index: tag definition file not found!")
@@ -414,7 +414,7 @@ def run_context_printouts(ui: UI, cfg: Config, job: Job, basename: str, env: dic
         try:
             run_cmd([context_bin, ctx_out.name], cwd=cwd, stdout_path=logp, stderr_to_stdout=True, check=True, env=env)
         except Exception:
-            raise CompileError(f"context failed for {out_base}", logp)
+            raise CompileError(f"context failed for {out_base}", logp) from None
         pdf_out = cwd / f"{out_base}.pdf"
         if pdf_out.exists():
             shutil.copy2(pdf_out, result_dir / RESULT_PRINTOUT_SUBDIRNAME / pdf_out.name)
@@ -461,7 +461,7 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
             basename,
         ], cwd=cwd, stdout_path=log_extract, stderr_to_stdout=True, check=True, env=env)
     except Exception:
-        raise CompileError("pdftoppm failed while extracting cover image", log_extract)
+        raise CompileError("pdftoppm failed while extracting cover image", log_extract) from None
     step += 1
 
     cover_png = cwd / f"{basename}.png"
@@ -491,7 +491,7 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
             img_w = int(tokens[0])
             img_h = int(tokens[1])
         except Exception:
-            raise CompileError("convert failed while probing cover image size", log_auto)
+            raise CompileError("convert failed while probing cover image size", log_auto) from None
 
         # Select the last matching rule (if any) based on the original TeX filename
         src_filename = job.doc_tex_abs.name
@@ -550,7 +550,7 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
                 append=True,
             )
         except Exception:
-            raise CompileError("convert failed while creating modified cover image", log_auto)
+            raise CompileError("convert failed while creating modified cover image", log_auto) from None
 
         if cover_modified_png.exists():
             shutil.copy2(cover_modified_png, result_dir / RESULT_IMAGE_SUBDIRNAME / cover_modified_png.name)
@@ -599,7 +599,7 @@ def build_song_db(
         )
     except Exception as e:
         write_text(log_path, f"Song database build failed: {e!r}\n")
-        raise CompileError("Failed to build song/chapter data from TeX", log_path)
+        raise CompileError("Failed to build song/chapter data from TeX", log_path) from None
     step += 1
     return db, step
 
@@ -772,7 +772,7 @@ def run_midi_audio(
             try:
                 run_cmd(args, cwd=job.compile_dir, stdout_path=log_audio, stderr_to_stdout=True, check=True, append=True)
             except Exception:
-                raise CompileError("ulsbs-midi2audio failed while encoding audio", log_audio)
+                raise CompileError("ulsbs-midi2audio failed while encoding audio", log_audio) from None
 
         # Copy audio README, if set in config, into audio result dir
         readme_audio = cfg.audiodir_readme_file

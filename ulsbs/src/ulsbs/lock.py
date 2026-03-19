@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, List
 
-from .util import atomic_create_text, ensure_dir, read_text
+from .util import ensure_dir
 
 LOCK_FILENAME = ".ulsbs.lock"
 
@@ -38,7 +38,7 @@ class JobLock:
             fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
             os.close(fd)
-            raise RuntimeError("Locked (another process is compiling this job)")
+            raise RuntimeError("Locked (another process is compiling this job)") from None
 
         # We own the lock now; write some human-readable info (optional)
         try:
@@ -92,7 +92,7 @@ def find_lock_files(temp_root: Path, max_depth: int = 0) -> List[Path]:
         return results
     # Depth-limited search
     current_level = [temp_root]
-    for depth in range(max_depth):
+    for _ in range(max_depth):
         next_level = []
         for base in current_level:
             try:

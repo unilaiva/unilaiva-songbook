@@ -178,7 +178,7 @@ def _clamp(v: Any, lo: int, hi: int, name: str | None = None) -> int:
         i = int(v)
     except Exception:
         nm = name or "value"
-        raise ValueError(f"{nm} must be an integer, got {type(v).__name__}")
+        raise ValueError(f"{nm} must be an integer, got {type(v).__name__}") from None
     if i < lo:
         return lo
     if i > hi:
@@ -358,7 +358,7 @@ def _parse_modified_cover_png_rules(raw: Any) -> Tuple[ModifiedCoverPngRule, ...
         raise ValueError("modified-cover-png must be an array of tables/objects")
 
     rules: list[ModifiedCoverPngRule] = []
-    for idx, item in enumerate(raw):
+    for item in raw:
         if not isinstance(item, dict):
             raise ValueError("Each modified-cover-png entry must be a table/object")
         data = _normalize_keys(item)
@@ -368,7 +368,7 @@ def _parse_modified_cover_png_rules(raw: Any) -> Tuple[ModifiedCoverPngRule, ...
         try:
             width_multiplier = float(data["width_multiplier"])
         except Exception:
-            raise ValueError("width-multiplier must be a number")
+            raise ValueError("width-multiplier must be a number") from None
         if width_multiplier < 0:
             raise ValueError("width-multiplier must be >= 0")
 
@@ -401,7 +401,7 @@ def _parse_modified_cover_png_rules(raw: Any) -> Tuple[ModifiedCoverPngRule, ...
                 fx2 = float(x2)
                 fy2 = float(y2)
             except Exception:
-                raise ValueError("paint-area-rect coordinates must be numbers")
+                raise ValueError("paint-area-rect coordinates must be numbers") from None
             for val in (fx1, fy1, fx2, fy2):
                 if not (0.0 <= val <= 1.0):
                     raise ValueError("paint-area-rect coordinates must be between 0.0 and 1.0")
@@ -604,8 +604,8 @@ def build_config(
     if args_ns is not None:
         # Execution/runtime
         cli_over["use_container"] = not bool(getattr(args_ns, "no_container", False))
-        if getattr(args_ns, "container_engine", None):
-            cli_over["container_engine"] = getattr(args_ns, "container_engine")
+        if engine := getattr(args_ns, "container_engine", None):
+            cli_over["container_engine"] = engine
         cli_over["container_rebuild"] = bool(getattr(args_ns, "container_rebuild", False))
         cli_over["shell"] = bool(getattr(args_ns, "shell", False))
         cli_over["pull"] = bool(getattr(args_ns, "pull", False))
@@ -642,7 +642,7 @@ def build_config(
             try:
                 cli_over["max_log_lines"] = int(max_log_lines_cli)
             except Exception:
-                raise ValueError("--max-log-lines must be an integer")
+                raise ValueError("--max-log-lines must be an integer") from None
 
         # Files from CLI (explicit docs)
         cli_files = list(getattr(args_ns, "files", []) or ())
@@ -806,7 +806,7 @@ def build_config(
             p = Path(raw)
             if not p.is_absolute() and not p.is_file():
                 # Resolve relative to the project root
-                p = (Path(getattr(runtime_project_paths, "project_root")) / p).resolve()
+                p = (Path(runtime_project_paths.project_root) / p).resolve()
             else:
                 p = p.resolve()
             if not p.is_file():

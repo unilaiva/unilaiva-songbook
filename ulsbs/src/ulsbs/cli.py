@@ -277,7 +277,7 @@ def main(argv: List[str] | None = None) -> int:
         # project root is mounted at a fixed path.
         if ns.files:
             rebased_docs: list[str] = []
-            for orig, doc_path in zip(ns.files, explicit_docs):
+            for orig, doc_path in zip(ns.files, explicit_docs, strict=True):
                 try:
                     rel = doc_path.resolve().relative_to(proj.project_root)
                 except ValueError:
@@ -285,7 +285,7 @@ def main(argv: List[str] | None = None) -> int:
                     # to the original argument string.
                     rel = Path(orig)
                 rebased_docs.append(str(rel))
-            doc_map = {orig: new for orig, new in zip(ns.files, rebased_docs)}
+            doc_map = {orig: new for orig, new in zip(ns.files, rebased_docs, strict=True)}
             passthrough = [doc_map.get(a, a) for a in passthrough]
 
         try:

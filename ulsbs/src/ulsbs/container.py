@@ -233,11 +233,6 @@ def run_self_in_container(
         except Exception:
             pass
 
-        try:
-            script_rel = script_file.resolve().relative_to(proj.project_root.resolve())
-        except Exception:
-            script_rel = script_file.name
-
         # Strip args not for container
         inner_args = [a for a in passthrough_args if a not in ("")]
 

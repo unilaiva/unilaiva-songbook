@@ -25,14 +25,13 @@ from .constants import (
 )
 import ulsbs.resultlist as resultlist
 from .ui import UI
-from .util import ensure_dir, read_text, files_are_identical, sync_tree
+from .util import ensure_dir, files_are_identical, sync_tree
 
 
 def deploy_results(ui: UI, cfg: Config) -> None:
     """Copy results from result/ to deploy/, respecting result list entries."""
     result_dir = cfg.runtime.project_paths.result_dir
     deploy_dir = cfg.runtime.project_paths.deploy_dir
-    project_root = cfg.runtime.project_paths.project_root
 
     if cfg.runtime.in_container:
         return
@@ -42,7 +41,7 @@ def deploy_results(ui: UI, cfg: Config) -> None:
         return
 
     if not deploy_dir.exists():
-        ui.nodeploy_line(f"Results NOT copied to deploy directory.")
+        ui.nodeploy_line("Results NOT copied to deploy directory.")
         ui.space_line(f"Directory not found: {str(deploy_dir)}")
         return
 

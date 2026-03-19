@@ -443,7 +443,7 @@ def _analyze_loudness(midi: Path, opts: Options, sf2: Path) -> Dict[str, float]:
     try:
         data = json.loads(m.group(0))
     except json.JSONDecodeError as e:
-        raise Midi2AudioError(f"Failed to parse loudnorm JSON: {e}")
+        raise Midi2AudioError(f"Failed to parse loudnorm JSON: {e}") from None
 
     required = [
         "input_i",
