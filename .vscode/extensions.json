@@ -1,5 +1,7 @@
 {
   "recommendations": [
-    "jeandeaual.lilypond-syntax"
+    "jeandeaual.lilypond-syntax",
+    "charliermarsh.ruff",
+    "kylinideteam.kylin-python"
   ]
 }

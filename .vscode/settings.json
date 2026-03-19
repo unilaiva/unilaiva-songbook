@@ -1,15 +1,20 @@
 {
-  // Language server: use JediLSP
+  // Language server: use JediLSP instead of Pylance
   "python.languageServer": "Jedi",
-  // Pylance: find sources
-  "python.analysis.extraPaths": [
-    "${workspaceFolder}/ulsbs/src"
-  ],
   // Jedi: find source
   "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/ulsbs/src"
+  ],
+  // Pylance: find sources
+  "python.analysis.extraPaths": [
     "${workspaceFolder}/ulsbs/src"
   ],
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
+  // Use ruff as the python linter
+  "python.linting.pylintEnabled": false,
+  "python.linting.enabled": false,
+  "ruff.enable": true,
+
 }
