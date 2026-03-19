@@ -490,10 +490,9 @@ the following string replacements ought to be done in the following order:
 
 Be careful with the whitespaces!
 
-If you are using Unilaiva-specific Lilypond style with `theLyricsOne` etc. to
-present lyrics in your Lilypond, you can use `ulsbs/src/ulsbs/assets/tools/unilaiva-lyrics-lp2tex.py3` script to do the conversion. Run it without
-arguments for usage information. NOTE: the script doesn't yet support the new
-repeat system completely.
+If you are using ULSBS-specific Lilypond style with `theLyricsOne` etc. to
+present lyrics in your Lilypond, you can use [ulsbs/ulsbs-ly2tex](ulsbs/ulsbs-ly2tex)
+script to do the conversion. Run it without arguments for usage information.
 
 #### Melody hints on the chord line ####
 
