@@ -592,9 +592,9 @@ def build_song_db(
         write_text(
             log_path,
             "Internal song database built for this book.\n\n"
-            f"  - Book title: {'<none>' if db.book_info.maintitle == None else db.book_info.maintitle}\n"
-            f"  - Book subtitle: {'<none>' if db.book_info.subtitle == None else db.book_info.subtitle}\n"
-            f"  - Book variant: {'<none>' if db.book_info.variant == None else db.book_info.variant}\n"
+            f"  - Book title: {'<none>' if db.book_info.maintitle is None else db.book_info.maintitle}\n"
+            f"  - Book subtitle: {'<none>' if db.book_info.subtitle is None else db.book_info.subtitle}\n"
+            f"  - Book variant: {'<none>' if db.book_info.variant is None else db.book_info.variant}\n"
             f"  - Total songs found: {str(db.total_songs)}\n\n"
         )
     except Exception as e:
