@@ -27,6 +27,42 @@ in LaTeX (and optionally Lilypond, if including sheet music) syntax.
 
 ---
 
+- [unilaiva-songbook](#unilaiva-songbook)
+  - [Compiling the songbooks to create PDF documents](#compiling-the-songbooks-to-create-pdf-documents)
+    - [Option ONE: use the script with a container (recommended)](#option-one-use-the-script-with-a-container-recommended)
+        - [Requirements](#requirements)
+        - [Example: on Debian or Ubuntu Linux, using Docker](#example-on-debian-or-ubuntu-linux-using-docker)
+        - [Example: on Arch Linux, using Docker](#example-on-arch-linux-using-docker)
+        - [Example: on MacOS, using Docker](#example-on-macos-using-docker)
+        - [Example: on Windows, using Docker](#example-on-windows-using-docker)
+    - [Option TWO: use the script without a container](#option-two-use-the-script-without-a-container)
+        - [Requirements](#requirements-1)
+        - [Example: on Ubuntu 24.04, without Docker](#example-on-ubuntu-2404-without-docker)
+        - [Example: on Arch Linux, without Docker](#example-on-arch-linux-without-docker)
+    - [Option THREE, compile manually](#option-three-compile-manually)
+  - [Printing](#printing)
+      - [Printing double sided on a single sided printer](#printing-double-sided-on-a-single-sided-printer)
+      - [larva's example procedure for printing](#larvas-example-procedure-for-printing)
+  - [Project structure and guidelines](#project-structure-and-guidelines)
+      - [Directory structure](#directory-structure)
+  - [Adding and editing songs](#adding-and-editing-songs)
+    - [General instructions](#general-instructions)
+    - [Page and line breaks](#page-and-line-breaks)
+    - [Repeats](#repeats)
+    - [Measure bars](#measure-bars)
+    - [Chords](#chords)
+    - [Melodies](#melodies)
+      - [Full melodies](#full-melodies)
+        - [Note on converting lyrics from Lilypond to songbook format](#note-on-converting-lyrics-from-lilypond-to-songbook-format)
+      - [Melody hints on the chord line](#melody-hints-on-the-chord-line)
+    - [Beat marks](#beat-marks)
+    - [Tags](#tags)
+    - [More information](#more-information)
+  - [Creating song selections](#creating-song-selections)
+  - [Tentative TODO](#tentative-todo)
+
+---
+
 
 Compiling the songbooks to create PDF documents
 -----------------------------------------------
