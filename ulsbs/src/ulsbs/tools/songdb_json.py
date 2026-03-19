@@ -67,10 +67,7 @@ def _build_arg_parser() -> argparse.ArgumentParser:
         "-o",
         "--output",
         type=Path,
-        help=(
-            "Write JSON to this file instead of stdout. Parent directory "
-            "must already exist."
-        ),
+        help=("Write JSON to this file instead of stdout. Parent directory must already exist."),
     )
 
     return p
@@ -144,7 +141,6 @@ def main(argv: list[str] | None = None) -> int:
     ns = parser.parse_args(argv)
 
     try:
-
         main_tex = Path(ns.main_tex).expanduser().resolve()
 
         if not main_tex.exists():
@@ -174,7 +170,6 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     except Exception as e:
-
         print(f"Error: {str(e)}", file=sys.stderr)
         return 1
 

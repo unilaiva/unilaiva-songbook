@@ -172,13 +172,20 @@ def run_self_in_container(
 
     with assets.package_mount_root() as py_root:
         env_args = [
-            "-e", f"ULSBS_MAX_PARALLEL={os.environ.get('ULSBS_MAX_PARALLEL','')}",
-            "-e", f"ULSBS_MAX_CONTAINER_MEM_GB={os.environ.get('ULSBS_MAX_CONTAINER_MEM_GB','')}",
-            "-e", f"ULSBS_USE_SYSTEM_TMP_FOR_TEMP={os.environ.get('ULSBS_USE_SYSTEM_TMP_FOR_TEMP','')}",
-            "-e", f"ULSBS_CONTAINER_ENGINE={engine}",
-            "-e", "ULSBS_INTERNAL_RUNNING_IN_CONTAINER=true",
-            "-e", f"ULSBS_INTERNAL_UNIQUE_ID={unique_id}",
-            "-e", f"ULSBS_INTERNAL_PROJECT_ROOT_ON_HOST={proj.project_root}",
+            "-e",
+            f"ULSBS_MAX_PARALLEL={os.environ.get('ULSBS_MAX_PARALLEL', '')}",
+            "-e",
+            f"ULSBS_MAX_CONTAINER_MEM_GB={os.environ.get('ULSBS_MAX_CONTAINER_MEM_GB', '')}",
+            "-e",
+            f"ULSBS_USE_SYSTEM_TMP_FOR_TEMP={os.environ.get('ULSBS_USE_SYSTEM_TMP_FOR_TEMP', '')}",
+            "-e",
+            f"ULSBS_CONTAINER_ENGINE={engine}",
+            "-e",
+            "ULSBS_INTERNAL_RUNNING_IN_CONTAINER=true",
+            "-e",
+            f"ULSBS_INTERNAL_UNIQUE_ID={unique_id}",
+            "-e",
+            f"ULSBS_INTERNAL_PROJECT_ROOT_ON_HOST={proj.project_root}",
         ]
 
         bind_py = f"type=bind,src={str(py_root)},dst=/ulsbs-py,ro"
@@ -191,17 +198,32 @@ def run_self_in_container(
 
         container_name = f"{_CONTAINER_IMAGE_NAME}-{secrets.token_hex(4)}"
         container_args = [
-            engine, "run", "--name", container_name, "-it", "--rm", "--read-only",
+            engine,
+            "run",
+            "--name",
+            container_name,
+            "-it",
+            "--rm",
+            "--read-only",
             *env_args,
-            "--memory", memory_arg,
-            "--memory-swap", memory_swap_arg,
-            "--user", f"{os.getuid()}:{os.getgid()}",
-            "--mount", bind_py,
-            "--mount", bind_root,
-            "--mount", bind_temp,
-            "--mount", f"type=volume,src={_HOMECACHE_VOLUME_NAME},dst=/home/ulsbs",
-            "--mount", "type=tmpfs,tmpfs-size=128m,dst=/tmp",
-            "--mount", "type=tmpfs,tmpfs-size=16m,dst=/run",
+            "--memory",
+            memory_arg,
+            "--memory-swap",
+            memory_swap_arg,
+            "--user",
+            f"{os.getuid()}:{os.getgid()}",
+            "--mount",
+            bind_py,
+            "--mount",
+            bind_root,
+            "--mount",
+            bind_temp,
+            "--mount",
+            f"type=volume,src={_HOMECACHE_VOLUME_NAME},dst=/home/ulsbs",
+            "--mount",
+            "type=tmpfs,tmpfs-size=128m,dst=/tmp",
+            "--mount",
+            "type=tmpfs,tmpfs-size=16m,dst=/run",
             _CONTAINER_IMAGE_NAME,
         ]
 
@@ -218,7 +240,8 @@ def run_self_in_container(
                 if engine == "podman":
                     tz_mount += ",Z"
                 container_args[insert_pos:insert_pos] = [
-                    "--mount", tz_mount,
+                    "--mount",
+                    tz_mount,
                 ]
                 insert_pos += 2
             host_zoneinfo = Path("/usr/share/zoneinfo")
@@ -227,7 +250,8 @@ def run_self_in_container(
                 if engine == "podman":
                     zi_mount += ",Z"
                 container_args[insert_pos:insert_pos] = [
-                    "--mount", zi_mount,
+                    "--mount",
+                    zi_mount,
                 ]
                 insert_pos += 2
         except Exception:
@@ -236,19 +260,12 @@ def run_self_in_container(
         # Strip args not for container
         inner_args = [a for a in passthrough_args if a not in ("")]
 
-        inner = (
-            f"cd {container_workdir} && "
-            f"PYTHONPATH=/ulsbs-py "
-            f"python3 -m ulsbs "
-            + " ".join(sh_quote(a) for a in inner_args)
+        inner = f"cd {container_workdir} && PYTHONPATH=/ulsbs-py python3 -m ulsbs " + " ".join(
+            sh_quote(a) for a in inner_args
         )
 
         if shell_only:
-            inner = (
-                f"cd {container_workdir} && "
-                f"PYTHONPATH=/ulsbs-py "
-                f"bash"
-            )
+            inner = f"cd {container_workdir} && PYTHONPATH=/ulsbs-py bash"
 
         container_args.extend(["bash", "-lc", inner])
         ui.container_line(f"Start compiler container using {engine}")

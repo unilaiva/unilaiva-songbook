@@ -35,6 +35,7 @@ def run_quiet(args: list[str]) -> str | None:
 @dataclass(frozen=True)
 class SystemInfo:
     """Snapshot of the current system environment."""
+
     os: str
     linux_distro: str | None
     total_mem_gb: int | None
@@ -49,8 +50,12 @@ def system_info() -> SystemInfo:
         return _collect_system_info()
     except Exception:
         return SystemInfo(
-            os="unknown", linux_distro=None, total_mem_gb=None,
-            free_mem_gb=None, cpu_threads=None, python_version=None,
+            os="unknown",
+            linux_distro=None,
+            total_mem_gb=None,
+            free_mem_gb=None,
+            cpu_threads=None,
+            python_version=None,
         )
 
 
@@ -90,7 +95,7 @@ def _collect_system_info() -> SystemInfo:
     elif os_name == "macos":
         out = run_quiet(["sysctl", "-n", "hw.memsize"])
         if out:
-            total_mem_gb = int(out) // (1024 ** 3)
+            total_mem_gb = int(out) // (1024**3)
         # vm_stat gives free + inactive pages
         vm = run_quiet(["vm_stat"])
         if vm:
@@ -101,9 +106,11 @@ def _collect_system_info() -> SystemInfo:
                     if m:
                         free_pages += int(m.group(1))
             if free_pages:
-                free_mem_gb = (free_pages * 4096) // (1024 ** 3)
+                free_mem_gb = (free_pages * 4096) // (1024**3)
     elif os_name == "windows":
-        wmic = run_quiet(["wmic", "OS", "get", "TotalVisibleMemorySize,FreePhysicalMemory", "/value"])
+        wmic = run_quiet(
+            ["wmic", "OS", "get", "TotalVisibleMemorySize,FreePhysicalMemory", "/value"]
+        )
         if wmic:
             for line in wmic.splitlines():
                 if line.startswith("TotalVisibleMemorySize="):
@@ -204,7 +211,9 @@ def symlink_unsupported(exc: BaseException) -> bool:
     return False
 
 
-def ensure_symlink(dst: Path, target: Path, force_dir: bool = False, fallback_copy: bool = True) -> None:
+def ensure_symlink(
+    dst: Path, target: Path, force_dir: bool = False, fallback_copy: bool = True
+) -> None:
     """
     Ensure that 'dst' is a symlink pointing to 'target' (file or directory).
 
@@ -303,7 +312,9 @@ def symlink_tree(src_root: Path, dst_root: Path, fallback_copy: bool = True) -> 
 
         # src is file or symlink-to-file/dir; dst must not be a real directory
         if dst.exists() and dst.is_dir() and not dst.is_symlink():
-            raise RuntimeError(f"symlink_tree conflict: destination is a directory but source is a file/link: {dst}")
+            raise RuntimeError(
+                f"symlink_tree conflict: destination is a directory but source is a file/link: {dst}"
+            )
 
         dst.parent.mkdir(parents=True, exist_ok=True)
 
@@ -407,14 +418,18 @@ def overlay_tree(src_root: Path, dst_root: Path, move: bool = False) -> None:
             dst.unlink(missing_ok=True)
         # If destination is a directory, that's a conflict (see semantics above)
         if dst.exists() and dst.is_dir():
-            raise RuntimeError(f"overlay_tree conflict: cannot overwrite directory with file: {dst}")
+            raise RuntimeError(
+                f"overlay_tree conflict: cannot overwrite directory with file: {dst}"
+            )
         shutil.copy2(src, dst)
 
     def _move_file(src: Path, dst: Path) -> None:
         _ensure_dir(dst.parent)
         # If dst is dir, conflict
         if dst.exists() and dst.is_dir():
-            raise RuntimeError(f"overlay_tree conflict: cannot overwrite directory with file: {dst}")
+            raise RuntimeError(
+                f"overlay_tree conflict: cannot overwrite directory with file: {dst}"
+            )
 
         # Ensure dst isn't a file/link (os.replace handles it, but ensure no symlink-to-dir weirdness)
         if dst.is_symlink() or dst.is_file():
@@ -435,7 +450,9 @@ def overlay_tree(src_root: Path, dst_root: Path, move: bool = False) -> None:
         if dst.exists() or dst.is_symlink():
             # if dst is directory, conflict
             if dst.exists() and dst.is_dir() and not dst.is_symlink():
-                raise RuntimeError(f"overlay_tree conflict: cannot overwrite directory with symlink: {dst}")
+                raise RuntimeError(
+                    f"overlay_tree conflict: cannot overwrite directory with symlink: {dst}"
+                )
             _rm_dst_file_or_link(dst)
         target = src.readlink()
         try:
@@ -469,7 +486,9 @@ def overlay_tree(src_root: Path, dst_root: Path, move: bool = False) -> None:
         # src is file or symlink
         # If dst is a directory, we refuse to overwrite it (avoid deleting resources)
         if dst.exists() and dst.is_dir() and not dst.is_symlink():
-            raise RuntimeError(f"overlay_tree conflict: destination is a directory but source is a file/link: {dst}")
+            raise RuntimeError(
+                f"overlay_tree conflict: destination is a directory but source is a file/link: {dst}"
+            )
 
         if src.is_symlink():
             if move:
@@ -633,6 +652,7 @@ def write_text(p: Path, data: str) -> None:
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(data, encoding="utf-8")
 
+
 def append_text(p: Path, data: str) -> None:
     """Append UTF-8 text to a file, creating parent directories if needed."""
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -653,6 +673,7 @@ def blake2b_file(p: Path) -> str:
 def files_are_identical(p1: Path, p2: Path) -> bool:
     """Check if two files have identical contents."""
     return p1.stat().st_size == p2.stat().st_size and blake2b_file(p1) == blake2b_file(p2)
+
 
 def run_cmd(
     args: List[str],

@@ -66,7 +66,13 @@ class UI:
             return True
         if Path("/usr/bin/tput").exists():
             try:
-                subprocess.run(["tput", "setaf", "1"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True, timeout=4)
+                subprocess.run(
+                    ["tput", "setaf", "1"],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    check=True,
+                    timeout=4
+                )
                 return True
             except Exception:
                 return False

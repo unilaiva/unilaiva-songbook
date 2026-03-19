@@ -128,8 +128,7 @@ def _find_matching_brace(text: str, open_index: int) -> int:
 # -------------------------
 
 
-_HEADER_RE = re.compile(r"^\s*%?\s*\\header\s*\{(.*?)^\s*%?\s*}\s*",
-                        re.DOTALL | re.MULTILINE)
+_HEADER_RE = re.compile(r"^\s*%?\s*\\header\s*\{(.*?)^\s*%?\s*}\s*", re.DOTALL | re.MULTILINE)
 _TITLE_RE = re.compile(r"^\s*%?\s*title\s*=\s*\"([^\"]*)\"", re.MULTILINE)
 _COMPOSER_RE = re.compile(r"^\s*%?\s*composer\s*=\s*\"([^\"]*)\"", re.MULTILINE)
 
@@ -187,12 +186,8 @@ def parse_key_and_time(src: str, debug: bool) -> Tuple[str | None, Tuple[int, in
 # ---------------
 
 
-_STANZA_RE = re.compile(
-    r"\\set\s+stanza\s*=\s*(?:\"[^\"]*\"|'[^']*'|#[^ \t\r\n]+|\S+)\s*"
-)
-_STANZA_ASSIGN_RE = re.compile(
-    r"\bstanza\s*=\s*(?:\"[^\"]*\"|'[^']*'|#[^ \t\r\n]+|\S+)\s*"
-)
+_STANZA_RE = re.compile(r"\\set\s+stanza\s*=\s*(?:\"[^\"]*\"|'[^']*'|#[^ \t\r\n]+|\S+)\s*")
+_STANZA_ASSIGN_RE = re.compile(r"\bstanza\s*=\s*(?:\"[^\"]*\"|'[^']*'|#[^ \t\r\n]+|\S+)\s*")
 
 
 def clean_lyrics_fragment(raw: str) -> str:

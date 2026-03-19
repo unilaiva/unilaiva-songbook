@@ -14,14 +14,19 @@ from pathlib import Path
 from typing import List
 
 from .constants import (
-    TEMP_DIRNAME, RESULT_DIRNAME, DEPLOY_DIRNAME, CONTENT_DIRNAME,
-    INCLUDE_DIRNAME, CONFIG_FILENAME,
+    TEMP_DIRNAME,
+    RESULT_DIRNAME,
+    DEPLOY_DIRNAME,
+    CONTENT_DIRNAME,
+    INCLUDE_DIRNAME,
+    CONFIG_FILENAME,
 )
 
 
 @dataclass(frozen=True)
 class ProjectPaths:
     """Container for key directories and files in a project root."""
+
     project_root: Path
     host_project_root: Path
     config_file: Path
@@ -43,8 +48,7 @@ class ProjectPaths:
         config_file = project_root / CONFIG_FILENAME
         if not (config_file.exists() and config_file.is_file()):
             raise SystemExit(
-                f"Config file not found: {config_file}."
-                "Please create one; it can be empty."
+                f"Config file not found: {config_file}.Please create one; it can be empty."
             )
         temp_dir = project_root / TEMP_DIRNAME
         result_dir = project_root / RESULT_DIRNAME
@@ -62,7 +66,6 @@ class ProjectPaths:
             content_dir=content_dir,
             include_dir=include_dir,
         )
-
 
     @staticmethod
     def from_docs(explicit_docs: List[Path] | None = None) -> ProjectPaths:

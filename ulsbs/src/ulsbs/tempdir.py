@@ -21,9 +21,11 @@ from .util import ensure_dir, safe_rm_tree, symlink_unsupported
 @dataclass(frozen=True)
 class TempState:
     """Describe project temp path, effective root, and link state."""
-    project_temp_path: Path          # <project>/temp
-    effective_temp_root: Path        # resolved target where jobs are actually stored
+
+    project_temp_path: Path  # <project>/temp
+    effective_temp_root: Path  # resolved target where jobs are actually stored
     is_symlink: bool
+
 
 def _desired_effective_temp_root(project_temp_dir: Path, use_system_tmp: bool) -> Path:
     """Return desired effective temp root based on config flag."""
@@ -32,6 +34,7 @@ def _desired_effective_temp_root(project_temp_dir: Path, use_system_tmp: bool) -
         return (Path("/tmp") / f"ulsbs_{user}").resolve()
     # project-local temp root
     return project_temp_dir.resolve()
+
 
 def _current_temp_state(project_temp_dir: Path) -> TempState:
     """Return current TempState for the project's temp directory."""
@@ -43,6 +46,7 @@ def _current_temp_state(project_temp_dir: Path) -> TempState:
             return TempState(project_temp_dir, project_temp_dir, True)
     return TempState(project_temp_dir, project_temp_dir, False)
 
+
 def _clear_temp_root(temp_root: Path) -> bool:
     """Clear all children under temp_root. Return True if it existed."""
     if not temp_root.exists():
@@ -50,6 +54,7 @@ def _clear_temp_root(temp_root: Path) -> bool:
     for child in temp_root.iterdir():
         safe_rm_tree(child)
     return True
+
 
 def setup_temp_dir(ui: UI, cfg: Config) -> None:
     """
@@ -81,7 +86,9 @@ def setup_temp_dir(ui: UI, cfg: Config) -> None:
             ui.space_line(f"Active lock: {sample}")
             ui.space_line(f"Current temp root: {current_root}")
             ui.space_line(f"Requested temp root: {desired_root}")
-            raise SystemExit("Another compile process is active and using different temp location for the same project.")
+            raise SystemExit(
+                "Another compile process is active and using different temp location for the same project."
+            )
         # Same temp root: do NOT clear. Let per-job locks handle contention.
         ui.info_line(f"Temp in use; preserving: {current_root}")
         return
@@ -117,6 +124,7 @@ def setup_temp_dir(ui: UI, cfg: Config) -> None:
         _clear_temp_root(project_temp_dir)
     if cfg.verbose:
         ui.info_line(f"Using project temp: {project_temp_dir}")
+
 
 def clear_temp_dir_if_no_locks(project_temp_dir: Path) -> bool:
     """Clear project temp dir if no live locks remain. Return True if done."""

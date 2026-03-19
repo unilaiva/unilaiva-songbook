@@ -8,6 +8,7 @@ This file is part of the 'ulsbs' package.
 
 # Test for python version before importing any package modules.
 import sys
+
 REQUIRED = (3, 11)
 if sys.version_info < REQUIRED:
     sys.stderr.write(

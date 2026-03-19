@@ -36,7 +36,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.ruff]
 line-length = 100
-select = ["E", "F", "W", "B"]
+select = ["F", "W", "B"] # "E"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

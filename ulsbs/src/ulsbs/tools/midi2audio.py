@@ -175,9 +175,7 @@ def _find_soundfont(explicit: Path | None) -> Path:
     for cand in SF2_CANDIDATES:
         if cand.is_file():
             return cand
-    raise Midi2AudioError(
-        "SoundFont file not found in default locations; specify one with -s"
-    )
+    raise Midi2AudioError("SoundFont file not found in default locations; specify one with -s")
 
 
 def _strip_audio_ext(path: Path) -> Path:
@@ -230,7 +228,9 @@ def _run(cmd: Sequence[str], *, capture_stderr: bool = False) -> subprocess.Comp
     )
 
 
-def _run_verbose(cmd: Sequence[str], opts: Options, *, capture_stderr: bool = False) -> subprocess.CompletedProcess:
+def _run_verbose(
+    cmd: Sequence[str], opts: Options, *, capture_stderr: bool = False
+) -> subprocess.CompletedProcess:
     if opts.verbose or opts.dry_run:
         sys.stdout.write("+ " + " ".join(str(c) for c in cmd) + "\n")
         sys.stdout.flush()
@@ -382,6 +382,7 @@ def _run_pipeline(
         )
         sys.stdout.flush()
     if opts.dry_run:
+
         class Dummy:
             returncode = 0
             stdout = b""
@@ -406,9 +407,7 @@ def _run_pipeline(
         if fs_proc.stdout is not None:
             fs_proc.stdout.close()
         fs_proc.wait()
-        raise Midi2AudioError(
-            f"ffmpeg failed with exit code {e.returncode}"
-        ) from e
+        raise Midi2AudioError(f"ffmpeg failed with exit code {e.returncode}") from e
     finally:
         if fs_proc.stdout is not None:
             fs_proc.stdout.close()
@@ -495,9 +494,7 @@ def _per_kind_filter_chain(kind: str, loudnorm_filter: str | None, opts: Options
         parts.append(loudnorm_filter)
     if opts.clip_guard:
         parts.append(
-            f"alimiter=limit={opts.guard_tp}"
-            f":attack={opts.lim_attack}"
-            f":release={opts.lim_release}"
+            f"alimiter=limit={opts.guard_tp}:attack={opts.lim_attack}:release={opts.lim_release}"
         )
 
     # MP3 encoders only accept 44.1 kHz or 48 kHz
@@ -555,9 +552,7 @@ def _build_multi_output_ffmpeg(
             kind_to_pad[kind] = "0:a"
     else:
         split_labels = [f"s{i}" for i in range(N)]
-        filter_parts.append(
-            f"[0:a]asplit={N}" + "".join(f"[{lbl}]" for lbl in split_labels)
-        )
+        filter_parts.append(f"[0:a]asplit={N}" + "".join(f"[{lbl}]" for lbl in split_labels))
         for i, kind in enumerate(kinds):
             chain = chains[kind]
             if chain:
@@ -597,12 +592,18 @@ def _build_multi_output_ffmpeg(
             sample_fmt = "s16" if opts.flac_bits == 16 else "s32"
             bits = "16" if opts.flac_bits == 16 else "24"
             ff += [
-                "-c:a", "flac",
-                "-compression_level", "8",
-                "-sample_fmt", sample_fmt,
-                "-bits_per_raw_sample", bits,
-                "-ac", "2",
-                "-ar", str(opts.rate),
+                "-c:a",
+                "flac",
+                "-compression_level",
+                "8",
+                "-sample_fmt",
+                sample_fmt,
+                "-bits_per_raw_sample",
+                bits,
+                "-ac",
+                "2",
+                "-ar",
+                str(opts.rate),
             ]
             ff += meta_args
             ff.append(str(out_path))
@@ -641,9 +642,12 @@ def _attach_cover_art(out_paths: Dict[str, Path], opts: Options) -> None:
         ff += ["-id3v2_version", "3", "-write_id3v1", "0"]
         ff += _metadata_args(opts)
         ff += [
-            "-metadata:s:v", "title=Album cover",
-            "-metadata:s:v", "comment=Cover (front)",
-            "-disposition:v", "attached_pic",
+            "-metadata:s:v",
+            "title=Album cover",
+            "-metadata:s:v",
+            "comment=Cover (front)",
+            "-disposition:v",
+            "attached_pic",
         ]
         tmp = mp3_path.with_suffix(".tmp" + mp3_path.suffix)
         ff.append(str(tmp))
@@ -756,71 +760,277 @@ def _build_arg_parser() -> argparse.ArgumentParser:
     p_out.add_argument("-m", "--mp3", dest="want_mp3", action="store_true", help="write MP3")
     p_out.add_argument("-f", "--flac", dest="want_flac", action="store_true", help="write FLAC")
     p_out.add_argument("-w", "--wav", dest="want_wav", action="store_true", help="write WAV")
-    p_out.add_argument("-k", "--raw", dest="want_raw", action="store_true", help="write pre-filter RAWRENDER.wav")
+    p_out.add_argument(
+        "-k", "--raw", dest="want_raw", action="store_true", help="write pre-filter RAWRENDER.wav"
+    )
 
     # Output quality
     p_qual = p.add_argument_group("Output quality")
-    p_qual.add_argument("-B", "--flac-bits", dest="flac_bits", type=int, choices=[16, 24], default=24, help="FLAC bit depth")
-    p_qual.add_argument("-U", "--wav-bits", dest="wav_bits", type=int, choices=[16, 24], default=24, help="WAV bit depth")
+    p_qual.add_argument(
+        "-B",
+        "--flac-bits",
+        dest="flac_bits",
+        type=int,
+        choices=[16, 24],
+        default=24,
+        help="FLAC bit depth",
+    )
+    p_qual.add_argument(
+        "-U",
+        "--wav-bits",
+        dest="wav_bits",
+        type=int,
+        choices=[16, 24],
+        default=24,
+        help="WAV bit depth",
+    )
     p_qual = p.add_argument_group("MP3")
-    p_qual.add_argument("-q", "--mp3-vbr-quality", dest="vbr_q", type=int, default=2, metavar="QUALITY", help="MP3 VBR quality 0..9 (lower is better)")
-    p_qual.add_argument("-b", "--mp3-cbr-kbps", dest="cbr_kbps", type=int, default=None, metavar="KBPS", help="MP3 CBR kbps 32..320, takes precedence over -q")
+    p_qual.add_argument(
+        "-q",
+        "--mp3-vbr-quality",
+        dest="vbr_q",
+        type=int,
+        default=2,
+        metavar="QUALITY",
+        help="MP3 VBR quality 0..9 (lower is better)",
+    )
+    p_qual.add_argument(
+        "-b",
+        "--mp3-cbr-kbps",
+        dest="cbr_kbps",
+        type=int,
+        default=None,
+        metavar="KBPS",
+        help="MP3 CBR kbps 32..320, takes precedence over -q",
+    )
 
     # Rendering
     p_rend = p.add_argument_group("Rendering")
     p_rend.add_argument("-s", "--soundfont-file", dest="sf2", metavar="FILE", help="SoundFont file")
-    p_rend.add_argument("-r", "--sample-rate", dest="rate", type=int, default=48_000, help="sample rate (44100/48000/96000/192000)")
-    p_rend.add_argument("-g", "--gain", dest="gain", type=float, default=0.60, help="master gain 0.01..1.00")
+    p_rend.add_argument(
+        "-r",
+        "--sample-rate",
+        dest="rate",
+        type=int,
+        default=48_000,
+        help="sample rate (44100/48000/96000/192000)",
+    )
+    p_rend.add_argument(
+        "-g", "--gain", dest="gain", type=float, default=0.60, help="master gain 0.01..1.00"
+    )
 
     # Reverb
     p_rev = p.add_argument_group("Reverb")
-    p_rev.add_argument("-R", "--enable-reverb", dest="rev_active", type=int, choices=[0, 1], default=1, help="enable reverb 0/1")
-    p_rev.add_argument("--reverb-roomsize", dest="rev_room", type=float, default=0.60, metavar="ROOM-SIZE", help="reverb room size (0.0..1.0)")
-    p_rev.add_argument("--reverb-damp", dest="rev_damp", type=float, default=0.30, metavar="DAMPENING", help="reverb dampening (0.0..1.0)")
-    p_rev.add_argument("--reverb-level", dest="rev_level", type=float, default=0.60, metavar="LEVEL", help="reverb level (0.0..1.0)")
-    p_rev.add_argument("--reverb-width", dest="rev_width", type=float, default=0.90, metavar="WIDTH", help="reverb width (0.0..1.0)")
+    p_rev.add_argument(
+        "-R",
+        "--enable-reverb",
+        dest="rev_active",
+        type=int,
+        choices=[0, 1],
+        default=1,
+        help="enable reverb 0/1",
+    )
+    p_rev.add_argument(
+        "--reverb-roomsize",
+        dest="rev_room",
+        type=float,
+        default=0.60,
+        metavar="ROOM-SIZE",
+        help="reverb room size (0.0..1.0)",
+    )
+    p_rev.add_argument(
+        "--reverb-damp",
+        dest="rev_damp",
+        type=float,
+        default=0.30,
+        metavar="DAMPENING",
+        help="reverb dampening (0.0..1.0)",
+    )
+    p_rev.add_argument(
+        "--reverb-level",
+        dest="rev_level",
+        type=float,
+        default=0.60,
+        metavar="LEVEL",
+        help="reverb level (0.0..1.0)",
+    )
+    p_rev.add_argument(
+        "--reverb-width",
+        dest="rev_width",
+        type=float,
+        default=0.90,
+        metavar="WIDTH",
+        help="reverb width (0.0..1.0)",
+    )
 
     # Chorus
     p_chor = p.add_argument_group("Chorus")
-    p_chor.add_argument("-c", "--enable-chorus", dest="chorus_active", type=int, choices=[0, 1], default=0, help="enable chorus 0/1")
-    p_chor.add_argument("--chorus-lines", dest="chorus_lines", type=int, default=3, metavar="LINES", help="chorus lines (1..99)")
-    p_chor.add_argument("--chorus-level", dest="chorus_level", type=float, default=0.60, metavar="LEVEL", help="chorus level (0.0..10.0)")
-    p_chor.add_argument("--chorus-speed", dest="chorus_speed", type=float, default=0.20, metavar="SPEED", help="chorus speed (0.1..5.0)")
-    p_chor.add_argument("--chorus-depth", dest="chorus_depth", type=float, default=4.25, metavar="DEPTH", help="chorus depth (0.0..256.0)")
+    p_chor.add_argument(
+        "-c",
+        "--enable-chorus",
+        dest="chorus_active",
+        type=int,
+        choices=[0, 1],
+        default=0,
+        help="enable chorus 0/1",
+    )
+    p_chor.add_argument(
+        "--chorus-lines",
+        dest="chorus_lines",
+        type=int,
+        default=3,
+        metavar="LINES",
+        help="chorus lines (1..99)",
+    )
+    p_chor.add_argument(
+        "--chorus-level",
+        dest="chorus_level",
+        type=float,
+        default=0.60,
+        metavar="LEVEL",
+        help="chorus level (0.0..10.0)",
+    )
+    p_chor.add_argument(
+        "--chorus-speed",
+        dest="chorus_speed",
+        type=float,
+        default=0.20,
+        metavar="SPEED",
+        help="chorus speed (0.1..5.0)",
+    )
+    p_chor.add_argument(
+        "--chorus-depth",
+        dest="chorus_depth",
+        type=float,
+        default=4.25,
+        metavar="DEPTH",
+        help="chorus depth (0.0..256.0)",
+    )
 
     # Loudness
     p_loud = p.add_argument_group("Loudness")
-    p_loud.add_argument("-L", "--enable-loudnorm", dest="enable_loudnorm", type=int, choices=[0, 1], default=1, help="enable loudnorm 0/1")
-    p_loud.add_argument("-I", "--loudnorm-lufs", dest="lufs", type=float, default=-14.0, help="target LUFS -40..-5")
-    p_loud.add_argument("-K", "--loudnorm-lra", dest="lra", type=float, default=7.0, help="target LRA 1..20")
-    p_loud.add_argument("-T", "--loudnorm-tp", dest="tp", type=float, default=-0.10, help="true-peak limit -6.0..0.0")
-    p_loud.add_argument("-2", "--loudnorm-twopass", dest="two_pass", action="store_true", help="two-pass loudnorm")
+    p_loud.add_argument(
+        "-L",
+        "--enable-loudnorm",
+        dest="enable_loudnorm",
+        type=int,
+        choices=[0, 1],
+        default=1,
+        help="enable loudnorm 0/1",
+    )
+    p_loud.add_argument(
+        "-I", "--loudnorm-lufs", dest="lufs", type=float, default=-14.0, help="target LUFS -40..-5"
+    )
+    p_loud.add_argument(
+        "-K", "--loudnorm-lra", dest="lra", type=float, default=7.0, help="target LRA 1..20"
+    )
+    p_loud.add_argument(
+        "-T",
+        "--loudnorm-tp",
+        dest="tp",
+        type=float,
+        default=-0.10,
+        help="true-peak limit -6.0..0.0",
+    )
+    p_loud.add_argument(
+        "-2", "--loudnorm-twopass", dest="two_pass", action="store_true", help="two-pass loudnorm"
+    )
 
     # Limiter
     p_lim = p.add_argument_group("Limiter")
-    p_lim.add_argument("-C", "--enable-limiter", dest="clip_guard", type=int, choices=[0, 1], default=0, help="enable post-limiter 0/1")
-    p_lim.add_argument("-P", "--limiter-ceiling", dest="guard_tp", type=float, default=0.9, metavar="CEILING", help="limiter ceiling 0.1..1.0")
-    p_lim.add_argument("-M", "--limiter-attack", dest="lim_attack", type=float, default=5.0, metavar="ATTACK", help="limiter attack ms")
-    p_lim.add_argument("-N", "--limiter-release", dest="lim_release", type=float, default=50.0, metavar="RELEASE", help="limiter release ms")
+    p_lim.add_argument(
+        "-C",
+        "--enable-limiter",
+        dest="clip_guard",
+        type=int,
+        choices=[0, 1],
+        default=0,
+        help="enable post-limiter 0/1",
+    )
+    p_lim.add_argument(
+        "-P",
+        "--limiter-ceiling",
+        dest="guard_tp",
+        type=float,
+        default=0.9,
+        metavar="CEILING",
+        help="limiter ceiling 0.1..1.0",
+    )
+    p_lim.add_argument(
+        "-M",
+        "--limiter-attack",
+        dest="lim_attack",
+        type=float,
+        default=5.0,
+        metavar="ATTACK",
+        help="limiter attack ms",
+    )
+    p_lim.add_argument(
+        "-N",
+        "--limiter-release",
+        dest="lim_release",
+        type=float,
+        default=50.0,
+        metavar="RELEASE",
+        help="limiter release ms",
+    )
 
     # Tags
     p_tags = p.add_argument_group("Tags")
     p_tags.add_argument("--tag-tracktitle", dest="tag_title", metavar="TITLE", help="track title")
-    p_tags.add_argument("--tag-trackartist", dest="tag_artist", metavar="ARTIST", help="track artist")
+    p_tags.add_argument(
+        "--tag-trackartist", dest="tag_artist", metavar="ARTIST", help="track artist"
+    )
     p_tags.add_argument("--tag-tracknr", dest="tag_tracknr", metavar="NUMBER", help="track number")
-    p_tags.add_argument("--tag-albumtitle", dest="tag_album", metavar="ALBUMTITLE", help="album title")
-    p_tags.add_argument("--tag-albumartist", dest="tag_albumartist", metavar="ALBUMARTIST", help="album artist")
+    p_tags.add_argument(
+        "--tag-albumtitle", dest="tag_album", metavar="ALBUMTITLE", help="album title"
+    )
+    p_tags.add_argument(
+        "--tag-albumartist", dest="tag_albumartist", metavar="ALBUMARTIST", help="album artist"
+    )
     p_tags.add_argument("--tag-year", dest="tag_year", metavar="YEAR", help="year")
-    p_tags.add_argument("--tag-image", dest="tag_image", metavar="FILE", help="cover image (JPEG/PNG)")
+    p_tags.add_argument(
+        "--tag-image", dest="tag_image", metavar="FILE", help="cover image (JPEG/PNG)"
+    )
 
     # Behaviour
     p_beh = p.add_argument_group("Behaviour")
-    p_beh.add_argument("-t", "--threads", dest="threads", type=int, default=0, help="ffmpeg threads, 0=auto")
-    p_beh.add_argument("-v", "--verbose", dest="verbose", action="store_true", default=False, help="verbose output")
-    p_beh.add_argument("-Q", "--quiet", dest="quiet", action="store_true", default=False, help="quiet non-error output")
-    p_beh.add_argument("-n", "--dry-run", dest="dry_run", action="store_true", default=False, help="dry-run (print commands only)")
-    p_beh.add_argument("-o", "--outfile-basename", dest="out_base", metavar="BASENAME", help="output basename (single input only)")
-    p_beh.add_argument("-y", "--force-overwrite", dest="force", action="store_true", help="overwrite existing files without prompting")
+    p_beh.add_argument(
+        "-t", "--threads", dest="threads", type=int, default=0, help="ffmpeg threads, 0=auto"
+    )
+    p_beh.add_argument(
+        "-v", "--verbose", dest="verbose", action="store_true", default=False, help="verbose output"
+    )
+    p_beh.add_argument(
+        "-Q",
+        "--quiet",
+        dest="quiet",
+        action="store_true",
+        default=False,
+        help="quiet non-error output",
+    )
+    p_beh.add_argument(
+        "-n",
+        "--dry-run",
+        dest="dry_run",
+        action="store_true",
+        default=False,
+        help="dry-run (print commands only)",
+    )
+    p_beh.add_argument(
+        "-o",
+        "--outfile-basename",
+        dest="out_base",
+        metavar="BASENAME",
+        help="output basename (single input only)",
+    )
+    p_beh.add_argument(
+        "-y",
+        "--force-overwrite",
+        dest="force",
+        action="store_true",
+        help="overwrite existing files without prompting",
+    )
 
     # Positionals
     p.add_argument("inputs", metavar="input.mid", nargs="+", help="MIDI file(s) to render")
@@ -896,9 +1106,7 @@ def _opts_from_args(ns: argparse.Namespace) -> Options:
 def _validate_options(o: Options, inputs: Sequence[str]) -> None:
     # Sample rate
     if o.rate not in (44_100, 48_000, 96_000, 192_000):
-        raise Midi2AudioError(
-            f"-r must be one of 44100, 48000, 96000, 192000 (got {o.rate})"
-        )
+        raise Midi2AudioError(f"-r must be one of 44100, 48000, 96000, 192000 (got {o.rate})")
 
     _float_in_range(o.gain, 0.01, 1.0, "gain (-g)")
 

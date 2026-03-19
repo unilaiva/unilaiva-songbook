@@ -56,7 +56,9 @@ def initialize_with_file(reslist_file: Path) -> None:
         raise Exception(f"Result list file candidate is incorrecly named: {reslist_file}")
 
     if not (reslist_file.exists() and reslist_file.is_file()):
-        raise Exception(f"Result list file candidate does not exist or is not a file: {reslist_file}")
+        raise Exception(
+            f"Result list file candidate does not exist or is not a file: {reslist_file}"
+        )
 
     _resultlist_file = reslist_file.resolve()
     _dir = _resultlist_file.parent
@@ -128,7 +130,7 @@ def write_header(remove_existing_file: bool = True) -> None:
 def finalize(
     dst_dir: Path | None = None,
     runresult: ParallelRunResult | None = None,
-    delete_existing_resultlists_in_dst: bool = False
+    delete_existing_resultlists_in_dst: bool = False,
 ) -> None:
     """
     Finalize the list and optionally copy it to dst_dir, deleting old ones.
@@ -141,7 +143,10 @@ def finalize(
         raise RuntimeError("resultlist not initialized. Call initialize() first.")
 
     if runresult:
-        append_line(RESULT_TYPE_INFO, f"Jobs succeeded: {len(runresult.successes)} (with {runresult.total_warnings} warnings)")
+        append_line(
+            RESULT_TYPE_INFO,
+            f"Jobs succeeded: {len(runresult.successes)} (with {runresult.total_warnings} warnings)",
+        )
         append_line(RESULT_TYPE_INFO, f"Jobs failed: {len(runresult.failures)}")
 
     ended = current_time_human_readable()
@@ -192,7 +197,6 @@ def delete():
 
     if not _initialized:
         raise RuntimeError("resultlist not initialized. Call initialize() first.")
-
 
     if _resultlist_file.exists() and _resultlist_file.is_file():
         _resultlist_file.unlink()

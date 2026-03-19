@@ -163,7 +163,7 @@ class BookInfo:
     subtitle: str | None = None
     subsubtitle: str | None = None
     motto: str | None = None
-    variant: str | None = "unknown" # not parsed, but given to build_song_database()
+    variant: str | None = "unknown"  # not parsed, but given to build_song_database()
     wwwlink: str | None = None
     wwwqr: str | None = None
     imprintnote: str | None = None
@@ -258,7 +258,9 @@ class SongbookData:
             raise TypeError("Object of type %s is not JSON-serialisable" % type(obj).__name__)
 
         raw = asdict(self)
-        dest.write_text(json.dumps(raw, default=_default, indent=indent, ensure_ascii=False), encoding="utf-8")
+        dest.write_text(
+            json.dumps(raw, default=_default, indent=indent, ensure_ascii=False), encoding="utf-8"
+        )
 
 
 # Helpers
@@ -352,11 +354,7 @@ def _tex_to_plain_text(text: str) -> str:
             return " "
         contents = re.findall(r"\{([^}]*)\}", braces)
         # Keep non-empty args that are not pure TeX lengths
-        kept = [
-            c.strip()
-            for c in contents
-            if c.strip() and not length_re.match(c)
-        ]
+        kept = [c.strip() for c in contents if c.strip() and not length_re.match(c)]
         return " ".join(kept) if kept else " "
 
     macro_with_args_re = re.compile(
@@ -591,7 +589,9 @@ def _resolve_include(name: str, current_file: Path, search_paths: Sequence[Path]
     return None
 
 
-def _resolve_documentclass(classname: str, current_file: Path, search_paths: Sequence[Path]) -> Path | None:
+def _resolve_documentclass(
+    classname: str, current_file: Path, search_paths: Sequence[Path]
+) -> Path | None:
     """Resolve a \\documentclass{...} argument to a ``.cls`` file.
 
     The search order is:
@@ -780,7 +780,9 @@ def _apply_book_field(book_info: BookInfo, field_name: str, value: str) -> None:
     object.__setattr__(book_info, field_name, cleaned)
 
 
-def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path], variant: str = "unknown") -> SongbookData:
+def build_song_database(
+    processed_tex: Path, include_search_paths: Sequence[Path], variant: str = "unknown"
+) -> SongbookData:
     """
     Parse processed_tex and all its inputs into a SongbookData class.
 
@@ -839,9 +841,7 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
             current_songnum += 1
 
         # Normalise simple TeX constructs in \beginsong options as well.
-        normalised_options: Dict[str, str] = {
-            k: _tex_to_plain_text(v) for k, v in options.items()
-        }
+        normalised_options: Dict[str, str] = {k: _tex_to_plain_text(v) for k, v in options.items()}
 
         midi_rel, midi_abs = _find_midi_in_song_block(raw_block, doc_root)
         audio_links = _collect_audio_links_from_block(raw_block)
@@ -1018,7 +1018,6 @@ def build_song_database(processed_tex: Path, include_search_paths: Sequence[Path
                 if target_path is not None:
                     process_file(target_path)
                 continue
-
 
             # Chapters
             if any(src.startswith(m, i) for m in _CHAPTER_MACROS):

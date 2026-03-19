@@ -21,6 +21,7 @@ from .util import read_text, regex_documentclass_ulsbs_songbook
 @dataclass(frozen=True)
 class Job:
     """One compilation job (document + variant + paths/colors)."""
+
     doc_tex_abs: Path
     doc_stem: str
     variant: str
@@ -95,11 +96,19 @@ def build_job_queue(cfg: Config, doc_colors: List[str]) -> List[Job]:
     for i, doc in enumerate(cfg.songbooks):
         color = doc_colors[i % len(doc_colors)]
         base = doc.stem
-        jobs.append(Job(doc, base, "default", color, project_root / TEMP_DIRNAME / base / "default"))
+        jobs.append(
+            Job(doc, base, "default", color, project_root / TEMP_DIRNAME / base / "default")
+        )
         if cfg.lyricbooks and variant_possible_lyrics(doc):
-            jobs.append(Job(doc, base, "lyrics", color, project_root / TEMP_DIRNAME / base / "lyrics"))
+            jobs.append(
+                Job(doc, base, "lyrics", color, project_root / TEMP_DIRNAME / base / "lyrics")
+            )
         if cfg.extrainstrumentbooks and variant_possible_charango(doc):
-            jobs.append(Job(doc, base, "charango", color, project_root / TEMP_DIRNAME / base / "charango"))
+            jobs.append(
+                Job(doc, base, "charango", color, project_root / TEMP_DIRNAME / base / "charango")
+            )
         if cfg.extrainstrumentbooks and variant_possible_bassclef(doc):
-            jobs.append(Job(doc, base, "bassclef", color, project_root / TEMP_DIRNAME / base / "bassclef"))
+            jobs.append(
+                Job(doc, base, "bassclef", color, project_root / TEMP_DIRNAME / base / "bassclef")
+            )
     return jobs

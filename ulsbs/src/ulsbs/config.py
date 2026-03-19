@@ -32,6 +32,7 @@ except Exception:  # pragma: no cover
 @dataclass(frozen=True)
 class Runtime:
     """Runtime-only values detected/created by the CLI."""
+
     project_paths: ProjectPaths
     in_container: bool
     unique_id: str
@@ -46,6 +47,7 @@ class ModifiedCoverPaintRect:
     using a bottom-left origin (0,0). For example, (0, 0, 0.5, 0.5) covers the
     lower-left quarter of the image.
     """
+
     x1: float
     y1: float
     x2: float
@@ -55,6 +57,7 @@ class ModifiedCoverPaintRect:
 @dataclass(frozen=True)
 class ModifiedCoverPngRule:
     """Configuration for creating a modified/widened cover PNG for a songbook."""
+
     width_multiplier: float
     songbook_filenames: str = "*"
     color: str = "white"
@@ -64,6 +67,7 @@ class ModifiedCoverPngRule:
 @dataclass(frozen=True)
 class Config:
     """Validated, merged configuration."""
+
     # General
     profile: str = "default"
     config_path: Path = Path(CONFIG_FILENAME)
@@ -105,7 +109,9 @@ class Config:
     container_memory_plus_swap_gb: int = 6
 
     # Files (absolute paths, validated to exist)
-    songbooks: Tuple[Path, ...] = field(default_factory=tuple) # From config, possibly overwritten by CLI
+    songbooks: Tuple[Path, ...] = field(
+        default_factory=tuple
+    )  # From config, possibly overwritten by CLI
     common_deploy_icons: Tuple[Path, ...] = field(default_factory=tuple)
     common_deploy_metadata: Tuple[Path, ...] = field(default_factory=tuple)
     common_deploy_other: Tuple[Path, ...] = field(default_factory=tuple)
@@ -133,6 +139,7 @@ class Config:
 # ========================
 
 _last_built_config: Config | None = None
+
 
 def get_config() -> Config | None:
     """
@@ -271,7 +278,9 @@ def _ensure_known_keys(scope: str, data: Dict[str, Any], allowed: Set[str]) -> N
         raise ValueError(f"Unknown keys in {scope}: {unknown}")
 
 
-def _expand_patterns(patterns: Iterable[str], base_dir: Path, must_exist: bool = True) -> Tuple[Path, ...]:
+def _expand_patterns(
+    patterns: Iterable[str], base_dir: Path, must_exist: bool = True
+) -> Tuple[Path, ...]:
     """
     Expand ?, * and normal paths relative to base_dir (unless absolute).
     Return absolute, deduplicated, sorted paths. Raise if a pattern
@@ -292,7 +301,9 @@ def _expand_patterns(patterns: Iterable[str], base_dir: Path, must_exist: bool =
         if _WILDCARD_RE.search(raw):
             matches = glob.glob(pattern_str, recursive=True)
             if must_exist and not matches:
-                raise FileNotFoundError(f"Pattern matched no files: {raw!r} (resolved from {pattern_str})")
+                raise FileNotFoundError(
+                    f"Pattern matched no files: {raw!r} (resolved from {pattern_str})"
+                )
             for m in matches:
                 p = Path(m).resolve()
                 if must_exist and not p.is_file():
@@ -376,7 +387,9 @@ def _parse_modified_cover_png_rules(raw: Any) -> Tuple[ModifiedCoverPngRule, ...
         if not isinstance(pattern, str) or not pattern.strip():
             raise ValueError("songbook-filenames must be a non-empty string")
         if "/" in pattern or "\\" in pattern:
-            raise ValueError("songbook-filenames must not contain path separators; only filenames are allowed")
+            raise ValueError(
+                "songbook-filenames must not contain path separators; only filenames are allowed"
+            )
 
         color = data.get("color", "white")
         if not isinstance(color, str) or not color.strip():
@@ -393,7 +406,9 @@ def _parse_modified_cover_png_rules(raw: Any) -> Tuple[ModifiedCoverPngRule, ...
         rects: list[ModifiedCoverPaintRect] = []
         for r in rects_raw or []:
             if not isinstance(r, (list, tuple)) or len(r) != 4:
-                raise ValueError("paint-area-rect(s) must be arrays of four numbers: [x1, y1, x2, y2]")
+                raise ValueError(
+                    "paint-area-rect(s) must be arrays of four numbers: [x1, y1, x2, y2]"
+                )
             x1, y1, x2, y2 = r
             try:
                 fx1 = float(x1)
@@ -426,24 +441,43 @@ def _parse_modified_cover_png_rules(raw: Any) -> Tuple[ModifiedCoverPngRule, ...
 
 _ALLOWED_FILE_KEYS: Set[str] = {
     # Execution
-    "sequential", "clean_temp", "keep_temp",
-    "shell", "pull",
+    "sequential",
+    "clean_temp",
+    "keep_temp",
+    "shell",
+    "pull",
     # Deploy modes and features (and their negations via _apply_negations)
-    "deploy", "deploy_last", "deploy_common", "create_printouts", "coverimage",
-    "midifiles", "audiofiles", "fast_audio_encode",
-    "midifiles_allow_for_optional_variants", "audiofiles_allow_for_optional_variants",
-    "extrainstrumentbooks", "lyricbooks",
+    "deploy",
+    "deploy_last",
+    "deploy_common",
+    "create_printouts",
+    "coverimage",
+    "midifiles",
+    "audiofiles",
+    "fast_audio_encode",
+    "midifiles_allow_for_optional_variants",
+    "audiofiles_allow_for_optional_variants",
+    "extrainstrumentbooks",
+    "lyricbooks",
     # Files
-    "songbooks", "common_deploy_icons", "common_deploy_metadata", "common_deploy_other",
+    "songbooks",
+    "common_deploy_icons",
+    "common_deploy_metadata",
+    "common_deploy_other",
     # Single-file settings
-    "mididir_readme_file", "audiodir_readme_file",
+    "mididir_readme_file",
+    "audiodir_readme_file",
     # Cover image tuning
-    "cover_image_height", "modified_cover_png",
+    "cover_image_height",
+    "modified_cover_png",
     # Miscellaneous:
-    "max_log_lines", "verbose",
+    "max_log_lines",
+    "verbose",
     # Profile mechanics
-    "inherit_from", "merge_keys",
+    "inherit_from",
+    "merge_keys",
 }
+
 
 def _load_toml(path: Path) -> Dict[str, Any]:
     """Load a TOML file and return a dict; raise if missing or not a file."""
@@ -456,7 +490,9 @@ def _load_toml(path: Path) -> Dict[str, Any]:
     return raw or {}
 
 
-def _split_flat_and_profiles(raw: Dict[str, Any]) -> Tuple[Dict[str, Any], Dict[str, Dict[str, Any]]]:
+def _split_flat_and_profiles(
+    raw: Dict[str, Any],
+) -> Tuple[Dict[str, Any], Dict[str, Dict[str, Any]]]:
     """Split root config and 'profiles' table; normalize keys in both."""
     norm = _normalize_keys(raw)
     profiles = norm.get("profiles")
@@ -533,6 +569,7 @@ def _resolve_profile_data(
 # Build config
 # ============
 
+
 def build_config(
     *,
     args_ns: Any | None,
@@ -571,7 +608,9 @@ def build_config(
 
     # Complex/structured settings that exist only in the config file
     if "modified_cover_png" in file_over:
-        file_over["modified_cover_png"] = _parse_modified_cover_png_rules(file_over["modified_cover_png"])
+        file_over["modified_cover_png"] = _parse_modified_cover_png_rules(
+            file_over["modified_cover_png"]
+        )
 
     # Normalize special booleans/aliases from file
     if "keep_temp" in file_over and "clean_temp" not in file_over:
@@ -624,8 +663,12 @@ def build_config(
         cli_over["coverimage"] = not bool(getattr(args_ns, "no_coverimage", False))
         cli_over["midifiles"] = not bool(getattr(args_ns, "no_midi", False))
         cli_over["audiofiles"] = not bool(getattr(args_ns, "no_audio", False))
-        cli_over["midifiles_allow_for_optional_variants"] = bool(getattr(args_ns, "midifiles_allow_for_optional_variants", False))
-        cli_over["audiofiles_allow_for_optional_variants"] = bool(getattr(args_ns, "audiofiles_allow_for_optional_variants", False))
+        cli_over["midifiles_allow_for_optional_variants"] = bool(
+            getattr(args_ns, "midifiles_allow_for_optional_variants", False)
+        )
+        cli_over["audiofiles_allow_for_optional_variants"] = bool(
+            getattr(args_ns, "audiofiles_allow_for_optional_variants", False)
+        )
         cli_over["extrainstrumentbooks"] = not bool(getattr(args_ns, "no_extrainstr", False))
         cli_over["lyricbooks"] = not bool(getattr(args_ns, "no_lyric", False))
         cli_over["quick"] = bool(getattr(args_ns, "quick", False))
@@ -651,7 +694,19 @@ def build_config(
     combined = {**conf.__dict__, **file_over, **env_over, **cli_over}
 
     # Remove dataclass-only and runtime keys, keep field names only
-    combined = {k: v for k, v in combined.items() if hasattr(conf, k) or k in {"_sequential_flag", "songbooks", "common_deploy_icons", "common_deploy_metadata", "common_deploy_other"}}
+    combined = {
+        k: v
+        for k, v in combined.items()
+        if hasattr(conf, k)
+        or k
+        in {
+            "_sequential_flag",
+            "songbooks",
+            "common_deploy_icons",
+            "common_deploy_metadata",
+            "common_deploy_other",
+        }
+    }
     conf = replace(conf, **{k: v for k, v in combined.items() if k != "_sequential_flag"})
 
     # Apply sequential flag (processed after concurrency/memory heuristics below)
@@ -680,7 +735,9 @@ def build_config(
 
     explicit_env_parallel = env_max_parallel if env_max_parallel is not None else None
     explicit_cli_parallel = cli_max_parallel
-    explicit_parallel = explicit_cli_parallel if explicit_cli_parallel is not None else explicit_env_parallel
+    explicit_parallel = (
+        explicit_cli_parallel if explicit_cli_parallel is not None else explicit_env_parallel
+    )
     explicit_mem_gb = env_container_mem_gb if env_container_mem_gb is not None else None
 
     # CPU-based upper bound for workers
@@ -706,7 +763,11 @@ def build_config(
     elif explicit_parallel is None and explicit_mem_gb is not None:
         # 3) Explicit container memory only -> derive max_parallel from memory and CPU
         container_mem_val = float(explicit_mem_gb)
-        jobs_by_mem = int(memory_available // float(ASSUMED_JOB_MEM_GB)) if ASSUMED_JOB_MEM_GB > 0 else int(memory_available)
+        jobs_by_mem = (
+            int(memory_available // float(ASSUMED_JOB_MEM_GB))
+            if ASSUMED_JOB_MEM_GB > 0
+            else int(memory_available)
+        )
         if jobs_by_mem < 1:
             jobs_by_mem = 1
         max_parallel_val = min(jobs_by_mem, cpu_limit)
@@ -714,7 +775,11 @@ def build_config(
     else:
         # 4) Neither provided -> automatic defaults from available resources
         container_mem_val = float(memory_available)
-        jobs_by_mem = int(memory_available // float(ASSUMED_JOB_MEM_GB)) if ASSUMED_JOB_MEM_GB > 0 else int(memory_available)
+        jobs_by_mem = (
+            int(memory_available // float(ASSUMED_JOB_MEM_GB))
+            if ASSUMED_JOB_MEM_GB > 0
+            else int(memory_available)
+        )
         if jobs_by_mem < 1:
             jobs_by_mem = 1
         max_parallel_val = min(jobs_by_mem, cpu_limit)
@@ -730,19 +795,36 @@ def build_config(
         container_mem_gb_int = 2
 
     # Warnings when overrides were explicitly provided
-    if (used_explicit_parallel or used_explicit_mem) and ui is not None and not runtime_in_container:
+    if (
+        (used_explicit_parallel or used_explicit_mem)
+        and ui is not None
+        and not runtime_in_container
+    ):
         if container_mem_gb_int >= memory_available:
             if used_explicit_mem and conf.use_container:
-                ui.warning_line(f"Configured container memory ({container_mem_gb_int} GiB) is >= estimated available")
+                ui.warning_line(
+                    f"Configured container memory ({container_mem_gb_int} GiB) is >= estimated available"
+                )
             else:
-                ui.warning_line(f"Estimated maximum memory use ({container_mem_gb_int} GiB) is >= estimated available")
-            ui.space_line(f"memory ({memory_available:.1f} GiB). This may cause swapping or OOM kills.")
+                ui.warning_line(
+                    f"Estimated maximum memory use ({container_mem_gb_int} GiB) is >= estimated available"
+                )
+            ui.space_line(
+                f"memory ({memory_available:.1f} GiB). This may cause swapping or OOM kills."
+            )
         if sys_info.cpu_threads is not None and max_parallel_val >= sys_info.cpu_threads:
-            ui.warning_line(f"Configured max_parallel ({max_parallel_val}) is >= available CPU threads ({sys_info.cpu_threads}).")
+            ui.warning_line(
+                f"Configured max_parallel ({max_parallel_val}) is >= available CPU threads ({sys_info.cpu_threads})."
+            )
             ui.space_line("This may overload the system.")
-        if container_mem_gb_int <= math.ceil(max_parallel_val * ASSUMED_JOB_MEM_GB) and conf.use_container:
+        if (
+            container_mem_gb_int <= math.ceil(max_parallel_val * ASSUMED_JOB_MEM_GB)
+            and conf.use_container
+        ):
             if used_explicit_mem:
-                ui.warning_line(f"Configured container memory ({container_mem_gb_int} GiB) is too small for {max_parallel_val} threads.")
+                ui.warning_line(
+                    f"Configured container memory ({container_mem_gb_int} GiB) is too small for {max_parallel_val} threads."
+                )
 
     conf = replace(
         conf,
@@ -750,7 +832,6 @@ def build_config(
         container_memory_gb=container_mem_gb_int,
         container_memory_plus_swap_gb=container_mem_gb_int,
     )
-
 
     # Resolve and validate file patterns from config (relative to config_dir)
     cfg_dir = conf.config_dir
@@ -769,31 +850,43 @@ def build_config(
     if "common_deploy_icons" in file_over:
         if not isinstance(file_over["common_deploy_icons"], (list, tuple)):
             raise ValueError("common-deploy-icons must be an array")
-        common_deploy_icons = _expand_patterns(file_over["common_deploy_icons"], cfg_dir, must_exist=common_must_exist)
+        common_deploy_icons = _expand_patterns(
+            file_over["common_deploy_icons"], cfg_dir, must_exist=common_must_exist
+        )
 
     common_deploy_metadata: Tuple[Path, ...] = ()
     if "common_deploy_metadata" in file_over:
         if not isinstance(file_over["common_deploy_metadata"], (list, tuple)):
             raise ValueError("common-deploy-metadata must be an array")
-        common_deploy_metadata = _expand_patterns(file_over["common_deploy_metadata"], cfg_dir, must_exist=common_must_exist)
+        common_deploy_metadata = _expand_patterns(
+            file_over["common_deploy_metadata"], cfg_dir, must_exist=common_must_exist
+        )
 
     common_deploy_other: Tuple[Path, ...] = ()
     if "common_deploy_other" in file_over:
         if not isinstance(file_over["common_deploy_other"], (list, tuple)):
             raise ValueError("common-deploy-other must be an array")
-        common_deploy_other = _expand_patterns(file_over["common_deploy_other"], cfg_dir, must_exist=common_must_exist)
+        common_deploy_other = _expand_patterns(
+            file_over["common_deploy_other"], cfg_dir, must_exist=common_must_exist
+        )
 
     # Single-file settings (must exist, relative to config dir, no absolute)
     mididir_readme_file_path: Path | None = None
     if "mididir_readme_file" in file_over:
         mididir_readme_file_path = _resolve_single_file_setting(
-            file_over["mididir_readme_file"], base_dir=cfg_dir, must_exist=True, allow_absolute=False
+            file_over["mididir_readme_file"],
+            base_dir=cfg_dir,
+            must_exist=True,
+            allow_absolute=False,
         )
 
     audiodir_readme_file_path: Path | None = None
     if "audiodir_readme_file" in file_over:
         audiodir_readme_file_path = _resolve_single_file_setting(
-            file_over["audiodir_readme_file"], base_dir=cfg_dir, must_exist=True, allow_absolute=False
+            file_over["audiodir_readme_file"],
+            base_dir=cfg_dir,
+            must_exist=True,
+            allow_absolute=False,
         )
 
     # CLI explicit files override selection if provided

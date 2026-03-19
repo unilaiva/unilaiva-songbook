@@ -25,6 +25,7 @@ class EngineAssets:
     Use context managers because assets may be inside a wheel and need
     temporary extraction (importlib.resources.as_file()).
     """
+
     package: str = "ulsbs"
     assets_dirname: str = "assets"
 

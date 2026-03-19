@@ -20,9 +20,11 @@ from .util import ensure_dir
 
 LOCK_FILENAME = ".ulsbs.lock"
 
+
 @dataclass
 class JobLock:
     """Non-blocking exclusive lock within a job's compile directory."""
+
     lock_path: Path
     _fd: int | None = None
 
@@ -43,10 +45,7 @@ class JobLock:
         # We own the lock now; write some human-readable info (optional)
         try:
             os.ftruncate(fd, 0)
-            info = (
-                f"pid={os.getpid()}\n"
-                f"started={int(time.time())}\n"
-            )
+            info = f"pid={os.getpid()}\nstarted={int(time.time())}\n"
             os.write(fd, info.encode("utf-8"))
             os.fsync(fd)
         except Exception:

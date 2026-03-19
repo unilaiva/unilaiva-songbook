@@ -22,16 +22,27 @@ from fnmatch import fnmatch
 
 from .config import Config
 from .constants import (
-    LYRICSONLY_FNAMEPART, CHARANGO_FNAMEPART, BASSCLEF_FNAMEPART,
+    LYRICSONLY_FNAMEPART,
+    CHARANGO_FNAMEPART,
+    BASSCLEF_FNAMEPART,
     PAPERA5_FNAMEPART,
-    RESULT_TYPE_MAIN_PDF, RESULT_TYPE_PRINTOUT_PDF, RESULT_TYPE_IMAGE,
-    RESULT_TYPE_MIDIDIR, RESULT_TYPE_AUDIODIR,
-    RESULT_PRINTOUT_SUBDIRNAME, RESULT_IMAGE_SUBDIRNAME,
-    RESULT_MIDI_SUBDIRNAME, RESULT_AUDIO_SUBDIRNAME,
-    SONG_IDX_SCRIPT_REL, SORT_LOCALE,
+    RESULT_TYPE_MAIN_PDF,
+    RESULT_TYPE_PRINTOUT_PDF,
+    RESULT_TYPE_IMAGE,
+    RESULT_TYPE_MIDIDIR,
+    RESULT_TYPE_AUDIODIR,
+    RESULT_PRINTOUT_SUBDIRNAME,
+    RESULT_IMAGE_SUBDIRNAME,
+    RESULT_MIDI_SUBDIRNAME,
+    RESULT_AUDIO_SUBDIRNAME,
+    SONG_IDX_SCRIPT_REL,
+    SORT_LOCALE,
     COVERIMAGE_MODIFIED_FNAME_POSTFIX,
     SELECTION_FNAME_PREFIX,
-    TEMP_DIRNAME, CONTENT_DIRNAME, INCLUDE_DIRNAME, TAG_DEFINITION_FILENAME,
+    TEMP_DIRNAME,
+    CONTENT_DIRNAME,
+    INCLUDE_DIRNAME,
+    TAG_DEFINITION_FILENAME,
     GENAUDIO_ALBUMTITLE,
 )
 from .engine_assets import EngineAssets
@@ -61,6 +72,7 @@ ABORT_EVENT = threading.Event()
 
 class CompileError(RuntimeError):
     """Error during a compile step; may carry a path to a log file."""
+
     def __init__(self, message: str, log_path: Path | None = None):
         super().__init__(message)
         self.log_path = log_path
@@ -72,10 +84,12 @@ class JobSuccess:
     job: Job
     warning_count: int
 
+
 @dataclass(frozen=True)
 class JobFailure:
     job: Job
     reason: str
+
 
 @dataclass
 class ParallelRunResult:
@@ -103,10 +117,13 @@ def die_log(ui: UI, cfg: Config, job: Job, cwd: Path, message: str, log_path: Pa
             pass
         if cfg.max_log_lines > 0:
             ui.plain("")
-            ui.space_line(ui.colorize(f"Displaying the last {cfg.max_log_lines} lines of log:", ui.C_YELLOW))
+            ui.space_line(
+                ui.colorize(f"Displaying the last {cfg.max_log_lines} lines of log:", ui.C_YELLOW)
+            )
             ui.plain("")
             try:
                 from collections import deque
+
                 with log_path.open("r", encoding="utf-8", errors="replace") as f:
                     tail = deque(f, maxlen=cfg.max_log_lines)
                 ui.plain("".join(tail))
@@ -135,9 +152,13 @@ def build_tool_include_paths(job: Job) -> tuple[dict[str, str], list[str]]:
     env = os.environ.copy()
 
     # Compute path roots used by tools.
-    job_root = str(job.compile_dir)          # Job's working directory
-    job_ulsbs_tex = str(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex")  # ULSBS TeX tree within the job
-    job_ulsbs_lp = str(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly")    # LilyPond includes live under ly/
+    job_root = str(job.compile_dir)  # Job's working directory
+    job_ulsbs_tex = str(
+        job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex"
+    )  # ULSBS TeX tree within the job
+    job_ulsbs_lp = str(
+        job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly"
+    )  # LilyPond includes live under ly/
     job_content = str(job.compile_dir / CONTENT_DIRNAME)
     job_include = str(job.compile_dir / INCLUDE_DIRNAME)
 
@@ -159,17 +180,23 @@ def prepare_compile_dir(ui: UI, assets: EngineAssets, cfg: Config, job: Job) -> 
     # tex tree from ulsbs (copied, because variants modify some files)
     ensure_dir(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex")
     with assets.tex_dir() as src_tex:
-        shutil.copytree(src_tex, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex", dirs_exist_ok=True)
+        shutil.copytree(
+            src_tex, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex", dirs_exist_ok=True
+        )
 
     # ly tree from ulsbs (copied, because variants modify some files)
     ensure_dir(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly")
     with assets.ly_dir() as src_ly:
-        shutil.copytree(src_ly, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly", dirs_exist_ok=True)
+        shutil.copytree(
+            src_ly, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly", dirs_exist_ok=True
+        )
 
     # img tree from ulsbs (copied, because variants modify some files)
     ensure_dir(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "img")
     with assets.img_dir() as src_img:
-        shutil.copytree(src_img, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "img", dirs_exist_ok=True)
+        shutil.copytree(
+            src_img, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "img", dirs_exist_ok=True
+        )
 
     # Aliases
     ensure_symlink(
@@ -249,7 +276,9 @@ def make_variant_tex(job: Job) -> Path:
         out_path = job.compile_dir / out_name
         write_text(out_path, injected)
 
-        for f in (job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly").glob("ulsbs-include-tail*_bassclef.ly"):
+        for f in (job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly").glob(
+            "ulsbs-include-tail*_bassclef.ly"
+        ):
             newname = f.name.replace("_bassclef", "")
             shutil.copy2(f, job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly" / newname)
         return out_path
@@ -257,9 +286,15 @@ def make_variant_tex(job: Job) -> Path:
     raise SystemExit(f"Unknown variant: {job.variant}")
 
 
-
-
-def run_lilypond_book(ui: UI, proj_content_dir: Path, job: Job, input_tex: Path, env: dict[str, str], lp_include_args: list[str], step: int) -> tuple[Path, Path, int]:
+def run_lilypond_book(
+    ui: UI,
+    proj_content_dir: Path,
+    job: Job,
+    input_tex: Path,
+    env: dict[str, str],
+    lp_include_args: list[str],
+    step: int,
+) -> tuple[Path, Path, int]:
     """
     Run lilypond-book in the job directory, but output into a dedicated subdir
     to avoid "Output would overwrite input file" errors.
@@ -283,11 +318,13 @@ def run_lilypond_book(ui: UI, proj_content_dir: Path, job: Job, input_tex: Path,
     process_cmd = shlex.join(["lilypond", *lp_include_args, "-dno-point-and-click"])
     args = [
         "lilypond-book",
-        "-f", "latex",
+        "-f",
+        "latex",
         "--latex-program=lualatex",
         "--pdf",
         f"--process={process_cmd}",
-        "--output", str(lp_out),
+        "--output",
+        str(lp_out),
         "--use-source-file-names",
         input_arg,
     ]
@@ -320,7 +357,16 @@ def run_lilypond_book(ui: UI, proj_content_dir: Path, job: Job, input_tex: Path,
     return processed_in_jobroot, log_path, step + 1
 
 
-def run_lualatex_pass(ui: UI, cfg: Config, job: Job, basename: str, env: dict[str, str], step: int, pass_no: int, draftmode: bool) -> tuple[Path, int]:
+def run_lualatex_pass(
+    ui: UI,
+    cfg: Config,
+    job: Job,
+    basename: str,
+    env: dict[str, str],
+    step: int,
+    pass_no: int,
+    draftmode: bool,
+) -> tuple[Path, int]:
     """Run a LuaLaTeX pass and return the log path and next step number."""
     cwd = job.compile_dir
     txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
@@ -345,7 +391,9 @@ def run_lualatex_pass(ui: UI, cfg: Config, job: Job, basename: str, env: dict[st
     return log_path, step + 1
 
 
-def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[str, str], step: int) -> int:
+def run_texlua_indices(
+    ui: UI, cfg: Config, job: Job, basename: str, env: dict[str, str], step: int
+) -> int:
     """Create title and tag indices using texlua scripts."""
     cwd = job.compile_dir
     txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
@@ -353,7 +401,9 @@ def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[s
     # Find script
     song_idx_script = cwd / SONG_IDX_SCRIPT_REL
     if not song_idx_script.exists():
-        song_idx_script = cwd / _JOB_ULSBS_ASSETS_DIRNAME / "tex" / "ext_packages" / "songs" / "songidx.lua"
+        song_idx_script = (
+            cwd / _JOB_ULSBS_ASSETS_DIRNAME / "tex" / "ext_packages" / "songs" / "songidx.lua"
+        )
     if not song_idx_script.exists():
         msg = f"songidx.lua not found at {song_idx_script}"
         logp = cwd / f"log-{step:02d}_indices-error.log"
@@ -364,8 +414,14 @@ def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[s
     log_title = cwd / f"log-{step:02d}_titleidx.log"
     ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} texlua (create title index)")
     try:
-        run_cmd(["texlua", str(song_idx_script), "-l", SORT_LOCALE, "idx_title.sxd", "idx_title.sbx"],
-                cwd=cwd, stdout_path=log_title, stderr_to_stdout=True, check=True, env=env)
+        run_cmd(
+            ["texlua", str(song_idx_script), "-l", SORT_LOCALE, "idx_title.sxd", "idx_title.sbx"],
+            cwd=cwd,
+            stdout_path=log_title,
+            stderr_to_stdout=True,
+            check=True,
+            env=env,
+        )
     except Exception:
         raise CompileError("Error creating song title indices!", log_title) from None
     step += 1
@@ -375,8 +431,23 @@ def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[s
         log_tag = cwd / f"log-{step:02d}_tagidx.log"
         ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} texlua (create tag index)")
         try:
-            run_cmd(["texlua", str(song_idx_script), "-l", SORT_LOCALE, "-b", str(INCLUDE_DIRNAME + "/" + TAG_DEFINITION_FILENAME), "idx_tag.sxd", "idx_tag.sbx"],
-                    cwd=cwd, stdout_path=log_tag, stderr_to_stdout=True, check=True, env=env)
+            run_cmd(
+                [
+                    "texlua",
+                    str(song_idx_script),
+                    "-l",
+                    SORT_LOCALE,
+                    "-b",
+                    str(INCLUDE_DIRNAME + "/" + TAG_DEFINITION_FILENAME),
+                    "idx_tag.sxd",
+                    "idx_tag.sbx",
+                ],
+                cwd=cwd,
+                stdout_path=log_tag,
+                stderr_to_stdout=True,
+                check=True,
+                env=env,
+            )
         except Exception:
             raise CompileError("Error creating tag indices!", log_tag) from None
         step += 1
@@ -385,7 +456,9 @@ def run_texlua_indices(ui: UI, cfg: Config, job: Job, basename: str, env: dict[s
     return step
 
 
-def run_context_printouts(ui: UI, cfg: Config, job: Job, basename: str, env: dict[str, str], step: int) -> int:
+def run_context_printouts(
+    ui: UI, cfg: Config, job: Job, basename: str, env: dict[str, str], step: int
+) -> int:
     """Create extra A5-on-A4 printouts with ConTeXt if templates exist."""
     result_dir = cfg.runtime.project_paths.result_dir
     cwd = job.compile_dir
@@ -412,7 +485,14 @@ def run_context_printouts(ui: UI, cfg: Config, job: Job, basename: str, env: dic
         write_text(ctx_out, data)
         logp = cwd / f"log-{step:02d}_context-{out_base}.log"
         try:
-            run_cmd([context_bin, ctx_out.name], cwd=cwd, stdout_path=logp, stderr_to_stdout=True, check=True, env=env)
+            run_cmd(
+                [context_bin, ctx_out.name],
+                cwd=cwd,
+                stdout_path=logp,
+                stderr_to_stdout=True,
+                check=True,
+                env=env,
+            )
         except Exception:
             raise CompileError(f"context failed for {out_base}", logp) from None
         pdf_out = cwd / f"{out_base}.pdf"
@@ -421,8 +501,18 @@ def run_context_printouts(ui: UI, cfg: Config, job: Job, basename: str, env: dic
             resultlist.append_line(RESULT_TYPE_PRINTOUT_PDF, pdf_out.name)
         return step + 1
 
-    tpl1 = cwd / _JOB_ULSBS_ASSETS_DIRNAME / "tex" / "ulsbs-printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context"
-    tpl2 = cwd / _JOB_ULSBS_ASSETS_DIRNAME / "tex" / "ulsbs-printout-template_EASY-A5-on-A4-sidebyside-simple.context"
+    tpl1 = (
+        cwd
+        / _JOB_ULSBS_ASSETS_DIRNAME
+        / "tex"
+        / "ulsbs-printout-template_BOOKLET-A5-on-A4-doublesided-needs-cutting.context"
+    )
+    tpl2 = (
+        cwd
+        / _JOB_ULSBS_ASSETS_DIRNAME
+        / "tex"
+        / "ulsbs-printout-template_EASY-A5-on-A4-sidebyside-simple.context"
+    )
 
     step = make_printout(tpl1, f"printout-BOOKLET_{basename}-on-A4-doublesided-needs-cutting", step)
     step = make_printout(tpl2, f"printout-EASY_{basename}-on-A4-sidebyside-simple", step)
@@ -430,7 +520,9 @@ def run_context_printouts(ui: UI, cfg: Config, job: Job, basename: str, env: dic
     return step
 
 
-def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env: dict[str, str], step: int) -> int:
+def run_coverimage_extraction(
+    ui: UI, cfg: Config, job: Job, basename: str, env: dict[str, str], step: int
+) -> int:
     """Extract cover image(s) from the compiled PDF using pdftoppm/convert.
 
     The extracted base PNG is always created. Optionally, a modified/widened
@@ -450,16 +542,26 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
     ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} pdftoppm (extract cover as image)")
     log_extract = cwd / f"log-{step:02d}_coverimage-extract.log"
     try:
-        run_cmd([
-            "pdftoppm",
-            "-f", "1",
-            "-singlefile",
-            "-png",
-            "-scale-to-x", "-1",
-            "-scale-to-y", str(cfg.cover_image_height),
-            f"{basename}.pdf",
-            basename,
-        ], cwd=cwd, stdout_path=log_extract, stderr_to_stdout=True, check=True, env=env)
+        run_cmd(
+            [
+                "pdftoppm",
+                "-f",
+                "1",
+                "-singlefile",
+                "-png",
+                "-scale-to-x",
+                "-1",
+                "-scale-to-y",
+                str(cfg.cover_image_height),
+                f"{basename}.pdf",
+                basename,
+            ],
+            cwd=cwd,
+            stdout_path=log_extract,
+            stderr_to_stdout=True,
+            check=True,
+            env=env,
+        )
     except Exception:
         raise CompileError("pdftoppm failed while extracting cover image", log_extract) from None
     step += 1
@@ -524,9 +626,12 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
                 target_w = int(round(img_w * rule.width_multiplier))
 
             cmd += [
-                "-background", rule.color,
-                "-gravity", "center",
-                "-extent", f"{target_w}x{target_h}",
+                "-background",
+                rule.color,
+                "-gravity",
+                "center",
+                "-extent",
+                f"{target_w}x{target_h}",
                 cover_modified_png.name,
             ]
         else:
@@ -534,8 +639,10 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
             # the image, without extra painting.
             target_w = target_h = img_h
             cmd += [
-                "-gravity", "center",
-                "-extent", f"{target_w}x{target_h}",
+                "-gravity",
+                "center",
+                "-extent",
+                f"{target_w}x{target_h}",
                 cover_modified_png.name,
             ]
 
@@ -550,10 +657,14 @@ def run_coverimage_extraction(ui: UI, cfg: Config, job: Job, basename: str, env:
                 append=True,
             )
         except Exception:
-            raise CompileError("convert failed while creating modified cover image", log_auto) from None
+            raise CompileError(
+                "convert failed while creating modified cover image", log_auto
+            ) from None
 
         if cover_modified_png.exists():
-            shutil.copy2(cover_modified_png, result_dir / RESULT_IMAGE_SUBDIRNAME / cover_modified_png.name)
+            shutil.copy2(
+                cover_modified_png, result_dir / RESULT_IMAGE_SUBDIRNAME / cover_modified_png.name
+            )
             resultlist.append_line(RESULT_TYPE_IMAGE, cover_modified_png.name)
         step += 1
 
@@ -575,7 +686,9 @@ def build_song_db(
     if not (cfg.midifiles or cfg.audiofiles):
         return None, step
     # Skip if this is an optional variant and neither audio nor midi is allowed for optional variants
-    if job.variant != "default" and not (cfg.midifiles_allow_for_optional_variants or cfg.audiofiles_allow_for_optional_variants):
+    if job.variant != "default" and not (
+        cfg.midifiles_allow_for_optional_variants or cfg.audiofiles_allow_for_optional_variants
+    ):
         return None, step
 
     ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} internal: build song tree")
@@ -588,14 +701,16 @@ def build_song_db(
         job.compile_dir / INCLUDE_DIRNAME,
     ]
     try:
-        db = build_song_database(processed_tex=processed_tex, include_search_paths=search_paths, variant=job.variant)
+        db = build_song_database(
+            processed_tex=processed_tex, include_search_paths=search_paths, variant=job.variant
+        )
         write_text(
             log_path,
             "Internal song database built for this book.\n\n"
             f"  - Book title: {'<none>' if db.book_info.maintitle is None else db.book_info.maintitle}\n"
             f"  - Book subtitle: {'<none>' if db.book_info.subtitle is None else db.book_info.subtitle}\n"
             f"  - Book variant: {'<none>' if db.book_info.variant is None else db.book_info.variant}\n"
-            f"  - Total songs found: {str(db.total_songs)}\n\n"
+            f"  - Total songs found: {str(db.total_songs)}\n\n",
         )
     except Exception as e:
         write_text(log_path, f"Song database build failed: {e!r}\n")
@@ -675,7 +790,10 @@ def run_midi_audio(
                 append_text(log_midi, f"Copied MIDI for '{song.title}' from {song.midi_abs_path}\n")
             except Exception:
                 copy_error_count += 1
-                append_text(log_midi, f"Warning: Failed to copy MIDI for '{song.title}' from {song.midi_abs_path}\n")
+                append_text(
+                    log_midi,
+                    f"Warning: Failed to copy MIDI for '{song.title}' from {song.midi_abs_path}\n",
+                )
 
         if copy_error_count > 0:
             ui.warning_line(f"{txt_doc}: Failed to copy {copy_error_count} MIDI files")
@@ -686,7 +804,10 @@ def run_midi_audio(
             if readme_midi.exists():
                 shutil.copy2(readme_midi, cur_res_midi / "README.md")
             else:
-                append_text(log_midi, f"Warning: Readme for MIDI directories does not exist: {readme_midi}\n")
+                append_text(
+                    log_midi,
+                    f"Warning: Readme for MIDI directories does not exist: {readme_midi}\n",
+                )
                 ui.warning_line(f"{txt_doc}: Readme for MIDI dir does not exist: {readme_midi}")
         resultlist.append_line(RESULT_TYPE_MIDIDIR, cur_res_midi.name)
         step += 1
@@ -718,24 +839,15 @@ def run_midi_audio(
                 "ulsbs.tools.midi2audio",
                 "--force-overwrite",
                 "--verbose",
-                "--mp3-vbr-quality", "6",  # 0-9, lower is better
+                "--mp3-vbr-quality",
+                "6",  # 0-9, lower is better
                 "--mp3",
             ]
             # loudnorm (slow) / limiter (fast)
             if cfg.fast_audio_encode:
-                args += [
-                    "--enable-loudnorm",
-                    "0",
-                    "--enable-limiter",
-                    "1"
-                ]
+                args += ["--enable-loudnorm", "0", "--enable-limiter", "1"]
             else:
-                args += [
-                    "--enable-loudnorm",
-                    "1",
-                    "--enable-limiter",
-                    "0"
-                ]
+                args += ["--enable-loudnorm", "1", "--enable-limiter", "0"]
             # metadata tags
             if song.number:
                 args += [
@@ -761,7 +873,12 @@ def run_midi_audio(
                 "--tag-albumartist",
                 GENAUDIO_ALBUMTITLE,
                 "--tag-image",
-                str(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "img" / "ulsbs-album-cover-for-generated-audio.png")
+                str(
+                    job.compile_dir
+                    / _JOB_ULSBS_ASSETS_DIRNAME
+                    / "img"
+                    / "ulsbs-album-cover-for-generated-audio.png"
+                ),
             ]
             # input and output file
             args += [
@@ -770,9 +887,18 @@ def run_midi_audio(
                 str(song.midi_abs_path),
             ]
             try:
-                run_cmd(args, cwd=job.compile_dir, stdout_path=log_audio, stderr_to_stdout=True, check=True, append=True)
+                run_cmd(
+                    args,
+                    cwd=job.compile_dir,
+                    stdout_path=log_audio,
+                    stderr_to_stdout=True,
+                    check=True,
+                    append=True,
+                )
             except Exception:
-                raise CompileError("ulsbs-midi2audio failed while encoding audio", log_audio) from None
+                raise CompileError(
+                    "ulsbs-midi2audio failed while encoding audio", log_audio
+                ) from None
 
         # Copy audio README, if set in config, into audio result dir
         readme_audio = cfg.audiodir_readme_file
@@ -780,7 +906,10 @@ def run_midi_audio(
             if readme_audio.exists():
                 shutil.copy2(readme_audio, cur_res_audio / "README.md")
             else:
-                append_text(log_midi, f"Warning: Readme for audio directories does not exist: {readme_audio}\n")
+                append_text(
+                    log_midi,
+                    f"Warning: Readme for audio directories does not exist: {readme_audio}\n",
+                )
                 ui.warning_line(f"{txt_doc}: Readme for audio does not exist: {readme_audio}")
         resultlist.append_line(RESULT_TYPE_AUDIODIR, cur_res_audio.name)
         step += 1
@@ -789,11 +918,7 @@ def run_midi_audio(
 
 
 def analyze_warnings(
-    ui: UI,
-    cfg: Config,
-    job: Job,
-    lilypond_log: Path,
-    last_lualatex_log: Path
+    ui: UI, cfg: Config, job: Job, lilypond_log: Path, last_lualatex_log: Path
 ) -> int:
     """Count and summarize warnings from lilypond and LuaLaTeX logs."""
     txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
@@ -806,11 +931,17 @@ def analyze_warnings(
             lp_log_txt = read_text(lilypond_log)
             lp_all_warn = len(re.findall(r"warning", lp_log_txt, flags=re.I))
             lp_bar_warn = len(re.findall(r"warning: barcheck", lp_log_txt, flags=re.I))
-            lp_auto_warn = len(re.findall(r"warning: Unable to auto-detect default settings", lp_log_txt, flags=re.I))
+            lp_auto_warn = len(
+                re.findall(
+                    r"warning: Unable to auto-detect default settings", lp_log_txt, flags=re.I
+                )
+            )
             if lp_all_warn > 0 and lp_auto_warn == 1:
                 lp_all_warn -= 1
             if lp_all_warn:
-                ui.warning_line(f"{txt_doc}: Lilypond warnings - all: {lp_all_warn} (barcheck: {lp_bar_warn})")
+                ui.warning_line(
+                    f"{txt_doc}: Lilypond warnings - all: {lp_all_warn} (barcheck: {lp_bar_warn})"
+                )
             total_warn += lp_all_warn
     except Exception:
         ui.warning_line(f"{txt_doc}: Lilypond warnings - failed to read the log file")
@@ -822,7 +953,9 @@ def analyze_warnings(
             tex_all_warn = len(re.findall(r"warning", lt_log_txt, flags=re.I))
             tex_font_warn = len(re.findall(r"Font Warning", lt_log_txt, flags=re.I))
             if tex_all_warn:
-                ui.warning_line(f"{txt_doc}: TeX warnings - all: {tex_all_warn} (font: {tex_font_warn})")
+                ui.warning_line(
+                    f"{txt_doc}: TeX warnings - all: {tex_all_warn} (font: {tex_font_warn})"
+                )
             if tex_font_warn > 20:
                 ui.space_line(ui.colorize("Concerning amount of font warnings!", ui.C_RED))
             total_warn += tex_all_warn
@@ -832,9 +965,17 @@ def analyze_warnings(
 
     if total_warn > 0 and not cfg.clean_temp:
         if lp_all_warn:
-            ui.see_line(TEMP_DIRNAME + '/' + str(lilypond_log.relative_to(lilypond_log.parent.parent.parent)))
+            ui.see_line(
+                TEMP_DIRNAME
+                + "/"
+                + str(lilypond_log.relative_to(lilypond_log.parent.parent.parent))
+            )
         if tex_all_warn:
-            ui.see_line(TEMP_DIRNAME + '/' + str(last_lualatex_log.relative_to(last_lualatex_log.parent.parent.parent)))
+            ui.see_line(
+                TEMP_DIRNAME
+                + "/"
+                + str(last_lualatex_log.relative_to(last_lualatex_log.parent.parent.parent))
+            )
 
     return total_warn
 
@@ -886,7 +1027,9 @@ def compile_one_job(
 
         # 2) lualatex pass 1 (draftmode)
         try:
-            last_tex_log, step = run_lualatex_pass(ui, cfg, job, basename, env, step, pass_no=1, draftmode=True)
+            last_tex_log, step = run_lualatex_pass(
+                ui, cfg, job, basename, env, step, pass_no=1, draftmode=True
+            )
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
 
@@ -899,20 +1042,31 @@ def compile_one_job(
 
         # 4) lualatex pass 2 (draftmode)
         try:
-            last_tex_log, step = run_lualatex_pass(ui, cfg, job, basename, env, step, pass_no=2, draftmode=True)
+            last_tex_log, step = run_lualatex_pass(
+                ui, cfg, job, basename, env, step, pass_no=2, draftmode=True
+            )
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
 
         # 5) lualatex pass 3
         try:
-            last_tex_log, step = run_lualatex_pass(ui, cfg, job, basename, env, step, pass_no=3, draftmode=False)
+            last_tex_log, step = run_lualatex_pass(
+                ui, cfg, job, basename, env, step, pass_no=3, draftmode=False
+            )
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
 
         # Ensure PDF exists and copy to result dir
         produced_pdf = cwd / f"{basename}.pdf"
         if not produced_pdf.exists():
-            die_log(ui, cfg, job, cwd=cwd, message="Expected PDF not produced by lualatex.", log_path=last_tex_log)
+            die_log(
+                ui,
+                cfg,
+                job,
+                cwd=cwd,
+                message="Expected PDF not produced by lualatex.",
+                log_path=last_tex_log,
+            )
         dst_pdf = result_dir / produced_pdf.name
         shutil.copy2(produced_pdf, dst_pdf)
         resultlist.append_line(RESULT_TYPE_MAIN_PDF, produced_pdf.name)
@@ -931,18 +1085,30 @@ def compile_one_job(
 
         # 8) Build song database
         try:
-            song_db, step = build_song_db(ui=ui, cfg=cfg, job=job, processed_tex=processed_tex, step=step)
+            song_db, step = build_song_db(
+                ui=ui, cfg=cfg, job=job, processed_tex=processed_tex, step=step
+            )
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
 
         # 9) MIDI/audio assets
         try:
-            step = run_midi_audio(ui=ui, assets=assets, cfg=cfg, job=job, processed_tex=processed_tex, db=song_db, step=step)
+            step = run_midi_audio(
+                ui=ui,
+                assets=assets,
+                cfg=cfg,
+                job=job,
+                processed_tex=processed_tex,
+                db=song_db,
+                step=step,
+            )
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
 
         # Analyze warnings using lilypond log and the last lualatex log
-        warn_count = analyze_warnings(ui, cfg, job, lilypond_log=lp_log, last_lualatex_log=last_tex_log)
+        warn_count = analyze_warnings(
+            ui, cfg, job, lilypond_log=lp_log, last_lualatex_log=last_tex_log
+        )
 
         ui.success_line(f"{ui.fmt_doc(str(dst_pdf.name), job.color)}: Compilation successful!")
         return warn_count
@@ -981,7 +1147,9 @@ def run_jobs_parallel(
             for job in jobs:
                 fut = ex.submit(
                     compile_one_job,
-                    ui, assets, cfg,
+                    ui,
+                    assets,
+                    cfg,
                     job,
                 )
                 fut_map[fut] = job
