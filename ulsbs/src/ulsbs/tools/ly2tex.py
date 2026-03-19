@@ -29,8 +29,15 @@ It can also be run directly as:
 
 from __future__ import annotations
 
-# Test for python version before importing any package modules.
+import argparse
+import os
+import re
 import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import List, Sequence, Tuple
+
+# Test for python version before importing any package modules.
 REQUIRED = (3, 11)
 if sys.version_info < REQUIRED:
     sys.stderr.write(
@@ -39,14 +46,6 @@ if sys.version_info < REQUIRED:
         )
     )
     raise SystemExit(1)
-
-import argparse
-import os
-import re
-import sys
-from dataclasses import dataclass
-from pathlib import Path
-from typing import List, Sequence, Tuple
 
 
 # Data structures

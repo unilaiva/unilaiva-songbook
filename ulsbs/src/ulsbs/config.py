@@ -739,7 +739,7 @@ def build_config(
             ui.space_line(f"memory ({memory_available:.1f} GiB). This may cause swapping or OOM kills.")
         if sys_info.cpu_threads is not None and max_parallel_val >= sys_info.cpu_threads:
             ui.warning_line(f"Configured max_parallel ({max_parallel_val}) is >= available CPU threads ({sys_info.cpu_threads}).")
-            ui.space_line(f"This may overload the system.")
+            ui.space_line("This may overload the system.")
         if container_mem_gb_int <= math.ceil(max_parallel_val * ASSUMED_JOB_MEM_GB) and conf.use_container:
             if used_explicit_mem:
                 ui.warning_line(f"Configured container memory ({container_mem_gb_int} GiB) is too small for {max_parallel_val} threads.")

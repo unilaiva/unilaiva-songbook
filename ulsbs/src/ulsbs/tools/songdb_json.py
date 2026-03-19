@@ -19,8 +19,15 @@ You can also invoke it directly as a module:
 
 from __future__ import annotations
 
-# Test for python version before importing any package modules.
+from dataclasses import asdict
+import argparse
+import json
+import os
 import sys
+from pathlib import Path
+from typing import Iterable, List
+
+# Test for python version before importing any package modules.
 REQUIRED = (3, 11)
 if sys.version_info < REQUIRED:
     sys.stderr.write(
@@ -30,15 +37,8 @@ if sys.version_info < REQUIRED:
     )
     raise SystemExit(1)
 
-from dataclasses import asdict
-import argparse
-import json
-import os
-import sys
-from pathlib import Path
-from typing import Iterable, List
 
-from ..songdb import build_song_database
+from ..songdb import build_song_database  # noqa: E402 (must test Python version first)
 
 
 def _build_arg_parser() -> argparse.ArgumentParser:

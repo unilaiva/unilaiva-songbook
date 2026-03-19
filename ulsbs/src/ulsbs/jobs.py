@@ -14,7 +14,7 @@ import re
 from typing import List
 
 from .config import Config
-from .constants import LYRICSONLY_FNAMEPART, CHARANGO_FNAMEPART, BASSCLEF_FNAMEPART, TEMP_DIRNAME
+from .constants import TEMP_DIRNAME
 from .util import read_text, regex_documentclass_ulsbs_songbook
 
 
@@ -51,7 +51,7 @@ def _extra_variant_enabled(doc_tex_abs: Path, target: str) -> bool:
     # Use shared matcher for \\documentclass[...]{ulsbs-songbook*}
     docclass_re = regex_documentclass_ulsbs_songbook()
     if docclass_re.search(text) is None:
-        return false
+        return False
 
     pattern = re.compile(r"ULSBS-EXTRA-VARIANTS\s*:(?P<variants>[^%]*)")
 

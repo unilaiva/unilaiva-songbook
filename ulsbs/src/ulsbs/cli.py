@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import uuid
 from pathlib import Path
 from typing import List
 
@@ -221,7 +220,7 @@ def main(argv: List[str] | None = None) -> int:
         )
     except Exception as e:
         ui.plain("")
-        ui.error_line(f"Configuration error!")
+        ui.error_line("Configuration error!")
         ui.space_line(f"Config file: {proj.config_file}")
         ui.space_line(ui.colorize(e, ui.C_YELLOW))
         ui.plain("")
@@ -231,7 +230,7 @@ def main(argv: List[str] | None = None) -> int:
     if cfg.deploy_last or cfg.deploy_common:
         mode_text = "Common files only" if cfg.deploy_common else "Latest results"
         ui.plain("")
-        ui.plain(ui.colorize(f"Deploying existing files:", ui.C_WHITE))
+        ui.plain(ui.colorize("Deploying existing files:", ui.C_WHITE))
         ui.plain("")
         ui.plain(f"  - Project root: {ui.colorize(cfg.runtime.project_paths.project_root, ui.C_LBLUE)}")
         ui.plain(f"  - Mode: {ui.colorize(mode_text, ui.C_LBLUE)}")
@@ -314,9 +313,9 @@ def main(argv: List[str] | None = None) -> int:
         return 127
 
     if cfg.verbose:
-        total_mem = f"{str(cfg.runtime.system_info.total_mem_gb or "?")} GiB"
-        free_mem = f"{str(cfg.runtime.system_info.free_mem_gb or "?")} GiB"
-        threads = str(cfg.runtime.system_info.cpu_threads or "?")
+        total_mem = f"{str(cfg.runtime.system_info.total_mem_gb or '?')} GiB"
+        free_mem = f"{str(cfg.runtime.system_info.free_mem_gb or '?')} GiB"
+        threads = str(cfg.runtime.system_info.cpu_threads or '?')
         ui.info_line(f"SYSTEM - cpu threads: {threads}, free memory: {free_mem}, total memory: {total_mem}")
 
     require_tools()

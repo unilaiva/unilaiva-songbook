@@ -18,9 +18,9 @@ from typing import List
 import ulsbs  # for getting version (though we are already inside the package)
 
 from .config import Config
-from .paths import ProjectPaths
+from .engine_assets import EngineAssets
 from .ui import UI
-from .util import run_cmd, sh_quote, which
+from .util import sh_quote, which
 
 _CONTAINER_IMAGE_NAME = "ulsbs-compiler"
 _HOMECACHE_VOLUME_NAME = "ulsbs-compiler-homecache"
@@ -101,7 +101,7 @@ def dockerfile_mtime_ts(dockerfile: Path) -> int | None:
         return None
 
 
-def ensure_container_image(ui: UI, assets: "EngineAssets", engine: str, force_rebuild: bool) -> None:
+def ensure_container_image(ui: UI, assets: EngineAssets, engine: str, force_rebuild: bool) -> None:
     """Build or rebuild the container image when needed."""
     build_needed = force_rebuild
 

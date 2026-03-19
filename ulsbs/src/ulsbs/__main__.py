@@ -17,7 +17,7 @@ if sys.version_info < REQUIRED:
     )
     raise SystemExit(1)
 
-from .cli import main
+from .cli import main  # noqa: E402  (Must check Python version first)
 
 if __name__ == "__main__":
     raise SystemExit(main())

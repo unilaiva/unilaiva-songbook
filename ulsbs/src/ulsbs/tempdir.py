@@ -11,12 +11,11 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, List, Tuple
 
 from .config import Config
 from .lock import find_lock_files, alive_locks
 from .ui import UI
-from .util import ensure_dir, safe_rm_tree, read_text, symlink_unsupported
+from .util import ensure_dir, safe_rm_tree, symlink_unsupported
 
 
 @dataclass(frozen=True)

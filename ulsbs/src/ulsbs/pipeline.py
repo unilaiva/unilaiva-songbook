@@ -17,9 +17,7 @@ import signal
 import threading
 from dataclasses import dataclass
 from pathlib import Path
-import subprocess
-from subprocess import CalledProcessError
-from typing import List, Tuple
+from typing import List
 from fnmatch import fnmatch
 
 from .config import Config
@@ -632,12 +630,13 @@ def run_midi_audio(
     if not (do_midi or do_audio):
         return step
 
-    if db == None:
+    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+
+    if db is None:
         ui.warning_line(f"{txt_doc}: No internal db; skipping midi/audio")
         return step
 
     result_dir = cfg.runtime.project_paths.result_dir
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
 
     # Flatten songs while keeping document order
     all_songs = list(db.songs_without_chapter)
