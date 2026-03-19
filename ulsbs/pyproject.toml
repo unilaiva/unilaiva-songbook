@@ -3,8 +3,6 @@ name = "ulsbs"
 version = "0.1.0"
 description = "Unilaiva Songbook System (ULSBS) compiler and utilities"
 readme = "README.md"
-requires-python = ">=3.11"
-dependencies = []
 authors = [
   { name="Lari Natri", email="lari.natri@iki.fi" }
 ]
@@ -13,6 +11,14 @@ classifiers = [
   "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
   "Programming Language :: Python :: 3",
 ]
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "ruff",
+]
+
 
 [project.scripts]
 ulsbs-compile = "ulsbs.cli:main"
@@ -27,6 +33,10 @@ Source = "https://github.com/unilaiva/unilaiva-songbook"
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "B"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
