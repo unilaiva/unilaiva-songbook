@@ -19,7 +19,7 @@ import subprocess
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Iterable
 from uuid import uuid4
 
 
@@ -635,6 +635,22 @@ def regex_documentclass_ulsbs_songbook() -> re.Pattern[str]:
         """,
         re.VERBOSE | re.MULTILINE,
     )
+
+
+def deduplicate_paths_preserve_order(paths: Iterable[Path]) -> list[Path]:
+    """Return a list of Paths with duplicates removed, preserving order.
+
+    Deduplication is based on the string form of each Path.
+    """
+    seen: set[str] = set()
+    unique: list[Path] = []
+    for p in paths:
+        key = str(p)
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(p)
+    return unique
 
 
 def read_text(p: Path) -> str:

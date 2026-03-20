@@ -58,14 +58,16 @@ from .util import (
     run_cmd,
     safe_rm_tree,
     overlay_tree,
-    symlink_tree,
     which,
     write_text,
     append_text,
     regex_documentclass_ulsbs_songbook,
+    current_time_human_readable,
+    deduplicate_paths_preserve_order,
 )
 
 _JOB_ULSBS_ASSETS_DIRNAME = "ulsbs-assets"
+_LP_EXTRAINSTR_PLACEHOLDER = "ULSBS-PLACEHOLDER-FOR-EXTRA-INSTRUMENT-VARIANT-CODE"
 
 ABORT_EVENT = threading.Event()
 
@@ -141,40 +143,160 @@ def require_tools() -> None:
             raise SystemExit(f"'{t}' binary not found in PATH")
 
 
-def build_tool_include_paths(job: Job) -> tuple[dict[str, str], list[str]]:
-    """
-    Construct include paths for TeX/LuaTeX and LilyPond for the job.
+def build_tool_include_paths(cfg: Config, job: Job) -> tuple[dict[str, str], list[str], list[Path]]:
+    """Construct include paths for the job.
 
-    Returns (env, lp_args) where env has TEXINPUTS/LUAINPUTS, and lp_args
-    are -I include dirs for lilypond/lilypond-book.
+    Returns a triple of:
+      - env: environment variables with TEXINPUTS/LUAINPUTS configured
+      - lp_args: LilyPond ``-I`` arguments as a flat list of strings
+      - db_include_paths: search paths for the internal song database builder
+
+    TeX/LuaTeX search order (used for TEXINPUTS/LUAINPUTS):
+
+      1)  job.compile_dir / CONTENT_DIRNAME / "img"
+      2)  job.compile_dir / CONTENT_DIRNAME
+      3)  job.compile_dir / INCLUDE_DIRNAME / "img"
+      4)  job.compile_dir / INCLUDE_DIRNAME
+      5)  job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex"
+      6)  job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly"
+      7)  job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "img"
+      8)  job.compile_dir
+      9)  project_root_dir / CONTENT_DIRNAME / "img"
+      10) project_root_dir / CONTENT_DIRNAME
+      11) project_root_dir / INCLUDE_DIRNAME / "img"
+      12) project_root_dir / INCLUDE_DIRNAME
+      13) project_root_dir
+
+    LilyPond -I search order:
+
+      1) job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex"
+      2) job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly"
+      3) project_root_dir / CONTENT_DIRNAME
+      4) project_root_dir / INCLUDE_DIRNAME
+      5) project_root_dir
+
+    Song database builder search order follows the Tex/LuaTeX order, but "img"
+    subdirectories are removed from it.
+
+    The resulting TEXINPUTS/LUAINPUTS values and LilyPond -I arguments are
+    also written to include-paths.txt file in the compile directory for
+    debugging.
     """
-    # Start from a copy of the current environment so we only augment it.
     env = os.environ.copy()
 
-    # Compute path roots used by tools.
-    job_root = str(job.compile_dir)  # Job's working directory
-    job_ulsbs_tex = str(
-        job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "tex"
-    )  # ULSBS TeX tree within the job
-    job_ulsbs_lp = str(
-        job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly"
-    )  # LilyPond includes live under ly/
-    job_content = str(job.compile_dir / CONTENT_DIRNAME)
-    job_include = str(job.compile_dir / INCLUDE_DIRNAME)
+    project_paths = cfg.runtime.project_paths
+    project_root = project_paths.project_root
+    project_content = project_paths.content_dir
+    project_content_img = project_paths.content_dir / "img"
+    project_include = project_paths.include_dir
+    project_include_img = project_paths.include_dir / "img"
 
-    # TeX engine search paths (colon-separated). Trailing ':' keeps defaults.
-    tex_path_prefix = f"{job_root}:{job_content}:{job_include}:{job_ulsbs_tex}:"
-    env["TEXINPUTS"] = tex_path_prefix + env.get("TEXINPUTS", "")
-    env["LUAINPUTS"] = tex_path_prefix + env.get("LUAINPUTS", "")
+    job_root = job.compile_dir
+    job_ulsbs_tex = job_root / _JOB_ULSBS_ASSETS_DIRNAME / "tex"
+    job_ulsbs_lp = job_root / _JOB_ULSBS_ASSETS_DIRNAME / "ly"
+    job_ulsbs_img = job_root / _JOB_ULSBS_ASSETS_DIRNAME / "img"
+    job_content = job_root / CONTENT_DIRNAME
+    job_content_img = job_root / CONTENT_DIRNAME / "img"
+    job_include = job_root / INCLUDE_DIRNAME
+    job_include_img = job_root / INCLUDE_DIRNAME / "img"
 
-    # LilyPond search paths.
-    lp_args = ["-I", job_root, "-I", job_ulsbs_lp]
+    # TeX/LuaTeX search paths (dedup, order preserved)
+    tex_search_paths = [
+        job_content_img,
+        job_content,
+        job_include_img,
+        job_include,
+        job_ulsbs_tex,
+        job_ulsbs_lp,
+        job_ulsbs_img,
+        job_root,
+        project_content_img,
+        project_content,
+        project_include_img,
+        project_include,
+        project_root,
+    ]
+    tex_paths_uniq = deduplicate_paths_preserve_order(tex_search_paths)
 
-    return env, lp_args
+    tex_paths_str = ":".join(str(p) for p in tex_paths_uniq)
+    existing_tex = env.get("TEXINPUTS", "")
+    if existing_tex:
+        env["TEXINPUTS"] = f"{tex_paths_str}:{existing_tex}"
+    else:
+        env["TEXINPUTS"] = f"{tex_paths_str}:"
+
+    existing_lua = env.get("LUAINPUTS", "")
+    if existing_lua:
+        env["LUAINPUTS"] = f"{tex_paths_str}:{existing_lua}"
+    else:
+        env["LUAINPUTS"] = f"{tex_paths_str}:"
+
+    # LilyPond -I search paths (dedup, order preserved, no img)
+    lp_search_paths = [
+        job_ulsbs_tex,
+        job_ulsbs_lp,
+        project_content,
+        project_include,
+        project_root,
+    ]
+    lp_paths_uniq = deduplicate_paths_preserve_order(lp_search_paths)
+
+    lp_args: list[str] = []
+    for p in lp_paths_uniq:
+        lp_args.extend(["-I", str(p)])
+
+    # Our internal song db search paths, no img dirs (dedup, order preserved)
+    db_search_paths = [
+        job_content,
+        job_include,
+        job_ulsbs_tex,
+        job_ulsbs_lp,
+        job_root,
+        project_content,
+        project_include,
+        project_root,
+    ]
+    db_paths_uniq = deduplicate_paths_preserve_order(db_search_paths)
+
+    # Create log-00_include_paths.log in the job dir to make include paths visible for debugging.
+    lines: list[str] = []
+    lines.append("# Auto-generated by ulsbs pipeline for debugging include paths.")
+    lines.append(f"# Job: {job.doc_stem}:{job.variant}")
+    lines.append(f"# {current_time_human_readable()}")
+    lines.append("")
+    if cfg.runtime.in_container:
+        lines.append(f"Paths are from within the compiler {cfg.container_engine} container.")
+        lines.append("")
+    lines.append("# TeX/LuaTeX search path (in order):")
+    for idx, p in enumerate(tex_paths_uniq, start=1):
+        lines.append(f"#   {idx}: {p}")
+    lines.append("")
+    lines.append(f"TEXINPUTS={env['TEXINPUTS']}")
+    lines.append(f"LUAINPUTS={env['LUAINPUTS']}")
+    lines.append("")
+    lines.append("# LilyPond include arguments (in order):")
+    lp_cmd_preview = "lilypond " + " ".join(shlex.quote(a) for a in lp_args)
+    lines.append(f"#   {lp_cmd_preview}")
+    for idx, p in enumerate(lp_paths_uniq, start=1):
+        lines.append(f"#   {idx}: -I {p}")
+    lines.append("")
+    lines.append("# Internal Song db builder search path (in order):")
+    for idx, p in enumerate(db_paths_uniq, start=1):
+        lines.append(f"#   {idx}: {p}")
+    lines.append("")
+
+    try:
+        write_text(job_root / "log-00_include_paths.log", "\n".join(lines) + "\n")
+    except Exception:
+        # Debug aid only; ignore failures.
+        pass
+
+    return env, lp_args, db_paths_uniq
 
 
 def prepare_compile_dir(ui: UI, assets: EngineAssets, cfg: Config, job: Job) -> None:
-    """Create job workdir and populate assets, aliases, and content links."""
+    """Create job workdir and populate engine assets and stable aliases.
+    """
     ensure_dir(job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME)
 
     # tex tree from ulsbs (copied, because variants modify some files)
@@ -209,18 +331,6 @@ def prepare_compile_dir(ui: UI, assets: EngineAssets, cfg: Config, job: Job) -> 
         job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME,
         fallback_copy=True,
     )
-
-    # content tree (symlink all files)
-    dst_content = job.compile_dir / CONTENT_DIRNAME
-    if cfg.runtime.project_paths.content_dir.exists():
-        ensure_dir(dst_content)
-        symlink_tree(cfg.runtime.project_paths.content_dir, dst_content, fallback_copy=True)
-
-    # include tree (symlink all files)
-    dst_include = job.compile_dir / INCLUDE_DIRNAME
-    if cfg.runtime.project_paths.include_dir.exists():
-        ensure_dir(dst_include)
-        symlink_tree(cfg.runtime.project_paths.include_dir, dst_include, fallback_copy=True)
 
 
 def make_variant_tex(job: Job) -> Path:
@@ -258,10 +368,17 @@ def make_variant_tex(job: Job) -> Path:
 
         head = job.compile_dir / _JOB_ULSBS_ASSETS_DIRNAME / "ly" / "ulsbs-internal-common-head.ly"
         if head.exists():
-            head_txt = read_text(head).replace(
-                "ul-chosen-tuning = #ul-guitar-tuning",
-                "ul-chosen-tuning = #ul-charango-tuning",
-            )
+            head_txt = read_text(head)
+            if (
+                _LP_EXTRAINSTR_PLACEHOLDER in head_txt
+                and "ul-chosen-tuning = #ul-charango-tuning" not in head_txt
+            ):
+                lines = head_txt.splitlines(keepends=True)
+                for idx, line in enumerate(lines):
+                    if _LP_EXTRAINSTR_PLACEHOLDER in line:
+                        lines.insert(idx + 1, "ul-chosen-tuning = #ul-charango-tuning\n")
+                        break
+                head_txt = "".join(lines)
             write_text(head, head_txt)
         return out_path
 
@@ -288,7 +405,6 @@ def make_variant_tex(job: Job) -> Path:
 
 def run_lilypond_book(
     ui: UI,
-    proj_content_dir: Path,
     job: Job,
     input_tex: Path,
     env: dict[str, str],
@@ -355,6 +471,38 @@ def run_lilypond_book(
 
     processed_in_jobroot = job.compile_dir / produced.name
     return processed_in_jobroot, log_path, step + 1
+
+
+def run_lilypond_book_passthrough(
+    ui: UI,
+    job: Job,
+    input_tex: Path,
+    step: int,
+) -> tuple[Path, Path, int]:
+    """Alternative to run_lilypond_book() when no LP processing is run.
+
+    This is a preparation hook for future workflows where LilyPond is used as
+    a TeX package instead of via lilypond-book. It simply ensures that the
+    main document lives in the job's compile directory and writes a small
+    log file for traceability.
+    """
+    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    cwd = job.compile_dir
+    log_path = cwd / f"log-{step:02d}_lilypond-passthrough.log"
+
+    # Ensure the main TeX file is in the compile directory; copy if needed.
+    if input_tex.parent != cwd:
+        target = cwd / input_tex.name
+        shutil.copy2(input_tex, target)
+    else:
+        target = input_tex
+
+    write_text(
+        log_path,
+        "lilypond-book passthrough mode: no lilypond-book processing was run.\n",
+    )
+    ui.noexec_line(f"{txt_doc}: lilypond-book passthrough (no processing)")
+    return target, log_path, step + 1
 
 
 def run_lualatex_pass(
@@ -427,7 +575,8 @@ def run_texlua_indices(
     step += 1
 
     # Tag index
-    if (cwd / INCLUDE_DIRNAME / TAG_DEFINITION_FILENAME).exists():
+    project_tag_file = cfg.runtime.project_paths.include_dir / TAG_DEFINITION_FILENAME
+    if project_tag_file.exists():
         log_tag = cwd / f"log-{step:02d}_tagidx.log"
         ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} texlua (create tag index)")
         try:
@@ -438,7 +587,7 @@ def run_texlua_indices(
                     "-l",
                     SORT_LOCALE,
                     "-b",
-                    str(INCLUDE_DIRNAME + "/" + TAG_DEFINITION_FILENAME),
+                    str(project_tag_file),
                     "idx_tag.sxd",
                     "idx_tag.sbx",
                 ],
@@ -676,6 +825,7 @@ def build_song_db(
     cfg: Config,
     job: Job,
     processed_tex: Path,
+    include_paths: list[Path],
     step: int,
 ) -> tuple[SongbookData | None, int]:
     """Build the song database from the processed TeX tree."""
@@ -693,16 +843,9 @@ def build_song_db(
 
     ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} internal: build song tree")
 
-    # Do not include the project's tex path, as those files are not needed to
-    # be parsed for our songs db.
-    search_paths = [
-        job.compile_dir,
-        job.compile_dir / CONTENT_DIRNAME,
-        job.compile_dir / INCLUDE_DIRNAME,
-    ]
     try:
         db = build_song_database(
-            processed_tex=processed_tex, include_search_paths=search_paths, variant=job.variant
+            processed_tex=processed_tex, include_search_paths=include_paths, variant=job.variant
         )
         write_text(
             log_path,
@@ -1001,7 +1144,7 @@ def compile_one_job(
         input_tex = make_variant_tex(job)
         env: dict[str, str]
         lp_include_args: list[str]
-        env, lp_include_args = build_tool_include_paths(job=job)
+        env, lp_include_args, db_include_paths = build_tool_include_paths(cfg=cfg, job=job)
 
         # Step counter for log numbering
         step = 1
@@ -1010,7 +1153,6 @@ def compile_one_job(
         try:
             processed_tex, lp_log, step = run_lilypond_book(
                 ui=ui,
-                proj_content_dir=cfg.runtime.project_paths.content_dir,
                 job=job,
                 input_tex=input_tex,
                 env=env,
@@ -1086,7 +1228,12 @@ def compile_one_job(
         # 8) Build song database
         try:
             song_db, step = build_song_db(
-                ui=ui, cfg=cfg, job=job, processed_tex=processed_tex, step=step
+                ui=ui,
+                cfg=cfg,
+                job=job,
+                processed_tex=processed_tex,
+                include_paths=db_include_paths,
+                step=step,
             )
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)

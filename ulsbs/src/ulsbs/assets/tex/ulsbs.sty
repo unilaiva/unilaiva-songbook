@@ -217,37 +217,6 @@
 
 % BEGIN GENERIC UTILITY MACROS
 
-% \ulsbsincludepdf[<pdfpages options>]{<filename>}
-% Wrapper around pdfpages' \includepdf that temporarily augments TeX's input
-% search path so the file can be found under (in order):
-%   1) \ulImagePath (if defined by the document)
-%   2) fallback path:  \ulsbs@content@imagepath
-%   3) fallback path:  \ulsbs@include@imagepath
-%   4) package assets: \ulsbs@package@imagepath
-% Arguments:
-%   [#1] Optional keyval options forwarded verbatim to \includepdf
-%        (e.g. pages=, pagecommand=, fitpaper=true, etc.)
-%   {#2} Required filename (no explicit path needed if it exists in any search dir)
-% Scope:
-%   Localized with a group; \input@path is restored afterwards.
-% Requires:
-%   - pdfpages (for \includepdf)
-%   - etoolbox (for \ifdefempty)
-% Usage examples:
-%   \ulsbsincludepdf[pages={1}]{my-cover.pdf}
-%   \ulsbsincludepdf[pages={-},pagecommand=\thispagestyle{empty}]{appendix.pdf}
-\newcommand{\ulsbsincludepdf}[2][]{%
-  \begingroup
-    % Build \input@path based on whether the document provided a custom image path
-    \ifdefempty{\ulImagePath}
-      {\def\input@path{{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
-      {\def\input@path{{\ulImagePath}{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}%
-    % Delegate to pdfpages with any caller-provided options
-    \includepdf[#1]{#2}%
-  % End local scope; restore previous \input@path
-  \endgroup
-}
-
 % Very small font size, smaller than \tiny
 \newcommand{\nanosize}{%
   \ifcase\@ptsize\relax
@@ -1023,19 +992,6 @@
 % See: https://www.tex.ac.uk/FAQ-overfull.html
 \setlength{\emergencystretch}{3em}
 
-% Set the default image include path. Also affects ulsbsincludepdf.
-% Must have the trailing slash.
-\providecommand{\ulImagePath}{}
-
-\newcommand{\ulsbs@content@imagepath}{./content/img/}
-\newcommand{\ulsbs@include@imagepath}{./include/img/}
-\newcommand{\ulsbs@package@imagepath}{./ulsbs/assets/img/}
-
-% graphicx: set paths to find images from
-\ifdefempty{\ulImagePath}
-  {\graphicspath{{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
-  {\graphicspath{{\ulImagePath}{\ulsbs@content@imagepath}{\ulsbs@include@imagepath}{\ulsbs@package@imagepath}}}
-
 % color: Color definitions:
 \definecolor{chordcolor}{rgb}{0.20,0,0.22} % chords
 \definecolor{altinlinechordcolor}{rgb}{0.4,0,0.22} % alt. chord coloring used with \ac
@@ -1623,8 +1579,8 @@
 % Creates a cover page here. Ought to be the first command used after
 % \begin{document}.
 % There is one mandatory parameter, which is the cover PDF's file name without
-% path (it should reside in folder defined by \ulImagePath), and it must be in
-% PDF format. Only the first page is displayed and scaled as the cover image.
+% path. It should reside in any of the project's include folders set up by
+% the ulsbs compiler.
 %
 % Optionally setup icons to overlay on top of the cover in document preable
 % with \ulSetPermanentCoverIcons and \ulSetVariableCoverIcons commands.
@@ -1651,8 +1607,8 @@
       \ulSetVariableCoverIcons[\ulBassclefTagIcon]%
     \fi\fi\fi
   }%
-  % include the cover PDF (with path)
-  \ulsbsincludepdf[pages={1},pagecommand=\@ulInsertCoverIcons]{#2}%
+  % include the cover PDF
+  \includepdf[pages={1},pagecommand=\@ulInsertCoverIcons]{#2}%
 }
 
 
