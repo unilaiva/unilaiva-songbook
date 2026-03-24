@@ -10,6 +10,188 @@ lilypond-book to get the MIDI files it has produced), recursively follows
 songbook's metadata.
 
 This file is part of the 'ulsbs' package.
+
+JSON schema
+-----------
+
+The JSON produced by 'SongbookData.to_json_file()' conforms to the
+following JSON Schema (draft-07):
+
+    {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ulsbs SongbookData",
+      "type": "object",
+      "required": [
+        "book_info",
+        "chapters",
+        "songs_without_chapter",
+        "total_songs"
+      ],
+      "properties": {
+        "book_info": {"$ref": "#/definitions/BookInfo"},
+        "chapters": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/ChapterInfo"}
+        },
+        "songs_without_chapter": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/SongInfo"}
+        },
+        "total_songs": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "definitions": {
+        "AudioLink": {
+          "type": "object",
+          "required": ["url"],
+          "properties": {
+            "url": {"type": "string"},
+            "title": {"type": ["string", "null"]},
+            "key": {"type": ["string", "null"]},
+            "pitch": {"type": ["string", "null"]}
+          },
+          "additionalProperties": false
+        },
+        "BookInfo": {
+          "type": "object",
+          "required": [
+            "document_class",
+            "paper",
+            "maintitle",
+            "subtitle",
+            "subsubtitle",
+            "motto",
+            "variant",
+            "wwwlink",
+            "wwwqr",
+            "imprintnote",
+            "author",
+            "subject",
+            "keywords",
+            "language",
+            "bindingoffset",
+            "bookbynote",
+            "audio_links"
+          ],
+          "properties": {
+            "document_class": {"type": ["string", "null"]},
+            "paper": {"type": ["string", "null"]},
+            "maintitle": {"type": ["string", "null"]},
+            "subtitle": {"type": ["string", "null"]},
+            "subsubtitle": {"type": ["string", "null"]},
+            "motto": {"type": ["string", "null"]},
+            "variant": {"type": ["string", "null"]},
+            "wwwlink": {"type": ["string", "null"]},
+            "wwwqr": {"type": ["string", "null"]},
+            "imprintnote": {"type": ["string", "null"]},
+            "author": {"type": ["string", "null"]},
+            "subject": {"type": ["string", "null"]},
+            "keywords": {"type": ["string", "null"]},
+            "language": {"type": ["string", "null"]},
+            "bindingoffset": {"type": ["string", "null"]},
+            "bookbynote": {"type": ["string", "null"]},
+            "audio_links": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/AudioLink"}
+            }
+          },
+          "additionalProperties": false
+        },
+        "ChapterInfo": {
+          "type": "object",
+          "required": ["title", "slug", "tex_file", "songs", "audio_links"],
+          "properties": {
+            "title": {"type": "string"},
+            "slug": {"type": "string"},
+            "tex_file": {
+              "type": "string",
+              "description": "Path to the TeX source file (POSIX string)"
+            },
+            "songs": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/SongInfo"}
+            },
+            "audio_links": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/AudioLink"}
+            }
+          },
+          "additionalProperties": false
+        },
+        "SongInfo": {
+          "type": "object",
+          "required": [
+            "title",
+            "title_slug",
+            "number",
+            "options",
+            "tex_file",
+            "midi_rel_path",
+            "midi_abs_path",
+            "order_index",
+            "chapter_title",
+            "chapter_slug",
+            "alt_titles",
+            "audio_links",
+            "lyrics",
+            "lyrics_plain_lowercase"
+          ],
+          "properties": {
+            "title": {"type": "string"},
+            "title_slug": {"type": "string"},
+            "number": {"type": ["integer", "null"]},
+            "options": {
+              "type": "object",
+              "additionalProperties": {"type": "string"}
+            },
+            "tex_file": {
+              "type": "string",
+              "description": "Path to the TeX source file (POSIX string)"
+            },
+            "midi_rel_path": {
+              "type": ["string", "null"],
+              "description": "MIDI file path relative to the main document directory (POSIX string)"
+            },
+            "midi_abs_path": {
+              "type": ["string", "null"],
+              "description": "Absolute MIDI file path (POSIX string)"
+            },
+            "order_index": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Monotonic index reflecting document order"
+            },
+            "chapter_title": {"type": ["string", "null"]},
+            "chapter_slug": {"type": ["string", "null"]},
+            "alt_titles": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "audio_links": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/AudioLink"}
+            },
+            "lyrics": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "One verse as an array of lyric lines"
+              },
+              "description": "Structured lyrics as [verses][lines] of plain text"
+            },
+            "lyrics_plain_lowercase": {
+              "type": ["string", "null"],
+              "description": "Lowercased plain-text lyrics with \n between lines and \n\n between verses"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
 """
 
 from __future__ import annotations
@@ -83,6 +265,11 @@ class SongInfo:
         of the ``\beginsong{...}`` title, if any.
     - audio_links:
         \\audio invocations found inside the song block, in order.
+    - lyrics:
+        Plain-text lyrics structured as verses and lines.
+    - lyrics_plain_lowercase:
+        Lowercased plain-text lyrics with verse and line breaks encoded as
+        newlines. Intended for case-insensitive search.
     """
 
     title: str
@@ -97,6 +284,8 @@ class SongInfo:
     chapter_slug: str | None
     alt_titles: List[str] = field(default_factory=list)
     audio_links: List[AudioLink] = field(default_factory=list)
+    lyrics: List[List[str]] | None = None
+    lyrics_plain_lowercase: str | None = None
 
 
 @dataclass(slots=True)
@@ -269,6 +458,11 @@ class SongbookData:
 
 _INPUT_MACROS = ("\\input", "\\include")
 _CHAPTER_MACROS = ("\\ulMainChapter", "\\chapter", "\\songchapter")
+
+# Macros whose braced argument should be preserved in lyrics (name without
+# leading backslash). For these, the macro name and braces are stripped but
+# the inner text is kept.
+_LYRICS_TEXT_MACROS_KEEP_ARG: set[str] = {"text", "textit", "emph"}
 
 
 def _strip_tex_commands(text: str) -> str:
@@ -767,6 +961,272 @@ def _find_midi_in_song_block(raw_song: str, doc_root: Path) -> Tuple[Path | None
     return midi_rel, midi_abs
 
 
+def _collapse_standalone_brace_groups(text: str) -> str:
+    """Collapse non-macro '{...}' groups while keeping their contents.
+
+    Braces that are not part of a macro call are removed, but their inner
+    text is kept. Empty / whitespace-only groups are dropped entirely.
+    """
+
+    out: List[str] = []
+    i = 0
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        if ch != "{":
+            out.append(ch)
+            i += 1
+            continue
+        try:
+            inner, j = _parse_braced_argument(text, i)
+        except ValueError:
+            # Unbalanced brace; keep it verbatim and move on.
+            out.append(ch)
+            i += 1
+            continue
+        if inner.strip():
+            out.append(inner)
+        i = j
+    return "".join(out)
+
+
+def _skip_macro_arguments(src: str, start: int) -> int:
+    """Skip typical macro arguments starting at *start*.
+
+    This skips any immediate sequences of '(...)', '[...]' or '{...}'
+    (including nested brackets/braces) and any surrounding whitespace.
+    Returns the index of the first character after the skipped arguments.
+    """
+
+    i = start
+    n = len(src)
+    while i < n:
+        # Skip whitespace between arguments
+        while i < n and src[i].isspace():
+            i += 1
+        if i >= n:
+            break
+
+        ch = src[i]
+        if ch == "[":
+            try:
+                _, i = _parse_optional_bracket_argument(src, i)
+            except ValueError:
+                # Give up on this bracket; treat it as ordinary text.
+                break
+            continue
+        if ch == "(":
+            depth = 1
+            i += 1
+            while i < n and depth > 0:
+                if src[i] == "(":
+                    depth += 1
+                elif src[i] == ")":
+                    depth -= 1
+                i += 1
+            continue
+        if ch == "{":
+            try:
+                _, i = _parse_braced_argument(src, i)
+            except ValueError:
+                # Unbalanced; stop skipping to avoid an infinite loop.
+                break
+            continue
+        break
+    return i
+
+
+def _strip_macros_for_lyrics(text: str) -> str:
+    """Strip TeX macros and chord markup from a verse block for lyrics.
+
+    Rules:
+    - Remove the literal characters '|' and '^' everywhere.
+    - Remove all TeX macros and their arguments, **except** macros listed in
+      '_LYRICS_TEXT_MACROS_KEEP_ARG', for which the first braced argument's
+      content is preserved.
+    - Treat '\\[ ... ]' as a single chord macro whose entire body is
+      discarded.
+    - '\\\\' is converted to a newline character.
+    - After macro removal, standalone '{...}' groups are collapsed by
+      '_collapse_standalone_brace_groups()'.
+    """
+
+    # Remove barlines and caret markers used for repeated chords/notes.
+    text = text.replace("|", "").replace("^", "")
+
+    out: List[str] = []
+    i = 0
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        if ch != "\\":
+            out.append(ch)
+            i += 1
+            continue
+
+        # Special case: chord macro \[ ... ]
+        if text.startswith("\\[", i):
+            i += 2
+            depth_brace = 0
+            while i < n:
+                t = text[i]
+                if t == "{":
+                    depth_brace += 1
+                elif t == "}":
+                    if depth_brace > 0:
+                        depth_brace -= 1
+                elif t == "]" and depth_brace == 0:
+                    i += 1
+                    break
+                i += 1
+            continue
+
+        # Special case: line break \\
+        if text.startswith("\\\\", i):
+            out.append("\n")
+            i += 2
+            continue
+
+        # Control word (alphabetic macro name)
+        j = i + 1
+        if j < n and text[j].isalpha():
+            while j < n and text[j].isalpha():
+                j += 1
+            macro_name = text[i + 1 : j]
+            i = j
+            # Optional star
+            if i < n and text[i] == "*":
+                i += 1
+
+            if macro_name in _LYRICS_TEXT_MACROS_KEEP_ARG:
+                # Preserve the first braced argument, stripping the macro
+                # name and braces, and recursively cleaning its contents.
+                while i < n and text[i].isspace():
+                    i += 1
+                if i < n and text[i] == "{":
+                    try:
+                        inner, j2 = _parse_braced_argument(text, i)
+                    except ValueError:
+                        i = _skip_macro_arguments(text, i)
+                        continue
+                    cleaned_inner = _strip_macros_for_lyrics(inner)
+                    if cleaned_inner.strip():
+                        out.append(cleaned_inner)
+                    i = _skip_macro_arguments(text, j2)
+                else:
+                    # No braced argument; just skip macro name and any
+                    # following arguments.
+                    i = _skip_macro_arguments(text, i)
+            elif macro_name == "jw":
+                # Special case: \jw acts as a word separator. Emit a single
+                # space regardless of how much whitespace follows it.
+                out.append(" ")
+                i = _skip_macro_arguments(text, i)
+            else:
+                # Uninteresting macro: remove it and its arguments entirely.
+                i = _skip_macro_arguments(text, i)
+            continue
+
+        # Control symbol (non-alphabetic after backslash), e.g. \%.
+        k = i + 1
+        if k < n:
+            esc = text[k]
+            if esc == "%":
+                out.append("%")
+            else:
+                out.append(esc)
+            i = k + 1
+        else:
+            i = k
+
+    # Second pass: collapse remaining standalone { ... } groups.
+    return _collapse_standalone_brace_groups("".join(out))
+
+
+def _extract_lyrics_from_song_block(
+    raw_song: str,
+) -> Tuple[List[List[str]] | None, str | None]:
+    """Extract structured lyrics from a '\\beginsong..\\endsong' block.
+
+    Returns '(lyrics, lyrics_plain_lowercase)' where
+
+    - 'lyrics' is a list of verses, each a list of cleaned lyric lines.
+    - 'lyrics_plain_lowercase' is the same lyrics flattened into a single
+      lowercase string, with '\n' between lines and '\n\n' between
+      verses.
+
+    On any parsing error, '(None, None)' is returned.
+    """
+
+    try:
+        verses_raw: List[str] = []
+        i = 0
+        n = len(raw_song)
+        while i < n:
+            if raw_song.startswith("\\mnbeginverse", i):
+                start = i + len("\\mnbeginverse")
+                end = raw_song.find("\\mnendverse", start)
+                if end == -1:
+                    break
+                verses_raw.append(raw_song[start:end])
+                i = end + len("\\mnendverse")
+                continue
+
+            if raw_song.startswith("\\beginverse", i):
+                start = i + len("\\beginverse")
+                end = raw_song.find("\\endverse", start)
+                if end == -1:
+                    break
+                verses_raw.append(raw_song[start:end])
+                i = end + len("\\endverse")
+                continue
+
+            if raw_song.startswith("\\begin{verse}", i):
+                start = i + len("\\begin{verse}")
+                end = raw_song.find("\\end{verse}", start)
+                if end == -1:
+                    break
+                verses_raw.append(raw_song[start:end])
+                i = end + len("\\end{verse}")
+                continue
+
+            i += 1
+
+        if not verses_raw:
+            return None, None
+
+        lyrics: List[List[str]] = []
+        for verse_src in verses_raw:
+            # Drop TeX comments first.
+            cleaned = re.sub(r"(?<!\\)%[^\r\n]*", "", verse_src)
+            cleaned = _strip_macros_for_lyrics(cleaned)
+
+            verse_lines: List[str] = []
+            for raw_line in cleaned.splitlines():
+                line = raw_line.strip()
+                if not line:
+                    continue
+                # Collapse internal whitespace to a single space.
+                line = re.sub(r"\s+", " ", line)
+                if line:
+                    verse_lines.append(line)
+            if verse_lines:
+                lyrics.append(verse_lines)
+
+        if not lyrics:
+            return None, None
+
+        verse_blocks = ["\n".join(v) for v in lyrics]
+        joined = "\n\n".join(verse_blocks)
+        lyrics_plain_lowercase = joined.lower()
+        return lyrics, lyrics_plain_lowercase
+
+    except Exception:
+        # Be conservative: if anything goes wrong, do not propagate errors
+        # outside this module.
+        return None, None
+
+
 # Main walker
 # ===========
 
@@ -845,11 +1305,11 @@ def build_song_database(
 
         midi_rel, midi_abs = _find_midi_in_song_block(raw_block, doc_root)
         audio_links = _collect_audio_links_from_block(raw_block)
+        lyrics, lyrics_plain_lowercase = _extract_lyrics_from_song_block(raw_block)
 
         order_counter += 1
         song = SongInfo(
             title=main_title,
-            alt_titles=alt_titles,
             title_slug=title_slug,
             number=number,
             options=normalised_options,
@@ -859,7 +1319,10 @@ def build_song_database(
             order_index=order_counter,
             chapter_title=current_chapter.title if current_chapter else None,
             chapter_slug=current_chapter.slug if current_chapter else None,
+            alt_titles=alt_titles,
             audio_links=audio_links,
+            lyrics=lyrics,
+            lyrics_plain_lowercase=lyrics_plain_lowercase,
         )
 
         if current_chapter is None:
