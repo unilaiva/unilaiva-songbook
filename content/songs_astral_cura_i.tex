@@ -521,27 +521,8 @@
         s4. | c1 | a:m | g2 e:m | c2~ c8
       }
     }
-    \setStaffSize #13.5 % to fit on one staff
-    \score { % custom score to show all the 11 verses
-      <<
-        \new ChordNames { \theChords }
-        \new Staff { \clef "treble" \new Voice = "theVoice" { \theMelody } }
-        \include "ulsbs-internal-scorepart-tabstaff.ly"
-        \new Lyrics \lyricsto "theVoice" { \theLyricsOne }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsTwo }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsThree }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsFour }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsFive }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsSix }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsSeven }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsEight }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsNine }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsTen }
-        \new Lyrics \lyricsto "theVoice" { \theLyricsEleven }
-      >>
-      \layout { }
-    }
-    \include "ulsbs-internal-score-midi.ly"
+    \setStaffSize #14 % for better fit
+    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
