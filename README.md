@@ -140,6 +140,10 @@ on other OS versions and also on ARM systems.
 
 Install:
   - Docker Desktop from <https://docs.docker.com/desktop/install/mac-install/>.
+    After installation start it by double clicking Docker.app in Apps section
+    of Finder. If you are not running the current version of MacOS, you might
+    need to install an older compatible version of Docker Desktop from
+    [here](https://docs.docker.com/desktop/release-notes/).
   - Python from <https://www.python.org/downloads/macos/>
 
 Start the command prompt and run the following commands:
@@ -162,7 +166,7 @@ If you don't want to use a container, you can install the required packages and
 execute the compilation script with `--no-container` option.
 
 ##### Requirements #####
-
+[
 These dependencies are included in the Docker image, and need be installed on
 the host system only if compiling without using the Docker image.
 
