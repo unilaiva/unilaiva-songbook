@@ -227,7 +227,7 @@ def run_self_in_container(
             _CONTAINER_IMAGE_NAME,
         ]
 
-        # Optionally bind host timezone data to container for correct localtime
+        # Bind host timezone data to container for correct localtime
         try:
             insert_pos = container_args.index(_CONTAINER_IMAGE_NAME)
         except ValueError:
@@ -242,16 +242,6 @@ def run_self_in_container(
                 container_args[insert_pos:insert_pos] = [
                     "--mount",
                     tz_mount,
-                ]
-                insert_pos += 2
-            host_zoneinfo = Path("/usr/share/zoneinfo")
-            if host_zoneinfo.exists():
-                zi_mount = f"type=bind,src={str(host_zoneinfo)},dst=/usr/share/zoneinfo,ro"
-                if engine == "podman":
-                    zi_mount += ",Z"
-                container_args[insert_pos:insert_pos] = [
-                    "--mount",
-                    zi_mount,
                 ]
                 insert_pos += 2
         except Exception:
