@@ -173,6 +173,10 @@ def run_self_in_container(
     with assets.package_mount_root() as py_root:
         env_args = [
             "-e",
+            "HOME=/home/ulsbs",
+            "-e",
+            "PYTHONPATH=/ulsbs-py",
+            "-e",
             f"ULSBS_MAX_PARALLEL={os.environ.get('ULSBS_MAX_PARALLEL', '')}",
             "-e",
             f"ULSBS_MAX_CONTAINER_MEM_GB={os.environ.get('ULSBS_MAX_CONTAINER_MEM_GB', '')}",
@@ -221,7 +225,7 @@ def run_self_in_container(
             "--mount",
             f"type=volume,src={_HOMECACHE_VOLUME_NAME},dst=/home/ulsbs",
             "--mount",
-            "type=tmpfs,tmpfs-size=128m,dst=/tmp",
+            "type=tmpfs,tmpfs-size=64m,dst=/tmp",
             "--mount",
             "type=tmpfs,tmpfs-size=16m,dst=/run",
             _CONTAINER_IMAGE_NAME,
@@ -250,12 +254,12 @@ def run_self_in_container(
         # Strip args not for container
         inner_args = [a for a in passthrough_args if a not in ("")]
 
-        inner = f"cd {container_workdir} && PYTHONPATH=/ulsbs-py python3 -m ulsbs " + " ".join(
+        inner = f"cd {container_workdir} && python3 -m ulsbs " + " ".join(
             sh_quote(a) for a in inner_args
         )
 
         if shell_only:
-            inner = f"cd {container_workdir} && PYTHONPATH=/ulsbs-py bash"
+            inner = f"cd {container_workdir} && bash"
 
         container_args.extend(["bash", "-lc", inner])
         ui.container_line(f"Start compiler container using {engine}")
