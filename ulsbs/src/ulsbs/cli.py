@@ -273,18 +273,27 @@ def main(argv: List[str] | None = None) -> int:
             passthrough = [a for a in passthrough if a != root_override_arg]
 
         # Rebase explicit document arguments to be relative to the project root
-        # so that they resolve correctly inside the Docker container, where the
-        # project root is mounted at a fixed path.
+        # so that they resolve correctly inside the Docker/Podman container,
+        # where the project root is mounted at a fixed path. We base this on
+        # the document *paths inside the project tree* rather than resolving
+        # symlinks, so that a symlinked main document inside the project root
+        # can still point outside the tree and be handled specially in the
+        # container wrapper.
         if ns.files:
             rebased_docs: list[str] = []
-            for orig, doc_path in zip(ns.files, explicit_docs, strict=True):
+            for orig in ns.files:
+                p = Path(orig)
+                if p.is_absolute():
+                    link_path = p
+                else:
+                    link_path = (proj.project_root / p).absolute()
                 try:
-                    rel = doc_path.resolve().relative_to(proj.project_root)
+                    rel = link_path.relative_to(proj.project_root)
+                    rebased_docs.append(str(rel))
                 except ValueError:
                     # If the document is not under the project root, fall back
                     # to the original argument string.
-                    rel = Path(orig)
-                rebased_docs.append(str(rel))
+                    rebased_docs.append(orig)
             doc_map = {orig: new for orig, new in zip(ns.files, rebased_docs, strict=True)}
             passthrough = [doc_map.get(a, a) for a in passthrough]
 

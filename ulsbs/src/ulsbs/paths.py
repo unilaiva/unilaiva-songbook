@@ -84,7 +84,14 @@ class ProjectPaths:
             return ProjectPaths.from_root(Path.cwd())
 
         # Resolve all document paths and collect their parent directories.
-        doc_parents = [p.resolve().parent for p in explicit_docs]
+        #
+        # We deliberately use .absolute() instead of .resolve() so that
+        # symlinked main documents are located by the directory where the
+        # symlink lives, not by the directory of the final target. This
+        # allows a project root containing CONFIG_FILENAME to be discovered
+        # even when the main TeX file is a symlink that points outside the
+        # project tree.
+        doc_parents = [p.absolute().parent for p in explicit_docs]
 
         # Precompute ancestor sets for fast membership tests.  Order is
         # determined solely by walking upwards from the first document's

@@ -170,6 +170,39 @@ def run_self_in_container(
     mount_root = proj.project_root.resolve()
     mount_temp = (proj.project_root / "temp").resolve()
 
+    # Detect songbook main documents that are symlinks inside the project
+    # directory but whose targets live outside it. Those targets are not
+    # reachable through the project-root bind mount alone, so we add
+    # per-file bind mounts to make them visible inside the container at the
+    # same paths as the symlinks.
+    external_songbook_mounts: list[tuple[Path, Path]] = []
+    host_root = proj.host_project_root
+    for doc in cfg.songbooks:
+        try:
+            rel = doc.relative_to(host_root)
+        except ValueError:
+            # Config validation should already forbid main documents that are
+            # not inside the project root; treat this as a hard error if it
+            # ever occurs.
+            raise RuntimeError(
+                f"Songbook {doc} is not inside project root {host_root}; this should have been caught during configuration validation."
+            ) from None
+
+        if not doc.is_symlink():
+            continue
+
+        target = doc.resolve()
+        try:
+            # Target still inside project root -> already available via the
+            # main project-root bind mount.
+            target.relative_to(host_root)
+            continue
+        except ValueError:
+            pass
+
+        dest_inside_container = Path(container_workdir) / rel
+        external_songbook_mounts.append((target, dest_inside_container))
+
     with assets.package_mount_root() as py_root:
         env_args = [
             "-e",
@@ -200,6 +233,15 @@ def run_self_in_container(
             bind_root += ",Z"
             bind_temp += ",Z"
 
+        # File-level mounts for external songbook targets (symlinks inside
+        # the project pointing to files outside it).
+        external_mount_args: list[str] = []
+        for src, dst in external_songbook_mounts:
+            m = f"type=bind,src={str(src)},dst={str(dst)}"
+            if engine == "podman":
+                m += ",Z"
+            external_mount_args.extend(["--mount", m])
+
         container_name = f"{_CONTAINER_IMAGE_NAME}-{secrets.token_hex(4)}"
         container_args = [
             engine,
@@ -222,6 +264,7 @@ def run_self_in_container(
             bind_root,
             "--mount",
             bind_temp,
+            *external_mount_args,
             "--mount",
             f"type=volume,src={_HOMECACHE_VOLUME_NAME},dst=/home/ulsbs",
             "--mount",

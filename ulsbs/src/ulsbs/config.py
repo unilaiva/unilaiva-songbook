@@ -285,6 +285,10 @@ def _expand_patterns(
     Expand ?, * and normal paths relative to base_dir (unless absolute).
     Return absolute, deduplicated, sorted paths. Raise if a pattern
     resolves to nothing.
+
+    This helper is used for generic file lists. It intentionally allows
+    files to live outside the project directory (for example the
+    common_deploy_* lists that are only used on the host).
     """
     results: Set[Path] = set()
     for raw in patterns:
@@ -314,6 +318,92 @@ def _expand_patterns(
             if must_exist and not p.is_file():
                 raise FileNotFoundError(f"File not found: {raw!r} (resolved to {p})")
             results.add(p)
+
+    return tuple(sorted(results))
+
+
+def _normalize_songbook_path(path: Path, *, project_root: Path) -> Path:
+    """Validate a songbook path against the project root.
+
+    Rules:
+      - The *path itself* must live inside project_root.
+      - The resolved target must also live inside project_root, *unless*
+        the path is a symlink inside project_root that points elsewhere.
+
+    In the allowed symlink case we keep the symlink path so that its
+    location can later be inspected (for container bind-mounts).
+    """
+    if not path.is_absolute():
+        path = path.absolute()
+
+    if not path.exists() or not path.is_file():
+        raise FileNotFoundError(f"Songbook file not found: {path}")
+
+    # 1) The configured path itself must be inside the project directory.
+    try:
+        path.relative_to(project_root)
+    except ValueError as exc:  # pragma: no cover - simple guard
+        raise ValueError(
+            f"Songbook path {path} is outside the project directory {project_root}. "
+            "Main document files must reside inside the project directory. "
+            "If the actual file lives elsewhere, create a symlink to it inside "
+            "the project directory and reference that symlink instead."
+        ) from exc
+
+    # 2) The resolved target may be outside the project directory only when
+    #    the configured path is a symlink in the project tree.
+    target = path.resolve()
+    try:
+        target.relative_to(project_root)
+    except ValueError:
+        if not path.is_symlink():
+            raise ValueError(
+                f"Songbook file {target} is outside the project directory {project_root}. "
+                "Direct references to files outside the project directory are not allowed. "
+                "Use a symlink inside the project directory instead."
+            ) from None
+
+    return path
+
+
+def _expand_songbook_patterns(
+    patterns: Iterable[str], *, config_dir: Path, project_root: Path
+) -> Tuple[Path, ...]:
+    """Expand and validate songbook patterns.
+
+    This behaves like _expand_patterns() but enforces that main document files stay within the
+    project directory, with a single exception: a songbook may be a symlink *inside* the project
+    directory that points to a file elsewhere.
+    """
+    results: Set[Path] = set()
+
+    for raw in patterns:
+        if not isinstance(raw, str):
+            raise ValueError(f"File pattern must be a string, got {type(raw).__name__}")
+        raw_stripped = raw.strip()
+        if not raw_stripped:
+            raise ValueError("Empty file pattern in configuration")
+
+        is_abs = os.path.isabs(raw_stripped)
+        pattern_path = Path(raw_stripped) if is_abs else (config_dir / raw_stripped)
+        pattern_str = str(pattern_path)
+
+        if _WILDCARD_RE.search(raw_stripped):
+            matches = glob.glob(pattern_str, recursive=True)
+            if not matches:
+                raise FileNotFoundError(
+                    f"Pattern matched no files: {raw!r} (resolved from {pattern_str})"
+                )
+        else:
+            matches = [pattern_str]
+
+        for m in matches:
+            p = Path(m)
+            # Do *not* resolve here: we want to keep possible symlinks so that
+            # we can later detect them when setting up container mounts.
+            p = p if p.is_absolute() else (config_dir / p).absolute()
+            validated = _normalize_songbook_path(p, project_root=project_root)
+            results.add(validated)
 
     return tuple(sorted(results))
 
@@ -835,11 +925,14 @@ def build_config(
 
     # Resolve and validate file patterns from config (relative to config_dir)
     cfg_dir = conf.config_dir
+    project_root = Path(runtime_project_paths.project_root)
     songbooks_cfg: Tuple[Path, ...] = ()
     if "songbooks" in file_over:
         if not isinstance(file_over["songbooks"], (list, tuple)):
             raise ValueError("songbooks must be an array")
-        songbooks_cfg = _expand_patterns(file_over["songbooks"], cfg_dir, must_exist=True)
+        songbooks_cfg = _expand_songbook_patterns(
+            file_over["songbooks"], config_dir=cfg_dir, project_root=project_root
+        )
 
     # If in a container, the common files don't need to exist, as they might be
     # located outside the mounted project directory, and they are only used
@@ -892,19 +985,21 @@ def build_config(
     # CLI explicit files override selection if provided
     selected_songbooks: Tuple[Path, ...] = ()
     if cli_files:
+        project_root = Path(runtime_project_paths.project_root)
         resolved: Set[Path] = set()
         for raw in cli_files:
             if not isinstance(raw, str) or not raw.strip():
                 raise ValueError("CLI file entries must be non-empty strings")
-            p = Path(raw)
-            if not p.is_absolute() and not p.is_file():
-                # Resolve relative to the project root
-                p = (Path(runtime_project_paths.project_root) / p).resolve()
+            s = raw.strip()
+            p = Path(s)
+            if p.is_absolute():
+                link_path = p
             else:
-                p = p.resolve()
-            if not p.is_file():
-                raise FileNotFoundError(f"CLI file not found: {raw!r} (resolved to {p})")
-            resolved.add(p)
+                # Always interpret CLI paths as relative to the project root,
+                # not to the current working directory.
+                link_path = (project_root / p).absolute()
+            validated = _normalize_songbook_path(link_path, project_root=project_root)
+            resolved.add(validated)
         selected_songbooks = tuple(sorted(resolved))
 
     # Finalize with resolved files
