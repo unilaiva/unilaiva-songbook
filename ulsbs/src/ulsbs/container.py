@@ -204,6 +204,15 @@ def run_self_in_container(
         external_songbook_mounts.append((target, dest_inside_container))
 
     with assets.package_mount_root() as py_root:
+        # Propagate runtime configuration into the container. In
+        # particular, ensure that color usage (as decided on the host)
+        # is forwarded: if the host UI has disabled colors, set
+        # NO_COLOR=1 inside the container so that inner runs do not
+        # re-enable colors just because they see a TTY.
+        no_color_env = os.environ.get("NO_COLOR")
+        if not ui.use_colors and not no_color_env:
+            no_color_env = "1"
+
         env_args = [
             "-e",
             "HOME=/home/ulsbs",
@@ -224,8 +233,10 @@ def run_self_in_container(
             "-e",
             f"ULSBS_INTERNAL_PROJECT_ROOT_ON_HOST={proj.project_root}",
             "-e",
-            f"ULSBS_INTERNAL_DEPLOY_DIR_ON_HOST={cfg.deploy_dir}"
+            f"ULSBS_INTERNAL_DEPLOY_DIR_ON_HOST={cfg.deploy_dir}",
         ]
+        if no_color_env is not None:
+            env_args.extend(["-e", f"NO_COLOR={no_color_env}"])
 
         bind_py = f"type=bind,src={str(py_root)},dst=/ulsbs-py,ro"
         bind_root = f"type=bind,src={str(mount_root)},dst={container_workdir}"
