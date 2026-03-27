@@ -172,11 +172,15 @@ def main(argv: List[str] | None = None) -> int:
     # Mixing a directory/config with explicit documents is not allowed.
     raw_paths = [Path(x) for x in ns.files]
     explicit_docs: list[Path] = []
+    explicit_doc_args: list[str] = []
     root_override: Path | None = None
     root_override_arg: str | None = None
 
     if not raw_paths:
+        # No positional arguments: project root will be inferred from CWD
+        # by ProjectPaths.from_docs(), and no explicit documents are used.
         explicit_docs = []
+        explicit_doc_args = []
     elif len(raw_paths) == 1:
         p = raw_paths[0]
         # Single directory: use as explicit project root
@@ -184,13 +188,19 @@ def main(argv: List[str] | None = None) -> int:
             root_override = p.resolve()
             root_override_arg = ns.files[0]
             ns.files = []  # No explicit documents
+            explicit_docs = []
+            explicit_doc_args = []
         # Single existing config file: use its parent as project root
         elif p.name == CONFIG_FILENAME and p.is_file():
             root_override = p.resolve().parent
             root_override_arg = ns.files[0]
             ns.files = []  # No explicit documents
+            explicit_docs = []
+            explicit_doc_args = []
         else:
+            # Single explicit document
             explicit_docs = raw_paths
+            explicit_doc_args = [ns.files[0]]
     else:
         # Multiple positional arguments: reject if any is a directory or
         # an existing config file, since that would mix project-root
@@ -204,12 +214,33 @@ def main(argv: List[str] | None = None) -> int:
             ui.space_line("Give either a single directory/config to select the project, or one or more document files.")
             ui.plain("")
             return 1
+        # All arguments are treated as explicit documents
         explicit_docs = raw_paths
+        explicit_doc_args = list(ns.files)
 
     if root_override is not None:
         proj = ProjectPaths.from_root(root_override)
     else:
         proj = ProjectPaths.from_docs(explicit_docs)
+
+        # If explicit documents were given, normalize their CLI arguments to be
+        # relative to the detected project root. This ensures that paths that
+        # were originally given relative to some other working directory are
+        # still interpreted correctly as songbook files inside the project
+        # tree during later configuration handling.
+        if explicit_docs:
+            rebased_files: list[str] = []
+            for doc_path in explicit_docs:
+                abs_doc = doc_path if doc_path.is_absolute() else doc_path.absolute()
+                try:
+                    rel = abs_doc.relative_to(proj.project_root)
+                    rebased_files.append(str(rel))
+                except ValueError:
+                    # In theory this should not happen because ProjectPaths.from_docs()
+                    # only succeeds when all documents live under the project root,
+                    # but fall back to the absolute path defensively.
+                    rebased_files.append(str(abs_doc))
+            ns.files = rebased_files
 
     in_container = bool(os.environ.get("ULSBS_INTERNAL_RUNNING_IN_CONTAINER"))
     unique_id = os.environ.get("ULSBS_INTERNAL_UNIQUE_ID", create_unique_id()) or create_unique_id()
@@ -281,27 +312,11 @@ def main(argv: List[str] | None = None) -> int:
 
         # Rebase explicit document arguments to be relative to the project root
         # so that they resolve correctly inside the Docker/Podman container,
-        # where the project root is mounted at a fixed path. We base this on
-        # the document *paths inside the project tree* rather than resolving
-        # symlinks, so that a symlinked main document inside the project root
-        # can still point outside the tree and be handled specially in the
-        # container wrapper.
+        # where the project root is mounted at a fixed path. At this point
+        # ns.files already contains the document paths rebased relative to the
+        # project root; explicit_doc_args holds their original CLI forms.
         if ns.files:
-            rebased_docs: list[str] = []
-            for orig in ns.files:
-                p = Path(orig)
-                if p.is_absolute():
-                    link_path = p
-                else:
-                    link_path = (proj.project_root / p).absolute()
-                try:
-                    rel = link_path.relative_to(proj.project_root)
-                    rebased_docs.append(str(rel))
-                except ValueError:
-                    # If the document is not under the project root, fall back
-                    # to the original argument string.
-                    rebased_docs.append(orig)
-            doc_map = {orig: new for orig, new in zip(ns.files, rebased_docs, strict=True)}
+            doc_map = {orig: new for orig, new in zip(explicit_doc_args, ns.files, strict=True)}
             passthrough = [doc_map.get(a, a) for a in passthrough]
 
         try:
