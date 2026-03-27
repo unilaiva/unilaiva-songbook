@@ -54,8 +54,9 @@ def deploy_results(ui: UI, cfg: Config) -> None:
         return
 
     if not deploy_dir.exists():
-        ui.nodeploy_line("Results NOT copied to deploy directory.")
-        ui.space_line(f"Directory not found: {str(deploy_dir)}")
+        ui.nodeploy_line(
+            f"Results NOT copied to deploy directory. Directory not found: {str(deploy_dir)}"
+        )
         return
 
     # Append common files to the deploy list if not there already, with abs path

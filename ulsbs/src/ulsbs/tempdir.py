@@ -82,10 +82,12 @@ def setup_temp_dir(ui: UI, cfg: Config) -> None:
         # If the user is trying to switch temp root while compiles are running, abort.
         if desired_root.resolve() != current_root.resolve():
             sample = alive[0]
-            ui.error_line("Another compile process is active for this project.")
-            ui.space_line(f"Active lock: {sample}")
-            ui.space_line(f"Current temp root: {current_root}")
-            ui.space_line(f"Requested temp root: {desired_root}")
+            ui.error_line(
+                "Another compile process is active for this project and uses different temp.\n"
+                f"Active lock: {sample}\n"
+                f"Current temp root: {current_root}\n"
+                f"Requested temp root: {desired_root}\n"
+            )
             raise SystemExit(
                 "Another compile process is active and using different temp location for the same project."
             )
@@ -112,8 +114,10 @@ def setup_temp_dir(ui: UI, cfg: Config) -> None:
             # instead.
             if not symlink_unsupported(e):
                 raise
-            ui.warning_line("Symlinks are not supported for the project temp dir;")
-            ui.space_line("falling back to project-local 'temp' directory.")
+            ui.warning_line(
+                "Symlinks are not supported for the project temp dir; "
+                "falling back to project-local 'temp' directory."
+            )
 
     # ensure <project>/temp is a real directory
     if project_temp_dir.is_symlink():

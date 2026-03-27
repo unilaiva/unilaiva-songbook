@@ -210,8 +210,10 @@ def main(argv: List[str] | None = None) -> int:
 
         if any(_is_root_selector(p) for p in raw_paths):
             ui.plain("")
-            ui.error_line("Invalid arguments: cannot mix a project directory or config file with explicit document files.")
-            ui.space_line("Give either a single directory/config to select the project, or one or more document files.")
+            ui.error_line(
+                "Invalid arguments: cannot mix a project directory or config file with explicit document files. "
+                "Give either a single directory/config to select the project, or one or more document files."
+            )
             ui.plain("")
             return 1
         # All arguments are treated as explicit documents
@@ -258,9 +260,11 @@ def main(argv: List[str] | None = None) -> int:
         )
     except Exception as e:
         ui.plain("")
-        ui.error_line("Configuration error!")
-        ui.space_line(f"Config file: {proj.config_file}")
-        ui.space_line(ui.colorize(e, ui.C_YELLOW))
+        ui.error_line(
+            "Configuration error!\n"
+            + f"Config file: {proj.config_file}\n"
+            + f"{ui.colorize(e, ui.C_YELLOW)}"
+        )
         ui.plain("")
         return 1
 
