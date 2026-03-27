@@ -65,6 +65,10 @@ clean-temp = true            # remove temp data after run (alias: keep-temp = tr
 deploy = true                # default: true
 deploy-last = false          # SPECIAL MODE: only run the "deploy last" action
 deploy-common = false        # SPECIAL MODE: only run the "deploy common" action
+# Optional: override deploy directory (default: <project root>/deploy)
+# If set explicitly (here or via --deploy-dir), it must exist and be a directory on the host.
+#deploy-dir = "deploy"
+
 create-printouts = true      # default: true
 coverimage = true            # default: true
 midifiles = true             # default: true

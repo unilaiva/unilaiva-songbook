@@ -17,7 +17,7 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping, Tuple, Set
 
-from .constants import CONFIG_FILENAME, COVERIMAGE_HEIGHT, ASSUMED_OS_MEM_GB, ASSUMED_JOB_MEM_GB
+from .constants import CONFIG_FILENAME, COVERIMAGE_HEIGHT, ASSUMED_OS_MEM_GB, ASSUMED_JOB_MEM_GB, DEPLOY_DIRNAME
 from .ui import UI
 from .util import SystemInfo, system_info
 
@@ -92,6 +92,8 @@ class Config:
     deploy: bool = True
     deploy_last: bool = False
     deploy_common: bool = False
+    # Resolved deploy directory (absolute); may be overridden via config/CLI.
+    deploy_dir: Path = Path("deploy")
 
     # Features
     extrainstrumentbooks: bool = True
@@ -440,6 +442,39 @@ def _resolve_single_file_setting(
     return p
 
 
+def _resolve_dir_setting(
+    raw: Any,
+    *,
+    base_dir: Path,
+    must_exist: bool = True,
+    name: str = "directory",
+) -> Path:
+    """Resolve a directory path relative to base_dir.
+
+    - raw must be a non-empty string
+    - wildcards are not allowed
+    - relative paths are resolved against base_dir
+    - when must_exist=True, the path must exist and be a directory
+    """
+    if not isinstance(raw, str):
+        raise ValueError(f"Expected a string for {name} path")
+    s = raw.strip()
+    if not s:
+        raise ValueError(f"{name} path cannot be empty")
+    if _WILDCARD_RE.search(s):
+        raise ValueError(f"Wildcards are not allowed for {name}")
+    p = Path(s)
+    if not p.is_absolute():
+        p = base_dir / p
+    p = p.resolve()
+    if must_exist:
+        if not p.exists():
+            raise FileNotFoundError(f"{name} directory not found: {p}")
+        if not p.is_dir():
+            raise NotADirectoryError(f"{name} path is not a directory: {p}")
+    return p
+
+
 def _parse_modified_cover_png_rules(raw: Any) -> Tuple[ModifiedCoverPngRule, ...]:
     """Validate and normalize modified_cover_png entries from TOML.
 
@@ -554,6 +589,7 @@ _ALLOWED_FILE_KEYS: Set[str] = {
     "common_deploy_icons",
     "common_deploy_metadata",
     "common_deploy_other",
+    "deploy_dir",
     # Single-file settings
     "mididir_readme_file",
     "audiodir_readme_file",
@@ -690,8 +726,15 @@ def build_config(
     prof_eff = _apply_negations(prof_eff)
     _ensure_known_keys(f"profile '{profile}'", prof_eff, _ALLOWED_FILE_KEYS)
 
+    project_root = Path(runtime_project_paths.project_root)
+
     # Start from defaults
-    conf = Config(profile=profile, config_path=cfg_path, config_dir=cfg_path.parent)
+    conf = Config(
+        profile=profile,
+        config_path=cfg_path,
+        config_dir=cfg_path.parent,
+        deploy_dir=project_root / DEPLOY_DIRNAME,
+    )
 
     # Merge: defaults -> file (effective profile already includes flat and parents)
     file_over: Dict[str, Any] = dict(prof_eff)
@@ -768,6 +811,9 @@ def build_config(
         # Deploy modes
         cli_over["deploy_last"] = bool(getattr(args_ns, "deploy_last", False))
         cli_over["deploy_common"] = bool(getattr(args_ns, "deploy_common", False))
+        deploy_dir_cli = getattr(args_ns, "deploy_dir", None)
+        if deploy_dir_cli is not None:
+            cli_over["deploy_dir"] = deploy_dir_cli
 
         # Misc numeric overrides
         max_log_lines_cli = getattr(args_ns, "max_log_lines", None)
@@ -925,9 +971,29 @@ def build_config(
 
     # Resolve and validate file patterns from config (relative to config_dir)
     cfg_dir = conf.config_dir
-    project_root = Path(runtime_project_paths.project_root)
+
+    # Resolve deploy directory (may be overridden via config/CLI).
+    deploy_dir_explicit = ("deploy_dir" in file_over) or ("deploy_dir" in cli_over)
+    if deploy_dir_explicit:
+        raw_deploy = combined.get("deploy_dir")
+        if not isinstance(raw_deploy, str):
+            raise ValueError("deploy_dir must be a string path")
+        deploy_dir_path = _resolve_dir_setting(
+            raw_deploy,
+            base_dir=project_root,
+            must_exist=not runtime_in_container,
+            name="deploy_dir",
+        )
+    else:
+        deploy_dir_path = project_root / DEPLOY_DIRNAME
+
     songbooks_cfg: Tuple[Path, ...] = ()
-    if "songbooks" in file_over:
+    # Only validate/expand songbooks from config when CLI has not provided
+    # explicit songbook files. If CLI files are present, they fully override
+    # the config-defined songbooks, and we must *not* force validation of
+    # potentially unused config songbooks (for example symlinks that are not
+    # even mounted into the container).
+    if not cli_files and "songbooks" in file_over:
         if not isinstance(file_over["songbooks"], (list, tuple)):
             raise ValueError("songbooks must be an array")
         songbooks_cfg = _expand_songbook_patterns(
@@ -985,7 +1051,6 @@ def build_config(
     # CLI explicit files override selection if provided
     selected_songbooks: Tuple[Path, ...] = ()
     if cli_files:
-        project_root = Path(runtime_project_paths.project_root)
         resolved: Set[Path] = set()
         for raw in cli_files:
             if not isinstance(raw, str) or not raw.strip():
@@ -1011,6 +1076,7 @@ def build_config(
         common_deploy_other=common_deploy_other,
         mididir_readme_file=mididir_readme_file_path,
         audiodir_readme_file=audiodir_readme_file_path,
+        deploy_dir=deploy_dir_path,
         runtime=Runtime(
             project_paths=runtime_project_paths,
             in_container=runtime_in_container,

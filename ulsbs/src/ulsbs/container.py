@@ -223,6 +223,8 @@ def run_self_in_container(
             f"ULSBS_INTERNAL_UNIQUE_ID={unique_id}",
             "-e",
             f"ULSBS_INTERNAL_PROJECT_ROOT_ON_HOST={proj.project_root}",
+            "-e",
+            f"ULSBS_INTERNAL_DEPLOY_DIR_ON_HOST={cfg.deploy_dir}"
         ]
 
         bind_py = f"type=bind,src={str(py_root)},dst=/ulsbs-py,ro"

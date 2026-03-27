@@ -75,6 +75,7 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
     p.add_argument("--max-parallel", type=int, metavar="N", default=0, help="Maximum number of parallel jobs (0 = auto)")
     p.add_argument("--keep-temp", action="store_true", help="Do not clean temp directory even after successful compilation")
     p.add_argument("--max-log-lines", type=int, metavar="N", default=20, help="Maximum error log lines to display (0..1000)")
+    p.add_argument("--deploy-dir", metavar="DIR", help="Override deploy directory (must exist when set; default is <project root>/deploy)")
 
     prestr = p.add_argument_group("restricting options")
     prestr.add_argument("--no-deploy", action="store_true", help="Do not copy result files into deploy directory")
@@ -107,6 +108,7 @@ def print_plan_summary(
         return ui.colorize("YES" if v else "NO", ui.C_LBLUE)
 
     songbooks_count = len(cfg.songbooks)
+    deploy_dir = os.environ.get("ULSBS_INTERNAL_DEPLOY_DIR_ON_HOST", cfg.deploy_dir) or cfg.deploy_dir
 
     ui.plain("")
     ui.plain(ui.colorize(f"{'Compiling a songbook:' if songbooks_count == 1 else 'Compiling songbooks:'}", ui.C_WHITE))
@@ -130,7 +132,12 @@ def print_plan_summary(
     if cfg.audiofiles:
         ui.plain(f"    - Also for optional variants: {_yn(cfg.audiofiles_allow_for_optional_variants)}")
         ui.plain(f"    - Fast audio encode (no loudnorm): {_yn(cfg.fast_audio_encode)}")
-    ui.plain(f"  - Deploy: {_yn(cfg.deploy)}")
+    ui.plain(
+        f"  - Deploy: {_yn(cfg.deploy)}"
+        + (
+            f" {ui.colorize(f'(dir: {deploy_dir})', ui.C_BLUE)}" if cfg.deploy else ""
+        )
+    )
     ui.plain("")
 
 

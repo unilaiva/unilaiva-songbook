@@ -44,7 +44,7 @@ from .util import ensure_dir, files_are_identical, sync_tree
 def deploy_results(ui: UI, cfg: Config) -> None:
     """Copy results from result/ to deploy/, respecting result list entries."""
     result_dir = cfg.runtime.project_paths.result_dir
-    deploy_dir = cfg.runtime.project_paths.deploy_dir
+    deploy_dir = cfg.deploy_dir
 
     if cfg.runtime.in_container:
         return
