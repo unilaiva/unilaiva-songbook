@@ -207,7 +207,7 @@ the host system only if compiling without using the Docker image.
     before running the compile script.)
   * *Optionally* `ffmpeg` and `fluidsynth` for encoding mp3 audio from Lilypond
     sources
-  * *Optionally* `pdftoppm` from poppler-utils and `convert` from imagemagick
+  * *Optionally* `pdftoppm` from poppler-utils and `magick` from imagemagick
     to extract the cover page of produced PDF as raster image file for e.g.
     website
 

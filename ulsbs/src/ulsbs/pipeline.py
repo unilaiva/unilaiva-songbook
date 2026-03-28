@@ -721,15 +721,15 @@ def run_coverimage_extraction(
         resultlist.append_line(RESULT_TYPE_IMAGE, cover_png.name)
 
     # Optional: create auto-wide image via ImageMagick convert
-    if which("convert"):
-        ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} convert (cover image modified)")
+    if which("magick"):
+        ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} magick (cover image modified)")
         cover_modified_png = cwd / f"{basename}{COVERIMAGE_MODIFIED_FNAME_POSTFIX}.png"
         log_auto = cwd / f"log-{step:02d}_coverimage-modified.log"
 
         # Probe image size using ImageMagick so we can interpret fractional rects
         try:
             run_cmd(
-                ["convert", cover_png.name, "-format", "%w %h", "info:"],
+                ["magick", cover_png.name, "-format", "%w %h", "info:"],
                 cwd=cwd,
                 stdout_path=log_auto,
                 stderr_to_stdout=True,
@@ -738,11 +738,11 @@ def run_coverimage_extraction(
             )
             tokens = read_text(log_auto).split()
             if len(tokens) < 2:
-                raise ValueError("Unexpected output from convert -format '%w %h'")
+                raise ValueError("Unexpected output from magick -format '%w %h'")
             img_w = int(tokens[0])
             img_h = int(tokens[1])
         except Exception:
-            raise CompileError("convert failed while probing cover image size", log_auto) from None
+            raise CompileError("magick failed while probing cover image size", log_auto) from None
 
         # Select the last matching rule (if any) based on the original TeX filename
         src_filename = job.doc_tex_abs.name
@@ -751,7 +751,7 @@ def run_coverimage_extraction(
             if fnmatch(src_filename, rule.songbook_filenames):
                 selected_rule = rule
 
-        cmd: list[str] = ["convert", cover_png.name]
+        cmd: list[str] = ["magick", cover_png.name]
 
         if selected_rule is not None:
             rule = selected_rule
