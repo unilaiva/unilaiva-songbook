@@ -81,7 +81,7 @@ For information about its usage, run: `./ulsbs-compile --help`
 > (Docker by default, Podman also supported) that has all the correct packages
 > installed and configured correctly.
 
-This works on Linux and MacOS, or Windows with WSL. Using Linux is
+This works on Linux and MacOS, or Windows with WSL2. Using Linux is
 recommended, as it is the most tested of the operating systems.
 
 Simply execute the compilation script without arguments.
@@ -213,8 +213,8 @@ the host system only if compiling without using the Docker image.
 
 Our project requires only some pretty standard LaTeX packages, which are
 included in many LaTeX installations by default, to be installed on the system.
-They are all included with `\usepackage` commands in the beginning of file
-`tex/unilaiva-songbook_common.sty`.
+They are all included with `\RequirePackage` commands in the beginning of file
+`ulsbs/src/ulsbs/assets/tex/ulsbs.sty`.
 
 One of the package dependencies, [songs](https://songs.sourceforge.net/), is
 included in the project tree and used instead of a one possibly installed on
@@ -529,8 +529,7 @@ be written as upper case for transposing to work, even though the result is
 actually presented in lower case.
 
 To disable showing of the notes for the whole document, set `\shownotesfalse`
-in the main document preamble (after including
-`tex/unilaiva-songbook_common.sty`).
+in the main document preamble after `\documentclass{ulsbs-...} invocation.
 
 Call `\notesoff` command between verses to disable showing of notes in the
 following verses of that song.
