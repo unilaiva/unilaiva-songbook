@@ -362,7 +362,7 @@ def main(argv: List[str] | None = None) -> int:
     resultlist.initialize(cfg.runtime.project_paths.temp_dir, cfg.runtime.unique_id)
     resultlist.write_header()
 
-    jobs = build_job_queue(cfg=cfg, doc_colors=ui.doc_colors)
+    jobs = build_job_queue(cfg=cfg)
 
     print_plan_summary(ui=ui, cfg=cfg, jobs_count=len(jobs))
 

@@ -13,8 +13,10 @@ import re
 import shutil
 import subprocess
 import sys
+import hashlib
 from dataclasses import dataclass
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 MAX_COLS = 120
 MIN_COLS = 60
@@ -22,6 +24,9 @@ PREFIX_LABEL_WIDTH = 9
 WRAP_BACKOFF = 15
 
 ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
+
+if TYPE_CHECKING:  # pragma: no cover - import only for type checking
+    from .jobs import Job
 
 
 @dataclass
@@ -40,6 +45,7 @@ class UI:
         )
         self._init_colors()
 
+        # Palette of colors used to assign each document a stable color.
         self.doc_colors = [
             self.C_BROWN,
             self.C_MAGENTA,
@@ -50,6 +56,19 @@ class UI:
             self.C_LCYAN,
             self.C_LBLUE,
         ]
+
+        # Mapping from document stem -> color, kept stable for the duration
+        # of the process so each songbook keeps its own color.
+        self._doc_stem_colors: dict[str, str] = {}
+
+        # Fixed colors for known variants; unknown/empty variants fall back
+        # to gray. These are used for the ":<variant>" suffix in fmt_doc().
+        self._variant_colors: dict[str, str] = {
+            "default": self.C_GREEN,
+            "lyrics": self.C_YELLOW,
+            "charango": self.C_MAGENTA,
+            "bassclef": self.C_BROWN,
+        }
 
         # Prefix texts without embedded padding; visual width is controlled
         # by PREFIX_LABEL_WIDTH so that all prefixes align.
@@ -263,13 +282,50 @@ class UI:
         padded = label[:PREFIX_LABEL_WIDTH].ljust(PREFIX_LABEL_WIDTH)
         return f"{color}{padded}{self.C_RESET}"
 
-    def fmt_doc(self, docname: str, color: str) -> str:
-        """Format a document label in a consistent, colored style, and return it."""
-        return f"{self.C_DGRAY}[{color}{docname}{self.C_DGRAY}]{self.C_RESET}"
+    def _color_for_doc_stem(self, stem: str) -> str:
+        """Return a stable color for the given document stem.
+
+        The mapping is cached in _doc_stem_colors and based on a
+        deterministic hash so that it does not depend on job ordering.
+        """
+        if stem in self._doc_stem_colors:
+            return self._doc_stem_colors[stem]
+
+        if not self.doc_colors:
+            color = self.C_WHITE
+        else:
+            idx = int(hashlib.blake2b(stem.encode("utf-8")).hexdigest(), 16) % len(self.doc_colors)
+            color = self.doc_colors[idx]
+
+        self._doc_stem_colors[stem] = color
+        return color
+
+    def _color_for_variant(self, variant: str | None) -> str:
+        """Return the color used for the variant label in fmt_doc()."""
+        if not variant:
+            return self.C_GRAY
+        return self._variant_colors.get(variant, self.C_GRAY)
+
+    def fmt_doc(self, job: "Job") -> str:
+        """Format a document label for a Job in a consistent, colored style.
+
+        The document stem is colored per-book (stable across the run), and
+        the :<variant> suffix is colored using a fixed mapping.
+        """
+        doc_color = self._color_for_doc_stem(job.doc_stem)
+        variant = job.variant
+
+        if variant:
+            variant_color = self._color_for_variant(variant)
+            inner = f"{doc_color}{job.doc_stem}{self.C_DGRAY}:{variant_color}{variant}{self.C_DGRAY}"
+        else:
+            inner = f"{doc_color}{job.doc_stem}{self.C_DGRAY}"
+
+        return f"{self.C_DGRAY}[{inner}]{self.C_RESET}"
 
     def fmt_step(self, step: int) -> str:
         """Return given compile step number as colorized string"""
-        return self.colorize(f"{step:02d}.", self.C_DGRAY)
+        return self.colorize(f"{step:02d}:", self.C_DGRAY)
 
     def colorize(self, text: str, color: str) -> str:
         """Wrap a text in a color code and reset suffix and return it."""

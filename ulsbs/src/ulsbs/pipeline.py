@@ -109,8 +109,8 @@ def die_log(ui: UI, cfg: Config, job: Job, cwd: Path, message: str, log_path: Pa
         # Quiet abort: no log spam
         raise KeyboardInterrupt()
 
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
-    ui.error_line(f"{txt_doc}: {message}")
+    txt_doc = ui.fmt_doc(job)
+    ui.error_line(f"{txt_doc} {message}")
     if log_path is not None:
         try:
             rel = cwd.relative_to(cfg.runtime.project_paths.project_root)
@@ -420,12 +420,12 @@ def run_lilypond_book(
       - Path to the lilypond-book log
       - Next step number
     """
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
     lp_out = job.compile_dir / "_lp"
     ensure_dir(lp_out)
 
     log_path = job.compile_dir / f"log-{step:02d}_lilypond.log"
-    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} lilypond-book")
+    ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} lilypond-book")
 
     # We run in the job dir, and pass the input file name (must be present there).
     cwd = job.compile_dir
@@ -486,7 +486,7 @@ def run_lilypond_book_passthrough(
     main document lives in the job's compile directory and writes a small
     log file for traceability.
     """
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
     cwd = job.compile_dir
     log_path = cwd / f"log-{step:02d}_lilypond-passthrough.log"
 
@@ -501,7 +501,7 @@ def run_lilypond_book_passthrough(
         log_path,
         "lilypond-book passthrough mode: no lilypond-book processing was run.\n",
     )
-    ui.noexec_line(f"{txt_doc}: lilypond-book passthrough (no processing)")
+    ui.noexec_line(f"{txt_doc} lilypond-book passthrough (no processing)")
     return target, log_path, step + 1
 
 
@@ -517,10 +517,10 @@ def run_lualatex_pass(
 ) -> tuple[Path, int]:
     """Run a LuaLaTeX pass and return the log path and next step number."""
     cwd = job.compile_dir
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
     log_path = cwd / f"log-{step:02d}_lualatex-pass{pass_no}.log"
     label = f"lualatex (pass {pass_no})"
-    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} {label}")
+    ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} {label}")
     args = [
         "lualatex",
         "-file-line-error",
@@ -544,7 +544,7 @@ def run_texlua_indices(
 ) -> int:
     """Create title and tag indices using texlua scripts."""
     cwd = job.compile_dir
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
 
     # Find script
     song_idx_script = cwd / SONG_IDX_SCRIPT_REL
@@ -560,7 +560,7 @@ def run_texlua_indices(
 
     # Title index
     log_title = cwd / f"log-{step:02d}_titleidx.log"
-    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} texlua (create title index)")
+    ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} texlua (create title index)")
     try:
         run_cmd(
             ["texlua", str(song_idx_script), "-l", SORT_LOCALE, "idx_title.sxd", "idx_title.sbx"],
@@ -578,7 +578,7 @@ def run_texlua_indices(
     project_tag_file = cfg.runtime.project_paths.include_dir / TAG_DEFINITION_FILENAME
     if project_tag_file.exists():
         log_tag = cwd / f"log-{step:02d}_tagidx.log"
-        ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} texlua (create tag index)")
+        ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} texlua (create tag index)")
         try:
             run_cmd(
                 [
@@ -611,23 +611,23 @@ def run_context_printouts(
     """Create extra A5-on-A4 printouts with ConTeXt if templates exist."""
     result_dir = cfg.runtime.project_paths.result_dir
     cwd = job.compile_dir
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
 
     if PAPERA5_FNAMEPART not in basename or not cfg.create_printouts:
         return step
 
     context_bin = which("context") or which("contextjit")
     if not context_bin:
-        ui.noexec_line(f"{txt_doc}: Extra printout PDFs not created; no 'context/contextjit'")
+        ui.noexec_line(f"{txt_doc} Extra printout PDFs not created; no 'context/contextjit'")
         return step
 
-    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} context (create printouts)")
+    ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} context (create printouts)")
     ensure_dir(result_dir / RESULT_PRINTOUT_SUBDIRNAME)
 
     def make_printout(template: Path, out_base: str, step: int) -> int:
         """Render a ConTeXt template and copy result to result/printouts."""
         if not template.exists():
-            ui.noexec_line(f"{txt_doc}: Printout template missing: {template.name}")
+            ui.noexec_line(f"{txt_doc} Printout template missing: {template.name}")
             return step
         ctx_out = cwd / f"{out_base}.context"
         data = read_text(template).replace("REPLACE-THIS-FILENAME.pdf", f"{basename}.pdf")
@@ -680,7 +680,7 @@ def run_coverimage_extraction(
     """
     result_dir = cfg.runtime.project_paths.result_dir
     cwd = job.compile_dir
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
 
     if not cfg.coverimage or not which("pdftoppm"):
         return step
@@ -688,7 +688,7 @@ def run_coverimage_extraction(
     ensure_dir(result_dir / RESULT_IMAGE_SUBDIRNAME)
 
     # Extract cover as PNG with configurable height
-    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} pdftoppm (extract cover as image)")
+    ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} pdftoppm (extract cover as image)")
     log_extract = cwd / f"log-{step:02d}_coverimage-extract.log"
     try:
         run_cmd(
@@ -722,7 +722,7 @@ def run_coverimage_extraction(
 
     # Optional: create auto-wide image via ImageMagick convert
     if which("convert"):
-        ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} convert (cover image modified)")
+        ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} convert (cover image modified)")
         cover_modified_png = cwd / f"{basename}{COVERIMAGE_MODIFIED_FNAME_POSTFIX}.png"
         log_auto = cwd / f"log-{step:02d}_coverimage-modified.log"
 
@@ -829,7 +829,7 @@ def build_song_db(
     step: int,
 ) -> tuple[SongbookData | None, int]:
     """Build the song database from the processed TeX tree."""
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
     log_path = job.compile_dir / f"log-{step:02d}_songdb.log"
 
     # Skip if midi nor audio is requested
@@ -841,7 +841,7 @@ def build_song_db(
     ):
         return None, step
 
-    ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} internal: build song tree")
+    ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} internal: build song tree")
 
     try:
         db = build_song_database(
@@ -888,10 +888,10 @@ def run_midi_audio(
     if not (do_midi or do_audio):
         return step
 
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
 
     if db is None:
-        ui.warning_line(f"{txt_doc}: No internal db; skipping midi/audio")
+        ui.warning_line(f"{txt_doc} No internal db; skipping midi/audio")
         return step
 
     result_dir = cfg.runtime.project_paths.result_dir
@@ -903,12 +903,12 @@ def run_midi_audio(
     songs_with_midi = [s for s in all_songs if s.midi_abs_path is not None]
 
     if not songs_with_midi:
-        ui.noexec_line(f"{txt_doc}: No MIDI files referenced; skipping midi/audio")
+        ui.noexec_line(f"{txt_doc} No MIDI files referenced; skipping midi/audio")
         return step
 
     # MIDI copies
     if do_midi:
-        ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} internal: grab MIDI files")
+        ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} internal: grab MIDI files")
         cur_res_midi = result_dir / RESULT_MIDI_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_midi)
         ensure_dir(cur_res_midi)
@@ -939,7 +939,7 @@ def run_midi_audio(
                 )
 
         if copy_error_count > 0:
-            ui.warning_line(f"{txt_doc}: Failed to copy {copy_error_count} MIDI files")
+            ui.warning_line(f"{txt_doc} Failed to copy {copy_error_count} MIDI files")
 
         # Copy midi README, if set in config, into midi result dir
         readme_midi = cfg.mididir_readme_file
@@ -951,13 +951,13 @@ def run_midi_audio(
                     log_midi,
                     f"Warning: Readme for MIDI directories does not exist: {readme_midi}\n",
                 )
-                ui.warning_line(f"{txt_doc}: Readme for MIDI dir does not exist: {readme_midi}")
+                ui.warning_line(f"{txt_doc} Readme for MIDI dir does not exist: {readme_midi}")
         resultlist.append_line(RESULT_TYPE_MIDIDIR, cur_res_midi.name)
         step += 1
 
     # Audio encodes
     if do_audio:
-        ui.exec_line(f"{txt_doc}: {ui.fmt_step(step)} encode audio (ulsbs-midi2audio)")
+        ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} encode audio (ulsbs-midi2audio)")
         cur_res_audio = result_dir / RESULT_AUDIO_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_audio)
         ensure_dir(cur_res_audio)
@@ -1053,7 +1053,7 @@ def run_midi_audio(
                     log_midi,
                     f"Warning: Readme for audio directories does not exist: {readme_audio}\n",
                 )
-                ui.warning_line(f"{txt_doc}: Readme for audio does not exist: {readme_audio}")
+                ui.warning_line(f"{txt_doc} Readme for audio does not exist: {readme_audio}")
         resultlist.append_line(RESULT_TYPE_AUDIODIR, cur_res_audio.name)
         step += 1
 
@@ -1064,7 +1064,7 @@ def analyze_warnings(
     ui: UI, cfg: Config, job: Job, lilypond_log: Path, last_lualatex_log: Path
 ) -> int:
     """Count and summarize warnings from lilypond and LuaLaTeX logs."""
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
     total_warn = 0
     lp_all_warn = 0
     tex_all_warn = 0
@@ -1083,11 +1083,11 @@ def analyze_warnings(
                 lp_all_warn -= 1
             if lp_all_warn:
                 ui.warning_line(
-                    f"{txt_doc}: Lilypond warnings - all: {lp_all_warn} (barcheck: {lp_bar_warn})"
+                    f"{txt_doc} Lilypond warnings - all: {lp_all_warn} (barcheck: {lp_bar_warn})"
                 )
             total_warn += lp_all_warn
     except Exception:
-        ui.warning_line(f"{txt_doc}: Lilypond warnings - failed to read the log file")
+        ui.warning_line(f"{txt_doc} Lilypond warnings - failed to read the log file")
 
     try:
         # TeX warnings (from the last LuaLaTeX pass)
@@ -1097,14 +1097,14 @@ def analyze_warnings(
             tex_font_warn = len(re.findall(r"Font Warning", lt_log_txt, flags=re.I))
             if tex_all_warn:
                 ui.warning_line(
-                    f"{txt_doc}: TeX warnings - all: {tex_all_warn} (font: {tex_font_warn})"
+                    f"{txt_doc} TeX warnings - all: {tex_all_warn} (font: {tex_font_warn})"
                 )
             if tex_font_warn > 20:
                 ui.space_line(ui.colorize("Concerning amount of font warnings!", ui.C_RED))
             total_warn += tex_all_warn
 
     except Exception:
-        ui.warning_line(f"{txt_doc}: TeX warnings - failed to read the log file")
+        ui.warning_line(f"{txt_doc} TeX warnings - failed to read the log file")
 
     if total_warn > 0 and not cfg.clean_temp:
         if lp_all_warn:
@@ -1133,7 +1133,7 @@ def compile_one_job(
 
     Returns the total number of warnings reported by analyze_warnings for this job.
     """
-    txt_doc = ui.fmt_doc(f"{job.doc_stem}:{job.variant}", job.color)
+    txt_doc = ui.fmt_doc(job)
     ui.start_line(txt_doc)
 
     lock = JobLock(job.compile_dir)
@@ -1257,7 +1257,8 @@ def compile_one_job(
             ui, cfg, job, lilypond_log=lp_log, last_lualatex_log=last_tex_log
         )
 
-        ui.success_line(f"{ui.fmt_doc(str(dst_pdf.name), job.color)}: Compilation successful!")
+        ui.success_line(f"{ui.fmt_doc(job)} Compilation successful!")
+        ui.space_line(f"{ui.colorize('->', ui.C_LGREEN)} {dst_pdf.relative_to(dst_pdf.parent.parent)}")
         return warn_count
     finally:
         lock.release()

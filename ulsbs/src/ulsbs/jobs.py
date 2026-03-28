@@ -20,12 +20,11 @@ from .util import read_text, regex_documentclass_ulsbs_songbook
 
 @dataclass(frozen=True)
 class Job:
-    """One compilation job (document + variant + paths/colors)."""
+    """One compilation job (document + variant + paths)."""
 
     doc_tex_abs: Path
     doc_stem: str
     variant: str
-    color: str
     compile_dir: Path
 
 
@@ -89,26 +88,21 @@ def build_variant_basename(original_base: str, insert: str) -> str:
     return original_base[:idx] + insert + original_base[idx:]
 
 
-def build_job_queue(cfg: Config, doc_colors: List[str]) -> List[Job]:
+def build_job_queue(cfg: Config) -> List[Job]:
     """Build jobs for selected songbooks and allowed variants."""
     project_root = cfg.runtime.project_paths.project_root
     jobs: List[Job] = []
-    for i, doc in enumerate(cfg.songbooks):
-        color = doc_colors[i % len(doc_colors)]
+    for doc in cfg.songbooks:
         base = doc.stem
-        jobs.append(
-            Job(doc, base, "default", color, project_root / TEMP_DIRNAME / base / "default")
-        )
+        jobs.append(Job(doc, base, "default", project_root / TEMP_DIRNAME / base / "default"))
         if cfg.lyricbooks and variant_possible_lyrics(doc):
-            jobs.append(
-                Job(doc, base, "lyrics", color, project_root / TEMP_DIRNAME / base / "lyrics")
-            )
+            jobs.append(Job(doc, base, "lyrics", project_root / TEMP_DIRNAME / base / "lyrics"))
         if cfg.extrainstrumentbooks and variant_possible_charango(doc):
             jobs.append(
-                Job(doc, base, "charango", color, project_root / TEMP_DIRNAME / base / "charango")
+                Job(doc, base, "charango", project_root / TEMP_DIRNAME / base / "charango")
             )
         if cfg.extrainstrumentbooks and variant_possible_bassclef(doc):
             jobs.append(
-                Job(doc, base, "bassclef", color, project_root / TEMP_DIRNAME / base / "bassclef")
+                Job(doc, base, "bassclef", project_root / TEMP_DIRNAME / base / "bassclef")
             )
     return jobs
