@@ -111,9 +111,9 @@ To install the dependencies, download the project's source and compile
 the songbook using a Docker container, you need to run the following
 commands:
 
-  1. `sudo apt install docker.io git`
-  2. `sudo adduser <USERNAME> docker` # replace <USERNAME> with your username
-  3. `su <USERNAME>` # relogin for the group setting to become active (or reboot)
+  1. `sudo apt install docker.io git python3`
+  2. `sudo adduser <USERNAME> docker`  # Replace <USERNAME> with your username
+  3. `su <USERNAME>`  # Relogin for the group setting to become active (or reboot)
   4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
   6. `./ulsbs-compile`
@@ -122,10 +122,10 @@ This procedure was tested on Ubuntu versions 23.03, 23.10 and 24.04.
 
 ##### Example: on Arch Linux, using Docker #####
 
-  1. `sudo pacman -Suy docker`
-  2. `sudo gpasswd -a <USERNAME> docker` # replace <USERNAME> with your username
+  1. `sudo pacman -Suy docker git python3`
+  2. `sudo gpasswd -a <USERNAME> docker`  # Replace <USERNAME> with your username
   3. `sudo systemctl enable docker.socket`
-  3. `su <USERNAME>` # relogin for the group setting to become active (or reboot)
+  3. `su <USERNAME>`  # Relogin for the group setting to become active (or reboot)
   4. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
   5. `cd unilaiva-songbook`
   6. `./ulsbs-compile`
@@ -156,8 +156,27 @@ trying to run it for the first time.
 
 ##### Example: on Windows, using Docker #####
 
-Install Ubuntu on Windows using Windows Subsystem for Linux (WSL2) and follow
-the instructions for Ubuntu. This is not tested. TODO: test.
+Use Windows Subsystem for Linux (WSL2) with Ubuntu distribution therein.
+
+First, install WSL by executing `wsl --install` in PowerShell. This will also
+install the default distribution, Ubuntu. Reboot the computer.
+
+Open PowerShell and run the following commands:
+  1  `wsl`
+  2. `sudo apt install docker.io git python3`
+  3. `sudo adduser <USERNAME> docker`  # Replace <USERNAME> with your username
+  4. `su <USERNAME>`  # Relogin for the group setting to become active (or reboot)
+  5. `cd $HOME`  # Go to Linux home directory for symlink support
+  6. `git clone --depth 1 https://github.com/unilaiva/unilaiva-songbook.git`
+  7. `cd unilaiva-songbook --deploy-dir `
+  8. `./ulsbs-compile --deploy-dir /mnt/c/Users/<USERNAME>/unilaiva-result`
+
+By using `--deploy-dir` argument for `ulsbs-compile`, the resulting files will
+be copied to the specified directory under the Windows user's home folder. This
+can alternatively be configured in `ulsbs-config.toml` configuration file.
+
+It is possible to use another Linux distribution in WSL instead of Ubuntu, but
+then the package management commands above need to be adjusted for that distro.
 
 
 ### Option TWO: use the script without a container ###
@@ -166,7 +185,7 @@ If you don't want to use a container, you can install the required packages and
 execute the compilation script with `--no-container` option.
 
 ##### Requirements #####
-[
+
 These dependencies are included in the Docker image, and need be installed on
 the host system only if compiling without using the Docker image.
 
@@ -211,7 +230,7 @@ On Ubuntu 24.04 (noble), to install the dependencies, to download the
 project's source and to compile the songbook without Docker, you need to run
 the following commands:
 
-  1. `sudo apt update && sudo apt install bash locales git context
+  1. `sudo apt update && sudo apt install bash locales git python3 context
      context-modules ffmpeg fluidsynth fluid-soundfont-gm fonts-noto-core
      fonts-noto-extra fonts-noto-mono imagemagick lilypond poppler-utils
      python3 texlive texlive-font-utils texlive-lang-arabic texlive-lang-english
