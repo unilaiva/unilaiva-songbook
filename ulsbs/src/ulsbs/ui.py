@@ -14,9 +14,14 @@ import shutil
 import subprocess
 import sys
 import hashlib
+import threading
+import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TextIO
+
+if TYPE_CHECKING:  # pragma: no cover - import only for type checking
+    from .jobs import Job
 
 MAX_COLS = 120
 MIN_COLS = 60
@@ -25,8 +30,254 @@ WRAP_BACKOFF = 15
 
 ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
 
-if TYPE_CHECKING:  # pragma: no cover - import only for type checking
-    from .jobs import Job
+# ANSI reset sequence used by UI.colorize; kept here so the spinner can
+# detect and preserve trailing reset codes when appending dots.
+_ANSI_RESET = "\033[0m"
+
+_SPINNER_MAX_DOTS = 9
+_SPINNER_INTERVAL_SEC = 0.1
+
+_output_lock = threading.RLock()
+
+_spinner_active: bool = False
+_spinner_supported: bool | None = None
+_spinner_text: str | None = None
+_spinner_spin: bool = True
+_spinner_dots: int = 0
+_spinner_last_width: int = 0
+_spinner_thread: threading.Thread | None = None
+_spinner_stop_event: threading.Event | None = None
+
+# Track whether we've hidden the terminal cursor while the spinner is active.
+_cursor_hidden: bool = False
+
+_original_stdout: TextIO = sys.stdout
+_original_stderr: TextIO = sys.stderr
+_stdout_wrapper: "_SpinnerStream" | None = None
+_stderr_wrapper: "_SpinnerStream" | None = None
+
+
+def _detect_spinner_supported() -> bool:
+    global _spinner_supported
+    if _spinner_supported is not None:
+        return _spinner_supported
+    try:
+        if not sys.stdout.isatty():
+            _spinner_supported = False
+        else:
+            term = os.environ.get("TERM", "")
+            if term == "dumb":
+                _spinner_supported = False
+            elif os.environ.get("ULSBS_NOSPINNER"):
+                _spinner_supported = False
+            else:
+                _spinner_supported = True
+    except Exception:
+        _spinner_supported = False
+    return _spinner_supported
+
+
+def _patch_streams_for_spinner() -> None:
+    global _original_stdout, _original_stderr, _stdout_wrapper, _stderr_wrapper
+    if isinstance(sys.stdout, _SpinnerStream) and isinstance(sys.stderr, _SpinnerStream):
+        return
+    _original_stdout = sys.stdout  # type: ignore[assignment]
+    _original_stderr = sys.stderr  # type: ignore[assignment]
+    _stdout_wrapper = _SpinnerStream(_original_stdout, is_stderr=False)
+    _stderr_wrapper = _SpinnerStream(_original_stderr, is_stderr=True)
+    sys.stdout = _stdout_wrapper  # type: ignore[assignment]
+    sys.stderr = _stderr_wrapper  # type: ignore[assignment]
+
+
+def _spinner_frame_text_unlocked() -> str:
+    """Build the visible spinner text (base text + optional dots).
+
+    If the base text ends with the standard ANSI reset sequence, dots are
+    inserted *before* that reset so they inherit the same color. This
+    allows callers (e.g. UI.start_spinner) to simply pass in a string
+    produced by UI.colorize() and still have colored dots.
+    """
+    base = _spinner_text or ""
+    dots = "." * _spinner_dots if _spinner_spin else ""
+    if not dots:
+        return base
+    if base.endswith(_ANSI_RESET):
+        core = base[: -len(_ANSI_RESET)]
+        return f"{core}{dots}{_ANSI_RESET}"
+    return f"{base}{dots}"
+
+
+def _hide_cursor_unlocked() -> None:
+    """Hide the terminal cursor if it is currently visible.
+
+    Uses the standard ANSI sequence CSI ?25l. Any errors are swallowed.
+    """
+    global _cursor_hidden
+    if _cursor_hidden:
+        return
+    try:
+        _original_stdout.write("\033[?25l")
+        _original_stdout.flush()
+        _cursor_hidden = True
+    except Exception:
+        # Never let spinner failures crash the program
+        _cursor_hidden = False
+
+
+def _show_cursor_unlocked() -> None:
+    """Show the terminal cursor again if we previously hid it."""
+    global _cursor_hidden
+    if not _cursor_hidden:
+        return
+    try:
+        _original_stdout.write("\033[?25h")
+        _original_stdout.flush()
+    except Exception:
+        # Ignore errors; leave flag reset so we don't spam sequences
+        pass
+    finally:
+        _cursor_hidden = False
+
+
+def _clear_current_line_unlocked() -> None:
+    """Clear the current terminal line used by the spinner.
+
+    Uses a carriage return and ANSI clear-to-eol so that we do not
+    leave leading spaces that might visually prefix subsequent output
+    lines. Any errors are swallowed.
+    """
+    try:
+        _original_stdout.write("\r\033[K")
+        _original_stdout.flush()
+    except Exception:
+        # Never let spinner failures crash the program
+        pass
+
+
+def _draw_spinner_frame_unlocked(initial: bool) -> None:
+    global _spinner_last_width, _spinner_active
+    try:
+        text = _spinner_frame_text_unlocked()
+        if not text:
+            return
+        # Always return to column 0 and clear to end-of-line before drawing,
+        # which guarantees that shorter updates do not leave trailing junk.
+        _original_stdout.write("\r\033[K" + text)
+        _original_stdout.flush()
+        _spinner_last_width = len(text)
+    except Exception:
+        _spinner_active = False
+        _show_cursor_unlocked()
+
+
+class _SpinnerStream:
+    """Wrapper for stdout/stderr that cooperates with the spinner.
+
+    It ensures that any normal line-oriented output appears above the
+    spinner line, and that the spinner is re-drawn afterwards.
+    """
+
+    def __init__(self, wrapped: TextIO, is_stderr: bool) -> None:
+        self._wrapped = wrapped
+        self._is_stderr = is_stderr
+        # Track whether the next non-empty write begins a new terminal line.
+        self._at_line_start = True
+
+    def _update_line_state(self, s: str) -> None:
+        """Update internal flag tracking if we are at the start of a line."""
+        last_nl = s.rfind("\n")
+        last_cr = s.rfind("\r")
+        last_pos = max(last_nl, last_cr)
+        if last_pos == -1:
+            # No newline/carriage return seen -> we are mid-line
+            self._at_line_start = False
+        else:
+            # We are at line start only if the *last* char written is a newline/CR
+            self._at_line_start = last_pos == len(s) - 1
+
+    def write(self, s: str) -> int:
+        if not s:
+            return 0
+        if not _spinner_active:
+            n = self._wrapped.write(s)
+            self._update_line_state(s)
+            return n
+        with _output_lock:
+            if not _spinner_active:
+                n = self._wrapped.write(s)
+                self._update_line_state(s)
+                return n
+
+            # Only clear the spinner line when we are truly at the start of a
+            # new line *and* this write actually contains some non-newline
+            # content. This avoids wiping freshly printed text when higher
+            # layers issue separate writes for text and for the trailing "\n".
+            if self._at_line_start and any(ch not in ("\n", "\r") for ch in s):
+                _clear_current_line_unlocked()
+
+            n = self._wrapped.write(s)
+            try:
+                self._wrapped.flush()
+            except Exception:
+                pass
+
+            # If we just finished a line and spinner is still active,
+            # re-draw it on the next line.
+            if _spinner_active and s.endswith("\n"):
+                _draw_spinner_frame_unlocked(initial=True)
+
+            self._update_line_state(s)
+            return n
+
+    def flush(self) -> None:
+        try:
+            self._wrapped.flush()
+        except Exception:
+            pass
+
+    def isatty(self) -> bool:  # pragma: no cover - thin wrapper
+        try:
+            return self._wrapped.isatty()
+        except Exception:
+            return False
+
+    def fileno(self) -> int:  # pragma: no cover - thin wrapper
+        return self._wrapped.fileno()
+
+    def __getattr__(self, name: str) -> object:
+        return getattr(self._wrapped, name)
+
+
+def _spinner_thread_main() -> None:
+    """
+    Background worker function for the spinner thread.
+
+    This loop periodically updates the spinner state and redraws the spinner
+    frame while _spinner_active and _spinner_spin are True. It terminates
+    when _spinner_stop_event is set, or when the spinner is deactivated.
+    """
+    global _spinner_dots, _spinner_active, _spinner_stop_event
+    try:
+        while True:
+            if _spinner_stop_event is not None and _spinner_stop_event.is_set():
+                break
+            time.sleep(_SPINNER_INTERVAL_SEC)
+            with _output_lock:
+                if not _spinner_active:
+                    break
+                if not _spinner_spin:
+                    continue
+                _spinner_dots = (_spinner_dots + 1) % (_SPINNER_MAX_DOTS + 1)
+                _draw_spinner_frame_unlocked(initial=False)
+    except Exception:
+        # Spinner failures must never crash the program
+        with _output_lock:
+            _spinner_active = False
+            _show_cursor_unlocked()
+    finally:
+        # On any exit path, make sure the cursor is visible again.
+        with _output_lock:
+            _show_cursor_unlocked()
 
 
 @dataclass
@@ -305,6 +556,116 @@ class UI:
         if not variant:
             return self.C_GRAY
         return self._variant_colors.get(variant, self.C_GRAY)
+
+    # BEGIN spinner
+
+    def start_spinner(self, txt: str | None = None, spin: bool = True) -> None:
+        """Start or update a status spinner on the last output line.
+
+        When enabled and supported by the current TTY, this shows an
+        animated dotted spinner (0..5 dots) after the given text. The
+        spinner line is kept at the bottom of the output while other
+        threads print lines using either this UI or plain print().
+
+        If output is not a TTY or the spinner cannot be used, this is a
+        no-op. Any internal errors while starting the spinner are
+        swallowed so that they never crash the program.
+        """
+        global _spinner_active, _spinner_text, _spinner_spin, _spinner_dots
+        global _spinner_thread, _spinner_stop_event, _spinner_last_width
+
+        if not _detect_spinner_supported():
+            return
+
+        with _output_lock:
+            _patch_streams_for_spinner()
+            _spinner_text = txt or ""
+            _spinner_spin = bool(spin)
+            _spinner_dots = 0
+            _spinner_last_width = 0
+
+            if _spinner_active:
+                # Just update text/flags; frame will be redrawn by thread
+                if spin and _spinner_thread is None and _spinner_stop_event is not None:
+                    _spinner_thread = threading.Thread(
+                        target=_spinner_thread_main,
+                        name="ulsbs-spinner",
+                        daemon=True,
+                    )
+                    try:
+                        _spinner_thread.start()
+                    except Exception:
+                        _spinner_thread = None
+                _draw_spinner_frame_unlocked(initial=False)
+                return
+
+            _spinner_active = True
+            _spinner_stop_event = threading.Event()
+
+            try:
+                # Make sure any previously buffered output is visible
+                _original_stdout.flush()
+            except Exception:
+                _spinner_active = False
+                _spinner_stop_event = None
+                return
+
+            # Hide cursor while spinner is visible
+            _hide_cursor_unlocked()
+
+            _draw_spinner_frame_unlocked(initial=True)
+
+            if spin:
+                _spinner_thread = threading.Thread(
+                    target=_spinner_thread_main,
+                    name="ulsbs-spinner",
+                    daemon=True,
+                )
+                try:
+                    _spinner_thread.start()
+                except Exception:
+                    # Best-effort: disable spinner but keep the program running
+                    _spinner_thread = None
+                    _spinner_active = False
+                    _spinner_stop_event = None
+
+    def stop_spinner(self) -> None:
+        """Stop and clear the status spinner, if it is currently active.
+
+        This is safe to call even if the spinner was never started or
+        has already been stopped; in those cases it is a no-op.
+        """
+        global _spinner_active, _spinner_thread, _spinner_stop_event
+
+        with _output_lock:
+            if not _spinner_active:
+                return
+            _spinner_active = False
+            stop_event = _spinner_stop_event
+            thread = _spinner_thread
+            _spinner_stop_event = None
+            _spinner_thread = None
+
+        if stop_event is not None:
+            try:
+                stop_event.set()
+            except Exception:
+                pass
+        if thread is not None:
+            try:
+                thread.join(timeout=0.5)
+            except Exception:
+                pass
+
+        with _output_lock:
+            try:
+                _clear_current_line_unlocked()
+                _show_cursor_unlocked()
+                _original_stdout.flush()
+            except Exception:
+                pass
+
+    # END spinner
 
     def fmt_doc(self, job: "Job") -> str:
         """Format a document label for a Job in a consistent, colored style.

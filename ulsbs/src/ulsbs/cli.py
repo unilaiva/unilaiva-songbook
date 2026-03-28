@@ -155,7 +155,9 @@ def main(argv: List[str] | None = None) -> int:
         resultlist.initialize(proj.result_dir, unique_id)
         if cfg.deploy and not cfg.shell:
             ui.plain("")
+            ui.start_spinner(ui.colorize("", ui.C_DGRAY))
             deploy_results(ui=ui, cfg=cfg)
+            ui.stop_spinner()
         ui.plain("")
 
     ui = UI(use_colors=True)
@@ -367,13 +369,16 @@ def main(argv: List[str] | None = None) -> int:
     print_plan_summary(ui=ui, cfg=cfg, jobs_count=len(jobs))
 
     try:
+        ui.start_spinner(ui.colorize("", ui.C_DGRAY))
         result = run_jobs_parallel(
             ui=ui,
             jobs=jobs,
             assets=assets,
             cfg=cfg,
         )
+        ui.stop_spinner()
     except KeyboardInterrupt:
+        ui.stop_spinner()
         # Mark result list and copy the resultlist into result/ so host-side
         # deploy tooling can see it, and exit quietly
         try:
