@@ -25,6 +25,7 @@ following JSON Schema (draft-07):
         "book_info",
         "chapters",
         "songs_without_chapter",
+        "source_file_relative",
         "total_songs",
         "creation_time"
       ],
@@ -37,6 +38,10 @@ following JSON Schema (draft-07):
         "songs_without_chapter": {
           "type": "array",
           "items": {"$ref": "#/definitions/SongInfo"}
+        },
+        "source_file_relative": {
+          "type": "string",
+          "description": "Path to the main TeX source file relative to the main document directory (POSIX string)"
         },
         "total_songs": {
           "type": "integer",
@@ -132,13 +137,13 @@ following JSON Schema (draft-07):
         },
         "ChapterInfo": {
           "type": "object",
-          "required": ["title", "slug", "tex_file", "songs", "audio_links"],
+          "required": ["title", "slug", "source_file_relative", "songs", "audio_links"],
           "properties": {
             "title": {"type": "string"},
             "slug": {"type": "string"},
-            "tex_file": {
+            "source_file_relative": {
               "type": "string",
-              "description": "Path to the TeX source file (POSIX string)"
+              "description": "Path to the TeX source file relative to the main document directory (POSIX string)"
             },
             "songs": {
               "type": "array",
@@ -158,9 +163,8 @@ following JSON Schema (draft-07):
             "title_slug",
             "number",
             "options",
-            "tex_file",
-            "midi_rel_path",
-            "midi_abs_path",
+            "source_file_relative",
+            "midi_compile_file_relative",
             "order_index",
             "chapter_title",
             "chapter_slug",
@@ -178,17 +182,21 @@ following JSON Schema (draft-07):
               "type": "object",
               "additionalProperties": {"type": "string"}
             },
-            "tex_file": {
+            "source_file_relative": {
               "type": "string",
-              "description": "Path to the TeX source file (POSIX string)"
+              "description": "Path to the TeX source file where the song is defined, relative to the main document directory (POSIX string)"
             },
-            "midi_rel_path": {
+            "midi_compile_file_relative": {
               "type": ["string", "null"],
-              "description": "MIDI file path relative to the main document directory (POSIX string)"
+              "description": "MIDI file path in the compile tree, relative to the main document directory (POSIX string)"
             },
-            "midi_abs_path": {
+            "midi_result_file_relative": {
               "type": ["string", "null"],
-              "description": "Absolute MIDI file path (POSIX string)"
+              "description": "MIDI result file path relative to the global result directory (POSIX string)"
+            },
+            "audio_result_file_relative": {
+              "type": ["string", "null"],
+              "description": "Audio result file path relative to the global result directory (POSIX string)"
             },
             "order_index": {
               "type": "integer",
@@ -304,12 +312,14 @@ class SongInfo:
         Song number taken from the current songnum counter, if known.
     - options:
         Parsed optional key/value arguments given to \\beginsong[..].
-    - tex_file:
-        Path to the TeX file where the song is defined.
-    - midi_rel_path:
-        MIDI file path relative to the main document directory, if detected.
-    - midi_abs_path:
-        Absolute MIDI file path, if detected and resolvable.
+    - source_file_relative:
+        Path to the TeX file where the song is defined, relative to the main document directory.
+    - midi_compile_file_relative:
+        MIDI file path in the compile tree, relative to the main document directory, if detected.
+    - midi_result_file_relative:
+        Path to the MIDI file in the result directory, relative to the global result directory.
+    - audio_result_file_relative:
+        Path to the audio file in the result directory, relative to the global result directory.
     - order_index:
         Monotonic index reflecting document order across the whole tree.
     - chapter_title:
@@ -336,17 +346,24 @@ class SongInfo:
     title_slug: str
     number: int | None
     options: Dict[str, str]
-    tex_file: Path
-    midi_rel_path: Path | None
-    midi_abs_path: Path | None
+    source_file_relative: Path
+    midi_compile_file_relative: Path | None
     order_index: int
     chapter_title: str | None
     chapter_slug: str | None
+    midi_result_file_relative: Path | None = None
+    audio_result_file_relative: Path | None = None
     alt_titles: List[str] = field(default_factory=list)
     audio_links: List[AudioLink] = field(default_factory=list)
     lyrics: List[List[str]] | None = None
     lyrics_plain_lowercase: str | None = None
     translations: List[Translation] = field(default_factory=list)
+
+    def set_midi_result_file_relative(self, path: Path) -> None:
+        self.midi_result_file_relative = path
+
+    def set_audio_result_file_relative(self, path: Path) -> None:
+        self.audio_result_file_relative = path
 
 
 @dataclass(slots=True)
@@ -355,7 +372,7 @@ class ChapterInfo:
 
     title: str
     slug: str
-    tex_file: Path
+    source_file_relative: Path
     songs: List[SongInfo] = field(default_factory=list)
     audio_links: List[AudioLink] = field(default_factory=list)
 
@@ -477,6 +494,8 @@ class SongbookData:
         Chapters discovered in the TeX tree, in document order.
     - songs_without_chapter:
         Songs that are not inside any chapter.
+    - source_file_relative:
+        Path to the main TeX file for this songbook, relative to the main document directory.
     - total_songs:
         Total number of songs discovered across the entire document tree.
         This matches the highest order_index assigned to any song.
@@ -487,6 +506,7 @@ class SongbookData:
     book_info: BookInfo
     chapters: List[ChapterInfo]
     songs_without_chapter: List[SongInfo]
+    source_file_relative: Path
     total_songs: int
     creation_time: str
 
@@ -995,34 +1015,32 @@ def _collect_audio_links_from_block(raw_block: str) -> List[AudioLink]:
     return links
 
 
-def _find_midi_in_song_block(raw_song: str, doc_root: Path) -> Tuple[Path | None, Path | None]:
+def _find_midi_in_song_block(raw_song: str, doc_root: Path) -> Path | None:
     """
     Infer the MIDI file path for a song block, if any.
 
     Looks for a substring produced by lilypond-book containing lilypondbook and
     an \\input{...-systems.tex} call.
+
+    Returns the MIDI file path relative to *doc_root*, or None if not found.
     """
 
     if "lilypondbook" not in raw_song:
-        return None, None
+        return None
 
     try:
         after = raw_song.split("lilypondbook", 1)[1]
         after_input = after.split("\\input{", 1)[1]
         input_arg = after_input.split("}", 1)[0].strip()
     except Exception:
-        return None, None
+        return None
 
     if not input_arg:
-        return None, None
+        return None
 
     # Derive MIDI filename from the "-systems.tex" helper filename
     midi_rel_str = input_arg.split("-systems.tex", 1)[0] + ".midi"
-    midi_rel = Path(midi_rel_str)
-    midi_abs = (doc_root / midi_rel).resolve()
-    if not midi_abs.is_file():
-        return midi_rel, None
-    return midi_rel, midi_abs
+    return Path(midi_rel_str)
 
 
 def _collapse_standalone_brace_groups(text: str) -> str:
@@ -1384,6 +1402,18 @@ def _extract_translations_from_song_block(raw_song: str) -> List[Translation]:
 # ===========
 
 
+def _relative_to_doc_root(path: Path, doc_root: Path) -> Path:
+    """Return *path* relative to *doc_root* when possible.
+
+    Falls back to the absolute path when *path* is not inside *doc_root*.
+    """
+
+    try:
+        return path.resolve().relative_to(doc_root.resolve())
+    except Exception:
+        return path
+
+
 def _apply_book_field(book_info: BookInfo, field_name: str, value: str) -> None:
     """
     Set field_name on book_info, normalising simple TeX constructs.
@@ -1456,10 +1486,12 @@ def build_song_database(
         # Normalise simple TeX constructs in \beginsong options as well.
         normalised_options: Dict[str, str] = {k: _tex_to_plain_text(v) for k, v in options.items()}
 
-        midi_rel, midi_abs = _find_midi_in_song_block(raw_block, doc_root)
+        midi_compile_file_relative = _find_midi_in_song_block(raw_block, doc_root)
         audio_links = _collect_audio_links_from_block(raw_block)
         lyrics, lyrics_plain_lowercase = _extract_lyrics_from_song_block(raw_block)
         translations = _extract_translations_from_song_block(raw_block)
+
+        source_file_relative = _relative_to_doc_root(tex_file, doc_root)
 
         order_counter += 1
         song = SongInfo(
@@ -1467,9 +1499,8 @@ def build_song_database(
             title_slug=title_slug,
             number=number,
             options=normalised_options,
-            tex_file=tex_file,
-            midi_rel_path=midi_rel,
-            midi_abs_path=midi_abs,
+            source_file_relative=source_file_relative,
+            midi_compile_file_relative=midi_compile_file_relative,
             order_index=order_counter,
             chapter_title=current_chapter.title if current_chapter else None,
             chapter_slug=current_chapter.slug if current_chapter else None,
@@ -1668,7 +1699,12 @@ def build_song_database(
 
                 display_title = _tex_to_plain_text(raw_title.strip())
                 slug = _slugify(display_title, default="chapter")
-                chap = ChapterInfo(title=display_title, slug=slug, tex_file=path)
+                source_file_relative = _relative_to_doc_root(path, doc_root)
+                chap = ChapterInfo(
+                    title=display_title,
+                    slug=slug,
+                    source_file_relative=source_file_relative,
+                )
                 chapters.append(chap)
                 current_chapter = chap
                 # Do *not* reset songnum; we follow whatever \setcounter does
@@ -1747,12 +1783,14 @@ def build_song_database(
 
     process_file(processed_tex, is_root=True)
 
+    db_source_file_relative = _relative_to_doc_root(processed_tex, doc_root)
     creation_time = datetime.now(timezone.utc).isoformat()
 
     return SongbookData(
         book_info=book_info,
         chapters=chapters,
         songs_without_chapter=songs_without_chapter,
+        source_file_relative=db_source_file_relative,
         total_songs=order_counter,
         creation_time=creation_time,
     )

@@ -841,7 +841,7 @@ def build_song_db(
     ):
         return None, step
 
-    ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} internal: build song tree")
+    ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} internal: build metadata")
 
     try:
         db = build_song_database(
@@ -900,7 +900,7 @@ def run_midi_audio(
     all_songs = list(db.songs_without_chapter)
     for chap in db.chapters:
         all_songs.extend(chap.songs)
-    songs_with_midi = [s for s in all_songs if s.midi_abs_path is not None]
+    songs_with_midi = [s for s in all_songs if s.midi_compile_file_relative is not None]
 
     if not songs_with_midi:
         ui.noexec_line(f"{txt_doc} No MIDI files referenced; skipping midi/audio")
@@ -916,6 +916,7 @@ def run_midi_audio(
         copy_error_count = 0
 
         for song in songs_with_midi:
+            midi_abs_path = job.compile_dir / song.midi_compile_file_relative
             parent = cur_res_midi
             if song.chapter_slug:
                 parent = parent / song.chapter_slug
@@ -929,13 +930,15 @@ def run_midi_audio(
             base = f"{num_str}__{song.title_slug}"
             dest = parent / f"{base}.midi"
             try:
-                shutil.copy2(song.midi_abs_path, dest)
-                append_text(log_midi, f"Copied MIDI for '{song.title}' from {song.midi_abs_path}\n")
+                shutil.copy2(midi_abs_path, dest)
+                append_text(log_midi, f"Copied MIDI for '{song.title}' from {midi_abs_path}\n")
+                # Store result path relative to the global result directory
+                song.set_midi_result_file_relative(dest.relative_to(result_dir))
             except Exception:
                 copy_error_count += 1
                 append_text(
                     log_midi,
-                    f"Warning: Failed to copy MIDI for '{song.title}' from {song.midi_abs_path}\n",
+                    f"Warning: Failed to copy MIDI for '{song.title}' from {midi_abs_path}\n",
                 )
 
         if copy_error_count > 0:
@@ -957,13 +960,14 @@ def run_midi_audio(
 
     # Audio encodes
     if do_audio:
-        ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} encode audio (ulsbs-midi2audio)")
+        ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} ulsbs-midi2audio (encode audio)")
         cur_res_audio = result_dir / RESULT_AUDIO_SUBDIRNAME / processed_tex.stem
         safe_rm_tree(cur_res_audio)
         ensure_dir(cur_res_audio)
         log_audio = job.compile_dir / f"log-{step:02d}_encode-audio.log"
 
         for song in songs_with_midi:
+            midi_abs_path = job.compile_dir / song.midi_compile_file_relative
             parent = cur_res_audio
             if song.chapter_slug:
                 parent = parent / song.chapter_slug
@@ -1027,7 +1031,7 @@ def run_midi_audio(
             args += [
                 "--outfile-basename",
                 str(out_base),
-                str(song.midi_abs_path),
+                str(midi_abs_path),
             ]
             try:
                 run_cmd(
@@ -1038,6 +1042,10 @@ def run_midi_audio(
                     check=True,
                     append=True,
                 )
+                # Best-effort: record the expected MP3 path relative to the result directory
+                audio_out = out_base.with_suffix(".mp3")
+                if audio_out.exists():
+                    song.set_audio_result_file_relative(audio_out.relative_to(result_dir))
             except Exception:
                 raise CompileError(
                     "ulsbs-midi2audio failed while encoding audio", log_audio
