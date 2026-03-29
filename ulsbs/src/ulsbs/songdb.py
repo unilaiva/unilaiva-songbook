@@ -25,7 +25,8 @@ following JSON Schema (draft-07):
         "book_info",
         "chapters",
         "songs_without_chapter",
-        "total_songs"
+        "total_songs",
+        "creation_time"
       ],
       "properties": {
         "book_info": {"$ref": "#/definitions/BookInfo"},
@@ -40,6 +41,10 @@ following JSON Schema (draft-07):
         "total_songs": {
           "type": "integer",
           "minimum": 0
+        },
+        "creation_time": {
+          "type": "string",
+          "description": "ISO 8601 timestamp when this database was created"
         }
       },
       "additionalProperties": false,
@@ -52,6 +57,31 @@ following JSON Schema (draft-07):
             "title": {"type": ["string", "null"]},
             "key": {"type": ["string", "null"]},
             "pitch": {"type": ["string", "null"]}
+          },
+          "additionalProperties": false
+        },
+        "Translation": {
+          "type": "object",
+          "required": [
+            "language",
+            "lyrics",
+            "lyrics_plain_lowercase"
+          ],
+          "properties": {
+            "language": {"type": ["string", "null"]},
+            "lyrics": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "One verse as an array of translation lines"
+              },
+              "description": "Structured translated lyrics as [verses][lines] of plain text"
+            },
+            "lyrics_plain_lowercase": {
+              "type": "string",
+              "description": "Lowercased plain-text translated lyrics with \\n between lines and \\n\\n between verses"
+            }
           },
           "additionalProperties": false
         },
@@ -137,7 +167,8 @@ following JSON Schema (draft-07):
             "alt_titles",
             "audio_links",
             "lyrics",
-            "lyrics_plain_lowercase"
+            "lyrics_plain_lowercase",
+            "translations"
           ],
           "properties": {
             "title": {"type": "string"},
@@ -186,6 +217,10 @@ following JSON Schema (draft-07):
             "lyrics_plain_lowercase": {
               "type": ["string", "null"],
               "description": "Lowercased plain-text lyrics with \n between lines and \n\n between verses"
+            },
+            "translations": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/Translation"}
             }
           },
           "additionalProperties": false
@@ -198,6 +233,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 import re
 import unicodedata
@@ -231,6 +267,27 @@ class AudioLink:
     title: str | None = None
     key: str | None = None
     pitch: str | None = None
+
+
+@dataclass(slots=True)
+class Translation:
+    """One translated lyrics block for a song.
+
+    Attributes
+    ----------
+    - language:
+        Optional language code (e.g. "en"), taken from the optional
+        argument to the translation environment or macro and lowercased.
+    - lyrics:
+        Plain-text translated lyrics structured as verses and lines.
+    - lyrics_plain_lowercase:
+        Lowercased plain-text translated lyrics with verse and line breaks
+        encoded as newlines. Intended for case-insensitive search.
+    """
+
+    language: str | None
+    lyrics: List[List[str]]
+    lyrics_plain_lowercase: str
 
 
 @dataclass(slots=True)
@@ -270,6 +327,9 @@ class SongInfo:
     - lyrics_plain_lowercase:
         Lowercased plain-text lyrics with verse and line breaks encoded as
         newlines. Intended for case-insensitive search.
+    - translations:
+        Zero or more translated lyric blocks, each with an optional
+        language code and lyrics structured as verses and lines.
     """
 
     title: str
@@ -286,6 +346,7 @@ class SongInfo:
     audio_links: List[AudioLink] = field(default_factory=list)
     lyrics: List[List[str]] | None = None
     lyrics_plain_lowercase: str | None = None
+    translations: List[Translation] = field(default_factory=list)
 
 
 @dataclass(slots=True)
@@ -419,12 +480,15 @@ class SongbookData:
     - total_songs:
         Total number of songs discovered across the entire document tree.
         This matches the highest order_index assigned to any song.
+    - creation_time:
+        ISO 8601 timestamp when this database instance was created.
     """
 
     book_info: BookInfo
     chapters: List[ChapterInfo]
     songs_without_chapter: List[SongInfo]
     total_songs: int
+    creation_time: str
 
     def to_json_file(self, dest: Path, *, indent: int = 2) -> None:
         """
@@ -1143,6 +1207,41 @@ def _strip_macros_for_lyrics(text: str) -> str:
     return _collapse_standalone_brace_groups("".join(out))
 
 
+def _normalise_verses(verses_raw: List[str]) -> Tuple[List[List[str]] | None, str | None]:
+    """Normalise raw verse blocks into structured lines and a flat lowercase form.
+
+    Shared by both lyrics and translation extraction.
+    """
+
+    if not verses_raw:
+        return None, None
+
+    verses: List[List[str]] = []
+    for verse_src in verses_raw:
+        # Drop TeX comments first.
+        cleaned = re.sub(r"(?<!\\)%[^\r\n]*", "", verse_src)
+        cleaned = _strip_macros_for_lyrics(cleaned)
+
+        verse_lines: List[str] = []
+        for raw_line in cleaned.splitlines():
+            line = raw_line.strip()
+            if not line:
+                continue
+            # Collapse internal whitespace to a single space.
+            line = re.sub(r"\s+", " ", line)
+            if line:
+                verse_lines.append(line)
+        if verse_lines:
+            verses.append(verse_lines)
+
+    if not verses:
+        return None, None
+
+    verse_blocks = ["\n".join(v) for v in verses]
+    joined = "\n\n".join(verse_blocks)
+    return verses, joined.lower()
+
+
 def _extract_lyrics_from_song_block(
     raw_song: str,
 ) -> Tuple[List[List[str]] | None, str | None]:
@@ -1195,36 +1294,90 @@ def _extract_lyrics_from_song_block(
         if not verses_raw:
             return None, None
 
-        lyrics: List[List[str]] = []
-        for verse_src in verses_raw:
-            # Drop TeX comments first.
-            cleaned = re.sub(r"(?<!\\)%[^\r\n]*", "", verse_src)
-            cleaned = _strip_macros_for_lyrics(cleaned)
-
-            verse_lines: List[str] = []
-            for raw_line in cleaned.splitlines():
-                line = raw_line.strip()
-                if not line:
-                    continue
-                # Collapse internal whitespace to a single space.
-                line = re.sub(r"\s+", " ", line)
-                if line:
-                    verse_lines.append(line)
-            if verse_lines:
-                lyrics.append(verse_lines)
-
-        if not lyrics:
-            return None, None
-
-        verse_blocks = ["\n".join(v) for v in lyrics]
-        joined = "\n\n".join(verse_blocks)
-        lyrics_plain_lowercase = joined.lower()
-        return lyrics, lyrics_plain_lowercase
+        return _normalise_verses(verses_raw)
 
     except Exception:
         # Be conservative: if anything goes wrong, do not propagate errors
         # outside this module.
         return None, None
+
+
+def _extract_translations_from_song_block(raw_song: str) -> List[Translation]:
+    """Extract all translation blocks from a '\\beginsong..\\endsong' block.
+
+    Each translation block is either::
+
+        \\begin{translation}[LC] ... \\end{translation}
+        \\begintranslation[LC] ... \\endtranslation
+
+    where 'LC' is an optional language code. Verses inside a translation
+    block are separated with '\\nextverse'.
+
+    Returns a list of Translation instances. On any parsing error, an
+    empty list is returned.
+    """
+
+    translations: List[Translation] = []
+    try:
+        i = 0
+        n = len(raw_song)
+        while i < n:
+            if raw_song.startswith("\\begin{translation}", i):
+                start = i + len("\\begin{translation}")
+                j = start
+                while j < n and raw_song[j].isspace():
+                    j += 1
+                lang: str | None = None
+                if j < n and raw_song[j] == "[":
+                    lang_raw, j = _parse_optional_bracket_argument(raw_song, j)
+                    if lang_raw is not None:
+                        lang_raw = lang_raw.strip()
+                        if lang_raw:
+                            lang = lang_raw.lower()
+                content_start = j
+                end_token = "\\end{translation}"
+                end = raw_song.find(end_token, content_start)
+                if end == -1:
+                    break
+                body = raw_song[content_start:end]
+                i = end + len(end_token)
+            elif raw_song.startswith("\\begintranslation", i):
+                start = i + len("\\begintranslation")
+                j = start
+                while j < n and raw_song[j].isspace():
+                    j += 1
+                lang: str | None = None
+                if j < n and raw_song[j] == "[":
+                    lang_raw, j = _parse_optional_bracket_argument(raw_song, j)
+                    if lang_raw is not None:
+                        lang_raw = lang_raw.strip()
+                        if lang_raw:
+                            lang = lang_raw.lower()
+                content_start = j
+                end_token = "\\endtranslation"
+                end = raw_song.find(end_token, content_start)
+                if end == -1:
+                    break
+                body = raw_song[content_start:end]
+                i = end + len(end_token)
+            else:
+                i += 1
+                continue
+
+            # Drop TeX comments so that commented-out \\nextverse markers do
+            # not split verses.
+            body = re.sub(r"(?<!\\)%[^\r\n]*", "", body)
+            verses_raw = body.split("\\nextverse")
+
+            verses, plain_lower = _normalise_verses(verses_raw)
+            if verses is None or plain_lower is None:
+                continue
+            translations.append(
+                Translation(language=lang, lyrics=verses, lyrics_plain_lowercase=plain_lower)
+            )
+        return translations
+    except Exception:
+        return []
 
 
 # Main walker
@@ -1306,6 +1459,7 @@ def build_song_database(
         midi_rel, midi_abs = _find_midi_in_song_block(raw_block, doc_root)
         audio_links = _collect_audio_links_from_block(raw_block)
         lyrics, lyrics_plain_lowercase = _extract_lyrics_from_song_block(raw_block)
+        translations = _extract_translations_from_song_block(raw_block)
 
         order_counter += 1
         song = SongInfo(
@@ -1323,6 +1477,7 @@ def build_song_database(
             audio_links=audio_links,
             lyrics=lyrics,
             lyrics_plain_lowercase=lyrics_plain_lowercase,
+            translations=translations,
         )
 
         if current_chapter is None:
@@ -1592,9 +1747,12 @@ def build_song_database(
 
     process_file(processed_tex, is_root=True)
 
+    creation_time = datetime.now(timezone.utc).isoformat()
+
     return SongbookData(
         book_info=book_info,
         chapters=chapters,
         songs_without_chapter=songs_without_chapter,
         total_songs=order_counter,
+        creation_time=creation_time,
     )
