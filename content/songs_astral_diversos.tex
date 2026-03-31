@@ -120,3 +120,236 @@
     Let's follow my brothers however God wills
   \end{translation}
 \endsong
+
+
+\beginsong{Bendito da Sexta-Feira Santa}[by={trazida tão Santo Daime por Dona Francisca Nascimento}, ex={canção folclórica}, key={C}, gk={D, B\flt{}--G}]
+  \meter{2}{4}
+  % verse 1:
+  \mnbeginverse
+    \[^\mn{A}]Na quar\[^\mn{B}]ta-|\[\mnc{C}Am]fei\[^\mn{B}]ra, \[^\mn{A}]Je|\[\mnc{B}Em]sus com \[^\mn{A}]seus \[^\mn{B}]dis|\[\mnc{C}Am]cí|pulos
+    \[^\mn{A}]Foi à\jw O\[^\mn{C}]li|\[^\mn{E}]vei\[^\mn{C}]ra, \[^\mn{D}]foi |\[Dm]à \[^\mn{A}]Jeru\[^\mn{C}]sa|\[\mnc{E}C]lém | \e
+    \[^\mn{A}]Foi \[^\mn{C}]à |\[^\mn{E}]Pás\[^\mn{C}]coa, meu \[^\mn{E}]Je|sus com \[^\mn{D}]seus \[^\mn{C}]dis|\[\mncii{D}{C}G]cí|\[\mnc{A}Am]pulos
+    |\[\mnc{C}F]Que \[^\mn{E}]pade|\[^\mn{C}]ceu \[^\mn{B}]a \[^\mn{A}]fa|\[\mnc{B}G]vor do \[^\mn{A}]nos\[^\mn{B}]so |\[\mnc{C}C]bem | \e
+  \mnendverse
+  \notesoff
+  % verse 2:
+  \beginverse
+    Na quinta-|^feira, Je|^sus banhou os |^pés | \e
+    Com grande |gosto, prazer |^{e con}tenta|^men|to
+    Depois da |ceia, meu Je|sus restitu|^iu-|^se
+    |^Com grande |gosto, meu San|^tíssimo Sacra|^men|to
+  \endverse
+  % verse 3:
+  \beginverse
+    Na sexta-|^feira, Je|^sus subiu ao |^hor|to \altchords{\id[1]{(D)}|Bm |F\shrp{}m |Bm | \e}
+    Foi re|zar três ho|^ras de ora|^ção | \e \altchords{| - |Em |D | \e}
+    Encontrou |Judas na |frente de\jw uma |^tro|^pa \altchords{| - | - |A |Bm}
+    |^Já vinha |ele, de al|^feres, capi|^tão | \e \altchords{|G | - |A |D | \e}
+  \endverse
+  % verse 4:
+  \beginverse
+    |^Judas, pe|^{lo lado} di|^rei|to
+    Com falsi|dade lhe bei|^jou devida|^men|te
+    Jesus |disse: eu co|nheço\jw a falsi|^da|^de
+    |^Com esse |beijo que tu |^agora me |^des|tes
+  \endverse
+  % verse 5:
+  \beginverse
+    De|^pois de Je|^sus Cristo\jw arras|^ta|do
+    Cobriram |Ele em |^trono peque|^ni|no
+    Lhe bo|taram\jw uma co|roa na ca|^be|^ça
+    |^Era te|cida com se|^tenta\jw e dois es|^pi|nhos
+  \endverse
+  % verse 6:
+  \beginverse
+    Daí sa|^íram com Je|^sus na rua\jw es|^trei|ta
+    Certa|mente\jw a ru|^{a de} amar|^gu|ra
+    Encon|trou-se com\jw a Sem|pre Virgem Ma|^ri|^a
+    |^Era\jw a sua |mãe que cho|^rava com ter|^nu|ra
+  \endverse
+  % verse 7:
+  \beginverse
+    Neste |^dia, Nossa |^Senhora che|^gou | \e \altchords{|Bm |F\shrp{}m |Bm | \e}
+    Às oito |horas, Sexta-|^feira da Pai|^xão | \e \altchords{| - |Em |D | \e}
+    Encon|trou-se com\jw o |seu filhinho |^pre|^so \altchords{| - | - |A |Bm}
+    \noteson \[\mn{E}]Mada|\[\mnc{C}F]lena, \[\mn{B}]Oh! \[\mn{A}]Que |\[\mnc{B}G]dor no \[\mn{A}]co\[\mn{B}]ra|\[\mnc{C}C]ção | \e \altchords{|G |A |D | \e}
+  \endverse
+  % verse 8:
+  \beginverse\iflyriconly\else\normalsize\renewcommand{\ulChordFont}{\sffamily\bfseries\small\color{chordcolor}}\fi
+    Oh! Minha |^Mãe que por |^mim tanto cho|^ra|va
+    Sendo |Ela, Ma|ria\jw e Mada|^le|^na
+    Quando\jw eu |cuido que |vinha\jw a meu so|^cor|^ro
+    |^Cada vez |mais redo|^brava\jw a minha |^pe|na
+  \endverse
+  % verse 9:
+  \beginverse\iflyriconly\else\normalsize\renewcommand{\ulChordFont}{\sffamily\bfseries\small\color{chordcolor}}\fi
+    Chegou Lon|^guinho com a |^lança e cra|^vou | \e
+    No peito\jw es|querdo, em ci|^{ma do} cora|^ção | \e
+    Quando\jw o |sangue lhe ba|tia pelo |^ros|^to
+    |^Se ajoe|lhou, a meu |^Deus pediu per|^dão | \e
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2026-03
+    % \header {
+    %   title = "Bendito da Sexta-Feira Santa"
+    %   composer = "canção folclórica"
+    % }
+    \include "ulsbs-include-head.ly"
+    theMelody =  \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key c \major
+      \time 2/4 \partial 4.
+      \sectionLabel "1.-6."
+      \repeat volta 6 {
+        \mark \markup {"6x"}
+        \parenthesize a8 \parenthesize a8 \parenthesize b8 | c8( c8) b8 a | b b a b | c2 | \parenthesize c8
+        \parenthesize a8 a8 c | e8.( e16) c8 d | d a a c | e2 | \parenthesize e8
+        \parenthesize a,8 a8 c8 | e8.( c16) c8 e8 | e8 e8 d8 c8 | \once\slurSolid d4.( c8) | a2
+        | c8( c8) e8 e8 | c8( c8) b8 a | b b a b | c2 | \parenthesize c8
+      }
+      \break
+      \slurSolid
+      \sectionLabel "7." % Verse 7 is one measure shorter
+      r8 a8 b8 | c8 c8 b8 a | b b a b | c2 | r8
+      a8 a8 c | e8. e16 c8 d | d a a c | e2 | r4
+      a,8 c8 | e8.( c16) c8 e8 | e8 e8 d8 c8 | d4.( c8) | a4 \altcol e'8 \altcol e8
+      | c8 c8 b8 a | b b a b | c2 | r8
+      \break
+      \slurDashed
+      \sectionLabel "8.-9."
+      \repeat volta 2 {
+        \mark \markup {"2x"}
+        a8 \pomark a8 b8 | c8( c8) b8 a | b b a b | c2 | \parenthesize c8
+        \parenthesize a8 a8 c | e8.( e16) c8 d | d a a c | e2 | \parenthesize e8
+        r8 a,8 c8 | e8.( c16) c8 e8 | e8 e8 d8 c8 | \once\slurSolid d4.( c8) | a2
+        | c8( c8) e8 e8 | c4 b8 a | b b a b | c2 | \parenthesize c8
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat volta 6 {
+        <<
+          {
+            \set stanza = "1."
+            Na quar -- ta -- | fei _ -- ra, Je -- | sus com seus dis -- | cí -- | pulos;
+            Foi à~O -- li -- | vei _ -- ra, foi | à Je -- ru -- sa -- | lém; | ""
+            "" Foi à | Pás -- coa, meu Je -- | sus com seus dis -- | cí _ -- | pulos;
+            | Que __ _ pa -- de -- | ceu __ _ a fa -- | vor do nos -- so | bem. | ""
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "2."
+            Na quin -- ta -- | fei _ -- ra, Je -- | sus ba -- nhou os | pés;
+            | "" Com gran -- de | gos -- to, pra -- zer | e con -- ten -- ta -- | men -- | to;
+            De -- pois da | cei -- a, meu Je -- | sus res -- ti -- tu -- | iu _ -- | se;
+            | Com __ _ gran -- de | gos -- to, meu San -- | tíssi -- mo Sa -- cra -- | men -- | to.
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "3."
+            Na sex -- ta -- | fei _ -- ra, Je -- | sus su -- biu ao | hor -- | to;
+            "" Foi re -- | zar __ _ três ho -- | ras de o -- ra -- | ção; | ""
+            En -- con -- trou | Ju _ -- das na | fren -- te de~u -- ma | tro _ -- | pa;
+            | Já __ _ vi -- nha | e -- le, de al -- | fe -- res, ca -- pi -- | tão. | ""
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "4."
+            "" "" "" | Ju _ -- das, pe -- | lo la -- do di -- | rei -- | to;
+            Com fal -- si -- | da -- de lhe bei -- | jou de -- vi -- da -- | men -- | te;
+            "" Je -- sus | dis -- se: eu co -- | nhe -- ço~a fal -- si -- | da -- _ | de;
+            | Com __ _ es -- se | bei -- jo que tu | a -- go -- ra me | des -- | tes.
+
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "5."
+            "" De _ -- | pois __ _ de Je -- | sus Cris -- to~ar -- ras -- | ta -- | do;
+            Co -- bri -- ram | E _ -- le em | tro -- no pe -- que -- | ni -- | no;
+            "" Lhe bo -- | ta -- ram~u -- ma co -- | ro -- a na ca -- | be _ -- | ça;
+            | E _ -- ra te -- | ci -- da com se -- | ten -- ta~e dois es -- | pi -- | nhos.
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "6."
+            Da -- í sa -- | í -- ram com Je -- | sus na ru -- a~es -- | trei -- | ta;
+            "" Cer -- ta -- | men _ -- te~a ru -- | a de a -- mar -- | gu -- | ra;
+            "" En -- con -- | trou -- se com~a Sem -- | pre Vir -- gem Ma -- | ri _ -- | a;
+            | E _ -- ra~a sua | mãe __ _ que cho -- | ra -- va com ter -- | nu -- | ra.
+          }
+        >>
+      }
+      % Verse 7 is one measure shorter; also this verse is sometimes sung after v4 (incorrect order)
+      \set stanza = "7."
+      Nes -- te | di -- a, Nos -- sa | Se -- nho -- ra che -- | gou; % |
+      Às oi -- to | ho -- ras, Sex -- ta -- | fei -- ra da Pai -- | xão; % |
+      En -- con -- | trou- _ -- se com~o | seu fi -- lhi -- nho | pre _ -- | so;
+      \altcol Ma -- \altcol da -- | le -- na, Oh! Que | dor no co -- ra -- | ção. %|
+      % Verse 8 and 9 have the same melody as 1-6
+      \repeat volta 2 {
+        <<
+          {
+            \set stanza = "8."
+            Oh! Mi -- nha | Mãe __ _ que por | mim tan -- to cho -- | ra -- | va;
+            "" Sen -- do | E _ -- la, Ma -- | ri -- a~e Ma -- da -- | le -- | na;
+            Quan -- do~eu | cui _ -- do que | vi -- nha~a meu so -- | cor _ -- | ro;
+            | Ca _ -- da vez | mais re -- do -- | bra -- va~a mi -- nha | pe -- | na.
+          }
+          \new Lyrics { \set associatedVoice = "theMelody"
+            \set stanza = "9."
+            Che -- gou Lon -- | gui -- nho com a | lan -- ça e cra -- | vou;
+            | "" No pei -- to~es -- | quer -- do, em ci -- | ma do co -- ra -- | ção; | ""
+            Quan -- do~o | san -- gue lhe ba -- | ti -- a pe -- lo | ros _ -- | to;
+            | Se a -- jo -- e -- | lhou, a meu | Deus pe -- diu per -- | dão. | ""
+          }
+        >>
+      }
+    }
+    theChords = \chordmode {
+      % v1-6
+      \repeat volta 6 {
+        s4. | a2:m | e:m | a:m | a:m
+        | a:m | d:m | c | c
+        | c | c | g | a:m
+        | f | f | g | c | c8
+      }
+      % v7
+      s4. | a2:m | e:m | a:m | a:m
+      | a:m | d:m | c | c
+      | c | c | g | a:m
+      | f | g | c | c8
+      % v8-v9 (same as 1-6)
+      \repeat volta 2 {
+        s4. | a2:m | e:m | a:m | a:m
+        | a:m | d:m | c | c
+        | c | c | g | a:m
+        | f | f | g | c | c8
+      }
+    }
+    \setStaffSize #14 % for better fit
+    \include "ulsbs-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    On Wednesday, Jesus with his disciples went to the Mount of Olives, went to Jerusalem.
+    He went to the Passover, my Jesus with his disciples, who suffered for the sake of our good.
+    \nextverse
+    On Thursday, Jesus washed the feet with great joy, pleasure and contentment.
+    After the supper, my Jesus instituted with great joy, the Most Holy Sacrament.
+    \nextverse
+    On Friday, Jesus went up to the garden to pray three hours in prayer.
+    He found Judas at the head of a troop --- there he came, like an officer, a captain.
+    \nextverse
+    Judas, on the right side, with falsehood gave him a proper kiss.
+    Jesus said: ``I know your treachery, by this kiss that you have just given me.''
+    \nextverse
+    After Jesus Christ was dragged away, they seated Him on a little throne.
+    They placed a crown upon His head, woven with seventy-two thorns.
+    \nextverse
+    Then they went out with Jesus through the narrow street, surely the street of bitterness.
+    He met the Ever-Virgin Mary --- It was His mother, who wept tenderly.
+    \nextverse
+    On that day Our Lady arrived, at eight o'clock, on Good Friday.
+    She met her little son imprisoned --- Magdalene: Oh! what pain in the heart.
+    \nextverse
+    ``Oh my Mother who wept so much for me, she being Mary and Magdalene.
+    When I thought help was coming to me, my suffering only doubled.''
+    \nextverse
+    Then Longinus came with the spear and thrust it into the left side above the heart.
+    When the blood struck his face, he knelt down and asked my God for forgiveness.
+  \end{translation}
+\endsong
