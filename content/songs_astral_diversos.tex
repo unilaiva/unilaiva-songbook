@@ -122,6 +122,185 @@
 \endsong
 
 
+\beginsong{Sexta-Feira Santa}[by={Mestre Irineu Serra}, key={Am}, gk={Am, Gm--G\shrp{}m--(Am)}]
+  \meter{4}{4}
+  % verse 1:
+  \mnbeginverse\memorize
+    \beginrep
+      \[^\mn{E}]Sou |\[\mnc{A}Am]filho,\[\bm] \[^\mn{C}]sou |\[^\mn{A}]filho \[\bm]
+      \[^\mn{G}]Sou |\[G]fi\[^\mn{F}]lho \[\mnc{E}E]do \[^\mn{D}]po|\[\mncii{C}{A}Am]der \[\bm]
+    \endrep
+    \beginrep
+      \[^\mn{G}]A Minha |\[G]Mãe \[^\mn{F}]me \[\mnc{E}E]trou\[^\mn{D}]{xe\jw a}|\[\mncii{C}{A}Am]qui
+      \[\bmc\mn{E}]Quem \[^\mn{F}]qui|\[\mnc{E}E]ser venha \[\bmc\mn{G#}]a\[^\mn{B}]pren|\[\mnc{A}Am]der \[\bm]
+    \endrep
+  \mnendverse
+  \notesoff
+  % verse 2:
+  \beginverse
+    \beginrep
+      Vou se|^guindo,^ vou \noteson\[\mnd{B}]se\notesoff{}|guindo ^
+      Os |^passos que ^Deus me |^dá ^
+    \endrep
+    \beginrep
+      A minha |^memó^ria di|^vina
+      ^Eu te|^nho que a^presen|^tar ^
+    \endrep
+  \endverse
+  % verse 3:
+  \noteson
+  \mnbeginverse[1]
+    \beginrep
+      \[\mn{\pomarkr{}E}]A Minha |\[\mnc{A}Am]Mãe \[\mn{B}]que \[\bmc\mn{C}]me \[\mn{B}]en|\[\mnc{A}Am]sina
+      \[\bmc\mn{E}]Me \[\mn{G}]diz |\[G]tudo \[\mn{F}]que \[\mnc{E}E]eu \[\mn{D}]qui|\[\mncii{C}{A}Am]ser \[\bm]
+    \endrep
+    \beginrep
+      \[\mn{G}]Sou |\[G]filho \[\mn{F}]des\[\mnc{E}E]ta \[\mn{D}]ver|\[\mnc{C}Am]da\[\mn{A}]de
+      \[\bmc\mn{E}]E \[\mn{F}]meu |\[\mnc{E}E]Pai é \[\bmc\mn{G#}]São \[\mn{B}]Jo|\[\mnc{A}Am]sé \[\bm]
+    \endrep
+  \mnendverse
+  \notesoff
+  % verse 4:
+  \beginverse[1]
+    \beginrep
+      A |^Sexta-^Feira |Santa
+      ^Guarde|^mos com o^bedi|^ência ^
+    \endrep
+    \beginrep
+      Três |^antes e ^três de|^pois
+      \noteson{}\[\mnd{E}]Pa\[\bmc]ra\jw afas|\[E]tar to\[\bm]da do|\[Am]en\[\bm]ça\notesoff
+    \endrep
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2026-03
+    % \header {
+    %   title = "104. Sexta-Feira Santa"
+    %   composer = "Mestre Raimundo Irineu Serra"
+    % }
+    \include "ulsbs-include-head.ly"
+    theMelody =  \relative c'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor
+      \time 4/4 \partial 4.
+      \repeat segno 2 {
+        \sectionLabel "1.-2.A"
+        \repeat volta 2 {
+          r8 e8( e8) | a4 a2 c8( << c8 \altmark "2." ) \single\altcol b8 >> | a4 a2
+          g4 | g4( g8) f8 e4. d8 | \once\slurSolid c4( a4.)
+        }
+
+        \repeat volta 2 {
+          \sectionLabel "1.-2.B"
+          g'8 g g | g4. f8 e4. d8 | c4( a)
+          e' f | e e8 e gis4 b4 | a2~8
+        }
+      }
+      \repeat segno 2 {
+        \repeat volta 2 {
+          \parenthesize e8 \posectionmark "3.-4.A" e8( e8) | a4. b8 c4. b8 | a4. a8 e4. g8
+          | g4 g8 f8 e4. d8 | c4( a4.)
+        }
+        \sectionLabel "3.-4.B"
+        \repeat volta 2 {
+          r8 g'4 | g4 g8 f8 e4. d8 | c4 \single\altcol ( \once\slurDown a8) \altmark "4." ( << a8) \single\altcol e'8 >>
+          e4 f | e e gis4 b4 | a2( 8)
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "1.A"
+        \repeat volta 2 {
+          Sou __ _ | fi -- lho, sou __ _ | fi -- lho;
+          Sou | fi _ -- lho do po -- | der. _
+        }
+        \set stanza = "1.B"
+        \repeat volta 2 {
+          A Mi -- nha | Mãe me trou -- xe~a -- | qui; __ _
+          Quem qui -- | ser ve -- nha a -- pren -- | der. _ % venha/vem?
+        }
+      }
+      \repeat segno 2 {
+        \set stanza = "3.A"
+        \repeat volta 2 {
+          A Mi -- nha | Mãe que me en -- | si -- na;
+          Me diz | tu -- do que eu qui -- | ser. __ _
+        }
+        \set stanza = "3.B"
+        \repeat volta 2 {
+          Sou | fi -- lho des -- ta ver -- | da -- de; __ _
+          E meu | Pai é São Jo -- | sé. __ _
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "2.A"
+        \repeat volta 2 {
+          Vou se -- | guin -- do, vou \altcol se -- | guin -- do;
+          Os | pas -- sos que Deus me | dá. _
+        }
+        \set stanza = "2.B"
+        \repeat volta 2 {
+          A mi -- nha | me -- mó -- ria di -- | vi -- na.
+          Eu te -- | nho que a -- pre -- sen -- | tar. _
+        }
+      }
+      \repeat segno 2 {
+        \set stanza = "4.A"
+        \repeat volta 2 {
+          "" A __ _ | Sex -- ta -- Fei -- ra | San -- ta;
+          Guar -- de -- | mos com o -- be -- di -- | ên -- cia.
+        }
+        \set stanza = "4.B"
+        \repeat volta 2 {
+          Três | an -- tes e três de -- | \altcol pois; __ _
+          \altcol Pa -- ra~a -- fas -- | tar to -- da do -- | en -- ça.
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4. | a1:m | a1:m
+          | g2 e | a2:m~8
+        }
+        \repeat volta 2 {
+          s4. | g2 e | a1:m
+          | e | a2:m~8
+        }
+      }
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s4. | a1:m | a1:m
+          | g2 e | a2:m~8
+        }
+        \repeat volta 2 {
+          s4. | g2 e | a1:m
+          | e | a2:m~8
+        }
+      }
+    }
+    %\setStaffSize #15 % for better fit
+    \include "ulsbs-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    I am a son, I am a son, I am a son of the power
+    My Mother brought me here; whoever wants, come and learn
+    \nextverse
+    I keep proceeding, I keep proceeding, with the steps that God gives me
+    My divine memory; I have to present it
+    \nextverse
+    My Mother who teaches me tells me everything that I want
+    I am a son of this truth, and my Father is Saint Joseph
+    \nextverse
+    Good Friday; let's observe it with obedience:
+    Three (days) before and three after, to ward off all sickness
+  \end{translation}
+\endsong
+
+
 \beginsong{Bendito da Sexta-Feira Santa}[by={trazida tão Santo Daime por Dona Francisca Nascimento}, ex={canção folclórica}, key={C}, gk={D, B\flt{}--G}]
   \meter{2}{4}
   % verse 1:
