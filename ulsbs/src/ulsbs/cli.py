@@ -117,7 +117,7 @@ def print_plan_summary(
     ui.plain(f"  - Base profile: {ui.colorize(cfg.profile, ui.C_LBLUE)}")
     ui.plain(f"  - Songbooks to compile: {ui.colorize(f'{songbooks_count}', ui.C_LBLUE)} {ui.colorize(f'({jobs_count} variant jobs)', ui.C_BLUE)}")
     ui.plain(f"  - Using container: {_yn(cfg.use_container or cfg.runtime.in_container)}"
-      + (f" {ui.colorize(f'(engine: {cfg.container_engine})', ui.C_BLUE)})" if (cfg.use_container or cfg.runtime.in_container) else f" {ui.C_YELLOW}(this is not recommended!){ui.C_RESET}"))
+      + (f" {ui.colorize(f'(engine: {cfg.container_engine})', ui.C_BLUE)}" if (cfg.use_container or cfg.runtime.in_container) else f" {ui.C_YELLOW}(this is not recommended!){ui.C_RESET}"))
     ui.plain(f"  - Parallel compilation: {_yn(cfg.max_parallel > 1)}" + ui.colorize(f" ({cfg.max_parallel} workers)" if cfg.max_parallel > 1 else "", ui.C_BLUE))
     ui.plain(f"  - Using system's /tmp for temp: {_yn(cfg.use_system_tmp)}")
     ui.plain(f"  - Clean up temp after successful compilation: {_yn(cfg.clean_temp)}")
