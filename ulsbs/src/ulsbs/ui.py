@@ -182,6 +182,14 @@ class _SpinnerStream:
         self._is_stderr = is_stderr
         # Track whether the next non-empty write begins a new terminal line.
         self._at_line_start = True
+        # Thread id of the writer that last produced non-empty content.
+        # Used to keep whole-line writes from different threads from
+        # being glued together when their print() calls overlap.
+        self._last_writer_tid: int | None = None
+        # Threads for which we have already auto-inserted a newline to
+        # terminate their previous line. For these, we suppress the next
+        # leading "\n" write so that we do not end up with a blank line.
+        self._auto_wrapped_tids: set[int] = set()
 
     def _update_line_state(self, s: str) -> None:
         """Update internal flag tracking if we are at the start of a line."""
@@ -207,6 +215,41 @@ class _SpinnerStream:
                 n = self._wrapped.write(s)
                 self._update_line_state(s)
                 return n
+
+            # If a different thread starts writing while we are in the middle
+            # of a line, terminate the previous logical line first so that
+            # outputs from concurrent jobs never appear glued together.
+            tid = threading.get_ident()
+            # If we previously auto-wrapped a line for this thread, and its
+            # next write is only a newline, drop that newline to avoid a
+            # visually empty line. This matches how print() splits writes
+            # into "text" and "\n".
+            if tid in self._auto_wrapped_tids and s in ("\n", "\r", "\r\n"):
+                self._auto_wrapped_tids.discard(tid)
+                # State already reflects that we are at a new line start
+                # because we injected the newline earlier.
+                return len(s)
+
+            if (
+                self._last_writer_tid is not None
+                and self._last_writer_tid != tid
+                and not self._at_line_start
+                and any(ch not in ("\n", "\r") for ch in s)
+            ):
+                prev_tid = self._last_writer_tid
+                try:
+                    self._wrapped.write("\n")
+                    self._wrapped.flush()
+                except Exception:
+                    pass
+                # Remember that we closed prev_tid's line for it, so that we
+                # can drop its own trailing "\n" and avoid a blank line.
+                if prev_tid is not None:
+                    self._auto_wrapped_tids.add(prev_tid)
+                # We are now logically at the start of a new line.
+                self._at_line_start = True
+
+            self._last_writer_tid = tid
 
             # Only clear the spinner line when we are truly at the start of a
             # new line *and* this write actually contains some non-newline
