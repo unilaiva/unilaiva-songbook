@@ -16,6 +16,7 @@ import sys
 import hashlib
 import threading
 import time
+import atexit
 from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING, TextIO
@@ -55,6 +56,24 @@ _original_stdout: TextIO = sys.stdout
 _original_stderr: TextIO = sys.stderr
 _stdout_wrapper: "_SpinnerStream" | None = None
 _stderr_wrapper: "_SpinnerStream" | None = None
+
+
+def _restore_cursor_on_exit() -> None:
+    """Best-effort restoration of cursor visibility at interpreter exit.
+
+    This is registered via atexit so that even if a spinner was active
+    when the process terminates (for example due to an uncaught
+    KeyboardInterrupt), we try to show the cursor again.
+    """
+    try:
+        with _output_lock:
+            _show_cursor_unlocked()
+    except Exception:
+        # Ignore all errors during interpreter shutdown.
+        pass
+
+
+atexit.register(_restore_cursor_on_exit)
 
 
 def _detect_spinner_supported() -> bool:

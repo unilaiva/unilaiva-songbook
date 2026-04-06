@@ -141,13 +141,15 @@ def print_plan_summary(
     ui.plain("")
 
 
-def main(argv: List[str] | None = None) -> int:
-    """CLI entrypoint. Returns process exit code."""
+def _run_cli(ui: UI, assets: EngineAssets, argv: List[str] | None) -> int:
+    """Inner implementation for main(); may raise KeyboardInterrupt."""
 
     def post_compile():
-        """
-        Does post-compile actions that need to be done on the host:
-          - deploy
+        """Run post-compile actions that need to happen on the host.
+
+        At the moment this only handles deployment. The function is
+        intentionally small so that callers can decide how to handle
+        KeyboardInterrupt around it.
         """
         if cfg.runtime.in_container:
             return
@@ -156,12 +158,14 @@ def main(argv: List[str] | None = None) -> int:
         if cfg.deploy and not cfg.shell:
             ui.plain("")
             ui.start_spinner(ui.colorize("", ui.C_DGRAY))
-            deploy_results(ui=ui, cfg=cfg)
-            ui.stop_spinner()
+            try:
+                deploy_results(ui=ui, cfg=cfg)
+            finally:
+                # Always stop the spinner so the cursor is restored even
+                # if deployment is interrupted or fails.
+                ui.stop_spinner()
         ui.plain("")
 
-    ui = UI(use_colors=True)
-    assets = EngineAssets()
     ns = build_arg_parser(ui=ui).parse_args(argv)
 
     # Interpret positional arguments:
@@ -428,3 +432,24 @@ def main(argv: List[str] | None = None) -> int:
          post_compile()
 
     return 0
+
+
+def main(argv: List[str] | None = None) -> int:
+    """CLI entrypoint. Returns process exit code."""
+
+    ui = UI(use_colors=True)
+    assets = EngineAssets()
+    try:
+        # Delegate to the inner implementation so we can centralize
+        # KeyboardInterrupt handling here and avoid tracebacks when the
+        # user aborts with Ctrl-C (for example while waiting for the
+        # container process).
+        return _run_cli(ui=ui, assets=assets, argv=argv)
+    except KeyboardInterrupt:
+        # Best-effort cleanup of any active spinner and a quiet exit code
+        # that mirrors the common convention for SIGINT.
+        try:
+            ui.stop_spinner()
+        except Exception:
+            pass
+        return 130
