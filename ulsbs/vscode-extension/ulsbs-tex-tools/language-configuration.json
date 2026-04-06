@@ -1,0 +1,56 @@
+{
+  "brackets": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["\\[", "]"],
+    ["\\(", "\\)"],
+    ["\\beginsong", "\\endsong"],
+    ["\\beginverse", "\\endverse"],
+    ["\\mnbeginverse", "\\mnendverse"],
+    ["\\beginrep", "\\endrep"],
+    ["\\begin{translation}", "\\end{translation}"],
+    ["\\begin{lilypond}", "\\end{lilypond}"]
+  ],
+
+  "autoClosingPairs": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["\\(", "\\)"]
+  ],
+
+  "surroundingPairs": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"]
+  ],
+
+  "folding": {
+    "markers": {
+      "start": "^\\s*(\\\\(beginsong|beginverse|mnbeginverse|beginrep)\\b|\\\\begin\\{(translation|lilypond)\\})",
+      "end": "^\\s*(\\\\(endsong|endverse|mnendverse|endrep)\\b|\\\\end\\{(translation|lilypond)\\})"
+    }
+  },
+
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(\\\\(beginsong|beginverse|mnbeginverse|beginrep)\\b.*|\\\\begin\\{(translation|lilypond)\\})$",
+    "decreaseIndentPattern": "^\\s*(\\\\(endsong|endverse|mnendverse|endrep)\\b.*|\\\\end\\{(translation|lilypond)\\})$"
+  },
+
+  "onEnterRules": [
+    {
+      "beforeText": "^\\s*(\\\\(beginsong|beginverse|mnbeginverse|beginrep)\\b.*|\\\\begin\\{(translation|lilypond)\\})$",
+      "action": {
+        "indent": "indent"
+      }
+    },
+    {
+      "beforeText": "^\\s*(\\\\(beginsong|beginverse|mnbeginverse|beginrep)\\b.*|\\\\begin\\{(translation|lilypond)\\})$",
+      "afterText": "^\\s*(\\\\(endsong|endverse|mnendverse|endrep)\\b.*|\\\\end\\{(translation|lilypond)\\})$",
+      "action": {
+        "indent": "indentOutdent"
+      }
+    }
+  ]
+}

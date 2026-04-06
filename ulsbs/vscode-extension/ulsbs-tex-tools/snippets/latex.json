@@ -1,0 +1,67 @@
+{
+  "ULSBS macro bracket": {
+    "prefix": "\\[",
+    "body": "\\[${1}]",
+    "description": "Insert \\[ ... ]"
+  },
+
+  "beginsong ... endsong": {
+    "prefix": "beginsong",
+    "body": [
+      "\\beginsong{${1:title}}",
+      "\t$0",
+      "\\endsong"
+    ],
+    "description": "Insert beginsong/endsong block"
+  },
+
+  "beginverse ... endverse": {
+    "prefix": "beginverse",
+    "body": [
+      "\\beginverse",
+      "\t$0",
+      "\\endverse"
+    ],
+    "description": "Insert beginverse/endverse block"
+  },
+
+  "mnbeginverse ... mnendverse": {
+    "prefix": "mnbeginverse",
+    "body": [
+      "\\mnbeginverse",
+      "\t$0",
+      "\\mnendverse"
+    ],
+    "description": "Insert mnbeginverse/mnendverse block"
+  },
+
+  "beginrep ... endrep": {
+    "prefix": "beginrep",
+    "body": [
+      "\\beginrep",
+      "\t$0",
+      "\\endrep"
+    ],
+    "description": "Insert beginrep/endrep block"
+  },
+
+  "begin{translation} ... end{translation}": {
+    "prefix": "translation",
+    "body": [
+      "\\begin{translation}",
+      "\t$0",
+      "\\end{translation}"
+    ],
+    "description": "Insert translation environment"
+  },
+
+  "begin{lilypond} ... end{lilypond}": {
+    "prefix": "lilypond",
+    "body": [
+      "\\begin{lilypond}",
+      "\t$0",
+      "\\end{lilypond}"
+    ],
+    "description": "Insert lilypond environment"
+  }
+}

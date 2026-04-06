@@ -47,6 +47,7 @@ in LaTeX (and optionally Lilypond, if including sheet music) syntax.
       - [Directory structure](#directory-structure)
   - [Adding and editing songs](#adding-and-editing-songs)
     - [General instructions](#general-instructions)
+      - [VS Code extension](#vs-code-extension)
     - [Page and line breaks](#page-and-line-breaks)
     - [Repeats](#repeats)
     - [Measure bars](#measure-bars)
@@ -394,6 +395,12 @@ Songs ought to reside within `songs` environment; each song starts with
 
 If other files are included, they should be placed in the `content` or `include`
 directories directly under project's root.
+
+#### VS Code extension ####
+
+If you use VS Code for editing, it is recommended to install the **ulsbs-tex-tools** extension. See
+[ulsbs-tex-tools README](./ulsbs/vscode-extension/ulsbs-tex-tools/README.md) for installation
+instructions.
 
 
 ### Page and line breaks ###

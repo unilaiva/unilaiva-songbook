@@ -1,0 +1,50 @@
+{
+  "name": "ulsbs-tex-tools",
+  "displayName": "ULSBS TeX Tools",
+  "description": "Custom LaTeX support for ULSBS song macros",
+  "version": "0.0.1",
+  "publisher": "ulsbs",
+  "license": "GPL-3.0-or-later",
+  "author": {
+    "name": "Lari Natri",
+    "email": "lari.natri@iki.fi"
+  },
+  "keywords": [
+    "latex",
+    "songbook",
+    "lilypond",
+    "ulsbs"
+  ],
+  "engines": {
+    "vscode": "^1.113.0"
+  },
+  "main": "./extension.js",
+  "browser": "./dist/web/extension.js",
+  "categories": [
+    "Other",
+    "Snippets"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "latex",
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "latex",
+        "path": "./snippets/latex.json"
+      }
+    ]
+  },
+  "scripts": {
+    "compile-web": "node esbuild.web.mjs",
+    "watch-web": "node esbuild.web.mjs --watch",
+    "package": "npm run compile-web && vsce package"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.28.0"
+  }
+}
