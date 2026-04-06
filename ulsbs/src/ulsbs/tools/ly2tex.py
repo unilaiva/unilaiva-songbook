@@ -389,6 +389,19 @@ def _parse_lyrics_block(body: str, debug: bool) -> List[Node]:
             # Other commands: just add to raw; cleaner will strip them
             current_raw.append(c)
             i += 1
+        elif c in "\r\n":
+            # Newlines inside a lyric block delimit TeX lines. Flush the
+            # accumulated text into a TextNode and start a new one.
+            if current_raw:
+                txt = clean_lyrics_fragment("".join(current_raw))
+                if txt:
+                    nodes.append(TextNode(txt))
+                current_raw = []
+            # Treat Windows-style CRLF as a single newline
+            if c == "\r" and i + 1 < n and body[i + 1] == "\n":
+                i += 2
+            else:
+                i += 1
         else:
             current_raw.append(c)
             i += 1
