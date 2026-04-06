@@ -1,4 +1,17 @@
 {
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "breadcrumbs.enabled": true,
+  "editor.stickyScroll.enabled": true,
+  "[latex]": {
+    "editor.inlineSuggest.enabled": true,
+    "editor.autoClosingBrackets": "never",
+    "editor.tabCompletion": "on"
+  },
+  "[lilypond]": {
+    "editor.inlineSuggest.enabled": false
+  },
   // Language server: use JediLSP instead of Pylance
   "python.languageServer": "Jedi",
   // Jedi: find source
@@ -9,13 +22,11 @@
   "python.analysis.extraPaths": [
     "${workspaceFolder}/ulsbs/src"
   ],
-  "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": true,
   // Use ruff as the python linter
   "python.linting.pylintEnabled": false,
   "python.linting.enabled": false,
   "ruff.enable": true,
   "texlab.chktex.onOpenAndSave": false,
-  "texlab.chktex.onEdit": false
+  "texlab.chktex.onEdit": false,
+
 }
