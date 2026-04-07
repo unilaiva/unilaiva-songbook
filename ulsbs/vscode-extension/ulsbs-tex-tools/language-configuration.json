@@ -28,26 +28,26 @@
 
   "folding": {
     "markers": {
-      "start": "^\\s*(\\\\(beginsong|beginverse|mnbeginverse|beginrep)\\b|\\\\begin\\{(translation|lilypond)\\})",
-      "end": "^\\s*(\\\\(endsong|endverse|mnendverse|endrep)\\b|\\\\end\\{(translation|lilypond)\\})"
+      "start": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begin\\{lilypond\\})",
+      "end": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\end\\{lilypond\\})"
     }
   },
 
   "indentationRules": {
-    "increaseIndentPattern": "^\\s*(\\\\(beginsong|beginverse|mnbeginverse|beginrep)\\b.*|\\\\begin\\{(translation|lilypond)\\})$",
-    "decreaseIndentPattern": "^\\s*(\\\\(endsong|endverse|mnendverse|endrep)\\b.*|\\\\end\\{(translation|lilypond)\\})$"
+    "increaseIndentPattern": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begin\\{lilypond\\}).*$",
+    "decreaseIndentPattern": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\end\\{lilypond\\}).*$"
   },
 
   "onEnterRules": [
     {
-      "beforeText": "^\\s*(\\\\(beginsong|beginverse|mnbeginverse|beginrep)\\b.*|\\\\begin\\{(translation|lilypond)\\})$",
+      "beforeText": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begin\\{lilypond\\}).*$",
       "action": {
         "indent": "indent"
       }
     },
     {
-      "beforeText": "^\\s*(\\\\(beginsong|beginverse|mnbeginverse|beginrep)\\b.*|\\\\begin\\{(translation|lilypond)\\})$",
-      "afterText": "^\\s*(\\\\(endsong|endverse|mnendverse|endrep)\\b.*|\\\\end\\{(translation|lilypond)\\})$",
+      "beforeText": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begin\\{lilypond\\}).*$",
+      "afterText": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\end\\{lilypond\\}).*$",
       "action": {
         "indent": "indentOutdent"
       }
