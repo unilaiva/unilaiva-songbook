@@ -2,7 +2,7 @@
   "name": "ulsbs-tex-tools",
   "displayName": "ULSBS TeX Tools",
   "description": "Custom LaTeX support for ULSBS song macros",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "ulsbs",
   "license": "GPL-3.0-or-later",
   "author": {
@@ -24,6 +24,13 @@
     "Other",
     "Snippets"
   ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:ulsbsSongbooks",
+    "onCommand:ulsbsTexTools.compileCurrentContext",
+    "onCommand:ulsbsTexTools.compileAllSongbooks",
+    "onCommand:ulsbsTexTools.refreshWorkspace"
+  ],
   "contributes": {
     "languages": [
       {
@@ -36,7 +43,83 @@
         "language": "latex",
         "path": "./snippets/latex.json"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "command": "ulsbsTexTools.compileCurrentContext",
+        "title": "ULSBS: Compile current context…"
+      },
+      {
+        "command": "ulsbsTexTools.compileAllSongbooks",
+        "title": "ULSBS: Compile all songbooks…"
+      },
+      {
+        "command": "ulsbsTexTools.refreshWorkspace",
+        "title": "ULSBS: Refresh workspace index"
+      },
+      {
+        "command": "ulsbsTexTools.openSongbook",
+        "title": "ULSBS: Open songbook"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "ulsbsSongbooks",
+          "name": "ULSBS"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "ulsbsTexTools.refreshWorkspace",
+          "when": "view == ulsbsSongbooks",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ULSBS TeX Tools",
+      "properties": {
+        "ulsbsTexTools.enable": {
+          "type": "string",
+          "enum": ["auto", "on", "off"],
+          "default": "auto",
+          "description": "Enable ULSBS-specific features. 'auto' enables them only when a ULSBS workspace is detected."
+        },
+        "ulsbsTexTools.fileGlob": {
+          "type": "string",
+          "default": "**/*.*tex",
+          "description": "Workspace glob for TeX-like documents."
+        },
+        "ulsbsTexTools.excludeGlob": {
+          "type": "string",
+          "default": "**/temp/**",
+          "description": "Glob for files and folders to exclude from ULSBS workspace scanning."
+        },
+        "ulsbsTexTools.compileCommand": {
+          "type": "string",
+          "default": "ulsbs/ulsbs-compile",
+          "description": "Path to the ULSBS compile script, relative to the workspace root."
+        },
+        "ulsbsTexTools.askProfileOnCompile": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask for a ULSBS profile when compiling."
+        },
+        "ulsbsTexTools.defaultProfile": {
+          "type": "string",
+          "default": "default",
+          "description": "Fallback profile when not asking interactively."
+        },
+        "ulsbsTexTools.autoRefreshDiagnostics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Refresh ULSBS diagnostics automatically on edits and saves."
+        }
+      }
+    }
   },
   "scripts": {
     "compile-web": "node esbuild.web.mjs",

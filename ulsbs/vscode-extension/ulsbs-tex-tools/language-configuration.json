@@ -10,7 +10,9 @@
     ["\\mnbeginverse", "\\mnendverse"],
     ["\\beginrep", "\\endrep"],
     ["\\begin{translation}", "\\end{translation}"],
-    ["\\begin{lilypond}", "\\end{lilypond}"]
+    ["\\begintranslation", "\\endtranslation"],
+    ["\\begin{lilypond}", "\\end{lilypond}"],
+    ["\\begin{songs}", "\\end{songs}"]
   ],
 
   "autoClosingPairs": [
@@ -28,26 +30,26 @@
 
   "folding": {
     "markers": {
-      "start": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begin\\{lilypond\\})",
-      "end": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\end\\{lilypond\\})"
+      "start": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begintranslation(?:\\[[^\\]]*\\])?|\\\\begin\\{lilypond\\}|\\\\begin\\{songs\\})",
+      "end": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\endtranslation\\b|\\\\end\\{lilypond\\}|\\\\end\\{songs\\})"
     }
   },
 
   "indentationRules": {
-    "increaseIndentPattern": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begin\\{lilypond\\}).*$",
-    "decreaseIndentPattern": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\end\\{lilypond\\}).*$"
+    "increaseIndentPattern": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begintranslation(?:\\[[^\\]]*\\])?|\\\\begin\\{lilypond\\}|\\\\begin\\{songs\\}).*$",
+    "decreaseIndentPattern": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\endtranslation\\b|\\\\end\\{lilypond\\}|\\\\end\\{songs\\}).*$"
   },
 
   "onEnterRules": [
     {
-      "beforeText": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begin\\{lilypond\\}).*$",
+      "beforeText": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begintranslation(?:\\[[^\\]]*\\])?|\\\\begin\\{lilypond\\}|\\\\begin\\{songs\\}).*$",
       "action": {
         "indent": "indent"
       }
     },
     {
-      "beforeText": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begin\\{lilypond\\}).*$",
-      "afterText": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\end\\{lilypond\\}).*$",
+      "beforeText": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begintranslation(?:\\[[^\\]]*\\])?|\\\\begin\\{lilypond\\}|\\\\begin\\{songs\\}).*$",
+      "afterText": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\endtranslation\\b|\\\\end\\{lilypond\\}|\\\\end\\{songs\\}).*$",
       "action": {
         "indent": "indentOutdent"
       }
