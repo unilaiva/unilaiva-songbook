@@ -24,7 +24,6 @@ Songs appear as top-level symbols:
 
 My Song Title\
 verse 1\
-rep 1\
 verse 2\
 translation 1\
 lilypond 1
