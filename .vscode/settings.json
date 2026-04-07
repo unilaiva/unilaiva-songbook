@@ -3,15 +3,36 @@
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
   "breadcrumbs.enabled": true,
+  "outline.problems.enabled": true,
   "editor.stickyScroll.enabled": true,
+
+  "files.exclude": {
+    "**/temp": true
+  },
+  "search.exclude": {
+    "**/temp": true
+  },
+  "files.watcherExclude": {
+    "**/temp/**": true
+  },
+
   "[latex]": {
+    "editor.wordWrap": "off",
     "editor.inlineSuggest.enabled": true,
     "editor.autoClosingBrackets": "never",
-    "editor.tabCompletion": "on"
+    "editor.tabCompletion": "on",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
   },
+
   "[lilypond]": {
-    "editor.inlineSuggest.enabled": false
+    "editor.inlineSuggest.enabled": false,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
   },
+
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  },
+
   // Language server: use JediLSP instead of Pylance
   "python.languageServer": "Jedi",
   // Jedi: find source
@@ -28,5 +49,7 @@
   "ruff.enable": true,
   "texlab.chktex.onOpenAndSave": false,
   "texlab.chktex.onEdit": false,
+  "texlab.build.onSave": false,
+  "texlab.symbols.enabled": false
 
 }
