@@ -74,7 +74,7 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
     p.add_argument("--sequential", action="store_true", help="Do not compile in parallel (to conserve memory)")
     p.add_argument("--max-parallel", type=int, metavar="N", default=0, help="Maximum number of parallel jobs (0 = auto)")
     p.add_argument("--keep-temp", action="store_true", help="Do not clean temp directory even after successful compilation")
-    p.add_argument("--max-log-lines", type=int, metavar="N", default=20, help="Maximum error log lines to display (0..1000)")
+    p.add_argument("--max-log-lines", type=int, metavar="N", default=None, help="Maximum error log lines to display (0..1000, default 20)")
     p.add_argument("--deploy-dir", metavar="DIR", help="Override deploy directory (must exist when set; default is <project root>/deploy)")
 
     prestr = p.add_argument_group("restricting options")

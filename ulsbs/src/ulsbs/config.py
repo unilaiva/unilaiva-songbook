@@ -775,14 +775,19 @@ def build_config(
     cli_max_parallel: int | None = None
     if args_ns is not None:
         # Execution/runtime
-        cli_over["use_container"] = not bool(getattr(args_ns, "no_container", False))
+        if getattr(args_ns, "no_container", False):
+            cli_over["use_container"] = False
         if engine := getattr(args_ns, "container_engine", None):
             cli_over["container_engine"] = engine
-        cli_over["container_rebuild"] = bool(getattr(args_ns, "container_rebuild", False))
-        cli_over["shell"] = bool(getattr(args_ns, "shell", False))
-        cli_over["pull"] = bool(getattr(args_ns, "pull", False))
-        cli_over["clean_temp"] = not bool(getattr(args_ns, "keep_temp", False))
-        if bool(getattr(args_ns, "sequential", False)):
+        if getattr(args_ns, "container_rebuild", False):
+            cli_over["container_rebuild"] = True
+        if getattr(args_ns, "shell", False):
+            cli_over["shell"] = True
+        if getattr(args_ns, "pull", False):
+            cli_over["pull"] = True
+        if getattr(args_ns, "keep_temp", False):
+            cli_over["clean_temp"] = False
+        if getattr(args_ns, "sequential", False):
             cli_over["_sequential_flag"] = True  # internal flag; applied later
 
         # Explicit max_parallel from CLI (0 means "auto")
@@ -791,26 +796,36 @@ def build_config(
             cli_max_parallel = mp_val
 
         # Modes/features
-        cli_over["deploy"] = not bool(getattr(args_ns, "no_deploy", False))
-        cli_over["create_printouts"] = not bool(getattr(args_ns, "no_printouts", False))
-        cli_over["coverimage"] = not bool(getattr(args_ns, "no_coverimage", False))
-        cli_over["midifiles"] = not bool(getattr(args_ns, "no_midi", False))
-        cli_over["audiofiles"] = not bool(getattr(args_ns, "no_audio", False))
-        cli_over["midifiles_allow_for_optional_variants"] = bool(
-            getattr(args_ns, "midifiles_allow_for_optional_variants", False)
-        )
-        cli_over["audiofiles_allow_for_optional_variants"] = bool(
-            getattr(args_ns, "audiofiles_allow_for_optional_variants", False)
-        )
-        cli_over["extrainstrumentbooks"] = not bool(getattr(args_ns, "no_extrainstr", False))
-        cli_over["lyricbooks"] = not bool(getattr(args_ns, "no_lyric", False))
-        cli_over["quick"] = bool(getattr(args_ns, "quick", False))
-        cli_over["fast_audio_encode"] = bool(getattr(args_ns, "fast_audio_encode", False))
-        cli_over["verbose"] = bool(getattr(args_ns, "verbose", False))
+        if getattr(args_ns, "no_deploy", False):
+            cli_over["deploy"] = False
+        if getattr(args_ns, "no_printouts", False):
+            cli_over["create_printouts"] = False
+        if getattr(args_ns, "no_coverimage", False):
+            cli_over["coverimage"] = False
+        if getattr(args_ns, "no_midi", False):
+            cli_over["midifiles"] = False
+        if getattr(args_ns, "no_audio", False):
+            cli_over["audiofiles"] = False
+        if getattr(args_ns, "midifiles_allow_for_optional_variants", False):
+            cli_over["midifiles_allow_for_optional_variants"] = True
+        if getattr(args_ns, "audiofiles_allow_for_optional_variants", False):
+            cli_over["audiofiles_allow_for_optional_variants"] = True
+        if getattr(args_ns, "no_extrainstr", False):
+            cli_over["extrainstrumentbooks"] = False
+        if getattr(args_ns, "no_lyric", False):
+            cli_over["lyricbooks"] = False
+        if getattr(args_ns, "quick", False):
+            cli_over["quick"] = True
+        if getattr(args_ns, "fast_audio_encode", False):
+            cli_over["fast_audio_encode"] = True
+        if getattr(args_ns, "verbose", False):
+            cli_over["verbose"] = True
 
         # Deploy modes
-        cli_over["deploy_last"] = bool(getattr(args_ns, "deploy_last", False))
-        cli_over["deploy_common"] = bool(getattr(args_ns, "deploy_common", False))
+        if getattr(args_ns, "deploy_last", False):
+            cli_over["deploy_last"] = True
+        if getattr(args_ns, "deploy_common", False):
+            cli_over["deploy_common"] = True
         deploy_dir_cli = getattr(args_ns, "deploy_dir", None)
         if deploy_dir_cli is not None:
             cli_over["deploy_dir"] = deploy_dir_cli
