@@ -68,7 +68,8 @@
       "explorer": [
         {
           "id": "ulsbsSongbooks",
-          "name": "ULSBS"
+          "name": "ULSBS",
+          "icon": ""
         }
       ]
     },
