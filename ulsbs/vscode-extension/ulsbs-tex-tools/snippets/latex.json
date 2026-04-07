@@ -1,5 +1,5 @@
 {
-  "ULSBS macro bracket": {
+  "ULSBS chord definition": {
     "prefix": "\\[",
     "body": "\\[${1}]",
     "description": "Insert \\[ ... ]"
