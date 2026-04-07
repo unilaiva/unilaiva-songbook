@@ -156,7 +156,7 @@ file.
 The `.vsix` package is considered a build artifact and can be
 regenerated using:
 
-npm run package-web
+npm run package
 
 # License
 
