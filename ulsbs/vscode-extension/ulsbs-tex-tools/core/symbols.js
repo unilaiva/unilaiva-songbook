@@ -74,9 +74,11 @@ function registerSymbolProvider(vscode, context) {
 
           function addChildToNearestParent(symbol, preferredParents) {
             let parent = currentNearest(preferredParents);
+
             if (!parent) {
               parent = currentNearest(["song"]);
             }
+
             if (parent && parent.symbol) {
               parent.symbol.children.push(symbol);
               return true;
@@ -274,20 +276,15 @@ function registerSymbolProvider(vscode, context) {
 
               if (token.type === "beginrep") {
                 counters.rep += 1;
-                const symbol = makeSymbol(
-                  vscode,
-                  `rep ${counters.rep}`,
-                  "\\beginrep",
-                  vscode.SymbolKind.Namespace,
-                  i,
-                  start,
-                  end
-                );
-                if (addChildToNearestParent(symbol, ["rep", "verse", "mnverse", "translation"])) {
+
+                // Keep repeat blocks structurally on the stack so they still
+                // influence nesting/ranges for child repeats, but do not create
+                // a visible DocumentSymbol for Breadcrumbs/Outline.
+                if (currentNearest(["rep", "verse", "mnverse", "translation"])) {
                   stack.push({
                     type: "rep",
                     startLine: i,
-                    symbol
+                    symbol: null
                   });
                 }
                 continue;
