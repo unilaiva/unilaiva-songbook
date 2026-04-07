@@ -2,7 +2,7 @@
   "name": "ulsbs-tex-tools",
   "displayName": "ULSBS TeX Tools",
   "description": "Custom LaTeX support for ULSBS song macros",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "ulsbs",
   "license": "GPL-3.0-or-later",
   "author": {
@@ -25,11 +25,7 @@
     "Snippets"
   ],
   "activationEvents": [
-    "onStartupFinished",
-    "onView:ulsbsSongbooks",
-    "onCommand:ulsbsTexTools.compileCurrentContext",
-    "onCommand:ulsbsTexTools.compileAllSongbooks",
-    "onCommand:ulsbsTexTools.refreshWorkspace"
+    "onStartupFinished"
   ],
   "contributes": {
     "languages": [

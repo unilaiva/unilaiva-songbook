@@ -73,8 +73,11 @@ function registerSymbolProvider(vscode, context) {
           }
 
           function addChildToNearestParent(symbol, preferredParents) {
-            const parent = currentNearest(preferredParents);
-            if (parent) {
+            let parent = currentNearest(preferredParents);
+            if (!parent) {
+              parent = currentNearest(["song"]);
+            }
+            if (parent && parent.symbol) {
               parent.symbol.children.push(symbol);
               return true;
             }
@@ -85,16 +88,41 @@ function registerSymbolProvider(vscode, context) {
             for (let i = stack.length - 1; i >= 0; i--) {
               if (stack[i].type === type) {
                 const entry = stack.splice(i, 1)[0];
-                updateSymbolRange(
-                  vscode,
-                  entry.symbol,
-                  entry.startLine,
-                  lineIndex,
-                  endChar
-                );
+                if (entry.symbol) {
+                  updateSymbolRange(
+                    vscode,
+                    entry.symbol,
+                    entry.startLine,
+                    lineIndex,
+                    endChar
+                  );
 
-                if (type === "song") {
-                  songs.push(entry.symbol);
+                  if (type === "song") {
+                    songs.push(entry.symbol);
+                  }
+                }
+                return entry;
+              }
+            }
+            return null;
+          }
+
+          function closeNearestAny(types, lineIndex, endChar) {
+            for (let i = stack.length - 1; i >= 0; i--) {
+              if (types.includes(stack[i].type)) {
+                const entry = stack.splice(i, 1)[0];
+                if (entry.symbol) {
+                  updateSymbolRange(
+                    vscode,
+                    entry.symbol,
+                    entry.startLine,
+                    lineIndex,
+                    endChar
+                  );
+
+                  if (entry.type === "song") {
+                    songs.push(entry.symbol);
+                  }
                 }
                 return entry;
               }
@@ -255,7 +283,7 @@ function registerSymbolProvider(vscode, context) {
                   start,
                   end
                 );
-                if (addChildToNearestParent(symbol, ["rep", "verse", "mnverse"])) {
+                if (addChildToNearestParent(symbol, ["rep", "verse", "mnverse", "translation"])) {
                   stack.push({
                     type: "rep",
                     startLine: i,
@@ -316,7 +344,7 @@ function registerSymbolProvider(vscode, context) {
               }
 
               if (token.type === "endverse") {
-                closeNearest("verse", i, end);
+                closeNearestAny(["verse", "mnverse"], i, end);
                 continue;
               }
 
@@ -374,7 +402,7 @@ function registerSymbolProvider(vscode, context) {
         }
       }
     },
-    { label: "ULSBS" }
+    { label: "ULSBS Song Structure" }
   );
 
   context.subscriptions.push(provider);

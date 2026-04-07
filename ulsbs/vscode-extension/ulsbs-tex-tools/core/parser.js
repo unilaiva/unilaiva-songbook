@@ -210,6 +210,21 @@ function analyzeText(text) {
     return null;
   }
 
+  function closeNearestAny(types, token) {
+    for (let i = stack.length - 1; i >= 0; i--) {
+      if (types.includes(stack[i].type)) {
+        const entry = stack.splice(i, 1)[0];
+        entry.node.endLine = token.line;
+        entry.node.endChar = token.index + token.text.length;
+        if (entry.type === "song") {
+          analysis.songs.push(entry.node);
+        }
+        return entry;
+      }
+    }
+    return null;
+  }
+
   for (const token of tokens) {
     if (token.type === "include") {
       analysis.includes.push({
@@ -290,14 +305,14 @@ function analyzeText(text) {
     }
 
     if (token.type === "beginrep") {
-      const parent = currentNearest(["rep", "verse", "mnverse"]);
+      const parent = currentNearest(["rep", "verse", "mnverse", "translation"]);
       if (!parent) {
-        analysis.issues.push(makeIssue("warning", "\\beginrep outside a verse", token));
+        analysis.issues.push(makeIssue("warning", "\\beginrep outside a verse or translation", token));
         continue;
       }
       counters.rep += 1;
       const node = makeNode("rep", `rep ${counters.rep}`, "\\beginrep", token);
-      attachChild(node, ["rep", "verse", "mnverse"]);
+      attachChild(node, ["rep", "verse", "mnverse", "translation"]);
       stack.push({ type: "rep", node });
       continue;
     }
@@ -355,8 +370,8 @@ function analyzeText(text) {
     }
 
     if (token.type === "endverse") {
-      if (!closeNearest("verse", token)) {
-        analysis.issues.push(makeIssue("warning", "\\endverse without matching \\beginverse", token));
+      if (!closeNearestAny(["verse", "mnverse"], token)) {
+        analysis.issues.push(makeIssue("warning", "\\endverse without matching \\beginverse or \\mnbeginverse", token));
       }
       continue;
     }
