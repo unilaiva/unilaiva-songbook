@@ -4,7 +4,7 @@
 const { analyzeText } = require("./parser");
 const { getSettings } = require("./config");
 const { getAllWorkspaceFolders, getWorkspaceFolderForUri } = require("./workspace");
-const { hasSupportedExtension } = require("./filetypes");
+const { hasSupportedExtension, isExcludedUri } = require("./filetypes");
 
 function uriKey(uri) {
   return uri.toString();
@@ -93,13 +93,24 @@ class SongbookService {
   async buildIndexForFolder(folder) {
     const settings = getSettings(this.vscode);
     const includePattern = new this.vscode.RelativePattern(folder, settings.fileGlob);
-    const excludePattern = settings.excludeGlob || undefined;
+
+    let excludePattern;
+    if (Array.isArray(settings.excludeGlob) && settings.excludeGlob.length > 0) {
+      excludePattern = `{${settings.excludeGlob.join(",")}}`;
+    } else {
+      excludePattern = settings.excludeGlob || undefined;
+    }
+
     const uris = await this.vscode.workspace.findFiles(includePattern, excludePattern);
 
     const docs = new Map();
 
     for (const uri of uris) {
       try {
+        if (isExcludedUri(this.vscode, uri, settings.excludeGlob)) {
+          continue;
+        }
+
         const text = await readText(this.vscode, uri);
         const analysis = analyzeText(text);
         docs.set(uriKey(uri), {

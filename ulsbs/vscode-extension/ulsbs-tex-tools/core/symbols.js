@@ -2,9 +2,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 const { stripComment } = require("./parser");
+const { getDocumentSelector, isExcludedUri } = require("./filetypes");
+const { getSettings } = require("./config");
 
-function getDocumentSelector() {
-  return [{ language: "latex" }];
+function getDocumentSelectorLocal() {
+  return getDocumentSelector();
 }
 
 function pos(vscode, line, ch) {
@@ -41,10 +43,15 @@ function updateSymbolRange(vscode, symbol, startLine, lineIndex, endChar) {
 
 function registerSymbolProvider(vscode, context) {
   const provider = vscode.languages.registerDocumentSymbolProvider(
-    getDocumentSelector(),
+    getDocumentSelectorLocal(),
     {
       provideDocumentSymbols(document) {
         try {
+          const settings = getSettings(vscode);
+          if (isExcludedUri(vscode, document.uri, settings.excludeGlob)) {
+            return [];
+          }
+
           const lines = document.getText().split(/\r?\n/);
           const songs = [];
           const stack = [];
@@ -277,9 +284,6 @@ function registerSymbolProvider(vscode, context) {
               if (token.type === "beginrep") {
                 counters.rep += 1;
 
-                // Keep repeat blocks structurally on the stack so they still
-                // influence nesting/ranges for child repeats, but do not create
-                // a visible DocumentSymbol for Breadcrumbs/Outline.
                 if (currentNearest(["rep", "verse", "mnverse", "translation"])) {
                   stack.push({
                     type: "rep",

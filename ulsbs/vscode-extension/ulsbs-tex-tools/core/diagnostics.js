@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 const { analyzeText } = require("./parser");
-const { isSupportedDocument } = require("./filetypes");
+const { isSupportedDocument, isExcludedUri } = require("./filetypes");
+const { getSettings } = require("./config");
 
 function registerDiagnostics(vscode, context, songbookService) {
   const collection = vscode.languages.createDiagnosticCollection("ulsbs-tex-tools");
@@ -19,6 +20,12 @@ function registerDiagnostics(vscode, context, songbookService) {
   function updateDocument(document) {
     if (!enabled) return;
     if (!isSupportedDocument(document)) return;
+
+    const settings = getSettings(vscode);
+    if (isExcludedUri(vscode, document.uri, settings.excludeGlob)) {
+      collection.delete(document.uri);
+      return;
+    }
 
     const analysis = analyzeText(document.getText());
     const diagnostics = analysis.issues.map((issue) => {

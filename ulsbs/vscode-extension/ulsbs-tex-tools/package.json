@@ -90,9 +90,15 @@
           "description": "Workspace glob for TeX-like documents."
         },
         "ulsbsTexTools.excludeGlob": {
-          "type": "string",
-          "default": "**/temp/**",
-          "description": "Glob for files and folders to exclude from ULSBS workspace scanning."
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/temp/**",
+            "**/ulsbs/assets/tex/**"
+          ],
+          "description": "Glob patterns for files and folders to exclude from ULSBS workspace scanning."
         },
         "ulsbsTexTools.compileCommand": {
           "type": "string",

@@ -10,7 +10,10 @@ function getSettings(vscode) {
   return {
     enable: cfg.get("enable", "auto"),
     fileGlob: cfg.get("fileGlob", "**/*.*tex"),
-    excludeGlob: cfg.get("excludeGlob", "**/temp/**"),
+    excludeGlob: cfg.get("excludeGlob", [
+      "**/temp/**",
+      "**/ulsbs/assets/tex/**"
+    ]),
     compileCommand: cfg.get("compileCommand", "ulsbs/ulsbs-compile"),
     askProfileOnCompile: cfg.get("askProfileOnCompile", true),
     defaultProfile: cfg.get("defaultProfile", "default"),
