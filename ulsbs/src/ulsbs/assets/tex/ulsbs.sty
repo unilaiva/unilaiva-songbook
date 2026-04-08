@@ -2062,7 +2062,7 @@
 
 \ExplSyntaxOn
 % To be used to print an alternate chord for another repetition
-\NewDocumentCommand{\ac}{s d() m}{%
+\NewDocumentCommand{\ac}{s d<> m}{%
   {% local group to keep color changes local
     \IfValueT{#2}{
       \str_case:nnF { #2 }
