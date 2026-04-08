@@ -741,6 +741,11 @@
 % the specific \mn* and \ma* macros for differently styled melody notes.
 \newif\ifusealtmnstyle\usealtmnstylefalse
 
+% If true, some characters on chord line are adjusted: currently parenthesis
+% are scaled down and moved slightly upwards to avoid collision with lyrics.
+% This does not affect chords displayed within \altchords{} macro.
+\newif\ifadjustchordchars\adjustchordcharstrue
+
 % END Toggles
 
 % Indentation that is optionally added to verses, if started with
@@ -1052,10 +1057,36 @@
 \providecommand{\ulLyricFont}{\sffamily\large}
 % songs: modify lyric font to use our \ulLyricFont
 \renewcommand{\lyricfont}{\ulLyricFont} % songs: modify lyrics font style
+
 % Set chord font style:
 \providecommand{\ulChordFont}{\sffamily\bfseries\small\color{chordcolor}}
 % songs: modify chord printing to use our \ulChordFont
 \renewcommand{\printchord}[1]{\ulChordFont#1}
+
+
+% BEGIN chord character adjustment
+%
+% Adjust the appearance of some characters in chord definitions. Currently makes
+% parenthesis smaller and raises them upwards. This is done to get low hanging
+% characters of our default font to not collide with the lyrics below.
+%
+% To turn this off, set \adjustchordchardsfalse
+%
+\newcommand{\smraise}[1]{\ifadjustchordchars\raise0.234ex\hbox{\scalebox{0.81}#1}\else#1\fi}
+\renewcommand{\chordlocals}{%
+  \catcode`(\active
+  \catcode`)\active
+}
+\newcommand{\smraiseopenparen}{\smraise{(}}
+\newcommand{\smraisecloseparen}{\smraise{)}}
+\begingroup
+  \chordlocals
+  \gdef({\smraiseopenparen}%
+  \gdef){\smraisecloseparen}%
+\endgroup
+
+% END chord character adjustment
+
 % songs: modify meter class font style (add color):
 \renewcommand{\meterfont}{\color{chordcolor}\scriptsize\sffamily\upshape}
 \renewcommand{\notefont}{\small} % songs: modify \textnote and \musicnote font (make smaller)
