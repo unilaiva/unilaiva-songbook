@@ -6,104 +6,34 @@ files** in Visual Studio Code.
 It adds navigation, folding, snippets, and structural Outline support
 for ULSBS-specific macros such as:
 
-`\beginsong `{=tex}... `\endsong  `{=tex} `\beginverse `{=tex}...
-`\endverse  `{=tex} `\mnbeginverse `{=tex}... `\mnendverse  `{=tex}
-`\beginrep `{=tex}... `\endrep  `{=tex}
-```{=tex}
+`\[ ... ]`\
+```tex
+\beginsong ... \endsong
+\beginverse ... \endverse
+\mnbeginverse ... \mnendverse
+\beginrep ... \endrep
+\begin{songs} ... \end{songs}
 \begin{translation} ... \end{translation}
 \begin{lilypond} ... \end{lilypond}
 ```
 
 ------------------------------------------------------------------------
 
-## Features
-
-### Structural navigation (Outline / Breadcrumbs)
-
-Songs appear as top-level symbols:
-
-My Song Title\
-verse 1\
-verse 2\
-translation 1\
-lilypond 1
-
-This allows fast navigation inside large songbooks.
-
-### Folding regions
-
-The following blocks become foldable:
-
--   `\beginsong `{=tex}... `\endsong`{=tex}
-
--   `\beginverse `{=tex}... `\endverse`{=tex}
-
--   `\mnbeginverse `{=tex}... `\mnendverse`{=tex}
-
--   `\beginrep `{=tex}... `\endrep`{=tex}
-
--   ```{=tex}
-    \begin{translation} ... \end{translation}
-    ```
-
--   ```{=tex}
-    \begin{lilypond} ... \end{lilypond}
-    ```
-
-### Snippets
-
-Typing a prefix and pressing **Tab** inserts a block:
-
-  Prefix         Inserts
-  -------------- -----------------------------
-  beginsong      `\beginsong{}`{=tex} block
-  beginverse     `\beginverse `{=tex}block
-  mnbeginverse   `\mnbeginverse `{=tex}block
-  beginrep       `\beginrep `{=tex}block
-  translation    translation environment
-  lilypond       lilypond environment
-
-Example:
-
-beginverse`<Tab>`{=html}
-
-produces
-
-```{=tex}
-\beginverse
-```
-|
-
-```{=tex}
-\endverse
-```
-### Custom macro delimiter
-
-Typing
-
-\[
-
-and pressing **Tab** inserts:
-
-\[\|\]
-
-This is useful for ULSBS macros that use `\[ ... ]` as delimiters.
-
-------------------------------------------------------------------------
-
-# Installation
+## Installation
 
 The extension is shipped as **source** inside the repository. To install
-it locally, build a `.vsix` package. Requirements: `npm` binary.
+it locally, build a `.vsix` package.
 
-## 1. Install tooling
+Requirements: `npm` binary.
+
+### 1. Install tooling
 
 ```sh
 cd ulsbs/vscode-extension/ulsbs-tex-tools
 npm ci
 ```
 
-## 2. Build the extension
+### 2. Build the extension
 
 ```sh
 npm run package
@@ -111,9 +41,9 @@ npm run package
 
 This creates a file like:
 
-ulsbs-tex-tools-x.y.z.vsix
+`ulsbs-tex-tools-x.y.z.vsix`
 
-## 3. Install into VS Code
+### 3. Install into VS Code
 
 From command line:
 
@@ -129,32 +59,42 @@ Then reload VS Code.
 
 ------------------------------------------------------------------------
 
-# Development
+## Development
 
 To test the extension:
 
-1.  Open the extension folder in VS Code
+1.  Open the extension folder in VS Code:
 
-ulsbs/vscode-extension/ulsbs-tex-tools
+`ulsbs/vscode-extension/ulsbs-tex-tools`
 
 2.  Press **F5**
 
 This launches a **VS Code Extension Development Host** with the
 extension loaded.
 
+### Quick cheat-sheet on where different features exist:
+
+- Insert block snippet: `snippets/latex.json`
+- Indentation / folding: `language-configuration.json`
+- Breadcrumb structure: `core/symbols.js`
+- Syntax parsing: `core/parser.js`
+- Warnings: `core/parser.js`
+- Workspace scanning: `core/songbooks.js`
+- Settings: `package.json` + `core/config.js`
+
 ------------------------------------------------------------------------
 
-# Browser support
+## Browser support
 
-The extension includes a **web build**, allowing it to run in
-environments such as:
+In addition to the desktop version, the extension includes a **web build**,
+allowing it to run in environments such as:
 
--   vscode.dev
--   github.dev
--   Codespaces
+- vscode.dev
+- github.dev
+- Codespaces
 
 ------------------------------------------------------------------------
 
-# License
+## License
 
 GPL 3.0 or later
