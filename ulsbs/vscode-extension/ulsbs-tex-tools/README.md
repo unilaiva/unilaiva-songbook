@@ -94,16 +94,20 @@ This is useful for ULSBS macros that use `\[ ... ]` as delimiters.
 # Installation
 
 The extension is shipped as **source** inside the repository. To install
-it locally, build a `.vsix` package.
+it locally, build a `.vsix` package. Requirements: `npm` binary.
 
 ## 1. Install tooling
 
+```sh
 cd ulsbs/vscode-extension/ulsbs-tex-tools
-npm install
+npm ci
+```
 
 ## 2. Build the extension
 
+```sh
 npm run package
+```
 
 This creates a file like:
 
@@ -111,11 +115,15 @@ ulsbs-tex-tools-x.y.z.vsix
 
 ## 3. Install into VS Code
 
+From command line:
+
+```sh
 code --install-extension ulsbs-tex-tools-x.y.z.vsix
+```
 
-or
+or from within the editor:
 
-Extensions -> ... -> Install from VSIX
+**Extensions -> ... -> Install from VSIX**
 
 Then reload VS Code.
 
@@ -146,16 +154,6 @@ environments such as:
 -   Codespaces
 
 ------------------------------------------------------------------------
-
-# Repository policy
-
-The repository stores **only the extension sources**, not the `.vsix`
-file.
-
-The `.vsix` package is considered a build artifact and can be
-regenerated using:
-
-npm run package
 
 # License
 
