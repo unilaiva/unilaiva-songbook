@@ -22,8 +22,9 @@ backward-compatibility guarantees will follow semantic versioning.
 
 The system is written in [LaTeX](https://www.latex-project.org/),
 [Lilypond](https://lilypond.org/) and [Python](https://www.python.org/). It
-uses [songs LaTeX package](https://songs.sourceforge.net/). Song data is entered
-in LaTeX (and optionally Lilypond, if including sheet music) syntax.
+uses and extends the excellent [songs LaTeX package](https://songs.sourceforge.net/)
+by Kevin W. Hamlen. Song data is entered in LaTeX (and optionally Lilypond, if
+including sheet music) syntax.
 
 ---
 
