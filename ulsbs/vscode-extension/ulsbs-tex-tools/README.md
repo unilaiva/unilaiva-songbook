@@ -34,7 +34,7 @@ npm ci
 ```
 
 ### 2. Build the extension
-5
+
 ```sh
 npm run package
 ```
@@ -47,13 +47,13 @@ This creates a file like:
 
 From command line:
 
-```sh
-code --install-extension ulsbs-tex-tools-x.y.z.vsix
-```
+- ```sh
+  code --install-extension ulsbs-tex-tools-x.y.z.vsix
+  ```
 
 or from within the editor:
 
-**Extensions -> ... -> Install from VSIX**
+- **Extensions -> ... -> Install from VSIX**
 
 Then reload VS Code.
 
