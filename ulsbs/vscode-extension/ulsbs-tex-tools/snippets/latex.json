@@ -5,8 +5,18 @@
     "description": "Insert \\[ ... ]"
   },
 
+  "begin{songs} ... end{songs}": {
+    "prefix": [ "\\begin{songs}" ],
+    "body": [
+      "\\begin{songs}",
+      "\t$0",
+      "\\end{songs"
+    ],
+    "description": "Insert songs environment"
+  },
+
   "beginsong ... endsong": {
-    "prefix": "beginsong",
+    "prefix": [ "beginsong", "\\beginsong" ],
     "body": [
       "\\beginsong{${1:title}}",
       "\t$0",
@@ -16,7 +26,7 @@
   },
 
   "beginverse ... endverse": {
-    "prefix": "beginverse",
+    "prefix": [ "beginverse", "\\beginverse" ],
     "body": [
       "\\beginverse",
       "\t$0",
@@ -26,7 +36,7 @@
   },
 
   "mnbeginverse ... mnendverse": {
-    "prefix": "mnbeginverse",
+    "prefix": [ "mnbeginverse", "\\mnbeginverse" ],
     "body": [
       "\\mnbeginverse",
       "\t$0",
@@ -36,7 +46,7 @@
   },
 
   "beginrep ... endrep": {
-    "prefix": "beginrep",
+    "prefix": [ "beginrep", "\\beginrep" ],
     "body": [
       "\\beginrep",
       "\t$0",
@@ -46,7 +56,7 @@
   },
 
   "begin{translation} ... end{translation}": {
-    "prefix": "translation",
+    "prefix": [ "translation", "\\begin{translation}" ],
     "body": [
       "\\begin{translation}",
       "\t$0",
@@ -56,12 +66,22 @@
   },
 
   "begin{lilypond} ... end{lilypond}": {
-    "prefix": "lilypond",
+    "prefix": [ "lilypond", "\\begin{lilypond}" ],
     "body": [
       "\\begin{lilypond}",
       "\t$0",
       "\\end{lilypond}"
     ],
     "description": "Insert lilypond environment"
+  },
+
+  "begin{lilywrap+lilypond} ... end{lilypond+lilywrap}": {
+    "prefix": [ "lilywrap", "\\begin{lilywrap}" ],
+    "body": [
+      "\\begin{lilywrap}\\begin{lilypond}",
+      "\t$0",
+      "\\end{lilypond}\\end{lilywrap}"
+    ],
+    "description": "Insert lilywrap + lilypond environment"
   }
 }
