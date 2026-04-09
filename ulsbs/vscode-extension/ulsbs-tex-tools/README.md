@@ -6,7 +6,6 @@ files** in Visual Studio Code.
 It adds navigation, folding, snippets, and structural Outline support
 for ULSBS-specific macros such as:
 
-`\[ ... ]`\
 ```tex
 \beginsong ... \endsong
 \beginverse ... \endverse
@@ -16,6 +15,7 @@ for ULSBS-specific macros such as:
 \begin{translation} ... \end{translation}
 \begin{lilypond} ... \end{lilypond}
 ```
+`\[ ... ]`
 
 ------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ npm ci
 ```
 
 ### 2. Build the extension
-
+5
 ```sh
 npm run package
 ```
