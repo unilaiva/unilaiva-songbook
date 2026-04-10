@@ -1,4 +1,7 @@
 {
+  "unwantedRecommendations": [
+    "james-yu.latex-workshop"
+  ],
   "recommendations": [
     "jeandeaual.lilypond-syntax",
     "charliermarsh.ruff",
