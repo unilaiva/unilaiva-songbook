@@ -25,28 +25,81 @@ function dirnameUri(uri) {
   return uri.with({ path: dirPath });
 }
 
-function includeCandidates(vscode, workspaceFolderUri, includingUri, rawTarget) {
-  const candidates = [];
-  const raw = rawTarget.replace(/\\/g, "/");
-  const baseDir = dirnameUri(includingUri);
+function uniqueUris(uris) {
+  const seen = new Set();
+  const out = [];
 
-  if (raw.startsWith("/")) {
-    candidates.push(vscode.Uri.joinPath(workspaceFolderUri, raw.slice(1)));
-  } else {
-    candidates.push(vscode.Uri.joinPath(baseDir, raw));
+  for (const uri of uris) {
+    const key = uri.toString();
+    if (!seen.has(key)) {
+      seen.add(key);
+      out.push(uri);
+    }
   }
 
-  if (!hasSupportedExtension(raw)) {
-    for (const ext of [".tex", ".lytex", ".latex", ".lylatex"]) {
-      if (raw.startsWith("/")) {
-        candidates.push(vscode.Uri.joinPath(workspaceFolderUri, raw.slice(1) + ext));
-      } else {
-        candidates.push(vscode.Uri.joinPath(baseDir, raw + ext));
+  return out;
+}
+
+function splitFirstPathSegment(path) {
+  const normalized = String(path || "").replace(/\\/g, "/").replace(/^\/+/, "");
+  const slash = normalized.indexOf("/");
+  if (slash === -1) {
+    return null;
+  }
+  return normalized.slice(slash + 1);
+}
+
+function candidateBasePaths(vscode, workspaceFolderUri, includingUri, rawTarget) {
+  const raw = String(rawTarget || "").replace(/\\/g, "/");
+  const cleaned = raw.replace(/^\/+/, "");
+  const bases = [];
+
+  const includingDir = dirnameUri(includingUri);
+  const rootContent = vscode.Uri.joinPath(workspaceFolderUri, "content");
+  const rootInclude = vscode.Uri.joinPath(workspaceFolderUri, "include");
+
+  if (raw.startsWith("/")) {
+    bases.push(vscode.Uri.joinPath(workspaceFolderUri, cleaned));
+    bases.push(vscode.Uri.joinPath(rootContent, cleaned));
+    bases.push(vscode.Uri.joinPath(rootInclude, cleaned));
+  } else {
+    bases.push(vscode.Uri.joinPath(includingDir, cleaned));
+    bases.push(vscode.Uri.joinPath(workspaceFolderUri, cleaned));
+    bases.push(vscode.Uri.joinPath(rootContent, cleaned));
+    bases.push(vscode.Uri.joinPath(rootInclude, cleaned));
+  }
+
+  const stripped = splitFirstPathSegment(cleaned);
+  if (stripped) {
+    bases.push(vscode.Uri.joinPath(workspaceFolderUri, stripped));
+    bases.push(vscode.Uri.joinPath(rootContent, stripped));
+    bases.push(vscode.Uri.joinPath(rootInclude, stripped));
+  }
+
+  return uniqueUris(bases);
+}
+
+function includeCandidates(vscode, workspaceFolderUri, includingUri, rawTarget) {
+  const baseCandidates = candidateBasePaths(
+    vscode,
+    workspaceFolderUri,
+    includingUri,
+    rawTarget
+  );
+
+  const candidates = [];
+
+  for (const base of baseCandidates) {
+    candidates.push(base);
+
+    if (!hasSupportedExtension(rawTarget)) {
+      for (const ext of [".tex", ".lytex", ".latex", ".lylatex"]) {
+        candidates.push(base.with({ path: `${base.path}${ext}` }));
       }
     }
   }
 
-  return candidates;
+  return uniqueUris(candidates);
 }
 
 async function readText(vscode, uri) {
@@ -119,7 +172,9 @@ class SongbookService {
           basename: baseName(uri),
           analysis,
           includesResolved: [],
-          allDependencies: null
+          allDependencies: null,
+          dependencyDocs: [],
+          allSongs: []
         });
       } catch {
         // ignore unreadable files
@@ -128,7 +183,12 @@ class SongbookService {
 
     for (const doc of docs.values()) {
       for (const include of doc.analysis.includes) {
-        const candidates = includeCandidates(this.vscode, folder.uri, doc.uri, include.rawTarget);
+        const candidates = includeCandidates(
+          this.vscode,
+          folder.uri,
+          doc.uri,
+          include.rawTarget
+        );
         const resolved = candidates.find((candidate) => docs.has(uriKey(candidate)));
         if (resolved) {
           doc.includesResolved.push(resolved);
@@ -136,7 +196,7 @@ class SongbookService {
       }
     }
 
-    const roots = Array.from(docs.values()).filter((doc) => doc.analysis.isMainCandidate);
+    let roots = Array.from(docs.values()).filter((doc) => doc.analysis.isMainCandidate);
 
     function dependencyClosure(doc, seen = new Set()) {
       const key = uriKey(doc.uri);
@@ -154,9 +214,45 @@ class SongbookService {
       return seen;
     }
 
+    function orderedDependencyDocs(doc) {
+      const ordered = [];
+      const seen = new Set();
+
+      function visit(current) {
+        const key = uriKey(current.uri);
+        if (seen.has(key)) {
+          return;
+        }
+        seen.add(key);
+        ordered.push(current);
+
+        for (const depUri of current.includesResolved) {
+          const dep = docs.get(uriKey(depUri));
+          if (dep) {
+            visit(dep);
+          }
+        }
+      }
+
+      visit(doc);
+      return ordered;
+    }
+
     for (const root of roots) {
       root.allDependencies = dependencyClosure(root);
+      root.dependencyDocs = orderedDependencyDocs(root);
+      root.allSongs = root.dependencyDocs.flatMap((doc) =>
+        (doc.analysis.songs ?? []).map((song) => ({
+          ...song,
+          sourceUri: doc.uri,
+          sourceLabel: doc.label
+        }))
+      );
     }
+
+    roots = roots.sort((a, b) =>
+      a.label.localeCompare(b.label, undefined, { sensitivity: "base" })
+    );
 
     let profiles = ["default"];
     const configUri = this.vscode.Uri.joinPath(folder.uri, "ulsbs-config.toml");

@@ -48,7 +48,8 @@ function registerTreeView(vscode, context, songbookService) {
           uri: doc.uri,
           label: doc.label,
           description: "contains current file",
-          children: doc.analysis.songs ?? []
+          dependencyDocs: doc.dependencyDocs ?? [],
+          songs: doc.allSongs ?? []
         }));
       }
 
@@ -58,17 +59,49 @@ function registerTreeView(vscode, context, songbookService) {
           kind: "songbook",
           uri: doc.uri,
           label: doc.label,
-          description: "",
-          children: doc.analysis.songs ?? []
+          description: `${(doc.dependencyDocs ?? []).length} files`,
+          dependencyDocs: doc.dependencyDocs ?? [],
+          songs: doc.allSongs ?? []
         }));
       }
 
       if (element.kind === "songbook") {
-        return element.children.map((song) => ({
+        return [
+          {
+            kind: "filesSection",
+            label: "Files",
+            parentSongbook: element
+          },
+          {
+            kind: "songsSection",
+            label: "Songs",
+            parentSongbook: element
+          }
+        ];
+      }
+
+      if (element.kind === "filesSection") {
+        return (element.parentSongbook.dependencyDocs ?? []).map((doc) => ({
+          kind: "songfile",
+          label: doc.label,
+          description:
+            doc.uri.toString() === element.parentSongbook.uri.toString()
+              ? "main file"
+              : "",
+          uri: doc.uri
+        }));
+      }
+
+      if (element.kind === "songsSection") {
+        return (element.parentSongbook.songs ?? []).map((song) => ({
           kind: "song",
           label: song.name,
-          description: song.detail,
-          uri: element.uri
+          description: song.sourceLabel,
+          uri: song.sourceUri,
+          selection: {
+            line: song.startLine ?? 0,
+            character: song.startChar ?? 0
+          }
         }));
       }
 
@@ -110,9 +143,41 @@ function registerTreeView(vscode, context, songbookService) {
         return item;
       }
 
+      if (element.kind === "filesSection") {
+        item.collapsibleState = vscode.TreeItemCollapsibleState.Expanded;
+        item.iconPath = new vscode.ThemeIcon("files");
+        item.description = `${(element.parentSongbook.dependencyDocs ?? []).length}`;
+        return item;
+      }
+
+      if (element.kind === "songsSection") {
+        item.collapsibleState = vscode.TreeItemCollapsibleState.Collapsed;
+        item.iconPath = new vscode.ThemeIcon("list-unordered");
+        item.description = `${(element.parentSongbook.songs ?? []).length}`;
+        return item;
+      }
+
+      if (element.kind === "songfile") {
+        item.collapsibleState = vscode.TreeItemCollapsibleState.None;
+        item.description = element.description;
+        item.command = {
+          command: "ulsbsTexTools.openSongbook",
+          title: "Open file",
+          arguments: [element]
+        };
+        item.iconPath = new vscode.ThemeIcon("file-text");
+        item.contextValue = "songfile";
+        return item;
+      }
+
       if (element.kind === "song") {
         item.collapsibleState = vscode.TreeItemCollapsibleState.None;
         item.description = element.description;
+        item.command = {
+          command: "ulsbsTexTools.openSongbook",
+          title: "Open song source file",
+          arguments: [element]
+        };
         item.iconPath = new vscode.ThemeIcon("symbol-module");
         return item;
       }

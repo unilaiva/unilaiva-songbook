@@ -191,7 +191,20 @@ function registerCompileCommands(vscode, context, songbookService, treeControlle
         if (!uri) {
           return;
         }
+
         const doc = await vscode.workspace.openTextDocument(uri);
+
+        if (item?.selection && typeof item.selection.line === "number") {
+          const line = Math.max(0, item.selection.line);
+          const character = Math.max(0, item.selection.character ?? 0);
+          const position = new vscode.Position(line, character);
+
+          await vscode.window.showTextDocument(doc, {
+            selection: new vscode.Range(position, position)
+          });
+          return;
+        }
+
         await vscode.window.showTextDocument(doc);
       }
     ),
