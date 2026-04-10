@@ -52,6 +52,11 @@ _spinner_stop_event: threading.Event | None = None
 # Track whether we've hidden the terminal cursor while the spinner is active.
 _cursor_hidden: bool = False
 
+# Saved spinner state for suspend/resume support.
+_spinner_saved_state: tuple[str, bool, int] | None = None
+# Monotonically increasing logical spinner generation counter.
+_spinner_generation: int = 0
+
 _original_stdout: TextIO = sys.stdout
 _original_stderr: TextIO = sys.stderr
 _stdout_wrapper: "_SpinnerStream" | None = None
@@ -634,17 +639,21 @@ class UI:
         swallowed so that they never crash the program.
         """
         global _spinner_active, _spinner_text, _spinner_spin, _spinner_dots
-        global _spinner_thread, _spinner_stop_event, _spinner_last_width
+        global _spinner_thread, _spinner_stop_event, _spinner_last_width, _spinner_saved_state, _spinner_generation
 
         if not _detect_spinner_supported():
             return
 
         with _output_lock:
             _patch_streams_for_spinner()
+            if not _spinner_active:
+                # New logical spinner instance
+                _spinner_generation += 1
             _spinner_text = txt or ""
             _spinner_spin = bool(spin)
             _spinner_dots = 0
             _spinner_last_width = 0
+            _spinner_saved_state = None
 
             if _spinner_active:
                 # Just update text/flags; frame will be redrawn by thread
@@ -697,11 +706,62 @@ class UI:
         This is safe to call even if the spinner was never started or
         has already been stopped; in those cases it is a no-op.
         """
-        global _spinner_active, _spinner_thread, _spinner_stop_event
+        global _spinner_active, _spinner_thread, _spinner_stop_event, _spinner_saved_state, _spinner_generation
 
         with _output_lock:
             if not _spinner_active:
+                # Explicit stop also cancels any saved suspended state.
+                _spinner_saved_state = None
                 return
+            # End current logical spinner instance.
+            _spinner_generation += 1
+            _spinner_active = False
+            stop_event = _spinner_stop_event
+            thread = _spinner_thread
+            _spinner_stop_event = None
+            _spinner_thread = None
+            _spinner_saved_state = None
+
+        if stop_event is not None:
+            try:
+                stop_event.set()
+            except Exception:
+                pass
+        if thread is not None:
+            try:
+                thread.join(timeout=0.5)
+            except Exception:
+                pass
+
+        with _output_lock:
+            try:
+                _clear_current_line_unlocked()
+                _show_cursor_unlocked()
+                _original_stdout.flush()
+            except Exception:
+                pass
+
+    def suspend_spinner(self) -> None:
+        """Temporarily suspend the spinner while preserving its state.
+
+        If the spinner is active, this stops it, clears the line, and
+        remembers its last text and spin-flag so that resume_spinner()
+        can restore it later. Calling this when no spinner is active is
+        a no-op.
+        """
+        global _spinner_saved_state, _spinner_active, _spinner_thread, _spinner_stop_event, _spinner_generation
+
+        if not _detect_spinner_supported():
+            return
+
+        with _output_lock:
+            if not _spinner_active:
+                _spinner_saved_state = None
+                return
+            # Save current visible state and the generation marker.
+            _spinner_saved_state = (_spinner_text or "", _spinner_spin, _spinner_generation)
+            # Stop the underlying spinner thread/timer without bumping
+            # the generation so this instance can be resumed later.
             _spinner_active = False
             stop_event = _spinner_stop_event
             thread = _spinner_thread
@@ -726,6 +786,34 @@ class UI:
                 _original_stdout.flush()
             except Exception:
                 pass
+
+    def resume_spinner(self) -> None:
+        """Resume a spinner that was previously suspended.
+
+        If there is no saved spinner state, or if the spinner has since
+        been started/stopped elsewhere, this is a no-op.
+        """
+        global _spinner_saved_state, _spinner_generation
+
+        if not _detect_spinner_supported():
+            return
+
+        with _output_lock:
+            state = _spinner_saved_state
+            _spinner_saved_state = None
+
+        if state is None:
+            return
+        txt, spin, saved_gen = state
+        # If someone else has started/stopped the spinner since we
+        # captured this state, do not resurrect an old spinner.
+        if saved_gen != _spinner_generation:
+            return
+        if not txt and not spin:
+            # Nothing meaningful to resume
+            return
+
+        self.start_spinner(txt, spin=spin)
 
     # END spinner
 
