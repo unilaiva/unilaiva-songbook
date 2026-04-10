@@ -15,27 +15,42 @@ function isWeb(vscode) {
   return vscode.env.uiKind === vscode.UIKind.Web;
 }
 
-function registerCompileCommands(vscode, context, songbookService) {
+function registerCompileCommands(vscode, context, songbookService, treeController) {
   let enabled = false;
+  let selectedProfile = "default";
 
-  async function pickProfile(uri) {
+  async function chooseProfileForUri(uri) {
     const settings = getSettings(vscode);
     const profiles = await songbookService.getProfiles(uri);
 
     if (!settings.askProfileOnCompile) {
-      return settings.defaultProfile || "default";
+      selectedProfile = settings.defaultProfile || "default";
+      treeController?.setSelectedProfile?.(selectedProfile);
+      treeController?.refresh?.();
+      return selectedProfile;
     }
 
-    const items = profiles.map((profile) => ({
-      label: profile,
-      description: profile === "default" ? "implicit default" : ""
-    }));
+    const picked = await vscode.window.showQuickPick(
+      profiles.map((profile) => ({
+        label: profile,
+        description:
+          profile === selectedProfile
+            ? "current"
+            : profile === "default"
+              ? "implicit default"
+              : ""
+      })),
+      { placeHolder: "Select ULSBS compile profile" }
+    );
 
-    const picked = await vscode.window.showQuickPick(items, {
-      placeHolder: "Select ULSBS compile profile"
-    });
+    if (!picked) {
+      return null;
+    }
 
-    return picked?.label ?? null;
+    selectedProfile = picked.label;
+    treeController?.setSelectedProfile?.(selectedProfile);
+    treeController?.refresh?.();
+    return selectedProfile;
   }
 
   async function runCompile(mainUris, profile, anchorUri) {
@@ -66,9 +81,7 @@ function registerCompileCommands(vscode, context, songbookService) {
 
     const terminal = vscode.window.createTerminal("ULSBS Build");
     terminal.show(true);
-    terminal.sendText(
-      [shellQuote(compilePath), ...args.map(shellQuote)].join(" ")
-    );
+    terminal.sendText([shellQuote(compilePath), ...args.map(shellQuote)].join(" "));
   }
 
   async function compileCurrentContext() {
@@ -76,8 +89,7 @@ function registerCompileCommands(vscode, context, songbookService) {
       return;
     }
 
-    const editor = vscode.window.activeTextEditor;
-    const uri = editor?.document?.uri;
+    const uri = vscode.window.activeTextEditor?.document?.uri;
     if (!uri) {
       vscode.window.showInformationMessage("No active document.");
       return;
@@ -91,14 +103,9 @@ function registerCompileCommands(vscode, context, songbookService) {
       return;
     }
 
-    const profile = await pickProfile(uri);
-    if (profile === null) {
-      return;
-    }
-
     await runCompile(
       roots.map((root) => root.uri),
-      profile,
+      selectedProfile,
       uri
     );
   }
@@ -108,8 +115,9 @@ function registerCompileCommands(vscode, context, songbookService) {
       return;
     }
 
-    const uri = vscode.window.activeTextEditor?.document?.uri
-      ?? vscode.workspace.workspaceFolders?.[0]?.uri;
+    const uri =
+      vscode.window.activeTextEditor?.document?.uri ??
+      vscode.workspace.workspaceFolders?.[0]?.uri;
 
     if (!uri) {
       vscode.window.showInformationMessage("No workspace is open.");
@@ -122,48 +130,89 @@ function registerCompileCommands(vscode, context, songbookService) {
       return;
     }
 
-    const profile = await pickProfile(uri);
-    if (profile === null) {
-      return;
-    }
-
     await runCompile(
       roots.map((root) => root.uri),
-      profile,
+      selectedProfile,
       uri
     );
   }
 
-  const d1 = vscode.commands.registerCommand(
-    "ulsbsTexTools.compileCurrentContext",
-    compileCurrentContext
-  );
-  const d2 = vscode.commands.registerCommand(
-    "ulsbsTexTools.compileAllSongbooks",
-    compileAllSongbooks
-  );
-  const d3 = vscode.commands.registerCommand(
-    "ulsbsTexTools.refreshWorkspace",
-    async () => {
-      await songbookService.refresh();
-      vscode.window.showInformationMessage("ULSBS workspace index refreshed.");
+  async function compileSingleSongbook(item) {
+    if (!enabled || !item?.uri) {
+      return;
     }
-  );
-  const d4 = vscode.commands.registerCommand(
-    "ulsbsTexTools.openSongbook",
-    async (uri) => {
-      if (uri) {
+    await runCompile([item.uri], selectedProfile, item.uri);
+  }
+
+  async function compileSingleSongbookWithProfile(item) {
+    if (!enabled || !item?.uri) {
+      return;
+    }
+    const picked = await chooseProfileForUri(item.uri);
+    if (!picked) {
+      return;
+    }
+    await runCompile([item.uri], picked, item.uri);
+  }
+
+  const disposables = [
+    vscode.commands.registerCommand(
+      "ulsbsTexTools.compileCurrentContext",
+      compileCurrentContext
+    ),
+    vscode.commands.registerCommand(
+      "ulsbsTexTools.compileAllSongbooks",
+      compileAllSongbooks
+    ),
+    vscode.commands.registerCommand(
+      "ulsbsTexTools.chooseCompileProfile",
+      async () => {
+        const uri =
+          vscode.window.activeTextEditor?.document?.uri ??
+          vscode.workspace.workspaceFolders?.[0]?.uri;
+        if (!uri) {
+          return;
+        }
+        await chooseProfileForUri(uri);
+      }
+    ),
+    vscode.commands.registerCommand(
+      "ulsbsTexTools.compileSongbook",
+      compileSingleSongbook
+    ),
+    vscode.commands.registerCommand(
+      "ulsbsTexTools.compileSongbookWithProfile",
+      compileSingleSongbookWithProfile
+    ),
+    vscode.commands.registerCommand(
+      "ulsbsTexTools.openSongbook",
+      async (item) => {
+        const uri = item?.uri ?? item;
+        if (!uri) {
+          return;
+        }
         const doc = await vscode.workspace.openTextDocument(uri);
         await vscode.window.showTextDocument(doc);
       }
-    }
-  );
+    ),
+    vscode.commands.registerCommand(
+      "ulsbsTexTools.refreshWorkspace",
+      async () => {
+        await songbookService.refresh();
+        treeController?.refresh?.();
+        vscode.window.showInformationMessage("ULSBS workspace index refreshed.");
+      }
+    )
+  ];
 
-  context.subscriptions.push(d1, d2, d3, d4);
+  context.subscriptions.push(...disposables);
 
   return {
     setEnabled(value) {
       enabled = value;
+    },
+    getSelectedProfile() {
+      return selectedProfile;
     }
   };
 }

@@ -1,12 +1,9 @@
 // SPDX-FileCopyrightText: 2016-2026 Lari Natri <lari.natri@iki.fi>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-function icon(id) {
-  return new (require("vscode").ThemeIcon)(id);
-}
-
 function registerTreeView(vscode, context, songbookService) {
   let enabled = false;
+  let selectedProfile = "default";
   const emitter = new vscode.EventEmitter();
 
   class UlsbsTreeProvider {
@@ -28,16 +25,17 @@ function registerTreeView(vscode, context, songbookService) {
         ];
       }
 
+      const currentUri =
+        vscode.window.activeTextEditor?.document?.uri ??
+        vscode.workspace.workspaceFolders?.[0]?.uri;
+
       if (!element) {
         return [
+          { kind: "profile", label: `Profile: ${selectedProfile}` },
           { kind: "current", label: "Current context" },
-          { kind: "songbooks", label: "Songbooks" },
-          { kind: "profiles", label: "Profiles" }
+          { kind: "songbooks", label: "Songbooks" }
         ];
       }
-
-      const currentUri = vscode.window.activeTextEditor?.document?.uri
-        ?? vscode.workspace.workspaceFolders?.[0]?.uri;
 
       if (!currentUri) {
         return [];
@@ -65,15 +63,6 @@ function registerTreeView(vscode, context, songbookService) {
         }));
       }
 
-      if (element.kind === "profiles") {
-        const profiles = await songbookService.getProfiles(currentUri);
-        return profiles.map((profile) => ({
-          kind: "profile",
-          label: profile,
-          description: profile === "default" ? "implicit default" : ""
-        }));
-      }
-
       if (element.kind === "songbook") {
         return element.children.map((song) => ({
           kind: "song",
@@ -95,11 +84,16 @@ function registerTreeView(vscode, context, songbookService) {
         return item;
       }
 
-      if (element.kind === "current" || element.kind === "songbooks" || element.kind === "profiles") {
+      if (element.kind === "profile") {
+        item.collapsibleState = vscode.TreeItemCollapsibleState.None;
+        item.iconPath = new vscode.ThemeIcon("symbol-key");
+        item.description = "active compile profile";
+        return item;
+      }
+
+      if (element.kind === "current" || element.kind === "songbooks") {
         item.collapsibleState = vscode.TreeItemCollapsibleState.Expanded;
-        item.iconPath = new vscode.ThemeIcon(
-          element.kind === "profiles" ? "list-selection" : "folder-library"
-        );
+        item.iconPath = new vscode.ThemeIcon("folder-library");
         return item;
       }
 
@@ -109,9 +103,10 @@ function registerTreeView(vscode, context, songbookService) {
         item.command = {
           command: "ulsbsTexTools.openSongbook",
           title: "Open songbook",
-          arguments: [element.uri]
+          arguments: [element]
         };
         item.iconPath = new vscode.ThemeIcon("book");
+        item.contextValue = "songbook";
         return item;
       }
 
@@ -119,13 +114,6 @@ function registerTreeView(vscode, context, songbookService) {
         item.collapsibleState = vscode.TreeItemCollapsibleState.None;
         item.description = element.description;
         item.iconPath = new vscode.ThemeIcon("symbol-module");
-        return item;
-      }
-
-      if (element.kind === "profile") {
-        item.collapsibleState = vscode.TreeItemCollapsibleState.None;
-        item.description = element.description;
-        item.iconPath = new vscode.ThemeIcon("symbol-key");
         return item;
       }
 
@@ -150,6 +138,10 @@ function registerTreeView(vscode, context, songbookService) {
     },
     setEnabled(value) {
       enabled = value;
+      provider.refresh();
+    },
+    setSelectedProfile(profile) {
+      selectedProfile = profile || "default";
       provider.refresh();
     }
   };

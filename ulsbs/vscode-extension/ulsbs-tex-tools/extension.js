@@ -16,9 +16,14 @@ async function activate(context) {
 
   registerSymbolProvider(vscode, context);
 
-  const diagnosticsController = registerDiagnostics(vscode, context, songbookService);
-  const compileController = registerCompileCommands(vscode, context, songbookService);
   const treeController = registerTreeView(vscode, context, songbookService);
+  const diagnosticsController = registerDiagnostics(vscode, context, songbookService);
+  const compileController = registerCompileCommands(
+    vscode,
+    context,
+    songbookService,
+    treeController
+  );
 
   async function refreshFeatureState() {
     const enabled = await isUlsbsWorkspace(vscode);

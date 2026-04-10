@@ -2,7 +2,7 @@
   "name": "ulsbs-tex-tools",
   "displayName": "ULSBS TeX Tools",
   "description": "Custom LaTeX support for ULSBS song macros",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publisher": "ulsbs",
   "license": "GPL-3.0-or-later",
   "author": {
@@ -49,36 +49,96 @@
     "commands": [
       {
         "command": "ulsbsTexTools.compileCurrentContext",
-        "title": "ULSBS: Compile current context…"
+        "title": "ULSBS: Compile current context…",
+        "icon": "$(play)"
       },
       {
         "command": "ulsbsTexTools.compileAllSongbooks",
-        "title": "ULSBS: Compile all songbooks…"
+        "title": "ULSBS: Compile all songbooks…",
+        "icon": "$(run-all)"
+      },
+      {
+        "command": "ulsbsTexTools.chooseCompileProfile",
+        "title": "ULSBS: Choose compile profile",
+        "icon": "$(settings-gear)"
       },
       {
         "command": "ulsbsTexTools.refreshWorkspace",
-        "title": "ULSBS: Refresh workspace index"
+        "title": "ULSBS: Refresh workspace index",
+        "icon": "$(refresh)"
       },
       {
         "command": "ulsbsTexTools.openSongbook",
-        "title": "ULSBS: Open songbook"
+        "title": "ULSBS: Open songbook",
+        "icon": "$(book)"
+      },
+      {
+        "command": "ulsbsTexTools.compileSongbook",
+        "title": "ULSBS: Compile this songbook",
+        "icon": "$(play)"
+      },
+      {
+        "command": "ulsbsTexTools.compileSongbookWithProfile",
+        "title": "ULSBS: Compile this songbook with profile…",
+        "icon": "$(settings-gear)"
       }
     ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ulsbs",
+          "title": "ULSBS",
+          "icon": "images/ulsbs-vscode-activitybar-icon.svg"
+        }
+      ]
+    },
     "views": {
-      "explorer": [
+      "ulsbs": [
         {
           "id": "ulsbsSongbooks",
-          "name": "ULSBS",
-          "icon": ""
+          "name": "Songbooks",
+          "icon": "images/ulsbs-vscode-activitybar-icon.svg"
         }
       ]
     },
     "menus": {
       "view/title": [
         {
+          "command": "ulsbsTexTools.compileCurrentContext",
+          "when": "view == ulsbsSongbooks",
+          "group": "navigation@1"
+        },
+        {
           "command": "ulsbsTexTools.refreshWorkspace",
           "when": "view == ulsbsSongbooks",
-          "group": "navigation"
+          "group": "navigation@2"
+        },
+        {
+          "command": "ulsbsTexTools.compileAllSongbooks",
+          "when": "view == ulsbsSongbooks",
+          "group": "navigation@3"
+        },
+        {
+          "command": "ulsbsTexTools.chooseCompileProfile",
+          "when": "view == ulsbsSongbooks",
+          "group": "navigation@4"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "ulsbsTexTools.openSongbook",
+          "when": "view == ulsbsSongbooks && viewItem == songbook",
+          "group": "inline@1"
+        },
+        {
+          "command": "ulsbsTexTools.compileSongbook",
+          "when": "view == ulsbsSongbooks && viewItem == songbook",
+          "group": "inline@2"
+        },
+        {
+          "command": "ulsbsTexTools.compileSongbookWithProfile",
+          "when": "view == ulsbsSongbooks && viewItem == songbook",
+          "group": "navigation@1"
         }
       ]
     },
