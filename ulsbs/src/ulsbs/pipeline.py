@@ -109,30 +109,47 @@ def die_log(ui: UI, cfg: Config, job: Job, cwd: Path, message: str, log_path: Pa
         # Quiet abort: no log spam
         raise KeyboardInterrupt()
 
-    txt_doc = ui.fmt_doc(job)
-    ui.error_line(f"{txt_doc} {message}")
-    if log_path is not None:
+    # While printing multi-line error/log output, temporarily suspend
+    # the spinner so that its status line does not get redrawn onto our
+    # blank separator lines.
+    try:
+        ui.suspend_spinner()
+    except Exception:
+        # Never let spinner issues interfere with error reporting.
+        pass
+
+    try:
+        txt_doc = ui.fmt_doc(job)
+        ui.error_line(f"{txt_doc} {message}")
+        if log_path is not None:
+            try:
+                rel = cwd.relative_to(cfg.runtime.project_paths.project_root)
+                ui.see_line(f"{ui.C_YELLOW}{rel}/{log_path.name}{ui.C_RESET}")
+            except Exception:
+                pass
+            if cfg.max_log_lines > 0:
+                ui.plain("")
+                ui.space_line(
+                    ui.colorize(f"Displaying the last {cfg.max_log_lines} lines of log:", ui.C_YELLOW)
+                )
+                ui.plain("")
+                try:
+                    from collections import deque
+
+                    with log_path.open("r", encoding="utf-8", errors="replace") as f:
+                        tail = deque(f, maxlen=cfg.max_log_lines)
+                    ui.space_line("".join(tail))
+                    ui.plain("")
+                except Exception:
+                    ui.warning("(Could not read log)")
+        else:
+            ui.warning("(No log file available)")
+    finally:
         try:
-            rel = cwd.relative_to(cfg.runtime.project_paths.project_root)
-            ui.see_line(f"{ui.C_YELLOW}{rel}/{log_path.name}{ui.C_RESET}")
+            ui.resume_spinner()
         except Exception:
             pass
-        if cfg.max_log_lines > 0:
-            ui.plain("")
-            ui.space_line(
-                ui.colorize(f"Displaying the last {cfg.max_log_lines} lines of log:", ui.C_YELLOW)
-            )
-            ui.plain("")
-            try:
-                from collections import deque
 
-                with log_path.open("r", encoding="utf-8", errors="replace") as f:
-                    tail = deque(f, maxlen=cfg.max_log_lines)
-                ui.plain("".join(tail))
-            except Exception:
-                ui.warning("(Could not read log)")
-    else:
-        ui.warning("(No log file available)")
     raise CompileError(message, log_path)
 
 
