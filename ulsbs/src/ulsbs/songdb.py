@@ -69,8 +69,7 @@ following JSON Schema (draft-07):
           "type": "object",
           "required": [
             "language",
-            "lyrics",
-            "lyrics_plain_lowercase"
+            "lyrics"
           ],
           "properties": {
             "language": {"type": ["string", "null"]},
@@ -85,7 +84,7 @@ following JSON Schema (draft-07):
             },
             "lyrics_plain_lowercase": {
               "type": "string",
-              "description": "Lowercased plain-text translated lyrics with \\n between lines and \\n\\n between verses"
+              "description": "Lowercased plain-text translated lyrics with \\n between lines and \\n\\n between verses. Only present when the database was built with plain_lowercase_lyrics=True."
             }
           },
           "additionalProperties": false
@@ -171,7 +170,6 @@ following JSON Schema (draft-07):
             "alt_titles",
             "audio_links",
             "lyrics",
-            "lyrics_plain_lowercase",
             "translations"
           ],
           "properties": {
@@ -223,8 +221,8 @@ following JSON Schema (draft-07):
               "description": "Structured lyrics as [verses][lines] of plain text"
             },
             "lyrics_plain_lowercase": {
-              "type": ["string", "null"],
-              "description": "Lowercased plain-text lyrics with \n between lines and \n\n between verses"
+              "type": "string",
+              "description": "Lowercased plain-text lyrics with \n between lines and \n\n between verses. Only present when the database was built with plain_lowercase_lyrics=True."
             },
             "translations": {
               "type": "array",
@@ -291,11 +289,13 @@ class Translation:
     - lyrics_plain_lowercase:
         Lowercased plain-text translated lyrics with verse and line breaks
         encoded as newlines. Intended for case-insensitive search.
+        Only populated when plain_lowercase_lyrics=True is passed to
+        build_song_database().
     """
 
     language: str | None
     lyrics: List[List[str]]
-    lyrics_plain_lowercase: str
+    lyrics_plain_lowercase: str | None = None
 
 
 @dataclass(slots=True)
@@ -305,7 +305,7 @@ class SongInfo:
     Attributes
     ----------
     - title:
-        Primary song title (the first part before any ``\\`` line breaks).
+        Primary song title (the first part before any \\ line breaks).
     - title_slug:
         ASCII filename-friendly stem derived from the primary title.
     - number:
@@ -328,8 +328,8 @@ class SongInfo:
     - chapter_slug:
         Normalized chapter slug, or None.
     - alt_titles:
-        Alternative titles extracted from subsequent ``\\``-separated parts
-        of the ``\beginsong{...}`` title, if any.
+        Alternative titles extracted from subsequent \\-separated parts
+        of the \\beginsong{...} title, if any.
     - audio_links:
         \\audio invocations found inside the song block, in order.
     - lyrics:
@@ -337,6 +337,8 @@ class SongInfo:
     - lyrics_plain_lowercase:
         Lowercased plain-text lyrics with verse and line breaks encoded as
         newlines. Intended for case-insensitive search.
+        Only populated when plain_lowercase_lyrics=True is passed to
+        build_song_database().
     - translations:
         Zero or more translated lyric blocks, each with an optional
         language code and lyrics structured as verses and lines.
@@ -530,9 +532,22 @@ class SongbookData:
                 return obj.as_posix()
             raise TypeError("Object of type %s is not JSON-serialisable" % type(obj).__name__)
 
-        raw = asdict(self)
+        def _strip_absent_plain_lowercase(obj: Any) -> Any:
+            """Recursively remove lyrics_plain_lowercase keys whose value is None."""
+            if isinstance(obj, dict):
+                return {
+                    k: _strip_absent_plain_lowercase(v)
+                    for k, v in obj.items()
+                    if not (k == "lyrics_plain_lowercase" and v is None)
+                }
+            if isinstance(obj, list):
+                return [_strip_absent_plain_lowercase(item) for item in obj]
+            return obj
+
+        raw = _strip_absent_plain_lowercase(asdict(self))
         dest.write_text(
-            json.dumps(raw, default=_default, indent=indent, ensure_ascii=False), encoding="utf-8"
+            json.dumps(raw, default=_default, indent=indent, ensure_ascii=False) + "\n",
+            encoding="utf-8"
         )
 
 
@@ -663,7 +678,7 @@ def _tex_to_plain_text(text: str) -> str:
 def _unescape_tex_url(text: str) -> str:
     """Undo simple TeX escaping used inside URLs.
 
-    Currently this only normalises ``\\%`` back to a literal ``%``.
+    Currently this only normalises \\% back to a literal %.
     """
 
     return text.replace(r"\%", "%")
@@ -870,7 +885,7 @@ def _resolve_include(name: str, current_file: Path, search_paths: Sequence[Path]
 def _resolve_documentclass(
     classname: str, current_file: Path, search_paths: Sequence[Path]
 ) -> Path | None:
-    """Resolve a \\documentclass{...} argument to a ``.cls`` file.
+    """Resolve a \\documentclass{...} argument to a .cls file.
 
     The search order is:
       1. Path relative to the current file directory
@@ -1225,8 +1240,13 @@ def _strip_macros_for_lyrics(text: str) -> str:
     return _collapse_standalone_brace_groups("".join(out))
 
 
-def _normalise_verses(verses_raw: List[str]) -> Tuple[List[List[str]] | None, str | None]:
+def _normalise_verses(
+    verses_raw: List[str], *, include_plain_lowercase: bool = True
+) -> Tuple[List[List[str]] | None, str | None]:
     """Normalise raw verse blocks into structured lines and a flat lowercase form.
+
+    When *include_plain_lowercase* is False the second element of the returned
+    tuple is always None, skipping the join/lower work.
 
     Shared by both lyrics and translation extraction.
     """
@@ -1255,6 +1275,9 @@ def _normalise_verses(verses_raw: List[str]) -> Tuple[List[List[str]] | None, st
     if not verses:
         return None, None
 
+    if not include_plain_lowercase:
+        return verses, None
+
     verse_blocks = ["\n".join(v) for v in verses]
     joined = "\n\n".join(verse_blocks)
     return verses, joined.lower()
@@ -1262,6 +1285,8 @@ def _normalise_verses(verses_raw: List[str]) -> Tuple[List[List[str]] | None, st
 
 def _extract_lyrics_from_song_block(
     raw_song: str,
+    *,
+    include_plain_lowercase: bool = True,
 ) -> Tuple[List[List[str]] | None, str | None]:
     """Extract structured lyrics from a '\\beginsong..\\endsong' block.
 
@@ -1270,7 +1295,7 @@ def _extract_lyrics_from_song_block(
     - 'lyrics' is a list of verses, each a list of cleaned lyric lines.
     - 'lyrics_plain_lowercase' is the same lyrics flattened into a single
       lowercase string, with '\n' between lines and '\n\n' between
-      verses.
+      verses, or None when *include_plain_lowercase* is False.
 
     On any parsing error, '(None, None)' is returned.
     """
@@ -1312,7 +1337,7 @@ def _extract_lyrics_from_song_block(
         if not verses_raw:
             return None, None
 
-        return _normalise_verses(verses_raw)
+        return _normalise_verses(verses_raw, include_plain_lowercase=include_plain_lowercase)
 
     except Exception:
         # Be conservative: if anything goes wrong, do not propagate errors
@@ -1320,7 +1345,11 @@ def _extract_lyrics_from_song_block(
         return None, None
 
 
-def _extract_translations_from_song_block(raw_song: str) -> List[Translation]:
+def _extract_translations_from_song_block(
+    raw_song: str,
+    *,
+    include_plain_lowercase: bool = True,
+) -> List[Translation]:
     """Extract all translation blocks from a '\\beginsong..\\endsong' block.
 
     Each translation block is either::
@@ -1387,8 +1416,8 @@ def _extract_translations_from_song_block(raw_song: str) -> List[Translation]:
             body = re.sub(r"(?<!\\)%[^\r\n]*", "", body)
             verses_raw = body.split("\\nextverse")
 
-            verses, plain_lower = _normalise_verses(verses_raw)
-            if verses is None or plain_lower is None:
+            verses, plain_lower = _normalise_verses(verses_raw, include_plain_lowercase=include_plain_lowercase)
+            if verses is None:
                 continue
             translations.append(
                 Translation(language=lang, lyrics=verses, lyrics_plain_lowercase=plain_lower)
@@ -1424,7 +1453,10 @@ def _apply_book_field(book_info: BookInfo, field_name: str, value: str) -> None:
 
 
 def build_song_database(
-    processed_tex: Path, include_search_paths: Sequence[Path], variant: str = "unknown"
+    processed_tex: Path,
+    include_search_paths: Sequence[Path],
+    variant: str = "unknown",
+    plain_lowercase_lyrics: bool = False,
 ) -> SongbookData:
     """
     Parse processed_tex and all its inputs into a SongbookData class.
@@ -1435,6 +1467,12 @@ def build_song_database(
         Main LaTeX document, typically already processed with lilypond-book.
     - include_search_paths:
         Directories where \\input / \\include should be resolved.
+    - variant:
+        Arbitrary variant string stored in BookInfo (default "unknown").
+    - plain_lowercase_lyrics:
+        When True, populate lyrics_plain_lowercase on every SongInfo and
+        Translation.  When False (the default) those fields are omitted from
+        the data structures and from any JSON output.
 
     Returns SongbookData (Complete chapter + song information for this document).
     """
@@ -1488,8 +1526,12 @@ def build_song_database(
 
         midi_compile_file_relative = _find_midi_in_song_block(raw_block, doc_root)
         audio_links = _collect_audio_links_from_block(raw_block)
-        lyrics, lyrics_plain_lowercase = _extract_lyrics_from_song_block(raw_block)
-        translations = _extract_translations_from_song_block(raw_block)
+        lyrics, lyrics_plain_lowercase = _extract_lyrics_from_song_block(
+            raw_block, include_plain_lowercase=plain_lowercase_lyrics
+        )
+        translations = _extract_translations_from_song_block(
+            raw_block, include_plain_lowercase=plain_lowercase_lyrics
+        )
 
         source_file_relative = _relative_to_doc_root(tex_file, doc_root)
 

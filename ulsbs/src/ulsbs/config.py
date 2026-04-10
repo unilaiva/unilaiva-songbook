@@ -100,6 +100,7 @@ class Config:
     lyricbooks: bool = True
     create_printouts: bool = True
     coverimage: bool = True
+    json: bool = True
     midifiles: bool = True
     audiofiles: bool = True
     midifiles_allow_for_optional_variants: bool = False
@@ -577,6 +578,7 @@ _ALLOWED_FILE_KEYS: Set[str] = {
     "deploy_common",
     "create_printouts",
     "coverimage",
+    "json",
     "midifiles",
     "audiofiles",
     "fast_audio_encode",
@@ -802,6 +804,8 @@ def build_config(
             cli_over["create_printouts"] = False
         if getattr(args_ns, "no_coverimage", False):
             cli_over["coverimage"] = False
+        if getattr(args_ns, "no_json", False):
+            cli_over["json"] = False
         if getattr(args_ns, "no_midi", False):
             cli_over["midifiles"] = False
         if getattr(args_ns, "no_audio", False):

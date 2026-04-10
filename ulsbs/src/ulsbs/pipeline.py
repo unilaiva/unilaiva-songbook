@@ -28,10 +28,12 @@ from .constants import (
     PAPERA5_FNAMEPART,
     RESULT_TYPE_MAIN_PDF,
     RESULT_TYPE_PRINTOUT_PDF,
+    RESULT_TYPE_JSON,
     RESULT_TYPE_IMAGE,
     RESULT_TYPE_MIDIDIR,
     RESULT_TYPE_AUDIODIR,
     RESULT_PRINTOUT_SUBDIRNAME,
+    RESULT_JSON_SUBDIRNAME,
     RESULT_IMAGE_SUBDIRNAME,
     RESULT_MIDI_SUBDIRNAME,
     RESULT_AUDIO_SUBDIRNAME,
@@ -44,6 +46,7 @@ from .constants import (
     INCLUDE_DIRNAME,
     TAG_DEFINITION_FILENAME,
     GENAUDIO_ALBUMTITLE,
+    JSON_INCLUDE_PLAIN_LOWERCASE_LYRICS,
 )
 from .engine_assets import EngineAssets
 from .jobs import Job, build_variant_basename
@@ -849,12 +852,18 @@ def step_build_song_db(
     txt_doc = ui.fmt_doc(job)
     log_path = job.compile_dir / f"{step:02d}_songdb.log"
 
-    # Skip if midi nor audio is requested
-    if not (cfg.midifiles or cfg.audiofiles):
+    # Build db only if it's needed by at least one downstream output.
+    want_db = bool(cfg.json or cfg.midifiles or cfg.audiofiles)
+    if not want_db:
         return None, step
-    # Skip if this is an optional variant and neither audio nor midi is allowed for optional variants
+
+    # Optional variants: only build when at least one allowed output needs it.
+    # - json is always allowed
+    # - midi/audio may be restricted for optional variants
     if job.variant != "default" and not (
-        cfg.midifiles_allow_for_optional_variants or cfg.audiofiles_allow_for_optional_variants
+        cfg.json
+        or cfg.midifiles_allow_for_optional_variants
+        or cfg.audiofiles_allow_for_optional_variants
     ):
         return None, step
 
@@ -862,19 +871,40 @@ def step_build_song_db(
 
     try:
         db = build_song_database(
-            processed_tex=processed_tex, include_search_paths=include_paths, variant=job.variant
+            processed_tex=processed_tex,
+            include_search_paths=include_paths,
+            variant=job.variant,
+            plain_lowercase_lyrics=JSON_INCLUDE_PLAIN_LOWERCASE_LYRICS,
         )
+
+        # Always write JSON into the compile directory when the db is built,
+        # regardless of whether it is requested as a result artifact.
+        json_compile_path = job.compile_dir / f"{processed_tex.stem}.json"
+        db.to_json_file(json_compile_path)
+
+        # Copy JSON to result/ only when requested
+        if cfg.json:
+            result_dir = cfg.runtime.project_paths.result_dir
+            ensure_dir(result_dir / RESULT_JSON_SUBDIRNAME)
+            shutil.copy2(
+                json_compile_path,
+                result_dir / RESULT_JSON_SUBDIRNAME / json_compile_path.name,
+            )
+            resultlist.append_line(RESULT_TYPE_JSON, json_compile_path.name)
+
         write_text(
             log_path,
             "Internal song database built for this book.\n\n"
             f"  - Book title: {'<none>' if db.book_info.maintitle is None else db.book_info.maintitle}\n"
             f"  - Book subtitle: {'<none>' if db.book_info.subtitle is None else db.book_info.subtitle}\n"
             f"  - Book variant: {'<none>' if db.book_info.variant is None else db.book_info.variant}\n"
-            f"  - Total songs found: {str(db.total_songs)}\n\n",
+            f"  - Total songs found: {str(db.total_songs)}\n"
+            f"  - JSON file written: {json_compile_path.name}\n\n",
         )
     except Exception as e:
         write_text(log_path, f"Song database build failed: {e!r}\n")
         raise CompileError("Failed to build song/chapter data from TeX", log_path) from None
+
     step += 1
     return db, step
 

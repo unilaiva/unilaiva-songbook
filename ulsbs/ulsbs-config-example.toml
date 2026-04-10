@@ -44,7 +44,7 @@
 #
 # CLI highlights (override config):
 # - Flags like --no-container, --container-rebuild, --shell, --pull, --sequential, --max-parallel,
-#   --no-deploy, --no-printouts, --no-coverimage, --no-midi, --no-audio,
+#   --no-deploy, --no-printouts, --no-coverimage, --no-json, --no-midi, --no-audio,
 #   --no-extrainstr, --no-lyric, -q/--quick, --deploy-last, --deploy-common, --max-log-lines.
 # - Passing files on the CLI overrides songbook selection.
 
@@ -71,6 +71,7 @@ deploy-common = false        # SPECIAL MODE: only run the "deploy common" action
 
 create-printouts = true      # default: true
 coverimage = true            # default: true
+json = true                  # default: true
 midifiles = true             # default: true
 audiofiles = true            # default: true
 extrainstrumentbooks = true  # default: true

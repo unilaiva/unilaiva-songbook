@@ -81,6 +81,7 @@ def build_arg_parser(ui: UI) -> argparse.ArgumentParser:
     prestr.add_argument("--no-deploy", action="store_true", help="Do not copy result files into deploy directory")
     prestr.add_argument("--no-printouts", action="store_true", help="Do not produce extra printouts for home printing")
     prestr.add_argument("--no-coverimage", action="store_true", help="Do not produce cover images as .png")
+    prestr.add_argument("--no-json", action="store_true", help="Do not produce JSON metadata files")
     prestr.add_argument("--no-midi", action="store_true", help="Do not produce MIDI files")
     prestr.add_argument("--no-audio", action="store_true", help="Do not produce MP3 audio files")
     prestr.add_argument("--no-lyric", action="store_true", help="Do not produce lyrics-only variant")
@@ -125,6 +126,7 @@ def print_plan_summary(
     ui.plain(f"  - Additional extra instrument variants: {_yn(cfg.extrainstrumentbooks)}")
     ui.plain(f"  - Create printouts: {_yn(cfg.create_printouts)}")
     ui.plain(f"  - Extract covers as images: {_yn(cfg.coverimage)}")
+    ui.plain(f"  - Create JSON metadata: {_yn(cfg.json)}")
     ui.plain(f"  - Create MIDI files: {_yn(cfg.midifiles)}")
     if cfg.midifiles:
         ui.plain(f"    - Also for optional variants: {_yn(cfg.midifiles_allow_for_optional_variants)}")
