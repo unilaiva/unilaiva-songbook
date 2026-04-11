@@ -1106,30 +1106,39 @@ def _skip_macro_arguments(src: str, start: int) -> int:
     """Skip typical macro arguments starting at *start*.
 
     This skips any immediate sequences of '(...)', '[...]' or '{...}'
-    (including nested brackets/braces) and any surrounding whitespace.
+    (including nested brackets/braces).
+
+    Important: this helper deliberately does *not* consume trailing
+    whitespace after the last argument, so that removing a macro does not
+    accidentally join words together.
+
     Returns the index of the first character after the skipped arguments.
     """
 
     i = start
     n = len(src)
-    while i < n:
-        # Skip whitespace between arguments
-        while i < n and src[i].isspace():
-            i += 1
-        if i >= n:
-            break
 
-        ch = src[i]
+    while i < n:
+        # Look ahead: only consume whitespace if it is followed by another
+        # argument we intend to skip. Otherwise keep whitespace intact.
+        j = i
+        while j < n and src[j].isspace():
+            j += 1
+        if j >= n:
+            return i
+
+        ch = src[j]
+
         if ch == "[":
             try:
-                _, i = _parse_optional_bracket_argument(src, i)
+                _, i = _parse_optional_bracket_argument(src, j)
             except ValueError:
-                # Give up on this bracket; treat it as ordinary text.
-                break
+                return i
             continue
+
         if ch == "(":
+            i = j + 1
             depth = 1
-            i += 1
             while i < n and depth > 0:
                 if src[i] == "(":
                     depth += 1
@@ -1137,14 +1146,16 @@ def _skip_macro_arguments(src: str, start: int) -> int:
                     depth -= 1
                 i += 1
             continue
+
         if ch == "{":
             try:
-                _, i = _parse_braced_argument(src, i)
+                _, i = _parse_braced_argument(src, j)
             except ValueError:
-                # Unbalanced; stop skipping to avoid an infinite loop.
-                break
+                return i
             continue
-        break
+
+        return i
+
     return i
 
 
