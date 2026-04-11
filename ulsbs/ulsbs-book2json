@@ -4,10 +4,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 # Generate a songbook JSON using the ULSBS songdb helper.
-# This is just a wrapper to start the ulsbs.tools.songdb_json module.
+# This is just a wrapper to start the ulsbs.tools.book2json module.
 #
 # Typical usage:
-#   ./ulsbs-songdb-json main_songbook.tex > songbook.json
+#   ./ulsbs-book2json main_songbook.tex > songbook.json
 #
 # Requires:
 #   - bash version 3.0+  (for this script)
@@ -26,14 +26,14 @@ fi
 # Preserve the user's args exactly
 ARGS=( "$@" )
 
-# Run 'python3 -m ulsbs.tools.songdb_json' with a given PYTHONPATH.
+# Run 'python3 -m ulsbs.tools.book2json' with a given PYTHONPATH.
 # Usage: run_with_pythonpath <colon-separated-paths>
 # Notes: reads args from global ARGS array; exec replaces the current shell.
 run_with_pythonpath() {
   local pypath="$1"
   shift || true
   export PYTHONPATH="$pypath"
-  exec python3 -m ulsbs.tools.songdb_json "${ARGS[@]}"
+  exec python3 -m ulsbs.tools.book2json "${ARGS[@]}"
 }
 
 # 1) explicit override
@@ -69,7 +69,7 @@ if [[ -d "$SCRIPT_DIR/ulsbs/src/ulsbs" ]]; then
 fi
 
 # 4) script lives inside an 'ulsbs' engine directory
-#    (e.g. project_root/ulsbs/ulsbs-songdb-json or similar)
+#    (e.g. project_root/ulsbs/ulsbs-book2json or similar)
 if [[ "$(basename "$SCRIPT_DIR")" == "ulsbs" ]] && [[ -d "$SCRIPT_DIR/src/ulsbs" ]]; then
   run_with_pythonpath "$(cd "$SCRIPT_DIR/src" && pwd)"
 fi
@@ -77,10 +77,10 @@ fi
 # 5) pip installed
 if python3 -c "import ulsbs" >/dev/null 2>&1; then
   # No need to set the PYTHONPATH for pip version.
-  exec python3 -m ulsbs.tools.songdb_json "${ARGS[@]}"
+  exec python3 -m ulsbs.tools.book2json "${ARGS[@]}"
 fi
 
-echo "ERROR: Could not find ULSBS engine for songdb-json." >&2
+echo "ERROR: Could not find ULSBS engine." >&2
 echo "" >&2
 echo "Please do one of the following:" >&2
 echo "" >&2

@@ -10,11 +10,11 @@ ulsbs.songdb.SongbookData class as JSON.
 
 Usage (after installing the ulsbs package):
 
-    ulsbs-songdb-json path/to/main.tex > songdb.json
+    ulsbs-book2json path/to/main.tex > songdb.json
 
 You can also invoke it directly as a module:
 
-    PYTHONPATH=ulsbs/src python3 -m ulsbs.tools.songdb_json path/to/main.tex > songdb.json
+    PYTHONPATH=ulsbs/src python3 -m ulsbs.tools.book2json path/to/main.tex > songdb.json
 """
 
 from __future__ import annotations
@@ -41,7 +41,7 @@ from ..constants import CONTENT_DIRNAME, INCLUDE_DIRNAME
 
 def _build_arg_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="ulsbs-songdb-json",
+        prog="ulsbs-book2json",
         description=(
             "Parse a songbook main TeX file and output song/chapter metadata as JSON. "
             "Follows \\input / \\include using MAIN_TEX's directory, any -I paths, "
