@@ -848,9 +848,14 @@ def step_build_song_db(
     include_paths: list[Path],
     step: int,
 ) -> tuple[SongbookData | None, int]:
-    """Build the song database from the processed TeX tree."""
+    """Build the internal song database from the processed TeX tree.
+
+    This step only builds the in-memory database; it does not write JSON.
+    JSON is written later (after MIDI/audio steps) so that any derived
+    result file paths are included in the JSON output.
+    """
     txt_doc = ui.fmt_doc(job)
-    log_path = job.compile_dir / f"{step:02d}_songdb.log"
+    log_path = job.compile_dir / f"{step:02d}_songdb-build.log"
 
     # Build db only if it's needed by at least one downstream output.
     want_db = bool(cfg.json or cfg.midifiles or cfg.audiofiles)
@@ -877,29 +882,13 @@ def step_build_song_db(
             plain_lowercase_lyrics=JSON_INCLUDE_PLAIN_LOWERCASE_LYRICS,
         )
 
-        # Always write JSON into the compile directory when the db is built,
-        # regardless of whether it is requested as a result artifact.
-        json_compile_path = job.compile_dir / f"{processed_tex.stem}.json"
-        db.to_json_file(json_compile_path)
-
-        # Copy JSON to result/ only when requested
-        if cfg.json:
-            result_dir = cfg.runtime.project_paths.result_dir
-            ensure_dir(result_dir / RESULT_JSON_SUBDIRNAME)
-            shutil.copy2(
-                json_compile_path,
-                result_dir / RESULT_JSON_SUBDIRNAME / json_compile_path.name,
-            )
-            resultlist.append_line(RESULT_TYPE_JSON, json_compile_path.name)
-
         write_text(
             log_path,
             "Internal song database built for this book.\n\n"
             f"  - Book title: {'<none>' if db.book_info.maintitle is None else db.book_info.maintitle}\n"
             f"  - Book subtitle: {'<none>' if db.book_info.subtitle is None else db.book_info.subtitle}\n"
             f"  - Book variant: {'<none>' if db.book_info.variant is None else db.book_info.variant}\n"
-            f"  - Total songs found: {str(db.total_songs)}\n"
-            f"  - JSON file written: {json_compile_path.name}\n\n",
+            f"  - Total songs found: {str(db.total_songs)}\n\n",
         )
     except Exception as e:
         write_text(log_path, f"Song database build failed: {e!r}\n")
@@ -907,6 +896,54 @@ def step_build_song_db(
 
     step += 1
     return db, step
+
+
+def step_write_song_db_json(
+    ui: UI,
+    cfg: Config,
+    job: Job,
+    processed_tex: Path,
+    db: SongbookData | None,
+    step: int,
+) -> int:
+    """Write SongbookData JSON after post-processing steps.
+
+    This is run after MIDI/audio so that any midi_result_file_relative and
+    audio_result_file_relative fields are included in the JSON.
+    """
+
+    if not cfg.json:
+        return step
+
+    if db is None:
+        return step
+
+    txt_doc = ui.fmt_doc(job)
+    log_path = job.compile_dir / f"{step:02d}_songdb-json.log"
+    ui.exec_line(f"{txt_doc} {ui.fmt_step(step)} internal: write metadata JSON")
+
+    try:
+        json_compile_path = job.compile_dir / f"{processed_tex.stem}.json"
+        db.to_json_file(json_compile_path)
+
+        result_dir = cfg.runtime.project_paths.result_dir
+        ensure_dir(result_dir / RESULT_JSON_SUBDIRNAME)
+        shutil.copy2(
+            json_compile_path,
+            result_dir / RESULT_JSON_SUBDIRNAME / json_compile_path.name,
+        )
+        resultlist.append_line(RESULT_TYPE_JSON, json_compile_path.name)
+
+        write_text(
+            log_path,
+            "Internal song database JSON written for this book.\n\n"
+            f"  - JSON file written: {json_compile_path.name}\n\n",
+        )
+    except Exception as e:
+        write_text(log_path, f"Song database JSON write failed: {e!r}\n")
+        raise CompileError("Failed to write song/chapter JSON", log_path) from None
+
+    return step + 1
 
 
 def step_midi_audio(
@@ -1280,7 +1317,7 @@ def compile_one_job(
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
 
-        # 8) Build song database
+        # 8) Build song database (in-memory only)
         try:
             song_db, step = step_build_song_db(
                 ui=ui,
@@ -1293,11 +1330,24 @@ def compile_one_job(
         except CompileError as ce:
             die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
 
-        # 9) MIDI/audio assets
+        # 9) MIDI/audio assets (may update db with result file paths)
         try:
             step = step_midi_audio(
                 ui=ui,
                 assets=assets,
+                cfg=cfg,
+                job=job,
+                processed_tex=processed_tex,
+                db=song_db,
+                step=step,
+            )
+        except CompileError as ce:
+            die_log(ui, cfg, job, cwd=cwd, message=str(ce), log_path=ce.log_path)
+
+        # 10) Optional JSON output (write after midi/audio so paths are included)
+        try:
+            step = step_write_song_db_json(
+                ui=ui,
                 cfg=cfg,
                 job=job,
                 processed_tex=processed_tex,

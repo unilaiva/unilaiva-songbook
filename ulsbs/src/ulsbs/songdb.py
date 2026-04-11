@@ -163,7 +163,6 @@ following JSON Schema (draft-07):
             "number",
             "options",
             "source_file_relative",
-            "midi_compile_file_relative",
             "order_index",
             "chapter_title",
             "chapter_slug",
@@ -185,8 +184,8 @@ following JSON Schema (draft-07):
               "description": "Path to the TeX source file where the song is defined, relative to the main document directory (POSIX string)"
             },
             "midi_compile_file_relative": {
-              "type": ["string", "null"],
-              "description": "MIDI file path in the compile tree, relative to the main document directory (POSIX string)"
+              "type": "string",
+              "description": "MIDI file path in the compile tree, relative to the main document directory (POSIX string). Only present when known."
             },
             "midi_result_file_relative": {
               "type": "string",
@@ -518,7 +517,8 @@ class SongbookData:
         Uses only the Python standard library. Path objects are serialised as
         POSIX strings; None values are preserved as JSON null, except that
         certain optional fields with value None are omitted entirely
-        (lyrics_plain_lowercase, midi_result_file_relative, audio_result_file_relative).
+        (lyrics_plain_lowercase, midi_compile_file_relative,
+         midi_result_file_relative, audio_result_file_relative).
         """
 
         def _default(obj: Any) -> Any:
@@ -528,6 +528,7 @@ class SongbookData:
 
         OPTIONAL_NULL_FIELDS = {
             "lyrics_plain_lowercase",
+            "midi_compile_file_relative",
             "midi_result_file_relative",
             "audio_result_file_relative",
         }
