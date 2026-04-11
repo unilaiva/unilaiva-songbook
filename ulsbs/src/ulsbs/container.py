@@ -256,6 +256,7 @@ def run_self_in_container(
             external_mount_args.extend(["--mount", m])
 
         container_name = f"{_CONTAINER_IMAGE_NAME}-{secrets.token_hex(4)}"
+
         container_args = [
             engine,
             "run",
@@ -265,27 +266,30 @@ def run_self_in_container(
             "--rm",
             "--read-only",
             *env_args,
-            "--memory",
-            memory_arg,
-            "--memory-swap",
-            memory_swap_arg,
-            "--user",
-            f"{os.getuid()}:{os.getgid()}",
-            "--mount",
-            bind_py,
-            "--mount",
-            bind_root,
-            "--mount",
-            bind_temp,
-            *external_mount_args,
-            "--mount",
-            f"type=volume,src={_HOMECACHE_VOLUME_NAME},dst=/home/ulsbs",
-            "--mount",
-            "type=tmpfs,tmpfs-size=64m,dst=/tmp",
-            "--mount",
-            "type=tmpfs,tmpfs-size=16m,dst=/run",
-            _CONTAINER_IMAGE_NAME,
         ]
+        if not cfg.container_memory_unlimited:
+            container_args.extend(["--memory", memory_arg, "--memory-swap", memory_swap_arg])
+
+        container_args.extend(
+            [
+                "--user",
+                f"{os.getuid()}:{os.getgid()}",
+                "--mount",
+                bind_py,
+                "--mount",
+                bind_root,
+                "--mount",
+                bind_temp,
+                *external_mount_args,
+                "--mount",
+                f"type=volume,src={_HOMECACHE_VOLUME_NAME},dst=/home/ulsbs",
+                "--mount",
+                "type=tmpfs,tmpfs-size=64m,dst=/tmp",
+                "--mount",
+                "type=tmpfs,tmpfs-size=16m,dst=/run",
+                _CONTAINER_IMAGE_NAME,
+            ]
+        )
 
         # Bind host timezone data to container for correct localtime
         try:

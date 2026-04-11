@@ -108,6 +108,10 @@ class Config:
     fast_audio_encode: bool = False
 
     # Container resources (GiB)
+    # NOTE: container_memory_unlimited is only used to decide whether to pass
+    # --memory/--memory-swap to the container engine. It does not affect the
+    # memory/max_parallel heuristics.
+    container_memory_unlimited: bool = False
     container_memory_gb: int = 6
     container_memory_plus_swap_gb: int = 6
 
@@ -762,12 +766,25 @@ def build_config(
 
     # Environment overrides (simple scalars only; concurrency/memory handled separately below)
     env_max_parallel = _to_int_env(env.get("ULSBS_MAX_PARALLEL"))
-    env_container_mem_gb = _to_int_env(env.get("ULSBS_MAX_CONTAINER_MEM_GB"))
+
+    env_container_mem_raw = env.get("ULSBS_MAX_CONTAINER_MEM_GB")
+    env_container_mem_gb = _to_int_env(env_container_mem_raw)
+
+    # If ULSBS_MAX_CONTAINER_MEM_GB is explicitly set to <= 0, treat it as
+    # "no memory limit" for the container runtime. This does not affect the
+    # memory/max_parallel heuristics (so env_container_mem_gb stays None).
+    env_container_mem_unlimited = False
+    if env_container_mem_raw is not None:
+        try:
+            env_container_mem_unlimited = int(env_container_mem_raw.strip()) <= 0
+        except Exception:
+            env_container_mem_unlimited = False
 
     env_over = {
         "use_system_tmp": _to_bool_env(env.get("ULSBS_USE_SYSTEM_TMP_FOR_TEMP")),
         "container_engine": env.get("ULSBS_CONTAINER_ENGINE"),
         "verbose": _to_bool_env(env.get("ULSBS_VERBOSE")),
+        "container_memory_unlimited": True if env_container_mem_unlimited else None,
     }
     env_over = {k: v for k, v in env_over.items() if v is not None}
 

@@ -360,6 +360,11 @@ def _run_cli(ui: UI, assets: EngineAssets, argv: List[str] | None) -> int:
         free_mem = f"{str(cfg.runtime.system_info.free_mem_gb or '?')} GiB"
         threads = str(cfg.runtime.system_info.cpu_threads or '?')
         ui.info_line(f"SYSTEM - cpu threads: {threads}, free memory: {free_mem}, total memory: {total_mem}")
+        if cfg.runtime.in_container:
+            if cfg.container_memory_unlimited:
+                ui.info_line("CONTAINER - memory limit: unlimited as by env var")
+            else:
+                ui.info_line(f"CONTAINER - memory limit: {cfg.container_memory_gb} GiB")
 
     require_tools()
 

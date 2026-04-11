@@ -39,6 +39,9 @@
 # Environment overrides (optional):
 # - ULSBS_USE_SYSTEM_TMP_FOR_TEMP=true|false   -> sets use-system-tmp
 # - ULSBS_MAX_CONTAINER_MEM_GB=6               -> container memory limit in GiB (also used when deriving max-parallel)
+#   * If explicitly set to 0 or a negative value, ulsbs will NOT pass any
+#     --memory/--memory-swap arguments to the container engine (unlimited).
+#     This does not change the internal memory/max-parallel heuristics.
 # - ULSBS_MAX_PARALLEL=8                       -> upper bound for parallel jobs (0 or unset = auto)
 # - ULSBS_CONTAINER_ENGINE=auto|docker|podman  -> sets container-engine
 #
