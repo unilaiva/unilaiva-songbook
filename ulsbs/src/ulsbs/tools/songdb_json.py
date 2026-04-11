@@ -19,9 +19,7 @@ You can also invoke it directly as a module:
 
 from __future__ import annotations
 
-from dataclasses import asdict
 import argparse
-import json
 import os
 import sys
 from pathlib import Path
@@ -39,12 +37,17 @@ if sys.version_info < REQUIRED:
 
 
 from ..songdb import build_song_database  # noqa: E402 (must test Python version first)
-
+from ..constants import CONTENT_DIRNAME, INCLUDE_DIRNAME
 
 def _build_arg_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="ulsbs-songdb-json",
-        description="Parse a songbook main TeX file and output song/chapter metadata as JSON.",
+        description=(
+            "Parse a songbook main TeX file and output song/chapter metadata as JSON. "
+            "Follows \\input / \\include using MAIN_TEX's directory, any -I paths, "
+            f"'{CONTENT_DIRNAME}' / '{INCLUDE_DIRNAME}' subdirectories under MAIN_TEX and the current working "
+            "directory, and TEXINPUTS."
+        ),
     )
 
     p.add_argument(
@@ -60,7 +63,8 @@ def _build_arg_parser() -> argparse.ArgumentParser:
         default=None,
         help=(
             "Additional directory to search for \\input / \\include files. "
-            "Can be given multiple times. If omitted, only the directory of MAIN_TEX is used."
+            "Can be given multiple times. Searched after MAIN_TEX's directory but before "
+            f"automatic '{CONTENT_DIRNAME}' / '{INCLUDE_DIRNAME}' subdirectories and TEXINPUTS."
         ),
     )
     p.add_argument(
@@ -68,6 +72,15 @@ def _build_arg_parser() -> argparse.ArgumentParser:
         "--output",
         type=Path,
         help=("Write JSON to this file instead of stdout. Parent directory must already exist."),
+    )
+    p.add_argument(
+        "--include-plain-lowercase-lyrics",
+        action="store_true",
+        default=False,
+        help=(
+            "Include lowercased plain-text lyrics and translations in the JSON output "
+            "(lyrics_plain_lowercase fields). Increases JSON size."
+        ),
     )
 
     return p
@@ -106,11 +119,14 @@ def _normalise_include_dirs(main_tex: Path, include_dirs: Iterable[str] | None) 
     Order (from highest to lowest precedence during lookup):
       1. Directory of the main TeX file
       2. Directories given explicitly via -I / --include-dir (in CLI order)
-      3. Directories from the TEXINPUTS environment variable (in env order)
+      3. "content" / "include" subdirectories (from constants.py) under the
+         main TeX directory and CWD
+      4. Directories from the TEXINPUTS environment variable (in env order)
     """
 
     # 1. Always search in the main document directory first
     main_dir = main_tex.parent.resolve()
+    cwd = Path.cwd().resolve()
     dirs: List[Path] = [main_dir]
 
     # 2. Explicit -I paths
@@ -120,13 +136,21 @@ def _normalise_include_dirs(main_tex: Path, include_dirs: Iterable[str] | None) 
             if d:
                 cli_dirs.append(Path(d).expanduser().resolve())
 
-    # 3. TEXINPUTS paths
+    # 3. Automatically added subdirectories relative to main_dir and CWD
+    auto_dirs: List[Path] = [
+        (main_dir / CONTENT_DIRNAME).resolve(),
+        (main_dir / INCLUDE_DIRNAME).resolve(),
+        (cwd / CONTENT_DIRNAME).resolve(),
+        (cwd / INCLUDE_DIRNAME).resolve(),
+    ]
+
+    # 4. TEXINPUTS paths
     env_dirs = _parse_texinputs_env()
 
     # Deduplicate while preserving order, keeping main_dir first and ensuring
-    # explicitly given -I paths come before TEXINPUTS paths.
+    # explicitly given -I paths and auto_dirs come before TEXINPUTS paths.
     seen = {main_dir}
-    for group in (cli_dirs, env_dirs):
+    for group in (cli_dirs, auto_dirs, env_dirs):
         for p in group:
             if p not in seen:
                 dirs.append(p)
@@ -151,21 +175,17 @@ def main(argv: list[str] | None = None) -> int:
         include_dirs = _normalise_include_dirs(main_tex, ns.include_dirs)
 
         # Build the db from TeX tree
-        db = build_song_database(processed_tex=main_tex, include_search_paths=include_dirs)
-
-        def _default(obj):
-            if isinstance(obj, Path):
-                return obj.as_posix()
-            raise TypeError(f"Object of type {type(obj).__name__} is not JSON-serialisable")
-
-        raw = asdict(db)
-        json_text = json.dumps(raw, default=_default, indent=2, ensure_ascii=False)
+        db = build_song_database(
+            processed_tex=main_tex,
+            include_search_paths=include_dirs,
+            plain_lowercase_lyrics=ns.include_plain_lowercase_lyrics,
+        )
 
         if ns.output:
-            ns.output.write_text(json_text + "\n", encoding="utf-8")
+            db.to_json_file(ns.output)
         else:
-            # Print to stdout
-            print(json_text)
+            # Print to stdout using the same JSON representation as SongbookData.to_json_file()
+            sys.stdout.write(db.to_json())
 
         return 0
 

@@ -189,12 +189,12 @@ following JSON Schema (draft-07):
               "description": "MIDI file path in the compile tree, relative to the main document directory (POSIX string)"
             },
             "midi_result_file_relative": {
-              "type": ["string", "null"],
-              "description": "MIDI result file path relative to the global result directory (POSIX string)"
+              "type": "string",
+              "description": "MIDI result file path relative to the global result directory (POSIX string). Only present when known."
             },
             "audio_result_file_relative": {
-              "type": ["string", "null"],
-              "description": "Audio result file path relative to the global result directory (POSIX string)"
+              "type": "string",
+              "description": "Audio result file path relative to the global result directory (POSIX string). Only present when known."
             },
             "order_index": {
               "type": "integer",
@@ -512,19 +512,13 @@ class SongbookData:
     total_songs: int
     creation_time: str
 
-    def to_json_file(self, dest: Path, *, indent: int = 2) -> None:
-        """
-        Write the database to dest as a JSON file.
+    def to_json(self, *, indent: int = 2) -> str:
+        """Serialise the database to a JSON string.
 
-        Uses only the Python standard library.  Path objects are serialised as
-        POSIX strings; None values are preserved as JSON null.
-
-        Parameters
-        ----------
-        - dest:
-            Output file path.  Parent directories must already exist.
-        - indent:
-            JSON indentation level (default 2).
+        Uses only the Python standard library. Path objects are serialised as
+        POSIX strings; None values are preserved as JSON null, except that
+        certain optional fields with value None are omitted entirely
+        (lyrics_plain_lowercase, midi_result_file_relative, audio_result_file_relative).
         """
 
         def _default(obj: Any) -> Any:
@@ -532,22 +526,42 @@ class SongbookData:
                 return obj.as_posix()
             raise TypeError("Object of type %s is not JSON-serialisable" % type(obj).__name__)
 
-        def _strip_absent_plain_lowercase(obj: Any) -> Any:
-            """Recursively remove lyrics_plain_lowercase keys whose value is None."""
+        OPTIONAL_NULL_FIELDS = {
+            "lyrics_plain_lowercase",
+            "midi_result_file_relative",
+            "audio_result_file_relative",
+        }
+
+        def _strip_optional_null_fields(obj: Any) -> Any:
+            """Recursively remove selected optional keys whose value is None."""
             if isinstance(obj, dict):
                 return {
-                    k: _strip_absent_plain_lowercase(v)
+                    k: _strip_optional_null_fields(v)
                     for k, v in obj.items()
-                    if not (k == "lyrics_plain_lowercase" and v is None)
+                    if not (k in OPTIONAL_NULL_FIELDS and v is None)
                 }
             if isinstance(obj, list):
-                return [_strip_absent_plain_lowercase(item) for item in obj]
+                return [_strip_optional_null_fields(item) for item in obj]
             return obj
 
-        raw = _strip_absent_plain_lowercase(asdict(self))
+        raw = _strip_optional_null_fields(asdict(self))
+        return json.dumps(raw, default=_default, indent=indent, ensure_ascii=False) + "\n"
+
+    def to_json_file(self, dest: Path, *, indent: int = 2) -> None:
+        """Write the database to *dest* as a JSON file.
+
+        This simply writes the result of to_json() to *dest*.
+
+        Parameters
+        ----------
+        - dest:
+            Output file path. Parent directories must already exist.
+        - indent:
+            JSON indentation level (default 2).
+        """
         dest.write_text(
-            json.dumps(raw, default=_default, indent=indent, ensure_ascii=False) + "\n",
-            encoding="utf-8"
+            self.to_json(indent=indent),
+            encoding="utf-8",
         )
 
 
