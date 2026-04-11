@@ -119,6 +119,11 @@ def print_plan_summary(
     ui.plain(f"  - Songbooks to compile: {ui.colorize(f'{songbooks_count}', ui.C_LBLUE)} {ui.colorize(f'({jobs_count} variant jobs)', ui.C_BLUE)}")
     ui.plain(f"  - Using container: {_yn(cfg.use_container or cfg.runtime.in_container)}"
       + (f" {ui.colorize(f'(engine: {cfg.container_engine})', ui.C_BLUE)}" if (cfg.use_container or cfg.runtime.in_container) else f" {ui.C_YELLOW}(this is not recommended!){ui.C_RESET}"))
+    if cfg.runtime.in_container:
+        if cfg.container_memory_unlimited:
+            ui.plain(f"      - Memory limit: {ui.colorize('unlimited', ui.C_LBLUE)} {ui.colorize('as by ENV var', ui.C_BLUE)}")
+        else:
+            ui.plain(f"      - Memory limit: {ui.colorize(f'{str(cfg.container_memory_gb)} GiB', ui.C_LBLUE)}")
     ui.plain(f"  - Parallel compilation: {_yn(cfg.max_parallel > 1)}" + ui.colorize(f" ({cfg.max_parallel} workers)" if cfg.max_parallel > 1 else "", ui.C_BLUE))
     ui.plain(f"  - Using system's /tmp for temp: {_yn(cfg.use_system_tmp)}")
     ui.plain(f"  - Clean up temp after successful compilation: {_yn(cfg.clean_temp)}")
@@ -129,11 +134,11 @@ def print_plan_summary(
     ui.plain(f"  - Create JSON metadata: {_yn(cfg.json)}")
     ui.plain(f"  - Create MIDI files: {_yn(cfg.midifiles)}")
     if cfg.midifiles:
-        ui.plain(f"    - Also for optional variants: {_yn(cfg.midifiles_allow_for_optional_variants)}")
+        ui.plain(f"      - Also for optional variants: {_yn(cfg.midifiles_allow_for_optional_variants)}")
     ui.plain(f"  - Create audio files: {_yn(cfg.audiofiles)}")
     if cfg.audiofiles:
-        ui.plain(f"    - Also for optional variants: {_yn(cfg.audiofiles_allow_for_optional_variants)}")
-        ui.plain(f"    - Fast audio encode (no loudnorm): {_yn(cfg.fast_audio_encode)}")
+        ui.plain(f"      - Also for optional variants: {_yn(cfg.audiofiles_allow_for_optional_variants)}")
+        ui.plain(f"      - Fast audio encode (no loudnorm): {_yn(cfg.fast_audio_encode)}")
     ui.plain(
         f"  - Deploy: {_yn(cfg.deploy)}"
         + (
@@ -360,11 +365,6 @@ def _run_cli(ui: UI, assets: EngineAssets, argv: List[str] | None) -> int:
         free_mem = f"{str(cfg.runtime.system_info.free_mem_gb or '?')} GiB"
         threads = str(cfg.runtime.system_info.cpu_threads or '?')
         ui.info_line(f"SYSTEM - cpu threads: {threads}, free memory: {free_mem}, total memory: {total_mem}")
-        if cfg.runtime.in_container:
-            if cfg.container_memory_unlimited:
-                ui.info_line("CONTAINER - memory limit: unlimited as by env var")
-            else:
-                ui.info_line(f"CONTAINER - memory limit: {cfg.container_memory_gb} GiB")
 
     require_tools()
 
