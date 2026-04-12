@@ -6,6 +6,7 @@ const vscode = require("vscode");
 const { isUlsbsWorkspace, ULSBS_CONFIG_BASENAME } = require("./core/workspace");
 const { createSongbookService } = require("./core/songbooks");
 const { registerSymbolProvider } = require("./core/symbols");
+const { registerMeasureBarDecorations } = require("./core/measures");
 const { registerDiagnostics } = require("./core/diagnostics");
 const { registerCompileCommands } = require("./core/compile");
 const { registerTreeView } = require("./core/tree");
@@ -15,6 +16,7 @@ async function activate(context) {
   context.subscriptions.push(songbookService);
 
   registerSymbolProvider(vscode, context);
+  registerMeasureBarDecorations(vscode, context);
 
   const openConfigCommand = vscode.commands.registerCommand(
     "ulsbsTexTools.openConfig",

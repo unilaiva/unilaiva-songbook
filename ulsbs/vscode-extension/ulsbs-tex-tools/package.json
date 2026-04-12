@@ -2,7 +2,7 @@
   "name": "ulsbs-tex-tools",
   "displayName": "ULSBS TeX Tools",
   "description": "Custom LaTeX support for ULSBS song macros",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "publisher": "ulsbs",
   "license": "GPL-3.0-or-later",
   "author": {
