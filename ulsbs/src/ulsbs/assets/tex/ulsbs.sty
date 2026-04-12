@@ -1612,7 +1612,8 @@
 % \begin{document}.
 % There is one mandatory parameter, which is the cover PDF's file name without
 % path. It should reside in any of the project's include folders set up by
-% the ulsbs compiler.
+% the ulsbs compiler. If the filename is left empty, a fallback page with only
+% the songbook name is generated in it's stead.
 %
 % Optionally setup icons to overlay on top of the cover in document preable
 % with \ulSetPermanentCoverIcons and \ulSetVariableCoverIcons commands.
@@ -1639,8 +1640,22 @@
       \ulSetVariableCoverIcons[\ulBassclefTagIcon]%
     \fi\fi\fi
   }%
-  % include the cover PDF
-  \includepdf[pages={1},pagecommand=\@ulInsertCoverIcons]{#2}%
+  \IfBlankTF{#2}{%
+    % fallback page
+    \clearpage
+    \thispagestyle{empty}%
+    \null
+    \begin{center}
+      \vfill
+      {\Huge \ulMainBookTitle}%
+      \vfill
+    \end{center}
+    \@ulInsertCoverIcons
+    \clearpage
+  }{%
+    % normal PDF
+    \includepdf[pages={1},pagecommand=\@ulInsertCoverIcons]{#2}%
+  }%
 }
 
 
