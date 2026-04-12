@@ -148,6 +148,18 @@ function registerSymbolProvider(vscode, context) {
                 type: "beginsong",
                 regex: /\\beginsong(?:\[(.*?)\])?\{([^}]*)\}(?:\[(.*?)\])?/g
               },
+              {
+                type: "ulmainchapter",
+                regex: /\\ulMainChapter\*?(?:\[(.*?)\])?\{([^}]*)\}\{([^}]*)\}(?:\[(.*?)\])?/g
+              },
+              {
+                type: "chapter",
+                regex: /\\chapter\*?(?:\[(.*?)\])?\{([^}]*)\}/g
+              },
+              {
+                type: "songchapter",
+                regex: /\\songchapter\*?(?:\[(.*?)\])?\{([^}]*)\}/g
+              },
               { type: "beginsongsenv", regex: /\\begin\{songs\}/g },
               { type: "endsongsenv", regex: /\\end\{songs\}/g },
               { type: "beginverse", regex: /\\beginverse\b/g },
@@ -190,6 +202,44 @@ function registerSymbolProvider(vscode, context) {
             for (const token of tokens) {
               const start = token.index;
               const end = token.index + token.text.length;
+
+              if (token.type === "ulmainchapter") {
+                const shortTitle = (token.match[1] || "").trim();
+                const longTitle = (token.match[2] || "").trim();
+                const name = shortTitle || longTitle || "Chapter";
+
+                const symbol = makeSymbol(
+                  vscode,
+                  name,
+                  "\\ulMainChapter",
+                  vscode.SymbolKind.Namespace,
+                  i,
+                  start,
+                  end
+                );
+
+                songs.push(symbol);
+                continue;
+              }
+
+              if (token.type === "chapter" || token.type === "songchapter") {
+                const shortTitle = (token.match[1] || "").trim();
+                const longTitle = (token.match[2] || "").trim();
+                const name = shortTitle || longTitle || "Chapter";
+
+                const symbol = makeSymbol(
+                  vscode,
+                  name,
+                  token.type === "chapter" ? "\\chapter" : "\\songchapter",
+                  vscode.SymbolKind.Namespace,
+                  i,
+                  start,
+                  end
+                );
+
+                songs.push(symbol);
+                continue;
+              }
 
               if (token.type === "beginsongsenv") {
                 stack.push({

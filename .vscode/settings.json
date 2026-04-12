@@ -51,6 +51,8 @@
   "texlab.chktex.onOpenAndSave": false,
   "texlab.chktex.onEdit": false,
   "texlab.build.onSave": false,
-  "texlab.symbols.enabled": false
+    "texlab.symbols.ignoredPatterns": [
+    "^Equation$",
+  ]
 
 }
