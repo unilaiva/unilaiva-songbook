@@ -5,6 +5,7 @@
   "breadcrumbs.enabled": true,
   "outline.problems.enabled": true,
   "editor.stickyScroll.enabled": true,
+  "editor.minimap.showRegionSectionHeaders": false,
 
   "files.exclude": {
     "**/temp": true
