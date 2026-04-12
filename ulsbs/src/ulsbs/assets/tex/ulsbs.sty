@@ -788,6 +788,7 @@
 \providecommand{\ulBookMotto}{}
 \providecommand{\ulSubBookTitle}{}
 \providecommand{\ulSubSubBookTitle}{}
+\providecommand{\ulBookWebsiteLink}{}
 \providecommand{\ulBookWebsiteLinkQrImage}{}
 \providecommand{\ulBookCompiledByText}{\ifdefempty{\ulBookAuthor}{}{Compiled by: \ulBookAuthor}}
 \providecommand{\ulImprintPageFootnote}{}
@@ -1738,7 +1739,7 @@
         {\footnotesize\ulBookCompiledByText}
         \par\vspace*{\fill}
       }%
-      \ifdefempty{\ulImprintPageFootnote}{% not empty
+      \ifdefempty{\ulImprintPageFootnote}{}{% not empty
         {\scriptsize\ulImprintPageFootnote}%
       }%
     \end{center}
