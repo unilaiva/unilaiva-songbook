@@ -314,12 +314,19 @@ def run_self_in_container(
         # Strip args not for container
         inner_args = [a for a in passthrough_args if a not in ("")]
 
-        inner = f"cd {container_workdir} && python3 -m ulsbs " + " ".join(
+        extra_path_prefix = ""
+        wrapper_dir_host = mount_root / "ulsbs"
+        if wrapper_dir_host.is_dir():
+            # Make wrapper scripts (e.g. ulsbs-compile) available inside the
+            # container via PATH, if they are present under the project root.
+            extra_path_prefix = f'export PATH="{container_workdir}/ulsbs:$PATH"; '
+
+        inner = f"cd {container_workdir} && {extra_path_prefix}python3 -m ulsbs " + " ".join(
             sh_quote(a) for a in inner_args
         )
 
         if shell_only:
-            inner = f"cd {container_workdir} && bash"
+            inner = f"cd {container_workdir} && {extra_path_prefix}bash"
 
         container_args.extend(["bash", "-lc", inner])
         ui.container_line(f"Start compiler container using {engine}")
