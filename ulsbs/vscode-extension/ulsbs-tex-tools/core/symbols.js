@@ -145,10 +145,6 @@ function registerSymbolProvider(vscode, context) {
 
             const tokenDefs = [
               {
-                type: "beginsong",
-                regex: /\\beginsong(?:\[(.*?)\])?\{([^}]*)\}(?:\[(.*?)\])?/g
-              },
-              {
                 type: "ulmainchapter",
                 regex: /\\ulMainChapter\*?(?:\[(.*?)\])?\{([^}]*)\}\{([^}]*)\}(?:\[(.*?)\])?/g
               },
@@ -160,22 +156,74 @@ function registerSymbolProvider(vscode, context) {
                 type: "songchapter",
                 regex: /\\songchapter\*?(?:\[(.*?)\])?\{([^}]*)\}/g
               },
+              {
+                type: "section",
+                regex: /\\section\*?(?:\[(.*?)\])?\{([^}]*)\}/g
+              },
+              {
+                type: "subsection",
+                regex: /\\subsection\*?(?:\[(.*?)\])?\{([^}]*)\}/g
+              },
+
               { type: "beginsongsenv", regex: /\\begin\{songs\}/g },
               { type: "endsongsenv", regex: /\\end\{songs\}/g },
+
+              {
+                type: "beginintersong",
+                regex: /\\begin\{intersong\*?\}/g
+              },
+              {
+                type: "endintersong",
+                regex: /\\end\{intersong\*?\}/g
+              },
+
+              {
+                type: "beginsong",
+                regex: /\\beginsong(?:\[(.*?)\])?\{([^}]*)\}(?:\[(.*?)\])?/g
+              },
+              { type: "endsong", regex: /\\endsong\b/g },
+
               { type: "beginverse", regex: /\\beginverse\b/g },
+              { type: "endverse", regex: /\\endverse\b/g },
+
               { type: "mnbeginverse", regex: /\\mnbeginverse\b/g },
+              { type: "mnendverse", regex: /\\mnendverse\b/g },
+
               { type: "beginrep", regex: /\\beginrep\b/g },
+              { type: "endrep", regex: /\\endrep\b/g },
+
               {
                 type: "begintranslation",
                 regex: /\\begin\{translation\}(?:\[(.*?)\])?|\\begintranslation(?:\[(.*?)\])?/g
               },
-              { type: "beginlilypond", regex: /\\begin\{lilypond\}/g },
-              { type: "endverse", regex: /\\endverse\b/g },
-              { type: "mnendverse", regex: /\\mnendverse\b/g },
-              { type: "endrep", regex: /\\endrep\b/g },
               { type: "endtranslation", regex: /\\end\{translation\}|\\endtranslation\b/g },
+
+              {
+                type: "beginexplanation",
+                regex: /\\begin\{explanation\}(?:\[(.*?)\])?/g
+              },
+              { type: "endexplanation", regex: /\\end\{explanation\}/g },
+
+              {
+                type: "beginpassage",
+                regex: /\\begin\{passage\}(?:\[(.*?)\])?/g
+              },
+              { type: "endpassage", regex: /\\end\{passage\}/g },
+
+              { type: "beginfeeler", regex: /\\begin\{feeler\}/g },
+              { type: "endfeeler", regex: /\\end\{feeler\}/g },
+
+              { type: "beginlilypond", regex: /\\begin\{lilypond\}/g },
               { type: "endlilypond", regex: /\\end\{lilypond\}/g },
-              { type: "endsong", regex: /\\endsong\b/g }
+
+              {
+                type: "includegraphics",
+                regex: /\\includegraphics(?:\[[^\]]*])?\{([^}]*)\}/g
+              },
+              {
+                type: "image",
+                regex: /\\image[a-zA-Z]*\s*(?:\[[^\]]*])?\{([^}]*)\}/g
+              }
             ];
 
             const tokens = [];
@@ -238,6 +286,46 @@ function registerSymbolProvider(vscode, context) {
                 );
 
                 songs.push(symbol);
+                continue;
+              }
+
+              if (token.type === "section" || token.type === "subsection") {
+                const shortTitle = (token.match[1] || "").trim();
+                const longTitle = (token.match[2] || "").trim();
+                const name =
+                  shortTitle ||
+                  longTitle ||
+                  (token.type === "section" ? "Section" : "Subsection");
+
+                const symbol = makeSymbol(
+                  vscode,
+                  name,
+                  token.type === "section" ? "\\section" : "\\subsection",
+                  vscode.SymbolKind.Namespace,
+                  i,
+                  start,
+                  end
+                );
+
+                songs.push(symbol);
+                continue;
+              }
+
+              if (token.type === "includegraphics" || token.type === "image") {
+                const rawPath = (token.match[1] || "").trim();
+                if (rawPath) {
+                  const fileName = rawPath.split(/[\\/]/).pop() || rawPath;
+                  const symbol = makeSymbol(
+                    vscode,
+                    fileName,
+                    token.type === "includegraphics" ? "\\includegraphics" : "\\image*",
+                    vscode.SymbolKind.File,
+                    i,
+                    start,
+                    end
+                  );
+                  songs.push(symbol);
+                }
                 continue;
               }
 
@@ -373,6 +461,97 @@ function registerSymbolProvider(vscode, context) {
                 continue;
               }
 
+              if (token.type === "beginexplanation") {
+                const lang = (token.match[1] || "").trim();
+                const name = lang ? `explanation [${lang}]` : "explanation";
+                const detail = lang ? `explanation (${lang})` : "explanation";
+
+                const symbol = makeSymbol(
+                  vscode,
+                  name,
+                  detail,
+                  vscode.SymbolKind.Namespace,
+                  i,
+                  start,
+                  end
+                );
+                if (addChildToNearestParent(symbol, ["song"])) {
+                  stack.push({
+                    type: "explanation",
+                    startLine: i,
+                    symbol
+                  });
+                }
+                continue;
+              }
+
+              if (token.type === "beginpassage") {
+                const lang = (token.match[1] || "").trim();
+                const name = lang ? `passage [${lang}]` : "passage";
+                const detail = lang ? `passage (${lang})` : "passage";
+
+                const symbol = makeSymbol(
+                  vscode,
+                  name,
+                  detail,
+                  vscode.SymbolKind.Namespace,
+                  i,
+                  start,
+                  end
+                );
+                const attached = addChildToNearestParent(symbol, ["song"]);
+                if (!attached) {
+                  songs.push(symbol);
+                }
+                stack.push({
+                  type: "passage",
+                  startLine: i,
+                  symbol
+                });
+                continue;
+              }
+
+              if (token.type === "beginfeeler") {
+                const symbol = makeSymbol(
+                  vscode,
+                  "feeler",
+                  "feeler",
+                  vscode.SymbolKind.Namespace,
+                  i,
+                  start,
+                  end
+                );
+                if (addChildToNearestParent(symbol, ["song"])) {
+                  stack.push({
+                    type: "feeler",
+                    startLine: i,
+                    symbol
+                  });
+                }
+                continue;
+              }
+
+              if (token.type === "beginintersong") {
+                const symbol = makeSymbol(
+                  vscode,
+                  "intersong",
+                  "intersong",
+                  vscode.SymbolKind.Namespace,
+                  i,
+                  start,
+                  end
+                );
+
+                songs.push(symbol);
+
+                stack.push({
+                  type: "intersong",
+                  startLine: i,
+                  symbol
+                });
+                continue;
+              }
+
               if (token.type === "beginlilypond") {
                 counters.lilypond += 1;
                 const symbol = makeSymbol(
@@ -411,6 +590,26 @@ function registerSymbolProvider(vscode, context) {
 
               if (token.type === "endtranslation") {
                 closeNearest("translation", i, end);
+                continue;
+              }
+
+              if (token.type === "endexplanation") {
+                closeNearest("explanation", i, end);
+                continue;
+              }
+
+              if (token.type === "endpassage") {
+                closeNearest("passage", i, end);
+                continue;
+              }
+
+              if (token.type === "endfeeler") {
+                closeNearest("feeler", i, end);
+                continue;
+              }
+
+              if (token.type === "endintersong") {
+                closeNearest("intersong", i, end);
                 continue;
               }
 

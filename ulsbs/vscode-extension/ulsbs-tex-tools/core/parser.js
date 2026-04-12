@@ -68,6 +68,14 @@ function tokenizeLine(line, lineNumber) {
       type: "endsongsenv",
       regex: /\\end\{songs\}/g
     },
+    {
+      type: "beginintersong",
+      regex: /\\begin\{intersong\}/g
+    },
+    {
+      type: "endintersong",
+      regex: /\\end\{intersong\}/g
+    },
     { type: "beginverse", regex: /\\beginverse\b/g },
     { type: "mnbeginverse", regex: /\\mnbeginverse\b/g },
     { type: "beginrep", regex: /\\beginrep\b/g },
@@ -246,6 +254,28 @@ function analyzeText(text) {
       if (!closeNearest("songsenv", token)) {
         analysis.issues.push(makeIssue("warning", "\\end{songs} without matching \\begin{songs}", token));
       }
+      continue;
+    }
+
+    if (token.type === "beginintersong") {
+      const inSong = !!currentSong();
+
+      if (inSong) {
+        analysis.issues.push(
+          makeIssue(
+            "warning",
+            "\\begin{intersong} inside a song; intersong blocks must be between songs, not inside them",
+            token
+          )
+        );
+      }
+
+      // Otherwise allowed anywhere (including outside songs environment)
+      continue;
+    }
+
+    if (token.type === "endintersong") {
+      // No structural tracking for intersong blocks needed here
       continue;
     }
 

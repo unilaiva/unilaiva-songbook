@@ -30,8 +30,8 @@
 
   "folding": {
     "markers": {
-      "start": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begintranslation(?:\\[[^\\]]*\\])?|\\\\begin\\{lilypond\\}|\\\\begin\\{songs\\})",
-      "end": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\endtranslation\\b|\\\\end\\{lilypond\\}|\\\\end\\{songs\\})"
+      "start": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\beginsong\\b|\\\\beginverse\\b|\\\\mnbeginverse\\b|\\\\beginrep\\b|\\\\begin\\{translation\\}|\\\\begintranslation(?:\\[[^\\]]*\\])?|\\\\begin\\{lilypond\\}|\\\\begin\\{songs\\}|\\\\begin\\{explanation\\}|\\\\begin\\{feeler\\}|\\\\begin\\{passage\\}|\\\\begin\\{intersong\\})",
+      "end": "^(?:(?:[^%\\\\]|\\\\.|%(?=\\\\))*?)(\\\\endsong\\b|\\\\endverse\\b|\\\\mnendverse\\b|\\\\endrep\\b|\\\\end\\{translation\\}|\\\\endtranslation\\b|\\\\end\\{lilypond\\}|\\\\end\\{songs\\}|\\\\end\\{explanation\\}|\\\\end\\{feeler\\}|\\\\end\\{passage\\}|\\\\end\\{intersong\\})"
     }
   },
 
