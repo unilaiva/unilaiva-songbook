@@ -3,7 +3,7 @@
 
 const vscode = require("vscode");
 
-const { isUlsbsWorkspace } = require("./core/workspace");
+const { isUlsbsWorkspace, ULSBS_CONFIG_BASENAME } = require("./core/workspace");
 const { createSongbookService } = require("./core/songbooks");
 const { registerSymbolProvider } = require("./core/symbols");
 const { registerDiagnostics } = require("./core/diagnostics");
@@ -15,6 +15,37 @@ async function activate(context) {
   context.subscriptions.push(songbookService);
 
   registerSymbolProvider(vscode, context);
+
+  const openConfigCommand = vscode.commands.registerCommand(
+    "ulsbsTexTools.openConfig",
+    async () => {
+      try {
+        const folder = vscode.workspace.workspaceFolders?.[0];
+        if (!folder) {
+          void vscode.window.showErrorMessage("No workspace folder is open.");
+          return;
+        }
+
+        const configUri = vscode.Uri.joinPath(folder.uri, ULSBS_CONFIG_BASENAME);
+
+        try {
+          // Ensure the file exists; if not, this will throw
+          await vscode.workspace.fs.stat(configUri);
+        } catch {
+          void vscode.window.showErrorMessage(
+            `ULSBS configuration file not found at ${vscode.workspace.asRelativePath(configUri, false)}`
+          );
+          return;
+        }
+
+        await vscode.window.showTextDocument(configUri);
+      } catch (error) {
+        console.error("ULSBS: Failed to open configuration file", error);
+        void vscode.window.showErrorMessage("Failed to open ULSBS configuration file.");
+      }
+    }
+  );
+  context.subscriptions.push(openConfigCommand);
 
   const treeController = registerTreeView(vscode, context, songbookService);
   const diagnosticsController = registerDiagnostics(vscode, context, songbookService);

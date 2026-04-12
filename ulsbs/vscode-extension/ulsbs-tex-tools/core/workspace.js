@@ -3,6 +3,8 @@
 
 const { getSettings } = require("./config");
 
+const ULSBS_CONFIG_BASENAME = "ulsbs-config.toml";
+
 async function isUlsbsWorkspace(vscode) {
   const settings = getSettings(vscode);
 
@@ -15,7 +17,7 @@ async function isUlsbsWorkspace(vscode) {
 
   const markers = await Promise.all([
     vscode.workspace.findFiles("**/ulsbs/ulsbs-compile", null, 1),
-    vscode.workspace.findFiles("**/ulsbs-config.toml", null, 1),
+    vscode.workspace.findFiles(`**/${ULSBS_CONFIG_BASENAME}`, null, 1),
     vscode.workspace.findFiles("**/ulsbs/pyproject.toml", null, 1)
   ]);
 
@@ -35,6 +37,7 @@ function getAllWorkspaceFolders(vscode) {
 }
 
 module.exports = {
+  ULSBS_CONFIG_BASENAME,
   isUlsbsWorkspace,
   getWorkspaceFolderForUri,
   getAllWorkspaceFolders

@@ -3,7 +3,7 @@
 
 const { analyzeText } = require("./parser");
 const { getSettings } = require("./config");
-const { getAllWorkspaceFolders, getWorkspaceFolderForUri } = require("./workspace");
+const { getAllWorkspaceFolders, getWorkspaceFolderForUri, ULSBS_CONFIG_BASENAME } = require("./workspace");
 const { hasSupportedExtension, isExcludedUri } = require("./filetypes");
 
 function uriKey(uri) {
@@ -255,7 +255,7 @@ class SongbookService {
     );
 
     let profiles = ["default"];
-    const configUri = this.vscode.Uri.joinPath(folder.uri, "ulsbs-config.toml");
+    const configUri = this.vscode.Uri.joinPath(folder.uri, ULSBS_CONFIG_BASENAME);
     try {
       const configText = await readText(this.vscode, configUri);
       const found = new Set(["default"]);

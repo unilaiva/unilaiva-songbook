@@ -2,7 +2,7 @@
   "name": "ulsbs-tex-tools",
   "displayName": "ULSBS TeX Tools",
   "description": "Custom LaTeX support for ULSBS song macros",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "publisher": "ulsbs",
   "license": "GPL-3.0-or-later",
   "author": {
@@ -81,6 +81,12 @@
         "command": "ulsbsTexTools.compileSongbookWithProfile",
         "title": "ULSBS: Compile this songbook with profile…",
         "icon": "$(settings-gear)"
+      },
+      {
+        "command": "ulsbsTexTools.openConfig",
+        "title": "ULSBS: Open configuration (ulsbs-config.toml)",
+        "icon": "$(settings)",
+        "category": "ULSBS"
       }
     ],
     "viewsContainers": {
@@ -122,6 +128,11 @@
           "command": "ulsbsTexTools.chooseCompileProfile",
           "when": "view == ulsbsSongbooks",
           "group": "navigation@4"
+        },
+        {
+          "command": "ulsbsTexTools.openConfig",
+          "when": "view == ulsbsSongbooks",
+          "group": "navigation@5"
         }
       ],
       "view/item/context": [
