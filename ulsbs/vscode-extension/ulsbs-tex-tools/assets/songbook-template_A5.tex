@@ -1,0 +1,56 @@
+% ULSBS songbook template (A5)
+
+% If you want different paper size, rename this file to not include _A5 and
+% change the paper option to e.g. "paper={a4paper}".
+%
+% See ulsbs/src/ulsbs/assets/tex/ulsbs-songbook.cls file for all available
+% document class options.
+
+\documentclass[
+  paper={a5paper},
+  maintitle={My Songbook},
+  author={Songbook Author},
+  subject={Songbook}
+]{ulsbs-songbook}
+
+% Icon for the default variant (can have multiple: [foo][bar][etc])
+\ulSetVariableCoverIcons[ulsbs-tag-icon-chords_EN_512x512px]
+
+\renewcommand{\ulImprintPageFootnote}{%
+  This is a songbook created with ULSBS (Unilaiva Songbook System).
+}
+
+% To setup your songbook further, see ulsbs/src/ulsbs/assets/tex/ulsbs.sty for
+% options to set, especially \newif definitions in "Style and other settings"
+% section.
+
+\begin{document}
+
+% Cover page. Give PDF file as argument; if left empty, only songbook's name is
+% displayed):
+\ulCoverPage{}
+
+% Optional: imprint page
+\ulImprintPage
+% Optional: table of contents
+\ulTOC
+
+
+% Main chapter (you may have multiple of these)
+\ulMainChapter{Main Chapter}{blue}
+
+% All songs must be within "songs" environment.
+\begin{songs}{titleidx,authidx,tagidx}
+
+% Example song
+\beginsong{Example Song}[by={Example Author},key={C}]
+  \beginverse
+    |\[C]This is an example |song line.
+    Another |\[G7]line of |\[C]lyrics.
+  \endverse
+\endsong
+
+\end{songs}
+
+
+\end{document}
