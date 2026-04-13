@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Resolve directory of this script (POSIX-safe)
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+
+if [ ! -d "$script_dir/ulsbs" ]; then
+    echo "Error: 'ulsbs' submodule directory not found." >&2
+    echo "Please run:" >&2
+    echo "  git submodule update --init --recursive" >&2
+    exit 1
+fi
+
+exec "$script_dir/ulsbs/ulsbs-compile" "$@"
