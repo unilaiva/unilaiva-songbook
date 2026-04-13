@@ -9,7 +9,7 @@ project-specific files needed to build the published books with
 > - [Unilaiva Songbook](https://unilaiva.aavalla.net/)
 > - [Astral books](https://unilaiva-astral.aavalla.net/)
 
---
+---
 
 - [Unilaiva Songbook](#unilaiva-songbook)
   - [Quick start](#quick-start)
@@ -21,7 +21,7 @@ project-specific files needed to build the published books with
   - [ULSBS documentation](#ulsbs-documentation)
   - [Status](#status)
 
---
+---
 
 ## Quick start
 
