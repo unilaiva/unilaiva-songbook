@@ -22,6 +22,8 @@ project-specific files needed to build the published books with
   - [Editing this repository](#editing-this-repository)
   - [Output](#output)
   - [Printing](#printing)
+    - [Printing double sided on a single sided printer](#printing-double-sided-on-a-single-sided-printer)
+      - [Example procedure for printing on a single sided printer](#example-procedure-for-printing-on-a-single-sided-printer)
   - [Updating](#updating)
   - [ULSBS documentation](#ulsbs-documentation)
   - [Status](#status)
@@ -240,19 +242,71 @@ If deployment is enabled, files are also copied under `deploy/`.
 
 ## Printing
 
-The main books are designed primarily for **A5** printing.
+The main books are intended primarily for **A5** printing (148 mm × 210 mm).
 
-If ConTeXt is installed, the build also generates extra printout PDFs for
-printing A5 pages on A4 sheets. Those are usually the easiest files to use for
-home printing.
+In the simplest case, print the main document, `unilaiva-songbook_A5.pdf`, on
+A5 paper, and make sure A5 is selected in the printing software. Otherwise the
+pages may be scaled up or printed with overly wide margins.
 
-For the main full book, the most relevant outputs are typically:
+For double-sided printing, make sure the pages are oriented so that odd pages
+appear on the right-hand side (recto) and even pages on the left-hand side
+(verso) of each spread. This minimizes page-turning within a song, because all
+songs that span at least two pages begin on an even page. The margins, page
+number positions, and similar layout details are also optimized for this order.
+
+If possible, set margins to zero both in the printing software and in the
+printer driver settings. On Linux and macOS, the `lp` program is recommended
+for printing without extra margins. For example:
+`lp -o PageSize=A4 printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf`
+Do not use a `fit-to-page` option, which some GUI printing programs may enable
+by default.
+
+The build also generates additional printout PDFs for printing A5 pages on A4
+sheets. These are often the easiest files to use for home printing.
+
+For the main songbook (the default variant), the most relevant outputs are
+usually:
 
 - `result/unilaiva-songbook_A5.pdf`
-- `result/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf`
+- `result/printouts/printout-EASY_unilaiva-songbook_A5-on-A4-sidebyside-simple.pdf`
+- `result/printouts/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf`
 
-When printing duplex, make sure odd pages end up on the right-hand side of each
-spread.
+### Printing double sided on a single sided printer
+
+To print double-sided on a printer without a duplexer, first print the odd
+pages, then flip and re-feed the paper, and finally print the even pages. For
+the main document, `unilaiva-songbook_A5.pdf`, the pages must be flipped on the
+long edge. For the other files named `printout-*unilaiva-songbook*.pdf`, which
+place multiple pages on each A4 sheet, the pages should be flipped on the short
+edge.
+
+To flip pages *on the short edge* manually, place the printed stack in front of
+you upside down, with the printed side hidden. Then create a new stack by
+moving each sheet one by one from the top of the old stack to the top of the
+new stack, without rotating or turning the sheets in any way. Feed the new
+stack into the printer, taking care to insert it in the correct orientation.
+
+If your printing software is limited, you can for example use `pdftk` to
+extract odd and even pages:
+
+- `pdftk unilaiva-songbook_A5.pdf cat 1-endodd output unilaiva-songbook_odd.pdf`
+- `pdftk unilaiva-songbook_A5.pdf cat 1-endeven output unilaiva-songbook_even.pdf`
+
+#### Example procedure for printing on a single sided printer
+
+This procedure prints the entire book on A4 paper with a printer that supports
+single-sided printing only. Flipping pages, cutting, and binding are all done
+by hand. The final result is a book of double-sided A5 pages, which is the
+preferred format.
+
+1. `./ulsbs-compile`
+2. `pdftk result/printouts/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf cat 1-endodd output unilaiva-songbook_odd.pdf`
+3. `pdftk result/printouts/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf cat 1-endeven output unilaiva-songbook_even.pdf`
+4. `lp -o PageSize=A4 unilaiva-songbook_odd.pdf`
+5. Flip the pages manually on the short edge and feed them back into the printer.
+6. `lp -o PageSize=A4 unilaiva-songbook_even.pdf`
+7. Cut the A4 pages in half to make A5 pages, and arrange them in the correct order.
+8. Punch holes and bind the book.
 
 ## Updating
 
