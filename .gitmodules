@@ -1,3 +1,4 @@
 [submodule "ulsbs"]
 	path = ulsbs
 	url = https://github.com/unilaiva/ulsbs.git
+	branch = main
