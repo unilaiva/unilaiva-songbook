@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+git pull
+git submodule update --init --recursive
+echo "Repository and submodules updated."
