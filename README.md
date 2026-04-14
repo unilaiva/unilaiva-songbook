@@ -332,7 +332,7 @@ That README covers:
 - compilation options and configuration
 - songbook syntax
 - Lilypond integration
-- helper tools such as `ulsbs-ly2tex` and `ulsbs-book2json`
+- helper tools such as `ulsbs-ly2tex` and `ulsbs-bookmeta`
 - editor support
 
 ## Status
