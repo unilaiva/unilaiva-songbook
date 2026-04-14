@@ -27,6 +27,7 @@ project-specific files needed to build the published books with
   - [Updating](#updating)
   - [ULSBS documentation](#ulsbs-documentation)
   - [Status](#status)
+  - [Copyright and Licensing](#copyright-and-licensing)
 
 ---
 
@@ -341,3 +342,27 @@ ULSBS is still under active development. This repository is kept in sync with
 current ULSBS behavior, but external songbook projects using ULSBS should be
 prepared to adjust their sources when upgrading until a stable 1.0 release is
 made.
+
+## Copyright and Licensing
+
+Except where otherwise noted, the editorial material in these songbooks —
+including musical transcriptions, chord charts, arrangements, engraving, and
+typesetting — is licensed under the Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0).
+
+Many songs in this collection are traditional folk songs and are believed to be
+in the public domain. When known, the source or author of each song is indicated.
+
+Some songs may still be under copyright and are included here either with
+permission or under fair-use assumptions for educational and community use.
+
+The Creative Commons license applies only to the editorial contributions made
+in this edition and does not affect the copyright status of the underlying
+songs where such rights exist.
+
+If you believe that any material in this book infringes copyright, please
+contact the editors and the material will be reviewed and removed if necessary.
+
+These songbooks were produced using the Unilaiva Songbook System (ULSBS),
+which is free software licensed under the GNU General Public License version
+3 or later (GPL 3.0+).
