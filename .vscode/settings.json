@@ -23,6 +23,7 @@
     "editor.autoClosingBrackets": "never",
     "editor.tabCompletion": "on",
     "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.quickSuggestions": { "other": "off", "strings": "off" },
   },
 
   "[lilypond]": {
