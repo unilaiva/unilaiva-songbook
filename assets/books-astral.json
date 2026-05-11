@@ -129,7 +129,7 @@
       "social_image": "unilaiva-astral-verde_SOCIAL_1200x630.png",
       "tag_ids": [ "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
-        "pt": "o Livro Verde",
+        "pt": "O Livro Verde",
         "en": "The Green Book",
         "fi": "Vihreä Kirja"
       },
@@ -160,7 +160,7 @@
       "social_image": "unilaiva-astral-verde_SOCIAL_1200x630.png",
       "tag_ids": [ "lyricsonly" ],
       "title_i18n": {
-        "pt": "o Livro Verde",
+        "pt": "O Livro Verde",
         "en": "The Green Book",
         "fi": "Vihreä Kirja"
       },
@@ -361,7 +361,7 @@
       "social_image": "unilaiva-astral-transparencia_SOCIAL_1200x630.png",
       "tag_ids": [ "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
-        "pt": "à Transparência"
+        "pt": "À Transparência"
       },
       "subtitle_i18n": {
         "en": "With musical information",
@@ -399,7 +399,7 @@
       "social_image": "unilaiva-astral-transparencia_SOCIAL_1200x630.png",
       "tag_ids": [ "lyricsonly" ],
       "title_i18n": {
-        "pt": "à Transparência"
+        "pt": "À Transparência"
       },
       "subtitle_i18n": {
         "en": "Lyrics Only",
@@ -437,7 +437,7 @@
       "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
       "tag_ids": [ "complete.comp", "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
-        "pt": "A compilação completa"
+        "pt": "A Compilação Completa"
       },
       "subtitle_i18n": {
         "en": "With musical information",
@@ -466,7 +466,7 @@
       "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
       "tag_ids": [ "complete.comp", "lyricsonly" ],
       "title_i18n": {
-        "pt": "A compilação completa"
+        "pt": "A Compilação Completa"
       },
       "subtitle_i18n": {
         "en": "Lyrics Only",
@@ -495,7 +495,7 @@
       "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
       "tag_ids": [ "complete.comp", "chords", "sheetmusic", "charango" ],
       "title_i18n": {
-        "pt": "A compilação completa"
+        "pt": "A Compilação Completa"
       },
       "subtitle_i18n": {
         "en": "For Charango",
@@ -524,7 +524,7 @@
       "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
       "tag_ids": [ "complete.comp", "sheetmusic.bass" ],
       "title_i18n": {
-        "pt": "A compilação completa"
+        "pt": "A Compilação Completa"
       },
       "subtitle_i18n": {
         "en": "Sheet Music for Bass Clef",
