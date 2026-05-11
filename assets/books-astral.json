@@ -280,8 +280,8 @@
     },
     {
       "enabled": true,
-      "file": "unilaiva-astral-alfredo_A5.pdf",
-      "image": "unilaiva-astral-alfredo_A5_MODIFIED.png",
+      "file": "unilaiva-astral-alfredo-novas_A5.pdf",
+      "image": "unilaiva-astral-alfredo-novas_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-alfredo-novas_SOCIAL_1200x630.png",
       "tag_ids": [ "chords", "sheetmusic", "guitar" ],
       "title_i18n": {
@@ -318,8 +318,8 @@
     },
     {
       "enabled": true,
-      "file": "unilaiva-astral-alfredo_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-alfredo_LYRICS-ONLY_A5_MODIFIED.png",
+      "file": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5.pdf",
+      "image": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-alfredo-novas_SOCIAL_1200x630.png",
       "tag_ids": [ "lyricsonly" ],
       "title_i18n": {
