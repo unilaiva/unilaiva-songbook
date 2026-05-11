@@ -13,6 +13,12 @@ common-deploy-icons = [
   "content/img/ul-default-chapter*"
 ]
 
+# Common assets that will be deployed with all songbooks to deploy/images/social.
+# (supports ?, *, and **; resolved relative to this file)
+common-deploy-social-images = [
+  "assets/social/*.png",
+]
+
 # Common assets that will be deployed with all songbooks to deploy/metadata.
 # (supports ?, *, and **; resolved relative to this file)
 common-deploy-metadata = [
