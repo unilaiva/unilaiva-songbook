@@ -81,14 +81,17 @@
   \imagec[5]{larva_avatar.png}%
 }%
 \renewcommand{\ulImprintPageFootnote}{%
-  Unilaiva no Astral é um projeto que tem como objetivo transcrever hinários
-  comumente cantados em um formato que contenha todas as informações musicais,
-  incluindo partituras, mas que seja fácil e conveniente de usar para praticar e no
-  trabalho também. Isso é possível com a ajuda de muitas pessoas --- e através do canto,
-  da execução, da dança, da escuta, da partilha, do estudo e da aprendizagem. Este é
-  um trabalho em andamento que está sendo realizado com Amor e um sentimento imenso de
-  Gratidão em relação ao belo Multidão de Hinos, às pessoas que os receberam, à Doutrina
-  e ao incrível \mbox{Mistério do Universo}.
+  Este projeto nasce do esforço coletivo e cresce na corrente viva do cantar,
+  tocar, bailar, escutar, compartilhar, estudar e aprender. É oferecido com
+  imensa Gratidão à bela Grande Hoste de Hinos, àqueles que os receberam e os
+  levaram adiante, à Doutrina, e ao grande Mistério que vive na música, na
+  memória e nos caminhos que trilhamos juntos.\par\vspace{1.5ex}
+  Salvo indicação em contrário, o material editorial deste cancioneiro ---
+  incluindo transcrições, arranjos, editoração musical e composição tipográfica
+  --- está licenciado sob a licença CC BY-NC-SA 4.0. Os direitos autorais das
+  canções subjacentes permanecem com seus respectivos titulares. As fontes são
+  creditadas quando conhecidas. Se você acredita que algum material infringe
+  direitos autorais, entre em contato com os editores.\par
 }
 
 \renewcommand\ulChapterSymbol{%
