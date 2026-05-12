@@ -10,7 +10,9 @@
         "*": "ulsbs-tag-icon-charango_512x512px.png"
       },
       "text_i18n": {
-        "en": "tabulature for charango"
+        "en": "tablature for charango",
+        "pt": "tablatura para charango",
+        "fi": "charango-tablatuurit"
       }
     },
     {
@@ -19,7 +21,9 @@
         "*": "ulsbs-tag-icon-guitar_512x512px.png"
       },
       "text_i18n": {
-        "en": "tabulature for guitar"
+        "en": "tablature for guitar",
+        "pt": "tablatura para guitarra",
+        "fi": "kitara-tablatuurit"
       }
     },
     {
@@ -124,6 +128,7 @@
   "books": [
     {
       "enabled": true,
+      "tabname": "verde-musical",
       "file": "unilaiva-astral-verde_A5.pdf",
       "image": "unilaiva-astral-verde_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-verde_SOCIAL_1200x630.png",
@@ -138,7 +143,11 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
-      "tabname": "verde-musical",
+      "description_i18n": {
+        "en": "Browse The Green Book variant with lyrics, chords and sheet music.",
+        "pt": "Navegue pela variante de O Livro Verde com letras, acordes e partituras.",
+        "fi": "Selaa Vihreän Kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -155,6 +164,7 @@
     },
     {
       "enabled": true,
+      "tabname": "verde-lyricsonly",
       "file": "unilaiva-astral-verde_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-astral-verde_LYRICS-ONLY_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-verde_SOCIAL_1200x630.png",
@@ -169,7 +179,11 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
-      "tabname": "verde-lyricsonly",
+      "description_i18n": {
+        "en": "Browse The Green Book's lyrics-only variant.",
+        "pt": "Navegue pela variante somente com letras de O Livro Verde.",
+        "fi": "Selaa Vihreän Kirjan vain sanoitukset sisältävää varianttia."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -186,6 +200,7 @@
     },
     {
       "enabled": true,
+      "tabname": "cura-musical",
       "file": "unilaiva-astral-cura_A5.pdf",
       "image": "unilaiva-astral-cura_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-cura_SOCIAL_1200x630.png",
@@ -198,7 +213,11 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
-      "tabname": "cura-musical",
+      "description_i18n": {
+        "en": "Browse Cura variant with lyrics, chords and sheet music.",
+        "pt": "Navegue pela variante de Cura com letras, acordes e partituras.",
+        "fi": "Selaa Cura-kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -233,6 +252,7 @@
     },
     {
       "enabled": true,
+      "tabname": "cura-lyricsonly",
       "file": "unilaiva-astral-cura_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-astral-cura_LYRICS-ONLY_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-cura_SOCIAL_1200x630.png",
@@ -245,7 +265,11 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
-      "tabname": "cura-lyricsonly",
+      "description_i18n": {
+        "en": "Browse Cura's lyrics-only variant.",
+        "pt": "Navegue pela variante somente com letras de Cura.",
+        "fi": "Selaa Cura-kirjan vain sanoitukset sisältävää varianttia."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -280,6 +304,7 @@
     },
     {
       "enabled": true,
+      "tabname": "alfredo-novas-musical",
       "file": "unilaiva-astral-alfredo-novas_A5.pdf",
       "image": "unilaiva-astral-alfredo-novas_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-alfredo-novas_SOCIAL_1200x630.png",
@@ -292,7 +317,11 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
-      "tabname": "alfredo-novas-musical",
+      "description_i18n": {
+        "en": "Browse Novas de Alfredo variant with lyrics, chords and sheet music.",
+        "pt": "Navegue pela variante de Novas de Alfredo com letras, acordes e partituras.",
+        "fi": "Selaa Novas de Alfredo -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -318,6 +347,7 @@
     },
     {
       "enabled": true,
+      "tabname": "alfredo-novas-lyricsonly",
       "file": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-alfredo-novas_SOCIAL_1200x630.png",
@@ -330,7 +360,11 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
-      "tabname": "alfredo-novas-lyricsonly",
+      "description_i18n": {
+        "en": "Browse Novas de Alfredo's lyrics-only variant.",
+        "pt": "Navegue pela variante somente com letras de Novas de Alfredo.",
+        "fi": "Selaa Novas de Alfredo -kirjan vain sanoitukset sisältävää varianttia."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -356,6 +390,7 @@
     },
     {
       "enabled": true,
+      "tabname": "transparencia-musical",
       "file": "unilaiva-astral-transparencia_A5.pdf",
       "image": "unilaiva-astral-transparencia_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-transparencia_SOCIAL_1200x630.png",
@@ -368,7 +403,11 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
-      "tabname": "transparencia-musical",
+      "description_i18n": {
+        "en": "Browse À Transparência variant with lyrics, chords and sheet music.",
+        "pt": "Navegue pela variante de À Transparência com letras, acordes e partituras.",
+        "fi": "Selaa À Transparência -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -394,6 +433,7 @@
     },
     {
       "enabled": true,
+      "tabname": "transparencia-lyricsonly",
       "file": "unilaiva-astral-transparencia_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-astral-transparencia_LYRICS-ONLY_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-transparencia_SOCIAL_1200x630.png",
@@ -406,7 +446,11 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
-      "tabname": "transparencia-lyricsonly",
+      "description_i18n": {
+        "en": "Browse À Transparência's lyrics-only variant.",
+        "pt": "Navegue pela variante somente com letras de À Transparência.",
+        "fi": "Selaa À Transparência -kirjan vain sanoitukset sisältävää varianttia."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -432,6 +476,7 @@
     },
     {
       "enabled": true,
+      "tabname": "completa-musical",
       "file": "unilaiva-astral-completa_A5.pdf",
       "image": "unilaiva-astral-completa_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
@@ -444,7 +489,11 @@
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
       },
-      "tabname": "completa-musical",
+      "description_i18n": {
+        "en": "Browse A Compilação Completa variant with lyrics, chords and sheet music. This book contains the chapters of all other books.",
+        "pt": "Navegue pela variante de A Compilação Completa com letras, acordes e partituras. Este livro contém os capítulos de todos os outros livros.",
+        "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -461,6 +510,7 @@
     },
     {
       "enabled": true,
+      "tabname": "completa-lyricsonly",
       "file": "unilaiva-astral-completa_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-astral-completa_LYRICS-ONLY_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
@@ -473,7 +523,11 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
-      "tabname": "completa-lyricsonly",
+      "description_i18n": {
+        "en": "Browse A Compilação Completa's lyrics-only variant. This book contains the chapters of all other books.",
+        "pt": "Navegue pela variante somente com letras de A Compilação Completa. Este livro contém os capítulos de todos os outros livros.",
+        "fi": "Selaa A Compilação Completa -kirjan vain sanoitukset sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -490,6 +544,7 @@
     },
     {
       "enabled": true,
+      "tabname": "completa-charango",
       "file": "unilaiva-astral-completa_CHARANGO_A5.pdf",
       "image": "unilaiva-astral-completa_CHARANGO_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
@@ -499,10 +554,14 @@
       },
       "subtitle_i18n": {
         "en": "For Charango",
-        "pt": "Por charango",
+        "pt": "Por Charango",
         "fi": "Charangolle"
       },
-      "tabname": "completa-charango",
+      "description_i18n": {
+        "en": "Browse A Compilação Completa variant with lyrics, chords, sheet music and charango notation. This book contains the chapters of all other books.",
+        "pt": "Navegue pela variante de A Compilação Completa com letras, acordes, partituras e notação para charango. Este livro contém os capítulos de todos os outros livros.",
+        "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut, nuotit ja charango-notaation sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -519,6 +578,7 @@
     },
     {
       "enabled": true,
+      "tabname": "completa-bassclef",
       "file": "unilaiva-astral-completa_BASSCLEF_A5.pdf",
       "image": "unilaiva-astral-completa_BASSCLEF_A5_MODIFIED.png",
       "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
@@ -531,7 +591,11 @@
         "pt": "Partitura para Clave de Fá",
         "fi": "Nuotit F-avaimella"
       },
-      "tabname": "completa-bassclef",
+      "description_i18n": {
+        "en": "Browse A Compilação Completa variant with lyrics, chords and bass clef sheet music. This book contains the chapters of all other books.",
+        "pt": "Navegue pela variante de A Compilação Completa com letras, acordes e partituras em clave de fá. Este livro contém os capítulos de todos os outros livros.",
+        "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja bassoklaaviset nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [

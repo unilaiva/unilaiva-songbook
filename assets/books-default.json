@@ -10,7 +10,9 @@
         "*": "ulsbs-tag-icon-charango_512x512px.png"
       },
       "text_i18n": {
-        "en": "tabulature for charango"
+        "en": "tablature for charango",
+        "pt": "tablatura para charango",
+        "fi": "charango-tablatuurit"
       }
     },
     {
@@ -19,7 +21,9 @@
         "*": "ulsbs-tag-icon-guitar_512x512px.png"
       },
       "text_i18n": {
-        "en": "tabulature for guitar"
+        "en": "tablature for guitar",
+        "pt": "tablatura para guitarra",
+        "fi": "kitara-tablatuurit"
       }
     },
     {
@@ -190,6 +194,7 @@
   "books": [
     {
       "enabled": true,
+      "tabname": "complete-musical",
       "file": "unilaiva-songbook_A5.pdf",
       "image": "unilaiva-songbook_A5_MODIFIED.png",
       "social_image": "unilaiva-songbook_SOCIAL_1200x630.png",
@@ -202,7 +207,11 @@
         "pt": "Edição completa, com acordes",
         "fi": "Täysi editio, soinnuilla"
       },
-      "tabname": "complete-musical",
+      "description_i18n": {
+        "en": "Browse the complete Unilaiva Songbook variant with lyrics and chords.",
+        "pt": "Navegue pela variante completa do Unilaiva Songbook com letras e acordes.",
+        "fi": "Selaa täyttä Unilaiva Songbook -varianttia sanoituksineen ja sointuineen."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "extra_printout_links": [
@@ -238,6 +247,7 @@
     },
     {
       "enabled": true,
+      "tabname": "complete-lyricsonly",
       "file": "unilaiva-songbook_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-songbook_LYRICS-ONLY_A5_MODIFIED.png",
       "social_image": "unilaiva-songbook_SOCIAL_1200x630.png",
@@ -250,7 +260,11 @@
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
       },
-      "tabname": "complete-lyricsonly",
+      "description_i18n": {
+        "en": "Browse the Unilaiva Songbook's lyrics-only variant.",
+        "pt": "Navegue pela variante somente com letras do Unilaiva Songbook.",
+        "fi": "Selaa Unilaiva Songbook -laulukirjan vain sanoitukset sisältävää varianttia."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -276,6 +290,7 @@
     },
     {
       "enabled": false,
+      "tabname": "part1-musical",
       "file": "unilaiva-songbook_part1_A5.pdf",
       "image": "unilaiva-songbook_part1_A5_MODIFIED.png",
       "social_image": "unilaiva-songbook_part1_SOCIAL_1200x630.png",
@@ -288,6 +303,11 @@
         "pt": "Capítulos: Español, Portuguêse; com acordes",
         "fi": "Luvut: Español, Portuguêse; soinnuilla"
       },
+      "description_i18n": {
+        "en": "Browse part 1 of the Unilaiva Songbook variant with lyrics and chords.",
+        "pt": "Navegue pela parte 1 da variante do Unilaiva Songbook com letras e acordes.",
+        "fi": "Selaa Unilaiva Songbook -laulukirjan sanoja ja sointuja sisältävän variantin osaa 1."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -313,6 +333,7 @@
     },
     {
       "enabled": false,
+      "tabname": "part1-lyricsonly",
       "file": "unilaiva-songbook_part1_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-songbook_part1_LYRICS-ONLY_A5_MODIFIED.png",
       "social_image": "unilaiva-songbook_part1_SOCIAL_1200x630.png",
@@ -325,6 +346,11 @@
         "pt": "Capítulos: Español, Portuguêse; somente letras",
         "fi": "Luvut: Español, Portuguêse; vain sanoitukset"
       },
+      "description_i18n": {
+        "en": "Browse part 1 of the Unilaiva Songbook's lyrics-only variant.",
+        "pt": "Navegue pela parte 1 da variante somente com letras do Unilaiva Songbook.",
+        "fi": "Selaa Unilaiva Songbook -laulukirjan vain sanoitukset sisältävän variantin osaa 1."
+      },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -350,6 +376,7 @@
     },
     {
       "enabled": false,
+      "tabname": "part2-musical",
       "file": "unilaiva-songbook_part2_A5.pdf",
       "image": "unilaiva-songbook_part2_A5_MODIFIED.png",
       "social_image": "unilaiva-songbook_part2_SOCIAL_1200x630.png",
@@ -361,6 +388,11 @@
         "en": "Chapters: English, Saṃskṛtam, Other, Suomi; with chords",
         "pt": "Capítulos: English, Saṃskṛtam, Other, Suomi; com acordes",
         "fi": "Luvut: English, Saṃskṛtam, Other, Suomi;  soinnuilla"
+      },
+      "description_i18n": {
+        "en": "Browse part 2 of the Unilaiva Songbook variant with lyrics and chords.",
+        "pt": "Navegue pela parte 2 da variante do Unilaiva Songbook com letras e acordes.",
+        "fi": "Selaa Unilaiva Songbook -laulukirjan sanoja ja sointuja sisältävän variantin osaa 2."
       },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -387,6 +419,7 @@
     },
     {
       "enabled": false,
+      "tabname": "part2-lyricsonly",
       "file": "unilaiva-songbook_part2_LYRICS-ONLY_A5.pdf",
       "image": "unilaiva-songbook_part2_LYRICS-ONLY_A5_MODIFIED.png",
       "social_image": "unilaiva-songbook_part2_SOCIAL_1200x630.png",
@@ -398,6 +431,11 @@
         "en": "Chapters: English, Saṃskṛtam, Other, Suomi; lyrics only",
         "pt": "Capítulos: English, Saṃskṛtam, Other, Suomi; somente letras",
         "fi": "Luvut: English, Saṃskṛtam, Other, Suomi; vain sanoitukset"
+      },
+      "description_i18n": {
+        "en": "Browse part 2 of the Unilaiva Songbook's lyrics-only variant.",
+        "pt": "Navegue pela parte 2 da variante somente com letras do Unilaiva Songbook.",
+        "fi": "Selaa Unilaiva Songbook -laulukirjan vain sanoitukset sisältävän variantin osaa 2."
       },
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
