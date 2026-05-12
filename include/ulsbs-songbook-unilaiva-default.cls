@@ -76,12 +76,17 @@
 
 
 \renewcommand{\ulImprintPageFootnote}{%
-  The material in this book is collected and transcribed, with help from a
-  multitude of people, from various audio and text sources --- and through
-  singing, playing, dancing, sharing, listening, studying and learning.
-  This is a work in progress, made with Love and the feeling of immense Gratitude
-  towards these beautiful songs, the people who created them, and the
-  amazing Mystery of the Universe.
+  The songs in this collection are gathered and transcribed through the
+  contributions of many people, from a variety of audio and written sources,
+  and through the living practice of singing, playing, dancing, listening,
+  sharing, studying, and learning together. This is an ongoing work, offered
+  with \mbox{Gratitude and Love}.\par\vspace{1.5ex}
+  Unless otherwise noted, the editorial material in this songbook --- including
+  transcriptions, arrangements, engraving, and typesetting --- is licensed under
+  CC BY-NC-SA 4.0. Traditional songs are believed to be in the public domain
+  where applicable. Copyright to underlying songs remains with their respective
+  rights holders. Sources are credited where known. If you believe any material
+  infringes copyright, please contact the editors.\par
 }
 
 % Setup the mark at song end, just above the horizontal line that ends a song;
