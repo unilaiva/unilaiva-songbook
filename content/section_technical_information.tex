@@ -2,34 +2,58 @@
 %
 % (Note that this file is not supposed to be wrapped in 'songs' environment.)
 
-\noindent%
+%\noindent%
 
+\clearpage
 \IfLangTF{portuguese}{%
-  \section{Círculos}
+  \section{Círculo das Quintas}
 }{%
-  \section{Circles}
+  \section{Circle of Fifths}
 }
 
-%\vspace{4em}
-\begin{center}
-    \vfill%
-    \imagel[2]{Circle_fifths_transparent_bg_2000px.png}%
-    \hspace{3em}
-    \imagel[2]{mandala-illusion_transparent_bg_1280px.png}%
-    \vfill%
-\end{center}
+\imagecc[0]{Circle_of_Fifths_by_larva__CC-BY-NC-SA.pdf}
 
 \IfLangTF{portuguese}{%
-  \section{Sobre Acordes}
+  \section{Modos e Acordes}
 }{%
-  \section{About Chords}
+  \section{Modes and Chords}
 }
+\vfill
+\renewcommand{\arraystretch}{1.3} % >1.0 increases vertical padding for tabular
+% NOTE: must use \flatsymbol and \sharpsymbol instead of \flt and \shrp inside \tabular
+\begin{tabular}{| p{5.3em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} |}
+  \hline
+  \textbf{\IfLangTF{portuguese}{Jônico}{Ionian}} & \textbf{I} & \textbf{ii} & \textbf{iii} & \textbf{IV} & \textbf{V} & \textbf{vi} & \textbf{vii\textdegree} \\
+  \IfLangTF{portuguese}{Dórico}{Dorian} & VII & i & ii & III & IV & v & vi\textdegree \\
+  \IfLangTF{portuguese}{Frígio}{Phrygian} & VI & vii & i & II & III & iv & v\textdegree \\
+  \IfLangTF{portuguese}{Lídio}{Lydian} & V & vi & vii & I & II & iii & iv\textdegree \\
+  \IfLangTF{portuguese}{Mixolídio}{Mixolydian} & IV & v & vi & VII & I & ii & iii\textdegree \\
+  \textbf{\IfLangTF{portuguese}{Eólio}{Aeolian}} & \textbf{III} & \textbf{iv} & \textbf{v} & \textbf{VI} & \textbf{VII} & \textbf{i} & \textbf{ii\textdegree} \\
+  \IfLangTF{portuguese}{Lócrio}{Locrian} & II & iii & iv & V & VI & vii & i\textdegree \\
+  \hline
+  \textit{\IfLangTF{portuguese}{Acordes diatônicos}{Diatonic chords}} & \IfLangTF{portuguese}{Maior}{Major}, maj7, maj9, maj11, maj13, 6 & m, m7, m9, m11, m6 & m, m7 & \IfLangTF{portuguese}{Maior}{Major}, maj7, maj9, maj13, 6 & \IfLangTF{portuguese}{Maior}{Major}, 7, 9, 11, 13, sus4 & m, m7, m9, m11 & m7\flatsymbol{}5 \\
+  \hline
+\end{tabular}
+\IfLangTF{portuguese}{%
+  \subsection*{Tipos Básicos de Acordes Para Escalas Menores}
+}{%
+  \subsection*{Minor Scales' Basic Chord Types}
+}
+\begin{tabular}{| p{6em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} |}
+  \hline
+  \IfLangTF{portuguese}{Natural}{Natural} & i & ii\textdegree & III & iv & v & VI & VII \\
+  \IfLangTF{portuguese}{Harmônico}{Harmonic} & i & ii\textdegree & III+ & iv & V & VI & \sharpsymbol{}vii\textdegree \\
+  \IfLangTF{portuguese}{Melódico}{Melodic} & i & ii & III+ & IV & V & \sharpsymbol{}vi\textdegree & \sharpsymbol{}vii\textdegree \\
+  \hline
+\end{tabular}
+\vfill
 
 \ifcharangobook\else\ifbassclefbook\else% % do not show guitar chords for special variants
+  \clearpage
   \IfLangTF{portuguese}{%
-    \subsection*{Acordes para Violão}
+    \section{Acordes para Violão}
   }{%
-    \subsection*{Chords for Guitar}
+    \section{Chords for Guitar}
   }
   \gtab{A}{X02220:001230} \gtab{Am}{X02210:002310} \gtab{A7}{X02020:002030}%
       \gtab{Am7}{X02010:002010} \gtab{A6}{X02222:001111} \gtab{Am6}{X02212:002314}
@@ -59,37 +83,5 @@
       \gtab{Gm7}{353333:131111} \gtab{Gmaj7}{320002:320001} \gtab{Gadd9}{XX5435:003214}%
       \gtab{G7sus4}{330011:340011} \gtab{G6}{XX5430:003210} \gtab{Gm6}{312030:312040} \\
   \gtab{A&7}{464544:131222} \\
-  \vfill
+  \imagecc[2]{mandala-illusion_transparent_bg_1280px.png}
 \fi\fi%
-
-\IfLangTF{portuguese}{%
-  \subsection*{Modos e Acordes}
-}{%
-  \subsection*{Modes and Chords}
-}
-% NOTE: must use \flatsymbol and \sharpsymbol instead of \flt and \shrp inside \tabular
-\begin{tabular}{| p{5.3em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} |}
-  \hline
-  \textbf{\IfLangTF{portuguese}{Jônico}{Ionian}} & \textbf{I} & \textbf{ii} & \textbf{iii} & \textbf{IV} & \textbf{V} & \textbf{vi} & \textbf{vii\textdegree} \\
-  \IfLangTF{portuguese}{Dórico}{Dorian} & VII & i & ii & III & IV & v & vi\textdegree \\
-  \IfLangTF{portuguese}{Frígio}{Phrygian} & VI & vii & i & II & III & iv & v\textdegree \\
-  \IfLangTF{portuguese}{Lídio}{Lydian} & V & vi & vii & I & II & iii & iv\textdegree \\
-  \IfLangTF{portuguese}{Mixolídio}{Mixolydian} & IV & v & vi & VII & I & ii & iii\textdegree \\
-  \textbf{\IfLangTF{portuguese}{Eólio}{Aeolian}} & \textbf{III} & \textbf{iv} & \textbf{v} & \textbf{VI} & \textbf{VII} & \textbf{i} & \textbf{ii\textdegree} \\
-  \IfLangTF{portuguese}{Lócrio}{Locrian} & II & iii & iv & V & VI & vii & i\textdegree \\
-  \hline
-  \textit{\IfLangTF{portuguese}{Acordes diatônicos}{Diatonic chords}} & \IfLangTF{portuguese}{Maior}{Major}, maj7, maj9, maj11, maj13, 6 & m, m7, m9, m11, m6 & m, m7 & \IfLangTF{portuguese}{Maior}{Major}, maj7, maj9, maj13, 6 & \IfLangTF{portuguese}{Maior}{Major}, 7, 9, 11, 13, sus4 & m, m7, m9, m11 & m7\flatsymbol{}5 \\
-  \hline
-\end{tabular}
-\IfLangTF{portuguese}{%
-  \subsection*{Tipos Básicos de Acordes Para Escalas Menores}
-}{%
-  \subsection*{Minor Scales' Basic Chord Types}
-}
-\begin{tabular}{| p{6em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} |}
-  \hline
-  \IfLangTF{portuguese}{Natural}{Natural} & i & ii\textdegree & III & iv & v & VI & VII \\
-  \IfLangTF{portuguese}{Harmônico}{Harmonic} & i & ii\textdegree & III+ & iv & V & VI & \sharpsymbol{}vii\textdegree \\
-  \IfLangTF{portuguese}{Melódico}{Melodic} & i & ii & III+ & IV & V & \sharpsymbol{}vi\textdegree & \sharpsymbol{}vii\textdegree \\
-  \hline
-\end{tabular}
