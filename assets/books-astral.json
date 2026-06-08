@@ -1,8 +1,8 @@
 {
-  "book_path": "/songbook-data",
-  "image_path": "/songbook-data/images",
-  "icon_path": "/songbook-data/images/icons",
-  "social_path": "/songbook-data/images/social",
+  "book_path": "",
+  "image_path": "images",
+  "icon_path": "images/icons",
+  "social_path": "images/social",
   "tags": [
     {
       "id": "charango",
