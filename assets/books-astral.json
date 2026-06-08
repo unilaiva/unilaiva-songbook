@@ -3,6 +3,7 @@
   "image_path": "images",
   "icon_path": "images/icons",
   "social_path": "images/social",
+  "json_path": "json",
   "tags": [
     {
       "id": "charango",
