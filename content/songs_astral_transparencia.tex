@@ -717,3 +717,207 @@
     %I am listening, listening to the needs of others.
   \end{translation}
 \endsong
+
+
+\beginsong{Sentido da Vida}[by={Lari Natri}, key={Am}, gk={Am, Gm--G\shrp{}m--(Am)}]
+  \meter{4}{4}
+  % verse 1:
+  \mnbeginverse
+    \beginrep
+      \[^\mn{A}]Talvez \[^\mn{C}]um |\[\mnc{E}Am]dia o \[^\mn{F}]sen\[\bmc\mn{E}]ti\[^\mn{D}]do \[^\mn{C}]da \[^\mnc{E}]vi|-da se \[^\mn{F}]re\[\bmc\mnc{E}]vele, | \[\bm] | \[\bmc] \e
+    \endrep
+    \beginrep
+      \[^\mn{E}]Mas a|\[\mnc{A}F]gora não \[^\mnc{G}]é \[\bmc\mnc{F}]o \[^\mn{E}]mo\[^\mn{D}]men\[^\mn{F}]to, | \e
+      es\[\bmc]tamos \[^\mn{G}]presos \[^\mn{F}]ao |\[\mnc{E}Am]Eu \[\bmc]\[^\mac{C}]{ }{ }{ } |\[^\mnc{A}] \[\bmc]\e
+    \endrep
+  \mnendverse
+  \notesoff
+  % verse 2:
+  \beginverse
+    \beginrep
+      Só po|^demos aju^{\emph{dar}} a vi|-da\jw a flore^scer, | ^ | ^ \e
+    \endrep
+    \beginrep
+      Esse é |^o chamado ^mais eleva|-do
+      que po^demos aten|^der ^{ }{ } | ^\e
+    \endrep
+  \endverse
+  % verse 3:
+  \mnbeginverse
+    % new temp colors for 2nd voice
+    \definecolor{melodynotecolor}{rgb}{0.2,0,0.4}
+    \definecolor{melodynotealtcolor}{rgb}{0.6,0,0.4}
+    \noteson
+    \beginrep
+      \[\mn{E}]Está \[\mn{A}]es|\[\mnc{C}Am]crito \[\mn{B}]em \[\bmc\mn{A}]to\[\mn{F}]das \[\mn{E}]as \[\mn{A}]nos|{ - }sas \[\mn{G}]cé\[\bmc\mn{E}]lulas, | \[\bm] | \[\bmc] \e
+    \endrep
+    \beginrep
+      \[\mnc{E}]E há |\[\mnc{F}F]infini\[\mn{G}]tas \[\bmc\mn{A}]ma\[\mn{C}]nei\[\mn{B}]ras \[\mn{A}]de | \e
+      vi\[\bmc]ver e \[\mn{G}]pro\[\mn{C}]ce|\[\mnc{A}Am]der \[\bmc]\[\mac{C}]{ }{ }{ } |\[\mn{A}] \[\bmc] \e
+    \endrep
+  \mnendverse
+  % verse 4:
+  \beginverse
+    \beginrep
+      Nisso o |^Ser encontra ^propósito, | e isso ^basta | ^ | ^ \e
+    \endrep
+    \beginrep
+      O sen|^tido não po^de ser visto | \e
+      pelas ^partes do |^To^{ }{ }{ }|do ^
+    \endrep
+  \endverse
+  % verse 5:
+  \beginverse
+    \beginrep
+      Susten|^tar a vida ^é amparar |{ } os ^outros | ^ | ^ \e
+    \endrep
+    \beginrep
+      To|^do Ser se des^vanece, mas |\e
+      a ^vida perma|^ne^{ }{ }{ }|ce
+    \endrep
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, created on 2026-02, latest update on 2026-06
+    % \header {
+    %   title = "Sentido da Vida"
+    %   composer = "Lari Natri"
+    % }
+    \include "ulsbs-include-head.ly"
+    theMelody = \relative c'' {
+      \tempo 4 = 108
+      \key a \minor \time 4/4 \partial 4.
+      \set melismaBusyProperties = #'() \slurDashed \stemDown \slurDown \tieDown
+      \sectionLabel "A"
+      \repeat volta 2 {
+        \parenthesize a8 a c | e( e) e f e( d) c e~ | e( e) e( f) e4( e)~ | e1~ | e2 r8
+      } \break
+      \sectionLabel "B"
+      \repeat volta 2 {
+        \parenthesize e8 \parenthesize e e | a a a g f e d f~ | f8( 8 8) f8 f f g16( g16) f16( f16)
+        \alternative {
+          { | e1( | e2) r8 }
+          { \once\slurSolid | e2.( c4)( | a2) r8 }
+        }
+      }
+      \fine
+    }
+    theMelodyTwo = \relative c'' {
+      \key a \minor \time 4/4 \partial 4.
+      \set melismaBusyProperties = #'() \slurDashed \stemUp \slurUp \tieUp
+      \sectionLabel "A"
+      \repeat volta 2 {
+        \parenthesize e8 e a | c( c) c b a( f) e a~ | a( a) a( g) e4( e)~ | e1~ | e2 s8
+      } \break
+      \sectionLabel "B"
+      \repeat volta 2 {
+        \parenthesize e8 \parenthesize e e | f f f g a c b a~ | a8( 8 8) a8 a a g16( g16) c16( c16)
+        \alternative {
+          { | a1( | a2) s8 }
+          { \once\slurSolid | a2.( c4)( | a2) s8 }
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1."
+      \repeat volta 2 {
+        Tal -- vez um | di -- a o sen -- ti -- do da vi | _ -- da se re -- ve -- le, | _ | _
+      }
+      \repeat volta 2 {
+        "" Mas a -- | go -- ra não é o mo -- men -- to, __ | _ _ _ es -- ta -- mos pre -- sos ao __ _
+        \alternative {
+          { | Eu. __ | _ }
+          { | Eu. __ _ | _ }
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2."
+      \repeat volta 2 {
+        "" Só po -- | de -- mos a -- ju -- dar __ _ a vi | _ -- da~a flo -- re -- scer, __ _ | "" | ""
+      }
+      \repeat volta 2 {
+        Es -- se é | o cha -- ma -- do mais e -- le -- va | _ -- do que po -- de -- mos a _ -- ten _ --
+        \alternative {
+          { | der. __ | _ }
+          { | der. __ _ | _ }
+        }
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3."
+      \repeat volta 2 {
+        Es -- tá es -- | cri _ -- to em to -- das as nos | _ _ -- sas cé -- lu -- las, | _ | _
+      }
+      \repeat volta 2 {
+        "" E há | in -- fi -- ni -- tas ma -- nei -- ras de __ | _ _ _ vi -- ver e pro _ -- ce _ --
+        \alternative {
+          { | der. __ | _ }
+          { | der. __ _ | _ }
+        }
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4."
+      \repeat volta 2 {
+        Nis -- so o | Ser en -- con -- tra pro -- pó -- si -- to, __ | _ e is -- so bas -- ta. | _ | _
+      }
+      \repeat volta 2 {
+        "" O sen -- | ti -- do não po -- de ser vis -- to __ | _ _ _ pe -- las par -- tes __ _ do __ _
+        \alternative {
+          { | To -- | do }
+          { | To -- _ | do. }
+        }
+      }
+    }
+    theLyricsFive = \lyricmode {
+      \set stanza = "5."
+      \repeat volta 2 {
+        "" Sus -- ten -- | tar a vi -- da é am -- pa -- rar __ | _ _ os __ _ ou -- tros. | _ | _
+      }
+      \repeat volta 2 {
+        "" "" To -- | do Ser se des -- va -- ne -- ce, mas __ | _ _ _  a Vi -- da per _ -- ma _ --
+        \alternative {
+          { | ne -- | ce. }
+          { | ne -- _ | ce. }
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a1:m | a1:m | a1:m | a2:m~8
+      }
+      \repeat volta 2 {
+        s4. | f1 | f1
+        \alternative {
+          { | a1:m | a2:m~8 }
+          { | a1:m | a2:m~8 }
+        }
+      }
+    }
+    \setStaffSize #13.5 % for better fit
+    \include "ulsbs-include-tail-multivoice-twotabs.ly"
+  \end{lilypond}\end{lilywrap}
+
+  \begin{translation}[EN]
+    Perhaps one day the meaning of life will reveal itself
+    But now is not the moment,
+    we are bound to the Self
+    \nextverse
+    We can only help life to flourish
+    That is the highest calling
+    that we can answer
+    \nextverse
+    It is written in all of our cells
+    And there are infinite ways
+    to live and to act accordingly
+    \nextverse
+    In this the Self finds purpose, and that is enough
+    The meaning cannot be seen
+    by the parts of the Whole
+    \nextverse
+    To sustain life is to support others
+    Every Self fades away, but
+    Life remains
+  \end{translation}
+\endsong
