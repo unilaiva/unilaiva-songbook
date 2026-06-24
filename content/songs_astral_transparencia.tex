@@ -748,6 +748,8 @@
     % new temp colors for 2nd voice
     \definecolor{melodynotecolor}{rgb}{0.2,0,0.4}
     \definecolor{melodynotealtcolor}{rgb}{0.6,0,0.4}
+    % make the alternate note have tag "1"
+    \renewcommand{\mnalttagtext}{1}
     \beginrep
       \[\mn{E}]Está \[\mn{A}]es|\[\mnc{C}Am]crito \[\mn{B}]em \[\bmc\mn{A}]to\[\mn{F}]das \[\mn{E}]as \[\mn{A}]nos|{ - }sas \[\mn{G}]cé\[\bmc\mn{E}]lulas, | \[\bm] | \[\bmc] \e
     \endrep
@@ -764,7 +766,7 @@
     \endrep
     \beginrep
       O sen|^tido não po^de ser visto | \e
-      pe^las partes do |^To^{ }{ }{ }|do ^
+      por me^ras partes do |^To^{ }{ }{ }|do ^
     \endrep
   \endverse
   % verse 5:
@@ -794,9 +796,9 @@
       } \break
       \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize e8 \parenthesize e e | a a a g f e d f~ | f8( 8 8) f8 f f g16( g16) f16( f16)
+        \parenthesize e8 \parenthesize e e | a a a g f e d f~ | f8( 8 8) f8 f f g16( g16) f8
         \alternative {
-          { | e1( | e2) r8 }
+          { | e2.~e4( | e2) r8 }
           { \once\slurSolid | e2.( c4)( | a2) r8 }
         }
       }
@@ -811,10 +813,10 @@
       } \break
       \sectionLabel "B"
       \repeat volta 2 {
-        \parenthesize e8 \parenthesize e e | f f f g a c b a~ | a8( 8 8) a8 a a g16( g16) c16( c16)
+        \parenthesize e8 \parenthesize e e | f f f g a c b a~ | a8( 8 8) a8 a a g16( g16) c8
         \alternative {
-          { | a1( | a2) s8 }
           { \once\slurSolid | a2.( c4)( | a2) s8 }
+          { | a2.~a4( | a2) s8 }
         }
       }
       \fine
@@ -825,9 +827,9 @@
         Tal -- vez um | di -- a o sen -- ti -- do da vi | _ -- da se re -- ve -- le, | _ | _
       }
       \repeat volta 2 {
-        "" Mas a -- | go -- ra não é o mo -- men -- to, __ | _ _ _ es -- ta -- mos pre -- sos ao __ _
+        "" Mas a -- | go -- ra não é o mo -- men -- to, __ | _ _ _ es -- ta -- mos pre -- sos ao
         \alternative {
-          { | Eu. __ | _ }
+          { | Eu. __ _ | _ }
           { | Eu. __ _ | _ }
         }
       }
@@ -838,9 +840,9 @@
         "" Só po -- | de -- mos a -- ju -- dar __ _ a vi | _ -- da~a flo -- re -- scer, __ _ | "" | ""
       }
       \repeat volta 2 {
-        Es -- se é | o cha -- ma -- do mais e -- le -- va | _ -- do que po -- de -- mos a _ -- ten _ --
+        Es -- se é | o cha -- ma -- do mais e -- le -- va | _ -- do que po -- de -- mos a _ -- ten --
         \alternative {
-          { | der. __ | _ }
+          { | der. __ _ | _ }
           { | der. __ _ | _ }
         }
       }
@@ -851,9 +853,9 @@
         Es -- tá es -- | cri _ -- to em to -- das as nos | _ _ -- sas cé -- lu -- las, | _ | _
       }
       \repeat volta 2 {
-        "" E há | in -- fi -- ni -- tas ma -- nei -- ras de __ | _ _ _ vi -- ver e pro _ -- ce _ --
+        "" E há | in -- fi -- ni -- tas ma -- nei -- ras de __ | _ _ _ vi -- ver e pro _ -- ce --
         \alternative {
-          { | der. __ | _ }
+          { | der. __ _ | _ }
           { | der. __ _ | _ }
         }
       }
@@ -864,10 +866,10 @@
         Nis -- so o | Ser en -- con -- tra pro -- pó -- si -- to, __ | _ e is -- so bas -- ta. | _ | _
       }
       \repeat volta 2 {
-        "" O sen -- | ti -- do não po -- de ser vis -- to __ | _ _ _ pe -- las par -- tes __ _ do __ _
+        "" O sen -- | ti -- do não po -- de ser vis -- to __ | _ _ por me -- ras par -- tes __ _ do
         \alternative {
-          { | To -- | do }
-          { | To -- _ | do. }
+          { | To _ -- | do }
+          { | To _ -- | do. }
         }
       }
     }
@@ -877,10 +879,10 @@
         "" Sus -- ten -- | tar a vi -- da é am -- pa -- rar __ | _ _ os __ _ ou -- tros. | _ | _
       }
       \repeat volta 2 {
-        "" "" To -- | do Ser se des -- va -- ne -- ce, mas __ | _ _ _  a Vi -- da per _ -- ma _ --
+        "" "" To -- | do Ser se des -- va -- ne -- ce, mas __ | _ _ _  a Vi -- da per _ -- ma --
         \alternative {
-          { | ne -- | ce. }
-          { | ne -- _ | ce. }
+          { | ne _ -- | ce. }
+          { | ne _ -- | ce. }
         }
       }
     }
@@ -915,7 +917,7 @@
     \nextverse
     In this the Self finds purpose, and that is enough
     The meaning cannot be seen
-    by the parts of the Whole
+    by mere parts of the Whole
     \nextverse
     To sustain life is to support others
     Every Self fades away, but
