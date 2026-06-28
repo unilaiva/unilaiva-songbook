@@ -2428,6 +2428,119 @@
       }
     }
     \setStaffSize #12 % for better fit
-    \include "ulsbs-include-tail.ly"
+    \include "ulsbs-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
+\beginsong{Nature Boy}[id={nature-boy-p5uk86},by={Eden Ahbez},key={Dm},gk={Cm, (Bm)--(C\shrp{}m)--(Dm)},ph={III}]
+  \meter{3}{4}
+  % verse 1:
+  \beginverse
+    \[^\mn{A}]There |\[\mnc{A}Dm]was \[^\mn{F}]a \[^\mn{D}]boy \altchords{\id[1]{(Bm)}|Bm}
+    |\[Gm] \[^\mn{A}]A \[^\mn{E}]ve\[^\mn{F}]ry \[^\mn{G}]strange, \[^\mn{B&}]en|\[\mnc{A}Dm]chan\[^\mn{F}]ted \[^\mn{D}]boy \altchords{|Em |Bm}
+    |\[Gm] \[^\mn{A}]They \[^\mn{E}]say \[^\mn{F}]he \[^\mn{G}]wan\[^\mn{B&}]dered |\[\mnc{A}Dm]ve\[^\mn{D}]ry \[\mnc{C#}A]far \altchords{|Em |Bm F\shrp{}}
+    |\[\mnc{A}Dm7]Ve\[^\mn{C}]ry \[\mnc{B}D\textdegree7]far, |\[\mnc{G}Gm]o\[^\mn{B&}]ver \[\mnc{A}Dm]land \[^\mn{D}]and |\[\mnc{E}Em7&5]sea \altchords{|Bm7 B\textdegree7 |Em Bm |C\shrp{}m7\flt{}5}
+    \[^\mn{A}]A |\[\mnc{A}A]lit\[^\mn{G}]tle \[^\mn{E}]shy |\[A7]{ }{ }{ } \[^\mn{A}]and |\[\mnc{G}Dm]sad \[^\mn{F}]of \[^\mn{D}]eye | \e \altchords{|F\shrp{} |F\shrp{}7 |Bm | \e}
+    \[^\mn{G#}]But |\[\mnc{F}E]ve\[^\mn{E}]ry \[^\mn{B}]wise |{ }{ }{ } \[^\mn{C}]was |\[\mnc{C#}A]he |\[A7] \e \altchords{|C\shrp{} | | F\shrp{} | F\shrp{}7}
+  \endverse
+  \notesoff
+  % verse 2:
+  \beginverse
+    And |^then one day \altchords{|Bm}
+    |^ One magic day he |^passed my way \altchords{|Em |Bm}
+    |^ And as we spoke of |^many ^things, \altchords{|Em |Bm F\shrp{}}
+    |^Fools and ^kings, |^this he ^said to |^me: \altchords{|Bm7 B\textdegree7 |Em Bm |C\shrp{}m7\flt{}5}
+    ``The |^greatest thing |^{ }{ }{ } you'll |^ever learn | \e \altchords{|F\shrp{} |F\shrp{}7 |Bm | \e}
+    \noteson
+    \[\mn{G#}]Is |\[\mnc{F}E]just \[\mn{E}]to \[\mn{B}]love |\[\mnc{B&}Gm7]and \[\mn{G}]be \[\mn{F}]loved \[\mnc{C#}A7]in \[\mn{E}]re|\[\mnc{D}Dm]turn'' | \e \altchords{|C\shrp{} |Em7 F\shrp{}7 | Bm | \e}
+  \endverse
+  \ifchorded\ifcharangobook\else
+    % Show guitar chord help if chorded & not charango.
+    % If song uses \transpose, must add inverted transpose here, and change
+    % the gtabs to transposed versions.
+    \vfill\hfill%
+    \gtab{D\textdegree7}{XX0101:000102} \gtab{Em7&5}{XX2333:001222}
+    \vfill
+  \fi\fi
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2026-06
+    % \header {
+    %   title = "Nature Boy"
+    %   composer = "Eden Ahbez"
+    % }
+    \include "ulsbs-include-head.ly"
+    theMelody =  \relative d' {
+      \set melismaBusyProperties = #'() \slurDashed
+      % \tempo 4 = 94
+      \tempo \markup { \hspace #2 "Rubato" } 4 = 52-62
+      \key d \minor
+      \time 3/4 \partial 8
+      \repeat segno 2 {
+        \repeat volta 2 {
+          a'8 | a'8. f16 d2~ | d8
+          a8 e' f g bes | a8. f16 d2
+          | r8 a8 e' f g bes | a8 d cis2
+          | a8 c b2 | g8 bes a4. d,8 | e2
+          r8 a,8 a' g e2~ | e2 r8 a,8 | g' f d2~ | d2
+          r8 gis,8
+          \alternative {
+            { | f'8 e b2~ | b2 c4 | cis2.~ | cis2 r8 }
+            { | f8 e b2 | bes8 g'8 f4 \fermata cis8 e8 | d2.~ | d2 r8 }
+          }
+        }
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "1."
+        \repeat volta 2 {
+          There | was a boy;
+          | _ A ve -- ry strange, en -- | chan -- ted boy; %|
+          They say he wan -- dered | ve -- ry far;
+          | Ve -- ry far, | o -- ver land and | sea;
+          A | lit -- tle shy | _ and | sad of eye; | _
+          But
+          \alternative {
+            {  | ve -- ry wise | _ was | he. | _ }
+          }
+        }
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \repeat segno 2 {
+        \set stanza = "2."
+        \repeat volta 2 {
+          And | then one day;
+          | _ One ma -- gic day he | passed my way; %|
+          And as we spoke of | ma -- ny things,
+          | Fools and kings, | this he said to | me:
+          ``The | great -- est thing | _ you'll | e -- ver learn; | _
+          Is
+          \alternative {
+            { | "" "" "" | "" "" | "" | "" }
+            { | just to love | and be loved in re -- | turn.'' }
+          }
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        \repeat volta 2 {
+          s8 | d2.:m | g:m
+          | d:m
+          | g:m | d4:m a2
+          | d4:m7 d2:dim7 | g4:m d2:m | e2.:m7.5-
+          | a | a:7 | d:m | d:m
+          \alternative {
+            { | e | e | a | a2:7~ 8 }
+            { | e2. | g2:m7 a4:7 | d2.:m | d2:m~ 8 }
+          }
+        }
+      }
+    }
+    %\setStaffSize #15 % for better fit
+    \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
