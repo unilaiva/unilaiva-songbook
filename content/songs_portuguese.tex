@@ -5384,10 +5384,15 @@
       \[\mn{A}]O \[\bmc\mn{A&}]meu \[\mn{A}]con\[\mncadj{-.15ex}{E}]s|\[D7]e\[\bm\mn{D}]{lho\jw é} \[\mn{C}]pra \[\mn{A}]te |\[\mnc{D}G7]ver \[\bm{}] \[\mn{E}]fe\[\mncadj{-.45ex}{C}]l|\[C]iz \up{2}(\[\bm{}]{} | \e)\altchords{|D7 |G7 |C \ac<2>{| \e}}
     \endrep
   \mnendverse
-  \ifchorded\vfill\hfill\transpose{3}% must have invert transpose here
+  \ifchorded\ifcharangobook\else
+    % Show guitar chord help if chorded & not charango.
+    % If song uses \transpose, must add inverted transpose here, and change
+    % the gtabs to transposed versions.
+    \transpose{3}% Inverted transpose here
+    \vfill\hfill%
     % \gtab{C6}{X32210:043210} \gtab{F6}{100211:200311} \gtab{B&7}{X13131:013141} \gtab{A&7}{464544:131222}% This line is for key C
-     \gtab{A6}{X02222:001111} \gtab{D6}{XX0202:000102}% this line for transposed key A
-  \fi
+    \gtab{A6}{X02222:001111} \gtab{D6}{XX0202:000102}% this line for transposed key A
+  \fi\fi
   \showlilypondfalse% to save space
   \begin{lilywrap}\begin{lilypond}[]
     \include "ulsbs-include-head.ly"
