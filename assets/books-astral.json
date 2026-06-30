@@ -126,477 +126,245 @@
       }
     }
   ],
-  "books": [
-    {
-      "enabled": true,
-      "tabname": "verde-musical",
-      "file": "unilaiva-astral-verde_A5.pdf",
-      "image": "unilaiva-astral-verde_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-verde_SOCIAL_1200x630.png",
-      "tag_ids": [ "chords", "sheetmusic", "guitar" ],
-      "title_i18n": {
-        "pt": "O Livro Verde",
-        "en": "The Green Book",
-        "fi": "Vihreä Kirja"
-      },
+  "variant_types": {
+    "default": {
+      "view_id_part": "musical",
+      "tag_ids": ["chords", "sheetmusic", "guitar"],
       "subtitle_i18n": {
         "en": "With musical information",
         "pt": "Com informação musical",
         "fi": "Musiikillisin tiedoin"
-      },
-      "description_i18n": {
-        "en": "Browse The Green Book variant with lyrics, chords and sheet music.",
-        "pt": "Navegue pela variante de O Livro Verde com letras, acordes e partituras.",
-        "fi": "Selaa Vihreän Kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/wQrAjTpW8RMsaKo",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        }
-      ]
+      }
     },
-    {
-      "enabled": true,
-      "tabname": "verde-lyricsonly",
-      "file": "unilaiva-astral-verde_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-verde_LYRICS-ONLY_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-verde_SOCIAL_1200x630.png",
-      "tag_ids": [ "lyricsonly" ],
-      "title_i18n": {
-        "pt": "O Livro Verde",
-        "en": "The Green Book",
-        "fi": "Vihreä Kirja"
-      },
+    "lyrics": {
+      "view_id_part": "lyricsonly",
+      "tag_ids": ["lyricsonly"],
       "subtitle_i18n": {
         "en": "Lyrics Only",
         "pt": "Somente letras",
         "fi": "Vain sanoitukset"
-      },
-      "description_i18n": {
-        "en": "Browse The Green Book's lyrics-only variant.",
-        "pt": "Navegue pela variante somente com letras de O Livro Verde.",
-        "fi": "Selaa Vihreän Kirjan vain sanoitukset sisältävää varianttia."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/wQrAjTpW8RMsaKo",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        }
-      ]
+      }
     },
-    {
-      "enabled": true,
-      "tabname": "cura-musical",
-      "file": "unilaiva-astral-cura_A5.pdf",
-      "image": "unilaiva-astral-cura_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-cura_SOCIAL_1200x630.png",
-      "tag_ids": [ "chords", "sheetmusic", "guitar" ],
-      "title_i18n": {
-        "pt": "Cura"
-      },
-      "subtitle_i18n": {
-        "en": "With musical information",
-        "pt": "Com informação musical",
-        "fi": "Musiikillisin tiedoin"
-      },
-      "description_i18n": {
-        "en": "Browse Cura variant with lyrics, chords and sheet music.",
-        "pt": "Navegue pela variante de Cura com letras, acordes e partituras.",
-        "fi": "Selaa Cura-kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/TW4qDJbN3KKwEsy",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        },
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/canaljagube/sets/hinario-de-cura",
-          "title_i18n": {
-            "en": "Studio recording of Cura I &amp; II",
-            "pt": "Gravação de estúdio de Cura I &amp; II",
-            "fi": "Studioäänite: Cura I &amp; II"
-          }
-        },
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/spencer-stewart-3/sets/sao-miguel-work-with-padrinho",
-          "title_i18n": {
-            "en": "São Miguel work with Alfredo",
-            "pt": "Trabalho de São Miguel com Alfredo",
-            "fi": "São Miguel -työ Alfredon kanssa"
-          }
-        }
-      ]
-    },
-    {
-      "enabled": true,
-      "tabname": "cura-lyricsonly",
-      "file": "unilaiva-astral-cura_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-cura_LYRICS-ONLY_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-cura_SOCIAL_1200x630.png",
-      "tag_ids": [ "lyricsonly" ],
-      "title_i18n": {
-        "pt": "Cura"
-      },
-      "subtitle_i18n": {
-        "en": "Lyrics Only",
-        "pt": "Somente letras",
-        "fi": "Vain sanoitukset"
-      },
-      "description_i18n": {
-        "en": "Browse Cura's lyrics-only variant.",
-        "pt": "Navegue pela variante somente com letras de Cura.",
-        "fi": "Selaa Cura-kirjan vain sanoitukset sisältävää varianttia."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/TW4qDJbN3KKwEsy",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        },
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/canaljagube/sets/hinario-de-cura",
-          "title_i18n": {
-            "en": "Studio recording of Cura I &amp; II",
-            "pt": "Gravação de estúdio de Cura I &amp; II",
-            "fi": "Studioäänite: Cura I &amp; II"
-          }
-        },
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/spencer-stewart-3/sets/sao-miguel-work-with-padrinho",
-          "title_i18n": {
-            "en": "São Miguel work with Alfredo",
-            "pt": "Trabalho de São Miguel com Alfredo",
-            "fi": "São Miguel -työ Alfredon kanssa"
-          }
-        }
-      ]
-    },
-    {
-      "enabled": true,
-      "tabname": "alfredo-novas-musical",
-      "file": "unilaiva-astral-alfredo-novas_A5.pdf",
-      "image": "unilaiva-astral-alfredo-novas_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-alfredo-novas_SOCIAL_1200x630.png",
-      "tag_ids": [ "chords", "sheetmusic", "guitar" ],
-      "title_i18n": {
-        "pt": "Novas de Alfredo"
-      },
-      "subtitle_i18n": {
-        "en": "With musical information",
-        "pt": "Com informação musical",
-        "fi": "Musiikillisin tiedoin"
-      },
-      "description_i18n": {
-        "en": "Browse Novas de Alfredo variant with lyrics, chords and sheet music.",
-        "pt": "Navegue pela variante de Novas de Alfredo com letras, acordes e partituras.",
-        "fi": "Selaa Novas de Alfredo -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/FXiYJRm5bwWECWq",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        },
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/ivo-nei/sets/nova-era-padrinho-alfredo",
-          "title_i18n": {
-            "en": "Nova Era (official)",
-            "pt": "Nova Era (oficial)",
-            "fi": "Nova Era (virallinen)"
-          }
-        }
-      ]
-    },
-    {
-      "enabled": true,
-      "tabname": "alfredo-novas-lyricsonly",
-      "file": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-alfredo-novas_SOCIAL_1200x630.png",
-      "tag_ids": [ "lyricsonly" ],
-      "title_i18n": {
-        "pt": "Novas de Alfredo"
-      },
-      "subtitle_i18n": {
-        "en": "Lyrics Only",
-        "pt": "Somente letras",
-        "fi": "Vain sanoitukset"
-      },
-      "description_i18n": {
-        "en": "Browse Novas de Alfredo's lyrics-only variant.",
-        "pt": "Navegue pela variante somente com letras de Novas de Alfredo.",
-        "fi": "Selaa Novas de Alfredo -kirjan vain sanoitukset sisältävää varianttia."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/FXiYJRm5bwWECWq",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        },
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/ivo-nei/sets/nova-era-padrinho-alfredo",
-          "title_i18n": {
-            "en": "Nova Era (official)",
-            "pt": "Nova Era (oficial)",
-            "fi": "Nova Era (virallinen)"
-          }
-        }
-      ]
-    },
-    {
-      "enabled": true,
-      "tabname": "transparencia-musical",
-      "file": "unilaiva-astral-transparencia_A5.pdf",
-      "image": "unilaiva-astral-transparencia_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-transparencia_SOCIAL_1200x630.png",
-      "tag_ids": [ "chords", "sheetmusic", "guitar" ],
-      "title_i18n": {
-        "pt": "À Transparência"
-      },
-      "subtitle_i18n": {
-        "en": "With musical information",
-        "pt": "Com informação musical",
-        "fi": "Musiikillisin tiedoin"
-      },
-      "description_i18n": {
-        "en": "Browse À Transparência variant with lyrics, chords and sheet music.",
-        "pt": "Navegue pela variante de À Transparência com letras, acordes e partituras.",
-        "fi": "Selaa À Transparência -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/unilarva/sets/transparencia-hinario",
-          "title_i18n": {
-            "en": "Official recording",
-            "pt": "Gravação oficial",
-            "fi": "'Virallinen' äänite"
-          }
-        },
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/QCNzMj4r98q7gXo",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        }
-      ]
-    },
-    {
-      "enabled": true,
-      "tabname": "transparencia-lyricsonly",
-      "file": "unilaiva-astral-transparencia_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-transparencia_LYRICS-ONLY_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-transparencia_SOCIAL_1200x630.png",
-      "tag_ids": [ "lyricsonly" ],
-      "title_i18n": {
-        "pt": "À Transparência"
-      },
-      "subtitle_i18n": {
-        "en": "Lyrics Only",
-        "pt": "Somente letras",
-        "fi": "Vain sanoitukset"
-      },
-      "description_i18n": {
-        "en": "Browse À Transparência's lyrics-only variant.",
-        "pt": "Navegue pela variante somente com letras de À Transparência.",
-        "fi": "Selaa À Transparência -kirjan vain sanoitukset sisältävää varianttia."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/unilarva/sets/transparencia-hinario",
-          "title_i18n": {
-            "en": "Official recording",
-            "pt": "Gravação oficial",
-            "fi": "'Virallinen' äänite"
-          }
-        },
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/QCNzMj4r98q7gXo",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        }
-      ]
-    },
-    {
-      "enabled": true,
-      "tabname": "completa-musical",
-      "file": "unilaiva-astral-completa_A5.pdf",
-      "image": "unilaiva-astral-completa_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
-      "tag_ids": [ "complete.comp", "chords", "sheetmusic", "guitar" ],
-      "title_i18n": {
-        "pt": "A Compilação Completa"
-      },
-      "subtitle_i18n": {
-        "en": "With musical information",
-        "pt": "Com informação musical",
-        "fi": "Musiikillisin tiedoin"
-      },
-      "description_i18n": {
-        "en": "Browse A Compilação Completa variant with lyrics, chords and sheet music. This book contains the chapters of all other books.",
-        "pt": "Navegue pela variante de A Compilação Completa com letras, acordes e partituras. Este livro contém os capítulos de todos os outros livros.",
-        "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/gL9bDmeECBp6ZxB",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        }
-      ]
-    },
-    {
-      "enabled": true,
-      "tabname": "completa-lyricsonly",
-      "file": "unilaiva-astral-completa_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-astral-completa_LYRICS-ONLY_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
-      "tag_ids": [ "complete.comp", "lyricsonly" ],
-      "title_i18n": {
-        "pt": "A Compilação Completa"
-      },
-      "subtitle_i18n": {
-        "en": "Lyrics Only",
-        "pt": "Somente letras",
-        "fi": "Vain sanoitukset"
-      },
-      "description_i18n": {
-        "en": "Browse A Compilação Completa's lyrics-only variant. This book contains the chapters of all other books.",
-        "pt": "Navegue pela variante somente com letras de A Compilação Completa. Este livro contém os capítulos de todos os outros livros.",
-        "fi": "Selaa A Compilação Completa -kirjan vain sanoitukset sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/gL9bDmeECBp6ZxB",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        }
-      ]
-    },
-    {
-      "enabled": true,
-      "tabname": "completa-charango",
-      "file": "unilaiva-astral-completa_CHARANGO_A5.pdf",
-      "image": "unilaiva-astral-completa_CHARANGO_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
-      "tag_ids": [ "complete.comp", "chords", "sheetmusic", "charango" ],
-      "title_i18n": {
-        "pt": "A Compilação Completa"
-      },
+    "charango": {
+      "tag_ids": ["charango", "chords", "sheetmusic"],
       "subtitle_i18n": {
         "en": "For Charango",
         "pt": "Por Charango",
         "fi": "Charangolle"
-      },
-      "description_i18n": {
-        "en": "Browse A Compilação Completa variant with lyrics, chords, sheet music and charango notation. This book contains the chapters of all other books.",
-        "pt": "Navegue pela variante de A Compilação Completa com letras, acordes, partituras e notação para charango. Este livro contém os capítulos de todos os outros livros.",
-        "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut, nuotit ja charango-notaation sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/gL9bDmeECBp6ZxB",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        }
-      ]
+      }
     },
-    {
-      "enabled": true,
-      "tabname": "completa-bassclef",
-      "file": "unilaiva-astral-completa_BASSCLEF_A5.pdf",
-      "image": "unilaiva-astral-completa_BASSCLEF_A5_MODIFIED.png",
-      "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
-      "tag_ids": [ "complete.comp", "sheetmusic.bass" ],
-      "title_i18n": {
-        "pt": "A Compilação Completa"
-      },
+    "bassclef": {
+      "tag_ids": ["sheetmusic.bass"],
       "subtitle_i18n": {
         "en": "Sheet Music for Bass Clef",
         "pt": "Partitura para Clave de Fá",
         "fi": "Nuotit F-avaimella"
-      },
-      "description_i18n": {
-        "en": "Browse A Compilação Completa variant with lyrics, chords and bass clef sheet music. This book contains the chapters of all other books.",
-        "pt": "Navegue pela variante de A Compilação Completa com letras, acordes e partituras em clave de fá. Este livro contém os capítulos de todos os outros livros.",
-        "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja bassoklaaviset nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
-      },
+      }
+    }
+  },
+  "book_sources": [
+    {
+      "source_book_id": "verde",
+      "enabled": true,
+      "variants_enabled": ["default", "lyrics"],
+      "title_i18n": { "pt": "O Livro Verde", "en": "The Green Book", "fi": "Vihreä Kirja" },
+      "social_image": "unilaiva-astral-verde_SOCIAL_1200x630.png",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/wQrAjTpW8RMsaKo",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ],
+      "variants": {
+        "default": {
+          "file": "unilaiva-astral-verde_A5.pdf",
+          "image": "unilaiva-astral-verde_A5_MODIFIED.png",
+          "description_i18n": {
+            "en": "Browse The Green Book variant with lyrics, chords and sheet music.",
+            "pt": "Navegue pela variante de O Livro Verde com letras, acordes e partituras.",
+            "fi": "Selaa Vihreän Kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+          }
+        },
+        "lyrics": {
+          "file": "unilaiva-astral-verde_LYRICS-ONLY_A5.pdf",
+          "image": "unilaiva-astral-verde_LYRICS-ONLY_A5_MODIFIED.png",
+          "description_i18n": {
+            "en": "Browse The Green Book's lyrics-only variant.",
+            "pt": "Navegue pela variante somente com letras de O Livro Verde.",
+            "fi": "Selaa Vihreän Kirjan vain sanoitukset sisältävää varianttia."
+          }
+        }
+      }
+    },
+    {
+      "source_book_id": "cura",
+      "enabled": true,
+      "variants_enabled": ["default", "lyrics"],
+      "title_i18n": { "pt": "Cura" },
+      "social_image": "unilaiva-astral-cura_SOCIAL_1200x630.png",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/TW4qDJbN3KKwEsy",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/canaljagube/sets/hinario-de-cura",
+          "title_i18n": {
+            "en": "Studio recording of Cura I &amp; II",
+            "pt": "Gravação de estúdio de Cura I &amp; II",
+            "fi": "Studioäänite: Cura I &amp; II"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/spencer-stewart-3/sets/sao-miguel-work-with-padrinho",
+          "title_i18n": {
+            "en": "São Miguel work with Alfredo",
+            "pt": "Trabalho de São Miguel com Alfredo",
+            "fi": "São Miguel -työ Alfredon kanssa"
+          }
+        }
+      ],
+      "variants": {
+        "default": {
+          "file": "unilaiva-astral-cura_A5.pdf",
+          "image": "unilaiva-astral-cura_A5_MODIFIED.png",
+          "description_i18n": {
+            "en": "Browse Cura variant with lyrics, chords and sheet music.",
+            "pt": "Navegue pela variante de Cura com letras, acordes e partituras.",
+            "fi": "Selaa Cura-kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+          }
+        },
+        "lyrics": {
+          "file": "unilaiva-astral-cura_LYRICS-ONLY_A5.pdf",
+          "image": "unilaiva-astral-cura_LYRICS-ONLY_A5_MODIFIED.png",
+          "description_i18n": {
+            "en": "Browse Cura's lyrics-only variant.",
+            "pt": "Navegue pela variante somente com letras de Cura.",
+            "fi": "Selaa Cura-kirjan vain sanoitukset sisältävää varianttia."
+          }
+        }
+      }
+    },
+    {
+      "source_book_id": "alfredo-novas",
+      "enabled": true,
+      "variants_enabled": ["default", "lyrics"],
+      "title_i18n": { "pt": "Novas de Alfredo" },
+      "social_image": "unilaiva-astral-alfredo-novas_SOCIAL_1200x630.png",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/FXiYJRm5bwWECWq",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/ivo-nei/sets/nova-era-padrinho-alfredo",
+          "title_i18n": {
+            "en": "Nova Era (official)",
+            "pt": "Nova Era (oficial)",
+            "fi": "Nova Era (virallinen)"
+          }
+        }
+      ],
+      "variants": {
+        "default": {
+          "file": "unilaiva-astral-alfredo-novas_A5.pdf",
+          "image": "unilaiva-astral-alfredo-novas_A5_MODIFIED.png",
+          "description_i18n": {
+            "en": "Browse Novas de Alfredo variant with lyrics, chords and sheet music.",
+            "pt": "Navegue pela variante de Novas de Alfredo com letras, acordes e partituras.",
+            "fi": "Selaa Novas de Alfredo -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+          }
+        },
+        "lyrics": {
+          "file": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5.pdf",
+          "image": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5_MODIFIED.png",
+          "description_i18n": {
+            "en": "Browse Novas de Alfredo's lyrics-only variant.",
+            "pt": "Navegue pela variante somente com letras de Novas de Alfredo.",
+            "fi": "Selaa Novas de Alfredo -kirjan vain sanoitukset sisältävää varianttia."
+          }
+        }
+      }
+    },
+    {
+      "source_book_id": "transparencia",
+      "enabled": true,
+      "variants_enabled": ["default", "lyrics"],
+      "title_i18n": { "pt": "À Transparência" },
+      "social_image": "unilaiva-astral-transparencia_SOCIAL_1200x630.png",
+      "has_printout_booklet_file": true,
+      "has_printout_easy_file": true,
+      "audio_links": [
+        {
+          "enabled": true,
+          "url": "https://soundcloud.com/unilarva/sets/transparencia-hinario",
+          "title_i18n": {
+            "en": "Official recording",
+            "pt": "Gravação oficial",
+            "fi": "'Virallinen' äänite"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/QCNzMj4r98q7gXo",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
+          }
+        }
+      ],
+      "variants": {
+        "default": {
+          "file": "unilaiva-astral-transparencia_A5.pdf",
+          "image": "unilaiva-astral-transparencia_A5_MODIFIED.png",
+          "description_i18n": {
+            "en": "Browse À Transparência variant with lyrics, chords and sheet music.",
+            "pt": "Navegue pela variante de À Transparência com letras, acordes e partituras.",
+            "fi": "Selaa À Transparência -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+          }
+        },
+        "lyrics": {
+          "file": "unilaiva-astral-transparencia_LYRICS-ONLY_A5.pdf",
+          "image": "unilaiva-astral-transparencia_LYRICS-ONLY_A5_MODIFIED.png",
+          "description_i18n": {
+            "en": "Browse À Transparência's lyrics-only variant.",
+            "pt": "Navegue pela variante somente com letras de À Transparência.",
+            "fi": "Selaa À Transparência -kirjan vain sanoitukset sisältävää varianttia."
+          }
+        }
+      }
+    },
+    {
+      "source_book_id": "completa",
+      "enabled": true,
+      "variants_enabled": ["default", "lyrics", "charango", "bassclef"],
+      "title_i18n": { "pt": "A Compilação Completa" },
+      "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -609,7 +377,49 @@
             "fi": "Nuoteista generoidut melodiat"
           }
         }
-      ]
+      ],
+      "variants": {
+        "default": {
+          "file": "unilaiva-astral-completa_A5.pdf",
+          "image": "unilaiva-astral-completa_A5_MODIFIED.png",
+          "tag_ids": ["complete.comp"],
+          "description_i18n": {
+            "en": "Browse A Compilação Completa variant with lyrics, chords and sheet music. This book contains the chapters of all other books.",
+            "pt": "Navegue pela variante de A Compilação Completa com letras, acordes e partituras. Este livro contém os capítulos de todos os outros livros.",
+            "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+          }
+        },
+        "lyrics": {
+          "file": "unilaiva-astral-completa_LYRICS-ONLY_A5.pdf",
+          "image": "unilaiva-astral-completa_LYRICS-ONLY_A5_MODIFIED.png",
+          "tag_ids": ["complete.comp"],
+          "description_i18n": {
+            "en": "Browse A Compilação Completa's lyrics-only variant. This book contains the chapters of all other books.",
+            "pt": "Navegue pela variante somente com letras de A Compilação Completa. Este livro contém os capítulos de todos os outros livros.",
+            "fi": "Selaa A Compilação Completa -kirjan vain sanoitukset sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+          }
+        },
+        "charango": {
+          "file": "unilaiva-astral-completa_CHARANGO_A5.pdf",
+          "image": "unilaiva-astral-completa_CHARANGO_A5_MODIFIED.png",
+          "tag_ids": ["complete.comp"],
+          "description_i18n": {
+            "en": "Browse A Compilação Completa variant with lyrics, chords, sheet music and charango notation. This book contains the chapters of all other books.",
+            "pt": "Navegue pela variante de A Compilação Completa com letras, acordes, partituras e notação para charango. Este livro contém os capítulos de todos os outros livros.",
+            "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut, nuotit ja charango-notaation sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+          }
+        },
+        "bassclef": {
+          "file": "unilaiva-astral-completa_BASSCLEF_A5.pdf",
+          "image": "unilaiva-astral-completa_BASSCLEF_A5_MODIFIED.png",
+          "tag_ids": ["complete.comp"],
+          "description_i18n": {
+            "en": "Browse A Compilação Completa variant with lyrics, chords and bass clef sheet music. This book contains the chapters of all other books.",
+            "pt": "Navegue pela variante de A Compilação Completa com letras, acordes e partituras em clave de fá. Este livro contém os capítulos de todos os outros livros.",
+            "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja bassoklaaviset nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+          }
+        }
+      }
     }
   ]
 }

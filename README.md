@@ -199,6 +199,7 @@ Top-level files and directories you are most likely to need:
   - shared includes, class files, and selection helpers
 - `assets/`
   - deployment metadata and other project assets
+  - songbook metadata format documentation in [assets/README.md](assets/README.md)
 - `ulsbs-config.toml`
   - repository-specific build configuration and profiles
 - `ulsbs/`

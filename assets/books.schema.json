@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://unilaiva.example.com/example-data/books.schema.json",
+  "title": "Songbook metadata",
+  "type": "object",
+  "required": ["book_path", "book_sources"],
+  "additionalProperties": false,
+  "properties": {
+    "book_path": { "type": "string" },
+    "image_path": { "type": ["string", "null"] },
+    "icon_path": { "type": ["string", "null"] },
+    "social_path": { "type": ["string", "null"] },
+    "json_path": { "type": ["string", "null"] },
+
+    "tags": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/tag" },
+      "default": []
+    },
+
+    "variant_types": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/variantType" },
+      "default": {}
+    },
+
+    "book_sources": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/source" },
+      "default": []
+    }
+  },
+
+  "definitions": {
+    "i18nRecord": {
+      "type": "object",
+      "propertyNames": { "type": "string" },
+      "additionalProperties": {
+        "anyOf": [
+          { "type": "string" },
+          {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          { "type": "null" }
+        ]
+      },
+      "description": "Map of language code to string | string[] | null. '*' acts as wildcard for all languages."
+    },
+
+    "tag": {
+      "type": "object",
+      "required": ["id", "text_i18n"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "iconfile_i18n": { "$ref": "#/definitions/i18nRecord" },
+        "text_i18n": { "$ref": "#/definitions/i18nRecord" }
+      }
+    },
+
+    "audioLink": {
+      "type": "object",
+      "required": ["enabled", "url", "title_i18n"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "url": { "type": "string" },
+        "title_i18n": { "$ref": "#/definitions/i18nRecord" }
+      }
+    },
+
+    "altPrintoutLink": {
+      "type": "object",
+      "required": ["enabled", "file", "title_i18n"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "file": { "type": "string", "description": "Filename, relative path under book_path/printouts, or absolute URL." },
+        "title_i18n": { "$ref": "#/definitions/i18nRecord" }
+      }
+    },
+
+    "variantType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label_i18n": { "$ref": "#/definitions/i18nRecord" },
+        "subtitle_i18n": { "$ref": "#/definitions/i18nRecord" },
+        "description_i18n": { "$ref": "#/definitions/i18nRecord" },
+        "view_id_part": { "type": ["string", "null"] },
+        "tag_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      }
+    },
+
+    "variantAsset": {
+      "type": "object",
+      "required": ["file"],
+      "additionalProperties": false,
+      "properties": {
+        "file": { "type": "string" },
+        "image": { "type": ["string", "null"] },
+        "view_id": { "type": ["string", "null"] },
+        "social_image": { "type": ["string", "null"] },
+        "subtitle_i18n": { "$ref": "#/definitions/i18nRecord" },
+        "description_i18n": { "$ref": "#/definitions/i18nRecord" },
+        "altview_url": { "type": ["string", "null"] },
+        "has_printout_booklet_file": { "type": ["boolean", "null"] },
+        "has_printout_easy_file": { "type": ["boolean", "null"] },
+        "extra_printout_links": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/altPrintoutLink" }
+        },
+        "tag_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "audio_links": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/audioLink" }
+        }
+      }
+    },
+
+    "source": {
+      "type": "object",
+      "required": ["source_book_id", "enabled", "title_i18n", "variants"],
+      "additionalProperties": false,
+      "properties": {
+        "source_book_id": { "type": "string" },
+        "enabled": { "type": "boolean" },
+        "view_id_part": { "type": ["string", "null"] },
+        "title_i18n": { "$ref": "#/definitions/i18nRecord" },
+        "subtitle_i18n": { "$ref": "#/definitions/i18nRecord" },
+        "description_i18n": { "$ref": "#/definitions/i18nRecord" },
+        "image": { "type": ["string", "null"] },
+        "tag_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "variants_enabled": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "variants": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": { "$ref": "#/definitions/variantAsset" }
+        },
+        "audio_links": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/audioLink" }
+        },
+        "extra_printout_links": { "$ref": "#/definitions/altPrintoutLink" },
+        "has_printout_booklet_file": { "type": ["boolean", "null"] },
+        "has_printout_easy_file": { "type": ["boolean", "null"] },
+        "altview_url": { "type": ["string", "null"] },
+        "social_image": { "type": ["string", "null"] }
+      }
+    },
+
+    "book": { "description": "(Removed) runtime-expanded shape; not part of authored JSON" }
+  }
+}

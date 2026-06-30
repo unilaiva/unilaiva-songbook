@@ -192,123 +192,84 @@
       }
     }
   ],
-  "books": [
+  "variant_types": {
+    "default": {
+      "view_id_part": "musical",
+      "tag_ids": ["chords"]
+    },
+    "lyrics": {
+      "view_id_part": "lyricsonly",
+      "tag_ids": ["lyricsonly"]
+    }
+  },
+  "book_sources": [
     {
+      "source_book_id": "complete",
       "enabled": true,
-      "tabname": "complete-musical",
-      "file": "unilaiva-songbook_A5.pdf",
-      "image": "unilaiva-songbook_A5_MODIFIED.png",
+      "variants_enabled": ["default", "lyrics"],
+      "title_i18n": { "en": "Unilaiva Songbook" },
       "social_image": "unilaiva-songbook_SOCIAL_1200x630.png",
-      "tag_ids": [ "complete.ed", "chords" ],
-      "title_i18n": {
-        "en": "Unilaiva Songbook"
-      },
-      "subtitle_i18n": {
-        "en": "Complete Edition, with chords",
-        "pt": "Edição completa, com acordes",
-        "fi": "Täysi editio, soinnuilla"
-      },
-      "description_i18n": {
-        "en": "Browse the complete Unilaiva Songbook variant with lyrics and chords.",
-        "pt": "Navegue pela variante completa do Unilaiva Songbook com letras e acordes.",
-        "fi": "Selaa täyttä Unilaiva Songbook -varianttia sanoituksineen ja sointuineen."
-      },
+      "tag_ids": ["complete.ed"],
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
-      "extra_printout_links": [
+      "audio_links": [
         {
-          "enabled": false,
-          "file": "extraprintout.pdf",
+          "enabled": true,
+          "url": "https://soundcloud.com/unilarva/sets/unilaiva-songbook",
           "title_i18n": {
-            "en": "Extra printout",
-            "fi": "Lisätuloste"
+            "en": "Playlist on SoundCloud",
+            "pt": "Lista de reprodução no SoundCloud",
+            "fi": "Soittolista SoundCloudissa"
+          }
+        },
+        {
+          "enabled": true,
+          "url": "https://pilvi.aavalla.net/s/tMaDaPFtCCxtaYf",
+          "title_i18n": {
+            "en": "Melodies generated from notation",
+            "pt": "Melodias geradas a partir de notação",
+            "fi": "Nuoteista generoidut melodiat"
           }
         }
       ],
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/unilarva/sets/unilaiva-songbook",
-          "title_i18n": {
-            "en": "Playlist on SoundCloud",
-            "pt": "Lista de reprodução no SoundCloud",
-            "fi": "Soittolista SoundCloudissa"
+      "variants": {
+        "default": {
+          "file": "unilaiva-songbook_A5.pdf",
+          "image": "unilaiva-songbook_A5_MODIFIED.png",
+          "subtitle_i18n": {
+            "en": "Complete Edition, with chords",
+            "pt": "Edição completa, com acordes",
+            "fi": "Täysi editio, soinnuilla"
+          },
+          "description_i18n": {
+            "en": "Browse the complete Unilaiva Songbook variant with lyrics and chords.",
+            "pt": "Navegue pela variante completa do Unilaiva Songbook com letras e acordes.",
+            "fi": "Selaa täyttä Unilaiva Songbook -varianttia sanoituksineen ja sointuineen."
           }
         },
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/tMaDaPFtCCxtaYf",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
+        "lyrics": {
+          "file": "unilaiva-songbook_LYRICS-ONLY_A5.pdf",
+          "image": "unilaiva-songbook_LYRICS-ONLY_A5_MODIFIED.png",
+          "subtitle_i18n": {
+            "en": "Lyrics Only",
+            "pt": "Somente letras",
+            "fi": "Vain sanoitukset"
+          },
+          "description_i18n": {
+            "en": "Browse the Unilaiva Songbook's lyrics-only variant.",
+            "pt": "Navegue pela variante somente com letras do Unilaiva Songbook.",
+            "fi": "Selaa Unilaiva Songbook -laulukirjan vain sanoitukset sisältävää varianttia."
           }
         }
-      ]
+      }
     },
     {
-      "enabled": true,
-      "tabname": "complete-lyricsonly",
-      "file": "unilaiva-songbook_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-songbook_LYRICS-ONLY_A5_MODIFIED.png",
-      "social_image": "unilaiva-songbook_SOCIAL_1200x630.png",
-      "tag_ids": [ "complete.ed", "lyricsonly" ],
-      "title_i18n": {
-        "en": "Unilaiva Songbook"
-      },
-      "subtitle_i18n": {
-        "en": "Lyrics Only",
-        "pt": "Somente letras",
-        "fi": "Vain sanoitukset"
-      },
-      "description_i18n": {
-        "en": "Browse the Unilaiva Songbook's lyrics-only variant.",
-        "pt": "Navegue pela variante somente com letras do Unilaiva Songbook.",
-        "fi": "Selaa Unilaiva Songbook -laulukirjan vain sanoitukset sisältävää varianttia."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/unilarva/sets/unilaiva-songbook",
-          "title_i18n": {
-            "en": "Playlist on SoundCloud",
-            "pt": "Lista de reprodução no SoundCloud",
-            "fi": "Soittolista SoundCloudissa"
-          }
-        },
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/tMaDaPFtCCxtaYf",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
-          }
-        }
-      ]
-    },
-    {
+      "source_book_id": "part1",
       "enabled": false,
-      "tabname": "part1-musical",
-      "file": "unilaiva-songbook_part1_A5.pdf",
-      "image": "unilaiva-songbook_part1_A5_MODIFIED.png",
+      "variants_enabled": ["default", "lyrics"],
+      "title_i18n": { "en": "Unilaiva Songbook: part 1" },
       "social_image": "unilaiva-songbook_part1_SOCIAL_1200x630.png",
-      "tag_ids": [ "partial.ed", "chapter1", "chapter2", "chords" ],
-      "title_i18n": {
-        "en": "Unilaiva Songbook: part 1"
-      },
-      "subtitle_i18n": {
-        "en": "Chapters: Español, Portuguêse; with chords",
-        "pt": "Capítulos: Español, Portuguêse; com acordes",
-        "fi": "Luvut: Español, Portuguêse; soinnuilla"
-      },
-      "description_i18n": {
-        "en": "Browse part 1 of the Unilaiva Songbook variant with lyrics and chords.",
-        "pt": "Navegue pela parte 1 da variante do Unilaiva Songbook com letras e acordes.",
-        "fi": "Selaa Unilaiva Songbook -laulukirjan sanoja ja sointuja sisältävän variantin osaa 1."
-      },
+      "tag_ids": ["partial.ed", "chapter1", "chapter2"],
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -330,71 +291,45 @@
             "fi": "Nuoteista generoidut melodiat"
           }
         }
-      ]
-    },
-    {
-      "enabled": false,
-      "tabname": "part1-lyricsonly",
-      "file": "unilaiva-songbook_part1_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-songbook_part1_LYRICS-ONLY_A5_MODIFIED.png",
-      "social_image": "unilaiva-songbook_part1_SOCIAL_1200x630.png",
-      "tag_ids": [ "partial.ed", "chapter1", "chapter2", "lyricsonly" ],
-      "title_i18n": {
-        "en": "Unilaiva Songbook: part 1"
-      },
-      "subtitle_i18n": {
-        "en": "Chapters: Español, Portuguêse; lyrics only",
-        "pt": "Capítulos: Español, Portuguêse; somente letras",
-        "fi": "Luvut: Español, Portuguêse; vain sanoitukset"
-      },
-      "description_i18n": {
-        "en": "Browse part 1 of the Unilaiva Songbook's lyrics-only variant.",
-        "pt": "Navegue pela parte 1 da variante somente com letras do Unilaiva Songbook.",
-        "fi": "Selaa Unilaiva Songbook -laulukirjan vain sanoitukset sisältävän variantin osaa 1."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/unilarva/sets/unilaiva-songbook",
-          "title_i18n": {
-            "en": "Playlist on SoundCloud",
-            "pt": "Lista de reprodução no SoundCloud",
-            "fi": "Soittolista SoundCloudissa"
+      ],
+      "variants": {
+        "default": {
+          "file": "unilaiva-songbook_part1_A5.pdf",
+          "image": "unilaiva-songbook_part1_A5_MODIFIED.png",
+          "subtitle_i18n": {
+            "en": "Chapters: Español, Portuguêse; with chords",
+            "pt": "Capítulos: Español, Portuguêse; com acordes",
+            "fi": "Luvut: Español, Portuguêse; soinnuilla"
+          },
+          "description_i18n": {
+            "en": "Browse part 1 of the Unilaiva Songbook variant with lyrics and chords.",
+            "pt": "Navegue pela parte 1 da variante do Unilaiva Songbook com letras e acordes.",
+            "fi": "Selaa Unilaiva Songbook -laulukirjan sanoja ja sointuja sisältävän variantin osaa 1."
           }
         },
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/kZHCJbrc8ybsJRb",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
+        "lyrics": {
+          "file": "unilaiva-songbook_part1_LYRICS-ONLY_A5.pdf",
+          "image": "unilaiva-songbook_part1_LYRICS-ONLY_A5_MODIFIED.png",
+          "subtitle_i18n": {
+            "en": "Chapters: Español, Portuguêse; lyrics only",
+            "pt": "Capítulos: Español, Portuguêse; somente letras",
+            "fi": "Luvut: Español, Portuguêse; vain sanoitukset"
+          },
+          "description_i18n": {
+            "en": "Browse part 1 of the Unilaiva Songbook's lyrics-only variant.",
+            "pt": "Navegue pela parte 1 da variante somente com letras do Unilaiva Songbook.",
+            "fi": "Selaa Unilaiva Songbook -laulukirjan vain sanoitukset sisältävän variantin osaa 1."
           }
         }
-      ]
+      }
     },
     {
+      "source_book_id": "part2",
       "enabled": false,
-      "tabname": "part2-musical",
-      "file": "unilaiva-songbook_part2_A5.pdf",
-      "image": "unilaiva-songbook_part2_A5_MODIFIED.png",
+      "variants_enabled": ["default", "lyrics"],
+      "title_i18n": { "en": "Unilaiva Songbook: part 2" },
       "social_image": "unilaiva-songbook_part2_SOCIAL_1200x630.png",
-      "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "chords" ],
-      "title_i18n": {
-        "en": "Unilaiva Songbook: part 2"
-      },
-      "subtitle_i18n": {
-        "en": "Chapters: English, Saṃskṛtam, Other, Suomi; with chords",
-        "pt": "Capítulos: English, Saṃskṛtam, Other, Suomi; com acordes",
-        "fi": "Luvut: English, Saṃskṛtam, Other, Suomi;  soinnuilla"
-      },
-      "description_i18n": {
-        "en": "Browse part 2 of the Unilaiva Songbook variant with lyrics and chords.",
-        "pt": "Navegue pela parte 2 da variante do Unilaiva Songbook com letras e acordes.",
-        "fi": "Selaa Unilaiva Songbook -laulukirjan sanoja ja sointuja sisältävän variantin osaa 2."
-      },
+      "tag_ids": ["partial.ed", "chapter3", "chapter4", "chapter5", "chapter6"],
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
       "audio_links": [
@@ -416,50 +351,37 @@
             "fi": "Nuoteista generoidut melodiat"
           }
         }
-      ]
-    },
-    {
-      "enabled": false,
-      "tabname": "part2-lyricsonly",
-      "file": "unilaiva-songbook_part2_LYRICS-ONLY_A5.pdf",
-      "image": "unilaiva-songbook_part2_LYRICS-ONLY_A5_MODIFIED.png",
-      "social_image": "unilaiva-songbook_part2_SOCIAL_1200x630.png",
-      "tag_ids": [ "partial.ed", "chapter3", "chapter4", "chapter5", "chapter6", "lyricsonly" ],
-      "title_i18n": {
-        "en": "Unilaiva Songbook: part 2"
-      },
-      "subtitle_i18n": {
-        "en": "Chapters: English, Saṃskṛtam, Other, Suomi; lyrics only",
-        "pt": "Capítulos: English, Saṃskṛtam, Other, Suomi; somente letras",
-        "fi": "Luvut: English, Saṃskṛtam, Other, Suomi; vain sanoitukset"
-      },
-      "description_i18n": {
-        "en": "Browse part 2 of the Unilaiva Songbook's lyrics-only variant.",
-        "pt": "Navegue pela parte 2 da variante somente com letras do Unilaiva Songbook.",
-        "fi": "Selaa Unilaiva Songbook -laulukirjan vain sanoitukset sisältävän variantin osaa 2."
-      },
-      "has_printout_booklet_file": true,
-      "has_printout_easy_file": true,
-      "audio_links": [
-        {
-          "enabled": true,
-          "url": "https://soundcloud.com/unilarva/sets/unilaiva-songbook",
-          "title_i18n": {
-            "en": "Playlist on SoundCloud",
-            "pt": "Lista de reprodução no SoundCloud",
-            "fi": "Soittolista SoundCloudissa"
+      ],
+      "variants": {
+        "default": {
+          "file": "unilaiva-songbook_part2_A5.pdf",
+          "image": "unilaiva-songbook_part2_A5_MODIFIED.png",
+          "subtitle_i18n": {
+            "en": "Chapters: English, Saṃskṛtam, Other, Suomi; with chords",
+            "pt": "Capítulos: English, Saṃskṛtam, Other, Suomi; com acordes",
+            "fi": "Luvut: English, Saṃskṛtam, Other, Suomi;  soinnuilla"
+          },
+          "description_i18n": {
+            "en": "Browse part 2 of the Unilaiva Songbook variant with lyrics and chords.",
+            "pt": "Navegue pela parte 2 da variante do Unilaiva Songbook com letras e acordes.",
+            "fi": "Selaa Unilaiva Songbook -laulukirjan sanoja ja sointuja sisältävän variantin osaa 2."
           }
         },
-        {
-          "enabled": true,
-          "url": "https://pilvi.aavalla.net/s/7qGEe4ikc4dDsJA",
-          "title_i18n": {
-            "en": "Melodies generated from notation",
-            "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
+        "lyrics": {
+          "file": "unilaiva-songbook_part2_LYRICS-ONLY_A5.pdf",
+          "image": "unilaiva-songbook_part2_LYRICS-ONLY_A5_MODIFIED.png",
+          "subtitle_i18n": {
+            "en": "Chapters: English, Saṃskṛtam, Other, Suomi; lyrics only",
+            "pt": "Capítulos: English, Saṃskṛtam, Other, Suomi; somente letras",
+            "fi": "Luvut: English, Saṃskṛtam, Other, Suomi; vain sanoitukset"
+          },
+          "description_i18n": {
+            "en": "Browse part 2 of the Unilaiva Songbook's lyrics-only variant.",
+            "pt": "Navegue pela parte 2 da variante somente com letras do Unilaiva Songbook.",
+            "fi": "Selaa Unilaiva Songbook -laulukirjan vain sanoitukset sisältävän variantin osaa 2."
           }
         }
-      ]
+      }
     }
   ]
 }
