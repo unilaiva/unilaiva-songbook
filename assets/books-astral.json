@@ -13,7 +13,8 @@
       "text_i18n": {
         "en": "tablature for charango",
         "pt": "tablatura para charango",
-        "fi": "charango-tablatuurit"
+        "fi": "charango-tablatuurit",
+        "pe": "tablature fer th' charango, matey"
       }
     },
     {
@@ -23,8 +24,9 @@
       },
       "text_i18n": {
         "en": "tablature for guitar",
-        "pt": "tablatura para guitarra",
-        "fi": "kitara-tablatuurit"
+        "pt": "tablatura para violão",
+        "fi": "kitara-tablatuurit",
+        "pe": "tablature fer th' guitar, matey"
       }
     },
     {
@@ -32,12 +34,14 @@
       "iconfile_i18n": {
         "en": "ulsbs-tag-icon-partial-edition_EN_512x512px.png",
         "pt": "ulsbs-tag-icon-partial-edition_PT_512x512px.png",
-        "fi": "ulsbs-tag-icon-partial-edition_FI_512x512px.png"
+        "fi": "ulsbs-tag-icon-partial-edition_FI_512x512px.png",
+        "pe": "ulsbs-tag-icon-partial-edition_EN_512x512px.png"
       },
       "text_i18n": {
         "en": "partial edition",
         "pt": "edição parcial",
-        "fi": "osittainen editio"
+        "fi": "osittainen editio",
+        "pe": "part o' the treasure"
       }
     },
     {
@@ -45,12 +49,14 @@
       "iconfile_i18n": {
         "en": "ulsbs-tag-icon-complete-edition_EN_512x512px.png",
         "pt": "ulsbs-tag-icon-complete-edition_PT_512x512px.png",
-        "fi": "ulsbs-tag-icon-complete-edition_FI_512x512px.png"
+        "fi": "ulsbs-tag-icon-complete-edition_FI_512x512px.png",
+        "pe": "ulsbs-tag-icon-complete-edition_EN_512x512px.png"
       },
       "text_i18n": {
         "en": "complete edition",
         "pt": "edição completa",
-        "fi": "täysi editio"
+        "fi": "täysi editio",
+        "pe": "the whole booty"
       }
     },
     {
@@ -58,12 +64,14 @@
       "iconfile_i18n": {
         "en": "ulsbs-tag-icon-lyrics-only_EN_512x512px.png",
         "pt": "ulsbs-tag-icon-lyrics-only_PT_512x512px.png",
-        "fi": "ulsbs-tag-icon-lyrics-only_FI_512x512px.png"
+        "fi": "ulsbs-tag-icon-lyrics-only_FI_512x512px.png",
+        "pe": "ulsbs-tag-icon-lyrics-only_EN_512x512px.png"
       },
       "text_i18n": {
         "en": "lyrics only",
         "pt": "somente letras",
-        "fi": "vain lyriikat"
+        "fi": "vain lyriikat",
+        "pe": "just the shanties' words"
       }
     },
     {
@@ -74,7 +82,8 @@
       "text_i18n": {
         "en": "with sheet music, treble clef",
         "pt": "com partitura, clave de sol",
-        "fi": "nuoteilla, G-avain"
+        "fi": "nuoteilla, G-avain",
+        "pe": "with musical charts, treble clef"
       }
     },
     {
@@ -85,7 +94,8 @@
       "text_i18n": {
         "en": "with sheet music, bass clef",
         "pt": "com partitura, clave de fá",
-        "fi": "nuoteilla, F-avain"
+        "fi": "nuoteilla, F-avain",
+        "pe": "with musical charts, bass clef"
       }
     },
     {
@@ -93,12 +103,14 @@
       "iconfile_i18n": {
         "en": "ulsbs-tag-icon-complete-compilation_EN_512x512px.png",
         "pt": "ulsbs-tag-icon-complete-compilation_PT_512x512px.png",
-        "fi": "ulsbs-tag-icon-complete-compilation_FI_512x512px.png"
+        "fi": "ulsbs-tag-icon-complete-compilation_FI_512x512px.png",
+        "pe": "ulsbs-tag-icon-complete-compilation_EN_512x512px.png"
       },
       "text_i18n": {
         "en": "complete compilation",
         "pt": "compilação completa",
-        "fi": "täysi kokoelma"
+        "fi": "täysi kokoelma",
+        "pe": "the full plunder"
       }
     },
     {
@@ -109,7 +121,8 @@
       "text_i18n": {
         "en": "with musical information",
         "fi": "musiikillisin tiedoin",
-        "pt": "com informação musical"
+        "pt": "com informação musical",
+        "pe": "with musical lore"
       }
     },
     {
@@ -117,12 +130,14 @@
       "iconfile_i18n": {
         "en": "ulsbs-tag-icon-chords_EN_512x512px.png",
         "pt": "ulsbs-tag-icon-chords_PT_512x512px.png",
-        "fi": "ulsbs-tag-icon-chords_FI_512x512px.png"
+        "fi": "ulsbs-tag-icon-chords_FI_512x512px.png",
+        "pe": "ulsbs-tag-icon-chords_EN_512x512px.png"
       },
       "text_i18n": {
         "en": "with chords",
         "pt": "com acordes",
-        "fi": "soinnuilla"
+        "fi": "soinnuilla",
+        "pe": "with chords fer yer fiddle"
       }
     }
   ],
@@ -133,7 +148,8 @@
       "subtitle_i18n": {
         "en": "With musical information",
         "pt": "Com informação musical",
-        "fi": "Musiikillisin tiedoin"
+        "fi": "Musiikillisin tiedoin",
+        "pe": "With musical lore"
       }
     },
     "lyrics": {
@@ -142,7 +158,8 @@
       "subtitle_i18n": {
         "en": "Lyrics Only",
         "pt": "Somente letras",
-        "fi": "Vain sanoitukset"
+        "fi": "Vain sanoitukset",
+        "pe": "Just th' Shanties' Words"
       }
     },
     "charango": {
@@ -150,7 +167,8 @@
       "subtitle_i18n": {
         "en": "For Charango",
         "pt": "Por Charango",
-        "fi": "Charangolle"
+        "fi": "Charangolle",
+        "pe": "Fer th' Charango"
       }
     },
     "bassclef": {
@@ -158,7 +176,8 @@
       "subtitle_i18n": {
         "en": "Sheet Music for Bass Clef",
         "pt": "Partitura para Clave de Fá",
-        "fi": "Nuotit F-avaimella"
+        "fi": "Nuotit F-avaimella",
+        "pe": "Musical Charts fer Bass Clef"
       }
     }
   },
@@ -167,7 +186,7 @@
       "source_book_id": "verde",
       "enabled": true,
       "variants_enabled": ["default", "lyrics"],
-      "title_i18n": { "pt": "O Livro Verde", "en": "The Green Book", "fi": "Vihreä Kirja" },
+      "title_i18n": { "pt": "O Livro Verde", "en": "The Green Book", "fi": "Vihreä Kirja", "pe": "Th' Green Book" },
       "social_image": "unilaiva-astral-verde_SOCIAL_1200x630.png",
       "has_printout_booklet_file": true,
       "has_printout_easy_file": true,
@@ -178,7 +197,8 @@
           "title_i18n": {
             "en": "Melodies generated from notation",
             "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
+            "fi": "Nuoteista generoidut melodiat",
+            "pe": "Melodies conjured from th' notation"
           }
         }
       ],
@@ -189,7 +209,8 @@
           "description_i18n": {
             "en": "Browse The Green Book variant with lyrics, chords and sheet music.",
             "pt": "Navegue pela variante de O Livro Verde com letras, acordes e partituras.",
-            "fi": "Selaa Vihreän Kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+            "fi": "Selaa Vihreän Kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia.",
+            "pe": "Chart Th' Green Book variant with shanties' words, chords and musical charts."
           }
         },
         "lyrics": {
@@ -198,7 +219,8 @@
           "description_i18n": {
             "en": "Browse The Green Book's lyrics-only variant.",
             "pt": "Navegue pela variante somente com letras de O Livro Verde.",
-            "fi": "Selaa Vihreän Kirjan vain sanoitukset sisältävää varianttia."
+            "fi": "Selaa Vihreän Kirjan vain sanoitukset sisältävää varianttia.",
+            "pe": "Chart Th' Green Book's shanties' words only variant."
           }
         }
       }
@@ -218,7 +240,8 @@
           "title_i18n": {
             "en": "Melodies generated from notation",
             "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
+            "fi": "Nuoteista generoidut melodiat",
+            "pe": "Melodies conjured from th' notation"
           }
         },
         {
@@ -227,7 +250,8 @@
           "title_i18n": {
             "en": "Studio recording of Cura I &amp; II",
             "pt": "Gravação de estúdio de Cura I &amp; II",
-            "fi": "Studioäänite: Cura I &amp; II"
+            "fi": "Studioäänite: Cura I &amp; II",
+            "pe": "Studio recordin' of Cura I &amp; II"
           }
         },
         {
@@ -236,7 +260,8 @@
           "title_i18n": {
             "en": "São Miguel work with Alfredo",
             "pt": "Trabalho de São Miguel com Alfredo",
-            "fi": "São Miguel -työ Alfredon kanssa"
+            "fi": "São Miguel -työ Alfredon kanssa",
+            "pe": "São Miguel work alongside Alfredo"
           }
         }
       ],
@@ -247,7 +272,8 @@
           "description_i18n": {
             "en": "Browse Cura variant with lyrics, chords and sheet music.",
             "pt": "Navegue pela variante de Cura com letras, acordes e partituras.",
-            "fi": "Selaa Cura-kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+            "fi": "Selaa Cura-kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia.",
+            "pe": "Chart th' Cura variant with shanties' words, chords and musical charts."
           }
         },
         "lyrics": {
@@ -256,7 +282,8 @@
           "description_i18n": {
             "en": "Browse Cura's lyrics-only variant.",
             "pt": "Navegue pela variante somente com letras de Cura.",
-            "fi": "Selaa Cura-kirjan vain sanoitukset sisältävää varianttia."
+            "fi": "Selaa Cura-kirjan vain sanoitukset sisältävää varianttia.",
+            "pe": "Chart Cura's shanties' words only variant."
           }
         }
       }
@@ -276,7 +303,8 @@
           "title_i18n": {
             "en": "Melodies generated from notation",
             "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
+            "fi": "Nuoteista generoidut melodiat",
+            "pe": "Melodies conjured from th' notation"
           }
         },
         {
@@ -285,7 +313,8 @@
           "title_i18n": {
             "en": "Nova Era (official)",
             "pt": "Nova Era (oficial)",
-            "fi": "Nova Era (virallinen)"
+            "fi": "Nova Era (virallinen)",
+            "pe": "Nova Era (th' official reckonin')"
           }
         }
       ],
@@ -296,7 +325,8 @@
           "description_i18n": {
             "en": "Browse Novas de Alfredo variant with lyrics, chords and sheet music.",
             "pt": "Navegue pela variante de Novas de Alfredo com letras, acordes e partituras.",
-            "fi": "Selaa Novas de Alfredo -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+            "fi": "Selaa Novas de Alfredo -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia.",
+            "pe": "Chart th' Novas de Alfredo variant with shanties' words, chords and musical charts."
           }
         },
         "lyrics": {
@@ -305,7 +335,8 @@
           "description_i18n": {
             "en": "Browse Novas de Alfredo's lyrics-only variant.",
             "pt": "Navegue pela variante somente com letras de Novas de Alfredo.",
-            "fi": "Selaa Novas de Alfredo -kirjan vain sanoitukset sisältävää varianttia."
+            "fi": "Selaa Novas de Alfredo -kirjan vain sanoitukset sisältävää varianttia.",
+            "pe": "Chart Novas de Alfredo's shanties' words only variant."
           }
         }
       }
@@ -325,7 +356,8 @@
           "title_i18n": {
             "en": "Official recording",
             "pt": "Gravação oficial",
-            "fi": "'Virallinen' äänite"
+            "fi": "'Virallinen' äänite",
+            "pe": "Th' official recordin'"
           }
         },
         {
@@ -334,7 +366,8 @@
           "title_i18n": {
             "en": "Melodies generated from notation",
             "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
+            "fi": "Nuoteista generoidut melodiat",
+            "pe": "Melodies conjured from th' notation"
           }
         }
       ],
@@ -345,7 +378,8 @@
           "description_i18n": {
             "en": "Browse À Transparência variant with lyrics, chords and sheet music.",
             "pt": "Navegue pela variante de À Transparência com letras, acordes e partituras.",
-            "fi": "Selaa À Transparência -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia."
+            "fi": "Selaa À Transparência -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia.",
+            "pe": "Chart th' À Transparência variant with shanties' words, chords and musical charts."
           }
         },
         "lyrics": {
@@ -354,7 +388,8 @@
           "description_i18n": {
             "en": "Browse À Transparência's lyrics-only variant.",
             "pt": "Navegue pela variante somente com letras de À Transparência.",
-            "fi": "Selaa À Transparência -kirjan vain sanoitukset sisältävää varianttia."
+            "fi": "Selaa À Transparência -kirjan vain sanoitukset sisältävää varianttia.",
+            "pe": "Chart À Transparência's shanties' words only variant."
           }
         }
       }
@@ -374,7 +409,8 @@
           "title_i18n": {
             "en": "Melodies generated from notation",
             "pt": "Melodias geradas a partir de notação",
-            "fi": "Nuoteista generoidut melodiat"
+            "fi": "Nuoteista generoidut melodiat",
+            "pe": "Melodies conjured from th' notation"
           }
         }
       ],
@@ -386,7 +422,8 @@
           "description_i18n": {
             "en": "Browse A Compilação Completa variant with lyrics, chords and sheet music. This book contains the chapters of all other books.",
             "pt": "Navegue pela variante de A Compilação Completa com letras, acordes e partituras. Este livro contém os capítulos de todos os outros livros.",
-            "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+            "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut.",
+            "pe": "Chart th' Complete Compilation variant with shanties' words, chords and musical charts. This here book holds the chapters of all other books."
           }
         },
         "lyrics": {
@@ -396,7 +433,8 @@
           "description_i18n": {
             "en": "Browse A Compilação Completa's lyrics-only variant. This book contains the chapters of all other books.",
             "pt": "Navegue pela variante somente com letras de A Compilação Completa. Este livro contém os capítulos de todos os outros livros.",
-            "fi": "Selaa A Compilação Completa -kirjan vain sanoitukset sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+            "fi": "Selaa A Compilação Completa -kirjan vain sanoitukset sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut.",
+            "pe": "Chart th' Complete Compilation's shanties' words only variant. This here book holds the chapters of all other books."
           }
         },
         "charango": {
@@ -406,7 +444,8 @@
           "description_i18n": {
             "en": "Browse A Compilação Completa variant with lyrics, chords, sheet music and charango notation. This book contains the chapters of all other books.",
             "pt": "Navegue pela variante de A Compilação Completa com letras, acordes, partituras e notação para charango. Este livro contém os capítulos de todos os outros livros.",
-            "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut, nuotit ja charango-notaation sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+            "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut, nuotit ja charango-notaation sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut.",
+            "pe": "Chart th' Complete Compilation variant with shanties' words, chords, musical charts and charango notation. This here book holds the chapters of all other books."
           }
         },
         "bassclef": {
@@ -416,7 +455,8 @@
           "description_i18n": {
             "en": "Browse A Compilação Completa variant with lyrics, chords and bass clef sheet music. This book contains the chapters of all other books.",
             "pt": "Navegue pela variante de A Compilação Completa com letras, acordes e partituras em clave de fá. Este livro contém os capítulos de todos os outros livros.",
-            "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja bassoklaaviset nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut."
+            "fi": "Selaa A Compilação Completa -kirjan sanoitukset, soinnut ja bassoklaaviset nuotit sisältävää varianttia. Tämä kirja sisältää kaikkien muiden kirjojen luvut.",
+            "pe": "Chart th' Complete Compilation variant with shanties' words, chords and bass clef musical charts. This here book holds the chapters of all other books."
           }
         }
       }
