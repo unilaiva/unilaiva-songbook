@@ -11,23 +11,18 @@ project-specific files needed to build the published books with
 
 ---
 
-- [Unilaiva Songbook](#unilaiva-songbook)
-  - [Repository change notice (2026-04-13)](#repository-change-notice-2026-04-13)
-  - [Quick start](#quick-start)
-    - [Platform-specific setup](#platform-specific-setup)
-      - [Ubuntu or Debian](#ubuntu-or-debian)
-      - [macOS](#macos)
-      - [Windows](#windows)
-  - [Repository layout](#repository-layout)
-  - [Editing this repository](#editing-this-repository)
-  - [Output](#output)
-  - [Printing](#printing)
-    - [Printing double sided on a single sided printer](#printing-double-sided-on-a-single-sided-printer)
-      - [Example procedure for printing on a single sided printer](#example-procedure-for-printing-on-a-single-sided-printer)
-  - [Updating](#updating)
-  - [ULSBS documentation](#ulsbs-documentation)
-  - [Status](#status)
-  - [Copyright and Licensing](#copyright-and-licensing)
+- [Repository change notice (2026-04-13)](#repository-change-notice-2026-04-13)
+- [Quick start](#quick-start)
+  - [Platform-specific setup](#platform-specific-setup)
+- [Repository layout](#repository-layout)
+- [Editing this repository](#editing-this-repository)
+- [Output](#output)
+- [Printing](#printing)
+  - [Printing double sided on a single sided printer](#printing-double-sided-on-a-single-sided-printer)
+- [Updating](#updating)
+- [ULSBS documentation](#ulsbs-documentation)
+- [Status](#status)
+- [Copyright and Licensing](#copyright-and-licensing)
 
 ---
 
