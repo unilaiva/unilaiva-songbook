@@ -14,9 +14,10 @@
 \setcounter{songnum}{1}
 
 \beginsong{O Rosário}[id={o-rosario-yg3i6e},by={Maria Alice},tags={perfilado},key={C},gk={C, B&--D}]
+  \audio{https://soundcloud.com/mariaaliceorosario/01-o-rosario?in=user-938495941/sets/o-rosario-madrinha-maria-alice}
   \audio{https://nossairmandade.com/hymn/1286/ORos\%C3\%A1rio}
   \mnbeginverse
-    \beginrep\memorize
+    \beginrep
       \[^<E>]Oh! Mi\[^<A>]nha |\[<G>C]Mãe \[^<C>]Vós \[^<B>]lim\[<A>F]pai \[^<C>]meu pensa|\[<E>C]men\[^<C>]to \altchords{\id[1]{(D)}|D G |D G}
       Pa\[^<B>]ra \[<A>F]eu \[^<C>]poder se|\[<E>Am]guir \[^<C>]jun\[^<B>]to \[<A>Fmaj7]com \[^<C>]Ju\[^<E>]ra\[^<D>]mi|\[<C>C]dam \[<*>{}] \altchords{|Bm Gmaj7 |D}
     \endrep
@@ -167,5 +168,153 @@
     \nextverse
     I come here to present my rosary
     To make my petitions so my brothers can see you
+  \end{translation}
+\endsong
+
+
+\beginsong{Por Piedade}[id={por-piedade-12dxcz},by={Maria Alice},key={C},gk={C, B&--D}]
+  \audio[key=C]{https://soundcloud.com/mariaaliceorosario/02-por-piedade?in=user-938495941/sets/o-rosario-madrinha-maria-alice}
+  \audio{https://www.youtube.com/watch?v=Tzkctx5waFA}
+  \meter{4}{4}
+  % verse 1:
+  \mnbeginverse
+    \beginrep
+      \[^<E>]Por pi\[^<A>]e|\[Am]da\[^<E>]de Mi\[^<C>]nha \[<*>]Mãe \[^<A>]eu vou \[^<D>]ro|\[Dm]gar \[<*>]
+      Tem pi\[^<C>]e|\[<E>C]dade \[^<C>]Ma\[F]mãe \[^<A>]Ie\[^<C>]man|\[C]já \[<*>]
+    \endrep
+    \beginrep
+      \[^<A;C>]Tem pie|\[<D>Dm]dade Ma\[<*>]mãe \[^<C>]I\[^<A>]e\[^<C>]man|\[<E>Am]já \[<*>]
+      \[^<C>]Que |\[<D>G7]é pra nós \[<*>]po\[^<C>]der \[^<A>]ca\[^<C>]mi|\[C]nhar \[<*>]
+    \endrep
+  \mnendverse
+  \notesoff
+  % verse 2:
+  \beginverse
+    \beginrep
+      Tem pie|^dade destas ^almas sofre|^do^ras \altchords{\id[1]{(D)}|Bm |Em}
+      Que me\jw acom|^panham neste ^caminho da |^Cruz ^ \altchords{|D G |D}
+    \endrep
+    \beginrep
+      Por pie|^dade Minha ^Mãe eu vou ro|^gar ^ \altchords{|Em |Bm}
+      Pelo |^Amor Di^vino de Je|^sus ^ \altchords{|A7 |D}
+    \endrep
+  \endverse
+  % verse 3:
+  \beginverse
+    \beginrep
+      Com vosso |^sal, oh! Minha ^Mãe queira la|^var ^
+      Seus cora|^ções vós quei^ra purifi|^car ^
+    \endrep
+    \beginrep
+      Por pie|^dade Minha ^Mãe eu vou ro|^gar ^
+      Pra todas\jw as |^almas eu po^der encami|^nhar ^
+    \endrep
+  \endverse
+  % verse 4:
+  \beginverse
+    \beginrep
+      Tem pie |^dade, minha ^Mãe do sofri|^men^to
+      Nos liber|^tai deste ^subjulga|^men^to
+    \endrep
+    \beginrep
+      Com Vosso |^manto Vós ^queira nos co|^brir ^
+      Pra todos |^nós também po^der se redi|^mir ^
+    \endrep
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2026-10
+    % \header {
+    %   title = "Por Piedade"
+    %   composer = "Maria Alice"
+    % }
+    \include "ulsbs-include-head.ly"
+    theMelody =  \relative a'' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor
+      \time 4/4 \partial 4.
+      \sectionLabel "A"
+      \repeat volta 2 {
+        e8 \pomark e a | a e e c c a a d | d2( d8)
+        d d c | e( e) e c c a a c | c2( c8)
+      }
+      \break
+      \sectionLabel "B"
+      \repeat volta 2 {
+        << a \altmark "ii" \single\altcol c >> << a \single\altcol c >> << a \single\altcol c >> | d( d) d d d c a c | e2~8 \parenthesize e8
+        c8( c) | d( d) d8 d d c a c | c2~ c8
+      }
+      \fine
+    }
+    theLyricsOne = \lyricmode {
+      \set stanza = "1.A"
+      \repeat volta 2 {
+        Por pi -- e -- | da -- de Mi -- nha Mãe eu vou ro -- | gar; __ _
+        Tem pi -- e -- | da _ -- de Ma -- mãe I -- e -- man -- | já. __ _
+      }
+      \set stanza = "1.B"
+      \repeat volta 2 {
+        Tem pi -- e -- | da _ -- de Ma -- mãe I -- e -- man -- | já; _
+        "" Que __ _ | é __ _ pra nós po -- der ca -- mi -- | nhar. _
+      }
+    }
+    theLyricsTwo = \lyricmode {
+      \set stanza = "2.A"
+      \repeat volta 2 {
+        Tem pi -- e -- | da -- de des -- tas al -- mas so -- fre -- | do -- ras;
+        Que me~a -- com -- | pa -- nham nes -- te ca -- mi -- nho da | Cruz. __ _
+      }
+      \set stanza = "2.B"
+      \repeat volta 2 {
+        Por pi -- e -- | da -- de Mi -- nha Mãe eu vou ro -- | gar; _
+        "" Pe -- lo | A _ -- mor Di -- vi -- no de Je -- | sus. _
+      }
+    }
+    theLyricsThree = \lyricmode {
+      \set stanza = "3.A"
+      \repeat volta 2 {
+        Com vos -- so | sal, oh! Mi -- nha Mãe quei -- ra la -- | var; __ _
+        Seus co -- ra -- | ções __ _ vós quei -- ra pu -- ri -- fi -- | car. __ _
+      }
+      \set stanza = "3.B"
+      \repeat volta 2 {
+        Por pi -- e -- | da -- de Mi -- nha Mãe eu vou ro -- | gar; _
+        Pra to -- das~as | al -- mas eu po -- der en -- ca -- mi -- | nhar. _
+      }
+    }
+    theLyricsFour = \lyricmode {
+      \set stanza = "4.A"
+      \repeat volta 2 {
+        Tem pi -- e --  | da -- de, mi -- nha Mãe do so -- fri -- | men -- to;
+        Nos li -- ber -- | tai __ _ des -- te su -- b -- jul -- ga -- | men -- to.
+      }
+      \set stanza = "4.B"
+      \repeat volta 2 {
+        Com Vos -- so | man _ -- to Vós quei -- ra nos co -- | brir; _
+        Pra to -- dos | nós tam -- bém po -- der se re -- di -- | mir. _
+      }
+    }
+    theChords = \chordmode {
+      \repeat volta 2 {
+        s4. | a1:m | d:m | c2 f2 | c2~8
+      }
+      \repeat volta 2 {
+        s4. | d1:m | a:m | g:7 | c2~8
+      }
+    }
+    \setStaffSize #15 % for better fit
+    \include "ulsbs-include-tail.ly"
+  \end{lilypond}\end{lilywrap}
+  \begin{translation}[EN]
+    For mercy, my Mother, I will pray; Have mercy, Mother Iemanjá
+    Have mercy, Mother Iemanjá, so that we may walk upon our way
+    \nextverse
+    Have mercy on these suffering souls who accompany me upon this Way of the Cross
+    For mercy, my Mother, I will pray, by the Divine Love of Jesus
+    \nextverse
+    With your salt, oh my Mother, please wash their hearts, and please purify them
+    For mercy, my Mother, I will pray, so that I may guide all souls upon their way
+    \nextverse
+    Have mercy, my Mother of suffering, free us from this subjugation
+    With your mantle, please cover us, so that we too may all be redeemed
   \end{translation}
 \endsong
