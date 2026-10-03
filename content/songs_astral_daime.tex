@@ -13,12 +13,12 @@
 \beginsong{Aqui Eu Recebi}[id={aqui-eu-recebi-eefho7},by={Sebastião},key={A},gk={A, G--B--(C)}]
   \audio{https://www.nossairmandade.com/hymn/35/AquiEuRecebi}
   \transpose{-3}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize
       \[^<G>]A|\[<E>C]qui eu \[<* D>]re\[^<C>]ce|\[^<G>]bi, \[<*>] \[^<E>]pa\[^<G>]ra |\[^<E>]mim dis\[<D>C7]tri\[^<C>]bu|\[<A>F]ir \[<*>]{} \altchords{\id[1]{(C)}|C | - | - C7 |F}
       |É \[^<B>]o \[<* C>]San\[^<A>]to |\[<G>C]Daime, \[<* E>]pa\[^<C>]ra |\[^<E>]com meu \[<D>G7]Pai se|\[<C>C]guir\[<*>]{} \altchords{| - |C | - G7 |C}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse
     \beginrep
@@ -152,17 +152,17 @@
   \audio{https://www.nossairmandade.com/hymn/536/ODaime\%C3\%89ODaime}
   \newchords{chords_odaime_a}\newchords{chords_odaime_b}
   \meter{6}{4}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_odaime_a]
       \[^<E>]O |\[<G>C]Daime \[^<E>]é \[^<F>]o \[<* G>]Daime \altchords{\id[1]{(B)}|B}
       Eu |\[^<C>]es\[^<G>]tou \[^<E G>]afir\[G]mando \altchords{| - F#}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_odaime_b]
       \[^<C>]{É o} Di|\[C]vi\[^<G>]no \[^<C>]Pai \[^<E>]E\[(Am/E)]terno \altchords{|B (G#m/D#)}
       \[^<C>]{E a} Ra|\[G7]i\[^<G>]nha \[^<B>]So\[^<D>]be\[<C>C]rana \altchords{|F#7 B}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_odaime_a]
     \beginrep
@@ -309,30 +309,30 @@
   %%
   %% VERSION WITHOUT REPEATS
   %%
-  \mnbeginverse\memorize[chords_gracasadeus_a]
+  \beginverse+\memorize[chords_gracasadeus_a]
     \beginrep
       \[^<D>]Graças \[^<E>]a |\[<D>D]Deus aon\[^<E>]de \[<D>(D7)]eu \[^<C>]es\[^<B>]tou \[^<A>]tem |\[<G>G]Dai\[<*>]me \altchords{\id[1]{(A)}|E (E7) |A}
       Gra\[^<B>]ças \[^<D>]a |\[<G>Em]Deus Dai\[^<F#>]me \[<A>(Am7)]nun\[^<G>]ca \[^<F#>]me \[^<E>]fal|\[<D>D]tou\[<*>]{} \altchords{|F#m (Bm7) |E}
     \endrep
-  \mnendverse
-  \mnbeginverse[1]\memorize[chords_gracasadeus_b]
+  \endverse
+  \beginverse+[1]\memorize[chords_gracasadeus_b]
     \beginrep
       \[^<B;G>]Sou \[^<B>]u\[^<D>]ma |\[<G>G]árvore ro\[^<F#>]si\[<A>Am7]an\[^<G>]te em \[^<F#>]u\[^<E>]ma |\[<D>D]flor\[<*>]{} \altchords{|A Bm7 |E}
       Graças \[^<E>]a |\[^<D>]Deus aon\[^<E>]de o \[<D>D7]Dai\[^<C>]me es\[^<B>]tá \[^<A>]es|\[<G>G]tou\[<*>]{} \altchords{| - E7 |A}
     \endrep
-  \mnendverse
-  \mnbeginverse%\replay[chords_gracasadeus_a]
+  \endverse
+  \beginverse+%\replay[chords_gracasadeus_a]
     \beginrep
       \[<G;D>]Louvar \[<B;E>]a |\[<D;D>D]Deus e \[<D;E>]a\[<B;D>(D7)]mar \[<B;C>]com \[<A;B>]to\[<A>]do a|\[<G>G]mor \[<*>]
       \[<G>]São \[<B>]João \[<D>]Ba|\[<G>Em]tista é \[<F#>]o \[<A>(Am7)]nos\[<G>]so \[<F#>]Pro\[<E>]te|\[<D>D]tor \[<*>]
     \endrep
-  \mnendverse
-  \mnbeginverse[1]\replay[chords_gracasadeus_b]
+  \endverse
+  \beginverse+[1]\replay[chords_gracasadeus_b]
     \beginrep
       \[<B;G>]São \[<B>]João \[<D>]Ba|^tista e a \[<F#>]sem^pre \[<G>]Vir\[<F#>]gem \[<E>]Ma|^ri^a
       É quem \[<E>]nos |\[<D>]guia nes\[<E>]te ^ca\[<C>]minho \[<B>]com \[<A>]a|^mor^
     \endrep
-  \mnendverse
+  \endverse
     \begin{translation}[EN]
       Thanks to God, where I am I have Daime
       Thanks to God, the Daime has never failed me
@@ -436,18 +436,18 @@
   %% VERSION WITH REPEATS, commented out
   %%
   %
-  %   \mnbeginverse\memorize[chords_gracasadeus_a]
+  %   \beginverse+\memorize[chords_gracasadeus_a]
   %     \beginrep
   %     \[^\mn{D}]Graças \[^\mn{E}]a |\[\mnc{D}D]Deus aon\[^\mn{E}]de \[\mnc{D}(D7)]eu \[^\mn{C}]es\[^\mn{B}]tou \[^\mn{A}]tem |\[\mnc{G}G]Dai\[\bm]me \altchords{\id[1]{(A)}|E (E7) |A}
   %     Gra\[^\mn{B}]ças \[^\mn{D}]a |\[\mnc{G}Em]Deus Dai\[^\mn{F#}]me \[\mnc{A}(Am7)]nun\[^\mn{G}]ca \[^\mn{F#}]me \[^\mn{E}]fal|\[\mnc{D}D]tou\[\bm]{} \altchords{|F\shrp{}m (Bm7) |E}
   %     \endrep
-  %   \mnendverse
-  %   \mnbeginverse[1]\memorize[chords_gracasadeus_b]
+  %   \endverse
+  %   \beginverse+[1]\memorize[chords_gracasadeus_b]
   %     \beginrep
   %     \[^\mn{/}]Sou \[^\mn{B}]u\[^\mn{D}]ma |\[\mnc{G}G]árvore ro\[^\mn{F#}]si\[\mnc{A}Am7]an\[^\mn{G}]te em \[^\mn{F#}]u\[^\mn{E}]ma |\[\mnc{D}D]flor\[\bm]{} \altchords{|A Bm7 |E}
   %     Graças \[^\mn{E}]a |\[^\mn{D}]Deus aon\[^\mn{E}]de o \[\mnc{D}D7]Dai\[^\mn{C}]me es\[^\mn{B}]tá \[^\mn{A}]es|\[\mnc{G}G]tou\[\bm]{} \altchords{| - E7 |A}
   %     \endrep
-  %   \mnendverse
+  %   \endverse
   %   \notesoff
   %   \beginverse\replay[chords_gracasadeus_a]
   %     \beginrep
@@ -578,17 +578,17 @@
   \audio[key=D]{https://www.nossairmandade.com/hymn/1065/TomoDaime}
   \newchords{chords_tomodaime_a}\newchords{chords_tomodaime_b}
   \melodySecondaryPosition{below}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_tomodaime_a]
       \[^<A;B>]Eu |\[<C>C]tomo \[<*>]Dai\[^<A>]me eu |\[^<C>]tomo \[<*>]Daime \altchords{\id[1]{D}|D | \e}
       |\[<E>Am]Não tenho \[<*>]me\[^<D>]do |\[<F>F]de \[^<D>]to\[<B>G]mar \altchords{|Bm |G A}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_tomodaime_b]
       |\[<E>C]Eu es\[<*>]tan\[^<D>]do |\[<F>F]com \[^<D>]meu \[<B>G]Mestre \altchords{|D |G A}
       |\[<A>Am]Ne\[^<C>]le eu \[<*>]pos\[^<A>]so |\[<C>C]me fir\[<*>]mar \altchords{|Bm |D}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_tomodaime_a]
     \beginrep
@@ -731,17 +731,17 @@
 \beginsong{O Daime me Balanção}[id={o-daime-me-balancao-ghu3ea},by={Tetéo},key={C},gk={C, (B)--(C)}]
   \audio{https://www.nossairmandade.com/hymn/1066/ODaimeMeBalan\%C3\%A7ou}
   \newchords{chords_odaimemebalancao_a}\newchords{chords_odaimemebalancao_b}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_odaimemebalancao_a]
       |\[<G>C]O Dai\[<* C>]me \[^<G>]me |ba\[^<E>]lan\[<* G>]çou
       |\[^<C>]O Dai\[<* E>]me \[^<C>]me |\[<A>F]se\[^<G>]gu\[G]rou
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_odaimemebalancao_b]
       |\[<C>C]O po\[<* E>]der \[^<C>]que o |\[<A>F]Mes\[^<G>]tre \[G]tem
       \[^<C>]O |\[C]mesmo \[<* E>]Dai\[^<C>]me |\[<D>G7]me \[^<B>]mos\[<C>C]trou
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_odaimemebalancao_a]
     \beginrep
@@ -878,17 +878,17 @@
 \beginsong{Mesa de Centro}[id={mesa-de-centro-4kkef2},by={Tetéo},key={D},gk={D, (D)--(E&)},tags={2x}]
   \audio{https://www.nossairmandade.com/hymn/1081/MesaDeCentro}
   \newchords{chords_mesadecentro_a}\newchords{chords_mesadecentro_b}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_mesadecentro_a]
       \[^<A>]Eu \[^<D>]to\[^<F#>]mei |\[<A>D]Dai\[^<F#>]me \[^<A>]com \[<B>(Bm)]meu \[^<A>]Pre\[^<F#>]si|\[<D>D]de\[<*>]n\[^<B>]te \altchords{\id[1]{(C)}|C (Am) |C}
       |\[<D>Bm]Den\[^<C#>]tro \[^<D>]de um \[<E>Em]lin\[^<C#>]do \[^<B>]sa|\[<A>A7]lão\[<*>]{} \altchords{|Am Dm |G7}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_mesadecentro_b]
       \[^<A>]Em |\[<D>D]u\[^<C#>]ma \[<E>Em]Me\[^<C#>]sa \[^<B>]de |\[<A>A]Cen\[<*>]tro \altchords{|C Dm |G}
       Da |\[<D>D]Vir\[^<C#>]gem \[<E>A7]da \[^<D>]Con\[^<C#>]cei|\[<D>D]ção\[<*>]{} \altchords{|C G7 |C}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_mesadecentro_a]
     \beginrep
@@ -1041,17 +1041,17 @@
 \beginsong{O Daime é o Nosso Pai}[id={o-daime-e-o-nosso-pai-7u728o},by={Tetéo},key={G},gk={A, G--B}]
   \audio{https://www.nossairmandade.com/hymn/1120/Daime\%C3\%89ONossoPai}
   \newchords{chords_odaimeeonossopai_a}\newchords{chords_odaimeeonossopai_b}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_odaimeeonossopai_a]
       \[^<G>]O |\[<B>G]Daime é o \[<A>D]nosso |\[<G>G]Pai \altchords{\id[1]{(A)}|A E |A}
       É \[<* B>]nos\[^<D>]so ir|\[<G>C]mão \[^<E>]e \[<* G>]com\[^<E>]pa|\[<G>G]nhei\[<*>]ro \altchords{|D |A}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_odaimeeonossopai_b]
       \ilsl{\[^<D>]É} |\[<G>C]E\[^<E>]le é \[<* G>]quem \[^<E>]nos |\[<G>G]cura \altchords{|D |A}
       E \[<F#>(D)]nos \[^<E>]li|\[<B>G]vra \[^<D>]de \[<A>D7]to\[^<B>]do |\[<G>G]mal\[<*>]{} \altchords{(E) |A E7 |A}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_odaimeeonossopai_a]
     \beginrep
@@ -1180,17 +1180,17 @@
 \beginsong{Um, Dois e Três}[id={um-dois-e-tres-nfokhx},by={Tetéo},key={C},gk={D, C--F#}]
   \audio{https://www.nossairmandade.com/hymn/1130/Um,DoisETr\%C3\%AAs}
   \newchords{chords_umdoisetres_a}\newchords{chords_umdoisetres_b}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_umdoisetres_a]
       \ilsl{\[^<G>]É} |\[<C>C]um, \[^<G>]é \[<* C>]dois, \[^<G>]é |\[^<C>]trê\[<*>]s
       É |\[<F>F]qua\[^<D>]tro, é \[<* E>]cin\[^<C>]co, é |\[C]seis\[<*>]
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_umdoisetres_b]
       \[^<C>]Quem não esti|\[<F>F]ver \[^<D>]com\[<* E>]pre\[^<D>]en|\[<C>C]den\[<*>]do
       \[^<B>]To\[^<A>]me |\[<G>G]Daime \[<C>F]ou\[^<G>]tra |\[<C>C]vez\[<*>]
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_umdoisetres_a]
     \beginrep
@@ -1276,7 +1276,7 @@
 \beginsong{O Lindo Daime}[id={o-lindo-daime-ty058f},by={Luiz Mendes},key={Am},gk={Bm, Gm--Em}]
   \audio{https://www.nossairmandade.com/hymn/34/OLindoDaime}
   \audio[key=G#m]{https://www.youtube.com/watch?v=WprArHvxDz8}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize
       |\[<A>Am]O \[<* C>]lin\[^<A>]do |\[<E>(E)]Dai\[^<* @-.425ex>]{-me} \altchords{\id[1]{(Bm)}|Bm |(F#)}
       |\[<A B>Am]Veja \[<* C>]co\[^<A>]mo |\[<E>(E)]é \[<*>]{} \altchords{|Bm |(F#)}
@@ -1285,7 +1285,7 @@
         \[<*>]Pa\[^<D>]ra |\[<C>(C)]to\[^<B>]dos \[<E>E7]ten\[^<C>]do |\[<A>Am]fé \[<*>]{} \altchords{|(D) F#7 |Bm}
       \endrep
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse
     \beginrep
@@ -1389,17 +1389,17 @@
   \audio{https://www.youtube.com/watch?v=4kLsE-ujOYQ}
   \newchords{chords_convite_a}\newchords{chords_convite_b}
   \meter{6}{4}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_convite_a]
       \[^<E>]O \[^<C>]meu |\[<A>Am]Mestre \[^<E>]con\[^<C>]vi\[<* A>]dou-me \altchords{\id[1]{(Gm)}|Gm}
       \[^<E C>]E |\[^<A>]eu \[^<C>]o\[<G F>(Am7)]bede\[<E>E]ci \altchords{| - (Gm7) D}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_convite_b]
       \[^<E>]To|\[<A>Fmaj7]{mei o} San\[^<B>]to \[<C>Am]Dai\[^<B>]me \altchords{|E&maj7 Gm}
       \[^<A>]E |\[<E>E]eu me corri\[<A>Am]gi \altchords{|D Gm}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_convite_a]
     \beginrep
@@ -1507,7 +1507,7 @@
 \beginsong{Eu Tomo Daime}[id={eu-tomo-daime-rxag5g},by={Vera Gall},key={Bm},gk={Bm, Am--Fm}]
   \audio{https://www.youtube.com/watch?v=yZR3eKULn_M}
   \audio{https://www.youtube.com/watch?v=bUR-OVaVTto}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize
       \beginrep
         \[^<B>]Eu \[^<D>]to\[^<B>]mo |\[<D>Bm]Daime \altchords{\id[1]{(Am) \capo{2}}|Am}
@@ -1519,7 +1519,7 @@
         Do meu \[<* F>]eu su\[^<E>]pe\[^<F>]ri|\[<E D>Dm]or \[<*>]{} \altchords{|Cm}
       \endrep
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse
     \beginrep
@@ -1656,7 +1656,7 @@
 
 \beginsong{É com Deus}[id={e-com-deus-xf26r8},by={Baixinha},key={C},gk={C, A-D}]
   \audio{https://www.nossairmandade.com/hymn/2516/\%C3\%89ComDeusQueEuTomoDaime}
-  \mnbeginverse
+  \beginverse+
     \beginrep
       \beginrep
         \ilsl{\[<E>]É} com |\[C]Deus \[<D>]que eu \[G]to\[<C>]mo |\[C]Dai\[<*>]me \altchords{\id[1]{(A)}|A E |A}
@@ -1667,7 +1667,7 @@
         \[<E>]Tudo |\[Am]que eu \[<D>]te(nho) \[G7]que \[<C>]sa|\[C]ber \[<*>]{} \altchords{|F#m E7 |A}
       \endrep
     \endrep
-  \mnendverse
+  \endverse
   \begin{translation}[EN]
     It is with God that I take Daime
     And with God I get there
@@ -1721,14 +1721,14 @@
 
 \beginsong{Ser Divino}[id={ser-divino-jc0dmv},by={Odemir Raulino Da Silva},key={A},gk={A, G--B}]
   \audio{https://www.nossairmandade.com/hymn/1540/SerDivino}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize
       \[^<A>]Quem \[<*>]não \[^<C#>]pro|\[<E>A]vou \[<*>]{} | \e \altchords{\id[1]{(G) \capo{2}}|G | \e}
       \[^<C#>]Ve\[<* A>]nha \[^<C#>]pro|\[<B>Bm]var \[<*>]{} | \e \altchords{|Am | \e}
       \[^<D>]Des\[<* F#>]ta \[^<D>]be|\[<F#>D]bi\[<*>]da | \e \altchords{|C | \e}
       \[^</>]Que a\[\ac{2}{E7}]qui es|\[\ac{1}{E}\ac{2}{A}]tá \[<*>]{} |\[\ac{1}{E7}\ac{2}{A}]{} \e \altchords{\ac{2}{D7} |\ac{1}{D}\ac{2}{G} |\ac{1}{D7}\ac{2}{G}}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse
     \beginrep
@@ -1823,7 +1823,7 @@
 \beginsong{Balanço de São João}[id={balanco-de-sao-joao-3yooly},by={Odemir Raulino Da Silva},off={Geraldine},key={C},gk={C, A-F}]
   \audio{https://www.nossairmandade.com/hymn/1548/Balan\%C3\%A7oDeS\%C3\%A3oJo\%C3\%A3o}
   \audio[key=D]{https://www.youtube.com/watch?v=YJmvSXsU5cQ}
-  \mnbeginverse
+  \beginverse+
     \beginrep
       \beginrep
         \[<G>]Eu es|\[C]tando \[<E>]com o \[<* C>]Daime, eu |\[Am]nun\[<E>]ca \[<C>]me \[<D>G]canso
@@ -1836,8 +1836,8 @@
         \[<E>]Eu \up{1}(|\[<D>G7]nun\[<E>]ca \[<D>]me \[<C>C]can|so) \up{2}(|\[<D>G7]nun\[<E>]ca \[<D>]me \[<C>C]canso)
       \endrep
     \endrep
-  \mnendverse
-  \mnbeginverse[1]
+  \endverse
+  \beginverse+[1]
     \beginrep
       \beginrep
         \[<G>]Venho |\[C]dizer a \[<E>]meu \[<* C>]Mestre, que eu es|\[Am]tou \[<E>]sa\[<C>]tis\[<D>G]feito
@@ -1850,7 +1850,7 @@
         \[<F>]Vou \[<E>]a\up{1}(|\[<D>G7]le\[<E>]gre \[<D>]vi\[<C>C]ven|do) \up{2}(|\[<D>G7]le\[<E>]gre \[<D>]vi\[<C>C]vendo)
       \endrep
     \endrep
-  \mnendverse
+  \endverse
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2024-06
     % \header {
@@ -1985,7 +1985,7 @@
     \vspace*{-.75ex} % an ugly hack to fit the whole song on one spread
   \fi
   \audio{https://www.nossairmandade.com/hymn/1557/ProfessorDeEstrela}
-  \mnbeginverse
+  \beginverse+
     \beginrep
       |\[A] \[<A>]O Daime é \[<*>]meu profes|\[<A>Dm]sor \[<*>]{} \altchords{\id[1]{(Cm)}|G |Cm}
       |\hspace{0.5em} Ele \[<*>]es\[<B&>]tá \[<A>]de |\[<G>Gm]o\[<* E>]lho \altchords{| - |Fm}
@@ -1993,8 +1993,8 @@
       |\hspace{0.5em} \[<F>]Ele \[<*>]es\[<G>]tá \[<F>]de |\[<E>A]o\[<*>]lho \altchords{| - |G}
       |\hspace{0.5em} Na \[<*>]mi\[<D>]nha \[<C#>]mu|\[<B&>B&]dan\[<A>A]ça \altchords{| - |A& G}
     \endrep
-  \mnendverse
-  \mnbeginverse
+  \endverse
+  \beginverse+
     \beginrep
       |\[A] \[<A>]Daime é \[<*>]meu profes|\[<A>Dm]sor \[<*>]{} \altchords{|G |Cm}
       |\hspace{0.5em} Sempre \[<*>]es\[<B&>]tá \[<A>]de |\[<G>Gm]o\[<* E>]lho \altchords{| - |Fm}
@@ -2002,15 +2002,15 @@
       |\hspace{0.5em} \[<F>]Sempre \[<*>]es\[<G>]tá \[<F>]de |\[<E>A]o\[<*>]lho \altchords{| - |G}
       |\hspace{0.5em} Na \[<*>]mi\[<D>]nha es\[<C#>]pe|\[<E>A7]ran\[<D>Dm]ça \altchords{| - |G7 Cm}
     \endrep
-  \mnendverse
-  \mnbeginverse[1]
+  \endverse
+  \beginverse+[1]
     \beginrep
       |\[Dm]{} \ilsl{\[<D>]És} gran\[<*>]de profes|\[<B&>B&]sor\[<*>]{} \altchords{|Cm |A&}
       |\hspace{0.5em} \[<D>]De pa\[<*>]lavra \[<E>]ver\[<D>]da|\[<A>A]dei\[<*>]ra \altchords{| - |G}
       |\hspace{0.5em} \[<A>]Obri\[<*>]ga\[<B&>]do \[<A>]Se|\[<G>Gm]nho\[<* E>]r \altchords{| - |Fm}
       |\[A] Profes\[<*>]sor \[<D>]de \[<C#>]es|\[<E>A7]tre\[<D>Dm]la \altchords{|G |G7 Cm}
     \endrep
-  \mnendverse
+  \endverse
   \ifshowlilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Daime is my teacher, he is watching, he is watching,
@@ -2089,39 +2089,39 @@
 \beginsong{Em Minha Memória}[id={em-minha-memoria-6pn7jk},by={Valdete},key={Am},gk={Bm, Gm--Em}]
   \audio[key=Bm]{https://www.youtube.com/watch?v=cQUKTSvCfn0}
   \audio{https://www.nossairmandade.com/hymn/141/EmMinhaMem\%C3\%B3ria}
-  \mnbeginverse
+  \beginverse+
     \beginrep
       \[<A>]Eu to\[<C>]mo |\[<E>Am]Daime para \[<* C>]ver os \[<B>]meus de|f\[<A>]eitos\[<*>]{} \altchords{\id[1]{(Bm)}|Bm | \e }
       Eu to\[<C>]mo |\[<E>]Daime para \[<* C>]eu \[<A>]me cor\[<C>]ri|\[<E>E]gir \[<*>]{} \altchords{| - |F#}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep
       \[<A>]Não to\[<C>]mo |\[<E>Am]Daime para \[<* C>]me en\[<B>]grande|\[<A>]cer\[<*>]{} \altchords{|Bm | \e}
       Porque \[<B>]o |\[<C>F]grande é Je\[<B>E7]sus, es\[<E>]tá a|\[<A>Am]quí \[<*>]{} \altchords{|G F#7 |Bm}
     \endrep
-  \mnendverse
-  \mnbeginverse
+  \endverse
+  \beginverse+
     \beginrep
       \[<A>]Eu to\[<C>]mo |\[<E>Am]Daime é para a\[<* C>]cender \[<B>]minha |\[<A>]Luz\[<*>]
       E es\[<B>]ta |\[<C>]Luz meu Je\[<* B>]sus \[<A>]é quem \[<C>]me |\[<E>E]dá \[<*>]
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep
       \[<A>]Por is\[<C>]so eu |\[<E>Am]devo consa\[<* C>]grar no \[<B>]cora|\[<A>]ção\[<*>]
       Que tam\[<B>]bém |\[<C>F]é da Vir\[<B>E7]gem da \[<E>]Concei|\[<A>Am]ção \[<*>]
     \endrep
-  \mnendverse
-  \mnbeginverse
+  \endverse
+  \beginverse+
     \beginrep
       \[<A>]Eu to\[<C>]mo |\[<E>Am]Daime e consi\[<* C>]dero \[<B>]este |v\[<A>]inho\[<*>]
       O mes\[<B>]mo |\[<C>]vinho que Je\[<* B>]sus \[<A>]deu pra \[<C>]to|\[<E>E]mar \[<*>]
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep
       \[<A>]Aos Seus \[<C>]a|\[<E>Am]póstoles disse: \[<* C>]em mi\[<B>]nha me|m\[<A @-.21ex>]ória\[<*>]
       Que é pa\[<B>]ra |\[<C>F]sempre esta \[<B>E7]Luz nun\[<E>]ca fal|\[<A>Am]tar \[<*>]
     \endrep
-  \mnendverse
+  \endverse
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2024-06
     % \header {
@@ -2222,22 +2222,22 @@
 
 \beginsong{Daime Ele é a Vida}[id={daime-ele-e-a-vida-d269iv},by={Maria Brilhante},key={C},gk={D, C--E}]
   \audio{https://www.nossairmandade.com/hymn/37/DaimeEle\%C3\%89AVida}
-  \mnbeginverse
+  \beginverse+
     \beginrep
       |\[<C>C]Daime ele é a \[<*>]vi\[<G>]da \altchords{\id[1]{(D)}|D}
       |\[<E>Am]Daime ele é \[<D>]o a\[<* E>]mor \altchords{|Bm}
       |\[<G>C]Daime ele é Je\[<*>]sus \altchords{|D}
       \[<C>]O nos|\[<E>G7]so Pai \[<D>]cria\[<C>C]dor \altchords{|A7 D}
     \endrep
-  \mnendverse
-  \mnbeginverse[1]
+  \endverse
+  \beginverse+[1]
     \beginrep\memorize
       \[^<G>]Da|\[<C>C]qui estou te \[<*>]ven\[^<G>]do \altchords{|D}
       \[^<E>]Daqui |\[Am]es\[^<D>]tou \[^<F>]te \[^<E>]o\[<D>G]lhando \altchords{|Bm A}
       \[^<G>]Esta|mos \[^<F>]nu\[^<E>]ma \[^<D>]ba\[<C>C]talha \altchords{| - D}
       \[^<G>]Da Vir|\[<C>F]gem \[^<B>]Mãe \[^<A>]So\[^<B>]be\[<C>C]rana \altchords{|G D}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse[1]
     \beginrep
@@ -2311,17 +2311,17 @@
   \audio[key=Gm]{https://soundcloud.com/user-561613355/81-o-santo-daime-esta-ai}
   \audio{https://www.youtube.com/watch?v=tVT77jI-jzw}
   \newchords{chords_osantodaimeestaai_a}\newchords{chords_osantodaimeestaai_b}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_osantodaimeestaai_a]
       \[^<E>]O Santo |\[Am]Daime es\[<*>]tá a|\[<C>F]í \altchords{\id[1]{(Gm)}|Gm |E&}
       É \[<*>]pa\[^<A>]ra |\[<E>E]todos \[<* C>]nós \[^<B>]to|\[<A>Am]mar \[<*>]{} \altchords{|D |Gm}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_osantodaimeestaai_b]
       \[^<A>]O San\[^<C>]to |\[<E>Am]Daime é \[<* D>]um \[^<C>]pri|\[<B>E]mor \altchords{|Gm |D}
       Pa\[<*>]ra \[^<F>]quem |\[<E>E7]sa\[^<D>]be a\[<* C>]pre\[^<B>]ci|\[<A>Am]ar \[<*>]{} \altchords{|D7 |Gm}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_osantodaimeestaai_a]
     \beginrep
@@ -2466,17 +2466,17 @@
   \audio{https://nossairmandade.com/hymn/2005/EuChamoAFor\%C3\%A7aDoCip\%C3\%B3}
   \newchords{chords_euchamocipo_a}\newchords{chords_euchamocipo_b}
   \meter{6}{4}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_euchamocipo_a]
       \[^<C>]Eu chamo a |\[<B>Am]for\[^<A>]ça \[^<C>]do \[^<E>]ci\[<* A>]pó \altchords{\id[1]{(Gm)}|Gm \e}
       \[^<G>]Da folha a |\[Em]luz, \[^<E>]a \[^<C>]mi\[^<B>]ra\[<A>Am]ção \altchords{|Dm Gm}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_euchamocipo_b]
       \[^<D>]Da água a |\[Dm]pure\[^<C>]za \[^<B>]di\[<A>Am]vina \altchords{|Cm Gm}
       \[^<C>]Do fogo |\[<B>E]toda \[^<D>]a\[^<C>]pu\[^<B>]ra\[<A>Am]ção \altchords{|D Gm}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_euchamocipo_a]
     \beginrep
@@ -2667,21 +2667,21 @@
   \audio{https://nossairmandade.com/hymn/2390/Rebeldia}
   \audio[key=Bm]{https://www.youtube.com/watch?v=0dKVftKnyAA}
   \newchords{chords_rebeldia_a}\newchords{chords_rebeldia_b}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_rebeldia_a]
       \[^<F#>]Eu tomei |\[Bm]Daime, meus ir\[<*>]mãos \altchords{\id[1]{(Am)}|Am}
       Eu \[^<E>]to\[^<D>]mei |\[<C#>F#]Dai\[<*>]me \altchords{|E}
       \[^<F#>]Eu to\[^<G>]mei |\[^<F#>]Dai\[^<C#>]me \altchords{| \e}
       \[<E>F#7]Para \[^<D>]me \[^<C#>]cu|\[<B>Bm]rar \[<*>] \altchords{E7 |Am}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_rebeldia_b]
       \[^<D>]Tomem |\[D]Daime, meus ir\[<*>]mãos \altchords{|C}
       \[^<E>]To\[^<D>]mem |\[<C#>A]Dai\[<*>]me \altchords{|G}
       \[^<F#>]O Dai\[^<G>]me |\[<F#>F#]cura, o Dai\[^<C#>]{me a}\[<E>F#7]pura \altchords{|E E7}
       O \[^<D>]Dai\[^<C#>]{me en}|\[<B>Bm]si\[<*>]na \altchords{|Am}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_rebeldia_a]
     \beginrep
@@ -2781,13 +2781,13 @@
 
 \beginsong{O Daime É}[id={o-daime-e-b1aiqi},by={Baixinha},off={Iara},key={Dm},gk={Dm, Cm--Em}]
   \audio{https://nossairmandade.com/hymn/2508/ODaime\%C3\%89}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize
       \[^<D>]O \[^<A>]Dai\[^<F>]me |\[<D>Dm]é \[<*>] \altchords{\id[1]{(Em)}|Em}
       O Dai\[^<E>]{me é} |\[<F E>F]luz \altchords{|G}
       \[^<D>]Pa\[^<F>]ra \[<E>A]quem \[^<D>]quer \[^<C#>]{se en}\[^<E>]xer|\[<D>Dm]gar \[<*>] \altchords{B |Em}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse
     \beginrep
@@ -2804,13 +2804,13 @@
     \endrep
   \endverse
   \noteson
-  \mnbeginverse[1]
+  \beginverse+[1]
     \beginrep
       \[<D>]O \[<A>]Dai\[<F>]me |\[<D>Dm]é \[<*>] \altchords{|Em}
       \[<A>]For\[<D>]ça \[<F>]do |\[<D>]Sol, \[<*>] clarão \[<E>]da |\[<F>F]Lu\[<E>]a \altchords{| - |G}
       \[<D>]{É o} \[<F>]a\[<E>A7]ma\[<D>]nhe\[<C#>]cer \[<E>]do |\[<D>Dm]di\[<*>]a \altchords{B7 |Em}
     \endrep
-  \mnendverse
+  \endverse
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2024-06
     % \header {
@@ -2893,7 +2893,7 @@
 \beginsong{Quando o Daime Chega}[id={quando-o-daime-chega-5ed3d2},by={Baixinha},off={Jonathan Goldman},key={C},gk={C, G--D}]
   \audio[key=C]{https://soundcloud.com/user-682281070/quando-daime-chega-baixinha-jose-rosa-work-feb-2017}
   \audio[key=D]{https://soundcloud.com/flor-da-montanha/estrela-dagua-5-quando-o-daime?in=flor-da-montanha/sets/hinario-estrela-d-agua-baixinha}
-  \mnbeginverse
+  \beginverse+
     \beginrep
       \beginrep
         |\[<C>C]Quando o \[<*>{}]Dai\[<D>]me |\[<C>]chega \altchords{\id[1]{(D)}|D | \e}
@@ -2904,8 +2904,8 @@
         O \[<* E>]que \[<G>]Deus |\[<D>Dm]tem \[<C>]pa\[(Fmaj7)]ra \[<E>]nós |\[<C>C]dar \[\ac{1}{C7}] \altchords{|Em (Gmaj7) |D \ac{1}{D7}}
       \endrep
     \endrep
-  \mnendverse
-  \mnbeginverse[1]
+  \endverse
+  \beginverse+[1]
     \beginrep
       \beginrep
         |\[<C>C]Quando o \[<*>{}]Dai\[<D>]me |\[<C>]chega \altchords{|D | \e}
@@ -2916,7 +2916,7 @@
         O \[<* E>]que \[<G>]Deus |\[<D>Dm]tem \[<C>]pa\[(Fmaj7)]ra \[<E>]nós |\[<C>C]dar \[\ac{1}{C7}] \altchords{|Em (Gmaj7) |D \ac{1}{D7}}
       \endrep
     \endrep
-  \mnendverse
+  \endverse
   \begin{translation}[EN]
     When the Daime arrives
     It's for all of us to take
@@ -3036,14 +3036,14 @@
 \beginsong{Beija-Flor}[id={beija-flor-5utn4v},by={Paulo Roberto},key={Em},gk={Em, Cm--G#m}]
   \audio[key=Em]{https://soundcloud.com/user-561613355/99-beija-flor-padrinho-paulo}
   \audio{https://nossairmandade.com/hymn/46/Beija-Flor}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize
       \[^<B>]Vei|\[Em/B]{o da flo}\[<*>]resta co|mo um Beija-\[<E>Em]Flor \altchords{\id[1]{(Dm)}|Dm/A | - Dm}
       Pou|sou na beira-\[<*>]mar e explan|\[^<G>]diu \[^<E>]o \[^<F#>]seu \[^<E>]a\[<*>]mor \altchords{| - | \e}
       Mos|trando para \[<*>]todos o ca|minho \[^<G>]do \[^<E>]Se\[<F#>B7]nhor \altchords{| - | - A7}
       \[^<D#>]Ajun|tando os seus \[<*>]filhos na \[^<E>]es|\[^<F#>]trada do \[^<E>]a\[Em]mor \altchords{| - | - Dm}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse
     \beginrep
@@ -3131,17 +3131,17 @@
 \beginsong{Sou o Daime}[id={sou-o-daime-ibgk1w},by={Neiva},off={Manoel Corrente [Caboclo Guerreiro \#20]},key={C},gk={C, C--D}]
   \audio[key=C]{https://soundcloud.com/luizpfer/20-sou-o-daime?in=luizpfer/sets/caboclo-guerreiro-manoel-corrente}
   \newchords{chords_souodaime_a}\newchords{chords_souodaime_b}
-  \mnbeginverse
+  \beginverse+
     \beginrep\memorize[chords_souodaime_a]
       \[^<G>]Eu sou o |\[<C>C]Daime, eu sou a \[<D>G]vida, eu sou \[^<C>]o a|\[<E C>C]mor \[<*>{}] \altchords{\id[1]{(D)}|D A |D}
       Sou es\[^<E>]pe|\[<G>G]rança, sou a \[F]luz \[^<E>]do \[^<C>]Cri\[^<F>]a|\[<E>Em]dor \[<*>{}] \altchords{|A G |F#m}
     \endrep
-    \mnendverse\glueverses\mnbeginverse
+    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_souodaime_b]
       \[^<C>]Meu rei\[^<E>]no é |\[<G>G]este o \[^<E>]Im\[<* A>]pé\[^<G>]rio \[^<F>]des\[^<E>]tas |\[<C>C]ma\[^<A>]tas \[Am] \altchords{|A |D Bm}
       \[^<E>]Eu sou teu |\[<D>Dm]guia, \[^<C>]eu \[<A>F]sou \[^<C>]teu cura|\[C]dor \[<*>{}] \altchords{|Em G |D}
     \endrep
-  \mnendverse
+  \endverse
   \notesoff
   \beginverse\replay[chords_souodaime_a]
     \beginrep
