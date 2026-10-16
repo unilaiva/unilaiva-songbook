@@ -259,6 +259,7 @@
       "variants": {
         "default": {
           "file": "unilaiva-songbook_A5.pdf",
+          "multikey_file": "unilaiva-songbook_MULTIKEY_A5.pdf",
           "image": "unilaiva-songbook_A5_MODIFIED.png",
           "subtitle_i18n": {
             "en": "Complete Edition, with chords",
@@ -325,6 +326,7 @@
       "variants": {
         "default": {
           "file": "unilaiva-songbook_part1_A5.pdf",
+          "multikey_file": "unilaiva-songbook_part1_MULTIKEY_A5.pdf",
           "image": "unilaiva-songbook_part1_A5_MODIFIED.png",
           "subtitle_i18n": {
             "en": "Chapters: Español, Portuguêse; with chords",
@@ -391,6 +393,7 @@
       "variants": {
         "default": {
           "file": "unilaiva-songbook_part2_A5.pdf",
+          "multikey_file": "unilaiva-songbook_part2_MULTIKEY_A5.pdf",
           "image": "unilaiva-songbook_part2_A5_MODIFIED.png",
           "subtitle_i18n": {
             "en": "Chapters: English, Saṃskṛtam, Other, Suomi; with chords",

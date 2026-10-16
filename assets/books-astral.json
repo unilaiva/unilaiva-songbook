@@ -206,6 +206,7 @@
       "variants": {
         "default": {
           "file": "unilaiva-astral-verde_A5.pdf",
+          "multikey_file": "unilaiva-astral-verde_MULTIKEY_A5.pdf",
           "image": "unilaiva-astral-verde_A5_MODIFIED.png",
           "description_i18n": {
             "en": "Browse The Green Book variant with lyrics, chords and sheet music.",
@@ -269,6 +270,7 @@
       "variants": {
         "default": {
           "file": "unilaiva-astral-cura_A5.pdf",
+          "multikey_file": "unilaiva-astral-cura_MULTIKEY_A5.pdf",
           "image": "unilaiva-astral-cura_A5_MODIFIED.png",
           "description_i18n": {
             "en": "Browse Cura variant with lyrics, chords and sheet music.",
@@ -322,6 +324,7 @@
       "variants": {
         "default": {
           "file": "unilaiva-astral-alfredo-novas_A5.pdf",
+          "multikey_file": "unilaiva-astral-alfredo-novas_MULTIKEY_A5.pdf",
           "image": "unilaiva-astral-alfredo-novas_A5_MODIFIED.png",
           "description_i18n": {
             "en": "Browse Novas de Alfredo variant with lyrics, chords and sheet music.",
@@ -375,6 +378,7 @@
       "variants": {
         "default": {
           "file": "unilaiva-astral-transparencia_A5.pdf",
+          "multikey_file": "unilaiva-astral-transparencia_MULTIKEY_A5.pdf",
           "image": "unilaiva-astral-transparencia_A5_MODIFIED.png",
           "description_i18n": {
             "en": "Browse À Transparência variant with lyrics, chords and sheet music.",
@@ -418,6 +422,7 @@
       "variants": {
         "default": {
           "file": "unilaiva-astral-completa_A5.pdf",
+          "multikey_file": "unilaiva-astral-completa_MULTIKEY_A5.pdf",
           "image": "unilaiva-astral-completa_A5_MODIFIED.png",
           "tag_ids": ["complete.comp"],
           "description_i18n": {
@@ -440,6 +445,7 @@
         },
         "charango": {
           "file": "unilaiva-astral-completa_CHARANGO_A5.pdf",
+          "multikey_file": "unilaiva-astral-completa_MULTIKEY_CHARANGO_A5.pdf",
           "image": "unilaiva-astral-completa_CHARANGO_A5_MODIFIED.png",
           "tag_ids": ["complete.comp"],
           "description_i18n": {
