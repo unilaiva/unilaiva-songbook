@@ -4,6 +4,7 @@
   "icon_path": "images/icons",
   "social_path": "images/social",
   "json_path": "json",
+  "multikey_path": "multikey",
   "tags": [
     {
       "id": "charango",
