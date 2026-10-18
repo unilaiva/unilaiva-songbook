@@ -3,8 +3,14 @@
 #################################################
 
 
-### COMMON OPTIONS FOR ALL PROFILES (can be overridden) ###
+# --- COMMON OPTIONS FOR ALL PROFILES (can be overridden) ---
 
+
+# Enable interactive multikey editions, including LilyPond scores, without
+# scaling alternate keys' chordnames down (they will overflow).
+multikey-books = true
+multikey-lilypond-scores = true
+multikey-min-chordname-scale = 1
 
 # Common assets that will be deployed with all songbooks to deploy/images/icons.
 # (supports ?, *, and **; resolved relative to this file)
@@ -37,7 +43,7 @@ modified-cover-png = [
 ]
 
 
-### PROFILES (add to common options) ###
+# --- PROFILES (settings merged with common options) ---
 
 
 # default profile compiles all documents in the project's root
