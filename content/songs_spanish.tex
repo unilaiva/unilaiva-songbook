@@ -3141,6 +3141,89 @@
   \end{lilypond}\end{lilywrap}
 \endsong
 
+
+\beginsong{Bésame Mucho}[id={besame-mucho-j4gfhe},by={Consuelo Velazquez},key={Am},gk={Am, G#m--Am}]
+  \meter{4}{4}
+  % verse 1:
+  \beginverse+\memorize
+    |\[<A>Am]Bésame\[Dm6], |\[Am]{ } \[<*>]bé\[^<B>]sa\[^<C>]me |\[<E>Dsus2]mu\[<D>Dm]cho, | \[<*>] \e
+    |Como si \[<E>C#\symdim7]fuera\jw esta |\[<F>Dm]noche la \[<G>E7]úl\[^<A>]ti\[^<B>]ma |\[<E>Am]vez \[E7] |\[Am] \[<*>]\e
+    |\[<A>A7]Bé\[<*>]{ }{ }|{ -}{ }\[<* G>]sa\[^<F>]me |\[<E>Dsus2]mu\[<D>Dm]cho, | \[<*>]\e
+    |\[<A>Am]Que \[^<E>]ten\[^<C>]go \[<* E>]mie\[^<C>]do \[^<A>]per|\[<C>B7]der\[^<B>]te, \[^<A>]per\[<B>E7]der\[^<A>]te\jw ot\[^<G#>]ra |\[<A>Am]vez \[Dm6] |\[Am] \[<*>]\e
+  \endverse
+  \beginverse+[1]
+    |\[<D>Dm]Quiero te\[<*>]ner \[<C>]te \[<B>]myu |\[<C>Am]cerca, mi\[<*>]rar\[<B>]me\jw en \[<A>]tus
+    |\[<B>E7]Ojos, \[Dm6]verte \[<C>]jun\[<D>]to\jw a |\[<E>Am]mí, \[<*>]
+    |\[<D>Dm]Piensa que \[<*>]tal \[<C>]vez \[<B>]ma|\[<C>Am]ñana yo \[<*>]ya\jw es\[<B>]ta\[<A>]re
+    |\[<B>B7]Lejos muy \[<C>F7]lejos de |\[<B>E7]ti \[<*>]
+  \endverse
+  \notesoff
+  \beginverse
+    |^Bésame^, |^{ } ^bésame |^mu^cho, | ^ \e
+    |Como si ^fuera\jw esta |^noche la ^última |^vez^ |^ ^ \e
+    |^Bé^{ }{ }|{ -}{ }^same |^mu^cho, | ^ \e
+    |^Que tengo ^miedo per|^derte, per^derte\jw otra |^vez ^ |^ ^ \e
+  \endverse
+  \begin{lilywrap}\begin{lilypond}[]
+    %% transcribed by larva, latest update on 2026-10
+    % \header {
+    %   title = "Bésame Mucho"
+    %   composer = "Consuelo Velazquez"
+    % }
+    \include "ulsbs-include-head.ly"
+    theMelody =  \relative a' {
+      \set melismaBusyProperties = #'() \slurDashed
+      \key a \minor
+      \time 4/4
+      \tempo 4 = 84
+      \repeat segno 2 {
+        \sectionLabel "A"
+        a4 a8 a~ a2~ | a2 \tuplet 3/2 { a4 b c } | e2 d2~ | d2. r4
+        \tuplet 3/2 { d4 d d } \tuplet 3/2 { e e e } | \tuplet 3/2 { f f f } \tuplet 3/2 { gis a b } | e,1~ | e2. r4
+        | a1~ | a2 g4 f | e2 d2~ | d2. r4
+        | \tuplet 3/2 { a' e c } \tuplet 3/2 { e c a } | \tuplet 3/2 { c b a } \tuplet 3/2 { b a gis } | a1~ | a2. r4
+        \volta 2 \fine
+        \volta 1 {
+          \sectionLabel "B"
+          | d4 d8 d \tuplet 3/2 { d4 c b } | c4 c8 c \tuplet 3/2 { c4 b a } | b8 b4. b8. b16 c8. d16 | e1
+          | d4 d8 d \tuplet 3/2 { d4 c b } | c4 c8 c \tuplet 3/2 { c4 b a } | \tuplet 3/2 { b b b } \tuplet 3/2 { c c c } | b1
+        }
+      }
+    }
+    theLyricsOne = \lyricmode {
+      \repeat segno 2 {
+        | Bé -- sa -- me, _ | _ bé -- sa -- me | mu -- cho, | _
+        | Co -- mo si fue -- ra~es -- ta | no -- che la úl -- ti -- ma | vez; | _
+        | Bé -- | _ sa -- me | mu -- cho, | _
+        | Que ten -- go mie -- do per -- | der -- te, per -- der -- te~o -- tra | vez. | _
+        \volta 2 \fine
+        \volta 1 {
+          | Quie -- ro te -- ner te myu | cer -- ca, mi -- rar -- me~en tus
+          | O -- jos, ver -- te jun -- to~a | mí,
+          | Pien -- sa que tal vez ma -- | ña -- na yo ya~es -- ta -- re
+          | Le -- jos muy le -- jos de | ti.
+        }
+      }
+    }
+    theChords = \chordmode {
+      \repeat segno 2 {
+        | a2:m d:m6 | a1:m | d2:sus2 d:m | d1:m
+        | d2:m cis:dim7 | d:m e:7 | a:m e:7 | a1:m
+        | a:7 | a:7 | d2:sus2 d:m | d1:m
+        | a1:m | b2:7 e:7 | a:m d:m6 | a1:m
+        \volta 2 \fine
+        \volta 1 {
+          | d1:m | a:m | e2:7 d:m6 | a1:m
+          | d1:m | a:m | b2:7 f:7 | e1:7
+        }
+      }
+    }
+    %\setStaffSize #15 % for better fit
+    \include "ulsbs-include-tail-notab.ly"
+  \end{lilypond}\end{lilywrap}
+\endsong
+
+
 % % TODO: this is not done, needs work!
 % \beginsong{Arbolito Divino}[id={arbolito-divino-v56wen},by={Nick Barbachano},ph={II, III}]
 %   \audio[key=Am]{https://soundcloud.com/nickbarbachano/arbolito-divino-feat-danit}
