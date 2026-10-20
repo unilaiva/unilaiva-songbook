@@ -95,13 +95,13 @@
 }
 
 \renewcommand\ulChapterSymbol{%
-  {\symboliifont 🟌}%
+  {\ulsymboliifont 🟌}%
 }
 
 % Setup the mark at song end, just above the horizontal line that ends a song;
 % if this macro is empty (the default), only the line is displayed.
 \renewcommand{\ulSongEndMark}{%
-  \symboliifont 🌣 \symbolfont ☾ \symboliifont 🟋%
+  \ulsymboliifont 🌣 \ulsymbolfont ☾ \ulsymboliifont 🟋%
 }
 
 % Make tag list in the prelude bold, and use the same style for chorded and

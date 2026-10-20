@@ -40,20 +40,20 @@
 \DeclareOption{12pt}{\ClassWarning{ulsbs-songbook-unilaiva-default}{Ignoring 12pt; forcing 10pt}}
 
 % Allow setting font size, but warn if other than 10pt
-\newif\iful@fontsizespecified
-\ul@fontsizespecifiedfalse
+\newif\ifUL@fontsizespecified
+\UL@fontsizespecifiedfalse
 \DeclareOption{10pt}{%
   \PassOptionsToClass{10pt}{ulsbs-songbook}%
-  \ul@fontsizespecifiedtrue%
+  \UL@fontsizespecifiedtrue%
 }
 \DeclareOption{11pt}{%
   \PassOptionsToClass{11pt}{ulsbs-songbook}%
-  \ul@fontsizespecifiedtrue%
+  \UL@fontsizespecifiedtrue%
   \ClassWarning{ulsbs-songbook-unilaiva-default}{Font size 10pt is recommended, but 11pt is used}%
 }
 \DeclareOption{12pt}{%
   \PassOptionsToClass{12pt}{ulsbs-songbook}%
-  \ul@fontsizespecifiedtrue%
+  \UL@fontsizespecifiedtrue%
   \ClassWarning{ulsbs-songbook-unilaiva-default}{Font size 10pt is recommended, but 12pt is used}%
 }
 
@@ -68,7 +68,7 @@
 
 % LOAD THE PARENT CLASS
 
-\iful@fontsizespecified
+\ifUL@fontsizespecified
   \LoadClass[twoside,openright,onecolumn]{ulsbs-songbook}
 \else % default to 10pt
   \LoadClass[10pt,twoside,openright,onecolumn]{ulsbs-songbook}
@@ -92,7 +92,7 @@
 % Setup the mark at song end, just above the horizontal line that ends a song;
 % if this macro is empty (the default), only the line is displayed.
 \renewcommand{\ulSongEndMark}{%
-  \color{gray}\symboliifont ◼%
+  \color{gray}\ulsymboliifont ◼%
 }
 
 % Smaller melody notes
