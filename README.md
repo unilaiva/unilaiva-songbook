@@ -1,53 +1,353 @@
 # Unilaiva Songbook
 
-This repository contains the **Unilaiva Songbook** sources and the
-project-specific files needed to build the published books with
-[ULSBS](https://github.com/unilaiva/ulsbs/blob/main/README.md) (Unilaiva Songbook System).
+This repository contains the **Unilaiva Songbook** and **Astral books**: song
+texts, chords, musical transcriptions, and the project-specific files used to
+build their PDFs. The reusable compiler and typesetting engine is
+[ULSBS](https://github.com/unilaiva/ulsbs), included here as the `ulsbs/` Git submodule.
 
-> [!IMPORTANT]
-> Published PDFs built from this repository are available at:
-> - [Unilaiva Songbook](https://unilaiva.aavalla.net/)
-> - [Astral books](https://unilaiva-astral.aavalla.net/)
+**Read or download the published books:**
 
----
+- [Unilaiva Songbook](https://unilaiva.aavalla.net/)
+- [Astral books](https://unilaiva-astral.aavalla.net/)
 
-- [Repository change notice (2026-04-13)](#repository-change-notice-2026-04-13)
+You do not need to install anything to download the published PDFs. To edit
+these collections or compile your own local copies, follow the quick start
+below. To create an independent songbook project, start with the
+[ULSBS setup guide](https://github.com/unilaiva/ulsbs/blob/main/README.md) instead.
+
+## Contents
+
+- [Contents](#contents)
 - [Quick start](#quick-start)
-  - [Platform-specific setup](#platform-specific-setup)
+- [Compiling books](#compiling-books)
+- [Platform-specific setup](#platform-specific-setup)
+  - [Ubuntu or Debian](#ubuntu-or-debian)
+  - [macOS](#macos)
+  - [Windows](#windows)
 - [Repository layout](#repository-layout)
 - [Editing this repository](#editing-this-repository)
 - [Output](#output)
 - [Printing](#printing)
+  - [Print settings](#print-settings)
   - [Printing double sided on a single sided printer](#printing-double-sided-on-a-single-sided-printer)
 - [Updating](#updating)
+  - [Repository change notice (2026-04-13)](#repository-change-notice-2026-04-13)
 - [ULSBS documentation](#ulsbs-documentation)
 - [Status](#status)
+- [Contact](#contact)
 - [Copyright and Licensing](#copyright-and-licensing)
 
----
+## Quick start
 
-## Repository change notice (2026-04-13)
+The recommended build uses Docker or Podman, which supplies LaTeX, LilyPond,
+fonts, and the other compiler dependencies. On your computer you need Git,
+`bash`, Python 3.11+, and a working Docker or Podman installation. See
+[platform-specific setup](#platform-specific-setup) if these are not installed.
+Start Docker Desktop before compiling if you use it.
 
-> [!IMPORTANT]
-> On 2026-04-13 this repository changed in two important ways:
-> - the primary branch is now `main` instead of `master`
-> - ULSBS was split into its own repository and is now included here as the `ulsbs/` git submodule
->
-> Split-related commits in this repository:
-> - `0cfc3bd` — Remove embedded ulsbs after repository split
-> - `a626fcd` — Add ulsbs as submodule
-> - `33acbfb` — Use HTTPS URL for ulsbs submodule
-> - `9dfec62` — Add update-repository script to update repo and submodules
+Clone the repository **with its submodule**, then build just the main Unilaiva PDF:
 
-If you cloned this repository before these changes, first make sure you do not
-have uncommitted work. Old clones may still be configured to fetch only the
-removed `master` branch, so fetch `main` explicitly and update the local branch
-tracking like this:
+```sh
+git clone --depth 1 --recurse-submodules https://github.com/unilaiva/unilaiva-songbook.git
+cd unilaiva-songbook
+./ulsbs-compile --quick unilaiva-songbook_A5.tex
+```
+
+Open `result/unilaiva-songbook_A5.pdf`. The first run also builds the compiler
+image and takes longer than later runs. `--quick` omits additional variants,
+multikey editions, printouts, covers, and media exports, skips deployment, and
+keeps intermediate files for troubleshooting.
+It still typesets the main book, including its original LilyPond notation.
+
+If you already cloned without submodules, run this from the project root first:
+
+```sh
+git submodule update --init --recursive
+```
+
+For a clone from before the April 2026 repository split, see the
+[migration instructions](#repository-change-notice-2026-04-13).
+
+## Compiling books
+
+Run build commands from the repository root. This repository enables multikey
+editions, including score transposition, in its configuration. Normal builds
+can therefore take substantially longer than a quick main-PDF check.
+
+| Task | Command |
+|---|---|
+| Fast check of the main Unilaiva PDF | `./ulsbs-compile --quick unilaiva-songbook_A5.tex` |
+| Build one book with its enabled extras | `./ulsbs-compile unilaiva-songbook_A5.tex` |
+| Build the full and split Unilaiva books | `./ulsbs-compile --profile main` |
+| Build the Astral books | `./ulsbs-compile --profile astral` |
+| Build all configured root documents | `./ulsbs-compile` |
+| Build one book without multikey companions | `./ulsbs-compile --no-multikey unilaiva-songbook_A5.tex` |
+| Verbose, non-deploying build of one book | `./ulsbs-compile --profile dev unilaiva-songbook_A5.tex` |
+| Reduce concurrent memory use | Add `--sequential` to a build command |
+
+The actual book selections and shared output settings are in
+[`ulsbs-config.toml`](ulsbs-config.toml). The `default` profile selects all
+root-level TeX documents, including selection books; `main` and `astral` filter
+that selection by filename. Explicit `.tex` arguments override profile book
+selection.
+
+This repository's `dev` profile only disables deployment and enables verbose
+output. It does not define a book list or turn off extra variants or multikey
+editions, so supply a document explicitly and add `--quick` when you want a fast check.
+Its settings are independent of the illustrative profiles in ULSBS's example
+configuration.
+
+Other useful flags are `--no-deploy`, `--keep-temp`, and `--max-log-lines 100`.
+Run `./ulsbs-compile --help` for all options. For containerless builds and the
+full toolchain requirements, see the
+[ULSBS requirements](https://github.com/unilaiva/ulsbs/blob/main/README.md#requirements).
+
+## Platform-specific setup
+
+These steps install prerequisites. Afterwards, follow the
+[quick start](#quick-start) to clone and compile the repository.
+
+### Ubuntu or Debian
+
+On Ubuntu 24.04 or Debian 12 and newer, install the basic tools and Docker:
+
+```sh
+sudo apt update
+sudo apt install docker.io git python3
+sudo usermod -aG docker "$USER"
+newgrp docker
+```
+
+If you prefer Podman, install `podman` instead of `docker.io` and omit the
+Docker group commands. Use `--container-engine podman` to select it explicitly
+when both engines are installed. On older distributions, check that `python3`
+is version 3.11 or newer.
+
+### macOS
+
+1. Install [Docker Desktop](https://docs.docker.com/desktop/setup/install/mac-install/).
+2. Install [Python 3.11+](https://www.python.org/downloads/macos/).
+3. If Git is missing, run `xcode-select --install` to install Xcode Command Line Tools.
+4. Start Docker Desktop before compiling.
+
+### Windows
+
+Use WSL2 with Ubuntu, keeping the repository inside the Linux home directory
+for symlink support and better filesystem performance.
+
+1. In PowerShell, run `wsl --install -d Ubuntu`.
+2. Install Docker Desktop and enable
+   [WSL integration for Ubuntu](https://docs.docker.com/desktop/setup/install/windows-install/).
+3. In the Ubuntu shell, run `sudo apt update` and `sudo apt install git python3`.
+4. Run `cd ~`, then follow the quick start from that Ubuntu shell.
+
+To copy normal-build outputs to your Windows home directory, replace
+`<USERNAME>` with your Windows username and use an existing destination:
+
+```sh
+mkdir -p "/mnt/c/Users/<USERNAME>/unilaiva-result"
+./ulsbs-compile --deploy-dir "/mnt/c/Users/<USERNAME>/unilaiva-result" unilaiva-songbook_A5.tex
+```
+
+An explicitly selected deployment directory must already exist. Deployment is
+disabled by `--quick`, so use a normal build for this copy.
+
+## Repository layout
+
+| Path | Purpose |
+|---|---|
+| [`unilaiva-songbook_A5.tex`](unilaiva-songbook_A5.tex) | Full Unilaiva book |
+| `unilaiva-songbook_part1_A5.tex`, `unilaiva-songbook_part2_A5.tex` | Split Unilaiva books |
+| `unilaiva-astral-*.tex` | Astral books |
+| [`ul-selection_new-songs_A5.tex`](ul-selection_new-songs_A5.tex) | An existing custom selection book |
+| `content/` | Songs, prose, and images included in books |
+| `include/` | Project-specific classes, shared includes, tags, and selection helpers |
+| `assets/` | Website catalog metadata, deployment assets, and media-directory READMEs |
+| [`ulsbs-config.toml`](ulsbs-config.toml) | This repository's build settings and profiles |
+| `ulsbs/` | Reusable ULSBS engine, pinned as a Git submodule |
+| `workspace/` | Scratch material and transcription/editing helpers |
+| `ulsbs-compile`, `update-repository` | Build and update wrappers |
+
+The website catalog format is documented in [`assets/README.md`](assets/README.md).
+It is separate from the compiler's generated per-book JSON exports.
+
+## Editing this repository
+
+For song syntax, start with
+[Writing Songbooks](https://github.com/unilaiva/ulsbs/blob/main/WRITING_SONGBOOKS.md).
+Repository-specific conventions are:
+
+- Most songs live in `content/songs_*.tex`; non-song prose also lives in `content/`.
+- Main documents in the root select and arrange the content chapters.
+- The Unilaiva and Astral style defaults are in
+  [`include/ulsbs-songbook-unilaiva-default.cls`](include/ulsbs-songbook-unilaiva-default.cls)
+  and [`include/ulsbs-songbook-astral-default.cls`](include/ulsbs-songbook-astral-default.cls).
+- Song tags are defined in [`include/tags.can`](include/tags.can).
+- [`include/ul-selection_example.tex`](include/ul-selection_example.tex) shows
+  the project's selection setup; read its associated helper defaults before copying it.
+
+A practical edit/check cycle is:
+
+1. Find the main document that includes the song collection you want to edit.
+2. Edit the source, preserving stable song IDs and checking attribution and key metadata.
+3. Compile that main document with `--quick` and inspect the generated PDF.
+4. Before publishing, build the required variants and editions and inspect their layout too.
+
+The bundled
+[ULSBS TeX Tools extension](https://github.com/unilaiva/ulsbs/blob/main/vscode-extension/ulsbs-tex-tools/README.md)
+adds VS Code snippets, song navigation, diagnostics, and build commands. Open
+this repository's root as the workspace so it can find the config and engine.
+Other text editors also work.
+
+## Output
+
+Normal builds can produce these files, depending on settings, tools, and source
+content:
+
+| Location | Content |
+|---|---|
+| `result/` | Ordinary PDFs of the default and enabled lyrics-only/instrument variants |
+| `result/printouts/` | A5-on-A4 home-printing PDFs |
+| `result/multikey/` | Multikey indices and layered page-range PDFs |
+| `result/json/` | Generated per-book metadata/search exports |
+| `result/midi/`, `result/audio/` | MIDI and MP3 files from supported LilyPond scores |
+| `result/images/` | Cover images |
+| `deploy/` | Copies of published outputs plus configured website/deployment assets |
+
+Quick builds omit additional variants, multikey editions, and most extra outputs.
+Deployment is a local copy, not a website upload; `--no-deploy` disables it for a normal build.
+Songs containing only LaTeX lyrics and chords do not generate MIDI or audio.
+
+Default, lyrics-only, and instrument outputs are variants of the same source.
+The compiler currently generates multikey editions for default and instrument
+variants, not lyrics-only variants.
+
+Multikey editions consist of an index and its range PDFs, not one full-book PDF.
+Keep them together with the matching ordinary PDF when publishing updates.
+Live websites need a consistent ordinary-PDF/index/ranges snapshot; see
+[multikey guidance](https://github.com/unilaiva/ulsbs/blob/main/README.md#multikey-pdf-editions)
+for viewer compatibility and deployment details. Use ordinary PDFs for conventional printing.
+
+## Printing
+
+The main books are designed for **A5** (148 mm x 210 mm). Use the ordinary PDF
+for printing, not a layered multikey range. Choose the output that matches your
+paper and binding method:
+
+| Output | Paper | Intended use |
+|---|---|---|
+| `result/unilaiva-songbook_A5.pdf` | A5 | Print the book directly at its original size |
+| `result/printouts/printout-EASY_unilaiva-songbook_A5-on-A4-sidebyside-simple.pdf` | A4 | Read facing A5 pages side by side on intact A4 sheets |
+| `result/printouts/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf` | A4 | Double-sided output for making an A5 book; cut and arrange pages for binding |
+
+The `EASY` layout preserves facing spreads and inserts an initial blank page.
+When printed double-sided, it is **not** intended for cutting or folding into
+an A5 book. The `BOOKLET` layout uses a different page arrangement for that purpose.
+
+Printouts are generated by normal builds, not `--quick` builds. For example:
+
+```sh
+./ulsbs-compile --no-multikey --no-deploy unilaiva-songbook_A5.tex
+```
+
+This keeps printout generation enabled while omitting multikey companions and
+deployment; other normal extras remain enabled. You can also download published
+printout PDFs rather than compiling them yourself.
+
+### Print settings
+
+- Select the actual paper size: A5 for the ordinary PDF, A4 for the printouts.
+- Use actual size / 100% scale, not fit-to-page or additional booklet imposition.
+- Set extra software/driver margins to zero where the printer supports it.
+- Keep the original page order, including the cover and preliminary pages.
+- For double-sided A5 output, use long-edge flipping. For these landscape A4
+  printouts, use short-edge flipping. Test a few pages before printing the full book.
+
+The facing-page layout puts odd pages on the right (recto) and even pages on the
+left (verso), with margins and headers designed accordingly.
+
+On Linux and macOS, `lp` can submit a PDF without a GUI's extra scaling options:
+
+```sh
+lp -o PageSize=A4 result/printouts/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf
+```
+
+Check the printer's duplex, orientation, and scaling defaults before submitting
+a full book. Printer-specific settings and the physical sheet-feed direction vary.
+
+### Printing double sided on a single sided printer
+
+For manual duplex printing, print the odd PDF pages first, reinsert the sheets,
+then print the even PDF pages. Reinsert for the correct flipping edge above;
+some printers also need the stack order reversed. Test with a few sheets to
+establish the correct feed orientation rather than assuming a universal procedure.
+
+If your printing software cannot select odd/even pages, the optional host tool
+`pdftk` can split them. From the repository root:
+
+```sh
+book="result/printouts/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf"
+pdftk "$book" cat 1-endodd output unilaiva-songbook_odd.pdf
+pdftk "$book" cat 1-endeven output unilaiva-songbook_even.pdf
+```
+
+These select physical PDF pages, not printed page labels. To print the two passes:
+
+1. Print `unilaiva-songbook_odd.pdf` on A4, single-sided.
+2. Reinsert the stack for short-edge flipping, using the orientation/order established by your test.
+3. Print `unilaiva-songbook_even.pdf` on the reverse sides, also single-sided.
+4. Cut the A4 sheets into A5 pages, arrange them in order, and bind the book.
+
+For example, the first pass can be submitted with:
+
+```sh
+lp -o PageSize=A4 -o sides=one-sided unilaiva-songbook_odd.pdf
+```
+
+After reinserting the stack, use the same command with
+`unilaiva-songbook_even.pdf`. `lp` and `pdftk` are printing-side tools, not
+requirements for the normal container build.
+
+## Updating
+
+Save your local work in both this repository and the `ulsbs/` submodule before
+updating. From the repository root, run:
+
+```sh
+./update-repository
+```
+
+The wrapper runs `git pull --rebase`, then initializes/updates submodules to
+the revisions recorded by the parent repository. It does not independently
+advance ULSBS to its latest upstream commit. If Git reports local changes or
+conflicts, resolve those before retrying; do not delete local work to update.
+
+### Repository change notice (2026-04-13)
+
+On 2026-04-13 the primary branch changed from `master` to `main`, and ULSBS
+moved into its own repository, included here as the `ulsbs/` submodule. Fresh
+clones already use this layout. The following recovery steps are only for
+older clones; make sure your local work is saved first.
+
+An old clone may still fetch only the removed `master` branch. Fetch `main` explicitly:
 
 ```sh
 git remote set-branches origin '*'
 git fetch origin main:refs/remotes/origin/main
-git branch -m master main 2>/dev/null || true
+```
+
+If your local main branch is still called `master` and no local `main` exists,
+switch to it and rename it:
+
+```sh
+git switch master
+git branch -m main
+```
+
+If local `main` already exists, use `git switch main` instead. Then finish
+updating its tracking configuration and submodules:
+
+```sh
 git branch --set-upstream-to=origin/main main
 git remote set-head origin -a
 git pull --rebase
@@ -55,290 +355,49 @@ git submodule sync --recursive
 git submodule update --init --recursive
 ```
 
-If Git refuses to create the submodule because `ulsbs/` already exists as a
-normal directory in your old clone, move that directory away or remove it
-first, then run the last two submodule commands again. After the migration,
-normal updates can be done with:
-
-```sh
-./update-repository
-```
-
-## Quick start
-
-Clone the repository together with the ULSBS submodule:
-
-```sh
-git clone --depth 1 --recurse-submodules https://github.com/unilaiva/unilaiva-songbook.git
-cd unilaiva-songbook
-./ulsbs-compile
-```
-
-If you already cloned without submodules, run:
-
-```sh
-git submodule update --init --recursive
-```
-
-The default build compiles all configured books in this repository.
-
-### Platform-specific setup
-
-The recommended way to build this repository is the default container mode.
-That means you mainly need:
-
-- `git`
-- `python3` 3.11+
-- Docker or Podman
-
-#### Ubuntu or Debian
-
-Install the basic tools and Docker, then clone and build:
-
-```sh
-sudo apt update
-sudo apt install docker.io git python3
-sudo usermod -aG docker "$USER"
-newgrp docker
-git clone --depth 1 --recurse-submodules https://github.com/unilaiva/unilaiva-songbook.git
-cd unilaiva-songbook
-./ulsbs-compile
-```
-
-If you prefer Podman, install `podman` instead of `docker.io`.
-
-#### macOS
-
-1. Install Docker Desktop: <https://docs.docker.com/desktop/setup/install/mac-install/>
-2. Install Python 3.11+ from <https://www.python.org/downloads/macos/>
-3. If `git` is missing, install Xcode Command Line Tools with:
-
-```sh
-xcode-select --install
-```
-
-Start Docker Desktop once, then clone and build:
-
-```sh
-git clone --depth 1 --recurse-submodules https://github.com/unilaiva/unilaiva-songbook.git
-cd unilaiva-songbook
-./ulsbs-compile
-```
-
-#### Windows
-
-Use WSL2 with Ubuntu. Keeping the repository inside the Linux home directory is
-recommended for symlink support and better performance.
-
-1. In PowerShell, install WSL2:
-
-```sh
-wsl --install -d Ubuntu
-```
-
-2. Install Docker Desktop for Windows and enable WSL integration for the Ubuntu
-   distro: <https://docs.docker.com/desktop/setup/install/windows-install/>
-3. Open the Ubuntu shell and run:
-
-```sh
-sudo apt update
-sudo apt install git python3
-cd ~
-git clone --depth 1 --recurse-submodules https://github.com/unilaiva/unilaiva-songbook.git
-cd unilaiva-songbook
-./ulsbs-compile
-```
-
-Optional: to copy final outputs directly to your Windows home directory, use
-for example:
-
-```sh
-./ulsbs-compile --deploy-dir "/mnt/c/Users/<USERNAME>/unilaiva-result"
-```
-
-Useful commands:
-
-- Build everything configured in `ulsbs-config.toml`:
-  - `./ulsbs-compile`
-- Build only the main Unilaiva books:
-  - `./ulsbs-compile --profile main`
-- Build only Astral books:
-  - `./ulsbs-compile --profile astral`
-- Build one document only:
-  - `./ulsbs-compile unilaiva-songbook_A5.tex`
-- Fast local dev build:
-  - `./ulsbs-compile --quick unilaiva-songbook_A5.tex`
-
-For containerless builds, full toolchain requirements, CLI options, and generic
-ULSBS usage outside this repository, see [ulsbs/README.md](https://github.com/unilaiva/ulsbs/blob/main/README.md).
-
-To later update the repository, run in the project's root:
-
-`./update-repository`
-
-## Repository layout
-
-Top-level files and directories you are most likely to need:
-
-- `unilaiva-songbook_A5.tex`
-  - main full Unilaiva book
-- `unilaiva-songbook_part1_A5.tex`, `unilaiva-songbook_part2_A5.tex`
-  - split versions of the main book
-- `unilaiva-astral-*.tex`
-  - Astral books
-- `ul-selection_new-songs_A5.tex`
-  - an example/custom selection book in active use
-- `content/`
-  - songs, explanations, and other included content
-- `include/`
-  - shared includes, class files, and selection helpers
-- `assets/`
-  - deployment metadata and other project assets
-  - songbook metadata format (used for creating websites for the songbooks)
-    documentation in [assets/README.md](assets/README.md)
-- `ulsbs-config.toml`
-  - repository-specific build configuration and profiles
-- `ulsbs/`
-  - the ULSBS engine as a git submodule
-- `workspace/`
-  - scratch material and helper files for editing/transcribing
-
-## Editing this repository
-
-For the actual songbook syntax and ULSBS-specific markup, see
-[ulsbs/README.md](https://github.com/unilaiva/ulsbs/blob/main/README.md).
-
-Repository-specific pointers:
-
-- Most song texts live in `content/songs_*.tex`.
-- Non-song prose sections also live in `content/`.
-- Main books in the project root select and arrange content chapters.
-- Project-specific class defaults live in:
-  - `include/ulsbs-songbook-unilaiva-default.cls`
-  - `include/ulsbs-songbook-astral-default.cls`
-- Available tags are listed in `include/tags.can`.
-- Example selection setup is in `include/ul-selection_example.tex`.
-
-If you use VS Code, the bundled extension
-[`ulsbs-tex-tools`](https://github.com/unilaiva/ulsbs/blob/main/vscode-extension/ulsbs-tex-tools/README.md)
-provides helpful editing support for ULSBS LaTeX files.
-
-## Output
-
-Compiled files are written under `result/`. Depending on configuration and
-available tools, the build may also produce:
-
-- lyrics-only variants
-- extra instrument variants
-- JSON exports
-- MIDI files
-- MP3 audio
-- cover PNGs
-- printout PDFs for home printing
-
-If deployment is enabled, files are also copied under `deploy/`.
-
-## Printing
-
-The main books are intended primarily for **A5** printing (148 mm × 210 mm).
-
-In the simplest case, print the main document, `unilaiva-songbook_A5.pdf`, on
-A5 paper, and make sure A5 is selected in the printing software. Otherwise the
-pages may be scaled up or printed with overly wide margins.
-
-For double-sided printing, make sure the pages are oriented so that odd pages
-appear on the right-hand side (recto) and even pages on the left-hand side
-(verso) of each spread. This minimizes page-turning within a song, because all
-songs that span at least two pages begin on an even page. The margins, page
-number positions, and similar layout details are also optimized for this order.
-
-If possible, set margins to zero both in the printing software and in the
-printer driver settings. On Linux and macOS, the `lp` program is recommended
-for printing without extra margins. For example:
-`lp -o PageSize=A4 printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf`
-Do not use a `fit-to-page` option, which some GUI printing programs may enable
-by default.
-
-The build also generates additional printout PDFs for printing A5 pages on A4
-sheets. These are often the easiest files to use for home printing.
-
-For the main songbook (the default variant), the most relevant outputs are
-usually:
-
-- `result/unilaiva-songbook_A5.pdf`
-- `result/printouts/printout-EASY_unilaiva-songbook_A5-on-A4-sidebyside-simple.pdf`
-- `result/printouts/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf`
-
-### Printing double sided on a single sided printer
-
-To print double-sided on a printer without a duplexer, first print the odd
-pages, then flip and re-feed the paper, and finally print the even pages. For
-the main document, `unilaiva-songbook_A5.pdf`, the pages must be flipped on the
-long edge. For the other files named `printout-*unilaiva-songbook*.pdf`, which
-place multiple pages on each A4 sheet, the pages should be flipped on the short
-edge.
-
-To flip pages *on the short edge* manually, place the printed stack in front of
-you upside down, with the printed side hidden. Then create a new stack by
-moving each sheet one by one from the top of the old stack to the top of the
-new stack, without rotating or turning the sheets in any way. Feed the new
-stack into the printer, taking care to insert it in the correct orientation.
-
-If your printing software is limited, you can for example use `pdftk` to
-extract odd and even pages:
-
-- `pdftk unilaiva-songbook_A5.pdf cat 1-endodd output unilaiva-songbook_odd.pdf`
-- `pdftk unilaiva-songbook_A5.pdf cat 1-endeven output unilaiva-songbook_even.pdf`
-
-#### Example procedure for printing on a single sided printer
-
-This procedure prints the entire book on A4 paper with a printer that supports
-single-sided printing only. Flipping pages, cutting, and binding are all done
-by hand. The final result is a book of double-sided A5 pages, which is the
-preferred format.
-
-1. `./ulsbs-compile`
-2. `pdftk result/printouts/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf cat 1-endodd output unilaiva-songbook_odd.pdf`
-3. `pdftk result/printouts/printout-BOOKLET_unilaiva-songbook_A5-on-A4-doublesided-needs-cutting.pdf cat 1-endeven output unilaiva-songbook_even.pdf`
-4. `lp -o PageSize=A4 unilaiva-songbook_odd.pdf`
-5. Flip the pages manually on the short edge and feed them back into the printer.
-6. `lp -o PageSize=A4 unilaiva-songbook_even.pdf`
-7. Cut the A4 pages in half to make A5 pages, and arrange them in the correct order.
-8. Punch holes and bind the book.
-
-## Updating
-
-If your clone predates the 2026-04-13 branch/submodule migration, follow the
-steps in [Repository change notice (2026-04-13)](#repository-change-notice-2026-04-13) once first.
-
-To update both this repository and the ULSBS submodule:
-
-```sh
-./update-repository
-```
+If Git refuses to create the submodule because `ulsbs/` still exists as an old
+ordinary directory, move that directory aside after preserving any local edits,
+then retry the submodule commands. Normal later updates use `./update-repository`.
+
+For historical reference, the split-related commits are `0cfc3bd` (remove the
+embedded engine), `a626fcd` (add the submodule), `33acbfb` (use its HTTPS URL),
+and `9dfec62` (add the update wrapper).
 
 ## ULSBS documentation
 
-Most technical documentation now lives in the submodule README:
+Use this README for the Unilaiva/Astral repository's workflow. ULSBS's own
+documentation is organized by task:
 
-- [ulsbs/README.md](https://github.com/unilaiva/ulsbs/blob/main/README.md)
+- [ULSBS README](https://github.com/unilaiva/ulsbs/blob/main/README.md): features,
+  independent-project setup, compilation, variants and editions, configuration, and utilities.
+- [Writing Songbooks](https://github.com/unilaiva/ulsbs/blob/main/WRITING_SONGBOOKS.md):
+  song syntax, LilyPond scores, metadata, tags, indices, selections, and layout customization.
+- [Configuration example](https://github.com/unilaiva/ulsbs/blob/main/ulsbs-config-example.toml):
+  the annotated build-setting and profile reference. This repository uses its own
+  [`ulsbs-config.toml`](ulsbs-config.toml), not that example file.
+- [Editor support](https://github.com/unilaiva/ulsbs/blob/main/vscode-extension/ulsbs-tex-tools/README.md):
+  VS Code extension installation and use.
+- [Architecture](https://github.com/unilaiva/ulsbs/blob/main/ARCHITECTURE.md):
+  engine internals, PDF/viewer contracts, cache maintenance, and developer testing.
 
-That README covers:
-
-- how ULSBS works
-- how to use ULSBS in another songbook repository or local directory
-- compilation options and configuration
-- songbook syntax
-- Lilypond integration
-- helper tools such as `ulsbs-ly2tex` and `ulsbs-bookmeta`
-- editor support
+These documents are also available locally under `ulsbs/`, matching the engine
+revision checked out by this repository. The online links follow ULSBS's `main`
+branch and may describe a newer revision.
 
 ## Status
 
-ULSBS is still under active development. This repository is kept in sync with
-current ULSBS behavior, but external songbook projects using ULSBS should be
-prepared to adjust their sources when upgrading until a stable 1.0 release is
-made.
+ULSBS is under active development, and this repository tracks its current
+behavior. Review the [ULSBS changelog](https://github.com/unilaiva/ulsbs/blob/main/CHANGELOG.md)
+when updating the engine. Until a stable 1.0 release, external songbook projects
+may need to adjust their sources when upgrading.
+
+## Contact
+
+For help with the songbooks or compilation, song corrections, or other questions,
+you are welcome to contact **Lari Natri** by email. You can find the address in
+the copyright header at the top of e.g.
+[this source file](include/ulsbs-songbook-unilaiva-default.cls).
+You do not need to open a GitHub issue to ask for help; email is welcome too.
 
 ## Copyright and Licensing
 
