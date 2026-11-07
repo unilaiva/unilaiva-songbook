@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 
 \beginsong{Lua Branca}[id={lua-branca-8trgzw},by={Mestre Irineu Serra},tags={valsa},key={C},gk={C, (B)--(C)}]
@@ -134,7 +134,7 @@
 %    \setStaffSize #15 % for better fit
    \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     God salutes You, oh! White Moon of such silvery light
     You are my Protectress, You are esteemed by God
@@ -170,7 +170,7 @@
     You don't know how to understand me
     My flower, the color of Jaci
   \end{translation}
-  \ifshowlilypond\hardbrk\fi
+  \ifulShowLilypond\hardbrk\fi
   \begin{lilywrap}\begin{lilypond}[]
     \include "ulsbs-include-head.ly"
     % % transcribed by larva, latest update on 2024-03
@@ -227,7 +227,7 @@
       Para |\[A]que \[<C#>]veio \[<E>A7]me en\[<C#>]ga|\[<D>Dm]nar? \[<*>] \altchords{|A7 |Dm}
     \endrep
   \endverse
-  \ifchorded\ifshowaltchords
+  \ifulChorded\ifulShowAltChords
     \beginverse
       \altchords{\id[5]{alt. (Dm)}|A Dm |F}
       \altchords{|Gm Gm7 |A}
@@ -239,7 +239,7 @@
    Ripi, Ripi, Ripi, Ripi, Ripi, Iaiá
    If you did not want to, why did you come to deceive me?
   \end{translation}
-  \ifshowlilypond\hardbrk\fi
+  \ifulShowLilypond\hardbrk\fi
   \begin{lilywrap}\begin{lilypond}[]
     \include "ulsbs-include-head.ly"
     % % transcribed by larva, latest update on 2024-03
@@ -411,7 +411,7 @@
 \endsong
 
 
-\sclearpage\chapcornermarkdashedtrue
+\sclearpage\ulChapterCornerMarkDashed{true}
 \beginsong{Refeição}[id={refeicao-sxgk61},by={Mestre Irineu Serra},key={A},gk={A, (A) -- (B&)}]
   \audio[key=G]{https://www.youtube.com/watch?v=KTK-h0rBWTg}
   \textnotefornext{Este hino não é cantado durante os trabalhos. Em vez disso, é cantado antes (ou depois, com letras alteradas) de uma refeição.}*
@@ -485,7 +485,7 @@
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
 \endsong
-\sclearpage\chapcornermarkdashedfalse
+\sclearpage\ulChapterCornerMarkDashed{false}
 
 
 \beginsong{Papai Paxá}[id={papai-paxa-1iquig},by={Mestre Irineu Serra},key={B dor.},gk={B dor., (B dor.) -- (C dor.)}]
@@ -646,7 +646,7 @@
     \setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\iflyriconly\tiny\fi% to fit on one page in lyric-only edition
+  \begin{translation}[EN]\ifulLyricOnly\tiny\fi% to fit on one page in lyric-only edition
     Equiôr, Equiôr, Equiôr, Equiôr that called me
     I came alongside the land, I came alongside the sea
     \nextverse
@@ -665,7 +665,7 @@
 \endsong
 
 
-\sclearpage\chapcornermarkdashedtrue
+\sclearpage\ulChapterCornerMarkDashed{true}
 \beginsong{Dois de Novembro}[id={dois-de-novembro-8tt32o},by={Mestre Irineu Serra},key={Gm},gk={Gm, (Gm)--(G#m)},tags={Santa Missa, valsa}]
   \audio{https://nossairmandade.com/hymn/166/DoisDeNovembro}
   \meter{3}{4}
@@ -804,7 +804,7 @@
     \setStaffSize #14 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Your soul is delivered to God, and your body to the cold earth
     Jesus accompanies you together with Virgin Mary
@@ -819,7 +819,7 @@
     The doors of heaven open themselves for whomever is worthy
   \end{translation}
 \endsong
-\sclearpage\chapcornermarkdashedfalse
+\sclearpage\ulChapterCornerMarkDashed{false}
 
 
 \beginsong{A Rainha Me Mandou}[id={a-rainha-me-mandou-az8thf},by={Mestre Irineu Serra},tags={valsa},key={C},gk={C, G--E}]
@@ -1118,7 +1118,7 @@
       \[<C>]em |Je\[<E>]sus |\[<C>Am]Cris\[<A>]to |\[<D>G7]Salva|\[<C>C]dor | \e
     \endrep
   \endverse
-  \begin{translation}[EN]\ifshowlilypond\tiny\fi % to fit on same page
+  \begin{translation}[EN]\ifulShowLilypond\tiny\fi % to fit on same page
     I must ask, to who can give me
     Papa gave me, I am, I am
     \nextverse
@@ -1494,7 +1494,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]\scriptsize % to fit whole song on one page
     Oh! My Divine Father, only for You should I call
     So many times I offended You, and may You forgive me
@@ -1634,10 +1634,10 @@
 \endsong
 
 
-\sclearpage\chapcornermarkdashedtrue
+\sclearpage\ulChapterCornerMarkDashed{true}
 \beginsong{Rogativo aos Mortos}[id={rogativo-aos-mortos-3cv7b9},by={Mestre Irineu Serra},key={G},gk={G, G--B},tags={Santa Missa, valsa}]
   \renewcommand{\goto}[1]{%
-    \chordsoff\textit{\bfseries{{\ulsymboliifont➞ }#1\ldots}}%
+    \chordsoff\textit{\bfseries{{\ulSymbolTwoFont➞ }#1\ldots}}%
   }
   \audio{https://nossairmandade.com/hymn/167/RogativoDosMortos}
   \audio[key=B]{https://www.youtube.com/watch?v=kSmawrgQ5k0}
@@ -1650,35 +1650,35 @@
   \beginverse
     Uma |^hora da |madru|^ga|da; meu |^irmão| se mu|^dou | \e
     \goto{O sono}
-  \endverse\ifshowlilypond\glueverses\fi
+  \endverse\ifulShowLilypond\glueverses\fi
   \beginverse
     Duas |^horas da |madru|^ga|da; meu |^irmão| se mu|^dou | \e
     \goto{O sono}
-  \endverse\ifshowlilypond\glueverses\fi
+  \endverse\ifulShowLilypond\glueverses\fi
   \beginverse
     São três |^horas da |madru|^ga|da; meu |^irmão| se mu|^dou | \e
     \goto{O sono}
-  \endverse\ifshowlilypond\glueverses\fi
+  \endverse\ifulShowLilypond\glueverses\fi
   \beginverse
     Quatro |^horas da |madru|^ga|da; meu |^irmão| se mu|^dou | \e
     \goto{O sono}
-  \endverse\ifshowlilypond\glueverses\fi
+  \endverse\ifulShowLilypond\glueverses\fi
   \beginverse
     Cinco |^horas |da ma|^nhã; |{ }{ }{ } | meu |^irmão| se mu|^dou | \e
     \goto{O sono}
-  \endverse\ifshowlilypond\glueverses\fi
+  \endverse\ifulShowLilypond\glueverses\fi
   \beginverse
     São seis |^horas |da ma|^nhã; |{ }{ }{ } | meu |^irmão| se mu|^dou | \e
     \goto{O sono}
-  \endverse\ifshowlilypond\glueverses\fi
+  \endverse\ifulShowLilypond\glueverses\fi
   \beginverse
     São se|^te ho|ras do |^di|a; meu |^irmão| se mu|^dou | \e
     \goto{O sono}
-  \endverse\ifshowlilypond\glueverses\fi
+  \endverse\ifulShowLilypond\glueverses\fi
   \beginverse
     São oi|^to ho|ras do |^di|a; meu |^irmão| se mu|^dou | \e
     \goto{O sono}
-  \endverse\ifshowlilypond\glueverses\fi
+  \endverse\ifulShowLilypond\glueverses\fi
   \beginverse
     São no|^ve ho|ras do |^di|a; meu |^irmão| se mu|^dou | \e
     \goto{O sono}
@@ -1701,7 +1701,7 @@
       Eu |^rogo |à Virgem |^Mãe; |^que te |^bote em |bom lu|^gar | \e
     \endrep
   \endverse
-  \ifchorded\ifshowaltchords
+  \ifulChorded\ifulShowAltChords
     \beginverse\small % for alt key chords only (A)
       \altchords{\id[1]{(A)}|E | - |A | - |D | - |A | \e}
       \altchords{|D | - |A |F#m |E | - |A | \e}
@@ -1829,7 +1829,7 @@
     \setStaffSize #12 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     It's twelve o'clock at night; my brother moved on
     The eternal sleep; God in Heaven called you
@@ -1854,4 +1854,4 @@
     I pray to the Virgin Mother to put you in a good place
   \end{translation}
 \endsong
-\sclearpage\chapcornermarkdashedfalse
+\sclearpage\ulChapterCornerMarkDashed{false}

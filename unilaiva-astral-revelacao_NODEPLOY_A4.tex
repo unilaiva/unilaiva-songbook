@@ -18,7 +18,7 @@
 
 % fancyhdr: setup header (modify the existing unilaiva style)
 \fancypagestyle{unilaiva}{%
-  \fancyhead[CE]{\headertitlestyle\MakeUppercase{\ulMainBookTitle}} % "Unilaiva no Astral"
+  \fancyhead[CE]{\ulHeaderTitleStyle\MakeUppercase{\ulMainBookTitle}} % "Unilaiva no Astral"
 }
 
 \renewcommand{\ulImprintPageFootnote}{%
@@ -49,22 +49,22 @@
   \ulImprintPage
 
   % TOC:
-  \ulTOC
+  \ulToc
 
   % Sets chapter number; will be incremented by one at each \ulMainChapter,
   % \songchapter or \chapter:
   \setcounter{chapter}{0}
 
   \ulMainChapter[Simja Johannes Lempinen: Revelação]{Simja Johannes Lempinen: \\Revelação}{chaprevelacaocolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_revelacao.tex}
-    \end{songs}
+    \end{ulSongs}
 
   % Here start appendices: chapter numbering resets and switches to alphabetic
   \appendix
-  \usechaptercolorsfalse
+  \ulUseChapterColors{false}
 
-  \ifchorded
+  \ifulChorded
     \chapter{Técnico}
       \input{content/section_technical_information.tex}
   \fi

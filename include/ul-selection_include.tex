@@ -20,26 +20,26 @@
 \providecommand{\ulBookWebsiteLinkPreText}{Find the complete songbook at:}
 
 % Disable Lilypond, as it doesn't work in selections for some reason. TODO: fix.
-\showlilypondfalse
+\ulShowLilypond{false}
 
-\upcasebooktitleinheadertrue
-\upcasesectiontitleinheadertrue
+\ulUppercaseBookTitleInHeader{true}
+\ulUppercaseSectionTitleInHeader{true}
 
 % Do not show chapter nor section in the page headers, as they don't exist.
 % Instead spread the book title and subtitle onto odd and even pages.
 \fancypagestyle{unilaiva}[fancy]{%
   \fancyhead[CE]{%
-    \headertitlestyle%
-    \ifupcasebooktitleinheader%
+    \ulHeaderTitleStyle%
+    \ifulUppercaseBookTitleInHeader%
       \protect\MakeUppercase{\expandafter\ulMainBookTitle}%
     \else%
       \ulMainBookTitle%
     \fi%
   }
   \fancyhead[CO]{%
-    \headertitlestyle%
+    \ulHeaderTitleStyle%
     \ifdefempty{\ulSubBookTitle}{}{% not empty
-      \ifupcasesectiontitleinheader%
+      \ifulUppercaseSectionTitleInHeader%
         \protect\MakeUppercase{\expandafter\ulSubBookTitle}%
       \else%
         \ulSubBookTitle%
@@ -78,10 +78,10 @@
           \imagec[2]{\fullbookcoverimage}
           \par\vspace*{\fill}
         \end{center}
-        \iflyriconly% skip given set ii icons in lyric-only books
+        \ifulLyricOnly% skip given set ii icons in lyric-only books
           \ulSetVariableCoverIcons[\ulLyricsOnlyTagIcon]%
         \fi%
-        \ulInsertCoverIconsHBC
+        \ulInsertCoverIconsHbc
       }
     }%
     {% \coverpdf not empty
@@ -96,11 +96,11 @@
   \ulImprintPage % the second (title) page here (verso)
 
   % TOC:
-  \ulTOC
+  \ulToc
 
   \clearpage
 
-  \begin{songs}{}
+  \begin{ulSongs}{}
     \input{content/songs_spanish.tex}
     \input{content/songs_portuguese.tex}
     \input{content/songs_sanskrit_vedic.tex}
@@ -112,15 +112,15 @@
     { % for the settings not to bleed, as we are in the same environment
       \chordsoff % songs: do not show (empty line for non-existing) chords
       % songs: Increase line spacing for better readability
-      \baselineadj=+1pt plus 0pt minus 0pt%
+      \ulBaselineAdjustment=+1pt plus 0pt minus 0pt%
       \renewcommand{\ulLyricFont}{\small} % use smaller font for lyrics
-      \songcolumns{2} % songs: two columns per page
-      \songpos{1} % songs: avoid ONLY page-turns within songs
+      \ulSongColumns{2} % songs: two columns per page
+      \ulSongPosition{1} % songs: avoid ONLY page-turns within songs
       % songs: make penalty for breaking column/page at any line of lyrics to be the same:
       % (The default for \interlinepenalty is 1000, and for all the others 200.)
       \interlinepenalty=200 %
       \input{content/songs_suomi_runoja_loitsuja.tex}
     }
-  \end{songs}
+  \end{ulSongs}
 
 \end{document}

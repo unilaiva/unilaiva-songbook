@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 
 \beginsong{Quem Procurar Esta Casa}[id={quem-procurar-esta-casa-p4sksp},by={Mestre Irineu Serra},ph={I},key={Am},gk={Am, Gm--G#m--(Am)}]
@@ -57,10 +57,10 @@
   \endverse
   \brk
   %% This note only in Santa Maria hinos:
-  \ifchorded\else\vfill\fi
+  \ifulChorded\else\vfill\fi
   \textnotefornext{Este hino é cantado antes da consagração de Santa Maria.}
   \textnoteforprev{\begin{english}This hymn is sung before the consecration of Santa Maria.\end{english}}
-  \iflyriconly\forcebrk\fi
+  \ifulLyricOnly\forcebrk\fi
   \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva, updated on 2022-12
     theMelody = \relative a'' {
@@ -273,7 +273,7 @@
     \setStaffSize #15 % to fit whole song on one spread
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Hail Mary, for me to remember
     That She is my Mother, mother of our Father
@@ -437,7 +437,7 @@
     }
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Whoever doesn't know Santa Maria and uses her every day
     Lives always in agony, but now it arrived as I wanted
@@ -706,7 +706,7 @@
     }
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Praised be our Mother, Holy Mary
     Who gives us the joy of celebrating with Her
@@ -1087,7 +1087,7 @@
     }
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \iflyriconly\forcebrk\fi
+  \ifulLyricOnly\forcebrk\fi
   \begin{translation}[EN]\scriptsize % smaller to fit whole song on a spread
     I'll tell a nice story, the plant that has more love
     She was a little one that Padrinho saw and blessed
@@ -1170,7 +1170,7 @@
     }
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Holy Mary who comes from Heaven
     To grace me, to grace me
@@ -1349,8 +1349,8 @@
     }
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
-  \iflyriconly\forcebrk\fi
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
+  \ifulLyricOnly\forcebrk\fi
   \begin{translation}[EN]
     O Virgin Mother, I ask of you that some day
     I may know how to love Santa Maria
@@ -1463,7 +1463,7 @@
     }
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Viva House of Mary, Viva as it is
     \nextverse
@@ -1597,7 +1597,7 @@
     }
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Santa Maria showed Me
     The way of the Lord
@@ -1716,7 +1716,7 @@
     }
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Praised be my Divine Father
     My Divine Father, praised be.
@@ -1764,7 +1764,7 @@
     Help your children
     Just like my father does
   \end{translation}
-  \ifshowlilypond\hardbrk\fi% to not leave the recto page empty
+  \ifulShowLilypond\hardbrk\fi% to not leave the recto page empty
   \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva on 2021-08
     theMelody = \relative c''' {
@@ -1887,7 +1887,7 @@
     }
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Santa Maria has been arriving in this company
     Bringing the forces of the Queen of the Forest

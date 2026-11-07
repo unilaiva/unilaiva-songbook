@@ -11,7 +11,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 
 \beginsong{A Chave da Justiça}[id={a-chave-da-justica-r8hv5d},by={Alex Polari},key={C},gk={C, G--B},tags={2x}]
@@ -44,7 +44,7 @@
     \beginrep
       |^Salve o meu ^Mestre Im|^pério, que nes^se Cru|^zeiro
       Bem fir^mado es|^tá,^ |deu para São ^João na |terra
-      A chave ^da jus|^tiça no Santo ^Daime es|\noteson\melodyStyleMapping{swapped}\[<C>C]tá. \[<*>]
+      A chave ^da jus|^tiça no Santo ^Daime es|\noteson\ulMelodyStyleMapping{swapped}\[<C>C]tá. \[<*>]
     \endrep
   \endverse
   \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
@@ -314,7 +314,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I ask for this light to get me clear, I ask that I will have this love
     I ask to have strength to help the spirits suffering in this world
@@ -495,7 +495,7 @@
 \endsong
 
 
-\sclearpage\chapcornermarkdashedtrue
+\sclearpage\ulChapterCornerMarkDashed{true}
 \beginsong{Mensageiro da Luz}[id={mensageiro-da-luz-ul0klo},by={Albertina Corrente},key={C},gk={C, C--D},tags={valsa, Mesa Branca}]
   \audio{https://www.nossairmandade.com/hymn/2263/MensageiroDaLuz}
   \meter{3}{4}
@@ -600,7 +600,7 @@
     Here I came to affirm what my Father ordered
   \end{translation}
 \endsong
-\sclearpage\chapcornermarkdashedfalse
+\sclearpage\ulChapterCornerMarkDashed{false}
 
 
 \beginsong{Meu Beija-flor o Sol Raiou}[id={meu-beija-flor-o-sol-raiou-uefku8},by={Alessandra},key={Dm},gk={Dm, Cm--Em}]
@@ -770,7 +770,7 @@
     \setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     My hummingbird, the Sun radiated, I heard the birds sing
     Announcing the Savior, who is coming back to Earth
@@ -793,7 +793,7 @@
 \endsong
 
 
-\ifchorded\sclearpage\fi\chapcornermarkdashedtrue
+\ifulChorded\sclearpage\fi\ulChapterCornerMarkDashed{true}
 \beginsong{Santo Daime Beija-mim}[id={santo-daime-beija-mim-l2uxyd},by={Marina Ruberti},tags={mazurka, Mesa Branca},key={Dm},gk={Dm, Cm--Em}]
   \audio{https://www.nossairmandade.com/hymn/2265/SantoDaimeBeija-Mim}
   \newchords{chords_santodaimebm_a}\newchords{chords_santodaimebm_b}
@@ -906,7 +906,7 @@
     Santo Daime to follow, this love to take care of
   \end{translation}
 \endsong
-\sclearpage\chapcornermarkdashedfalse
+\sclearpage\ulChapterCornerMarkDashed{false}
 
 
 \beginsong{Eu Peço a Meu São Miguel}[id={eu-peco-a-meu-sao-miguel-gammuc},by={Valdete},key={C},gk={D, C--E}]
@@ -989,7 +989,7 @@
     \altchords{\id[1]{(D)}|D |A |G A |D}
     \altchords{|D G |D | - G |D}
   \endverse
-  \ifshowlilypond\vspace{-1ex}\fi% for better fit
+  \ifulShowLilypond\vspace{-1ex}\fi% for better fit
   \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva, updated on 2022-12
     theMelody = \relative a' {
@@ -1111,7 +1111,7 @@
     \setStaffSize #13 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I ask my Saint Michael, for you with your sword.
     Help me have dominion over the people to follow on a good road.
@@ -1296,7 +1296,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Papapapaparuê, Papapapaparuá
     \nextverse
@@ -1584,7 +1584,7 @@
 \endsong
 
 
-\sclearpage\chapcornermarkdashedtrue
+\sclearpage\ulChapterCornerMarkDashed{true}
 \beginsong{A São Miguel que Domine}[id={a-sao-miguel-que-domine-otvadx},by={Francisco Cavalcante de Lima},tags={valsa, Mesa Branca},key={Gm},gk={Gm, (F#m)--(Gm)}]
   \audio{https://www.nossairmandade.com/hymn/2268/AS\%C3\%A3oMiguelQueDomine}
   \newchords{chords_asaomiguelquedomine_a}\newchords{chords_asaomiguelquedomine_b}
@@ -1723,7 +1723,7 @@
     We give thanks to the divine strength who, together with Saint Michael, dominates
   \end{translation}
 \endsong
-\sclearpage\chapcornermarkdashedfalse
+\sclearpage\ulChapterCornerMarkDashed{false}
 
 
 \beginsong{Espada de São Miguel \\ Da Terra Ao Astral}[id={espada-de-sao-miguel-6eo6o8},by={Baixinha},key={Dm},gk={Dm, Cm--Em}]

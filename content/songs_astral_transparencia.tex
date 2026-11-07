@@ -12,7 +12,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 \beginsong{O Ego}[id={o-ego-te1qvb},by={Lari Natri},key={Am},gk={Am, Gm--G#m--(Am)}]
   \audio[key=Am]{https://soundcloud.com/unilarva/o-ego?in=unilarva/sets/transparencia-hinario}
@@ -119,7 +119,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     In the church, the ego reveals its might;
     But I won't resist no more, I won't compete.
@@ -588,7 +588,7 @@
       | | \e
     \endrep
   \endverse
-  \ifchorded\ifshowaltchords
+  \ifulChorded\ifulShowAltChords
     \brk
     \beginverse % for alt key (Em) chords only
       \small
@@ -721,7 +721,7 @@
 
 \beginsong{Sentido da Vida}[id={sentido-da-vida-3vriy7},by={Lari Natri},key={Am},gk={Am, Gm--G#m--(Am)}]
   \meter{4}{4}
-  \melodySecondaryPosition{same}
+  \ulMelodySecondaryPosition{same}
   % verse 1:
   \beginverse+
     \beginrep
@@ -747,10 +747,10 @@
   \noteson
   \beginverse+
     % new temp colors for 2nd voice
-    \definecolor{melodynotecolor}{rgb}{0.2,0,0.4}
-    \definecolor{melodynotealtcolor}{rgb}{0.6,0,0.4}
+    \definecolor{ulMelodyNoteColor}{rgb}{0.2,0,0.4}
+    \definecolor{ulMelodyNoteAltColor}{rgb}{0.6,0,0.4}
     % make the alternate note have tag "1"
-    \renewcommand{\mnalttagtext}{1}
+    \renewcommand{\ulMelodyAltTagText}{1}
     \beginrep
       \[<E>]Está \[<A>]es|\[<C>Am]crito \[<B>]em \[<* A>]to\[<F>]das \[<E>]as \[<A>]nos|{ - }sas \[<G>]cé\[<* E>]lulas, | \[<*>] | \[<*>] \e
     \endrep

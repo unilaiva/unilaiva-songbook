@@ -39,8 +39,6 @@ old_versions
 # result documents
 *.pdf
 !content/img/*.pdf
-!miscellaneous/ext_package_songs_distribution/songs.pdf
-!miscellaneous/*.pdf
 
 # midi/audio files in workspace directory
 workspace/*.midi

@@ -5,8 +5,8 @@
 { % Put everything in this file in a block to not bleed settings
 
 % use Roman numerals for song (prayer) numbering:
-\renewcommand{\thesongnum}{\Roman{songnum}}
-\setcounter{songnum}{1}
+\renewcommand{\theulSongNumber}{\Roman{ulSongNumber}}
+\setcounter{ulSongNumber}{1}
 
 \scleardpage
 \beginsong{Sol, Lua, Estrela}[id={sol-lua-estrela-g1aubl},by={Mestre Irineu Serra},key={C},gk={C, (B)--(C)},tags={perfilado, 3x}]
@@ -383,7 +383,7 @@
     \setStaffSize #12 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     With the power of heaven, of Earth and the Sea
     I order Saint Michael, the strength is given by God

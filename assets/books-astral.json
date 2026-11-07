@@ -457,6 +457,7 @@
         },
         "bassclef": {
           "file": "unilaiva-astral-completa_BASSCLEF_A5.pdf",
+          "multikey_json_file": "unilaiva-astral-completa_BASSCLEF_A5_MULTIKEY_RANGES.json",
           "image": "unilaiva-astral-completa_BASSCLEF_A5_MODIFIED.png",
           "tag_ids": ["complete.comp"],
           "description_i18n": {

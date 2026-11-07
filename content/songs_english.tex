@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{300}
+\setcounter{ulSongNumber}{300}
 
 
 \beginsong{Spirit}[id={spirit-0ocupw},by={Rainer Scheurenbrand},ph={I},key={Am},gk={Bm, Am--C#m}]
@@ -736,7 +736,7 @@
     That |^holds to|^gether the |^atoms and |^stars as
     |^well as |^me and |^you | \e  \goto{Ó daime \rep{3}}
   \endverse
-  \iflyriconly\else{ % Skip on lyric-only books to fit on one page
+  \ifulLyricOnly\else{ % Skip on lyric-only books to fit on one page
     \begin{translation}[EN]
       Oh give me, give me love, daime my beloved.
       Daime, give me light, I am with You... eternal life.
@@ -749,7 +749,7 @@
 \endsong
 
 
-\iflyriconly\else{ % Show this here for chorded books, elsewhere on lyric only
+\ifulLyricOnly\else{ % Show this here for chorded books, elsewhere on lyric only
   \begin{intersong}
     \imagecc[2]{heart_by_larva__789px.png}
   \end{intersong}
@@ -763,7 +763,7 @@
   \transpose{2} % in G the notes range from F# to E', in A from G# to F#
   % NOTE: setup smaller fonts etc to fit the song better
   \normalsize
-  \renewcommand{\ulChordFont}{\sffamily\bfseries\footnotesize\color{chordcolor}} % to go with the above
+  \renewcommand{\ulChordFont}{\sffamily\bfseries\footnotesize\color{ulChordColor}} % to go with the above
   \renewcommand{\ulAltChordsStyle}{\scriptsize\itshape}
   \renewcommand{\ulChordLineBaselineSkip}{8.46pt}%
   \renewcommand{\ulChordLineLineskipLimit}{1pt}%
@@ -897,7 +897,7 @@
     I\ldots
     This song\ldots
   \endverse
-  \showlilypondfalse % to save space
+  \ulShowLilypond{false} % to save space
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-06
@@ -965,7 +965,7 @@
 \endsong
 
 
-\iflyriconly{ % Show this here for lyric books, elsewhere on chorded
+\ifulLyricOnly{ % Show this here for lyric books, elsewhere on chorded
   \begin{intersong}
     \imagecc[2]{heart_by_larva__789px.png}
   \end{intersong}
@@ -1087,7 +1087,7 @@
       |^I ^love you | I ^thank you \up{2}(|^ ^ | ^ \e)
     \endrep
   \endverse
-  \ifchorded\nolyrics{%
+  \ifulChorded\nolyrics{%
     \musicnotefornext{interlude:}
     \beginverse[1]
       |\[Am]{} \[<*>]{} |{ }{ } \[<*>]{} |\[Em]{} \[<*>]{} |{ }{ } \[<*>]{} |\[Bm]{} \[<*>]{} |{ }{ } \[<*>]{} |\[Em]{} { }{ } |{ }{ } \[<*>]{} \e{ } \rep{2}
@@ -1102,7 +1102,7 @@
       |^Rakastan ^sinua | Minä kii^tän sinua \up{2}(|^ ^ | ^\e)
     \endrep
   \endverse
-  \begin{explanation}[EN]\iflyriconly\scriptsize\fi % to fit on one page in lyrics-only book
+  \begin{explanation}[EN]\ifulLyricOnly\scriptsize\fi % to fit on one page in lyrics-only book
     Ho'oponopono practice belongs to an old Hawaiian system of knowledge and wisdom, \emph{Huna}.
     Ho'oponopono translates as ``to make rightly right''.
     The four sentences are a prayer through which one gains inner peace, harmony and moves
@@ -1126,7 +1126,7 @@
        of the past. I give thanks that I may recognise and join with the Source of all Being.
     \end{description}
   \end{explanation}
-  \yesendsongvfill
+  \ulEndSongVfill{true}
 \endsong
 
 
@@ -1739,7 +1739,7 @@
     To |see \[<*>]you in |\[D]all \[<*>]{} is to |see \[<*>]you in |\[Em]me \[<*>]{} \altchords{| - |D | - |Em}
     \lrep 'Cause |\[D]I'm in you and \[<*>]you're in |\[Em]me \[<*>]{} \rrep\rep{3} \altchords{|D |Em}
   \endverse
-  \begin{feeler}\iflyriconly\footnotesize\fi % make smaller to fit on one page in lyrics only variant
+  \begin{feeler}\ifulLyricOnly\footnotesize\fi % make smaller to fit on one page in lyrics only variant
     ``All reality is one in substance, one in cause, on in origin\ldots and every particle of
     reality is composed inseparably of the physical and the psychic. The object of philosophy,
     therefore, is to preserve unity in diversity, mind in matter and matter in mind\ldots
@@ -1785,7 +1785,7 @@
        qualities and attributes of oneself (in Vedic philosphy)
     \end{description}
   \end{explanation}
-  \yesendsongvfill
+  \ulEndSongVfill{true}
 \endsong
 
 
@@ -2006,7 +2006,7 @@
     Pure earth, warm fire, strong wind, deep water
     I can feel them in my body, I can feel them in my soul
   \endverse
-  \noendsongvfill
+  \ulEndSongVfill{false}
 \endsong
 
 
@@ -2034,7 +2034,7 @@
 
 
 \beginsong{Three Little Birds}[id={three-little-birds-dpf503},by={Bob Marley},tags={morning},ph={IV}]
-  \ifchorded%
+  \ifulChorded%
     \beginverse
       \musicnotefornext{intro:}*
       {\nolyrics%
@@ -2455,7 +2455,7 @@
     \noteson
     \[<G#>]Is |\[<F>E]just \[<E>]to \[<B>]love |\[<B&>Gm7]and \[<G>]be \[<F>]loved \[<C#>A7]in \[<E>]re|\[<D>Dm]turn'' | \e \altchords{|C# |Em7 F#7 | Bm | \e}
   \endverse
-  \ifchorded\ifcharangobook\else
+  \ifulChorded\ifulCharangoBook\else
     % Show guitar chord help if chorded & not charango.
     % If song uses \transpose, must add inverted transpose here, and change
     % the gtabs to transposed versions.

@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{600}
+\setcounter{ulSongNumber}{600}
 
 
 \beginsong{Kalevala-sävelmä}[id={kalevala-savelma-9rezhi},key={Am},gk={Dm, Gm--Em}]
@@ -73,7 +73,7 @@
   %   %\setStaffSize #15 % for better fit
   %   \include "ulsbs-include-tail-lyricsbetween.ly"
   % \end{lilypond}\end{lilywrap}
-  \yesendsongvfill% to balance vspace before and after lilypond, as there is no other content
+  \ulEndSongVfill{true}% to balance vspace before and after lilypond, as there is no other content
 \endsong
 
 
@@ -115,7 +115,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \yesendsongvfill% to balance vspace before and after lilypond, as there is no other content
+  \ulEndSongVfill{true}% to balance vspace before and after lilypond, as there is no other content
 \endsong
 
 
@@ -222,7 +222,7 @@
   % Original image downloaded from: https://cdn.pixabay.com/photo/2014/04/03/11/48/fox-312203_960_720.png
   % Image license: Public Domain
   % Edited by: larva
-  \imagecc[\iflyriconly 2\else 4\fi]{fox_drawing_ed_by_larva__transbg_CC0_900x1200.png}
+  \imagecc[\ifulLyricOnly 2\else 4\fi]{fox_drawing_ed_by_larva__transbg_CC0_900x1200.png}
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-07
     \include "ulsbs-include-head.ly"
@@ -260,14 +260,14 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \noendsongvfill % align lp to the bottom
+  \ulEndSongVfill{false} % align lp to the bottom
 \endsong
 
 
 \beginsong{Laulu oravasta}[id={laulu-oravasta-hq3326},by={Otto Kotilainen, Aleksis Kivi},key={Dm},gk={Dm, Dm--Em}]
   % NOTE: this is based on the version by Aapo Similä
   \transpose{5} % transpose to Dm: then lowest note is G, the highest A
-  \ifchorded%
+  \ifulChorded%
     \beginverse
       \musicnotefornext{intro:}*
       {\nolyrics%
@@ -359,7 +359,7 @@
     On |^syvään sun ^kuvasi |^painu^nut ja |^sitä ^ikä|^vöin. ^
     Olen |^villi^sorsaa |^kuunnel^lut  mä |^siellä ^monin |^öin. ^
   \endverse
-  \ifchorded\ifshowaltchords
+  \ifulChorded\ifulShowAltChords
     \beginverse % for alt key (Em) chords only
       \altchords{\id[1]{(Em)}|Em |Bm |Am |B}
       \altchords{|G |D |Em B7 |Em}
@@ -409,7 +409,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \noendsongvfill % align lp to the bottom
+  \ulEndSongVfill{false} % align lp to the bottom
 \endsong
 
 
@@ -507,7 +507,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \noendsongvfill % align lp to the bottom
+  \ulEndSongVfill{false} % align lp to the bottom
 \endsong
 
 
@@ -760,7 +760,7 @@
 
 \beginsong{Käy neitoa kaksi}[id={kay-neitoa-kaksi-2x26m3},by={trad.},ex={Åland},key={Am},gk={Am, Gm--Bm}]
   \newchords{chords_kayneitoakaksi_a}\newchords{chords_kayneitoakaksi_b}
-  \ifchorded%
+  \ifulChorded%
     \beginverse
       \musicnotefornext{intro:}*
       {\nolyrics
@@ -796,7 +796,7 @@
       ken |^molem^mille |^meil^le on |^rak^kain. |{ }{ } ^ \e
     \endrep
     \endverse\glueverses\beginverse\noteson
-    \[<A>]Se |\[<B>E]rak\[<A>Am]kain. |{ }{ }\[<*>] \ifchorded |{ }{ }\[<*>] |\[G/A]\[<*>] |\[Am]\[<*>] |\[G/A]\[<*>] |\[Am]\[<*>] \else \e \fi
+    \[<A>]Se |\[<B>E]rak\[<A>Am]kain. |{ }{ }\[<*>] \ifulChorded |{ }{ }\[<*>] |\[G/A]\[<*>] |\[Am]\[<*>] |\[G/A]\[<*>] |\[Am]\[<*>] \else \e \fi
   \endverse
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2024-08
@@ -977,7 +977,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \noendsongvfill % align lp to the bottom
+  \ulEndSongVfill{false} % align lp to the bottom
 \endsong
 
 
@@ -1048,7 +1048,7 @@
 
 
 \beginsong{Haltin häät}[id={haltin-haat-o2q7jr},by={Hannu Seppänen, Arto Alaspää}]
-  \ifchorded\baselineadj=-.2ex\fi % to fit on one page, TODO: could this be the default?
+  \ifulChorded\ulBaselineAdjustment=-.2ex\fi % to fit on one page, TODO: could this be the default?
   \beginverse\memorize
     Kun |\[<C>C]ihmiskunnan aamu \[^<D>]vas\[^<E>]ta |\[Em]alkoi sarastaa
     Ja |\[F]Lappi oli jättiläisten |\[G]maana
@@ -1184,7 +1184,7 @@
     ja |^elää^{ } elä|^määnsä^{ } ja |^elää^{ } elä|^määnsä.^
   \endverse
   \goto{Maailma on kaunis}
-  \showlilypondfalse% to save space
+  \ulShowLilypond{false}% to save space
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-07
     \include "ulsbs-include-head.ly"
@@ -1306,7 +1306,7 @@
     Rakas|^tan ^ elä|^mää, ^{} sille |^lempeni ^tahdon mä |^antaa.^
     Rakas|^tan ^ elä|^mää, ^{} joka |^muistojen ^hetkiä |^kantaa.^
   \endverse
-  \showlilypondfalse% To save space
+  \ulShowLilypond{false}% To save space
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-06
     \include "ulsbs-include-head.ly"
@@ -1922,7 +1922,7 @@
     |^Kosketa |^minua, |^Hen|ki! |^Herätä |^kiittä|^mään, |^
     |^sinun |^lähel|^lä|^si |^armosta |^elä|^mään. | \e
   \endverse
-  \ifchorded\ifshowaltchords
+  \ifulChorded\ifulShowAltChords
     \beginverse\small % for alt key (F) chords only
       \altchords{\id[1]{(F)}|F |Am |Dm | - |Gm7 |Am |B& |D7/A}
       \altchords{|Gm |C7 |Fmaj7 |D |Gm7 |C7 |F | \e}
@@ -2003,7 +2003,7 @@
     |^Nuku |nuku |nurmi|^lin|tu, \brk|^väsy |^väsy |^västä|^räk|ki,
     |nuku |kun mi|^nä nu|^ku|tan, \brk|^väsy |^kun mi|^nä vä|^sy|tän.
   \endverse
-  \ifchorded\ifshowaltchords
+  \ifulChorded\ifulShowAltChords
     \beginverse\small % for alt key chords only
       \altchords{\id[1]{(Am)}|Am | - | - |E | - |Dm |Am |E7 |Am | \e}
       \altchords{| - | - |Dm7 |E | - |E7 |Am |E7 |Am | \e}
@@ -2037,7 +2037,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \noendsongvfill % align lp to the bottom
+  \ulEndSongVfill{false} % align lp to the bottom
 \endsong
 
 
@@ -2056,7 +2056,7 @@
     |^Laula, ^laula, |^uni^lintu, |^tuoksu, ^tuomen|^tert^tu.
     |Nuku, ^puna|^paitu^lainen, |^pikku ^leppä|^kert^tu.
   \endverse
-  \ifchorded\ifshowaltchords
+  \ifulChorded\ifulShowAltChords
     \beginverse\small % for alt key chords only (Am)
       \altchords{\id[1]{(Am)}|Am |E |Dm Am |E7 Am}
       \altchords{|Am |Dm7 E |E7 |Am}
@@ -2106,7 +2106,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \noendsongvfill % align lp to the bottom
+  \ulEndSongVfill{false} % align lp to the bottom
 \endsong
 
 
@@ -2153,7 +2153,7 @@
       |\[<B>G]Vaa\[^<E>]lin \[<B *>]pien\[^<A>]tä |\[<G>Em/B]val\[^<B>]ke\[<E>Em]ais\[^<F#>]ta, |\[^<G>]luojan lasta \[<F#>B7]liikut|\[<E>Em]te\[<*>]len
     \endrep
   \endverse
-  \melodyStyleMapping{swapped}% use alternate melody note color
+  \ulMelodyStyleMapping{swapped}% use alternate melody note color
   \beginverse+% melody notes in this verse signify the 2nd voice
     |\[<B>Em]Tai\[<A>]va\[<G>]hast' \[<E>]on |\[B]lah\[<D#>]ja \[<E>Em]tul\[<B>]lut, |\[<E>]taivahan tu\[<D>D]len ki|\[<G>G]sois\[<*>]ta
   \endverse\glueverses\beginverse+
@@ -2235,7 +2235,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-multivoice-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \noendsongvfill % align lp to the bottom
+  \ulEndSongVfill{false} % align lp to the bottom
 \endsong
 
 
@@ -2287,7 +2287,7 @@
     |^Toisen ^kerran |tava^tessa |^laulut ^uudet |^on. ^
     |Hei ^vaan, |^heipä ^hei ja |laulut ^uudet |^on. ^
   \endverse
-  \showlilypondfalse % To save space for this simple song
+  \ulShowLilypond{false} % To save space for this simple song
   \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative c'' {
       \key a \minor \time 4/4
@@ -2325,7 +2325,7 @@
   % Original image downloaded from: https://commons.wikimedia.org/wiki/File:Harmonic_series_to_32.png
   % Image license: Public Domain
   % Edited by: larva
-  \imagecc[\iflyriconly 0\else 1\fi]{harmonic_series_to_32_PD__1641x1299px.png}
+  \imagecc[\ifulLyricOnly 0\else 1\fi]{harmonic_series_to_32_PD__1641x1299px.png}
   % Harmonic series (sum):
   \begin{center}%
     $$\sum_{n=1}^{\infty} \frac{1}{n}$$
@@ -2395,7 +2395,7 @@
     Tur\[<F>]hat |\[<G>Am7]tut\[<F>]ta\[<E>]vat |\[<D>E7]sil\[<B>]loin |\[<D>]ois |\[G7] \e
     \[<G>]Hä\[<F>]vin|\[<E>E7]neet { } \[<G#>]pian |\[<A>Am]pois | | | \e
   \endverse
-  \showlilypondfalse % to save space
+  \ulShowLilypond{false} % to save space
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2026-05
     % \header {

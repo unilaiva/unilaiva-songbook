@@ -10,7 +10,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 
 \beginsong{Pai Nosso}[id={pai-nosso-z9d35r},by={Sebastião},key={C},gk={D, B&--G}]
@@ -329,7 +329,7 @@
     \setStaffSize #15 % for better division
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\iflyriconly\scriptsize\fi% to fit on one page in lyrics-only books
+  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi% to fit on one page in lyrics-only books
     I called my Master in the name of the truth
     Because the truth is God, the King of charity
     \nextverse
@@ -524,7 +524,7 @@
     \setStaffSize #14 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I called the Master Juramidam, for my Master to come here
     \nextverse
@@ -666,7 +666,7 @@
     \setStaffSize #14 % to fit translation, too
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \iflyriconly\forcebrk\fi
+  \ifulLyricOnly\forcebrk\fi
   \begin{translation}[EN]
     The Stars already arrived to say their name
     I am, I am, I am, I am a son of God
@@ -754,7 +754,7 @@
       Disse |^que já fora es^cravo e cultu|^ava o mesmo po^der
     \endrep
   \endverse
-  \iflyriconly\else\hardbrk\fi
+  \ifulLyricOnly\else\hardbrk\fi
   \beginverse\replay[chords_osespiritosestao_a]
     \beginrep
       Meu Im|^pério Jurami^dam, que |glória vos perten^cer
@@ -862,7 +862,7 @@
     \setStaffSize #15.5 % for better division
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     In this very moment I want to declare
     A few words which I heard being announced
@@ -1022,7 +1022,7 @@
     }
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Harmony, truth and forgiveness
     Are the three points that secure this union.
@@ -1370,7 +1370,7 @@
     \setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I look at the firmament, I see the whole Universe
     This force that I receive, I always sing and always ask
@@ -1510,7 +1510,7 @@
     \setStaffSize #14 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Sun, Moon, Star; the Earth, the wind and the sea
     The forest and its mysteries for everyone to study
@@ -1662,7 +1662,7 @@
     \setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\iflyriconly\scriptsize\fi% to fit on one page in lyrics-only books
+  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi% to fit on one page in lyrics-only books
     Now I stop and ask, I ask and pray to the Lord God
     To give me the holy health, for all His sons and daughters
     \nextverse

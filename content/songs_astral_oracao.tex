@@ -11,7 +11,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 
 \beginsong{Examine a Consciência}[id={examine-a-consciencia-3e8lv6},by={Sebastião},key={C},gk={D, C--E}]
@@ -126,7 +126,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \iflyriconly\forcebrk\fi
+  \ifulLyricOnly\forcebrk\fi
   \begin{translation}[EN]
     Examine your conscience; Examine it thoroughly
     I‘m the Father, not the son; But I don‘t act that way
@@ -793,7 +793,7 @@
     }
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Dem dum, dem dum; Dem dum, dem dum
     \nextverse
@@ -1126,7 +1126,7 @@
     \setStaffSize #12 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I'm going to pray for everyone to see
     Our Father who art in heaven please defend me
@@ -1751,7 +1751,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \iflyriconly\forcebrk\fi
+  \ifulLyricOnly\forcebrk\fi
   \begin{translation}[EN]
     I am not God; But I have a hope
     I am not God; But I am His likeness
@@ -1840,7 +1840,7 @@
       ^Treme a |Terra e ^geme o |^Mar ^
     \endrep
   \endverse
-  \iflyriconly\forcebrk\fi
+  \ifulLyricOnly\forcebrk\fi
   \beginverse\replay[chords_eupedietive_a]
     \beginrep
       A Meu |^Pai eu ^agra|^de^ço
@@ -1938,7 +1938,7 @@
     %\setStaffSize #14 % for all verses: 14
     \include "ulsbs-include-tail-lyricsbetween.ly" % for all verses: -lyricsbelow.ly
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I asked and received the touch
     Of the forest and the Astral
@@ -1975,7 +1975,7 @@
     Everyone seek the Holy Peace
     For themselves and their brothers and sisters
   \end{translation}
-  \noendsongvfill % otherwise the horiz. line signifying song end wouldn't fit
+  \ulEndSongVfill{false} % otherwise the horiz. line signifying song end wouldn't fit
 \endsong
 
 
@@ -2150,7 +2150,7 @@
     \setStaffSize #11 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     My Saint John, My Saint John, was who sang this song
     For me and for you, the magic of the Oração

@@ -1,13 +1,10 @@
 # This file contains tags for unilaiva-songbook.
 #
-# Syntax: each tag is presented by two lines. The first contains the tag
-# name(s) and the second contains only the number 1. (The weird syntax with
-# 1's is due to the fact that the tag system utilizes, in essence *is*, the
-% scripture reference system from 'songs' package.) First line can have
-# more than one name for the same tag, separated by | characters.
+# Syntax: one tag per line, with optional aliases separated by | characters.
+# Blank lines and full-line # or % comments are ignored. There are no count lines.
 #
 # Only the first tag name will appear in the tag index, but the other
-# ones are treated as aliases for the first one, when they appear song
+# ones are treated as aliases for the first one, when they appear in song
 # definitions.
 #
 # Tags for songs are defined as "tags=" keyvals for the \beginsong macro,
@@ -18,130 +15,66 @@
 #
 
 2x|daime-2x
-1
 3x|daime-3x
-1
 a cappella|à capela
-1
 air|ilma|wind|tuuli
-1
 angels
-1
 Aya|aya|Ayahuasca|ayahuasca
-1
 bailado
-1
 canon
-1
 censing|suitsutus
-1
 (chords missing)
-1
 circle|piiri
-1
 compassion
-1
 cura
-1
 Divine Mother
-1
 elements
-1
 earth|maa
-1
 fire|tuli
-1
 flying
-1
 Ganesha|Ganapati
-1
 happiness
-1
 health
-1
 heart|sydän
-1
 Kali
-1
 Krishna
-1
 Kundalini
-1
 learning
-1
 liberation
-1
 light|valo
-1
 love|rakkaus
-1
 marcha e meia valsa|daime-marchameiavalsa
-1
 marcha e valsa|daime-marchavalsa
-1
 mazurka|daime-mazurka
-1
 Mesa Branca
-1
 Moon|Kuu
-1
 morning|aamu
-1
 Mother Earth|mother earth|Äiti Maa|äiti maa
-1
 opening|avautuminen
-1
 path
-1
 peace|rauha
-1
 perfilado|de pé|daime-perfilado
-1
 protection|suojelus
-1
 Radha
-1
 rapé
-1
 Santa Missa
-1
 Santo Daime
-1
 São Miguel
-1
 sauna
-1
 sea
-1
 Shiva
-1
 sleep|uni
-1
 source|God|lähde|Jumala
-1
 space|avaruus
-1
 stars|tähdet
-1
 Sun|Aurinko
-1
 teacher
-1
 thankfulness|kiitollisuus
-1
 trabalhos de mesa
-1
 transcendence
-1
 unity
-1
 valsa|daime-valsa
-1
 Vishnu
-1
 water|vesi
-1
 wisdom|viisaus
-1
 you
-1

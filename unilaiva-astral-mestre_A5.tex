@@ -32,7 +32,7 @@
   \ulImprintPage
 
   % TOC:
-  \ulTOC
+  \ulToc
 
   % Sets chapter number; will be incremented by one at each \ulMainChapter,
   % \songchapter or \chapter:
@@ -40,15 +40,15 @@
 
   \ulMainChapter[Mestre Irineu: O Cruzeiro]{Mestre Irineu: \\O Cruzeiro}{chapmestrecolor}[Mestre_Irineu_with_stick__CC0_1636x1736px.jpg]
     \scleardpage
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_mestre.tex}
-    \end{songs}{}
+    \end{ulSongs}{}
 
   % Here start appendices: chapter numbering resets and switches to alphabetic
   \appendix
-  \usechaptercolorsfalse
+  \ulUseChapterColors{false}
 
-  \ifchorded
+  \ifulChorded
     \chapter{Técnico}
       \input{content/section_technical_information.tex}
   \fi

@@ -31,22 +31,22 @@
   \ulImprintPage
 
   % TOC:
-  \ulTOC
+  \ulToc
 
   % Sets chapter number; will be incremented by one at each \ulMainChapter,
   % \songchapter or \chapter:
   \setcounter{chapter}{0}
 
   \ulMainChapter[Maria Alice: O Rosário]{Maria Alice: \\O Rosário}{chaprosariocolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_o_rosario.tex}
-    \end{songs}
+    \end{ulSongs}
 
   % Here start appendices: chapter numbering resets and switches to alphabetic
   \appendix
-  \usechaptercolorsfalse
+  \ulUseChapterColors{false}
 
-  \ifchorded
+  \ifulChorded
     \chapter{Técnico}
       \input{content/section_technical_information.tex}
   \fi

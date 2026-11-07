@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 
 \beginsong{Viva a Liberdade do Santo Daime}[id={viva-a-liberdade-do-santo-daime-c2uook},by={Marco},off={Chico Corrente},tags={2x},key={Am},gk={Am, G#m--Bm}]
@@ -173,7 +173,7 @@
     \beginrep
       |^Salve o meu ^Mestre Im|^pério, que nes^se Cru|^zeiro
       Bem fir^mado es|^tá,^ |deu para São ^João na |terra
-      A chave ^da jus|^tiça no Santo ^Daime es|\noteson\melodyStyleMapping{swapped}\[<C>C]tá. \[<*>]
+      A chave ^da jus|^tiça no Santo ^Daime es|\noteson\ulMelodyStyleMapping{swapped}\[<C>C]tá. \[<*>]
     \endrep
   \endverse
   \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
@@ -665,7 +665,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\iflyriconly\scriptsize\fi% to fit lyrics-only book on one page
+  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi% to fit lyrics-only book on one page
     God of mercy, my Sovereign Father
     Give me Your hand in the tests that are passing
     \nextverse
@@ -953,7 +953,7 @@
     \setStaffSize #14 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I call the force of the vine, of the leaf, the miração
     From the water the divine purity, from the fire total ascertainment

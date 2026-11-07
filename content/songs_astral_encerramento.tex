@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 
 \beginsong{Meu Deus, Meu São João}[id={meu-deus-meu-sao-joao-sp33ty},by={Alfredo},key={C},gk={C, B&--D},tags={valsa}]
@@ -389,7 +389,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifchorded%
+  \ifulChorded%
     \vfill
     \beginverse \noteson % first line of the next hino (in key D, but will be transposed)
       \hfill\tonextsongmark \hfill \[<D>]Eu |\[D]vivo \[<F#>]na \[<A>]flo\[<D>Bm]res\[<F#>]ta, a\[<B>]pren|\[<A>A]dendo a \[<E>]me \[<F#>]cu\[<D>D]rar \ldots

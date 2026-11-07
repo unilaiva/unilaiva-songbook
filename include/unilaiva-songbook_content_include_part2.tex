@@ -29,58 +29,58 @@
   % License: Public Domain (CC0)
   % Edited by: larva
   \ulMainChapter{English}{chapenglishcolor}[ul-default-chapter-03_green_circles_ed_by_larva_CC0_1200px.jpg]
-    \begin{songs}{titleidx,authidx,tagidx}
+    \begin{ulSongs}{titleidx,authidx,tagidx}
       \input{content/songs_english.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Saṃskṛtam}{chapsanskritcolor}[ul-default-chapter-04_lotus_om_transbg_2000px.png]
     \section{About mantras}
       \input{content/section_mantra_explanation.tex}
     \clearpage\scleardpage
     \section{Bhajans \& Mantras (Vedic et al.)}
-      \begin{songs}{titleidx,authidx,tagidx}
+      \begin{ulSongs}{titleidx,authidx,tagidx}
         \input{content/songs_sanskrit_vedic.tex}
-      \end{songs}
+      \end{ulSongs}
     \scleardpage
     \section{Buddhist Mantras}
-      \begin{songs}{titleidx,authidx,tagidx}
+      \begin{ulSongs}{titleidx,authidx,tagidx}
         \input{content/songs_sanskrit_buddhist.tex}
-      \end{songs}
+      \end{ulSongs}
 
   % IMAGE: Original downloaded from: https://freesvg.org/round-decorative-frame-vector-image
   % Also found in: https://imgbin.com/png/6ymgAY92/native-americans-in-the-united-states-visual-arts-by-indigenous-peoples-of-the-americas-hopi-navajo-nation-zuni-png
   % License: Public Domain (CC0)
   % Edited by: larva
   \ulMainChapter{Other}{chapothercolor}[ul-default-chapter-05_Hopi_Navajo_Zuni_circle_ed_by_larva_transbg_CC0_1200px.png]
-    \begin{songs}{titleidx,authidx,tagidx}
+    \begin{ulSongs}{titleidx,authidx,tagidx}
       \input{content/songs_other.tex}
-    \end{songs}
+    \end{ulSongs}
 
   % IMAGE: Permalainen rauta-ajan lintuaihe
   % From: J.R. Aspelin --- Muinaisjäännöksiä suomen suvun asuma-aloilta, 1877
   \ulMainChapter{Suomi}{chapfinnishcolor}[ul-default-chapter-06_lintu_muinaissuomalaisilta_asuma-aloilta_perma_1426x1158px.png]
     \begin{finnish} % set language to finnish for hyphenation etc (polyglossia package)
       \section{Lauluja}
-        \begin{songs}{titleidx,authidx,tagidx}
+        \begin{ulSongs}{titleidx,authidx,tagidx}
           \input{content/songs_suomi.tex}
           % larva's scribblings (remove later?):
           \input{content/songs_suomi_larva.tex}
-        \end{songs}
+        \end{ulSongs}
       \clearpage\scleardpage
       \section{Muinaissuomalaista mytologiaa}
         \input{content/section_suomi_mytologiaa.tex}
       \clearpage\scleardpage
       \section{Runoja, loitsuja}
-        \begin{songs}{titleidx,authidx,tagidx}
+        \begin{ulSongs}{titleidx,authidx,tagidx}
           \chordsoff % songs: do not show (empty line for non-existing) chords
           % songs: Increase line spacing for better readability
-          \baselineadj=+1pt plus 0pt minus 0pt%
+          \ulBaselineAdjustment=+1pt plus 0pt minus 0pt%
           \renewcommand{\ulLyricFont}{\small} % use smaller font
-          \songcolumns{2} % songs: two columns per page
-          \songpos{1} % songs: avoid ONLY page-turns within songs
+          \ulSongColumns{2} % songs: two columns per page
+          \ulSongPosition{1} % songs: avoid ONLY page-turns within songs
           % songs: make penalty for breaking column/page at any line of lyrics to be the same:
           % (The default for \interlinepenalty is 1000, and for all the others 200.)
           \interlinepenalty=200 %
           \input{content/songs_suomi_runoja_loitsuja.tex}
-        \end{songs}
+        \end{ulSongs}
     \end{finnish}

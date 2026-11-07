@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 \beginsong{Com Fé em Deus}[id={com-fe-em-deus-6lb3n7},by={Júlia},key={C},gk={D, C--E}]
   \audio{https://www.nossairmandade.com/hymn/690/ComF\%C3\%A9EmDeus}
@@ -663,7 +663,7 @@
     }
     \include "ulsbs-internal-score-midi.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\iflyriconly\scriptsize\fi% to fit on one page in lyrics-only book
+  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi% to fit on one page in lyrics-only book
     If you relax the Daime cures, if you relax the Daime helps
     If you relax the Daime saves, if your relax the Daime takes
     \nextverse

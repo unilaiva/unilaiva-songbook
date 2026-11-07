@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{500}
+\setcounter{ulSongNumber}{500}
 
 
 \beginsong{Ancient Aramaic Prayer}[id={ancient-aramaic-prayer-iciqq1},ph={I}]
@@ -528,7 +528,7 @@
 
 
 \beginsong{Ayahuasca Takimuyki}[id={ayahuasca-takimuyki-vn6ci1},by={Don José Campos},ex={quechua, español},tags={Aya},ex={quechua, español},ph={II},key={Bm},gk={Cm, (Bm)--Cm--C#m}]
-  \ifchorded\else% Do not show measure bars (with meters) in lyrics-only book
+  \ifulChorded\else% Do not show measure bars (with meters) in lyrics-only book
     \measuresoff%
   \fi
   % in Am the notes range from E to G'
@@ -579,7 +579,7 @@
   \end{translation}
   \vfill%
   \musicnotefornext{alternate, simplified, rhythm: make any/every measure 3/4}
-  \noendsongvfill
+  \ulEndSongVfill{false}
   % NOTE: Our version has the first verse in quechua, and the rest in quechua/spanish.
   % Adapted lyrics in 100% quechua, without spanishisms:
   %   Ayawaska urqumanta takitakimuyki,
@@ -685,7 +685,7 @@
       Maï|^{te hãwã} ^shaka maï|^te; yube ^shaka maï|^te ^ |{ } { } ^ \e
     \endrep
   \endverse
-  \showlilypondfalse % to save space
+  \ulShowLilypond{false} % to save space
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2024-01
     \include "ulsbs-include-head.ly"
@@ -894,7 +894,7 @@
     \endrep
   \endverse
   \beginverse+[1]
-    \melodySecondaryPosition{same}
+    \ulMelodySecondaryPosition{same}
     \beginrep
       |\[<E>Em]Te \[<*>] nan|de te \[<*>]nan|\[<G>C]de \[<*>] | \[<*>] \e
       |\[<F#>D]Te \[<*>] nan|de \[<D>]te \[<* E @1.13ex>]nan|\[Em]de \[<*;G F#>]{} |\[<;E>]\[<*>]{} \up{2}(| \[<*>] |) \e
@@ -1096,7 +1096,7 @@
     |\sublyr{{ }{ }{ }To yaye nyithindogi}\[<A>Am]Ooh mam' |\[<E>]u\[<D>]win\sublyr{{ }{ }un}\[<C>]ja|\sublyr{koro un utimo-}' \e
     |\sublyr{ru nade?}Koth \[<E D>]bi\[<B>]ro|\[Em]{'} \sublyrpush{Koth biro} \sublyr{Ke-}\[<E>]Ke|\sublyr{lu-}lu\sublyr{ru}\[<D>]ru \sublyr{dhok}dhok \sublyr{e}\[<B>]e \sublyr{da-}\[<C>]da|\sublyr{{ } { } la}\[Am]{-la} | \e
   \endverse
-  \ifshowlilypond\vspace{-1ex}\fi%
+  \ifulShowLilypond\vspace{-1ex}\fi%
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2024-02
     \include "ulsbs-include-head.ly"
@@ -1189,7 +1189,7 @@
    \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
   \musicnote{The original order: A B A B A [instrumental] A A(+sublyrics) A B(+sublyrics) A}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     \sublyr{Oh these children,}Oh mother, \sublyr{what are you doing?}if you can hear me
     \nextverse
@@ -1303,11 +1303,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\iflyriconly\else\scleardpage\fi
+\ifulLyricOnly\else\scleardpage\fi
 \beginsong{Ave Maria}[id={ave-maria-xvjuu8},by={Franz Schubert},ex={latina, suomi},ph={III},key={C},gk={D, C--E}]
   \audio{https://www.youtube.com/watch?v=ja5hQH9USIU} % differs in bar 8 (v1, v2) and bar 12 (v1)
   \meter{4}{4}
-  \iflyriconly\else
+  \ifulLyricOnly\else
     \musicnotefornext{intro:}*
     \beginverse
       |\[C] \[<*>]{ } |{ }{ } \[C7]{} |\[F]{} \[Fm]{} |\[C]{} \[<*>]{}{} \e
@@ -1330,7 +1330,7 @@
     In |^hora ^mortis, mortis |^nostrae, ^ in |^hora ^mortis no|^strae. ^
     |^A{ } ^-ve Ma|^ri ^-|^a! ^{ }{ } |{ }{ } ^{} |^{} ^{} |^{ }{ } ^{} \e
   \endverse
-  \ifchorded\ifcharangobook\else
+  \ifulChorded\ifulCharangoBook\else
     % Show guitar chord help if chorded & not charango.
     % If song uses \transpose, must add inverted transpose here, and change
     % the gtabs to transposed versions.
@@ -1361,7 +1361,7 @@
     sun |^armos ^huomaan yksin |^jään. ^
     |^A{ } ^-ve Ma|^ri ^-|^a! ^{ }{ } |{ }{ } ^{} |^{} ^{} |^{ }{ } ^{} \e
   \endverse
-  \begin{translation}[EN]\iflyriconly\else\tiny\fi
+  \begin{translation}[EN]\ifulLyricOnly\else\tiny\fi
     Hail Mary, full of grace! Mary, full of grace, Mary, full of grace.
     Hail, Hail, the Lord! The Lord is with thee.
     Blessed art thou among women, and blessed,
@@ -1484,7 +1484,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{explanation}[EN]\iflyriconly\else\tiny\fi
+  \begin{explanation}[EN]\ifulLyricOnly\else\tiny\fi
     These lyrics are the Latin \emph{Ave Maria} prayer adapted to this melody.
     The original lyrics were from Walter Scott's narrative poem
     \emph{The Lady of the Lake}, as translated to German by Adam Storck.

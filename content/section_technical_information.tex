@@ -5,7 +5,7 @@
 %\noindent%
 
 \clearpage
-\IfLangTF{portuguese}{%
+\ulIfLanguage{portuguese}{%
   \section{Círculo das Quintas}
   \imagecc[0]{Circle_of_Fifths_by_larva__CC-BY-NC-SA_PT.pdf}
   \section{Modos e Acordes}
@@ -20,34 +20,34 @@
 % NOTE: must use \flatsymbol and \sharpsymbol instead of \flt and \shrp inside \tabular
 \begin{tabular}{| p{5.3em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} |}
   \hline
-  \textbf{\IfLangTF{portuguese}{Jônico}{Ionian}} & \textbf{I} & \textbf{ii} & \textbf{iii} & \textbf{IV} & \textbf{V} & \textbf{vi} & \textbf{vii\symdim} \\
-  \IfLangTF{portuguese}{Dórico}{Dorian} & VII & i & ii & III & IV & v & vi\symdim \\
-  \IfLangTF{portuguese}{Frígio}{Phrygian} & VI & vii & i & II & III & iv & v\symdim \\
-  \IfLangTF{portuguese}{Lídio}{Lydian} & V & vi & vii & I & II & iii & iv\symdim \\
-  \IfLangTF{portuguese}{Mixolídio}{Mixolydian} & IV & v & vi & VII & I & ii & iii\symdim \\
-  \textbf{\IfLangTF{portuguese}{Eólio}{Aeolian}} & \textbf{III} & \textbf{iv} & \textbf{v} & \textbf{VI} & \textbf{VII} & \textbf{i} & \textbf{ii\symdim} \\
-  \IfLangTF{portuguese}{Lócrio}{Locrian} & II & iii & iv & V & VI & vii & i\symdim \\
+  \textbf{\ulIfLanguage{portuguese}{Jônico}{Ionian}} & \textbf{I} & \textbf{ii} & \textbf{iii} & \textbf{IV} & \textbf{V} & \textbf{vi} & \textbf{vii\symdim} \\
+  \ulIfLanguage{portuguese}{Dórico}{Dorian} & VII & i & ii & III & IV & v & vi\symdim \\
+  \ulIfLanguage{portuguese}{Frígio}{Phrygian} & VI & vii & i & II & III & iv & v\symdim \\
+  \ulIfLanguage{portuguese}{Lídio}{Lydian} & V & vi & vii & I & II & iii & iv\symdim \\
+  \ulIfLanguage{portuguese}{Mixolídio}{Mixolydian} & IV & v & vi & VII & I & ii & iii\symdim \\
+  \textbf{\ulIfLanguage{portuguese}{Eólio}{Aeolian}} & \textbf{III} & \textbf{iv} & \textbf{v} & \textbf{VI} & \textbf{VII} & \textbf{i} & \textbf{ii\symdim} \\
+  \ulIfLanguage{portuguese}{Lócrio}{Locrian} & II & iii & iv & V & VI & vii & i\symdim \\
   \hline
-  \textit{\IfLangTF{portuguese}{Acordes diatônicos}{Diatonic chords}} & \IfLangTF{portuguese}{Maior}{Major}, maj7, maj9, maj11, maj13, 6 & m, m7, m9, m11, m6 & m, m7 & \IfLangTF{portuguese}{Maior}{Major}, maj7, maj9, maj13, 6 & \IfLangTF{portuguese}{Maior}{Major}, 7, 9, 11, 13, sus4 & m, m7, m9, m11 & m7\flatsymbol{}5 \\
+  \textit{\ulIfLanguage{portuguese}{Acordes diatônicos}{Diatonic chords}} & \ulIfLanguage{portuguese}{Maior}{Major}, maj7, maj9, maj11, maj13, 6 & m, m7, m9, m11, m6 & m, m7 & \ulIfLanguage{portuguese}{Maior}{Major}, maj7, maj9, maj13, 6 & \ulIfLanguage{portuguese}{Maior}{Major}, 7, 9, 11, 13, sus4 & m, m7, m9, m11 & m7\ulFlatSymbol{}5 \\
   \hline
 \end{tabular}
-\IfLangTF{portuguese}{%
+\ulIfLanguage{portuguese}{%
   \subsection*{Tipos Básicos de Acordes Para Escalas Menores}
 }{%
   \subsection*{Minor Scales' Basic Chord Types}
 }
 \begin{tabular}{| p{6em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} |}
   \hline
-  \IfLangTF{portuguese}{Natural}{Natural} & i & ii\symdim & III & iv & v & VI & VII \\
-  \IfLangTF{portuguese}{Harmônico}{Harmonic} & i & ii\symdim & III+ & iv & V & VI & \sharpsymbol{}vii\symdim \\
-  \IfLangTF{portuguese}{Melódico}{Melodic} & i & ii & III+ & IV & V & \sharpsymbol{}vi\symdim & \sharpsymbol{}vii\symdim \\
+  \ulIfLanguage{portuguese}{Natural}{Natural} & i & ii\symdim & III & iv & v & VI & VII \\
+  \ulIfLanguage{portuguese}{Harmônico}{Harmonic} & i & ii\symdim & III+ & iv & V & VI & \ulSharpSymbol{}vii\symdim \\
+  \ulIfLanguage{portuguese}{Melódico}{Melodic} & i & ii & III+ & IV & V & \ulSharpSymbol{}vi\symdim & \ulSharpSymbol{}vii\symdim \\
   \hline
 \end{tabular}
 \vfill
 
-\ifcharangobook\else\ifbassclefbook\else% % do not show guitar chords for special variants
+\ifulCharangoBook\else\ifulBassclefBook\else% % do not show guitar chords for special variants
   \clearpage
-  \IfLangTF{portuguese}{%
+  \ulIfLanguage{portuguese}{%
     \section{Acordes para Violão}
   }{%
     \section{Chords for Guitar}

@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 
 \beginsong{Firmeza}[id={firmeza-34kaiz},by={Sebastião},tags={à capela},key={A},gk={A, G--B}]
@@ -398,7 +398,7 @@
     \setStaffSize #15 % to fit all on one spread
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\iflyriconly\scriptsize\fi % to fit on one page in lyrics-only book
+  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi % to fit on one page in lyrics-only book
     I live in this world until my day comes
     Next to my Master and the Ever Virgin Mary
     \nextverse
@@ -771,8 +771,8 @@
     }
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
-  \begin{translation}[EN]\iflyriconly\scriptsize\fi % to fit on one page in lyrics-only book
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi % to fit on one page in lyrics-only book
     The worth that the Master has, I am going to clarify
     If someone is doubtful, take Daime to see
     \nextverse

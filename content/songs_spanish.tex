@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{100}
+\setcounter{ulSongNumber}{100}
 
 
 \beginsong{Elevo mi Canto}[id={elevo-mi-canto-jjinmx},by={Ilein Kuymin},ph={I},key={Am},gk={Am, Gm--Em}]
@@ -214,7 +214,7 @@
       En tu |\[G]luz siempre fe|\[Am]liz
     \endrep
   \endverse
-  \ifchorded\imagecc[3]{moon_bw_transparent_bg_939x939px.png}\fi%
+  \ifulChorded\imagecc[3]{moon_bw_transparent_bg_939x939px.png}\fi%
   \begin{translation}[EN]
     Moon, queen of night
     Moon, sister of my soul
@@ -232,7 +232,7 @@
     To dance with the universe and in your always happy light,
     in your always happy light
   \end{translation}
-  \ifchorded\else\imagecc[3]{moon_bw_transparent_bg_939x939px.png}\fi
+  \ifulChorded\else\imagecc[3]{moon_bw_transparent_bg_939x939px.png}\fi
 \endsong
 
 
@@ -320,7 +320,7 @@
       Yo |^can|^to a|^sí | \e
     \endrep
   \endverse
-  \iflyriconly\forcebrk\fi
+  \ifulLyricOnly\forcebrk\fi
   \begin{translation}[EN]
     I'm here in your garden
     In your service, Lord
@@ -656,7 +656,7 @@
     \end{description}
   \end{explanation}
   \imagecc[1]{snake_sa_ed_by_larva_aa_transbg_960x262px.png}%
-  \yesendsongvfill
+  \ulEndSongVfill{true}
 \endsong
 
 
@@ -900,11 +900,11 @@
 \beginsong{Amor y Unidad}[id={amor-y-unidad-zoleig},by={Bóveda Celeste},ph={III},key={Am},gk={Am, Em--Am}]
   \audio[key=Am]{https://bovedaceleste.bandcamp.com/track/amor-y-unidad}
   \meter{6}{8}
-  \renewcommand\mnalttagtext{2}
+  \renewcommand\ulMelodyAltTagText{2}
   \beginverse+
     \beginrep
-      |\[<E;G>Em]Corren dos \[<*>]liebres a|\[<G;A>]tra\[<F;G>]ve{\renewcommand\mntagtext{1,2}\[<* E>]}san\[<D>]{do\jw el}
-      |\[<E;A>Am]bosque \[<D;G>]don\[<* E;A>]de \[<D;G>]na|{\renewcommand\mntagtext{1,2}\[<E>]}\[<D>]cie\[<E>]ron \[<*>]
+      |\[<E;G>Em]Corren dos \[<*>]liebres a|\[<G;A>]tra\[<F;G>]ve{\renewcommand\ulMelodyTagText{1,2}\[<* E>]}san\[<D>]{do\jw el}
+      |\[<E;A>Am]bosque \[<D;G>]don\[<* E;A>]de \[<D;G>]na|{\renewcommand\ulMelodyTagText{1,2}\[<E>]}\[<D>]cie\[<E>]ron \[<*>]
       \[<D>]de|\[<E>Em]scansan a un \[<*>]lado de un |\[<G>]la\[<F>]go \[<* E>]don\[<D>]de
       pla|\[<E>Am]tican \[<D>]con \[<* E>]un \[<D>]jil|\[<E D>]gue\[<E>]ro
     \endrep
@@ -930,7 +930,7 @@
       \[<*>]Que nos |\[F]dice \[<*>]que ve|nimos de \[<*>]la misma
       |\[C]fuente y del \[<*>]mismo lu|gar \[<*>]
       to|\[Em]dos somos \[<*>]de la ti|erra,
-      \melodyStyleMapping{swapped}{} del |\[<C>Am]agua, del \[<*>]fuego y \[<G>]del |\[<A>]aire
+      \ulMelodyStyleMapping{swapped}{} del |\[<C>Am]agua, del \[<*>]fuego y \[<G>]del |\[<A>]aire
     \endrep
   \endverse
   \begin{translation}[EN]
@@ -1230,7 +1230,7 @@
       me he encon|\[G]trado un corazó|n sonaj|\[F]ero | \e
     \endrep
   \endverse
-  \begin{translation}[EN]\iflyriconly\else\footnotesize\fi % to fit on one page in chorded booklets
+  \begin{translation}[EN]\ifulLyricOnly\else\footnotesize\fi % to fit on one page in chorded booklets
     On this road to the forest
     I have found a little bird rattle
     that inspired, by the flight of the Eagle found in its heart,
@@ -1423,7 +1423,7 @@
     Canta\meter{3}{4}|^remos ica|ritos en sesion|cita de ^aya|^huasca \meter{2}{4}| \replay \e
     Danza\meter{3}{4}|^remos muy jun|titos sire|nita ^Bobin|^zana \meter{2}{4}| \e
   \endverse
-  \begin{translation}[EN]\iflyriconly\else\footnotesize\fi % to fit on one page in chorded book
+  \begin{translation}[EN]\ifulLyricOnly\else\footnotesize\fi % to fit on one page in chorded book
     Little princess of the rivers, dance dance with the wind
     With your flowers and aromas, you perfume the hearts
     \nextverse
@@ -1602,13 +1602,13 @@
   \end{translation}
 \endsong
 
-\iflyriconly\else\scleardpage\fi
+\ifulLyricOnly\else\scleardpage\fi
 \beginsong{En la Selva un Río}[id={en-la-selva-un-rio-8fvb58},by={Kike Pinto},ph={III, IV},key={Am},gk={Am, Am--Bm}]
   \audio[key=Em]{https://soundcloud.com/mic-hael-857559944/en-la-selva-un-rio-by-kike-pinto-in-pisaq-on-october-2007}
   \transpose{5}
   \newchords{chords_enlaselva_a}\newchords{chords_enlaselva_b}
   \meter{6}{8}
-  \iflyriconly\else\normalsize\fi% to fit all verses on one spread
+  \ifulLyricOnly\else\normalsize\fi% to fit all verses on one spread
   \beginverse\memorize[chords_enlaselva_a]
     \beginrep
       \[^<B>]En |\[<E>Em]{la sel}\[^<D>]va un rí|\[^<B>]{o en} \[^<A>]noche osc|\[<B>G]ura | \e
@@ -1640,7 +1640,7 @@
     \ind |Trai nanai na|^nai na|nai |^nai Nanai nanai |^nai
     \ind |^ visiones |^de un nuevo d|^ía | |^Trai nanai na |\ldots | | | | | | \e
   \endverse
-  \iflyriconly\else\brk\fi
+  \ifulLyricOnly\else\brk\fi
   \beginverse\replay[chords_enlaselva_a]
     \beginrep
       El |^viento me tra|e un dulce ar|^oma | \e
@@ -1670,7 +1670,7 @@
     \ind |Trai nanai na|^nai na|nai |^nai Nanai nanai |^nai
     \ind |^ por los rí|^{os de} mis v|^enas | |^Trai nanai na |\ldots | | | | | | \e
   \endverse
-  \begin{translation}[EN]\iflyriconly\footnotesize\fi
+  \begin{translation}[EN]\ifulLyricOnly\footnotesize\fi
     In the jungle on a river on a dark night rides a canoe. (x2)
     They watch it from the thicket, the jaguars and the boas.
     They protect it from the thicket, the jaguars and the boas.
@@ -1951,7 +1951,7 @@
   \audio[key=C#m]{https://www.youtube.com/watch?v=4s3uheDMRl0}
   \audio[key=C#m]{https://www.youtube.com/watch?v=oSgKCfJhWbM} % live
   \capo{4}
-  \renewcommand{\mnalttagtext}{2}
+  \renewcommand{\ulMelodyAltTagText}{2}
   \beginverse+
     \beginrep
       \[<A>]Te agra|\[Am]dezco |\[<F>Fmaj7&5]{ por llegar} a mi |\[<G>G]co\[<A>]ra\[<G>]zón | \e
@@ -2168,8 +2168,8 @@
     |^que llama el \up{1}canto |^del colibrí. \altlyr[2]{vuelo}
   \endverse
   \beginverse[3]\replay[chords_comotequieroyo_a]
-    \textnotefornext{Instrumental, on 2nd playthrough\ifchorded:\fi}
-    \ifchorded{\nolyrics%
+    \textnotefornext{Instrumental, on 2nd playthrough\ifulChorded:\fi}
+    \ifulChorded{\nolyrics%
     |^{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ }
     |{ }{ }{ }{ }^{ }{ }{ }{ } | { }{ }{ }{ }^{ }{ }{ }{ } |{ }{ }{ }{ }^{ }{ }{ }{ }
     |{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } |{ }{ }{ }{ }{ } |^{ }{ }{ }{ }{ } | \e
@@ -2465,7 +2465,7 @@
     \endrep
   \endverse
   \goto{De cantar}
-  \iflyriconly\forcebrk\fi
+  \ifulLyricOnly\forcebrk\fi
   \begin{translation}[EN]
     From Cuñaq comes water, meandering
     by the ditches and in eddies
@@ -2562,9 +2562,9 @@
   \audio[key=Am]{https://www.youtube.com/watch?v=rvaIvhfGbGM}
   \beginverse*\footnotesize% smaller verse text
     % songs: make chords smaller in this verse
-    \renewcommand{\ulChordFont}{\sffamily\bfseries\tiny\color{chordcolor}}%
+    \renewcommand{\ulChordFont}{\sffamily\bfseries\tiny\color{ulChordColor}}%
     % songs: make space between chord and lyric line smaller:
-    \renewcommand{\clineparams}{%
+    \renewcommand{\ulChordLineParams}{%
     \baselineskip=6pt%
     \lineskiplimit=1pt%
     \lineskip=1pt%
@@ -2604,12 +2604,12 @@
       |^por este po|der, esta be|^lleza. | \e
     \endrep
   \endverse
-  \iflyriconly\else\hardbrk\fi
+  \ifulLyricOnly\else\hardbrk\fi
   \goto{Siento vivo}
   \goto{Siento las plantas}
   \goto{Yagé, yagé \rep{4}}
   \goto{Siento las plantas \rep{5}}
-  \iflyriconly\forcebrk\fi
+  \ifulLyricOnly\forcebrk\fi
   \begin{translation}[EN]
     Walking through the jungle following the beauty,
     following the songs of the plants.
@@ -2964,7 +2964,7 @@
     \endrep
   \endverse
   \vspace{1em}\goto{Lailaralai}
-  \iflyriconly\else\imagecc[2]{sunrise_mountain__ed_by_larva__transbg_CC0_1280x1141px.png}\fi%
+  \ifulLyricOnly\else\imagecc[2]{sunrise_mountain__ed_by_larva__transbg_CC0_1280x1141px.png}\fi%
   \begin{translation}[EN]
     The day is already blossoming, joy is awakening.
     Pachamama lift us up. Mother Earth, I sing of love.
@@ -2979,7 +2979,7 @@
     \nextverse
     Welcome siblings, welcome this day. Welcome good life, welcome your song.
   \end{translation}
-  \iflyriconly\hardbrk\imagecc[2]{sunrise_mountain__ed_by_larva__transbg_CC0_1280x1141px.png}\fi%
+  \ifulLyricOnly\hardbrk\imagecc[2]{sunrise_mountain__ed_by_larva__transbg_CC0_1280x1141px.png}\fi%
 \endsong
 
 

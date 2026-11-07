@@ -92,29 +92,29 @@
 % Setup the mark at song end, just above the horizontal line that ends a song;
 % if this macro is empty (the default), only the line is displayed.
 \renewcommand{\ulSongEndMark}{%
-  \color{gray}\ulsymboliifont ◼%
+  \color{gray}\ulSymbolTwoFont ◼%
 }
 
 % Smaller melody notes
-\renewcommand{\mnsymbolstyle}{\microsize}
+\renewcommand{\ulMelodySymbolStyle}{\ulMicroSize}
 
 % Do not display language *code* for EN
-\renewcommand{\passageomitlangcodes}{EN}
-\renewcommand{\explanationomitlangcodes}{EN}
+\renewcommand{\ulPassageOmitLangCodes}{EN}
+\renewcommand{\ulExplanationOmitLangCodes}{EN}
 
-\showphtrue
-\showphintoctrue
-\showkeytrue
-\showgoodkeystrue
-\showtranslationtrue
-\showofftrue
-\showextrue
-\showtagstrue
-\shownotestrue
-\showbeatstrue
-\showauthtrue
-\showlilypondtrue
-\showexplanationtrue
-\showtranslationtrue
-\showfeelertrue
-\showaltchordstrue
+\ulShowPhase{true}
+\ulShowPhaseInToc{true}
+\ulShowKey{true}
+\ulShowGoodKeys{true}
+\ulShowTranslation{true}
+\ulShowOfferedTo{true}
+\ulShowExtraInfo{true}
+\ulShowTags{true}
+\ulShowNotes{true}
+\ulShowBeats{true}
+\ulShowAuthors{true}
+\ulShowLilypond{true}
+\ulShowExplanation{true}
+\ulShowTranslation{true}
+\ulShowFeeler{true}
+\ulShowAltChords{true}

@@ -5,6 +5,11 @@ texts, chords, musical transcriptions, and the project-specific files used to
 build their PDFs. The reusable compiler and typesetting engine is
 [ULSBS](https://github.com/unilaiva/ulsbs), included here as the `ulsbs/` Git submodule.
 
+ULSBS uses its own LuaLaTeX-only song engine and in-process title/tag indexing.
+The existing song sources need no native-engine migration. Neither the upstream
+`songs` runtime nor an external indexer is required. Authoring and manual
+multi-pass instructions live in [`ulsbs/WRITING_SONGBOOKS.md`](ulsbs/WRITING_SONGBOOKS.md).
+
 **Read or download the published books:**
 
 - [Unilaiva Songbook](https://unilaiva.aavalla.net/)
@@ -182,7 +187,8 @@ Repository-specific conventions are:
 - The Unilaiva and Astral style defaults are in
   [`include/ulsbs-songbook-unilaiva-default.cls`](include/ulsbs-songbook-unilaiva-default.cls)
   and [`include/ulsbs-songbook-astral-default.cls`](include/ulsbs-songbook-astral-default.cls).
-- Song tags are defined in [`include/tags.can`](include/tags.can).
+- Song tags are defined in [`include/tags.txt`](include/tags.txt), one tag with
+  optional `|`-separated aliases per line, in index order.
 - [`include/ul-selection_example.tex`](include/ul-selection_example.tex) shows
   the project's selection setup; read its associated helper defaults before copying it.
 

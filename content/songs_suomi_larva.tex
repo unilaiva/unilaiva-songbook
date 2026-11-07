@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{670}
+\setcounter{ulSongNumber}{670}
 
 
 \beginsong{Puhdista}[id={puhdista-7d8mja},by={larva},tags={suitsutus, suojelus},ph={I},key={Bm},gk={Bm, Bm--Cm}]
@@ -117,7 +117,7 @@
       |\[<F#>]O\[<E>]pet\[<F#>]taa\[<*>]{} |\[<G>Em]e\[<F#>]lä\[<G>]mään\[<*>]{} |\[<F#>F#m]e\[<A>A]elä|\[<B>Bm]mää! \[<*>]
     \endrep
   \endverse
-  \ifshowlilypond\vspace{-1ex}\fi % to fit on one page
+  \ifulShowLilypond\vspace{-1ex}\fi % to fit on one page
   \begin{lilywrap}\begin{lilypond}[]
     % by larva (2018), transcribed by larva (latest update on 2023-12)
     \include "ulsbs-include-head.ly"
@@ -410,7 +410,7 @@
       |\[G]lientä tai vaikkapa |\[C]sientä.
     \endrep
   \endverse
-  \noendsongvfill% % because of the intersong below
+  \ulEndSongVfill{false}% % because of the intersong below
 \endsong
 
 

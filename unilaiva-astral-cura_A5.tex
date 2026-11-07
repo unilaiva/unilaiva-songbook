@@ -28,48 +28,48 @@
   \ulImprintPage
 
   % TOC:
-  \ulTOC
+  \ulToc
 
   % Sets chapter number; will be incremented by one at each \ulMainChapter,
   % \songchapter or \chapter:
   \setcounter{chapter}{0}
 
   \ulMainChapter{Primeira Parte}{chapcuraicolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_cura_i.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Segunda Parte}{chapcuraiicolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_cura_ii.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Hinos Diversos de Cura}{chapcuradiversoscolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_cura_diversos.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Trabalho de São Miguel}{chapsaomiguelcolor}[Francesco_Maffei_-_San_Miguel_venciendo_a_Lucifer_1640-1660.jpg]
     \section{Instruções}
         \input{content/section_astral_saomiguel_instrucoes.tex}
-    \songsection{Abertura dos Portões Celestiais}
-      \begin{songs}{}
+    \ulSongSection{Abertura dos Portões Celestiais}
+      \begin{ulSongs}{}
         \input{content/songs_astral_saomiguel_abertura.tex}
-      \end{songs}
-    \songsection{Chamados dos Mensageiros}
-      \begin{songs}{}
+      \end{ulSongs}
+    \ulSongSection{Chamados dos Mensageiros}
+      \begin{ulSongs}{}
         \input{content/songs_astral_saomiguel_chamados_dos_mensageiros.tex}
-      \end{songs}
-    \songsection{Encerramento}
-      \begin{songs}{}
+      \end{ulSongs}
+    \ulSongSection{Encerramento}
+      \begin{ulSongs}{}
         \input{content/songs_astral_saomiguel_encerramento.tex}
-      \end{songs}
+      \end{ulSongs}
 
   % Here start appendices: chapter numbering resets and switches to alphabetic
   \appendix
-  \usechaptercolorsfalse
+  \ulUseChapterColors{false}
 
-  \ifchorded
+  \ifulChorded
     \chapter{Técnico}
       \input{content/section_technical_information.tex}
   \fi

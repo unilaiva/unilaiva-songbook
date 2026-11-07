@@ -11,9 +11,9 @@
   subsubtitle={Saṃskṛtam, English, Other, Suomi}
 ]{ulsbs-songbook-unilaiva-default}
 
-\renewcommand{\ulSubBookTitle}{part \romanupnum{2}}
+\renewcommand{\ulSubBookTitle}{part \ulRomanUpperNumber{2}}
 
-\renewcommand{\ulInsertCoverIcons}{\ulInsertCoverIconsHTL}%
+\renewcommand{\ulInsertCoverIcons}{\ulInsertCoverIconsHtl}%
 
 \ulSetPermanentCoverIcons[ulsbs-tag-icon-partial-edition_EN_512x512px.png]%
                   [ul-default-chapter-03_green_circles_ed_by_larva_CC0_1200px.jpg]%
@@ -31,7 +31,7 @@
   \ulImprintPage
 
   % TOC:
-  \ulTOC
+  \ulToc
 
   % Content chapters (comment one out in two-booklet version):
   %\input{unilaiva-songbook_content_include_part1.tex}
@@ -39,7 +39,7 @@
 
   % Add a note about the chapters in the other part of the book to TOC.
   % Comment out the line(s) not relevant to this book (part).
-  \addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}{\normalfont Chapters} Español {\normalfont and} Português {\normalfont are found in} \emph{part \romanupnum{1}} {\normalfont of this book.}}{}{}}
+  \addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}{\normalfont Chapters} Español {\normalfont and} Português {\normalfont are found in} \emph{part \ulRomanUpperNumber{1}} {\normalfont of this book.}}{}{}}
   %\addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{}{\normalfont Chapters} Saṃskṛtam{\normalfont ,} English{\normalfont ,} Other {\normalfont and} Suomi {\normalfont are found in} \\\emph{part \romanupnum{2}} {\normalfont of this book.}}{}{}}
 
   % Appendices:

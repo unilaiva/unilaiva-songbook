@@ -72,7 +72,7 @@
 % ULSBS setup:
 
 % Set things shown on the second page:
-\renewcommand{\ulBookMotto}{\ifchorded{com informação musical}\fi}
+\renewcommand{\ulBookMotto}{\ifulChorded{com informação musical}\fi}
 \renewcommand{\ulBookByText}{%
   Recebido por:\par\vspace{0.618034ex}\textbf{\Large humanidade}%
 }%
@@ -95,56 +95,56 @@
 }
 
 \renewcommand\ulChapterSymbol{%
-  {\ulsymboliifont 🟌}%
+  {\ulSymbolTwoFont 🟌}%
 }
 
 % Setup the mark at song end, just above the horizontal line that ends a song;
 % if this macro is empty (the default), only the line is displayed.
 \renewcommand{\ulSongEndMark}{%
-  \ulsymboliifont 🌣 \ulsymbolfont ☾ \ulsymboliifont 🟋%
+  \ulSymbolTwoFont 🌣 \ulSymbolFont ☾ \ulSymbolTwoFont 🟋%
 }
 
 % Make tag list in the prelude bold, and use the same style for chorded and
 % lyric books
-\renewcommand\preludetagstyle{\bfseries}
+\renewcommand\ulPreludeTagStyle{\bfseries}
 
 % Setup the icons displayed on the front cover
 \renewcommand{\ulChordsTagIcon}{ulsbs-tag-icon-chords_PT_512x512px.png}
 \renewcommand{\ulLyricsOnlyTagIcon}{ulsbs-tag-icon-lyrics-only_PT_512x512px.png}
-\renewcommand{\ulInsertCoverIcons}{\ulInsertCoverIconsVTL}%
+\renewcommand{\ulInsertCoverIcons}{\ulInsertCoverIconsVtl}%
 
-\renewcommand{\translationfont}{\footnotesize} % make translated text smaller
-\renewcommand\mnalttagtext{2} % put "2" as tag for alternate melody notes
+\renewcommand{\ulTranslationFont}{\footnotesize} % make translated text smaller
+\renewcommand\ulMelodyAltTagText{2} % put "2" as tag for alternate melody notes
 % larger chord font:
-\renewcommand{\ulChordFont}{\sffamily\bfseries\normalsize\color{chordcolor}}
+\renewcommand{\ulChordFont}{\sffamily\bfseries\normalsize\color{ulChordColor}}
 % smaller explanation font:
-\renewcommand{\explanationfont}{\rmfamily\scriptsize}
+\renewcommand{\ulExplanationFont}{\rmfamily\scriptsize}
 
 % Do not display language *code* for PT
-\renewcommand{\passageomitlangcodes}{PT}
-\renewcommand{\explanationomitlangcodes}{PT}
+\renewcommand{\ulPassageOmitLangCodes}{PT}
+\renewcommand{\ulExplanationOmitLangCodes}{PT}
 
 % polyglossia: language settings
 \setmainlanguage[variant=brazilian]{portuguese}
 \setotherlanguage{english}
 \setotherlanguage{finnish}
 
-\showphfalse
-\showphintocfalse
-\showkeytrue
-\showgoodkeystrue
-\showtranslationtrue
-\showofftrue
-\showextrue
-\showtagstrue
-\shownotestrue
-\showbeatstrue
-\showauthtrue
-\showlilypondtrue
-\showexplanationtrue
-\showtranslationtrue
-\showfeelertrue
-\showaltchordstrue
+\ulShowPhase{false}
+\ulShowPhaseInToc{false}
+\ulShowKey{true}
+\ulShowGoodKeys{true}
+\ulShowTranslation{true}
+\ulShowOfferedTo{true}
+\ulShowExtraInfo{true}
+\ulShowTags{true}
+\ulShowNotes{true}
+\ulShowBeats{true}
+\ulShowAuthors{true}
+\ulShowLilypond{true}
+\ulShowExplanation{true}
+\ulShowTranslation{true}
+\ulShowFeeler{true}
+\ulShowAltChords{true}
 
 % Setup chapter colors
 \definecolor{chapprecescolor}{rgb}{.196,.5176,.749} % from the image
@@ -175,8 +175,8 @@
 \definecolor{chapultransparenciacolor}{rgb}{.98,.7722,.2067}
 % Override language colors
 \definecolor{astralenglishcolor}{rgb}{0,0.26,0.26}%
-\colorlet{langportuguesecolor}{black}%
-\colorlet{langenglishcolor}{astralenglishcolor}%
+\colorlet{ulLanguagePortugueseColor}{black}%
+\colorlet{ulLanguageEnglishColor}{astralenglishcolor}%
 
 
 % Adds a note about the rest in this chapter not being in other books. Use

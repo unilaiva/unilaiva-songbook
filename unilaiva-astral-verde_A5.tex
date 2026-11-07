@@ -28,7 +28,7 @@
   \ulImprintPage
 
   % TOC:
-  \ulTOC
+  \ulToc
 
   % Sets chapter number; will be incremented by one at each \ulMainChapter,
   % \songchapter or \chapter:
@@ -36,10 +36,10 @@
 
   \ulMainChapter{Preces}{chapprecescolor}[SD_cross_simple_flat_blueish_transparent_bg.png]
     \scleardpage
-    \songsection{Abertura}
-    \begin{songs}{}
+    \ulSongSection{Abertura}
+    \begin{ulSongs}{}
       \input{content/section_astral_preces_abertura.tex}
-    \end{songs}{}
+    \end{ulSongs}{}
     \begin{intersong}
       % to sit between starting and ending prayers
       {%
@@ -59,55 +59,55 @@
       }
     \end{intersong}
     \sclearpage
-    \songsection{Encerramento}
-    \begin{songs}{}
+    \ulSongSection{Encerramento}
+    \begin{ulSongs}{}
       \input{content/section_astral_preces_encerramento.tex}
-    \end{songs}{}
+    \end{ulSongs}{}
 
   \ulMainChapter{Oração}{chaporacaocolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_oracao.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Hinos da Concentração}{chapconcentracaocolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_concentracao.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Hinos Diversos da Concentração}{chapconcentracaodiversoscolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_concentracao_diversos.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Hinos do Daime}{chapdaimecolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_daime.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Hinos da Santa Maria}{chapsantamariacolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_santamaria.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Hinos Diversos de Cura}{chapcuradiversoscolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_cura_diversos.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Hinos Diversos}{chapdiversoscolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_diversos.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter[Mestre Irineu Serra: O Cruzeirinho]{Mestre Irineu Serra: \\O Cruzeirinho}{chapcruzeirinhocolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_cruzeirinho.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Hinos do Encerramento}{chapencerramentocolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_encerramento.tex}
-    \end{songs}
+    \end{ulSongs}
     \sclearpage
     \begin{intersong}
       % to sit between hinos and prayers
@@ -117,36 +117,36 @@
       \vfill
     \end{intersong}
     \sclearpage
-    \songsection{Preces do Encerramento}
-    \begin{songs}{}
+    \ulSongSection{Preces do Encerramento}
+    \begin{ulSongs}{}
       % work around the page break \include wants to add, as \input cannot
       % be used here for the second time
       \global\let\savedclearpage\clearpage
       \global\let\clearpage\relax
       \include{content/section_astral_preces_encerramento.tex}
       \global\let\clearpage\savedclearpage
-    \end{songs}{}
+    \end{ulSongs}{}
 
   \ulMainChapter{Pontos de Defumação}{chapdefumacaocolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_defumacao.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Hinos do Aniversário}{chapaniversariocolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_aniversario.tex}
-    \end{songs}
+    \end{ulSongs}
 
   \ulMainChapter{Diversões do Mestre}{chapmestrediversoescolor}
-    \begin{songs}{}
+    \begin{ulSongs}{}
       \input{content/songs_astral_diversoes_do_mestre.tex}
-    \end{songs}
+    \end{ulSongs}
 
   % Here start appendices: chapter numbering resets and switches to alphabetic
   \appendix
-  \usechaptercolorsfalse
+  \ulUseChapterColors{false}
 
-  \ifchorded
+  \ifulChorded
     \chapter{Técnico}
       \input{content/section_technical_information.tex}
   \fi

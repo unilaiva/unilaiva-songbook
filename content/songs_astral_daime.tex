@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{1}
+\setcounter{ulSongNumber}{1}
 
 \beginsong{Aqui Eu Recebi}[id={aqui-eu-recebi-eefho7},by={Sebastião},key={A},gk={A, G--B--(C)}]
   \audio{https://www.nossairmandade.com/hymn/35/AquiEuRecebi}
@@ -577,7 +577,7 @@
 \beginsong{Tomo Daime}[id={tomo-daime-h86w4q},by={Tetéo},key={C},gk={D, B&--F#}]
   \audio[key=D]{https://www.nossairmandade.com/hymn/1065/TomoDaime}
   \newchords{chords_tomodaime_a}\newchords{chords_tomodaime_b}
-  \melodySecondaryPosition{below}
+  \ulMelodySecondaryPosition{below}
   \beginverse+
     \beginrep\memorize[chords_tomodaime_a]
       \[^<A;B>]Eu |\[<C>C]tomo \[<*>]Dai\[^<A>]me eu |\[^<C>]tomo \[<*>]Daime \altchords{\id[1]{D}|D | \e}
@@ -1021,7 +1021,7 @@
     \setStaffSize #11 % for better fit
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I drank Daime withg my president in a beautiful room
     At a table in the center of the Virgin of Conception
@@ -1675,7 +1675,7 @@
     Because God is who teaches me
     All that I have to know
   \end{translation}
-  \ifshowlilypond\forcebrk\fi% to not leave the recto page empty
+  \ifulShowLilypond\forcebrk\fi% to not leave the recto page empty
   \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     theMelody = \relative e'' {
       \set melismaBusyProperties = #'() \slurDashed
@@ -1965,7 +1965,7 @@
     \setStaffSize #13.5 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Being with the Daime I never get tired
     Being with Him I start shaking
@@ -1981,7 +1981,7 @@
 
 
 \beginsong{Professor de Estrela}[id={professor-de-estrela-uekyu4},by={Odemir Raulino Da Silva},key={Dm},gk={Dm, Cm--Dm}]
-  \ifshowlilypond%
+  \ifulShowLilypond%
     \vspace*{-.75ex} % an ugly hack to fit the whole song on one spread
   \fi
   \audio{https://www.nossairmandade.com/hymn/1557/ProfessorDeEstrela}
@@ -2011,7 +2011,7 @@
       |\[A] Profes\[<*>]sor \[<D>]de \[<C#>]es|\[<E>A7]tre\[<D>Dm]la \altchords{|G |G7 Cm}
     \endrep
   \endverse
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Daime is my teacher, he is watching, he is watching,
     he is watching over my change (transformation)
@@ -2456,8 +2456,8 @@
 % Show a note about the following hinos in this chapter to be Unilaiva specific.
 % In lyric-only books, put this note on a new page (the otherwise empty right
 % page of the spread).
-\iflyriconly\sclearpage\fi
-\noteulspecific\sclearpage\chapcornermarkdashedtrue
+\ifulLyricOnly\sclearpage\fi
+\noteulspecific\sclearpage\ulChapterCornerMarkDashed{true}
 
 
 \beginsong{Eu Chamo a Força do Cipó}[id={eu-chamo-a-forca-do-cipo-qlliz9},by={Chico Corrente},tags={mazurca},key={Am},gk={Am, Gm--Bm}]
@@ -2640,7 +2640,7 @@
     \setStaffSize #14 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I call the force of the vine, of the leaf, the miração
     From the water the divine purity, from the fire total ascertainment

@@ -8,7 +8,7 @@
 % would totally mess up the selection booklets causing them to have
 % wrong songs in them. (For the same reason, add new songs only to the
 % end of each songs_ file.)
-\setcounter{songnum}{117}
+\setcounter{ulSongNumber}{117}
 
 
 \beginsong{Dou Viva a Deus nas Alturas}[id={dou-viva-a-deus-nas-alturas-r9uq8x},by={Mestre Irineu Serra},tags={valsa},key={C},gk={C, C--D}]
@@ -396,7 +396,7 @@
     We are all children and we need to work
     To love our Eternal Father who has what we need
   \end{translation}
-  \noendsongvfill % otherwise the horiz. line signifying song end wouldn't fit
+  \ulEndSongVfill{false} % otherwise the horiz. line signifying song end wouldn't fit
 \endsong
 
 
@@ -508,7 +508,7 @@
     \setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I ask, I ask, I ask the Divine Father
     To give me the Holy Light, to illuminate my path
@@ -1005,7 +1005,7 @@
     }
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
   \begin{translation}[EN]
     I take this drink which has an incredible Power
     It shows all of us here in this Truth
@@ -1144,8 +1144,8 @@
     \setStaffSize #13 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifshowlilypond\translationoff\fi % to fit whole song on one spread
-  \begin{translation}[EN]\iflyriconly\scriptsize\fi % to fit whole song on one page in lyrics-only book
+  \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
+  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi % to fit whole song on one page in lyrics-only book
     Here I am saying, here I am singing
     I tell everybody the hymns are teaching us
     \nextverse
@@ -1202,14 +1202,14 @@
     If everyone knew themselves here within the Truth
   \end{translation}
   \begin{explanation}[PT]
-    \iflyriconly\else\tiny\fi%
+    \ifulLyricOnly\else\tiny\fi%
     Diz-se que depois que \emph{Flor das Águas} foi apresentado pela primeira
     vez em um trabalho de concentração, o Mestre perguntou a todos que estavam
     presentes: ``Onde está o coração do mundo?'' Ninguém respondeu. Ele
     perguntou novamente e ainda não obteve resposta. Então ele disse:
     ``\textbf{O coração do mundo é o mar!}''
   \end{explanation}
-  \iflyriconly%
+  \ifulLyricOnly%
     \begin{explanation}[EN]
       It is said that after \emph{Flor das Águas} was first presented at a
       concentration work, Mestre asked everyone attending: ``Where is the heart
@@ -1274,7 +1274,7 @@
 
 \beginsong{Marchinha \emph{(instrumental)}}[id={marchinha-instrumental-j7ze4u},by={Mestre Irineu Serra},key={D \& C},gk={D}]
   \audio{https://www.nossairmandade.com/hymn/3291}
-  \ifchorded
+  \ifulChorded
     \musicnotefornext{(D):}
     \meter{2}{4}
     \beginverse
@@ -1470,7 +1470,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifchorded%
+  \ifulChorded%
     \vfill
     \beginverse \noteson % first line of the next hino
       \hfill\tonextsongmark \hfill \[<B>]Eu |\[<D>G]cheguei \[<B>(Em/B)]nes\[<E>]ta |\[<D G>G]casa \ldots \altchords{|A (F#m/C#) |A}
