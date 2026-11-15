@@ -329,7 +329,7 @@
     \setStaffSize #15 % for better division
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi% to fit on one page in lyrics-only books
+  \begin{translation}[EN]\ulIfVariant{lyric}{\scriptsize}{}% to fit on one page in lyrics-only books
     I called my Master in the name of the truth
     Because the truth is God, the King of charity
     \nextverse
@@ -666,7 +666,7 @@
     \setStaffSize #14 % to fit translation, too
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifulLyricOnly\forcebrk\fi
+  \ulIfVariant{lyric}{\forcebrk}{}
   \begin{translation}[EN]
     The Stars already arrived to say their name
     I am, I am, I am, I am a son of God
@@ -754,7 +754,7 @@
       Disse |^que já fora es^cravo e cultu|^ava o mesmo po^der
     \endrep
   \endverse
-  \ifulLyricOnly\else\hardbrk\fi
+  \ulIfVariant{lyric}{}{\hardbrk}
   \beginverse\replay[chords_osespiritosestao_a]
     \beginrep
       Meu Im|^pério Jurami^dam, que |glória vos perten^cer
@@ -1662,7 +1662,7 @@
     \setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi% to fit on one page in lyrics-only books
+  \begin{translation}[EN]\ulIfVariant{lyric}{\scriptsize}{}% to fit on one page in lyrics-only books
     Now I stop and ask, I ask and pray to the Lord God
     To give me the holy health, for all His sons and daughters
     \nextverse

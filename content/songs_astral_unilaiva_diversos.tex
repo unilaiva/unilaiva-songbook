@@ -339,7 +339,7 @@
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
-  \ifulLyricOnly\forcebrk\fi
+  \ulIfVariant{lyric}{\forcebrk}{}
   \begin{translation}[EN]
     I will tell you what you must do to achieve
     A place in the infinite consciousness of God
@@ -728,7 +728,7 @@
 \endsong
 
 
-\ifulChorded\else\sclearpage\fi
+\ulIfVariant{lyric}{\sclearpage}{\ulIfVariant{bassclef}{\sclearpage}{}}
 \beginsong{Santíssimo Daime}[id={santissimo-daime-6ug4u9},by={José Ricardo},off={Cyrenia},key={Am},gk={Am, Gm--Bm}]
   \audio{https://nossairmandade.com/hymn/2172/Sant\%C3\%ADssimoDaime}
   \audio[key=Am]{https://soundcloud.com/igreja-mestre-irineu/santissimo-daime}
@@ -742,6 +742,7 @@
     \endrep
   \endverse
   \notesoff
+  \ulMelodyPrimaryPosition{low}
   \beginverse
     \beginrep
       Eu chego |^lá \noteson\[<D>]{e é} \[<E>]pa\[<D>]ra\notesoff{} ^nunca mais vol|tar ^

@@ -665,7 +665,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi% to fit lyrics-only book on one page
+  \begin{translation}[EN]\ulIfVariant{lyric}{\scriptsize}{}% to fit lyrics-only book on one page
     God of mercy, my Sovereign Father
     Give me Your hand in the tests that are passing
     \nextverse

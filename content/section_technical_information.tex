@@ -45,7 +45,10 @@
 \end{tabular}
 \vfill
 
-\ifulCharangoBook\else\ifulBassclefBook\else% % do not show guitar chords for special variants
+% Decide before reading diagrams so \gtab can set its accidental catcodes.
+\ulIfVariant{default}{\def\guitarappendix{1}}{\def\guitarappendix{0}}
+\ifnum\guitarappendix=1
+\ifulShowChords % only the default variant is intended for guitar
   \clearpage
   \ulIfLanguage{portuguese}{%
     \section{Acordes para Violão}
@@ -81,4 +84,4 @@
       \gtab{G7sus4}{330011:340011} \gtab{G6}{XX5430:003210} \gtab{Gm6}{312030:312040} \\
   \gtab{A&7}{464544:131222} \\
   \imagecc[2]{mandala-illusion_transparent_bg_1280px.png}
-\fi\fi%
+\fi\fi

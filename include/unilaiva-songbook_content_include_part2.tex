@@ -72,15 +72,12 @@
       \clearpage\scleardpage
       \section{Runoja, loitsuja}
         \begin{ulSongs}{titleidx,authidx,tagidx}
-          \chordsoff % songs: do not show (empty line for non-existing) chords
-          % songs: Increase line spacing for better readability
-          \ulBaselineAdjustment=+1pt plus 0pt minus 0pt%
           \renewcommand{\ulLyricFont}{\small} % use smaller font
-          \ulSongColumns{2} % songs: two columns per page
-          \ulSongPosition{1} % songs: avoid ONLY page-turns within songs
-          % songs: make penalty for breaking column/page at any line of lyrics to be the same:
-          % (The default for \interlinepenalty is 1000, and for all the others 200.)
-          \interlinepenalty=200 %
+          \ulVerseBaseline{1.618034}{0.1}{0.1}%
+          \ulVerseSeparation{1.5}{0}{.5}
+          \ulSongColumns{2} % two columns per page
+          \ulSongPosition{1} % avoid ONLY page-turns within songs
+          \interlinepenalty=200 % same as verse-verse
           \input{content/songs_suomi_runoja_loitsuja.tex}
         \end{ulSongs}
     \end{finnish}

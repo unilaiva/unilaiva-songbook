@@ -72,7 +72,7 @@
 % ULSBS setup:
 
 % Set things shown on the second page:
-\renewcommand{\ulBookMotto}{\ifulChorded{com informação musical}\fi}
+\renewcommand{\ulBookMotto}{\ulIfMusical{com informação musical}{}}
 \renewcommand{\ulBookByText}{%
   Recebido por:\par\vspace{0.618034ex}\textbf{\Large humanidade}%
 }%

@@ -153,7 +153,7 @@
         "pe": "With musical lore"
       }
     },
-    "lyrics": {
+    "lyric": {
       "view_id_part": "lyricsonly",
       "tag_ids": ["lyricsonly"],
       "subtitle_i18n": {
@@ -186,7 +186,7 @@
     {
       "source_book_id": "verde",
       "enabled": true,
-      "variants_enabled": ["default", "lyrics"],
+      "variants_enabled": ["default", "lyric"],
       "title_i18n": { "pt": "O Livro Verde", "en": "The Green Book", "fi": "Vihreä Kirja", "pe": "Th' Green Book" },
       "social_image": "unilaiva-astral-verde_SOCIAL_1200x630.png",
       "has_printout_booklet_file": true,
@@ -215,7 +215,7 @@
             "pe": "Chart Th' Green Book variant with shanties' words, chords and musical charts."
           }
         },
-        "lyrics": {
+        "lyric": {
           "file": "unilaiva-astral-verde_LYRICS-ONLY_A5.pdf",
           "image": "unilaiva-astral-verde_LYRICS-ONLY_A5_MODIFIED.png",
           "description_i18n": {
@@ -230,7 +230,7 @@
     {
       "source_book_id": "cura",
       "enabled": true,
-      "variants_enabled": ["default", "lyrics"],
+      "variants_enabled": ["default", "lyric"],
       "title_i18n": { "pt": "Cura" },
       "social_image": "unilaiva-astral-cura_SOCIAL_1200x630.png",
       "has_printout_booklet_file": true,
@@ -279,7 +279,7 @@
             "pe": "Chart th' Cura variant with shanties' words, chords and musical charts."
           }
         },
-        "lyrics": {
+        "lyric": {
           "file": "unilaiva-astral-cura_LYRICS-ONLY_A5.pdf",
           "image": "unilaiva-astral-cura_LYRICS-ONLY_A5_MODIFIED.png",
           "description_i18n": {
@@ -294,7 +294,7 @@
     {
       "source_book_id": "alfredo-novas",
       "enabled": true,
-      "variants_enabled": ["default", "lyrics"],
+      "variants_enabled": ["default", "lyric"],
       "title_i18n": { "pt": "Novas de Alfredo" },
       "social_image": "unilaiva-astral-alfredo-novas_SOCIAL_1200x630.png",
       "has_printout_booklet_file": true,
@@ -333,7 +333,7 @@
             "pe": "Chart th' Novas de Alfredo variant with shanties' words, chords and musical charts."
           }
         },
-        "lyrics": {
+        "lyric": {
           "file": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5.pdf",
           "image": "unilaiva-astral-alfredo-novas_LYRICS-ONLY_A5_MODIFIED.png",
           "description_i18n": {
@@ -348,7 +348,7 @@
     {
       "source_book_id": "transparencia",
       "enabled": true,
-      "variants_enabled": ["default", "lyrics"],
+      "variants_enabled": ["default", "lyric"],
       "title_i18n": { "pt": "À Transparência" },
       "social_image": "unilaiva-astral-transparencia_SOCIAL_1200x630.png",
       "has_printout_booklet_file": true,
@@ -387,7 +387,7 @@
             "pe": "Chart th' À Transparência variant with shanties' words, chords and musical charts."
           }
         },
-        "lyrics": {
+        "lyric": {
           "file": "unilaiva-astral-transparencia_LYRICS-ONLY_A5.pdf",
           "image": "unilaiva-astral-transparencia_LYRICS-ONLY_A5_MODIFIED.png",
           "description_i18n": {
@@ -402,7 +402,7 @@
     {
       "source_book_id": "completa",
       "enabled": true,
-      "variants_enabled": ["default", "lyrics", "charango", "bassclef"],
+      "variants_enabled": ["default", "lyric", "charango", "bassclef"],
       "title_i18n": { "pt": "A Compilação Completa" },
       "social_image": "unilaiva-astral-completa_SOCIAL_1200x630.png",
       "has_printout_booklet_file": true,
@@ -432,7 +432,7 @@
             "pe": "Chart th' Complete Compilation variant with shanties' words, chords and musical charts. This here book holds the chapters of all other books."
           }
         },
-        "lyrics": {
+        "lyric": {
           "file": "unilaiva-astral-completa_LYRICS-ONLY_A5.pdf",
           "image": "unilaiva-astral-completa_LYRICS-ONLY_A5_MODIFIED.png",
           "tag_ids": ["complete.comp"],

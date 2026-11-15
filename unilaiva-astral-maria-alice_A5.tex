@@ -4,13 +4,8 @@
 %% Collection of Santo Daime hymns by Maria Alice Campos Freire
 %%
 
-% The following line tells the ulsbs-compiler which additional extra instrument
-% variants are allowed and requested for this book (unless prevented in the
-% config file or by a command line argument):
-%
-%% ULSBS-EXTRA-VARIANTS: bassclef, charango
-
 \documentclass[
+  variants={default,lyric,bassclef,charango},
   subtitle={Maria Alice}
 ]{ulsbs-songbook-astral-default}
 
@@ -46,9 +41,9 @@
   \appendix
   \ulUseChapterColors{false}
 
-  \ifulChorded
+  \ulIfMusical{%
     \chapter{Técnico}
       \input{content/section_technical_information.tex}
-  \fi
+  }{}
 
 \end{document}

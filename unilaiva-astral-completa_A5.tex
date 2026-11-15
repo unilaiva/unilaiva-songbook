@@ -5,13 +5,8 @@
 %% and it holds all other Astral booklets
 %%
 
-% The following line tells the ulsbs-compiler which additional extra instrument
-% variants are allowed and requested for this book (unless prevented in the
-% config file or by a command line argument):
-%
-%% ULSBS-EXTRA-VARIANTS: bassclef, charango
-
 \documentclass[
+  variants={default,lyric,bassclef,charango},
   subtitle={A Compilação Completa}
 ]{ulsbs-songbook-astral-default}
 
@@ -203,8 +198,8 @@
   \appendix
   \ulUseChapterColors{false}
 
-  \ifulChorded
+  \ulIfMusical{%
   \chapter{Technical}
     \input{content/section_technical_information.tex}
-  \fi
+  }{}
 \end{document}

@@ -398,7 +398,7 @@
     \setStaffSize #15 % to fit all on one spread
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi % to fit on one page in lyrics-only book
+  \begin{translation}[EN]\ulIfVariant{lyric}{\scriptsize}{} % to fit on one page in lyrics-only book
     I live in this world until my day comes
     Next to my Master and the Ever Virgin Mary
     \nextverse
@@ -772,7 +772,7 @@
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
-  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi % to fit on one page in lyrics-only book
+  \begin{translation}[EN]\ulIfVariant{lyric}{\scriptsize}{} % to fit on one page in lyrics-only book
     The worth that the Master has, I am going to clarify
     If someone is doubtful, take Daime to see
     \nextverse

@@ -153,7 +153,7 @@
     \setStaffSize #13 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifulShowLilypond\ifulBassclefBook\else\translationoff\fi\fi
+  \ifulShowLilypond\ulIfVariant{bassclef}{}{\translationoff}\fi
   \begin{translation}[EN]\scriptsize % better fit
     Of the Eternal Father I never cease to ask, I never stop speaking about my Mother
     Jesus Christ our guide forever, and gives me strength to perform
@@ -289,7 +289,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifulShowLilypond\ifulBassclefBook\else\translationoff\fi\fi
+  \ifulShowLilypond\ulIfVariant{bassclef}{}{\translationoff}\fi
   \begin{translation}[EN]
     That which Daddy gave to me, Mommy consecrated it
     Go around, go around, little child, go around in the ciranda of love
@@ -355,7 +355,7 @@
       E Pa|^pai Se^basti|^ão ^
     \endrep
   \endverse
-  \ifulBassclefBook\hardbrk\fi
+  \ulIfVariant{bassclef}{\hardbrk}{}
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-05
     \include "ulsbs-include-head.ly"
@@ -743,7 +743,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\ifulLyricOnly\scriptsize\fi % to fit on one page in lyrics-only book
+  \begin{translation}[EN]\ulIfVariant{lyric}{\scriptsize}{} % to fit on one page in lyrics-only book
     Searching for Nature, there has been no greater way
     All life goes to the beyond, all matter remains in dust
     \nextverse
@@ -800,7 +800,7 @@
       In, |in, in, ^in, in, |^in ^
     \endrep
   \endverse
-  \ifulBassclefBook\forcebrk\fi
+  \ulIfVariant{bassclef}{\forcebrk}{}
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-05
     \include "ulsbs-include-head.ly"
@@ -1381,7 +1381,7 @@
       ^Filho\jw Es|^pírito ^Santo\jw a|^mém ^
     \endrep
   \endverse
-  \ifulBassclefBook\hardbrk\fi
+  \ulIfVariant{bassclef}{\hardbrk}{}
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-05
     \include "ulsbs-include-head.ly"
@@ -1753,7 +1753,7 @@
       E to|^dos Seres Di^vinos
     \endrep
   \endverse
-  \ifulBassclefBook\hardbrk\fi
+  \ulIfVariant{bassclef}{\hardbrk}{}
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-05
     \include "ulsbs-include-head.ly"
@@ -1860,7 +1860,7 @@
       \endrep
     \endrep
   \endverse
-  \ifulBassclefBook\hardbrk\fi
+  \ulIfVariant{bassclef}{\hardbrk}{}
   \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva, latest update on 2025-12
     theMelody = \relative a' {
@@ -1922,7 +1922,7 @@
     %\setStaffSize #15 % to fit all on one spread
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\ifulLyricOnly\else\ifulBassclefBook\else\scriptsize\fi\fi % to fit on one spread in chorded book
+  \begin{translation}[EN]
     Life (of) Saint John, life (of) my Jesus
     The full moon, its glow shines
     It's so beautiful, the power of the fire
@@ -2088,7 +2088,7 @@
       ^Pronto |^para ^nos va|^ler ^
     \endrep
   \endverse
-  \ifulBassclefBook\forcebrk\fi
+  \ulIfVariant{bassclef}{\forcebrk}{}
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-12
     \include "ulsbs-include-head.ly"
@@ -2330,7 +2330,7 @@
       \endrep
     \endrep
   \endverse
-  \ifulBassclefBook\hardbrk\fi
+  \ulIfVariant{bassclef}{\hardbrk}{}
   \begin{lilywrap}\begin{lilypond}[]
     %% transcribed by larva, latest update on 2024-11
     % \header {
@@ -2560,7 +2560,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifulShowLilypond\ifulBassclefBook\else\translationoff\fi\fi % to fit whole song on one spread
+  \ifulShowLilypond\ulIfVariant{bassclef}{}{\translationoff}\fi % to fit whole song on one spread
   \begin{translation}[EN]
     Here I return to remind my brothers and sisters of Jesus Christ and of my Lord Saint John
     Baptizing there in the River Jordan, illuminating with the healing of forgiveness

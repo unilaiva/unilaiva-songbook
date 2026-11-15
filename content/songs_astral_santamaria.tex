@@ -57,10 +57,10 @@
   \endverse
   \brk
   %% This note only in Santa Maria hinos:
-  \ifulChorded\else\vfill\fi
+  \ulIfVariant{lyric}{\vfill}{\ulIfVariant{bassclef}{\vfill}{}}
   \textnotefornext{Este hino é cantado antes da consagração de Santa Maria.}
   \textnoteforprev{\begin{english}This hymn is sung before the consecration of Santa Maria.\end{english}}
-  \ifulLyricOnly\forcebrk\fi
+  \ulIfVariant{lyric}{\forcebrk}{}
   \begin{lilywrap}\begin{lilypond}[] \include "ulsbs-include-head.ly"
     % transcribed by larva, updated on 2022-12
     theMelody = \relative a'' {
@@ -1087,7 +1087,7 @@
     }
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifulLyricOnly\forcebrk\fi
+  \ulIfVariant{lyric}{\forcebrk}{}
   \begin{translation}[EN]\scriptsize % smaller to fit whole song on a spread
     I'll tell a nice story, the plant that has more love
     She was a little one that Padrinho saw and blessed
@@ -1350,7 +1350,7 @@
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
   \ifulShowLilypond\translationoff\fi % to fit whole song on one spread
-  \ifulLyricOnly\forcebrk\fi
+  \ulIfVariant{lyric}{\forcebrk}{}
   \begin{translation}[EN]
     O Virgin Mother, I ask of you that some day
     I may know how to love Santa Maria

@@ -227,7 +227,7 @@
       Para |\[A]que \[<C#>]veio \[<E>A7]me en\[<C#>]ga|\[<D>Dm]nar? \[<*>] \altchords{|A7 |Dm}
     \endrep
   \endverse
-  \ifulChorded\ifulShowAltChords
+  \ifulShowChords\ifulShowAltChords
     \beginverse
       \altchords{\id[5]{alt. (Dm)}|A Dm |F}
       \altchords{|Gm Gm7 |A}
@@ -646,7 +646,7 @@
     \setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{translation}[EN]\ifulLyricOnly\tiny\fi% to fit on one page in lyric-only edition
+  \begin{translation}[EN]\ulIfVariant{lyric}{\tiny}{}% to fit on one page in lyric-only edition
     Equiôr, Equiôr, Equiôr, Equiôr that called me
     I came alongside the land, I came alongside the sea
     \nextverse
@@ -1637,7 +1637,7 @@
 \sclearpage\ulChapterCornerMarkDashed{true}
 \beginsong{Rogativo aos Mortos}[id={rogativo-aos-mortos-3cv7b9},by={Mestre Irineu Serra},key={G},gk={G, G--B},tags={Santa Missa, valsa}]
   \renewcommand{\goto}[1]{%
-    \chordsoff\textit{\bfseries{{\ulSymbolTwoFont➞ }#1\ldots}}%
+    \ulLocalShow{chords}{false}\notesoff\beatsoff\measuresoff\textit{\bfseries{{\ulSymbolTwoFont➞ }#1\ldots}}%
   }
   \audio{https://nossairmandade.com/hymn/167/RogativoDosMortos}
   \audio[key=B]{https://www.youtube.com/watch?v=kSmawrgQ5k0}
@@ -1701,7 +1701,7 @@
       Eu |^rogo |à Virgem |^Mãe; |^que te |^bote em |bom lu|^gar | \e
     \endrep
   \endverse
-  \ifulChorded\ifulShowAltChords
+  \ifulShowChords\ifulShowAltChords
     \beginverse\small % for alt key chords only (A)
       \altchords{\id[1]{(A)}|E | - |A | - |D | - |A | \e}
       \altchords{|D | - |A |F#m |E | - |A | \e}

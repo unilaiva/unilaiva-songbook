@@ -38,6 +38,11 @@ Tags define icons/text displayed on cards, side navigation, and search filters. 
 
 Reusable settings per variant id. They can contribute tags and labels, and optionally change the view id suffix.
 
+Use the compiler's canonical ids: `default`, `lyric`, `charango`, and `bassclef`.
+The lyrics-only variant id is `lyric`, not `lyrics`. Keep `view_id_part` such as
+`lyricsonly`, display labels, tags and `_LYRICS-ONLY` filenames unchanged; ordinary
+song JSON `lyrics` fields are unrelated to variant identity.
+
 Fields: `label_i18n?`, `subtitle_i18n?`, `description_i18n?`, `view_id_part?`, `tag_ids?` (merged with source + asset).
 
 ### Sources (`book_sources[]`)
@@ -86,7 +91,7 @@ The loader (`normalizeSongbookCollection`) combines source + variant definition 
 
 1) Set base paths: `book_path` (required), `image_path`, `icon_path`, `social_path`, `json_path` as needed.
 2) Define `tags[]` for all tag_ids you will reference.
-3) Define `variant_types` for your variants (e.g., `default`, `lyrics`, `charango`, `bassclef`).
+3) Define `variant_types` for your variants (e.g., `default`, `lyric`, `charango`, `bassclef`).
 4) Add each logical book under `book_sources[]` with `source_book_id`, `title_i18n`, `enabled`, optional defaults, and per-variant assets under `variants`.
 5) Do not add `books`; it is produced at runtime and not part of authored JSON.
 6) Validate against `books.schema.json` to catch mistakes early.

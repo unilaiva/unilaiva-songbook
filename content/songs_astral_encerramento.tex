@@ -389,12 +389,15 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifulChorded%
+  {% Request cue pitches locally; test inline ink without pretokenizing the verse.
+  \noteson
+  \ifnum\numexpr\ifulShowChords1\else0\fi+\ifulShowNotes1\else0\fi\relax>0
     \vfill
     \beginverse \noteson % first line of the next hino (in key D, but will be transposed)
       \hfill\tonextsongmark \hfill \[<D>]Eu |\[D]vivo \[<F#>]na \[<A>]flo\[<D>Bm]res\[<F#>]ta, a\[<B>]pren|\[<A>A]dendo a \[<E>]me \[<F#>]cu\[<D>D]rar \ldots
     \endverse
   \fi
+  }
 \endsong
 
 

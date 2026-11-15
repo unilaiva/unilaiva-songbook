@@ -736,12 +736,12 @@
     That |^holds to|^gether the |^atoms and |^stars as
     |^well as |^me and |^you | \e  \goto{Ó daime \rep{3}}
   \endverse
-  \ifulLyricOnly\else{ % Skip on lyric-only books to fit on one page
+  \ulIfVariant{lyric}{}{{ % Skip on lyric-only books to fit on one page
     \begin{translation}[EN]
       Oh give me, give me love, daime my beloved.
       Daime, give me light, I am with You... eternal life.
     \end{translation}
-  }\fi
+  }}
   \begin{explanation}[EN]
     \textbf{Dai-me} is Portuguese for ``give me''. The Ayahuasca drink is also called
     \textbf{Daime} in some circles.
@@ -749,11 +749,11 @@
 \endsong
 
 
-\ifulLyricOnly\else{ % Show this here for chorded books, elsewhere on lyric only
+\ulIfVariant{lyric}{}{{ % Show this here for chorded books, elsewhere on lyric only
   \begin{intersong}
     \imagecc[2]{heart_by_larva__789px.png}
   \end{intersong}
-}\fi
+}}
 
 
 \scleardpage
@@ -883,7 +883,7 @@
     \textbf{My Spirit} is |healing my |body, \textbf{my Spirit} is |strong | \e
   \endverse
   \vspace{1ex}
-  \beginverse\chordsoff\bfseries
+  \beginverse\bfseries
     My Soul\ldots
     My Love\ldots
     The Sun\ldots
@@ -897,7 +897,7 @@
     I\ldots
     This song\ldots
   \endverse
-  \ulShowLilypond{false} % to save space
+  \ulLocalShow{scores}{false} % to save space
   % Present the melody on a staff using Lilypond
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2023-06
@@ -965,11 +965,11 @@
 \endsong
 
 
-\ifulLyricOnly{ % Show this here for lyric books, elsewhere on chorded
+\ulIfVariant{lyric}{{ % Show this here for lyric books, elsewhere on chorded
   \begin{intersong}
     \imagecc[2]{heart_by_larva__789px.png}
   \end{intersong}
-}\fi
+}}{}
 
 
 \beginsong{Heart's Mystery}[id={heart-s-mystery-s3fi5v},by={Nick Barber},tags={heart},ph={III},key={C},gk={C, G--E}]
@@ -1087,7 +1087,7 @@
       |^I ^love you | I ^thank you \up{2}(|^ ^ | ^ \e)
     \endrep
   \endverse
-  \ifulChorded\nolyrics{%
+  \ifulShowChords\nolyrics{%
     \musicnotefornext{interlude:}
     \beginverse[1]
       |\[Am]{} \[<*>]{} |{ }{ } \[<*>]{} |\[Em]{} \[<*>]{} |{ }{ } \[<*>]{} |\[Bm]{} \[<*>]{} |{ }{ } \[<*>]{} |\[Em]{} { }{ } |{ }{ } \[<*>]{} \e{ } \rep{2}
@@ -1102,7 +1102,7 @@
       |^Rakastan ^sinua | Minä kii^tän sinua \up{2}(|^ ^ | ^\e)
     \endrep
   \endverse
-  \begin{explanation}[EN]\ifulLyricOnly\scriptsize\fi % to fit on one page in lyrics-only book
+  \begin{explanation}[EN]\ulIfVariant{lyric}{\scriptsize}{} % to fit on one page in lyrics-only book
     Ho'oponopono practice belongs to an old Hawaiian system of knowledge and wisdom, \emph{Huna}.
     Ho'oponopono translates as ``to make rightly right''.
     The four sentences are a prayer through which one gains inner peace, harmony and moves
@@ -1693,7 +1693,7 @@
     \endrep
   \endverse
   \textnotefornext{outro:}\vspace{-1ex}
-  \beginverse[1]\chordsoff
+  \beginverse[1]\ulLocalShow{chords}{false}\ulLocalShow{notes}{false}\ulLocalShow{beats}{false}\ulLocalShow{measures}{false}
     |^I ^ am |^open ^ to |^see ^ flowers |^blooming^
     |^I ^ am here t|^o live^ thi|^{s life}^ | \e
   \endverse
@@ -1739,7 +1739,7 @@
     To |see \[<*>]you in |\[D]all \[<*>]{} is to |see \[<*>]you in |\[Em]me \[<*>]{} \altchords{| - |D | - |Em}
     \lrep 'Cause |\[D]I'm in you and \[<*>]you're in |\[Em]me \[<*>]{} \rrep\rep{3} \altchords{|D |Em}
   \endverse
-  \begin{feeler}\ifulLyricOnly\footnotesize\fi % make smaller to fit on one page in lyrics only variant
+  \begin{feeler}\ulIfVariant{lyric}{\footnotesize}{} % make smaller to fit on one page in lyrics only variant
     ``All reality is one in substance, one in cause, on in origin\ldots and every particle of
     reality is composed inseparably of the physical and the psychic. The object of philosophy,
     therefore, is to preserve unity in diversity, mind in matter and matter in mind\ldots
@@ -2034,7 +2034,7 @@
 
 
 \beginsong{Three Little Birds}[id={three-little-birds-dpf503},by={Bob Marley},tags={morning},ph={IV}]
-  \ifulChorded%
+  \ifulShowChords%
     \beginverse
       \musicnotefornext{intro:}*
       {\nolyrics%
@@ -2455,8 +2455,10 @@
     \noteson
     \[<G#>]Is |\[<F>E]just \[<E>]to \[<B>]love |\[<B&>Gm7]and \[<G>]be \[<F>]loved \[<C#>A7]in \[<E>]re|\[<D>Dm]turn'' | \e \altchords{|C# |Em7 F#7 | Bm | \e}
   \endverse
-  \ifulChorded\ifulCharangoBook\else
-    % Show guitar chord help if chorded & not charango.
+  % Decide before reading diagrams so \gtab can set its accidental catcodes.
+  \ulIfVariant{default}{\def\guitarhelp{1}}{\def\guitarhelp{0}}
+  \ifnum\guitarhelp=1 \ifulShowChords
+    % Only the default variant is intended for guitar.
     % If song uses \transpose, must add inverted transpose here, and change
     % the gtabs to transposed versions.
     \vfill\hfill%

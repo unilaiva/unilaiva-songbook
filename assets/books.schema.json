@@ -11,6 +11,10 @@
     "icon_path": { "type": ["string", "null"] },
     "social_path": { "type": ["string", "null"] },
     "json_path": { "type": ["string", "null"] },
+    "multikey_path": {
+      "type": ["string", "null"],
+      "description": "Base path for multikey range-index JSON files."
+    },
 
     "tags": {
       "type": "array",
@@ -103,6 +107,10 @@
       "additionalProperties": false,
       "properties": {
         "file": { "type": "string" },
+        "multikey_json_file": {
+          "type": "string",
+          "description": "Optional multikey range-index JSON filename, relative to multikey_path."
+        },
         "image": { "type": ["string", "null"] },
         "view_id": { "type": ["string", "null"] },
         "social_image": { "type": ["string", "null"] },

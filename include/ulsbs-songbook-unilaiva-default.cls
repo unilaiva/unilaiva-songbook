@@ -96,7 +96,7 @@
 }
 
 % Smaller melody notes
-\renewcommand{\ulMelodySymbolStyle}{\ulMicroSize}
+\renewcommand{\ulMelodySize}{\ulMicroSize}
 
 % Do not display language *code* for EN
 \renewcommand{\ulPassageOmitLangCodes}{EN}

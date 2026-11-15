@@ -4,13 +4,8 @@
 %% Hinario Revelação by Simja Johannes Lempinen
 %%
 
-% The following line tells the ulsbs-compiler which additional extra instrument
-% variants are allowed and requested for this book (unless prevented in the
-% config file or by a command line argument):
-%
-%% ULSBS-EXTRA-VARIANTS: bassclef, charango
-
 \documentclass[
+  variants={default,lyric,bassclef,charango},
   12pt,
   paper={a4paper},
   subtitle={Revelação}
@@ -64,9 +59,9 @@
   \appendix
   \ulUseChapterColors{false}
 
-  \ifulChorded
+  \ulIfMusical{%
     \chapter{Técnico}
       \input{content/section_technical_information.tex}
-  \fi
+  }{}
 
 \end{document}

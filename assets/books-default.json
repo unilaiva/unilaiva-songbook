@@ -219,7 +219,7 @@
       "view_id_part": "musical",
       "tag_ids": ["chords"]
     },
-    "lyrics": {
+    "lyric": {
       "view_id_part": "lyricsonly",
       "tag_ids": ["lyricsonly"]
     }
@@ -228,7 +228,7 @@
     {
       "source_book_id": "complete",
       "enabled": true,
-      "variants_enabled": ["default", "lyrics"],
+      "variants_enabled": ["default", "lyric"],
       "title_i18n": { "en": "Unilaiva Songbook", "pe": "Th' Unilaiva Songbook" },
       "social_image": "unilaiva-songbook_SOCIAL_1200x630.png",
       "tag_ids": ["complete.ed"],
@@ -274,7 +274,7 @@
             "pe": "Chart the complete Unilaiva Songbook variant with shanties' words and chords."
           }
         },
-        "lyrics": {
+        "lyric": {
           "file": "unilaiva-songbook_LYRICS-ONLY_A5.pdf",
           "image": "unilaiva-songbook_LYRICS-ONLY_A5_MODIFIED.png",
           "subtitle_i18n": {
@@ -295,7 +295,7 @@
     {
       "source_book_id": "part1",
       "enabled": false,
-      "variants_enabled": ["default", "lyrics"],
+      "variants_enabled": ["default", "lyric"],
       "title_i18n": { "en": "Unilaiva Songbook: part 1", "pe": "Th' Unilaiva Songbook: Part th' First" },
       "social_image": "unilaiva-songbook_part1_SOCIAL_1200x630.png",
       "tag_ids": ["partial.ed", "chapter1", "chapter2"],
@@ -341,7 +341,7 @@
             "pe": "Chart part th' first of the Unilaiva Songbook variant with shanties' words and chords."
           }
         },
-        "lyrics": {
+        "lyric": {
           "file": "unilaiva-songbook_part1_LYRICS-ONLY_A5.pdf",
           "image": "unilaiva-songbook_part1_LYRICS-ONLY_A5_MODIFIED.png",
           "subtitle_i18n": {
@@ -362,7 +362,7 @@
     {
       "source_book_id": "part2",
       "enabled": false,
-      "variants_enabled": ["default", "lyrics"],
+      "variants_enabled": ["default", "lyric"],
       "title_i18n": { "en": "Unilaiva Songbook: part 2", "pe": "Th' Unilaiva Songbook: Part th' Second" },
       "social_image": "unilaiva-songbook_part2_SOCIAL_1200x630.png",
       "tag_ids": ["partial.ed", "chapter3", "chapter4", "chapter5", "chapter6"],
@@ -408,7 +408,7 @@
             "pe": "Chart part th' second of the Unilaiva Songbook variant with shanties' words and chords."
           }
         },
-        "lyrics": {
+        "lyric": {
           "file": "unilaiva-songbook_part2_LYRICS-ONLY_A5.pdf",
           "image": "unilaiva-songbook_part2_LYRICS-ONLY_A5_MODIFIED.png",
           "subtitle_i18n": {

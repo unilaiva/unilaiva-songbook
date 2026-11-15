@@ -5,10 +5,9 @@ texts, chords, musical transcriptions, and the project-specific files used to
 build their PDFs. The reusable compiler and typesetting engine is
 [ULSBS](https://github.com/unilaiva/ulsbs), included here as the `ulsbs/` Git submodule.
 
-ULSBS uses its own LuaLaTeX-only song engine and in-process title/tag indexing.
-The existing song sources need no native-engine migration. Neither the upstream
-`songs` runtime nor an external indexer is required. Authoring and manual
-multi-pass instructions live in [`ulsbs/WRITING_SONGBOOKS.md`](ulsbs/WRITING_SONGBOOKS.md).
+The bundled compiler builds the books with LuaLaTeX and handles the required
+typesetting passes automatically. For song syntax and layout customization, see
+[Writing Songbooks](ulsbs/WRITING_SONGBOOKS.md).
 
 **Read or download the published books:**
 
@@ -87,6 +86,7 @@ can therefore take substantially longer than a quick main-PDF check.
 | Build the Astral books | `./ulsbs-compile --profile astral` |
 | Build all configured root documents | `./ulsbs-compile` |
 | Build one book without multikey companions | `./ulsbs-compile --no-multikey unilaiva-songbook_A5.tex` |
+| Build just the lyrics-only variant | `./ulsbs-compile --variants lyric unilaiva-songbook_A5.tex` |
 | Verbose, non-deploying build of one book | `./ulsbs-compile --profile dev unilaiva-songbook_A5.tex` |
 | Reduce concurrent memory use | Add `--sequential` to a build command |
 
@@ -178,12 +178,16 @@ It is separate from the compiler's generated per-book JSON exports.
 
 ## Editing this repository
 
-For song syntax, start with
-[Writing Songbooks](https://github.com/unilaiva/ulsbs/blob/main/WRITING_SONGBOOKS.md).
+For song syntax, start with [Writing Songbooks](ulsbs/WRITING_SONGBOOKS.md).
 Repository-specific conventions are:
 
 - Most songs live in `content/songs_*.tex`; non-song prose also lives in `content/`.
 - Main documents in the root select and arrange the content chapters.
+- Each main document declares its available variants with a literal class option,
+  for example `variants={default,lyric}`. Omission means default only. Normal builds
+  select all declared variants; use `--variants default,lyric` or a TOML `variants`
+  selection to restrict them. Selecting `lyric` alone does not also build `default`.
+  `--quick` builds only the ordinary default PDF.
 - The Unilaiva and Astral style defaults are in
   [`include/ulsbs-songbook-unilaiva-default.cls`](include/ulsbs-songbook-unilaiva-default.cls)
   and [`include/ulsbs-songbook-astral-default.cls`](include/ulsbs-songbook-astral-default.cls).
@@ -200,7 +204,7 @@ A practical edit/check cycle is:
 4. Before publishing, build the required variants and editions and inspect their layout too.
 
 The bundled
-[ULSBS TeX Tools extension](https://github.com/unilaiva/ulsbs/blob/main/vscode-extension/ulsbs-tex-tools/README.md)
+[ULSBS TeX Tools extension](ulsbs/vscode-extension/ulsbs-tex-tools/README.md)
 adds VS Code snippets, song navigation, diagnostics, and build commands. Open
 this repository's root as the workspace so it can find the config and engine.
 Other text editors also work.
@@ -225,6 +229,9 @@ Deployment is a local copy, not a website upload; `--no-deploy` disables it for 
 Songs containing only LaTeX lyrics and chords do not generate MIDI or audio.
 
 Default, lyrics-only, and instrument outputs are variants of the same source.
+Their identifiers are `default`, `lyric`, `charango`, and `bassclef`; their additional
+filename markers are `_LYRICS-ONLY`, `_CHARANGO`, and `_BASSCLEF` respectively
+for the three non-default variants.
 The compiler currently generates multikey editions for default and instrument
 variants, not lyrics-only variants.
 
@@ -374,21 +381,21 @@ and `9dfec62` (add the update wrapper).
 Use this README for the Unilaiva/Astral repository's workflow. ULSBS's own
 documentation is organized by task:
 
-- [ULSBS README](https://github.com/unilaiva/ulsbs/blob/main/README.md): features,
+- [ULSBS README](ulsbs/README.md): features,
   independent-project setup, compilation, variants and editions, configuration, and utilities.
-- [Writing Songbooks](https://github.com/unilaiva/ulsbs/blob/main/WRITING_SONGBOOKS.md):
+- [Writing Songbooks](ulsbs/WRITING_SONGBOOKS.md):
   song syntax, LilyPond scores, metadata, tags, indices, selections, and layout customization.
-- [Configuration example](https://github.com/unilaiva/ulsbs/blob/main/ulsbs-config-example.toml):
+- [Configuration example](ulsbs/ulsbs-config-example.toml):
   the annotated build-setting and profile reference. This repository uses its own
   [`ulsbs-config.toml`](ulsbs-config.toml), not that example file.
-- [Editor support](https://github.com/unilaiva/ulsbs/blob/main/vscode-extension/ulsbs-tex-tools/README.md):
+- [Editor support](ulsbs/vscode-extension/ulsbs-tex-tools/README.md):
   VS Code extension installation and use.
-- [Architecture](https://github.com/unilaiva/ulsbs/blob/main/ARCHITECTURE.md):
-  engine internals, PDF/viewer contracts, cache maintenance, and developer testing.
+- [Architecture](ulsbs/ARCHITECTURE.md) and [Maintainer Notes](ulsbs/MAINTAINERS.md):
+  references for engine development and release maintenance.
 
-These documents are also available locally under `ulsbs/`, matching the engine
-revision checked out by this repository. The online links follow ULSBS's `main`
-branch and may describe a newer revision.
+These links use the documentation bundled with this checkout. The ULSBS website
+links elsewhere in this README follow its `main` branch and may describe a newer
+revision.
 
 ## Status
 

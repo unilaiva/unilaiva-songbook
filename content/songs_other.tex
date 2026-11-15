@@ -14,7 +14,6 @@
 \beginsong{Ancient Aramaic Prayer}[id={ancient-aramaic-prayer-iciqq1},ph={I}]
   % NOTE: try to align the translation with the prayer with \vskips. Check this
   % after style changes etc.
-  \chordsoff % there are no chords
   \beginverse\justifycenter
     \vspace{3em}
     Abwûn d'bwaschmâja
@@ -498,7 +497,7 @@
   \endverse\glueverses
   \beginverse
     \[<*>]{} \[<*>]{} |\[<*> C]{} \[<*>]{} \[<*> Fmaj7]{} \[<*>]{} |\[<*> Am]{} \[<*>]{} \e
-  \endverse\chordsoff
+  \endverse
   \altlyr{Irapay, Ashpasuri, Bobinsana, Chiringa, Ayahuasca, Chacrunera,
     Chaliponga, Huanilla, Catahua, Chihuahuaco, Tomapende, Aguaje, Palmicha, Wicungo, Remocaspi,
     Huachumita, Iboga, Peyotito, Hongocitos, Sapotito, Boa Boa, Otorongo, Urcututo, Yanguntoro,
@@ -528,9 +527,7 @@
 
 
 \beginsong{Ayahuasca Takimuyki}[id={ayahuasca-takimuyki-vn6ci1},by={Don José Campos},ex={quechua, español},tags={Aya},ex={quechua, español},ph={II},key={Bm},gk={Cm, (Bm)--Cm--C#m}]
-  \ifulChorded\else% Do not show measure bars (with meters) in lyrics-only book
-    \measuresoff%
-  \fi
+  \ulIfVariant{lyric}{\measuresoff}{\ulIfVariant{bassclef}{\measuresoff}{}}% Hide meters in lyric and bass-clef layouts.
   % in Am the notes range from E to G'
   % in Bm the notes range from F# to A'
   \transpose{2}
@@ -685,7 +682,7 @@
       Maï|^{te hãwã} ^shaka maï|^te; yube ^shaka maï|^te ^ |{ } { } ^ \e
     \endrep
   \endverse
-  \ulShowLilypond{false} % to save space
+  \ulLocalShow{scores}{false} % to save space
   \begin{lilywrap}\begin{lilypond}[]
     % transcribed by larva, latest update on 2024-01
     \include "ulsbs-include-head.ly"
@@ -812,7 +809,7 @@
     \endrep
   \endverse
   \vspace{1.5ex}
-  \beginverse\chordsoff
+  \beginverse\ulLocalShow{chords}{false}\ulLocalShow{measures}{false}
     Nukun |\textbf{shina}\ldots
     Nukun |\textbf{kãna}\ldots
     Nukun |\textbf{bari}\ldots
@@ -1303,11 +1300,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\ifulLyricOnly\else\scleardpage\fi
+\ulIfVariant{lyric}{}{\scleardpage}
 \beginsong{Ave Maria}[id={ave-maria-xvjuu8},by={Franz Schubert},ex={latina, suomi},ph={III},key={C},gk={D, C--E}]
   \audio{https://www.youtube.com/watch?v=ja5hQH9USIU} % differs in bar 8 (v1, v2) and bar 12 (v1)
   \meter{4}{4}
-  \ifulLyricOnly\else
+  \ulIfVariant{lyric}{\def\avemariaintro{0}}{\def\avemariaintro{1}}%
+  \ifnum\avemariaintro=1 % Keep verse notation tokenized by \beginverse.
     \musicnotefornext{intro:}*
     \beginverse
       |\[C] \[<*>]{ } |{ }{ } \[C7]{} |\[F]{} \[Fm]{} |\[C]{} \[<*>]{}{} \e
@@ -1330,8 +1328,10 @@
     In |^hora ^mortis, mortis |^nostrae, ^ in |^hora ^mortis no|^strae. ^
     |^A{ } ^-ve Ma|^ri ^-|^a! ^{ }{ } |{ }{ } ^{} |^{} ^{} |^{ }{ } ^{} \e
   \endverse
-  \ifulChorded\ifulCharangoBook\else
-    % Show guitar chord help if chorded & not charango.
+  % Decide before reading diagrams so \gtab can set its accidental catcodes.
+  \ulIfVariant{default}{\def\guitarhelp{1}}{\def\guitarhelp{0}}
+  \ifnum\guitarhelp=1 \ifulShowChords
+    % Only the default variant is intended for guitar.
     % If song uses \transpose, must add inverted transpose here, and change
     % the gtabs to transposed versions.
     \hfill%
@@ -1361,7 +1361,7 @@
     sun |^armos ^huomaan yksin |^jään. ^
     |^A{ } ^-ve Ma|^ri ^-|^a! ^{ }{ } |{ }{ } ^{} |^{} ^{} |^{ }{ } ^{} \e
   \endverse
-  \begin{translation}[EN]\ifulLyricOnly\else\tiny\fi
+  \begin{translation}[EN]\ulIfVariant{lyric}{}{\tiny}
     Hail Mary, full of grace! Mary, full of grace, Mary, full of grace.
     Hail, Hail, the Lord! The Lord is with thee.
     Blessed art thou among women, and blessed,
@@ -1484,7 +1484,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-notab.ly"
   \end{lilypond}\end{lilywrap}
-  \begin{explanation}[EN]\ifulLyricOnly\else\tiny\fi
+  \begin{explanation}[EN]\ulIfVariant{lyric}{}{\tiny}
     These lyrics are the Latin \emph{Ave Maria} prayer adapted to this melody.
     The original lyrics were from Walter Scott's narrative poem
     \emph{The Lady of the Lake}, as translated to German by Adam Storck.

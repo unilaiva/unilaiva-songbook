@@ -5,6 +5,10 @@
 
 # --- COMMON OPTIONS FOR ALL PROFILES (can be overridden) ---
 
+# Build every variant declared by each main document's literal class option.
+# Profiles or --variants can select a subset without implicitly adding default.
+variants = "all"
+
 
 # Enable interactive multikey editions, including LilyPond scores, without
 # scaling alternate keys' chordnames down (they will overflow).

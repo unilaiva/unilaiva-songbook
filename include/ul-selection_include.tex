@@ -78,9 +78,9 @@
           \imagec[2]{\fullbookcoverimage}
           \par\vspace*{\fill}
         \end{center}
-        \ifulLyricOnly% skip given set ii icons in lyric-only books
+        \ulIfVariant{lyric}{% skip given set ii icons in lyric-only books
           \ulSetVariableCoverIcons[\ulLyricsOnlyTagIcon]%
-        \fi%
+        }{}%
         \ulInsertCoverIconsHbc
       }
     }%
@@ -110,10 +110,14 @@
     \input{content/songs_suomi.tex}
     \input{content/songs_suomi_larva.tex}
     { % for the settings not to bleed, as we are in the same environment
-      \chordsoff % songs: do not show (empty line for non-existing) chords
       % songs: Increase line spacing for better readability
-      \ulBaselineAdjustment=+1pt plus 0pt minus 0pt%
       \renewcommand{\ulLyricFont}{\small} % use smaller font for lyrics
+      % Preserve the former +1pt fine-tune using the selected lyric font's A.
+      \ulVerseBaseline
+        {\fpeval{\ulVerseSpacingScale{baseline}{natural} +
+          (\number\dimexpr1pt\relax)/(\number\fontcharht\font`A)}}
+        {\ulVerseSpacingScale{baseline}{stretch}}
+        {\ulVerseSpacingScale{baseline}{shrink}}
       \ulSongColumns{2} % songs: two columns per page
       \ulSongPosition{1} % songs: avoid ONLY page-turns within songs
       % songs: make penalty for breaking column/page at any line of lyrics to be the same:

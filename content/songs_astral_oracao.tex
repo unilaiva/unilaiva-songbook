@@ -126,7 +126,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail.ly"
   \end{lilypond}\end{lilywrap}
-  \ifulLyricOnly\forcebrk\fi
+  \ulIfVariant{lyric}{\forcebrk}{}
   \begin{translation}[EN]
     Examine your conscience; Examine it thoroughly
     I‘m the Father, not the son; But I don‘t act that way
@@ -160,7 +160,7 @@
       \[<C>]E a\[<D>]con|se\[<C>]{lho os} \[<* A>]i\[<C>]no|cen\[<*>]tes
     \endrep
   \endverse
-  \notesoff\chordsoff\measureson
+  \notesoff\ulLocalShow{chords}{false}\beatsoff\measureson
   \beginverse
     \beginrep
       Meu |Pai a \[<*>]ti eu |p\[<*>]eço
@@ -1751,7 +1751,7 @@
     %\setStaffSize #15 % for better fit
     \include "ulsbs-include-tail-lyricsbetween.ly"
   \end{lilypond}\end{lilywrap}
-  \ifulLyricOnly\forcebrk\fi
+  \ulIfVariant{lyric}{\forcebrk}{}
   \begin{translation}[EN]
     I am not God; But I have a hope
     I am not God; But I am His likeness
@@ -1840,7 +1840,7 @@
       ^Treme a |Terra e ^geme o |^Mar ^
     \endrep
   \endverse
-  \ifulLyricOnly\forcebrk\fi
+  \ulIfVariant{lyric}{\forcebrk}{}
   \beginverse\replay[chords_eupedietive_a]
     \beginrep
       A Meu |^Pai eu ^agra|^de^ço
