@@ -17,8 +17,9 @@
 
 \vfill
 \renewcommand{\arraystretch}{1.3} % >1.0 increases vertical padding for tabular
-% NOTE: must use \flatsymbol and \sharpsymbol instead of \flt and \shrp inside \tabular
-\begin{tabular}{| p{5.3em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} | p{2.74em} |}
+\begingroup
+\setlength{\tabcolsep}{0.55em}
+\begin{tabular}{| p{5.3em} | p{3.1em} | p{2.74em} | p{2.74em} | p{3.1em} | p{2.74em} | p{2.74em} | p{2.74em} |}
   \hline
   \textbf{\ulIfLanguage{portuguese}{Jônico}{Ionian}} & \textbf{I} & \textbf{ii} & \textbf{iii} & \textbf{IV} & \textbf{V} & \textbf{vi} & \textbf{vii\symdim} \\
   \ulIfLanguage{portuguese}{Dórico}{Dorian} & VII & i & ii & III & IV & v & vi\symdim \\
@@ -28,9 +29,10 @@
   \textbf{\ulIfLanguage{portuguese}{Eólio}{Aeolian}} & \textbf{III} & \textbf{iv} & \textbf{v} & \textbf{VI} & \textbf{VII} & \textbf{i} & \textbf{ii\symdim} \\
   \ulIfLanguage{portuguese}{Lócrio}{Locrian} & II & iii & iv & V & VI & vii & i\symdim \\
   \hline
-  \textit{\ulIfLanguage{portuguese}{Acordes diatônicos}{Diatonic chords}} & \ulIfLanguage{portuguese}{Maior}{Major}, maj7, maj9, maj11, maj13, 6 & m, m7, m9, m11, m6 & m, m7 & \ulIfLanguage{portuguese}{Maior}{Major}, maj7, maj9, maj13, 6 & \ulIfLanguage{portuguese}{Maior}{Major}, 7, 9, 11, 13, sus4 & m, m7, m9, m11 & m7\ulFlatSymbol{}5 \\
+  \textit{\ulIfLanguage{portuguese}{Acordes diatônicos}{Diatonic chords}} & \ulIfLanguage{portuguese}{Maior}{Major}, maj7, maj9, maj11, maj13, 6 & m, m7, m9, m11, m6 & m, m7 & \ulIfLanguage{portuguese}{Maior}{Major}, maj7, maj9, maj13, 6 & \ulIfLanguage{portuguese}{Maior}{Major}, 7, 9, 11, 13, sus4 & m, m7, m9, m11 & m7\flt{}5 \\
   \hline
 \end{tabular}
+\endgroup
 \ulIfLanguage{portuguese}{%
   \subsection*{Tipos Básicos de Acordes Para Escalas Menores}
 }{%
@@ -39,8 +41,8 @@
 \begin{tabular}{| p{6em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} |}
   \hline
   \ulIfLanguage{portuguese}{Natural}{Natural} & i & ii\symdim & III & iv & v & VI & VII \\
-  \ulIfLanguage{portuguese}{Harmônico}{Harmonic} & i & ii\symdim & III+ & iv & V & VI & \ulSharpSymbol{}vii\symdim \\
-  \ulIfLanguage{portuguese}{Melódico}{Melodic} & i & ii & III+ & IV & V & \ulSharpSymbol{}vi\symdim & \ulSharpSymbol{}vii\symdim \\
+  \ulIfLanguage{portuguese}{Harmônico}{Harmonic} & i & ii\symdim & III+ & iv & V & VI & \shrp{}vii\symdim \\
+  \ulIfLanguage{portuguese}{Melódico}{Melodic} & i & ii & III+ & IV & V & \shrp{}vi\symdim & \shrp{}vii\symdim \\
   \hline
 \end{tabular}
 \vfill
