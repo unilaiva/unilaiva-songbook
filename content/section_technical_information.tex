@@ -18,8 +18,11 @@
 \vfill
 \renewcommand{\arraystretch}{1.3} % >1.0 increases vertical padding for tabular
 \begingroup
+% Short cell lists need natural spacing, with hyphenation when necessary.
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\begingroup
 \setlength{\tabcolsep}{0.55em}
-\begin{tabular}{| p{5.3em} | p{3.1em} | p{2.74em} | p{2.74em} | p{3.1em} | p{2.74em} | p{2.74em} | p{2.74em} |}
+\begin{tabular}{| L{5.3em} | L{3.1em} | L{2.74em} | L{2.74em} | L{3.1em} | L{2.74em} | L{2.74em} | L{2.74em} |}
   \hline
   \textbf{\ulIfLanguage{portuguese}{Jônico}{Ionian}} & \textbf{I} & \textbf{ii} & \textbf{iii} & \textbf{IV} & \textbf{V} & \textbf{vi} & \textbf{vii\symdim} \\
   \ulIfLanguage{portuguese}{Dórico}{Dorian} & VII & i & ii & III & IV & v & vi\symdim \\
@@ -38,13 +41,14 @@
 }{%
   \subsection*{Minor Scales' Basic Chord Types}
 }
-\begin{tabular}{| p{6em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} | p{2.64em} |}
+\begin{tabular}{| L{6em} | L{2.64em} | L{2.64em} | L{2.64em} | L{2.64em} | L{2.64em} | L{2.64em} | L{2.64em} |}
   \hline
   \ulIfLanguage{portuguese}{Natural}{Natural} & i & ii\symdim & III & iv & v & VI & VII \\
   \ulIfLanguage{portuguese}{Harmônico}{Harmonic} & i & ii\symdim & III+ & iv & V & VI & \shrp{}vii\symdim \\
   \ulIfLanguage{portuguese}{Melódico}{Melodic} & i & ii & III+ & IV & V & \shrp{}vi\symdim & \shrp{}vii\symdim \\
   \hline
 \end{tabular}
+\endgroup
 \vfill
 
 % Decide before reading diagrams so \gtab can set its accidental catcodes.
