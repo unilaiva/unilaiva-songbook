@@ -15,7 +15,7 @@
 \documentclass[
   variants={default,lyric},
   title={Unilaiva Selection},
-  subtitle={New songs, 2023-03-26 -- \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day},
+  subtitle={New songs, 2024-08-12 -- \the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day},
   motto={a selection of songs from Unilaiva Songbook}
 ]{ulsbs-songbook-unilaiva-default}
 
@@ -25,10 +25,18 @@
 %% will be generated.
 % \newcommand{\coverpdf}{my_selection_cover.pdf}
 
-%% Here we set the song numbers included in this selection:
-\ulIncludeOnlySongs{271,272,273,274,627,628,629,630,631,632,633,634,635,636}
+%% Here we set the song ids included in this selection:
+\ulIncludeOnlySongIds{eterno-sol-6l1h1k,
+                      besame-mucho-j4gfhe,
+                      conselho-rk2plt,
+                      over-the-rainbow-1m6rnp,
+                      nature-boy-p5uk86,
+                      ek-ong-kar-sat-gur-prasad-a4n3rz,
+                      ave-maria-xvjuu8,
+                      ystavan-laulu-dei717}
 
-%% Required:
+%% Keep the document boundary here so lilypond-book can detect the page width.
 \input{ul-selection_include.tex}
-
-%% That's it! Nothing more is needed.
+\begin{document}
+  \input{ul-selection_content.tex}
+\end{document}

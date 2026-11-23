@@ -194,7 +194,9 @@ Repository-specific conventions are:
 - Song tags are defined in [`include/tags.txt`](include/tags.txt), one tag with
   optional `|`-separated aliases per line, in index order.
 - [`include/ul-selection_example.tex`](include/ul-selection_example.tex) shows
-  the project's selection setup; read its associated helper defaults before copying it.
+  the project's selection setup. Keep `\begin{document}` in the main file so
+  `lilypond-book` can detect the page width; load the two selection helpers on
+  either side of it as shown in the example.
 
 A practical edit/check cycle is:
 

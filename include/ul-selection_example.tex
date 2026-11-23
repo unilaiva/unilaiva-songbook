@@ -32,7 +32,8 @@
 %% Here we set the song numbers included in this selection:
 \ulIncludeOnlySongs{107,232,333,334,502,703,105,324}
 
-%% Required:
+%% Keep the document boundary here so lilypond-book can detect the page width.
 \input{ul-selection_include.tex}
-
-%% That's it! Nothing more is needed.
+\begin{document}
+  \input{ul-selection_content.tex}
+\end{document}
