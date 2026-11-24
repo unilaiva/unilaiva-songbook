@@ -16,6 +16,10 @@ multikey-books = true
 multikey-lilypond-scores = true
 multikey-min-chordname-scale = 1
 
+# The website needs the matching PDF, metadata, and (where supported) multikey package.
+require-multikey-for-pdf-deploy = true
+require-json-for-pdf-deploy = true
+
 # Common assets that will be deployed with all songbooks to deploy/images/icons.
 # (supports ?, *, and **; resolved relative to this file)
 common-deploy-icons = [
