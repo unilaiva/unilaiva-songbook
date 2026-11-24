@@ -205,11 +205,17 @@ A practical edit/check cycle is:
 3. Compile that main document with `--quick` and inspect the generated PDF.
 4. Before publishing, build the required variants and editions and inspect their layout too.
 
-The bundled
-[ULSBS TeX Tools extension](ulsbs/vscode-extension/ulsbs-tex-tools/README.md)
-adds VS Code snippets, song navigation, diagnostics, and build commands. Open
-this repository's root as the workspace so it can find the config and engine.
-Other text editors also work.
+**VS Code with the bundled [ULSBS TeX Tools extension](ulsbs/editor-support/vscode-extension/ulsbs-tex-tools/README.md)
+is the recommended editor for songbooks.** It adds snippets, song navigation,
+diagnostics, and build commands. Open this repository's root as the workspace
+so the extension can find the config and engine.
+
+[TeXstudio support is experimental](ulsbs/editor-support/texstudio/README.md).
+Use a dedicated profile, this repository's `./ulsbs-compile` wrapper, and the
+collection-specific class completions in
+[`workspace/workspace_config/texstudio/`](workspace/workspace_config/texstudio/).
+[Frescobaldi resources](workspace/workspace_config/frescobaldi/) are also
+available for LilyPond score transcription.
 
 ## Output
 
@@ -390,8 +396,8 @@ documentation is organized by task:
 - [Configuration example](ulsbs/ulsbs-config-example.toml):
   the annotated build-setting and profile reference. This repository uses its own
   [`ulsbs-config.toml`](ulsbs-config.toml), not that example file.
-- [Editor support](ulsbs/vscode-extension/ulsbs-tex-tools/README.md):
-  VS Code extension installation and use.
+- [Editor support](ulsbs/README.md#editor-support): the recommended VS Code
+  extension and experimental TeXstudio support.
 - [Architecture](ulsbs/ARCHITECTURE.md) and [Maintainer Notes](ulsbs/MAINTAINERS.md):
   references for engine development and release maintenance.
 
