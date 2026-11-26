@@ -312,26 +312,22 @@
 
 \beginsong{Taivas on sininen ja valkoinen}[id={taivas-on-sininen-ja-valkoinen-np1mkf},by={trad.},ph={II},key={Am},gk={Am, G#m--Am}]
   \meter{4}{4}
-  % declare new (global) named chord-replay registers:
-  \newchords{chords_taivas_a}\newchords{chords_taivas_b}
   \beginverse+
-    \beginrep\memorize[chords_taivas_a] % memorize chords into a named register
+    \beginrep
       |\[<A>Am]Taivas \[^<C>]on \[<* E>]sininen \[^<D>]ja |\[<C B>E7]val\[^<A G#>]koi\[<A>Am]nen \[^<C D>]ja
       |\[^<E>]tähtö\[<F>Dm]si\[^<E D>]ä |\[<E>C]täyn\[E7]nä
     \endrep
-    \endverse\glueverses\beginverse+
-    \beginrep\memorize[chords_taivas_b] % memorize chords into a named register
+    \beginrep
       |\[<E>Am]Niin on \[<B>Bm7&5]nuo\[^<A>]ri |\[<G F>G7]sy\[^<E D>]dä\[<E>C]me\[^<A B>]ni
       |\[<C D>Am]a\[^<E D>]ja\[<C>E7]tuk\[^<B>]sia |\[<A>Am]täyn\[<*>]nä
     \endrep
   \endverse
   \notesoff
-  \beginverse\replay[chords_taivas_a]
+  \beginverse
     \beginrep
       |^Enkä mä ^muille |^ilmoi^{ta mun}
       |sydän^suru|^ja^ni
     \endrep
-    \endverse\glueverses\beginverse\replay[chords_taivas_b]
     \beginrep
       |^Synkkä ^metsä ja |^kirkas ^taivas ne
       |^tuntee mun ^huoli|^a^ni
@@ -416,31 +412,27 @@
 \beginsong{Katselin taivahan tähtiä}[id={katselin-taivahan-tahtia-1ktni9},by={trad.},key={Em},gk={Gm, Gm--Am}]
   \audio[key=Gm]{https://www.youtube.com/watch?v=efchOgWBFtI}
   \capo{3}
-  \newchords{chords_katselintaivahan_a}\newchords{chords_katselintaivahan_b}
   \beginverse+
-    \beginrep\memorize[chords_katselintaivahan_a]
+    \beginrep
       |\[<B>Em]Kat\[^<E>]selin \[<*>]tai\[^<D>]va\[^<E>]han |\[<F#>D]tähti\[<* D>]ä, ja |\[<C>Am]tuli mi\[^<B>]nun \[<* C>]i\[^<A>]kä|\[<B>B]vä\[<*>]ni
     \endrep
-    \endverse\glueverses\beginverse+
-    \beginrep\memorize[chords_katselintaivahan_b]
+    \beginrep
       \[^<B>]Kun |\[<C>Am]heit' o\[^<B>]li \[<* A>]aina |\[<B>Em]kaksi \[^<A>]ja \[<* G>]kaksi, \[^<F#>]ja |\[<A>Am]minä o\[^<F#>]lin \[<B>B7]yk\[^<F#>]si|\[<E>Em]nä\[<*>]ni
     \endrep
   \endverse
   \notesoff
-  \beginverse\replay[chords_katselintaivahan_a]
+  \beginverse
     \beginrep
       |^Oi jos ^saisin sen |^omak^seni, jok' on |^keskellä ^sydän|^tä^ni
     \endrep
-    \endverse\glueverses\beginverse\replay[chords_katselintaivahan_b]
     \beginrep
       En |^surisi mä ^köyhää |^koti^ani, enkä |^orjan ^päivi|^ä^ni
     \endrep
   \endverse
-  \beginverse\replay[chords_katselintaivahan_a]
+  \beginverse
     \beginrep
       |^Niin minä ^olen |^yksi^näni, kuin |^kataja ^muista |^puis^ta
     \endrep
-    \endverse\glueverses\beginverse\replay[chords_katselintaivahan_b]
     \beginrep
       |^Ei ole ^uutta |^ei ole ^vanhaa, |^ei ole ^omi|^tuis^ta
     \endrep
@@ -680,21 +672,18 @@
 
 
 \beginsong{Yksi ruusu on kasvanut laaksossa}[id={yksi-ruusu-on-kasvanut-laaksossa-da05ur},by={trad. (lyr. Kaarle Krohn)},key={Dm},gk={C#m, Cm--C#m}]
-  \newchords{chords_yksiruusu_a}\newchords{chords_yksiruusu_b}
-  \beginverse+\memorize[chords_yksiruusu_a]
+  \beginverse+
     \[^<A>]Yksi |\[<F>Dm]ruusu \[^<E>]on \[<D>Gm]kas\[^<E>]va\[^<F>]nut |\[<D>Dm]laak\[^<A>]sos\[<*>]sa \altchords{\id[1]{(C#m)}|C#m F#m |C#m}
     \[^<A>]ja se |\[F]kau\[^<C>]niisti \[<G>C7]ku\[^<B&>]kois|\[<A>F]taa. \[A7] \altchords{|E B7 |E G#7}
-    \endverse\glueverses\beginverse+
-    \beginrep\memorize[chords_yksiruusu_b]
+    \beginrep
       \[^<A>]Yksi |\[\ac{1}{Dm} \ac{2}{F}]kulkija\[<C B&>C]poi\[^<G>]ka \[^<B&>]on |\[<A>F]näh\[^<D>]nyt \[B&]sen \altchords{|\ac{1}{C#m} \ac{2}{E} B |E A}
       \[^<A>]eikä |\[<G>Gm]voi \[^<F>]si\[^<E>]tä \[<A>A7]un\[^<C#>]hoit|\[<D>Dm]taa. \[<*>] \altchords{|F#m G#7 |C#m}
     \endrep
   \endverse
   \notesoff
-  \beginverse\replay[chords_yksiruusu_a]
+  \beginverse
     Ja sen |^olisi ^kyllä hän |^poimi^nut \altchords{\id[2]{(Bm)}|Bm Em |Bm}
     ja sen |^painanut ^povel|^leen, ^ \altchords{|D A7 |D F#7}
-    \endverse\glueverses\beginverse\replay[chords_yksiruusu_b]
     \beginrep
       mutta |^köyhänä ^ei ole |^tohti^nut, \altchords{|Bm \ac{2}{D} A |D G}
       vaan on |^jättänyt ^paikoil|^leen. ^ \altchords{|Em F#7 |Bm}
@@ -759,7 +748,6 @@
 
 
 \beginsong{Käy neitoa kaksi}[id={kay-neitoa-kaksi-2x26m3},by={trad.},ex={Åland},key={Am},gk={Am, Gm--Bm}]
-  \newchords{chords_kayneitoakaksi_a}\newchords{chords_kayneitoakaksi_b}
   \ifulShowChords%
     \beginverse
       \musicnotefornext{intro:}*
@@ -768,34 +756,31 @@
       }
     \endverse
   \fi%
-  \beginverse+\memorize[chords_kayneitoakaksi_a]
+  \beginverse+\memorize
     \[^<A>]Käy |\[Am]nei\[<* C>]to\[^<D>]a |\[^<E>]kak\[<* C>]si nyt |\[<D>Dm]ruu\[^<F>]su\[<E>Am]laak\[^<C>]so|\[<D>Dm]hon,\[<*>]
     he |po\[^<E>]i\[<* F>]mi\[^<G>]vat |\[^<A>]kuk\[<* G>]ki\[^<F>]a |\[<C E>Am]leh\[<*>]don. |{ }{ } \[<*>] \e
-    \endverse\glueverses\beginverse+
-    \beginrep\memorize[chords_kayneitoakaksi_b]
+    \beginrep
       \[^<E>]Se |\[<A>F]toinen \[<* F>]on \[^<E>]niin |\[<D E>G]sy\[<* F A>]dä|\[<G>Cmaj7]mes\[^<F>]tä \[<* E>]{i-loi}|\[<C>Am]nen,\[<*>]
       \[^<E>]se |\[<A>F]toinen \[<* C>]on \[^<D>]niin |\[<E>Am]surui\[<* C>]nen ja |\[<B>E]huo\[<A>Am]kaa. |{ }{ } \[<*>] \e
     \endrep
   \endverse
   \notesoff
-  \beginverse\replay[chords_kayneitoakaksi_a]
+  \beginverse\replay
     Se |^ri^kas nyt |köy^hälle |^lau^suvi |^näin:^
     nyt |mik^si sä |mur^heisna |^huo^kaat? |{ }{ } ^ \e
-    \endverse\glueverses\beginverse+
-    \beginrep\replay[chords_kayneitoakaksi_b]
+    \beginrep
       Oi, |^mureh^ditko |^isää^si vai |^äiti^äsi |^noin,^
       vai |^kado^titko |^syöm^mesi |^hel^län? |{ }{ } ^ \e
     \endrep
   \endverse
-  \beginverse\replay[chords_kayneitoakaksi_a]
+  \beginverse\replay
     En |^i^sää, en |äi^tiä |^mu^rehdi |^näin,^
     en |täh^tensä |mur^heisna |^huo^kaa, |{ }{ } ^ \e
-    \endverse\glueverses\beginverse+
-    \beginrep\replay[chords_kayneitoakaksi_b]
+    \beginrep
       vaan |^mu^rehdin |^kauno^kaista |^nuo^rukais|^ta, ^
       ken |^molem^mille |^meil^le on |^rak^kain. |{ }{ } ^ \e
     \endrep
-    \endverse\glueverses\beginverse\noteson
+    \noteson
     \[<A>]Se |\[<B>E]rak\[<A>Am]kain. |{ }{ }\[<*>] \ifulShowChords |{ }{ }\[<*>] |\[G/A]\[<*>] |\[Am]\[<*>] |\[G/A]\[<*>] |\[Am]\[<*>] \else \e \fi
   \endverse
   \begin{lilywrap}\begin{lilypond}[]
@@ -983,7 +968,7 @@
 
 \beginsong{Talven valtakunta}[id={talven-valtakunta-1wf63f},index={Äsken aalto heitti vain kuohun valkoisen},by={trad.},key={Am},gk={Am, Am--Bm}]
   \meter{2}{4}
-  \beginverse+\memorize
+  \beginverse+
     \ilsl{\[^<E>]Äs}\[^<D>]ken |\[<C>Am]aal\[^<E>]to |\[<B>Em]heit\[^<E>]ti vain |\[<A>Am]kuohun \[^<C>]valkoi|\[^<E>]sen \altchords{\id[1]{(Em)}|Em |Bm |Em | \e}
     Nyt \[^<F>]jo |\[<G>G]allee\[^<D>]n |peitti jäi\[^<F>]nen |\[<A>Am]silta |\[^<E>]sen \altchords{|D | - |Em | \e}
     Lau\[^<F>]lun |\[<G>G]laula\[^<D>]{ -} |en hiih\[^<F>]dän |\[<A>Am]hangen |\[^<A>]lunta | \e \altchords{|D | - |Em | - | \e}
@@ -1048,7 +1033,7 @@
 
 
 \beginsong{Haltin häät}[id={haltin-haat-o2q7jr},by={Hannu Seppänen, Arto Alaspää}]
-  \beginverse\memorize
+  \beginverse
     Kun |\[<C>C]ihmiskunnan aamu \[^<D>]vas\[^<E>]ta |\[Em]alkoi sarastaa
     Ja |\[F]Lappi oli jättiläisten |\[G]maana
     |\[C]Kaunis Malla-neito alkoi |\[Em]häitään valmistaa
@@ -1280,7 +1265,6 @@
   \beginverse+\memorize[chords_rakastan_elamaa_a]
     \[^<E>]Päättyy |\[<A>Am]yö, \[<*>]{} \[^<C>]aa\[^<A>]mu |\[<F>Dm]saa,\[<*>]{} uusi |\[<E>E7]päi\[^<D>]vä \[^<C>]kun \[<* B>]kirk\[^<A>]kaa\[^<B>]na |\[<C>Am]lois\[^<A>]taa.\[<*>]
     \[^<E>]Sulle |\[^<A>]oi, \[<*>]{} \[^<C>]ko\[^<A>]ti|\[<A>F]maa, \[<*>]{} sävel |\[<G>G7]kau\[^<F>]ne\[^<E>]hin \[<* D>]tuu\[^<C>]les\[^<D>]sa |\[<F>C]soit\[^<E>]taa.\[<*>]
-    \endverse\glueverses\beginverse+
     \beginrep\memorize[chords_rakastan_elamaa_b]
       \[^<E>]Rakas|\[<B>E7]tan\[<*>]{} \[^<A>]e\[^<G#>]lä|\[<A>F]mää, \[Am]{}\[^<E>]jo\[^<F>]ka |\[<G>Gm6]uute\[^<A>]na \[<G>A7]aa\[^<F>]mus\[^<E>]sa |\[<A>Dm]au\[^<D>]kee.\[<*>]
       \[^<E>]Ra\[^<D>]kas|\[<F>Dm6]tan \[E7]{} \[^<E>]e\[^<D>]lä|\[<C>Am]mää, \[D7]{} \[^<D>]jo\[^<B>]ka |\[<E>Am]uu\[^<C>]pu\[^<A>]en \[<E>E7]il\[^<C>]las\[^<B>]sa |\[<C>Am]rau\[^<A>]kee.\[<*>]
@@ -1290,7 +1274,7 @@
   \beginverse\replay[chords_rakastan_elamaa_a]
     Kirkka|^hin ^ päivä |^ei, ^ aina |^parhainta ^loistetta |^suone.^
     Unel|man ^ usein |^vei, ^ eikä |^ystävä ^lohtua |^tuone.^
-    \endverse\glueverses\beginverse\replay[chords_rakastan_elamaa_b]
+    \replay[chords_rakastan_elamaa_b]
     \beginrep
       Rakas|^tan ^ elä|^mää, ^{} joka |^kyynelten ^helminä |^hohtaa.^
       Rakas|^tan ^ elä|^mää, ^{} joka |^myrskyihin ^tietäni |^johtaa.^
@@ -1299,7 +1283,7 @@
   \beginverse\replay[chords_rakastan_elamaa_a]
     Jäänyt |^on ^ päivän |^työ, ^ ilta |^varjoja ^tielleni |^siirtää.^
     Kaupun|gin ^ sydän |^lyö, ^ valot |^laineille ^siltoja |^piirtää.^
-    \endverse\glueverses\beginverse\replay[chords_rakastan_elamaa_b]
+    \replay[chords_rakastan_elamaa_b]
     Rakas|^tan ^ elä|^mää, ^{} joka |^nuoruuden ^haaveita |^kantaa.^
     Rakas|^tan ^ elä|^mää, ^{} joka |^muistojen ^hetkiä |^antaa.^ \replay[chords_rakastan_elamaa_b]
     Rakas|^tan ^ elä|^mää, ^{} sille |^lempeni ^tahdon mä |^antaa.^
@@ -1419,7 +1403,7 @@
     % TODO: chords (note: melody is good for Kalevala-type stuff)
   \meter{5}{8}
   \beginverse+
-    \beginrep\memorize
+    \beginrep
       \beginrep \[^<A>]Täss' \[^<G>]on |\[<A>Am]nainen tuu\[^<G>]len |\[^<A>]tuoma
       \[<B&>Amadd9-]Tuulen |\[<C>C]tuoma \[<B&>C7]ve'en \[^<C>]ve|\[<A>Am]tämä \endrep
       \beginrep \[^<E>]Me\[^<D>]ren |\[<E D>Am/E]aal\[^<E>]to\[<D>(B&)]jen \[^<E>]a|\[<A>Am]jama
@@ -1427,7 +1411,7 @@
     \endrep
   \endverse
   \notesoff
-  \beginverse\replay
+  \beginverse
     \beginrep
       \beginrep Kuin mie |^käynen laula|mahan
       ^Laulan |^mie me^ret me|^siksi \endrep
@@ -1435,7 +1419,7 @@
       ^Meren |^hiekat ^herne|^hiksi \endrep
     \endrep
   \endverse
-  \beginverse\replay
+  \beginverse
     \beginrep
       \beginrep Yhen |^vyöni vyötän|nällä
       ^Yhen |^paita^ni pa|^nolla \endrep
@@ -1443,7 +1427,7 @@
       ^Polki|^meni ^paina|^malla \endrep
     \endrep
   \endverse
-  \beginverse\replay
+  \beginverse
     \beginrep Nouse |^luontoni lo|vesta
     ^Synty|^ni sy^västä |^maasta \endrep
     \beginrep Synty|^ni sy^västä |^maasta
@@ -1517,7 +1501,7 @@
 \beginsong{Sisältäni portin löysin}[id={sisaltani-portin-loysin-n0gjs6},by={Pekka Streng},ph={III, IV},key={C},gk={D, C--D}]
   % in transposed C the notes range from G to A'
   \transpose{-2}
-  \beginverse\memorize
+  \beginverse
     |\[A] \[^<A>]Sisäl|täni \[^<B>]por\[^<A>]tin |\[D]löy\[^<F#>]sin | \e
     |\[A] melkein |huomaamattom|\[D]an. | \e
     |\[G]{} Kun sen |läpi hiljaa |\[D]nousen, | \e
@@ -1584,8 +1568,6 @@
   \meter{4}{4}
   \beginverse
     |\[<A>Am]Laulan \[<B>G]sinulle |\[Am]lapsoseni |\[Em]laulan sinulle |\[Am]laulun
-  \endverse\glueverses
-  \beginverse
     \beginrep
       |\[Am]Kuule \[G]minua |\[Am]lapsoseni, kun |\[Em]äitisi laulaa |\[Am]sulle
     \endrep
@@ -1593,48 +1575,42 @@
   \notesoff
   \beginverse
     |^Missä ^ikinä |^kuljetkin |^siellä olen |^aina
-  \endverse\glueverses
-  \beginverse
+    \replay
     \beginrep
       |^Olen ^jalkojes |^alla |^metsän puissa ja |^tuulessa
     \endrep
   \endverse
   \beginverse
     |^Vuoret on ^syntyneet |^kupeistani |^laaksot rintojen |^välistä
-  \endverse\glueverses
-  \beginverse
+    \replay
     \beginrep
       |^Meret ja ^joet |^kohdustani |^veri on värjännyt |^maan
     \endrep
   \endverse
   \beginverse
     |^Hyvä sun on ^täällä |^kulkea |^maan ja taivaan |^väliä
-  \endverse\glueverses
-  \beginverse
+    \replay
     \beginrep
       |^Äitisi ^silittää |^varpaitasi ja |^isäs silittää |^päätä
     \endrep
   \endverse
   \beginverse
     Ja |^jos sattuis ^lapseni |^käymään niin, että |^ilmaan tipah|^taisit
-  \endverse\glueverses
-  \beginverse
+    \replay
     \beginrep
       Niin |^älä sinä ^lapseni |^huolta kanna |^isäs ottaa |^kopin
     \endrep
   \endverse
   \beginverse
     |^Ei ole ^harha-|^askelia |^ei ole |^virheitä
-  \endverse\glueverses
-  \beginverse
+    \replay
     \beginrep
       |^Kauneutta ^kohti |^kuljet vain täällä |^ikuisessa |^sylissä
     \endrep
   \endverse
   \beginverse
     Ja |^vielä ^kerron |^sinulle |^kuuntele vielä |^hetki
-  \endverse\glueverses
-  \beginverse
+    \replay
     \beginrep
       |^Aina oot ^ollut |^toivottu ja |^tänne terve|^tullut
     \endrep
@@ -1673,27 +1649,27 @@
 
 
 \beginsong{Koti mun luona}[id={koti-mun-luona-aooe9w},by={Malla Maanpiiri},ph={III, IV},key={G},gk={G, G--B}]
-  \beginverse+\memorize
+  \beginverse+
     \beginrep
       |\[<C>C]Sulla sulla |\[<G>G]siskokulta on
       |\[<C>Am]aina koti mun |\[<G>Em/G]luona | \e
     \endrep
   \endverse
   \notesoff
-  \beginverse[1]\replay
+  \beginverse[1]
     \beginrep
       Me |^ollaan täällä |^näyttämässä,
       |^mitä rakkaus |^on | \e
     \endrep
   \endverse
-  \beginverse\replay
+  \beginverse
     \beginrep
       |^Sulla sulla |^velikulta on
       |^aina koti mun |^luona | \e
     \endrep
   \endverse
   \goto{Me ollaan täällä}
-  \beginverse\replay
+  \beginverse
     \beginrep
       |^Sulla sulla |^lapsikulta on
       |^aina koti mun |^luona | \e
@@ -1755,7 +1731,6 @@
   \beginverse
     |^En ma ole, |^lapseni, |^lintu tästä |^maasta,
     |^olen pieni |^veljesi, |^tulin taiva|^hasta.
-    \endverse\glueverses\beginverse
     \beginrep
       |\[Am]Siemenen |\[Em]pienoisen, |\[C]jonka annoit |\[B7]köyhällen,
       |\[Am]pieni sai sun |\[E7]veljesi |\[Dm]enkeleitten |\[Am]maasta.
@@ -1930,10 +1905,8 @@
 
 
 \beginsong{Mörri-Möykky}[id={morri-moykky-gyobes},by={Marjatta Pokela},ph={IV}]
-  \newchords{chords_morrimoykky_a}\newchords{chords_morrimoykky_b}
-  \beginverse\memorize[chords_morrimoykky_a]
+  \beginverse
     |\[<B>Em]Kor\[^<A>]pi\[^<G>]kuusen |\[<F#>Am]kannon \[<E>Em]alla on |\[<F#>B7]Mörri-\[^<B>]Möy\[^<D#>]kyn |\[<E>Em]kolo
-    \endverse\glueverses\beginverse\memorize[chords_morrimoykky_b]
     \beginrep
       |\[Am]Siellä on koti ja |\[Em]siellä on peti
       ja |\[B7]peikolla pehmoinen |\[\ac{1}{Em}\ac{2}{E}]olo
@@ -1943,33 +1916,28 @@
   \beginverse[1]
     |\[E]Tiu tau tiu tau |tili tali tittan
     |Sirkat soittaa |\[B]salolla
-    \endverse\glueverses\beginverse[1]
     \beginrep
       |\[A]Pikkuiset peikot ne |\[E]piilossa pysyy
       |\[B7]kirkkaalla päivän |\[E]valolla
     \endrep
-    \endverse\glueverses\beginverse[1]
     |\[Am]{} |\[Em]{} |\[B7]{} |\[Em]
   \endverse
-  \beginverse\replay[chords_morrimoykky_a]
+  \beginverse
     |^Syksyn tullen |^sieniä ^kasvaa |^karhunkanka|^halla
-    \endverse\glueverses\beginverse\replay[chords_morrimoykky_b]
     \beginrep
       |^Mörri-Möykky se |^sateessa istuu
       |^kärpässienen |^alla \goto{Tiu tau tittan}
     \endrep
   \endverse
-  \beginverse\replay[chords_morrimoykky_a]
+  \beginverse
     |^Ottaisin minä |^Mörri-^Möykyn, |^jos vain kiinni |^saisin
-    \endverse\glueverses\beginverse\replay[chords_morrimoykky_b]
     \beginrep
       |^Pieneen koriin |^pistäisin ja
       |^kotiin kuljet|^taisin \goto{Tiu tau tittan}
     \endrep
   \endverse
-  \beginverse\replay[chords_morrimoykky_a]
+  \beginverse
     Vaan |^eipä taida |^meidän ^äiti |^peikkolasta |^ottaa
-    \endverse\glueverses\beginverse\replay[chords_morrimoykky_b]
     \beginrep
       |^Eikä se edes |^usko, että
       |^Mörri-Möykky on |^totta \goto{Tiu tau tittan}
@@ -2142,34 +2110,29 @@
 
 \beginsong{Tuuditan tulisoroista}[id={tuuditan-tulisoroista-dr2w3b},by={trad.},key={Am},gk={Am, Gm--Bm},tags={uni}]
   \audio[key=B&m]{https://www.youtube.com/watch?v=mpHEc8SjfZc}
-  \newchords{chords_tulisoroinen_a}\newchords{chords_tulisoroinen_b}
   \transpose{5} % from Em to Am
-  \beginverse+\memorize[chords_tulisoroinen_a]
+  \beginverse+
     |\[<B>Em]Tuuditan \[^<G>]tu|\[<F#>B]li\[^<B>]so\[<E>Em]rois\[^<F#>]ta, |\[^<G>]kipunaista \[<A>D]kiikut|\[<B>G]te\[<*>]len
-    \endverse\glueverses\beginverse+
-    \beginrep\memorize[chords_tulisoroinen_b]
+    \beginrep
       |\[<B>G]Vaa\[^<E>]lin \[<B *>]pien\[^<A>]tä |\[<G>Em/B]val\[^<B>]ke\[<E>Em]ais\[^<F#>]ta, |\[^<G>]luojan lasta \[<F#>B7]liikut|\[<E>Em]te\[<*>]len
     \endrep
   \endverse
   \ulMelodyStyleMapping{swapped}% use alternate melody note color
   \beginverse+% melody notes in this verse signify the 2nd voice
     |\[<B>Em]Tai\[<A>]va\[<G>]hast' \[<E>]on |\[B]lah\[<D#>]ja \[<E>Em]tul\[<B>]lut, |\[<E>]taivahan tu\[<D>D]len ki|\[<G>G]sois\[<*>]ta
-  \endverse\glueverses\beginverse+
     \beginrep
       |\[<G>G]Luojan \[<*>]lem\[<F#>]men |\[<E>Em/B]lei\[<B>]kin\[<E>Em]nöis\[<D#>]tä, |\[<E>]ei vahingon \[<F#>B7]val\[<D#>]ke|\[<E>Em]ois\[<*>]ta
     \endrep
   \endverse
   \notesoff
-  \beginverse\replay[chords_tulisoroinen_a]
+  \beginverse
     |^Tuudin lasta |^maan va^loksi, |en vahingon ^valke|^ak^si
-    \endverse\glueverses\beginverse\replay[chords_tulisoroinen_b]
     \beginrep
       |^Tuudin ^toivo|^{jen tu}^leksi, |työn jaloisen ^jatka|^jak^si
     \endrep
   \endverse
-  \beginverse\replay[chords_tulisoroinen_a]
+  \beginverse
     |^Senpä tuudin |^tuikke^heksi, |tähdeksi tä^hän ta|^lo^hon
-    \endverse\glueverses\beginverse\replay[chords_tulisoroinen_b]
     \beginrep
       |^Maan hy^väksi |^maine^heksi, |suurionnis^ten i|^lo^hon
     \endrep
